@@ -1,3 +1,23 @@
+2003-10-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: bump version number to 2.5.0
+
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: applied patch by
+	  Unai Uribarri Rodríguez (unaiur@yahoo.es) for bug #124779, 
+	  fixed a memory leak.
+	* libgnomevfs/gnome-vfs-private-utils.c: properly unref the GConf 
+	  client in error cases.
+
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-method.c: fixed 2 small memory leaks
+
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+ 
+         * configure.in: fix problem with automake >= 1.6 (fixes #124725)
+
 2003-10-06  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "mr" to ALL_LINGUAS.
@@ -207,7 +227,7 @@
 	* test/test-symlinks.c: removed unnecessary ;, fixes build on older
 	  gcc and bug #117818
 
-2003-07-18  Fredrik J�nsson  <fjo@nada.kth.se>
+2003-07-18  Fredrik Jönsson  <fjo@nada.kth.se>
 
 	* modules/ssh-method.c: cast pid_t* to gint * (fixes compilation on 
 	  Solaris, bug #117788)
@@ -545,11 +565,11 @@
                                                                                 
         * configure.in: Added cy to ALL_LINGUAS
 
-2003-05-08  Samúel Jón Gunnarsson  <sammi@techattack.nu>
+2003-05-08  SamÃºel JÃ³n Gunnarsson  <sammi@techattack.nu>
 
 	* configure.in: Added "is" into ALL_LINGUAS
 
-2003-05-06  Danilo Šegan  <dsegan@gmx.net>
+2003-05-06  Danilo Å egan  <dsegan@gmx.net>
 
 	* configure.in: Added "sr" and "sr@Latn" to ALL_LINGUAS.
 
@@ -899,7 +919,7 @@
 	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
 	Remove the unnecessary g_warning here.
 
-2003-03-14  Joël Brich <joel.brich@laposte.net>
+2003-03-14  JoÃ«l Brich <joel.brich@laposte.net>
 
 	* configure.in: Added "eo" to ALL_LINGUAS.
 
@@ -4006,7 +4026,7 @@ Tue Feb 19 17:11:41 2002  George Lebl <jirka@5z.com>
 	keep a pointer to the old key which eventually got freed.
 	Seems to fix a startup segfault in the panel.
 
-2002-02-14  Tõivo Leedjärv  <leedjarv@interest.ee>
+2002-02-14  TÃµivo LeedjÃ¤rv  <leedjarv@interest.ee>
 
 	* configure.in: Added et to ALL_LINGUAS.
 
@@ -6018,7 +6038,7 @@ Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 	* port to bonobo-activation.
 
-2001-08-01  Jonas Borgström  <jonas@codefactory.se>
+2001-08-01  Jonas BorgstrÃ¶m  <jonas@codefactory.se>
 
 	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 
 	Split the HAVE_OPENSSL #ifdef into two. So
@@ -6635,7 +6655,7 @@ Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 	* modules/ftp-method.c (vfs_module_init): Don't initialize GConf if we don't have it.
 
-2001-06-11  Carlos Perelló Marín <carlos@gnome-db.org>
+2001-06-11  Carlos PerellÃ³ MarÃ­n <carlos@gnome-db.org>
 
 	* modules/cdda-method.c: Fixed to compile with Gtk 2.0
 
@@ -8191,7 +8211,7 @@ Fri Apr 27 13:32:32 2001  Jonathan Blandford  <jrb@webwynk.net>
 
 2001-02-22  Seth Nickell  <seth@eazel.com>
 
-	reviewed by: Pavel Císler <pavel@eazel.com>
+	reviewed by: Pavel CÃ­sler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-application-registry.c:
 	(strip_trailing_whitespace):
@@ -10358,7 +10378,7 @@ gno2000-12-22  Pavel Cisler  <pavel@eazel.com>
 	* modules/ftp-method.c:
 	Fix all the warnings that crept in while -Werror was off.
 
-2000-12-20 Lutz Müller <urc8@rz.uni-karlsruhe.de>
+2000-12-20 Lutz MÃ¼ller <urc8@rz.uni-karlsruhe.de>
 	
         * libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_set_host_name),
 	(gnome_vfs_uri_set_user_name), (gnome_vfs_uri_set_password):
@@ -19301,7 +19321,7 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 	Avoid calling gnome_vfs_uri_unref on NULL uri, to avoid
 	g_return_if_fail.
 	
-2000-01-02  Tomasz K³oczko  <kloczek@pld.org.pl>
+2000-01-02  Tomasz KÂ³oczko  <kloczek@pld.org.pl>
         * configure.in, po/pl.po: added Polish translation
         (based on GNOME PL translation resources).
 
@@ -19322,7 +19342,7 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 
 	* configure.in: (ALL_LINGUAS) Added Galician (gl).
 
-1999-12-28  Martin Norbäck <d95mback@dtek.chalmers.se>
+1999-12-28  Martin NorbÃ¤ck <d95mback@dtek.chalmers.se>
 
 	* configure.in: Added sv to ALL_LINGUAS.
 	
