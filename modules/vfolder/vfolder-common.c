@@ -513,8 +513,8 @@ read_extended_entries (Folder *folder)
 						NULL);
 		else
 			file_uri = g_strconcat (extend_uri, 
-						file_info->name, 
 						"/", 
+						file_info->name, 
 						NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
@@ -555,7 +555,6 @@ read_extended_entries (Folder *folder)
 					   file_uri,
 					   file_info->name, 
 					   FALSE);
-			entry_set_filename (entry, file_uri);
 
 			/* Include unless specifically excluded by query */
 			if (!query || query_try_match (query, folder, entry)) {

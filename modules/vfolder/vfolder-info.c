@@ -401,7 +401,6 @@ read_vfolder_from_file (VFolderInfo     *info,
 {
 	xmlDoc *doc;
 	xmlNode *node;
-	gboolean got_a_vfolder_dir = FALSE;
 	GnomeVFSResult my_result;
 
 	if (result == NULL)
@@ -449,19 +448,6 @@ read_vfolder_from_file (VFolderInfo     *info,
 			if (dir != NULL) {
 				ItemDir *id = itemdir_new (info, dir, TRUE);
 
-				/* 
-				 * free the default itemdirs created in
-				 * vfolder_info_init().  
-				 */
-				if (!got_a_vfolder_dir) {
-					g_slist_foreach (info->item_dirs,
-							 (GFunc) itemdir_free, 
-							 NULL);
-					g_slist_free (info->item_dirs);
-					info->item_dirs = NULL;
-				}
-
-				got_a_vfolder_dir = TRUE;
 				info->item_dirs = 
 					g_slist_append (info->item_dirs, id);
 				xmlFree (dir);
@@ -473,19 +459,6 @@ read_vfolder_from_file (VFolderInfo     *info,
 			if (dir != NULL) {
 				ItemDir *id = itemdir_new (info, dir, FALSE);
 
-				/* 
-				 * free the default itemdirs created in
-				 * vfolder_info_init().  
-				 */
-				if (!got_a_vfolder_dir) {
-					g_slist_foreach (info->item_dirs,
-							 (GFunc) itemdir_free, 
-							 NULL);
-					g_slist_free (info->item_dirs);
-					info->item_dirs = NULL;
-				}
-
-				got_a_vfolder_dir = TRUE;
 				info->item_dirs = 
 					g_slist_append (info->item_dirs, id);
 				xmlFree (dir);

@@ -1,3 +1,13 @@
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Don't
+	free default itemdirs/mergedirs since they are now pulled from
+	GNOME2_PATH.
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Put
+	the '/' in the right place between dirname and filename.
+	(read_extended_entries): Remove extraneous entry_set_filename().
+
 2002-07-17  Damon Chaplin  <damon@ximian.com>
 
 	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): store
