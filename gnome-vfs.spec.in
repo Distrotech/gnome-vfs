@@ -69,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog NEWS README
 %config %{sysconfdir}/gnome-vfs-mime-magic
 %config %{sysconfdir}/vfs/modules/*.conf
+%dir %{prefix}/share/application-registry
 %{prefix}/bin/gnome-vfs-slave
 %{prefix}/bin/nautilus-mime-type-capplet
 %{prefix}/lib/*.0
@@ -78,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/vfs/modules/*.0
 %{prefix}/lib/vfs/modules/*.so
 %{prefix}/man/man5/*.5*
+%{prefix}/share/application-registry/gnome-vfs.applications
 %{prefix}/share/control-center/*.desktop
 %{prefix}/share/gnome/apps/Settings/*.desktop
 %{prefix}/share/gnome/html/*.txt

@@ -1,3 +1,10 @@
+2000-10-16  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* gnome-vfs.spec.in:
+	Add gnome-vfs.applications.  This fixes the problem where users
+	using snapshot rpms where not getting sidebar buttons or "Open
+	With" menu items.  Thanks for Jurgen for pointing this out.
+	
 2000-10-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 3042, Adding new mime type doesn't work.
