@@ -1,3 +1,9 @@
+2000-12-20 Lutz Müller <urc8@rz.uni-karlsruhe.de>
+	
+        * libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_set_host_name),
+	(gnome_vfs_uri_set_user_name), (gnome_vfs_uri_set_password):
+	Fix two copy-paste bugs.
+
 2000-12-19  Darin Adler  <darin@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>
