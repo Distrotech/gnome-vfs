@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-11-27 13:59-0500\n"
+"POT-Creation-Date: 2002-12-09 12:44+0100\n"
 "PO-Revision-Date: 2002-10-28 19:39+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
