@@ -35,6 +35,7 @@
 #include <config.h>
 
 #include <stdio.h>
+#include <unistd.h>
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-util.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -168,7 +169,6 @@ do {                                                                     \
 	GnomeVFSURI *translated_uri, *hold_uri;                          \
 	gboolean found_configuration;                                    \
         int delay;                                                       \
-        char *delay_command;                                             \
                                                                          \
 	found_configuration =                                            \
 		get_operation_configuration ( (FUNCTION_NAME),           \
@@ -178,11 +178,7 @@ do {                                                                     \
 					      &other_options);           \
 	                                                                 \
         if (found_configuration) {                                       \
-                delay_command = g_new (char, 90);                        \
-                g_snprintf (delay_command, 90, "usleep %d",              \
-			    delay * 1000);                               \
-                system (delay_command);                                  \
-                g_free (delay_command);                                  \
+                usleep (delay *1000);                                    \
         }                                                                \
 	if (!found_configuration || perform_operation) {                 \
 	        translated_uri = URI;                                    \

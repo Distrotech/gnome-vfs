@@ -1502,6 +1502,7 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->command = g_strdup (application->command);
 	result->can_open_multiple_files = application->can_open_multiple_files;
 	result->can_open_uris = application->can_open_uris;
+	result->requires_terminal = application->requires_terminal;
 
 	return result;
 }
