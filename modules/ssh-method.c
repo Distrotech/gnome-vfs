@@ -39,6 +39,9 @@
 #include <sys/signal.h>
 #include <fcntl.h>
 
+#define D(x)
+/* #define D(x) g_print x */
+
 #define LINE_LENGTH 4096	/* max line length we'll grok */
 #define SLEEP_TIME 300000	/* time we'll wait for the process to finish */
 
@@ -202,6 +205,8 @@ ssh_connect (SshHandle **handle_return,
 				     NULL);
 	g_free (host_port);
 
+	D(("ssh_connect () command: %s\n", command_line));
+
 	g_shell_parse_argv (command_line, &argc, &argv, &gerror);
 
 	g_free (command_line);
@@ -245,6 +250,8 @@ ssh_connect (SshHandle **handle_return,
 					strlen("Host key verification failed"))
 				== 0) {
 			res = GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
+		} else if (strstr (buffer, "Connection refused") != NULL) {
+			res = GNOME_VFS_ERROR_ACCESS_DENIED;
 		}
 	}
 
@@ -531,6 +538,10 @@ do_open_directory (GnomeVFSMethod *method,
 	char *quoted_name;
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (name == NULL) {
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	}
+
 	quoted_name = g_shell_quote (name);
 
 	if (*name != '\0') {
