@@ -115,9 +115,7 @@ vfs_dir_source_free (VfsDirSource *vfs_source)
 
 
 static void
-hash_free_module_path (gpointer key,
-		       gpointer value,
-		       gpointer user_data)
+hash_free_module_path (gpointer value)
 {
 	ModulePathElement *module_path;
 
@@ -131,8 +129,6 @@ configuration_destroy (Configuration *configuration)
 {
 	g_return_if_fail (configuration != NULL);
 
-	g_hash_table_foreach (configuration->method_to_module_path,
-			      hash_free_module_path, NULL);
 	g_hash_table_destroy (configuration->method_to_module_path);
 	g_list_foreach (configuration->directories, (GFunc) vfs_dir_source_free, NULL);
 	g_list_free (configuration->directories);
@@ -355,7 +351,7 @@ configuration_load (void)
 	int i = 0;
 	DIR *dirh;
 
-	configuration->method_to_module_path = g_hash_table_new (g_str_hash, g_str_equal);
+	configuration->method_to_module_path = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, hash_free_module_path);
 
 	/* Go through the list of configuration directories and build up a list of config files */
 	for (list = configuration->directories; list && i < MAX_CFG_FILES; list = list->next) {
@@ -526,8 +522,6 @@ maybe_reload (void)
 
 	configuration->last_checked = time (NULL);
 
-	g_hash_table_foreach (configuration->method_to_module_path,
-			      hash_free_module_path, NULL);
 	g_hash_table_destroy (configuration->method_to_module_path);
 	configuration_load ();
 }
