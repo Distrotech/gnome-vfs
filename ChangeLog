@@ -1,3 +1,25 @@
+2000-05-05  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-gen-mimedb: Removed from CVS. This
+	is a generated file and I shouldn't have checked it in earlier.
+	
+	* libgnomevfs/gnome-vfs-mime-info.h,
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(gnome_vfs_mime_program_list), (gnome_vfs_mime_program_name_list),
+	(gnome_vfs_mime_program_name_list_free):  Removed these
+	list-based functions with Miguel's blessing. They shouldn't
+	have gotten into the old gnome-mime.c, and they're not
+	needed for Nautilus or apparently anything else.
+	* libgnomevfs/gnome-vfs-mime.h,
+	* libgnomevfs/gnome-vfs-mime.c:
+	Added #include <time.h> to shut up warning.
+	(gnome_vfs_mime_type_list), (gnome_vfs_mime_type_list_or_default), 
+	(gnome_vfs_mime_type_list_of_file),
+	(gnome_vfs_mime_type_list_or_default_of_file): Removed these
+	list-based functions with Miguel's blessing. They shouldn't
+	have gotten into the old gnome-mime.c, and they're not
+	needed for Nautilus or apparently anything else.
+
 2000-05-03  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c (remove_file), (remove_directory),

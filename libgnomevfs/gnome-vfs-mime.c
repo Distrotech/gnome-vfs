@@ -29,6 +29,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <time.h>
 #include <unistd.h>
 #include <dirent.h>
 #include <regex.h>
@@ -424,68 +425,6 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 }
 
 /**
- * gnome_vfs_mime_type_list_or_default:
- * @filename: A filename (the file does not necessarily exist).
- * @defaultv: A default value to be returned if no match is found
- *
- * This routine tries to determine the mime-type(s) of the filename
- * only by looking at the filename from the GNOME database of mime-types.
- *
- * Returns a GList that contains private strings with the mime-type(s)
- * associated with the @filename.  If no value could be determined,
- * it will return @defaultv.
- */
- 
-GList*
-gnome_vfs_mime_type_list_or_default (const gchar *filename, const gchar *defaultv)
-{
-	const gchar *ext;
-	int priority;
-	GList *result = NULL;
-
-	G_LOCK (mime_mutex);
-
-	if (!filename)
-		goto done;
-	ext = strrchr (filename, '.');
-	if (ext)
-		++ext;
-
-	if (!module_inited)
-		mime_init ();
-
-	maybe_reload ();
-
-	for (priority = 1; priority >= 0; priority--){
-		GList *l;
-		GList *list = NULL, *resext = NULL, *resreg = NULL;
-		
-		if (ext){
-			
-			list = (GList*) g_hash_table_lookup (mime_extensions [priority], ext);
-			if (list) {
-				resext = g_list_reverse (g_list_copy (g_list_first(list)));
-			}
-		}
-		
-		for (l = mime_regexs [priority]; l; l = l->next){
-			RegexMimePair *mp = l->data;
-
-			if (regexec (&mp->regex, filename, 0, 0, 0) == 0) {
-				resreg = g_list_prepend (resreg, mp->mime_type);
-			}
-		}
-		result = g_list_concat (result, resext);
-		result = g_list_concat (result, resreg);
-		resext = resreg = NULL;
-	}
-
- done:
-	G_UNLOCK (mime_mutex);
-	return result;
-}
-
-/**
  * gnome_vfs_mime_type:
  * @filename: A filename (the file does not necessarily exist).
  *
@@ -497,21 +436,6 @@ const char *
 gnome_vfs_mime_type (const gchar * filename)
 {
 	return gnome_vfs_mime_type_or_default (filename, "text/plain");
-}
-
-/**
- * gnome_vfs_mime_type_list:
- * @filename: A filename (the file does not necessarily exist).
- *
- * Determined the mime type(s) for @filename.
- *
- * Returns a GList that contains private strings with the mime-type(s)
- * associated with the @filename.
- */
-GList *
-gnome_vfs_mime_type_list (const gchar * filename)
-{
-	return gnome_vfs_mime_type_list_or_default (filename, "text/plain");
 }
 
 /**
@@ -540,35 +464,6 @@ gnome_vfs_mime_type_or_default_of_file (const char *existing_filename,
 }
 
 /**
- * gnome_vfs_mime_type_list_or_default_of_file:
- * @existing_filename: A filename that points to an existing filename.
- * @defaultv: A default value to be returned if no match is found
- *
- * This routine tries to determine the mime-type(s) of the filename
- * by trying to guess the contents of the file.  If this fails, it will
- * return the mime-type based only on the filename.
- *
- * Returns a GList that contains private strings with the mime-type(s)
- * associated with the @existing_filename.  If no value could be determined,
- * it will return @defaultv.
- */
-GList *
-gnome_vfs_mime_type_list_or_default_of_file (const char *existing_filename,
-				    const gchar *defaultv)
-{
-	char *mime_type;
-	GList *mime_list = NULL;
-
-	mime_type = (char *)gnome_vfs_mime_type_from_magic (existing_filename);
-	if (mime_type) {
-		mime_list = g_list_prepend (mime_list, mime_type);
-		return mime_list;
-	}
-
-	return gnome_vfs_mime_type_list_or_default (existing_filename, defaultv);
-}
-
-/**
  * gnome_vfs_mime_type_of_file:
  * @existing_filename: A filename pointing to an existing file.
  *
@@ -583,24 +478,6 @@ gnome_vfs_mime_type_of_file (const char *existing_filename)
 {
 	return gnome_vfs_mime_type_or_default_of_file (existing_filename, "text/plain");
 }
-
-/**
- * gnome_vfs_mime_type_list_of_file:
- * @existing_filename: A filename pointing to an existing file.
- *
- * Determined the mime type(s) for @existing_filename.  It will try
- * to figure this out by looking at the contents of the file; if this
- * fails it will use the filename to figure out a name.
- *
- * Returns a GList that contains private strings with the mime-type(s)
- * associated with the @existing_filename.
- */
-GList *
-gnome_vfs_mime_type_list_of_file (const char *existing_filename)
-{
-	return gnome_vfs_mime_type_list_or_default_of_file (existing_filename, "text/plain");
-}
-
 
 /**
  * gnome_uri_list_extract_uris:

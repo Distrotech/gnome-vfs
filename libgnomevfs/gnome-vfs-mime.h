@@ -31,12 +31,6 @@ BEGIN_GNOME_DECLS
 
 /* do not free any of the returned gchar* values */
 const char  *gnome_vfs_mime_type				(const gchar* filename);
-GList       *gnome_vfs_mime_type_list				(const gchar* filename);
-GList       *gnome_vfs_mime_type_list_or_default		(const gchar *filename,
-								 const gchar *defaultv);
-GList       *gnome_vfs_mime_type_list_of_file			(const gchar* filename);
-GList       *gnome_vfs_mime_type_list_or_default_of_file	(const gchar *filename,
-								 const gchar *defaultv);
 const char  *gnome_vfs_mime_type_or_default			(const gchar *filename,
 								 const gchar *defaultv);
 const char  *gnome_vfs_mime_type_of_file			(const char *existing_filename);

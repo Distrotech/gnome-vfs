@@ -40,10 +40,7 @@ gboolean    gnome_vfs_mime_copiousoutput	  (const char* mime_type,
 gboolean    gnome_vfs_mime_needsterminal	  (const char* mime_type,
 						   char *key);
 
-GList      *gnome_vfs_mime_program_list		  (GList *mime_list);
 gchar      *gnome_vfs_mime_program_name		  (const char *program_name);
-GList      *gnome_vfs_mime_program_name_list	  (GList *name_list);
-void        gnome_vfs_mime_program_name_list_free (GList *name_list);
 
 END_GNOME_DECLS
 
