@@ -440,13 +440,12 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 		return FALSE;
 	}
 
-	if (g_key_file_has_key (key_file,
-				g_key_file_get_start_group (key_file),
+	if (g_key_file_has_key (key_file, DESKTOP_ENTRY_GROUP,
 				"OnlyShowIn", NULL)) {
 
 		char **only_show_in_list;
 		only_show_in_list = g_key_file_get_string_list (key_file,
-								g_key_file_get_start_group (key_file),
+								DESKTOP_ENTRY_GROUP,
 								"OnlyShowIn",
 								NULL,
 								&load_error);
@@ -470,11 +469,11 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 	}
 
 	if (g_key_file_has_key (key_file,
-				g_key_file_get_start_group (key_file),
+				DESKTOP_ENTRY_GROUP,
 				"NotShowIn", NULL)) {
 		char **not_show_in_list;
 		not_show_in_list = g_key_file_get_string_list (key_file,
-							       g_key_file_get_start_group (key_file),
+							       DESKTOP_ENTRY_GROUP,
 							       "NotShowIn",
 							       NULL,
 							       &load_error);

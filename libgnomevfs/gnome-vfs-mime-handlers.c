@@ -1720,7 +1720,7 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	GError *err = NULL;
 	GKeyFile *key_file;
 	GnomeVFSMimeApplication *app;
-	char *filename, *group = NULL;
+	char *filename;
 
 	g_return_val_if_fail (id != NULL, NULL);
 
@@ -1737,26 +1737,25 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 		goto exit;
 	}
 
-	group = g_key_file_get_start_group (key_file);
-
-	app->name = g_key_file_get_locale_string (key_file, group, "Name",
-						  NULL, &err);
+	app->name = g_key_file_get_locale_string (key_file, DESKTOP_ENTRY_GROUP,
+						  "Name", NULL, &err);
 	if (err) goto exit;
 
 	/* Not REQUIRED by the specification but required in our context */
-	app->priv->exec = g_key_file_get_string (key_file, group, "Exec", &err);
+	app->priv->exec = g_key_file_get_string (key_file, DESKTOP_ENTRY_GROUP,
+						 "Exec", &err);
 	if (err) goto exit;
 
-	app->requires_terminal = g_key_file_get_boolean (key_file, group,
-							 "Terminal", &err);
+	app->requires_terminal = g_key_file_get_boolean
+			(key_file, DESKTOP_ENTRY_GROUP, "Terminal", &err);
 	if (err) {
 		g_error_free (err);
 		err = NULL;
 		app->requires_terminal = FALSE;
 	}
 
-	app->priv->startup_notify = g_key_file_get_boolean (key_file, group,
-						            "StartupNotify", &err);
+	app->priv->startup_notify = g_key_file_get_boolean
+			(key_file, DESKTOP_ENTRY_GROUP, "StartupNotify", &err);
 	if (err) {
 		g_error_free (err);
 		err = NULL;
@@ -1764,12 +1763,13 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	}
 
 	app->priv->generic_name = g_key_file_get_locale_string
-					(key_file, group, "GenericName", NULL, NULL);
+			(key_file, DESKTOP_ENTRY_GROUP, "GenericName", NULL, NULL);
  
-	app->priv->icon = g_key_file_get_string (key_file, group, "IconName", NULL);	
+	app->priv->icon = g_key_file_get_string
+			(key_file, DESKTOP_ENTRY_GROUP, "IconName", NULL);	
 	
-	app->priv->startup_wm_class = g_key_file_get_string (key_file, group,
-						             "StartupWMClass", NULL);
+	app->priv->startup_wm_class = g_key_file_get_string
+			(key_file, DESKTOP_ENTRY_GROUP, "StartupWMClass", NULL);
 						       
 	app->priv->supports_uris = strstr (app->priv->exec, "%u") ||
 				   strstr (app->priv->exec, "%U");
@@ -1777,7 +1777,6 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	guess_deprecated_fields_from_exec (app);
 
 exit:
-	g_free (group);
 	g_free (filename);
 	g_key_file_free (key_file);
 
@@ -1853,7 +1852,7 @@ gnome_vfs_mime_get_default_application_for_uri (const char *uri,
 }
 
 /**
- * gnome_vfs_mime_application_get_default_application_for_uri:
+ * gnome_vfs_mime_get_all_applications_for_uri:
  * @mime_type: a const char * containing a mime type, e.g. "application/x-php"
  * @uri: a stringified URI
  * 
@@ -2000,9 +1999,12 @@ gnome_vfs_mime_application_get_generic_name (GnomeVFSMimeApplication *app)
  * gnome_vfs_mime_application_get_icon:
  * @app: a #GnomeVFSMimeApplication
  *
- * Returns the filename of an icon representing the specified application.
+ * Returns an icon representing the specified application.
  *
- * Return value: the filename of the icon with or without path information.
+ * Return value: the filename of the icon usually without path information,
+ * e.g. "gedit-icon.png", and sometimes does not have an extension,
+ * e.g. "gnome-pdf" if the icon is supposed to be image type agnostic between
+ * icon themes. Icons are generic, and not theme specific.
  *
  * Since: 2.8
  */

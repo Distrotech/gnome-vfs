@@ -26,6 +26,8 @@
 #include <glib.h>
 
 G_BEGIN_DECLS
+
+#define DESKTOP_ENTRY_GROUP "Desktop Entry"
 	
 GList              *gnome_vfs_mime_get_all_desktop_entries (const char *mime_type);
 gchar              *gnome_vfs_mime_get_default_desktop_entry (const char *mime_type);

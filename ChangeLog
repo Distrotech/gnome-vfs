@@ -1,6 +1,17 @@
 2004-11-23  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_desktop_id):
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
+	* libgnomevfs/gnome-vfs-mime-info-cache.h:
+
+	Get properties only from the Desktop Entry group.
+	Improve documentation
+
+2004-11-23  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(gnome_vfs_mime_application_launch_with_env),
 	(expand_macro_single), (expand_macro),
 	(expand_application_parameters), (print_expansion_data),
