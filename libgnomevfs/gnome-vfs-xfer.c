@@ -489,8 +489,11 @@ remove_directory (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 	gboolean retry;
 
+	result = GNOME_VFS_OK;
+	
 	if (recursive) {
-		empty_directory (uri, progress, xfer_options, error_mode, skip);
+		result = empty_directory (uri, progress, xfer_options, 
+					  error_mode, skip);
 	}
 
 	if (result == GNOME_VFS_ERROR_EOF)
@@ -1454,6 +1457,7 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 		/* initialize the results */
 	progress->progress_info->files_total = 0;
 	progress->progress_info->bytes_total = 0;
+	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COLLECTING;
 
 
 	for (p = trash_dir_uris;  p != NULL; p = p->next) {
