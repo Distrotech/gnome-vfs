@@ -1,6 +1,6 @@
 %define		localstatedir /var/lib
 
-Name:		gnome_vfs
+Name:		@PACKAGE@
 Summary:	The GNOME virtual file-system libraries
 Version:	@VERSION@
 Release:	1_cvs
@@ -16,10 +16,10 @@ Requires:       oaf >= @OAF_REQUIRED@
 BuildRequires:	gnome-libs-devel, control-center-devel
 BuildRequires:	bonobo-activation-devel >= @BONOBO_ACTIVATION_REQUIRED@
 BuildRequires:	bonobo-devel >= @BONOBO_REQUIRED@
-BuildRequires:	GConf-devel >= @GCONF_REQUIRED@
-BuildRequires:	gtk+-devel >= @GTK_REQUIRED@
-BuildRequires:	libidl-devel >= @LIBIDL_REQUIRED@
+BuildRequires:	GConf2-devel >= @GCONF_REQUIRED@
+BuildRequires:	gtk2-devel >= @GTK_REQUIRED@
 BuildRequires:	ORBit-devel >= @ORBIT_REQUIRED@
+BuildRequires:	libxml2 >= @XML_REQUIRED@
 
 %description
 GNOME VFS is the GNOME virtual file system. It is the foundation of the
@@ -88,27 +88,35 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%config %{_sysconfdir}/vfs/modules/*.conf
-%{_libdir}/*.0
-%{_libdir}/*.sh
+%config %{_sysconfdir}/gnome-vfs-2.0/modules/*.conf
+%config %{_sysconfdir}/gnome-vfs-2.0/vfolders/*.vfolder-info
+%{_libdir}/*.so.*
 %{_libdir}/*.so
 %{_libdir}/vfs/extfs/*
-%{_libdir}/vfs/modules/*.0
-%{_libdir}/vfs/modules/*.so
+%{_libdir}/gnome-vfs-2.0/modules/*.so
+%{_libdir}/bonobo/monikers/*.so
+%{_libdir}/bonobo/servers/*.server
 %{_mandir}/man5/*.5*
+%{_prefix}/share/gtk-doc/html/gnome-vfs/*.html
+%{_prefix}/share/locale/*/LC_MESSAGES/*.mo
 
 %files devel
 %defattr(-, root, root)
-%{_includedir}/libgnomevfs
-%{_libdir}/vfs/include/*.h
+%{_includedir}/gnome-vfs-2.0/libgnomevfs/*.h
+%{_includedir}/gnome-vfs-module-2.0/libgnomevfs/*.h
+%{_libdir}/gnome-vfs-2.0/include/*.h
 %{_libdir}/*.a
 %{_libdir}/*.la
-%{_libdir}/vfs/modules/*.a
-%{_libdir}/vfs/modules/*.la
-%{_bindir}/gnome-vfs-config
-
+%{_libdir}/gnome-vfs-2.0/modules/*.a
+%{_libdir}/gnome-vfs-2.0/modules/*.la
+%{_libdir}/bonobo/monikers/*.a
+%{_libdir}/bonobo/monikers/*.la
+%{_libdir}/pkgconfig/*.pc
 
 %changelog
+
+* Sun Dec 15 2001 Ross Golder <ross@golder.org>
+- fixed broken Name:
 
 * Sun Oct 21 2001 Gregory Leblanc <gleblanc@linuxweasel.com>
 - some messing around with Requires: and BuildRequires
