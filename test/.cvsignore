@@ -15,6 +15,7 @@ test-copy
 test-directory
 test-directory-visit
 test-escape
+test-find-directory
 test-info
 test-mime
 test-mime-handlers

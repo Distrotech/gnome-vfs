@@ -1,3 +1,10 @@
+2000-08-10  Darin Adler  <darin@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Fix the default for directories. It
+	was supposed to be the icon view, but had "ntl" instead of "nautilus".
+	
+	* test/.cvsignore: Ignore the new file generated (the test Pavel added).
+
 2000-08-10  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-corba.c (gnome_vfs_corba_init):
