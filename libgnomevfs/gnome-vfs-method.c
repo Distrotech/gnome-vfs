@@ -260,7 +260,7 @@ load_module_in_path_list (const gchar *base_name, const char *method_name, const
 		gchar *name;
 
 		path = p->data;
-		name = g_strconcat (path, "/", base_name, NULL);
+		name = g_module_build_path (path, base_name);
 
 		load_module (name, method_name, args, method, transform);
 		g_free (name);

@@ -1,3 +1,11 @@
+2001-09-04  jacob berkman  <jacob@ximian.com>
+
+	* modules/*.conf: remove lib prefix and .so suffix from the
+	libraries as g_module_build_path() will add these for us
+
+	* libgnomevfs/gnome-vfs-method.c (load_module_in_path_list): use
+	g_module_build_path() to correctly get library suffix
+
 2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Put gnome-vfs-backend stuff all in one header and make it private.
