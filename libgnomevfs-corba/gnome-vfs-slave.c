@@ -969,9 +969,9 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 		p->data._buffer = alloca (info_size);
 		CORBA_sequence_set_release (&p->data, FALSE);
 		
-		p->name = info->name?info->name:"";
-		p->symlink_name = info->symlink_name?info->symlink_name:"";
-		p->mime_type = info->mime_type?info->mime_type:"";
+		p->name = CORBA_string_dup (info->name?info->name:"");
+		p->symlink_name = CORBA_string_dup (info->symlink_name?info->symlink_name:"");
+		p->mime_type = CORBA_string_dup (info->mime_type?info->mime_type:"");
 		
 	}
 

@@ -1,3 +1,8 @@
+2000-10-12  Martin Baulig  <baulig@suse.de>
+
+	* libgnomevfs-corba/gnome-vfs-slave.c (impl_Request_get_file_info): 
+	Call CORBA_string_dup() on p->name, p->symlink_name and p->mime_type.
+
 2000-10-12  Grahame Bowland <gbowland@tartarus.uwa.edu.au>
 
 	* libgnomevfs/gnome-vfs-result.c:
