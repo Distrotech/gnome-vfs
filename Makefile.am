@@ -4,6 +4,7 @@ SUBDIRS =					\
 	libgnomevfs-pthread			\
 	idl					\
 	modules					\
+	mime-type-capplet			\
 	data					\
 	test					\
 	po

@@ -118,6 +118,17 @@ AC_SUBST(VFS_LIBS)
 
 
 dnl
+dnl Flags needed to build the mime-type capplet
+dnl
+CAPPLET_LIBDIR='-L${libdir}'
+CAPPLET_INCLUDEDIR='-I${includedir}'
+CAPPLET_INCLUDEDIR="$CAPPLET_INCLUDEDIR `gnome-config --cflags gnome gnomeui capplet`"
+CAPPLET_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnomeui capplet`"
+AC_SUBST(CAPPLET_LIBDIR)
+AC_SUBST(CAPPLET_INCLUDEDIR)
+AC_SUBST(CAPPLET_LIBS)
+
+dnl
 dnl gnome-xml libraries - for WebDAV support in modules/http-method.c
 dnl
 
@@ -259,6 +270,7 @@ modules/extfs/lha
 modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
+mime-type-capplet/Makefile
 po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile
