@@ -171,9 +171,9 @@ fs_seek (PortableServer_Servant stream,
 	int fs_whence;
 	CORBA_long pos;
 
-	if (whence == Bonobo_Stream_SEEK_CUR)
+	if (whence == Bonobo_Stream_SeekCur)
 		fs_whence = SEEK_CUR;
-	else if (whence == Bonobo_Stream_SEEK_END)
+	else if (whence == Bonobo_Stream_SeekEnd)
 		fs_whence = SEEK_END;
 	else
 		fs_whence = SEEK_SET;

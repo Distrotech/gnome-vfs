@@ -172,13 +172,13 @@ vfs_seek (PortableServer_Servant stream,
 	GnomeVFSFileOffset   where;
 	
 	switch (whence) {
-	case Bonobo_Stream_SEEK_CUR:
+	case Bonobo_Stream_SeekCur:
 		pos = GNOME_VFS_SEEK_CURRENT;
 		break;
-	case Bonobo_Stream_SEEK_END:
+	case Bonobo_Stream_SeekEnd:
 		pos = GNOME_VFS_SEEK_END;
 		break;
-	case Bonobo_Stream_SEEK_SET:
+	case Bonobo_Stream_SeekSet:
 		pos = GNOME_VFS_SEEK_START;
 		break;
 	default:

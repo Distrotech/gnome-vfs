@@ -1,3 +1,9 @@
+2002-03-31  Murray Cumming  <murrayc@usa.net>
+
+	* monikers/bonobo-stream-fs.c & monikers/bonobo-stream-vfs.c:
+	Changed use of e.g. Bonobo_Stream_SEEK_CUR to
+	Bonobo_Stream_SeekCur, due to recent change in libbonobo.
+
 2002-03-28  Kevin Vandersloot <kfv101@psu.edu>
 
 	* modules/http-method.c: bind to the "value_changed" gconf
