@@ -1348,7 +1348,7 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 	const gchar *host_name;
 
 	escaped_short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
-	short_path_name = gnome_vfs_unescape_string (escaped_short_path_name, NULL);
+	short_path_name = gnome_vfs_unescape_string (escaped_short_path_name, "/");
 	g_free (escaped_short_path_name);
 
 	host_name = NULL;

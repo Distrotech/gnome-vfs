@@ -957,11 +957,11 @@ mkdir_recursive (const char *path, int permission_bits)
 	char *current_path;
 
 	/* try creating a director for each level */
-	for (dir_separator_scanner = path; *dir_separator_scanner; dir_separator_scanner++) {
+	for (dir_separator_scanner = path;; dir_separator_scanner++) {
 		/* advance to the next directory level */
 		for (;;dir_separator_scanner++) {
 			if (!*dir_separator_scanner) {
-				return 0;
+				break;
 			}	
 			if (*dir_separator_scanner == G_DIR_SEPARATOR) {
 				break;
@@ -979,6 +979,9 @@ mkdir_recursive (const char *path, int permission_bits)
 			}
 			g_free (current_path);
 		}
+		if (!*dir_separator_scanner) {
+			break;
+		}	
 	}
 	return 0;
 }
@@ -1258,16 +1261,64 @@ save_trash_entry_cache (void)
 	g_free (cache_file_parent);
 }
 
+typedef struct {
+	const char *mount_point;
+	const char *trash_path;
+	dev_t device_id;
+	gboolean done;
+} UpdateOneCachedEntryContext;
+
+static void
+update_one_cached_trash_entry (gpointer element, gpointer cast_to_context)
+{
+	UpdateOneCachedEntryContext *context;
+	TrashDirectoryCachedItem *item;
+
+	context = (UpdateOneCachedEntryContext *)cast_to_context;
+	item = (TrashDirectoryCachedItem *)element;
+
+	if (context->done) {
+		/* We already took care of business in a previous iteration. */
+		return;
+	}
+
+	if (strcmp (context->mount_point, item->device_mount_point) == 0) {
+		/* This is the item we are looking for, update it. */
+		g_free (item->path);
+		item->path = g_strdup (context->trash_path);
+		item->device_id = context->device_id;
+		context->done = TRUE;
+	}
+}
+
+
 static void
 add_local_cached_trash_entry (dev_t near_device_id, const char *trash_path, const char *mount_point)
 {
 	TrashDirectoryCachedItem *new_cached_item;
+	UpdateOneCachedEntryContext update_context;
+
+	/* First check if we already have an entry for this mountpoint,
+	 * if so, update it.
+	 */
+
+	update_context.mount_point = mount_point;
+	update_context.trash_path = trash_path;
+	update_context.device_id = near_device_id;
+	update_context.done = FALSE;
+
+	g_list_foreach (cached_trash_directories, update_one_cached_trash_entry, &update_context);
+	if (update_context.done) {
+		/* Sucessfully update, no work left. */
+		return;
+	}
 	
 	/* save the new trash itemto the local cache */
 	new_cached_item = g_new (TrashDirectoryCachedItem, 1);
 	new_cached_item->path = g_strdup (trash_path);
 	new_cached_item->device_mount_point = g_strdup (mount_point);
 	new_cached_item->device_id = near_device_id;
+
 
 	cached_trash_directories = g_list_prepend (cached_trash_directories, new_cached_item);
 }
@@ -1325,7 +1376,7 @@ read_saved_cached_trash_entries (void)
 			mount_point = gnome_vfs_unescape_string (escaped_mount_point, "/"); 
 			if (trash_path != NULL 
 				&& mount_point != NULL
-				&& (strcmp (trash_path, "-") == 0 || lstat (trash_path, &stat_buffer) != 0)
+				&& (strcmp (trash_path, "-") == 0 || lstat (trash_path, &stat_buffer) == 0)
 				&& lstat (mount_point, &stat_buffer) == 0) {
 				/* We either know the trash doesn't exist or we checked that it's really
 				 * there - this is a good entry, copy it into the local cache.

@@ -1,5 +1,18 @@
 2000-10-20  Pavel Cisler  <pavel@eazel.com>
 
+	* modules/file-method.c: (mkdir_recursive),
+	(update_one_cached_trash_entry), (add_local_cached_trash_entry),
+	(read_saved_cached_trash_entries):
+	Fix mkdir_recursive to not bail before creating the last directory level.
+	Fix find_directory trash entry caching to update an existing cache entry
+	when new Trash gets created instead of just adding a new entry.
+	Fix a test that checked if a trash directory existed and was backwards.
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name):
+	Small unescaping tweak.
+
+2000-10-20  Pavel Cisler  <pavel@eazel.com>
+
 	* modules/file-method.c: (mkdir_recursive):
 	Fix an "extra increment" bug and a memory leak.
 	Tweak the path for saving the trach entry cache file.
