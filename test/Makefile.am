@@ -16,6 +16,7 @@ noinst_PROGRAMS =				\
 	test-channel_pthread			\
 	test-directory				\
 	test-directory-visit			\
+	test-escape				\
 	test-info				\
 	test-mime				\
 	test-mime-handlers			\
@@ -24,7 +25,7 @@ noinst_PROGRAMS =				\
 	test-sync-write				\
 	test-xfer
 
-TESTS = test-async-cancel
+TESTS = test-async-cancel test-escape
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
@@ -126,6 +127,10 @@ test_sync_write_LDFLAGS =
 test_async_cancel_SOURCES = test-async-cancel.c
 test_async_cancel_LDADD = $(libraries)
 test_async_cancel_LDFLAGS = 
+
+test_escape_SOURCES = test-escape.c
+test_escape_LDADD = $(libraries)
+test_escape_LDFLAGS = 
 
 EXTRA_DIST =					\
 	test-async-directory.c			\

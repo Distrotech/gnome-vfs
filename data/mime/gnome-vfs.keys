@@ -368,4 +368,347 @@ image/xpm
 	description=XPM image	
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+
+image/x-bmp
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+	description=Windows bitmap
+
+image/x-compressed-xcf
+	description=GIMP image archive
+
+image/x-png
+	description=PNG image	
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+
+image/x-portable-anymap
+	description=portable image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+	
+image/x-portable-bitmap
+	description=portable bitmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+	
+image/x-portable-graymap
+	description=portable gray image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+	
+image/x-portable-pixmap
+	description=portable pixmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+
+image/x-rgb
+	description=RGB image
+	
+image/x-xbitmap
+	description=X bitmap
+	default_action_type=application
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp
+	short_list_application_ids_for_intermediate_user_level=gimp
+	short_list_application_ids_for_hacker_user_level=gimp
+	system_all_application_ids=gimp
+
+image/x-xcf
+	description=GIMP image
+	default_action_type=application
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp
+	short_list_application_ids_for_intermediate_user_level=gimp
+	short_list_application_ids_for_hacker_user_level=gimp
+	system_all_application_ids=gimp
+
+image/x-xpixmap
+	description=X pixmap
+	description=portable pixmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp,eog
+	short_list_application_ids_for_intermediate_user_level=gimp,eog
+	short_list_application_ids_for_hacker_user_level=gimp,eog
+	system_all_application_ids=gimp,eog
+
+image/x-xwindowdump
+	description=X window image
+
+message/delivery-status
+	description=mail delivery report
+
+message/disposition-notification
+	description=mail disposition report
+
+message/external-body
+	description=pointer to remote data
+
+message/news
+	description=USENET news message
+
+message/partial
+	description=partial email message
+
+message/rfc822
+	description=email message
+
+message/x-gnu-rmail
+	description=GNU mail message
+
+model/vrml
+	description=VRML data
+
+multipart/appledouble
+	description=Macintosh AppleDouble-encoded document
+
+multipart/alternative
+	description=message in several formats
+
+multipart/digest
+	description=message digest
+
+multipart/encrypted
+	description=encrypted message
+
+multipart/mixed
+	description=multi-part message
+
+multipart/related
+	description=compound document
+
+multipart/report
+	description=mail system report
+
+multipart/signed
+	description=signed message
+
+special/directory
+	description=directory
+	default_action_type=component
+	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
+	short_list_component_iids_for_novice_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+	short_list_component_iids_for_intermediate_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+
+special/webdav-directory
+	description=web directory
+	default_action_type=component
+	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	short_list_component_iids_for_novice_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_intermediate_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	default_application_id=netscape
+	short_list_application_ids=netscape,lynx
+	system_all_application_ids=netscape,lynx
+
+special/symlink
+	description=link
+
+text/calendar
+	description=calendar information
+
+text/css
+	description=style sheet
+
+text/directory
+	description=directory information
+
+text/enriched
+	description=enriched text
+
+text/html
+	description=HTML document
+	default_action_type=component
+	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	short_list_component_iids_for_novice_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_intermediate_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	default_application_id=netscape
+	short_list_application_ids=netscape,lynx
+	system_all_application_ids=netscape,lynx
+
+
+text/plain
+	description=plain text
+	default_action_type=component
+	default_application_id=emacs
+	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_application_ids=emacs,nedit
+	system_all_application_ids=emacs,nedit
+
+text/rfc822-headers
+	description=email headers
+
+text/richtext
+	description=rich text
+
+text/sgml
+	description=SGML document
+
+text/tab-separated-values
+	description=tab-separated text
+
+text/xml
+	description=XML document
+
+text/x-authors
+	description=authors list
+
+text/x-c
+	description=C source code
+
+text/x-c++
+	description=C++ source code
+
+text/x-comma-separated-values
+	description=comma-separated text
+
+text/x-copying
+	description=GNU license
+
+text/x-emacs-lisp
+	description=Emacs Lisp source code
+
+text/x-fortran
+	description=Fortran source code
+
+text/x-dtd
+	description=document type definition
+
+text/x-gtkrc
+	description=GTK configuration
+
+text/x-idl
+	description=IDL document
+
+text/x-install
+	description=installation instructions
+
+text/x-java
+	description=Java source code
+
+text/x-makefile
+	description=makefile
+
+text/x-perl
+	description=Perl script
+
+text/x-python
+	description=Python script
+
+text/x-readme
+	description=README file
+
+text/x-scheme
+	description=Scheme source code
+
+text/x-setext
+	description=Setext document
+
+text/x-speech
+	description=Speech document
+
+text/x-sql
+	description=SQL source code
+
+text/x-vCalendar
+	description=calendar document
+
+text/x-vCard
+	description=address card
+
+video/isivideo
+	description=ISI video
+
+video/mpeg
+	description=MPEG movie
+
+video/msvideo
+	description=MS video
+
+video/quicktime
+	description=QuickTime movie
+
+video/vivo
+	description=Vivo video
+
+video/wavelet
+	description=Wavelet video
+
+video/x-anim
+	description=animation
+
+video/x-flc
+	description=FLC video animation
+
+video/x-fli
+	description=FLI video animation
+
+video/x-msvideo
+	description=MS video
+
+video/x-sgi-movie
+	description=SGI movie
+

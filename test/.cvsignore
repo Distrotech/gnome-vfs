@@ -14,6 +14,7 @@ test-channel_pthread
 test-copy
 test-directory
 test-directory-visit
+test-escape
 test-info
 test-mime
 test-mime-handlers
