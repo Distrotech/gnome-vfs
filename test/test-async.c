@@ -56,7 +56,6 @@ read_callback (GnomeVFSAsyncHandle *handle,
 {
 	if (result != GNOME_VFS_OK) {
 		printf ("Read failed: %s", gnome_vfs_result_to_string (result));
-		gtk_main_quit ();
 	} else {
 		printf ("%Ld/%Ld byte(s) read, callback data `%s'\n",
 			bytes_read, bytes_requested, (gchar *) callback_data);
@@ -66,6 +65,7 @@ read_callback (GnomeVFSAsyncHandle *handle,
 
 	printf ("Now closing the file.\n");
 	gnome_vfs_async_close (handle, close_callback, "close");
+	gtk_main_quit ();
 }
 
 static void

@@ -1,4 +1,6 @@
 2000-02-16  Elliot Lee  <sopwith@redhat.com>
+	* test/test-async.c: Exit after receiving read(), no matter what result is received.
+	* modules/pipe-method.c: Check fread() result for being > 0, not !EOF
 	* libgnomevfs/gnome-vfs-uri.c: Don't add leading /
 	* libgnomevfs/gnome-vfs-backend.c: Add assert to ensure initialization.
 	* modules/default-methods.conf: Pass filename to gnome-man2html2 instead of redirecting

@@ -111,9 +111,9 @@ do_read (GnomeVFSMethod *method,
 
 	read_val = fread (buffer, 1, num_bytes, file_handle->fh);
 
-	if (read_val == EOF) {
+	if (read_val <= 0) {
 		*bytes_read = 0;
-		return gnome_vfs_result_from_errno ();
+		return GNOME_VFS_ERROR_EOF;
 	} else {
 		*bytes_read = read_val;
 		return GNOME_VFS_OK;
