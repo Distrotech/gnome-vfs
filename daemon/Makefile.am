@@ -1,7 +1,7 @@
 bin_PROGRAMS=vfs-client vfs-daemon
 
 INCLUDES=$(MONIKERS_CFLAGS)
-LIBS=$(MONIKERS_LIBS)
+LIBS=$(MONIKERS_LIBS) -lgnomevfs-2
 
 vfs_client_SOURCES = \
 	gnome-vfs-client.c \

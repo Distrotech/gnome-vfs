@@ -15,22 +15,24 @@ GNOME_VFS_Client_doSomething(GNOME_VFS_Client _obj, const CORBA_char * aStr,
    if (ORBit_small_flags & ORBIT_SMALL_FAST_LOCALS &&
        ORBIT_STUB_IsBypass(_obj, GNOME_VFS_Client__classid) &&
        (_ORBIT_epv =
-	ORBIT_STUB_GetEpv(_obj, GNOME_VFS_Client__classid))->doSomething) {
+	(POA_GNOME_VFS_Client__epv *) ORBIT_STUB_GetEpv(_obj,
+							GNOME_VFS_Client__classid))->
+       doSomething) {
       ORBIT_STUB_PreCall(_obj);
       _ORBIT_epv->doSomething(ORBIT_STUB_GetServant(_obj), aStr, ev);
       ORBIT_STUB_PostCall(_obj);
    } else {			/* remote marshal */
-      gpointer _args[] = {
-	 (gpointer) & aStr
-      };
+      gpointer _args[1];
 
+      _args[0] = (gpointer) & aStr;
       ORBit_small_invoke_stub_n(_obj, &GNOME_VFS_Client__iinterface.methods,
 				0, NULL, _args, NULL, ev);
 
    }
 }
 void
-GNOME_VFS_Daemon_setPassword(GNOME_VFS_Daemon _obj, const CORBA_char * key,
+GNOME_VFS_Daemon_setPassword(GNOME_VFS_Daemon _obj, const CORBA_char * uri,
+			     const CORBA_char * user,
 			     const CORBA_char * passwd,
 			     CORBA_Environment * ev)
 {
@@ -39,23 +41,27 @@ GNOME_VFS_Daemon_setPassword(GNOME_VFS_Daemon _obj, const CORBA_char * key,
    if (ORBit_small_flags & ORBIT_SMALL_FAST_LOCALS &&
        ORBIT_STUB_IsBypass(_obj, GNOME_VFS_Daemon__classid) &&
        (_ORBIT_epv =
-	ORBIT_STUB_GetEpv(_obj, GNOME_VFS_Daemon__classid))->setPassword) {
+	(POA_GNOME_VFS_Daemon__epv *) ORBIT_STUB_GetEpv(_obj,
+							GNOME_VFS_Daemon__classid))->
+       setPassword) {
       ORBIT_STUB_PreCall(_obj);
-      _ORBIT_epv->setPassword(ORBIT_STUB_GetServant(_obj), key, passwd, ev);
+      _ORBIT_epv->setPassword(ORBIT_STUB_GetServant(_obj), uri, user, passwd,
+			      ev);
       ORBIT_STUB_PostCall(_obj);
    } else {			/* remote marshal */
-      gpointer _args[] = {
-	 (gpointer) & key, (gpointer) & passwd
-      };
+      gpointer _args[3];
 
+      _args[0] = (gpointer) & uri;
+      _args[1] = (gpointer) & user;
+      _args[2] = (gpointer) & passwd;
       ORBit_small_invoke_stub_n(_obj, &GNOME_VFS_Daemon__iinterface.methods,
 				0, NULL, _args, NULL, ev);
 
    }
 }
 CORBA_string
-GNOME_VFS_Daemon_getPassword(GNOME_VFS_Daemon _obj, const CORBA_char * key,
-			     CORBA_Environment * ev)
+GNOME_VFS_Daemon_getPassword(GNOME_VFS_Daemon _obj, const CORBA_char * uri,
+			     const CORBA_char * user, CORBA_Environment * ev)
 {
    CORBA_string _ORBIT_retval;
    POA_GNOME_VFS_Daemon__epv *_ORBIT_epv;
@@ -63,16 +69,18 @@ GNOME_VFS_Daemon_getPassword(GNOME_VFS_Daemon _obj, const CORBA_char * key,
    if (ORBit_small_flags & ORBIT_SMALL_FAST_LOCALS &&
        ORBIT_STUB_IsBypass(_obj, GNOME_VFS_Daemon__classid) &&
        (_ORBIT_epv =
-	ORBIT_STUB_GetEpv(_obj, GNOME_VFS_Daemon__classid))->getPassword) {
+	(POA_GNOME_VFS_Daemon__epv *) ORBIT_STUB_GetEpv(_obj,
+							GNOME_VFS_Daemon__classid))->
+       getPassword) {
       ORBIT_STUB_PreCall(_obj);
       _ORBIT_retval =
-	 _ORBIT_epv->getPassword(ORBIT_STUB_GetServant(_obj), key, ev);
+	 _ORBIT_epv->getPassword(ORBIT_STUB_GetServant(_obj), uri, user, ev);
       ORBIT_STUB_PostCall(_obj);
    } else {			/* remote marshal */
-      gpointer _args[] = {
-	 (gpointer) & key
-      };
+      gpointer _args[2];
 
+      _args[0] = (gpointer) & uri;
+      _args[1] = (gpointer) & user;
       ORBit_small_invoke_stub_n(_obj, &GNOME_VFS_Daemon__iinterface.methods,
 				1, &_ORBIT_retval, _args, NULL, ev);
 
@@ -90,15 +98,16 @@ GNOME_VFS_Daemon_registerClient(GNOME_VFS_Daemon _obj,
    if (ORBit_small_flags & ORBIT_SMALL_FAST_LOCALS &&
        ORBIT_STUB_IsBypass(_obj, GNOME_VFS_Daemon__classid) &&
        (_ORBIT_epv =
-	ORBIT_STUB_GetEpv(_obj, GNOME_VFS_Daemon__classid))->registerClient) {
+	(POA_GNOME_VFS_Daemon__epv *) ORBIT_STUB_GetEpv(_obj,
+							GNOME_VFS_Daemon__classid))->
+       registerClient) {
       ORBIT_STUB_PreCall(_obj);
       _ORBIT_epv->registerClient(ORBIT_STUB_GetServant(_obj), client, ev);
       ORBIT_STUB_PostCall(_obj);
    } else {			/* remote marshal */
-      gpointer _args[] = {
-	 (gpointer) & client
-      };
+      gpointer _args[1];
 
+      _args[0] = (gpointer) & client;
       ORBit_small_invoke_stub_n(_obj, &GNOME_VFS_Daemon__iinterface.methods,
 				2, NULL, _args, NULL, ev);
 
@@ -114,16 +123,16 @@ GNOME_VFS_Daemon_deRegisterClient(GNOME_VFS_Daemon _obj,
    if (ORBit_small_flags & ORBIT_SMALL_FAST_LOCALS &&
        ORBIT_STUB_IsBypass(_obj, GNOME_VFS_Daemon__classid) &&
        (_ORBIT_epv =
-	ORBIT_STUB_GetEpv(_obj,
-			  GNOME_VFS_Daemon__classid))->deRegisterClient) {
+	(POA_GNOME_VFS_Daemon__epv *) ORBIT_STUB_GetEpv(_obj,
+							GNOME_VFS_Daemon__classid))->
+       deRegisterClient) {
       ORBIT_STUB_PreCall(_obj);
       _ORBIT_epv->deRegisterClient(ORBIT_STUB_GetServant(_obj), client, ev);
       ORBIT_STUB_PostCall(_obj);
    } else {			/* remote marshal */
-      gpointer _args[] = {
-	 (gpointer) & client
-      };
+      gpointer _args[1];
 
+      _args[0] = (gpointer) & client;
       ORBit_small_invoke_stub_n(_obj, &GNOME_VFS_Daemon__iinterface.methods,
 				3, NULL, _args, NULL, ev);
 

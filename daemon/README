@@ -1,0 +1,9 @@
+This directory contains an experimental gnome-vfs daemon. This daemon is meant to be used by gnome-vfs modules to cache authentication information (username/password). Currently it works with simple test cases, but it probably has bugs and API limitations.
+
+To test it, bonobo-activation needs to be able to find the .server file. Running make install in the daemon directory should be enough for that.
+
+Some future goals may be to integrate it with libgringotts (http://freshmeat.net/redir/libgringotts/33614/url_homepage/index.php), to persist data on disk, ... 
+
+Patching libgnomeui to automatically provide an authentication dialog when a gnome-vfs module requests it would be also really nice for GNOME consistency (all gnome-vfs aware apps would get authentication for free). There is already some stuff to do that in nautilus/eel which might be worth looking at.
+
+(Last modified 2002-12-11)

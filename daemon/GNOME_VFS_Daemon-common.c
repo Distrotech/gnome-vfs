@@ -28,7 +28,7 @@ static const CORBA_unsigned_long ORBit_zero_int = 0;
 && (TC_IMPL_TC_GNOME_VFS_Client_15 == 'n') \
 ) && !defined(TC_DEF_TC_GNOME_VFS_Client)
 #define TC_DEF_TC_GNOME_VFS_Client 1
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 const struct CORBA_TypeCode_struct TC_GNOME_VFS_Client_struct = {
@@ -68,7 +68,7 @@ const struct CORBA_TypeCode_struct TC_GNOME_VFS_Client_struct = {
 && (TC_IMPL_TC_GNOME_VFS_Daemon_15 == 'n') \
 ) && !defined(TC_DEF_TC_GNOME_VFS_Daemon)
 #define TC_DEF_TC_GNOME_VFS_Daemon 1
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 const struct CORBA_TypeCode_struct TC_GNOME_VFS_Daemon_struct = {
@@ -91,30 +91,29 @@ const struct CORBA_TypeCode_struct TC_GNOME_VFS_Daemon_struct = {
 };
 #endif
 
-#ifndef ORBIT_IDL_C_IMODULE
+#ifndef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 CORBA_unsigned_long GNOME_VFS_Client__classid = 0;
 #endif
 
-#ifndef ORBIT_IDL_C_IMODULE
+#ifndef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 CORBA_unsigned_long GNOME_VFS_Daemon__classid = 0;
 #endif
 
 /* Interface type data */
 
 static ORBit_IArg GNOME_VFS_Client_doSomething__arginfo[] = {
-   {TC_CORBA_string, ORBit_I_ARG_IN, "aStr"},
-   {TC_null, 0, NULL}
+   {TC_CORBA_string, ORBit_I_ARG_IN, "aStr"}
 };
 
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 ORBit_IMethod GNOME_VFS_Client__imethods[] = {
    {
-    {2, 2, GNOME_VFS_Client_doSomething__arginfo, FALSE},
+    {1, 1, GNOME_VFS_Client_doSomething__arginfo, FALSE},
     {0, 0, NULL, FALSE},
     {0, 0, NULL, FALSE},
-    CORBA_OBJECT_NIL, "doSomething", 11,
+    TC_void, "doSomething", 11,
     0}
 };
 static CORBA_string GNOME_VFS_Client__base_itypes[] = {
@@ -122,7 +121,7 @@ static CORBA_string GNOME_VFS_Client__base_itypes[] = {
    "IDL:omg.org/CORBA/Object:1.0"
 };
 
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 ORBit_IInterface GNOME_VFS_Client__iinterface = {
@@ -131,24 +130,22 @@ ORBit_IInterface GNOME_VFS_Client__iinterface = {
 };
 
 static ORBit_IArg GNOME_VFS_Daemon_setPassword__arginfo[] = {
-   {TC_CORBA_string, ORBit_I_ARG_IN, "key"},
-   {TC_CORBA_string, ORBit_I_ARG_IN, "passwd"},
-   {TC_null, 0, NULL}
+   {TC_CORBA_string, ORBit_I_ARG_IN, "uri"},
+   {TC_CORBA_string, ORBit_I_ARG_IN, "user"},
+   {TC_CORBA_string, ORBit_I_ARG_IN, "passwd"}
 };
 static ORBit_IArg GNOME_VFS_Daemon_getPassword__arginfo[] = {
-   {TC_CORBA_string, ORBit_I_ARG_IN, "key"},
-   {TC_null, 0, NULL}
+   {TC_CORBA_string, ORBit_I_ARG_IN, "uri"},
+   {TC_CORBA_string, ORBit_I_ARG_IN, "user"}
 };
 static ORBit_IArg GNOME_VFS_Daemon_registerClient__arginfo[] = {
-   {TC_GNOME_VFS_Client, ORBit_I_ARG_IN, "client"},
-   {TC_null, 0, NULL}
+   {TC_GNOME_VFS_Client, ORBit_I_ARG_IN, "client"}
 };
 static ORBit_IArg GNOME_VFS_Daemon_deRegisterClient__arginfo[] = {
-   {TC_GNOME_VFS_Client, ORBit_I_ARG_IN, "client"},
-   {TC_null, 0, NULL}
+   {TC_GNOME_VFS_Client, ORBit_I_ARG_IN, "client"}
 };
 
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 ORBit_IMethod GNOME_VFS_Daemon__imethods[] = {
@@ -156,7 +153,7 @@ ORBit_IMethod GNOME_VFS_Daemon__imethods[] = {
     {3, 3, GNOME_VFS_Daemon_setPassword__arginfo, FALSE},
     {0, 0, NULL, FALSE},
     {0, 0, NULL, FALSE},
-    CORBA_OBJECT_NIL, "setPassword", 11,
+    TC_void, "setPassword", 11,
     0}
    , {
       {2, 2, GNOME_VFS_Daemon_getPassword__arginfo, FALSE},
@@ -165,16 +162,16 @@ ORBit_IMethod GNOME_VFS_Daemon__imethods[] = {
       TC_CORBA_string, "getPassword", 11,
       0}
    , {
-      {2, 2, GNOME_VFS_Daemon_registerClient__arginfo, FALSE},
+      {1, 1, GNOME_VFS_Daemon_registerClient__arginfo, FALSE},
       {0, 0, NULL, FALSE},
       {0, 0, NULL, FALSE},
-      CORBA_OBJECT_NIL, "registerClient", 14,
+      TC_void, "registerClient", 14,
       0}
    , {
-      {2, 2, GNOME_VFS_Daemon_deRegisterClient__arginfo, FALSE},
+      {1, 1, GNOME_VFS_Daemon_deRegisterClient__arginfo, FALSE},
       {0, 0, NULL, FALSE},
       {0, 0, NULL, FALSE},
-      CORBA_OBJECT_NIL, "deRegisterClient", 16,
+      TC_void, "deRegisterClient", 16,
       0}
 };
 static CORBA_string GNOME_VFS_Daemon__base_itypes[] = {
@@ -182,7 +179,7 @@ static CORBA_string GNOME_VFS_Daemon__base_itypes[] = {
    "IDL:omg.org/CORBA/Object:1.0"
 };
 
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
 static
 #endif
 ORBit_IInterface GNOME_VFS_Daemon__iinterface = {

@@ -80,15 +80,31 @@ main (int argc, char **argv)
 
 	do_register (client, daemon, ev);
 
-	GNOME_VFS_Daemon_setPassword (daemon, "foo", "baa", ev);
-	g_warning ("Fatally kill me now ?");
-	sleep (2);
+	GNOME_VFS_Daemon_setPassword (daemon, "ftp://titi:toto@home/teuf/titi", "user1", "password1",  ev);
+	GNOME_VFS_Daemon_setPassword (daemon, "ftp://tutu:toto@home/teuf/titi", "user2", "password2",  ev);
+	GNOME_VFS_Daemon_setPassword (daemon, "ftp://home", "user3", "password3",  ev);
 
 	{
 		CORBA_char *str;
-		str = GNOME_VFS_Daemon_getPassword (daemon, "foo", ev);
-		if (!BONOBO_EX (ev))
-			g_warning ("Got password '%s'", str);
+		str = GNOME_VFS_Daemon_getPassword (daemon, "ftp://home/teuf/titi", "user1",  ev);
+		if (!BONOBO_EX (ev)) {
+			g_print ("Got password '%s'\n", str);
+		} else {
+			g_error (bonobo_exception_get_text (ev));
+		}
+		str = GNOME_VFS_Daemon_getPassword (daemon, "ftp://home/teuf/titi", "user2",  ev);
+		if (!BONOBO_EX (ev)) {
+			g_print ("Got password '%s'\n", str);
+		} else {
+			g_error (bonobo_exception_get_text (ev));
+		}
+		str = GNOME_VFS_Daemon_getPassword (daemon, "ftp://home", "user3",  ev);
+		if (!BONOBO_EX (ev)) {
+			g_print ("Got password '%s'\n", str);
+		} else {
+			g_error (bonobo_exception_get_text (ev));
+		}
+
 	}
 	
 	do_deregister (client, daemon, ev);

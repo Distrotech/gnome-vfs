@@ -30,12 +30,14 @@ _ORBIT_skel_small_GNOME_VFS_Daemon_setPassword(POA_GNOME_VFS_Daemon *
 					       void (*_impl_setPassword)
 					       (PortableServer_Servant
 						_servant,
-						const CORBA_char * key,
+						const CORBA_char * uri,
+						const CORBA_char * user,
 						const CORBA_char * passwd,
 						CORBA_Environment * ev))
 {
    _impl_setPassword(_o_servant, *(const CORBA_char * *) _o_args[0],
-		     *(const CORBA_char * *) _o_args[1], _o_ev);
+		     *(const CORBA_char * *) _o_args[1],
+		     *(const CORBA_char * *) _o_args[2], _o_ev);
 }
 
 void
@@ -48,12 +50,13 @@ _ORBIT_skel_small_GNOME_VFS_Daemon_getPassword(POA_GNOME_VFS_Daemon *
 					       (*_impl_getPassword)
 					       (PortableServer_Servant
 						_servant,
-						const CORBA_char * key,
+						const CORBA_char * uri,
+						const CORBA_char * user,
 						CORBA_Environment * ev))
 {
    *(CORBA_string *) _o_retval =
       _impl_getPassword(_o_servant, *(const CORBA_char * *) _o_args[0],
-			_o_ev);
+			*(const CORBA_char * *) _o_args[1], _o_ev);
 }
 
 void

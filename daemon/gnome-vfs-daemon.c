@@ -1,10 +1,34 @@
 #include <config.h>
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-generic-factory.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include "gnome-vfs-daemon.h"
 
 /* Global daemon */
 static GnomeVfsDaemon *daemon = NULL;
+
+
+struct KeyChainEntry {
+	gchar *username;
+	gchar *password;
+	gboolean persist_to_disk;
+	GTimeVal last_access;
+};
+
+
+/* Structure containing all know passwords */
+static GHashTable *keychain = NULL;
+
+static GMutex *keychain_lock;       
+
+#ifdef DEBUG_KEYCHAIN_LOCKS
+#define LOCK_KEYCHAIN()   {g_mutex_lock (keychain_lock); g_print ("LOCK %s\n", G_GNUC_PRETTY_FUNCTION);}
+#define UNLOCK_KEYCHAIN() {g_print ("UNLOCK %s\n", G_GNUC_PRETTY_FUNCTION); g_mutex_unlock (keychain_lock);}
+#else
+#define LOCK_KEYCHAIN()   g_mutex_lock (keychain_lock)
+#define UNLOCK_KEYCHAIN() g_mutex_unlock (keychain_lock)
+#endif
+
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVfsDaemon,
@@ -13,22 +37,144 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BonoboObject,
 	BONOBO_TYPE_OBJECT);
 
+
+static gchar *
+get_suitable_uri (const char *uri)
+{
+	GnomeVFSURI *parsed_uri;
+	gchar *res;
+
+	parsed_uri = gnome_vfs_uri_new (uri);	
+	if (parsed_uri == NULL) {
+		return NULL;
+	}
+	res = gnome_vfs_uri_to_string (parsed_uri,
+				       GNOME_VFS_URI_HIDE_USER_NAME |
+				       GNOME_VFS_URI_HIDE_PASSWORD |
+				       GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER);
+	gnome_vfs_uri_unref (parsed_uri);
+
+	return res;
+}
+
+static struct KeyChainEntry *find_key_in_chain (const GList *keychain, 
+						const gchar *username)
+{
+	const GList *l;
+	for (l = keychain; l != NULL; l = l->next) {
+		struct KeyChainEntry *entry = (struct KeyChainEntry*)l->data;
+
+		if (strcmp (username, entry->username) == 0) {
+			return entry;
+		}
+	}
+	return NULL;
+}
+
+static void *keychain_entry_free (struct KeyChainEntry *entry)
+{
+	if (entry != NULL) {
+		g_free (entry->username);
+		g_free (entry->password);
+	}
+}
+
+/* Look if we have info for the user username in the information contained
+ * in keychain. If the user is already known, replace the corresponding
+ * KeyChainEntry with the new one 
+ */
+static void add_key_to_chain (GList **keychain, struct KeyChainEntry *entry)
+{
+	GList *l;
+
+	for (l = *keychain; l != NULL; l = l->next) {
+		struct KeyChainEntry *cur_ent = (struct KeyChainEntry*)l->data;
+
+		if (strcmp (entry->username, cur_ent->username) == 0) {
+			*keychain = g_list_remove (*keychain, cur_ent);
+			keychain_entry_free (cur_ent);
+		}
+	}
+	*keychain = g_list_append (*keychain, entry);
+}
+
+static struct KeyChainEntry *keychain_entry_new (const gchar *username, 
+						 const gchar *password)
+{
+	struct KeyChainEntry *entry;
+
+	entry = g_new0 (struct KeyChainEntry, 1);
+
+	if (entry != NULL) {
+		entry->username = g_strdup (username);
+		entry->password = g_strdup (password);
+		entry->persist_to_disk = FALSE;
+		g_get_current_time (&entry->last_access);
+	}
+
+	return entry;
+}
+
 static void
 set_password (PortableServer_Servant servant,
-	      const CORBA_char      *key,
+	      const CORBA_char      *uri,
+	      const CORBA_char      *user,
 	      const CORBA_char      *passwd,
 	      CORBA_Environment     *ev)
 {
-	g_warning ("Set password '%s' to '%s'", key, passwd);
+	gchar *uri_to_insert;
+	
+	struct KeyChainEntry *entry = keychain_entry_new (user, passwd);
+	GList *entries;
+
+	if (entry == NULL) {
+		/* Fail with CORBA error */
+	}
+	
+	uri_to_insert = get_suitable_uri (uri);
+	if (uri_to_insert == NULL) {
+		/* Return CORBA error */
+	}
+	entries = g_hash_table_lookup (keychain, uri_to_insert);
+
+	if (entries != NULL) {
+		add_key_to_chain (&entries, entry);
+	} else {
+		entries = g_list_append (NULL, entry);
+	}
+	g_hash_table_insert (keychain, uri_to_insert, entries);
 }
 
 static CORBA_string
 get_password (PortableServer_Servant _servant,
-	      const CORBA_char * key,
+	      const CORBA_char *uri,
+	      const CORBA_char *user,
 	      CORBA_Environment * ev)
 {
-	g_warning ("Get password '%s'", key);
-	return CORBA_string_dup ("Frobnicate");
+	GList *entries;
+	gchar *parsed_uri;
+	gchar *password;
+
+	parsed_uri = get_suitable_uri (uri);
+	entries = g_hash_table_lookup (keychain, parsed_uri);
+	g_free (parsed_uri);
+	if (user != NULL) {
+		struct KeyChainEntry *entry;
+
+		entry = find_key_in_chain (entries, user);
+		if (entry != NULL) {
+			return CORBA_string_dup (entry->password);
+		} 
+	} else {
+		struct KeyChainEntry *entry;
+		
+		entry = (struct KeyChainEntry *)entries->data;
+		/* FIXME: username should also be returned... */
+		return CORBA_string_dup (entry->password);
+	}
+
+	/* FIXME: return NULL */
+	return CORBA_string_dup ("");
 }
 
 static void
@@ -43,7 +189,7 @@ remove_client (ORBitConnection *cnx,
 
 	if (!daemon->clients) {
 		/* FIXME: timeout / be more clever here ... */
-		g_warning ("All clients dead, quitting ...");
+		g_print ("All clients dead, quitting ...\n");
 		bonobo_main_quit ();
 	}
 }
@@ -101,6 +247,11 @@ gnome_vfs_daemon_class_init (GnomeVfsDaemonClass *klass)
 	epv->setPassword  = set_password;
 	epv->registerClient   = register_client;
 	epv->deRegisterClient = de_register_client;
+	
+	g_thread_init (NULL);
+	gnome_vfs_init ();
+	keychain_lock = g_mutex_new ();
+	keychain = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
 static BonoboObject *

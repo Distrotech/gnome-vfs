@@ -8,8 +8,11 @@ module GNOME {
 
 		interface Daemon : Bonobo::Unknown {
 			/* Central Password storage */
-			void   setPassword (in string key, in string passwd);
-			string getPassword (in string key);
+			void   setPassword (in string uri, 
+					    in string user, 
+					    in string passwd);
+			string getPassword (in string uri,
+					    in string user);
 
 			/* Lifecycle slaved to 'client' lifecycle */
 			void registerClient   (in Client client);

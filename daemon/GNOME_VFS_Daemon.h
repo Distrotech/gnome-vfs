@@ -38,7 +38,7 @@ extern "C"
 #define TC_IMPL_TC_GNOME_VFS_Client_13 'm'
 #define TC_IMPL_TC_GNOME_VFS_Client_14 'o'
 #define TC_IMPL_TC_GNOME_VFS_Client_15 'n'
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
@@ -70,7 +70,7 @@ extern "C"
 #define TC_IMPL_TC_GNOME_VFS_Daemon_13 'm'
 #define TC_IMPL_TC_GNOME_VFS_Daemon_14 'o'
 #define TC_IMPL_TC_GNOME_VFS_Daemon_15 'n'
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
@@ -114,10 +114,11 @@ extern "C"
    {
       void *_private;
       void (*setPassword) (PortableServer_Servant _servant,
-			   const CORBA_char * key, const CORBA_char * passwd,
-			   CORBA_Environment * ev);
+			   const CORBA_char * uri, const CORBA_char * user,
+			   const CORBA_char * passwd, CORBA_Environment * ev);
        CORBA_string(*getPassword) (PortableServer_Servant _servant,
-				   const CORBA_char * key,
+				   const CORBA_char * uri,
+				   const CORBA_char * user,
 				   CORBA_Environment * ev);
       void (*registerClient) (PortableServer_Servant _servant,
 			      const GNOME_VFS_Client client,
@@ -172,7 +173,9 @@ extern "C"
 						       (PortableServer_Servant
 							_servant,
 							const CORBA_char *
-							key,
+							uri,
+							const CORBA_char *
+							user,
 							const CORBA_char *
 							passwd,
 							CORBA_Environment *
@@ -188,7 +191,9 @@ extern "C"
 						       (PortableServer_Servant
 							_servant,
 							const CORBA_char *
-							key,
+							uri,
+							const CORBA_char *
+							user,
 							CORBA_Environment *
 							ev));
    void _ORBIT_skel_small_GNOME_VFS_Daemon_registerClient(POA_GNOME_VFS_Daemon
@@ -240,11 +245,13 @@ extern "C"
 #define GNOME_VFS_Daemon_unref Bonobo_Unknown_unref
 #define GNOME_VFS_Daemon_queryInterface Bonobo_Unknown_queryInterface
    void GNOME_VFS_Daemon_setPassword(GNOME_VFS_Daemon _obj,
-				     const CORBA_char * key,
+				     const CORBA_char * uri,
+				     const CORBA_char * user,
 				     const CORBA_char * passwd,
 				     CORBA_Environment * ev);
    CORBA_string GNOME_VFS_Daemon_getPassword(GNOME_VFS_Daemon _obj,
-					     const CORBA_char * key,
+					     const CORBA_char * uri,
+					     const CORBA_char * user,
 					     CORBA_Environment * ev);
    void GNOME_VFS_Daemon_registerClient(GNOME_VFS_Daemon _obj,
 					const GNOME_VFS_Client client,
@@ -254,27 +261,27 @@ extern "C"
 					  CORBA_Environment * ev);
 #include <orbit/orb-core/orbit-interface.h>
 
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
 #endif
    ORBit_IInterface GNOME_VFS_Client__iinterface;
 #define GNOME_VFS_Client_IMETHODS_LEN 1
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
 #endif
    ORBit_IMethod GNOME_VFS_Client__imethods[GNOME_VFS_Client_IMETHODS_LEN];
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
 #endif
    ORBit_IInterface GNOME_VFS_Daemon__iinterface;
 #define GNOME_VFS_Daemon_IMETHODS_LEN 4
-#ifdef ORBIT_IDL_C_IMODULE
+#ifdef ORBIT_IDL_C_IMODULE_GNOME_VFS_Daemon
    static
 #else
    extern
