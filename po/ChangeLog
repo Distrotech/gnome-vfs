@@ -1,3 +1,12 @@
+2001-03-09  Christian Meyer  <chrisime@gnome.org>
+                   ** Attention translators **
+This (gnome-vfs-1) isn't the right BRANCH for GNOME 1.4. Please use
+gnome-vfs-1-0 instead to update your translations for release 1.4.
+
+2001-03-09  Christian Meyer  <chrisime@gnome.org>
+
+	* de.po: Revised.
+
 2001-03-09  Martin Norbäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
