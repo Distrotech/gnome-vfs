@@ -822,6 +822,7 @@ parse_ignore_host (gpointer data, gpointer user_data)
 	struct in6_addr host6, mask6;
 #endif
 	ProxyHostAddr *elt;
+	gint i;
 
 	input = (gchar*) data;
 	elt = g_new0 (ProxyHostAddr, 1);
@@ -847,17 +848,16 @@ parse_ignore_host (gpointer data, gpointer user_data)
 			elt->addr.s_addr &= mask.s_addr;
 		}
 		else {
-			elt->mask.s_addr = 0xffff;
+			elt->mask.s_addr = 0xffffffff;
 		}
 	}
 #ifdef ENABLE_IPV6
 	else if (have_ipv6 () && inet_pton (AF_INET6, hostname, &host6) > 0) {
 		ip_addr = TRUE;
 		elt->type = PROXY_IPv6;
-		elt->addr6.s6_addr32[0] = host6.s6_addr32[0];
-		elt->addr6.s6_addr32[1] = host6.s6_addr32[1];
-		elt->addr6.s6_addr32[2] = host6.s6_addr32[2];
-		elt->addr6.s6_addr32[3] = host6.s6_addr32[3];
+		for (i = 0; i < 16; ++i) {
+			elt->addr6.s6_addr[i] = host6.s6_addr[i];
+		}
 		if (netmask) {
 			gchar *endptr;
 			gint width = strtol (netmask, &endptr, 10);
@@ -865,35 +865,19 @@ parse_ignore_host (gpointer data, gpointer user_data)
 			if (*endptr != '\0' || width < 0 || width > 128) {
 				has_error = TRUE;
 			}
-			elt->mask6.s6_addr32[0] = 0;
-			elt->mask6.s6_addr32[1] = 0;
-			elt->mask6.s6_addr32[2] = 0;
-			elt->mask6.s6_addr32[3] = 0;
-			if (width <= 32) {
-				elt->mask6.s6_addr32[0] = htonl (~0 << width);
+			for (i = 0; i < 16; ++i) {
+				elt->mask6.s6_addr[i] = 0;
 			}
-			else if (width <= 64) {
-				elt->mask6.s6_addr32[0] = 0xffff;
-				elt->mask6.s6_addr32[1] = htonl (~0 << width % 32);
+			for (i=0; i < width/8; i++) {
+				elt->mask6.s6_addr[i] = 0xff;
 			}
-			else if (width <= 96) {
-				elt->mask6.s6_addr32[0] = 0xffff;
-				elt->mask6.s6_addr32[1] = 0xffff;
-				elt->mask6.s6_addr32[2] = htonl (~0 << width % 32);
-			}
-			else {
-				elt->mask6.s6_addr32[0] = 0xffff;
-				elt->mask6.s6_addr32[1] = 0xffff;
-				elt->mask6.s6_addr32[2] = 0xffff;
-				elt->mask6.s6_addr32[3] = htonl (~0 << width % 32);
-			}
+			elt->mask6.s6_addr[i] = (0xff << (8 - width % 8)) & 0xff;
 			ipv6_network_addr (&elt->addr6, &mask6, &elt->addr6);
 		}
 		else {
-			elt->mask6.s6_addr32[0] = 0xffff;
-			elt->mask6.s6_addr32[1] = 0xffff;
-			elt->mask6.s6_addr32[2] = 0xffff;
-			elt->mask6.s6_addr32[3] = 0xffff;
+			for (i = 0; i < 16; ++i) {
+				elt->mask6.s6_addr[i] = 0xff;
+			}
 		}
 	}
 #endif
@@ -1025,10 +1009,11 @@ inet_pton(int af, const char *hostname, void *pton)
 static void
 ipv6_network_addr (const struct in6_addr *addr, const struct in6_addr *mask, struct in6_addr *res)
 {
-	res->s6_addr32[0] = addr->s6_addr32[0] & mask->s6_addr32[0];
-	res->s6_addr32[1] = addr->s6_addr32[1] & mask->s6_addr32[1];
-	res->s6_addr32[2] = addr->s6_addr32[2] & mask->s6_addr32[2];
-	res->s6_addr32[3] = addr->s6_addr32[3] & mask->s6_addr32[3];
+	gint i;
+
+	for (i = 0; i < 16; ++i) {
+		res->s6_addr[i] = addr->s6_addr[i] & mask->s6_addr[i];
+	}
 }
 #endif
 
@@ -1066,10 +1051,14 @@ proxy_should_for_hostname (const char *hostname)
 			}
 			/* Handle IPv6-wrapped IPv4 addresses. */
 			else if (addr->type == PROXY_IPv4
-			         && IN6_IS_ADDR_V4MAPPED (&net6)
-				 && (net6.s6_addr32[3] & addr->mask.s_addr) == addr->addr.s_addr) {
-				DEBUG_HTTP (("Host %s using direct connection.", hostname)); 
-				return FALSE;
+			         && IN6_IS_ADDR_V4MAPPED (&net6)) {
+				guint32 v4addr;
+
+				v4addr = net6.s6_addr[12] << 24 | net6.s6_addr[13] << 16 | net6.s6_addr[14] << 8 | net6.s6_addr[15];
+				if ((v4addr & addr->mask.s_addr) != addr->addr.s_addr) {
+					DEBUG_HTTP (("Host %s using direct connection.", hostname)); 
+					return FALSE;
+				}
 			}
 		}
 	}
