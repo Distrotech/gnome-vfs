@@ -29,28 +29,11 @@
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-transform.h>
 #include <libgnomevfs/gnome-vfs-monitor.h>
 
 G_BEGIN_DECLS
-
-/* Open mode.  If you don't set `GNOME_VFS_OPEN_RANDOM', you have to access the
-   file sequentially.  */
-typedef enum {
-        GNOME_VFS_OPEN_NONE = 0,
-        GNOME_VFS_OPEN_READ = 1 << 0,
-        GNOME_VFS_OPEN_WRITE = 1 << 1,
-        GNOME_VFS_OPEN_RANDOM = 1 << 2
-} GnomeVFSOpenMode;
-
-/* This is used to specify the start position for seek operations.  */
-typedef enum {
-        GNOME_VFS_SEEK_START,
-        GNOME_VFS_SEEK_CURRENT,
-        GNOME_VFS_SEEK_END
-} GnomeVFSSeekPosition;
-
-typedef gpointer GnomeVFSMethodHandle;
 
 #define _GNOME_VFS_METHOD_PARAM_CHECK(expression)			\
 	g_return_val_if_fail ((expression), GNOME_VFS_ERROR_BAD_PARAMETERS);

@@ -34,7 +34,6 @@
 #include <libgnomevfs/gnome-vfs-monitor.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-result.h>
-#include <libgnomevfs/gnome-vfs-transform.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>

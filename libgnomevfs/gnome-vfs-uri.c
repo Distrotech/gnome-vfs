@@ -26,6 +26,7 @@
 #include <config.h>
 #include "gnome-vfs-uri.h"
 
+#include "gnome-vfs-module.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-transform.h"
 #include "gnome-vfs-utils.h"

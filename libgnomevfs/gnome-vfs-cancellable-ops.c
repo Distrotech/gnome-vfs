@@ -27,6 +27,7 @@
 
 #include <config.h>
 #include "gnome-vfs-cancellable-ops.h"
+#include "gnome-vfs-method.h"
 
 #include <glib/gmessages.h>
 #include <glib/gutils.h>

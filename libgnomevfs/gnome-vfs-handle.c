@@ -23,6 +23,7 @@
 
 #include <config.h>
 #include "gnome-vfs-handle.h"
+#include "gnome-vfs-method.h"
 
 #include <glib/gmessages.h>
 

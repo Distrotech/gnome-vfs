@@ -73,11 +73,6 @@
 /* see gnome-vfs-async-ops.h for GnomeVFSFindDirectoryResult */
 /* see gnome-vfs-async-ops.h for GnomeVFSAsyncFindDirectoryCallback */
 /* see gnome-vfs-module-callback.h for GnomeVFSModuleCallback */
-/* see gnome-vfs-transform.h for GnomeVFSTransformInitFunc */
-/* see gnome-vfs-transform.h for GnomeVFSTransformFunc */
-/* see gnome-vfs-transform.h for GnomeVFSTransform */
-/* see gnome-vfs-iobuf.h for GnomeVFSIOBuf */
-/* see gnome-vfs-inet-connection.h for GnomeVFSInetConnection */
 
 /* Includes to provide compatibility with programs that
    still include gnome-vfs-types.h directly */
@@ -86,10 +81,7 @@
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
-#include <libgnomevfs/gnome-vfs-inet-connection.h>
-#include <libgnomevfs/gnome-vfs-iobuf.h>
 #include <libgnomevfs/gnome-vfs-result.h>
-#include <libgnomevfs/gnome-vfs-transform.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
 

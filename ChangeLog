@@ -1,3 +1,22 @@
+2001-11-05  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/check-headers.pl: New script to check that module
+	API headers do not include private headers, and public headers do
+	not include private or module API headers.
+
+	* libgnomevfs/Makefile.am: Run check-headers.pl on `make check'.
+
+	* libgnomevfs/Makefile.am,
+	libgnomevfs/gnome-vfs-cancellable-ops.c,
+	libgnomevfs/gnome-vfs-context.h, libgnomevfs/gnome-vfs-handle.c,
+	libgnomevfs/gnome-vfs-handle.h, libgnomevfs/gnome-vfs-method.h,
+	libgnomevfs/gnome-vfs-ops.h, libgnomevfs/gnome-vfs-types.h,
+	libgnomevfs/gnome-vfs-uri.c, libgnomevfs/gnome-vfs.h: Fix problems
+	found by check-headers.pl
+
+	* doc/tmpl/gnome-vfs-unused.sgml: the mystery of gtk-doc strikes
+	again.
+
 2001-11-03  Darin Adler  <darin@bentspoon.com>
 
 	* .cvsignore: Ignore gnome-vfs-module-2.0.pc.
