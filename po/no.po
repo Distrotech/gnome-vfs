@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2003-01-06 10:28+0100\n"
+"POT-Creation-Date: 2003-01-20 20:46+0100\n"
 "PO-Revision-Date: 2002-12-14 21:54+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d inneholder ingen modulnavn."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurasjonsfilen `%s' ble ikke funnet: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:731
+#: libgnomevfs/gnome-vfs-job.c:737
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Ukjent op-type %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
+#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1655
+#: libgnomevfs/gnome-vfs-job.c:1661
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ukjent type jobb %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1688
+#: libgnomevfs/gnome-vfs-job.c:1694
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2003-01-06 10:28+0100\n"
+"POT-Creation-Date: 2003-01-20 20:46+0100\n"
 "PO-Revision-Date: 2002-02-08 00:50+GMT\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: None <none@none.org>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d não contém nome de módulo."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ficheiro de configuração `%s' não foi encontrado: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:731
+#: libgnomevfs/gnome-vfs-job.c:737
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipo op %u desconhecido"
 
-#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
+#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Não é possível abrir pipe para GIOChannel aberto: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1655
+#: libgnomevfs/gnome-vfs-job.c:1661
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabalho %u desconhecido"
 
-#: libgnomevfs/gnome-vfs-job.c:1688
+#: libgnomevfs/gnome-vfs-job.c:1694
 msgid "Operation stopped"
 msgstr "Operação parada"
 

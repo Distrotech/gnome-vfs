@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME VFS 2.1.x\n"
-"POT-Creation-Date: 2003-01-06 10:28+0100\n"
+"POT-Creation-Date: 2003-01-20 20:46+0100\n"
 "PO-Revision-Date: 2002-12-13 14:06+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -34,22 +34,22 @@ msgstr "%s: %d neobsahuje název modulu."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Soubor s nastavením `%s' nebyl nalezen: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:731
+#: libgnomevfs/gnome-vfs-job.c:737
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznámý typ operace %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
+#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nelze vytvořit rouru pro otevření kanálu GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1655
+#: libgnomevfs/gnome-vfs-job.c:1661
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznámý typ úlohy %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1688
+#: libgnomevfs/gnome-vfs-job.c:1694
 msgid "Operation stopped"
 msgstr "Operace zastavena"
 
