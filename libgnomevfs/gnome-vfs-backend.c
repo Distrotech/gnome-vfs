@@ -109,8 +109,8 @@ gnome_vfs_backend_shutdown (void)
 	void (* thread_backend_shutdown_call) (void);
 	
 	g_assert (gmod);
-	if (!g_module_symbol (gmod, "gnome_vfs_thread_backend_shutdown", 
-		(gpointer)&thread_backend_shutdown_call)) {
+	if (g_module_symbol (gmod, "gnome_vfs_thread_backend_shutdown", 
+			      (gpointer)&thread_backend_shutdown_call)) {
 		g_assert (thread_backend_shutdown_call);
 		(* thread_backend_shutdown_call) ();
 	}

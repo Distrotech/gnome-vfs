@@ -1,3 +1,9 @@
+2000-09-15  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_shutdown):
+	Fixed a typo that crept in here a while back. It was preventing
+	the shutdown code from running.
+
 2000-09-15  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
