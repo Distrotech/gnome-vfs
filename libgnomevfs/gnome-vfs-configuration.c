@@ -463,7 +463,7 @@ _gnome_vfs_configuration_init (void)
 		home_config = g_strdup_printf ("%s%c%s",
 					       home_dir,
 					       G_DIR_SEPARATOR,
-					       ".gnome/vfs/modules");
+					       ".gnome2/vfs/modules");
 		add_directory_internal (home_config);
 		g_free (home_config);
 	}

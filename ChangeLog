@@ -1,3 +1,8 @@
+2003-03-31  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-configuration.c (_gnome_vfs_configuration_init):
+	Look for user modules in ~/.gnome2/vfs/modules instead of ~/.gnome/vfs/modules.
+
 2003-03-27  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* modules/ftp-method.c: make sure the current directory is / when
