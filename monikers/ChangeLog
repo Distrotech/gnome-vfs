@@ -1,3 +1,11 @@
+2002-02-06  Michael Meeks  <michael@ximian.com>
+
+	* bonobo-storage-fs.c
+	(bonobo_storage_fs_finalize): chain to parent.
+
+	* bonobo-storage-vfs.c
+	(bonobo_storage_vfs_finalize): ditto.
+
 2002-01-17  Darin Adler  <darin@bentspoon.com>
 
 	* bonobo-storage-fs.c: Added an include of <string.h>, needed because

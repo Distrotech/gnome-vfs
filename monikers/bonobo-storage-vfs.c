@@ -302,6 +302,8 @@ bonobo_storage_vfs_finalize (GObject *object)
 
 	g_free (storage_vfs->path);
 	storage_vfs->path = NULL;
+
+	G_OBJECT_CLASS (bonobo_storage_vfs_parent_class)->finalize (object);
 }
 
 static void

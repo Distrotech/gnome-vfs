@@ -51,6 +51,8 @@ bonobo_storage_fs_finalize (GObject *object)
 
 	g_free (storage_fs->path);
 	storage_fs->path = NULL;
+
+	G_OBJECT_CLASS (bonobo_storage_fs_parent_class)->finalize (object);
 }
 
 static Bonobo_StorageInfo*
