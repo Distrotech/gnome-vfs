@@ -499,7 +499,7 @@ po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile
 test/vfs-run
-gnomevfs-2.0.pc
+gnome-vfs-2.0.pc
 ])
 
 chmod u+x test/vfs-run

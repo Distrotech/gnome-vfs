@@ -25,7 +25,7 @@ EXTRA_DIST =					\
 	vfsConf.sh.in				\
 	vfscorbaConf.sh.in			\
 	vfspthreadConf.sh.in			\
-	gnomevfs-2.0.pc.in			\
+	gnome-vfs-2.0.pc.in			\
 	xml-i18n-extract.in			\
 	xml-i18n-merge.in			\
 	xml-i18n-update.in			\
@@ -81,5 +81,5 @@ gnome-vfs-config: gnome-vfs-config.in Makefile
 		chmod 755 gnome-vfs-config
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gnomevfs-2.0.pc
+pkgconfig_DATA = gnome-vfs-2.0.pc
 

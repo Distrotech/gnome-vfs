@@ -1,5 +1,9 @@
 2001-03-24  Martin Baulig  <baulig@suse.de>
 
+	* gnomevfs-2.0.pc.in: Renamed to gnome-vfs-2.0.pc.in.
+
+2001-03-24  Martin Baulig  <baulig@suse.de>
+
 	* modules/file-method.c: Only #include <libgnome/gnome-defs.h>
 	and <libgnome/gnome-i18n.h> for GNOME 1.x. Define `_' and `N_'
 	to be a noop for GNOME 2.0 [FIXME: need a better solution for this].
