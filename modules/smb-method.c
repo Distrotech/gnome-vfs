@@ -94,6 +94,9 @@ static GHashTable *server_cache = NULL;
 #define SERVER_CACHE_REAP_TIMEOUT (30*60)
 static guint server_cache_reap_timeout = 0;
 
+/* The magic "default workgroup" hostname */
+#define DEFAULT_WORKGROUP_NAME "X-GNOME-DEFAULT-WORKGROUP"
+
 
 /* 5 minutes before we re-read the workgroup cache again */
 #define WORKGROUP_CACHE_TIMEOUT (5*60)
@@ -549,7 +552,9 @@ smb_uri_type (GnomeVFSURI *uri)
 	    strcmp (uri->text, "/") == 0) {
 		/* smb://foo/ */
 		update_workgroup_cache ();
-		if (g_hash_table_lookup (workgroups, toplevel->host_name)) {
+		if (!g_ascii_strcasecmp(toplevel->host_name,
+					DEFAULT_WORKGROUP_NAME) ||
+		    g_hash_table_lookup (workgroups, toplevel->host_name)) {
 			return SMB_URI_WORKGROUP;
 		} else {
 			return SMB_URI_SERVER;
@@ -559,7 +564,9 @@ smb_uri_type (GnomeVFSURI *uri)
 	if (first_slash == NULL) {
 		/* smb://foo/bar */
 		update_workgroup_cache ();
-		if (g_hash_table_lookup (workgroups, toplevel->host_name)) {
+		if (!g_ascii_strcasecmp(toplevel->host_name,
+					DEFAULT_WORKGROUP_NAME) ||
+		    g_hash_table_lookup (workgroups, toplevel->host_name)) {
 			return SMB_URI_SERVER_LINK;
 		} else {
 			return SMB_URI_SHARE;
@@ -1547,6 +1554,8 @@ do_open_directory (GnomeVFSMethod *method,
 
 {
 	DirectoryHandle *directory_handle;
+	GnomeVFSURI *new_uri = NULL;
+	const char *host_name;
 	char *path;
 	SmbUriType type;
 	SMBCFILE *dir;
@@ -1574,6 +1583,19 @@ do_open_directory (GnomeVFSMethod *method,
 	    type == SMB_URI_SERVER_LINK) {
 		return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 	}
+
+	/* if it is the magic default workgroup name, map it to the 
+	 * SMBCCTX's workgroup, which comes from the smb.conf file. */
+	host_name = gnome_vfs_uri_get_host_name (uri);
+	if (type == SMB_URI_WORKGROUP && host_name != NULL &&
+	    !g_ascii_strcasecmp(host_name, DEFAULT_WORKGROUP_NAME)) {
+		new_uri = gnome_vfs_uri_dup (uri);
+		gnome_vfs_uri_set_host_name (new_uri,
+					     smb_context->workgroup
+					     ? smb_context->workgroup
+					     : "WORKGROUP");
+		uri = new_uri;
+	}
 		
 	path = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_USER_NAME | GNOME_VFS_URI_HIDE_PASSWORD);
 
@@ -1590,10 +1612,13 @@ do_open_directory (GnomeVFSMethod *method,
 	if (dir == NULL) {
 		UNLOCK_SMB();
 		g_free (path);
+		if (new_uri) gnome_vfs_uri_unref (new_uri);
 		return gnome_vfs_result_from_errno ();
 	}
 
 	UNLOCK_SMB();
+
+	if (new_uri) gnome_vfs_uri_unref (new_uri);
 
 	/* Construct the handle */
 	directory_handle = g_new0 (DirectoryHandle, 1);

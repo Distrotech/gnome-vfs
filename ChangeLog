@@ -1,3 +1,11 @@
+2004-10-07  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/network-method.c: (notify_gconf_value_changed),
+	(vfs_module_init):
+	* modules/smb-method.c: (smb_uri_type), (do_open_directory):
+	Use the smb.conf defined workgroup as the default if not
+	set in gconf.
+	
 2004-10-07  Christian Kellner  <gicmo@gnome.org>
 
 	* doc/tmpl/gnome-vfs-inet-connection.sgml:
