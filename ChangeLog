@@ -1,3 +1,10 @@
+2000-09-05  Mathieu Lacage  <mathieu@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_viewer_menu): initialize found_match to TRUE
+	to avoid a segfault in certain non-obvious cases. this 
+	is a temporary hack waiting for bug 2766.
+
 2000-09-05  John Sullivan  <sullivan@eazel.com>
 
 	Wrote bugs for the last (for now) 18 unbugged FIXMEs.
