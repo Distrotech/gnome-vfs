@@ -1,3 +1,23 @@
+2001-03-14  Pavel Cisler  <pavel@eazel.com>
+
+	Fix 7339: (dragging file inside ftp window causes "replace self"
+		  dialog to appear)
+	* libgnomevfs/gnome-vfs-uri.c: (uri_matches_as_parent),
+	(gnome_vfs_uri_is_parent):
+	Fix a problem where ftp://foo.com and ftp://foo.com/ were
+	not both considered the parent of ftp://foo.com/bar
+	
+	* test/test-uri.c: (test_uri_is_parent_common),
+	(test_uri_is_parent_deep), (test_uri_is_parent_shallow), (main):
+	Add tests for the above change.
+
+	* test/test-find-directory.c: (main):
+	Add some error handling.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_notify),
+	(gnome_vfs_job_set), (gnome_vfs_op_destroy):
+	Add some asserts and fix some debugging messages.
+
 2001-03-14  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>

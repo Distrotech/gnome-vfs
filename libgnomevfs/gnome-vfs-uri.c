@@ -1209,6 +1209,31 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 	    && string_match (toplevel_a->password, toplevel_b->password);
 }
 
+/* Convenience function that deals with the problem where we distinguish
+ * uris "foo://bar.com" and "foo://bar.com/" but we do not define
+ * what a child item of "foo://bar.com" would be -- to work around this,
+ * we will consider both "foo://bar.com" and "foo://bar.com/" the parent
+ * of "foo://bar.com/child"
+ */
+static gboolean
+uri_matches_as_parent (const GnomeVFSURI *possible_parent, const GnomeVFSURI *parent)
+{
+	GnomeVFSURI *alternate_possible_parent;
+	gboolean result;
+
+	if (strlen (possible_parent->text) == 0) {
+		alternate_possible_parent = gnome_vfs_uri_append_string (possible_parent,
+			GNOME_VFS_URI_PATH_STR);
+
+		result = gnome_vfs_uri_equal (alternate_possible_parent, parent);
+		
+		gnome_vfs_uri_unref (alternate_possible_parent);
+		return result;
+	}
+	
+	return gnome_vfs_uri_equal (possible_parent, parent);
+}
+
 /**
  * gnome_vfs_uri_is_parent:
  * @possible_parent: A GnomeVFSURI.
@@ -1237,7 +1262,7 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 			return FALSE;
 		}
 
-		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);	
+		result = uri_matches_as_parent (possible_parent, item_parent_uri);	
 		gnome_vfs_uri_unref (item_parent_uri);
 
 		return result;
@@ -1252,7 +1277,7 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 			return FALSE;
 		}
 
-		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);
+		result = uri_matches_as_parent (possible_parent, item_parent_uri);
 	
 		if (result) {
 			gnome_vfs_uri_unref (item_parent_uri);

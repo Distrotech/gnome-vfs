@@ -147,7 +147,7 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
 	if (!gnome_vfs_async_job_add_callback (job, notify_result)) {
 		JOB_DEBUG (("job cancelled, bailing %u",
-			GPOINTER_TO_UINT (wakeup_context->job_handle)));
+			GPOINTER_TO_UINT (notify_result->job_handle)));
 		return;
 	}
 
@@ -572,6 +572,8 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 	op->callback_data = callback_data;
 	op->context = gnome_vfs_context_new ();
 
+	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
+
 	gnome_vfs_op_destroy (job->op);
 	job->op = op;
 
@@ -687,6 +689,8 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	default:
 		g_warning (_("Unknown op type %u"), op->type);
 	}
+	
+	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 	
 	gnome_vfs_context_unref (op->context);
 	g_free (op);

@@ -337,6 +337,35 @@ test_uri_host_port (const char *input,
 	}
 }
 
+static void
+test_uri_is_parent_common (const char *parent, const char *item, gboolean deep, gboolean expected_result)
+{
+	GnomeVFSURI *item_uri;
+	GnomeVFSURI *parent_uri;
+	gboolean result;
+	
+	item_uri = gnome_vfs_uri_new (item);
+	parent_uri = gnome_vfs_uri_new (parent);
+	
+	result = gnome_vfs_uri_is_parent (parent_uri, item_uri, deep);
+	
+	if (result != expected_result) {
+		test_failed ("gnome_vfs_uri_is_parent (%s, %s) resulted in \"%s\" instead of \"%s\"",
+			     parent, item, result ? "TRUE" : "FALSE", expected_result ? "TRUE" : "FALSE");
+	}
+}
+
+static void
+test_uri_is_parent_deep (const char *parent, const char *item, gboolean expected_result)
+{
+	test_uri_is_parent_common (parent, item, TRUE, expected_result);
+}
+
+static void
+test_uri_is_parent_shallow (const char *parent, const char *item, gboolean expected_result)
+{
+	test_uri_is_parent_common (parent, item, FALSE, expected_result);
+}
 
 #define VERIFY_STRING_RESULT(function, expected) \
 	G_STMT_START {											\
@@ -463,6 +492,27 @@ main (int argc, char **argv)
 	test_uri_parent ("man:as", "NULL");
 	test_uri_parent ("pipe:gnome-info2html2 as", "NULL");
 	test_uri_parent ("file:///my/document.html#fragment", "file:///my");
+
+	test_uri_is_parent_shallow ("file:///path", "file:///path/child", TRUE);
+	test_uri_is_parent_shallow ("file:///bla", "file:///path/child", FALSE);
+	test_uri_is_parent_shallow ("file:///path1/path2", "file:///path1/path2/child", TRUE);
+	test_uri_is_parent_shallow ("ftp://foobar.com", "ftp://foobar.com/child", TRUE);
+	test_uri_is_parent_shallow ("ftp://foobar.com/", "ftp://foobar.com/child", TRUE);
+	test_uri_is_parent_shallow ("ftp://foobar.com/path", "ftp://foobar.com/path/child", TRUE);
+	test_uri_is_parent_shallow ("file:///path1/path2", "file:///path1/path2/path3/path4/path5/child", FALSE);
+
+	test_uri_is_parent_deep ("file:///path", "file:///path/child", TRUE);
+	test_uri_is_parent_deep ("file:///path1/path2", "file:///path1/path2/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com", "ftp://foobar.com/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com/", "ftp://foobar.com/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com/path", "ftp://foobar.com/path/child", TRUE);
+
+	test_uri_is_parent_deep ("file:///path", "file:///path/path1/child", TRUE);
+	test_uri_is_parent_deep ("file:///path1/path2", "file:///path1/path2/path3/child", TRUE);
+	test_uri_is_parent_deep ("file:///path1/path2", "file:///path1/path2/path3/path4/path5/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com", "ftp://foobar.com/path1/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com/", "ftp://foobar.com/path1/child", TRUE);
+	test_uri_is_parent_deep ("ftp://foobar.com/path1", "ftp://foobar.com/path1/path2/child", TRUE);
 
 	test_uri_has_parent ("", "URI NULL");
 	test_uri_has_parent ("http://www.eazel.com", "FALSE");
