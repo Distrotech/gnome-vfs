@@ -105,3 +105,4 @@ fi
 %{prefix}/lib/*.la
 %{prefix}/lib/vfs/modules/*.a
 %{prefix}/lib/vfs/modules/*.la
+%{prefix}/bin/gnome-vfs-config

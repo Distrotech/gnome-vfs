@@ -1,3 +1,7 @@
+2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
+
+	* gnome-vfs.spec.in: Add gnome-vfs-config to silence tinderbox.
+	
 2001-03-07  Darin Adler  <darin@eazel.com>
 
 	Merge from HEAD:
