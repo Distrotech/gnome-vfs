@@ -1,3 +1,9 @@
+2004-06-08  Dave Camp  <dave@novell.com>
+
+	* modules/computer-method.c: (get_file), (build_file_name),
+	(volume_mounted), (drive_connected), (fill_root): Escape
+	the volume name before using it as a file name.
+
 2004-06-07  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
  
  	* monikers/bonobo-storage-fs.c: fix Bonobo_Storage_listContents so 
