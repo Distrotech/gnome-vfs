@@ -1321,7 +1321,20 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	/* FIXME: Ignores force_replace. */
+	GnomeVFSResult result;
+	GnomeVFSFileInfo *p_file_info;
+
+	if (!force_replace) {
+		p_file_info = gnome_vfs_file_info_new ();
+		result = do_get_file_info (method, new_uri, p_file_info, GNOME_VFS_FILE_INFO_DEFAULT, context);
+		gnome_vfs_file_info_unref (p_file_info);
+		p_file_info = NULL;
+
+		if (result == GNOME_VFS_OK) {
+			return GNOME_VFS_ERROR_FILE_EXISTS;
+		}
+	}
+	
 
 	if (ftp_connection_uri_equal (old_uri, new_uri)) {
 		FtpConnection *conn;
