@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2002-12-14 21:54+0100\n"
+"POT-Creation-Date: 2003-08-20 15:25+0200\n"
+"PO-Revision-Date: 2003-08-20 15:26+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -274,22 +274,22 @@ msgstr "Kan ikke finne master browser"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Ingen forvalgt handling asossiert"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Ingen håndterer for URK-schema"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Feil under lesing av kommandolinjen"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Feil under oppstart av kommando"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -340,55 +340,54 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Bruk miljøvariabelen %s for å spesifisere en annen lokasjon.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
-msgid "Applications"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
-msgid "Cards"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
-#, fuzzy
-msgid "Files"
-msgstr "Filen eksisterer"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
-msgid "Folders"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
-msgid "Help"
-msgstr ""
+msgid "Applications"
+msgstr "Applikasjoner"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
-msgid "Hosts"
-msgstr ""
+msgid "Cards"
+msgstr "Kort"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-msgid "Links"
-msgstr ""
+msgid "Files"
+msgstr "Filer"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-msgid "Mail"
-msgstr ""
+msgid "Folders"
+msgstr "Mapper"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
+msgid "Help"
+msgstr "Hjelp"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Hosts"
+msgstr "Verter"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:193
+msgid "Links"
+msgstr "Lenker"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:196
+msgid "Mail"
+msgstr "E-post"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Verktøy"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Vinduer"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
