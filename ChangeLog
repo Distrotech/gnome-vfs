@@ -1,3 +1,30 @@
+2000-07-19  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (get_method_string): Schemes are
+	not case-sensitive according to the RFC, so make them all
+	lower-case with g_strdown when we parse.
+	(gnome_vfs_uri_get_parent): Change logic so that URIs with no "/"
+	have no parent.
+	
+	* test/test-uri.c: (test_uri_parent): Added a function for testing
+	gnome_vfs_uri_get_parent.
+	(main): Moved "FILE:" test out of the FIXME section since it's fixed.
+	Added lots of parent tests. Corrected the "add // incorrectly" test
+	to match the new version of gnome_vfs_uri_new.
+	
+	* modules/pipe-method.c: Removed some bad casts of function
+	pointers to (gpointer) that were also completely unnecessary.
+
+	* libgnomevfs/Makefile.am (INCLUDES): Ettore meant
+	"-I$(top_builddir)", since it's a generated file.
+
+	* test/auto-test: Pass "-a" option to diff so it treats the files
+	as text files.
+
+	* test/test.output: Updated to match what the program currently
+	writes out. Someone needs to look it over and see if it's correct
+	or if it reflects bugs.
+
 2000-07-19  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs/Makefile.am (INCLUDES): Add `-I$(top_srcdir)'.

@@ -38,6 +38,9 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
+/* FIXME: The uri->parent field is always NULL; we should get rid of it. */
+/* FIXME: This doesn't handle "../" or "./" like the RFC says it should. */
+
 
 #define ALLOCA_SUBSTRING(dest, src, len)		\
         do {						\
@@ -203,6 +206,7 @@ get_method_string (const gchar *substring, gchar **method_string)
 	if (*p == ':') {
 		/* Found toplevel method specification.  */
 		*method_string = g_strndup (substring, p - substring);
+		g_strdown (*method_string);
 		p++;
 	} else {
 		*method_string = g_strdup ("file");
@@ -676,7 +680,7 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 {
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	if (uri->text != NULL && uri->text[0] != 0) {
+	if (uri->text != NULL && strchr (uri->text, GNOME_VFS_URI_PATH_CHR) != NULL) {
 		gchar *p;
 		guint len;
 

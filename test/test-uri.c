@@ -94,6 +94,35 @@ test_uri_to_string (const char *input,
 	g_free (output);
 }
 
+static void
+test_uri_parent (const char *input,
+		 const char *expected_output)
+{
+	GnomeVFSURI *uri, *parent;
+	char *output;
+
+	uri = gnome_vfs_uri_new (input);
+	if (uri == NULL) {
+		output = g_strdup ("URI NULL");
+	} else {
+		parent = gnome_vfs_uri_get_parent (uri);
+		gnome_vfs_uri_unref (uri);
+		if (parent == NULL) {
+			output = g_strdup ("NULL");
+		} else {
+			output = gnome_vfs_uri_to_string (parent, GNOME_VFS_URI_HIDE_NONE);
+			gnome_vfs_uri_unref (parent);
+		}
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("gnome_vfs_uri_parent (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+
+	g_free (output);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -113,22 +142,34 @@ main (int argc, char **argv)
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://yakk:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
+	test_uri_to_string ("FILE://", "file://", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_parent ("", "URI NULL");
+	test_uri_parent ("http://www.eazel.com", "NULL");
+	test_uri_parent ("http://www.eazel.com/", "NULL");
+	test_uri_parent ("http://www.eazel.com/dir", "http://www.eazel.com/");
+	test_uri_parent ("http://www.eazel.com/dir/", "http://www.eazel.com/");
+	test_uri_parent ("http://yakk:womble@www.eazel.com:42/blah/", "http://yakk:womble@www.eazel.com:42/");
+	test_uri_parent ("file:", "NULL");
+	test_uri_parent ("http:", "NULL");
+	test_uri_parent ("file:/", "NULL");
+	test_uri_parent ("FILE://", "NULL");
+	test_uri_parent ("man:as", "NULL");
+	test_uri_parent ("pipe:gnome-info2html2 as", "NULL");
 
 	/* FIXME: Do we want GnomeVFSURI to just refuse to deal with
          * URIs that we don't have a module for?
 	 */
 	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("glorp:", "URI NULL");
 
 	/* FIXME: Is this the correct behavior for these cases? */
 	test_uri_to_string ("file:", "file://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http:", "http://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME: URI schemes are not supposed to be case sensitive. */
-	test_uri_to_string ("FILE://", "NULL" /* "file://" */, GNOME_VFS_URI_HIDE_NONE);
-
-	/* FIXME: Do we really want to add the "///" in this case? */
-	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe:///gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
+	/* FIXME: Do we really want to add the "//" in this case? */
+	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
