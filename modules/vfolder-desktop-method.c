@@ -2676,13 +2676,7 @@ vfolder_info_recheck (VFolderInfo *info,
 			StatLoc *sl = li->data;
 			if ( ! check_statloc (sl, curtime)) {
 				info->entries_valid = FALSE;
-				if ( ! vfolder_info_reload_unlocked (info, result, context)) {
-					/* we have failed, make sure we fail
-					 * next time too */
-					sl->trigger_next = TRUE;
-					return FALSE;
-				}
-				reread = TRUE;
+				break;
 			}		       
 		}
 	}
@@ -2722,6 +2716,9 @@ get_vfolder_info_unlocked (const char *scheme,
 				info->entries_valid = FALSE;
 				return NULL;
 			}
+
+			invalidate_folder_T (info->root);
+
 			info->entries_valid = TRUE;
 		}
 		return info;
@@ -2897,7 +2894,7 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 
 	newfname = g_build_filename (g_get_home_dir (),
 				     DOT_GNOME,
-				     "/vfolders",
+				     "vfolders",
 				     info->scheme,
 				     efile->entry.name,
 				     NULL);

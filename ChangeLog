@@ -1,3 +1,10 @@
+Wed May 01 16:49:01 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: reverted fix for #75150 and
+	  fixed this correctly.  Do not reload the entire info structure,
+	  all we need to do is to invalidate the root folder.  Also
+	  in unrelated revert, g_build_filename already takes care of the '/'.
+
 Wed May  1 19:12:02 2002  Jonathan Blandford  <jrb@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c:
