@@ -653,6 +653,7 @@ _gnome_vfs_url_show_using_handler_with_env (const char  *url,
 	if (template == NULL) {
 		g_free (template);
 		g_free (scheme);
+		g_object_unref (G_OBJECT (client));
 		return GNOME_VFS_ERROR_NO_HANDLER;
 	}
 	
@@ -662,6 +663,7 @@ _gnome_vfs_url_show_using_handler_with_env (const char  *url,
 				 NULL)) {
 		g_free (template);
 		g_free (scheme);
+		g_object_unref (G_OBJECT (client));
 		return GNOME_VFS_ERROR_PARSE;
 	}
 

@@ -1,4 +1,12 @@
 2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+ 
+         * libgnomevfs/gnome-vfs-mime-handlers.c: applied patch by
+           Unai Uribarri Rodríguez (unaiur@yahoo.es) for bug #124779,
+           fixed a memory leak.
+         * libgnomevfs/gnome-vfs-private-utils.c:
+	   properly unref the GConf client in error cases.
+
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/http-method.c: fixed 2 small memory leaks
 
