@@ -1268,7 +1268,10 @@ unix_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 		file_info->valid_fields |= ~(GNOME_VFS_FILE_INFO_FIELDS_DEVICE
 					     | GNOME_VFS_FILE_INFO_FIELDS_INODE
 					     | GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE);
-		file_info->io_block_size = 0;
+
+		/* We want large reads on FTP */
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
+		file_info->io_block_size = 32*1024;
 
 		file_info->name = g_path_get_basename (filename);
 

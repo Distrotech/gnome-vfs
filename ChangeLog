@@ -1,5 +1,17 @@
 2003-12-15  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-module-shared.c (gnome_vfs_stat_to_file_info):
+	Never make io_block_size less than 4k if set. That makes no sense.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
+	Default to 8k buffer
+	
+	* modules/ftp-method.c: (unix_ls_to_file_info):
+	* modules/ssh-method.c: (do_read_directory):
+	Larger block sizes for remote methods.
+
+2003-12-15  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-xfer.c (move_source_is_in_target):
 	Don't unref NULL.
 
