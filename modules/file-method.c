@@ -2165,7 +2165,9 @@ monitor_setup (void)
 	if (fam_connection == NULL) {
 		fam_connection = g_malloc0(sizeof(FAMConnection));
 		if (FAMOpen2(fam_connection, "test-monitor") != 0) {
+#ifdef DEBUG_FAM
 			g_print ("FAMOpen failed, FAMErrno=%d\n", FAMErrno);
+#endif
 			g_free(fam_connection);
 			fam_connection = NULL;
 			G_UNLOCK (fam_connection);
