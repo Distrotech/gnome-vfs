@@ -19,13 +19,6 @@ application/mime-type-test
 	compose=eh?ah.
 	copiousoutput=
 
-application/mspowerpoint
-	_description=Microsoft PowerPoint document
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=staroffice
-	short_list_application_ids_for_intermediate_user_level=staroffice
-	short_list_application_ids_for_advanced_user_level=staroffice
-
 application/msword
 	_description=Microsoft Word document
 	default_action_type=application
@@ -107,6 +100,13 @@ application/vnd.ms-excel
 	short_list_application_ids_for_novice_user_level=staroffice,gnumeric,applix
 	short_list_application_ids_for_intermediate_user_level=staroffice,gnumeric,applix
 	short_list_application_ids_for_advanced_user_level=staroffice,gnumeric,applix
+
+application/vnd.ms-powerpoint
+	_description=Microsoft PowerPoint document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_advanced_user_level=staroffice
 
 # also audio/x-pn-realaudio, audio/x-real-audio
 application/vnd.rn-realmedia
@@ -229,7 +229,6 @@ application/x-deb
 
 application/x-dia-diagram
 	_description=Dia diagram
-	icon_filename=dia-diagram.png
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=dia
 	short_list_application_ids_for_intermediate_user_level=dia
@@ -931,6 +930,13 @@ image/x-rgb
 image/x-tga
 	_description=TarGA image
 	icon_filename=gnome-image-tga.png
+
+image/x-wmf
+	_description=Windows metafile graphics
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=killustrator
+	short_list_application_ids_for_intermediate_user_level=killustrator
+	short_list_application_ids_for_advanced_user_level=killustrator
 
 image/x-xbitmap
 	_description=X bitmap image

@@ -1,3 +1,16 @@
+2001-02-26  Seth Nickell  <snickell@stanford.edu>
+
+	reviewed by: <delete if not using a buddy>
+
+	* gnome-vfs-mime-magic:
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+	* gnome-vfs.mime:
+
+	Fix bugs 7033-7038 and 7050. Also fix unreported bug found last night
+	wherein DVI files are recognized as MP3 by adding magic-mime numbers
+	for DVI.
+
 2001-02-26  Darin Adler  <darin@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>

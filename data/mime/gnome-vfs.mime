@@ -472,9 +472,6 @@ text/spreadsheet
 text/tab-separated-values
 	ext: tsv
 
-text/vbs
-	ext: vbs
-
 text/x-authors
 	regex: AUTHORS
 

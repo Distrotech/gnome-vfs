@@ -317,7 +317,7 @@ dia
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=application/x-dia,application/x-dia-diagram
+	mime_types=application/x-dia-diagram
 
 gnomecard
 	command=gnomecard
@@ -438,7 +438,7 @@ kword
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=file,http,ftp
-	mime_types=application/x-kword,text/x-abiword,application/msword
+	mime_types=application/x-kword,text/abiword,application/msword
 
 kspread
 	command=kspread
@@ -456,7 +456,7 @@ killustrator
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=file,http,ftp
-	mime_types=application/x-killustrator,application/x-xfig,image/x-wmf
+	mime_types=application/x-killustrator,image/x-xfig,image/x-wmf
 kpresenter
 	command=kpresenter
 	name=KPrestenter

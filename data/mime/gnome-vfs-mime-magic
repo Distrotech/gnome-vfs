@@ -151,6 +151,7 @@
 0	string		//					text/x-c++
 0       string          BZh                                     application/x-bzip
 0	string		\037\235				application/x-compress
+0	string		\367\002				application/x-dvi
 0	string		\367\203				application/x-font-tex
 0	string		\367\131				application/x-font-tex
 0	string		\367\312				application/x-font-tex
