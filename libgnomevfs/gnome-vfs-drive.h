@@ -69,12 +69,15 @@ char *             gnome_vfs_drive_get_icon            (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_user_visible     (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_connected        (GnomeVFSDrive *drive);
 
-gboolean           gnome_vfs_drive_eject               (GnomeVFSDrive *drive,
-							GError       **err);
-gboolean           gnome_vfs_drive_unmount             (GnomeVFSDrive *drive,
-							GError       **err);
-gboolean           gnome_vfs_drive_mount               (GnomeVFSDrive *drive,
-							GError       **err);
+gboolean gnome_vfs_drive_mount   (GnomeVFSDrive             *drive,
+				  GnomeVFSVolumeOpCallback   callback,
+				  gpointer                   user_data);
+gboolean gnome_vfs_drive_unmount (GnomeVFSDrive             *drive,
+				  GnomeVFSVolumeOpCallback   callback,
+				  gpointer                   user_data);
+gboolean gnome_vfs_drive_eject   (GnomeVFSDrive             *volume,
+				  GnomeVFSVolumeOpCallback   callback,
+				  gpointer                   user_data);
 
 G_END_DECLS
 

@@ -260,30 +260,6 @@ gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
 	return drive->priv->is_connected;
 }
 
-gboolean
-gnome_vfs_drive_eject (GnomeVFSDrive *drive,
-		       GError **err)
-{
-	/* TODO: implement */
-	return FALSE;
-}
-
-gboolean
-gnome_vfs_drive_unmount (GnomeVFSDrive *drive,
-			 GError **err)
-{
-	/* TODO: implement */
-	return FALSE;
-}
-
-gboolean
-gnome_vfs_drive_mount (GnomeVFSDrive *drive,
-		       GError **err)
-{
-	/* TODO: implement */
-	return FALSE;
-}
-
 static CORBA_char *
 corba_string_or_null_dup (char *str)
 {

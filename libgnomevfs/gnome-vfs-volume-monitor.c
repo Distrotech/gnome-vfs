@@ -420,6 +420,13 @@ _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
 }
 
 void
+_gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+					    GnomeVFSVolume        *volume)
+{
+	g_signal_emit (volume_monitor, volume_monitor_signals[VOLUME_PRE_UNMOUNT], 0, volume);
+}
+
+void
 _gnome_vfs_volume_monitor_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 				   GnomeVFSVolume        *volume)
 {
@@ -447,7 +454,6 @@ _gnome_vfs_volume_monitor_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 	g_mutex_unlock (volume_monitor->priv->mutex);
 	
 	g_signal_emit (volume_monitor, volume_monitor_signals[VOLUME_MOUNTED], 0, volume);
-	
 }
 
 void

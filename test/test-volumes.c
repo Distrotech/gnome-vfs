@@ -129,6 +129,7 @@ main (int argc, char *argv[])
   }
   g_list_free (drives);
 
+  g_print ("Waiting for volume events:\n");
   loop = g_main_loop_new (NULL, FALSE);
   g_main_loop_run (loop);
   

@@ -295,6 +295,7 @@ _gnome_vfs_volume_to_corba (GnomeVFSVolume *volume,
 	corba_volume->filesystem_type = corba_string_or_null_dup (volume->priv->filesystem_type);
 	corba_volume->display_name = corba_string_or_null_dup (volume->priv->display_name);
 	corba_volume->icon = corba_string_or_null_dup (volume->priv->icon);
+	corba_volume->gconf_id = corba_string_or_null_dup (volume->priv->gconf_id);
 	
 	corba_volume->is_user_visible = volume->priv->is_user_visible;
 	corba_volume->is_read_only = volume->priv->is_read_only;
@@ -329,6 +330,7 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 	volume->priv->filesystem_type = decode_corba_string_or_null (corba_volume->filesystem_type, TRUE);
 	volume->priv->display_name = decode_corba_string_or_null (corba_volume->display_name, TRUE);
 	volume->priv->icon = decode_corba_string_or_null (corba_volume->icon, TRUE);
+	volume->priv->gconf_id = decode_corba_string_or_null (corba_volume->gconf_id, TRUE);
 	
 	volume->priv->is_user_visible = corba_volume->is_user_visible;
 	volume->priv->is_read_only = corba_volume->is_read_only;

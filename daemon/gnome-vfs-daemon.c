@@ -200,6 +200,24 @@ volume_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 }
 
 static void
+volume_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+		    GnomeVFSVolume        *volume,
+		    GNOME_VFS_Client       client)
+{
+	CORBA_Environment ev;
+
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_VolumePreUnmount (client,
+					   volume->priv->id,
+					   &ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+}
+
+
+static void
 volume_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
 		  GnomeVFSVolume        *volume,
 		  GNOME_VFS_Client       client)
@@ -267,6 +285,8 @@ register_volume_monitor (PortableServer_Servant _servant,
 
 	g_signal_connect (monitor, "volume_mounted",
 			  G_CALLBACK (volume_mounted), client);
+	g_signal_connect (monitor, "volume_pre_unmount",
+			  G_CALLBACK (volume_pre_unmount), client);
 	g_signal_connect (monitor, "volume_unmounted",
 			  G_CALLBACK (volume_unmounted), client);
 	g_signal_connect (monitor, "drive_connected",
@@ -285,6 +305,7 @@ disconnect_client_from_volume_monitor (const GNOME_VFS_Client client)
 	monitor = gnome_vfs_get_volume_monitor ();
 
 	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_mounted), client);
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_pre_unmount), client);
 	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_unmounted), client);
 	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (drive_connected), client);
 	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (drive_disconnected), client);
@@ -354,6 +375,25 @@ get_drives (PortableServer_Servant _servant,
 	g_list_free (drives);
 
 	return list;
+}
+
+static void
+emit_pre_unmount_volume (PortableServer_Servant _servant,
+			 const GNOME_VFS_Client client,
+			 const CORBA_long id,
+			 CORBA_Environment * ev)
+{
+	GnomeVFSVolumeMonitor *monitor;
+	GnomeVFSVolume *volume;
+	
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	volume = gnome_vfs_volume_monitor_get_volume_by_id (monitor, id);
+	if (volume != NULL) {
+		_gnome_vfs_volume_monitor_emit_pre_unmount (monitor,
+							    volume);
+		gnome_vfs_volume_unref (volume);
+	}
 }
 
 void
@@ -478,7 +518,8 @@ gnome_vfs_daemon_class_init (GnomeVFSDaemonClass *klass)
 	epv->deRegisterVolumeMonitor = deregister_volume_monitor;
 	epv->getVolumes = get_volumes;
 	epv->getDrives = get_drives;
-
+	epv->emitPreUnmountVolume = emit_pre_unmount_volume;
+	
 	gnome_vfs_init ();
 }
 

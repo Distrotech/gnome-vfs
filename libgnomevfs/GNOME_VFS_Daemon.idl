@@ -38,8 +38,6 @@ module GNOME {
 			long volume_type;
 			long device_type;
 			long drive;
-			string device_path;
-			long unix_device;
 			string activation_uri;
 			string filesystem_type;
 			string display_name;
@@ -47,6 +45,9 @@ module GNOME {
 			boolean is_user_visible;
 			boolean is_read_only;
 			boolean is_mounted;
+			string device_path;
+			long unix_device;
+			string gconf_id;
 		};
 		typedef sequence<Volume> VolumeList;
 
@@ -100,6 +101,7 @@ module GNOME {
 
 			/* For volume monitoring: */
 			oneway void VolumeMounted (in Volume volume);
+			oneway void VolumePreUnmount (in long id);
 			oneway void VolumeUnmounted (in long id);
 			oneway void DriveConnected (in Drive drive);
 			oneway void DriveDisconnected (in long id);
@@ -166,6 +168,8 @@ module GNOME {
 			void deRegisterVolumeMonitor (in Client client);
 			VolumeList getVolumes (in Client client);
 			DriveList getDrives (in Client client);
+			void emitPreUnmountVolume (in Client client,
+						   in long volume_id);
 		};
 
 		interface AsyncDaemon : Bonobo::Unknown {

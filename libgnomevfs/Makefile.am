@@ -194,6 +194,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-volume-monitor-client.c	\
 	gnome-vfs-volume-monitor-daemon.c	\
 	gnome-vfs-volume-monitor.c		\
+	gnome-vfs-volume-ops.c			\
 	gnome-vfs-volume.c			\
 	gnome-vfs-xfer.c			\
 	$(NULL)

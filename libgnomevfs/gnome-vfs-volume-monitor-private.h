@@ -47,10 +47,6 @@ struct _GnomeVFSVolumePrivate {
 	GnomeVFSDeviceType device_type;
 	GnomeVFSDrive *drive; /* Non-owning ref */
 
-	/* Only for unix mounts: */
-	char *device_path;
-	dev_t unix_device;
-
 	char *activation_uri;
 	char *filesystem_type;
 	char *display_name;
@@ -59,6 +55,10 @@ struct _GnomeVFSVolumePrivate {
 	gboolean is_user_visible;
 	gboolean is_read_only;
 	gboolean is_mounted;
+
+	/* Only for unix mounts: */
+	char *device_path;
+	dev_t unix_device;
 
 	/* Only for connected servers */
 	char *gconf_id;
@@ -81,24 +81,26 @@ struct _GnomeVFSDrivePrivate {
 	gboolean is_connected;
 };
 
-void _gnome_vfs_volume_set_drive              (GnomeVFSVolume        *volume,
-					       GnomeVFSDrive         *drive);
-void _gnome_vfs_drive_set_mounted_volume      (GnomeVFSDrive         *drive,
-					       GnomeVFSVolume        *volume);
-void _gnome_vfs_drive_unset_volume            (GnomeVFSDrive         *drive,
-					       GnomeVFSVolume        *volume);
-void _gnome_vfs_volume_unset_drive            (GnomeVFSVolume        *volume,
-					       GnomeVFSDrive         *drive);
-void _gnome_vfs_volume_monitor_mounted        (GnomeVFSVolumeMonitor *volume_monitor,
-					       GnomeVFSVolume        *volume);
-void _gnome_vfs_volume_monitor_unmounted      (GnomeVFSVolumeMonitor *volume_monitor,
-					       GnomeVFSVolume        *volume);
-void _gnome_vfs_volume_monitor_connected      (GnomeVFSVolumeMonitor *volume_monitor,
-					       GnomeVFSDrive         *drive);
-void _gnome_vfs_volume_monitor_disconnected   (GnomeVFSVolumeMonitor *volume_monitor,
-					       GnomeVFSDrive         *drive);
-void _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor);
-void _gnome_vfs_volume_monitor_unmount_all    (GnomeVFSVolumeMonitor *volume_monitor);
+void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,
+						 GnomeVFSDrive         *drive);
+void _gnome_vfs_drive_set_mounted_volume        (GnomeVFSDrive         *drive,
+						 GnomeVFSVolume        *volume);
+void _gnome_vfs_drive_unset_volume              (GnomeVFSDrive         *drive,
+						 GnomeVFSVolume        *volume);
+void _gnome_vfs_volume_unset_drive              (GnomeVFSVolume        *volume,
+						 GnomeVFSDrive         *drive);
+void _gnome_vfs_volume_monitor_mounted          (GnomeVFSVolumeMonitor *volume_monitor,
+						 GnomeVFSVolume        *volume);
+void _gnome_vfs_volume_monitor_unmounted        (GnomeVFSVolumeMonitor *volume_monitor,
+						 GnomeVFSVolume        *volume);
+void _gnome_vfs_volume_monitor_connected        (GnomeVFSVolumeMonitor *volume_monitor,
+						 GnomeVFSDrive         *drive);
+void _gnome_vfs_volume_monitor_disconnected     (GnomeVFSVolumeMonitor *volume_monitor,
+						 GnomeVFSDrive         *drive);
+void _gnome_vfs_volume_monitor_disconnect_all   (GnomeVFSVolumeMonitor *volume_monitor);
+void _gnome_vfs_volume_monitor_unmount_all      (GnomeVFSVolumeMonitor *volume_monitor);
+void _gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+						 GnomeVFSVolume        *volume);
 
 GnomeVFSVolumeMonitor *_gnome_vfs_get_volume_monitor_internal (gboolean create);
 void _gnome_vfs_volume_monitor_shutdown (void);

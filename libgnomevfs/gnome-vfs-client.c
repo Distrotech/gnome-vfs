@@ -99,6 +99,24 @@ gnome_vfs_client_volume_unmounted (PortableServer_Servant _servant,
 }
 
 static void
+gnome_vfs_client_volume_pre_unmount (PortableServer_Servant _servant,
+				     const CORBA_long id, CORBA_Environment * ev)
+{
+	GnomeVFSVolume *volume;
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor, id);
+	if (volume != NULL) {
+		_gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
+							    volume);
+		gnome_vfs_volume_unref (volume);
+	}
+}
+
+
+static void
 gnome_vfs_client_drive_connected (PortableServer_Servant _servant,
 				  const GNOME_VFS_Drive * corba_drive,
 				  CORBA_Environment * ev)
@@ -139,6 +157,7 @@ gnome_vfs_client_class_init (GnomeVFSClientClass *klass)
 	epv->MonitorCallback = gnome_vfs_client_monitor_callback;
 	epv->VolumeMounted = gnome_vfs_client_volume_mounted;
 	epv->VolumeUnmounted = gnome_vfs_client_volume_unmounted;
+	epv->VolumePreUnmount = gnome_vfs_client_volume_pre_unmount;
 	epv->DriveConnected = gnome_vfs_client_drive_connected;
 	epv->DriveDisconnected = gnome_vfs_client_drive_disconnected;
 	
