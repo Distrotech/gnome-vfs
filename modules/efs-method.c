@@ -27,66 +27,12 @@
 #include <config.h>
 #endif
 
-#define _LARGEFILE64_SOURCE
-
-#include <dirent.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <limits.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <utime.h>
-
 #include <gnome.h>
 
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 #include "efs-method.h"
-
-
-
-/* This is to make sure the path starts with `/', so that at least we
-   get a predictable behavior when the leading `/' is not present.  */
-
-#ifdef PATH_MAX
-#define	GET_PATH_MAX()	PATH_MAX
-#else
-static int
-GET_PATH_MAX (void)
-{
-	static unsigned int value;
-
-	/* This code is copied from GNU make.  It returns the maximum
-	   path length by using `pathconf'.  */
-
-	if (value == 0) {
-		long int x = pathconf("/", _PC_PATH_MAX);
-
-		if (x > 0)
-			value = x;
-		else
-			return MAXPATHLEN;
-	}
-
-	return value;
-}
-#endif
-
-#ifdef HAVE_OPEN64
-#define OPEN open64
-#else
-#define OPEN open
-#endif
-
-#ifdef HAVE_LSEEK64
-#define LSEEK lseek64
-#define OFF_T off64_t
-#else
-#define LSEEK lseek
-#define OFF_T off_t
-#endif
 
 
 struct _FileHandle {
@@ -383,7 +329,6 @@ do_tell (GnomeVFSMethod       *method,
 	return GNOME_VFS_OK;
 }
 
-
 static GnomeVFSResult
 do_truncate_handle (GnomeVFSMethod *method,
 		    GnomeVFSMethodHandle *method_handle,
@@ -432,59 +377,14 @@ struct _DirectoryHandle {
 	GnomeVFSFileInfoOptions options;
 	const GList *meta_keys;
 
-	gchar *name_buffer;
-	gchar *name_ptr;
-
 	const GnomeVFSDirectoryFilter *filter;
 };
 typedef struct _DirectoryHandle DirectoryHandle;
-
-static DirectoryHandle *
-directory_handle_new (GnomeVFSURI *uri,
-		      EFSDir *dir,
-		      EFSDir *efs,
-		      GnomeVFSFileInfoOptions options,
-		      const GList *meta_keys,
-		      const GnomeVFSDirectoryFilter *filter)
-{
-	DirectoryHandle *new;
-	gchar *full_name;
-	guint full_name_len;
-
-	new = g_new (DirectoryHandle, 1);
-
-	new->uri = gnome_vfs_uri_ref (uri);
-	new->dir = dir;
-	new->efs = efs;
-
-	if (uri->text [0] != '/')
-		full_name = g_strconcat ("/", uri->text, NULL);
-	else
-		full_name = g_strdup (uri->text);
-	full_name_len = strlen (full_name);
-
-	new->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
-	memcpy (new->name_buffer, full_name, full_name_len);
-	
-	if (full_name_len > 0 && full_name[full_name_len - 1] != '/')
-		new->name_buffer[full_name_len++] = '/';
-
-	new->name_ptr = new->name_buffer + full_name_len;
-
-	new->options = options;
-	new->meta_keys = meta_keys;
-	new->filter = filter;
-
-	g_free (full_name);
-
-	return new;
-}
 
 static void
 directory_handle_destroy (DirectoryHandle *directory_handle)
 {
 	gnome_vfs_uri_unref (directory_handle->uri);
-	g_free (directory_handle->name_buffer);
 	g_free (directory_handle);
 }
 
@@ -498,9 +398,10 @@ do_open_directory (GnomeVFSMethod *method,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
-	GnomeVFSResult result;
-	EFSDir        *dir;
-	EFSDir        *originaldir;
+	GnomeVFSResult   result;
+	EFSDir          *dir;
+	EFSDir          *originaldir;
+	DirectoryHandle *handle;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri->text != NULL);
@@ -513,11 +414,16 @@ do_open_directory (GnomeVFSMethod *method,
 	if (!dir)
 		return gnome_vfs_result_from_errno ();
 
-	*method_handle
-		= (GnomeVFSMethodHandle *) directory_handle_new (uri, dir, originaldir,
-								 options,
-								 meta_keys,
-								 filter);
+	handle = g_new (DirectoryHandle, 1);
+
+	handle->uri = gnome_vfs_uri_ref (uri);
+	handle->dir = dir;
+	handle->efs = originaldir;
+	handle->options = options;
+	handle->meta_keys = meta_keys;
+	handle->filter = filter;
+	
+	*method_handle = (GnomeVFSMethodHandle *)handle;
 
 	return GNOME_VFS_OK;
 }
