@@ -18,6 +18,7 @@
 	  <Or>
 	    <Keyword>AdvancedSettings</Keyword>
 	    <Keyword>Sawfish</Keyword>
+	    <Keyword>X-GNOME-Sawfish</Keyword>
 	    <Keyword>System</Keyword>
 	    <Keyword>Accessibility</Keyword>
 	    <Keyword>Merged</Keyword>
@@ -41,7 +42,10 @@
 	    <Keyword>Settings</Keyword>
 	    <Keyword>AdvancedSettings</Keyword>
 	    <Not>
-	      <Keyword>Sawfish</Keyword>
+	      <Or>
+	        <Keyword>Sawfish</Keyword>
+	        <Keyword>X-GNOME-Sawfish</Keyword>
+	      </Or>
 	    </Not>
 	  </And>
 	</Or>
@@ -52,7 +56,10 @@
 	<Desktop>Sawfish.directory</Desktop>
 	<Query>
 	  <And>
-	    <Keyword>Sawfish</Keyword>
+	    <Or>
+	      <Keyword>Sawfish</Keyword>
+	      <Keyword>X-GNOME-Sawfish</Keyword>
+	    </Or>
 	    <Keyword>Settings</Keyword>
 	  </And>
 	</Query>

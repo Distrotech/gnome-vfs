@@ -1,3 +1,10 @@
+Fri May 31 10:23:01 2002  George Lebl <jirka@5z.com>
+
+	* modules/applications.vfolder-info.in,
+	  modules/preferences.vfolder-info.in: Handle both kewords
+	  'Sawfish' and 'X-GNOME-Sawfish' to make a clear transition,
+	  in case someone has an older install of sawfish.
+
 Thu May 30 17:11:04 2002  George Lebl <jirka@5z.com>
 
 	* modules/preferences.vfolder-info.in: arghh! we have two places
