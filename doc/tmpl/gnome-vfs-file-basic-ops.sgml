@@ -23,6 +23,7 @@ Basic File Operations
 @GNOME_VFS_OPEN_READ: 
 @GNOME_VFS_OPEN_WRITE: 
 @GNOME_VFS_OPEN_RANDOM: 
+@GNOME_VFS_OPEN_TRUNCATE: 
 
 <!-- ##### FUNCTION gnome_vfs_create ##### -->
 <para>
