@@ -1,0 +1,24 @@
+Gnome VFS 0.2
+-------------
+
+New in this release:
+
+New MIME-type API.
+
+MIME-type capplet now part of GnomeVFS.
+
+Copy engine (gnome-vfs-xfer) now mostly implemented to support a file manager.
+
+Symbolic link handling for simple links now working.
+
+New FTP module.
+
+WebDAV support.
+
+Numerous fixes in the pthread backend.
+
+Numerous memory and file descriptor leak fixes.
+
+Numerous bug fixes.
+
+Gnome VFS now builds without warnings.

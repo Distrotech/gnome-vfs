@@ -1,3 +1,10 @@
+2000-07-03  Pavel Cisler  <pavel@eazel.com>
+
+	* HACKING:
+	* NEWS:
+	* TODO:
+	More tweaks for the release.
+
 2000-07-03  Eskil Heyn Olsen  <eskil@eazel.com>
 
 	* libgnomevfs/Makefile.am:

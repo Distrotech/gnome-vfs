@@ -15,6 +15,8 @@ Please use a coding style that is consistent with the existing Gnome VFS code.
 Gnome VFS uses the GNOME Programming Guidelines with 8-space tabs and a
 "K&R" indentation style.
 
+Make sure all of your new code compiles without any warnings.
+
 Use "FIXME" to augument code that needs more work, that is missing functionality or
 in general needs attention. Include a comprehensive comment explaining what is 
 missing, why you think something is broken, what you suggest as a fix, etc.

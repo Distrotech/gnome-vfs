@@ -18,13 +18,6 @@ project similar to mc's vfs, and it is pretty well written.
 
 * GZIP write support might be broken.
 
-* FTP is *extremely* broken, and is nowhere near being MT-safe.  I
-wonder if we shouldn't rewrite it from scratch borrowing code from
-somewhere else (wget comes to mind and, even if it's GPL, I think the
-FSF would not mind allowing us to distribute a modified version of it
-as LGPL). [Notice that ftp in here is based on old version of ftp from
-midnight. Newer version from midnight is really much cleaner.]
-
 * Complete HTTP support.
 
 * HTTP-related issue: we need to figure out a way to deal with HTTP
