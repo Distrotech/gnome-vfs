@@ -1,6 +1,6 @@
 /* -*- Mode: IDL; tab-width: 8; indent-tabs-mode: 8; c-basic-offset: 8 -*- */
 
-/* gnome-vfs-metafile-server.idl - Interface for components to access Nautilus metadata
+/* gnome-vfs-metafile-server.idl - Interface for components to access VFS metadata
  *
  * Copyright (C) 2001 Eazel, Inc.
  * Copyright (C) 2001 Free Software Foundation
@@ -25,8 +25,8 @@
 #define GNOME_VFS_METAFILE_SERVER_IDL_INCLUDED
 
 #include <Bonobo.idl>
-
-module GnomeVFS {
+module GNOME {
+module VFS {
 
 	/* Don't use this typedef as a workaround for an ORBit2 bug. */
 	typedef string URI;
@@ -90,6 +90,9 @@ module GnomeVFS {
 	interface MetafileFactory : ::Bonobo::Unknown {
 		Metafile open (in string /* URI */ directory);
 	};
-};
+
+}; /* END MODULE VFS */
+}; /* END MODULE GNOME */
+
 
 #endif /* GNOME_VFS_METAFILE_SERVER_IDL_INCLUDED */

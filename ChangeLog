@@ -1,3 +1,21 @@
+2001-08-01  Seth Nickell  <snickell@stanford.edu>
+
+	* idl/gnome-vfs-metafile-server.idl:
+	* libgnomevfs/gnome-vfs-metadata.c: (get_factory),
+	(gnome_vfs_metafile_load), (gnome_vfs_metafile_unref),
+	(gnome_vfs_metadata_get_string), (gnome_vfs_metadata_get_integer),
+	(gnome_vfs_metadata_get_boolean), (gnome_vfs_metadata_set_string),
+	(gnome_vfs_metadata_set_integer), (gnome_vfs_metadata_set_boolean):
+	* libgnomevfs/gnome-vfs-metadata.h:
+
+	Add an initial cut at a Metadata API. DO NOT DEPEND ON THIS
+	API, IT IS NOT FROZEN (and won't even work right now, so you
+	won't get very far, headers are not installed and it is not
+	compiled in...checking in so Ian and I can work together better).
+	Known changes will occur in the API. Also, the IDL file will
+	be renamed to better match its module scopes (changes suggested
+	by Michael).
+	
 2001-08-02  Michael Meeks  <michael@ximian.com>
 
 	* port to bonobo-activation.
