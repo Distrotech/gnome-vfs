@@ -1,5 +1,15 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* imported/neon/ne_gnomevfs.c: (ne_sock_close):
+	* libgnomevfs/gnome-vfs-dns-sd.c: (howl_input):
+	* libgnomevfs/gnome-vfs-resolve.c: (gnome_vfs_resolve):
+	* modules/http-neon-method.c: (neon_session_pool_destroy),
+	(http_context_free), (http_context_set_uri):
+	Fix some leaks and build issues (#151003)
+	Patches from Christian Kellner and Kjartan Maraas.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/sftp-method.c (sftp_connect):
 	Fix some leaks (#152839).
 	Patch from Christophe Fergeau.

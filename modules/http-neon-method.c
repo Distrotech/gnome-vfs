@@ -1280,6 +1280,7 @@ neon_session_pool_destroy (NeonSessionPool *pool)
 	g_list_free (pool->unused_sessions);
 	
 	gnome_vfs_uri_unref (pool->uri);
+	g_free (pool);
 }
 
 
@@ -1558,6 +1559,8 @@ http_context_free (HttpContext *context)
 		neon_session_pool_insert (context->uri, context->session);
 		context->session = NULL;
 	}
+
+	g_free (context->path);
 	
 	gnome_vfs_uri_unref (context->uri);
 	
@@ -1573,7 +1576,7 @@ http_context_set_uri (HttpContext *context, GnomeVFSURI *uri)
 	if (context->uri)
 		gnome_vfs_uri_unref (context->uri);
 	
-	if (context->path == NULL)
+	if (context->path != NULL)
 		g_free (context->path);
 	
 	context->uri = gnome_vfs_uri_ref (uri);
