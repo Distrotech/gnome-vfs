@@ -733,6 +733,10 @@ ftp_connection_acquire (GnomeVFSURI *uri, FtpConnection **connection, GnomeVFSCo
 						      conn);
 		g_hash_table_insert (spare_connections, uri, 
 				     possible_connections);
+
+		/* Reset offset */
+		conn->offset = 0;
+
 		/* make sure connection hasn't timed out */
 		result = do_basic_command(conn, "PWD");
 		if (result != GNOME_VFS_OK) {
