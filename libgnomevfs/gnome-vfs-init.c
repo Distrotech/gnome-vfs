@@ -76,9 +76,6 @@ ensure_dot_gnome_exists (void)
 static void
 gnome_vfs_pthread_init (void)
 {
-	if (!g_thread_supported ())
-		g_thread_init (NULL);
-
 	private_is_primary_thread = g_private_new (NULL);
 	g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
 	
@@ -108,6 +105,9 @@ gnome_vfs_init (void)
 	if (!ensure_dot_gnome_exists ()) {
 		return FALSE;
 	}
+
+ 	if (!g_thread_supported ())
+ 		g_thread_init (NULL);
 
 	G_LOCK (vfs_already_initialized);
 

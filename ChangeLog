@@ -1,3 +1,10 @@
+2002-07-25  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-init.c
+	(gnome_vfs_pthread_init, gnome_vfs_init): init threads
+	if we have to before taking the vfs_already_initialized
+	lock - makes Valgrind happy; thanks to Julian Seward.
+
 2002-07-25  Laszlo Peter  <laca@sun.com>
 
 	reviewed by Michael Meeks
@@ -15,12 +22,9 @@
 	* test/Makefile.am:
         add auto-test to EXTRA_DIST (otherwise make check
         fails with tarball)
-				 
 
 2002-07-24  Michael Meeks  <michael@ximian.com>
   
-	* Version 2.0.2
-
 	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_go): dump
 	debug before scheduling the job, rather than when job
 	might be invalid.
