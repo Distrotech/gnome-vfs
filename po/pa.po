@@ -10,13 +10,14 @@ msgstr ""
 "Project-Id-Version: pa\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-07-22 13:32+0530\n"
+"PO-Revision-Date: 2004-07-28 12:57+0530\n"
 "Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: daemon/gnome-vfs-daemon.c:596
@@ -29,88 +30,84 @@ msgstr "ਗਨੋਮ ਵੀਐਫਐਸ(vfs) ਨੂੰ ਸ਼ੁਰੂ ਨਹੀ
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "ਪਾਰਸ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ: %s"
+msgstr "ਫਾਇਲ਼ ਨੂੰ ਖੋਲਿਆਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "ਫਾਇਲ਼ '%s' ਖੋਲ਼ਣ ਵਿੱਚ ਅਸਫਲ: %s"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "ਫਾਇਲ ਮੌਜੂਦ ਹੈ"
+msgstr "ਫਾਇਲ ਖਾਲੀ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:360
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "ਫਾਇਲ਼ '%s' ਤੋਂ ਪੜਨ ਵਿੱਚ ਅਸਫਲ: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ '%s' ਹੈ ਜੋ ਕਿ ਇੱਕ ਇੰਦਰਾਜ਼, ਸਮੂਹ ਜਾਂ ਟਿੱਪਣੀ ਨਹੀਂ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਫਾਇਲ਼ ਪ੍ਰਮਾਣਿਤ ਸ਼ੁਰੂ ਸਮੂਹ ਨਾਲ ਸ਼ੁਰੂ ਨਹੀਂ ਸਕਦੀ"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ '%s' ਹੈ ਜੋ ਕਿ ਂ UTF ਨਹੀਂ ਹੈ-8"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਅਣਜਾਣੀ ਇਕੋਡਿੰਗ '%s' ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਮੂਹ '%s' ਨਹੀਂ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਕੀ '%s' ਨਹੀਂ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਮੂਹ '%s' ਹੈ, ਜਿਸ ਦਾ ਮੁੱਲ ਖੋਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਇੱਕ ਕੀ '%s', ਜਿਸ ਦਾ ਇਲਾਕਾਈ '%s' ਹੈ, ਲਈ ਕੋਈ ਭਾਸ਼ਾ-ਅਨੁਵਾਦ ਨਹੀਂ ਹੈ|"
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਕੋਈ ਤਰਤੀਬ  '%s' ਨਹੀਂ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ ਦੇ ਅੰਤ ਤੇ ਅਸਕੇਪ ਅੱਖਰ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "ਮੁੱਲ '%s' ਅੰਕ ਦੇ ਤੌਰ ਤੇ ਵਰਤਿਆ  ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "ਮੁੱਲ '%s' ਬੁਲੀਅਨ ਦੇ ਤੌਰ ਤੇ ਵਰਤਿਆ  ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -443,7 +440,7 @@ msgstr "ਕਾਰਵਾਈ ਰੁਕੀ ਹੈ"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "ਉਲਟ ਫੰਕਸ਼ਨ, MIME ਡਾਟਾਬੇਸ ਵਿੱਚ ਕੋਈ ਵੀ ਤਬਦੀਲ ਉਪਭੋਗਤਾ ਦੁਆਰਾ ਸਵੀਕਾਰ ਨਹੀਂ ਹੈ"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
@@ -743,12 +740,12 @@ msgstr "ਨਾਂਸਰਵਰ  ਗਲਤੀ"
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "ਸਰੋਤ ਲਾੱਕ ਹੈ"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "ਫੰਕਸ਼ਨ ਕਾਲ ਉਲਟ ਹੈ"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-result.c:203
@@ -759,8 +756,8 @@ msgstr "ਅਣਪਛਾਤੀ ਗਲਤੀ"
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u ਬਾਈਟ"
+msgstr[1] "%u ਬਾਈਟ"
 
 # libgnomevfs/gnome-vfs-utils.c:67
 # libgnomevfs/gnome-vfs-utils.c:74
@@ -832,10 +829,8 @@ msgstr "ਨੈਟਵਰਕ ਸਰਵਰ"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -1049,246 +1044,196 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "ਮੂਲ ਟਰਮੀਨਲ ਕਾਰਜ ਵਿੱਚ ਵਰਤਣ ਲਈ Exec ਆਰਗੂਮਿੰਟ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "ਕਾਰਜ ਨੂੰ ਟਰਮੀਨਲ ਵਿੱਚ ਚਲਾਉ"
+msgstr "ਕਮਾਂਡਜ ਨੂੰ ਟਰਮੀਨਲ ਵਿੱਚ ਚਲਾਉ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ \"aim\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ  \"callto\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ  \"ghelp\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ \"info\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ \"mailto\"  URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ \"man\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ \"trash\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ H323 URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ HTTP URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
+msgstr "ਕਮਾਂਡ ਲਾਈਨ HTTPS URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ, ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ|"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "ਹੈਂਡਲ aim URLs"
+msgstr "\"aim\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "ਹੈਡਲ callto ਯੂਆਰਐਲ਼"
+msgstr "\"callto\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ਹੈਡਲ ghelp ਯੂਆਰਐਲ਼"
+msgstr "\"ghelp\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "੍ਰੈਹੈਡਲ ਜਾਣਕਾਰੀ(info) ਯੂਆਰਐਲ਼"
+msgstr "\"info\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "ਹੈਡਲ mailto ਯੂਆਰਐਲ਼"
+msgstr "\"mailto\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "ਹੈਡਲ man ਯੂਆਰਐਲ਼"
+msgstr "\"man\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "ਹੈਡਲ trash ਯੂਆਰਐਲ਼"
+msgstr "\"trash\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "ਹੈਡਲ H323 ਯੂਆਰਐਲ਼"
+msgstr " "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
-msgstr "ਹੈਡਲ HTTP ਯੂਆਰਐਲ਼"
+msgstr "HTTP ਯੂਆਰਐਲ਼ ਲਈ ਹੈਂਡਲਰ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
-msgstr "ਹੈਡਲ HTTPS ਯੂਆਰਐਲ਼"
+msgstr " HTTPS ਯੂਆਰਐਲ ਲਈ ਹੈਂਡਲਰ਼"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,aim  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\"  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, callto ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, ghelp ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, info ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, mailto ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, man ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, trash ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, H323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgid "True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, H323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTP ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTP ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTPS ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTPS ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "ਸਹੀ, ਜੇਕਰ ਕਾਰਜ ਜੋ ਕਿ ਇਸ ਯੂਆਰਐਲ ਨੂੰ ਵਰਤਦਾ ਹੈ, ਟਰਮੀਨਲ ਵਿੱਚ ਚੱਲੇ ।"
+msgstr "ਸਹੀ, ਜੇਕਰ ਕਾਰਜ ਜੋ ਕਿ ਇਸ ਯੂਆਰਐਲ ਨੂੰ ਵਰਤਦਾ ਹੈ, ਟਰਮੀਨਲ ਵਿੱਚ ਚੱਲੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,aim  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, callto ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, ghelp ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"ghelp\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, info ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, mailto ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, man ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, trash ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle H323 URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, H323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, H323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTP ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTP ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTPS ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, HTTPS ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "dns-sd ਡੋਮੇਨ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ ਜੋ ਕਿ ਨੈੱਟਵਰਕ ਵਿੱਚ ਉਪਲੱਬਧ ਹੋਣੀ ਲਾਜ਼ਮੀ ਹੈ"
+msgstr "dns-sd ਡੋਮੇਨ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ ਜੋ ਕਿ ਨੈੱਟਵਰਕ ਵਿੱਚ ਉਪਲੱਬਧ ਹੋਣੀ ਲਾਜ਼ਮੀ ਹੈ "
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1461,33 +1406,3 @@ msgstr "SMB ਵਰਕਗਰੁੱਪ"
 msgid "The window workgroup the user is part of"
 msgstr "ਵਿੰਡੋ ਵਰਕਗਰੁੱਪ ਉਪਭੋਗਤਾ(ਯੂਜਰ) ਹਿੱਸਾ ਹੈ"
 
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 ਯੂਆਰਐਲ਼ ਹੈਡਲਰ"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP ਯੂਆਰਐਲ਼ ਹੈਡਲਰ"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS ਯੂਆਰਐਲ਼ ਹੈਡਲਰ"
-
-#~ msgid "aim URL handler"
-#~ msgstr "aim ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-#~ msgid "info URL handler"
-#~ msgstr "info ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-# libgnomevfs/gnome-vfs-result.c:44
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-#~ msgid "man URL handler"
-#~ msgstr "man ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash ਯੂਆਰਐਲ਼ ਹੈਡਲਟ"
