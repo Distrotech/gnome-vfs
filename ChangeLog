@@ -1,3 +1,8 @@
+2000-07-12  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):
+	Fixed a bug that added an extra '/'.
+
 2000-07-12  Robin * Slomkowski <rslomkow@eazel.com>
 
 	* gnome-vfs.spec.in: changed *.so.* to *.so*

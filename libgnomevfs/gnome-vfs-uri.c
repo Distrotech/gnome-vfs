@@ -600,9 +600,6 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	}
 	
 	if (uri->text != NULL) {
-		if (uri->text[0] != '/') {
-			g_string_append_c (string, '/');
-		}
 		g_string_append (string, uri->text);
 	}
 
