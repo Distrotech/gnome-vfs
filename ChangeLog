@@ -1,5 +1,11 @@
 2002-07-17  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/vfolder-info.c (vfolder_info_locate): Wrap
+	load_folders in an inhibit_write, so the vfolder info file doesn't
+	get written out as we create new extended folders.
+
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Don't
 	free default itemdirs/mergedirs since they are now pulled from
 	GNOME2_PATH.

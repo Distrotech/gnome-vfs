@@ -1201,6 +1201,10 @@ vfolder_info_destroy (VFolderInfo *info)
 	g_free (info);
 }
 
+/* 
+ * Call to recursively list folder contents, causing them to allocate entries,
+ * so that we get OnlyUnallocated folder counts correctly.
+ */
 static void
 load_folders (Folder *folder)
 {
@@ -1239,6 +1243,7 @@ vfolder_info_locate (const gchar *scheme)
 		if (!vfolder_info_read_info (info, NULL, NULL)) {
 			D (g_print ("DESTROYING INFO FOR SCHEME: %s\n", 
 				    scheme));
+
 			vfolder_info_destroy (info);
 			info = NULL;
 		} else
@@ -1248,8 +1253,9 @@ vfolder_info_locate (const gchar *scheme)
 		
 		VFOLDER_INFO_READ_LOCK (info);
 
-		/* vfolder_info_dump_entries (info, 4); */
+		info->inhibit_write = TRUE;
 		load_folders (info->root);
+		info->inhibit_write = FALSE;
 
 		VFOLDER_INFO_READ_UNLOCK (info);
 	} else
