@@ -1157,10 +1157,10 @@ find_trash_directory (const char *full_name_near, dev_t near_device_id,
 			disk_top_directory = previous_search_directory;
 			break;
 		}
-		/* FIXME: This must result in a cancelled error, but
-		 * there's no way for the caller to know that. We
-		 * probably have to add a GnomeVFSResult to this
-		 * function.
+		/* FIXME bugzilla.eazel.com 2733: This must result in
+		 * a cancelled error, but there's no way for the
+		 * caller to know that. We probably have to add a
+		 * GnomeVFSResult to this function.  
 		 */
 		if (gnome_vfs_context_check_cancellation (context)) {
 			g_free (previous_search_directory);

@@ -1400,7 +1400,7 @@ execute_set_file_info (GnomeVFSJob *job)
 		(op->request.uri, &op->request.info, op->request.mask,
 		 job->current_op->context);
 
-	/* FIXME: potential leak if operation is cancelled before getting here. */
+	/* FIXME bugzilla.eazel.com 2746: potential leak if operation is cancelled before getting here. */
 	gnome_vfs_file_info_clear (&op->request.info);
 
 	/* Always get new file info, even if setter failed. Init here and clear
