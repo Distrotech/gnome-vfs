@@ -1,5 +1,9 @@
 2000-09-03  Maciej Stachowiak  <mjs@eazel.com>
 
+	* modules/ftp-method.c: Reformat to match gnome-vfs coding style.
+
+2000-09-03  Maciej Stachowiak  <mjs@eazel.com>
+
 	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_set_file_info):
 	* modules/file-method.c: (find_trash_directory):
 

@@ -1,3 +1,5 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: 8; c-basic-offset: 8 -*- */
+
 /* ftp-method.c - VFS modules for FTP
 
    Copyright (C) 2000 Ian McKellar
@@ -56,94 +58,102 @@
 
 /* macros for the checking of FTP response codes */
 
-#define IS_100(X) ((X)>=100 && (X)<200)
-#define IS_200(X) ((X)>=200 && (X)<300)
-#define IS_300(X) ((X)>=300 && (X)<400)
-#define IS_400(X) ((X)>=400 && (X)<500)
-#define IS_500(X) ((X)>=500 && (X)<600)
+#define IS_100(X) ((X) >= 100 && (X) < 200)
+#define IS_200(X) ((X) >= 200 && (X) < 300)
+#define IS_300(X) ((X) >= 300 && (X) < 400)
+#define IS_400(X) ((X) >= 400 && (X) < 500)
+#define IS_500(X) ((X) >= 500 && (X) < 600)
 
-static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 GnomeVFSContext *context);
-static gboolean       do_is_local       (GnomeVFSMethod *method,
-					 const GnomeVFSURI *uri);
-static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSContext *context);
-static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSContext *context);
-static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
-		                         GnomeVFSMethodHandle *method_handle,
-		                         GnomeVFSFileInfo *file_info,
-		                         GnomeVFSContext *context);
+static GnomeVFSResult do_open	         (GnomeVFSMethod                *method,
+					  GnomeVFSMethodHandle         **method_handle,
+					  GnomeVFSURI                   *uri,
+					  GnomeVFSOpenMode               mode,
+					  GnomeVFSContext               *context);
+static gboolean       do_is_local        (GnomeVFSMethod                *method,
+					  const GnomeVFSURI             *uri);
+static GnomeVFSResult do_open_directory  (GnomeVFSMethod                *method,
+					  GnomeVFSMethodHandle         **method_handle,
+					  GnomeVFSURI                   *uri,
+					  GnomeVFSFileInfoOptions        options,
+					  const GnomeVFSDirectoryFilter *filter,
+					  GnomeVFSContext               *context);
+static GnomeVFSResult do_close_directory (GnomeVFSMethod                *method,
+					  GnomeVFSMethodHandle          *method_handle,
+					  GnomeVFSContext               *context);
+static GnomeVFSResult do_read_directory  (GnomeVFSMethod                *method,
+		                          GnomeVFSMethodHandle          *method_handle,
+		                          GnomeVFSFileInfo              *file_info,
+		                          GnomeVFSContext               *context);
+
 	/* FIXME bugzilla.eazel.com 1137: implement filters */
 
-guint ftp_connection_uri_hash(gconstpointer c);
-gint ftp_connection_uri_equal(gconstpointer c, gconstpointer d);
-static GnomeVFSResult ftp_connection_aquire(GnomeVFSURI *uri, FtpConnection **connection);
-static void ftp_connection_release(FtpConnection *conn);
+guint                 ftp_connection_uri_hash  (gconstpointer c);
+gint                  ftp_connection_uri_equal (gconstpointer c, gconstpointer d);
+static GnomeVFSResult ftp_connection_aquire    (GnomeVFSURI *uri, FtpConnection **connection);
+static void           ftp_connection_release   (FtpConnection *conn);
 
 
-gchar *anon_user = "anonymous";
-gchar *anon_pass = "nobody@gnome.org";
-gint control_port = 21;
+static const char *anon_user = "anonymous";
+static const char *anon_pass = "nobody@gnome.org";
+static const int   control_port = 21;
 
 
 /* A GHashTable of GLists of FtpConnections */
 static GHashTable *spare_connections = NULL;
-G_LOCK_DEFINE_STATIC(spare_connections);
+G_LOCK_DEFINE_STATIC (spare_connections);
 
 #define ftp_debug(c,g) FTP_DEBUG((c),(g),__FILE__, __LINE__, __PRETTY_FUNCTION__)
 
-static void FTP_DEBUG(FtpConnection *conn, gchar *text, gchar *file, 
-		gint line, gchar *func) {
-	if(conn) {
-		g_print("%s:%d (%s) [ftp conn=%p]\n %s\n", file, line, 
-			func, conn, text);
+static void 
+FTP_DEBUG (FtpConnection *conn, 
+	   gchar *text, 
+	   gchar *file, 
+	   gint line, 
+	   gchar *func) 
+{
+	if (conn) {
+		g_print ("%s:%d (%s) [ftp conn=%p]\n %s\n", file, line, 
+			 func, conn, text);
 	} else {
-		g_print("%s:%d (%s) [ftp]\n %s\n", file, line, func, text);
+		g_print ("%s:%d (%s) [ftp]\n %s\n", file, line, func, text);
 	}
 
-	g_free(text);
+	g_free (text);
 }
 
-static GnomeVFSResult ftp_response_to_vfs_result(gint response) {
-	switch(response) {
-		case 421: 
-		case 426: 
-			return GNOME_VFS_ERROR_CANCELLED;
-		case 425:
-			return GNOME_VFS_ERROR_ACCESS_DENIED;
-		case 530:
-		case 331:
-		case 332:
-		case 532:
-			return GNOME_VFS_ERROR_LOGIN_FAILED;
-		case 450:
-		case 550:
-		case 451:
-		case 551:
-			return GNOME_VFS_ERROR_NOT_FOUND;
-		case 452:
-		case 552:
-			return GNOME_VFS_ERROR_NO_SPACE;
-		case 553:
-			return GNOME_VFS_ERROR_BAD_FILE;
+static GnomeVFSResult 
+ftp_response_to_vfs_result (gint response) 
+{
+	switch (response) {
+	case 421: 
+	case 426: 
+	  return GNOME_VFS_ERROR_CANCELLED;
+	case 425:
+	  return GNOME_VFS_ERROR_ACCESS_DENIED;
+	case 530:
+	case 331:
+	case 332:
+	case 532:
+	  return GNOME_VFS_ERROR_LOGIN_FAILED;
+	case 450:
+	case 550:
+	case 451:
+	case 551:
+	  return GNOME_VFS_ERROR_NOT_FOUND;
+	case 452:
+	case 552:
+	  return GNOME_VFS_ERROR_NO_SPACE;
+	case 553:
+	  return GNOME_VFS_ERROR_BAD_FILE;
 	}
 
 	/* is this the correct interpretation of this error? */
-	if(IS_100(response)) return GNOME_VFS_OK;
-	if(IS_200(response)) return GNOME_VFS_OK;
+	if (IS_100 (response)) return GNOME_VFS_OK;
+	if (IS_200 (response)) return GNOME_VFS_OK;
 	/* is this the correct interpretation of this error? */
-	if(IS_300(response)) return GNOME_VFS_OK;
-	if(IS_400(response)) return GNOME_VFS_ERROR_GENERIC;
-	if(IS_500(response)) return GNOME_VFS_ERROR_INTERNAL;
+	if (IS_300 (response)) return GNOME_VFS_OK;
+	if (IS_400 (response)) return GNOME_VFS_ERROR_GENERIC;
+	if (IS_500 (response)) return GNOME_VFS_ERROR_INTERNAL;
 
 	return GNOME_VFS_ERROR_GENERIC;
 
@@ -151,36 +161,36 @@ static GnomeVFSResult ftp_response_to_vfs_result(gint response) {
 
 static GnomeVFSResult read_response_line(FtpConnection *conn, gchar **line) {
 	GnomeVFSFileSize bytes = MAX_RESPONSE_SIZE, bytes_read;
-	gchar *ptr, *buf = g_malloc(MAX_RESPONSE_SIZE+1);
+	gchar *ptr, *buf = g_malloc (MAX_RESPONSE_SIZE+1);
 	gint line_length;
 	GnomeVFSResult result = GNOME_VFS_OK;
 
-	while(!strstr(conn->response_buffer->str, "\r\n")) {
+	while (!strstr (conn->response_buffer->str, "\r\n")) {
 		/* we don't have a full line. Lets read some... */
-		/*ftp_debug(conn,g_strdup_printf("response `%s' is incomplete", conn->response_buffer->str));*/
+		/*ftp_debug (conn,g_strdup_printf ("response `%s' is incomplete", conn->response_buffer->str));*/
 		bytes_read = 0;
-		result = gnome_vfs_iobuf_read(conn->iobuf, buf,
-				bytes, &bytes_read);
+		result = gnome_vfs_iobuf_read (conn->iobuf, buf,
+					       bytes, &bytes_read);
 		buf[bytes_read] = '\0';
-		/*ftp_debug(conn,g_strdup_printf("read `%s'", buf));*/
-		conn->response_buffer = g_string_append(conn->response_buffer,
-			 buf);
-		if(result != GNOME_VFS_OK) {
-			g_warning("Error `%s' during read\n", 
-				gnome_vfs_result_to_string(result));
-			g_free(buf);
+		/*ftp_debug (conn,g_strdup_printf ("read `%s'", buf));*/
+		conn->response_buffer = g_string_append (conn->response_buffer,
+							 buf);
+		if (result != GNOME_VFS_OK) {
+		        g_warning ("Error `%s' during read\n", 
+				   gnome_vfs_result_to_string(result));
+			g_free (buf);
 			return result;
 		}
 	}
 
-	g_free(buf);
+	g_free (buf);
 
-  ptr = strstr(conn->response_buffer->str, "\r\n");
-  line_length = ptr - conn->response_buffer->str;
+	ptr = strstr (conn->response_buffer->str, "\r\n");
+	line_length = ptr - conn->response_buffer->str;
 
-	*line = g_strndup(conn->response_buffer->str, line_length);
+	*line = g_strndup (conn->response_buffer->str, line_length);
 
-	g_string_erase(conn->response_buffer, 0 , line_length + 2);
+	g_string_erase (conn->response_buffer, 0 , line_length + 2);
 
 	return result;
 }
@@ -191,43 +201,44 @@ get_response (FtpConnection *conn)
 	/* all that should be pending is a response to the last command */
 	GnomeVFSResult result;
 
-	/*ftp_debug(conn,g_strdup_printf("get_response(%p)",  conn));*/
+	/*ftp_debug (conn,g_strdup_printf ("get_response(%p)",  conn));*/
 
-	while(TRUE) {
+	while (TRUE) {
 		gchar *line = NULL;
-		result = read_response_line(conn, &line);
+		result = read_response_line (conn, &line);
 
-		if(result != GNOME_VFS_OK) {
-			g_free(line);
-			g_warning("Error reading response line.");
+		if (result != GNOME_VFS_OK) {
+			g_free (line);
+			g_warning ("Error reading response line.");
 			return result;
 		}
 
 #ifdef FTP_RESPONSE_DEBUG
-		g_print("FTP: %s\n", line);
+		g_print ("FTP: %s\n", line);
 #endif
 
 		/* response needs to be at least: "### x"  - I think*/
-		if( isdigit((unsigned char)line[0]) &&
-		    isdigit((unsigned char)line[1]) &&
-		    isdigit((unsigned char)line[2]) &&
-		    isspace((unsigned char)line[3])) {
+		if (isdigit ((unsigned char) line[0]) &&
+		    isdigit ((unsigned char) line[1]) &&
+		    isdigit ((unsigned char) line[2]) &&
+		    isspace ((unsigned char) line[3])) {
 
-			conn->response_code = (line[0]-'0')*100 + (line[1]-'0')*10 + (line[2]-'0');
+			conn->response_code = (line[0] - '0') * 100 + (line[1] - '0') * 10 + (line[2] - '0');
 
-			if(conn->response_message) g_free(conn->response_message);
-			conn->response_message = g_strdup(line+4);
+			if (conn->response_message) g_free (conn->response_message);
+			conn->response_message = g_strdup (line+4);
 
-			ftp_debug(conn,g_strdup_printf("got response %d (%s)", conn->response_code, conn->response_message));
+			ftp_debug (conn,g_strdup_printf ("got response %d (%s)", 
+							 conn->response_code, conn->response_message));
 
-			g_free(line);
+			g_free (line);
 
-			return ftp_response_to_vfs_result(conn->response_code);
+			return ftp_response_to_vfs_result (conn->response_code);
 
 		}
 
 		/* hmm - not a valid line - lets ignore it :-) */
-		g_free(line);
+		g_free (line);
 
 	}
 
@@ -235,69 +246,81 @@ get_response (FtpConnection *conn)
 
 }
 
-static GnomeVFSResult do_control_write(FtpConnection *conn, gchar *command) {
-	gchar *actual_command = g_strdup_printf("%s\r\n", command);
-	GnomeVFSFileSize bytes = strlen(actual_command), bytes_written;
-	GnomeVFSResult result = gnome_vfs_iobuf_write(conn->iobuf,
-			actual_command, bytes, &bytes_written);
-	ftp_debug(conn,g_strdup_printf("sent \"%s\\r\\n\"", command));
-	gnome_vfs_iobuf_flush(conn->iobuf);
+static GnomeVFSResult do_control_write (FtpConnection *conn, 
+					gchar *command) 
+{
+        gchar *actual_command = g_strdup_printf ("%s\r\n", command);
+	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
+	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
+						       actual_command, bytes, &bytes_written);
+	ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
+	gnome_vfs_iobuf_flush (conn->iobuf);
 
 	if(result != GNOME_VFS_OK) {
-		g_free(actual_command);
+		g_free (actual_command);
 		return result;
 	}
 
 	if(bytes != bytes_written) {
-		g_free(actual_command);
+		g_free (actual_command);
 		return result;
 	}
 
-	g_free(actual_command);
+	g_free (actual_command);
 
 	return result;
 }
 
-static GnomeVFSResult do_basic_command(FtpConnection *conn, gchar *command) {
+static GnomeVFSResult 
+do_basic_command (FtpConnection *conn, 
+		  gchar *command) 
+{
 	GnomeVFSResult result = do_control_write(conn, command);
 
 	if(result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	return get_response(conn);
+	return get_response (conn);
 }
 
-static GnomeVFSResult do_path_command(FtpConnection *conn, gchar *command,
-		GnomeVFSURI *uri) {
+static GnomeVFSResult 
+do_path_command (FtpConnection *conn, 
+		 gchar *command,
+		 GnomeVFSURI *uri) {
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	gchar *actual_command = g_strdup_printf("%s %s", command,
-		gnome_vfs_uri_get_path(uri));
-	GnomeVFSResult result = do_basic_command(conn, actual_command);
-	g_free(actual_command);
+	gchar *actual_command = g_strdup_printf ("%s %s", command,
+						 gnome_vfs_uri_get_path (uri));
+	GnomeVFSResult result = do_basic_command (conn, actual_command);
+	g_free (actual_command);
 	return result;
 }
 
-static GnomeVFSResult do_path_command_completely(gchar *command,
-		GnomeVFSURI *uri) {
+static GnomeVFSResult 
+do_path_command_completely (gchar *command,
+			    GnomeVFSURI *uri) 
+{
 	FtpConnection *conn;
 	GnomeVFSResult result;
 
-	result = ftp_connection_aquire(uri, &conn);
-	if(result != GNOME_VFS_OK) {
+	result = ftp_connection_aquire (uri, &conn);
+	if (result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	result = do_path_command(conn, "DELE", uri);
-	ftp_connection_release(conn);
+	result = do_path_command (conn, "DELE", uri);
+	ftp_connection_release (conn);
 
 	return result;
 }
 
-static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
+static GnomeVFSResult
+do_transfer_command (FtpConnection *conn, 
+		     gchar *command) 
+{
 	char *host = NULL;
 	gint port;
 	GnomeVFSResult result;
@@ -305,177 +328,185 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 	/* FIXME bugzilla.eazel.com 1464: implement non-PASV mode */
 
 	/* send PASV */
-	do_basic_command(conn, "PASV");
+	do_basic_command (conn, "PASV");
 
 	/* parse response */
 	{
-		gint a1, a2, a3, a4, p1, p2;
-		gchar *ptr, *response = g_strdup(conn->response_message);
-		ptr = strchr(response, '(');
-		if(!ptr ||
-			(sscanf(ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, 
-				&a4, &p1, &p2) != 6)) {
-			g_free(response);
+	        gint a1, a2, a3, a4, p1, p2;
+		gchar *ptr, *response = g_strdup (conn->response_message);
+		ptr = strchr (response, '(');
+		if (!ptr ||
+		    (sscanf (ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, 
+			     &a4, &p1, &p2) != 6)) {
+			g_free (response);
 			return GNOME_VFS_ERROR_CORRUPTED_DATA;
 		}
 
-		host = g_strdup_printf("%d.%d.%d.%d", a1, a2, a3, a4);
+		host = g_strdup_printf ("%d.%d.%d.%d", a1, a2, a3, a4);
 		port = p1*256 + p2;
 
-		g_free(response);
+		g_free (response);
 
 	}
 
 	/* connect */
-	result = gnome_vfs_inet_connection_create(&conn->data_connection,
-		host, port,
-		NULL /* Where do I get a GnomeVFSCancellation? */);
+	result = gnome_vfs_inet_connection_create (&conn->data_connection,
+						   host, port,
+						   NULL /* Where do I get a GnomeVFSCancellation? */);
 
-	if(host) g_free(host);
-	
-	if(result != GNOME_VFS_OK) {
+	if (host != NULL) {
+	        g_free (host);
+	}
+	if (result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	conn->data_iobuf = gnome_vfs_inet_connection_get_iobuf(conn->data_connection);
+	conn->data_iobuf = gnome_vfs_inet_connection_get_iobuf (conn->data_connection);
 
-	if(conn->iobuf == NULL) {
-		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
+	if (conn->iobuf == NULL) {
+		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 
-	result = do_control_write(conn, command);
+	result = do_control_write (conn, command);
 
-	if(result != GNOME_VFS_OK) {
-		gnome_vfs_iobuf_destroy(conn->data_iobuf);
-		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_iobuf_destroy (conn->data_iobuf);
+		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return result;
 	}
 
-	result = get_response(conn);
+	result = get_response (conn);
 
-	if(result != GNOME_VFS_OK) {
-		gnome_vfs_iobuf_destroy(conn->data_iobuf);
-		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_iobuf_destroy (conn->data_iobuf);
+		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return result;
 	}
 
 	return result;
 }
 
-static GnomeVFSResult do_path_transfer_command(FtpConnection *conn, 
-		gchar *command, GnomeVFSURI *uri) {
+static GnomeVFSResult
+do_path_transfer_command (FtpConnection *conn, 
+			  gchar *command, 
+			  GnomeVFSURI *uri) 
+{
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	gchar *actual_command = g_strdup_printf("%s %s", command,
-		gnome_vfs_uri_get_path(uri));
-	GnomeVFSResult result = do_transfer_command(conn, actual_command);
-	g_free(actual_command);
+	gchar *actual_command = g_strdup_printf ("%s %s", command,
+		gnome_vfs_uri_get_path (uri));
+	GnomeVFSResult result = do_transfer_command (conn, actual_command);
+	g_free (actual_command);
 	return result;
 }
 
 
-static GnomeVFSResult end_transfer(FtpConnection *conn) {
+static GnomeVFSResult 
+end_transfer (FtpConnection *conn) 
+{
 	GnomeVFSResult result;
 
-	/*ftp_debug(conn, g_strdup("end_transfer()"));*/
+	/*ftp_debug (conn, g_strdup ("end_transfer()"));*/
 
-	if(conn->data_connection) {
-		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
+	if (conn->data_connection) {
+	        gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		conn->data_connection = NULL;
 	}
 
 	if(conn->data_iobuf) {
-		gnome_vfs_iobuf_destroy(conn->data_iobuf);
+		gnome_vfs_iobuf_destroy (conn->data_iobuf);
 		conn->data_iobuf = NULL;
 	}
 
-	result = get_response(conn);
+	result = get_response (conn);
 
 	return result;
 
 }
 
-static GnomeVFSResult ftp_connection_create(FtpConnection **connptr,
-		GnomeVFSURI *uri) {
-	FtpConnection *conn = g_new(FtpConnection, 1);
+static GnomeVFSResult 
+ftp_connection_create (FtpConnection **connptr,
+		       GnomeVFSURI *uri) 
+{
+	FtpConnection *conn = g_new (FtpConnection, 1);
 	GnomeVFSResult result;
 	gchar *tmpstring;
 	gint port = control_port;
 	const gchar *user = anon_user;
 	const gchar *pass = anon_pass;
 
-	conn->uri = gnome_vfs_uri_dup(uri);
+	conn->uri = gnome_vfs_uri_dup (uri);
 	conn->cwd = NULL;
 	conn->data_connection = NULL;
 	conn->data_iobuf = NULL;
-	conn->response_buffer = g_string_new("");
+	conn->response_buffer = g_string_new ("");
 	conn->response_message = NULL;
 	conn->response_code = -1;
 
-	if(gnome_vfs_uri_get_host_port(uri))
-		port = gnome_vfs_uri_get_host_port(uri);
+	if (gnome_vfs_uri_get_host_port (uri))
+		port = gnome_vfs_uri_get_host_port (uri);
 
-	if(gnome_vfs_uri_get_user_name(uri))
-		user = gnome_vfs_uri_get_user_name(uri);
+	if (gnome_vfs_uri_get_user_name (uri))
+		user = gnome_vfs_uri_get_user_name (uri);
 
-	if(gnome_vfs_uri_get_password(uri))
-		pass = gnome_vfs_uri_get_password(uri);
+	if (gnome_vfs_uri_get_password (uri))
+		pass = gnome_vfs_uri_get_password (uri);
 
-	result = gnome_vfs_inet_connection_create(&conn->inet_connection, 
-		gnome_vfs_uri_get_host_name(uri), port, 
-		NULL /* Where do I get a GnomeVFSCancellation? */);
-	if(result != GNOME_VFS_OK) {
-		g_warning("gnome_vfs_inet_connection_create(\"%s\", %d) = \"%s\"",
-			gnome_vfs_uri_get_host_name(uri),
-			gnome_vfs_uri_get_host_port(uri), 
-			gnome_vfs_result_to_string(result));
-		g_string_free(conn->response_buffer, TRUE);
-		g_free(conn);
+	result = gnome_vfs_inet_connection_create (&conn->inet_connection, 
+						   gnome_vfs_uri_get_host_name (uri), port, 
+						   NULL /* Where do I get a GnomeVFSCancellation? */);
+	if (result != GNOME_VFS_OK) {
+	        g_warning ("gnome_vfs_inet_connection_create (\"%s\", %d) = \"%s\"",
+			   gnome_vfs_uri_get_host_name (uri),
+			   gnome_vfs_uri_get_host_port (uri), 
+			   gnome_vfs_result_to_string (result));
+		g_string_free (conn->response_buffer, TRUE);
+		g_free (conn);
 		return result;
 	}
 
-	conn->iobuf = gnome_vfs_inet_connection_get_iobuf(conn->inet_connection);
+	conn->iobuf = gnome_vfs_inet_connection_get_iobuf (conn->inet_connection);
 
-	if(conn->iobuf == NULL) {
-		g_warning("gnome_vfs_inet_connection_get_iobuf() failed");
-		gnome_vfs_inet_connection_destroy(conn->inet_connection, NULL);
-		g_string_free(conn->response_buffer, TRUE);
-		g_free(conn);
+	if (conn->iobuf == NULL) {
+		g_warning ("gnome_vfs_inet_connection_get_iobuf () failed");
+		gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
+		g_string_free (conn->response_buffer, TRUE);
+		g_free (conn);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 
-	result = get_response(conn);
+	result = get_response (conn);
 
-	if(result != GNOME_VFS_OK) { 
-		g_warning("ftp server (%s:%d) said `%d %s'", 
-			gnome_vfs_uri_get_host_name(uri),
-			gnome_vfs_uri_get_host_port(uri), 
-			conn->response_code, conn->response_message);
-		g_string_free(conn->response_buffer, TRUE);
-		g_free(conn);
+	if (result != GNOME_VFS_OK) { 
+		g_warning ("ftp server (%s:%d) said `%d %s'", 
+			   gnome_vfs_uri_get_host_name (uri),
+			   gnome_vfs_uri_get_host_port (uri), 
+			   conn->response_code, conn->response_message);
+		g_string_free (conn->response_buffer, TRUE);
+		g_free (conn);
 		return result;
 	}
 
-	tmpstring = g_strdup_printf("USER %s", user);
-	result = do_basic_command(conn, tmpstring);
-	g_free(tmpstring);
+	tmpstring = g_strdup_printf ("USER %s", user);
+	result = do_basic_command (conn, tmpstring);
+	g_free (tmpstring);
 
-	if(IS_300(conn->response_code)) {
-		tmpstring = g_strdup_printf("PASS %s", pass);
-		result = do_basic_command(conn, tmpstring);
-		g_free(tmpstring);
+	if (IS_300 (conn->response_code)) {
+		tmpstring = g_strdup_printf ("PASS %s", pass);
+		result = do_basic_command (conn, tmpstring);
+		g_free (tmpstring);
 	}
 
-	if(result != GNOME_VFS_OK) {
+	if (result != GNOME_VFS_OK) {
 		/* login failed */
-		g_warning("FTP server said: \"%d %s\"\n", conn->response_code,
-				conn->response_message);
-		gnome_vfs_iobuf_destroy(conn->iobuf);
-		gnome_vfs_inet_connection_destroy(conn->inet_connection, NULL);
-		g_free(conn);
+		g_warning ("FTP server said: \"%d %s\"\n", conn->response_code,
+			   conn->response_message);
+		gnome_vfs_iobuf_destroy (conn->iobuf);
+		gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
+		g_free (conn);
 		return result;
 	}
 
@@ -483,106 +514,136 @@ static GnomeVFSResult ftp_connection_create(FtpConnection **connptr,
 
 	/* Image mode (binary to the uninitiated) */
 
-	do_basic_command(conn, "TYPE I");
+	do_basic_command (conn, "TYPE I");
 
 	*connptr = conn;
 
-	ftp_debug(conn, g_strdup("created"));
+	ftp_debug (conn, g_strdup ("created"));
 
 	return GNOME_VFS_OK;
 }
 
-static void ftp_connection_destroy(FtpConnection *conn) {
-	if(conn->inet_connection) 
-		gnome_vfs_inet_connection_destroy(conn->inet_connection, NULL);
-	if(conn->iobuf) gnome_vfs_iobuf_destroy(conn->iobuf);
-	gnome_vfs_uri_unref(conn->uri);
-	g_free(conn->cwd);
-	if(conn->response_buffer) g_string_free(conn->response_buffer, TRUE);
-	g_free(conn->response_message);
-	if(conn->data_connection) 
+static void
+ftp_connection_destroy (FtpConnection *conn) 
+{
+	if (conn->inet_connection) 
+	        gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
+
+	if (conn->iobuf) 
+	        gnome_vfs_iobuf_destroy (conn->iobuf);
+
+	gnome_vfs_uri_unref (conn->uri);
+	g_free (conn->cwd);
+
+	if (conn->response_buffer) 
+	        g_string_free(conn->response_buffer, TRUE);
+	g_free (conn->response_message);
+
+	if (conn->data_connection) 
 		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
-	if(conn->data_iobuf) gnome_vfs_iobuf_destroy(conn->data_iobuf);
-	g_free(conn->dirlist);
-	g_free(conn->dirlistptr);
-	g_free(conn);
+
+	if (conn->data_iobuf) 
+	        gnome_vfs_iobuf_destroy (conn->data_iobuf);
+
+	g_free (conn->dirlist);
+	g_free (conn->dirlistptr);
+	g_free (conn);
 }
 
 /* g_str_hash and g_str_equal seem to fail with null arguments */
 
-static gint my_str_hash(const gchar *c) {
-	if(c) return g_str_hash(c);
+static gint 
+my_str_hash (const gchar *c) 
+{
+	if (c) 
+	        return g_str_hash (c);
 	else return 0;
 }
 
-static gint my_str_equal(gconstpointer c, gconstpointer d) {
-	if( (c && !d) || (d &&!c)) return FALSE;
-	if(!c && !d) return TRUE;
-	return g_str_equal(c,d);
+static gint 
+my_str_equal (gconstpointer c, 
+	      gconstpointer d) 
+{
+	if ((c && !d) || (d &&!c)) 
+		return FALSE;
+	if (!c && !d) 
+		return TRUE;
+	return g_str_equal (c,d);
 }
 
 /* hash the bits of a GnomeVFSURI that distingush FTP connections */
-guint ftp_connection_uri_hash(gconstpointer c) {
-	GnomeVFSURI *uri = (GnomeVFSURI *)c;
+guint
+ftp_connection_uri_hash (gconstpointer c) 
+{
+	GnomeVFSURI *uri = (GnomeVFSURI *) c;
 
-	return my_str_hash(gnome_vfs_uri_get_host_name(uri)) + 
-		my_str_hash(gnome_vfs_uri_get_user_name(uri)) +
-		my_str_hash(gnome_vfs_uri_get_password(uri)) +
-		gnome_vfs_uri_get_host_port(uri);
+	return my_str_hash (gnome_vfs_uri_get_host_name (uri)) + 
+		my_str_hash (gnome_vfs_uri_get_user_name (uri)) +
+		my_str_hash (gnome_vfs_uri_get_password (uri)) +
+		gnome_vfs_uri_get_host_port (uri);
 }
 
 /* test the equality of the bits of a GnomeVFSURI that distingush FTP 
  * connections */
-gint ftp_connection_uri_equal(gconstpointer c, gconstpointer d) {
+gint 
+ftp_connection_uri_equal (gconstpointer c, 
+			  gconstpointer d) 
+{
 	GnomeVFSURI *uri1 = (GnomeVFSURI *)c;
-	GnomeVFSURI *uri2 = (GnomeVFSURI *)d;
+	GnomeVFSURI *uri2 = (GnomeVFSURI *) d;
 
-	return my_str_equal(gnome_vfs_uri_get_host_name(uri1),
-			gnome_vfs_uri_get_host_name(uri2)) &&
-		my_str_equal(gnome_vfs_uri_get_user_name(uri1),
-			gnome_vfs_uri_get_user_name(uri2)) &&
-		my_str_equal(gnome_vfs_uri_get_password(uri1),
-			gnome_vfs_uri_get_password(uri2)) &&
-		gnome_vfs_uri_get_host_port(uri1) == 
-			gnome_vfs_uri_get_host_port(uri2);
+	return my_str_equal (gnome_vfs_uri_get_host_name(uri1),
+			     gnome_vfs_uri_get_host_name (uri2)) &&
+		my_str_equal (gnome_vfs_uri_get_user_name (uri1),
+			      gnome_vfs_uri_get_user_name (uri2)) &&
+		my_str_equal (gnome_vfs_uri_get_password (uri1),
+			      gnome_vfs_uri_get_password (uri2)) &&
+		gnome_vfs_uri_get_host_port (uri1) == 
+		gnome_vfs_uri_get_host_port (uri2);
 }
 
-static GnomeVFSResult ftp_connection_aquire(GnomeVFSURI *uri, FtpConnection **connection) {
+static GnomeVFSResult 
+ftp_connection_aquire (GnomeVFSURI *uri, 
+		       FtpConnection **connection) 
+{
 	GList *possible_connections;
 	FtpConnection *conn = NULL;
 	GnomeVFSResult result = GNOME_VFS_OK;
 
-	G_LOCK(spare_connections);
+	G_LOCK (spare_connections);
 
-	if(spare_connections == NULL) {
-		spare_connections = g_hash_table_new(ftp_connection_uri_hash, 
-			ftp_connection_uri_equal);
+	if (spare_connections == NULL) {
+		spare_connections = g_hash_table_new (ftp_connection_uri_hash, 
+						      ftp_connection_uri_equal);
 	}
 
-	possible_connections = g_hash_table_lookup(spare_connections, uri);
+	possible_connections = g_hash_table_lookup (spare_connections, uri);
 
-	if(possible_connections) {
+	if (possible_connections) {
 		/* spare connection(s) found */
-		conn = (FtpConnection *)possible_connections->data;
-		ftp_debug(conn, strdup("found a connection"));
-		possible_connections = g_list_remove(possible_connections, conn);
-		if(!g_hash_table_lookup(spare_connections, uri)) {
+		conn = (FtpConnection *) possible_connections->data;
+		ftp_debug (conn, strdup ("found a connection"));
+		possible_connections = g_list_remove (possible_connections, conn);
+
+		if(!g_hash_table_lookup (spare_connections, uri)) {
 			/* uri will be used as a key in the hashtable */
-			uri = gnome_vfs_uri_dup(uri);
+			uri = gnome_vfs_uri_dup (uri);
 		}
-		g_hash_table_insert(spare_connections, uri, possible_connections);
+
+		g_hash_table_insert (spare_connections, uri, possible_connections);
+
 		/* make sure connection hasn't timed out */
 		result = do_basic_command(conn, "PWD");
-		if(result != GNOME_VFS_OK) {
-			ftp_connection_destroy(conn);
-			result = ftp_connection_create(&conn, uri);
+		if (result != GNOME_VFS_OK) {
+			ftp_connection_destroy (conn);
+			result = ftp_connection_create (&conn, uri);
 		}
 
 	} else {
-		result = ftp_connection_create(&conn, uri);
+		result = ftp_connection_create (&conn, uri);
 	}
 
-	G_UNLOCK(spare_connections);
+	G_UNLOCK (spare_connections);
 
 	*connection = conn;
 
@@ -590,112 +651,128 @@ static GnomeVFSResult ftp_connection_aquire(GnomeVFSURI *uri, FtpConnection **co
 }
 
 
-static void ftp_connection_release(FtpConnection *conn) {
+static void 
+ftp_connection_release (FtpConnection *conn) 
+{
 	GList *possible_connections;
 	GnomeVFSURI *uri;
 
-	g_return_if_fail(conn);
+	g_return_if_fail (conn);
 
-	G_LOCK(spare_connections);
-	if(spare_connections == NULL) 
+	G_LOCK (spare_connections);
+	if (spare_connections == NULL) 
 		spare_connections = 
-			g_hash_table_new(ftp_connection_uri_hash, 
-				ftp_connection_uri_equal);
+			g_hash_table_new (ftp_connection_uri_hash, 
+					  ftp_connection_uri_equal);
 
-	possible_connections = g_hash_table_lookup(spare_connections, 
-		conn->uri);
-	ftp_debug(conn, g_strdup_printf("releasing [len = %d]", 
-		g_list_length(possible_connections)));
-	possible_connections = g_list_append(possible_connections, conn);
+	possible_connections = g_hash_table_lookup (spare_connections, 
+						    conn->uri);
+	ftp_debug (conn, g_strdup_printf ("releasing [len = %d]", 
+					 g_list_length (possible_connections)));
+	possible_connections = g_list_append (possible_connections, conn);
 
-	if(g_hash_table_lookup(spare_connections, conn->uri)) {
+	if (g_hash_table_lookup (spare_connections, conn->uri)) {
 		uri = conn->uri; /* no need to duplicate uri */
 	} else {
 		/* uri will be used as key */
-		uri = gnome_vfs_uri_dup(conn->uri); 
+		uri = gnome_vfs_uri_dup (conn->uri); 
 	}
-	g_hash_table_insert(spare_connections, uri, possible_connections);
+	g_hash_table_insert (spare_connections, uri, possible_connections);
 
 	G_UNLOCK(spare_connections);
 }
 
 gboolean 
-do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
+do_is_local (GnomeVFSMethod *method, 
+	     const GnomeVFSURI *uri)
 {
 	return FALSE;
 }
 
 
-static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 GnomeVFSContext *context) {
-
+static GnomeVFSResult 
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
+	 GnomeVFSURI *uri,
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSContext *context) 
+{
 	GnomeVFSResult result;
 	FtpConnection *conn;
 
-	result = ftp_connection_aquire(uri, &conn);
-	if(result != GNOME_VFS_OK) return result;
+	result = ftp_connection_aquire (uri, &conn);
+	if (result != GNOME_VFS_OK) 
+		return result;
 
-	if(mode == GNOME_VFS_OPEN_READ) {
+	if (mode == GNOME_VFS_OPEN_READ) {
 		conn->operation = FTP_READ;
-		result = do_path_transfer_command(conn, "RETR", uri);
-	} else if(mode == GNOME_VFS_OPEN_WRITE) {
+		result = do_path_transfer_command (conn, "RETR", uri);
+	} else if (mode == GNOME_VFS_OPEN_WRITE) {
 		conn->operation = FTP_WRITE;
-		result = do_path_transfer_command(conn, "STOR", uri);
+		result = do_path_transfer_command (conn, "STOR", uri);
 	} else {
-		g_warning("Unsupported open mode %d\n", mode);
-		ftp_connection_release(conn);
+		g_warning ("Unsupported open mode %d\n", mode);
+		ftp_connection_release (conn);
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
-	if(result == GNOME_VFS_OK) {
-		*method_handle = (GnomeVFSMethodHandle *)conn;
+	if (result == GNOME_VFS_OK) {
+		*method_handle = (GnomeVFSMethodHandle *) conn;
 	} else {
 		*method_handle = NULL;
-		ftp_connection_release(conn);
+		ftp_connection_release (conn);
 	}
 	return result;
 }
 
-static GnomeVFSResult do_close	  (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSContext *context) {
-	FtpConnection *conn = (FtpConnection *)method_handle;
+static GnomeVFSResult 
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSContext *context) 
+{
+	FtpConnection *conn = (FtpConnection *) method_handle;
 
-	GnomeVFSResult result = end_transfer(conn);
+	GnomeVFSResult result = end_transfer (conn);
 
-	ftp_connection_release(conn);
+	ftp_connection_release (conn);
 
 	return result;
 }
 
-static GnomeVFSResult do_read (GnomeVFSMethod *method, 
-		GnomeVFSMethodHandle *method_handle, gpointer buffer,
-		GnomeVFSFileSize num_bytes, GnomeVFSFileSize *bytes_read, 
-		GnomeVFSContext *context) {
-	FtpConnection *conn = (FtpConnection *)method_handle;
+static GnomeVFSResult 
+do_read (GnomeVFSMethod *method, 
+	 GnomeVFSMethodHandle *method_handle, 
+	 gpointer buffer,
+	 GnomeVFSFileSize num_bytes, 
+	 GnomeVFSFileSize *bytes_read, 
+	 GnomeVFSContext *context) 
+{
+	FtpConnection *conn = (FtpConnection * )method_handle;
 	/*
-	if(conn->operation != FTP_READ) {
-		g_print("attempted to read when conn->operation = %d\n", conn->operation);
+	if (conn->operation != FTP_READ) {
+		g_print ("attempted to read when conn->operation = %d\n", conn->operation);
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	}*/
-	//g_print("do_read(%p)\n", method_handle);
+	//g_print ("do_read (%p)\n", method_handle);
 
-	return gnome_vfs_iobuf_read(conn->data_iobuf, buffer, num_bytes, bytes_read);
+	return gnome_vfs_iobuf_read (conn->data_iobuf, buffer, num_bytes, bytes_read);
 }
 
-static GnomeVFSResult do_write (GnomeVFSMethod *method, 
-		GnomeVFSMethodHandle *method_handle, gconstpointer buffer, 
-		GnomeVFSFileSize num_bytes, GnomeVFSFileSize *bytes_written,
-		GnomeVFSContext *context) {
-	FtpConnection *conn = (FtpConnection *)method_handle;
-	//g_print("do_write()\n");
+static GnomeVFSResult 
+do_write (GnomeVFSMethod *method, 
+	  GnomeVFSMethodHandle *method_handle, 
+	  gconstpointer buffer, 
+	  GnomeVFSFileSize num_bytes, 
+	  GnomeVFSFileSize *bytes_written,
+	  GnomeVFSContext *context) 
+{
+	FtpConnection *conn = (FtpConnection *) method_handle;
+	//g_print ("do_write ()\n");
 
-	if(conn->operation != FTP_WRITE) return GNOME_VFS_ERROR_NOT_PERMITTED;
+	if (conn->operation != FTP_WRITE) 
+		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	
-	return gnome_vfs_iobuf_write(conn->data_iobuf, buffer, num_bytes, 
-		bytes_written);
+	return gnome_vfs_iobuf_write (conn->data_iobuf, buffer, num_bytes, 
+				      bytes_written);
 }
 
 
@@ -705,23 +782,23 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
 	gchar *filename = NULL, *linkname = NULL;
 	const char *mime_type;
 
-	// g_print(ls);
+	// g_print (ls);
 
-	gnome_vfs_parse_ls_lga(ls, &s, &filename, &linkname);
+	gnome_vfs_parse_ls_lga (ls, &s, &filename, &linkname);
 
-	if(filename) {
+	if (filename) {
 
-		gnome_vfs_stat_to_file_info(file_info, &s);
+		gnome_vfs_stat_to_file_info (file_info, &s);
 
 		/* we don't know the io_block size */
 		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
 		file_info->io_block_size = 0;
 
-		file_info->name = g_strdup(g_basename(filename));
+		file_info->name = g_strdup (g_basename(filename));
 
 		if(*(file_info->name) == '\0') {
-			g_free(file_info->name);
-			file_info->name = g_strdup("/");
+			g_free (file_info->name);
+			file_info->name = g_strdup ("/");
 		}
 
 		if(linkname) {
@@ -731,16 +808,16 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, NULL);
-			/*ftp_debug(conn, g_strdup_printf("mimetype = %s", mime_type));*/
+			/*ftp_debug (conn, g_strdup_printf ("mimetype = %s", mime_type));*/
 		} else {
-			mime_type = gnome_vfs_mime_type_from_mode(s.st_mode);
+			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
 		}
 		file_info->mime_type = g_strdup (mime_type);
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
-		/*ftp_debug(conn, g_strdup_printf("info got name `%s'", file_info->name));*/
+		/*ftp_debug (conn, g_strdup_printf ("info got name `%s'", file_info->name));*/
 
-		g_free(filename);
+		g_free (filename);
 
 		return TRUE;
 	} else {
@@ -750,11 +827,12 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
 
 
 #if 0
-static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 GnomeVFSContext *context) 
+static GnomeVFSResult
+internal_get_file_info (GnomeVFSMethod *method,
+			GnomeVFSURI *uri,
+			GnomeVFSFileInfo *file_info,
+			GnomeVFSFileInfoOptions options,
+			GnomeVFSContext *context) 
 {
 	FtpConnection *conn;
 	/* FIXME bugzilla.eazel.com 1463 */
@@ -763,31 +841,31 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	gchar buffer[num_bytes+1];
 
 	result = ftp_connection_aquire(uri, &conn);
-	if(result != GNOME_VFS_OK) {
+	if (result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	//g_print("do_get_file_info()\n");
+	//g_print ("do_get_file_info()\n");
 
-	do_path_transfer_command(conn, "LIST -ld", uri);
+	do_path_transfer_command (conn, "LIST -ld", uri);
 
-	result = gnome_vfs_iobuf_read(conn->data_iobuf, buffer, 
-		num_bytes, &bytes_read);
+	result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
+				       num_bytes, &bytes_read);
 
-	if(result != GNOME_VFS_OK) {
-		/*ftp_debug(conn, g_strdup("gnome_vfs_iobuf_read failed"));*/
-		ftp_connection_release(conn);
+	if (result != GNOME_VFS_OK) {
+		/*ftp_debug (conn, g_strdup ("gnome_vfs_iobuf_read failed"));*/
+		ftp_connection_release (conn);
 		return result;
 	}
 
-	result = end_transfer(conn);
+	result = end_transfer (conn);
 
 	/* FIXME check return? */
 
-	ftp_connection_release(conn);
+	ftp_connection_release (conn);
 
-	if(result != GNOME_VFS_OK) {
-		/*ftp_debug(conn,g_strdup("LIST for get_file_info failed."));*/
+	if (result != GNOME_VFS_OK) {
+		/*ftp_debug (conn,g_strdup ("LIST for get_file_info failed."));*/
 		return result;
 	}
 
@@ -796,7 +874,7 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 		buffer[bytes_read] = '\0';
 		file_info->valid_fields = 0; /* make sure valid_fields is 0 */
 
-		if (ls_to_file_info(buffer, file_info)) {
+		if (ls_to_file_info (buffer, file_info)) {
 			return GNOME_VFS_OK;
 		}
 
@@ -807,12 +885,14 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 }
 #endif
 
-static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 GnomeVFSContext *context) {
-	GnomeVFSURI *parent = gnome_vfs_uri_get_parent(uri);
+static GnomeVFSResult
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
+		  GnomeVFSFileInfo *file_info,
+		  GnomeVFSFileInfoOptions options,
+		  GnomeVFSContext *context) 
+{
+	GnomeVFSURI *parent = gnome_vfs_uri_get_parent (uri);
 	GnomeVFSResult result;
 
 	if (parent == NULL) {
@@ -820,47 +900,47 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 		/* this is a request for info about the root directory */
 
 		/* is the host there? */
-		result = ftp_connection_aquire(uri, &conn);
+		result = ftp_connection_aquire (uri, &conn);
 		
-		if(result != GNOME_VFS_OK) {
+		if (result != GNOME_VFS_OK) {
 			/* doesn't look like it */
 			return result;
 		}
 
-		ftp_connection_release(conn);
+		ftp_connection_release (conn);
 
-		file_info->name = g_strdup("/");
+		file_info->name = g_strdup ("/");
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		file_info->mime_type = g_strdup("x-directory/normal");
-		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE|
+		file_info->mime_type = g_strdup ("x-directory/normal");
+		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE |
 			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		return GNOME_VFS_OK;
 	} else {
 		GnomeVFSMethodHandle *method_handle;
 		gchar *name;
 
-		result = do_open_directory(method, &method_handle, parent,
-				options, NULL, context);
+		result = do_open_directory (method, &method_handle, parent,
+					    options, NULL, context);
 
-		gnome_vfs_uri_unref(parent);
+		gnome_vfs_uri_unref (parent);
 
 		if (result != GNOME_VFS_OK) {
 			return result;
 		}
 
-	       	name = gnome_vfs_uri_extract_short_name(uri);
+	       	name = gnome_vfs_uri_extract_short_name (uri);
 
 		while (result == GNOME_VFS_OK) {
-			result = do_read_directory(method, method_handle, 
-					file_info, context);
+			result = do_read_directory (method, method_handle, 
+						    file_info, context);
 			if (result == GNOME_VFS_OK) {
-				if (file_info->name && !strcmp(file_info->name,
-						       	name)) {
-					g_free(name);
+				if (file_info->name && !strcmp (file_info->name,
+								name)) {
+					g_free (name);
 					return GNOME_VFS_OK;
 				}
 
-				gnome_vfs_file_info_clear(file_info);
+				gnome_vfs_file_info_clear (file_info);
 			}
 
 
@@ -884,62 +964,64 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;
 	gchar buffer[num_bytes+1];
-	GString *dirlist = g_string_new("");
+	GString *dirlist = g_string_new ("");
 
-	result = ftp_connection_aquire(uri, &conn);
-	if(result != GNOME_VFS_OK) {
-		g_string_free(dirlist, TRUE);
+	result = ftp_connection_aquire (uri, &conn);
+	if (result != GNOME_VFS_OK) {
+		g_string_free (dirlist, TRUE);
 		return result;
 	}
 
-	//g_print("do_open_directory()\n");
+	//g_print ("do_open_directory ()\n");
 
-	result = do_path_transfer_command(conn, "LIST", uri);
+	result = do_path_transfer_command (conn, "LIST", uri);
 
-	if(result != GNOME_VFS_OK) {
-		g_warning("opendir failed because \"%s\"", 
-				gnome_vfs_result_to_string(result));
-		ftp_connection_release(conn);
-		g_string_free(dirlist, TRUE);
+	if (result != GNOME_VFS_OK) {
+		g_warning ("opendir failed because \"%s\"", 
+			   gnome_vfs_result_to_string (result));
+		ftp_connection_release (conn);
+		g_string_free (dirlist, TRUE);
 		return result;
 	}
 
-	while(result == GNOME_VFS_OK) {
-		result = gnome_vfs_iobuf_read(conn->data_iobuf, buffer, 
-			num_bytes, &bytes_read);
-		if(result == GNOME_VFS_OK && bytes_read>0) {
+	while (result == GNOME_VFS_OK) {
+		result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
+					       num_bytes, &bytes_read);
+		if (result == GNOME_VFS_OK && bytes_read > 0) {
 			buffer[bytes_read] = '\0';
-			dirlist = g_string_append(dirlist, buffer);
+			dirlist = g_string_append (dirlist, buffer);
 		} else {
 			break;
 		}
 	} 
 
-	result = end_transfer(conn);
+	result = end_transfer (conn);
 
-	if(result != GNOME_VFS_OK) g_warning("end_transfer(conn) failed!!!!");
+	if(result != GNOME_VFS_OK) g_warning ("end_transfer (conn) failed!!!!");
 
-	conn->dirlist = g_strdup(dirlist->str);
+	conn->dirlist = g_strdup (dirlist->str);
 	conn->dirlistptr = conn->dirlist;
 
-	g_string_free(dirlist,TRUE);
+	g_string_free (dirlist,TRUE);
 
-	*method_handle = (GnomeVFSMethodHandle *)conn;
+	*method_handle = (GnomeVFSMethodHandle *) conn;
 
 	return result;
 }
 
-static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSContext *context) {
-	FtpConnection *conn = (FtpConnection *)method_handle;
+static GnomeVFSResult
+do_close_directory (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSContext *context) 
+{
+	FtpConnection *conn = (FtpConnection *) method_handle;
 
-	//g_print("do_close_directory()\n");
+	//g_print ("do_close_directory ()\n");
 
-	g_free(conn->dirlist);
+	g_free (conn->dirlist);
 	conn->dirlist = NULL;
 	conn->dirlistptr = NULL;
-	ftp_connection_release(conn);
+	ftp_connection_release (conn);
 
 	return GNOME_VFS_OK;
 }
@@ -950,24 +1032,24 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
-	FtpConnection *conn = (FtpConnection *)method_handle;
+	FtpConnection *conn = (FtpConnection *) method_handle;
 
-	if(!conn->dirlistptr || *(conn->dirlistptr) == '\0')
+	if (!conn->dirlistptr || *(conn->dirlistptr) == '\0')
 		return GNOME_VFS_ERROR_EOF;
 
-	while(TRUE) {
-		gboolean success = ls_to_file_info(conn->dirlistptr, file_info);
+	while (TRUE) {
+		gboolean success = ls_to_file_info (conn->dirlistptr, file_info);
 
 		/* go till we find \r\n */
-		while(conn->dirlistptr &&
-				*conn->dirlistptr && 
-				*conn->dirlistptr != '\r' && 
-				*conn->dirlistptr != '\n') {
+		while (conn->dirlistptr &&
+		       *conn->dirlistptr && 
+		       *conn->dirlistptr != '\r' && 
+		       *conn->dirlistptr != '\n') {
 			conn->dirlistptr++;
 		}
 		/* go past \r\n */
-		while(conn->dirlistptr && *conn->dirlistptr &&
-		      isspace((unsigned char)(*conn->dirlistptr))) {
+		while (conn->dirlistptr && *conn->dirlistptr &&
+		       isspace ((unsigned char) (*conn->dirlistptr))) {
 			conn->dirlistptr++;
 		}
 
@@ -984,7 +1066,7 @@ do_check_same_fs (GnomeVFSMethod *method,
       gboolean *same_fs_return,
       GnomeVFSContext *context)
 {
-	*same_fs_return = ftp_connection_uri_equal(a,b);
+	*same_fs_return = ftp_connection_uri_equal (a,b);
 	return GNOME_VFS_OK;
 }
 
@@ -996,7 +1078,7 @@ do_make_directory (GnomeVFSMethod *method,
 {
 	/* FIXME bugzilla.eazel.com 1136: We ignore the perm parameter here. */
 
-	return do_path_command_completely("MKD", uri);
+	return do_path_command_completely ("MKD", uri);
 }
 
 
@@ -1005,7 +1087,7 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	return do_path_command_completely("RMD", uri);
+	return do_path_command_completely ("RMD", uri);
 }
 
 
@@ -1016,21 +1098,21 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	if(ftp_connection_uri_equal(old_uri, new_uri)) {
+	if (ftp_connection_uri_equal (old_uri, new_uri)) {
 		FtpConnection *conn;
 		GnomeVFSResult result;
 
-		result = ftp_connection_aquire(old_uri, &conn);
-		if(result != GNOME_VFS_OK) {
+		result = ftp_connection_aquire (old_uri, &conn);
+		if (result != GNOME_VFS_OK) {
 			return result;
 		}
-		result = do_path_command(conn, "RNFR", old_uri);
+		result = do_path_command (conn, "RNFR", old_uri);
 		
-		if(result == GNOME_VFS_OK) {
-			result = do_path_command(conn, "RNTO", new_uri);
+		if (result == GNOME_VFS_OK) {
+			result = do_path_command (conn, "RNTO", new_uri);
 		}
 
-		ftp_connection_release(conn);
+		ftp_connection_release (conn);
 
 		return result;
 	} else {
@@ -1043,7 +1125,7 @@ do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
-	return do_path_command_completely("DELE", uri);
+	return do_path_command_completely ("DELE", uri);
 }
 
 static GnomeVFSMethod method = {
@@ -1073,7 +1155,8 @@ static GnomeVFSMethod method = {
 };
 
 GnomeVFSMethod *
-vfs_module_init (const char *method_name, const char *args)
+vfs_module_init (const char *method_name, 
+		 const char *args)
 {
 	return &method;
 }
