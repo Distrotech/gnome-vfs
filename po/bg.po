@@ -3,13 +3,13 @@
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
 # Alexander Shopov <al_shopov@yahoo.com>, 2003.
 # Updated by Peter "Peshka" Slavov <pslavov@i-space.org>, 2004
-#
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs + gnome-vfs-extras\n"
+"Project-Id-Version: 2.6.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-25 13:49+0200\n"
-"PO-Revision-Date: 2004-05-25 21:18+0300\n"
+"POT-Creation-Date: 2004-06-02 02:48+0200\n"
+"PO-Revision-Date: 2004-06-02 12:40+0300\n"
 "Last-Translator: Updated by Peter \"Peshka\" Slavov <pslavov@i-space.org>>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "Bonobo не може да бъде инициализиран"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Не може да бъде инициализиран gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -46,7 +46,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d има непознати опции %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -435,7 +435,7 @@ msgstr "Не мога да открия основния браузър"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "Няма асоциирано действие по подразбиране"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
@@ -445,7 +445,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Грешка при подаването на командния ред"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -525,36 +525,41 @@ msgstr "Мрежови сървър"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Дисковото устройство не може да бъде монтирано. Вероятно няма дискета в устройството."
+"Дисковото устройство не може да бъде монтирано. Вероятно няма дискета в "
+"устройството."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Не можеше да бъде монтирано устройството. Вероятно няма източник в него."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Не може да бъде монтирано флопито. Вероятно е във формат, който не "
+"може да бъде монтиран."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Не може да се монтира избраното устройство. Вероятно е във формат, който "
+"не може да бъде монтиран."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Не може да бъде монтирано избраното флопи устройство."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Не може да бъде монтирано избраното устройство."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Не може де бъде демонтирано избраното устройство."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
@@ -563,11 +568,11 @@ msgstr "Неуспех при стартирането на командата"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Не може да бъде изкаран източника на медията"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Не може да бъде демонтиран свързания сървър"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -675,7 +680,7 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Стандартна конзолна програма"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
@@ -688,12 +693,16 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Програмата, която да се използва за преглед на файлове, които изискват "
+"даден компонент за прегледа им. Параметърът %s ще бъде заменен пътя до "
+"файла, параметъра %c ще бъде заменен за IID на компонента."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Стандартната конзолна програма да се използва за програми, които изискват конзола."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -749,7 +758,7 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Пуска програма в терминала"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
@@ -797,7 +806,7 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "Включено, ако програмата, която ще обработва това URL трябва да бъде пусната в конзола."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -825,39 +834,39 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Идентифицира се пред прокси сървъра"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "URL за автоматични настройки на прокси"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Включва прокси за HTTP в интернет"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP прокси хост"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP прокси порт"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP прокси хост"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP прокси парола"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP прокси порт"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP прокси потребител"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -872,49 +881,51 @@ msgstr "Не-прокси хостове"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Парола, която да се подава като идентификация на HTTP проксито."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Режим на конфигурация на прокси"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS·прокси·хост"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS прокси порт"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "HTTPS прокси хост"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "HTTPS прокси порт"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Изберете режим на настройка на прокси. Поддържани стойности са \"няма\", \"ръчен\", "
+"\"автоматичен\""
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Името на прокси сървъра за FTP връзки"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Името·на·прокси·сървъра·за·HTTP·връзки"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Името·на·прокси·сървъра·за·HTTPS·връзки"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Името·на·прокси·сървъра·за·SOCKS·връзки"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
@@ -947,10 +958,13 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Този ключ съдържа списък с хостове, които за свързани директно, вместо "
+"през прокси (ако е активно). Стойностите могат да са хостове, домейни(*.foo.com), "
+"IP адреси на хостове(и IPv4, и IPv6) и мрежови адреси с мрежова маска (192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL, което дава стойности за прокси настройки."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -966,7 +980,7 @@ msgstr "SMB работна група"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Уиндоуската работна група, от която е част потребителя"
 
 #~ msgid "Internal"
 #~ msgstr "Вътрешен"
