@@ -123,7 +123,8 @@ typedef enum {
 	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD = 1<<1,
 	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME = 1<<2,
 	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN = 1<<3,
-	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED = 1<<4
+	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED = 1<<4,
+	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_ANON_SUPPORTED = 1<<5
 } GnomeVFSModuleCallbackFullAuthenticationFlags;
 
 typedef struct {
@@ -146,6 +147,10 @@ typedef struct {
 	void *reserved2;
 } GnomeVFSModuleCallbackFullAuthenticationIn;
 
+typedef enum {
+	GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_OUT_ANON_SELECTED = 1<<0
+} GnomeVFSModuleCallbackFullAuthenticationOutFlags;
+
 typedef struct {
 	gboolean abort_auth;    /* set to TRUE if the user cancelled */
 	char *username;		/* will be freed by g_free */
@@ -154,9 +159,10 @@ typedef struct {
 
 	gboolean save_password;
 	char *keyring;
+
+	gsize out_flags; /* really a GnomeVFSModuleCallbackFullAuthenticationOutFlags*/
 	
 	/* Reserved "padding" to avoid future breaks in ABI compatibility */
-	void *reserved1;
 	void *reserved2;
 } GnomeVFSModuleCallbackFullAuthenticationOut;
 

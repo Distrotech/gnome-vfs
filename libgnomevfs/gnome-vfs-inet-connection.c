@@ -38,6 +38,7 @@
 #include <sys/select.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 /* AIX #defines h_errno */
 #ifndef h_errno
@@ -45,6 +46,7 @@ extern int h_errno;
 #endif
 
 struct GnomeVFSInetConnection {
+	int family;
 #ifdef ENABLE_IPV6
 	struct sockaddr_in6 addr6;
 #endif
@@ -144,11 +146,13 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 
 		new = g_new (GnomeVFSInetConnection, 1);
 
-		if (res->ai_family == AF_INET) { 
+		if (res->ai_family == AF_INET) {
+			new->family = AF_INET;
 			memcpy (&new->addr, res->ai_addr, res->ai_addrlen);
 		}
 
 		if (res->ai_family == AF_INET6) {
+			new->family = AF_INET6;
 			memcpy (&new->addr6, res->ai_addr, res->ai_addrlen);
 		}
 
@@ -182,6 +186,7 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 		}
 
 		new = g_new (GnomeVFSInetConnection, 1);
+		new->family = AF_INET;
 		memcpy (&new->addr, &addr, sizeof (addr));
 		new->socklen = sizeof(addr);
 		new->sock = sock;
@@ -239,6 +244,46 @@ gnome_vfs_inet_connection_get_fd (GnomeVFSInetConnection *connection)
 	g_return_val_if_fail (connection != NULL, -1);
 	return connection->sock;
 }
+
+/**
+ * gnome_vfs_inet_connection_get_ip:
+ * @connection: connection to get the ip from
+ *
+ * Retrieve the ip address of the other side of a connected @connection.
+ *
+ * Return value: string version of the ip
+ *
+ * Since: 2.8
+ **/
+char *
+gnome_vfs_inet_connection_get_ip (GnomeVFSInetConnection *connection)
+{
+	const char *res;
+#ifdef ENABLE_IPV6
+	char ip[INET6_ADDRSTRLEN];
+#else
+	char ip[INET_ADDRSTRLEN];
+#endif
+
+	res = NULL;
+#ifdef ENABLE_IPV6
+	if (connection->family == AF_INET6) {
+		res = inet_ntop (AF_INET6, &connection->addr6.sin6_addr,
+				 ip, sizeof(ip));
+	}
+#endif
+	if (connection->family == AF_INET) {
+		res = inet_ntop (AF_INET, &connection->addr.sin_addr,
+				 ip, sizeof(ip));
+	}
+	
+
+	if (res != NULL) {
+		return g_strdup (ip);
+	}
+	return NULL;
+}
+
 
 /* SocketImpl for InetConnections */
 

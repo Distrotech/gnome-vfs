@@ -1,3 +1,20 @@
+2004-06-24  Alexander Larsson  <alexl@redhat.com>
+
+	Partially based on a patch from laszlo.kovacs@sun.com
+
+	* libgnomevfs/gnome-vfs-inet-connection.[ch]:
+	Add gnome_vfs_inet_connection_get_ip
+	
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	Add flags to ask for anon login.
+	
+	* modules/ftp-method.c:
+	Major rewrite, with caching, authentiation, keyring support and
+	generally working a lot better.
+
+	* modules/network-method.c: (do_monitor_add), (do_monitor_cancel):
+	Fix some typos.
+
 2004-06-23  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-cdrom.c: (_gnome_vfs_get_cdrom_type):

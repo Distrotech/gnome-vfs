@@ -1120,7 +1120,7 @@ do_monitor_add (GnomeVFSMethod *method,
 		GnomeVFSURI *uri,
 		GnomeVFSMonitorType monitor_type)
 {
-	if (GNOME_VFS_MONITOR_DIRECTORY &&
+	if (monitor_type == GNOME_VFS_MONITOR_DIRECTORY &&
 	    (strcmp (uri->text, "") == 0 ||
 	     strcmp (uri->text, "/") == 0)) {
 		NetworkMonitor *monitor;
@@ -1155,7 +1155,7 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	G_UNLOCK (network);
 	g_free (monitor);
 	
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	return GNOME_VFS_OK;
 }
 
 

@@ -56,6 +56,8 @@ GnomeVFSSocketBuffer *gnome_vfs_inet_connection_to_socket_buffer
 
 int gnome_vfs_inet_connection_get_fd    (GnomeVFSInetConnection *connection);
 
+char *gnome_vfs_inet_connection_get_ip (GnomeVFSInetConnection *connection);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_INET_CONNECTION_H */
