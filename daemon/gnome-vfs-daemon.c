@@ -29,6 +29,7 @@
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-volume-monitor.h"
 #include "gnome-vfs-volume-monitor-private.h"
+#include "gnome-vfs-volume-monitor-daemon.h"
 
 #define QUIT_TIMEOUT (3*1000)
 
@@ -416,6 +417,19 @@ emit_pre_unmount_volume (PortableServer_Servant _servant,
 	}
 }
 
+static void
+force_probe (PortableServer_Servant _servant,
+	     const GNOME_VFS_Client client,
+	     CORBA_Environment * ev)
+{
+	GnomeVFSVolumeMonitor *monitor;
+	
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	_gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (monitor));
+}
+
+
 void
 gnome_vfs_daemon_add_context (const GNOME_VFS_Client client,
 			      GnomeVFSContext *context)
@@ -539,6 +553,7 @@ gnome_vfs_daemon_class_init (GnomeVFSDaemonClass *klass)
 	epv->getVolumes = get_volumes;
 	epv->getDrives = get_drives;
 	epv->emitPreUnmountVolume = emit_pre_unmount_volume;
+	epv->forceProbe = force_probe;
 	
 	gnome_vfs_init ();
 }

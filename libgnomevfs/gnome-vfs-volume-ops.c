@@ -30,6 +30,7 @@
 #include <gconf/gconf-client.h>
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-volume-monitor-private.h"
+#include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-drive.h"
@@ -145,6 +146,33 @@ generate_unmount_error_message (char *standard_error,
 	return message;
 }
 
+static void
+force_probe (void)
+{
+	GnomeVFSVolumeMonitor *volume_monitor;
+	GnomeVFSClient *client;
+	GNOME_VFS_Daemon daemon;
+	CORBA_Environment  ev;
+	
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	if (gnome_vfs_get_is_daemon ()) {
+		_gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor));
+	} else {
+		client = _gnome_vfs_get_client ();
+		daemon = _gnome_vfs_client_get_daemon (client);
+		
+		CORBA_exception_init (&ev);
+		GNOME_VFS_Daemon_forceProbe (daemon,
+					     BONOBO_OBJREF (client),
+					     &ev);
+		if (BONOBO_EX (&ev)) {
+			CORBA_exception_free (&ev);
+		}
+		CORBA_Object_release (daemon, NULL);
+	}
+}
+
 static gboolean
 report_mount_result (gpointer callback_data)
 {
@@ -153,6 +181,11 @@ report_mount_result (gpointer callback_data)
 
 	info = callback_data;
 
+	/* We want to force probing here so that the daemon
+	   can refresh and tell us (and everyone else) of the new
+	   volume before we call the callback */
+	force_probe ();
+	
 	(info->callback) (info->succeeded,
 			  info->error_message,
 			  info->detailed_error_message,

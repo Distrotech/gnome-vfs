@@ -1,3 +1,16 @@
+2004-01-22  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-daemon.c: (force_probe),
+	(gnome_vfs_daemon_class_init):
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	(_gnome_vfs_volume_monitor_daemon_force_probe):
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-ops.c: (force_probe),
+	(report_mount_result):
+	Force reload of volumes after a volume operation.
+
 2004-01-22  Christophe Fergeau  <teuf@gnome.org>
 
 	Portability patch from "The Written Word", fixes bug #131393

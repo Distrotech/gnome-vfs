@@ -229,6 +229,9 @@ module GNOME {
 			DriveList getDrives (in Client client);
 			void emitPreUnmountVolume (in Client client,
 						   in long volume_id);
+		  	/* Forces a recheck of mounts and tells all clients of changes
+			   before returning */
+			void forceProbe (in Client client);
 		};
 
 		interface AsyncDaemon : Bonobo::Unknown {

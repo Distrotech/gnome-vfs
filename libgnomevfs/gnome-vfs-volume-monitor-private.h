@@ -101,6 +101,7 @@ void _gnome_vfs_volume_monitor_disconnect_all   (GnomeVFSVolumeMonitor *volume_m
 void _gnome_vfs_volume_monitor_unmount_all      (GnomeVFSVolumeMonitor *volume_monitor);
 void gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
 						GnomeVFSVolume        *volume);
+void _gnome_vfs_volume_monitor_force_probe (GnomeVFSVolumeMonitor *volume_monitor);
 
 GnomeVFSVolumeMonitor *_gnome_vfs_get_volume_monitor_internal (gboolean create);
 void _gnome_vfs_volume_monitor_shutdown (void);

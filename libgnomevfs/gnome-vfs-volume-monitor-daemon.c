@@ -165,6 +165,14 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 	update_connected_servers (volume_monitor_daemon);
 }
 
+void
+_gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
+{
+	update_fstab_drives (volume_monitor_daemon);
+	update_mtab_volumes (volume_monitor_daemon);
+	update_connected_servers (volume_monitor_daemon);
+}
+
 /* Remeber that this could be running on a thread other
  * than the main thread */
 static void
