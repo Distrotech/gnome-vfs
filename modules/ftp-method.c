@@ -71,6 +71,7 @@ typedef struct {
 	gint response_code;
 	GnomeVFSInetConnection *data_connection;
 	GnomeVFSSocketBuffer *data_socketbuf;
+	GnomeVFSFileOffset offset;
 	enum {
 		FTP_NOTHING,
 		FTP_READ,
@@ -431,6 +432,21 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 
+	if (conn->offset)
+	{
+		gchar *tmpstring;
+
+		tmpstring = g_strdup_printf ("REST %Lu", conn->offset);
+		result = do_basic_command (conn, tmpstring);
+		g_free (tmpstring);
+
+		if (result != GNOME_VFS_OK) {
+			gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, FALSE);
+			gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
+			return result;
+		}
+	}
+
 	result = do_control_write (conn, command);
 
 	if (result != GNOME_VFS_OK) {
@@ -575,6 +591,7 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		g_free (conn);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
+	conn->offset = 0;
 
 	result = get_response (conn);
 
@@ -728,9 +745,15 @@ ftp_connection_acquire (GnomeVFSURI *uri, FtpConnection **connection, GnomeVFSCo
 #if 0
 		ftp_debug (conn, strdup ("found a connection"));
 #endif
-		possible_connections = g_list_remove (possible_connections, conn);
-		g_hash_table_insert (spare_connections, uri, possible_connections);
-
+		/* update the uri as it may be different */
+		if (conn->uri) {
+			gnome_vfs_uri_unref (conn->uri);
+		}
+		conn->uri = gnome_vfs_uri_dup (uri);
+		possible_connections = g_list_remove (possible_connections, 
+						      conn);
+		g_hash_table_insert (spare_connections, uri, 
+				     possible_connections);
 		/* make sure connection hasn't timed out */
 		result = do_basic_command(conn, "PWD");
 		if (result != GNOME_VFS_OK) {
@@ -809,22 +832,26 @@ do_open (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	FtpConnection *conn;
 
+	if ((mode & GNOME_VFS_OPEN_READ) && (mode & GNOME_VFS_OPEN_WRITE)) {
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
+	}
+
+	if (!(mode & GNOME_VFS_OPEN_READ) && !(mode & GNOME_VFS_OPEN_WRITE)) {
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
+	}
+
 	result = ftp_connection_acquire (uri, &conn, context);
 	if (result != GNOME_VFS_OK) 
 		return result;
 
-	if (mode == GNOME_VFS_OPEN_READ) {
+	if (mode & GNOME_VFS_OPEN_READ) {
 		conn->operation = FTP_READ;
 		result = do_path_transfer_command (conn, "RETR", uri, context);
-	} else if (mode == GNOME_VFS_OPEN_WRITE) {
+	} else if (mode & GNOME_VFS_OPEN_WRITE) {
 		conn->operation = FTP_WRITE;
 		conn->fivefifty = GNOME_VFS_ERROR_ACCESS_DENIED;
 		result = do_path_transfer_command (conn, "STOR", uri, context);
 		conn->fivefifty = GNOME_VFS_ERROR_NOT_FOUND;
-	} else {
-		g_warning ("Unsupported open mode %d\n", mode);
-		ftp_connection_release (conn);
-		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 	if (result == GNOME_VFS_OK) {
 		*method_handle = (GnomeVFSMethodHandle *) conn;
@@ -878,12 +905,16 @@ do_read (GnomeVFSMethod *method,
 	}*/
 	g_print ("do_read (%p)\n", method_handle);
 #endif
-
 	result = gnome_vfs_socket_buffer_read (conn->data_socketbuf, buffer, num_bytes, bytes_read);
 
  	if (*bytes_read == 0) {
  		result = GNOME_VFS_ERROR_EOF;
  	}
+
+	if (result == GNOME_VFS_OK) {
+		conn->offset += *bytes_read;
+	}
+
  	return result;
 }
 
@@ -908,7 +939,80 @@ do_write (GnomeVFSMethod *method,
 	result = gnome_vfs_socket_buffer_write (conn->data_socketbuf, buffer, 
 						num_bytes, 
 						bytes_written);
+
+	if (result == GNOME_VFS_OK) {
+		conn->offset += *bytes_written;
+	}
+
 	return result;
+}
+
+static GnomeVFSResult
+do_seek (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
+	 GnomeVFSSeekPosition whence,
+	 GnomeVFSFileOffset offset,
+	 GnomeVFSContext *context)
+{
+	FtpConnection *conn = (FtpConnection * )method_handle;
+	GnomeVFSResult result;
+	GnomeVFSFileOffset real_offset;
+	GnomeVFSFileOffset orig_offset;
+
+	/* Calculate real offset */
+	switch (whence) {
+		case GNOME_VFS_SEEK_START:
+			real_offset = offset;
+			break;
+		case GNOME_VFS_SEEK_CURRENT:
+			real_offset = conn->offset + offset;
+			break;
+		case GNOME_VFS_SEEK_END:
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		default:
+			return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	/* We need to stop the data transfer first */
+	result = end_transfer (conn);
+
+	/* Do not check for result != GNOME_VFS_OK because we know the error:
+	 * 426 Failure writing network stream.
+	 */
+
+	/* Save the original offset */
+	orig_offset = conn->offset;
+
+	/* Try to restart the transfer now with the new offset */
+	conn->offset = real_offset;
+	switch (conn->operation) {
+		case FTP_READ:
+			result = do_path_transfer_command (conn, "RETR", conn->uri, context);
+			break;
+		case FTP_WRITE:
+			result = do_path_transfer_command (conn, "STOR", conn->uri, context);
+			break;
+		default:
+			return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	/* Restore the original offset if there is any error */
+	if (result != GNOME_VFS_OK)
+		conn->offset = orig_offset;
+
+	return result;
+}
+
+static GnomeVFSResult
+do_tell (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
+	 GnomeVFSFileOffset *offset_return)
+{
+	FtpConnection *conn = (FtpConnection * )method_handle;
+
+	*offset_return = conn->offset;
+
+	return GNOME_VFS_OK;
 }
 
 /* parse one directory listing from the string pointed to by ls. Parse
@@ -1640,8 +1744,8 @@ static GnomeVFSMethod method = {
 	do_close,
 	do_read,
 	do_write,
-	NULL, /* seek */
-	NULL, /* tell */
+	do_seek,
+	do_tell,
 	NULL, /* truncate */
 	do_open_directory,
 	do_close_directory,
