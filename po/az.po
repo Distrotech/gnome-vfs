@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2001-03-15 15:39+0100\n"
+"POT-Creation-Date: 2001-04-16 00:28+0200\n"
 "PO-Revision-Date: 2000-03-12 22:59+0200\n"
 "Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
 "Language-Team:Azerbaijani Turkish \n"
@@ -595,7 +595,6 @@ msgstr "StarOffice hesab cədvəli"
 
 # The sources use a hardcoded latin1 char for mu :-(
 #: data/mime/gnome-vfs.keys.in.h:146
-#, fuzzy
 msgid "Sun �-law audio"
 msgstr "Sun µ-law audio"
 
@@ -1011,135 +1010,6 @@ msgstr "zip arxivi"
 msgid "zoo archive"
 msgstr "zoo arxivi"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Ölürəm ..."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "%s yi oxurkən xəta meydana gəldi "
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "%s yi yaza bilmədim "
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "%s yi yaza bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Müvəqqəti `%s' faylını yarada bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "%s : Socketi yarada bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "%s : `%s'yi bağlaya bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "%s : `%s'yi dinləyə bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "%s : `%s'yə bağlantıları qəbul edə bilmirəm"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "CORBA'yı işə sala bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "RootPOA üçün ana qaynaqları həll edə bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "POA idarəcisini fəallaşdıra bilmirəm ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "İstifadə qaydası : %s <ior> [ <ior_fd> ] \n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Fayl izahatçısını ( %d ) aça blmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "`%s' üçün xəbərçiyi \"yolu\" tapıla bilmədi ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "İstək cismini qura bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "IORu ayıra bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Kölə əməliyyatdan axmaq bir mətn aldım : `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "`%s' üçün bir cism ala bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "GNOME::VFS::Slave::Notifyi öldürə bilmirəm -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "%s : \"socket\"'inə bağlana bilmədim : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "GNOME::VFS::Slave::Notifı başlada bilmirəm"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "GNOME::VFS::Slave %s yi təzədən başlada bilmədim -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-"GNOME::VFS::Slave ( IOR bilinmir ) i təzədən başlada bilmədim --  xəta "
-"%s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "GNOME::VFS::Slave %syi öldürə bilmədim -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "GNOME::VFS::Slave ( IOR bilinmir ) i öldürə bilmədim -- xəta %s"
-
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
@@ -1421,94 +1291,159 @@ msgstr "Namə'lum vəzifə növü %u"
 msgid "Operation stopped"
 msgstr "Əməliyyat dayandırıldı"
 
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/efs-method.c:493 modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Namə'lum GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1179
+#: modules/http-method.c:1191
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s alınacaqdır"
 
-#: modules/http-method.c:1584
+#: modules/http-method.c:1684
 #, c-format
 msgid "Closing connection to %s"
 msgstr "`%s'yə olan bağlantıyı kəs ."
 
-#: modules/http-method.c:1850
+#: modules/http-method.c:1950
 #, c-format
 msgid "%s of %s read"
 msgstr "%s / %s oxundu"
 
-#: modules/http-method.c:1853
+#: modules/http-method.c:1953
 #, c-format
 msgid "%s read"
 msgstr "%s oxundu"
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Geri"
+#~ msgid "Dying."
+#~ msgstr "Ölürəm ..."
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Əvvəlki gəzilən qovluğa keç"
+#~ msgid "Error reading: %s"
+#~ msgstr "%s yi oxurkən xəta meydana gəldi "
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Yuxarı"
+#~ msgid "Error writing: %s"
+#~ msgstr "%s yi yaza bilmədim "
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Üst qovluğa keç"
+#~ msgid "Cannot write: %s"
+#~ msgstr "%s yi yaza bilmədim "
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "İrəli"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Müvəqqəti `%s' faylını yarada bilmədim"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Bir sonrakı gəzilən qovluğa get"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "%s : Socketi yarada bilmədim"
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Təzədən dara"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "%s : `%s'yi bağlaya bilmədim "
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Hazırkı qovluğu təzədən dara"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "%s : `%s'yi dinləyə bilmədim "
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Ev"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "%s : `%s'yə bağlantıları qəbul edə bilmirəm"
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Ev qovluğuna keç"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "CORBA'yı işə sala bilmədim ."
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Ad"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "RootPOA üçün ana qaynaqları həll edə bilmədim ."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Böyüklük"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "POA idarəcisini fəallaşdıra bilmirəm ."
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Tarix"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "İstifadə qaydası : %s <ior> [ <ior_fd> ] \n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Adı tap:"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Fayl izahatçısını ( %d ) aça blmədim ."
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Göstər:"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "`%s' üçün xəbərçiyi \"yolu\" tapıla bilmədi ."
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Nöqtə ilə başlayan gizli faylları göstər"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "İstək cismini qura bilmədim ."
+
+#~ msgid "Cannot extract IOR."
+#~ msgstr "IORu ayıra bilmədim "
+
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Kölə əməliyyatdan axmaq bir mətn aldım : `%s'"
+
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "`%s' üçün bir cism ala bilmədim"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "GNOME::VFS::Slave::Notifyi öldürə bilmirəm -- xəta %s"
+
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "%s : \"socket\"'inə bağlana bilmədim : %s"
+
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "GNOME::VFS::Slave::Notifı başlada bilmirəm"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "GNOME::VFS::Slave %s yi təzədən başlada bilmədim -- xəta %s"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr ""
+#~ "GNOME::VFS::Slave ( IOR bilinmir ) i təzədən başlada bilmədim --  xəta "
+#~ "%s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "GNOME::VFS::Slave %syi öldürə bilmədim -- xəta %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr ""
+#~ "GNOME::VFS::Slave ( IOR bilinmir ) i öldürə bilmədim -- xəta %s"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Əvvəlki gəzilən qovluğa keç"
+
+#~ msgid "Up"
+#~ msgstr "Yuxarı"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Üst qovluğa keç"
+
+#~ msgid "Forward"
+#~ msgstr "İrəli"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Bir sonrakı gəzilən qovluğa get"
+
+#~ msgid "Rescan"
+#~ msgstr "Təzədən dara"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Hazırkı qovluğu təzədən dara"
+
+#~ msgid "Home"
+#~ msgstr "Ev"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Ev qovluğuna keç"
+
+#~ msgid "Name"
+#~ msgstr "Ad"
+
+#~ msgid "Size"
+#~ msgstr "Böyüklük"
+
+#~ msgid "Date"
+#~ msgstr "Tarix"
+
+#~ msgid "Enter name:"
+#~ msgstr "Adı tap:"
+
+#~ msgid "Show:"
+#~ msgstr "Göstər:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Nöqtə ilə başlayan gizli faylları göstər"
 
 #~ msgid "Edit Applications List"
 #~ msgstr "Proqram siyahısını Düzəlt"
