@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
-"POT-Creation-Date: 2003-07-05 14:16+0200\n"
-"PO-Revision-Date: 2003-07-05 14:36+0200\n"
+"POT-Creation-Date: 2003-07-08 12:18+0200\n"
+"PO-Revision-Date: 2003-07-10 09:59+0200\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Belső hiba"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Rossz paraméterek"
+msgstr "Érvénytelen paraméterek"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -131,7 +131,7 @@ msgstr "Csak olvasható fájlrendszer"
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Rossz URI"
+msgstr "Érvénytelen URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
