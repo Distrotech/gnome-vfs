@@ -1042,8 +1042,8 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 	const gchar *p, *short_name_start, *short_name_end;
 
 	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (uri->text == NULL, NULL);
-	g_return_val_if_fail (uri->text[0] == '\0', NULL);
+	g_return_val_if_fail (uri->text != NULL, NULL);
+	g_return_val_if_fail (uri->text[0] != '\0', NULL);
 
 	/* Search for the last run of non-'/' characters. */
 	p = uri->text;
