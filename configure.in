@@ -600,8 +600,6 @@ modules/extfs/lha
 modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
-man/Makefile
-man/gnome-vfs-mime.5
 devel-docs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in

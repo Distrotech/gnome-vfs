@@ -1,3 +1,9 @@
+2002-01-22  jacob berkman  <jacob@ximian.com>
+
+	* man/:
+	* Makefile.am (SUBDIRS): 
+	* configure.in (AC_OUTPUT): remove man page
+
 2002-01-20  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-seekable.c: Use /* */ not // in comments.
