@@ -1,3 +1,9 @@
+2003-11-24  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.5.2
+
 2003-11-21  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_unix_mount_get_unix_device):

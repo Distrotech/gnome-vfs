@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2003-11-17 06:12+0800\n"
+"POT-Creation-Date: 2003-11-24 12:07+0100\n"
 "PO-Revision-Date: 2003-11-17 06:19+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -196,8 +196,7 @@ msgstr "Entah"
 msgid "Unknown op type %u"
 msgstr "Jenis op tidak diketahui %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064
-#: libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Tidak dapat mencipta paip untuk GIOChannel yang dibuka: %s"
@@ -455,6 +454,12 @@ msgid "Unknown error"
 msgstr "Ralat yang tidak diketahui"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
+#, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] ""
+msgstr[1] ""
+
 #: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
 msgid "%.1f K"
@@ -516,7 +521,8 @@ msgstr "Pelayan rangkaian"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Tak dapat melekap pemacu liut. Mungkin tiada liut pada pemacu."
 
 #. All others
@@ -525,12 +531,20 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Tak dapat melekap pemacu volum. Mungkin tiada media pada peranti."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Tak dapat melekap pemacu liut. Liut mungkin dalam format yang tidak boleh dilekapkan."
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tak dapat melekap pemacu liut. Liut mungkin dalam format yang tidak boleh "
+"dilekapkan."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Tak dapat melekap volum dipilih. Volum mungkin dalam format yang tak boleh dilekapkan."
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tak dapat melekap volum dipilih. Volum mungkin dalam format yang tak boleh "
+"dilekapkan."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -627,21 +641,13 @@ msgstr "GnomeVFSSeekPosition yang tidak diketahui %d"
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
-msgid ""
-"Didn't find a valid settings file at %s\n"
-""
-msgstr ""
-"Tak menjumpai fail tetapan yang sah pada %s\n"
-""
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Tak menjumpai fail tetapan yang sah pada %s\n"
 
 #: modules/test-method.c:592
 #, c-format
-msgid ""
-"Use the %s environment variable to specify a different location.\n"
-""
-msgstr ""
-"Guna pembolehubah oersekitaran %s untuk menyatakan lokasi lain.\n"
-""
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Guna pembolehubah oersekitaran %s untuk menyatakan lokasi lain.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -673,12 +679,22 @@ msgstr "Hujah exec bagi terminal default"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Aplikasi digunakan untuk melihat fail yang memerlukan komponen untuk melihatnya. Parameter %s akan digantikan dengan URI fail, parameter %c akan digantikan dengan IID komponen."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Aplikasi digunakan untuk melihat fail yang memerlukan komponen untuk "
+"melihatnya. Parameter %s akan digantikan dengan URI fail, parameter %c akan "
+"digantikan dengan IID komponen."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Aplikasi terminal default untuk digunakan bagi aplikasi yg memerlukan terminal."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Aplikasi terminal default untuk digunakan bagi aplikasi yg memerlukan "
+"terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -717,12 +733,19 @@ msgid "Hosts are not contacted via the proxy"
 msgstr "Hos tak dihubungi melalui proksi"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by /system/http_proxy/authentication_user and /system/http_proxy/authentication_password."
-msgstr "Jika benar, sambungan ke pelayan proksi memerlukan autentikasi. Kombinasi namapengguna/katalaluan ditakrifkan oleh /system/http_proxy/authentication_user dan /system/http_proxy/authentication_password."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr ""
+"Jika benar, sambungan ke pelayan proksi memerlukan autentikasi. Kombinasi "
+"namapengguna/katalaluan ditakrifkan oleh /system/http_proxy/"
+"authentication_user dan /system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
-msgstr "Katalaluan untuk dihantar sebagai autentikasi bila melakukan pemproksian http"
+msgstr ""
+"Katalaluan untuk dihantar sebagai autentikasi bila melakukan pemproksian http"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Proxy configuration mode"
@@ -737,8 +760,12 @@ msgid "Secure http proxy port"
 msgstr "Liang proksi http selamat"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\""
-msgstr "Pilih mod konfigurasi proksi. Nilai disokong adalah \"none\", \"manual\", \"auto\""
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr ""
+"Pilih mod konfigurasi proksi. Nilai disokong adalah \"none\", \"manual\", "
+"\"auto\""
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
@@ -765,24 +792,44 @@ msgid "The machine name to proxy socks through."
 msgstr "Nama mesin supaya proksi socks melaluinya."
 
 #: schemas/system_http_proxy.schemas.in.h:21
-msgid "The port on the machine defined by /system/http_proxy/host that you proxy through"
-msgstr "Liang pada mesin ditakrifkan oleh /system/http_proxy/host yang anda lalui"
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr ""
+"Liang pada mesin ditakrifkan oleh /system/http_proxy/host yang anda lalui"
 
 #: schemas/system_http_proxy.schemas.in.h:22
-msgid "The port on the machine defined by /system/proxy/ftp_host that you proxy through"
-msgstr "Liang pada mesin ditakrifkan oleh /system/proxy/ftp_host yang anda lalui"
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr ""
+"Liang pada mesin ditakrifkan oleh /system/proxy/ftp_host yang anda lalui"
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by /system/proxy/secure_host that you proxy through"
-msgstr "Liang pada mesin ditakrifkan oleh /system/proxy/secure_host yang anda lalui"
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr ""
+"Liang pada mesin ditakrifkan oleh /system/proxy/secure_host yang anda lalui"
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by /system/proxy/socks_host that you proxy through"
-msgstr "Liang pada mesin ditakrifkan oleh /system/proxy/socks_host yang anda lalui"
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr ""
+"Liang pada mesin ditakrifkan oleh /system/proxy/socks_host yang anda lalui"
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Kekunci ini mengandungi senarai hos yang disambung secara terus, bukannya melalui proksi (jika ia aktif). Nilai boleh jadi namahos, domain (menggunakan wildcard awalan seperti *.sebol.com), Alamat hos IP (kedua-dua IPv4 dan IPv6) dan alamat rangkaian dengan netmask (seperti 192.168.0.0/24)."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Kekunci ini mengandungi senarai hos yang disambung secara terus, bukannya "
+"melalui proksi (jika ia aktif). Nilai boleh jadi namahos, domain "
+"(menggunakan wildcard awalan seperti *.sebol.com), Alamat hos IP (kedua-dua "
+"IPv4 dan IPv6) dan alamat rangkaian dengan netmask (seperti 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
@@ -794,7 +841,9 @@ msgstr "Hidupkan tetapan proksi bila mengakses http"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "User name to pass as authentication when doing http proxying"
-msgstr "Nama pengguna untuk dihantar sebagai autentikasi bila melakukan pemproksian http"
+msgstr ""
+"Nama pengguna untuk dihantar sebagai autentikasi bila melakukan pemproksian "
+"http"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "http proxy password"
@@ -803,4 +852,3 @@ msgstr "katalaluan proksi http"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr "namapengguna proksi http"
-

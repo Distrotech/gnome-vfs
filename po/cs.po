@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-19 03:59+0100\n"
+"POT-Creation-Date: 2003-11-24 12:07+0100\n"
 "PO-Revision-Date: 2003-11-19 12:59+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -528,7 +528,8 @@ msgstr "Síťový server"
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Nemohu připojit disketovou mechaniku. V mechanice pravděpodobně není disketa."
+msgstr ""
+"Nemohu připojit disketovou mechaniku. V mechanice pravděpodobně není disketa."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -539,13 +540,17 @@ msgstr "Nemohu připojit svazek. V mechanice pravděpodobně není médium."
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "Nemohu připojit disketovou mechaniku. Disketa je pravděpodobně ve formátu, který nelze připojit."
+msgstr ""
+"Nemohu připojit disketovou mechaniku. Disketa je pravděpodobně ve formátu, "
+"který nelze připojit."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "Nemohu připojit vybraný svazek. Svazek je pravděpodobně ve formátu, který nelze připojit."
+msgstr ""
+"Nemohu připojit vybraný svazek. Svazek je pravděpodobně ve formátu, který "
+"nelze připojit."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -685,13 +690,18 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "Aplikace, kterou používat pro zobrazování souborů, které pro zobrazení vyžadují komponentu. Parametr %s bude naharazen URI souboru, parametr %c bude nahrazen IID komponenty."
+msgstr ""
+"Aplikace, kterou používat pro zobrazování souborů, které pro zobrazení "
+"vyžadují komponentu. Parametr %s bude naharazen URI souboru, parametr %c "
+"bude nahrazen IID komponenty."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Implicitní aplikace terminálu, kterou používat pro aplikace, které vyžadují terminál."
+msgstr ""
+"Implicitní aplikace terminálu, kterou používat pro aplikace, které vyžadují "
+"terminál."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -734,7 +744,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by /system/http_proxy/authentication_user "
 "and /system/http_proxy/authentication_password."
-msgstr "Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno uživatele/heslo je definována v /system/http_proxy/authentication_user a /system/http_proxy/authentication_password."
+msgstr ""
+"Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno "
+"uživatele/heslo je definována v /system/http_proxy/authentication_user a /"
+"system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
@@ -756,7 +769,9 @@ msgstr "Port proxy zabezpečeného http"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
-msgstr "Vyberte režim nastavení proxy. Podporované hodnoty jsou \"none\", \"manual\", \"auto\""
+msgstr ""
+"Vyberte režim nastavení proxy. Podporované hodnoty jsou \"none\", \"manual"
+"\", \"auto\""
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
@@ -786,25 +801,33 @@ msgstr "Jméno počítače, který používat jako socks proxy."
 msgid ""
 "The port on the machine defined by /system/http_proxy/host that you proxy "
 "through"
-msgstr "Port na počítači definovaníém v /system/http_proxy/host, který používat pro proxy"
+msgstr ""
+"Port na počítači definovaníém v /system/http_proxy/host, který používat pro "
+"proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid ""
 "The port on the machine defined by /system/proxy/ftp_host that you proxy "
 "through"
-msgstr "Port na počítači definovaníém v /system/proxy/ftp_host, který používat pro proxy"
+msgstr ""
+"Port na počítači definovaníém v /system/proxy/ftp_host, který používat pro "
+"proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr "Port na počítači definovaníém v /system/proxy/secure_host, který používat pro proxy"
+msgstr ""
+"Port na počítači definovaníém v /system/proxy/secure_host, který používat "
+"pro proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
-msgstr "Port na počítači definovaníém v /system/proxy/socks_host, který používat pro proxy"
+msgstr ""
+"Port na počítači definovaníém v /system/proxy/socks_host, který používat pro "
+"proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -812,7 +835,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Tento klíč obsahuje seznam počítačů, které jsou připojeny přímo, ne přes proxy (pokud je aktivní). Hodnoty mohou být jména počítačů, domény (pomocí počátečního zástupního znaku, např. *.foo.com), IP adresy počítačů (IPv4 i IPv6) a adresy sítí s maskou sítě (něco jako 192.168.0.0/24)."
+msgstr ""
+"Tento klíč obsahuje seznam počítačů, které jsou připojeny přímo, ne přes "
+"proxy (pokud je aktivní). Hodnoty mohou být jména počítačů, domény (pomocí "
+"počátečního zástupního znaku, např. *.foo.com), IP adresy počítačů (IPv4 i "
+"IPv6) a adresy sítí s maskou sítě (něco jako 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
@@ -824,7 +851,8 @@ msgstr "Používat nastavení proxy při přístupu k http"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "User name to pass as authentication when doing http proxying"
-msgstr "Jméno uživatele, které předávat jako autentizaci při používání http proxy"
+msgstr ""
+"Jméno uživatele, které předávat jako autentizaci při používání http proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "http proxy password"

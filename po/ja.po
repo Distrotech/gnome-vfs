@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2003-11-10 09:03+0100\n"
+"POT-Creation-Date: 2003-11-24 12:07+0100\n"
 "PO-Revision-Date: 2003-10-28 00:45+0900\n"
 "Last-Translator: KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -23,6 +23,10 @@ msgstr "Bonobo を初期化できませんでした"
 #: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr "gnome vfs を初期化できませんでした"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:178
+msgid "ISO 9660 Volume"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -53,6 +57,142 @@ msgstr "%s:%d モジュール名がありません。"
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "設定ファイル '%s' が見つかりません: %s"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:37
+msgid "AFFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:38
+msgid "AFS Network Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:39
+msgid "Auto-detected Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:40
+#: libgnomevfs/gnome-vfs-filesystem-type.c:42
+msgid "CD-ROM Drive"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:41
+msgid "CD Digital Audio"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:43
+msgid "Hardware Device Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Ext2 Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+msgid "Ext3 Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:57
+msgid "MSDOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "MacOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+msgid "CDROM Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+msgid "Hsfs CDROM Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+msgid "JFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "Windows NT Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:62
+msgid "System Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+msgid "Memory Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+msgid "Minix Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+msgid "NFS Network Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+msgid "Netware Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+msgid "ReiserFS Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Windows Shared Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+msgid "SuperMount Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+msgid "DVD Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+msgid "Solaris/BSD Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+msgid "Udfs Solaris Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+msgid "Pcfs Solaris Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+msgid "Enhanced DOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Windows VFAT Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+msgid "Xenix Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "XFS Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+msgid "XIAFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#, fuzzy
+msgid "Unknown"
+msgstr "不明なエラーです"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -317,32 +457,119 @@ msgid "Unknown error"
 msgstr "不明なエラーです"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-msgid "1 byte"
-msgstr "1 バイト"
+#, fuzzy, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u バイト"
+msgstr[1] "%u バイト"
 
-#: libgnomevfs/gnome-vfs-utils.c:86
-#, c-format
-msgid "%u bytes"
-msgstr "%u バイト"
-
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mバイト"
 
-#: libgnomevfs/gnome-vfs-utils.c:101
+#: libgnomevfs/gnome-vfs-utils.c:98
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
-#: libgnomevfs/gnome-vfs-utils.c:1085
+#: libgnomevfs/gnome-vfs-utils.c:1100
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
+msgid "Floppy"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
+msgid "CD-ROM"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
+msgid "Zip Drive"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
+msgid "Memory Stick"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
+msgid "Camera"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:646
+msgid "Root Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:725
+msgid "Audio CD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:756
+#, fuzzy
+msgid "Unknown volume"
+msgstr "不明なエラーです"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
+msgid "Network server"
+msgstr ""
+
+#. Handle floppy case
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+
+#. All others
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
+msgid "Unable to mount the volume. There is probably no media in the device."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
+msgid "Unable to mount the selected floppy drive."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
+msgid "Unable to mount the selected volume."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
+msgid "Unable to unmount the selected volume."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:220
+#: libgnomevfs/gnome-vfs-volume-ops.c:252
+msgid "Failed to start command"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:245
+msgid "Unable to eject media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:421
+msgid "Unable to unmount connected server"
+msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -393,6 +620,19 @@ msgstr "ツール"
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "ウィンドウ"
+
+#: modules/computer-method.c:521
+msgid "Network"
+msgstr ""
+
+#: modules/computer-method.c:539
+msgid "Home"
+msgstr ""
+
+#: modules/computer-method.c:557
+#, fuzzy
+msgid "Filesystem"
+msgstr "ファイル"
 
 #: modules/file-method.c:382
 #, c-format
@@ -615,3 +855,6 @@ msgstr "http プロキシのパスワード"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr "http プロキシのユーザ名"
+
+#~ msgid "1 byte"
+#~ msgstr "1 バイト"
