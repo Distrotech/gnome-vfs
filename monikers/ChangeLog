@@ -1,3 +1,9 @@
+2001-09-25  drk <drk@sgi.com>
+
+	* bonobo-storage-fs.c (fs_erase): don't do an
+	assignment instead of a comparison; sigh.
+	check for EEXIST as well as ENOTEMPTY.
+
 2001-08-22  Peter Williams  <peterw@ximian.com>
 
 	* Makefile.am (INCLUDES): Typo fix.

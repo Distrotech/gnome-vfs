@@ -388,11 +388,11 @@ fs_erase (PortableServer_Servant storage,
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
 					     ex_Bonobo_Storage_NotFound, 
 					     NULL);
-		else if (errno == ENOTEMPTY) 
+		else if (errno == ENOTEMPTY || errno == EEXIST)
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
 					     ex_Bonobo_Storage_NotEmpty, 
 					     NULL);
-		else if ((errno == EACCES) || (errno = EPERM)) 
+		else if (errno == EACCES || errno == EPERM)
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
 					     ex_Bonobo_Storage_NoPermission, 
 					     NULL);
