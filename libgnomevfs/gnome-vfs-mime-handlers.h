@@ -73,15 +73,6 @@ GList               *gnome_vfs_mime_get_short_list_components             (const
 GList               *gnome_vfs_mime_get_all_applications                  (const char             *mime_type);
 GList               *gnome_vfs_mime_get_all_components                    (const char             *mime_type);
 
-GnomeVFSMimeAction  *gnome_vfs_mime_get_default_action_for_uri            (const char             *uri);
-GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application_for_uri   (const char             *uri);
-OAF_ServerInfo      *gnome_vfs_mime_get_default_component_for_uri         (const char             *uri);
-GList               *gnome_vfs_mime_get_short_list_applications_for_uri   (const char             *uri);
-GList               *gnome_vfs_mime_get_short_list_components_for_uri     (const char             *uri);
-GList               *gnome_vfs_mime_get_all_applications_for_uri          (const char             *uri);
-GList               *gnome_vfs_mime_get_all_components_for_uri            (const char             *uri);
-
-
 
 void                gnome_vfs_mime_set_default_action_type                (const char             *mime_type,
 								           GnomeVFSMimeActionType  action_type);
@@ -101,27 +92,6 @@ void                gnome_vfs_mime_extend_all_applications                (const
 /* Only "user" entries may be removed. */
 void                gnome_vfs_mime_remove_from_all_applications           (const char             *mime_type,
 								           GList                  *applications);
-
-
-
-void                gnome_vfs_mime_set_default_action_type_for_uri        (const char             *mime_type,
-								           GnomeVFSMimeActionType  action_type);
-void                gnome_vfs_mime_set_default_application_for_uri        (const char             *mime_type,
-								           GnomeVFSMimeApplication    *application);
-void                gnome_vfs_mime_set_default_component_for_uri          (const char             *mime_type,
-								           OAF_ServerInfo         *component_iid);
-/* Stored as delta to current user level */
-void                gnome_vfs_mime_set_short_list_applications_for_uri    (const char             *mime_type,
-								           GList                  *applications);
-void                gnome_vfs_mime_set_short_list_components_for_uri      (const char             *mime_type,
-							  	           GList                  *components);
-/* No way to override system list; can only add. */
-void                gnome_vfs_mime_extend_all_applications_for_uri        (const char             *mime_type,
-								           GList                  *applications);
-/* Only "user" entries may be removed. */
-void                gnome_vfs_mime_remove_from_all_applications_for_uri   (const char             *mime_type,
-								           GList                  *applications);
-/* No way to add to all components; oafinfo database assumed trusted in this regard. */
 
 
 void                gnome_vfs_mime_application_free                       (GnomeVFSMimeApplication *application);

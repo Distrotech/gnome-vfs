@@ -1,3 +1,10 @@
+2000-05-31  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h,
+	libgnomevfs/gnome-vfs-mime-handlers.c: Removed the _for_uri
+	versions of these calls; they've been moved to Nautilus for now
+	since they will require reading metadata.
+	
 2000-05-31  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-directory.c: (directory_visit_internal),
