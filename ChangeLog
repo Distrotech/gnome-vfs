@@ -1,3 +1,8 @@
+2002-06-21  Michael Meeks  <michael@ximian.com>
+
+	* configure.in: bin GTK_REQUIRED, upd. BONOBO_REQUIRED
+	and ORBIT_REQUIRED, bonobo-activation-required. #80244
+
 2002-06-13  Glynn Foster  <glynn.foster@sun.com>
 
 	* docs/vfolder-info-spec.dtd: Remove some confusing whitespace so
