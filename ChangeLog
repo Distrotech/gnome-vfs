@@ -1,7 +1,8 @@
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/egg*.[ch]: sync up from libegg
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
-	Clean up indentation and line breaks
+	More clean ups, function renaming, etc.
 
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 

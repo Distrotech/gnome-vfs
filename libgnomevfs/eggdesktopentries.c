@@ -215,7 +215,7 @@ egg_find_file_in_data_dirs (const gchar  *file,
         {
           char *p;
 
-          path = g_build_filename (data_dir, "applications", sub_dir,
+          path = g_build_filename (data_dir, sub_dir,
                                    candidate_file, NULL);
 
           fd = open (path, O_RDONLY);
