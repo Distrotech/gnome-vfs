@@ -1,3 +1,20 @@
+gnome-vfs 2.2.3
+
+	* Bugs fixed:
+	       + Fix Strange smb: crash with module callbacks
+	       + Fix for systems without readdir_r
+	       + Fix race in monitor code
+	       + Handle ogg files with id3 data in mp3 sniffer
+	       + Use cached data data for get_info_from_handle in the
+	         http method
+	       + Various ssh-method fixes (Bastien Nocera)
+	       + Fix memleak (Frederic Crozat)
+	* Featurelets
+	       + Try pkg-config to detect openssl if installed
+	       + add --enable-gnutls switch to allow you to enable the
+	         new gnutls code
+		 
+	
 gnome-vfs 2.2.2
 
 	* Bugs fixed:

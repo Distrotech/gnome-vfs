@@ -1,3 +1,9 @@
+2003-03-10  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.3
+
 2003-03-05  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
