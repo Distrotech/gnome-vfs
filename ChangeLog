@@ -1,3 +1,12 @@
+2000-09-08  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
+	Performance improvement Darin and I found:
+	Change the priority of callbacks to G_PRIORITY_DEFAULT from
+	G_PRIORITY_LOW to prevent serious performance drain where 
+	callbacks do not get scheduled early enough.
+	This speeds up Nautilus directory update by 30% or so.
+
 2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:

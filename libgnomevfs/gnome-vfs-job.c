@@ -645,7 +645,7 @@ gnome_vfs_job_new (void)
 	new_job->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new_job->wakeup_channel_lock = g_mutex_new ();
 
-	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
+	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_DEFAULT, G_IO_IN,
 			     dispatch_job_callback, new_job, NULL);
 
 	slave = gnome_vfs_job_slave_new (new_job);
