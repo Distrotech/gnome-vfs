@@ -1,3 +1,10 @@
+2004-12-12  Marco Pesenti Gritti <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-deprecated.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+
+	Deprecate gnome_vfs_mime_get_icon API
+
 2004-12-11  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-utils.c: fixed API doc for

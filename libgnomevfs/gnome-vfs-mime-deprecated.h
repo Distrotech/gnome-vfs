@@ -69,6 +69,8 @@ GnomeVFSResult           gnome_vfs_mime_action_launch_with_env             (Gnom
 									    GList                   *uris,
 									    char                   **envp);
 									    
+const char  		*gnome_vfs_mime_get_icon 			   (const char 		    *mime_type);
+
 /* List manipulation helper functions */
 gboolean                 gnome_vfs_mime_id_in_application_list             (const char              *id,
 									    GList                   *applications);
