@@ -1,5 +1,10 @@
 2003-11-11  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume.c (gnome_vfs_volume_handles_trash):
+	Don't handle trash on read-only volumes.
+
+2003-11-11  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (create_vol_from_mount):
 	Make sure volumes for user_visible drives are user_visible.
 

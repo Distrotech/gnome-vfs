@@ -247,6 +247,9 @@ gnome_vfs_volume_handles_trash (GnomeVFSVolume *volume)
 	if (volume->priv->device_type == GNOME_VFS_DEVICE_TYPE_AUTOFS) {
 		return FALSE;
 	}
+	if (volume->priv->is_read_only) {
+		return FALSE;
+	}
 	if (volume->priv->filesystem_type != NULL) {
 		return _gnome_vfs_filesystem_use_trash (volume->priv->filesystem_type);
 	}
