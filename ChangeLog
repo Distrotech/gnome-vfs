@@ -1,5 +1,10 @@
 2001-01-09  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Oops, turn off spew that I enabled and checked in by accident.
+
+2001-01-09  Pavel Cisler  <pavel@eazel.com>
+
 	reviewed by: Darin Adler  <darin@eazel.com>
 
 	Fixed 5398 (Async callbacks need to be passed over ownership of data)

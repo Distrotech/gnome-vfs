@@ -31,7 +31,7 @@
 
 typedef struct GnomeVFSJob GnomeVFSJob;
 
-#define GNOME_VFS_JOB_DEBUG 1
+#define GNOME_VFS_JOB_DEBUG 0
 
 #if GNOME_VFS_JOB_DEBUG
 
