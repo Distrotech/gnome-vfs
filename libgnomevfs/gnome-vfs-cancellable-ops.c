@@ -45,6 +45,9 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (uri->method->open == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
 	result = uri->method->open (uri->method, &method_handle, uri, open_mode,
 				    context);
 
@@ -76,6 +79,9 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (uri->method->create == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 	result = uri->method->create (uri->method, &method_handle, uri, open_mode,
 				      exclusive, perm, context);
@@ -306,6 +312,9 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 {
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (a->method->set_file_info == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 	return a->method->set_file_info (a->method, a, info, mask, context);
 }

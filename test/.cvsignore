@@ -16,5 +16,6 @@ test-directory-visit
 test-info
 test-seek
 test-sync
+test-sync-write
 test-xfer
 vfs-run

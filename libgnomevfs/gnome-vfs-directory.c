@@ -102,8 +102,7 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 	GnomeVFSResult result;
 	GList *meta_list;
 
-	if (uri->method->open_directory == NULL)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+	CHECK_IF_SUPPORTED (uri->method, open_directory);
 
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 

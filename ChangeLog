@@ -1,3 +1,21 @@
+2000-03-29  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-directory.c (open_from_uri):
+	Use CHECK_IF_SUPPORTED macro to be consistent with the rest of the file.
+
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_open_uri_cancellable), (gnome_vfs_create_uri_cancellable),
+	(gnome_vfs_set_file_info_cancellable):
+	Added missing checks for NULL in the module. The rest of the operations
+	had checks for NULL.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_is_local): Check for a NULL is_local pointer. Unlike the
+	other operations, for this one it's illegal to be NULL since there is
+	no way to return the NOTSUPPORTED error code.
+
+	* test/.cvsignore: Missing file.
+
 2000-03-28 Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
