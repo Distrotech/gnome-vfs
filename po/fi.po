@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-02-07 18:16+0200\n"
+"POT-Creation-Date: 2004-08-18 23:07+0300\n"
+"PO-Revision-Date: 2004-08-19 01:53+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -26,87 +26,91 @@ msgid "Could not initialize gnome vfs"
 msgstr "Gnome-vfs:n alustus epäonnistui"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Ei voitu jäsentää: %s"
+msgstr "Tiedoston avaaminen epäonnistui: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "Tiedoston \"%s\" avaaminen epäonnistui: %s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Tiedosto on olemassa"
+msgstr "Tiedosto on tyhjä"
 
 #: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "Tiedostosta \"%s\" lukeminen epäonnistui: %s"
 
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"työpöydän kohdat sisältävät rivin \"%s\" joka ei ole merkintä, ryhmä tai "
+"kommentti"
 
 #: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "työpöydän kohdat -tiedosto ei ala kelvollisella aloitusryhmällä"
 
 #: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
+"työpöydän kohdat sisältävät rivin \"%s\" joka ei ole UTF-8-merkistön mukainen"
 
 #: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "työpöydän kohdat sisältävät tuntematonta merkistöä \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
 #: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "työpöydän kohdissa ei ole ryhmää \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "työpöydän kohdissa ei ole avainta \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
 #: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "työpöydän kohdat sisältävät avaimen \"%s\" jonka arvoa ei voi tulkita."
 
 #: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"työpöydän kohdat eivät sisällä maa-asetustolle \"%s\" käännettyjä avaimen \"%"
+"s\" arvoja."
 
 #: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "työpöydän kohdat sisältävät virheellisen ohjaussarjan \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "työpöydän kohdat sisältävät suojausmerkin rivin lopussa"
 
 #: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Arvoa \"%s\" ei voi tulkita numeroksi."
 
 #: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Arvoa \"%s\" ei voi tulkita totuusarvoksi."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -255,9 +259,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs-Solaris-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS-taltio"
+msgstr "Sun SAM-QFS -taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -284,125 +287,117 @@ msgid "Unknown"
 msgstr "Tuntematon"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-ROM-asema"
+msgstr "CD-ROM-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Tyhjä CD-R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "CD-ROM-asema"
+msgstr "CD-R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Tyhjä CD-RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "CD-ROM-asema"
+msgstr "CD-RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "CD-ROM-asema"
+msgstr "DVD-ROM-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Tyhjä DVD-R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Tyhjä DVD-RAM-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Tyhjä DVD-RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Tyhjä DVD+RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Tyhjä DVD+R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "Optinen levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
-msgstr "Ääni-CD"
+msgstr "Äänilevy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Compact Flash -taltio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Muistitikku"
+msgstr "Muistitikku-taltio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Smart Media -taltio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC-taltio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Levyke"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS -levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X -levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Ikkunat"
+msgstr "Windows-levy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "Linux-levy"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Tuntematon op-tyyppi %u"
+msgstr "Tuntematon toimintotyyppi %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -445,6 +440,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Ei-suositeltu funktio. Käyttäjän tekemät MIME-tietokannan muutokset eivät "
+"enää toimi."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -553,7 +550,7 @@ msgstr "Tiedoston loppu"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
-msgstr "Ei ole hakemisto"
+msgstr "Ei ole kansio"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -583,7 +580,7 @@ msgstr "Toiminto ei ole sallittu"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
-msgstr "On hakemisto"
+msgstr "On kansio"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
@@ -618,12 +615,12 @@ msgstr "Toiminto peruttu"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
-msgstr "Hakemisto varattu"
+msgstr "Kansio varattu"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
-msgstr "Hakemisto ei ole tyhjä"
+msgstr "Kansio ei ole tyhjä"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -688,23 +685,22 @@ msgstr "Komennon käynnistysvirhe"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Aikakatkaisu"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Yleinen virhe"
+msgstr "Nimipalvelinvirhe"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Resurssi on lukittu"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Funktiokutsua ei suositella"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -762,7 +758,7 @@ msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
@@ -851,7 +847,7 @@ msgstr "Tiedostot"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr "Hakemistot"
+msgstr "Kansiot"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
@@ -907,7 +903,7 @@ msgstr "Windows-verkko"
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Etäkoneen (%s) identiteetti on tuntematon."
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -917,14 +913,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Näin käy, kun kirjaudut tietokoneelle ensimmäistä kertaan.\n"
+"\n"
+"Etäkoneen identiteetti on %s. Jos ehdottoman varmuuden, että on turvallista "
+"jatkaa, ota yhteys järjestelmän ylläpitäjään."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Kirjaudu silti sisään"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Peru kirjautuminen"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -986,291 +986,232 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Päätesovelluksen valitsin, joka määrittää mitä suoritetaan."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
 msgstr "Suorita sovellus päätteessä"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "\"aim\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "\"callto\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "\"ghelp\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Tosi, jos tämän URL:n käsittelevä ohjelma tulisi käynnistää päätteessä."
+msgstr "\"h323\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Tosi, jos tämän URL:n käsittelevä ohjelma tulisi käynnistää päätteessä."
+msgstr "\"http\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Tosi, jos tämän URL:n käsittelevä ohjelma tulisi käynnistää päätteessä."
+msgstr "\"https\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "\"info\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "\"mailto\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "\"man\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "\"trash\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Käsittele man-URL:t"
+msgstr "\"aim\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Käsittele callto-URL:t"
+msgstr "\"callto\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Käsittele ghelp-URL:t"
+msgstr "\"ghelp\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Käsittele H323-URL:t"
+msgstr "\"h323\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Käsittele ghelp-URL:t"
+msgstr "\"http\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Käsittele ghelp-URL:t"
+msgstr "\"https\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Käsittele info-URL:t"
+msgstr "\"info\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Käsittele mailto-URL:t"
+msgstr "\"mailto\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Käsittele man-URL:t"
+msgstr "\"man\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Käsittele trash-URL:t"
+msgstr "\"trash\"-URL:ien käsittelykomento"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee man-URL:"
-"eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"aim\"-tyypisiä "
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee callto-"
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"callto\"-"
+"tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"ghelp\"-"
+"tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee H323-URL:"
-"eja."
+msgstr "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"h323\"-tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
-"URL:eja."
+msgstr "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"http\"-tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
-"URL:eja."
+msgstr "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"https\"-tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee info-URL:"
-"eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"info\"-tyypisiä "
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee mailto-"
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"mailto\"-"
+"tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee man-URL:"
-"eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"man\"-tyypisiä "
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee trash-"
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"trash\"-"
+"tyypisiä URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Tosi, jos tämän URL:n käsittelevä ohjelma tulisi käynnistää päätteessä."
+"Tosi, jos tämäntyyppisiä URL:eja käsittelevä ohjelma tulisi käynnistää "
+"päätteessä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee man-URL:"
-"eja."
+msgstr "Käsitteleekö annettu komento \"aim\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee callto-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"callto\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"ghelp\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee H323-URL:"
-"eja."
+msgstr "Käsitteleekö annettu komento \"h323\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"http\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee trash-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"https\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee info-URL:"
-"eja."
+msgstr "Käsitteleekö annettu komento \"info\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee mailto-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"mailto\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee man-URL:"
-"eja."
+msgstr "Käsitteleekö annettu komento \"man\"-URL:eja"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee trash-"
-"URL:eja."
+msgstr "Käsitteleekö annettu komento \"trash\"-URL:eja"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Pilkuilla eroteltu luettelo dns-sd-verkkoalueista, jotka näkyvät verkko-"
+"sijainnissa."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Lisäverkkoalueet, joilta etsiä dns-sd-palveluja"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Miten paikallinen DNS-SD-palvelu näkyy"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
+"Mahdollisia arvoja ovat \"merged\" (yhdessä), \"separate\" (erillinen) ja "
+"\"disabled\" (ei käytössä)."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1436,41 +1377,40 @@ msgstr "SMB-työryhmä"
 msgid "The window workgroup the user is part of"
 msgstr "Windows-työryhmä, johon käyttäjä kuuluu"
 
-#, fuzzy
+#~ msgid "CD Disc"
+#~ msgstr "CD-levy"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "HTTP-tyyppiset URL:t käsittelevä komento, jos käytössä."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "HTTPS-tyyppiset URL:t käsittelevä komento, jos käytössä."
+
 #~ msgid "The handler for HTTP URLs"
-#~ msgstr "Käsittele HTTP-URL:t"
+#~ msgstr "HTTP-URL:ien käsittelin"
 
-#, fuzzy
 #~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Käsittele HTTPS-URL:t"
+#~ msgstr "HTTPS-URL:ien käsittelin"
 
-#, fuzzy
 #~ msgid ""
 #~ "True if the command specified in the \"command\" key should handle HTTP "
 #~ "URLs."
 #~ msgstr ""
-#~ "Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTP-"
+#~ "Tosi, jos avaimessa \"command\" annettu komento käsittelee HTTP-tyypisiä "
 #~ "URL:eja."
 
-#, fuzzy
 #~ msgid ""
 #~ "True if the command specified in the \"command\" key should handle HTTPS "
 #~ "URLs."
 #~ msgstr ""
-#~ "Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTPS-"
+#~ "Tosi, jos avaimessa \"command\" annettu komento käsittelee HTTPS-tyypisiä "
 #~ "URL:eja."
 
-#, fuzzy
 #~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr ""
-#~ "Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTP-"
-#~ "URL:eja."
+#~ msgstr "Käsitteleekö annettu komento HTTP-URL:eja"
 
-#, fuzzy
 #~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr ""
-#~ "Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTPS-"
-#~ "URL:eja."
+#~ msgstr "Käsitteleekö annettu komento HTTPS-URL:eja"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "H323 URL -käsittelin"
