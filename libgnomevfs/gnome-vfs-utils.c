@@ -2163,10 +2163,14 @@ gnome_vfs_url_show_with_env (const char  *url,
 
 	type = _gnome_vfs_get_slow_mime_type (url);
 
+	if (type == NULL) {
+		return GNOME_VFS_ERROR_NO_DEFAULT;
+	}
+	
 	params.data = (char *) url;
 	params.prev = NULL;
 	params.next = NULL;
-	
+
 	app = gnome_vfs_mime_get_default_application_for_uri (url, type);
 	
 	if (app != NULL) {

@@ -1,3 +1,12 @@
+2004-11-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	(gnome_vfs_cancellation_cancel):
+	Use a CORBA_Environment in the call.
+	
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_url_show_with_env):
+	Don't crash if no mimetype for uri.
+
 2004-11-23  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

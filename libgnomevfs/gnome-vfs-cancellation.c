@@ -154,10 +154,13 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	cancellation->cancelled = TRUE;
 
 	if (client_call != NULL) {
+		CORBA_Environment ev;
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_async_daemon (client);
 
-		GNOME_VFS_AsyncDaemon_Cancel (daemon, BONOBO_OBJREF (client_call), NULL);
+		CORBA_exception_init (&ev);
+		GNOME_VFS_AsyncDaemon_Cancel (daemon, BONOBO_OBJREF (client_call), &ev);
+		CORBA_exception_free (&ev);
 		_gnome_vfs_client_call_delay_finish_done (client_call);
 		bonobo_object_unref (client_call);
 		CORBA_Object_release (daemon, NULL);
