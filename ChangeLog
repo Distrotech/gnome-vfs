@@ -1,3 +1,10 @@
+2000-10-12  Grahame Bowland <gbowland@tartarus.uwa.edu.au>
+
+	* libgnomevfs/gnome-vfs-result.c:
+	(gnome_vfs_result_from_errno_code), (gnome_vfs_result_from_errno):
+	* libgnomevfs/gnome-vfs-result.h:
+	Added a gnome_vfs_result_from_errno_code convenience call.
+	
 2000-10-11  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c:

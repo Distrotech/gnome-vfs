@@ -24,8 +24,9 @@
 #ifndef _GNOME_VFS_RESULT_H
 #define _GNOME_VFS_RESULT_H
 
-const gchar	*gnome_vfs_result_to_string	(GnomeVFSResult result);
-GnomeVFSResult	 gnome_vfs_result_from_errno	(void);
-GnomeVFSResult   gnome_vfs_result_from_h_errno  (void);
+const gchar	*gnome_vfs_result_to_string	  (GnomeVFSResult result);
+GnomeVFSResult   gnome_vfs_result_from_errno_code (int errno_code);
+GnomeVFSResult	 gnome_vfs_result_from_errno	  (void);
+GnomeVFSResult   gnome_vfs_result_from_h_errno    (void);
 
 #endif /* _GNOME_VFS_RESULT_H */

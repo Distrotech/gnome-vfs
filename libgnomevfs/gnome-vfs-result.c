@@ -79,10 +79,10 @@ static gchar *status_strings[] = {
 
 
 GnomeVFSResult
-gnome_vfs_result_from_errno (void)
+gnome_vfs_result_from_errno_code (int errno_code)
 {
 	/* Please keep these in alphabetical order.  */
-	switch (errno) {
+	switch (errno_code) {
 	case E2BIG:     return GNOME_VFS_ERROR_TOO_BIG;
 	case EACCES:	return GNOME_VFS_ERROR_ACCESS_DENIED;
 	case EBUSY:	return GNOME_VFS_ERROR_DIRECTORY_BUSY;
@@ -111,6 +111,12 @@ gnome_vfs_result_from_errno (void)
 	}
 }
 
+GnomeVFSResult
+gnome_vfs_result_from_errno (void)
+{
+       return gnome_vfs_result_from_errno_code(errno);
+}
+ 
 
 GnomeVFSResult
 gnome_vfs_result_from_h_errno (void)
