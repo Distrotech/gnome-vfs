@@ -37,11 +37,11 @@ static GStaticMutex file_info_ref_lock = G_STATIC_MUTEX_INIT;
 
 
 /**
- * gnome_vfs_file_info_new:
+ * gnome_vfs_file_info_new
  * 
  * Allocate and initialize a new file information struct.
  * 
- * Return value: A pointer to the new file information struct.
+ * Returns: A pointer to the new file information struct.
  **/
 GnomeVFSFileInfo *
 gnome_vfs_file_info_new (void)
@@ -60,7 +60,7 @@ gnome_vfs_file_info_new (void)
 
 
 /**
- * gnome_vfs_file_info_ref:
+ * gnome_vfs_file_info_ref
  * @info: Pointer to a file information struct
  * 
  * Increment reference count
@@ -78,7 +78,7 @@ gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
 }
 
 /**
- * gnome_vfs_file_info_unref:
+ * gnome_vfs_file_info_unref
  * @info: Pointer to a file information struct
  * 
  * Destroy @info
@@ -101,7 +101,7 @@ gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
 
 
 /**
- * gnome_vfs_file_info_clear:
+ * gnome_vfs_file_info_clear
  * @info: Pointer to a file information struct
  * 
  * Clear @info so that it's ready to accept new data. This is
@@ -131,12 +131,13 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 
 
 /**
- * gnome_vfs_file_info_get_mime_type:
+ * gnome_vfs_file_info_get_mime_type
  * @info: A pointer to a file information struct
  * 
- * Retrieve MIME type from @info.
+ * Retrieve MIME type from @info. There is no need to free the return
+ * value.
  * 
- * Return value: A pointer to a string representing the MIME type.
+ * Returns: A pointer to a string representing the MIME type.
  **/
 const gchar *
 gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo *info)
@@ -147,7 +148,7 @@ gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo *info)
 }
 
 /**
- * gnome_vfs_file_info_copy:
+ * gnome_vfs_file_info_copy
  * @dest: Pointer to a struct to copy @src's information into
  * @src: Pointer to the information to be copied into @dest
  * 
@@ -189,7 +190,7 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 }
 
 /**
- * gnome_vfs_file_info_dup:
+ * gnome_vfs_file_info_dup
  * @orig: Pointer to a file information structure to duplicate
  * 
  * Returns a new file information struct that duplicates the information in @orig.
@@ -211,10 +212,14 @@ gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig)
 
 
 /**
- * gnome_vfs_file_info_matches:
+ * gnome_vfs_file_info_matches
+ * @a: first GnomeVFSFileInfo struct to compare
+ * @b: second GnomeVFSFileInfo struct to compare
  *
  * Compare the two file info structs, return TRUE if they match.
- **/
+ *
+ * Returns: TRUE if the two GnomeVFSFileInfos match, otherwise return FALSE.
+ */
 gboolean
 gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 			     const GnomeVFSFileInfo *b)

@@ -135,7 +135,7 @@ open (GnomeVFSDirectoryHandle **handle,
 }
 
 /**
- * gnome_vfs_directory_open:
+ * gnome_vfs_directory_open
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @text_uri: String representing the URI to open
  * @options: Options for reading file information
@@ -144,7 +144,7 @@ open (GnomeVFSDirectoryHandle **handle,
  * a %GnomeVFSDirectoryHandle object which can be used to read the directory
  * entries one by one.
  * 
- * Return value: An integer representing the result of the operation.
+ * Returns: An integer representing the result of the operation
  **/
 GnomeVFSResult
 gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
@@ -158,7 +158,7 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 }
 
 /**
- * gnome_vfs_directory_open_from_uri:
+ * gnome_vfs_directory_open_from_uri
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @uri: URI to open
  * @options: Options for reading file information
@@ -167,7 +167,7 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
  * a %GnomeVFSDirectoryHandle object which can be used to read the directory
  * entries one by one.
  * 
- * Return value: An integer representing the result of the operation.
+ * Returns: An integer representing the result of the operation.
  **/
 GnomeVFSResult
 gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
@@ -200,7 +200,7 @@ gnome_vfs_directory_open_from_uri_cancellable (GnomeVFSDirectoryHandle **handle,
  * 
  * Read the next directory entry from @handle.
  * 
- * Return value: An integer value representing the result of the operation.
+ * Returns: An integer value representing the result of the operation.
  **/
 GnomeVFSResult
 gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
@@ -234,8 +234,8 @@ gnome_vfs_directory_read_next_cancellable (GnomeVFSDirectoryHandle *handle,
  * 
  * Close @handle.
  * 
- * Return value: An integer representing the result of the operation.
- **/
+ * Returns: An integer representing the result of the operation.
+ */
 GnomeVFSResult
 gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 {
@@ -454,7 +454,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 }
 
 /**
- * gnome_vfs_directory_visit_uri:
+ * gnome_vfs_directory_visit_uri
  * @uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
@@ -464,8 +464,9 @@ directory_visit_internal (GnomeVFSURI *uri,
  * 
  * Visit @uri, retrieving information as specified by @info_options. 
  * 
- * Return value: 
- **/
+ * Returns: A result code indicating whether the operation succeeded. 
+ *
+ */
 GnomeVFSResult
 gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSFileInfoOptions info_options,

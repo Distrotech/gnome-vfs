@@ -1,21 +1,22 @@
-<chapter id="writing-modules">
-  <title>Writing modules for the GNOME Virtual File System</title>
-  <abstract>
-    <para>
-      This document briefly explains how to write new modules for the
-      GNOME Virtual File System.
-    </para>
-  </abstract>
- </artheader>
+<refentry id="writing-modules" revision="6 Sep 2001">
+<refmeta>
+<refentrytitle>Writing Modules</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-VFS Library</refmiscinfo>
+</refmeta>
 
-  <sect1 id="Introduction">
+<refnamediv>
+<refname>Writing Modules</refname><refpurpose>basic gnome-vfs module concepts</refpurpose>
+</refnamediv>
+
+  <refsect1 id="Introduction">
     <title>Introduction</title>
 
-    <para>This chapter will introduce the basic concepts that are
+    <para>This section will introduce the basic concepts that are
       needed for writing GNOME Virtual File System modules.</para>
 
-    <sect2 id="uris">
-      <title>GNOME VFS URIs (Uniform Resource Indicators)</title>
+    <refsect2 id="uris">
+      <title>GNOME VFS URIs (Uniform Resource Identifiers)</title>
 
       <para>The GNOME Virtual file system uses URIs similiar to the
         standard WWW URIs.  The basic difference between a VFS URI and
@@ -83,9 +84,9 @@
       <para>Toplevel elements are also special because they let users
         specify user names, passwords and host names, while
         non-toplevel elements don't.</para>
-    </sect2>
+    </refsect2>
 
-    <sect2>
+    <refsect2>
       <title>The <structname>GnomeVFSURI</structname> type</title>
 
       <para>Within the GNOME Virtual File System library, URI elements
@@ -111,11 +112,11 @@
         access method (see below).</para></listitem>
       </itemizedlist>
 
-    </sect2>
+    </refsect2>
 
-  </sect1>
+  </refsect1>
 
-  <sect1>
+  <refsect1>
     <title>GNOME Virtual File System access method implementation</title>
 
     <para>In the GNOME Virtual File System, the implementations for
@@ -133,7 +134,7 @@
     <structname>GnomeVFSURI</structname> type, the VFS library is then
     able to use these functions for file access.</para>
 
-    <sect2>
+    <refsect2>
       <title>How file access is performed</title>
 
       <para>When the VFS library needs to perform some file operation,
@@ -184,17 +185,17 @@
       GNOME VFS library function on its parent, and decompress it on
       the fly. </para>
 
-    </sect2>
+    </refsect2>
 
-  </sect1>
+  </refsect1>
 
-  <sect1>
+  <refsect1>
     <title>Implementing an access method in practice</title>
 
     <para>Implementing a new access method is really not difficult at
     all.  This section explains how this is done.</para>
 
-    <sect2>
+    <refsect2>
       <title>Using shared libraries</title>
 
       <para>Every module must be compiled as a shared library (i.e. a
@@ -212,9 +213,9 @@
 
       <para>This might change in the future.</para>
 
-    </sect2>
+    </refsect2>
 
-    <sect2>
+    <refsect2>
       <title>The initialization/shutdown functions</title>
 
       <para>Every shared library module must provide two functions:</para>
@@ -256,9 +257,9 @@ void vfs_module_shutdown (GnomeVFSMethod *method);</programlisting>
 
       </itemizedlist>
 
-    </sect2>
+    </refsect2>
 
-    <sect2>
+    <refsect2>
       <title>The <structname>GnomeVFSMethod</structname> object</title>
 
       <para>This object is contains pointers to the module
@@ -348,11 +349,11 @@ GnomeVFSResult (* unlink)            (GnomeVFSURI *uri
                                       GnomeVFSCancellation *cancellation);
 </programlisting>
 
-    </sect2>
+    </refsect2>
 
-  </sect1>
+  </refsect1>
 
-  <sect1>
+  <refsect1>
     <title>Handling cancellation</title>
 
     <para>As VFS operations might be very long, especially in the case
@@ -360,7 +361,7 @@ GnomeVFSResult (* unlink)            (GnomeVFSURI *uri
     the GNOME Virtual File System Library provides a standard way for
     handling cancellation of VFS operations.</para>
 
-    <sect2>
+    <refsect2>
       <title>The <structname>GnomeVFSCancellation</structname> object</title>
     
       <para>The object that encapsulates this functionality is
@@ -433,9 +434,9 @@ gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </progr
       you can set up <function>select</function>for checking if data
       is available on both the cancellation file descriptor and the
       file descriptor you are reading from.</para>
-    </sect2>
+    </refsect2>
 
-    <sect2>
+    <refsect2>
       <title>Dealing with <symbol>EINTR</symbol></title>
 
       <para>In order to maximize the chance of cancelling an operation
@@ -465,11 +466,11 @@ gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </progr
         <listitem><para>Otherwise, retry the system call as you would
         normally do.</para></listitem>
       </itemizedlist>
-    </sect2>
+    </refsect2>
 
-  </sect1>
+  </refsect1>
 
-  <sect1>
+  <refsect1>
     <title>Basic guidelines for writing a module</title>
 
     <para>Writing GNOME VFS modules is easy, but there are a few
@@ -496,7 +497,7 @@ gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </progr
       style.</para></listitem>
     </itemizedlist>
 
-    <sect2>
+    <refsect2>
       <title>How to make the code thread safe</title>
 
       <para>Although it might sound scary at first, making the code
@@ -548,10 +549,10 @@ gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </progr
       private GNOME VFS API that does this stuff for all the
       modules.)</para>
 
-    </sect2>
-  </sect1>
+    </refsect2>
+  </refsect1>
 
-</chapter>
+</refentry>
 
 <!--
 Local Variables:

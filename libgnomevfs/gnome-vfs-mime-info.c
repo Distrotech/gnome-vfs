@@ -992,7 +992,7 @@ set_value_real (const char *mime_type, const char *key, const char *value,
 }
 
 /**
- * gnome_vfs_mime_set_value:
+ * gnome_vfs_mime_set_value
  * @mime_type: a mime type.
  * @key: a key to store the value in.
  * @value: the value to store in the key.
@@ -1002,6 +1002,9 @@ set_value_real (const char *mime_type, const char *key, const char *value,
  * to the user' file if necessary.
  * You should not free the key/values passed to 
  * this function. They are used internally.
+ *
+ * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
+ *
  */
 GnomeVFSResult
 gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *value)
@@ -1106,6 +1109,8 @@ get_value_real (const char *mime_type,
  * This function retrieves the value associated with @key in 
  * the given GnomeMimeContext.  The string is private, you
  * should not free the result.
+ *
+ * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
  */
 const char *
 gnome_vfs_mime_get_value (const char *mime_type, const char *key)
@@ -1121,6 +1126,8 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
  * @mime_type: a mime type.
  *
  * This function returns TRUE if @mime_type is in the MIME database at all.
+ *
+ * Returns: TRUE if anything is known about @mime_type, otherwise FALSE
  */
 gboolean
 gnome_vfs_mime_type_is_known (const char *mime_type)
@@ -1263,6 +1270,7 @@ str_cmp_callback  (gconstpointer a,
  * Sets the extensions for a given mime type. Overrides
  * the previously set extensions.
  *
+ * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code.
  */
 GnomeVFSResult
 gnome_vfs_mime_set_extensions_list (const char *mime_type,
@@ -1533,6 +1541,8 @@ gnome_vfs_mime_reset (void)
  *
  * Delete a mime type for the user which runs this command.
  * You can undo this only by calling gnome_vfs_mime_reset
+ *
+ * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
  */
 
 void
@@ -1595,6 +1605,8 @@ gnome_vfs_mime_registered_mime_type_list_free (GList *list)
  * 
  * This function sets the key data for the registered mime
  * type's hash table.
+ *
+ * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
  */
 GnomeVFSResult
 gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, const char *value)

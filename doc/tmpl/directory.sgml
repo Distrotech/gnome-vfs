@@ -48,8 +48,10 @@ loading and parsing directory contents
 </para>
 
 @handle: 
-@info: 
+@file_info: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@info: 
 
 
 <!-- ##### FUNCTION gnome_vfs_directory_close ##### -->
@@ -68,11 +70,12 @@ loading and parsing directory contents
 
 @uri: 
 @info_options: 
-@Param3: 
+@visit_options: 
 @callback: 
 @data: 
 @Returns: 
 <!-- # Unused Parameters # -->
+@Param3: 
 @filter: 
 @Param4: 
 
@@ -84,11 +87,12 @@ loading and parsing directory contents
 
 @uri: 
 @info_options: 
-@Param3: 
+@visit_options: 
 @callback: 
 @data: 
 @Returns: 
 <!-- # Unused Parameters # -->
+@Param3: 
 @filter: 
 @Param4: 
 
@@ -118,11 +122,12 @@ loading and parsing directory contents
 @uri: 
 @file_list: 
 @info_options: 
-@Param4: 
+@visit_options: 
 @callback: 
 @data: 
 @Returns: 
 <!-- # Unused Parameters # -->
+@Param4: 
 @filter: 
 @Param5: 
 

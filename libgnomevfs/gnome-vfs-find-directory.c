@@ -33,7 +33,7 @@
  * @kind: kind of well known directory
  * @result: newly created URI of the directory we found
  * @create_if_needed: If directory we are looking for does not exist, try to create it
- * @create_if_needed: If we don't know where trash is yet, look for it.
+ * @find_if_needed: If we don't know where trash is yet, look for it.
  * @permissions: If creating, use these permissions
  * 
  * Used to return well known directories such as Trash, Desktop, etc. from different
@@ -50,7 +50,7 @@
  * and then use the @create_if_needed flag to create Trash lazily when it is
  * needed for throwing away an item on a given disk.
  * 
- * Return value: An integer representing the result of the operation
+ * Returns: An integer representing the result of the operation
  **/
 GnomeVFSResult	
 gnome_vfs_find_directory (GnomeVFSURI 			*near_uri,

@@ -562,16 +562,16 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 /**
  * gnome_vfs_get_mime_type:
  * @uri: a real file or a non-existent uri.
- * @data_size: Size of the data.
  *
  * Tries to guess the mime type of the file represented by @uir.
  * Favors using the file data to the @uri extension.
  * Handles passing @uri of a non-existent file by falling back
  * on returning a type based on the extension.
  *
- * Returns the mime-type for this uri.
  * FIXME: This function will not necessarily return the same mime type as doing a
  * get file info on the text uri.
+ *
+ * Returns: the mime-type for this uri.
  * 
  */
 const char *
@@ -635,7 +635,7 @@ file_read_binder (gpointer context, gpointer buffer,
 /**
  * gnome_vfs_get_file_mime_type:
  * @path: a path of a file.
- * @stat_info: optional stat buffer.
+ * @optional_stat_info: optional stat buffer.
  * @suffix_only: whether or not to do a magic-based lookup.
  *
  * Tries to guess the mime type of the file represented by @path.
@@ -643,10 +643,10 @@ file_read_binder (gpointer context, gpointer buffer,
  * Handles passing @path of a non-existent file by falling back
  * on returning a type based on the extension.
  *
- * Returns the mime-type for this path.
+ * Returns: the mime-type for this path
  */
 const char *
-gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
+gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat_info,
 	gboolean suffix_only)
 {
 	const char *result;
@@ -658,21 +658,21 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
 	result = NULL;
 
 	/* get the stat info if needed */
-	if (stat_info == NULL && stat (path, &tmp_stat_buffer) == 0) {
-		stat_info = &tmp_stat_buffer;
+	if (optional_stat_info == NULL && stat (path, &tmp_stat_buffer) == 0) {
+		optional_stat_info = &tmp_stat_buffer;
 	}
 
 	/* single out special file types */
-	if (stat_info && !S_ISREG(stat_info->st_mode)) {
-		if (S_ISDIR(stat_info->st_mode)) {
+	if (optional_stat_info && !S_ISREG(optional_stat_info->st_mode)) {
+		if (S_ISDIR(optional_stat_info->st_mode)) {
 			return "x-directory/normal";
-		} else if (S_ISCHR(stat_info->st_mode)) {
+		} else if (S_ISCHR(optional_stat_info->st_mode)) {
 			return "x-special/device-char";
-		} else if (S_ISBLK(stat_info->st_mode)) {
+		} else if (S_ISBLK(optional_stat_info->st_mode)) {
 			return "x-special/device-block";
-		} else if (S_ISFIFO(stat_info->st_mode)) {
+		} else if (S_ISFIFO(optional_stat_info->st_mode)) {
 			return "x-special/fifo";
-		} else if (S_ISSOCK(stat_info->st_mode)) {
+		} else if (S_ISSOCK(optional_stat_info->st_mode)) {
 			return "x-special/socket";
 		} else {
 			/* unknown entry type, return generic file type */

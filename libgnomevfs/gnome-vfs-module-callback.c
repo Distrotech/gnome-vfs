@@ -866,8 +866,9 @@ gnome_vfs_async_module_callback_pop (const char *callback_name)
  * handler at all is found for @callback_name, the function returns
  * FALSE.
  *
- * Return value: TRUE if a callback was invoked, FALSE if none was set.
- **/
+ * Returns: TRUE if a callback was invoked, FALSE if none was set.
+ *
+ */
 gboolean
 gnome_vfs_module_callback_invoke (const char    *callback_name,
 				  gconstpointer  in,

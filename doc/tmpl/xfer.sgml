@@ -1,8 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-xfer
+Copy Engine
 
 <!-- ##### SECTION Short_Description ##### -->
-
+asynchronous copy/move/delete engine
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

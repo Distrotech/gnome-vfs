@@ -3,7 +3,6 @@
 <!entity about SYSTEM "about.sgml">
 <!entity gnome-vfs-application-registry SYSTEM "sgml/application-registry.sgml">
 <!entity gnome-vfs-async-ops SYSTEM "sgml/async-ops.sgml">
-<!entity gnome-vfs-backend SYSTEM "sgml/backend.sgml">
 <!entity gnome-vfs-cancellable-ops SYSTEM "sgml/cancellable-ops.sgml">
 <!entity gnome-vfs-cancellation SYSTEM "sgml/cancellation.sgml">
 <!entity gnome-vfs-configuration SYSTEM "sgml/configuration.sgml">
@@ -88,11 +87,14 @@
 	allowing application developers to provide non-blocking file I/O 
 	without the use of threads.
       </para>
-      &gnome-vfs-async-ops;
-    <--FIXME: should we display this?gnome-vfs-cancellable-ops-->
       &gnome-vfs-ops;
       &gnome-vfs-directory;
+      &gnome-vfs-find-directory;
+      &gnome-vfs-async-ops;
+    <!--FIXME: should we display this?gnome-vfs-cancellable-ops-->
       &gnome-vfs-xfer;
+      &gnome-vfs-module-callback;
+      &gnome-vfs-standard-callbacks;
   </chapter>
   <chapter id="data-types">
     <title>Common Data Types</title>
@@ -136,25 +138,21 @@
       &gnome-vfs-module-shared;
       &gnome-vfs-module;
       &gnome-vfs-module-callback-module-api;
+      &gnome-vfs-inet-connection;
+      &gnome-vfs-iobuf;
+      &gnome-vfs-parse-ls;
+      &gnome-vfs-process;
+      &gnome-vfs-ssl;
   </chapter>
 
   <chapter id="everything-else">
     <title>Other APIs</title>
-      &gnome-vfs-backend;
       &gnome-vfs-cancellation;
       &gnome-vfs-configuration;
       &gnome-vfs-context;
       &gnome-vfs-file-size;
-      &gnome-vfs-find-directory;
-      <--FIXME: I think this should be private: gnome-vfs-handle-->
-      &gnome-vfs-inet-connection;
+      <!--FIXME: I think this should be private: gnome-vfs-handle-->
       &gnome-vfs-init;
-      &gnome-vfs-iobuf;
-      &gnome-vfs-module-callback;
-      &gnome-vfs-standard-callbacks;
-      &gnome-vfs-parse-ls;
-      &gnome-vfs-process;
-      &gnome-vfs-ssl;
       &gnome-vfs-utils;
   </chapter>
 </book>

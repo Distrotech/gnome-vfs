@@ -28,6 +28,8 @@ IGNORE_HFILES=					\
 	gnome-vfs-private.h			\
 	gnome-vfs-private-utils.h		\
 	gnome-vfs-private-types.h		\
+	gnome-vfs-backend.h			\
+	gnome-vfs-i18n.h			\
 	gnome-vfs-module-callback-private.h	\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h

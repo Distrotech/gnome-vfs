@@ -1,8 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-init
+Initialization
 
 <!-- ##### SECTION Short_Description ##### -->
-
+initializing and shutting down gnome-vfs
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

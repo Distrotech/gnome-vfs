@@ -1,3 +1,35 @@
+2001-09-07  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	Fixed many problems in the in-line and out-of-line docs that were
+	causing doc build warnings (most indicative of problems in the
+	genrated docs). Recategorize things a bit.
+	
+	* doc/Makefile.am:
+	* doc/about.sgml:
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/backend.sgml:
+	* doc/tmpl/directory.sgml:
+	* doc/tmpl/find-directory.sgml:
+	* doc/tmpl/fnmatch.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/init.sgml:
+	* doc/tmpl/mime-info.sgml:
+	* doc/tmpl/module-callback-private.sgml:
+	* doc/tmpl/seekable.sgml:
+	* doc/tmpl/standard-callbacks.sgml:
+	* doc/tmpl/xfer.sgml:
+	* doc/writing-modules.sgml:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-find-directory.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime.c: 
+	* libgnomevfs/gnome-vfs-module-callback.c:
+
 2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Simplification of the callback API, in the process fixing bugs

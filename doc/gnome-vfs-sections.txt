@@ -165,7 +165,7 @@ gnome_vfs_file_info_list_free
 
 <SECTION>
 <FILE>find-directory</FILE>
-<TITLE>Find Directory</TITLE>
+<TITLE>Finding Special Directories</TITLE>
 gnome_vfs_find_directory
 </SECTION>
 
@@ -195,6 +195,7 @@ gnome_vfs_inet_connection_get_iobuf
 
 <SECTION>
 <FILE>init</FILE>
+<TITLE>Initialization</TITLE>
 gnome_vfs_init
 gnome_vfs_initialized
 gnome_vfs_shutdown
@@ -553,15 +554,6 @@ gnome_vfs_async_module_callback_pop
 <SECTION>
 <FILE>module-callback-module-api</FILE>
 gnome_vfs_module_callback_invoke
-</SECTION>
-
-<SECTION>
-<FILE>module-callback-private</FILE>
-gnome_vfs_module_callback_get_stack_info
-gnome_vfs_module_callback_use_stack_info
-gnome_vfs_module_callback_free_stack_info
-gnome_vfs_module_callback_clear_stacks
-gnome_vfs_module_callback_set_in_async_thread
 </SECTION>
 
 <SECTION>

@@ -45,32 +45,30 @@ typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 
 GnomeVFSResult	gnome_vfs_directory_open
 					(GnomeVFSDirectoryHandle **handle,
-					 const gchar *text_uri,
-					 GnomeVFSFileInfoOptions options);
+					 const gchar              *text_uri,
+					 GnomeVFSFileInfoOptions   options);
 GnomeVFSResult	gnome_vfs_directory_open_from_uri
 					(GnomeVFSDirectoryHandle **handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options);
+					 GnomeVFSURI              *uri,
+					 GnomeVFSFileInfoOptions   options);
 GnomeVFSResult	gnome_vfs_directory_read_next
-					(GnomeVFSDirectoryHandle *handle,
-					 GnomeVFSFileInfo *info);
+					(GnomeVFSDirectoryHandle  *handle,
+					 GnomeVFSFileInfo         *file_info);
 GnomeVFSResult	gnome_vfs_directory_close
-					(GnomeVFSDirectoryHandle *handle);
+					(GnomeVFSDirectoryHandle  *handle);
 
 
 GnomeVFSResult  gnome_vfs_directory_visit
 					(const gchar *uri,
 					 GnomeVFSFileInfoOptions info_options,
-					 GnomeVFSDirectoryVisitOptions
-					 	visit_options,
+					 GnomeVFSDirectoryVisitOptions visit_options,
 					 GnomeVFSDirectoryVisitFunc callback,
 					 gpointer data);
 
 GnomeVFSResult  gnome_vfs_directory_visit_uri
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions info_options,
-					 GnomeVFSDirectoryVisitOptions
-					 	visit_options,
+					 GnomeVFSDirectoryVisitOptions visit_options,
 					 GnomeVFSDirectoryVisitFunc callback,
 					 gpointer data);
 
@@ -87,8 +85,7 @@ GnomeVFSResult	gnome_vfs_directory_visit_files_at_uri
 					(GnomeVFSURI *uri,
 					 GList *file_list,
 					 GnomeVFSFileInfoOptions info_options,
-					 GnomeVFSDirectoryVisitOptions
-					 	visit_options,
+					 GnomeVFSDirectoryVisitOptions visit_options,
 					 GnomeVFSDirectoryVisitFunc callback,
 					 gpointer data);
 

@@ -79,6 +79,8 @@ mime-info
 
 </para>
 
+@mime_type_list: 
+<!-- # Unused Parameters # -->
 @mime_ype_list: 
 
 
@@ -150,8 +152,10 @@ mime-info
 </para>
 
 @mime_type: 
-@extension_list: 
+@extensions_list: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@extension_list: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_registered_mime_type_delete ##### -->

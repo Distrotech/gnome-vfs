@@ -83,7 +83,7 @@
     <para>
       The GnomeVFS equivalent is very similar, but you will notice slightly different data types. The
       consistent returning of a GnomeVFSResult also necessitated moving the return value of read into
-      a pass-back-value pointer <variable>bytes_read</variable>:
+      a pass-back-value pointer <parameter>bytes_read</parameter>:
       <programlisting>
 	GnomeVFSResult gnome_vfs_read (GnomeVFSHandle *handle,
 	                               gpointer buffer,
@@ -93,9 +93,9 @@
     </para>
     <para>
       So <function>gnome_vfs_read</function> takes a <type>GnomeVFSHandle</type>, which functions
-      like a file descriptor, and attempts to read <variable>bytes</variable> bytes out of
-      <variable>handle</variable> into <variable>buffer</variable>. The number of bytes succesfully
-      read into <variable>buffer</variable> is returned in the pointer <variable>bytes_read</variable>.
+      like a file descriptor, and attempts to read <parameter>bytes</parameter> bytes out of
+      <parameter>handle</parameter> into <parameter>buffer</parameter>. The number of bytes succesfully
+      read into <parameter>buffer</parameter> is returned in the pointer <parameter>bytes_read</parameter>.
       The return value of the function, a <type>GnomeVFSResult</type> indicates the success of the
       operation or any errors that might have occurred (for example, permission denied).
       <type>GnomeVFSResult</type> is just an enumeration.
@@ -108,6 +108,7 @@
       </para>
       <para>
 	<programlisting>
+<![CDATA[
 #include <libgnomevfs/gnome-vfs.h>
 #include <gnome.h>
 
@@ -167,7 +168,9 @@ print_error (GnomeVFSResult result, const char *uri_string)
   return 1;
 }
 
+]]>
 	</programlisting>
+</para>
     </sect2>
     <sect2>
 	<title>Conversion of a Sample Code Block</title>
