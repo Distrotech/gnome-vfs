@@ -9,274 +9,274 @@ msgstr ""
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d содержит NUL символов."
+msgstr "%s:%d я│п╬п╢п╣я─п╤п╦я┌ NUL я│п╦п╪п╡п╬п╩п╬п╡."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d не содержит названия метода."
+msgstr "%s:%d п╫п╣ я│п╬п╢п╣я─п╤п╦я┌ п╫п╟п╥п╡п╟п╫п╦я▐ п╪п╣я┌п╬п╢п╟."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d не содержит названия модуля."
+msgstr "%s:%d п╫п╣ я│п╬п╢п╣я─п╤п╦я┌ п╫п╟п╥п╡п╟п╫п╦я▐ п╪п╬п╢я┐п╩я▐."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Конфигурационный файл `%s' не найден: %s"
+msgstr "п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫я▀п╧ я└п╟п╧п╩ `%s' п╫п╣ п╫п╟п╧п╢п╣п╫: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Неизвестный тип задания %u"
+msgstr "п²п╣п╦п╥п╡п╣я│я┌п╫я▀п╧ я┌п╦п© п╬п©п╣я─п╟я├п╦п╦ %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Невозможно создать канал для открытого GIOChannel: %s"
+msgstr "п²п╣п╡п╬п╥п╪п╬п╤п╫п╬ я│п╬п╥п╢п╟я┌я▄ п╨п╟п╫п╟п╩ п╢п╩я▐ п╬я┌п╨я─я▀я┌п╬пЁп╬ GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Неизвестный вид задания %u"
+msgstr "п²п╣п╦п╥п╡п╣я│я┌п╫я▀п╧ п╡п╦п╢ п╥п╟п╢п╟п╫п╦я▐ %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
-msgstr "Действие остановлено"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣ п╬я│я┌п╟п╫п╬п╡п╩п╣п╫п╬"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Не удалось провести синтакс.анализ: %s"
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п©я─п╬п╡п╣я│я┌п╦ я─п╟п╥п╠п╬я─: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Остальные ошибки синтакс.анализа будут проигнорированы."
+msgstr "п·я│я┌п╟п╩я▄п╫я▀п╣ п╬я┬п╦п╠п╨п╦ я─п╟п╥п╠п╬я─п╟ п╠я┐п╢я┐я┌ п©я─п╬п╦пЁп╫п╬я─п╦я─п╬п╡п╟п╫я▀."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
-msgstr "Нет ошибок"
+msgstr "п²п╣я┌ п╬я┬п╦п╠п╬п╨"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Файл не найден"
+msgstr "п╓п╟п╧п╩ п╫п╣ п╫п╟п╧п╢п╣п╫"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Общая ошибка"
+msgstr "п·п╠я┴п╟я▐ п╬я┬п╦п╠п╨п╟"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Внутренняя ошибка"
+msgstr "п▓п╫я┐я┌я─п╣п╫п╫я▐я▐ п╬я┬п╦п╠п╨п╟"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Неверные параметры"
+msgstr "п²п╣п╡п╣я─п╫я▀п╣ п©п╟я─п╟п╪п╣я┌я─я▀"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Неподдерживаемая операция"
+msgstr "п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪п╟я▐ п╬п©п╣я─п╟я├п╦я▐"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
-msgstr "Ошибка ввода/вывода"
+msgstr "п·я┬п╦п╠п╨п╟ п╡п╡п╬п╢п╟/п╡я▀п╡п╬п╢п╟"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Данные повреждены"
+msgstr "п■п╟п╫п╫я▀п╣ п©п╬п╡я─п╣п╤п╢п╣п╫я▀"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Недопустимый формат"
+msgstr "п²п╣п╢п╬п©я┐я│я┌п╦п╪я▀п╧ я└п╬я─п╪п╟я┌"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Неверный заголовок файла"
+msgstr "п²п╣п╡п╣я─п╫я▀п╧ п╥п╟пЁп╬п╩п╬п╡п╬п╨ я└п╟п╧п╩п╟"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Файл слишком большой"
+msgstr "п╓п╟п╧п╩ я│п╩п╦я┬п╨п╬п╪ п╠п╬п╩я▄я┬п╬п╧"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Не осталось места на устройстве"
+msgstr "п²п╣ п╬я│я┌п╟п╩п╬я│я▄ п╪п╣я│я┌п╟ п╫п╟ я┐я│я┌я─п╬п╧я│я┌п╡п╣"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Файловая система только для чтения"
+msgstr "п╓п╟п╧п╩п╬п╡п╟я▐ я│п╦я│я┌п╣п╪п╟ я┌п╬п╩я▄п╨п╬ п╢п╩я▐ я┤я┌п╣п╫п╦я▐"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Неверный URI"
+msgstr "п²п╣п╡п╣я─п╫я▀п╧ URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Файл не открыт"
+msgstr "п╓п╟п╧п╩ п╫п╣ п╬я┌п╨я─я▀я┌"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Режим открытия не правилен"
+msgstr "п²п╣п╢п╬п©я┐я│я┌п╦п╪я▀п╧ я─п╣п╤п╦п╪ п╬я┌п╨я─я▀я┌п╦я▐"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Доступ запрещен"
+msgstr "п■п╬я│я┌я┐п© п╥п╟п©я─п╣я┴п╣п╫"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Открыто слишком много файлов"
+msgstr "п·я┌п╨я─я▀я┌п╬ я│п╩п╦я┬п╨п╬п╪ п╪п╫п╬пЁп╬ я└п╟п╧п╩п╬п╡"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Конец файла"
+msgstr "п п╬п╫п╣я├ я└п╟п╧п╩п╟"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Не каталог"
+msgstr "п²п╣ п╨п╟я┌п╟п╩п╬пЁ"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Действие выполняется"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣ п╡я▀п©п╬п╩п╫я▐п╣я┌я│я▐"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Действие прервано"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣ п©я─п╣я─п╡п╟п╫п╬"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Файл существует"
+msgstr "п╓п╟п╧п╩ я│я┐я┴п╣я│я┌п╡я┐п╣я┌"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Обнаружены циклические ссылки"
+msgstr "п·п╠п╫п╟я─я┐п╤п╣п╫я▀ я├п╦п╨п╩п╦я┤п╣я│п╨п╦п╣ я│я│я▀п╩п╨п╦"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Действие не разрешено"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣ п╫п╣ я─п╟п╥я─п╣я┬п╣п╫п╬"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Это каталог"
+msgstr "п╜я┌п╬ п╨п╟я┌п╟п╩п╬пЁ"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Не достаточно памяти"
+msgstr "п²п╣п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п©п╟п╪я▐я┌п╦"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Хост не найден"
+msgstr "п╔п╬я│я┌ п╫п╣ п╫п╟п╧п╢п╣п╫"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Не подходящее имя хоста"
+msgstr "п²п╣п╢п╬п©я┐я│я┌п╦п╪п╬п╣ п╦п╪я▐ я┘п╬я│я┌п╟"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "У хоста нет адреса"
+msgstr "пё я┘п╬я│я┌п╟ п╫п╣я┌ п╟п╢я─п╣я│п╟"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Вход не удался"
+msgstr "п▓я┘п╬п╢ п╫п╣ я┐п╢п╟п╩я│я▐"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Действие отменено"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣ п╬я┌п╪п╣п╫п╣п╫п╬"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Каталог занят"
+msgstr "п п╟я┌п╟п╩п╬пЁ п╥п╟п╫я▐я┌"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Каталог не пуст"
+msgstr "п п╟я┌п╟п╩п╬пЁ п╫п╣ п©я┐я│я┌"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Слишком много ссылок"
+msgstr "п║п╩п╦я┬п╨п╬п╪ п╪п╫п╬пЁп╬ я│я│я▀п╩п╬п╨"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Файловая система только для чтения"
+msgstr "п╓п╟п╧п╩п╬п╡п╟я▐ я│п╦я│я┌п╣п╪п╟ я┌п╬п╩я▄п╨п╬ п╢п╩я▐ я┤я┌п╣п╫п╦я▐"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Не в той же файловой системе"
+msgstr "п²п╣ п╡ я┌п╬п╧ п╤п╣ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Слишком длинное имя"
+msgstr "п║п╩п╦я┬п╨п╬п╪ п╢п╩п╦п╫п╫п╬п╣ п╦п╪я▐"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Сервис не доступен"
+msgstr "п║п╣я─п╡п╦я│ п╫п╣ п╢п╬я│я┌я┐п©п╣п╫"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Запрос устаревших сервисных данных"
+msgstr "п≈п╟п©я─п╬я│ я┐я│я┌п╟я─п╣п╡я┬п╦я┘ я│п╣я─п╡п╦я│п╫я▀я┘ п╢п╟п╫п╫я▀я┘"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr "Ошибка протокола"
+msgstr "п·я┬п╦п╠п╨п╟ п©я─п╬я┌п╬п╨п╬п╩п╟"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
-msgstr "Неизвестная ошибка"
+msgstr "п²п╣п╦п╥п╡п╣я│я┌п╫п╟я▐ п╬я┬п╦п╠п╨п╟"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
-msgstr "1 байт"
+msgstr "1 п╠п╟п╧я┌"
 
 #: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
-msgstr "%u байт"
+msgstr "%u п╠п╟п╧я┌"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
@@ -296,686 +296,32 @@ msgstr "%.1f GB"
 #: modules/file-method.c:381
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Неизвестная GnomeVFSSeekPosition %d"
+msgstr "п²п╣п╦п╥п╡п╣я│я┌п╫п╟я▐ GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Не найден правильный файл установок в %s\n"
+msgstr "п²п╣ п╫п╟п╧п╢п╣п╫ п©я─п╟п╡п╦п╩я▄п╫я▀п╧ я└п╟п╧п╩ я┐я│я┌п╟п╫п╬п╡п╬п╨ п╡ %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Используйте переменную окружения %s для указания другого места.\n"
+msgstr "п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ п©п╣я─п╣п╪п╣п╫п╫я┐я▌ п╬п╨я─я┐п╤п╣п╫п╦я▐ %s п╢п╩я▐ я┐п╨п╟п╥п╟п╫п╦я▐ п╢я─я┐пЁп╬пЁп╬ п╪п╣я│я┌п╟.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "п╓п╟п╠я─п╦п╨п╟ Standard Moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "я└п╟п╧п╩ MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "п╬п╠я┴п╦п╧ п╪п╬п╫п╦п╨п╣я─ Gnome VFS"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "обычный моникер файла"
+msgstr "п╬п╠я┴п╦п╧ п╪п╬п╫п╦п╨п╣я─ я└п╟п╧п╩п╟"
 
-#~ msgid "3D Studio image"
-#~ msgstr "Изображение 3D Studi"
-
-#~ msgid "AIFC audio"
-#~ msgstr "Звук AIFC"
-
-#~ msgid "AIFF audio"
-#~ msgstr "Звук AIFF"
-
-#~ msgid "ANIM animation"
-#~ msgstr "Анимация ANIM"
-
-#~ msgid "AVI video"
-#~ msgstr "Видео AVI"
-
-#~ msgid "AbiWord document"
-#~ msgstr "Документ AbiWord"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "Шрифт Adobe FrameMaker"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "Метрики шрифта Adobe"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "Изображение ApplixWare Graphic"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "Документ Applixware Word"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Таблица Applixware"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "Изображение AutoCAD"
-
-#~ msgid "BCPIO document"
-#~ msgstr "Документ BCPIO"
-
-#~ msgid "BDF font"
-#~ msgstr "Шрифт BDF"
-
-#~ msgid "C shell script"
-#~ msgstr "Скрипт С-оболочки"
-
-#~ msgid "C source code"
-#~ msgstr "Исходный код C"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "Исходный код C"
-
-#~ msgid "C++ source code"
-#~ msgstr "Исходный код C++"
-
-#~ msgid "CGI program"
-#~ msgstr "Программа CGI"
-
-#~ msgid "CGM image"
-#~ msgstr "Изображение CGM"
-
-#~ msgid "CMU raster image"
-#~ msgstr "Растровое изображение CMU"
-
-#~ msgid "CPIO archive"
-#~ msgstr "Архив CPIO"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "Архив CPIO (сжатый gzip)"
-
-#~ msgid "DCL script"
-#~ msgstr "Скрипт DSL"
-
-#~ msgid "DOS font"
-#~ msgstr "Шрифт DOS"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "Программа DOS/Windows"
-
-#~ msgid "DSSSL document"
-#~ msgstr "Документ DSSSL"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "Векторная графика DXF"
-
-#~ msgid "Debian package"
-#~ msgstr "Пакет Debian"
-
-#~ msgid "Dia diagram"
-#~ msgstr "Диаграмма Dia"
-
-#~ msgid "Dolby Digital audio"
-#~ msgstr "Цифровой звук Dolby Digital"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "Исходный код Emacs Lisp"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "Тема для Enlightenment"
-
-#~ msgid "FLC animation"
-#~ msgstr "Анимация FLC"
-
-#~ msgid "FLI animation"
-#~ msgstr "Анимация FLI"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "Звук FastTracker II"
-
-#~ msgid "Fortran source code"
-#~ msgstr "Исходный текст Fortran"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "Документ обмена для FrameMaker"
-
-#~ msgid "G3 fax image"
-#~ msgstr "Факсовое изображение G3"
-
-#~ msgid "GIF image"
-#~ msgstr "Изображение GIF"
-
-#~ msgid "GIMP document"
-#~ msgstr "Документ GIMP"
-
-#~ msgid "GMC link"
-#~ msgstr "Ссылка GMC"
-
-#~ msgid "GNOME application details"
-#~ msgstr "Сведения о приложении GNOME"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "Таблица GNU Oleo"
-
-#~ msgid "GNU mail message"
-#~ msgstr "Почтовое сообщение GNU mail"
-
-#~ msgid "GTK configuration"
-#~ msgstr "Настройка GTK"
-
-#~ msgid "Glade project"
-#~ msgstr "Проект Glade"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "Рабочая книга GnuCash"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Таблица Gnumeric"
-
-#~ msgid "HDF document"
-#~ msgstr "Документ HDF"
-
-#~ msgid "HTML page"
-#~ msgstr "Страница HTML"
-
-#~ msgid "IDL document"
-#~ msgstr "Документ IDL"
-
-#~ msgid "IEF image"
-#~ msgstr "Изображение IEF"
-
-#~ msgid "IFF image"
-#~ msgstr "Изображение IFF"
-
-#~ msgid "ILBM image"
-#~ msgstr "Изображение ILBM"
-
-#~ msgid "ISI video"
-#~ msgstr "Видео ISI"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "Звук Impulse Tracker"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "Проект JBuilder"
-
-#~ msgid "JPEG image"
-#~ msgstr "Изображение JPEG"
-
-#~ msgid "Java byte code"
-#~ msgstr "Байт-код Java"
-
-#~ msgid "Java source code"
-#~ msgstr "Исходный текст Java"
-
-#~ msgid "KDE application details"
-#~ msgstr "Сведения о приложении KDE"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "Документ KIllustrator"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "Презентация KPresenter"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "Таблица KSpread"
-
-#~ msgid "KWord document"
-#~ msgstr "Документ KWord"
-
-#~ msgid "Korn shell script"
-#~ msgstr "Скрипт оболочки Korn"
-
-#~ msgid "LHA archive"
-#~ msgstr "Архив LHA"
-
-#~ msgid "LHARC archive"
-#~ msgstr "Архив LHARC"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "Шрифт LIBGRX"
-
-#~ msgid "LightWave object"
-#~ msgstr "Объект LightWave"
-
-#~ msgid "LightWave scene"
-#~ msgstr "Сцена LightWave"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "Консольный шрифт Linux PSF"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Таблица Lotus 1-2-3"
-
-#~ msgid "MIDI audio"
-#~ msgstr "Звук MIDI"
-
-#~ msgid "MOD audio"
-#~ msgstr "Звук MOD"
-
-#~ msgid "MP3 audio"
-#~ msgstr "Звук MP3"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "Список звуков MP3"
-
-#~ msgid "MPEG video"
-#~ msgstr "Видео MPEG"
-
-#~ msgid "MS ASF video"
-#~ msgstr "Видео MS ASF"
-
-#~ msgid "MS video"
-#~ msgstr "Видео MS"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Файл Macintosh кодированный AppleDouble"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Файл Macintosh кодированный BinHex"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Архив Macintosh StuffIt"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "Файл Macromedia Flash"
-
-#~ msgid "MathML document"
-#~ msgstr "Документ MathML"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Таблица Microsoft Excel"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Документ Microsoft PowerPoint"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "Документ Microsoft Word"
-
-#~ msgid "Microsoft video"
-#~ msgstr "Видео Microsoft"
-
-#~ msgid "Nautilus link"
-#~ msgstr "Ссылка Nautilus"
-
-#~ msgid "ODA document"
-#~ msgstr "Документ ODA"
-
-#~ msgid "PBM image"
-#~ msgstr "Изображение PBM"
-
-#~ msgid "PCF font"
-#~ msgstr "Шрифт PCF"
-
-#~ msgid "PDF document"
-#~ msgstr "Документ PDF"
-
-#~ msgid "PEF program"
-#~ msgstr "Программа PEF"
-
-#~ msgid "PGM image"
-#~ msgstr "Изображение PGM"
-
-#~ msgid "PGN chess game"
-#~ msgstr "Шахматный матч PGN"
-
-#~ msgid "PGP keys"
-#~ msgstr "Ключи PGP"
-
-#~ msgid "PGP message"
-#~ msgstr "Сообщение PGP"
-
-#~ msgid "PGP signature"
-#~ msgstr "Подпись PGP"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "Файл закодированный PGP"
-
-#~ msgid "PHP script"
-#~ msgstr "Скрипт PHP"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "Документ PN RealAudio"
-
-#~ msgid "PNG image"
-#~ msgstr "Изображение PNG"
-
-#~ msgid "PNM image"
-#~ msgstr "Изображение PNM"
-
-#~ msgid "PPM image"
-#~ msgstr "Изображение PPM"
-
-#~ msgid "Palm OS database"
-#~ msgstr "База данных Palm OS"
-
-#~ msgid "Perl script"
-#~ msgstr "Скрипт Perl"
-
-#~ msgid "Photoshop document"
-#~ msgstr "Документ Photoshop"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "Шрифт PostScript Type 1"
-
-#~ msgid "PostScript document"
-#~ msgstr "Документ PostScript"
-
-#~ msgid "Python source code"
-#~ msgstr "Исходный код Python"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "Фильм QuickTime"
-
-#~ msgid "Quicken document"
-#~ msgstr "Документ Quicken"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Документ Quicken for Windows"
-
-#~ msgid "RAR archive"
-#~ msgstr "Архив RAR"
-
-#~ msgid "README document"
-#~ msgstr "Документ README"
-
-#~ msgid "RGB image"
-#~ msgstr "Изображение RGB"
-
-#~ msgid "RIFF audio"
-#~ msgstr "Звук RIFF"
-
-#~ msgid "RPM package"
-#~ msgstr "Пакет RPM"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "Документ RealAudio/Video"
-
-#~ msgid "RealVideo video"
-#~ msgstr "Видео RealVideo"
-
-#~ msgid "S/MIME file"
-#~ msgstr "Файл S/MIME"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "Подпись S/MIME"
-
-#~ msgid "SGI video"
-#~ msgstr "Видео SGI"
-
-#~ msgid "SGML document"
-#~ msgstr "Документ SGML"
-
-#~ msgid "SMIL script"
-#~ msgstr "Скрипт SMIL"
-
-#~ msgid "SQL code"
-#~ msgstr "Код SQL"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "Архив SV4 CPIO"
-
-#~ msgid "Scheme source code"
-#~ msgstr "Исходный код Scheme"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Звук Scream Tracker 3"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "Звук Scream Tracker"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "Инструмент Scream Tracker"
-
-#~ msgid "Setext document"
-#~ msgstr "Документ Setext"
-
-#~ msgid "Speech document"
-#~ msgstr "Документ Speech"
-
-#~ msgid "Speedo font"
-#~ msgstr "Шрифт Speedo"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Документ Spreadsheet Interchange"
-
-#~ msgid "Stampede package"
-#~ msgstr "Пакет Stampede"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "Документ StarOffice Writer"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "Презентация StarOffice"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "Таблица StarOffice"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "Звук Sun mu-law"
-
-#~ msgid "SunOS News font"
-#~ msgstr "Шрифт SunOS News"
-
-#~ msgid "TIFF image"
-#~ msgstr "Изображение TIFF"
-
-#~ msgid "TarGA image"
-#~ msgstr "Изображение TarGA"
-
-#~ msgid "Tcl script"
-#~ msgstr "Скрипт Tcl"
-
-#~ msgid "TeX document"
-#~ msgstr "Документ TeX"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "Документ TeX dvi"
-
-#~ msgid "TeX font"
-#~ msgstr "Шрифт TeX"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "Метрики шрифта TeX"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "Документ TeXInfo"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "Документ ToutDoux"
-
-#~ msgid "TrueType font"
-#~ msgstr "Шрифт TrueType"
-
-#~ msgid "USENET news message"
-#~ msgstr "Сообщение новостей USENET"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Документ Unidata netCDF"
-
-#~ msgid "V font"
-#~ msgstr "Шрифт V font"
-
-#~ msgid "VOC audio"
-#~ msgstr "Звук VOC"
-
-#~ msgid "VRML document"
-#~ msgstr "Документ VRML"
-
-#~ msgid "Vivo video"
-#~ msgstr "Видео Vivo"
-
-#~ msgid "WAIS source code"
-#~ msgstr "Исходный код WAIS"
-
-#~ msgid "Wavelet video"
-#~ msgstr "Видео Wavelet"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "Изображение Windows bitmap"
-
-#~ msgid "Windows icon image"
-#~ msgstr "Изображение пиктограммы Windows"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "Графика Windows metafile"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "Документ WordPerfect"
-
-#~ msgid "X bitmap image"
-#~ msgstr "Изображение X bitmap"
-
-#~ msgid "X window image"
-#~ msgstr "Изображение X window"
-
-#~ msgid "XML document"
-#~ msgstr "Документ XML"
-
-#~ msgid "XPM image"
-#~ msgstr "Изображение XPM"
-
-#~ msgid "Xbase database"
-#~ msgstr "База данных Xbase"
-
-#~ msgid "ar archive"
-#~ msgstr "архив ar"
-
-#~ msgid "arj archive"
-#~ msgstr "архив arj"
-
-#~ msgid "authors list"
-#~ msgstr "список авторов"
-
-#~ msgid "backup file"
-#~ msgstr "резервный файл"
-
-#~ msgid "bibliography record"
-#~ msgstr "библиографическая запись"
-
-#~ msgid "binary program"
-#~ msgstr "двоичная программа"
-
-#~ msgid "block device"
-#~ msgstr "блочное устройство"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "файл сжатый bzip"
-
-#~ msgid "calendar file"
-#~ msgstr "файл календаря"
-
-#~ msgid "character device"
-#~ msgstr "символьное устройство"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "документ с текстовыми полями разделёнными запятыми"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "файл сжатый compress"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "сжатый документ GIMP"
-
-#~ msgid "directory information file"
-#~ msgstr "файл информации о каталоге"
-
-#~ msgid "email headers"
-#~ msgstr "заголовок эл.письма"
-
-#~ msgid "email message"
-#~ msgstr "эл.письмо"
-
-#~ msgid "encrypted message"
-#~ msgstr "зашифрованное сообщение"
-
-#~ msgid "folder"
-#~ msgstr "папка"
-
-#~ msgid "gtar archive"
-#~ msgstr "архив gtar"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "файл сжатый gzip"
-
-#~ msgid "object code"
-#~ msgstr "объектный код"
-
-#~ msgid "ogg audio"
-#~ msgstr "звук ogg"
-
-#~ msgid "plain text document"
-#~ msgstr "текстовый документ"
-
-#~ msgid "reference to remote file"
-#~ msgstr "ссылка на удалённый файл"
-
-#~ msgid "rejected patch file"
-#~ msgstr "отброшенный файл заплатки"
-
-#~ msgid "search results"
-#~ msgstr "результаты поиска"
-
-#~ msgid "shared library"
-#~ msgstr "разделяемая библиотека"
-
-#~ msgid "shell archive"
-#~ msgstr "архив оболочки"
-
-#~ msgid "shell script"
-#~ msgstr "Скрипт оболочки"
-
-#~ msgid "signed message"
-#~ msgstr "подписанное сообщение"
-
-#~ msgid "socket"
-#~ msgstr "сокет"
-
-#~ msgid "software installation instructions"
-#~ msgstr "инструкции по установке программы"
-
-#~ msgid "source code patch"
-#~ msgstr "заплатка к исходному коду"
-
-#~ msgid "style sheet"
-#~ msgstr "таблица стилей"
-
-#~ msgid "symbolic link"
-#~ msgstr "символическая ссылка"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "текстовый документ с полями разделёнными табуляцией"
-
-#~ msgid "tar archive"
-#~ msgstr "архив tar"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "архив tar (сжатый bzip)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "архив tar (сжатый gzip)"
-
-#~ msgid "theme"
-#~ msgstr "тема"
-
-#~ msgid "troff document"
-#~ msgstr "документ troff"
-
-#~ msgid "unknown type"
-#~ msgstr "неизвестный тип"
-
-#~ msgid "ustar archive"
-#~ msgstr "архив ustar"
-
-#~ msgid "wave audio"
-#~ msgstr "звук wave"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "векторная графика xfig"
-
-#~ msgid "zip archive"
-#~ msgstr "архив zip"
-
-#~ msgid "zoo archive"
-#~ msgstr "архив zoo"
