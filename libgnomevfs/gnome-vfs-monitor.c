@@ -55,6 +55,7 @@ struct GnomeVFSMonitorCallbackData {
 	guint32 send_at;
 };
 
+/* Number of seconds between consecutive events of the same type to the same file */
 #define CONSECUTIVE_CALLBACK_DELAY 2
 
 typedef struct GnomeVFSMonitorCallbackData GnomeVFSMonitorCallbackData;
@@ -122,6 +123,7 @@ _gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 	return result;
 }
 
+/* Called with handle_hash lock held */
 static gboolean
 no_live_callbacks (GnomeVFSMonitorHandle *monitor_handle)
 {
@@ -142,6 +144,7 @@ no_live_callbacks (GnomeVFSMonitorHandle *monitor_handle)
 	return TRUE;
 }
 
+/* Called with handle_hash lock held */
 static void
 destroy_monitor_handle (GnomeVFSMonitorHandle *handle)
 {
@@ -299,6 +302,7 @@ actually_dispatch_callback (gpointer data)
 	return FALSE;
 }
 
+/* Called with handle_hash lock held */
 static void
 send_uri_changes_now (GnomeVFSMonitorHandle *monitor_handle,
 		      const char *uri,
@@ -317,6 +321,7 @@ send_uri_changes_now (GnomeVFSMonitorHandle *monitor_handle,
 	}
 }
 
+/* Called with handle_hash lock held */
 static guint32
 get_min_delay  (GList *list, gint32 now)
 {

@@ -1,3 +1,15 @@
+2003-03-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_symlink):
+	Check for errors when copying symlinks.
+
+2003-03-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_callback):
+	Throttle the change event rate so that applications don't
+	use 100% cpu when monitoring a directory someone is downloading
+	to.
+
 2003-03-14  Dave Camp  <dave@ximian.com>
 
 	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
