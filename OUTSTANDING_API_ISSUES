@@ -21,7 +21,6 @@ Basic recommendations to avoid application breakage:
 
 ---------------------------
 
-* 8450 - [API] The new metadata API in gnome-vfs needs to be finished
 * 8451 - [API] gnome-vfs needs an API for filesystem monitoring
 * 8447 - [API] Authentication callback API is not threadsafe
 * 8448 - [API] Authentication callbacks require explicit threading when using async API
@@ -45,7 +44,6 @@ Basic recommendations to avoid application breakage:
 * 1205 - [API] separate xfer options and xfer actions
 * 6840 - [API] There is no way to remove a system wide default application.
 * 2801 - [API] GnomeVFSURI should handle URIs with schemes that no module can handle
-* 8505 - [API] gnome-vfs should return the same file icons as Nautilus
 * 8506 - [API] URI schemes want to specify icon, default application, etc
 * 8507 - [API] it should be possible to do http POSTs
 * 8508 - [API] change module stacking interface to enable proper moniker support
@@ -61,3 +59,5 @@ Basic recommendations to avoid application breakage:
   doesn't need to be a module any more
 * 8518 - [API] gnome-vfs-helpers API needs cleanup
 * 8519 - [API] rename `method' to something else (`module'? `protocol'? `scheme'?)
+* 8544 - [API] add thumbnail support
+* 8545 - [API] Add prioritized versions of all async calls
