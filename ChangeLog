@@ -1,3 +1,8 @@
+2000-11-01  Aaron Brick <aaron@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	added handling for application/postscript
+	
 2000-11-01  Pavel Cisler <pavel@eazel.com>
 
 	Work on handling '?' in URIs properly, helping Darin with a
