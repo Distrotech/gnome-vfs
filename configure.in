@@ -461,6 +461,7 @@ fi
 
 dnl modules/cdda
 
+AM_CONDITIONAL(HAVE_CDDA, false);
 AC_CHECK_LIB(cdda_paranoia, paranoia_read, [
 	AC_CHECK_LIB(cdda_interface, cdda_open, [
 		CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
@@ -468,14 +469,6 @@ AC_CHECK_LIB(cdda_paranoia, paranoia_read, [
 	])
 ])
 
-dnl modules/cdda
-
-AC_CHECK_LIB(cdda_paranoia, paranoia_read, [
-	AC_CHECK_LIB(cdda_interface, cdda_open, [
-		CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
-		AM_CONDITIONAL(HAVE_CDDA, true);
-	])
-])
 
 dnl Final touch
 

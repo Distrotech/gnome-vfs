@@ -255,7 +255,7 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 	result = GNOME_VFS_ERROR_GENERIC;
 	*method_handle = NULL;
 
-	g_message ("cdda do_open: %s", gnome_vfs_uri_get_path (uri));
+	//g_message ("cdda do_open: %s", gnome_vfs_uri_get_path (uri));
 
 	// Load in context for disc if we not yet done so.
 	if (global_context == NULL) {
@@ -279,7 +279,7 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 		gnome_vfs_uri_unref (dir_uri);
 
 		if (result != GNOME_VFS_OK) {
-			g_message ("cdda do_open: Unable to load context");
+			//g_message ("cdda do_open: Unable to load context");
 			return result;
 		}
 	}
@@ -302,7 +302,7 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 				}
 				
  				if (!cdda_track_audiop (global_context->drive, track)) {
-    					g_message ("Error. Selected track is not an audio track.");
+    					//g_message ("Error. Selected track is not an audio track.");
     					return GNOME_VFS_ERROR_GENERIC;
   				}
 
@@ -346,7 +346,7 @@ do_close (GnomeVFSMethod *method,
 {
 	ReadHandle *read_handle;
 	
-	g_message ("cdda do_close");
+	//g_message ("cdda do_close");
 
 	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
 
@@ -574,7 +574,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	char *escaped_name;
 
-	g_message ("do_get_file_info: %s", gnome_vfs_uri_get_path (uri));
+	//g_message ("do_get_file_info: %s", gnome_vfs_uri_get_path (uri));
 	
 	use_base = FALSE;
 	use_cache = FALSE;
@@ -616,7 +616,7 @@ do_get_file_info (GnomeVFSMethod *method,
 			use_base = TRUE;
 	}
 
-	//	Check and see if we already have opened and stashed this drive
+	// Check and see if we already have opened and stashed this drive
 	if (!use_base) {
 		if (global_context != NULL) {
 			if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) == 0) {
@@ -743,10 +743,10 @@ do_close_directory (GnomeVFSMethod *method,
 {
 	CDDAContext *cdda_context = (CDDAContext *)method_handle;
 
-	g_message ("cdda do_close_directory");
+	//g_message ("cdda do_close_directory");
 
 	if (cdda_context == NULL) {
-		g_message ("cdda do_close_directory: NULL cdda context");	
+		//g_message ("cdda do_close_directory: NULL cdda context");	
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 	

@@ -1,5 +1,15 @@
 2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
 
+	* configure.in:
+	Fix tinderbox breakage. This is what happens when I pretend to be a build
+	engineer.
+	
+	* modules/cdda-method.c: (do_open), (do_close), (do_get_file_info),
+	(do_close_directory):
+	Removed some debug messages.
+	
+2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
+
 	* modules/cdda-cddb.c:
 	Added a workaround for the strangely defined, but unused,
 	static arrays of chars in cdparanoia headers that causes
