@@ -94,7 +94,8 @@ GnomeVFSResult           gnome_vfs_mime_extend_all_applications            (cons
 GnomeVFSResult           gnome_vfs_mime_remove_from_all_applications       (const char              *mime_type,
 									    GList                   *application_ids);
 GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_id            (const char              *id);
-GnomeVFSResult           gnome_vfs_mime_define_application                 (GnomeVFSMimeApplication *application);
+GnomeVFSResult           gnome_vfs_mime_define_application                 (const char 		    *mime_type,
+									    GnomeVFSMimeApplication *application);
 void                     gnome_vfs_mime_application_free                   (GnomeVFSMimeApplication *application);
 void                     gnome_vfs_mime_action_free                        (GnomeVFSMimeAction      *action);
 

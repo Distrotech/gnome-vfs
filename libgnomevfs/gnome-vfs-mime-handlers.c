@@ -1422,24 +1422,20 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 }
 
 GnomeVFSResult
-gnome_vfs_mime_define_application (GnomeVFSMimeApplication *application)
+gnome_vfs_mime_define_application (const char *mime_type, GnomeVFSMimeApplication *application)
 {
-	char *hack_mime_type;
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (application != NULL, GNOME_VFS_OK);
-
-	hack_mime_type = g_strconcat ("x-application-registry-hack/", application->id, NULL);
+	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_OK);
 
 	result = gnome_vfs_mime_edit_user_file_multiple
-		(hack_mime_type,
+		(mime_type,
 		 "name", application->name,
 		 "command", application->command,
 		 "can_open_multiple_files", bool_to_str (application->can_open_multiple_files),
 		 "can_open_uris", bool_to_str (application->can_open_uris),
 		 NULL);
-
-	g_free (hack_mime_type);
 
 	return result;
 }

@@ -158,7 +158,7 @@ main (int argc, char **argv)
 		app.can_open_multiple_files = str_to_bool (g_list_nth (stuff, 3)->data);
 		app.can_open_uris = str_to_bool (g_list_nth (stuff, 4)->data);
 		
-		gnome_vfs_mime_define_application (&app);
+		gnome_vfs_mime_define_application ("x-application-registry-hack", &app);
 	} else {
 		usage (argv[0]);
 	}

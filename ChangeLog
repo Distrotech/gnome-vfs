@@ -1,3 +1,27 @@
+2000-06-22  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug #581.  Ui for specifying whether applicaition
+	can open multiple files at once.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	(gnome_vfs_mime_define_application):
+	Added const char * argument for mime type.  Removed placeholder
+	mime type.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(populate_default_applications_list),
+	(populate_default_components_box),
+	(initialize_edit_applications_dialog), (add_new_application),
+	(show_new_application_window), (show_edit_application_window):
+	Modified edit applicaiton list dialog to use a GtkList with
+	embedded check buttons and labels.  This allows single list items
+	to be selected so that individual items can be edited or deleted.
+	
+	* test/test-mime-handlers-set.c: (main):
+	Fixed call to gnome_vfs_mime_define_application to use
+	new argument.
+
 2000-06-22  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h:
