@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-11-14 14:26+0100\n"
-"PO-Revision-Date: 2000-11-14 14:27CET\n"
+"POT-Creation-Date: 2000-11-20 14:55+0100\n"
+"PO-Revision-Date: 2000-11-20 14:58CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
 "MIME-Version: 1.0\n"
@@ -427,43 +427,43 @@ msgstr "Nemô¾em vytvori» rúru pre otvorenie GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:333
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:336
 msgid "Edit Applications List"
 msgstr "Upravi» zoznam aplikácií"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Vyberte aplikácie, ktoré budú v menu pre typ mime \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:377
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
 msgid "Add Application..."
 msgstr "Prida» aplikáciu..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Application..."
 msgstr "Upravi» aplikáciu..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:390
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
 msgid "Delete Application"
 msgstr "Zmaza» aplikáciu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:423
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:426
 msgid "Edit Components List"
 msgstr "Upravi» zoznam komponent"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:443
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Vyberte pohµady, ktoré budú v menu pre typ mime \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:620
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:623
 msgid "Add Mime Type"
 msgstr "Prida» typ mime"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:621
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:625
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -471,23 +471,35 @@ msgstr ""
 "Pridá nový typ Mime\n"
 "Napríklad:  image/tiff, text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:630
 msgid "Mime Type:"
 msgstr "Typ mime:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:638
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:642
 msgid "Type in a description for this mime-type."
 msgstr "Zadajte popis tohoto typu mime."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:648
 msgid "Description:"
 msgstr "Popis:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:784
+msgid "File Extensions "
+msgstr "Prípony súborov "
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+msgid "Add..."
+msgstr "Prida»..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:809
+msgid "    Remove    "
+msgstr "    Odstráni»    "
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:876
 msgid "Add New Extension"
 msgstr "Prida» novú príponu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:880
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -495,115 +507,121 @@ msgstr ""
 "Zadajte prípony pre tento typ mime.\n"
 "Napríklad: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:885
 msgid "Extension:"
 msgstr "Prípona:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:848
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid "New Application"
 msgstr "Nová aplikácia"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:857
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:961
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1054
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1158
 msgid "Application Name:"
 msgstr "Meno aplikácie:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:865
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:970
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1062
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1167
 msgid "Application Command:"
 msgstr "Príkaz aplikácie:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:873
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:979
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1070
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1176
 msgid "Open Behavior"
 msgstr "Chovanie otvorenia"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:879
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1076
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
 msgid "Can open multiple files"
 msgstr "Mô¾e otvori» viacero súborov"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1079
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1186
 msgid "Can open from URI"
 msgstr "Mô¾e otvori» URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:952
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1149
 msgid "Edit Application"
 msgstr "Upravi» aplikáciu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:356
-msgid "Change Icon"
-msgstr "Zmeni» ikonu"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:368
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1346
+#: mime-type-capplet/nautilus-mime-type-capplet.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1567
 msgid "Mime Type"
 msgstr "Typ mime"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
-msgid "Add new Mime type..."
-msgstr "Pridá nový typ mime..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:600
+msgid "Change Icon"
+msgstr "Zmeni» ikonu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
-msgid "Delete this Mime type..."
-msgstr "Vyma¾e tento typ mime..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:607
+msgid "Change File Extensions"
+msgstr "Zmeni» prípony súborov"
 
-#. Set up top right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:401
+#: mime-type-capplet/nautilus-mime-type-capplet.c:615
 msgid "Default Action:"
 msgstr "©tandardná akcia:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+#: mime-type-capplet/nautilus-mime-type-capplet.c:627
 msgid "Use Viewer"
 msgstr "Pou¾i» zobrazovaè"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet.c:633
 msgid "Open With Application"
 msgstr "Otvori» aplikáciou"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+#: mime-type-capplet/nautilus-mime-type-capplet.c:645
 msgid "Edit List"
 msgstr "Upravi» zoznam"
 
-#. Set up bottom right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:435
-msgid "Extensions:"
-msgstr "Prípony:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:664
+msgid "Add new Mime type..."
+msgstr "Pridá nový typ mime..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:458
-msgid "Add"
-msgstr "Prida»"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:670
+msgid "Delete this Mime type..."
+msgstr "Vyma¾e tento typ mime..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:461
-msgid "Remove"
-msgstr "Odstráni»"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:681
+msgid "Revert to System Defaults"
+msgstr "Návrat k systémovému nastaveniu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:525
+#: mime-type-capplet/nautilus-mime-type-capplet.c:739
 msgid "No Description"
 msgstr "Bez popisu"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:648
-#: mime-type-capplet/nautilus-mime-type-capplet.c:793
-#: mime-type-capplet/nautilus-mime-type-capplet.c:928
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1138
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1238
+#: mime-type-capplet/nautilus-mime-type-capplet.c:869
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1014
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1179
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1360
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1482
 msgid "None"
 msgstr "®iadna"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1345
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1110
+msgid ""
+"Reverting to system settings\n"
+"will lose all your personal \n"
+"Mime configuration.\n"
+"Revert to System Settings ?\n"
+msgstr ""
+"Návrat k systémovému nastaveniu\n"
+"zahodí celé va¹e osobné\n"
+"nastavenie Mime.\n"
+"Vráti» sa k systémovému nastaveniu?\n"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1566
 msgid "Description"
 msgstr "Popis"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1347
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1568
 msgid "Extension"
 msgstr "Prípona"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1348
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1569
 msgid "Action"
 msgstr "Akcia"
 
@@ -620,22 +638,22 @@ msgstr "Uká¾ka"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznáma GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1149
+#: modules/http-method.c:1173
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s e¹te prija»"
 
-#: modules/http-method.c:1514
+#: modules/http-method.c:1572
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Zatváram spojenie na %s"
 
-#: modules/http-method.c:1726
+#: modules/http-method.c:1803
 #, c-format
 msgid "%s of %s read"
 msgstr "%s z %s preèítané"
 
-#: modules/http-method.c:1729
+#: modules/http-method.c:1806
 #, c-format
 msgid "%s read"
 msgstr "%s preèítané"
