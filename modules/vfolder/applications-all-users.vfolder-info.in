@@ -60,7 +60,7 @@
     <!-- Other, catch-all unmatched folder -->
     <Folder>
       <Name>Other</Name>
-      <Desktop>Applications.directory</Desktop>
+      <Desktop>Other.directory</Desktop>
       <OnlyUnallocated/>
       <Query>
 	<And>
