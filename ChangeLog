@@ -1,5 +1,11 @@
 2004-08-12  Christophe Fergeau  <teuf@gnome.org>
 
+	* configure.in: post release version bump
+
+=== gnome-vfs 2.6.2 ===
+
+2004-08-12  Christophe Fergeau  <teuf@gnome.org>
+
 	* NEWS: updated
 
 2004-08-12  Ryan Lortie  <desrt@desrt.ca>
