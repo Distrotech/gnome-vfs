@@ -1,3 +1,8 @@
+2000-10-31  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Got rid of vendor again. Checking this in is
+	a bad idea. See discussion in bug 3461 for details.
+
 2000-10-31  Ali Abdin  <aliabdin@aucegypt.edu>
 
 	* data/mime/gnome-vfs-mime-magic:
