@@ -1,3 +1,7 @@
+2003-01-22  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "mn" to ALL_LINGUAS.
+
 ==== gnome-vfs 2.2.0 ====
 	
 2003-01-20  Alexander Larsson  <alexl@redhat.com>
