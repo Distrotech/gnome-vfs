@@ -1194,7 +1194,7 @@ sig_gconf_value_changed (
 	if ( key && 0 == strcmp (KEY_GCONF_HTTP_PROXY, key)) {
 		if (value) {
 			if (GCONF_VALUE_STRING == value->type) {
-				gl_http_proxy = g_strdup (gconf_value_string (value));
+				gl_http_proxy = g_strdup (gconf_value_to_string (value));
 				DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
 			} else {
 				DEBUG_HTTP (("Incorrect type for HTTP proxy setting"));
@@ -2341,7 +2341,7 @@ vfs_module_init (const char *method_name, const char *args)
 {
         char *argv[] = {"dummy"};
         int argc = 1;
-        GConfError *err_gconf = NULL;
+        GError *err_gconf = NULL;
         GConfValue *val_gconf = NULL;
 
 	/* Ensure GConf is init'd.  If more modules start to rely on
@@ -2375,7 +2375,7 @@ vfs_module_init (const char *method_name, const char *args)
 
 	if (err_gconf) {
 		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->str));
-		gconf_error_destroy (err_gconf);
+		g_error_free (err_gconf);
 	}
 
 	gtk_signal_connect (GTK_OBJECT(gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
@@ -2386,7 +2386,7 @@ vfs_module_init (const char *method_name, const char *args)
 
 	if (err_gconf) {
 		DEBUG_HTTP (("GConf error during client_get '%s'", err_gconf->str));
-		gconf_error_destroy (err_gconf);
+		g_error_free (err_gconf);
 	} else if (val_gconf) {
 		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, val_gconf);
 	}

@@ -1,3 +1,12 @@
+2000-10-03  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* configure.in:
+	* gnome-vfs.spec.in:
+	* modules/gconf-method.c: (read_directory):
+	* modules/http-method.c: (sig_gconf_value_changed),
+	(vfs_module_init):
+	Update for GConf HEAD (0.9)
+
 2000-10-03  Christophe Merlet  <christophe@merlet.net>
 
 	* data/mime/gnome-vfs.keys: Added french strings.

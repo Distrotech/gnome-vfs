@@ -558,7 +558,7 @@ read_directory (DirectoryHandle *handle,
 		GConfEntry *pair = handle->pairs->data;
                 result = file_info_value (file_info, handle->options,
                                           pair->value, pair->key);
-                gconf_entry_destroy (handle->pairs->data);
+                gconf_entry_free (handle->pairs->data);
                 tmp = g_slist_next (handle->subdirs);
                 
 		g_slist_free_1 (handle->pairs);
