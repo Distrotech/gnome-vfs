@@ -1,3 +1,12 @@
+2001-01-29  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 5847, MIME type capplet alphabetical oder case sensitive
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(sort_case_insensitive), (column_clicked),
+	(create_mime_list_and_scroller):
+	Create a sort routine that is not case sensitive.
+
 2001-01-29  Rebecca Schulman  <rebecka@eazel.com>
 
 	* test/test-mime-handlers.c: (print_application):
@@ -21,6 +30,7 @@
 
 	* configure.in: upped version to 0.5.0
 
+>>>>>>> 1.918
 2001-01-27  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* Makefile.am: added xml-i18n files to EXTRA_DISTS
@@ -103,6 +113,7 @@
 	* modules/file-method.h:
 	Fix messed up header guards.
 
+>>>>>>> 1.915
 2001-01-25  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>
