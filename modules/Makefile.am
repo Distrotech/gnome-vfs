@@ -17,6 +17,7 @@ INCLUDES =					\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
+	programs.vfolder-info.in		\
 	default-modules.conf			\
 	cdda-module.conf			\
 	ssl-modules.conf
@@ -35,6 +36,7 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
 	libdesktop.la				\
+	libvfolder-desktop.la			\
 	libextfs.la				\
 	libfile.la				\
 	libvfs-test.la				\
@@ -85,6 +87,22 @@ libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
 
 libdesktop_la_SOURCES = desktop-method.c
 libdesktop_la_LDFLAGS = $(module_flags)
+
+###  `vfolder-desktop' method
+
+libvfolder_desktop_la_SOURCES = vfolder-desktop-method.c
+libvfolder_desktop_la_LDFLAGS = $(module_flags)
+
+vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
+vfolder_DATA = programs.vfolder-info
+
+# Evil, but I can't figure out how I would make autoconf do
+# it right
+programs.vfolder-info: programs.vfolder-info.in
+	sed -e "s,\@datadir\@,$(datadir)," \
+	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
+	    -e "s,\@prefix\@,$(prefix)," \
+	    < $< > $@
 
 ###  `ssh' method
 

@@ -1,0 +1,141 @@
+<VFolderInfo>
+  <!-- Merge dirs optional -->
+  <MergeDir>/etc/X11/applnk/</MergeDir>
+  <MergeDir>@datadir@/gnome/apps/</MergeDir>
+
+  <!-- Root folder -->
+  <Folder>
+    <Name>Root</Name>
+
+    <Query>
+      <Or>
+        <Keyword>Core</Keyword>
+      </Or>
+    </Query>
+
+    <!-- Other folders -->
+
+    <!-- Applications -->
+    <Folder>
+      <Name>Applications</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+          <Not>
+            <Or>
+              <Keyword>Core</Keyword>
+              <Keyword>Development</Keyword>
+              <Keyword>TextEditor</Keyword>
+              <Keyword>Game</Keyword>
+              <Keyword>Graphics</Keyword>
+              <Keyword>Network</Keyword>
+              <Keyword>AudoView</Keyword>
+              <Keyword>Settings</Keyword>
+              <Keyword>System</Keyword>
+              <Keyword>Utility</Keyword>
+            </Or>
+          </Not>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Development -->
+    <Folder>
+      <Name>Development</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Development</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Editors -->
+    <Folder>
+      <Name>Editors</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>TextEditor</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Games -->
+    <Folder>
+      <Name>Games</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Game</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Graphics -->
+    <Folder>
+      <Name>Graphics</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Graphics</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Graphics -->
+    <Folder>
+      <Name>Internet</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Network</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Multimedia -->
+    <Folder>
+      <Name>Multimedia</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>AudioVideo</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Settings -->
+    <Folder>
+      <Name>Settings</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Settings</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- System -->
+    <Folder>
+      <Name>System</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>System</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
+    <!-- Utility -->
+    <Folder>
+      <Name>Utility</Name>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+	  <Keyword>Utility</Keyword>
+        </And>
+      </Query>
+    </Folder>
+  </Folder>
+</VFolderInfo>

@@ -1,3 +1,18 @@
+Sun Oct 14 23:25:41 2001  George Lebl <jirka@5z.com>
+
+	* modules/Makefile.am, modules/programs.vfolder-info.in,
+	  modules/default-modules.conf:  Make the vfolder-desktop-method
+	  the default for programs: and install the programs.vfolder-info
+	  file which now is basically the same as the current scheme
+	  of directories.  It needs to be modified to be like nils's
+	  proposal which is cooler.
+
+	* modules/vfolder-desktop-method.c:  Change to use
+	  <scheme>.vfolder-info, to make it possible to use it for other
+	  schemes then programs:.  Read override vfolder-info from users
+	  directory if it exists in preparation for writing.  Implement
+	  SortOrder.  Fix reading 'Not' queries.
+
 Sun Oct 14 02:31:58 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c:  Implement most of the read-only
