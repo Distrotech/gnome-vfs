@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
                "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">	       
 <!ENTITY gnome-vfs-writing-modules SYSTEM "writing-modules.sgml">
 <!ENTITY gnome-vfs-about SYSTEM "about.sgml">
 <!ENTITY gnome-vfs-mime-monitor SYSTEM "xml/gnome-vfs-mime-monitor.xml">
@@ -45,6 +46,7 @@
 <book id="index">
   <bookinfo>
     <title>GnomeVFS - Filesystem Abstraction library</title>
+    <releaseinfo>for GnomeVFS &version</releaseinfo>
     <authorgroup>
       <author>
 	<firstname>Seth</firstname>

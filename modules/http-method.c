@@ -2512,6 +2512,7 @@ do_get_file_info (GnomeVFSMethod *method,
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
 					http_cache_add_uri (uri, handle->file_info, FALSE);
 					http_handle_close (handle, context);
+					handle = NULL;
 				}
 
 				/* If we get a redirect, we should be
