@@ -1,3 +1,8 @@
+gnome-vfs 2.3.90
+
+	* Bugs fixed:
+	       + Just emit one mime db changed signal per change
+
 gnome-vfs 2.3.8
 
 	* Bugs fixed:

@@ -1,5 +1,10 @@
 2003-09-02  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS: 
+	* configure.in:  2.3.90
+
+2003-09-02  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-monitor.c:
 	Add a small delay to the mime db changed signal emission
 	to avoid sending multiple events for one change.
