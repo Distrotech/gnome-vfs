@@ -303,6 +303,8 @@ parse_file (Configuration *configuration,
 		line_number += lines_read;
 	}
 
+	g_free (line_buffer);
+
 	fclose (f);
 
 	return TRUE;

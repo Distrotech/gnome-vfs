@@ -449,8 +449,10 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 
 	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	len = strlen (uri_string);
-	if (len == 0)
+	if (len == 0) {
+		g_free (uri_string);
 		return gnome_vfs_uri_new (path);
+	}
 
 	len--;
 	while (uri_string[len] == '/' && len > 0)
@@ -462,7 +464,9 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 
 	new_string = g_strconcat (uri_string, "/", path, NULL);
 	new = gnome_vfs_uri_new (new_string);
+
 	g_free (new_string);
+	g_free (uri_string);
 
 	return new;
 }

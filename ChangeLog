@@ -1,3 +1,11 @@
+1999-11-12  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_append_path): Make sure
+	`uri_string' is always freed.
+
+	* libgnomevfs/gnome-vfs-configuration.c (parse_file): Free the
+	line buffer on exit.
+
 1999-11-08  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c (xfer_create_target): Set `retry'
