@@ -198,7 +198,7 @@ dispatch_create_callback (GnomeVFSJob *job)
 		      create_job->notify.result,
 		      job->callback_data);
 
-	gnome_vfs_uri_unref (open_job->request.uri);
+	gnome_vfs_uri_unref (create_job->request.uri);
 }
 
 static void
@@ -216,7 +216,7 @@ dispatch_open_as_channel_callback (GnomeVFSJob *job)
 		      open_as_channel_job->notify.result,
 		      job->callback_data);
 
-	gnome_vfs_uri_unref (open_job->request.uri);
+	gnome_vfs_uri_unref (open_as_channel_job->request.uri);
 }
 
 static void
@@ -234,7 +234,7 @@ dispatch_create_as_channel_callback (GnomeVFSJob *job)
 		      create_as_channel_job->notify.result,
 		      job->callback_data);
 
-	gnome_vfs_uri_unref (open_job->request.uri);
+	gnome_vfs_uri_unref (create_as_channel_job->request.uri);
 }
 
 static void
@@ -306,7 +306,7 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 		      load_directory_job->notify.entries_read,
 		      job->callback_data);
 
-	gnome_vfs_uri_unref (open_job->request.uri);
+	gnome_vfs_uri_unref (load_directory_job->request.uri);
 }
 
 static void
