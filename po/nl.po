@@ -1,6 +1,6 @@
 # translation of gnome-vfs.HEAD.po to Dutch
-# a.t.meinen <adrighem@gnome.org>, 2003.
-# Vincent van Adrighem <adrighem@gnome.org>, 2003.
+# a.t.meinen <a.t.meinen@chello.nl>, 2003.
+# Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
 #
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "POT-Creation-Date: 2003-12-04 03:58+0100\n"
 "PO-Revision-Date: 2003-11-21 14:18+0100\n"
 "Last-Translator: Vincent van Adrighem <adrighem@gnome.org>\n"
-"Language-Team: Dutch <adrighem@gnome.org>\n"
+"Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
