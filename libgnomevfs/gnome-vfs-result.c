@@ -81,7 +81,8 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_NO_HANDLER */		N_("No handler for URL scheme"),
 	/* GNOME_VFS_ERROR_PARSE */			N_("Error parsing command line"),
 	/* GNOME_VFS_ERROR_LAUNCH */			N_("Error launching command"),
-	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached")
+	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached"),
+	/* GNOME_VFS_ERROR_DEPRECATED_FUNCTION */       N_("Function call deprecated")
 };
 
 
