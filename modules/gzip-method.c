@@ -23,6 +23,7 @@
 
 #include <config.h>
 
+#include <glib/galloca.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
@@ -32,10 +33,6 @@
 #include <string.h>
 #include <time.h>
 #include <zlib.h>
-
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
 
 struct _GZipMethodHandle {
 	GnomeVFSURI *uri;
@@ -277,7 +274,7 @@ skip (GnomeVFSHandle *handle,
 	guchar *tmp;
 	GnomeVFSFileSize bytes_read;
 
-	tmp = alloca (num_bytes);
+	tmp = g_alloca (num_bytes);
 
 	result = gnome_vfs_read (handle, tmp, num_bytes, &bytes_read);
 	RETURN_IF_FAIL (result);

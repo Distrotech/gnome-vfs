@@ -24,6 +24,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <glib/galloca.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
 #include <glib/gthread.h>
@@ -37,10 +38,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
 
 typedef struct {
 	enum {
@@ -995,7 +992,7 @@ static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 	int argc = 0;
 	char *s;
 
-	s = alloca(strlen(buf) + 1);
+	s = g_alloca(strlen(buf) + 1);
 	strcpy(s, buf);
 
 	argv[argc] = buf;
@@ -1073,7 +1070,7 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 
 	memset(pa, 0, sizeof(ParsedArgs));
 
-	tmp_args = alloca(strlen(args) + 1);
+	tmp_args = g_alloca(strlen(args) + 1);
 	strcpy(tmp_args, args);
 
 	if (my_poptParseArgvString(tmp_args, &argc, &argv)) {

@@ -1,3 +1,10 @@
+2001-09-25  Darin Adler  <darin@bentspoon.com>
+
+	* modules/gzip-method.c: (skip):
+	* modules/translate-method.c: (my_poptParseArgvString),
+	(tr_args_parse):
+	Use g_alloca instead of alloca for better portability.
+
 2001-09-20  Havoc Pennington  <hp@redhat.com>
 
 	* modules/file-method.c (find_trash_in_hierarchy): remove the
