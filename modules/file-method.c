@@ -609,7 +609,8 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	gboolean is_symlink;
 	gboolean recursive;
 	char *link_file_path;
-
+	char *symlink_name;
+	
 	followed_symlink = FALSE;
 	
 	recursive = FALSE;
@@ -646,6 +647,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	gnome_vfs_stat_to_file_info (file_info, statptr);
 
 	if (is_symlink) {
+		symlink_name = NULL;
 		link_file_path = g_strdup (full_name);
 		
 		/* We will either successfully read the link name or return
@@ -659,13 +661,16 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			 * far as we can.
 			 */
 
-			file_info->symlink_name = read_link (link_file_path);
-			if (file_info->symlink_name == NULL) {
+			g_free (symlink_name);
+			symlink_name = read_link (link_file_path);
+			if (symlink_name == NULL) {
 				g_free (link_file_path);
 				return gnome_vfs_result_from_errno ();
 			}
 			
 			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
+			                /* if we had an earlier ELOOP, don't get in an infinite loop here */
+			        || recursive
 					/* we don't care to follow links */
 				|| lstat (file_info->symlink_name, statptr) != 0
 					/* we can't make out where this points to */
@@ -674,9 +679,11 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 				break;
 			}
 			g_free (link_file_path);
-			link_file_path = g_strdup (file_info->symlink_name);
+			link_file_path = g_strdup (symlink_name);
 		}
 		g_free (link_file_path);
+
+		file_info->symlink_name = symlink_name;
 	}
 
 	return GNOME_VFS_OK;

@@ -1,3 +1,9 @@
+2001-10-24  Havoc Pennington  <hp@redhat.com>
+
+	* modules/file-method.c (get_stat_info): fix memory leak of
+	file_info->symlink_name for multiply-nested symlinks, and avoid 
+	infinite loop for symlink cycles. Bug #62494
+
 Mon Oct 22 23:18:38 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: fix reading of keywords,
