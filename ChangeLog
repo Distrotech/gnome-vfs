@@ -1,3 +1,14 @@
+2000-11-20  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: pavel@eazel.com
+
+	* modules/http-method.c: (unhex_char), (unescape_unreserved_chars),
+	(process_propfind_response):
+
+	Fix HTTP attribute caching to work correctly with inconsistantly
+	escaped URI strings.  (note that the unescape_unreserved_chars function
+	is ifdef'd out and not used)
+
 2000-11-20  Matt Bissiri  <matt@bissiri.org>
 
 	* libgnomevfs/gnome-vfs-utils.c:

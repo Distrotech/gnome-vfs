@@ -1932,35 +1932,69 @@ null_handling_strcmp (const gchar *a, const gchar *b)
 	return strcmp(a, b);
 }
 
-static gboolean
-match_unescaped_uri_text (const GnomeVFSURI *uri1, const GnomeVFSURI *uri2)
+#if 0
+static unsigned char
+unhex_char (char to_unhex)
 {
-	// when comparing two uris, unescape the text because.
-	// this is mainly to work around the fact that the webdav server may 
-	// escape characters like '(' which would normally not be escaped
-	// and cause a mismatch on otherwise identical uris
-	char *uri_text1;
-	char *uri_text2;
-	gboolean result;
+	unsigned char ret = 0;
 
-	uri_text1 = NULL;
-	uri_text2 = NULL;
-
-	if (uri1->text != NULL) {
-		uri_text1 = gnome_vfs_unescape_string (uri1->text, "/");
+	if (to_unhex >= 'A' && to_unhex <= 'F') {	
+		ret = to_unhex - 'A' + 0xA;	
+	} else if (to_unhex >= 'a' && to_unhex <= 'f') {
+		ret = to_unhex - 'a' + 0xa;	
+	} else if (to_unhex >= '0' && to_unhex <= '9') {
+		ret = to_unhex - '0';
 	}
 
-	if (uri2->text != NULL) {
-		uri_text2 = gnome_vfs_unescape_string (uri2->text, "/");
-	}
-
-	result = null_handling_strcmp (uri_text1, uri_text2) == 0;
-	
-	g_free (uri_text1);
-	g_free (uri_text2);
-
-	return result;
+	return ret;
 }
+
+static char *
+unescape_unreserved_chars (const char *in_string)
+{
+	/* RFC 2396 section 2.2 */
+	static const char * reserved_chars = "%;/?:@&=+$,";
+
+	char *ret, *write_char;
+	const char * read_char;
+
+	if (in_string == NULL) {
+		return NULL;
+	}
+	
+	ret = g_new (char, strlen(in_string)+1);
+
+	for (read_char = in_string, write_char = ret ; *read_char != '\0' ; read_char++) {
+		if ( read_char[0] == '%' 
+		     && isxdigit ((unsigned char) read_char[1]) 
+		     && isxdigit ((unsigned char) read_char[2]) ) {
+			char unescaped;
+
+			unescaped = (unsigned char) ((unhex_char (read_char[1]) << 4) | unhex_char (read_char[2]));
+
+			if (strchr (reserved_chars, (unsigned char)unescaped)) {
+				*write_char++ = *read_char++;
+				*write_char++ = *read_char++;
+				*write_char++ = *read_char; /*The last ++ is done in the for statement */
+			} else {
+				*write_char++ = unescaped;
+				read_char += 2; /*The last ++ is done in the for statement */ 
+			}
+		} else {
+			*write_char++ = *read_char;
+		}
+	}
+	*write_char++ = '\0';
+
+	if (strlen (in_string) != strlen (ret)) {
+		DEBUG_HTTP (("unescape_unreserved from '%s' to '%s'"));
+	}
+
+	
+	return ret;
+}
+
+#endif /* 0 */
 
 static GnomeVFSFileInfo *
 process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
@@ -1972,16 +2006,18 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 
 	while (n != NULL) {
 		if (strcmp((char *)n->name, "href") == 0) {
-			gchar *nodecontent_escaped = xmlNodeGetContent(n);
-			gchar *nodecontent = gnome_vfs_unescape_string (nodecontent_escaped, "/");
+			gchar *nodecontent = xmlNodeGetContent(n);
+			GnomeVFSResult rv;
 
-			if (nodecontent != NULL && *nodecontent) {
+			rv = gnome_vfs_remove_optional_escapes (nodecontent);
+
+			if (nodecontent != NULL && *nodecontent != '\0' && rv == GNOME_VFS_OK) {
 				gint len;
-				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent_escaped);
+				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent);
 
 				if (uri != NULL) {
-					if (match_unescaped_uri_text (base_uri, uri) ||
-					    match_unescaped_uri_text (second_base, uri)) {
+					if ((0 == null_handling_strcmp (base_uri->text, uri->text)) ||
+					    (0 == null_handling_strcmp (second_base->text, uri->text))) {
 						file_info->name = NULL; /* this file is the . directory */
 					} else {
 						/* extract_short_name returns unescaped */
@@ -1995,14 +2031,13 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 						}
 					}
 				} else {
-					g_warning("Can't make URI from href in PROPFIND '%s'; silently skipping", nodecontent_escaped);
+					g_warning("Can't make URI from href in PROPFIND '%s'; silently skipping", nodecontent);
 				}
 			} else {
 				g_warning("got href without contents in PROPFIND response");
 			}
 
-			xmlFree (nodecontent_escaped);
-			g_free (nodecontent);
+			xmlFree (nodecontent);
 		} else if (strcmp ((char *)n->name, "propstat") == 0) {
 			process_propfind_propstat (n->xmlChildrenNode, file_info);
 		}
