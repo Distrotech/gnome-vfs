@@ -979,10 +979,8 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 				gint len;
 				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
 
-				if(gnome_vfs_uri_equal(base_uri, uri) ||
-						gnome_vfs_uri_equal(second_base, uri) || 
-						!strcmp(base_uri->text, uri->text) ||
-						!strcmp(second_base->text, uri->text)) {
+				if( !strcmp(base_uri->text, uri->text) ||
+				    !strcmp(second_base->text, uri->text)) {
 					file_info->name = NULL; /* this file is the . directory */
 				} else {
 					file_info->name = gnome_vfs_uri_extract_short_name(uri);
