@@ -1,14 +1,16 @@
 # translation of gnome-vfs.HEAD.po to Dutch
 # a.t.meinen <a.t.meinen@chello.nl>, 2003.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
+# Deze vertalingen zijn te zien als je het programma: .... gebruikt.
+# Nog uit te zoeken...................................^^^^
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 04:47+0100\n"
-"PO-Revision-Date: 2003-12-20 22:54+0100\n"
-"Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
+"POT-Creation-Date: 2004-01-13 20:36+0100\n"
+"PO-Revision-Date: 2004-01-14 06:30+0100\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,10 +18,12 @@ msgstr ""
 "X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# initialiseren?
 #: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "Kan bonobo niet starten"
 
+# initialiseren?
 #: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
@@ -720,150 +724,124 @@ msgstr "Actie voor HTTPS URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "H323 URL's afhandelen"
 
+# oorspronkelijke bericht/vertaling:
+# How to handle foo URLs
+# Hoe foo URL's af te handelen
+# aka: wat te doen met foo URL's
+# aka: foo URL's afhandelen met/door/via
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "Hoe man URL's af te handelen"
+msgstr "HTTP URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "Handle HTTPS URLs"
-msgstr "Hoe man URL's af te handelen"
+msgstr "HTTPS URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "Hoe callto URL's af te handelen"
+msgstr "callto URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "Hoe ghelp URL's af te handelen"
+msgstr "ghelp URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "Hoe info URL's af te handelen"
+msgstr "info URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "Hoe mailto URL's af te handelen"
+msgstr "mailto URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "Hoe man URL's af te handelen"
+msgstr "man URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "Hoe trash URL's af te handelen"
+msgstr "trash URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
 msgstr "Programma in terminal starten"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de H323 URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de H323 URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de http URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\", de HTTP URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de http URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de HTTP URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de callto URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de callto URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de http URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de mailto URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de info URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de mailto URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de mailto URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'command', de mailto URL's af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de man URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"Indien waar handelt het programma gegeven in 'trash/command', de trash URL's "
-"af"
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de trash URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
-"Indien waar, zal het programma wat deze URL afhandelt, in een terminal "
-"gestart worden"
+msgstr "Indien waar, moet het programma wat deze URL afhandelt in een terminal gestart worden."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Actie voor callto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Actie voor ghelp URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Actie voor info URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Slechte bestands-handle"
+msgstr "Actie voor mailto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid "man URL handler"
-msgstr "Slechte bestands-handle"
+msgstr "Actie voor man URL"
 
+# actie voor prullenbak URL?
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Actie voor trash URL"
 
+# Aanmelding? Authenticatie?
 #: schemas/system_http_proxy.schemas.in.h:1
-#, fuzzy
 msgid "Authenticate proxy server connections"
 msgstr "Identificatie gebruiken bij verbinden met de proxy"
 
@@ -872,7 +850,6 @@ msgid "Automatic proxy configuration URL"
 msgstr "URL voor automatische proxy-configuratie"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-#, fuzzy
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr "Proxy-instellingen gebruiken bij HTTP-verbindingen over het internet."
 
@@ -889,67 +866,54 @@ msgid "HTTP proxy host name"
 msgstr "HTTP proxy hostnaam"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-#, fuzzy
 msgid "HTTP proxy password"
-msgstr "HTTP proxy poortnummer"
+msgstr "HTTP proxy wachtwoord"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "HTTP proxy poortnummer"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-#, fuzzy
 msgid "HTTP proxy username"
-msgstr "HTTP proxy hostnaam"
+msgstr "HTTP proxy gebruikersnaam"
 
+# vertaling voor authentication: 'aanmelden'?
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Indien waar, zal identificatie gebruikt worden bij verbindingen met de "
-"proxy. De combinatie van gebruikersnaam en wachtwoord van /system/http_proxy/"
-"authentication_user en /system/http_proxy/authentication_password zal "
-"gebruikt worden."
+msgstr "Indien waar, zal identificatie gebruikt worden bij verbindingen met de proxy. De combinatie van gebruikersnaam en wachtwoord van \"/system/http_proxy/authentication_user en /system/http_proxy/authentication_password zal gebruikt worden."
 
 #: schemas/system_http_proxy.schemas.in.h:11
-#, fuzzy
 msgid "Non-proxy hosts"
-msgstr "Socks proxy hostnaam"
+msgstr "Non-proxy hosts"
 
 #: schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Te gebruiken wachtwoord voor de HTTP proxy"
+msgstr "Te gebruiken wachtwoord bij gebruik van de HTTP proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Proxy configuratiemodus"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
-msgstr "Socks proxy hostnaam"
+msgstr "SOCKS proxy hostnaam"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-#, fuzzy
 msgid "SOCKS proxy port"
-msgstr "Socks proxy poortnummer"
+msgstr "SOCKS proxy poortnummer"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
 msgstr "Beveiligde HTTP proxy hostnaam"
 
 #: schemas/system_http_proxy.schemas.in.h:17
-#, fuzzy
 msgid "Secure HTTP proxy port"
 msgstr "Beveiligde HTTP proxy poortnummer"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
@@ -962,12 +926,10 @@ msgid "The machine name to proxy FTP through."
 msgstr "De machinenaam waar de FTP proxy op draait."
 
 #: schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "De machinenaam waar de FTP proxy op draait."
+msgstr "De machinenaam waar de HTTP proxy op draait."
 
 #: schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
 msgstr "De machinenaam waar de beveiligde HTTP proxy op draait."
 
@@ -976,32 +938,28 @@ msgid "The machine name to proxy socks through."
 msgstr "De machinenaam waar de socks proxy op draait."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "De poort op de machine gedefineerd door /system/http_proxy/host"
+msgstr "Het poortnummer op de machine die u als proxy gebruikt en gedefineerd door \"/system/http_proxy/host\" "
 
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "De poort op de machine gedefinieerd door /system/proxy/ftp_hos"
+msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/ftp_host\""
 
 #: schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "De poort op de machine gedefinieerd door /system/proxy/secure_host"
+msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/secure_host\""
 
 #: schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "De poort op de machine gedefinieerd door /system/proxy/socks_host"
+msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/socks_host\""
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1016,32 +974,34 @@ msgstr ""
 "netwerkadressen met netmasker zoals 192.168.0.0/24."
 
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "URL voor automatische proxy-configuratie"
+msgstr "RL voor automatische proxy-configuratie."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-#, fuzzy
 msgid "Use HTTP proxy"
-msgstr "HTTP proxy poortnummer"
+msgstr "HTTP proxy gebruiken"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Te gebruiken naam voor identificatie bij HTTP proxy-gebruik."
 
+# Windows network?
+# Wordt hier MS Windows bedoeld?
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Window Network"
-msgstr "Netwerk"
+msgstr "Window netwerk"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB werkgroep"
 
+# Of:
+# De werkgroep waarvan de gebruiker deel uitmaakt.
+# Gaat het soms om de 'windows workgroup'? (ipv window workgroup)
+# Voorlopig even in het midden gelaten door window niet te vertalen.
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "De window werkgroep waar de gebruiker deel van uitmaakt"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Hoe http URL's af te handelen"
@@ -1071,18 +1031,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Indien waar handelt het programma gegeven in 'programs/man', de man URL's "
 #~ "af"
-
-#, fuzzy
-#~ msgid "URL handler for http uris"
-#~ msgstr "Geen actie voor URL schema"
-
-#, fuzzy
-#~ msgid "URL handler for man pages"
-#~ msgstr "Geen actie voor URL schema"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Geen actie voor URL schema"
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "Computers worden niet benaderd via de proxy"
