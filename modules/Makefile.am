@@ -108,6 +108,7 @@ libssh_la_SRCLIST = 				\
 
 libvfs_test_la_SOURCES =			\
 	test-method.c				
+libvfs_test_la_LDFLAGS = $(module_flags)
 libvfs_test_la_LIBADD = $(XML_LIBS)
 
 ### `gzip' method
@@ -127,13 +128,14 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h
+libbftp_la_LDFLAGS = $(module_flags)
 
 ### `nntp' method
 
 libnntp_la_SOURCES = 				\
 	nntp-method.c 				\
 	nntp-method.h
-libfile_la_LDFLAGS = $(module_flags)
+libnntp_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
 

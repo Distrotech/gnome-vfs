@@ -1,5 +1,10 @@
 2002-01-28  Darin Adler  <darin@bentspoon.com>
 
+	* modules/Makefile.am: Fix module flags. Patch from Remi Cohen-Scali
+	<remi@cohen-scali.com>.
+
+2002-01-28  Darin Adler  <darin@bentspoon.com>
+
 	* gnome-vfs.spec.in: Oops, one more thing to remove.
 
 2002-01-28  Darin Adler  <darin@bentspoon.com>
