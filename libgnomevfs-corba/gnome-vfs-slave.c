@@ -591,12 +591,13 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 	struct sockaddr caller_addr;
 	int caller_addr_size;
 	guint size;
-	gint socket_fd, fd;
+	gint socket_fd, fd, temp_file_fd;
 	gchar socket_name[] = "/tmp/gnome-vfs-XXXXXX";
 
 	socket_fd = -1;
 
-	if (mktemp (socket_name) == NULL) {
+	temp_file_fd = mkstemp (socket_name);
+	if (temp_file_fd == -1) {
 		g_warning (_("Cannot create temporary file name `%s'"),
 			   gnome_vfs_result_to_string(gnome_vfs_result_from_errno()));
 		result = GNOME_VFS_ERROR_INTERNAL;
@@ -649,6 +650,7 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 						socket_name, ev);
 	if (ev->_major != CORBA_NO_EXCEPTION) {
 		unlink (socket_name);
+		close (temp_file_fd);
 		close (socket_fd);
 		return;
 	}
@@ -674,6 +676,7 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 	DPRINTF (("Closing file descriptors.\n"));
 
 	gnome_vfs_close (handle);
+	close (temp_file_fd);
 	close (fd);
 	close (socket_fd);
 
@@ -682,6 +685,9 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 	return;
 
 error:
+	if (temp_file_fd != -1)
+		close (temp_file_fd);
+
 	if (socket_fd != -1)
 		close (socket_fd);
 	unlink (socket_name);
