@@ -187,7 +187,7 @@ dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
 
-ALL_LINGUAS="az ca da de el es fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW"
+ALL_LINGUAS="az ca da de el es eu fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
