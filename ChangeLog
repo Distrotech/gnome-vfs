@@ -1,3 +1,64 @@
+2001-02-21  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	Fixed 5633: MIME type for gzipped XML formats such as gnumeric
+		    are not detected.
+	Fixed 6803: gcc complaining about mktemp and suggesting mkstemp.
+
+	* libgnomevfs/gnome-vfs-mime.c: 
+	(gnome_vfs_get_mime_type_internal):
+	Rework to get rid of duplicated logic. Add a new call that
+	covers both the data and suffix based file type recognition,
+	optionally accepting NULL for either of the two. Add a call to
+	the special gzip handler.  For now hardcode gnumeric.gz and
+	pdf.gz, we may add more later.
+	
+	* libgnomevfs/gnome-vfs-mime.c: 
+	(gnome_vfs_get_mime_type),
+	(gnome_vfs_get_file_mime_type),
+	(gnome_vfs_get_mime_type_from_file_data),
+	(gnome_vfs_get_mime_type_for_data):
+	Make it call the new common routine.
+	
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer-private.h:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_type_from_magic_table),
+	(gnome_vfs_get_mime_type_for_buffer),
+	(file_name_ends_with),
+	(gnome_vfs_sniff_buffer_looks_like_gzip):
+	Add a special-case recognizer for gzip files that considers
+	file names before identifying a file as gzip and leaving a
+	hard-coded set of types to fall back on the suffix based type
+	identification.
+
+	* libgnomevfs/gnome-vfs-mime.c: (get_priority), (list_find_type),
+	(add_to_key), (mime_fill_from_file), (mime_load),
+	(gnome_vfs_mime_type_from_name_or_default),
+	(gnome_vfs_get_mime_type_from_uri_internal),
+	(gnome_vfs_get_mime_type_internal),
+	(gnome_vfs_mime_type_is_supertype), (extract_prefix_add_suffix),
+	(gnome_uri_list_extract_uris), (gnome_uri_list_extract_filenames),
+	(gnome_uri_extract_filename):
+	Tweaks.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_mp3):
+	Tweaks.
+
+	* data/mime/gnome-vfs-mime-magic:
+	Remove the magic pattern for gzip.
+	
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(gnome_vfs_i18n_get_language_list), (gnome_vfs_istr_has_prefix),
+	(gnome_vfs_istr_has_suffix):
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	Copy-paste these from Nautilus.
+
+	* libgnomevfs-corba/gnome-vfs-slave.c: (setup_and_serve_channel):
+	Switch to using mkstemp.
+
 2001-02-22  Seth Nickell  <snickell@stanford.edu>
 
 	reviewed by: Mathieu Lacage <mathieu@gnu.org>

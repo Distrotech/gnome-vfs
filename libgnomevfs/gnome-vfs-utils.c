@@ -618,35 +618,6 @@ gnome_vfs_list_deep_free (GList *list)
 	g_list_free (list);
 }
 
-/* Stolen from Nautilus. This belongs in glib. */
-static gboolean
-istr_has_prefix (const char *haystack, const char *needle)
-{
-	const char *h, *n;
-	char hc, nc;
-
-	/* Eat one character at a time. */
-	h = haystack == NULL ? "" : haystack;
-	n = needle == NULL ? "" : needle;
-	do {
-		if (*n == '\0') {
-			return TRUE;
-		}
-		if (*h == '\0') {
-			return FALSE;
-		}
-		hc = *h++;
-		nc = *n++;
-		if (isupper ((guchar)hc)) {
-			hc = tolower ((guchar)hc);
-		}
-		if (isupper ((guchar)nc)) {
-			nc = tolower ((guchar)nc);
-		}
-	} while (hc == nc);
-	return FALSE;
-}
-
 /**
  * gnome_vfs_get_local_path_from_uri:
  * 
@@ -659,7 +630,7 @@ istr_has_prefix (const char *haystack, const char *needle)
 char *
 gnome_vfs_get_local_path_from_uri (const char *uri)
 {
-	if (!istr_has_prefix (uri, "file:///")) {
+	if (!gnome_vfs_istr_has_prefix (uri, "file:///")) {
 		return NULL;
 	}
 	
@@ -728,7 +699,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
         /* We only handle the file scheme for now */
-	if (g_strcasecmp (scheme, "file") != 0 || !istr_has_prefix (path, "/")) {
+	if (g_strcasecmp (scheme, "file") != 0 || !gnome_vfs_istr_has_prefix (path, "/")) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 

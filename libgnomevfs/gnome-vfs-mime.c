@@ -30,8 +30,10 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-sniff-buffer.h"
+#include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-module-shared.h"
+#include "gnome-vfs-private-utils.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -62,17 +64,15 @@ typedef struct {
 	unsigned int system_dir : 1;
 } mime_dir_source_t;
 
-typedef struct
-{
+typedef struct {
 	char *file_path;
 	time_t mtime;
 } FileDateRecord;
 
-struct FileDateTracker
-{
-	time_t		last_checked;
-	guint		check_interval;
-	GHashTable	*records;
+struct FileDateTracker {
+	time_t last_checked;
+	guint check_interval;
+	GHashTable *records;
 };
 
 /* chached localhostname */
@@ -90,19 +90,18 @@ G_LOCK_DEFINE_STATIC (mime_mutex);
 
 #endif /* G_LOCK_DEFINE_STATIC */
 
-
 
 static char *
 get_priority (char *def, int *priority)
 {
 	*priority = 0;
 
-	if (*def == ','){
+	if (*def == ',') {
 		def++;
-		if (*def == '1'){
+		if (*def == '1') {
 			*priority = 0;
 			def++;
-		} else if (*def == '2'){
+		} else if (*def == '2') {
 			*priority = 1;
 			def++;
 		}
@@ -114,10 +113,10 @@ get_priority (char *def, int *priority)
 	return def;
 }
 
-static gint
+static int
 list_find_type (gconstpointer value, gconstpointer type)
 {
-	return (g_strcasecmp( (const gchar*) value, (const gchar*) type ));
+	return g_strcasecmp((const char *) value, (const char *) type);
 }
 
 static void
@@ -134,9 +133,9 @@ add_to_key (char *mime_type, char *def)
 		def = get_priority (def, &priority);
 		s = p = g_strdup (def);
 
-		while ((ext = strtok_r (s, " \t\n\r,", &tokp)) != NULL){
-			list = (GList*) g_hash_table_lookup (mime_extensions [priority], ext);
-		    if (!g_list_find_custom (list, (gpointer) mime_type, list_find_type)) {
+		while ((ext = strtok_r (s, " \t\n\r,", &tokp)) != NULL) {
+			list = (GList *) g_hash_table_lookup (mime_extensions [priority], ext);
+			if (!g_list_find_custom (list, mime_type, list_find_type)) {
 				list = g_list_prepend (list, g_strdup (mime_type));
 				g_hash_table_insert (mime_extensions [priority], g_strdup (ext), list);
 			}
@@ -145,23 +144,25 @@ add_to_key (char *mime_type, char *def)
 		g_free (p);
 	}
 
-	if (strncmp (def, "regex", 5) == 0){
+	if (strncmp (def, "regex", 5) == 0) {
 		RegexMimePair *mp;
 		def += 5;
 		def = get_priority (def, &priority);
 
-		while (*def && isspace ((unsigned char)*def))
+		while (*def != '\0' && isspace ((unsigned char)*def)) {
 			def++;
+		}
 
-		if (!*def)
+		if (*def == '\0') {
 			return;
+		}
 
 		/* This was g_new instead of g_new0, but there seems
 		 * to be a bug in the Solaris? version of regcomp that
 		 * requires an initialized regex or it will crash.
 		 */
 		mp = g_new0 (RegexMimePair, 1);
-		if (regcomp (&mp->regex, def, REG_EXTENDED | REG_NOSUB)){
+		if (regcomp (&mp->regex, def, REG_EXTENDED | REG_NOSUB)) {
 			g_free (mp);
 			return;
 		}
@@ -174,34 +175,37 @@ add_to_key (char *mime_type, char *def)
 static void
 mime_fill_from_file (const char *filename)
 {
-	FILE *f;
+	FILE *file;
 	char buf [1024];
 	char *current_key;
 
 	g_assert (filename != NULL);
 
-	f = fopen (filename, "r");
+	file = fopen (filename, "r");
 
-	if (!f)
+	if (file == NULL) {
 		return;
-
+	}
+	
 	current_key = NULL;
-	while (fgets (buf, sizeof (buf), f)){
+	while (fgets (buf, sizeof (buf), file) != NULL) {
 		char *p;
 
-		if (buf [0] == '#')
+		if (buf [0] == '#') {
 			continue;
-
-		/* Trim trailing spaces */
-		for (p = buf + strlen (buf) - 1; p >= buf; p--){
-			if (isspace ((unsigned char)*p) || *p == '\n')
-				*p = 0;
-			else
-				break;
 		}
 
-		if (!buf [0])
+		/* Trim trailing spaces */
+		for (p = buf + strlen (buf) - 1; p >= buf; p--) {
+			if (!isspace ((unsigned char)*p) && *p != '\n') {
+				break;
+			}
+			*p = 0;
+		}
+
+		if (buf [0] == '\0') {
 			continue;
+		}
 
 		if (buf [0] == '\t' || buf [0] == ' '){
 			if (current_key){
@@ -226,7 +230,7 @@ mime_fill_from_file (const char *filename)
 
 	g_free (current_key);
 
-	fclose (f);
+	fclose (file);
 
 	gnome_vfs_file_date_tracker_start_tracking_file (mime_data_date_tracker, filename);
 }
@@ -243,44 +247,52 @@ mime_load (mime_dir_source_t *source)
 	g_return_if_fail (source != NULL);
 	g_return_if_fail (source->dirname != NULL);
 
-	if (stat (source->dirname, &s) != -1)
-		source->valid = TRUE;
-	else
-		source->valid = FALSE;
+	source->valid = (stat (source->dirname, &s) != -1);
 
 	dir = opendir (source->dirname);
-	if (!dir){
+	if (dir == NULL) {
 		source->valid = FALSE;
 		return;
 	}
 
-	if (source->system_dir){
+	if (source->system_dir) {
 		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
 
-	while ((dent = readdir (dir)) != NULL){
+	while (TRUE) {
+		int len;
+		
+		dent = readdir (dir);
+		if (dent == NULL) {
+			break;
+		}
+		
+		len = strlen (dent->d_name);
 
-		int len = strlen (dent->d_name);
-
-		if (len <= extlen)
+		if (len <= extlen) {
 			continue;
-		if (strcmp (dent->d_name + len - extlen, ".mime"))
+		}
+		
+		if (strcmp (dent->d_name + len - extlen, ".mime") != 0) {
 			continue;
+		}
 
-		if (source->system_dir && !strcmp (dent->d_name, "gnome-vfs.mime"))
+		if (source->system_dir && strcmp (dent->d_name, "gnome-vfs.mime") == 0) {
 			continue;
+		}
 
-		if (source->system_dir && !strcmp (dent->d_name, "gnome.mime")) {
+		if (source->system_dir && strcmp (dent->d_name, "gnome.mime") == 0) {
 			/* Ignore the obsolete "official" one so it doesn't override
 			 * the new official one.
 			 */
 			continue;
 		}
 
-		if (!source->system_dir && !strcmp (dent->d_name, "user.mime"))
+		if (!source->system_dir && strcmp (dent->d_name, "user.mime") == 0) {
 			continue;
+		}
 
 		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
 
@@ -396,23 +408,27 @@ gnome_vfs_mime_shutdown (void)
  * determined, it will return @defaultv.
  */
 const char *
-gnome_vfs_mime_type_from_name_or_default (const gchar *filename, const gchar *defaultv)
+gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defaultv)
 {
 	const gchar *ext;
-	gchar *upext;
+	char *upext;
 	int priority;
-	const gchar *result = defaultv;
+	const char *result = defaultv;
+
+	if (filename == NULL) {
+		return result;
+	}
 
 	G_LOCK (mime_mutex);
 
-	if (!filename)
-		goto done;
 	ext = strrchr (filename, '.');
-	if (ext)
+	if (ext != NULL) {
 		++ext;
-
-	if (!module_inited)
+	}
+	
+	if (!module_inited) {
 		mime_init ();
+	}
 
 	maybe_reload ();
 
@@ -420,34 +436,34 @@ gnome_vfs_mime_type_from_name_or_default (const gchar *filename, const gchar *de
 		GList *l;
 		GList *list = NULL ;
 		
-		if (ext){
+		if (ext != NULL) {
 			
 			list = g_hash_table_lookup (mime_extensions [priority], ext);
-			if (list) {
+			if (list != NULL) {
 				list = g_list_first( list );
-				result = (gchar *) list->data;
-				goto done;
+				result = (const char *) list->data;
+				break;
 			}
 
 			/* Search for UPPER case extension */
 			upext = g_strdup (ext);
 			g_strup (upext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
-			if (list) {
+			if (list != NULL) {
 				g_free (upext);
 				list = g_list_first (list);
-				result = (gchar *) list->data;
-				goto done;
+				result = (const char *) list->data;
+				break;
 			}
 
 			/* Final check for lower case */
 			g_strdown (upext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
  			g_free (upext);
-			if (list) {
+			if (list != NULL) {
 				list = g_list_first (list);
-				result = (gchar *) list->data;
-				goto done;
+				result = (const char *) list->data;
+				break;
 			}
 		}
 
@@ -456,12 +472,12 @@ gnome_vfs_mime_type_from_name_or_default (const gchar *filename, const gchar *de
 
 			if (regexec (&mp->regex, filename, 0, 0, 0) == 0) {
 				result = mp->mime_type;
-				goto done;
+				G_UNLOCK (mime_mutex);
+				return result;
 			}
 		}
 	}
 
- done:
 	G_UNLOCK (mime_mutex);
 	return result;
 }
@@ -487,10 +503,86 @@ gnome_vfs_get_mime_type_from_uri_internal (GnomeVFSURI *uri)
 
 	/* Return a mime type based on the file extension or NULL if no match. */
 	base_name = gnome_vfs_uri_get_basename (uri);
-	if (base_name == NULL)
+	if (base_name == NULL) {
 		return NULL;
+	}
 
 	return gnome_vfs_mime_type_from_name_or_default (base_name, NULL);
+}
+
+const char *
+gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name)
+{
+	const char *result;
+
+	result = NULL;
+	
+	if (buffer != NULL) {
+		result = gnome_vfs_mime_get_type_from_magic_table (buffer);
+		
+		if (result != NULL) {
+			return result;
+		}
+		
+		/* Special handling of gzip files -- use the file name to make a more
+		 * accurate guess of the file type for formats such as gnumeric.gz and
+		 * pdf.gz. Without this, these would always get identified as gzip even though
+		 * their name would suggest otherwise.
+		 * FIXME bugzilla.eazel.com 6867:
+		 * Generalize this so that we can have different magic patters
+		 * other than gzip do this.
+		 */
+		if (gnome_vfs_sniff_buffer_looks_like_gzip (buffer, file_name)) {
+			return "application/x-gzip";
+		}
+		
+		if (result == NULL) {
+			if (gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
+				/* Text file -- treat extensions as a more accurate source
+				 * of type information.
+				 */
+				
+				if (file_name != NULL) {
+					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+				}
+	
+				if (result != NULL) {
+					return result;
+				}
+
+				/* Didn't find an extension match, assume plain text. */
+				return "text/plain";
+
+			} else if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
+				/* MP3 file -- treat extensions as a more accurate source
+				 * of type information.
+				 * FIXME bugzilla.eazel.com 6831:
+				 * This should not have lesser priority than suffixes.
+				 */
+				if (file_name != NULL) {
+					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+				}
+
+				if (result != NULL) {
+					return result;
+				}
+	
+				/* Didn't find an extension match, assume MP3. */
+				return "audio/x-mp3";
+			}
+		}
+	}
+	
+	if (result == NULL && file_name != NULL) {
+		/* No type recognized -- fall back on extensions. */
+		result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+	}
+	
+	if (result == NULL) {
+		result = GNOME_VFS_MIME_TYPE_UNKNOWN;
+	}
+	
+	return result;
 }
 
 /**
@@ -528,39 +620,8 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 	
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
 
-	/* check the type from the file data */
-	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+	result = gnome_vfs_get_mime_type_internal (buffer, gnome_vfs_uri_get_basename (uri));
 
-	if (result == NULL) {
-		if (gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
-			/* Text file -- treat extensions as a more accurate source
-			 * of type information.
-			 */
-			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
-			if (result == NULL) {
-				/* Didn't find an extension match, assume plain text. */
-				result = "text/plain";
-			}
-		} else if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-			/* MP3 file -- treat extensions as a more accurate source
-			 * of type information.
-			 */
-			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
-			if (result == NULL) {
-				/* Didn't find an extension match, assume MP3. */
-				result = "audio/x-mp3";
-			}
-		} else {
-			/* No type recognized -- fall back on extensions. */
-			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
-		}
-	}
-
-	if (result == NULL) {
-		/* no type detected, return a generic file type */
-		result = GNOME_VFS_MIME_TYPE_UNKNOWN;
-	}
-	
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 	gnome_vfs_close (handle);
 
@@ -617,7 +678,7 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
 	struct stat tmp_stat_buffer;
 	FILE *file;
 
-	buffer = NULL;
+	file = NULL;
 	result = NULL;
 
 	/* get the stat info if needed */
@@ -627,62 +688,39 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
 
 	/* single out special file types */
 	if (stat_info && !S_ISREG(stat_info->st_mode)) {
-		if (S_ISDIR(stat_info->st_mode))
+		if (S_ISDIR(stat_info->st_mode)) {
 			return "x-directory/normal";
-		else if (S_ISCHR(stat_info->st_mode))
+		} else if (S_ISCHR(stat_info->st_mode)) {
 			return "x-special/device-char";
-		else if (S_ISBLK(stat_info->st_mode))
+		} else if (S_ISBLK(stat_info->st_mode)) {
 			return "x-special/device-block";
-		else if (S_ISFIFO(stat_info->st_mode))
+		} else if (S_ISFIFO(stat_info->st_mode)) {
 			return "x-special/fifo";
-		else if (S_ISSOCK(stat_info->st_mode))
+		} else if (S_ISSOCK(stat_info->st_mode)) {
 			return "x-special/socket";
-		else
+		} else {
 			/* unknown entry type, return generic file type */
 			return GNOME_VFS_MIME_TYPE_UNKNOWN;
+		}
 	}
 
 	if (!suffix_only) {
 		file = fopen(path, "r");
-		if (file != NULL) {
-			buffer = gnome_vfs_mime_sniff_buffer_new_generic
-				(file_seek_binder, file_read_binder, file);
-
-			result = gnome_vfs_get_mime_type_for_buffer (buffer);
-			if (result == NULL && gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
-				/* Text file -- treat extensions as a more accurate source
-				 * of type information.
-				 */
-				result = gnome_vfs_mime_type_from_name_or_default (path, NULL);
-				if (result == NULL) {
-					/* Didn't find an extension match, assume plain text. */
-					result = "text/plain";
-				}
-			}
-			if (result == NULL && gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-				/* MP3 file -- treat extensions as a more accurate source
-				 * of type information.
-				 */
-				result = gnome_vfs_mime_type_from_name_or_default (path, NULL);
-				if (result == NULL) {
-					/* Didn't find an extension match, assume MP3. */
-					result = "audio/x-mp3";
-				}
-			}
-			fclose (file);
-		}
 	}
 
-	if (result == NULL) {
-		result = gnome_vfs_mime_type_from_name_or_default (path, NULL);	
-	}
-	if (result == NULL) {
-		result = GNOME_VFS_MIME_TYPE_UNKNOWN;
-	}
-	if (buffer) {
+	if (file != NULL) {
+		buffer = gnome_vfs_mime_sniff_buffer_new_generic
+			(file_seek_binder, file_read_binder, file);
+
+		result = gnome_vfs_get_mime_type_internal (buffer, path);
 		gnome_vfs_mime_sniff_buffer_free (buffer);
+		fclose (file);
+	} else {
+		result = gnome_vfs_get_mime_type_internal (NULL, path);
 	}
 
+	
+	g_assert (result != NULL);
 	return result;
 }
 
@@ -730,27 +768,13 @@ gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
 	error = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
 
 	if (error != GNOME_VFS_OK) {
-		return NULL;
+		return GNOME_VFS_MIME_TYPE_UNKNOWN;
 	}
 	
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
 
-	/* check the type from the file data */
-	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+	result = gnome_vfs_get_mime_type_internal (buffer, NULL);	
 
-	if (result == NULL && gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
-		result = "text/plain";
-	}
-
-	if (result == NULL && gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-		result = "audio/x-mp3";
-	}
-
-	if (result == NULL) {
-		/* no type detected, return a generic file type */
-		result = GNOME_VFS_MIME_TYPE_UNKNOWN;
-	}
-	
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 	gnome_vfs_close (handle);
 
@@ -776,7 +800,8 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_existing_data
 		(data, data_size);
 
-	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+	result = gnome_vfs_get_mime_type_internal (buffer, NULL);	
+
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 
 	return result;
@@ -794,8 +819,8 @@ gnome_vfs_mime_type_is_supertype (const char *mime_type)
 	length = strlen (mime_type);
 
 	return length > 2
-	       && mime_type[length-2] == '/' 
-	       && mime_type[length-1] == '*';
+	       && mime_type[length - 2] == '/' 
+	       && mime_type[length - 1] == '*';
 }
 
 static char *
@@ -810,7 +835,7 @@ extract_prefix_add_suffix (const char *string, const char *separator, const char
                 ? strlen (string)
                 : separator_position - string;
 
-        result = g_malloc (prefix_length + strlen(suffix) + 1);
+        result = g_malloc (prefix_length + strlen (suffix) + 1);
         
         strncpy (result, string, prefix_length);
         result[prefix_length] = '\0';
@@ -843,7 +868,7 @@ gnome_vfs_get_supertype_from_mime_type (const char *mime_type)
  * returned list
  */
 GList*
-gnome_uri_list_extract_uris (const gchar* uri_list)
+gnome_uri_list_extract_uris (const char *uri_list)
 {
 	const guchar *p, *q;
 	gchar *retval;
@@ -851,26 +876,29 @@ gnome_uri_list_extract_uris (const gchar* uri_list)
 
 	g_return_val_if_fail (uri_list != NULL, NULL);
 
-	p = (const guchar *)uri_list;
+	p = (const guchar *) uri_list;
 
 	/* We don't actually try to validate the URI according to RFC
 	 * 2396, or even check for allowed characters - we just ignore
 	 * comments and trim whitespace off the ends.  We also
 	 * allow LF delimination as well as the specified CRLF.
 	 */
-	while (p) {
+	while (p != NULL) {
 		if (*p != '#') {
-			while (isspace(*p))
+			while (isspace (*p)) {
 				p++;
+			}
 
 			q = p;
-			while (*q && (*q != '\n') && (*q != '\r'))
+			while (*q != '\0' && *q != '\n' && *q != '\r') {
 				q++;
+			}
 
 			if (q > p) {
 			        q--;
-				while (q > p && isspace(*q))
+				while (q > p && isspace (*q)) {
 					q--;
+				}
 
 				retval = g_malloc (q - p + 2);
 				strncpy (retval, p, q - p + 1);
@@ -880,8 +908,9 @@ gnome_uri_list_extract_uris (const gchar* uri_list)
 			}
 		}
 		p = strchr (p, '\n');
-		if (p)
+		if (p != NULL) {
 			p++;
+		}
 	}
 
 	return g_list_reverse (result);
@@ -900,7 +929,7 @@ gnome_uri_list_extract_uris (const gchar* uri_list)
  * returned list.
  */
 GList*
-gnome_uri_list_extract_filenames (const gchar* uri_list)
+gnome_uri_list_extract_filenames (const char *uri_list)
 {
 	GList *tmp_list, *node, *result;
 
@@ -909,8 +938,8 @@ gnome_uri_list_extract_filenames (const gchar* uri_list)
 	result = gnome_uri_list_extract_uris (uri_list);
 
 	tmp_list = result;
-	while (tmp_list) {
-		gchar *s = tmp_list->data;
+	while (tmp_list != NULL) {
+		char *s = tmp_list->data;
 
 		node = tmp_list;
 		tmp_list = tmp_list->next;
@@ -937,57 +966,70 @@ gnome_uri_list_extract_filenames (const gchar* uri_list)
  * Returns: a newly allocated string if the @uri, or %NULL
  * if the @uri was not a local file
  */
-gchar *
-gnome_uri_extract_filename (const gchar* uri)
+char *
+gnome_uri_extract_filename (const char *uri)
 {
+	char *hostname;
+	char *p, *result;
+	const char *path;
+
 	/* file uri with a hostname */
-	if (strncmp(uri, "file://", strlen("file://"))==0) {
-		char *hostname = g_strdup(&uri[strlen("file://")]);
-		char *p = strchr(hostname,'/');
-		char *path;
-		/* if we can't find the '/' this uri is bad */
-		if(!p) {
-			g_free(hostname);
+	if (gnome_vfs_istr_has_prefix (uri, "file://")) {
+
+		hostname = g_strdup (&uri[strlen ("file://")]);
+		/* if we can't find the '/' this uri is bad */		
+		p = strchr (hostname,'/');
+		if (p == NULL) {
+			g_free (hostname);
 			return NULL;
 		}
-		/* if no hostname */
-		if(p==hostname)
-			return hostname;
 
-		path = g_strdup(p);
+		/* if no hostname */
+		if (p == hostname) {
+			return hostname;
+		}
+
+		result = g_strdup (p);
 		*p = '\0';
 
 		/* gel local host name and cache it */
-		if(!got_localhostname) {
+		if (!got_localhostname) {
 			G_LOCK (mime_mutex);
-			if(gethostname(localhostname,
-				       sizeof(localhostname)) < 0) {
-				strcpy(localhostname,"");
+			if (gethostname (localhostname, sizeof (localhostname)) < 0) {
+				strcpy (localhostname, "");
 			}
 			got_localhostname = TRUE;
 			G_UNLOCK (mime_mutex);
 		}
 
 		/* if really local */
-		if((localhostname[0] &&
-		    g_strcasecmp(hostname,localhostname)==0) ||
-		   g_strcasecmp(hostname,"localhost")==0) {
-			g_free(hostname);
-			return path;
+		if (g_strcasecmp (hostname, localhostname) == 0
+			|| g_strcasecmp (hostname, "localhost") == 0) {
+			g_free (hostname);
+			return result;
 		}
 		
-		g_free(hostname);
-		g_free(path);
+		g_free (hostname);
+		g_free (result);
 		return NULL;
 
-	/* if the file doesn't have the //, we take it containing 
-	   a local path */
-	} else if (strncmp(uri, "file:", strlen("file:"))==0) {
-		const char *path = &uri[strlen("file:")];
-		/* if empty bad */
-		if(!*path) return NULL;
-		return g_strdup(path);
 	}
+	
+	/* if the file doesn't have the //, we take it containing 
+	 * a local path
+	 */
+	if (gnome_vfs_istr_has_prefix (uri, "file:")) {
+		
+		path = &uri[strlen ("file:")];
+
+		/* if empty bad */
+		if (*path == '\0') {
+			return NULL;
+		}
+
+		return g_strdup (path);
+	}
+
 	return NULL;
 }
 

@@ -338,7 +338,6 @@ gnome_vfs_process_run_cancellable (const gchar *file_name,
 
 }
 
-
 /**
  * gnome_vfs_create_temp:
  * @prefix: Prefix for the name of the temporary file
@@ -390,7 +389,6 @@ gnome_vfs_create_temp (const gchar *prefix,
 	}
 }
 
-
 /* The following comes from GNU Wget with minor changes by myself.
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.  */
 
@@ -542,4 +540,66 @@ gnome_vfs_i18n_get_language_list (const gchar *category_name)
 		retval = g_list_reverse (g_list_copy ((GList*) language_list));
 
 	return retval;
+}
+
+
+/* gnome_vfs_istr_has_prefix
+ * copy-pasted from Nautilus
+ */
+gboolean
+gnome_vfs_istr_has_prefix (const char *haystack, const char *needle)
+{
+	const char *h, *n;
+	char hc, nc;
+
+	/* Eat one character at a time. */
+	h = haystack == NULL ? "" : haystack;
+	n = needle == NULL ? "" : needle;
+	do {
+		if (*n == '\0') {
+			return TRUE;
+		}
+		if (*h == '\0') {
+			return FALSE;
+		}
+		hc = *h++;
+		nc = *n++;
+		hc = tolower ((guchar) hc);
+		nc = tolower ((guchar) nc);
+	} while (hc == nc);
+	return FALSE;
+}
+
+/* gnome_vfs_istr_has_suffix
+ * copy-pasted from Nautilus
+ */
+gboolean
+gnome_vfs_istr_has_suffix (const char *haystack, const char *needle)
+{
+	const char *h, *n;
+	char hc, nc;
+
+	if (needle == NULL) {
+		return TRUE;
+	}
+	if (haystack == NULL) {
+		return needle[0] == '\0';
+	}
+		
+	/* Eat one character at a time. */
+	h = haystack + strlen (haystack);
+	n = needle + strlen (needle);
+	do {
+		if (n == needle) {
+			return TRUE;
+		}
+		if (h == haystack) {
+			return FALSE;
+		}
+		hc = *--h;
+		nc = *--n;
+		hc = tolower ((guchar) hc);
+		nc = tolower ((guchar) nc);
+	} while (hc == nc);
+	return FALSE;
 }

@@ -23,6 +23,7 @@
 
 #include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-private-utils.h"
 
 #include <ctype.h>
 #include <unistd.h>
@@ -223,7 +224,7 @@ read_num_val(const char **offset, int bsize, int *result)
 		break;
 	}
 
-	while (**offset && !isspace ((unsigned char)**offset)) {
+	while (**offset && !isspace ((guchar)**offset)) {
 		(*offset)++;
 	}
 
@@ -233,7 +234,7 @@ read_num_val(const char **offset, int bsize, int *result)
 static const char *
 eat_white_space (const char *scanner)
 {
-	while (*scanner && isspace ((unsigned char)*scanner)) {
+	while (*scanner && isspace ((guchar)*scanner)) {
 		scanner++;
 	}
 	return scanner;
@@ -285,7 +286,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			continue;
 		}
 
-		if (!isdigit ((unsigned char)*scanner)) {
+		if (!isdigit ((guchar)*scanner)) {
 			continue;
 		}
 
@@ -294,7 +295,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 		}
 		newent.range_end = newent.range_start;
 
-		while (*scanner && isdigit ((unsigned char)*scanner)) {
+		while (*scanner && isdigit ((guchar)*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -306,7 +307,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			}
 		}
 
-		while (*scanner && !isspace ((unsigned char)*scanner)) {
+		while (*scanner && !isspace ((guchar)*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -415,7 +416,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 
 		g_snprintf (newent.mimetype, sizeof (newent.mimetype), "%s", scanner);
 		bsize = strlen (newent.mimetype) - 1;
-		while (newent.mimetype [bsize] && isspace ((unsigned char)(newent.mimetype [bsize]))) {
+		while (newent.mimetype [bsize] && isspace ((guchar)(newent.mimetype [bsize]))) {
 			newent.mimetype [bsize--] = '\0';
 		}
 
@@ -567,6 +568,24 @@ gnome_vfs_mime_get_magic_table (void)
 	return mime_magic_table;
 }
 
+const char *
+gnome_vfs_mime_get_type_from_magic_table (GnomeVFSMimeSniffBuffer *buffer)
+{
+	GnomeMagicEntry *magic_table;
+	
+	magic_table = gnome_vfs_mime_get_magic_table ();
+	if (magic_table == NULL) {
+		return NULL;
+	}
+	
+	for (; magic_table->type != T_END; magic_table++) {
+		if (gnome_vfs_mime_try_one_magic_pattern (buffer, magic_table)) {
+  			return magic_table->mimetype;
+  		}
+	}
+	return NULL;
+}
+
 
 GnomeMagicEntry *
 gnome_vfs_mime_test_get_magic_table (const char *table_path)
@@ -691,24 +710,7 @@ gnome_vfs_mime_clear_magic_table (void)
 const char *
 gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
 {
-	GnomeMagicEntry *magic_table;
-
-	/* load the magic table if needed */
-	magic_table = gnome_vfs_mime_get_magic_table ();
-	if (magic_table == NULL) {
-		return NULL;
-	}
-	
-	for (; magic_table->type != T_END; magic_table++) {
-		if (gnome_vfs_mime_try_one_magic_pattern (buffer, magic_table)) {
-  			return (magic_table->type == T_END) 
-  				? NULL : magic_table->mimetype;
-  		}
-	}
-
-	/* NOTE: don't try the algorithmic sniffers here */
-
-	return NULL;
+	return gnome_vfs_get_mime_type_internal (buffer, NULL);
 }
 
 enum {
@@ -796,7 +798,7 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	 * every byte, making a total of 28 bits.  The zeroed bits are ignored,
 	 * so a 257 bytes long tag is represented as $00 00 02 01."
 	 */
-	if (!strncmp ((char *) sniff_buffer->buffer, "ID3", 3)
+	if (strncmp ((char *) sniff_buffer->buffer, "ID3", 3) == 0
 		&& (sniff_buffer->buffer[3] != 0xffu)
 		&& (sniff_buffer->buffer[4] != 0xffu)
 		&& (sniff_buffer->buffer[6] < 0x80u)
@@ -839,3 +841,41 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 
 	return FALSE;
 }
+
+gboolean
+gnome_vfs_sniff_buffer_looks_like_gzip (GnomeVFSMimeSniffBuffer *sniff_buffer,
+	const char *file_name)
+{
+	if (sniff_buffer == NULL) {
+		return FALSE;
+	}
+	
+	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 2) != GNOME_VFS_OK) {
+		return FALSE;
+	}
+	
+	if (sniff_buffer->buffer[0] != 0x1F || sniff_buffer->buffer[1] != 0x8B) {
+		/* not a gzipped file */
+		return FALSE;
+	}
+	
+	if (file_name == NULL) {
+		return TRUE;
+	}
+	
+	if (gnome_vfs_istr_has_suffix (file_name, ".gnumeric")
+		|| gnome_vfs_istr_has_suffix (file_name, ".abw")
+		|| gnome_vfs_istr_has_suffix (file_name, ".dia")
+		|| gnome_vfs_istr_has_suffix (file_name, ".pdf")) {
+		/* Have the suffix matching deal with figuring out the actual
+		 * MIME type.
+		 * FIXME bugzilla.eazel.com 6867:
+		 * Get rid of the hardcoded list and have a way to adjust it in the
+		 * mime magic, etc. files.
+		 */
+		return FALSE;
+	}
+	
+	return TRUE;
+}
+
