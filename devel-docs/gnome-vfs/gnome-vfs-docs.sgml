@@ -1,0 +1,17 @@
+<!doctype book PUBLIC "-//Davenport//DTD DocBook V3.0//EN" [
+<!entity gnome-gnome-vfs-mime-info SYSTEM "sgml/gnome-vfs-mime-info.sgml">
+<!entity gnome-gnome-vfs-mime SYSTEM "sgml/gnome-vfs-mime.sgml">
+]>
+
+<book>
+  <bookinfo>
+    <title>Gnome Library Reference Manual</title>
+  </bookinfo>
+
+  <chapter id="libgnome">
+    <title>Gnome Library</title>
+    &gnome-gnome-vfs-mime-info;
+    &gnome-gnome-vfs-mime;
+    &gnome-libgnome-vfs;
+  </chapter>
+</book>

@@ -1,0 +1,86 @@
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_type</NAME>
+<RETURNS>const char   *</RETURNS>
+const gchar* filename
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_type_or_default</NAME>
+<RETURNS>const char   *</RETURNS>
+const gchar *filename,const gchar *defaultv
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_type_of_file</NAME>
+<RETURNS>const char   *</RETURNS>
+const char *existing_filename
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_type_or_default_of_file</NAME>
+<RETURNS>const char   *</RETURNS>
+const char *existing_filename,const gchar *defaultv
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_type_from_magic</NAME>
+<RETURNS>const char   *</RETURNS>
+const gchar *filename
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_uri_list_extract_filenames</NAME>
+<RETURNS>GList        *</RETURNS>
+const gchar* uri_list
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_uri_list_extract_uris</NAME>
+<RETURNS>GList        *</RETURNS>
+const gchar* uri_list
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_uri_list_free_strings</NAME>
+<RETURNS>void  </RETURNS>
+GList *list
+</FUNCTION>
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_get_value</NAME>
+<RETURNS>const char  *</RETURNS>
+const char *mime_type, char *key
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_get_keys</NAME>
+<RETURNS>GList       *</RETURNS>
+const char *mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_program</NAME>
+<RETURNS>const char  *</RETURNS>
+const char* mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_description</NAME>
+<RETURNS>const char  *</RETURNS>
+const char* mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_nametemplate</NAME>
+<RETURNS>const char  *</RETURNS>
+const char* mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_test</NAME>
+<RETURNS>const char  *</RETURNS>
+const char* mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_composetyped</NAME>
+<RETURNS>const char  *</RETURNS>
+const char* mime_type
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_copiousoutput</NAME>
+<RETURNS>gboolean  </RETURNS>
+const char* mime_type, char *key
+</FUNCTION>
+<FUNCTION>
+<NAME>gnome_mime_needsterminal</NAME>
+<RETURNS>gboolean  </RETURNS>
+const char* mime_type, char *key

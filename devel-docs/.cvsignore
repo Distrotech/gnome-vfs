@@ -1,0 +1,6 @@
+*.htm
+*.html
+*.ced
+*.junk
+Makefile
+Makefile.in
