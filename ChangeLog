@@ -1,5 +1,82 @@
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
+
+	Re-organize documentation, move stuff more fluidly
+	between sections rather than relying so heavily on
+	the (rather poor) header file organization.
+	
+	* doc/tmpl/application-registry.sgml:
+	* doc/tmpl/async-ops.sgml:
+	* doc/tmpl/cancellation.sgml:
+	* doc/tmpl/context.sgml:
+	* doc/tmpl/directory.sgml:
+	* doc/tmpl/file-info.sgml:
+	* doc/tmpl/file-size.sgml:
+	* doc/tmpl/find-directory.sgml:
+	* doc/tmpl/gnome-vfs-application-registry.sgml:
+	* doc/tmpl/gnome-vfs-async-ops.sgml:
+	* doc/tmpl/gnome-vfs-cancellation.sgml:
+	* doc/tmpl/gnome-vfs-context.sgml:
+	* doc/tmpl/gnome-vfs-directory.sgml:
+	* doc/tmpl/gnome-vfs-file-info.sgml:
+	* doc/tmpl/gnome-vfs-file-size.sgml:
+	* doc/tmpl/gnome-vfs-find-directory.sgml:
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* doc/tmpl/gnome-vfs-init.sgml:
+	* doc/tmpl/gnome-vfs-iobuf.sgml:
+	* doc/tmpl/gnome-vfs-job-limit.sgml:
+	* doc/tmpl/gnome-vfs-metadata.sgml:
+	* doc/tmpl/gnome-vfs-method.sgml:
+	* doc/tmpl/gnome-vfs-mime-database.sgml:
+	* doc/tmpl/gnome-vfs-mime-monitor.sgml:
+	* doc/tmpl/gnome-vfs-mime.sgml:
+	* doc/tmpl/gnome-vfs-module-callback-module-api.sgml:
+	* doc/tmpl/gnome-vfs-module-callback.sgml:
+	* doc/tmpl/gnome-vfs-module-shared.sgml:
+	* doc/tmpl/gnome-vfs-module.sgml:
+	* doc/tmpl/gnome-vfs-monitor.sgml:
+	* doc/tmpl/gnome-vfs-ops.sgml:
+	* doc/tmpl/gnome-vfs-parse-ls.sgml:
+	* doc/tmpl/gnome-vfs-result.sgml:
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* doc/tmpl/gnome-vfs-socket.sgml:
+	* doc/tmpl/gnome-vfs-ssl.sgml:
+	* doc/tmpl/gnome-vfs-standard-callbacks.sgml:
+	* doc/tmpl/gnome-vfs-transform.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/gnome-vfs-uri.sgml:
+	* doc/tmpl/gnome-vfs-utils.sgml:
+	* doc/tmpl/gnome-vfs-xfer.sgml:
+	* doc/tmpl/gnome-vfs.sgml:
+	* doc/tmpl/handle.sgml:
+	* doc/tmpl/inet-connection.sgml:
+	* doc/tmpl/init.sgml:
+	* doc/tmpl/iobuf.sgml:
+	* doc/tmpl/method.sgml:
+	* doc/tmpl/mime-handlers.sgml:
+	* doc/tmpl/mime-info.sgml:
+	* doc/tmpl/mime-monitor.sgml:
+	* doc/tmpl/mime.sgml:
+	* doc/tmpl/module-callback-module-api.sgml:
+	* doc/tmpl/module-callback.sgml:
+	* doc/tmpl/module-shared.sgml:
+	* doc/tmpl/module.sgml:
+	* doc/tmpl/ops.sgml:
+	* doc/tmpl/parse-ls.sgml:
+	* doc/tmpl/result.sgml:
+	* doc/tmpl/ssl.sgml:
+	* doc/tmpl/standard-callbacks.sgml:
+	* doc/tmpl/types.sgml:
+	* doc/tmpl/uri.sgml:
+	* doc/tmpl/utils.sgml:
+	* doc/tmpl/xfer.sgml:
+
+	New templates... woo hoo.
+	
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/Makefile.am:
 	* doc/gnome-vfs-docs.sgml:
 	* doc/gnome-vfs-sections.txt:
