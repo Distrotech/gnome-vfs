@@ -21,7 +21,11 @@ Requires: oaf >= 0.3.0
 Docdir: %{prefix}/doc
 
 %description
-GNOME VFS Description here
+GNOME VFS is the GNOME virtual file system. It is the foundation of the
+Nautilus file manager. It provides a modular architecture and ships with
+several modules that implement support for file systems, http, ftp and others.
+It provides a URI-based API, a backend supporting asynchronous file operations,
+a MIME type manipulation library and other features.
 
 %package devel
 Summary: Libraries and include files for developing GNOME VFS applications.
@@ -31,7 +35,8 @@ Requires: GConf-devel
 Requires: oaf-devel
 
 %description devel
-GNOME VFS development descirptionn here
+This package provides the necessary development libraries for writing
+GNOME VFS modules and applications that use the GNOME VFS APIs.
 
 %changelog
 * Tue Feb 22 2000 Ross Golder <rossigee@bigfoot.com>

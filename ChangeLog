@@ -1,3 +1,8 @@
+2000-11-02  Pavel Cisler  <pavel@eazel.com>
+
+	* gnome-vfs.spec.in:
+	Fill out the description fields.
+
 2000-11-02  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* configure.in: gnome-vfs 0.4 has been tagged
