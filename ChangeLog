@@ -1,3 +1,8 @@
+2004-06-07  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
+ 
+ 	* monikers/bonobo-storage-fs.c: fix Bonobo_Storage_listContents so 
+ 	that it uses the proper path. 
+
 2004-06-03  Niall Power  <niall.power@sun.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c:
