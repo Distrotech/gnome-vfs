@@ -1,5 +1,11 @@
 2004-08-25  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in (XML_REQUIRED):
+	Add back MODULES_XML, as we're still using that.
+	Fixes bug #149297
+
+2004-08-25  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/pty-open.c (_gnome_vfs_pty_run_on_pty):
 	Fix valgrind warning.
 
