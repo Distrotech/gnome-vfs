@@ -23,7 +23,7 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr "Toirt ISO 9660"
+msgstr "Imleabhar ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -57,7 +57,7 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "Toirt AFFS"
+msgstr "Imleabhar AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
@@ -82,34 +82,34 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr "Toirt Linux Ext2"
+msgstr "Imleabhar Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr "Toirt Linux Ext3"
+msgstr "Imleabhar Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr "Toirt MSDSOS"
+msgstr "Imleabhar MSDSOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr "Toirt MacOS"
+msgstr "Imleabhar MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr "Toirt CDROM"
+msgstr "Imleabhar CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr "Toirt Hsfs CDROM"
+msgstr "Imleabhar Hsfs CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr "Toirt JFS"
+msgstr "Imleabhar JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
@@ -120,27 +120,27 @@ msgstr "Foirt 'Windows NT'"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr "Toirt Chorás"
+msgstr "Imleabhar Chorás"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr "Toirt Chuimhe"
+msgstr "Imleabhar Chuimhe"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr "Toirt Minix"
+msgstr "Imleabhar Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr "Toirt Lín NFS"
+msgstr "Imleabhar Lín NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr "Toirt Netware"
+msgstr "Imleabhar Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr "Toirt Linux ReiserFS"
+msgstr "Imleabhar Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
@@ -148,23 +148,23 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr "Toirt SuperMount"
+msgstr "Imleabhar SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr "Toirt DVD"
+msgstr "Imleabhar DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr "Toirt Solaris/BSD"
+msgstr "Imleabhar Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr "Toirt Solaris Udfs"
+msgstr "Imleabhar Solaris Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr "Toirt Solaris Pcfs"
+msgstr "Imleabhar Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
@@ -172,19 +172,19 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr "Toirt 'Windows' VFAT"
+msgstr "Imleabhar 'Windows' VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr "Toirt Xenis"
+msgstr "Imleabhar Xenis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr "Toirt Linux XFS"
+msgstr "Imleabhar Linux XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr "Toirt XIAFS"
+msgstr "Imleabhar XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
 msgid "Unknown"
