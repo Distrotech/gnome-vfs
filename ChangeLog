@@ -1,3 +1,22 @@
+2001-02-12  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Gene Z. Ragan  <gzr@eazel.com> (under protest,
+	since Gene hates the use of "MIME")
+
+	Changed all uses of "Mime" or "mime" in the UI to be
+	"MIME". Also improved the wording for the "revert"
+	dialog, though it still could use Verafication. Also,
+	using "MIME" in the UI at all rather sucks. It would
+	be nice if we could avoid this nerd terminology someday.
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(initialize_edit_applications_dialog),
+	(initialize_edit_components_dialog),
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), (revert_mime_clicked),
+	(create_mime_list_and_scroller):
+
 2001-02-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6329, Typing gconf: and pressing ENTER in the
