@@ -1,6 +1,6 @@
 INCLUDES = \
-	-I$(topsrcdir)				\
-	-I$(topbuilddir)			\
+	-I$(top_srcdir)				\
+	-I$(top_builddir)			\
 	$(VFS_CFLAGS)				\
 	$(MONIKERS_CFLAGS)			\
 	-DG_DISABLE_DEPRECATED			\
