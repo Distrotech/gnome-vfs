@@ -1,5 +1,12 @@
 2000-12-08  Gene Z. Ragan  <gzr@eazel.com>
 
+	* modules/ftp-method.c: (do_read_directory):
+	Removed fixme for bug 3925.  This was fixed in Nautilus.
+	Resolving sym links during a directory read in the ftp module
+	is resource intensive and probably not desired.
+
+2000-12-08  Gene Z. Ragan  <gzr@eazel.com>
+
 	reviewed by: Pavel Cisler <pavel@eazel.com>
 
 	Fixed bug 4660, Descrption lost when adding mime types
