@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 04:49+0900\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-26 05:10+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -83,7 +83,8 @@ msgstr "데스크탑 엔트리에 들어 있는 '%s' 키의 값을 해석할 수
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "데스크탑 엔트리에 들어 있는 '%s' 키에 대해 '%s' 로케일로 번역된 값이 없습니다"
+msgstr ""
+"데스크탑 엔트리에 들어 있는 '%s' 키에 대해 '%s' 로케일로 번역된 값이 없습니다"
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
@@ -425,7 +426,9 @@ msgstr "작동 중지"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "지원하지 않는 함수.  사용자가 MIME 데이터베이스를 수정하는 건 더 이상 지원하지 않습니다."
+msgstr ""
+"지원하지 않는 함수.  사용자가 MIME 데이터베이스를 수정하는 건 더 이상 지원하"
+"지 않습니다."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format

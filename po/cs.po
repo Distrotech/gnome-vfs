@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-25 04:11+0200\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-25 15:18+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -1072,43 +1072,50 @@ msgstr "Obsluha pro URL HTTPS"
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"aim\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"callto\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"info\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"mailto\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"man\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"trash\"."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
@@ -1130,7 +1137,9 @@ msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL H
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "True, pokud by měl být program používaný pro obsluhu tohoto typu URL spouštěn v terminálu."
+msgstr ""
+"True, pokud by měl být program používaný pro obsluhu tohoto typu URL "
+"spouštěn v terminálu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"

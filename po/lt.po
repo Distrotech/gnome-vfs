@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-27 11:31+0300\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-27 16:56+0300\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -82,15 +83,13 @@ msgstr "darbastalio įrašuose nėra rakto „%s“"
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"darbastalio įrašuose yra raktas „%s“, turintis nesuprantamą reikšmę."
+msgstr "darbastalio įrašuose yra raktas „%s“, turintis nesuprantamą reikšmę."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"darbastalio įrašuose nėra išverstos rakto „%s“ reikšmės lokalei „%s“."
+msgstr "darbastalio įrašuose nėra išverstos rakto „%s“ reikšmės lokalei „%s“."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
@@ -1195,7 +1194,8 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
-"Kableliu atskirtų dns-sd domenų, kurie turėtų būti matomi tinklo vietoje, sąrašas."
+"Kableliu atskirtų dns-sd domenų, kurie turėtų būti matomi tinklo vietoje, "
+"sąrašas."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 01:04+0100\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-26 01:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
@@ -48,12 +48,14 @@ msgstr "Falha ao ler do ficheiro '%s': %s"
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
-"entradas de área de trabalho contêm a linha '%s' que não é uma entrada, grupo "
-"ou comentário"
+"entradas de área de trabalho contêm a linha '%s' que não é uma entrada, "
+"grupo ou comentário"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr "ficheiro de entradas de área de trabalho não começa por um grupo inicial permitido"
+msgstr ""
+"ficheiro de entradas de área de trabalho não começa por um grupo inicial "
+"permitido"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
@@ -61,6 +63,7 @@ msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "entradas de área de trabalho contêm a linha '%s' que não é UTF-8"
 
 #: libgnomevfs/eggdesktopentries.c:731
+#, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "entradas de área de trabalho contêm a codificação desconhecida '%s'"
 
@@ -99,7 +102,8 @@ msgstr "entradas de área de trabalho contêm sequencia de escape inválida '%s'
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr "entradas de área de trabalho contêm caracter de escape no final da linha"
+msgstr ""
+"entradas de área de trabalho contêm caracter de escape no final da linha"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format

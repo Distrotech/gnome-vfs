@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-04-15 15:45+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -22,9 +22,92 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Ezin izan da Bonobo hasieratu"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Ezin izan da gnome vfs hasieratu"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, fuzzy, c-format
+msgid "File could not be opened: %s"
+msgstr "Ezin izan da hau analizatu: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:338
+#, fuzzy
+msgid "File is empty"
+msgstr "Fitxategia badago"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -173,28 +256,148 @@ msgid "Pcfs Solaris Volume"
 msgstr "PcFS Solaris bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#, fuzzy
+msgid "Sun SAM-QFS Volume"
+msgstr "AFFS bolumena"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "DOS hobetua bolumena"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT bolumena"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Xenix bolumena"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "XFS Linux bolumena"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "XIAFS bolumena"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Ezezaguna"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
+msgid "CD Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+msgid "Blank CD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#, fuzzy
+msgid "CD-R Disc"
+msgstr "CDROM gailua"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+msgid "Blank CD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#, fuzzy
+msgid "CD-RW Disc"
+msgstr "CDROM gailua"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#, fuzzy
+msgid "DVD-ROM Disc"
+msgstr "CDROM gailua"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+msgid "Blank DVD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "DVD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+msgid "Blank DVD-RAM Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+msgid "DVD-RAM Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+msgid "Blank DVD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+msgid "DVD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+msgid "Blank DVD+RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+msgid "DVD+RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+msgid "Blank DVD+R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+msgid "DVD+R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Optical Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#, fuzzy
+msgid "Audio Disc"
+msgstr "CD audioa"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+msgid "Compact Flash Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#, fuzzy
+msgid "Memory Stick Media"
+msgstr "Memoria arkatza"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+msgid "Smart Media Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+msgid "SD/MMC Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#, fuzzy
+msgid "Floppy Disk"
+msgstr "Disketea"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "Mac OS disk"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Mac OS X disk"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#, fuzzy
+msgid "Windows Disk"
+msgstr "Leihoak"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+msgid "Linux Disk"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -214,6 +417,28 @@ msgstr "%u lan-mota ezezaguna"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Eragiketa geldiarazita"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -354,7 +579,7 @@ msgstr "Ez da eragiketa hori onartzen"
 msgid "Is a directory"
 msgstr "Direktorioa da"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Ez dago nahikoa memoria"
@@ -454,7 +679,28 @@ msgstr "Errorea komando-lerroa analizatzean"
 msgid "Error launching command"
 msgstr "Errorea komandoa abiaraztean"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+msgid "Timeout reached"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+#, fuzzy
+msgid "Nameserver error"
+msgstr "Errore generikoa"
+
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Errore ezezaguna"
 
@@ -481,65 +727,65 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode baliogabea)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disketea"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "ZIP gailua"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Memoria arkatza"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Kamara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Erroa bolumena"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "CD audioa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Bolumen ezezaguna"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Sareko zerbitzaria"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ezin da bolumena muntau. Baliteke gailuan euskarririk ez egotea."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -547,7 +793,7 @@ msgstr ""
 "Ezin da diskete gailua muntatu. Baliteke disketeak muntatu ezin daitekeen "
 "formatua edukitzea."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -555,28 +801,28 @@ msgstr ""
 "Ezin da hautatutako bolumena muntatu. Baliteke bolumenak muntatu ezin "
 "daitekeen formatua edukitzea."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ezin da hautatutako diskete gailua muntatu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Ezin da hautatutako bolumena muntatu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Ezin da hautatutako bolumena desmuntatu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Huts egin du komandoa abiatzean."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "Ezin da euskarria egotzi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Ezin da konektatutako zerbitzaria desmuntatu."
 
@@ -630,19 +876,19 @@ msgstr "Tresnak"
 msgid "Windows"
 msgstr "Leihoak"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Sarea"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Etxea"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "%d nomeVFSSeekPosition ezezaguna"
@@ -733,164 +979,265 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Exec argumentua terminal aplikazio lehenetsian erabiltzeko."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "H323 URL kudeatzailea"
+#, fuzzy
+msgid "Run the command in a terminal"
+msgstr "Exekutatu programa terminalean"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "HTTP URL kudeatzailea"
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "HTTPS URL kudeatzailea"
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Kudeatu H323 URLak"
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Kudeatu HTTP URLak"
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Kudeatu HTTPS URLak"
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
-msgid "Handle aim URLs"
-msgstr "Kudeatu man URLak"
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Kudeatu callto URLak"
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Kudeatu ghelp URLak"
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Kudeatu info URLak"
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Kudeatu mailto URLak"
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
+#, fuzzy
+msgid "The handler for \"aim\" URLs"
 msgstr "Kudeatu man URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Kudeatu trash URLak"
+#, fuzzy
+msgid "The handler for \"callto\" URLs"
+msgstr "Kudeatu callto URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr "Exekutatu programa terminalean"
+#, fuzzy
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Kudeatu ghelp URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu H323 URLak "
-"\"komandoa\"n."
+#, fuzzy
+msgid "The handler for \"info\" URLs"
+msgstr "Kudeatu info URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTP URLak "
-"\"komandoa\"n."
+#, fuzzy
+msgid "The handler for \"mailto\" URLs"
+msgstr "Kudeatu mailto URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTPS URLak "
-"\"komandoa\"n. "
+#, fuzzy
+msgid "The handler for \"man\" URLs"
+msgstr "Kudeatu man URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 #, fuzzy
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgid "The handler for \"trash\" URLs"
+msgstr "Kudeatu trash URLak"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#, fuzzy
+msgid "The handler for H323 URLs"
+msgstr "Kudeatu H323 URLak"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#, fuzzy
+msgid "The handler for HTTP URLs"
+msgstr "Kudeatu HTTP URLak"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#, fuzzy
+msgid "The handler for HTTPS URLs"
+msgstr "Kudeatu HTTPS URLak"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu man URLak "
 "\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu callto "
 "URLak \"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu ghelp URLak "
 "\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu info URLak "
 "\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu mailto "
 "URLak \"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu man URLak "
 "\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
 msgstr ""
 "Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu trash URLak "
 "\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu H323 URLak "
+"\"komandoa\"n."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTP URLak "
+"\"komandoa\"n."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTPS URLak "
+"\"komandoa\"n. "
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
+#, fuzzy
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
 msgstr ""
 "Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 #, fuzzy
-msgid "aim URL handler"
-msgstr "man URL kudeatzailea"
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu man URLak "
+"\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "callto URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+#, fuzzy
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu callto "
+"URLak \"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "ghelp URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+#, fuzzy
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu ghelp URLak "
+"\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "info URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu info URLak "
+"\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "mailto URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu mailto "
+"URLak \"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "man URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu man URLak "
+"\"komandoa\"n."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "trash URL kudeatzailea"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#, fuzzy
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu trash URLak "
+"\"komandoa\"n."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+#, fuzzy
+msgid "Whether the specified command should handle H323 URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu H323 URLak "
+"\"komandoa\"n."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+#, fuzzy
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTP URLak "
+"\"komandoa\"n."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+#, fuzzy
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko kudeatu HTTPS URLak "
+"\"komandoa\"n. "
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -907,7 +1254,7 @@ msgid "How to display local DNS-SD service"
 msgstr ""
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
@@ -1064,6 +1411,37 @@ msgstr "SMB lan-taldea"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
+
+#~ msgid "H323 URL handler"
+#~ msgstr "H323 URL kudeatzailea"
+
+#~ msgid "HTTP URL handler"
+#~ msgstr "HTTP URL kudeatzailea"
+
+#~ msgid "HTTPS URL handler"
+#~ msgstr "HTTPS URL kudeatzailea"
+
+#, fuzzy
+#~ msgid "aim URL handler"
+#~ msgstr "man URL kudeatzailea"
+
+#~ msgid "callto URL handler"
+#~ msgstr "callto URL kudeatzailea"
+
+#~ msgid "ghelp URL handler"
+#~ msgstr "ghelp URL kudeatzailea"
+
+#~ msgid "info URL handler"
+#~ msgstr "info URL kudeatzailea"
+
+#~ msgid "mailto URL handler"
+#~ msgstr "mailto URL kudeatzailea"
+
+#~ msgid "man URL handler"
+#~ msgstr "man URL kudeatzailea"
+
+#~ msgid "trash URL handler"
+#~ msgstr "trash URL kudeatzailea"
 
 #~ msgid "1 byte"
 #~ msgstr "byte 1"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-02-23 19:51+0000\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -24,9 +24,92 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Methwyd ymgychwyn Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Methwyd ymgychwyn gnome vfs"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, fuzzy, c-format
+msgid "File could not be opened: %s"
+msgstr "Methu gramadegu: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Methwyd agor ffeil '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+#, fuzzy
+msgid "File is empty"
+msgstr "Mae'r ffeil yn bodoli"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, fuzzy, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Methwyd agor ffeil '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -175,28 +258,148 @@ msgid "Pcfs Solaris Volume"
 msgstr "Cyfrol Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#, fuzzy
+msgid "Sun SAM-QFS Volume"
+msgstr "Cyfrol AFFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Cyfrol DOS Gwell"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Cyfrol Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Cyfrol Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "Cyfrol Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "Cyfrol XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Anhysbys"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
+msgid "CD Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+msgid "Blank CD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#, fuzzy
+msgid "CD-R Disc"
+msgstr "Chwaraewr CD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+msgid "Blank CD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#, fuzzy
+msgid "CD-RW Disc"
+msgstr "Chwaraewr CD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#, fuzzy
+msgid "DVD-ROM Disc"
+msgstr "Chwaraewr CD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+msgid "Blank DVD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "DVD-R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+msgid "Blank DVD-RAM Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+msgid "DVD-RAM Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+msgid "Blank DVD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+msgid "DVD-RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+msgid "Blank DVD+RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+msgid "DVD+RW Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+msgid "Blank DVD+R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+msgid "DVD+R Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Optical Disc"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#, fuzzy
+msgid "Audio Disc"
+msgstr "CD Sain"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+msgid "Compact Flash Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#, fuzzy
+msgid "Memory Stick Media"
+msgstr "Tocyn Cof"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+msgid "Smart Media Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+msgid "SD/MMC Media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#, fuzzy
+msgid "Floppy Disk"
+msgstr "Disg hyblyg"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "Mac OS disk"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Mac OS X disk"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#, fuzzy
+msgid "Windows Disk"
+msgstr "Ffenestri"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+msgid "Linux Disk"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -216,6 +419,28 @@ msgstr "Tasg anhysbys, math %u"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Ataliwyd y gweithrediad"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -356,7 +581,7 @@ msgstr "Ni chaniateir y weithred"
 msgid "Is a directory"
 msgstr "Cyfeiriadur ydyw"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Dim digon o gof"
@@ -456,7 +681,28 @@ msgstr "Gwall wrth ddehongli'r llinell orchymyn"
 msgid "Error launching command"
 msgstr "Gwall wrth weithredu'r gorchymyn"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+msgid "Timeout reached"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+#, fuzzy
+msgid "Nameserver error"
+msgstr "Gwall generig"
+
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
@@ -483,66 +729,66 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode annilys)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disg hyblyg"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Gyrriant Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Tocyn Cof"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Camera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Cyfrol Gwraidd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "CD Sain"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Cyfrol anhysbys"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Gweinydd rhwydwaith"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Methu rhagosod y gyrriant disg hyblyg. Hwyrach nad oes disg yn y gyrriant."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Methu rhagosod y gyfrol. Hwyrach nad oes dim yn y ddyfais."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -550,7 +796,7 @@ msgstr ""
 "Methu rhagosod y gyrriant disg hyblyg. Hwyrach fod y disg hyblyg mewn ffurf "
 "na ellir ei osod."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -558,28 +804,28 @@ msgstr ""
 "Methu a gosod y gyfrol ddewisiwyd. Hwyrach ei fod mewn ffurf na ellir ei "
 "osod."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Methu gosod y gyrriant disg hyblyg ddewisiwyd."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Methu gosod y gyfrol ddewisiwyd."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Methu dadosod y gyfrol ddewisiwyd."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Methwyd a chychwyn y gorchymyn"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "Methu allfwrw'r disg neu'r modd"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Methu dadosod y gweinydd sy'n gysylltiedig"
 
@@ -633,19 +879,19 @@ msgstr "Offer"
 msgid "Windows"
 msgstr "Ffenestri"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Rhwydwaith"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Cartref"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "System Ffeil"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition anhysbys %d"
@@ -740,164 +986,247 @@ msgstr ""
 "Yr ymresymiad exec i'w ddefnyddio ar gyfer y rhaglen derfynell rhagosodedig."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "trinydd LAU H323"
+#, fuzzy
+msgid "Run the command in a terminal"
+msgstr "Rhedeg rhaglen mewn terfynell"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "trinydd LAU HTTP"
+#, fuzzy
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "trinydd LAU HTTP diogel"
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Ymdrin â LAU H323"
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Ymdrin â LAU HTTP"
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Ymdrin â LAU HTTP diogel"
+#, fuzzy
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
-msgid "Handle aim URLs"
-msgstr "Ymdrin â LAU \"man\""
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Ymdrin â LAU \"callto\""
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Ymdrin â LAU \"ghelp\""
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Ymdrin â LAU \"info\""
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Ymdrin â LAU \"mailto\""
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
+#, fuzzy
+msgid "The handler for \"aim\" URLs"
 msgstr "Ymdrin â LAU \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Ymdrin â LAU sbwriel"
+#, fuzzy
+msgid "The handler for \"callto\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr "Rhedeg rhaglen mewn terfynell"
+#, fuzzy
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU H323."
+#, fuzzy
+msgid "The handler for \"info\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU HTTP."
+#, fuzzy
+msgid "The handler for \"mailto\" URLs"
+msgstr "Ymdrin â LAU \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU HTTP diogel."
+#, fuzzy
+msgid "The handler for \"man\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 #, fuzzy
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgid "The handler for \"trash\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#, fuzzy
+msgid "The handler for H323 URLs"
+msgstr "Ymdrin â LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#, fuzzy
+msgid "The handler for HTTP URLs"
+msgstr "Ymdrin â LAU HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#, fuzzy
+msgid "The handler for HTTPS URLs"
+msgstr "Ymdrin â LAU HTTP diogel"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"man\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"ghelp\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"info\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"mailto\"."
-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU sbwriel."
+"LAU \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 msgstr ""
-"Gwir os dylid rhedeg y rhaglen sy'n delio â'r math yma o LAU mewn terfynell."
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 #, fuzzy
-msgid "aim URL handler"
-msgstr "trinydd LAU \"man\""
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "trinydd LAU \"callto\""
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "trinydd LAU \"ghelp\""
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "trinydd LAU \"info\""
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "trinydd LAU \"mailto\""
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "trinydd LAU \"man\""
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "trinydd LAU sbwriel"
+#, fuzzy
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Gwir os dylid rhedeg y rhaglen sy'n delio â'r math yma o LAU mewn terfynell."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+#, fuzzy
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+#, fuzzy
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+#, fuzzy
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#, fuzzy
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+#, fuzzy
+msgid "Whether the specified command should handle H323 URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+#, fuzzy
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+#, fuzzy
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -914,7 +1243,7 @@ msgid "How to display local DNS-SD service"
 msgstr ""
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
@@ -1080,14 +1409,118 @@ msgstr "Grŵp SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
+#~ msgid "H323 URL handler"
+#~ msgstr "trinydd LAU H323"
+
+#~ msgid "HTTP URL handler"
+#~ msgstr "trinydd LAU HTTP"
+
+#~ msgid "HTTPS URL handler"
+#~ msgstr "trinydd LAU HTTP diogel"
+
+#~ msgid "Handle callto URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#~ msgid "Handle ghelp URLs"
+#~ msgstr "Ymdrin â LAU \"ghelp\""
+
+#~ msgid "Handle info URLs"
+#~ msgstr "Ymdrin â LAU \"info\""
+
+#~ msgid "Handle man URLs"
+#~ msgstr "Ymdrin â LAU \"man\""
+
+#~ msgid "Handle trash URLs"
+#~ msgstr "Ymdrin â LAU sbwriel"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle H323 URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU H323."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle HTTP URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU HTTP."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU HTTP diogel."
+
+#, fuzzy
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle aim URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"man\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle callto URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"callto\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle ghelp URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"ghelp\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle info URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"info\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle mailto URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"mailto\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle man URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU \"man\"."
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle trash URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU sbwriel."
+
+#, fuzzy
+#~ msgid "aim URL handler"
+#~ msgstr "trinydd LAU \"man\""
+
+#~ msgid "callto URL handler"
+#~ msgstr "trinydd LAU \"callto\""
+
+#~ msgid "ghelp URL handler"
+#~ msgstr "trinydd LAU \"ghelp\""
+
+#~ msgid "info URL handler"
+#~ msgstr "trinydd LAU \"info\""
+
+#~ msgid "mailto URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
+
+#~ msgid "man URL handler"
+#~ msgstr "trinydd LAU \"man\""
+
+#~ msgid "trash URL handler"
+#~ msgstr "trinydd LAU sbwriel"
+
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Methodd cadw llyfrnod (%s)"
 
 #~ msgid "Could not get information for file '%s': %s"
 #~ msgstr "Methwyd cyrchu gwybodaeth ar gyfer ffeil '%s': %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Methwyd agor ffeil '%s': %s"
 
 #~ msgid ""
 #~ "Failed to load image '%s': reason not known, probably a corrupt image file"
@@ -1104,91 +1537,10 @@ msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
 #~ msgid ""
 #~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "H323 URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU H323."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "HTTPS URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU HTTPS."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "ghelp URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"ghelp\"."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
 #~ "http URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
 #~ "â LAU HTTP."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "info URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"info\"."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "man URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"man\"."
-
-#~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "trash URLs."
-#~ msgstr ""
-#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"trash\"."
-
-#~ msgid "The command used to handle \"callto\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
-
-#~ msgid "The command used to handle \"ghelp\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
-
-#~ msgid "The command used to handle \"info\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
-
-#~ msgid "The command used to handle \"man\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
-
-#~ msgid "The command used to handle \"trash\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
-
-#~ msgid "The command used to handle H323 URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
-
-#~ msgid "URL handler for \"callto\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
-
-#~ msgid "URL handler for \"ghelp\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
-
-#~ msgid "URL handler for \"info\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
-
-#~ msgid "URL handler for \"man\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
-
-#~ msgid "URL handler for \"trash\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
 
 #~ msgid "URL handler for H323 locations"
 #~ msgstr "Trinydd LAU ar gyfer lleoliadau H323"
@@ -1198,27 +1550,6 @@ msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
 #~ msgid "URL handler for HTTPS locations"
 #~ msgstr "Trinydd LAU ar gyfer lleoliadau HTTPS"
-
-#~ msgid "Whether specified command should handle H323 URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
-
-#~ msgid "Whether specified command should handle HTTP URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
-
-#~ msgid "Whether specified command should handle HTTPS URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
-
-#~ msgid "Whether the specified command should handle ghelp URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
-
-#~ msgid "Whether the specified command should handle info URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
-
-#~ msgid "Whether the specified command should handle man URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
-
-#~ msgid "Whether the specified command should handle trash URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
 
 #~ msgid "1 byte"
 #~ msgstr "1 beit"

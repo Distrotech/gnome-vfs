@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-27 03:51+0200\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-27 11:32+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -44,10 +44,11 @@ msgstr "Leximi nga file '%s' dështoi: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
-"elementi i desktop përmban rreshtin '%s' që nuk është një zë, "
-"grup, apo koment"
+"elementi i desktop përmban rreshtin '%s' që nuk është një zë, grup, apo "
+"koment"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
@@ -77,17 +78,18 @@ msgstr "elementi i desktop nuk ka kyçin '%s'"
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
-"elementi i desktop përmban kyçin '%s' që ka një vlerë të "
-"pa interpretueshme."
+"elementi i desktop përmban kyçin '%s' që ka një vlerë të pa interpretueshme."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
-"elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në "
-"gjuhën '%s'."
+"elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në gjuhën '%"
+"s'."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
@@ -429,7 +431,9 @@ msgstr "Operacioni u ndërpre"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Funksion që nuk përdoret më.  Ndryshimet nga përdoruesi tek databaza MIME nuk suportohen më."
+msgstr ""
+"Funksion që nuk përdoret më.  Ndryshimet nga përdoruesi tek databaza MIME "
+"nuk suportohen më."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -766,7 +770,8 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -1070,82 +1075,86 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"aim\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"callto\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"ghelp\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"info\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"mailto\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"man\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë \"trash\"."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë H323."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë HTTP."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
 msgstr ""
-"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet "
-"të trajtojë URLtë HTTPS."
+"E vërtetë nëse komanda e përcaktuar tek kyçi \"komanda\" duhet të trajtojë "
+"URLtë HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "E vërtetë nëse komanda e përdorur për të trajtuar këtë lloj URL duhet të zbatohet në një terminal."
+msgstr ""
+"E vërtetë nëse komanda e përdorur për të trajtuar këtë lloj URL duhet të "
+"zbatohet në një terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1361,7 +1370,8 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr ""
+"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1370,4 +1380,3 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
-

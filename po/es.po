@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-11 18:20+0200\n"
+"POT-Creation-Date: 2004-07-26 19:29-0400\n"
 "PO-Revision-Date: 2004-07-11 18:27+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -32,9 +32,92 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "No se pudo inicializar Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, fuzzy, c-format
+msgid "File could not be opened: %s"
+msgstr "No se puede analizar: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Fallo al abrir el archivo «%s»: %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+#, fuzzy
+msgid "File is empty"
+msgstr "El archivo ya existe"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, fuzzy, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Fallo al abrir el archivo «%s»: %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr ""
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -183,134 +266,139 @@ msgid "Pcfs Solaris Volume"
 msgstr "Volumen Solaris PCFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#, fuzzy
+msgid "Sun SAM-QFS Volume"
+msgstr "Volumen AFFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Volumen mejorado de DOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Volumen VFAT de Windows"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Volumen Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "Volumen Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "Volumen XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
 msgstr "Disco compacto"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
 msgstr "Disco CD-R virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
 msgstr "Disco CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
 msgstr "Disco CD-RW virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
 msgstr "Disco CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
 msgstr "Disco DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
 msgstr "Disco DVD-R virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
 msgstr "Disco DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
 msgstr "Disco DVD-RAM virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
 msgstr "Disco DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
 msgstr "Disco DVD-RW virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
 msgstr "Disco DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
 msgstr "Disco DVD+RW virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
 msgstr "Disco DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
 msgstr "Disco DVD+R virgen"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
 msgstr "Disco DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
 msgstr "Disco óptico"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
 msgstr "Disco de sonido"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
 msgstr "Soporte Compact Flash"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
 msgstr "Soporte Memory Stick"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
 msgstr "Soporte Smart Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
 msgstr "Soporte SD/MMC"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
 msgstr "Disquete"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
 msgstr "Disco Mac OS"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
 msgstr "Disco Mac OS X"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
 msgstr "Disco Windows"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
 msgstr "Disco Linux"
 
@@ -332,6 +420,28 @@ msgstr "Tipo de trabajo %u desconocido"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "La operación ha sido detenida"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -472,7 +582,7 @@ msgstr "Operación no permitida"
 msgid "Is a directory"
 msgstr "Es un directorio"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "No hay suficiente memoria"
@@ -573,11 +683,27 @@ msgid "Error launching command"
 msgstr "Error al lanzar comando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Se ha alcanzado el tiempo de espera establecido"
 
-#: libgnomevfs/gnome-vfs-result.c:180
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+#, fuzzy
+msgid "Nameserver error"
+msgstr "Error genérico"
+
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Error desconocido"
 
@@ -604,68 +730,69 @@ msgid "%.1f GB"
 msgstr "%.1f Gib"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disquete"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Unidad Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Barra de memoria"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Cámara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Volumen raíz"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "CD de sonido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Volumen desconocido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Servidor de red"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Imposible montar el volumen. Probablemente no introdujo un soporte en el "
 "dispositivo."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -673,7 +800,7 @@ msgstr ""
 "Imposible montar la unidad de disquetes. El disquete probablemente está en "
 "un formato que no puede ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -681,28 +808,28 @@ msgstr ""
 "Imposible montar el volumen seleccionado. El volumen probablemente está en "
 "un formato que no puede ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Imposible montar la unidad de disquetes seleccionada."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Imposible montar el volumen seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Imposible desmontar el volumen seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Falló al iniciar el comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "No se pudo expulsar el soporte"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "No se pudo desmontar el servidor conectado"
 
@@ -756,15 +883,15 @@ msgstr "Herramientas"
 msgid "Windows"
 msgstr "Ventanas"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Red"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Directorio inicial"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
@@ -813,7 +940,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -864,157 +992,270 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "Manipulador URL H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "Manipulador URL HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "Manipulador URL HTTPS"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Manipula las URLs H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Manipula las URLs HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Manipula las URLs HTTPS"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle aim URLs"
-msgstr "Manipula las URLs aim"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Manipula las URLs callto"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Manipula las URLs ghelp"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Manipula las URLs info"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Manipula las URLs mailto"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
-msgstr "Manipula las URLs man"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Manipula las URLs trash"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
+#, fuzzy
+msgid "Run the command in a terminal"
 msgstr "Ejecutar programa en terminal"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "The command used to handle \"aim\" URLs, if enabled."
 msgstr ""
-"Establecer a «true» para tener un programa especificado en «comando» para "
-"manipular las URLs H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#, fuzzy
+msgid "The handler for \"aim\" URLs"
+msgstr "Manipula las URLs aim"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#, fuzzy
+msgid "The handler for \"callto\" URLs"
+msgstr "Manipulador de URLs callto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#, fuzzy
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Manipulador para URLs ghelp"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"info\" URLs"
+msgstr "Manipulador de URLs para páginas info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Establecer a «true» para tener el programa especificado en «comando» para "
-"manipular las URLs HTTP."
+#, fuzzy
+msgid "The handler for \"mailto\" URLs"
+msgstr "Manipulador de URLs mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Establecer a «true» para tener el programa especificado en «comando» para "
-"manipular las URLs HTTPS."
+#, fuzzy
+msgid "The handler for \"man\" URLs"
+msgstr "Manipulador de URLs para páginas man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+#, fuzzy
+msgid "The handler for \"trash\" URLs"
+msgstr "Manipulador URL para páginas trash"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#, fuzzy
+msgid "The handler for H323 URLs"
+msgstr "Manipula las URLs H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#, fuzzy
+msgid "The handler for HTTP URLs"
+msgstr "Manipula las URLs HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#, fuzzy
+msgid "The handler for HTTPS URLs"
+msgstr "Manipula las URLs HTTPS"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs aim."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs callto."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs ghelp."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs info."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs mailto."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs man."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» que "
 "manipule las URLs trash."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr ""
+"Establecer a «true» para tener el programa especificado en «comando» para "
+"manipular las URLs HTTP."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr ""
+"Establecer a «true» para tener el programa especificado en «comando» para "
+"manipular las URLs HTTPS."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
+#, fuzzy
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
 msgstr ""
 "Verdadero si el programa que manipula esta URL debe ejecutarse en un "
 "terminal."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "aim URL handler"
-msgstr "Manipulador de URL aim"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+#, fuzzy
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs aim."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "Manipulador de URL callto"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+#, fuzzy
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs callto."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "Manipulador de URL ghelp"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+#, fuzzy
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr ""
+"Establecer a «true» para tener el programa especificado en «comando» para "
+"manipular las URLs ghelp."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "Manipulador de URL info"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs info."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "Manipulador de URL mailto"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs mailto."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "Manipulador de URL man"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs man."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "Manipulador de URL trash"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#, fuzzy
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» que "
+"manipule las URLs trash."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+#, fuzzy
+msgid "Whether the specified command should handle H323 URLs"
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+#, fuzzy
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr ""
+"Establecer a «true» para tener el programa especificado en «comando» para "
+"manipular las URLs HTTP."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+#, fuzzy
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr ""
+"Establecer a «true» para tener el programa especificado en «comando» para "
+"manipular las URLs HTTPS."
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1033,7 +1274,8 @@ msgid "How to display local DNS-SD service"
 msgstr "Cómo mostrar el servicio DNS-SD local"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+#, fuzzy
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr "los valores posibles son «merged», «separate» y «disabled»"
 
 #: schemas/system_http_proxy.schemas.in.h:1
@@ -1200,14 +1442,59 @@ msgstr "Grupo de trabajo SMB"
 msgid "The window workgroup the user is part of"
 msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
+#~ msgid "H323 URL handler"
+#~ msgstr "Manipulador URL H323"
+
+#~ msgid "HTTP URL handler"
+#~ msgstr "Manipulador URL HTTP"
+
+#~ msgid "HTTPS URL handler"
+#~ msgstr "Manipulador URL HTTPS"
+
+#~ msgid "Handle callto URLs"
+#~ msgstr "Manipula las URLs callto"
+
+#~ msgid "Handle ghelp URLs"
+#~ msgstr "Manipula las URLs ghelp"
+
+#~ msgid "Handle info URLs"
+#~ msgstr "Manipula las URLs info"
+
+#~ msgid "Handle mailto URLs"
+#~ msgstr "Manipula las URLs mailto"
+
+#~ msgid "Handle man URLs"
+#~ msgstr "Manipula las URLs man"
+
+#~ msgid "Handle trash URLs"
+#~ msgstr "Manipula las URLs trash"
+
+#~ msgid "aim URL handler"
+#~ msgstr "Manipulador de URL aim"
+
+#~ msgid "callto URL handler"
+#~ msgstr "Manipulador de URL callto"
+
+#~ msgid "ghelp URL handler"
+#~ msgstr "Manipulador de URL ghelp"
+
+#~ msgid "info URL handler"
+#~ msgstr "Manipulador de URL info"
+
+#~ msgid "mailto URL handler"
+#~ msgstr "Manipulador de URL mailto"
+
+#~ msgid "man URL handler"
+#~ msgstr "Manipulador de URL man"
+
+#~ msgid "trash URL handler"
+#~ msgstr "Manipulador de URL trash"
+
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Se ha producido un fallo al guardar el marcador (%s)"
 
 #~ msgid "Could not get information for file '%s': %s"
 #~ msgstr "No se puede obtener información para el archivo «%s»: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Fallo al abrir el archivo «%s»: %s"
 
 #~ msgid ""
 #~ "Failed to load image '%s': reason not known, probably a corrupt image file"
@@ -1245,12 +1532,6 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 #~ "Establecer a «verdadero» para tener un programa especificado en programs/"
 #~ "man que maneje las URLs man"
 
-#~ msgid "URL handler for callto uris"
-#~ msgstr "Manipulador de URLs callto"
-
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Manipulador para URLs ghelp"
-
 #~ msgid "URL handler for h323 uris"
 #~ msgstr "Manipulador de URLs h323"
 
@@ -1259,18 +1540,6 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "URL handler for https uris"
 #~ msgstr "Manipulador de URLs https"
-
-#~ msgid "URL handler for info pages"
-#~ msgstr "Manipulador de URLs para páginas info"
-
-#~ msgid "URL handler for mailto uris"
-#~ msgstr "Manipulador de URLs mailto"
-
-#~ msgid "URL handler for man pages"
-#~ msgstr "Manipulador de URLs para páginas man"
-
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Manipulador URL para páginas trash"
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "Hosts que no son contactados a través del proxy"
@@ -1289,4 +1558,3 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-
