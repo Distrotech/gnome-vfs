@@ -406,17 +406,20 @@ typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 						  gboolean *recurse);
 
 
-/* Xfer options.  */
+/* Xfer options.  
+ * FIXME:
+ * Split these up into xfer options and xfer actions
+ */
 enum GnomeVFSXferOptions {
 	GNOME_VFS_XFER_DEFAULT = 0,
-	GNOME_VFS_XFER_PRESERVE = 1 << 0,
+	GNOME_VFS_XFER_UNUSED_1 = 1 << 0,
 	GNOME_VFS_XFER_FOLLOWLINKS = 1 << 1,
-	GNOME_VFS_XFER_WITHPARENTS = 1 << 2,
+	GNOME_VFS_XFER_UNUSED_2 = 1 << 2,
 	GNOME_VFS_XFER_RECURSIVE = 1 << 3,
 	GNOME_VFS_XFER_SAMEFS = 1 << 4,
-	GNOME_VFS_XFER_SPARSE_ALWAYS = 1 << 5,
-	GNOME_VFS_XFER_SPARSE_NEVER = 1 << 6,
-	GNOME_VFS_XFER_UPDATEMODE = 1 << 7,
+	GNOME_VFS_XFER_DELETE_ITEMS = 1 << 5,
+	GNOME_VFS_XFER_EMPTY_DIRECTORIES = 1 << 6,
+	GNOME_VFS_XFER_NEW_UNIQUE_DIRECTORY = 1 << 7,
 	GNOME_VFS_XFER_REMOVESOURCE = 1 << 8,
 	GNOME_VFS_XFER_USE_UNIQUE_NAMES = 1 << 9
 	

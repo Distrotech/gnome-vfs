@@ -1491,11 +1491,74 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 }
 
 static GnomeVFSResult
-gnome_vfs_new_folder (const char *target_dir,
-		      const char *name,
-		      GnomeVFSXferErrorMode error_mode,
-		      GnomeVFSXferOverwriteMode overwrite_mode,
-		      GnomeVFSProgressCallbackState *progress)
+gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
+			     const GList *item_names,
+			     GnomeVFSXferErrorMode error_mode,
+			     GnomeVFSXferOptions xfer_options,
+			     GnomeVFSProgressCallbackState *progress)
+{
+	GnomeVFSFileInfo info;
+	GnomeVFSResult result;
+	GnomeVFSURI *uri;
+	const GList *p;
+	gboolean skip;
+
+	result = GNOME_VFS_OK;
+	
+	call_progress (progress, GNOME_VFS_XFER_PHASE_INITIAL);
+
+		/* initialize the results */
+	progress->progress_info->files_total = 0;
+	progress->progress_info->bytes_total = 0;
+	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COLLECTING;
+
+
+	for (p = item_names;  p != NULL; p = p->next) {
+		result = count_items_and_size (source_directory, item_names,
+			GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
+			progress, TRUE);
+		if (result != GNOME_VFS_OK)
+			break;
+	}
+
+	if (result == GNOME_VFS_OK) {
+		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
+		for (p = item_names;  p != NULL; p = p->next) {
+		
+			skip = FALSE;
+			/* get the URI and VFSFileInfo for each */
+			uri = gnome_vfs_uri_append_path (source_directory, p->data);
+
+			gnome_vfs_file_info_init (&info);
+			result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+
+			if (result == GNOME_VFS_OK) {
+				if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+					remove_directory (uri, TRUE, progress, xfer_options, 
+							  &error_mode, &skip);
+				} else {
+					remove_file (uri, progress, xfer_options, &error_mode,
+						     &skip);
+				}
+			}
+			gnome_vfs_uri_unref (uri);
+			if (result != GNOME_VFS_OK) {
+				break;
+			}
+		}
+	}
+
+	call_progress (progress, GNOME_VFS_XFER_PHASE_COMPLETED);
+
+	return result;
+}
+
+static GnomeVFSResult
+gnome_vfs_new_directory_with_unique_name (const char *target_dir,
+					  const char *name,
+					  GnomeVFSXferErrorMode error_mode,
+					  GnomeVFSXferOverwriteMode overwrite_mode,
+					  GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
 	GnomeVFSURI *target_uri;
@@ -1724,9 +1787,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 	progress_state.update_callback = progress_callback;
 	progress_state.async_job_data = data;
 
-	if (source_dir == NULL
-	    && target_dir == NULL
-	    && target_name_list == NULL) {
+	if ((xfer_options & GNOME_VFS_XFER_EMPTY_DIRECTORIES) != 0) {
 		/* Assume a directory empty operation (Empty Trash, etc.).
 		 * FIXME:
 		 * We should have proper calls for Empty Trash,
@@ -1736,6 +1797,9 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		const GList *p;
 		GList *uri_list;
 		g_assert (source_name_list != NULL);
+		g_assert (source_dir == NULL);
+		g_assert (target_dir == NULL);
+		g_assert (target_name_list == NULL);
 
 		uri_list = NULL;
 		for (p = source_name_list;  p != NULL; p = p->next) {
@@ -1751,17 +1815,34 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 			gnome_vfs_uri_unref (p->data);
 		}
 		g_list_free (uri_list);
-	} else if (source_dir == NULL && source_name_list == NULL) {
+	} else if ((xfer_options & GNOME_VFS_XFER_NEW_UNIQUE_DIRECTORY) != 0) {
 		/* Assume a new directory create operation
 		 * FIXME:
 		 * We should have proper calls for Empty Trash,
 		 * this overloading is used just to avoid having to add 
 		 * a new call to the backend API
 		 */
-
-		gnome_vfs_new_folder (target_dir, target_name_list->data,
-		      error_mode, overwrite_mode, &progress_state);
-
+		g_assert (source_dir == NULL);
+		g_assert (source_name_list == NULL);
+		
+		result = gnome_vfs_new_directory_with_unique_name (target_dir, 
+			target_name_list->data, error_mode, overwrite_mode, &progress_state);
+	} else if ((xfer_options & GNOME_VFS_XFER_DELETE_ITEMS) != 0) {
+		/* Assume a new directory create operation
+		 * FIXME:
+		 * We should have proper calls for Empty Trash,
+		 * this overloading is used just to avoid having to add 
+		 * a new call to the backend API
+		 */
+		g_assert (target_dir == NULL);
+		g_assert (target_name_list == NULL);
+				
+		source_dir_uri = gnome_vfs_uri_new (source_dir);
+		if (source_dir_uri == NULL)
+			return GNOME_VFS_ERROR_INVALIDURI;
+		result = gnome_vfs_xfer_delete_items (source_dir_uri, source_name_list,
+		      error_mode, xfer_options, &progress_state);
+		gnome_vfs_uri_unref (source_dir_uri);
 	} else {
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)

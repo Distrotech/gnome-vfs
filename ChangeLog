@@ -1,3 +1,21 @@
+2000-05-30  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_xfer_private):
+	Removed some obsolete xfer options. Added new ones to make
+	new copy engine functions not depend so much on subtle values
+	of input source/target lists of items.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_new_directory_with_unique_name):
+	Darin and mjs hated the old name.
+
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_xfer_delete_items):
+	New call to support a fallback delete for files that cannot be moved
+	to Trash.
+
 2000-05-30  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
