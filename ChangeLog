@@ -1,3 +1,8 @@
+2000-11-06  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in:  upped version 0.4.1.1
+	for internal incrimental release
+
 2000-11-06  Darin Adler  <darin@eazel.com>
 
 	Fix bug 4490 (web sites with bad last modified dates (like
