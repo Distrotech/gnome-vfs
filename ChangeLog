@@ -1,5 +1,11 @@
 2000-12-11  Mike Fleming  <mfleming@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c: (hack_getc):
+	Changed to return int instead of char so it won't bust\
+	on systems that default to unsigned chars
+
+2000-12-11  Mike Fleming  <mfleming@eazel.com>
+
 	* modules/http-method.c: (create_handle), (make_propfind_request),
 	(resolve_409):
 

@@ -60,11 +60,11 @@
    in the hash table. This function makes sure this never ever happens.
    -- Mathieu - who takes all responsbility for this complete evilness.
 */
-static char 
+static int 
 hack_getc (FILE *stream) 
 {
-	static char previous_char = '\n';
-	char current_char;
+	static int previous_char = '\n';
+	int current_char;
 
 	current_char = getc_unlocked (stream);
 
