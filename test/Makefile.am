@@ -4,7 +4,8 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)			\
+	$(WERROR)
 
 noinst_PROGRAMS =				\
 	test-async-directory_corba		\

@@ -97,7 +97,7 @@ struct _ExtfsDirectoryHandle {
 	ExtfsDirectory *directory;
 	GList *prev_position;
 	gchar *sub_uri;
-	gchar **meta_keys;
+	GList *meta_keys;
 	GnomeVFSFileInfoOptions info_options;
 	const GnomeVFSDirectoryFilter *filter;
 };
@@ -574,6 +574,7 @@ do_open_directory (GnomeVFSMethod *method,
 	gchar *quoted_file_name;
 	gchar *cmd;
 	const gchar *p;
+	const GList *item;
 	FILE *pipe;
 
 	ERROR_IF_NOT_LOCAL (uri);
@@ -618,7 +619,11 @@ do_open_directory (GnomeVFSMethod *method,
 	handle = g_new (ExtfsDirectoryHandle, 1);
 	handle->directory = directory;
 	handle->prev_position = NULL;
-	handle->meta_keys = meta_keys; /* FIXME currently unused FIXME strdup? */
+	handle->meta_keys = NULL; /* FIXME currently unused */
+	for (item = meta_keys; item != NULL; item = item->next) {
+		handle->meta_keys = g_list_prepend (handle->meta_keys, g_strdup (item->data));
+	}
+
 	handle->info_options = info_options; /* FIXME currently unused */
 	handle->filter = filter;
 
@@ -642,12 +647,18 @@ do_close_directory (GnomeVFSMethod *method,
 		    GnomeVFSContext *context)
 {
 	ExtfsDirectoryHandle *handle;
+	GList *item;
 
 	handle = (ExtfsDirectoryHandle *) method_handle;
 
 	extfs_directory_unref (handle->directory);
 	g_free (handle->sub_uri);
+	for (item = handle->meta_keys; item != NULL; item = item->next) {
+		g_free (item->data);
+	}
+	g_list_free (handle->meta_keys);
 	g_free (handle);
+
 
 	return GNOME_VFS_OK;
 }

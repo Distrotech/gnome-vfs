@@ -36,6 +36,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-directory-filter.h"
 #include "gnome-vfs-directory-list.h"
 #include "gnome-vfs-file-info.h"
+#include "gnome-vfs-find-directory.h"
 #include "gnome-vfs-init.h"
 #include "gnome-vfs-xfer.h"
 #include "gnome-vfs-ops.h"

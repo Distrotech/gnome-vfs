@@ -12,7 +12,8 @@ CPPFLAGS =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
-	-DPREFIX=\"$(prefix)\"
+	-DPREFIX=\"$(prefix)\"			\
+	$(WERROR)
 
 EXTRA_DIST =					\
 	default-modules.conf

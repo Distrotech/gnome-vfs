@@ -1,5 +1,22 @@
 2000-05-07  Pavel Cisler  <pavel@eazel.com>
 
+	* gnome-vfs/configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs-corba/Makefile.am:
+	* libgnomevfs-pthread/Makefile.am:
+	* modules/Makefile.am:
+	* test/Makefile.am:
+	Turn on a flag to treat warnings as errors. This would have caught
+	the two bugs I fixed in my previous checkin.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs.h:
+	* modules/extfs-method.c:
+	* test/test-async-directory.c:
+	Fix all warnings in gnome-vfs.
+	
+2000-05-07  Pavel Cisler  <pavel@eazel.com>
+
 	* modules/translate-method.c: (tr_args_parse):
 	Fixed the translate module that got broken recently.
 	(b_strcasecmp->g_strcasecmp). This broke viewing

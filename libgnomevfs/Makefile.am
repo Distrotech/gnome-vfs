@@ -9,7 +9,8 @@ CPPFLAGS =					\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
-	-DG_LOG_DOMAIN=\"GnomeVFS\"
+	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
+	$(WERROR)
 
 lib_LTLIBRARIES = libgnomevfs.la
 

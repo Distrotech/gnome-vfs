@@ -22,7 +22,8 @@ CPPFLAGS =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-DPREFIX=\"$(prefix)\"			\
-	-DG_LOG_DOMAIN=\"GnomeVFS-CORBA\"
+	-DG_LOG_DOMAIN=\"GnomeVFS-CORBA\"	\
+	$(WERROR)
 
 ORBIT_IDL = orbit-idl
 

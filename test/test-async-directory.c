@@ -158,7 +158,7 @@ main (int argc, char **argv)
 {
 	GnomeVFSAsyncHandle *handle;
 	poptContext popt_context;
-	char **args;
+	const char **args;
 	gchar *text_uri;
 	GnomeVFSDirectorySortRule sort_rules[] = {
 		GNOME_VFS_DIRECTORY_SORT_BYNAME,

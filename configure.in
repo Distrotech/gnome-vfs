@@ -38,6 +38,11 @@ AC_REPLACE_FUNCS(getdelim)
 
 AC_CHECK_HEADERS(sys/resource.h)
 
+dnl turn warnings into errors to enforce clean code
+if test "$GCC" = "yes"; then
+	WERROR="-Werror"
+fi
+AC_SUBST(WERROR)
 
 dnl Whether to use OAF
 AC_ARG_ENABLE(oaf, 
