@@ -1,3 +1,11 @@
+1999-10-12  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/modules.conf: Added `ugzip' for compatibility with the
+	Midnight Commander's VFS.
+
+	* libgnomevfs/gnome-vfs-configuration.c (parse_line): Set
+	`method_start' again after saving a method name.
+
 1999-10-11  Ettore Perazzoli  <ettore@gnu.org>
 
 	* test/test-sync.c (main): Abort reporting an error if

@@ -219,6 +219,8 @@ parse_line (Configuration *configuration,
 				p++;
 				break;
 			}
+
+			method_start = p;
 		}
 
 		p++;
