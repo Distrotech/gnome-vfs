@@ -1,5 +1,11 @@
 2002-05-02  Bastien Nocera  <hadess@hadess.net>
 
+	* test/test-directory.c: (show_result):
+	print error before exiting
+	* test/vfs-test: new "all-in-one" automatic tester
+
+2002-05-02  Bastien Nocera  <hadess@hadess.net>
+
 	* test/test-monitor.c: (timeout_cb), (callback), (main):
 	make the test be automatic, by exiting after 2 events,
 	add in an timeout function 1 file create and 1 file deletion

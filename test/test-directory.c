@@ -61,7 +61,11 @@ show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
 	fprintf (stderr, "%s `%s': %s\n",
 		 what, text_uri, gnome_vfs_result_to_string (result));
 	if (result != GNOME_VFS_OK)
+	{
+		fprintf (stdout, "Error: %s\n",
+				gnome_vfs_result_to_string (result));
 		exit (1);
+	}
 }
 
 static const gchar *
