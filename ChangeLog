@@ -1,3 +1,9 @@
+2003-10-20  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-private-utils.c: forgot to take into account
+	  '\0' when replacing strcpy with memmove. Fixes the panel
+	  applications menu
+
 2003-10-18  Christophe Fergeau  <teuf@gnome.org>
  
          * libgnomevfs/gnome-vfs-private-utils.c: replaced some strcpy
