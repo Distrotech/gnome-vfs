@@ -77,25 +77,9 @@ main (int argc, char **argv)
 		printf ("Error: get_value failed on \"short_list_component_iids_for_hacker_user_level\".\n");
 		exit (1);
 	}
-	/* testing the external API */
-	value = gnome_vfs_mime_get_program ("application/mime-type-test");
-	if (value == NULL || strcmp (value, "mime-type-test") != 0) {
-		printf ("Error: program failed on \"application/mime-type-test\".\n");
-		exit (1);
-	}
 	value = gnome_vfs_mime_get_description ("application/mime-type-test");
 	if (value == NULL || strcmp (value, "mon test a moi") != 0) {
 		printf ("Error: description failed on \"application/mime-type-test\".\n");
-		exit (1);
-	}
-	value = gnome_vfs_mime_get_test ("application/mime-type-test");
-	if (value == NULL || strcmp (value, "est-ce un test?") != 0) {
-		printf ("Error: test failed on \"application/mime-type-test\".\n");
-		exit (1);
-	}
-	value = gnome_vfs_mime_get_composetyped ("application/mime-type-test");
-	if (value == NULL || strcmp (value, "eh?ah.") != 0) {
-		printf ("Error: composetyped failed on \"application/mime-type-test\".\n");
 		exit (1);
 	}
 
@@ -144,12 +128,6 @@ main (int argc, char **argv)
 			printf ("%s\n", value);
 			printf ("Error: set_value failed on \"application/postscript\" / \"foo\".\n");
 			exit (1);			
-		}
-		/* make sure we do not overide other settings with the "set" function */
-		value = gnome_vfs_mime_get_program ("application/mime-type-test");
-		if (value == NULL || strcmp (value, "mime-type-test") != 0) {
-			printf ("Error: program failed on \"application/mime-type-test\".\n");
-			exit (1);
 		}
 
 		/* test freeze/thaw for this stuff */

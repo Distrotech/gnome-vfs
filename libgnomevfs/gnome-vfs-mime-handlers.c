@@ -51,6 +51,9 @@ static GList *prune_ids_for_nonexistent_applications (GList *list);
 static GnomeVFSResult gnome_vfs_mime_edit_user_file (const char *mime_type, const char *key, const char *value);
 
 
+
+
+
 static GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
 {
@@ -67,6 +70,22 @@ gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
 		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
 	}
 }
+
+
+
+/**
+ * gnome_vfs_mime_get_description:
+ * @mime_type: the mime type
+ *
+ * Returns the description for this mime-type
+ */
+const char *
+gnome_vfs_mime_get_description (const char *mime_type)
+{
+	return gnome_vfs_mime_get_value (mime_type, "description");
+}
+
+
 
 GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)

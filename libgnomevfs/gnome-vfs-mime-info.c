@@ -1106,47 +1106,6 @@ gnome_vfs_mime_get_key_list (const char *mime_type)
 	return list;
 }
 
-/**
- * gnome_vfs_mime_get_program:
- * @mime_type: the mime_type 
- *
- * Returns the program intended to be loaded for this given mime-type
- */
-const char *
-gnome_vfs_mime_get_program (const char *mime_type)
-{
-	return gnome_vfs_mime_get_value (mime_type, "open");
-}
-
-/**
- * gnome_vfs_mime_get_program_name:
- * @prog_name: the program associated with a given mime-type
- *
- * Returns the program name for the program string returned by gnome_vfs_mime_program.
- * This memory must be freed when done.
- */
-gchar *
-gnome_vfs_mime_get_program_name (const char *prog_name)
-{
-	guint i = 0;
-	
-	while (prog_name[i] != (char) NULL && prog_name[i] != (char) 32) i++;
-	return g_strndup (prog_name, i);
-}
-
-/**
- * gnome_vfs_mime_get_description:
- * @mime_type: the mime type
- *
- * Returns the description for this mime-type
- */
-const char *
-gnome_vfs_mime_get_description (const char *mime_type)
-{
-	return gnome_vfs_mime_get_value (mime_type, "description");
-}
-
-
 gint
 str_cmp_callback  (gconstpointer a,
 		   gconstpointer b);
@@ -1355,74 +1314,7 @@ gnome_vfs_mime_extensions_list_free (GList *list)
 	g_list_free (list);
 }
 
-/**
- * gnome_vfs_mime_get_test:
- * @mime_type: the mime type
- *
- * Returns the command to be executed on the file before considering
- * the file to match this mime_type.
- */
-const char *
-gnome_vfs_mime_get_test (const char *mime_type)
-{
-	return gnome_vfs_mime_get_value (mime_type, "test");
-}
 
-/**
- * gnome_vfs_mime_get_composetyped:
- * @mime_type: the mime type
- *
- * Returns the command to be executed to compose a message of
- * the given mime_type
- */
-const char *
-gnome_vfs_mime_get_composetyped (const char *mime_type)
-{
-	return gnome_vfs_mime_get_value (mime_type, "compose");
-}
-
-static gboolean
-gnome_vfs_mime_flag (const char *mime_type, gchar *key, gchar *flag)
-{
-	const char *str;
-	
-	str = gnome_vfs_mime_get_value (mime_type, key);
-	if (str){
-		if (strstr (str, flag) != NULL)
-			return TRUE;
-	}
-	return FALSE;
-}
-
-/**
- * gnome_vfs_mime_get_copiousoutput:
- * @mime_type: the mime type
- * @key: the key which stores the flags for a command
- *
- * Returns a boolean value, whether the mime_type open
- * command will produce lots of output
- */
-/* FIXME bugzilla.eazel.com 2758: remove this API call with mjs approval.
-*/
-gboolean 
-gnome_vfs_mime_get_copiousoutput (const char *mime_type, gchar *key)
-{
-	return gnome_vfs_mime_flag (mime_type, key, "copiousoutput");
-}
-
-/**
- * gnome_vfs_mime_get_needsterminal
- * @mime_type: the mime type
- * @key: the key which stores the flags for a command
- *
- * Returns a boolean value, whether the mime_type open
- * command will require a terminal.
- */
-gboolean
-gnome_vfs_mime_get_needsterminal (const char *mime_type, gchar *key)
-{
-	return gnome_vfs_mime_flag (mime_type, key, "needsterminal");
-}
 
 static gint
 mime_list_sort (gconstpointer a, gconstpointer b)

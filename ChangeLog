@@ -1,3 +1,14 @@
+2000-09-14  Mathieu Lacage  <mathieu@eazel.com>
+
+	Fix bug 2758. remove a bunch of unused functions
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_description): move there.
+	* libgnomevfs/gnome-vfs-mime-handlers.h: move get_description 
+	there.
+	* libgnomevfs/gnome-vfs-mime-info.c: remove old functions.
+	* libgnomevfs/gnome-vfs-mime-info.h: remove prototypes.
+	* test/test-mime-info.c: (main): fix the test for these changes.
+
 2000-09-13  John Sullivan  <sullivan@eazel.com>
 
 	Added StarOffice information to the MIME data.

@@ -50,18 +50,6 @@ GnomeVFSResult   gnome_vfs_mime_set_value                       (const char *mim
 								 const char *value);
 GList      	*gnome_vfs_mime_get_key_list      		(const char *mime_type);
 void             gnome_vfs_mime_keys_list_free                  (GList *mime_ype_list);
-const char 	*gnome_vfs_mime_get_program       		(const char *mime_type);
-const char 	*gnome_vfs_mime_get_description   		(const char *mime_type);
-const char 	*gnome_vfs_mime_get_test          		(const char *mime_type);
-const char 	*gnome_vfs_mime_get_composetyped  		(const char *mime_type);
-gboolean    	 gnome_vfs_mime_get_copiousoutput 		(const char *mime_type,
-					  		  	 char       *key);
-gboolean    	 gnome_vfs_mime_get_needsterminal 		(const char *mime_type,
-					  	 	  	 char       *key);
-gchar           *gnome_vfs_mime_get_program_name  		(const char *program_name);
-
-
-
 
 	/* functions to access the .mime files */
 GList 	   	*gnome_vfs_mime_get_extensions_list 		(const char *mime_type);
