@@ -106,6 +106,7 @@ main (int argc, char **argv)
 
 	printf ("Starting open for `%s'...\n", argv[1]);
 	gnome_vfs_async_open (&handle, argv[1], GNOME_VFS_OPEN_READ,
+			      0,
 			      open_callback, "open_callback");
 
 	puts ("Main loop running.");
