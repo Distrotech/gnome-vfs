@@ -60,7 +60,12 @@ make -k sysconfdir=$RPM_BUILD_ROOT%{sysconfdir} prefix=$RPM_BUILD_ROOT%{prefix} 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
+%post
+if ! grep %{prefix}/lib /etc/ld.so.conf > /dev/null ; then
+  echo "%{prefix}/lib" >> /etc/ld.so.conf
+fi
+/sbin/ldconfig
+
 %postun -p /sbin/ldconfig
 
 %files
