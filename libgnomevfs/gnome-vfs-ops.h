@@ -66,22 +66,19 @@ GnomeVFSResult	 gnome_vfs_tell			(GnomeVFSHandle *handle,
 GnomeVFSResult	 gnome_vfs_get_file_info	(const gchar *text_uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions
-						 	options,
-						 const gchar * const meta_keys[]);
+						 	options);
 
 GnomeVFSResult	 gnome_vfs_get_file_info_uri
 						(GnomeVFSURI *uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions
-						 	options,
-						 const gchar * const meta_keys[]);
+						        options);
 
 GnomeVFSResult	 gnome_vfs_get_file_info_from_handle
 						(GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions
-						 	options,
-						 const gchar * const meta_keys[]);
+						 	options);
 
 GnomeVFSResult   gnome_vfs_truncate             (const gchar *text_uri,
 						 GnomeVFSFileSize length);

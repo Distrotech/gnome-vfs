@@ -216,7 +216,6 @@ first_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
-				       NULL,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -242,7 +241,6 @@ test_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
-				       NULL,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -261,7 +259,6 @@ test_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
-				       NULL,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -447,7 +444,6 @@ test_load_directory_cancel (int delay_till_cancel)
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
-					NULL,
 					NULL,
 					FALSE,
 					GNOME_VFS_DIRECTORY_FILTER_NONE,

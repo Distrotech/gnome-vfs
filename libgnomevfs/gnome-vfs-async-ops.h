@@ -123,7 +123,6 @@ void          	 gnome_vfs_async_write		(GnomeVFSAsyncHandle *handle,
 void             gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 						 GList *uri_list, /* GnomeVFSURI* items */
 						 GnomeVFSFileInfoOptions options,
-						 const gchar * const meta_keys[],
 						 GnomeVFSAsyncGetFileInfoCallback callback,
 						 gpointer callback_data);
 
@@ -138,7 +137,6 @@ void          	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_ret
 						 const gchar *text_uri,
 						 GnomeVFSFileInfoOptions
 						         options,
-						 const gchar * const meta_keys[],
 						 GnomeVFSDirectorySortRule
 						 	sort_rules[],
 						 gboolean reverse_order,
@@ -157,7 +155,6 @@ void          	 gnome_vfs_async_load_directory_uri
 						 GnomeVFSURI *uri,
 						 GnomeVFSFileInfoOptions
 						         options,
-						 const gchar *meta_keys[],
 						 GnomeVFSDirectorySortRule
 						 	sort_rules[],
 						 gboolean reverse_order,

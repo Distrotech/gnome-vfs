@@ -563,35 +563,7 @@ impl_Notify_xfer_query_for_overwrite (PortableServer_Servant servant,
 	return action;
 }
 
-
-/* This is not very efficient, as every `gnome_vfs_file_info_set_metadata()'
-   implies a linear search for the existance of the new key, but it's fine with
-   us for now.  */
-static void
-set_metadata_from_response (GnomeVFSFileInfo *info,
-			    GNOME_VFS_Slave_MetadataResponseList
-			            *response_list,
-			    const char **meta_keys)
-{
-	guint i;
 
-	for (i = 0; i < response_list->_length; i++) {
-		GNOME_VFS_Slave_MetadataResponse *response;
-
-		response = response_list->_buffer + i;
-		if (response->found) {
-			gpointer value;
-			guint value_size;
-
-			value_size = response->value._length;
-			value = g_malloc (value_size);
-			memcpy (value, response->value._buffer, value_size);
-
-			gnome_vfs_file_info_set_metadata
-				(info, meta_keys[i], value, value_size);
-		}
-	}
-}
 
 static void
 impl_Notify_load_directory (PortableServer_Servant servant,
@@ -603,7 +575,6 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	GnomeVFSAsyncDirectoryOpInfo *op_info;
 	GnomeVFSDirectoryList *list;
 	GnomeVFSAsyncDirectoryLoadCallback callback;
-	char **meta_keys;
 	guint i;
 
 	slave = slave_from_servant (servant);
@@ -615,7 +586,6 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 
 	op_info = &slave->op_info.directory;
 	list = op_info->list;
-	meta_keys = op_info->meta_keys;
 
 	if (list == NULL) {
 		if (files->_length > 0) {
@@ -652,20 +622,11 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 			info->symlink_name
 				= g_strdup (slave_info->symlink_name);
 
-		info->metadata_list = NULL;
-		set_metadata_from_response (info,
-					    &slave_info->metadata_response,
-					    (const char **)meta_keys);
-
 		gnome_vfs_directory_list_append (list, info);
 	}
 
 	if (result != GNOME_VFS_OK) {
 		slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
-
-		for (i = 0; i < op_info->num_meta_keys; i++)
-			g_free (op_info->meta_keys[i]);
-		g_free (op_info->meta_keys);
 	}
 
 	/* Make sure we have set a current position on the list.  */
@@ -695,8 +656,6 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 	GnomeVFSAsyncGetFileInfoCallback callback;
 	const GNOME_VFS_Slave_FileInfo *file_info;
 	GnomeVFSFileInfo *info;
-	char **meta_keys;
-	int num_meta_keys;
 	int i;
 
 	slave = slave_from_servant(servant);
@@ -706,8 +665,6 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 		return;
 	}
 
-	meta_keys = slave->op_info.directory.meta_keys;
-	num_meta_keys = slave->op_info.directory.num_meta_keys;
 
 	result_list = NULL;
 	for (i = 0; i < results->_length; i++) {
@@ -723,11 +680,6 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 		info->mime_type = strdup_or_null (file_info->mime_type);
 		info->symlink_name = strdup_or_null (file_info->symlink_name);
 		
-		info->metadata_list = NULL;
-		set_metadata_from_response (info,
-					    (GNOME_VFS_Slave_MetadataResponseList *)&file_info->metadata_response,
-					    (const char **)meta_keys);
-
 		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
 
 		result_item->uri = gnome_vfs_uri_new (results->_buffer[i].uri);
@@ -754,12 +706,9 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 	}
 	g_list_free (result_list);
 
-	for (i = 0; i < num_meta_keys; i++)
-		g_free (meta_keys[i]);
-	g_free (meta_keys);
 }
 
-
+
 gboolean
 gnome_vfs_slave_notify_create (GnomeVFSSlaveProcess *slave)
 {

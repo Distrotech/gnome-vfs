@@ -70,7 +70,6 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
@@ -84,14 +83,12 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 GnomeVFSContext *context);
 #if 0
 static GnomeVFSResult do_get_file_info_from_handle
                                         (GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 GnomeVFSFileInfoOptions options);
 #endif
 static gboolean       do_is_local       (GnomeVFSMethod *method,
 					 const GnomeVFSURI *uri);
@@ -153,7 +150,6 @@ G_STMT_START{                                           \
 typedef struct {
         GnomeVFSURI *uri;
         GnomeVFSFileInfoOptions options;
-        const GList *meta_keys;
         const GnomeVFSDirectoryFilter *filter;
 
         GSList *subdirs;
@@ -165,7 +161,6 @@ typedef struct {
 static DirectoryHandle *
 directory_handle_new (GnomeVFSURI *uri,
                       GnomeVFSFileInfoOptions options,
-                      const GList *meta_keys,
                       const GnomeVFSDirectoryFilter *filter,
                       GSList *subdirs,
                       GSList *pairs)
@@ -176,7 +171,6 @@ directory_handle_new (GnomeVFSURI *uri,
         
         retval->uri = gnome_vfs_uri_ref (uri);
         retval->options = options;
-        retval->meta_keys = meta_keys;
         retval->filter = filter;
         retval->pairs = pairs;
         retval->subdirs = subdirs;
@@ -353,7 +347,6 @@ set_stat_info_value (GnomeVFSFileInfo *info,
 	info->permissions = 0444;
 	info->atime = 0;
 	info->mtime = 0;
-	info->metadata_list = NULL;
 
 	result = get_value_size (value, &info->size);
 	if (result != GNOME_VFS_OK) 
@@ -383,7 +376,6 @@ set_stat_info_dir (GnomeVFSFileInfo *info,
 	info->permissions = 0444;
 	info->atime = 0;
 	info->mtime = 0;
-	info->metadata_list = NULL;
 	info->size = 0;
 
         GNOME_VFS_FILE_INFO_SET_LOCAL (info, TRUE);
@@ -458,7 +450,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
                    GnomeVFSURI *uri,
                    GnomeVFSFileInfoOptions options,
-                   const GList *meta_keys,
                    const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
@@ -476,7 +467,6 @@ do_open_directory (GnomeVFSMethod *method,
         *method_handle = 
 		(GnomeVFSMethodHandle*)directory_handle_new (uri,
 							     options,
-							     meta_keys,
 							     filter,
 							     subdirs,
 							     pairs);
@@ -492,6 +482,8 @@ do_close_directory (GnomeVFSMethod *method,
         return GNOME_VFS_OK;
 }
 
+/* FIXME: I dunno. There must be something to d there with metedata
+   -- Mathieu */
 static GnomeVFSResult
 file_info_value (GnomeVFSFileInfo *info,
                  GnomeVFSFileInfoOptions options,
@@ -586,8 +578,7 @@ read_directory (DirectoryHandle *handle,
 	    && !(filter_needs 
 		 & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE
 		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT
-		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
-		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA))) {
+		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE))) {
 		if (!gnome_vfs_directory_filter_apply (filter, file_info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
@@ -629,7 +620,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
                   GnomeVFSFileInfo *file_info,
                   GnomeVFSFileInfoOptions options,
-                  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
         GConfValue *value;
@@ -653,8 +643,7 @@ do_get_file_info (GnomeVFSMethod *method,
 static GnomeVFSResult  
 do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
-			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys)
+			      GnomeVFSFileInfoOptions options)
 {
 	return GNOME_VFS_ERROR_WRONG_FORMAT;	
 }

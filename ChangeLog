@@ -1,3 +1,106 @@
+2000-07-21  Mathieu Lacage  <set EMAIL_ADDRESS environment variable>
+
+	Closes bug 1120, 1118, 1176 from buzilla.eazel.com
+	source incompatible change. Removes metadata support.
+	Basically, it changes the signature of all the functions which 
+	had metadata support and removes one parameter. To take this change
+	into account, you basically need to remove one NULL parameter from 
+	the calls which have changed. 
+	
+	* idl/gnome-vfs-slave.idl:
+	* idl/gnome-vfs-types.idl:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	(corba_gnome_vfs_async_get_file_info),
+	(corba_gnome_vfs_async_load_directory),
+	(corba_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c:
+	(impl_Notify_load_directory), (impl_Notify_get_file_info):
+	* libgnomevfs-corba/gnome-vfs-slave.c: (allocate_info_list),
+	(copy_file_info), (load_directory_not_sorted),
+	(load_directory_sorted), (impl_Request_get_file_info),
+	(impl_Request_load_directory):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_load_directory_not_sorted),
+	(execute_load_directory_sorted), (execute_get_file_info),
+	(execute_load_directory):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_async_get_file_info),
+	(gnome_vfs_async_load_directory_uri),
+	(gnome_vfs_async_load_directory):
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_get_file_info_uri_cancellable),
+	(gnome_vfs_get_file_info_from_handle_cancellable):
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	(gnome_vfs_directory_list_load),
+	(gnome_vfs_directory_list_load_from_uri):
+	* libgnomevfs/gnome-vfs-directory-list.h:
+	* libgnomevfs/gnome-vfs-directory.c:
+	(gnome_vfs_directory_handle_new),
+	(gnome_vfs_directory_handle_destroy), (open_from_uri), (open),
+	(gnome_vfs_directory_open), (gnome_vfs_directory_open_from_uri),
+	(directory_visit_internal), (gnome_vfs_directory_visit_uri),
+	(gnome_vfs_directory_visit),
+	(gnome_vfs_directory_visit_files_at_uri),
+	(gnome_vfs_directory_visit_files):
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_clear),
+	(gnome_vfs_file_info_copy):
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-handle.c:
+	(gnome_vfs_handle_do_get_file_info):
+	* libgnomevfs/gnome-vfs-handle.h:
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_get_special_mime_type):
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_get_file_info),
+	(gnome_vfs_get_file_info_uri),
+	(gnome_vfs_get_file_info_from_handle):
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory),
+	(gnome_vfs_visit_list), (directory_add_items_and_size),
+	(handle_name_conflicts), (create_directory), (copy_directory),
+	(copy_items), (gnome_vfs_xfer_delete_items_common):
+	* modules/bzip2-method.c: (do_get_file_info):
+	* modules/efs-method.c: (do_open_directory), (do_get_file_info):
+	* modules/extfs-method.c: (do_open_directory), (do_get_file_info),
+	(do_get_file_info_from_handle):
+	* modules/file-method.c: (directory_handle_new),
+	(do_open_directory), (read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle):
+	* modules/ftp-method.c: (internal_get_file_info),
+	(do_get_file_info), (do_open_directory):
+	* modules/gconf-method.c: (directory_handle_new),
+	(set_stat_info_value), (set_stat_info_dir), (do_open_directory),
+	(read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle):
+	* modules/gzip-method.c: (do_get_file_info):
+	* modules/http-method.c: (do_open_directory),
+	(get_file_info_from_http_handle), (do_get_file_info),
+	(do_get_file_info_from_handle):
+	* modules/pipe-method.c: (do_get_file_info),
+	(do_get_file_info_from_handle):
+	* modules/translate-method.c: (tr_do_open_directory),
+	(tr_do_get_file_info), (tr_do_get_file_info_from_handle):
+	* test/gnome-file-selection/gnome-file-selection.c:
+	(start_populating):
+	* test/test-async-cancel.c: (wait_until_vfs_threads_gone),
+	(first_get_file_info), (test_get_file_info),
+	(test_load_directory_cancel):
+	* test/test-async-directory.c: (main):
+	* test/test-directory-visit.c: (main):
+	* test/test-directory.c: (main):
+	* test/test-info.c: (print_file_info), (main):
+	* test/test-shell.c: (do_ls), (validate_path), (get_regexp_name),
+	(do_info):
+	* test/test-symlinks.c: (deal_with_result):
+
 2000-07-19  Ali Abdin  <aliabdin@aucegypt.edu>
 
 	* modules/translate-method.c: (tr_apply_default_mime_type): 

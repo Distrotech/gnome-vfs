@@ -166,7 +166,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
         set_default_file_info (file_info, uri);
@@ -182,7 +181,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
         FileHandle *handle;

@@ -24,21 +24,19 @@
 #ifndef GNOME_VFS_DIRECTORY_H
 #define GNOME_VFS_DIRECTORY_H
 
-
+
 typedef struct GnomeVFSDirectoryHandle GnomeVFSDirectoryHandle;
 
-
+
 GnomeVFSResult	gnome_vfs_directory_open
 					(GnomeVFSDirectoryHandle **handle,
 					 const gchar *text_uri,
 					 GnomeVFSFileInfoOptions options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter);
 GnomeVFSResult	gnome_vfs_directory_open_from_uri
 					(GnomeVFSDirectoryHandle **handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter);
 GnomeVFSResult	gnome_vfs_directory_read_next
 					(GnomeVFSDirectoryHandle *handle,
@@ -50,7 +48,6 @@ GnomeVFSResult	gnome_vfs_directory_close
 GnomeVFSResult  gnome_vfs_directory_visit
 					(const gchar *uri,
 					 GnomeVFSFileInfoOptions info_options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSDirectoryVisitOptions
 					 	visit_options,
@@ -60,7 +57,6 @@ GnomeVFSResult  gnome_vfs_directory_visit
 GnomeVFSResult  gnome_vfs_directory_visit_uri
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions info_options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSDirectoryVisitOptions
 					 	visit_options,
@@ -71,7 +67,6 @@ GnomeVFSResult	gnome_vfs_directory_visit_files
 					(const gchar *text_uri,
 					 GList *file_list,
 					 GnomeVFSFileInfoOptions info_options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSDirectoryVisitOptions
 					 	visit_options,
@@ -82,7 +77,6 @@ GnomeVFSResult	gnome_vfs_directory_visit_files_at_uri
 					(GnomeVFSURI *uri,
 					 GList *file_list,
 					 GnomeVFSFileInfoOptions info_options,
-					 const gchar * const meta_keys[],
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSDirectoryVisitOptions
 					 	visit_options,

@@ -56,7 +56,7 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 	/* Get file info and examine the type field to see if file is 
 	 * one of the special kinds. 
 	 */
-	error = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+	error = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
 	if (error != GNOME_VFS_OK) {
 		return NULL;
 	}
@@ -142,53 +142,4 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	  GNOME_VFS_FILE_INFO_FIELDS_CTIME;
 }
 
-
-/* FIXME bugzilla.eazel.com 1120:
- * Thread safety.  */
-GnomeVFSResult
-gnome_vfs_set_meta (GnomeVFSFileInfo *info,
-		    const gchar *file_name,
-		    const gchar *meta_key)
-{
-	guint size;
-	gchar *buffer;
-	gint meta_result;
-
-	g_return_val_if_fail (file_name != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (meta_key != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_INTERNAL);
-
-	/* We use `metadata_get_fast' because we get the MIME type
-           another way.  */
-	meta_result = gnome_metadata_get_fast (file_name, meta_key, &
-					       size, &buffer);
-
-	if (meta_result == GNOME_METADATA_OK)
-		gnome_vfs_file_info_set_metadata (info, meta_key,
-						  buffer, size);
-	else
-		gnome_vfs_file_info_unset_metadata (info, meta_key);
-
-	return GNOME_VFS_OK;
-}
-
-GnomeVFSResult
-gnome_vfs_set_meta_for_list (GnomeVFSFileInfo *info,
-			     const gchar *file_name,
-			     const GList *meta_keys)
-{
-	GnomeVFSResult result;
-	const GList *p;
-
-	if (meta_keys == NULL)
-		return GNOME_VFS_OK;
-
-	for (p = meta_keys; p != NULL; p = p->next) {
-		result = gnome_vfs_set_meta (info, file_name, p->data);
-		if (result != GNOME_VFS_OK)
-			break;
-	}
-
-	return result;
-}
 

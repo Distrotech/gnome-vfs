@@ -226,7 +226,6 @@ main (int argc, char **argv)
 		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
-		 NULL,
 		 NULL);
 
 	if (result == GNOME_VFS_OK && measure_speed) {

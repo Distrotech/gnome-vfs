@@ -183,11 +183,10 @@ GnomeVFSResult
 gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
 				   GnomeVFSFileInfo *info,
 				   GnomeVFSFileInfoOptions options,
-				   const GList *meta_keys,
 				   GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, get_file_info_from_handle,
-			   (handle->uri->method, handle->method_handle, info, options, meta_keys,
+			   (handle->uri->method, handle->method_handle, info, options,
 			    context));
 }
 

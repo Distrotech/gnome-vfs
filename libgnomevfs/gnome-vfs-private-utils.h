@@ -24,8 +24,6 @@
 #ifndef _GNOME_VFS_PRIVATE_UTILS_H
 #define _GNOME_VFS_PRIVATE_UTILS_H
 
-GList 		*gnome_vfs_string_list_from_string_array (const gchar * const array[]);
-void	 	 gnome_vfs_free_string_list		 (GList *list);
 gchar   	*gnome_vfs_canonicalize_pathname         (gchar *path);
 
 pid_t	 	 gnome_vfs_forkexec 	(const gchar *file_name,

@@ -739,8 +739,8 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
-					 GnomeVFSContext *context) {
+					 GnomeVFSContext *context) 
+{
 	FtpConnection *conn;
 	/* FIXME bugzilla.eazel.com 1463 */
 	GnomeVFSResult result;
@@ -795,18 +795,15 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 GnomeVFSContext *context) {
 
-	return internal_get_file_info(method, uri, file_info, options, 
-			meta_keys, context);
+	return internal_get_file_info(method, uri, file_info, options, context);
 }
 
 static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context)
 {

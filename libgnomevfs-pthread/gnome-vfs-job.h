@@ -180,7 +180,6 @@ typedef struct {
 	struct {
 		GList *uris; /* GnomeVFSURI* */
 		GnomeVFSFileInfoOptions options;
-		gchar **meta_keys;
 	} request;
 
 	struct {
@@ -208,7 +207,6 @@ struct GnomeVFSLoadDirectoryOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSFileInfoOptions options;
-		gchar **meta_keys;
 		GnomeVFSDirectorySortRule *sort_rules;
 		gboolean reverse_order;
 		GnomeVFSDirectoryFilterType filter_type;

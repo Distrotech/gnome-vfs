@@ -466,7 +466,6 @@ struct _DirectoryHandle
 	GnomeVFSURI *uri;
 	DIR *dir;
 	GnomeVFSFileInfoOptions options;
-	const GList *meta_keys;
 
 	struct dirent *current_entry;
 
@@ -481,7 +480,6 @@ static DirectoryHandle *
 directory_handle_new (GnomeVFSURI *uri,
 		      DIR *dir,
 		      GnomeVFSFileInfoOptions options,
-		      const GList *meta_keys,
 		      const GnomeVFSDirectoryFilter *filter)
 {
 	DirectoryHandle *result;
@@ -511,7 +509,6 @@ directory_handle_new (GnomeVFSURI *uri,
 	g_free (full_name);
 
 	result->options = options;
-	result->meta_keys = meta_keys;
 	result->filter = filter;
 
 	return result;
@@ -643,7 +640,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
-		   const GList *meta_keys,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
@@ -662,7 +658,6 @@ do_open_directory (GnomeVFSMethod *method,
 	*method_handle
 		= (GnomeVFSMethodHandle *) directory_handle_new (uri, dir,
 								 options,
-								 meta_keys,
 								 filter);
 
 	return GNOME_VFS_OK;
@@ -723,8 +718,7 @@ read_directory (DirectoryHandle *handle,
 	    && (filter_needs
 		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE
 		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) == 0){
+		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE)) == 0){
 		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
@@ -743,8 +737,7 @@ read_directory (DirectoryHandle *handle,
 	if (filter != NULL
 	    && !filter_called
 	    && (filter_needs
-		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) == 0) {
+		  & GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE) == 0) {
 		if (! gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
@@ -757,16 +750,13 @@ read_directory (DirectoryHandle *handle,
 	}
 
 	if (filter != NULL
-	    && !filter_called
-	    && (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA) == 0) {
+	    && !filter_called) {
 		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
 		}
 		filter_called = TRUE;
 	}
-
-	gnome_vfs_set_meta_for_list (info, full_name, handle->meta_keys);
 
 	if (filter != NULL && !filter_called) {
 		if (!gnome_vfs_directory_filter_apply (filter, info)) {
@@ -808,7 +798,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
@@ -834,8 +823,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		get_mime_type (file_info, full_name, options, &statbuf);
 	}
 
-	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
-
 	g_free (full_name);
 
 	return GNOME_VFS_OK;
@@ -846,7 +833,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
 	FileHandle *file_handle;
@@ -874,8 +860,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
 		get_mime_type (file_info, full_name, options, &statbuf);
-
-	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
 
 	g_free (full_name);
 

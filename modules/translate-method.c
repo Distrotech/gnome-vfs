@@ -430,7 +430,6 @@ tr_do_open_directory(GnomeVFSMethod * method,
 		     GnomeVFSMethodHandle ** method_handle,
 		     GnomeVFSURI * uri,
 		     GnomeVFSFileInfoOptions options,
-		     const GList * meta_keys,
 		     const GnomeVFSDirectoryFilter * filter,
 		     GnomeVFSContext * context)
 {
@@ -443,7 +442,7 @@ tr_do_open_directory(GnomeVFSMethod * method,
 	if ( NULL != real_uri ) {
 		retval =
 		    tm->real_method->open_directory(tm->real_method, method_handle,
-						    real_uri, options, meta_keys,
+						    real_uri, options,
 						    filter, context);
 		gnome_vfs_uri_unref(real_uri);
 	} else {
@@ -486,7 +485,7 @@ tr_do_get_file_info(GnomeVFSMethod * method,
 		    GnomeVFSURI * uri,
 		    GnomeVFSFileInfo * file_info,
 		    GnomeVFSFileInfoOptions options,
-		    const GList * meta_keys, GnomeVFSContext * context)
+		    GnomeVFSContext * context)
 {
 	TranslateMethod *tm = (TranslateMethod *) method;
 	GnomeVFSURI *real_uri;
@@ -497,7 +496,7 @@ tr_do_get_file_info(GnomeVFSMethod * method,
 	if ( NULL != real_uri ) {
 		retval =
 		    tm->real_method->get_file_info(tm->real_method, real_uri,
-						   file_info, options, meta_keys,
+						   file_info, options,
 						   context);
 
 		gnome_vfs_uri_unref(real_uri);
@@ -515,7 +514,6 @@ tr_do_get_file_info_from_handle(GnomeVFSMethod * method,
 				GnomeVFSMethodHandle * method_handle,
 				GnomeVFSFileInfo * file_info,
 				GnomeVFSFileInfoOptions options,
-				const GList * meta_keys,
 				GnomeVFSContext * context)
 {
 	TranslateMethod *tm = (TranslateMethod *) method;
@@ -524,8 +522,9 @@ tr_do_get_file_info_from_handle(GnomeVFSMethod * method,
 	retval =
 	    tm->real_method->get_file_info_from_handle(tm->real_method,
 						       method_handle,
-						       file_info, options,
-						       meta_keys, context);
+						       file_info, 
+						       options,
+						       context);
 
 	tr_apply_default_mime_type(tm, file_info);
 

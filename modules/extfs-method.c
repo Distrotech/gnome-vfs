@@ -23,7 +23,6 @@
    Based on the ideas from the extfs system implemented in the GNU Midnight
    Commander.  */
 
-/* TODO: Metadata? */
 /* TODO: Support archives on non-local file systems.  Although I am not
    that sure it's such a terrific idea anymore.  */
 
@@ -578,7 +577,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions info_options,
-		   const GList *meta_keys,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
@@ -728,7 +726,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
@@ -738,7 +735,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	if(strcmp(parent->method_string, uri->method_string)) {
 		
-		result = gnome_vfs_get_file_info_uri(parent, file_info, options, NULL);
+		result = gnome_vfs_get_file_info_uri(parent, file_info, options);
 		/* now we get evil and tell the app that this is in fact a dir */
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		g_free(file_info->mime_type);
@@ -747,7 +744,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 	}
 	
-	result = do_open_directory(method, &method_handle, parent, options, meta_keys, NULL, context);
+	result = do_open_directory(method, &method_handle, parent, options, NULL, context);
 	while(TRUE) {
 		result = do_read_directory(method, method_handle, file_info, context);
 		if(result != GNOME_VFS_OK) break;
@@ -767,7 +764,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;

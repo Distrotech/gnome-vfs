@@ -215,7 +215,6 @@ main (int argc, char **argv)
 		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS), /* options */
-		 NULL, /* meta_keys */
 		 sort ? sort_rules : NULL, /* sort_rules */
 		 FALSE, /* reverse_order */
 		 GNOME_VFS_DIRECTORY_FILTER_NONE, /* filter_type */

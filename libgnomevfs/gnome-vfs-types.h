@@ -206,16 +206,7 @@ enum GnomeVFSURIHideOptions {
 };
 typedef enum GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 
-
-/* File information, a la stat(2).  */
-/* FIXME bugzilla.eazel.com 1202: Some of GnomeVFSFileInfo could be private.  */
 
-struct GnomeVFSFileMetadata {
-	gchar *key;
-	gpointer *value;
-	guint value_size;
-};
-typedef struct GnomeVFSFileMetadata GnomeVFSFileMetadata;
 
 /* File flags.  */
 enum GnomeVFSFileFlags {
@@ -226,10 +217,8 @@ enum GnomeVFSFileFlags {
 typedef enum GnomeVFSFileFlags GnomeVFSFileFlags;
 
 /* Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
-
    Name is always assumed valid (how else would you have gotten a
-   FileInfo struct otherwise?) and metadata_list is ignored, since
-   it shouldn't be accessed directly anyway.
+   FileInfo struct otherwise?)
  */
 
 enum GnomeVFSFileInfoFields {
@@ -298,13 +287,6 @@ struct GnomeVFSFileInfo {
 
 	/* MIME type.  */
 	gchar *mime_type;
-
-	/* List of GnomeVFSFileMetadata elements, specifying the metadata for
-           this file.  You should use the `gnome_vfs_file_info_get_metadata()'
-           function to access the values.  Moreover, this does not contain all
-           the metadata for the file, but rather only the data that has been
-           requested in the call that returned this information.  */
-	GList *metadata_list;
 
 	guint refcount;
 };
@@ -382,7 +364,6 @@ enum GnomeVFSDirectoryFilterNeeds {
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE = 1 << 1,
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT = 1 << 2,
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE = 1 << 3,
-	GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA = 1 << 4
 };
 typedef enum GnomeVFSDirectoryFilterNeeds GnomeVFSDirectoryFilterNeeds;
 

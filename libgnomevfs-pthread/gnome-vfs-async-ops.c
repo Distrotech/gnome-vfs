@@ -95,7 +95,6 @@ GnomeVFSResult pthread_gnome_vfs_async_write                  (GnomeVFSAsyncHand
 GnomeVFSResult pthread_gnome_vfs_async_get_file_info          (GnomeVFSAsyncHandle                **handle_return,
 							       GList                               *uris,
 							       GnomeVFSFileInfoOptions              options,
-							       const gchar * const                  meta_keys[],
 							       GnomeVFSAsyncGetFileInfoCallback     callback,
 							       gpointer                             callback_data);
 GnomeVFSResult pthread_gnome_vfs_async_set_file_info          (GnomeVFSAsyncHandle                **handle_return,
@@ -107,7 +106,6 @@ GnomeVFSResult pthread_gnome_vfs_async_set_file_info          (GnomeVFSAsyncHand
 GnomeVFSResult pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *text_uri,
 							       GnomeVFSFileInfoOptions              options,
-							       const gchar                         *meta_keys[],
 							       GnomeVFSDirectorySortRule            sort_rules[],
 							       gboolean                             reverse_order,
 							       GnomeVFSDirectoryFilterType          filter_type,
@@ -119,7 +117,6 @@ GnomeVFSResult pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHand
 GnomeVFSResult pthread_gnome_vfs_async_load_directory_uri     (GnomeVFSAsyncHandle                **handle_return,
 							       GnomeVFSURI                         *uri,
 							       GnomeVFSFileInfoOptions              options,
-							       const gchar                         *meta_keys[],
 							       GnomeVFSDirectorySortRule            sort_rules[],
 							       gboolean                             reverse_order,
 							       GnomeVFSDirectoryFilterType          filter_type,
@@ -496,32 +493,11 @@ pthread_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	return GNOME_VFS_OK;
 }
 
-static gchar **
-copy_meta_keys (const gchar * const meta_keys[])
-{
-	gchar **new;
-	guint count, i;
-
-	if (meta_keys == NULL)
-		return NULL;
-
-	for (count = 0; meta_keys[count] != NULL; count++)
-		;
-
-	new = g_new (gchar *, count + 1);
-
-	for (i = 0; i < count; i++)
-		new[i] = g_strdup (meta_keys[i]);
-	new[i] = NULL;
-
-	return new;
-}
 
 GnomeVFSResult
 pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 				       GList *uris,
 				       GnomeVFSFileInfoOptions options,
-				       const gchar * const meta_keys[],
 				       GnomeVFSAsyncGetFileInfoCallback callback,
 				       gpointer callback_data)
 {
@@ -541,7 +517,6 @@ pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	get_info_op = &job->current_op->specifics.get_file_info;
 
 	get_info_op->request.uris = gnome_vfs_uri_list_copy (uris);
-	get_info_op->request.meta_keys = copy_meta_keys (meta_keys);
 	get_info_op->request.options = options;
 	get_info_op->notify.result_list = NULL;
 
@@ -613,7 +588,6 @@ GnomeVFSResult
 pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 					const gchar *text_uri,
 					GnomeVFSFileInfoOptions options,
-					const gchar *meta_keys[],
 					GnomeVFSDirectorySortRule sort_rules[],
 					gboolean reverse_order,
 					GnomeVFSDirectoryFilterType filter_type,
@@ -634,7 +608,7 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		return GNOME_VFS_ERROR_INVALID_URI;
 
 	gnome_vfs_async_load_directory_uri (handle_return, uri,
-					    options, meta_keys,
+					    options,
 					    sort_rules,
 					    reverse_order,
 					    filter_type,
@@ -653,7 +627,6 @@ GnomeVFSResult
 pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					    GnomeVFSURI *uri,
 					    GnomeVFSFileInfoOptions options,
-					    const gchar *meta_keys[],
 					    GnomeVFSDirectorySortRule sort_rules[],
 					    gboolean reverse_order,
 					    GnomeVFSDirectoryFilterType filter_type,
@@ -680,7 +653,6 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	load_directory_op = &job->current_op->specifics.load_directory;
 	load_directory_op->request.uri = gnome_vfs_uri_ref (uri);
 	load_directory_op->request.options = options;
-	load_directory_op->request.meta_keys = copy_meta_keys (meta_keys);
 	load_directory_op->request.sort_rules = copy_sort_rules (sort_rules);
 	load_directory_op->request.reverse_order = reverse_order;
 	load_directory_op->request.filter_type = filter_type;

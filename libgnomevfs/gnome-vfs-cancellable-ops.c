@@ -155,11 +155,9 @@ GnomeVFSResult
 gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *info,
 					 GnomeVFSFileInfoOptions options,
-					 const gchar * const meta_keys[],
 					 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
-	GList *meta_list;
 
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
@@ -167,12 +165,9 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->get_file_info == NULL)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
-	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
-
-	result = uri->method->get_file_info (uri->method, uri, info, options, meta_list,
+	result = uri->method->get_file_info (uri->method, uri, info, options,
 					     context);
 
-	gnome_vfs_free_string_list (meta_list);
 	return result;
 }
 
@@ -180,25 +175,20 @@ GnomeVFSResult
 gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions options,
-						 const gchar * const meta_keys[],
 						 GnomeVFSContext *context)
 
 {
 	GnomeVFSResult result;
-	GList *meta_list;
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result =  gnome_vfs_handle_do_get_file_info (handle, info,
-						     options, meta_list,
+						     options,
 						     context);
-
-	gnome_vfs_free_string_list (meta_list);
 
 	return result;
 }

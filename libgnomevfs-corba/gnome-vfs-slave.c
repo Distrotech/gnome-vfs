@@ -748,14 +748,13 @@ impl_Request_create_as_channel (PortableServer_Servant servant,
 	setup_and_serve_channel (handle, open_mode, 0, ev);
 }
 
-
 /* Directory reading.  */
 
 static GNOME_VFS_Slave_FileInfoList *
-allocate_info_list (gulong size, gulong max_metadata)
+allocate_info_list (gulong size)
 {
 	GNOME_VFS_Slave_FileInfoList *list;
-	guint i, j;
+	guint i;
 
 	list = GNOME_VFS_Slave_FileInfoList__alloc ();
 
@@ -773,78 +772,23 @@ allocate_info_list (gulong size, gulong max_metadata)
 		info_size = sizeof (GnomeVFSFileInfo);
 		p->data._length = info_size;
 		p->data._maximum = info_size;
-		p->data._buffer
-			= CORBA_sequence_CORBA_octet_allocbuf (info_size);
-		CORBA_sequence_set_release (&p->data, TRUE);
+        p->data._buffer
+		= CORBA_sequence_CORBA_octet_allocbuf (info_size);
+        CORBA_sequence_set_release (&p->data, TRUE);
 
-		p->name = NULL;
-		p->symlink_name = NULL;
-		p->mime_type = NULL;
+        p->name = NULL;
+        p->symlink_name = NULL;
+        p->mime_type = NULL;
 
-		p->metadata_response._length = max_metadata;
-		p->metadata_response._maximum = max_metadata;
-		p->metadata_response._buffer
-			= CORBA_sequence_GNOME_VFS_Slave_MetadataResponse_allocbuf
-			(max_metadata);
-		CORBA_sequence_set_release (&p->metadata_response, TRUE);
-
-		for (j = 0; j < max_metadata; j++) {
-			GNOME_VFS_Slave_MetadataResponse *mp;
-
-			mp = p->metadata_response._buffer + j;
-
-			mp->found = 0;
-			mp->value._length = 0;
-			mp->value._maximum = 0;
-			mp->value._buffer = NULL;
-
-			CORBA_sequence_set_release (&mp->value, TRUE);
-		}
 	}
 
 	return list;
 }
 
-static void
-copy_metadata (GNOME_VFS_Slave_FileInfo *dest,
-	       GnomeVFSFileInfo *src,
-	       const char **meta_key_array)
-{
-	guint i;
-
-	/* FIXME bugzilla.eazel.com 1120: 
-	   This is a bit inefficient (because every
-	   `gnome_vfs_file_info_get_metadata()' is actually a linear search
-	   with the current implementation), but we are happy with it for now.
-	   In most cases, the number of metadata keys will be very limited.  */
-	for (i = 0; meta_key_array[i] != NULL; i++) {
-		GNOME_VFS_Slave_MetadataResponse *p;
-		gconstpointer value;
-		guint value_size;
-
-		p = dest->metadata_response._buffer + i;
-
-		p->found = gnome_vfs_file_info_get_metadata
-			(src, meta_key_array[i], &value, &value_size);
-
-		if (p->found) {
-			p->value._length = value_size;
-			if (p->value._maximum < value_size) {
-				CORBA_free (p->value._buffer);
-				p->value._maximum = value_size;
-				p->value._buffer
-					= CORBA_sequence_CORBA_octet_allocbuf
-					(value_size);
-			}
-			memcpy (p->value._buffer, value, value_size);
-		}
-	}
-}
 
 static void
 copy_file_info (GNOME_VFS_Slave_FileInfo *dest,
-		GnomeVFSFileInfo *src,
-		const char **meta_key_array)
+		GnomeVFSFileInfo *src)
 {
 	memcpy (dest->data._buffer, src, dest->data._length);
 
@@ -852,14 +796,11 @@ copy_file_info (GNOME_VFS_Slave_FileInfo *dest,
 	set_corba_string (&dest->symlink_name, src->symlink_name);
 	set_corba_string (&dest->mime_type, src->mime_type);
 
-	if (meta_key_array != NULL)
-		copy_metadata (dest, src, meta_key_array);
 }
 
 static void
 load_directory_not_sorted (const gchar *uri,
 			   GnomeVFSFileInfoOptions options,
-			   const char **meta_key_array,
 			   GnomeVFSDirectoryFilter *filter,
 			   GNOME_VFS_Slave_FileInfoList *list_buffer,
 			   CORBA_Environment *ev)
@@ -869,8 +810,10 @@ load_directory_not_sorted (const gchar *uri,
 	GnomeVFSFileInfo *info;
 	gboolean stopped;
 
-	result = gnome_vfs_directory_open (&handle, uri, options,
-					   meta_key_array, filter);
+	result = gnome_vfs_directory_open (&handle, 
+					   uri, 
+					   options,
+					   filter);
 
 	if (result != GNOME_VFS_OK) {
 		GNOME_VFS_Slave_Notify_load_directory
@@ -894,7 +837,7 @@ load_directory_not_sorted (const gchar *uri,
 			GNOME_VFS_Slave_FileInfo *i;
 
 			i = list_buffer->_buffer + list_buffer->_length;
-			copy_file_info (i, info, meta_key_array);
+			copy_file_info (i, info);
 			list_buffer->_length++;
 		}
 
@@ -923,7 +866,6 @@ load_directory_not_sorted (const gchar *uri,
 static void
 load_directory_sorted (const gchar *uri,
 		       GnomeVFSFileInfoOptions options,
-		       const char **meta_key_array,
 		       GnomeVFSDirectoryFilter *filter,
 		       const GnomeVFSDirectorySortRule *rules,
 		       gboolean reverse_order,
@@ -940,7 +882,6 @@ load_directory_sorted (const gchar *uri,
 	result = gnome_vfs_directory_list_load (&list,
 						uri,
 						options,
-						meta_key_array,
 						filter);
 
 	if (result != GNOME_VFS_OK) {
@@ -964,7 +905,7 @@ load_directory_sorted (const gchar *uri,
 		}
 
 		i = list_buffer->_buffer + list_buffer->_length;
-		copy_file_info (i, info, meta_key_array);
+		copy_file_info (i, info);
 		list_buffer->_length++;
 
 		info = gnome_vfs_directory_list_next (list);
@@ -1000,29 +941,15 @@ static void
 impl_Request_get_file_info (PortableServer_Servant servant,
 			    const GNOME_VFS_Slave_URIList *uris,
 			    const GNOME_VFS_Slave_FileInfoOptions info_options,
-			    const GNOME_VFS_MetadataKeyList *meta_keys,
 			    CORBA_Environment *ev)
 {
 	GnomeVFSResult result;
-	char **meta_key_array;
-	guint num_meta_keys;
-	int i, j;
+	int i;
 	GnomeVFSFileInfo *info;
 	GNOME_VFS_Slave_FileInfo *p;
 	guint info_size;
 	GNOME_VFS_Slave_GetFileInfoResultList *result_list;
 
-	num_meta_keys = meta_keys->_length;
-	if (num_meta_keys == 0) {
-		meta_key_array = NULL;
-	} else {
-		meta_key_array = alloca (sizeof (gchar *)
-					 * (num_meta_keys + 1));
-
-		for (i = 0; i < meta_keys->_length; i++)
-			meta_key_array[i] = meta_keys->_buffer[i];
-		meta_key_array[i] = NULL;
-	}
 
 	result_list = GNOME_VFS_Slave_GetFileInfoResultList__alloc ();
 	result_list->_length = uris->_length;
@@ -1032,8 +959,7 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 
 	for (i = 0; i < uris->_length; i++) {
 		info = gnome_vfs_file_info_new ();
-		result = gnome_vfs_get_file_info (uris->_buffer[i], info, info_options,
-						  (const char **)meta_key_array);
+		result = gnome_vfs_get_file_info (uris->_buffer[i], info, info_options);
 		
 		result_list->_buffer[i].uri = CORBA_string_dup (uris->_buffer[i]);
 		result_list->_buffer[i].result = result;
@@ -1049,31 +975,6 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 		p->symlink_name = info->symlink_name?info->symlink_name:"";
 		p->mime_type = info->mime_type?info->mime_type:"";
 		
-		p->metadata_response._length = num_meta_keys;
-		p->metadata_response._maximum = num_meta_keys;
-		p->metadata_response._buffer
-			= alloca(sizeof(GNOME_VFS_Slave_MetadataResponse) * num_meta_keys);
-		CORBA_sequence_set_release (&p->metadata_response, FALSE);
-		
-		for (j = 0; j < num_meta_keys; j++) {
-			GNOME_VFS_Slave_MetadataResponse *mp;
-			gconstpointer value;
-			guint value_size;
-			
-			mp = p->metadata_response._buffer + j;
-			
-			mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[j], &value, &value_size);
-			if (mp->found) {
-				mp->value._length = value_size;
-				mp->value._buffer = (gpointer)value;
-			} else {
-				mp->value._length = 0;
-				mp->value._maximum = 0;
-				mp->value._buffer = NULL;
-			}
-			
-			CORBA_sequence_set_release (&mp->value, FALSE);
-		}
 	}
 
 	GNOME_VFS_Slave_Notify_get_file_info (notify_objref, result_list, ev);
@@ -1085,7 +986,6 @@ static void
 impl_Request_load_directory (PortableServer_Servant servant,
 			     const CORBA_char *uri,
 			     const GNOME_VFS_Slave_FileInfoOptions info_options,
-			     const GNOME_VFS_MetadataKeyList *meta_keys,
 			     const GNOME_VFS_Slave_DirectoryFilter *filter,
 			     const GNOME_VFS_Slave_DirectorySortRuleList *sort_rules,
 			     const CORBA_boolean reverse_order,
@@ -1095,39 +995,23 @@ impl_Request_load_directory (PortableServer_Servant servant,
 	GnomeVFSDirectoryFilter *my_filter;
 	GnomeVFSDirectorySortRule *my_sort_rules;
 	GNOME_VFS_Slave_FileInfoList *list_buffer;
-	char **meta_key_array;
-	guint num_meta_keys;
 	guint i;
-
-	if (meta_keys->_length == 0) {
-		num_meta_keys = 0;
-		meta_key_array = NULL;
-	} else {
-		num_meta_keys = meta_keys->_length;
-		meta_key_array = alloca (sizeof (gchar *)
-					 * num_meta_keys);
-
-		for (i = 0; i < meta_keys->_length; i++)
-			meta_key_array[i] = meta_keys->_buffer[i];
-	}
-
 
 	my_filter = gnome_vfs_directory_filter_new (filter->type,
 						    filter->options,
 						    filter->pattern);
 
-	list_buffer = allocate_info_list (items_per_notification,
-					  num_meta_keys);
+	list_buffer = allocate_info_list (items_per_notification);
 
 	if (sort_rules->_length == 0) {
-		load_directory_not_sorted (uri, info_options, (const char **)meta_key_array,
+		load_directory_not_sorted (uri, info_options,
 					   my_filter, list_buffer, ev);
 	} else {
 		my_sort_rules = alloca (sizeof (gchar *) * sort_rules->_length);
 		for (i = 0; i < sort_rules->_length; i++)
 			my_sort_rules[i] = sort_rules->_buffer[i];
 
-		load_directory_sorted (uri, info_options, (const char **)meta_key_array,
+		load_directory_sorted (uri, info_options,
 				       my_filter, my_sort_rules, reverse_order,
 				       list_buffer, ev);
 	}
@@ -1137,7 +1021,7 @@ impl_Request_load_directory (PortableServer_Servant servant,
 	gnome_vfs_directory_filter_destroy (my_filter);
 }
 
-
+
 static GList *
 file_list_to_g_list (const GNOME_VFS_Slave_FileNameList *file_list)
 {

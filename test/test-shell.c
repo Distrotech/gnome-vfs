@@ -141,7 +141,7 @@ do_ls (void)
 
 	result = gnome_vfs_directory_list_load (
 		&list, cur_dir, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL, NULL);
+		NULL);
 	if (show_if_error (result, "open directory ", cur_dir))
 		return;
 
@@ -272,7 +272,7 @@ validate_path (const char *path)
 
 	result = gnome_vfs_directory_list_load (
 		&list, path, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL, NULL);
+		NULL);
 	if (show_if_error (result, "open directory ", path))
 		return FALSE;
 
@@ -291,7 +291,7 @@ get_regexp_name (const char *regexp, const char *path, gboolean dir)
 
 	result = gnome_vfs_directory_list_load (
 		&list, path, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL, NULL);
+		NULL);
 	if (show_if_error (result, "open directory ", path))
 		return NULL;
 
@@ -513,7 +513,7 @@ do_info (void)
 
 	info = gnome_vfs_file_info_new ();
 	result = gnome_vfs_get_file_info (
-		from, info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		from, info, GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (show_if_error (result, "getting info on: ", from))
 		return;

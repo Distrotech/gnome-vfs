@@ -39,9 +39,6 @@ struct GnomeVFSDirectoryHandle {
 	/* Method-specific handle.  */
 	GnomeVFSMethodHandle *method_handle;
 
-	/* Metadata list.  */
-	GList *meta_keys;
-
 	/* Filter.  */
 	const GnomeVFSDirectoryFilter *filter;
 };
@@ -57,7 +54,6 @@ static GnomeVFSDirectoryHandle *
 gnome_vfs_directory_handle_new (GnomeVFSURI *uri,
 				GnomeVFSMethodHandle *method_handle,
 				GnomeVFSFileInfoOptions options,
-				GList *meta_keys,
 				const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *new;
@@ -72,7 +68,6 @@ gnome_vfs_directory_handle_new (GnomeVFSURI *uri,
 	new->uri = uri;
 	new->method_handle = method_handle;
 	new->options = options;
-	new->meta_keys = meta_keys;
 	new->filter = filter;
 
 	return new;
@@ -84,7 +79,6 @@ gnome_vfs_directory_handle_destroy (GnomeVFSDirectoryHandle *handle)
 	g_return_if_fail (handle != NULL);
 
 	gnome_vfs_uri_unref (handle->uri);
-	gnome_vfs_free_string_list (handle->meta_keys);
 
 	g_free (handle);
 }
@@ -94,30 +88,28 @@ static GnomeVFSResult
 open_from_uri (GnomeVFSDirectoryHandle **handle,
 	       GnomeVFSURI *uri,
 	       GnomeVFSFileInfoOptions options,
-	       const gchar * const meta_keys[],
 	       const GnomeVFSDirectoryFilter *filter,
 	       GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
-	GList *meta_list;
 
 	CHECK_IF_SUPPORTED (uri->method, open_directory);
 
-	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
-	result = uri->method->open_directory (uri->method, &method_handle, uri,
-					      options, meta_list, filter,
+	result = uri->method->open_directory (uri->method, 
+					      &method_handle, 
+					      uri,
+					      options, 
+					      filter,
 					      context);
 	if (result != GNOME_VFS_OK) {
-		gnome_vfs_free_string_list (meta_list);
 		return result;
 	}
 
 	*handle = gnome_vfs_directory_handle_new (uri,
 						  method_handle,
 						  options,
-						  meta_list,
 						  filter);
 
 	return GNOME_VFS_OK;
@@ -127,7 +119,6 @@ static GnomeVFSResult
 open (GnomeVFSDirectoryHandle **handle,
       const gchar *text_uri,
       GnomeVFSFileInfoOptions options,
-      const gchar * const meta_keys[],
       const GnomeVFSDirectoryFilter *filter,
       GnomeVFSContext *context)
 {
@@ -141,7 +132,7 @@ open (GnomeVFSDirectoryHandle **handle,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	result = open_from_uri (handle, uri, options, meta_keys, filter,
+	result = open_from_uri (handle, uri, options, filter,
 				context);
 
 	gnome_vfs_uri_unref (uri);
@@ -154,7 +145,6 @@ open (GnomeVFSDirectoryHandle **handle,
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @text_uri: String representing the URI to open
  * @options: Options for reading file information
- * @meta_keys: List of metadata keys to be retrieved for each directory entry
  * @filter: Filter to be applied to the directory entries
  * 
  * Open directory @text_uri for reading.  On return, @*handle will point to
@@ -167,13 +157,12 @@ GnomeVFSResult
 gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  const gchar *text_uri,
 			  GnomeVFSFileInfoOptions options,
-			  const gchar * const meta_keys[],
 			  const GnomeVFSDirectoryFilter *filter)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open (handle, text_uri, options, meta_keys, filter, NULL);
+	return open (handle, text_uri, options, filter, NULL);
 }
 
 /**
@@ -181,7 +170,6 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @uri: URI to open
  * @options: Options for reading file information
- * @meta_keys: List of metadata keys to be retrieved for each directory entry
  * @filter: Filter to be applied to the directory entries
  * 
  * Open directory @text_uri for reading.  On return, @*handle will point to
@@ -194,13 +182,12 @@ GnomeVFSResult
 gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSURI *uri,
 				   GnomeVFSFileInfoOptions options,
-				   const gchar * const meta_keys[],
 				   const GnomeVFSDirectoryFilter *filter)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open_from_uri (handle, uri, options, meta_keys, filter, NULL);
+	return open_from_uri (handle, uri, options, filter, NULL);
 }
 
 /**
@@ -309,7 +296,6 @@ directory_visit_internal (GnomeVFSURI *uri,
 			  const gchar *prefix,
 			  GList *ancestor_references, /* DirectoryReference */
 			  GnomeVFSFileInfoOptions info_options,
-			  const gchar * const meta_keys[],
 			  const GnomeVFSDirectoryFilter *filter,
 			  GnomeVFSDirectoryVisitOptions visit_options,
 			  GnomeVFSDirectoryVisitFunc callback,
@@ -327,7 +313,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 
 		info = gnome_vfs_file_info_new ();
 		result = gnome_vfs_get_file_info_uri (uri, info,
-						      info_options, NULL);
+						      info_options);
 		if (result != GNOME_VFS_OK) {
 			gnome_vfs_file_info_unref (info);
 			return result;
@@ -344,7 +330,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 	}
 
 	result = gnome_vfs_directory_open_from_uri (&handle, uri, info_options,
-						    meta_keys, filter);
+						    filter);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -409,7 +395,6 @@ directory_visit_internal (GnomeVFSURI *uri,
 							   new_prefix,
 							   ancestor_references,
 							   info_options,
-							   meta_keys,
 							   filter,
 							   visit_options,
 							   callback, data);
@@ -453,22 +438,19 @@ directory_visit_internal (GnomeVFSURI *uri,
  * @uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
- * @meta_keys: List of metadata keys to retrieve for each directory entry
  * @filter: Filter to be used while visiting the directory
  * @visit_options: Options specifying the type of visit
  * @callback: Callback to be called for every visited file
  * @data: Data to be passed to @callback at each iteration
  * 
- * Visit @uri, retrieving information as specified by @info_options, and
- * looking up the metadata keys specified in @meta_keys.  Also, @filter will be
- * applied.
+ * Visit @uri, retrieving information as specified by @info_options. 
+ * Also, @filter will be applied.
  * 
  * Return value: 
  **/
 GnomeVFSResult
 gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSFileInfoOptions info_options,
-			       const gchar * const meta_keys[],
 			       const GnomeVFSDirectoryFilter *filter,
 			       GnomeVFSDirectoryVisitOptions visit_options,
 			       GnomeVFSDirectoryVisitFunc callback,
@@ -477,7 +459,7 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return directory_visit_internal (uri, NULL, NULL,
-					 info_options, meta_keys, filter,
+					 info_options, filter,
 					 visit_options, callback, data);
 }
 
@@ -486,22 +468,19 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
  * @uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
- * @meta_keys: List of metadata keys to retrieve for each directory entry
  * @filter: Filter to be used while visiting the directory
  * @visit_options: Options specifying the type of visit
  * @callback: Callback to be called for every visited file
  * @data: Data to be passed to @callback at each iteration
  * 
- * Visit @uri, retrieving information as specified by @info_options, and
- * looking up the metadata keys specified in @meta_keys.  Also, @filter will be
- * applied.
+ * Visit @uri, retrieving information as specified by @info_options. Also, 
+ * @filter will be applied.
  * 
  * Return value: 
  **/
 GnomeVFSResult
 gnome_vfs_directory_visit (const gchar *text_uri,
 			   GnomeVFSFileInfoOptions info_options,
-			   const gchar * const meta_keys[],
 			   const GnomeVFSDirectoryFilter *filter,
 			   GnomeVFSDirectoryVisitOptions visit_options,
 			   GnomeVFSDirectoryVisitFunc callback,
@@ -515,7 +494,7 @@ gnome_vfs_directory_visit (const gchar *text_uri,
 	uri = gnome_vfs_uri_new (text_uri);
 
 	result = directory_visit_internal (uri, NULL, NULL,
-					   info_options, meta_keys, filter,
+					   info_options, filter,
 					   visit_options, callback, data);
 
 	gnome_vfs_uri_unref (uri);
@@ -527,7 +506,6 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 					GList *file_list,
 					GnomeVFSFileInfoOptions info_options,
-					const gchar * const meta_keys[],
 					const GnomeVFSDirectoryFilter *filter,
 					GnomeVFSDirectoryVisitOptions
 						visit_options,
@@ -550,8 +528,9 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 		gboolean stop;
 
 		file_uri = gnome_vfs_uri_append_file_name (uri, p->data);
-		gnome_vfs_get_file_info_uri (file_uri, info, info_options,
-					     meta_keys);
+		gnome_vfs_get_file_info_uri (file_uri, 
+					     info, 
+					     info_options);
 
 		recurse = FALSE;
 		stop = ! (* callback) (info->name, info, FALSE, data,
@@ -561,10 +540,12 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 		    && recurse
 		    && info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
 			result = gnome_vfs_directory_visit_uri
-				(uri, info_options,
-				 meta_keys, filter,
+				(uri, 
+				 info_options,
+				 filter,
 				 visit_options,
-				 callback, data);
+				 callback, 
+				 data);
 
 		gnome_vfs_uri_unref (file_uri);
 
@@ -580,7 +561,6 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files (const gchar *text_uri,
 				 GList *file_list,
 				 GnomeVFSFileInfoOptions info_options,
-				 const gchar * const meta_keys[],
 				 const GnomeVFSDirectoryFilter *filter,
 				 GnomeVFSDirectoryVisitOptions
 				 	visit_options,
@@ -594,7 +574,6 @@ gnome_vfs_directory_visit_files (const gchar *text_uri,
 
 	result = gnome_vfs_directory_visit_files_at_uri (uri, file_list,
 							 info_options,
-							 meta_keys,
 							 filter,
 							 visit_options,
 							 callback,

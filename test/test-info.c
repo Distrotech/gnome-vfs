@@ -56,23 +56,6 @@ type_to_string (GnomeVFSFileType type)
 	}
 }
 
-/* FIXME bugzilla.eazel.com 1120: this will not work nicely for binary metadata!  */
-static void
-print_meta_list (const GnomeVFSFileInfo *info)
-{
-	GList *p;
-
-	for (p = info->metadata_list; p != NULL; p = p->next) {
-		GnomeVFSFileMetadata *metadata;
-		gchar *buffer;
-
-		metadata = p->data;
-		buffer = g_malloc (metadata->value_size + 1);
-		memcpy (buffer, metadata->value, metadata->value_size);
-		buffer[metadata->value_size] = 0;
-		printf ("\tKey: %s\n\tValue: %s\n", metadata->key, buffer);
-	}
-}
 
 static void
 print_file_info (const GnomeVFSFileInfo *info)
@@ -134,7 +117,6 @@ print_file_info (const GnomeVFSFileInfo *info)
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_INODE)
 		printf ("Inode #           : %ld\n", (gulong) info->inode);
 
-	print_meta_list (info);
 
 #undef FLAG_STRING
 }
@@ -167,10 +149,10 @@ main (int argc,
 		g_print("Getting info for \"%s\".\n", uri);
 
 		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info (uri, &info,
-							(GNOME_VFS_FILE_INFO_GET_MIME_TYPE
-							 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
-							NULL);
+		result = gnome_vfs_get_file_info (uri, 
+						  &info,
+						  (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+						   | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
 		if (result != GNOME_VFS_OK) {
 			fprintf (stderr, "%s: %s: %s\n",
 				 argv[0], uri, gnome_vfs_result_to_string (result));

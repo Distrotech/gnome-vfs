@@ -109,7 +109,7 @@ deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result,
 		return_value = 0;
 	} else if (result == GNOME_VFS_OK) { 
 		info = gnome_vfs_file_info_new();
-		error = gnome_vfs_get_file_info_uri (real_uri, info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		error = gnome_vfs_get_file_info_uri (real_uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 		if ((error != GNOME_VFS_OK) || (info->type != GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
 			printf ("Symlink problem: gnome_vfs_file_info returns wrong for link %s\n", uri);
 		} else {
@@ -134,14 +134,14 @@ deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result,
 					}
 				}
 			}
-			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
-			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
+			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
 			if (info_uri.inode != info_target.inode) {
 				printf ("Symlink problem: link following is not working\n");
 				printf ("File: %s   Link: %s\n", target_uri, uri);
 			}
-			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
-			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_DEFAULT);
+			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_DEFAULT);
 			if (info_uri.inode == info_target.inode) {
 				printf ("Symlink problem: link following is happening when it shouldn't be.\n");
 				printf ("File: %s   Link: %s\n", target_uri, uri);

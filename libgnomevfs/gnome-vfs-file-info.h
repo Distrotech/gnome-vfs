@@ -65,19 +65,6 @@ void		 gnome_vfs_file_info_init	(GnomeVFSFileInfo *info);
 void		 gnome_vfs_file_info_clear	(GnomeVFSFileInfo *info);
 void 		 gnome_vfs_file_info_unref   	(GnomeVFSFileInfo *info);
 void 		 gnome_vfs_file_info_ref     	(GnomeVFSFileInfo *info);
-gboolean 	 gnome_vfs_file_info_get_metadata
-						(GnomeVFSFileInfo *info,
-						 const gchar *key,
-						 gconstpointer *value,
-						 guint *value_size);
-gboolean 	 gnome_vfs_file_info_set_metadata
-						(GnomeVFSFileInfo *info,
-						 const gchar *key,
-						 gpointer value,
-						 guint value_size);
-gboolean	 gnome_vfs_file_info_unset_metadata
-						(GnomeVFSFileInfo *info,
-						 const gchar *key);
 const gchar	*gnome_vfs_file_info_get_mime_type
 						(GnomeVFSFileInfo *info);
 

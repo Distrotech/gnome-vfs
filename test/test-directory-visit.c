@@ -106,7 +106,6 @@ main (int argc, char **argv)
 		 (GNOME_VFS_FILE_INFO_FOLLOW_LINKS
 		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE),
 		 NULL,
-		 NULL,
 		 GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK,
 		 directory_visit_callback,
 		 "stringa");

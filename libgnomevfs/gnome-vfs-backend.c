@@ -625,7 +625,6 @@ void
 gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 				GList *uris,
 				GnomeVFSFileInfoOptions options,
-				const char * const meta_keys[],
 				GnomeVFSAsyncGetFileInfoCallback callback,
 				gpointer callback_data)
 {
@@ -633,13 +632,12 @@ gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_get_file_info) (GnomeVFSAsyncHandle **handle_return,
 						       GList *uris,
 						       GnomeVFSFileInfoOptions options,
-						       const char * const meta_keys[],
 						       GnomeVFSAsyncGetFileInfoCallback callback,
 						       gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_get_file_info,
-		      (handle_return, uris, options, meta_keys,
+		      (handle_return, uris, options,
 		       callback, callback_data));
 	report_failure_get_file_info (result, uris, callback, callback_data);
 }
@@ -705,7 +703,6 @@ void
 gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 				    GnomeVFSURI *uri,
 				    GnomeVFSFileInfoOptions options,
-				    const gchar *meta_keys[],
 				    GnomeVFSDirectorySortRule sort_rules[],
 				    gboolean reverse_order,
 				    GnomeVFSDirectoryFilterType filter_type,
@@ -719,7 +716,6 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_load_directory_uri) (GnomeVFSAsyncHandle **handle_return,
 							    GnomeVFSURI *uri,
 							    GnomeVFSFileInfoOptions options,
-							    const gchar *meta_keys[],
 							    GnomeVFSDirectorySortRule sort_rules[],
 							    gboolean reverse_order,
 							    GnomeVFSDirectoryFilterType filter_type,
@@ -731,7 +727,7 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_load_directory_uri,
-		      (handle_return, uri, options, meta_keys, sort_rules,
+		      (handle_return, uri, options, sort_rules,
 		       reverse_order, filter_type, filter_options,
 		       filter_pattern, items_per_notification,
 		       callback, callback_data));
@@ -742,7 +738,6 @@ void
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *uri,
 				GnomeVFSFileInfoOptions options,
-				const gchar * const meta_keys[],
 				GnomeVFSDirectorySortRule sort_rules[],
 				gboolean reverse_order,
 				GnomeVFSDirectoryFilterType filter_type,
@@ -756,7 +751,6 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_load_directory) (GnomeVFSAsyncHandle **handle_return,
 							const gchar *uri,
 							GnomeVFSFileInfoOptions options,
-							const gchar * const meta_keys[],
 							GnomeVFSDirectorySortRule sort_rules[],
 							gboolean reverse_order,
 							GnomeVFSDirectoryFilterType filter_type,
@@ -768,7 +762,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_load_directory,
-		      (handle_return, uri, options, meta_keys, sort_rules, reverse_order,
+		      (handle_return, uri, options, sort_rules, reverse_order,
 		       filter_type, filter_options, filter_pattern, items_per_notification,
 		       callback, callback_data));
 	report_failure_load_directory (result, callback, callback_data);

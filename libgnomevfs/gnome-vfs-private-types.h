@@ -97,7 +97,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 
@@ -117,7 +116,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFunc)
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
@@ -125,7 +123,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
 					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc) (GnomeVFSMethod *method,

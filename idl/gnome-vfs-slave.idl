@@ -7,12 +7,6 @@
 module GNOME {
 module VFS {
 module Slave {
-	/* A response to a metadata query.  */
-	struct MetadataResponse {
-		boolean found;
-		Buffer value;
-	};
-	typedef sequence<MetadataResponse> MetadataResponseList;
 
 	/* This is in the GNOME::VFS::Slave namespace because it heavily
            depends on binary compatibility.  */
@@ -23,7 +17,6 @@ module Slave {
 		string symlink_name;
 		string mime_type;
 
-		MetadataResponseList metadata_response;
 	};
 	typedef sequence<FileInfo> FileInfoList;
 	typedef unsigned long FileInfoOptions;
@@ -82,13 +75,11 @@ module Slave {
 					       in Permission perm);
 
 	        oneway void get_file_info (in URIList uri,
-					   in FileInfoOptions info_options,
-					   in MetadataKeyList meta_keys);
+					   in FileInfoOptions info_options);
 
 		/* Load a directory.  */
 		oneway void load_directory (in string uri,
 					    in FileInfoOptions info_options,
-					    in MetadataKeyList meta_keys,
 					    in DirectoryFilter filter,
 					    in DirectorySortRuleList sort_rules,
 					    in boolean reverse_order,

@@ -30,62 +30,6 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-/* WARNING: We assume that NULL metadata is different from unspecified
-   metadata.  */
-
-
-static void
-free_metadata (GList *p)
-{
-	GnomeVFSFileMetadata *meta;
-
-	meta = p->data;
-	g_free (meta->key);
-	g_free (meta->value);
-}
-
-static void
-remove_metadata (GnomeVFSFileInfo *info,
-		 GList *p)
-{
-	free_metadata (p);
-	info->metadata_list = g_list_remove_link (info->metadata_list, p);
-	g_list_free (p);
-}
-
-static void
-free_metadata_list (GnomeVFSFileInfo *info)
-{
-	GList *p;
-
-	if (info->metadata_list == NULL)
-		return;
-
-	for (p = info->metadata_list; p != NULL; p = p->next)
-		free_metadata (p);
-
-	g_list_free (info->metadata_list);
-	info->metadata_list = NULL;
-}
-
-static GList *
-lookup_metadata (GnomeVFSFileInfo *info,
-		 const gchar *key)
-{
-	GList *p;
-
-	for (p = info->metadata_list; p != NULL; p = p->next) {
-		GnomeVFSFileMetadata *meta;
-
-		meta = p->data;
-		if (strcmp (meta->key, key) == 0)
-			return p;
-	}
-
-	return NULL;
-}
-
-
 /**
  * gnome_vfs_file_info_new:
  * 
@@ -147,8 +91,6 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	g_free (info->symlink_name);
 	g_free (info->mime_type);
 
-	free_metadata_list (info);
-
 	memset (info, 0, sizeof (*info));
 
 	info->refcount = 1;
@@ -191,123 +133,6 @@ gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
 }
 
 
-
-/**
- * gnome_vfs_file_info_set_metadata:
- * @info: Pointer to a file information struct
- * @key: Key for which the metadata must be set.
- * @value: Value to set for @key
- * @value_size: Size of @value, in bytes
- * 
- * Set metadata associated to @key in @info to the specified @value of size
- * @value_size.
- * 
- * Return value:  %TRUE If operation was successfull, %FALSE otherwise
- **/
-gboolean
-gnome_vfs_file_info_set_metadata (GnomeVFSFileInfo *info,
-				  const gchar *key,
-				  gpointer value,
-				  guint value_size)
-{
-	GList *p;
-	GnomeVFSFileMetadata *meta;
-
-	g_return_val_if_fail (info != NULL, FALSE);
-	g_return_val_if_fail (key != NULL, FALSE);
-
-	p = lookup_metadata (info, key);
-	if (p != NULL) {
-		meta = p->data;
-		g_free (meta->value);
-	} else {
-		meta = g_new (GnomeVFSFileMetadata, 1);
-		meta->key = g_strdup (key);
-		info->metadata_list = g_list_prepend (info->metadata_list,
-						      meta);
-	}
-
-	meta->value_size = value_size;
-	meta->value = value;
-
-	return TRUE;
-}
-
-/**
- * gnome_vfs_file_info_get_metadata:
- * @info: A pointer to a file information struct
- * @key: Key for which the metadata must be retrieved
- * @value: Pointer to a variable that will hold a pointer to the metadata on
- * return from this function.
- * @value_size: Pointer to a variable that will hold the size of the metadata
- * on return from this function.
- * 
- * Retrieve metadata associated to @key in @info.
- * 
- * Return value: %TRUE if operation was successfull (@key was found), %FALSE
- * otherwise.
- **/
-gboolean
-gnome_vfs_file_info_get_metadata (GnomeVFSFileInfo *info,
-				  const gchar *key,
-				  gconstpointer *value,
-				  guint *value_size)
-{
-	GList *p;
-	GnomeVFSFileMetadata *meta;
-
-	g_return_val_if_fail (info != NULL, FALSE);
-	g_return_val_if_fail (key != NULL, FALSE);
-
-	if (strcmp (key, "type") == 0) {
-		if (value != NULL)
-			*value = info->mime_type;
-		if (value_size != NULL)
-			*value_size = strlen (info->mime_type) + 1;
-		return TRUE;
-	}
-
-	p = lookup_metadata (info, key);
-	if (p == NULL)
-		return FALSE;
-
-	meta = p->data;
-
-	if (value != NULL)
-		*value = meta->value;
-	if (value_size != NULL)
-		*value_size = meta->value_size;
-
-	return TRUE;
-}
-
-/**
- * gnome_vfs_file_info_unset_metadata:
- * @info: A pointer to a file information struct
- * @key: Key for the metadata to be unset
- * 
- * Unset metadata associated with @key in @info.  This has no effect on the
- * real metadata saved in the metadata database.
- * 
- * Return value: %TRUE if the operation was successfull, %FALSE otherwise.
- **/
-gboolean
-gnome_vfs_file_info_unset_metadata (GnomeVFSFileInfo *info,
-				    const gchar *key)
-{
-	GList *p;
-
-	g_return_val_if_fail (info != NULL, FALSE);
-	g_return_val_if_fail (key != NULL, FALSE);
-
-	p = lookup_metadata (info, key);
-	if (p == NULL)
-		return FALSE;
-
-	remove_metadata (info, p);
-
-	return TRUE;
-}
 
 /**
  * gnome_vfs_file_info_get_mime_type:
@@ -337,9 +162,6 @@ void
 gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 			  const GnomeVFSFileInfo *src)
 {
-	GList *p;
-	GList *meta_list_end;
-
 	g_return_if_fail (dest != NULL);
 	g_return_if_fail (src != NULL);
 
@@ -353,38 +175,6 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 	dest->symlink_name = g_strdup (src->symlink_name);
 	dest->mime_type = g_strdup (src->mime_type);
 
-	/* Duplicate metadata information.  */
-
-	meta_list_end = NULL;
-	dest->metadata_list = NULL;
-	for (p = src->metadata_list; p != NULL; p = p->next) {
-		GnomeVFSFileMetadata *meta;
-		GnomeVFSFileMetadata *new_meta;
-
-		meta = p->data;
-
-		new_meta = g_new (GnomeVFSFileMetadata, 1);
-		new_meta->key = g_strdup (meta->key);
-		new_meta->value_size = meta->value_size;
-
-		if (meta->value == NULL) {
-			new_meta->value = NULL;
-		} else {
-			new_meta->value = g_malloc (meta->value_size);
-			memcpy (new_meta->value, meta->value, meta->value_size);
-		}
-
-		if (meta_list_end == NULL) {
-			dest->metadata_list = g_list_alloc ();
-			dest->metadata_list->data = new_meta;
-			meta_list_end = dest->metadata_list;
-		} else {
-			meta_list_end->next = g_list_alloc ();
-			meta_list_end->next->prev = meta_list_end;
-			meta_list_end = meta_list_end->next;
-			meta_list_end->data = new_meta;
-		}
-	}
 }
 
 /**

@@ -213,7 +213,6 @@ start_populating (GnomeFileSelection *fs)
 					 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 					 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
 					NULL,
-					NULL,
 					FALSE,
 					GNOME_VFS_DIRECTORY_FILTER_NONE,
 					0,

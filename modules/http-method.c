@@ -1131,7 +1131,6 @@ do_open_directory(GnomeVFSMethod *method,
 	GnomeVFSMethodHandle **method_handle,
 	GnomeVFSURI *uri,
 	GnomeVFSFileInfoOptions options,
-	const GList *meta_keys,
 	const GnomeVFSDirectoryFilter *filter,
 	GnomeVFSContext *context) 
 {
@@ -1215,7 +1214,6 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 	file_info->atime = handle->access_time;
 	file_info->mtime = handle->last_modified;
 	file_info->mime_type = g_strdup (handle->mime_type);
-	file_info->metadata_list = NULL;
 
 	if (handle->size_is_known) {
 		file_info->size = handle->size;
@@ -1244,7 +1242,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
@@ -1306,13 +1303,12 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 
 	return do_get_file_info(method, ((HttpFileHandle *)method_handle)->uri, 
-			file_info, options, meta_keys, context);
+			file_info, options, context);
 
 	handle = (HttpFileHandle *) method_handle;
 	return get_file_info_from_http_handle (handle, file_info, options);

@@ -596,7 +596,6 @@ struct _DirectoryHandle {
 	GnomeVFSFileSystem *fs;
 	EFSDir             *dir;
 	GnomeVFSFileInfoOptions       options;
-	const GList                   *meta_keys;
 	const GnomeVFSDirectoryFilter *filter;
 };
 typedef struct _DirectoryHandle DirectoryHandle;
@@ -619,7 +618,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
-		   const GList *meta_keys,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
@@ -645,7 +643,6 @@ do_open_directory (GnomeVFSMethod *method,
 		handle->fs  = gnome_vfs_file_system_ref (fs);
 		handle->dir = dir;
 		handle->options = options;
-		handle->meta_keys = meta_keys;
 		handle->filter = filter;
 
 		*method_handle = (GnomeVFSMethodHandle *)handle;
@@ -727,7 +724,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
 	char *dir_name, *fname;
@@ -763,7 +759,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 		result = uri->parent->method->get_file_info
 			(uri->parent->method, uri->parent,
-			 info, options, meta_keys, context);
+			 info, options, context);
 		if (result != GNOME_VFS_OK)
 			return result;
 

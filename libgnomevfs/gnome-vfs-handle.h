@@ -64,7 +64,6 @@ GnomeVFSResult gnome_vfs_handle_do_get_file_info
 						(GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions options,
-						 const GList *meta_keys,
 						 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_handle_do_truncate     (GnomeVFSHandle *handle,

@@ -1183,7 +1183,6 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		(&handle,
 		 load_directory_op->request.uri,
 		 load_directory_op->request.options,
-		 (const char **)load_directory_op->request.meta_keys,
 		 filter);
 
 	if (result != GNOME_VFS_OK) {
@@ -1271,7 +1270,6 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		(&directory_list,
 		 load_directory_op->request.uri,
 		 load_directory_op->request.options,
-		 (const char **)load_directory_op->request.meta_keys,
 		 filter);
 
 	if (result != GNOME_VFS_OK) {
@@ -1344,16 +1342,12 @@ execute_get_file_info (GnomeVFSJob *job)
 			(result_item->uri,
 			 result_item->file_info,
 			 gijob->request.options,
-			 (const char **)gijob->request.meta_keys,
 			 job->current_op->context);
 
 		gijob->notify.result_list = g_list_prepend
 			(gijob->notify.result_list, result_item);
 	}
 	gijob->notify.result_list = g_list_reverse (gijob->notify.result_list);
-
-	/* FIXME: These leak if the operation is cancelled. */
-	g_strfreev (gijob->request.meta_keys);
 
 	job_oneway_notify_and_close (job);
 	return FALSE;
@@ -1406,7 +1400,6 @@ execute_load_directory (GnomeVFSJob *job)
 	g_free (load_directory_op->request.sort_rules);
 	g_free (load_directory_op->request.filter_pattern);
 
-	g_strfreev(load_directory_op->request.meta_keys);
 
 	return FALSE;
 }

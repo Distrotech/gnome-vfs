@@ -87,7 +87,6 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 		                         GnomeVFSURI *uri,
 				         GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
 					 GnomeVFSContext *context);
 
 static gboolean do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri);
@@ -517,15 +516,14 @@ do_get_file_info  (GnomeVFSMethod *method,
 	           GnomeVFSURI *uri,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSFileInfoOptions options,
-		   const GList *meta_keys,
-		   GnomeVFSContext *context) {
+		   GnomeVFSContext *context) 
+{
 	GnomeVFSResult result;
 
 	/* Check that the URI is valid.  */
 	if (!VALID_URI(uri)) return GNOME_VFS_ERROR_NOT_FOUND;
 
-	result = gnome_vfs_get_file_info_uri(uri->parent, file_info, options,
-			NULL /*FIXME - meta_keys */);
+	result = gnome_vfs_get_file_info_uri(uri->parent, file_info, options);
 
 	if(result == GNOME_VFS_OK) {
 		gint namelen = strlen(file_info->name);

@@ -443,7 +443,8 @@ empty_directory (GnomeVFSURI *uri,
 	GnomeVFSDirectoryHandle *directory_handle;
 
 	result = gnome_vfs_directory_open_from_uri (&directory_handle, uri, 
-		GNOME_VFS_FILE_INFO_DEFAULT, NULL, NULL);
+						    GNOME_VFS_FILE_INFO_DEFAULT, 
+						    NULL);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -561,7 +562,7 @@ gnome_vfs_visit_list (const GnomeVFSURI *dir_uri,
 		/* get the URI and VFSFileInfo for each */
 		uri = gnome_vfs_uri_append_file_name (dir_uri, p->data);
 		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, info_options, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, &info, info_options);
 		
 		if (result == GNOME_VFS_OK) {
 			gboolean tmp_recurse;
@@ -579,7 +580,7 @@ gnome_vfs_visit_list (const GnomeVFSURI *dir_uri,
 				 * recursively 
 				 */
 				result = gnome_vfs_directory_visit_uri
-						(uri, info_options, NULL, NULL, visit_options,
+						(uri, info_options, NULL, visit_options,
 						 callback, data);
 			}
 		}
@@ -704,7 +705,7 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	}
 
-	return gnome_vfs_directory_visit_uri (dir_uri, info_options, NULL, NULL, 
+	return gnome_vfs_directory_visit_uri (dir_uri, info_options, NULL, 
 		visit_options, count_each_file_size_one, &each_params);
 
 }
@@ -743,7 +744,8 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 		/* get the URI and VFSFileInfo for each */
 		uri = gnome_vfs_uri_append_file_name (target_dir_uri, target_item->data);
 		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, &info, 
+						      GNOME_VFS_FILE_INFO_DEFAULT);
 		
 		if (result == GNOME_VFS_OK) {
 			conflict_count++;
@@ -775,7 +777,8 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 		/* get the URI and VFSFileInfo for each */
 		uri = gnome_vfs_uri_append_file_name (target_dir_uri, target_item->data);
 		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, &info, 
+						      GNOME_VFS_FILE_INFO_DEFAULT);
 		
 		if (result == GNOME_VFS_OK) {
 			/* FIXME bugzilla.eazel.com 1201:
@@ -882,8 +885,8 @@ create_directory (GnomeVFSURI *dir_uri,
 			}
 			if (force_replace) {
 				result = remove_directory (dir_uri, TRUE, progress, 
-							xfer_options, error_mode, 
-							skip);
+							   xfer_options, error_mode, 
+							   skip);
 			} else {
 				result = GNOME_VFS_OK;
 			}
@@ -893,7 +896,7 @@ create_directory (GnomeVFSURI *dir_uri,
 			return gnome_vfs_directory_open_from_uri (return_handle, 
 								  dir_uri, 
 								  GNOME_VFS_FILE_INFO_DEFAULT, 
-								  NULL, NULL);
+								  NULL);
 		}
 		/* handle the error case */
 		retry = handle_error (&result, progress,
@@ -1158,7 +1161,7 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 	dest_directory_handle = NULL;
 	
 	result = gnome_vfs_directory_open_from_uri (&source_directory_handle, source_dir_uri, 
-			GNOME_VFS_FILE_INFO_DEFAULT, NULL, NULL);
+						    GNOME_VFS_FILE_INFO_DEFAULT, NULL);
 
 	if (result != GNOME_VFS_OK) {
 		return result;
@@ -1281,7 +1284,7 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 		source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, source_name_item->data);
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info_uri (source_uri, &info, 
-						      GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		progress->progress_info->duplicate_name = g_strdup (dest_name_item->data);
 
@@ -1540,7 +1543,8 @@ gnome_vfs_xfer_delete_items_common (GnomeVFSURI *source_directory,
 		uri = gnome_vfs_uri_append_file_name (source_directory, p->data);
 
 		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, &info, 
+						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		if (result == GNOME_VFS_OK) {
 			if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {

@@ -47,42 +47,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-
-GList *
-gnome_vfs_string_list_from_string_array (const gchar * const array[])
-{
-	GList *list;
-	guint i;
 
-	if (array == NULL)
-		return NULL;
-
-	for (i = 0; array[i] != NULL; i++)
-		;
-
-	list = NULL;
-	while (i > 0) {
-		i--;
-		list = g_list_prepend (list, g_strdup (array[i]));
-	}
-
-	return list;
-}
-
-void
-gnome_vfs_free_string_list (GList *list)
-{
-	GList *p;
-
-	if (list == NULL)
-		return;
-
-	for (p = list; p != NULL; p = p->next)
-		g_free (list->data);
-	g_list_free (list);
-}
-
-
 /* Canonicalize path, and return a new path.  Do everything in situ.  The new
    path differs from path in:
 

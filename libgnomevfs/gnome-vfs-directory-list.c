@@ -562,10 +562,9 @@ load_from_handle (GnomeVFSDirectoryList **list,
  * @list: A pointer to a pointer to a directory list
  * @text_uri: A text URI
  * @options: Options for loading the directory 
- * @meta_keys: %NULL-terminated list of metadata keys to be read for each file
  * @filter: Filter to be applied to the files being read
  * 
- * Load a directory from @text_uri with the specified @options and @meta_keys
+ * Load a directory from @text_uri with the specified @options
  * into a newly created directory list.  Directory entries are filtered through
  * @filter.  On return @*list will point to such a list.
  * 
@@ -575,14 +574,13 @@ GnomeVFSResult
 gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 			       const gchar *text_uri,
 			       GnomeVFSFileInfoOptions options,
-			       const gchar * const meta_keys[],
 			       const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *handle;
 	GnomeVFSResult result;
 
 	result = gnome_vfs_directory_open (&handle, text_uri, options,
-					   meta_keys, filter);
+					   filter);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -597,10 +595,9 @@ gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
  * @list: A pointer to a pointer to a directory list
  * @uri: A GnomeVFSURI
  * @options: Options for loading the directory 
- * @meta_keys: %NULL-terminated list of metadata keys to be read for each file
  * @filter: Filter to be applied to the files being read
  * 
- * Load a directory from @uri with the specified @options and @meta_keys
+ * Load a directory from @uri with the specified @options
  * into a newly created directory list.  Directory entries are filtered through
  * @filter.  On return @*list will point to such a list.
  * 
@@ -610,14 +607,13 @@ GnomeVFSResult
 gnome_vfs_directory_list_load_from_uri (GnomeVFSDirectoryList **list,
 					GnomeVFSURI *uri,
 					GnomeVFSFileInfoOptions options,
-					const gchar * const meta_keys[],
 					const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *handle;
 	GnomeVFSResult result;
 
 	result = gnome_vfs_directory_open_from_uri (&handle, uri, options,
-						    meta_keys, filter);
+						    filter);
 	if (result != GNOME_VFS_OK)
 		return result;
 

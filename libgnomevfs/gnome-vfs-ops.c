@@ -255,7 +255,6 @@ gnome_vfs_tell (GnomeVFSHandle *handle,
  * @info: Pointer to a GnomeVFSFileInfo object that will hold the information
  * for the file on return
  * @options: Options for retrieving file information
- * @meta_keys: NULL-terminated array of keys for the metadata that you want
  * to retrieve for the file
  * 
  * Retrieve information about @text_uri.  The information will be stored in
@@ -266,8 +265,7 @@ gnome_vfs_tell (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_get_file_info (const gchar *text_uri,
 			 GnomeVFSFileInfo *info,
-			 GnomeVFSFileInfoOptions options,
-			 const char * const meta_keys[])
+			 GnomeVFSFileInfoOptions options)
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
@@ -277,7 +275,7 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	
-	result = gnome_vfs_get_file_info_uri(uri, info, options, meta_keys);
+	result = gnome_vfs_get_file_info_uri(uri, info, options);
 	gnome_vfs_uri_unref (uri);
 
 	return result;
@@ -289,22 +287,22 @@ gnome_vfs_get_file_info (const gchar *text_uri,
  * @info: Pointer to a GnomeVFSFileInfo object that will hold the information
  * for the file on return
  * @options: Options for retrieving file information
- * @meta_keys: NULL-terminated array of keys for the metadata that you want
  * to retrieve for the file
  * 
  * Retrieve information about @text_uri.  The information will be stored in
- * @*info.
+ * @info.
  * 
  * Return value: An integer representing the result of the operation
  **/
 GnomeVFSResult
 gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
 			     GnomeVFSFileInfo *info,
-			     GnomeVFSFileInfoOptions options,
-			     const char * const meta_keys[])
+			     GnomeVFSFileInfoOptions options)
 {
-	return gnome_vfs_get_file_info_uri_cancellable (uri, info, options,
-							meta_keys, NULL);
+	return gnome_vfs_get_file_info_uri_cancellable (uri, 
+							info, 
+							options,
+							NULL);
 }
 
 /**
@@ -313,7 +311,6 @@ gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
  * @info: Pointer to a GnomeVFSFileInfo object that will hold the information
  * for the file on return
  * @options: Options for retrieving file information
- * @meta_keys: NULL-terminated array of keys for the metadata that you want
  * to retrieve for the file
  * 
  * Retrieve information about an open file.  The information will be stored in
@@ -324,12 +321,10 @@ gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
 GnomeVFSResult
 gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
 				     GnomeVFSFileInfo *info,
-				     GnomeVFSFileInfoOptions options,
-				     const char * const meta_keys[])
+				     GnomeVFSFileInfoOptions options)
 {
 	return gnome_vfs_get_file_info_from_handle_cancellable (handle, info,
 								options,
-								meta_keys,
 								NULL);
 }
 
