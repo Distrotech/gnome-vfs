@@ -467,7 +467,6 @@ gnome-vfs.spec
 libgnomevfs/gnome-vfs-file-size.h
 data/Makefile
 data/mime/Makefile
-idl/Makefile
 libgnomevfs-pthread/Makefile
 libgnomevfs/Makefile
 modules/Makefile

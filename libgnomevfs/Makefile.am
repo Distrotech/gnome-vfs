@@ -18,22 +18,6 @@ INCLUDES =					\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
 	$(NULL)
 
-CORBA_SOURCE =					\
-	gnome-vfs-metafile-server.h		\
-	gnome-vfs-metafile-server-common.c	\
-	gnome-vfs-metafile-server-stubs.c	\
-	gnome-vfs-metafile-server-skels.c	\
-	$(NULL)
-
-idls = 								\
-	$(top_srcdir)/idl/gnome-vfs-metafile-server.idl		\
-	$(NULL)
-
-idl_flags = -I @BONOBO_IDLDIR@ -D__GNOME_COMPILATION
-
-$(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
-	$(ORBIT_IDL) $(top_srcdir)/idl/gnome-vfs-metafile-server.idl -I$(top_srcdir)/idl $(idl_flags)
-
 lib_LTLIBRARIES = libgnomevfs.la
 
 EXTRA_DIST =					\
@@ -149,15 +133,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\
 	stolen-glib-extensions.h		\
-	$(NULL)
-
-badly_written_code = \
-	gnome-vfs-metafile-backend.h		\
-	gnome-vfs-metafile-backend.c		\
-	$(CORBA_SOURCE)
-
-BUILT_SOURCES = 		\
-	$(CORBA_SOURCE)		\
 	$(NULL)
 
 # Platform specific includes

@@ -1,3 +1,18 @@
+2001-09-01  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* Makefile.am:
+	* configure.in:
+	* idl/Makefile.am:
+	* idl/gnome-vfs-metafile-server.idl:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-metadata.c:
+	* libgnomevfs/gnome-vfs-metadata.h:
+	* libgnomevfs/gnome-vfs-metafile-backend.c:
+	* libgnomevfs/gnome-vfs-metafile-backend.h:
+	* libgnomevfs/gnome-vfs-metafile-factory.c:
+	* libgnomevfs/gnome-vfs-metafile-factory.h:
+	Remove metadata code from HEAD, with Seth's approval.
+
 2001-08-31  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/Makefile.am:
