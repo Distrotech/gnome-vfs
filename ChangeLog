@@ -1,5 +1,11 @@
 2004-08-11  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-i18n.c (gnome_vfs_i18n_get_language_list):
+	Use the get_language_list in bonobo-activation to minimize
+	duplication and memory use.
+
+2004-08-11  Alexander Larsson  <alexl@redhat.com>
+	
 	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_unix_mount_get_unix_device):
 	Fix some statfs issues and increase select timeout (bug 140322)
 	Patch from Joe Marcus Clarke
