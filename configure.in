@@ -13,7 +13,7 @@ LIBGNOMEVFS_MICRO_VERSION=2
 LIBGNOMEVFS_INTERFACE_AGE=2
 # If you need a modifier for the version number. 
 # Normally empty, but can be used to make "fixup" releases.
-LIBGNOMEVFS_EXTRAVERSION=.1
+LIBGNOMEVFS_EXTRAVERSION=
 
 dnl libtool versioning from libgnome
 
