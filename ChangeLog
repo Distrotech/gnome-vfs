@@ -1,3 +1,15 @@
+2004-12-03  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-resolve.c:
+	(gnome_vfs_resolve_next_address):
+	AIX bug workaround
+	
+	* libgnomevfs/gnome-vfs-unix-mounts.c: (get_fstab_file),
+	(_gnome_vfs_get_unix_mount_table):
+	Finish up the aix support
+
+	Patch from Michael <macallan18@earthlink.net>
+
 2004-12-03  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-init.c: (ensure_dot_gnome_exists): check for 

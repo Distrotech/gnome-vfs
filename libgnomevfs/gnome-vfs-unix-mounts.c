@@ -516,9 +516,12 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 static char *
 get_fstab_file (void)
 {
-#ifdef _PATH_MNTTAB
+#if defined(HAVE_SYS_MNTCTL_H) && defined(HAVE_SYS_VMOUNT_H) && defined(HAVE_SYS_VFS_H)
+	/* AIX */
+	return "/etc/filesystems";
+#elif defined(_PATH_MNTTAB)
 	return _PATH_MNTTAB;
-#elif defined VFSTAB
+#elif defined(VFSTAB)
 	return VFSTAB;
 #else
 	return "/etc/fstab";
@@ -797,14 +800,6 @@ aix_fs_get (FILE *fd, AixMountTableEntry *prop)
 	return 0;
 }
 
-
-static char *
-get_fstab_file (void)
-{
-	return "/etc/filesystems";
-}
-
-
 gboolean
 _gnome_vfs_get_unix_mount_table (GList **return_list)
 {
@@ -816,7 +811,7 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	char *stat_file;
 	struct stat sb;
 	GnomeVFSUnixMountPoint *mount_entry;
-        MountTableEntry mntent;
+	AixMountTableEntry mntent;
 	
 	stat_file = read_file = get_fstab_file ();
 
@@ -840,12 +835,13 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	}
 
 	while (!aix_fs_get (file, &mntent)) {
-		if (strcmp ("cdrfs", ent->mnt_fstype) == 0) {
+		if (strcmp ("cdrfs", mntent.mnt_fstype) == 0) {
 			mount_entry = g_new0 (GnomeVFSUnixMountPoint, 1);
 			
-			mount_entry->mount_path = g_strdup (mntent->mnt_dir);
-			mount_entry->device_path = g_strdup (mntent->mnt_fsname);
-			mount_entry->filesystem_type = g_strdup (mntent->mnt_type);
+
+			mount_entry->mount_path = g_strdup (mntent.mnt_mount);
+			mount_entry->device_path = g_strdup (mntent.mnt_special);
+			mount_entry->filesystem_type = g_strdup (mntent.mnt_fstype);
 			mount_entry->is_read_only = TRUE;
 			mount_entry->is_user_mountable = TRUE;
 			

@@ -395,27 +395,31 @@ gnome_vfs_resolve_reset_to_beginning (GnomeVFSResolveHandle *handle)
  **/
 gboolean
 gnome_vfs_resolve_next_address (GnomeVFSResolveHandle  *handle,
-						  GnomeVFSAddress       **address)
+				GnomeVFSAddress       **address)
 {
-	   g_return_val_if_fail (address != NULL, FALSE);
-	   g_return_val_if_fail (handle != NULL, FALSE);
-
-	   *address = NULL;
-	   
+	g_return_val_if_fail (address != NULL, FALSE);
+	g_return_val_if_fail (handle != NULL, FALSE);
+	
+	*address = NULL;
+	
 #ifdef HAVE_GETADDRINFO   
-	   while (*address == NULL && handle->current != NULL) {
-			 *address = gnome_vfs_address_new_from_sockaddr (handle->current->ai_addr,
-												    handle->current->ai_addrlen);
-			 handle->current = handle->current->ai_next;
-
-	   }
+	while (*address == NULL && handle->current != NULL) {
+#ifdef _AIX
+		/* getaddrinfo() on AIX 4.3.2 and probably others don't set sa_family in
+		   ai_addr so we have to copy it from ai_family */
+		handle->current->ai_addr->sa_family = handle->current->ai_family;
+#endif
+		*address = gnome_vfs_address_new_from_sockaddr (handle->current->ai_addr,
+								handle->current->ai_addrlen);
+		handle->current = handle->current->ai_next;
+	}
 #else
-	   if (handle->current) {
-			 *address = gnome_vfs_address_dup (handle->current->data);
-			 handle->current = handle->current->next;
-	   }
+	if (handle->current) {
+		*address = gnome_vfs_address_dup (handle->current->data);
+		handle->current = handle->current->next;
+	}
 #endif	
-	   return *address != NULL;	
+	return *address != NULL;	
 }
 
 
