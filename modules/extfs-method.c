@@ -773,6 +773,19 @@ do_make_directory (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+do_find_directory (GnomeVFSMethod *method,
+		   GnomeVFSURI *near_uri,
+		   GnomeVFSFindDirectoryKind kind,
+		   GnomeVFSURI **result_uri,
+		   gboolean create_if_needed,
+		   guint permissions,
+		   GnomeVFSContext *context)
+{
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
+}
+
+
+static GnomeVFSResult
 do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
@@ -831,7 +844,8 @@ static GnomeVFSMethod method = {
 	do_unlink,
 	do_check_same_fs,
 	NULL,
-	do_truncate
+	do_truncate,
+	do_find_directory
 };
 
 GnomeVFSMethod *

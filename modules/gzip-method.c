@@ -122,7 +122,8 @@ static GnomeVFSMethod method = {
 	NULL,			/* remove_directory */
 	NULL,			/* rename */
 	NULL,                   /* unlink */
-	NULL /* truncate */
+	NULL, 			/* truncate */
+	NULL			/* find_directory */
 };
 
 #define RETURN_IF_FAIL(action)			\

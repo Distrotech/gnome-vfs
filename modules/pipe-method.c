@@ -219,7 +219,8 @@ static GnomeVFSMethod method = {
 	NULL, /* unlink */
 	NULL, /* check_same_fs */
 	NULL, /* set_file_info */
-	NULL /* truncate */
+	NULL, /* truncate */
+	NULL /* find_directory */
 };
 
 GnomeVFSMethod *

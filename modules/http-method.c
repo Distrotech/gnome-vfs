@@ -1225,7 +1225,8 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	NULL,
-	NULL /* truncate */
+	NULL, /* truncate */
+	NULL /* find_directory */
 };
 
 GnomeVFSMethod *

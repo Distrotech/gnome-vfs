@@ -45,7 +45,6 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-utils.h"
 
-
 END_GNOME_DECLS
 
 #endif /* _GNOME_VFS_H */

@@ -883,6 +883,82 @@ do_remove_directory (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+do_find_directory (GnomeVFSMethod *method,
+		   GnomeVFSURI *near_uri,
+		   GnomeVFSFindDirectoryKind kind,
+		   GnomeVFSURI **result_uri,
+		   gboolean create_if_needed,
+		   guint permissions,
+		   GnomeVFSContext *context)
+{
+	gint retval;
+	char *full_name_near;
+	struct stat near_item_stat;
+	struct stat home_volume_stat;
+	const char *home_directory;
+	char *target_directory;
+
+	target_directory = NULL;
+	*result_uri = NULL;
+	full_name_near = NULL;
+
+	MAKE_ABSOLUTE (full_name_near, near_uri->text);
+	home_directory = g_get_home_dir();
+
+	if (gnome_vfs_context_check_cancellation(context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	retval = stat (full_name_near, &near_item_stat);
+	if (retval != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (gnome_vfs_context_check_cancellation(context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	retval = stat (home_directory, &home_volume_stat);
+	if (retval != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (gnome_vfs_context_check_cancellation(context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	if (near_item_stat.st_dev != home_volume_stat.st_dev)
+		/* FIXME:
+		 */
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	switch (kind) {
+	case GNOME_VFS_DIRECTORY_KIND_TRASH:
+		target_directory = g_strconcat(home_directory, G_DIR_SEPARATOR_S, 
+			"Trash", NULL);
+		break;
+		
+	case GNOME_VFS_DIRECTORY_KIND_DESKTOP:
+		target_directory = g_strconcat(home_directory, G_DIR_SEPARATOR_S, 
+			"Desktop", NULL);
+		break;
+
+	default:
+		break;
+	}
+
+	if (target_directory == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	if (create_if_needed && !g_file_exists (target_directory))
+		mkdir (target_directory, permissions);
+
+	if (!g_file_exists (target_directory)) {
+		g_free (target_directory);
+		return GNOME_VFS_ERROR_NOTFOUND;
+	}
+	*result_uri = gnome_vfs_uri_new (target_directory);
+	g_free (target_directory);
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
 rename_helper (const gchar *old_full_name,
 	       const gchar *new_full_name,
 	       gboolean force_replace,
@@ -1089,7 +1165,8 @@ static GnomeVFSMethod method = {
 	do_unlink,
 	do_check_same_fs,
 	do_set_file_info,
-	do_truncate
+	do_truncate,
+	do_find_directory
 };
 
 GnomeVFSMethod *

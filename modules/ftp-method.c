@@ -2497,7 +2497,8 @@ static GnomeVFSMethod method = {
 	ftpfs_remove_directory,
 	NULL,
 	NULL,
-	NULL /* truncate */
+	NULL /* truncate */,
+	NULL /* find_directory */
 };
 
 GnomeVFSMethod *

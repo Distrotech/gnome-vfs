@@ -147,6 +147,15 @@ typedef GnomeVFSResult (* GnomeVFSMethodMakeDirectoryFunc)
 					 guint perm,
 					 GnomeVFSContext *context);
 
+typedef GnomeVFSResult (* GnomeVFSMethodFindDirectoryFunc)
+					(GnomeVFSMethod *method,
+					 GnomeVFSURI *find_near_uri,
+					 GnomeVFSFindDirectoryKind kind,
+					 GnomeVFSURI **result_uri,
+					 gboolean create_if_needed,
+					 guint perm,
+					 GnomeVFSContext *context);
+
 typedef GnomeVFSResult (* GnomeVFSMethodRemoveDirectoryFunc)
 					(GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
@@ -203,6 +212,7 @@ struct GnomeVFSMethod {
 	GnomeVFSMethodCheckSameFSFunc check_same_fs;
 	GnomeVFSMethodSetFileInfo set_file_info;
 	GnomeVFSMethodTruncateFunc truncate;
+	GnomeVFSMethodFindDirectoryFunc find_directory;
 };
 
 

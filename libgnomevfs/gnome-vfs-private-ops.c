@@ -225,6 +225,36 @@ gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 }
 
 GnomeVFSResult
+gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
+				      GnomeVFSFindDirectoryKind kind,
+				      GnomeVFSURI **result_uri,
+				      gboolean create_if_needed,
+				      guint permissions,
+				      GnomeVFSContext *context)
+{
+	GnomeVFSResult result;
+
+	g_return_val_if_fail (result_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (near_uri != NULL) {
+		gnome_vfs_uri_ref (near_uri);
+	} else {
+		/* assume file: method and the home directory */
+		near_uri = gnome_vfs_uri_new (g_get_home_dir());
+	}
+
+	g_assert (near_uri != NULL);
+		
+	if (near_uri->method->find_directory == NULL) {
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+	}
+
+	result = near_uri->method->find_directory (near_uri->method, near_uri, kind,
+		result_uri, create_if_needed, permissions, context);
+	return result;
+}
+
+GnomeVFSResult
 gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
 						 GnomeVFSContext *context)
 {

@@ -329,7 +329,15 @@ typedef enum GnomeVFSSetFileInfoMask GnomeVFSSetFileInfoMask;
 
 /* Directory stuff.  */
 
+enum _GnomeVFSFindDirectoryKind {
+
+	GNOME_VFS_DIRECTORY_KIND_DESKTOP = 1000,
+	GNOME_VFS_DIRECTORY_KIND_TRASH = 1001
+};
+typedef enum _GnomeVFSFindDirectoryKind GnomeVFSFindDirectoryKind;
+
 typedef struct GnomeVFSDirectoryList GnomeVFSDirectoryList;
+
 typedef gpointer GnomeVFSDirectoryListPosition;
 
 #define GNOME_VFS_DIRECTORY_LIST_POSITION_NONE NULL

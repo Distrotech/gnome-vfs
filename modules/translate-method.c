@@ -302,6 +302,31 @@ tr_do_make_directory(GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+tr_do_find_directory (GnomeVFSMethod *method,
+		      GnomeVFSURI *near_uri,
+		      GnomeVFSFindDirectoryKind kind,
+		      GnomeVFSURI **result_uri,
+		      gboolean create_if_needed,
+		      guint permissions,
+		      GnomeVFSContext *context)
+{
+  TranslateMethod *tm = (TranslateMethod *)method;
+  GnomeVFSURI *real_uri;
+  GnomeVFSResult retval;
+
+  real_uri = tr_uri_translate(tm, near_uri);
+
+  retval = tm->real_method->find_directory(tm->real_method, real_uri, kind, &result_uri, 
+    create_if_needed, permissions, context);
+
+  gnome_vfs_uri_unref(real_uri);
+
+  return retval;
+}
+
+
+
+static GnomeVFSResult
 tr_do_remove_directory(GnomeVFSMethod *method,
 		       GnomeVFSURI *uri,
 		       GnomeVFSContext *context)
@@ -580,7 +605,8 @@ static GnomeVFSMethod base_vfs_method = {
   tr_do_unlink,
   tr_do_check_same_fs,
   tr_do_set_file_info,
-  tr_do_truncate
+  tr_do_truncate,
+  tr_do_find_directory
 };
 
 static void

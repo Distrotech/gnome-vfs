@@ -29,6 +29,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-directory-filter.h		\
 	gnome-vfs-directory-list.h		\
 	gnome-vfs-file-info.h			\
+	gnome-vfs-find-directory.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs-ops.h				\
@@ -72,6 +73,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-directory-list.c		\
 	gnome-vfs-handle.c			\
 	gnome-vfs-file-info.c			\
+	gnome-vfs-find-directory.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-iobuf.c			\

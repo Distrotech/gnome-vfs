@@ -89,6 +89,13 @@ GnomeVFSResult gnome_vfs_make_directory_for_uri_cancellable
 					 guint perm,
 					 GnomeVFSContext *context);
 
+GnomeVFSResult gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
+						     GnomeVFSFindDirectoryKind kind,
+						     GnomeVFSURI **result_uri,
+						     gboolean create_if_needed,
+						     guint permissions,
+						     GnomeVFSContext *context);
+
 GnomeVFSResult gnome_vfs_remove_directory_from_uri_cancellable
 					(GnomeVFSURI *uri,
 					 GnomeVFSContext *context);

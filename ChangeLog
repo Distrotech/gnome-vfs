@@ -1,3 +1,41 @@
+2000-04-26  Pavel Cisler  <pavel@eazel.com>
+
+	Added gnome_vfs_find_directory to return well known directories.
+	For now only returns Trash.
+	* libgnomevfs/gnome-vfs-find-directory.c:
+	* libgnomevfs/gnome-vfs-find-directory.h:
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	* libgnomevfs/gnome-vfs-private-ops.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/Makefile.am:
+	(gnome_vfs_find_directory_cancellable),
+	(gnome_vfs_find_directory):
+	Added gnome_vfs_find_directory to return well known directories.
+	For now only returns Trash.
+
+	* modules/file-method.c:
+	* modules/translate-method.c:
+	(do_find_directory), (tr_do_find_directory):
+	Add support for find_directory.
+
+	* modules/bzip2-method.c:
+	* modules/extfs-method.c:
+	* modules/ftp-method.c:
+	* modules/gconf-method.c:
+	* modules/gzip-method.c:
+	* modules/http-method.c:
+	* modules/pipe-method.c:
+	Add empty support for find_directory to the remaining methods.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(remove_directory), (empty_directory), (remove_file),
+	(directory_add_items_and_size), (calc_items_and_size),
+	(gnome_vfs_xfer_empty_trash), (gnome_vfs_xfer_uri_internal),
+	(libgnomevfs-corba/gnome-vfs-async-ops.c), 
+	(libgnomevfs-pthread/gnome-vfs-async-ops.c):
+	Add support for emptying Trash (or any other list of directories).
+
 2000-04-26  Ian McKellar  <yakk@yakk.net>
 
 	Fixed bug #489 (http://bugzilla.eazel.com/show_bug.cgi?id=489)
