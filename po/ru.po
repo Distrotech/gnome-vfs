@@ -1,13 +1,13 @@
 # Copyright (C) 2000-2002 Free Software Foundation, Inc.
 # Valek Filippov <frob@df.ru>, 2000-2002.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-30 10:09+0300\n"
+"POT-Creation-Date: 2004-02-13 08:18+0300\n"
+"PO-Revision-Date: 2004-02-13 08:22+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,29 @@ msgstr "Не удалось проинициализировать подсис�
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Произошёл сбой при сохранении закладки (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Не удалось получить информацию о файле \"%s\": %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Произошёл сбой при открытии файла \"%s\":%s "
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"Произошёл сбой при загрузки изображения \"%s\", причина неизвестна,возсожно, "
+"файл изображения повреждён"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -626,15 +649,15 @@ msgstr "Инструмены"
 msgid "Windows"
 msgstr "Окна"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Сеть"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Начало"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Файловая система"
 
@@ -642,6 +665,10 @@ msgstr "Файловая система"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Значение GnomeVFSSeekPosition %d неизвестно"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Сеть ОС Виндоуз (Windows)"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1008,13 +1035,9 @@ msgstr ""
 "Имя пользователя для использования в авторизации сервисом прокси для "
 "протокола HTTP."
 
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Сеть ОС Виндоуз (Windows)"
-
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr "Рабочая группа для протокола SMB"
+msgstr "Рабочая группа для сети протокола SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
