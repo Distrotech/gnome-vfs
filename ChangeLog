@@ -1,3 +1,11 @@
+1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/file-method.c: Preconditions return `GNOME_VFS_INTERNAL'
+	instead of `GNOME_VFS_BAD_POINTER'.
+
+	* libgnomevfs/gnome-vfs-types.h: Removed value
+	`GNOME_VFS_BAD_POINTER' from the `GnomeVFSResult' enum.
+
 1999-08-25  Michael Meeks  <michael@imaginator.com>
 
 	* modules/file-method.c: Update all preconditions to return BAD_POINTER
