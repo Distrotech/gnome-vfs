@@ -1,5 +1,16 @@
 2001-08-02  Seth Nickell  <snickell@stanford.edu>
 
+	* OUTSTANDING_API_ISSUES:
+	* doc/outstanding-api-issues.txt:
+
+	Move outstanding-api-issues.txt to the main directory.
+	
+	* README:
+
+	Contain notice of OUTSTANDING_API_ISSUES.
+	
+2001-08-02  Seth Nickell  <snickell@stanford.edu>
+
 	* libgnomevfs/gnome-vfs-metafile-backend.c: (corba_get_list),
 	(corba_set_list), (find_monitor_node), (corba_register_monitor),
 	(corba_unregister_monitor),

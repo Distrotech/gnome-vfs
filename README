@@ -4,3 +4,6 @@ GNOME VFS is currently used as one of the foundations of the Nautilus
 file manager.
 
 For instructions on submitting patches, etc. check out the 'HACKING' file.
+
+Please read OUTSTANDING_API_ISSUES for a list of things that are not
+frozen.
