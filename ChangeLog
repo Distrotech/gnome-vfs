@@ -1,3 +1,9 @@
+2000-09-28  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* configure.in:
+	Switch the order of assignment of warnings to CFLAGS so that they
+	can be overridden by the user at configure time.
+	
 2000-09-28  Mike Fleming  <mfleming@eazel.com>
 
 	Fixed file_info refcounting issues associated with _clear and
