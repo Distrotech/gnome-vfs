@@ -1,3 +1,45 @@
+2000-08-31  Mathieu Lacage  <mathieu@eazel.com>
+
+	fixes bugs 1119 and 1839
+	
+	* data/mime/gnome-vfs.keys: add a mime type for testing.
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type),
+	(gnome_vfs_mime_edit_user_file_full),
+	(gnome_vfs_mime_add_extension), (gnome_vfs_mime_remove_extension):
+	update to API changes below. move saving code to gnome-vfs-mime-info.c
+	* libgnomevfs/gnome-vfs-mime-info.c: (does_string_contains_caps),
+	(context_new), (context_destroy_and_unlink), (language_level),
+	(context_add_key), (load_mime_type_info_from),
+	(load_mime_list_info_from), (mime_info_load), (mime_list_load),
+	(load_mime_type_info), (gnome_vfs_mime_init),
+	(gnome_vfs_mime_info_clear), (gnome_vfs_mime_info_shutdown),
+	(gnome_vfs_mime_freeze), (gnome_vfs_mime_thaw),
+	(gnome_vfs_mime_set_value), (gnome_vfs_mime_get_value),
+	(gnome_vfs_mime_keys_list_free), (gnome_vfs_mime_get_key_list),
+	(gnome_vfs_mime_get_program), (gnome_vfs_mime_get_program_name),
+	(gnome_vfs_mime_get_description), (str_cmp_callback),
+	(gnome_vfs_mime_get_extensions_list),
+	(gnome_vfs_mime_get_extensions_string),
+	(gnome_vfs_mime_get_extensions_pretty_string),
+	(gnome_vfs_mime_extensions_list_free), (gnome_vfs_mime_get_test),
+	(gnome_vfs_mime_get_composetyped),
+	(gnome_vfs_mime_get_copiousoutput),
+	(gnome_vfs_mime_get_needsterminal), (get_key_name),
+	(gnome_vfs_get_registered_mime_types),
+	(gnome_vfs_mime_registered_mime_type_list_free),
+	(gnome_vfs_mime_set_registered_type_key),
+	(write_back_mime_user_file_context_callback),
+	(write_back_mime_user_file_callback), (write_back_mime_user_file),
+	(write_back_keys_user_file_context_callback),
+	(write_back_keys_user_file_callback), (write_back_keys_user_file):
+	Basically, make it work. update copyright.
+	* libgnomevfs/gnome-vfs-mime-info.h: change some API.
+	* mime-type-capplet/nautilus-mime-type-capplet.c: update to new API.
+	(nautilus_mime_type_capplet_update_info), (populate_mime_list):
+	* test/Makefile.am: add tests.
+	* test/test-mime-info.c: (main): actual tests.
+
 Wed Aug 30 22:51:47 2000  George Lebl <jirka@5z.com>
 
 	* libgnomevfs/gnome-vfs-handle.c,

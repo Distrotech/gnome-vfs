@@ -78,6 +78,14 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 
 	action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
 
+	/* FIXME: the current (and the previous) implementation of gnome_vfs_mime_get_value
+	   do try the supertype. This means that the folowing code is useless.
+	   or this means that we need to fix the gnome_vfs_mime_get_value.
+	   The only code in gnome using this "potential" feature (since it never worked :)
+	   is http://cvs.gnome.org/lxr/source/evolution/mail/mail-format.c#334
+	   Note that this comment is true for all the file and there is potentially a
+	   _lot_ of code we can get rid of if we drop thi.
+	*/
 	if (action_type == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
 		/* Fall back to the supertype. */
 		supertype = mime_type_get_supertype (mime_type);
@@ -736,8 +744,6 @@ static GnomeVFSResult
 gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *values)
 {
 	GnomeVFSResult result;
-	char *user_mime_file;
-	FILE *f;
 	GList *p, *q;
 	const char *key, *value;
 
@@ -745,38 +751,18 @@ gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *v
 		return GNOME_VFS_OK;
 	}
 
-	user_mime_file = g_strconcat (g_get_home_dir (), "/.gnome/mime-info/user.keys", NULL);
-
-	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
 	result = GNOME_VFS_OK;
-	f = fopen (user_mime_file, "a");
-	if (f == NULL) {
-		result = gnome_vfs_result_from_errno ();
-	}
-	if (result == GNOME_VFS_OK && fprintf (f, "\n%s:\n", mime_type) <= 0) {
-		result = gnome_vfs_result_from_errno ();
-	}
-	if (result == GNOME_VFS_OK) {
-		for (p = keys, q = values; p != NULL && q != NULL; p = p->next, q = q->next) {
-			key = p->data;
-			value = q->data;
-			if (value == NULL) {
-				value = "";
-			}
 
-			if (fprintf (f, "\t%s=%s\n", key, value) <= 0) {
-				result = gnome_vfs_result_from_errno ();
-				break;
-			}
+	gnome_vfs_mime_freeze ();
+	for (p = keys, q = values; p != NULL && q != NULL; p = p->next, q = q->next) {
+		key = p->data;
+		value = q->data;
+		if (value == NULL) {
+			value = "";
 		}
+		gnome_vfs_mime_set_value (mime_type, g_strdup (key), g_strdup (value));
 	}
-	if (result == GNOME_VFS_OK && fclose (f) != 0) {
-		result = gnome_vfs_result_from_errno ();
-	}
-
-	g_free (user_mime_file);
-
-	gnome_vfs_mime_info_reload ();
+	gnome_vfs_mime_thaw ();
 
 	return result;
 }
@@ -1345,7 +1331,6 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 
 		/* Add extensions to hash table and flush into the file. */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
-		result = gnome_vfs_mime_commit_registered_types ();
 	}
 	
 	gnome_vfs_mime_extensions_list_free (list);
@@ -1406,7 +1391,6 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	if (extensions != NULL) {
 		/* Add extensions to hash table and flush into the file */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
-		result = gnome_vfs_mime_commit_registered_types ();
 	}
 	
 	gnome_vfs_mime_extensions_list_free (list);

@@ -34,6 +34,7 @@ noinst_PROGRAMS =				\
 	test-xfer				\
 	test-shell				\
 	test-uri				\
+	test-mime-info				\
 	$(oaf_programs)
 
 test_files=		\
@@ -179,6 +180,10 @@ test_find_directory_SOURCES = test-find-directory.c
 test_find_directory_LDADD = $(libraries)
 test_find_directory_LDFLAGS = 
 
+test_mime_info_SOURCES = test-mime-info.c
+test_mime_info_LDADD = $(libraries)
+test_mime_info_LDFLAGS = 
+
 
 EXTRA_DIST =					\
 	$(test_files)				\
@@ -193,4 +198,5 @@ EXTRA_DIST =					\
 	test-sync-write.c			\
 	test-sync-create.c			\
 	test-xfer.c				\
+	test-mime-info.c			\
 	vfs-run.in

@@ -25,6 +25,13 @@
 # * Programming source code is called "<language> source code", unless there's
 #   another standard usage for a given language (e.g. "Perl script")
 
+application/mime-type-test
+	open=mime-type-test
+	description=mon test a moi
+	test=est-ce un test?
+	compose=eh?ah.
+	copiousoutput=
+
 application/andrew-inset
 	description=Andrew Toolkit inset
 

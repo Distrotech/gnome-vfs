@@ -3,6 +3,7 @@
 /* gnome-vfs-mime-info.c - GNOME mime-information implementation.
 
    Copyright (C) 1998 Miguel de Icaza
+   Copyright (C) 2000 Eazel
    All rights reserved.
 
    The Gnome Library is free software; you can redistribute it and/or
@@ -18,7 +19,12 @@
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.  */
+   Boston, MA 02111-1307, USA.  
+
+   Authors:
+   Miguel De Icaza <miguel@helixcode.com>
+   Mathieu Lacage <mathieu@eazel.com>
+*/
 
 #include <config.h>
 #include "gnome-vfs-mime-info.h"
@@ -34,6 +40,7 @@
 #include "gnome-vfs-result.h"
 
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -68,6 +75,8 @@ static time_t last_checked;
 /* To initialize the module automatically */
 static gboolean gnome_vfs_mime_inited = FALSE;
 
+/* you will write back the file if and only if this var' value is 0 */
+static int should_write_file_back = 0;
 
 static GList *current_lang = NULL;
 /* we want to replace the previous key if the current key has a higher
@@ -76,68 +85,62 @@ static char *previous_key = NULL;
 static int previous_key_lang_level = -1;
 
 
+
+
 /*
  * A hash table containing all of the Mime records for specific
  * mime types (full description, like image/png)
+ * It also contains a the generic types like image/
+ * extracted from .keys files
  */
 static GHashTable *specific_types;
+/* user specific data */
+static GHashTable *specific_types_user;
 
-/*
- * A hash table containing all of the Mime records for non-specific
- * mime types (like image/\*)
- */
-static GHashTable *generic_types;
 
 /*
  * A hash table containing all of the Mime records for all registered
  * mime types
+ * extracted from .mime files
  */
 static GHashTable *registered_types;
+/* user specific data */
+static GHashTable *registered_types_user;
+
+
 
 /* Prototypes */
-static GnomeVFSResult write_registered_mime_data (void);
+static GnomeVFSResult write_back_mime_user_file (void);
+static GnomeVFSResult write_back_keys_user_file (void);
+static gboolean       does_string_contains_caps (const char *string);
 
 
-static GnomeMimeContext *
-context_new (GString *str)
+static gboolean 
+does_string_contains_caps (const char *string)
 {
-	GnomeMimeContext *context;
-	GHashTable *table;
-	char *mime_type, *p;
+	const char *temp_c;
 
-	mime_type = g_strdup (str->str);
-	
-	if ((p = strstr (mime_type, "/*")) == NULL){
-		table = specific_types;
-	} else {
-		*(p+1) = 0;
-		table = generic_types;
+	temp_c = string;
+	while (*temp_c != '\0') {
+		if (isupper (*temp_c)) {
+			return TRUE;
+		}
+		temp_c++;
 	}
-	
-	context = g_hash_table_lookup (table, mime_type);
 
-	if (context) {
-		g_free (mime_type);
-		return context;
-	}
-	
-	context = g_new (GnomeMimeContext, 1);
-	context->mime_type = mime_type;
-	context->keys = g_hash_table_new (g_str_hash, g_str_equal);
-
-	g_hash_table_insert (table, context->mime_type, context);
-	return context;
+	return FALSE;
 }
 
+
+
 static GnomeMimeContext *
-list_context_new (GString *str)
+context_new (GHashTable *hash_table, GString *str)
 {
 	GnomeMimeContext *context;
 	char *mime_type;
-		
+
 	mime_type = g_strdup (str->str);
-		
-	context = g_hash_table_lookup (registered_types, mime_type);
+	context = g_hash_table_lookup (hash_table, mime_type);
 
 	if (context) {
 		g_free (mime_type);
@@ -146,10 +149,9 @@ list_context_new (GString *str)
 	
 	context = g_new (GnomeMimeContext, 1);
 	context->mime_type = mime_type;
-
 	context->keys = g_hash_table_new (g_str_hash, g_str_equal);
 
-	g_hash_table_insert (registered_types, context->mime_type, context);
+	g_hash_table_insert (hash_table, context->mime_type, context);
 	return context;
 }
 
@@ -182,9 +184,10 @@ context_destroy_and_unlink (GnomeMimeContext *context)
 	 * where it is: so just remove it from both (it can
 	 * only be in one).
 	 */
-	g_hash_table_remove (specific_types, context->mime_type);
-	g_hash_table_remove (generic_types, context->mime_type);
-	g_hash_table_remove (registered_types, context->mime_type);
+	g_hash_table_remove (specific_types,        context->mime_type);
+	g_hash_table_remove (registered_types,      context->mime_type);
+	g_hash_table_remove (specific_types_user,   context->mime_type);
+	g_hash_table_remove (registered_types_user, context->mime_type);
 
 	context_destroy (context);
 }
@@ -192,16 +195,16 @@ context_destroy_and_unlink (GnomeMimeContext *context)
 /* this gives us a number of the language in the current language list,
    the higher the number the "better" the translation */
 static int
-language_level (const char *lang)
+language_level (const char *langage)
 {
 	int i;
 	GList *li;
 
-	if (lang == NULL)
+	if (langage == NULL)
 		return 0;
 
 	for (i = 1, li = current_lang; li != NULL; i++, li = g_list_next (li)) {
-		if (strcmp ((const char *) li->data, lang) == 0)
+		if (strcmp ((const char *) li->data, langage) == 0)
 			return i;
 	}
 
@@ -218,13 +221,12 @@ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
 
 	lang_level = language_level(lang);
 	/* wrong language completely */
-	if (lang_level<0)
+	if (lang_level < 0)
 		return;
 
 	/* if we have some language defined and
 	   if there was a previous_key */
-	if (lang_level > 0 &&
-	    previous_key) {
+	if (lang_level > 0 && previous_key) {
 		/* if our new key has a better lang_level then remove the
 		   previous key */
 		if (previous_key_lang_level <= lang_level) {
@@ -239,15 +241,15 @@ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
 		/* else, our language level really sucks and the previous
 		   translation was of better language quality so just
 		   ignore us */
-		} else
+		} else {
 			return;
+		}
 	}
 
 	if (g_hash_table_lookup_extended (context->keys, key,
 					  (gpointer *)&orig_key,
 					  (gpointer *)&v)) {
-		/* if we found it in the database already, just replace it
-		   here */
+		/* if we found it in the database already, just replace it here */
 		g_free (v);
 		g_hash_table_insert (context->keys, orig_key,
 				     g_strdup (value));
@@ -271,7 +273,7 @@ typedef enum {
 } ParserState;
 
 static void
-load_mime_type_info_from (const char *filename)
+load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 {
 	FILE *mime_file;
 	gboolean in_comment, context_used;
@@ -316,7 +318,7 @@ load_mime_type_info_from (const char *filename)
 				previous_key = NULL;
 				previous_key_lang_level = -1;
 
-				context = context_new (line);
+				context = context_new (hash_table, line);
 				context_used = FALSE;
 				g_string_assign (line, "");
 				state = STATE_LOOKING_FOR_KEY;
@@ -443,7 +445,7 @@ load_mime_type_info_from (const char *filename)
  */
  
 static void
-load_mime_list_info_from (const char *filename)
+load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 {
 	FILE *mime_file;
 	gboolean in_comment, context_used;
@@ -488,7 +490,7 @@ load_mime_list_info_from (const char *filename)
 				previous_key = NULL;
 				previous_key_lang_level = -1;
 
-				context = list_context_new (line);
+				context = context_new (hash_table, line);
 				context_used = FALSE;
 				g_string_assign (line, "");
 				state = STATE_LOOKING_FOR_KEY;
@@ -636,7 +638,7 @@ mime_info_load (mime_dir_source_t *source)
 	}
 	if (source->system_dir){
 		filename = g_strconcat (source->dirname, "/gnome-vfs.keys", NULL);
-		load_mime_type_info_from (filename);
+		load_mime_type_info_from (filename, specific_types);
 		g_free (filename);
 	}
 
@@ -662,12 +664,12 @@ mime_info_load (mime_dir_source_t *source)
 			continue;
 
 		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
-		load_mime_type_info_from (filename);
+		load_mime_type_info_from (filename, specific_types);
 		g_free (filename);
 	}
 	if (!source->system_dir) {
 		filename = g_strconcat (source->dirname, "/user.keys", NULL);
-		load_mime_type_info_from (filename);
+		load_mime_type_info_from (filename, specific_types_user);
 		g_free (filename);
 	}
 	closedir (dir);
@@ -693,7 +695,7 @@ mime_list_load (mime_dir_source_t *source)
 	}
 	if (source->system_dir){
 		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
-		load_mime_list_info_from (filename);
+		load_mime_list_info_from (filename, registered_types);
 		g_free (filename);
 	}
 
@@ -719,12 +721,12 @@ mime_list_load (mime_dir_source_t *source)
 			continue;
 
 		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
-		load_mime_list_info_from (filename);
+		load_mime_list_info_from (filename, registered_types);
 		g_free (filename);
 	}
 	if (!source->system_dir) {
 		filename = g_strconcat (source->dirname, "/user.mime", NULL);
-		load_mime_list_info_from (filename);
+		load_mime_list_info_from (filename, registered_types_user);
 		g_free (filename);
 	}
 	closedir (dir);
@@ -736,6 +738,7 @@ load_mime_type_info (void)
 	mime_info_load (&gnome_mime_dir);
 	mime_info_load (&user_mime_dir);
 	mime_list_load (&gnome_mime_dir);
+	mime_list_load (&user_mime_dir);
 }
 
 static void
@@ -745,8 +748,10 @@ gnome_vfs_mime_init (void)
 	 * The hash tables that store the mime keys.
 	 */
 	specific_types = g_hash_table_new (g_str_hash, g_str_equal);
-	generic_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	registered_types  = g_hash_table_new (g_str_hash, g_str_equal);
+
+	specific_types_user = g_hash_table_new (g_str_hash, g_str_equal);
+	registered_types_user  = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	current_lang = gnome_i18n_get_language_list ("LC_MESSAGES");
 	if(current_lang)
@@ -812,11 +817,14 @@ gnome_vfs_mime_info_clear (void)
 	if (specific_types != NULL) {
 		g_hash_table_foreach_remove (specific_types, remove_keys, NULL);
 	}
-	if (generic_types != NULL) {
-		g_hash_table_foreach_remove (generic_types, remove_keys, NULL);
-	}
 	if (registered_types != NULL) {
 		g_hash_table_foreach_remove (registered_types, remove_keys, NULL);
+	}
+	if (specific_types_user != NULL) {
+		g_hash_table_foreach_remove (specific_types_user, remove_keys, NULL);
+	}
+	if (registered_types_user != NULL) {
+		g_hash_table_foreach_remove (registered_types_user, remove_keys, NULL);
 	}
 }
 
@@ -828,10 +836,13 @@ gnome_vfs_mime_info_shutdown (void)
 	if (specific_types != NULL) {
 		g_hash_table_destroy (specific_types);
 	}
-	if (generic_types != NULL) {
-		g_hash_table_destroy (generic_types);
-	}
 	if (registered_types != NULL) {
+		g_hash_table_destroy (registered_types);
+	}
+	if (specific_types_user != NULL) {
+		g_hash_table_destroy (specific_types);
+	}
+	if (registered_types_user != NULL) {
 		g_hash_table_destroy (registered_types);
 	}
 }
@@ -848,7 +859,98 @@ gnome_vfs_mime_info_reload (void)
 
 
 /**
- * gnome_vfs_mime_context_get_value:
+ * gnome_vfs_mime_freeze
+ *
+ * Freezes the mime data so that you can do multiple 
+ * updates to the dat in one batch without needing
+ * to back the files to disk or readind them
+ */
+void
+gnome_vfs_mime_freeze (void)
+{
+	should_write_file_back++;
+}
+
+
+
+/**
+ * gnome_vfs_mime_thaw
+ *
+ * UnFreezes the mime data so that you can do multiple 
+ * updates to the dat in one batch without needing
+ * to back the files to disk or readind them
+ */
+void
+gnome_vfs_mime_thaw (void)
+{
+	should_write_file_back--;
+
+	if (should_write_file_back == 0) {
+		write_back_mime_user_file ();
+		write_back_keys_user_file ();		
+	}
+}
+
+
+/**
+ * gnome_vfs_mime_set_value:
+ * @mime_type: a mime type.
+ * @key: a key to store the value in.
+ * @value: the value to store in the key.
+ *
+ * This function is going to set the value 
+ * associated to the key and it will save it
+ * to the user' file if necessary.
+ * You should not free the key/values passed to 
+ * this function. They are used internally.
+ */
+GnomeVFSResult
+gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *value)
+{
+	GnomeVFSResult result;
+	GnomeMimeContext *context;
+
+	if (mime_type == NULL 
+	    || key == NULL
+	    || value == NULL) {
+		return gnome_vfs_result_from_errno ();
+	}
+
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      gnome_vfs_result_from_errno ());
+	
+	context = g_hash_table_lookup (specific_types_user, mime_type);
+	if (context != NULL) {
+		gpointer orig_key, orig_value;
+		if (g_hash_table_lookup_extended (context->keys, key, &orig_key, &orig_value)) {
+			g_hash_table_insert (context->keys, orig_key, g_strdup (value));
+			g_free (orig_value);
+		} else {
+			g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+		}
+	} else {
+		GString *string;
+
+		string = g_string_new (mime_type);
+
+		/* create the mime type context */
+		context = context_new (specific_types_user, string);
+		/* add the info to the mime type context */
+		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+	}
+	
+	if (should_write_file_back == 0) {
+		result = write_back_keys_user_file ();
+	}
+
+	return result;
+}
+
+
+
+
+/**
+ * gnome_vfs_mime_get_value:
  * @mime_type: a mime type.
  * @key: A key to lookup for the given mime-type
  *
@@ -867,35 +969,79 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	if (mime_type == NULL) {
 		return NULL;
 	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
+
 
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 
 	maybe_reload ();
 	
+	context = g_hash_table_lookup (specific_types_user, mime_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			return value;
+		}
+	}
+
 	context = g_hash_table_lookup (specific_types, mime_type);
 	if (context){
 		value = g_hash_table_lookup (context->keys, key);
-
-		if (value)
+		if (value != NULL) {
 			return value;
+		}
 	}
 
+	/* FIXME. see FIXME in gnome_vfs_mime_get_default_action_type 
+	   to fix this functions, just remove the code above.
+	 */
 	generic_type = g_strdup (mime_type);
 	p = strchr (generic_type, '/');
 	if (p)
-		*(p+1) = 0;
+		*(p+1) = '\0';
 	
-	context = g_hash_table_lookup (generic_types, generic_type);
-	g_free (generic_type);
-	
+	context = g_hash_table_lookup (specific_types_user, generic_type);
 	if (context){
 		value = g_hash_table_lookup (context->keys, key);
-		if (value)
+		if (value != NULL) {
+			g_free (generic_type);
 			return value;
+		}
 	}
 
+	context = g_hash_table_lookup (specific_types, generic_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			g_free (generic_type);
+			return value;
+		}
+	}
+
+	g_free (generic_type);
+
 	return NULL;
+}
+
+
+/**
+ * gnome_vfs_mime_keys_list_free:
+ * @mime_type_list: A mime type list to free.
+ *
+ * Frees the mime type list.
+ */
+void
+gnome_vfs_mime_keys_list_free (GList *mime_type_list)
+{
+	/* we do not need to free the data in the list since
+	   the data was stolen from the internal hash table 
+	   This function is there so that people do not need 
+	   to know this particuliar implementation detail.
+	*/
+
+	g_list_free (mime_type_list);
 }
 
 static void
@@ -907,14 +1053,14 @@ assemble_list (gpointer key, gpointer value, gpointer user_data)
 }
 
 /**
- * gnome_vfs_mime_get_keys:
+ * gnome_vfs_mime_get_key_list:
  * @mime_type: the mime type to lookup.
  *
  * Returns a GList that contains private strings with all of the keys
  * associated with the @mime_type.  
  */
 GList *
-gnome_vfs_mime_get_keys (const char *mime_type)
+gnome_vfs_mime_get_key_list (const char *mime_type)
 {
 	char *p, *generic_type;
 	GnomeMimeContext *context;
@@ -923,6 +1069,8 @@ gnome_vfs_mime_get_keys (const char *mime_type)
 	if (mime_type == NULL) {
 		return NULL;
 	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
 
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
@@ -934,19 +1082,19 @@ gnome_vfs_mime_get_keys (const char *mime_type)
 	if (p)
 		*(p+1) = 0;
 	
-	context = g_hash_table_lookup (generic_types, generic_type);
+	context = g_hash_table_lookup (specific_types_user, generic_type);
+	if (context){
+		g_hash_table_foreach (
+			context->keys, assemble_list, &list);
+	}
+	
+	context = g_hash_table_lookup (specific_types, generic_type);
+	if (context){
+		g_hash_table_foreach (
+			context->keys, assemble_list, &list);
+	}
+
 	g_free (generic_type);
-	if (context){
-		g_hash_table_foreach (
-			context->keys, assemble_list, &list);
-	}
-
-	context = g_hash_table_lookup (specific_types, mime_type);
-	if (context){
-		g_hash_table_foreach (
-			context->keys, assemble_list, &list);
-	}
-
 	for (l = list; l;){
 		if (l->next){
 			void *this = l->data;
@@ -961,47 +1109,59 @@ gnome_vfs_mime_get_keys (const char *mime_type)
 		}
 		l = l->next;
 	}
+
 	return list;
 }
 
 /**
- * gnome_vfs_mime_program:
+ * gnome_vfs_mime_get_program:
  * @mime_type: the mime_type 
  *
  * Returns the program intended to be loaded for this given mime-type
  */
 const char *
-gnome_vfs_mime_program (const char *mime_type)
+gnome_vfs_mime_get_program (const char *mime_type)
 {
 	return gnome_vfs_mime_get_value (mime_type, "open");
 }
 
 /**
- * gnome_vfs_mime_program_name:
+ * gnome_vfs_mime_get_program_name:
  * @prog_name: the program associated with a given mime-type
  *
  * Returns the program name for the program string returned by gnome_vfs_mime_program.
  * This memory must be freed when done.
  */
 gchar *
-gnome_vfs_mime_program_name (const char *prog_name)
+gnome_vfs_mime_get_program_name (const char *prog_name)
 {
-    guint i = 0;
+	guint i = 0;
 	
 	while (prog_name[i] != (char) NULL && prog_name[i] != (char) 32) i++;
 	return g_strndup (prog_name, i);
 }
 
 /**
- * gnome_vfs_mime_description:
+ * gnome_vfs_mime_get_description:
  * @mime_type: the mime type
  *
  * Returns the description for this mime-type
  */
 const char *
-gnome_vfs_mime_description (const char *mime_type)
+gnome_vfs_mime_get_description (const char *mime_type)
 {
 	return gnome_vfs_mime_get_value (mime_type, "description");
+}
+
+
+gint
+str_cmp_callback  (gconstpointer a,
+		   gconstpointer b);
+gint
+str_cmp_callback  (gconstpointer a,
+		   gconstpointer b)
+{
+	return (strcmp ((char *)a, (char *)b));
 }
 
 /**
@@ -1013,29 +1173,52 @@ gnome_vfs_mime_description (const char *mime_type)
 GList *
 gnome_vfs_mime_get_extensions_list (const char *mime_type)
 {
-	GList *list;
-	const char *extensions;
+	GList *list, *temp_list;
+	const char *extensions_system, *extensions_user;
+	char *extensions;
 	gchar **elements;
 	int index;
 	GnomeMimeContext *context;
-
-	list = NULL;
 	
 	if (mime_type == NULL) {
 		return NULL;
 	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
+
 
 	if (!gnome_vfs_mime_inited) {
 		gnome_vfs_mime_init ();
 	}
 
 	maybe_reload ();
-	
-	context = g_hash_table_lookup (registered_types, mime_type);
-	if (context) {
-		extensions = g_hash_table_lookup (context->keys, "ext");		
+
+	extensions_system = NULL;
+	extensions_user = NULL;
+
+	context = g_hash_table_lookup (registered_types_user, mime_type);
+	if (context){
+		extensions_user = g_hash_table_lookup (context->keys, "ext");
 	}
 
+	context = g_hash_table_lookup (registered_types, mime_type);
+	if (context){
+		extensions_system = g_hash_table_lookup (context->keys, "ext");
+	}
+
+
+	/* add the 2 strings and make sure you do not have more than 
+	   one occurance of  each extension */
+	extensions = NULL;
+	if (extensions_system != NULL) {
+		extensions = g_strconcat (extensions_system, " ", extensions_user, NULL);
+	} else if (extensions_system != NULL 
+		   && extensions_user != NULL){
+		extensions = g_strdup (extensions_user);
+	}
+
+	/* build a GList from the string */
+	list = NULL;
 	if (extensions != NULL) {
 		/* Parse the extensions and add to list */
 		elements = g_strsplit (extensions, " ", 0);	
@@ -1050,7 +1233,20 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 			}			
 			g_strfreev (elements);
 		}		
-	}		
+	}
+
+	g_free (extensions);
+
+	/* make sure it has only one occurence of each extension */
+	for (temp_list = list; temp_list != NULL; temp_list = temp_list->next) {
+		GList *duplicate;
+		duplicate = (GList *)g_list_find_custom (temp_list->next, temp_list->data, str_cmp_callback);
+		if (duplicate) {
+			g_free (duplicate->data);
+			g_list_remove_link (temp_list->next, duplicate);
+		}
+	}
+
 	return list;
 }
 
@@ -1064,29 +1260,35 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 char *
 gnome_vfs_mime_get_extensions_string (const char *mime_type)
 {
-	const char *extensions;
-	GnomeMimeContext *context;
+	GList *extensions_list, *temp_list;
+	char *extensions;
 	
 	if (mime_type == NULL) {
 		return NULL;
 	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
 
-	if (!gnome_vfs_mime_inited) {
-		gnome_vfs_mime_init ();
+
+	/* it might seem overkill to use gnome_vfs_mime_get_extensions_list
+	   here but it has the advantage that this function returns
+	   a list of unique extensions */
+
+	extensions_list = gnome_vfs_mime_get_extensions_list (mime_type);
+	if (extensions_list == NULL) {
+		return NULL;
+	}
+	extensions = NULL;
+
+	for (temp_list = extensions_list; temp_list != NULL; temp_list = temp_list->next) {
+		char *temp_string;
+		temp_string = g_strconcat (temp_list->data, " ", extensions, NULL);
+		g_free (extensions);
+		extensions = temp_string;
 	}
 
-	maybe_reload ();
-	
-	context = g_hash_table_lookup (registered_types, mime_type);
-	if (context) {
-		extensions = g_hash_table_lookup (context->keys, "ext");		
-	}
-
-	if (extensions != NULL) {
-		return g_strdup (extensions);
-	}		
-
-	return NULL;
+	extensions[strlen (extensions) - 1] = '\0';
+	return extensions;
 }
 	
 /**
@@ -1115,28 +1317,29 @@ gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
 	maybe_reload ();
 	
 	extensions = gnome_vfs_mime_get_extensions_list (mime_type);
-	if (extensions != NULL) {
-		for (element = extensions; element != NULL; element = element->next) {
-			if (ext_str != NULL) {
-				tmp_str = ext_str;
+	if (extensions == NULL) {
+		return NULL;
+	}
 
-				if (element->next == NULL) {
-					ext_str = g_strconcat (tmp_str, ".", (char *)element->data, NULL);
-				} else {
-					ext_str = g_strconcat (tmp_str, ".", (char *)element->data, ", ", NULL);
-				}
-				g_free (tmp_str);
+	for (element = extensions; element != NULL; element = element->next) {
+		if (ext_str != NULL) {
+			tmp_str = ext_str;
+			
+			if (element->next == NULL) {
+				ext_str = g_strconcat (tmp_str, ".", (char *)element->data, NULL);
 			} else {
-				if (g_list_length (extensions) == 1) {
-					ext_str = g_strconcat (".", (char *)element->data, NULL);
-				} else {
-					ext_str = g_strconcat (".", (char *)element->data, ", ", NULL);
-				}
+				ext_str = g_strconcat (tmp_str, ".", (char *)element->data, ", ", NULL);
+			}
+			g_free (tmp_str);
+		} else {
+			if (g_list_length (extensions) == 1) {
+				ext_str = g_strconcat (".", (char *)element->data, NULL);
+			} else {
+				ext_str = g_strconcat (".", (char *)element->data, ", ", NULL);
 			}
 		}
-
-		gnome_vfs_mime_extensions_list_free (extensions);
 	}
+	gnome_vfs_mime_extensions_list_free (extensions);
 
 	return ext_str;
 }
@@ -1152,32 +1355,35 @@ gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
 void
 gnome_vfs_mime_extensions_list_free (GList *list)
 {
+	if (list == NULL) {
+		return;
+	}
 	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);
 }
 
 /**
- * gnome_vfs_mime_test:
+ * gnome_vfs_mime_get_test:
  * @mime_type: the mime type
  *
  * Returns the command to be executed on the file before considering
  * the file to match this mime_type.
  */
 const char *
-gnome_vfs_mime_test (const char *mime_type)
+gnome_vfs_mime_get_test (const char *mime_type)
 {
 	return gnome_vfs_mime_get_value (mime_type, "test");
 }
 
 /**
- * gnome_vfs_mime_composetyped:
+ * gnome_vfs_mime_get_composetyped:
  * @mime_type: the mime type
  *
  * Returns the command to be executed to compose a message of
  * the given mime_type
  */
 const char *
-gnome_vfs_mime_composetyped (const char *mime_type)
+gnome_vfs_mime_get_composetyped (const char *mime_type)
 {
 	return gnome_vfs_mime_get_value (mime_type, "compose");
 }
@@ -1196,29 +1402,37 @@ gnome_vfs_mime_flag (const char *mime_type, gchar *key, gchar *flag)
 }
 
 /**
- * gnome_vfs_mime_copiousoutput:
+ * gnome_vfs_mime_get_copiousoutput:
  * @mime_type: the mime type
  * @key: the key which stores the flags for a command
  *
  * Returns a boolean value, whether the mime_type open
  * command will produce lots of output
  */
+/* FIXME: this API call is not obvious to me.
+   what is it supposed to do ? 
+   add a test for this in test-mime-auto.c
+*/
 gboolean 
-gnome_vfs_mime_copiousoutput (const char *mime_type, gchar *key)
+gnome_vfs_mime_get_copiousoutput (const char *mime_type, gchar *key)
 {
 	return gnome_vfs_mime_flag (mime_type, key, "copiousoutput");
 }
 
 /**
- * gnome_vfs_mime_needsterminal
+ * gnome_vfs_mime_get_needsterminal
  * @mime_type: the mime type
  * @key: the key which stores the flags for a command
  *
  * Returns a boolean value, whether the mime_type open
- * command will required a terminal.
+ * command will require a terminal.
  */
+/* FIXME: this API call is not obvious to me.
+   what is it supposed to do ? 
+   add a test for this in test-mime-auto.c
+*/
 gboolean
-gnome_vfs_mime_needsterminal (const char *mime_type, gchar *key)
+gnome_vfs_mime_get_needsterminal (const char *mime_type, gchar *key)
 {
 	return gnome_vfs_mime_flag (mime_type, key, "needsterminal");
 }
@@ -1229,7 +1443,7 @@ mime_list_sort (gconstpointer a, gconstpointer b)
 	return (strcmp (a, b));
 }
 
-/*
+/**
  *  get_key_name
  *
  *  Hash table function that adds the name of the mime type
@@ -1243,11 +1457,12 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	char *name;
 	GList **list = user_data;
 	
-	/* Get context and exit if NULL */	
-	context = (GnomeMimeContext *) value;
-	if (context == NULL) {
+	if (value == NULL || key == NULL) {
 		return;
 	}
+	
+
+	context = (GnomeMimeContext *) value;
 
 	/* Get name from key and exit if key is NULL or string is empty */	
 	name = (char *)key;
@@ -1276,22 +1491,11 @@ gnome_vfs_get_registered_mime_types (void)
 	maybe_reload ();
 
 	/* Extract mime type names */
+	/* FIXME: this will generate duplicates. Who cares ? */
+	g_hash_table_foreach (registered_types_user, get_key_name, &type_list);
 	g_hash_table_foreach (registered_types, get_key_name, &type_list);
 
 	return type_list;
-}
-
-/**
- * gnome_vfs_mime_commit_registered_types:
- *
- * This function commits the mime info in the registered type
- * hash table to disk.
- */
-
-GnomeVFSResult
-gnome_vfs_mime_commit_registered_types (void)
-{
-	return write_registered_mime_data ();
 }
 
 /**
@@ -1304,6 +1508,10 @@ gnome_vfs_mime_commit_registered_types (void)
 void
 gnome_vfs_mime_registered_mime_type_list_free (GList *list)
 {
+	if (list == NULL) {
+		return;
+	}
+
 	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);
 }
@@ -1314,65 +1522,120 @@ gnome_vfs_mime_registered_mime_type_list_free (GList *list)
  * @key: 	The key to set
  * @data: 	The data to set for the key
  * 
- * This functions sets the key data for the registered mime
+ * This function sets the key data for the registered mime
  * type's hash table.
  */
-void
-gnome_vfs_mime_set_registered_type_key (const char *mime_type, gpointer key, gpointer data)
+GnomeVFSResult
+gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, const char *value)
 {
+	GnomeVFSResult result;
 	GnomeMimeContext *context;
-	
-	context = g_hash_table_lookup (registered_types, mime_type);
-	if (context != NULL) {
-		g_hash_table_insert (context->keys, key, data);
+
+	result = gnome_vfs_result_from_errno ();
+	if (mime_type == NULL) {
+		return result;
 	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type),
+			      result);
+
+
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+	
+	context = g_hash_table_lookup (registered_types_user, mime_type);
+	if (context != NULL) {
+		gpointer orig_key, orig_value;
+		if (g_hash_table_lookup_extended (context->keys, key, &orig_key, &orig_value)) {
+                        g_hash_table_insert (context->keys, orig_key, g_strdup (value));
+			g_free (orig_value);
+		} else {
+			g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+		}
+	} else {
+		GString *string;
+
+		string = g_string_new (mime_type);
+
+		/* create the mime type context */
+		context = context_new (registered_types_user, string);
+		/* add the info to the mime type context */
+		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+	}
+
+	if (should_write_file_back == 0) {
+		result = write_back_mime_user_file ();
+	}
+
+	return result;
 }
 
-static void
-write_mime_data_foreach (gpointer key, gpointer value, gpointer data)
+void  write_back_mime_user_file_context_callback (gpointer key,
+						  gpointer value,
+						  gpointer user_data);
+void  write_back_mime_user_file_context_callback (gpointer key,
+						  gpointer value,
+						  gpointer user_data)
 {
+	char *key_data, *value_data;
 	FILE *file;
-	char *key_string;
-	char *key_data;
 
-	key_string = key;
-	key_data = value;
-	file = data;
+	key_data = (char *) key;
+	value_data = (char *) value;
+	file = (FILE *) user_data;
 
-	fwrite ("\n\t", 1, 2, file);
-	fwrite (key_string, 1, strlen (key_string), file);
-	fwrite (": ", 1, 2, file);
-	fwrite (key_data, 1, strlen (key_data), file);
-	fwrite ("\n", 1, 1, file);
+	fprintf (file, "\t%s: %s\n", key_data, value_data);
+
+}
+
+void  write_back_mime_user_file_callback (gpointer key,
+					  gpointer value,
+					  gpointer user_data);
+void  write_back_mime_user_file_callback (gpointer key,
+					  gpointer value,
+					  gpointer user_data)
+{
+	GnomeMimeContext *context;
+	char *mime_type;
+	FILE *file;
+
+	context = (GnomeMimeContext *) value;
+	mime_type = (char *)key;
+	file = (FILE *) user_data;
+
+	/* print the mime type */
+	fprintf (file, "%s\n", mime_type);
+
+	/* print the mime type keys */
+	g_hash_table_foreach (context->keys, 
+			      write_back_mime_user_file_context_callback,
+			      file);
+	
+	/* add a blank kine between mime types */
+	fprintf (file, "\n");
+
 }
 
 static GnomeVFSResult
-write_registered_mime_data (void)
+write_back_mime_user_file (void) 
 {
 	DIR *dir;
 	FILE *file;
 	char *filename;
-	GList *list, *element;
-	GnomeMimeContext *context;
 	
-	if (stat (gnome_mime_dir.dirname, &gnome_mime_dir.s) != -1)
-		gnome_mime_dir.valid = TRUE;
+	if (stat (user_mime_dir.dirname, &user_mime_dir.s) != -1)
+		user_mime_dir.valid = TRUE;
 	else
-		gnome_mime_dir.valid = FALSE;
+		user_mime_dir.valid = FALSE;
 	
-	dir = opendir (gnome_mime_dir.dirname);
+	dir = opendir (user_mime_dir.dirname);
 	if (!dir){
-		gnome_mime_dir.valid = FALSE;
+		user_mime_dir.valid = FALSE;
 		return gnome_vfs_result_from_errno ();
 	}
 	
-	if (gnome_mime_dir.system_dir){
-		list = gnome_vfs_get_registered_mime_types ();
-		if (list == NULL) {			
-			return GNOME_VFS_ERROR_INTERNAL;
-		}
-		
-		filename = g_strconcat (gnome_mime_dir.dirname, "/gnome-vfs.mime", NULL);
+	if (!user_mime_dir.system_dir){
+		filename = g_strconcat (user_mime_dir.dirname, "/user.mime", NULL);
 
         	remove (filename);
 		file = fopen (filename, "w");
@@ -1380,24 +1643,116 @@ write_registered_mime_data (void)
 			return gnome_vfs_result_from_errno ();
 		}
 
-		/* Get data in list */
-		for (element = list; element != NULL; element = element->next) {
-			context = g_hash_table_lookup (registered_types, element->data);
-			if (context != NULL) {
-				fwrite (context->mime_type, 1, strlen (context->mime_type), file);				
-				g_hash_table_foreach (context->keys, write_mime_data_foreach, file);
-				fwrite ("\n", 1, 1, file);
-			}		
-		}
+		fprintf (file, "# this file was autogenerated by gnome-vfs-mime-info.\n"
+			 "# DO NOT EDIT BY HAND. EVER. OR I'll KILL YA.\n");
 
+		g_hash_table_foreach (registered_types_user, 
+				      write_back_mime_user_file_callback,
+				      file);
+		
 		/* Cleanup file */
 		fclose (file);
 		g_free (filename);
-
-		gnome_vfs_mime_registered_mime_type_list_free (list);
 	}
 
 	return GNOME_VFS_OK;
 }
+
+void  write_back_keys_user_file_context_callback (gpointer key,
+						  gpointer value,
+						  gpointer user_data);
+void  write_back_keys_user_file_context_callback (gpointer key,
+						  gpointer value,
+						  gpointer user_data)
+{
+	char *key_data, *value_data;
+	FILE *file;
+
+	key_data = (char *) key;
+	value_data = (char *) value;
+	file = (FILE *) user_data;
+
+	fprintf (file, "\t%s=%s\n", key_data, value_data);
+
+}
+
+void  write_back_keys_user_file_callback (gpointer key,
+					  gpointer value,
+					  gpointer user_data);
+void  write_back_keys_user_file_callback (gpointer key,
+					  gpointer value,
+					  gpointer user_data)
+{
+	GnomeMimeContext *context;
+	char *mime_type;
+	FILE *file;
+
+	context = (GnomeMimeContext *) value;
+	mime_type = (char *)key;
+	file = (FILE *) user_data;
+
+	/* print the mime type */
+	fprintf (file, "%s\n", mime_type);
+
+	/* print the mime type keys */
+	g_hash_table_foreach (context->keys, 
+			      write_back_keys_user_file_context_callback,
+			      file);
+	
+	/* add a blank kine between mime types */
+	fprintf (file, "\n");
+
+}
+
+static GnomeVFSResult
+write_back_keys_user_file (void) 
+{
+	DIR *dir;
+	FILE *file;
+	char *filename;
+	
+	if (stat (user_mime_dir.dirname, &user_mime_dir.s) != -1)
+		user_mime_dir.valid = TRUE;
+	else
+		user_mime_dir.valid = FALSE;
+	
+	dir = opendir (user_mime_dir.dirname);
+	if (!dir){
+		user_mime_dir.valid = FALSE;
+		return gnome_vfs_result_from_errno ();
+	}
+	
+	if (!user_mime_dir.system_dir){
+		filename = g_strconcat (user_mime_dir.dirname, "/user.keys", NULL);
+
+        	remove (filename);
+		file = fopen (filename, "w");
+		if (file == NULL) {
+			return gnome_vfs_result_from_errno ();
+		}
+
+		fprintf (file, "# this file was autogenerated by gnome-vfs-mime-info.\n"
+			 "# DO NOT EDIT BY HAND\n");
+
+		g_hash_table_foreach (specific_types_user, 
+				      write_back_keys_user_file_callback,
+				      file);
+		
+
+	}
+
+	return GNOME_VFS_OK;	
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
