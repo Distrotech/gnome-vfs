@@ -1,3 +1,10 @@
+2001-11-13  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* configure.in:
+
+	Fix default detection of OpenSSL libraries
+
+
 2001-11-08  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* libgnomevfs/gnome-vfs-helpers.c,
