@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-12 04:39+0100\n"
-"PO-Revision-Date: 2004-01-12 10:16+0100\n"
+"POT-Creation-Date: 2004-01-15 04:25+0100\n"
+"PO-Revision-Date: 2004-01-15 13:03+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -458,7 +458,7 @@ msgstr "Chyba při spouštění příkazu"
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
@@ -466,22 +466,22 @@ msgstr[0] "%u bajt"
 msgstr[1] "%u bajty"
 msgstr[2] "%u bajtů"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
+#: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f KB"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
@@ -995,7 +995,7 @@ msgstr ""
 "Jméno uživatele, které předávat jako autentizaci při používání HTTP proxy."
 
 #: modules/network-method.c:257
-msgid "Window Network"
+msgid "Windows Network"
 msgstr "Síť Windows"
 
 #: schemas/system_smb.schemas.in.h:1
