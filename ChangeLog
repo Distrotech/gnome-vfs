@@ -1,3 +1,8 @@
+2004-03-30  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-parse-ls.c (finduid, findgid):
+	Remove non-threadsafe use of globals (bug 41179)
+
 2004-03-26  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-application-registry.c (gnome_vfs_application_registry_get_mime_types):
