@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.6.2.0\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
-"PO-Revision-Date: 2001-03-06 15:46CET\n"
-"Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
-"Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
+"POT-Creation-Date: 2002-01-30 16:35+0100\n"
+"PO-Revision-Date: 2002-01-30 16:36CET\n"
+"Last-Translator: Stanislav ViÅ¡ÅˆovskÃ½ <visnovsky@nenya.ms.mff.cuni.cz>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.8\n"
+"X-Generator: KBabel 0.9.6\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
@@ -22,7 +22,7 @@ msgstr "%s:%d obsahuje znaky NUL."
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d neobsahuje meno metódy."
+msgstr "%s:%d neobsahuje meno metÃ³dy."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
@@ -32,16 +32,35 @@ msgstr "%s:%d neobsahuje meno modulu."
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfiguraènı súbor '%s' nebol nájdenı: %s"
+msgstr "KonfiguraÄnÃ½ sÃºbor '%s' nebol nÃ¡jdenÃ½: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:714
+#, c-format
+msgid "Unknown op type %u"
+msgstr "NeznÃ¡my typ operÃ¡cie %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "NemÃ´Å¾em vytvoriÅ¥ rÃºru pre otvorenie GIOChannel: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1596
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "NeznÃ¡me typ Ãºlohy %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1632
+msgid "Operation stopped"
+msgstr "OperÃ¡cia zastavenÃ¡"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Nemô¾em rozlo¾i»: %s"
+msgstr "NemÃ´Å¾em rozloÅ¾iÅ¥: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Ïal¹ie chyby budú ignorované."
+msgstr "ÄalÅ¡ie chyby budÃº ignorovanÃ©."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -51,7 +70,7 @@ msgstr "Bez chyby"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Súbor nenájdenı"
+msgstr "SÃºbor nenÃ¡jdenÃ½"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
@@ -61,17 +80,17 @@ msgstr "Chyba"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Interná chyba"
+msgstr "InternÃ¡ chyba"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Neplatné parametre"
+msgstr "NeplatnÃ© parametre"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Nepodporovaná operácia"
+msgstr "NepodporovanÃ¡ operÃ¡cia"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -81,167 +100,167 @@ msgstr "V/V chyba"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Po¹kodené dáta"
+msgstr "PoÅ¡kodenÃ© dÃ¡ta"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Neplatnı formát"
+msgstr "NeplatnÃ½ formÃ¡t"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Chybnı handle súboru"
+msgstr "ChybnÃ½ handle sÃºboru"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Príli¹ veµkı súbor"
+msgstr "PrÃ­liÅ¡ veÄ¾kÃ½ sÃºbor"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Nedostatok miesta na zariadení"
+msgstr "Nedostatok miesta na zariadenÃ­"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Súborovı systém len pre èítanie"
+msgstr "SÃºborovÃ½ systÃ©m len pre ÄÃ­tanie"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Neplatné URI"
+msgstr "NeplatnÃ© URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Neotvorenı súbor"
+msgstr "NeotvorenÃ½ sÃºbor"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Mód otvorenia neplatnı"
+msgstr "MÃ³d otvorenia neplatnÃ½"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Prístup odmietnutı"
+msgstr "PrÃ­stup odmietnutÃ½"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Príli¹ veµa otvorenıch súborov"
+msgstr "PrÃ­liÅ¡ veÄ¾a otvorenÃ½ch sÃºborov"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Koniec súboru"
+msgstr "Koniec sÃºboru"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Nie je prieèinok"
+msgstr "Nie je prieÄinok"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operácia prebieha"
+msgstr "OperÃ¡cia prebieha"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Operácia preru¹ená"
+msgstr "OperÃ¡cia preruÅ¡enÃ¡"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Súbor existuje"
+msgstr "SÃºbor existuje"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Zaznamenanı cyklické odkazy"
+msgstr "ZaznamenanÃ½ cyklickÃ© odkazy"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Nedovolená operácia"
+msgstr "NedovolenÃ¡ operÃ¡cia"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Je prieèinok"
+msgstr "Je prieÄinok"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Nedostatok pamäti"
+msgstr "Nedostatok pamÃ¤ti"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Hostiteµ nenájdenı"
+msgstr "HostiteÄ¾ nenÃ¡jdenÃ½"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Neplatné meno hostiteµa"
+msgstr "NeplatnÃ© meno hostiteÄ¾a"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Hostiteµ nemá adresu"
+msgstr "HostiteÄ¾ nemÃ¡ adresu"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Zlyhalo prihlásenie"
+msgstr "Zlyhalo prihlÃ¡senie"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Operácia zru¹ená"
+msgstr "OperÃ¡cia zruÅ¡enÃ¡"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Prieèinok zaneprázdnenı"
+msgstr "PrieÄinok zaneprÃ¡zdnenÃ½"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Prieèinok nie je prázdny"
+msgstr "PrieÄinok nie je prÃ¡zdny"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Príli¹ veµa odkazov"
+msgstr "PrÃ­liÅ¡ veÄ¾a odkazov"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Súborovı systém len pre èítanie"
+msgstr "SÃºborovÃ½ systÃ©m len pre ÄÃ­tanie"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Nie je na rovnakom súborovom systéme"
+msgstr "Nie je na rovnakom sÃºborovom systÃ©me"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Meno príli¹ dlhé"
+msgstr "Meno prÃ­liÅ¡ dlhÃ©"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Slu¾ba nie je k dispozícii"
+msgstr "SluÅ¾ba nie je k dispozÃ­cii"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Po¾iadavka zneplatòuje dáta slu¾by"
+msgstr "PoÅ¾iadavka zneplatÅˆuje dÃ¡ta sluÅ¾by"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -250,7 +269,7 @@ msgstr "Chyba protokolu"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
-msgstr "Neznáma chyba"
+msgstr "NeznÃ¡ma chyba"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
@@ -276,1106 +295,35 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-job.c:714
-#, c-format
-msgid "Unknown op type %u"
-msgstr "Neznámy typ operácie %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#, c-format
-msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Nemô¾em vytvori» rúru pre otvorenie GIOChannel: %s"
-
-#: libgnomevfs/gnome-vfs-job.c:1596
-#, c-format
-msgid "Unknown job kind %u"
-msgstr "Neznáme typ úlohy %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1632
-msgid "Operation stopped"
-msgstr "Operácia zastavená"
-
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Neznáma GnomeVFSSeekPosition %d"
+msgstr "NeznÃ¡ma GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Nepodarilo sa nÃ¡jsÅ¥ platnÃ½ sÃºbor s nastavenÃ­m v %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Pre inÃ© umiestnenie pouÅ¾ite premennÃº prostredia %s\n"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr "VytvÃ¡racie rozhranie pre Å¡tandardnÃ½ moniker"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr "sÃºbor MonikerExtender"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr "generickÃ½ moniker Gnome VFS"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+msgid "generic file moniker"
+msgstr "generickÃ½ moniker pre sÃºbor"
 
-#~ msgid "3D Studio image"
-#~ msgstr "obrázok 3D Studio"
-
-#~ msgid "AIFC audio"
-#~ msgstr "zvuk AIFC"
-
-#~ msgid "AIFF audio"
-#~ msgstr "zvuk AIFF"
-
-#~ msgid "ANIM animation"
-#~ msgstr "animácia ANIM"
-
-#~ msgid "AVI video"
-#~ msgstr "video AVI"
-
-#~ msgid "AbiWord document"
-#~ msgstr "dokument AbiWord"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "písmo Adobe FrameMaker"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "metrika písma Adobe"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "Andrew Toolkit inset"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "obrázok ApplixWare Graphics"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "dokument Applixware Words"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "tabuµka Applixware"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "obrázok AutoCAD"
-
-#~ msgid "BCPIO document"
-#~ msgstr "dokument BCPIO"
-
-#~ msgid "BDF font"
-#~ msgstr "písmo BDF"
-
-#~ msgid "C shell script"
-#~ msgstr "skript C shellu"
-
-#~ msgid "C source code"
-#~ msgstr "zdrojovı kód C"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "zdrojovı kód C"
-
-#~ msgid "C++ source code"
-#~ msgstr "zdrojovı kód C++"
-
-#~ msgid "CGI program"
-#~ msgstr "program CGI"
-
-#~ msgid "CGM image"
-#~ msgstr "obrázok CGM"
-
-#~ msgid "CMU raster image"
-#~ msgstr "rastrovı obrázok CMU"
-
-#~ msgid "CPIO archive"
-#~ msgstr "archív CPIO"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "archív CPIO (komprimovanı gzip)"
-
-#~ msgid "DCL script"
-#~ msgstr "skript DCL"
-
-#~ msgid "DOS font"
-#~ msgstr "písmo pre DOS"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "program pre DOS/Windows"
-
-#~ msgid "DSSSL document"
-#~ msgstr "dokument DSSSL"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "vektorová grafika DXF"
-
-#~ msgid "Debian package"
-#~ msgstr "balík Debian"
-
-#~ msgid "Dia diagram"
-#~ msgstr "diagram Dia"
-
-#~ msgid "Dolby Digital audio"
-#~ msgstr "zvuk Dolby Digital"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "zdrojovı kód Emacs Lisp"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "téma pre Enlightenment"
-
-#~ msgid "FLC animation"
-#~ msgstr "animácia FLC"
-
-#~ msgid "FLI animation"
-#~ msgstr "animácia FLI"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "zvuk FastTracker II"
-
-#~ msgid "Fortran source code"
-#~ msgstr "zdrojovı kód Fortran"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "vımennı dokument FrameMaker"
-
-#~ msgid "G3 fax image"
-#~ msgstr "obrázok G3 fax"
-
-#~ msgid "GIF image"
-#~ msgstr "obrázok GIF"
-
-#~ msgid "GIMP document"
-#~ msgstr "dokument GIMP"
-
-#~ msgid "GMC link"
-#~ msgstr "odkaz GMC"
-
-#~ msgid "GNOME application details"
-#~ msgstr "detaily aplikácie GNOME"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "tabuµka GNU Oleo"
-
-#~ msgid "GNU mail message"
-#~ msgstr "e-mailová správa GNU"
-
-#~ msgid "GTK configuration"
-#~ msgstr "nastavenie GTK"
-
-#~ msgid "Glade project"
-#~ msgstr "projekt Glade"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "zo¹it GnuCash"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "tabuµka Gnumeric"
-
-#~ msgid "HDF document"
-#~ msgstr "dokument HDF"
-
-#~ msgid "HTML page"
-#~ msgstr "stránka HTML"
-
-#~ msgid "IDL document"
-#~ msgstr "dokument IDL"
-
-#~ msgid "IEF image"
-#~ msgstr "obrázok IEF"
-
-#~ msgid "IFF image"
-#~ msgstr "obrázok IFF"
-
-#~ msgid "ILBM image"
-#~ msgstr "obrázok ILMB"
-
-#~ msgid "ISI video"
-#~ msgstr "video ISI"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "zvuk Impulse Tracker"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "projekt JBuilder"
-
-#~ msgid "JPEG image"
-#~ msgstr "obrázok JPEG"
-
-#~ msgid "Java byte code"
-#~ msgstr "Java bajtkód"
-
-#~ msgid "Java source code"
-#~ msgstr "zdrojovı kód Java"
-
-#~ msgid "KDE application details"
-#~ msgstr "detaily aplikácie KDE"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "dokument KIllustrator"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "prezentácia KPresenter"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "tabuµka KSpread"
-
-#~ msgid "KWord document"
-#~ msgstr "dokument KWord"
-
-#~ msgid "Korn shell script"
-#~ msgstr "skript Korn shellu"
-
-#~ msgid "LHA archive"
-#~ msgstr "archív LHA"
-
-#~ msgid "LHARC archive"
-#~ msgstr "archív LHARC"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "písmo LIBGRX"
-
-#~ msgid "LightWave object"
-#~ msgstr "objekt LightWave"
-
-#~ msgid "LightWave scene"
-#~ msgstr "scéna LightWave"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "konzolové písmo Linuxu PSF"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "tabuµka Lotus 1-2-3"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "M3 zvukové URL"
-
-#~ msgid "MIDI audio"
-#~ msgstr "zvuk MIDI"
-
-#~ msgid "MOD audio"
-#~ msgstr "zvuk MOD"
-
-#~ msgid "MP3 audio"
-#~ msgstr "zvuk MP3"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "zvukovı playlist MP3"
-
-#~ msgid "MPEG video"
-#~ msgstr "video MPEG"
-
-#~ msgid "MS ASF video"
-#~ msgstr "video MS ASF"
-
-#~ msgid "MS video"
-#~ msgstr "video MS"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "súbor kódovanı Macintosh AppleDouble"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "súbor kódovanı Macintosh BinHex"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Macintosh StuffIt archív"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "súbor Macromedia Flash"
-
-#~ msgid "MathML document"
-#~ msgstr "dokument MathML"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "tabuµka Microsoft Excel"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "dokument Microsoft PowerPoint"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "dokument Microsoft Word"
-
-#~ msgid "Microsoft video"
-#~ msgstr "video Microsoft"
-
-#~ msgid "Nautilus link"
-#~ msgstr "odkaz Nautilus"
-
-#~ msgid "ODA document"
-#~ msgstr "dokument ODA"
-
-#~ msgid "PBM image"
-#~ msgstr "obrázok PBM"
-
-#~ msgid "PCF font"
-#~ msgstr "písmo PCF"
-
-#~ msgid "PDF document"
-#~ msgstr "dokument PDF"
-
-#~ msgid "PEF program"
-#~ msgstr "program PEF"
-
-#~ msgid "PGM image"
-#~ msgstr "obrázok PGM"
-
-#~ msgid "PGN chess game"
-#~ msgstr "¹achová hra PGN"
-
-#~ msgid "PGP keys"
-#~ msgstr "PGP kµúèe"
-
-#~ msgid "PGP message"
-#~ msgstr "PGP správa"
-
-#~ msgid "PGP signature"
-#~ msgstr "PGP podpis"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "PGP-¹ifrovanı súbor"
-
-#~ msgid "PHP script"
-#~ msgstr "skript PHP"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "dokument PN RealAudio"
-
-#~ msgid "PNG image"
-#~ msgstr "obrázok PNG"
-
-#~ msgid "PNM image"
-#~ msgstr "obrázok PNM"
-
-#~ msgid "PPM image"
-#~ msgstr "obrázok PPM"
-
-#~ msgid "Palm OS database"
-#~ msgstr "databáza Palm OS"
-
-#~ msgid "Perl script"
-#~ msgstr "skript Perl"
-
-#~ msgid "Photoshop document"
-#~ msgstr "dokument Photoshop"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "písmo PostScript Typ 1"
-
-#~ msgid "PostScript document"
-#~ msgstr "dokument PostScript"
-
-#~ msgid "Python source code"
-#~ msgstr "zdrojovı kód Python"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "video QuickTime"
-
-#~ msgid "Quicken document"
-#~ msgstr "dokument Quicken"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "dokument Quicken pre Windows"
-
-#~ msgid "RAR archive"
-#~ msgstr "archív RAR"
-
-#~ msgid "README document"
-#~ msgstr "dokument README"
-
-#~ msgid "RGB image"
-#~ msgstr "obrázok RGB"
-
-#~ msgid "RIFF audio"
-#~ msgstr "zvuk RIFF"
-
-#~ msgid "RPM package"
-#~ msgstr "balík RPM"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "dokument RealAudio/Video"
-
-#~ msgid "RealVideo video"
-#~ msgstr "video RealVideo"
-
-#~ msgid "S/MIME file"
-#~ msgstr "súbor S/MIME"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "podpis S/MIME"
-
-#~ msgid "SGI video"
-#~ msgstr "video SGI"
-
-#~ msgid "SGML document"
-#~ msgstr "dokument SGML"
-
-#~ msgid "SMIL script"
-#~ msgstr "skript SMIL"
-
-#~ msgid "SQL code"
-#~ msgstr "kód SQL"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "archív SV4 CPIO"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "archív SV4 CPIP (s CRC)"
-
-#~ msgid "SVG art"
-#~ msgstr "dielo SVG"
-
-#~ msgid "Scheme source code"
-#~ msgstr "zdrojovı kód Scheme"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "zvuk Scream Tracker 3"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "zvuk Scream Tracker"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "nástroj Scream Tracker"
-
-#~ msgid "Setext document"
-#~ msgstr "dokument setext"
-
-#~ msgid "Speech document"
-#~ msgstr "dokument Speech"
-
-#~ msgid "Speedo font"
-#~ msgstr "písmo Speedo"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "vımennı tabuµkovı dokument"
-
-#~ msgid "Stampede package"
-#~ msgstr "balík Stampede"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "dokument StarOffice Writer"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "prezentácia StarOffice"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "tabuµka StarOffice"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "zvuk Sun µ-law"
-
-#~ msgid "SunOS News font"
-#~ msgstr "Písmo SunOS News"
-
-#~ msgid "TIFF image"
-#~ msgstr "obrázok TIFF"
-
-#~ msgid "TarGA image"
-#~ msgstr "obrázok TarGA"
-
-#~ msgid "Tcl script"
-#~ msgstr "skript Tcl"
-
-#~ msgid "TeX document"
-#~ msgstr "dokument TeX"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "dokument TeX dvi"
-
-#~ msgid "TeX font"
-#~ msgstr "písmo TeX"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "metrika písma TeX"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "dokument TeXInfo"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "dokument ToutDoux"
-
-#~ msgid "TrueType font"
-#~ msgstr "písmo TrueType"
-
-#~ msgid "USENET news message"
-#~ msgstr "príspevok diskusnej skupiny USENET"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "dokument Unidata netCDF"
-
-#~ msgid "V font"
-#~ msgstr "písmo V"
-
-#~ msgid "VOC audio"
-#~ msgstr "zvuk VOC"
-
-#~ msgid "VRML document"
-#~ msgstr "dokument VRML"
-
-#~ msgid "Vivo video"
-#~ msgstr "video Vivo"
-
-#~ msgid "WAIS source code"
-#~ msgstr "zdrojovı kód WAIS"
-
-#~ msgid "Wavelet video"
-#~ msgstr "video Wavelet"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "bitmapovı obrázok Windows"
-
-#~ msgid "Windows icon image"
-#~ msgstr "ikona Windows"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "grafika Windows metafile"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "dokument WordPerfect"
-
-#~ msgid "X bitmap image"
-#~ msgstr "bitmapovı obrázok X"
-
-#~ msgid "X window image"
-#~ msgstr "obrázok X window"
-
-#~ msgid "XML document"
-#~ msgstr "dokument XML"
-
-#~ msgid "XPM image"
-#~ msgstr "obrázok XPM"
-
-#~ msgid "Xbase database"
-#~ msgstr "databáza Xbase"
-
-#~ msgid "active server page"
-#~ msgstr "active server page"
-
-#~ msgid "address card"
-#~ msgstr "karta adresára"
-
-#~ msgid "ar archive"
-#~ msgstr "archív ar"
-
-#~ msgid "arj archive"
-#~ msgstr "archív arj"
-
-#~ msgid "authors list"
-#~ msgstr "zoznam autorov"
-
-#~ msgid "backup file"
-#~ msgstr "zálo¾nı súbor"
-
-#~ msgid "basic audio"
-#~ msgstr "základné audio"
-
-#~ msgid "bibliography record"
-#~ msgstr "záznam bibliografie"
-
-#~ msgid "binary program"
-#~ msgstr "spustiteµnı program"
-
-#~ msgid "block device"
-#~ msgstr "blokové zariadenie"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "súbor komprimovanı bzip"
-
-#~ msgid "calendar file"
-#~ msgstr "kalendárovı súbor"
-
-#~ msgid "calendar or event document"
-#~ msgstr "dokument kalendár alebo udalos»"
-
-#~ msgid "character device"
-#~ msgstr "znakové zariadenie"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "textovı dokument oddeµovanı èiarkami"
-
-#~ msgid "compound document"
-#~ msgstr "zlo¾enı dokument"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "komprimovanı súbor compress"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "komprimovanı dokument GIMP"
-
-#~ msgid "directory information file"
-#~ msgstr "súbor s popisom prieèinku"
-
-#~ msgid "document type definition"
-#~ msgstr "definícia typu dokumentu"
-
-#~ msgid "email headers"
-#~ msgstr "e-mailové hlavièky"
-
-#~ msgid "email message"
-#~ msgstr "e-mailová správa"
-
-#~ msgid "encrypted message"
-#~ msgstr "za¹ifrovaná správa"
-
-#~ msgid "enriched text document"
-#~ msgstr "roz¹írenı textovı dokument"
-
-#~ msgid "folder"
-#~ msgstr "prieèinok"
-
-#~ msgid "gtar archive"
-#~ msgstr "archív gtar"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "súbor komprimovanı gzip"
-
-#~ msgid "help page"
-#~ msgstr "stránka Pomocníka"
-
-#~ msgid "mail delivery report"
-#~ msgstr "správa o doruèení po¹ty"
-
-#~ msgid "mail disposition report"
-#~ msgstr "správa o predaní po¹ty"
-
-#~ msgid "mail system report"
-#~ msgstr "správa po¹tového systému"
-
-#~ msgid "makefile"
-#~ msgstr "makefile"
-
-#~ msgid "manual page"
-#~ msgstr "manuálová stránka"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "manuálová stránka (komprimovaná)"
-
-#~ msgid "memory dump"
-#~ msgstr "vıpis pamäti"
-
-#~ msgid "message digest"
-#~ msgstr "súhrn po¹ty"
-
-#~ msgid "message in several formats"
-#~ msgstr "správa vo viacerıch formátoch"
-
-#~ msgid "multi-part message"
-#~ msgstr "správa s viacerımi èas»ami"
-
-#~ msgid "named pipe"
-#~ msgstr "pomenovaná rúra"
-
-#~ msgid "object code"
-#~ msgstr "objektovı kód"
-
-#~ msgid "ogg audio"
-#~ msgstr "zvuk ogg"
-
-#~ msgid "partial email message"
-#~ msgstr "èiastoèná e-mailová správa"
-
-#~ msgid "plain text document"
-#~ msgstr "textovı dokument"
-
-#~ msgid "profiler results"
-#~ msgstr "vısledky profilera"
-
-#~ msgid "reference to remote file"
-#~ msgstr "referencia na vzdialenı súbor"
-
-#~ msgid "rejected patch file"
-#~ msgstr "odmietnutı súbor patch"
-
-#~ msgid "rich text document"
-#~ msgstr "bohatı textovı dokument"
-
-#~ msgid "search results"
-#~ msgstr "vısledky hµadania"
-
-#~ msgid "shared library"
-#~ msgstr "zdieµaná kni¾nica"
-
-#~ msgid "shell archive"
-#~ msgstr "archív shell"
-
-#~ msgid "shell script"
-#~ msgstr "skript shellu"
-
-#~ msgid "signed message"
-#~ msgstr "podpísaná správa"
-
-#~ msgid "socket"
-#~ msgstr "soket"
-
-#~ msgid "software author credits"
-#~ msgstr "informácie o autorovi softvéru"
-
-#~ msgid "software installation instructions"
-#~ msgstr "in¹talaènı návod softvéru"
-
-#~ msgid "software license terms"
-#~ msgstr "softvérová licencia"
-
-#~ msgid "source code patch"
-#~ msgstr "patch zdrojového kódu"
-
-#~ msgid "style sheet"
-#~ msgstr "style sheet"
-
-#~ msgid "symbolic link"
-#~ msgstr "symbolickı odkaz"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "textovı dokument oddeµovanı tabulátormi"
-
-#~ msgid "tar archive"
-#~ msgstr "archív tar"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "archív tar (komprimovanı bzip2)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "archív tar (komprimovanı gzip)"
-
-#~ msgid "theme"
-#~ msgstr "téma"
-
-#~ msgid "troff document"
-#~ msgstr "dokument troff"
-
-#~ msgid "troff me input document"
-#~ msgstr "me vstupnı dokument troff"
-
-#~ msgid "troff mm input document"
-#~ msgstr "mm vstupnı dokument troff"
-
-#~ msgid "troff ms input document"
-#~ msgstr "ms vstupnı dokument troff"
-
-#~ msgid "unknown type"
-#~ msgstr "neznámy typ"
-
-#~ msgid "ustar archive"
-#~ msgstr "archív ustar"
-
-#~ msgid "wave audio"
-#~ msgstr "zvuk wave"
-
-#~ msgid "web folder"
-#~ msgstr "WWW prieèinok"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "vektorová grafika xfig"
-
-#~ msgid "zip archive"
-#~ msgstr "archív zip"
-
-#~ msgid "zoo archive"
-#~ msgstr "archív zoo"
-
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS u¾ bolo inicializované."
-
-#~ msgid "Dying."
-#~ msgstr "Umieram."
-
-#~ msgid "Error reading: %s"
-#~ msgstr "Chyba pri èítaní: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Chyba pri zápise: %s"
-
-#~ msgid "Cannot write: %s"
-#~ msgstr "Nemô¾em zapisova»: %s"
-
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Nemô¾em vytvori» meno doèasného súboru '%s'"
-
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Nemô¾em vytvori» soket: %s"
-
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Nemô¾em sa pripoji» '%s': %s"
-
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Nemô¾em poèúva» na '%s': %s"
-
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Nemô¾em prijíma» spojenia na '%s': %s"
-
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "Nemô¾em inicializova» CORBu."
-
-#~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Nemô¾em získa» poèiatoènú referenciu na RootPOA."
-
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "Nemô¾em aktivova» správcu POA."
-
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Pou¾itie: %s <ior> [<ior_fd>]\n"
-
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Nemô¾em otvori» popisovaè súboru: %d."
-
-#~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Nebolo nájdené rozhranie pre upozornenia pre '%s'."
-
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Nemô¾em zostavi» objekt po¾iadavky."
-
-#~ msgid "Cannot extract IOR."
-#~ msgstr "Nemô¾em získa» IOR."
-
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Prijatı divnı re»azec od potomka: '%s'"
-
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Nemô¾em získa» objekt od '%s'"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Nemô¾em zabi» GNOME::VFS::Slave::Notify -- vınimka %s"
-
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Nemô¾em sa pripoji» na soket '%s': %s"
-
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Nemô¾em inicializova» GNOME::VFS::Slave::Notify"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nemô¾em re¹tartova» GNOME::VFS::Slave %s -- vınimka %s"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Nemô¾em re¹tartova» GNOME::VFS::Slave (IOR neznáme) -- vınimka %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nemô¾em zabi» GNOME::VFS::Slave %s -- vınimka %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Nemô¾em zabi» GNOME::VFS::Slave (IOR neznáme) -- vınimka %s"
-
-#~ msgid "File Types and Programs"
-#~ msgstr "Typy súborov a programy"
-
-#~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr ""
-#~ "Zadajte program, ktorı sa má pou¾íva» pre otváranie alebo prezeranie "
-#~ "daného typu súborov"
-
-#~ msgid "MIME Type"
-#~ msgstr "Typ MIME"
-
-#~ msgid "Change Icon"
-#~ msgstr "Zmeni» ikonu"
-
-#~ msgid "Change File Extensions"
-#~ msgstr "Zmeni» prípony súborov"
-
-#~ msgid "Default Action:"
-#~ msgstr "©tandardná akcia:"
-
-#~ msgid "Use Viewer"
-#~ msgstr "Pou¾i» zobrazovaè"
-
-#~ msgid "Open With Application"
-#~ msgstr "Otvori» aplikáciou"
-
-#~ msgid "Edit List"
-#~ msgstr "Upravi» zoznam"
-
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Prida» novı typ MIME..."
-
-#~ msgid "Delete This MIME Type"
-#~ msgstr "Odstráni» tento typ MIME"
-
-#~ msgid "Revert to System Defaults"
-#~ msgstr "Návrat k systémovému nastaveniu"
-
-#~ msgid "None"
-#~ msgstr "®iadna"
-
-#~ msgid ""
-#~ "Reverting to system settings will lose any changes\n"
-#~ "you have ever made to File Types and Programs.\n"
-#~ "Revert anyway?"
-#~ msgstr ""
-#~ "Návrat k systémovému nastaveniu\n"
-#~ "zahodí v¹etky zmeny, ktoré ste urobili\n"
-#~ "v nastavení typov súborov.\n"
-#~ "Vráti» sa k systémovému nastaveniu?"
-
-#~ msgid "none"
-#~ msgstr "¾iadna"
-
-#~ msgid "View as %s"
-#~ msgstr "Zobrazi» sko %s"
-
-#~ msgid "Description"
-#~ msgstr "Popis"
-
-#~ msgid "Extension"
-#~ msgstr "Prípona"
-
-#~ msgid "Default Action"
-#~ msgstr "©tandardná akcia"
-
-#~ msgid "Edit Applications List"
-#~ msgstr "Upravi» zoznam aplikácií"
-
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "Vyberte aplikácie, ktoré budú v menu pre typ MIME \"%s\""
-
-#~ msgid "Add Application..."
-#~ msgstr "Prida» aplikáciu..."
-
-#~ msgid "Edit Application..."
-#~ msgstr "Upravi» aplikáciu..."
-
-#~ msgid "Delete Application"
-#~ msgstr "Zmaza» aplikáciu"
-
-#~ msgid "Edit Components List"
-#~ msgstr "Upravi» zoznam komponent"
-
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "Vyberte pohµady, ktoré budú v menu pre typ MIME \"%s\""
-
-#~ msgid ""
-#~ "The MIME type entered contained upper case characters. Upper case "
-#~ "characters were changed to lower case for you."
-#~ msgstr ""
-#~ "Zadanı typ MIME obsahoval veµké písmená. Tie boli automaticky zmenené na "
-#~ "malé."
-
-#~ msgid "Add New MIME Type"
-#~ msgstr "Prida» novı typ MIME"
-
-#~ msgid "Add MIME Type"
-#~ msgstr "Prida» typ MIME"
-
-#~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "Novı typ MIME (napr. image/x-thumper):"
-
-#~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "Popis (napr. Obrázok Thumper):"
-
-#~ msgid "File Extensions "
-#~ msgstr "Prípony súborov "
-
-#~ msgid "Add..."
-#~ msgstr "Prida»..."
-
-#~ msgid "    Remove    "
-#~ msgstr "    Odstráni»    "
-
-#~ msgid "Add New Extension"
-#~ msgstr "Prida» novú príponu"
-
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Zadajte prípony pre tento typ MIME (bez bodky).\n"
-#~ "Ak chcete zada» viac prípon, oddeµte ich medzerou,\n"
-#~ "napríklad: html htm"
-
-#~ msgid "Extension:"
-#~ msgstr "Prípona:"
-
-#~ msgid "You must enter a name."
-#~ msgstr "Musíte zada» meno."
-
-#~ msgid "You must enter a command."
-#~ msgstr "Musíte zada» príkaz."
-
-#~ msgid ""
-#~ "\"%s\" does not exist or is not executable.\n"
-#~ "Check your spelling and make sure you have\n"
-#~ "the right permissions to execute this file."
-#~ msgstr ""
-#~ "\"%s\" neexistuje, alebo nie je spustiteµnı.\n"
-#~ "Skontrolujte príkaz a uistite sa, ¾e sú správne\n"
-#~ "nastavené práva pre spustenie tohto súboru."
-
-#~ msgid ""
-#~ "The command \"%s\" cannot be found.\n"
-#~ "You must use a command that can work from any command line."
-#~ msgstr ""
-#~ "Príkaz \"%s\" nie je mo¾né nájs».\n"
-#~ "Musíte pou¾i» príkaz, ktorı funguje z ktoréhokoµvek miesta."
-
-#~ msgid "Bad Application Name"
-#~ msgstr "Chybné meno aplikácie"
-
-#~ msgid "Bad Application Command"
-#~ msgstr "Chybnı príkaz aplikácie"
-
-#~ msgid "Add Application"
-#~ msgstr "Prida» aplikáciu"
-
-#~ msgid "Edit Application"
-#~ msgstr "Upravi» aplikáciu"
-
-#~ msgid "Application Name:"
-#~ msgstr "Meno aplikácie:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Príkaz aplikácie:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Chovanie otvorenia"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Mô¾e otvori» viacero súborov"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Mô¾e otvori» URI"
-
-#~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Nemô¾em nájs» hbox, pou¾ijem normálny vıber súboru"
-
-#~ msgid "Preview"
-#~ msgstr "Uká¾ka"
-
-#~ msgid "Select an icon"
-#~ msgstr "Vyberte ikonu"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "%s e¹te prija»"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Zatváram spojenie na %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s z %s preèítané"
-
-#~ msgid "%s read"
-#~ msgstr "%s preèítané"
-
-#~ msgid "Back"
-#~ msgstr "Dozadu"
-
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Prejde do predchádzajúceho nav¹tíveného prieèinku"
-
-#~ msgid "Up"
-#~ msgstr "Hore"
-
-#~ msgid "Go to the parent directory"
-#~ msgstr "Prejde do rodièovského prieèinku"
-
-#~ msgid "Forward"
-#~ msgstr "Dopredu"
-
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Prejde do nasledujúceho nav¹tíveného prieèinku"
-
-#~ msgid "Rescan"
-#~ msgstr "Znovu-naèíta»"
-
-#~ msgid "Rescan the current directory"
-#~ msgstr "Znovunaèíta aktuálny prieèinok"
-
-#~ msgid "Home"
-#~ msgstr "Domov"
-
-#~ msgid "Go to the home directory"
-#~ msgstr "Prejde do domovského prieèinku"
-
-#~ msgid "Name"
-#~ msgstr "Meno"
-
-#~ msgid "Size"
-#~ msgstr "Veµkos»"
-
-#~ msgid "Date"
-#~ msgstr "Dátum"
-
-#~ msgid "Enter name:"
-#~ msgstr "Zadajte meno:"
-
-#~ msgid "Show:"
-#~ msgstr "Zobrazi»:"
-
-#~ msgid "Show dotfiles"
-#~ msgstr "Zobrazi» skryté súbory"
