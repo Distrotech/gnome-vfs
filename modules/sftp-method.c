@@ -161,7 +161,6 @@ static gboolean sftp_connection_process_errors (GIOChannel *channel,
 						GIOCondition cond,
 						GnomeVFSResult *status);
 
-
 
 static guint inited_buffers = 0;
 
@@ -647,8 +646,6 @@ buffer_write_file_info (Buffer *buf, const GnomeVFSFileInfo *info, GnomeVFSSetFi
 	}
 }
 
-
-
 static GnomeVFSResult 
 sftp_status_to_vfs_result (guint status) 
 {
@@ -676,7 +673,6 @@ sftp_status_to_vfs_result (guint status)
 	}
 }
 
-
 
 /* Derived from OpenSSH, sftp-client.c:get_status */
 
@@ -844,8 +840,6 @@ iobuf_send_string_request_with_file_info (int                      fd,
 	buffer_free (&msg);
 }
 
-
-
 static char*
 get_user_from_uri_or_password_line (const GnomeVFSURI *uri,
 				    const char *password_line)
@@ -903,8 +897,6 @@ get_authtype_from_password_line (const char *password_line)
 	} 
 	return g_strdup ("password");
 }
-
-
 
 static gboolean
 invoke_fill_auth (const GnomeVFSURI *uri,
@@ -1702,8 +1694,6 @@ sftp_connection_unref (SftpConnection *conn)
 	}
 }
 
-
-
 /* Portions of the below functions inspired by functions in OpenSSH sftp-client.c */
 
 static GnomeVFSResult
@@ -1768,8 +1758,6 @@ get_real_path (SftpConnection *conn, const gchar *path, gchar **realpath)
 
 	return GNOME_VFS_OK;
 }
-
-
 
 static GnomeVFSResult 
 do_open (GnomeVFSMethod        *method,
@@ -2705,7 +2693,6 @@ do_make_directory (GnomeVFSMethod  *method,
 	return res;
 }
 
-
 static GnomeVFSResult
 do_remove_directory (GnomeVFSMethod  *method,
 		     GnomeVFSURI     *uri,
@@ -2759,6 +2746,18 @@ do_move (GnomeVFSMethod  *method,
 
 	id = sftp_connection_get_id (conn);
 
+	/* if force_replace is specified, try to remove new_uri */
+	if (force_replace) {
+		iobuf_send_string_request (conn->out_fd,
+					   id,
+					   SSH2_FXP_REMOVE,
+					   new_path,
+					   strlen (new_path));
+		res = iobuf_read_result (conn->in_fd, id);
+		if (res != GNOME_VFS_OK && res != GNOME_VFS_ERROR_NOT_FOUND)
+			goto bail;
+	}
+
 	buffer_write_gchar (&msg, SSH2_FXP_RENAME);
 	buffer_write_gint32 (&msg, id);
 	buffer_write_string (&msg, old_path);
@@ -2766,10 +2765,11 @@ do_move (GnomeVFSMethod  *method,
 	buffer_send (&msg, conn->out_fd);
 	buffer_free (&msg);
 
+	res = iobuf_read_result (conn->in_fd, id);
+
+ bail:
 	g_free (old_path);
 	g_free (new_path);
-
-	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2970,7 +2970,6 @@ do_create_symlink (GnomeVFSMethod   *method,
 	return res;
 }
 
-
 
 static GnomeVFSMethod method = {
 	sizeof (GnomeVFSMethod),
