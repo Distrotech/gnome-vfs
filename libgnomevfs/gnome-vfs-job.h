@@ -21,14 +21,14 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifndef _GNOME_VFS_JOB_PTHREAD_H
-#define _GNOME_VFS_JOB_PTHREAD_H
+#ifndef GNOME_VFS_JOB_PTHREAD_H
+#define GNOME_VFS_JOB_PTHREAD_H
 
-typedef struct _GnomeVFSJob GnomeVFSJob;
+typedef struct GnomeVFSJob GnomeVFSJob;
 
 #include "gnome-vfs-job-slave.h"
 
-enum _GnomeVFSJobType {
+enum GnomeVFSJobType {
 	GNOME_VFS_JOB_OPEN,
 	GNOME_VFS_JOB_OPEN_AS_CHANNEL,
 	GNOME_VFS_JOB_CREATE,
@@ -40,9 +40,9 @@ enum _GnomeVFSJobType {
 	GNOME_VFS_JOB_XFER,
 	GNOME_VFS_JOB_GET_FILE_INFO,
 };
-typedef enum _GnomeVFSJobType GnomeVFSJobType;
+typedef enum GnomeVFSJobType GnomeVFSJobType;
 
-struct _GnomeVFSOpenJob {
+struct GnomeVFSOpenJob {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -52,9 +52,9 @@ struct _GnomeVFSOpenJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct _GnomeVFSOpenJob GnomeVFSOpenJob;
+typedef struct GnomeVFSOpenJob GnomeVFSOpenJob;
 
-struct _GnomeVFSOpenAsChannelJob {
+struct GnomeVFSOpenAsChannelJob {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -66,9 +66,9 @@ struct _GnomeVFSOpenAsChannelJob {
 		GIOChannel *channel;
 	} notify;
 };
-typedef struct _GnomeVFSOpenAsChannelJob GnomeVFSOpenAsChannelJob;
+typedef struct GnomeVFSOpenAsChannelJob GnomeVFSOpenAsChannelJob;
 
-struct _GnomeVFSCreateJob {
+struct GnomeVFSCreateJob {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -80,9 +80,9 @@ struct _GnomeVFSCreateJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct _GnomeVFSCreateJob GnomeVFSCreateJob;
+typedef struct GnomeVFSCreateJob GnomeVFSCreateJob;
 
-struct _GnomeVFSCreateAsChannelJob {
+struct GnomeVFSCreateAsChannelJob {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -95,9 +95,9 @@ struct _GnomeVFSCreateAsChannelJob {
 		GIOChannel *channel;
 	} notify;
 };
-typedef struct _GnomeVFSCreateAsChannelJob GnomeVFSCreateAsChannelJob;
+typedef struct GnomeVFSCreateAsChannelJob GnomeVFSCreateAsChannelJob;
 
-struct _GnomeVFSCloseJob {
+struct GnomeVFSCloseJob {
 	struct {
 	} request;
 
@@ -105,9 +105,9 @@ struct _GnomeVFSCloseJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct _GnomeVFSCloseJob GnomeVFSCloseJob;
+typedef struct GnomeVFSCloseJob GnomeVFSCloseJob;
 
-struct _GnomeVFSReadJob {
+struct GnomeVFSReadJob {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gpointer buffer;
@@ -118,9 +118,9 @@ struct _GnomeVFSReadJob {
 		GnomeVFSFileSize bytes_read;
 	} notify;
 };
-typedef struct _GnomeVFSReadJob GnomeVFSReadJob;
+typedef struct GnomeVFSReadJob GnomeVFSReadJob;
 
-struct _GnomeVFSWriteJob {
+struct GnomeVFSWriteJob {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gconstpointer buffer;
@@ -131,25 +131,25 @@ struct _GnomeVFSWriteJob {
 		GnomeVFSFileSize bytes_written;
 	} notify;
 };
-typedef struct _GnomeVFSWriteJob GnomeVFSWriteJob;
+typedef struct GnomeVFSWriteJob GnomeVFSWriteJob;
 
 typedef struct {
-	/* request */
 	struct {
-		GnomeVFSURI *uri;
+		GList *uris; /* GnomeVFSURI* */
 		GnomeVFSFileInfoOptions options;
 		gchar **meta_keys;
 	} request;
 
 	struct {
-		GnomeVFSResult result;
-		GnomeVFSFileInfo *file_info;
+		GList *result_list; /* GnomeVFSGetFileInfoResult* */
 	} notify;
 } GnomeVFSGetFileInfoJob;
+
 
+
 /* "Complex operations.  */
 
-struct _GnomeVFSLoadDirectoryJob {
+struct GnomeVFSLoadDirectoryJob {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSFileInfoOptions options;
@@ -168,9 +168,9 @@ struct _GnomeVFSLoadDirectoryJob {
 		guint entries_read;
 	} notify;
 };
-typedef struct _GnomeVFSLoadDirectoryJob GnomeVFSLoadDirectoryJob;
+typedef struct GnomeVFSLoadDirectoryJob GnomeVFSLoadDirectoryJob;
 
-struct _GnomeVFSXferJob {
+struct GnomeVFSXferJob {
 	struct {
 		gchar *source_directory_uri;
 		GList *source_name_list;
@@ -191,11 +191,11 @@ struct _GnomeVFSXferJob {
 		gint value;
 	} notify_answer;
 };
-typedef struct _GnomeVFSXferJob GnomeVFSXferJob;
+typedef struct GnomeVFSXferJob GnomeVFSXferJob;
 
 
 /* FIXME: Move private stuff.  */
-struct _GnomeVFSJob {
+struct GnomeVFSJob {
 	/* The slave thread that executes jobs (see module
            `gnome-vfs-job-slave.c'). */
 	GnomeVFSJobSlave *slave;
@@ -275,4 +275,4 @@ void		 gnome_vfs_job_go	(GnomeVFSJob *job);
 gboolean	 gnome_vfs_job_execute	(GnomeVFSJob *job);
 GnomeVFSResult	 gnome_vfs_job_cancel	(GnomeVFSJob *job);
 
-#endif /* _GNOME_VFS_JOB_PTHREAD_H */
+#endif /* GNOME_VFS_JOB_PTHREAD_H */

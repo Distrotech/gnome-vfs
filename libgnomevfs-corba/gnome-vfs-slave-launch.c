@@ -126,7 +126,7 @@ gnome_vfs_slave_launch (GNOME_VFS_Slave_Notify notify_object,
 	CORBA_Environment ev;
 	CORBA_char *notify_ior;
 	ProcessData *pdata;
-	gchar *args[4];
+	const gchar *args[4];
 	gchar *ior, *ior_fd_string;
 	gint ior_fd;
 	gint pipe_fd[2];

@@ -1,3 +1,128 @@
+2000-04-25  Darin Adler  <darin@eazel.com>
+
+	Changed the async. get_file_info to do multiple files at a time.
+	We don't even have a single-file version any more. We can always
+	re-add it if it turns out to be useful.
+	
+	* idl/gnome-vfs-slave.idl:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c
+	(report_failure_get_file_info_callback),
+	(report_failure_get_file_info), (gnome_vfs_async_get_file_info):
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(gnome_vfs_uri_list_to_corba_uri_list),
+	(corba_gnome_vfs_async_get_file_info):
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c
+	(strdup_or_null), (impl_Notify_get_file_info):
+	* libgnomevfs-corba/gnome-vfs-slave.c (impl_Request_get_file_info):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(pthread_gnome_vfs_async_get_file_info):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c
+	(dispatch_get_file_info_callback), (execute_get_file_info):
+	Changed get_file_info to work for multiple files.
+	
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Removed gnome_vfs_file_info_destroy macro.
+	* libgnomevfs/gnome-vfs-file-info.c:
+	(gnome_vfs_file_info_list_ref), (gnome_vfs_file_info_list_unref),
+	(gnome_vfs_file_info_list_copy), (gnome_vfs_file_info_list_free):
+	Added utility functions for manipulating a GList that contains
+	GnomeVFSFileInfo pointers in it.
+	
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_list_ref), (gnome_vfs_uri_list_unref),
+	(gnome_vfs_uri_list_copy), (gnome_vfs_uri_list_free):
+	Added utility functions for manipulating a GList that contains
+	GnomeVFSURI pointers in it.
+	
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_unescape_string):
+	Fixed a warning.
+	* libgnomevfs-corba/gnome-vfs-corba.c (gnome_vfs_corba_init):
+	Fixed a warning.
+	* libgnomevfs-corba/gnome-vfs-slave.c (init_corba):
+	Fixed a warning (bad OAF init call).
+	* modules/http-method.c (do_write): Fixed a warning.
+	* libgnomevfs-corba/gnome-vfs-slave.c (xfer_progress_callback):
+	Fixed a warning.
+	
+	* modules/extfs-method.c (free_directory_entries):
+	Replaced a lingering gnome_vfs_file_info_destroy with a call to
+	gnome_vfs_file_info_unref.
+	(do_open_directory): Got rid of #warning which was redundant with
+	a FIXME. (We'll be making all FIXME into bug reports.)
+	
+	* modules/ftp-method.c (ftpfs_open_socket), (retrieve_file),
+	(ftpfs_open), (ftpfs_create): Turned #warning into FIXME. (We'll
+	be making all FIXME into bug reports.)
+	(_ftpfs_read_directory): Fixed a bad bug where the mime type was
+	filled in without g_strdup. Potential memory trasher.
+	
+	* libgnomevfs-corba/gnome-vfs-slave.c (load_directory_not_sorted):
+	Replaced a lingering gnome_vfs_file_info_destroy with a call to
+	gnome_vfs_file_info_unref.
+	
+	* libgnomevfs/gnome-vfs-backend.c
+	(gnome_vfs_async_load_directory):
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	* libgnomevfs/gnome-vfs-directory-list.h:
+	(gnome_vfs_directory_list_load), (gnome_vfs_directory_list_load_from_uri):
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-directory.c (open_from_uri), (open),
+	(gnome_vfs_directory_open), (gnome_vfs_directory_open_from_uri)
+	(directory_visit_internal), (gnome_vfs_directory_visit_uri),
+	(gnome_vfs_directory_visit),
+	(gnome_vfs_directory_visit_files_at_uri),
+	(gnome_vfs_directory_visit_files):
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-ops.c:
+	(gnome_vfs_get_file_info), (gnome_vfs_get_file_info_uri),
+	(gnome_vfs_get_file_info_from_handle):
+	* libgnomevfs/gnome-vfs-private-ops.h:
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_get_file_info_uri_cancellable):
+	(gnome_vfs_get_file_info_from_handle_cancellable):
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(gnome_vfs_string_list_from_string_array)
+	(gnome_vfs_forkexec),
+	(gnome_vfs_process_run_cancellable):
+	* libgnomevfs/gnome-vfs-process.h:
+	* libgnomevfs/gnome-vfs-process.c (gnome_vfs_process_new):
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(corba_gnome_vfs_async_load_directory),
+	(corba_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-corba/gnome-vfs-slave-launch.c
+	(gnome_vfs_slave_launch):
+	* modules/extfs-method.c (do_open):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c (copy_meta_keys),
+	(pthread_gnome_vfs_async_get_file_info):
+	Added const as needed.
+	
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-context.c:
+	* libgnomevfs/gnome-vfs-directory-filter.c:
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-handle.h:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	* libgnomevfs/gnome-vfs-iobuf.c:
+	* libgnomevfs/gnome-vfs-messages.c:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-private.h:
+	* libgnomevfs/gnome-vfs-regexp-filter.c:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.c:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Got rid of leading underscores in many places where they were
+	unnecessary and violate the ANSI C standard. There are still more.
+	
 2000-04-25  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs-corba/Makefile.am: Use `OAF_CFLAGS' too to make sure
@@ -11,7 +136,6 @@
 	file is in guaranteed to be in it's final destination when the callback 
 	kicks in for it.
 	
-
 2000-04-19  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-file-info.c:
@@ -332,12 +456,15 @@
 	to XPG spec) should be abolished.
 
 2000-03-25 Yukihiro Nakai <nakai@gnome.gr.jp>
+	
 	* configure.in: Added Japanese translation from Akira Tagoh.
 
 2000-03-20 Pablo Saratxaga <pablo@mandrakesoft.com>
+	
 	* configure.in,po/lt.po: Added Lithuanian language file
 
 2000-03-13 Elliot Lee <sopwith@redhat.com>
+	
 	* modules/Makefile.am: Finish the help-method move. Move module-shared stuff to
 	libgnomevfs.
 	* libgnomevfs/Makefile.am: Install our "private" headers for use by modules.
@@ -347,6 +474,7 @@
 	* modules/Makefile.am: Move help-method over to nautilus.
 
 2000-03-10  Ian McKellar  <yakk@yakk.net>
+	
 	* modules/http-method.c
 	Added made do_get_file_info* understand WebDAV servers.
 	Also, made WebDAV collections return the mime-type special/webdav-directory.
@@ -373,14 +501,16 @@
 	allow for translations.  Also, code cleaned up a lot.
 
 2000-03-09  Ian McKellar  <yakk@yakk.net>
+	
 	* modules/http-method.c
 	Added (open|read|close)_directory support for WebDAV servers.
 
-	* configure.in modules/Makefile.am
+	* configure.in, modules/Makefile.am
 	Added checks for gnome-xml as are required for the WebDAV directory
 	code.
 
 2000-03-07  Ian McKellar  <yakk@yakk.net>
+	
 	* modules/http-method.c
 	Added PUT support (i.e. WebDAV or HTTP/1.1 file upload).
 

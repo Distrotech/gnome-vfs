@@ -37,7 +37,7 @@
    based on this assumption.  */
 
 
-struct _GnomeVFSCancellation {
+struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
 	gint pipe_out;

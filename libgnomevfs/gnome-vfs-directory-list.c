@@ -37,7 +37,7 @@
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSDirectoryList {
+struct GnomeVFSDirectoryList {
 	GList *entries;		/* GnomeVFSFileInfo */
 	GList *current_entry;
 	GList *last_entry;
@@ -579,7 +579,7 @@ GnomeVFSResult
 gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 			       const gchar *text_uri,
 			       GnomeVFSFileInfoOptions options,
-			       const char *meta_keys[],
+			       const gchar * const meta_keys[],
 			       const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *handle;
@@ -611,7 +611,7 @@ GnomeVFSResult
 gnome_vfs_directory_list_load_from_uri (GnomeVFSDirectoryList **list,
 					GnomeVFSURI *uri,
 					GnomeVFSFileInfoOptions options,
-					const gchar *meta_keys[],
+					const gchar * const meta_keys[],
 					const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *handle;

@@ -32,7 +32,7 @@
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSRegexpFilter {
+struct GnomeVFSRegexpFilter {
 	regex_t regex;
 };
 

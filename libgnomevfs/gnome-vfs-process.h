@@ -70,7 +70,7 @@ typedef void (* GnomeVFSProcessCallback) (GnomeVFSProcess *process,
 gboolean 	 gnome_vfs_process_init	(void);
 
 GnomeVFSProcess *gnome_vfs_process_new 	(const gchar *file_name,
-					 gchar *const argv[],
+					 const gchar * const argv[],
 					 GnomeVFSProcessOptions options,
 					 GnomeVFSProcessInitFunc init_func,
 					 gpointer init_data,

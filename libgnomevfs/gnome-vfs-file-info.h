@@ -21,8 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_FILE_INFO_H
-#define _GNOME_VFS_FILE_INFO_H
+#ifndef GNOME_VFS_FILE_INFO_H
+#define GNOME_VFS_FILE_INFO_H
 
 #include "gnome-vfs.h"
 
@@ -103,7 +103,9 @@ gint		 gnome_vfs_file_info_compare_for_sort_reversed
 						 const GnomeVFSFileInfo *b,
 						 const GnomeVFSDirectoryFilterType *sort_rules);
 
-/* FIXME this should go AWAY!  */
-#define gnome_vfs_file_info_destroy gnome_vfs_file_info_unref
+GList           *gnome_vfs_file_info_list_ref   (GList *list);
+GList           *gnome_vfs_file_info_list_unref (GList *list);
+GList           *gnome_vfs_file_info_list_copy  (GList *list);
+void             gnome_vfs_file_info_list_free  (GList *list);
 
-#endif                          /* _GNOME_VFS_FILE_INFO_H */
+#endif /* GNOME_VFS_FILE_INFO_H */

@@ -31,7 +31,7 @@
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSHandle {
+struct GnomeVFSHandle {
 	/* URI of the file being accessed through the handle.  */
 	GnomeVFSURI *uri;
 

@@ -679,14 +679,22 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	/* FIXME kill process? */
 }
 
+static gchar *
+strdup_or_null (const gchar *string)
+{
+	return string[0] == '\0' ? NULL : g_strdup (string);
+}
+
 static void
 impl_Notify_get_file_info (PortableServer_Servant servant,
-			   const GNOME_VFS_Result result,
-			   const GNOME_VFS_Slave_FileInfo *file_info,
+			   const GNOME_VFS_Slave_GetFileInfoResultList *results,
 			   CORBA_Environment *ev)
 {
 	GnomeVFSSlaveProcess *slave;
+	GList *result_list, *p;
+	GnomeVFSGetFileInfoResult *result_item;
 	GnomeVFSAsyncGetFileInfoCallback callback;
+	const GNOME_VFS_Slave_FileInfo *file_info;
 	GnomeVFSFileInfo *info;
 	char **meta_keys;
 	int num_meta_keys;
@@ -702,42 +710,54 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 	meta_keys = slave->op_info.directory.meta_keys;
 	num_meta_keys = slave->op_info.directory.num_meta_keys;
 
-	info = gnome_vfs_file_info_new ();
+	result_list = NULL;
+	for (i = 0; i < results->_length; i++) {
+		file_info = &results->_buffer[i].file_info;
 
-	memcpy (info, (GnomeVFSFileInfo *) file_info->data._buffer,
-		file_info->data._length);
-	info->refcount = 1; /* stupid memcpy, doh doh doh */
+		/* Create a file info object from the flat one on the wire. */
+		info = gnome_vfs_file_info_new ();
+		g_assert (file_info->data._length == sizeof (GnomeVFSFileInfo));
+		*info = * (GnomeVFSFileInfo *) file_info->data._buffer;
+		info->refcount = 1; /* stupid memcpy, doh doh doh */
 
-	if (file_info->name[0] == 0)
-		info->name = NULL;
-	else
-		info->name = g_strdup (file_info->name);
+		info->name = strdup_or_null (file_info->name);
+		info->mime_type = strdup_or_null (file_info->mime_type);
+		info->symlink_name = strdup_or_null (file_info->symlink_name);
+		
+		info->metadata_list = NULL;
+		set_metadata_from_response (info,
+					    (GNOME_VFS_Slave_MetadataResponseList *)&file_info->metadata_response,
+					    (const char **)meta_keys);
 
-	if (file_info->mime_type[0] == 0)
-		info->mime_type = NULL;
-	else
-		info->mime_type = g_strdup (file_info->mime_type);
+		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
 
-	if (file_info->symlink_name[0] == 0)
-		info->symlink_name = NULL;
-	else
-		info->symlink_name
-			= g_strdup (file_info->symlink_name);
+		result_item->uri = gnome_vfs_uri_new (results->_buffer[i].uri);
+		result_item->result = results->_buffer[i].result;
+		result_item->file_info = info;
 
-	info->metadata_list = NULL;
-	set_metadata_from_response (info,
-				    (GNOME_VFS_Slave_MetadataResponseList *)&file_info->metadata_response,
-				    (const char **)meta_keys);
+		result_list = g_list_prepend (result_list, result_item);
+	}
+	result_list = g_list_reverse (result_list);
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
 
 	callback = (GnomeVFSAsyncGetFileInfoCallback)slave->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) slave, result, info, slave->callback_data);
+	(* callback) ((GnomeVFSAsyncHandle *) slave,
+		      result_list,
+		      slave->callback_data);
+
+	for (p = result_list; p != NULL; p = p->next) {
+		result_item = p->data;
+
+		gnome_vfs_uri_unref (result_item->uri);
+		gnome_vfs_file_info_unref (result_item->file_info);
+		g_free (result_item);
+	}
+	g_list_free (result_list);
 
 	for (i = 0; i < num_meta_keys; i++)
 		g_free (meta_keys[i]);
 	g_free (meta_keys);
-	gnome_vfs_file_info_unref(info);
 }
 
 

@@ -208,7 +208,7 @@ free_directory_entries (GList *entries)
 		ExtfsDirectoryEntry *entry;
 
 		entry = p->data;
-		gnome_vfs_file_info_destroy (entry->info);
+		gnome_vfs_file_info_unref (entry->info);
 		g_free (entry->directory);
 		g_free (entry);
 	}
@@ -294,7 +294,7 @@ do_open (GnomeVFSMethod *method,
 	ExtfsHandle *handle;
 	gchar *script_path;
 	const gchar *stored_name;
-	gchar *args[6];
+	const gchar *args[6];
 	gchar *temp_name;
 	gboolean cleanup;
 	gint process_exit_value;
@@ -617,7 +617,6 @@ do_open_directory (GnomeVFSMethod *method,
 	handle = g_new (ExtfsDirectoryHandle, 1);
 	handle->directory = directory;
 	handle->prev_position = NULL;
-#warning "This meta_keys needs duplicating"
 	handle->meta_keys = meta_keys; /* FIXME currently unused FIXME strdup? */
 	handle->info_options = info_options; /* FIXME currently unused */
 	handle->filter = filter;

@@ -29,7 +29,7 @@
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSDirectoryFilter {
+struct GnomeVFSDirectoryFilter {
 	/* Filter type.  */
 	GnomeVFSDirectoryFilterType type;
 

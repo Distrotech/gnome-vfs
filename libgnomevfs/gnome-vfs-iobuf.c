@@ -34,15 +34,15 @@
 
 #define BUFFER_SIZE 4096
 
-struct _Buffer {
+struct Buffer {
 	gchar data[BUFFER_SIZE];
 	guint offset;
 	guint byte_count;
 	GnomeVFSResult last_error;
 };
-typedef struct _Buffer Buffer;
+typedef struct Buffer Buffer;
 
-struct _GnomeVFSIOBuf {
+struct GnomeVFSIOBuf {
 	gint fd;
 
 	Buffer input_buffer;

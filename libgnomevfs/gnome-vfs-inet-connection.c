@@ -40,7 +40,7 @@ extern int h_errno;
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSInetConnection {
+struct GnomeVFSInetConnection {
 	struct sockaddr_in addr;
 	guint sock;
 };

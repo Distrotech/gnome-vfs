@@ -26,7 +26,7 @@
 
 #include <stdio.h>
 
-struct _GnomeVFSContext {
+struct GnomeVFSContext {
         GnomeVFSCancellation *cancellation;
         GnomeVFSMessageCallbacks *callbacks;
         gchar* redirect_uri;

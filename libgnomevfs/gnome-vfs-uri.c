@@ -1213,3 +1213,29 @@ gnome_vfs_uri_hash (gconstpointer p)
 #undef HASH_STRING
 #undef HASH_NUMBER
 }
+
+GList *
+gnome_vfs_uri_list_ref (GList *list)
+{
+	g_list_foreach (list, (GFunc) gnome_vfs_uri_ref, NULL);
+	return list;
+}
+
+GList *
+gnome_vfs_uri_list_unref (GList *list)
+{
+	g_list_foreach (list, (GFunc) gnome_vfs_uri_unref, NULL);
+	return list;
+}
+
+GList *
+gnome_vfs_uri_list_copy (GList *list)
+{
+	return g_list_copy (gnome_vfs_uri_list_ref (list));
+}
+
+void
+gnome_vfs_uri_list_free (GList *list)
+{
+	g_list_free (gnome_vfs_uri_list_unref (list));
+}

@@ -495,3 +495,28 @@ gnome_vfs_file_info_compare_for_sort_reversed (const GnomeVFSFileInfo *a,
 	return 0 - gnome_vfs_file_info_compare_for_sort (a, b, sort_rules);
 }
 
+GList *
+gnome_vfs_file_info_list_ref (GList *list)
+{
+	g_list_foreach (list, (GFunc) gnome_vfs_file_info_ref, NULL);
+	return list;
+}
+
+GList *
+gnome_vfs_file_info_list_unref (GList *list)
+{
+	g_list_foreach (list, (GFunc) gnome_vfs_file_info_unref, NULL);
+	return list;
+}
+
+GList *
+gnome_vfs_file_info_list_copy (GList *list)
+{
+	return g_list_copy (gnome_vfs_file_info_list_ref (list));
+}
+
+void
+gnome_vfs_file_info_list_free (GList *list)
+{
+	g_list_free (gnome_vfs_file_info_list_unref (list));
+}

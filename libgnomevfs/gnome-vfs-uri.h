@@ -21,8 +21,8 @@
    Author: Ettore Perazzoli <ettore@comm2000.it>
 */
 
-#ifndef _GNOME_VFS_URI_H
-#define _GNOME_VFS_URI_H
+#ifndef GNOME_VFS_URI_H
+#define GNOME_VFS_URI_H
 
 GnomeVFSURI 	     *gnome_vfs_uri_new          (const gchar *text_uri);
 GnomeVFSURI 	     *gnome_vfs_uri_ref          (GnomeVFSURI *uri);
@@ -64,4 +64,9 @@ gint		     gnome_vfs_uri_hequal 	 (gconstpointer a,
 						  gconstpointer b);
 guint		     gnome_vfs_uri_hash		 (gconstpointer p);
 
-#endif /* _GNOME_VFS_URI_H */
+GList               *gnome_vfs_uri_list_ref      (GList *list);
+GList               *gnome_vfs_uri_list_unref    (GList *list);
+GList               *gnome_vfs_uri_list_copy     (GList *list);
+void                 gnome_vfs_uri_list_free     (GList *list);
+
+#endif /* GNOME_VFS_URI_H */

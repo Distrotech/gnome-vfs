@@ -374,28 +374,54 @@ G_STMT_START{								\
 			;						\
 }G_STMT_END
 
+static GNOME_VFS_Slave_URIList *
+gnome_vfs_uri_list_to_corba_uri_list (GList *vfs_uri_list)
+{
+	GNOME_VFS_Slave_URIList *corba_list;
+	GList *p;
+	int length, i;
+	char *string;
+
+	length = g_list_length (vfs_uri_list);
+
+	corba_list = GNOME_VFS_Slave_URIList__alloc ();
+	corba_list->_maximum = length;
+	corba_list->_length = length;
+	corba_list->_buffer = CORBA_sequence_CORBA_string_allocbuf (length);
+
+	for (i = 0, p = vfs_uri_list; i < length; i++, p = p->next) {
+		string = gnome_vfs_uri_to_string (p->data, GNOME_VFS_URI_HIDE_NONE);
+		corba_list->_buffer[i] = CORBA_string_dup (string);
+		g_free (string);
+	}
+
+	CORBA_sequence_set_release (corba_list, TRUE);
+
+	return corba_list;
+}
+
 GnomeVFSResult
 corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
-				     const char *uri,
+				     GList *uris,
 				     GnomeVFSFileInfoOptions options,
-				     const char *meta_keys[],
+				     const char * const meta_keys[],
 				     GnomeVFSAsyncGetFileInfoCallback callback,
 				     gpointer callback_data);
 GnomeVFSResult
 corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
-				     const char *uri,
+				     GList *uris,
 				     GnomeVFSFileInfoOptions options,
-				     const char *meta_keys[],
+				     const char * const meta_keys[],
 				     GnomeVFSAsyncGetFileInfoCallback callback,
 				     gpointer callback_data)
 {
 	GnomeVFSSlaveProcess *slave;
+	GNOME_VFS_Slave_URIList *uri_list;
 	GNOME_VFS_MetadataKeyList my_meta_keys;
 	int num_meta_keys;
 	GnomeVFSAsyncDirectoryOpInfo *op_info; /* piggyback */
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	slave = gnome_vfs_slave_process_new();
@@ -418,17 +444,22 @@ corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	slave->callback = callback;
 	slave->callback_data = callback_data;
 
+	uri_list = gnome_vfs_uri_list_to_corba_uri_list (uris);
+
 	my_meta_keys._length = my_meta_keys._maximum = num_meta_keys;
-	my_meta_keys._buffer = (char **)meta_keys;
+	my_meta_keys._buffer = (char **) meta_keys;
 	CORBA_sequence_set_release (&my_meta_keys, FALSE);
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_GET_FILE_INFO;
 
 	GNOME_VFS_Slave_Request_get_file_info (slave->request_objref,
-					       uri,
+					       uri_list,
 					       options,
 					       &my_meta_keys,
 					       &slave->ev);
+
+	CORBA_free (uri_list);
+
 	if (slave->ev._major != CORBA_NO_EXCEPTION) {
 		gnome_vfs_slave_process_destroy (slave);
 		return GNOME_VFS_ERROR_INTERNAL;
@@ -443,7 +474,7 @@ GnomeVFSResult
 corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				      const gchar *uri,
 				      GnomeVFSFileInfoOptions options,
-				      const gchar *meta_keys[],
+				      const gchar * const meta_keys[],
 				      GnomeVFSDirectorySortRule sort_rules[],
 				      gboolean reverse_order,
 				      GnomeVFSDirectoryFilterType filter_type,
@@ -456,7 +487,7 @@ GnomeVFSResult
 corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				      const gchar *uri,
 				      GnomeVFSFileInfoOptions options,
-				      const gchar *meta_keys[],
+				      const gchar * const meta_keys[],
 				      GnomeVFSDirectorySortRule sort_rules[],
 				      gboolean reverse_order,
 				      GnomeVFSDirectoryFilterType filter_type,
@@ -548,7 +579,7 @@ GnomeVFSResult
 corba_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					  GnomeVFSURI *uri,
 					  GnomeVFSFileInfoOptions options,
-					  const gchar *meta_keys[],
+					  const gchar * const meta_keys[],
 					  GnomeVFSDirectorySortRule sort_rules[],
 					  gboolean reverse_order,
 					  GnomeVFSDirectoryFilterType filter_type,
@@ -561,7 +592,7 @@ GnomeVFSResult
 corba_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					  GnomeVFSURI *uri,
 					  GnomeVFSFileInfoOptions options,
-					  const gchar *meta_keys[],
+					  const gchar * const meta_keys[],
 					  GnomeVFSDirectorySortRule sort_rules[],
 					  gboolean reverse_order,
 					  GnomeVFSDirectoryFilterType filter_type,

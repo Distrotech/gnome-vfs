@@ -351,13 +351,24 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 static void
 dispatch_get_file_info_callback (GnomeVFSJob *job)
 {
-	GnomeVFSAsyncGetFileInfoCallback callback = (GnomeVFSAsyncGetFileInfoCallback)job->callback;
+	GnomeVFSAsyncGetFileInfoCallback callback;
+	GList *result_list, *p;
+	GnomeVFSGetFileInfoResult *result_item;
+
+	callback = (GnomeVFSAsyncGetFileInfoCallback) job->callback;
+	result_list = job->info.get_file_info.notify.result_list;
 
 	(* callback) ((GnomeVFSAsyncHandle *) job,
-		      job->info.get_file_info.notify.result,
-		      job->info.get_file_info.notify.file_info,
+		      result_list,
 		      job->callback_data);
-	gnome_vfs_file_info_unref(job->info.get_file_info.notify.file_info);
+
+	for (p = result_list; p != NULL; p = p->next) {
+		result_item = p->data;
+
+		gnome_vfs_uri_unref (result_item->uri);
+		gnome_vfs_file_info_unref (result_item->file_info);
+	}
+	g_list_free (result_list);
 }
 
 static void
@@ -1098,23 +1109,41 @@ static gboolean
 execute_get_file_info (GnomeVFSJob *job)
 {
 	GnomeVFSGetFileInfoJob *gijob;
-	GnomeVFSResult notify_res;
+	GnomeVFSResult notify_result;
+	GList *p;
+	GnomeVFSGetFileInfoResult *result_item;
+	gboolean any_failure;
 
 	gijob = &job->info.get_file_info;
-	gijob->notify.file_info = gnome_vfs_file_info_new();
-	gijob->notify.result = gnome_vfs_get_file_info_uri_cancellable(gijob->request.uri,
-								       gijob->notify.file_info,
-								       gijob->request.options,
-								       (const char **)gijob->request.meta_keys,
-								       job->context);
-	gnome_vfs_uri_unref(gijob->request.uri);
-	g_strfreev(gijob->request.meta_keys);
 
-	notify_res = job_oneway_notify_and_close (job);
-	if(notify_res == GNOME_VFS_OK)
-		return notify_res;
-	else
-		return FALSE;
+	any_failure = FALSE;
+	gijob->notify.result_list = NULL;
+	for (p = gijob->request.uris; p != NULL; p = p->next) {
+		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
+
+		result_item->uri = gnome_vfs_uri_ref (p->data);
+		result_item->file_info = gnome_vfs_file_info_new ();
+
+		result_item->result = gnome_vfs_get_file_info_uri_cancellable
+			(result_item->uri,
+			 result_item->file_info,
+			 gijob->request.options,
+			 (const char **)gijob->request.meta_keys,
+			 job->context);
+
+		if (result_item->result != GNOME_VFS_OK) {
+			any_failure = TRUE;
+		}
+
+		gijob->notify.result_list = g_list_prepend
+			(gijob->notify.result_list, result_item);
+	}
+	gijob->notify.result_list = g_list_reverse (gijob->notify.result_list);
+
+	g_strfreev (gijob->request.meta_keys);
+
+	notify_result = job_oneway_notify_and_close (job);
+	return !any_failure && notify_result;
 }
 
 static gboolean

@@ -146,6 +146,7 @@ typedef struct {
 	GnomeVFSAsyncHandle *handle;
 	gpointer buffer;
 	GnomeVFSFileSize bytes_requested;
+	GList *uris;
 } CallbackData;
 
 static gboolean
@@ -529,12 +530,34 @@ static gboolean
 report_failure_get_file_info_callback (gpointer callback_data)
 {
 	CallbackData *data;
+	GList *p, *results;
+	GnomeVFSGetFileInfoResult *result;
 
 	data = callback_data;
+
+	/* Create a list of all the files with the same result for
+	 * each one.
+	 */
+	for (p = data->uris; p != NULL; p = p->next) {
+		result = g_new (GnomeVFSGetFileInfoResult, 1);
+		result->uri = p->data;
+		result->result = data->result;
+		result->file_info = NULL;
+		results = g_list_prepend (results, result);
+	}
+	results = g_list_reverse (results);
+
+	/* Call back. */
 	(* data->callback.get_file_info) (NULL,
-					  data->result,
-					  NULL,
+					  results,
 					  data->callback_data);
+
+	/* Free the results list. */
+	g_list_foreach (results, (GFunc) g_free, NULL);
+	g_list_free (results);
+
+	/* Free the callback data. */
+	gnome_vfs_file_info_list_free (data->uris);
 	g_free (data);
 
 	return FALSE;
@@ -542,6 +565,7 @@ report_failure_get_file_info_callback (gpointer callback_data)
 
 static void
 report_failure_get_file_info (GnomeVFSResult result,
+			      GList *uris,
 			      GnomeVFSAsyncGetFileInfoCallback callback,
 			      gpointer callback_data)
 {
@@ -554,30 +578,31 @@ report_failure_get_file_info (GnomeVFSResult result,
 	data->callback.get_file_info = callback;
 	data->result = result;
 	data->callback_data = callback_data;
+	data->uris = gnome_vfs_file_info_list_copy (uris);
 	g_idle_add (report_failure_get_file_info_callback, data);
 }
 
 void
 gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
-				const char *text_uri,
+				GList *uris,
 				GnomeVFSFileInfoOptions options,
-				const char *meta_keys[],
+				const char * const meta_keys[],
 				GnomeVFSAsyncGetFileInfoCallback callback,
 				gpointer callback_data)
 {
 	static GnomeVFSResult	 
 		(*real_gnome_vfs_async_get_file_info) (GnomeVFSAsyncHandle **handle_return,
-						       const char *text_uri,
+						       GList *uris,
 						       GnomeVFSFileInfoOptions options,
-						       const char *meta_keys[],
+						       const char * const meta_keys[],
 						       GnomeVFSAsyncGetFileInfoCallback callback,
 						       gpointer callback_data) = NULL;
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_get_file_info,
-		      (handle_return, text_uri, options, meta_keys,
+		      (handle_return, uris, options, meta_keys,
 		       callback, callback_data));
-	report_failure_get_file_info (result, callback, callback_data);
+	report_failure_get_file_info (result, uris, callback, callback_data);
 }
 
 static gboolean
@@ -654,7 +679,7 @@ void
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *uri,
 				GnomeVFSFileInfoOptions options,
-				const gchar *meta_keys[],
+				const gchar * const meta_keys[],
 				GnomeVFSDirectorySortRule sort_rules[],
 				gboolean reverse_order,
 				GnomeVFSDirectoryFilterType filter_type,
@@ -668,7 +693,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_load_directory) (GnomeVFSAsyncHandle **handle_return,
 							const gchar *uri,
 							GnomeVFSFileInfoOptions options,
-							const gchar *meta_keys[],
+							const gchar * const meta_keys[],
 							GnomeVFSDirectorySortRule sort_rules[],
 							gboolean reverse_order,
 							GnomeVFSDirectoryFilterType filter_type,

@@ -33,7 +33,7 @@
 gchar*          gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes);
 
 
-typedef enum _GnomeVFSURIEncoding {
+typedef enum GnomeVFSURIEncoding {
  GNOME_VFS_URI_ENCODING_XALPHAS  = 0x1,  /* Escape all unsafe characters   */
  GNOME_VFS_URI_ENCODING_XPALPHAS = 0x2,  /* As URL_XALPHAS but allows '+'  */
  GNOME_VFS_URI_ENCODING_PATH     = 0x4,  /* As URL_XALPHAS but allows '/'  */

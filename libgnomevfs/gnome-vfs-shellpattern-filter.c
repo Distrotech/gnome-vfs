@@ -33,7 +33,7 @@
 #include "gnome-vfs-private.h"
 
 
-struct _GnomeVFSShellpatternFilter {
+struct GnomeVFSShellpatternFilter {
 	gchar *pattern;
 	gint fnmatch_flags;
 };

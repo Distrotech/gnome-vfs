@@ -77,7 +77,6 @@ gnome_vfs_corba_init (gboolean deps_init)
 	if(deps_init && !gnome_vfs_get_orb ()) {
 		char *argv[] = {"fake", NULL};
 		int argc = 1;
-		CORBA_Environment ev;
 
 #if USING_OAF
 		gnome_init_with_popt_table("fake-an-app", VERSION,
@@ -85,6 +84,8 @@ gnome_vfs_corba_init (gboolean deps_init)
 					   oaf_popt_options, 0, NULL); 
 		oaf_init (argc, argv);
 #else
+		CORBA_Environment ev;
+
 		CORBA_exception_init(&ev);
 		gnome_CORBA_init("fake-an-app", VERSION, &argc, argv, GNORBA_INIT_SERVER_FUNC, &ev);
 		CORBA_exception_free(&ev);

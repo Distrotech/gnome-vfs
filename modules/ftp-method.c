@@ -356,7 +356,7 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 	
 	/* Hosts to connect to that start with a ! should use proxy */
 	if (conn->use_proxy){
-#warning "Mmisging"
+		/* FIXME: Missing code here. */
 #if 0
 		ftpfs_get_proxy_host_and_port (ftpfs_proxy_host, &host, &port);
 #endif
@@ -1689,7 +1689,7 @@ retrieve_file (ftpfs_direntry_t *fe)
 		
 		while (write (local_handle, buffer, n) < 0) {
 			if (errno == EINTR) {
-#warning Here
+			  /* FIXME: #warning Here */
 				ret = GNOME_VFS_ERROR_IO;
 				goto error_2;
 			} else
@@ -1876,7 +1876,7 @@ ftpfs_open (GnomeVFSMethod *method,
 	if (!ftpfs_uri)
 		return ret;
 
-#warning Perhaps we want to set linear *only* iff READ is specified (see write method)
+	/* FIXME: Perhaps we want to set linear *only* iff READ is specified (see write method) */
 	
 	ret = get_file_entry (
 		ftpfs_uri, FTPFS_DO_OPEN | FTPFS_DO_RESOLVE_SYMLINK,
@@ -1941,7 +1941,7 @@ ftpfs_create (GnomeVFSMethod *method,
 	if (!ftpfs_uri)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-#warning Perhaps we want to set linear *only* iff READ is specified (see write method)
+	/* FIXME: Perhaps we want to set linear *only* iff READ is specified (see write method) */
 	
 	ret = get_file_entry (
 		ftpfs_uri, FTPFS_DO_TRUNC | FTPFS_DO_RESOLVE_SYMLINK | FTPFS_DO_CREAT,
@@ -2268,7 +2268,7 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
-		info->mime_type = mime_type;
+		info->mime_type = g_strdup (mime_type);
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	}
 

@@ -37,9 +37,9 @@ static guint next_id = 1;
 
 G_LOCK_DEFINE_STATIC (next_id);
 
-typedef struct _Callback Callback;
+typedef struct Callback Callback;
 
-struct _Callback {
+struct Callback {
         GnomeVFSStatusCallback callback_func;
         gpointer user_data;
         GDestroyNotify notify_func;
@@ -85,7 +85,7 @@ callback_invoke (Callback *cb, const gchar* message)
         }
 }
 
-struct _GnomeVFSMessageCallbacks {
+struct GnomeVFSMessageCallbacks {
         GSList *list;
 #ifdef G_THREADS_ENABLED
 	GMutex *list_mutex;

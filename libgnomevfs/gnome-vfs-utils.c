@@ -190,12 +190,12 @@ gnome_vfs_unescape_string (gchar * str)
 			if (*p)
 				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p)), ++p;
 			
-			*q++;
+			q++;
 #else
 			if (*p)
 				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p));
 			
-			*p++, q++;
+			p++, q++;
 #endif
 		} else {
 			*q++ = *p++;

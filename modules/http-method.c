@@ -745,11 +745,11 @@ do_close (GnomeVFSMethod *method,
 	
 static GnomeVFSResult
 do_write (GnomeVFSMethod *method,
-	 GnomeVFSMethodHandle *method_handle,
-	 gpointer buffer,
-	 GnomeVFSFileSize num_bytes,
-	 GnomeVFSFileSize *bytes_read,
-	 GnomeVFSContext *context)
+	  GnomeVFSMethodHandle *method_handle,
+	  gconstpointer buffer,
+	  GnomeVFSFileSize num_bytes,
+	  GnomeVFSFileSize *bytes_read,
+	  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 

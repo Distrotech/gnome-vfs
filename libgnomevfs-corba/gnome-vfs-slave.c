@@ -52,6 +52,10 @@
 
 #include "gnome-vfs-slave.h"
 
+#if USING_OAF
+#include <liboaf/liboaf.h>
+#endif
+
 
 /*  #define SLAVE_DEBUG */
 
@@ -914,7 +918,7 @@ load_directory_not_sorted (const gchar *uri,
 	if (stopped)
 		GNOME_VFS_Slave_Notify_stop (notify_objref, ev);
 
-	gnome_vfs_file_info_destroy (info);
+	gnome_vfs_file_info_unref (info);
 }
 
 static void
@@ -995,7 +999,7 @@ load_directory_sorted (const gchar *uri,
 
 static void
 impl_Request_get_file_info (PortableServer_Servant servant,
-			    const CORBA_char *uri,
+			    const GNOME_VFS_Slave_URIList *uris,
 			    const GNOME_VFS_Slave_FileInfoOptions info_options,
 			    const GNOME_VFS_MetadataKeyList *meta_keys,
 			    CORBA_Environment *ev)
@@ -1005,8 +1009,9 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 	guint num_meta_keys;
 	int i, j;
 	GnomeVFSFileInfo *info;
-	GNOME_VFS_Slave_FileInfo out_info, *p;
+	GNOME_VFS_Slave_FileInfo *p;
 	guint info_size;
+	GNOME_VFS_Slave_GetFileInfoResultList *result_list;
 
 	num_meta_keys = meta_keys->_length;
 	if (num_meta_keys == 0) {
@@ -1020,49 +1025,61 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 		meta_key_array[i] = NULL;
 	}
 
-	info = gnome_vfs_file_info_new();
-	result = gnome_vfs_get_file_info(uri, info, info_options, (const char **)meta_key_array);
+	result_list = GNOME_VFS_Slave_GetFileInfoResultList__alloc ();
+	result_list->_length = uris->_length;
+	result_list->_maximum = uris->_length;
+	result_list->_buffer = CORBA_sequence_GNOME_VFS_Slave_GetFileInfoResult_allocbuf (uris->_length);
+	CORBA_sequence_set_release (result_list, TRUE);
 
-	p = &out_info;
-	info_size = sizeof (GnomeVFSFileInfo);
-	p->data._length = info_size;
-	p->data._maximum = info_size;
-	p->data._buffer = alloca(info_size);
-	CORBA_sequence_set_release (&p->data, FALSE);
+	for (i = 0; i < uris->_length; i++) {
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info (uris->_buffer[i], info, info_options,
+						  (const char **)meta_key_array);
+		
+		result_list->_buffer[i].uri = CORBA_string_dup (uris->_buffer[i]);
+		result_list->_buffer[i].result = result;
+		p = &result_list->_buffer[i].file_info;
 
-	p->name = info->name?info->name:"";
-	p->symlink_name = info->symlink_name?info->symlink_name:"";
-	p->mime_type = info->mime_type?info->mime_type:"";
-
-	p->metadata_response._length = num_meta_keys;
-	p->metadata_response._maximum = num_meta_keys;
-	p->metadata_response._buffer
-		= alloca(sizeof(GNOME_VFS_Slave_MetadataResponse) * num_meta_keys);
-	CORBA_sequence_set_release (&p->metadata_response, FALSE);
-
-	for (j = 0; j < num_meta_keys; j++) {
-		GNOME_VFS_Slave_MetadataResponse *mp;
-		gconstpointer value;
-		guint value_size;
-
-		mp = p->metadata_response._buffer + j;
-
-		mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[j], &value, &value_size);
-		if(mp->found) {
-			mp->value._length = value_size;
-			mp->value._buffer = (gpointer)value;
-		} else {
-			mp->value._length = 0;
-			mp->value._maximum = 0;
-			mp->value._buffer = NULL;
+		info_size = sizeof (GnomeVFSFileInfo);
+		p->data._length = info_size;
+		p->data._maximum = info_size;
+		p->data._buffer = alloca (info_size);
+		CORBA_sequence_set_release (&p->data, FALSE);
+		
+		p->name = info->name?info->name:"";
+		p->symlink_name = info->symlink_name?info->symlink_name:"";
+		p->mime_type = info->mime_type?info->mime_type:"";
+		
+		p->metadata_response._length = num_meta_keys;
+		p->metadata_response._maximum = num_meta_keys;
+		p->metadata_response._buffer
+			= alloca(sizeof(GNOME_VFS_Slave_MetadataResponse) * num_meta_keys);
+		CORBA_sequence_set_release (&p->metadata_response, FALSE);
+		
+		for (j = 0; j < num_meta_keys; j++) {
+			GNOME_VFS_Slave_MetadataResponse *mp;
+			gconstpointer value;
+			guint value_size;
+			
+			mp = p->metadata_response._buffer + j;
+			
+			mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[j], &value, &value_size);
+			if (mp->found) {
+				mp->value._length = value_size;
+				mp->value._buffer = (gpointer)value;
+			} else {
+				mp->value._length = 0;
+				mp->value._maximum = 0;
+				mp->value._buffer = NULL;
+			}
+			
+			CORBA_sequence_set_release (&mp->value, FALSE);
 		}
-
-		CORBA_sequence_set_release (&mp->value, FALSE);
 	}
 
-	GNOME_VFS_Slave_Notify_get_file_info (notify_objref, (GNOME_VFS_Result)result, &out_info, ev);
+	GNOME_VFS_Slave_Notify_get_file_info (notify_objref, result_list, ev);
 
-	gnome_vfs_file_info_unref(info);
+	CORBA_free (result_list);
 }
 
 static void
@@ -1218,7 +1235,7 @@ xfer_progress_ovewrite (const GnomeVFSXferProgressInfo *info,
 }
 
 static gint
-xfer_progress_callback (const GnomeVFSXferProgressInfo *info,
+xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 			gpointer data)
 {
 	CORBA_Environment *ev;
@@ -1376,7 +1393,7 @@ init_corba (int *argc,
 	PortableServer_POA poa;
 
 #if USING_OAF
-	orb = oaf_init (argc, argv);
+	orb = oaf_init (*argc, argv);
 #else
 	orb = gnorba_CORBA_init (argc, argv, GNORBA_INIT_SERVER_FUNC, ev);
 #endif

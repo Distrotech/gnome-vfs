@@ -46,7 +46,7 @@
 
 
 GList *
-gnome_vfs_string_list_from_string_array (const gchar *array[])
+gnome_vfs_string_list_from_string_array (const gchar * const array[])
 {
 	GList *list;
 	guint i;
@@ -219,7 +219,7 @@ shut_down_file_descriptors (void)
 
 pid_t
 gnome_vfs_forkexec (const gchar *file_name,
-		    gchar *const argv[],
+		    const gchar * const argv[],
 		    GnomeVFSProcessOptions options,
 		    GnomeVFSProcessInitFunc init_func,
 		    gpointer init_data)
@@ -235,9 +235,9 @@ gnome_vfs_forkexec (const gchar *file_name,
 		if (options & GNOME_VFS_PROCESS_CLOSEFDS)
 			shut_down_file_descriptors ();
 		if (options & GNOME_VFS_PROCESS_USEPATH)
-			execvp (file_name, argv);
+			execvp (file_name, (char **) argv);
 		else
-			execv (file_name, argv);
+			execv (file_name, (char **) argv);
 		_exit (1);
 	}
 
@@ -260,7 +260,7 @@ gnome_vfs_forkexec (const gchar *file_name,
  **/
 GnomeVFSProcessResult
 gnome_vfs_process_run_cancellable (const gchar *file_name,
-				   gchar *const argv[],
+				   const gchar * const argv[],
 				   GnomeVFSProcessOptions options,
 				   GnomeVFSCancellation *cancellation,
 				   guint *exit_value)

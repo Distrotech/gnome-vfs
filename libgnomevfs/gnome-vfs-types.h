@@ -21,8 +21,8 @@
    Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
-#ifndef _GNOME_VFS_TYPES_H
-#define _GNOME_VFS_TYPES_H
+#ifndef GNOME_VFS_TYPES_H
+#define GNOME_VFS_TYPES_H
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -35,7 +35,7 @@
 /* IMPORTANT NOTICE: If you add error types here, please also add the
    corresponsing descriptions in `gnome-vfs-result.c'.  Moreover, *always* add
    new values at the end of the list, and *never* remove values.  */
-enum _GnomeVFSResult {
+enum GnomeVFSResult {
 	GNOME_VFS_OK,
 	GNOME_VFS_ERROR_NOTFOUND,
 	GNOME_VFS_ERROR_GENERIC,
@@ -76,20 +76,20 @@ enum _GnomeVFSResult {
 	GNOME_VFS_ERROR_NAMETOOLONG,
 	GNOME_VFS_NUM_ERRORS
 };
-typedef enum _GnomeVFSResult GnomeVFSResult;
+typedef enum GnomeVFSResult GnomeVFSResult;
 
 /* Open mode.  If you don't set `GNOME_VFS_OPEN_RANDOM', you have to access the
    file sequentially.  */
-enum _GnomeVFSOpenMode {
+enum GnomeVFSOpenMode {
 	GNOME_VFS_OPEN_NONE = 0,
 	GNOME_VFS_OPEN_READ = 1 << 0,
 	GNOME_VFS_OPEN_WRITE = 1 << 1,
 	GNOME_VFS_OPEN_RANDOM = 1 << 2
 };
-typedef enum _GnomeVFSOpenMode GnomeVFSOpenMode;
+typedef enum GnomeVFSOpenMode GnomeVFSOpenMode;
 
 /* The file type.  */
-enum _GnomeVFSFileType {
+enum GnomeVFSFileType {
 	GNOME_VFS_FILE_TYPE_UNKNOWN,
 	GNOME_VFS_FILE_TYPE_REGULAR,
 	GNOME_VFS_FILE_TYPE_DIRECTORY,
@@ -99,11 +99,11 @@ enum _GnomeVFSFileType {
 	GNOME_VFS_FILE_TYPE_BLOCKDEVICE,
 	GNOME_VFS_FILE_TYPE_BROKENSYMLINK
 };
-typedef enum _GnomeVFSFileType GnomeVFSFileType;
+typedef enum GnomeVFSFileType GnomeVFSFileType;
 
 /* File permissions.  These are the same as the Unix ones, but we wrap them
    into a nicer VFS-like enum.  */
-enum _GnomeVFSFilePermissions {
+enum GnomeVFSFilePermissions {
 	GNOME_VFS_PERM_USER_READ = S_IRUSR,
 	GNOME_VFS_PERM_USER_WRITE = S_IWUSR,
 	GNOME_VFS_PERM_USER_EXEC = S_IXUSR,
@@ -117,15 +117,15 @@ enum _GnomeVFSFilePermissions {
 	GNOME_VFS_PERM_OTHER_EXEC = S_IXOTH,
 	GNOME_VFS_PERM_OTHER_ALL = S_IROTH | S_IWOTH | S_IXOTH
 };
-typedef enum _GnomeVFSFilePermissions GnomeVFSFilePermissions;
+typedef enum GnomeVFSFilePermissions GnomeVFSFilePermissions;
 
 /* This is used to specify the start position for seek operations.  */
-enum _GnomeVFSSeekPosition {
+enum GnomeVFSSeekPosition {
 	GNOME_VFS_SEEK_START,
 	GNOME_VFS_SEEK_CURRENT,
 	GNOME_VFS_SEEK_END
 };
-typedef enum _GnomeVFSSeekPosition GnomeVFSSeekPosition;
+typedef enum GnomeVFSSeekPosition GnomeVFSSeekPosition;
 
 
 /* Basic types.  */
@@ -139,13 +139,13 @@ typedef glong  GnomeVFSFileOffset;
 #endif
 
 /* A file handle.  */
-typedef struct _GnomeVFSHandle GnomeVFSHandle;
+typedef struct GnomeVFSHandle GnomeVFSHandle;
 
 /* Structure describing an access method.  */
-typedef struct _GnomeVFSMethod GnomeVFSMethod;
+typedef struct GnomeVFSMethod GnomeVFSMethod;
 
 /* This describes a URI element.  */
-struct _GnomeVFSURI {
+struct GnomeVFSURI {
 	/* Reference count.  */
 	guint ref_count;
 
@@ -161,14 +161,14 @@ struct _GnomeVFSURI {
 	GnomeVFSMethod *method;
 
 	/* Pointer to the parent element, or NULL for toplevel elements.  */
-	struct _GnomeVFSURI *parent;
+	struct GnomeVFSURI *parent;
 };
-typedef struct _GnomeVFSURI GnomeVFSURI;
+typedef struct GnomeVFSURI GnomeVFSURI;
 
 /* This is the toplevel URI element.  A toplevel method implementations should
    cast the `GnomeVFSURI' argument to this type to get the additional host/auth
    information.  If any of the elements is 0, it is unspecified.  */
-struct _GnomeVFSToplevelURI {
+struct GnomeVFSToplevelURI {
 	/* Base object.  */
 	GnomeVFSURI uri;
 
@@ -183,11 +183,11 @@ struct _GnomeVFSToplevelURI {
 	/* The parent URN, if it exists */
 	gchar *urn;
 };
-typedef struct _GnomeVFSToplevelURI GnomeVFSToplevelURI;
+typedef struct GnomeVFSToplevelURI GnomeVFSToplevelURI;
 
 /* This is used for hiding information when transforming the GnomeVFSURI into a
    string.  */
-enum _GnomeVFSURIHideOptions {
+enum GnomeVFSURIHideOptions {
 	GNOME_VFS_URI_HIDE_NONE = 0,
 	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,
 	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,
@@ -195,21 +195,21 @@ enum _GnomeVFSURIHideOptions {
 	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3,
 	GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD = 1 << 4
 };
-typedef enum _GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
+typedef enum GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 
 
 /* File information, a la stat(2).  */
 /* FIXME: Private stuff.  */
 
-struct _GnomeVFSFileMetadata {
+struct GnomeVFSFileMetadata {
 	gchar *key;
 	gpointer *value;
 	guint value_size;
 };
-typedef struct _GnomeVFSFileMetadata GnomeVFSFileMetadata;
+typedef struct GnomeVFSFileMetadata GnomeVFSFileMetadata;
 
 /* File flags.  */
-enum _GnomeVFSFileFlags {
+enum GnomeVFSFileFlags {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
 	/* Whether the file is a symlink.  */
 	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
@@ -222,7 +222,7 @@ enum _GnomeVFSFileFlags {
 	/* Whether the file has the sticky bit set.  */
 	GNOME_VFS_FILE_FLAGS_STICKY = 1 << 4
 };
-typedef enum _GnomeVFSFileFlags GnomeVFSFileFlags;
+typedef enum GnomeVFSFileFlags GnomeVFSFileFlags;
 
 /* Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
 
@@ -231,7 +231,7 @@ typedef enum _GnomeVFSFileFlags GnomeVFSFileFlags;
    it shouldn't be accessed directly anyway.
  */
 
-enum _GnomeVFSFileInfoFields {
+enum GnomeVFSFileInfoFields {
 	GNOME_VFS_FILE_INFO_FIELDS_NONE = 0,
 	GNOME_VFS_FILE_INFO_FIELDS_TYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS = 1 << 1,
@@ -248,9 +248,9 @@ enum _GnomeVFSFileInfoFields {
 	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
 	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13
 };
-typedef enum _GnomeVFSFileInfoFields GnomeVFSFileInfoFields;
+typedef enum GnomeVFSFileInfoFields GnomeVFSFileInfoFields;
 
-struct _GnomeVFSFileInfo {
+struct GnomeVFSFileInfo {
 	/* Base name of the file (no path).  */
 	gchar *name;
 
@@ -307,34 +307,34 @@ struct _GnomeVFSFileInfo {
 
 	guint refcount;
 };
-typedef struct _GnomeVFSFileInfo GnomeVFSFileInfo;
+typedef struct GnomeVFSFileInfo GnomeVFSFileInfo;
 
-enum _GnomeVFSFileInfoOptions {
+enum GnomeVFSFileInfoOptions {
 	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME name sucks */
 	GNOME_VFS_FILE_INFO_GETMIMETYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FASTMIMETYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FOLLOWLINKS = 1 << 2
 };
-typedef enum _GnomeVFSFileInfoOptions GnomeVFSFileInfoOptions;
+typedef enum GnomeVFSFileInfoOptions GnomeVFSFileInfoOptions;
 
-enum _GnomeVFSSetFileInfoMask {
+enum GnomeVFSSetFileInfoMask {
 	GNOME_VFS_SET_FILE_INFO_NONE = 0,
 	GNOME_VFS_SET_FILE_INFO_NAME = 1 << 0,
 	GNOME_VFS_SET_FILE_INFO_PERMISSIONS = 1 << 1,
 	GNOME_VFS_SET_FILE_INFO_OWNER = 1 << 2,
 	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3
 };
-typedef enum _GnomeVFSSetFileInfoMask GnomeVFSSetFileInfoMask;
+typedef enum GnomeVFSSetFileInfoMask GnomeVFSSetFileInfoMask;
 
 
 /* Directory stuff.  */
 
-typedef struct _GnomeVFSDirectoryList GnomeVFSDirectoryList;
+typedef struct GnomeVFSDirectoryList GnomeVFSDirectoryList;
 typedef gpointer GnomeVFSDirectoryListPosition;
 
 #define GNOME_VFS_DIRECTORY_LIST_POSITION_NONE NULL
 
-enum _GnomeVFSDirectorySortRule {
+enum GnomeVFSDirectorySortRule {
 	GNOME_VFS_DIRECTORY_SORT_NONE,
 	GNOME_VFS_DIRECTORY_SORT_DIRECTORYFIRST,
 	GNOME_VFS_DIRECTORY_SORT_BYNAME,
@@ -346,16 +346,16 @@ enum _GnomeVFSDirectorySortRule {
 	GNOME_VFS_DIRECTORY_SORT_BYCTIME,
 	GNOME_VFS_DIRECTORY_SORT_BYMIMETYPE
 };
-typedef enum _GnomeVFSDirectorySortRule GnomeVFSDirectorySortRule;
+typedef enum GnomeVFSDirectorySortRule GnomeVFSDirectorySortRule;
 
-enum _GnomeVFSDirectoryFilterType {
+enum GnomeVFSDirectoryFilterType {
 	GNOME_VFS_DIRECTORY_FILTER_NONE,
 	GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN,
 	GNOME_VFS_DIRECTORY_FILTER_REGEXP
 };
-typedef enum _GnomeVFSDirectoryFilterType GnomeVFSDirectoryFilterType;
+typedef enum GnomeVFSDirectoryFilterType GnomeVFSDirectoryFilterType;
 
-enum _GnomeVFSDirectoryFilterOptions {
+enum GnomeVFSDirectoryFilterOptions {
 	GNOME_VFS_DIRECTORY_FILTER_DEFAULT = 0,
 	GNOME_VFS_DIRECTORY_FILTER_NODIRS = 1 << 0,
 	GNOME_VFS_DIRECTORY_FILTER_DIRSONLY = 1 << 1,
@@ -365,9 +365,9 @@ enum _GnomeVFSDirectoryFilterOptions {
 	GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR = 1 << 5,
 	GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR = 1 << 6
 };
-typedef enum _GnomeVFSDirectoryFilterOptions GnomeVFSDirectoryFilterOptions;
+typedef enum GnomeVFSDirectoryFilterOptions GnomeVFSDirectoryFilterOptions;
 
-enum _GnomeVFSDirectoryFilterNeeds {
+enum GnomeVFSDirectoryFilterNeeds {
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING = 0,
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_NAME = 1 << 0,
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE = 1 << 1,
@@ -375,16 +375,16 @@ enum _GnomeVFSDirectoryFilterNeeds {
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE = 1 << 3,
 	GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA = 1 << 4
 };
-typedef enum _GnomeVFSDirectoryFilterNeeds GnomeVFSDirectoryFilterNeeds;
+typedef enum GnomeVFSDirectoryFilterNeeds GnomeVFSDirectoryFilterNeeds;
 
-enum _GnomeVFSDirectoryVisitOptions {
+enum GnomeVFSDirectoryVisitOptions {
 	GNOME_VFS_DIRECTORY_VISIT_DEFAULT = 0,
 	GNOME_VFS_DIRECTORY_VISIT_SAMEFS = 1 << 0,
 	GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK = 1 << 1
 };
-typedef enum _GnomeVFSDirectoryVisitOptions GnomeVFSDirectoryVisitOptions;
+typedef enum GnomeVFSDirectoryVisitOptions GnomeVFSDirectoryVisitOptions;
 
-typedef struct _GnomeVFSDirectoryFilter GnomeVFSDirectoryFilter;
+typedef struct GnomeVFSDirectoryFilter GnomeVFSDirectoryFilter;
 
 typedef gboolean (* GnomeVFSDirectoryFilterFunc) (const GnomeVFSFileInfo *info,
 						  gpointer data);
@@ -399,7 +399,7 @@ typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 
 
 /* Xfer options.  */
-enum _GnomeVFSXferOptions {
+enum GnomeVFSXferOptions {
 	GNOME_VFS_XFER_DEFAULT = 0,
 	GNOME_VFS_XFER_PRESERVE = 1 << 0,
 	GNOME_VFS_XFER_FOLLOWLINKS = 1 << 1,
@@ -413,10 +413,10 @@ enum _GnomeVFSXferOptions {
 	GNOME_VFS_XFER_USE_UNIQUE_NAMES = 1 << 9
 	
 };
-typedef enum _GnomeVFSXferOptions GnomeVFSXferOptions;
+typedef enum GnomeVFSXferOptions GnomeVFSXferOptions;
 
 /* Progress status, to be reported to the caller of the transfer operation.  */
-enum _GnomeVFSXferProgressStatus {
+enum GnomeVFSXferProgressStatus {
 	GNOME_VFS_XFER_PROGRESS_STATUS_OK = 0,
 	GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR = 1,
 	GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE = 2,
@@ -424,10 +424,10 @@ enum _GnomeVFSXferProgressStatus {
 	   supply a new unique name */
 	GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE = 3
 };
-typedef enum _GnomeVFSXferProgressStatus GnomeVFSXferProgressStatus;
+typedef enum GnomeVFSXferProgressStatus GnomeVFSXferProgressStatus;
 
 /* The different ways to deal with overwriting during a transfer operation.  */
-enum _GnomeVFSXferOverwriteMode {
+enum GnomeVFSXferOverwriteMode {
 	/* Interrupt transferring with an error (GNOME_VFS_ERROR_FILEEXISTS).  */
 	GNOME_VFS_XFER_OVERWRITE_MODE_ABORT = 0,
 	/* Invoke the progress callback with a
@@ -438,20 +438,20 @@ enum _GnomeVFSXferOverwriteMode {
 	/* Ignore files silently.  */
 	GNOME_VFS_XFER_OVERWRITE_MODE_SKIP = 3
 };
-typedef enum _GnomeVFSXferOverwriteMode GnomeVFSXferOverwriteMode;
+typedef enum GnomeVFSXferOverwriteMode GnomeVFSXferOverwriteMode;
 
 /* This defines the actions to perform before a file is being overwritten
    (i.e., these are the answers that can be given to a replace query).  */
-enum _GnomeVFSXferOverwriteAction {
+enum GnomeVFSXferOverwriteAction {
 	GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT = 0,
 	GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE = 1,
 	GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE_ALL = 2,
 	GNOME_VFS_XFER_OVERWRITE_ACTION_SKIP = 3,
 	GNOME_VFS_XFER_OVERWRITE_ACTION_SKIP_ALL = 4,
 };
-typedef enum _GnomeVFSXferOverwriteAction GnomeVFSXferOverwriteAction;
+typedef enum GnomeVFSXferOverwriteAction GnomeVFSXferOverwriteAction;
 
-enum _GnomeVFSXferErrorMode {
+enum GnomeVFSXferErrorMode {
 	/* Interrupt transferring with an error (code returned is code of the
            operation that has caused the error).  */
 	GNOME_VFS_XFER_ERROR_MODE_ABORT = 0,
@@ -459,11 +459,11 @@ enum _GnomeVFSXferErrorMode {
 	   `GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR' status code. */
 	GNOME_VFS_XFER_ERROR_MODE_QUERY = 1,
 };
-typedef enum _GnomeVFSXferErrorMode GnomeVFSXferErrorMode;
+typedef enum GnomeVFSXferErrorMode GnomeVFSXferErrorMode;
 
 /* This defines the possible actions to be performed after an error has
    occurred.  */
-enum _GnomeVFSXferErrorAction {
+enum GnomeVFSXferErrorAction {
 	/* Interrupt operation and return `GNOME_VFS_ERROR_INTERRUPTED'.  */
 	GNOME_VFS_XFER_ERROR_ACTION_ABORT = 0,
 	/* Try the same operation again.  */
@@ -471,13 +471,13 @@ enum _GnomeVFSXferErrorAction {
 	/* Skip this file and continue normally.  */
 	GNOME_VFS_XFER_ERROR_ACTION_SKIP = 2
 };
-typedef enum _GnomeVFSXferErrorAction GnomeVFSXferErrorAction;
+typedef enum GnomeVFSXferErrorAction GnomeVFSXferErrorAction;
 
 /* This specifies the current phase in the transfer operation.  Phases whose
    comments are marked with `(*)' are always reported in "normal" (i.e. no
    error) condition; the other ones are only reported if an error happens in
    that specific phase.  */
-enum _GnomeVFSXferPhase {
+enum GnomeVFSXferPhase {
 	/* Initial phase */
 	GNOME_VFS_XFER_PHASE_INITIAL,
 	/* Collecting file list */
@@ -510,11 +510,11 @@ enum _GnomeVFSXferPhase {
 	GNOME_VFS_XFER_PHASE_COMPLETED,
 	GNOME_VFS_XFER_NUM_PHASES
 };
-typedef enum _GnomeVFSXferPhase GnomeVFSXferPhase;
+typedef enum GnomeVFSXferPhase GnomeVFSXferPhase;
 
 /* Progress information for the transfer operation.  This is especially useful
    for interactive programs.  */
-struct _GnomeVFSXferProgressInfo {
+struct GnomeVFSXferProgressInfo {
 	/* Progress status (see above for a description).  */
 	GnomeVFSXferProgressStatus status;
 
@@ -558,7 +558,7 @@ struct _GnomeVFSXferProgressInfo {
 
 };
 
-typedef struct _GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
+typedef struct GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
 
 /* This is the prototype for functions called during a transfer operation to
    report progress.  If the return value is `FALSE' (0), the operation is
@@ -583,7 +583,7 @@ typedef gint (* GnomeVFSXferProgressCallback) 	(GnomeVFSXferProgressInfo *info,
 
 /* Types for asynchronous operations.  */
 
-typedef struct _GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
+typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 
 typedef void	(* GnomeVFSAsyncOpenCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
@@ -617,11 +617,16 @@ typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSFileSize bytes_written,
 						 gpointer callback_data);
 
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+	GnomeVFSFileInfo *file_info;
+} GnomeVFSGetFileInfoResult;
+
 typedef void    (* GnomeVFSAsyncGetFileInfoCallback)
-                                                 (GnomeVFSAsyncHandle *handle,
-						  GnomeVFSResult result,
-						  GnomeVFSFileInfo *file_info,
-						  gpointer callback_data);
+                                                (GnomeVFSAsyncHandle *handle,
+						 GList *results, /* GnomeVFSGetFileInfoResult* items */
+						 gpointer callback_data);
 
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
 						(GnomeVFSAsyncHandle *handle,

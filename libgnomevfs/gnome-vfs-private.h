@@ -21,8 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifndef _GNOME_VFS_PRIVATE_H
-#define _GNOME_VFS_PRIVATE_H
+#ifndef GNOME_VFS_PRIVATE_H
+#define GNOME_VFS_PRIVATE_H
 
 #include <config.h>
 #include <glib.h>

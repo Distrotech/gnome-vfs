@@ -45,6 +45,15 @@ module Slave {
 	typedef unsigned short XferOverwriteMode;
 
 	typedef sequence<string> FileNameList;
+	typedef sequence<string> URIList;
+
+        struct GetFileInfoResult {
+		string uri;
+		Result result;
+		FileInfo file_info;
+        };
+
+	typedef sequence<GetFileInfoResult> GetFileInfoResultList;
 
 	interface FileHandle;
 	interface Notify;
@@ -72,7 +81,7 @@ module Slave {
 					       in boolean exclusive,
 					       in Permission perm);
 
-	        oneway void get_file_info (in string uri,
+	        oneway void get_file_info (in URIList uri,
 					   in FileInfoOptions info_options,
 					   in MetadataKeyList meta_keys);
 
@@ -119,7 +128,7 @@ module Slave {
 		/* Open done.  Read/write from/to Unix domain socket
                    `channel_path' to access the file.  */
 		void open_as_channel (in Result result,
-					     in string channel_path);
+				      in string channel_path);
 
 		/* Close done.  */
 		void close (in Result result);
@@ -129,13 +138,13 @@ module Slave {
 
 		/* Write done.  */
 		void write (in Result result,
-				   in unsigned long bytes_written);
+			    in unsigned long bytes_written);
 
 		/* Directory segment loaded.  */
 		oneway void load_directory (in Result result, in FileInfoList files);
 
 	        /* File info is here. */
-	        oneway void get_file_info (in Result result, in FileInfo file_info);
+	        oneway void get_file_info (in GetFileInfoResultList results);
 
 		/* Files have been collected (if necessary), and the transfer
                    begins.  If `FALSE' is returned, operation is stopped.  */

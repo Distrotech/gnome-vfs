@@ -21,8 +21,8 @@
    Author: Ettore Perazzoli <ettore@comm2000.it>
 */
 
-#ifndef _GNOME_VFS_HANDLE_H
-#define _GNOME_VFS_HANDLE_H
+#ifndef GNOME_VFS_HANDLE_H
+#define GNOME_VFS_HANDLE_H
 
 GnomeVFSHandle *gnome_vfs_handle_new		(GnomeVFSURI *uri,
 						 GnomeVFSMethodHandle
@@ -71,4 +71,4 @@ GnomeVFSResult gnome_vfs_handle_do_truncate     (GnomeVFSHandle *handle,
 						 GnomeVFSFileSize length,
 						 GnomeVFSContext *context);
 
-#endif /* _GNOME_VFS_HANDLE_H */
+#endif /* GNOME_VFS_HANDLE_H */

@@ -21,18 +21,18 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifndef _GNOME_VFS_PRIVATE_TYPES_H
-#define _GNOME_VFS_PRIVATE_TYPES_H
+#ifndef GNOME_VFS_PRIVATE_TYPES_H
+#define GNOME_VFS_PRIVATE_TYPES_H
 
 #include <glib.h>
 
 /* Opaque types.  */
 
-typedef struct _GnomeVFSContext GnomeVFSContext;
-typedef struct _GnomeVFSCancellation GnomeVFSCancellation;
-typedef struct _GnomeVFSIOBuf GnomeVFSIOBuf;
-typedef struct _GnomeVFSInetConnection GnomeVFSInetConnection;
-typedef struct _GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
+typedef struct GnomeVFSContext GnomeVFSContext;
+typedef struct GnomeVFSCancellation GnomeVFSCancellation;
+typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
+typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
+typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
 typedef gpointer GnomeVFSMethodHandle;
 
 
@@ -181,7 +181,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodSetFileInfo)
 
 /* Structure defining an access method.	 This is also defined as an
    opaque type in `gnome-vfs-types.h'.	*/
-struct _GnomeVFSMethod {
+struct GnomeVFSMethod {
 	GnomeVFSMethodOpenFunc open;
 	GnomeVFSMethodCreateFunc create;
 	GnomeVFSMethodCloseFunc close;
@@ -209,7 +209,7 @@ struct _GnomeVFSMethod {
 
 /* VFS Transform */
 
-typedef struct _GnomeVFSTransform GnomeVFSTransform;
+typedef struct GnomeVFSTransform GnomeVFSTransform;
 typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc)(const char *method_name, const char *config_args);
 
 typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
@@ -217,7 +217,7 @@ typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
 						  gchar **new_uri,
 						  GnomeVFSContext *context);
 
-struct _GnomeVFSTransform {
+struct GnomeVFSTransform {
 	GnomeVFSTransformFunc transform;
 };
 
@@ -252,7 +252,7 @@ typedef struct GnomeVFSProgressCallbackState {
 } GnomeVFSProgressCallbackState;
 
 
-typedef struct _GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;
-typedef struct _GnomeVFSRegexpFilter GnomeVFSRegexpFilter;
+typedef struct GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;
+typedef struct GnomeVFSRegexpFilter GnomeVFSRegexpFilter;
 
 #endif /* _GNOME_VFS_PRIVATE_TYPES_H */
