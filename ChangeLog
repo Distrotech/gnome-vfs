@@ -1,5 +1,13 @@
 2005-01-25  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update for release.
+
+	* configure.in: 
+	Bump version to 2.9.90
+	
+2005-01-25  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-xfer.c (copy_directory):
 	Support setgid directories.
 	Patch from Sjoerd Simons <sjoerd@luon.net>
@@ -80,6 +88,8 @@
 	Implement joliet label support.
 
 	Patch from  leon breedt <bitserf@gmail.com>
+
+=== gnome-vfs 2.9.3 ===
 
 2005-01-11  Alexander Larsson  <alexl@redhat.com>
 

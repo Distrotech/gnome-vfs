@@ -1,3 +1,21 @@
+gnome-vfs 2.9.90
+
+    * Features:
+	+ support for joliet cdrom labels
+	+ allow eject of unmounted volumes
+	+ use posix_fadvice when doing large copies
+	  to avoid bad cache behaviour
+	+ Better smb authentication behaviour,
+	  now uses the same password on all the shares
+	  on a server.
+	+ Update to the API for no auto login that was
+	  commited to samba
+	+ Support setgid directories in gnome-vfs-xfer
+    
+    * Bugs fixed:
+	+ sftp: fix crash
+	+ fix deadlock in gnome-vfs daemon with hal enabled
+	
 gnome-vfs 2.9.3
 
     * Features:
@@ -5,7 +23,7 @@ gnome-vfs 2.9.3
 	+ Added GNOME_VFS_OPEN_TRUNCATE open flag
     
     * Bugs fixed:
-	+ ssh: New mechanism for handling authentication
+	+ smb: New mechanism for handling authentication
 	
 	  NOTE: This should work a lot better then before, but unless
 	  you first apply the samba patch from
