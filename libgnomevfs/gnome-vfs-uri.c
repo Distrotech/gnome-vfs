@@ -585,7 +585,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	GnomeVFSTransform *trans;
 	GnomeVFSToplevelURI *toplevel;
 	GnomeVFSURI *uri, *new_uri;
-	const gchar *p, *p1, *p2;
+	const gchar *p, *p1;
 	gchar *method_string;
 	gchar *new_uri_string = NULL;
 
@@ -646,7 +646,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 		return uri;
 	}
 
-	new_uri = parse_uri_substring (p2, uri);
+	new_uri = parse_uri_substring (p1, uri);
 
 	g_free (new_uri_string);
 

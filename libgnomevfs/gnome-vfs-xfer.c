@@ -96,6 +96,7 @@ init_progress (GnomeVFSProgressCallbackState *progress_state,
 	progress_info->bytes_copied = 0;
 	progress_info->total_bytes_copied = 0;
 	progress_info->duplicate_name = NULL;
+	progress_info->top_level_item = FALSE;
 
 	progress_state->progress_info = progress_info;
 	progress_state->sync_callback = NULL;
@@ -104,7 +105,6 @@ init_progress (GnomeVFSProgressCallbackState *progress_state,
 	progress_state->next_update_callback_time = 0LL;
 	progress_state->next_text_update_callback_time = 0LL;
 	progress_state->update_callback_period = UPDATE_PERIOD;
-
 }
 
 static void
@@ -1125,11 +1125,13 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 				   progress,
 				   skip);
 
+	
 	if (call_progress_with_uris_often (progress, source_dir_uri, target_dir_uri, 
 			       GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
 
 		progress->progress_info->file_index++;
 		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
+		progress->progress_info->top_level_item = FALSE;
 
 		/* We do not deal with symlink loops here. 
 		 * That's OK because we don't follow symlinks.
@@ -1224,7 +1226,7 @@ copy_items (const GList *source_uri_list,
 		target_uri = NULL;
 
 		source_uri = (GnomeVFSURI *)source_item->data;
-		target_dir_uri = gnome_vfs_uri_get_parent (( GnomeVFSURI *)target_item->data);
+		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 		
 		/* get source URI and file info */
 		gnome_vfs_file_info_init (&info);
@@ -1246,12 +1248,15 @@ copy_items (const GList *source_uri_list,
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 				progress->progress_info->file_size = info.size;
 				progress->progress_info->bytes_copied = 0;
+				progress->progress_info->top_level_item = TRUE;
+
 				if (call_progress_with_uris_often (progress, source_uri, target_uri, 
 						       GNOME_VFS_XFER_PHASE_COPYING) == 0) {
 					result = GNOME_VFS_ERROR_INTERRUPTED;
 				}
 
 				overwrite_mode_abort = GNOME_VFS_XFER_OVERWRITE_MODE_ABORT;
+				
 				
 				if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
 					result = copy_file (&info, source_uri, target_uri, 
@@ -1364,6 +1369,7 @@ move_items (const GList *source_uri_list,
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
 			progress_set_source_target_uris (progress, source_uri, target_uri);
+			progress->progress_info->top_level_item = TRUE;
 
 			/* no matter what the replace mode, just overwrite the destination
 			 * handle_name_conflicts took care of conflicting files
@@ -1462,6 +1468,7 @@ link_items (const GList *source_uri_list,
 
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
+			progress->progress_info->top_level_item = TRUE;
 			progress_set_source_target_uris (progress, source_uri, target_uri);
 
 			/* no matter what the replace mode, just overwrite the destination

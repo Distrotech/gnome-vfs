@@ -422,6 +422,8 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 {
 	GnomeVFSURI *retval;
 
+	retval = NULL;
+
 	if (uri->method != (GnomeVFSMethod *) tm)
 		return gnome_vfs_uri_ref((GnomeVFSURI *) uri);	/* Don't translate things that don't belong to us */
 

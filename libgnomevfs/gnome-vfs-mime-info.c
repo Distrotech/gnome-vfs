@@ -904,7 +904,6 @@ gnome_vfs_mime_thaw (void)
 GnomeVFSResult
 gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *value)
 {
-	GnomeVFSResult result;
 	GnomeMimeContext *context;
 
 	if (mime_type == NULL 
@@ -937,10 +936,10 @@ gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *va
 	}
 	
 	if (should_write_file_back == 0) {
-		result = write_back_keys_user_file ();
+		return write_back_keys_user_file ();
 	}
 
-	return result;
+	return GNOME_VFS_OK;
 }
 
 

@@ -1,3 +1,21 @@
+2000-09-03  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (init_progress), (copy_directory),
+	(copy_items), (move_items), (link_items):
+	Add a flag to the xfer progress indicating a top-level item to 
+	allow triggering metadata copies.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_create_symbolic_link):
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_set_value):
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new):
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_viewer_menu):
+	* modules/translate-method.c: (tr_uri_translate):
+	* test/test-uri.c: (test_uri_host_port):
+	Fix a bunch of uninitialized variables that Michael Meeks found.
+
 2000-09-02  Mathieu Lacage  <mathieu@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

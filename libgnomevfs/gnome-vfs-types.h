@@ -554,6 +554,12 @@ struct GnomeVFSXferProgressInfo {
 	/* Count used in the unique name e.g. (copy 2), etc. */
 	int duplicate_count;
 
+	gboolean top_level_item;
+	/* indicates that the copied/moved/deleted item is an actual item
+	 * passed in the uri list rather than one encountered by recursively
+	 * traversing directories. Used by metadata copying.
+	 */
+
 };
 
 typedef struct GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;

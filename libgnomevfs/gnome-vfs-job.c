@@ -1081,7 +1081,6 @@ static gboolean
 execute_create_symbolic_link (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
 	GnomeVFSCreateLinkOp *create_op;
 	gboolean notify_retval;
 
@@ -1092,7 +1091,6 @@ execute_create_symbolic_link (GnomeVFSJob *job)
 						 create_op->request.uri_reference,
 						 job->current_op->context);
 
-	job->handle = handle;
 	create_op->notify.result = result;
 
 	notify_retval = job_oneway_notify_and_close (job);

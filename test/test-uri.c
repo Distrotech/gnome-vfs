@@ -193,13 +193,17 @@ test_uri_host_port (const char *input,
 	gboolean success = FALSE;
 	guint port;
 
+	port = 0;
 	uri = gnome_vfs_uri_new (input);
-	if (NULL != uri && expected_port == ( port = gnome_vfs_uri_get_host_port(uri) ) ) {
-		success = TRUE;
-		gnome_vfs_uri_unref (uri);
+	if (NULL != uri) {
+		port = gnome_vfs_uri_get_host_port(uri);
+	 	if (expected_port == port) {
+			success = TRUE;
+			gnome_vfs_uri_unref (uri);
+		}
 	}
 
-	if ( ! success) {
+	if (!success) {
 		test_failed ("gnome_vfs_uri_get_host_port (%s) resulted in %u instead of %u",
 			     input, port, expected_port);
 	}
