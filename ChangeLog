@@ -1,3 +1,25 @@
+2002-06-15  Seth Nickell  <snickell@stanford.edu>
+
+        Semi-working metadata code, landed as requested by commodore Yakk.
+	
+	* Makefile.am:
+	* configure.in:
+
+	Add included GOB into the build.
+
+	* libgnomevfs/Makefile.am:
+
+	Build the metadata code, and install the header.
+
+	* libgnomevfs/gnome-vfs.h:
+
+	Pull in the metadata header.
+
+	* libgnomevfs/gnome-vfs-metadata.gob:
+	* test/Makefile.am:
+
+	The metadata code itself.
+
 2002-06-13  Alex Graveley  <alex@ximian.com>
 
 	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Always ensure
