@@ -1,3 +1,14 @@
+gnome-vfs 2.7.2
+
+	* Bugs fixed:
+	       + solaris umount fixes
+	       + bonobo-storage fix
+	       + computer method volume name handling crash fixed
+	       + fix problem with buffer_write that caused ftp problems
+	* Features
+	       + DNS-SD api
+	       + mDNS and DNS-SD support in network://
+	       
 gnome-vfs 2.7.1
 	* Bugs fixed:
 	        + fixed some mime issues (sync w/ upstream)
