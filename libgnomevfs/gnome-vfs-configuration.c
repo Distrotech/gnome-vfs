@@ -446,6 +446,7 @@ gnome_vfs_configuration_init (void)
 {
 	char *home_config;
 	char *environment_path;
+	const char *home_dir;
 
 	G_LOCK (configuration);
 	if (configuration != NULL) {
@@ -455,26 +456,31 @@ gnome_vfs_configuration_init (void)
 
 	configuration = g_new0 (Configuration, 1);
 
-	home_config = g_strdup_printf ("%s%c%s",
-				       g_get_home_dir (),
-				       G_DIR_SEPARATOR,
-				       ".gnome/vfs/modules");
 	add_directory_internal (GNOME_VFS_MODULE_CFGDIR);
 	environment_path = getenv ("GNOME_VFS_MODULE_CONFIG_PATH");
 	if (environment_path != NULL) {
 		install_path_list (environment_path);
 	}
-	add_directory_internal (home_config);
-	g_free (home_config);
+
+	home_dir = g_get_home_dir ();
+	if (home_dir != NULL) {
+		home_config = g_strdup_printf ("%s%c%s",
+					       home_dir,
+					       G_DIR_SEPARATOR,
+					       ".gnome/vfs/modules");
+		add_directory_internal (home_config);
+		g_free (home_config);
+	}
 
 	configuration_load ();
 
 	G_UNLOCK (configuration);
 
-	if (configuration == NULL)
+	if (configuration == NULL) {
 		return FALSE;
-	else
+	} else {
 		return TRUE;
+	}
 }
 
 void

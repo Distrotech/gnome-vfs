@@ -1,5 +1,12 @@
 2002-09-04  Ian McKellar  <yakk@yakk.net>
 
+	* libgnomevfs/gnome-vfs-configuration.c:
+	(gnome_vfs_configuration_init):
+	Fixed bug #90035. If g_get_home_dir returns NULL then don't load
+	configuration from your home directory.
+
+2002-09-04  Ian McKellar  <yakk@yakk.net>
+
         * LIMITATIONS: Document a few of GnomeVFS's limitations
 
 2002-08-29  Alex Graveley  <alex@ximian.com>
