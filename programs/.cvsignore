@@ -1,0 +1,8 @@
+Makefile
+Makefile.in
+gnomevfs-cat
+gnomevfs-copy
+gnomevfs-info
+gnomevfs-ls
+gnomevfs-mkdir
+
