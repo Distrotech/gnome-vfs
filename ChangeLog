@@ -1,3 +1,13 @@
+2001-02-28  Eric Fischer  <eric@eazel.com>
+
+	reviewed by: Robin * Slomkowski <rslomkow@eazel.com>
+
+	* gnome-vfs.spec.in:   (Bug 7166)
+	Add dependency for control-center 1.2.3, because the mime-type
+	capplet will crash without the latest version.  I think this can
+	go away once the capplet gets moved into control-center where it
+	belongs, but it's necessary for the moment.
+
 2001-02-28  Darin Adler  <darin@eazel.com>
 
 	Moved the ChangeLog entries into data/mime/ChangeLog.

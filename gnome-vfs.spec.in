@@ -20,6 +20,7 @@ BuildRoot: /var/tmp/%{name}-root
 Requires: glib >= 1.2.4
 Requires: GConf >= 0.9
 Requires: oaf >= 0.3.0
+Requires: control-center >= 1.2.3
 Docdir: %{prefix}/doc
 Summary:  GNOME VFS is the GNOME virtual file system.  It is used extensively by Nautilus.
 
