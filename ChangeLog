@@ -1,3 +1,9 @@
+2002-10-30  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/default-modules.conf:
+	* modules/vfolder/Makefile.am:
+	* modules/vfolder/network.vfolder-info.in: added network: scheme
+
 2002-10-29  Jody Goldberg <jody@gnome.org>
 
 	Patch from Christophe Fergeau <teuf@users.sourceforge.net>

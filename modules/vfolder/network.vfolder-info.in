@@ -1,0 +1,19 @@
+<VFolderInfo>
+  <!-- Merge dirs optional -->
+  <ItemDir>@datadir@/gnome/network/</ItemDir>
+  <UserItemDir>~/.gnome2/vfolders/network/</UserItemDir>
+
+  <!-- <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir> -->
+
+  <!-- Root folder -->
+  <Folder>
+    <Name>Network Shares</Name>
+    <Query>
+      <Not>
+        <Keyword>Merged</Keyword>
+      </Not>
+    </Query>
+
+  </Folder>
+
+</VFolderInfo>

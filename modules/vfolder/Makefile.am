@@ -25,10 +25,10 @@ EXTRA_DIST =					\
 	applications-all-users.vfolder-info.in	\
 	preferences-all-users.vfolder-info.in	\
 	favorites.vfolder-info.in		\
+	network.vfolder-info.in			\
 	start-here.vfolder-info.in		\
 	server-settings.vfolder-info.in		\
 	system-settings.vfolder-info.in		\
-	\
 	test-vfolder.vfolder-info.in		\
 	test-vfolder-parent.vfolder-info.in	\
 	test-vfolder-modules.conf
@@ -57,6 +57,7 @@ libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 vfolderdir = $(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 					\
 	applications-all-users.vfolder-info 	\
+	network.vfolder-info			\
 	preferences-all-users.vfolder-info	\
 	favorites.vfolder-info			\
 	start-here.vfolder-info			\
