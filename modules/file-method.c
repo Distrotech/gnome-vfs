@@ -2126,7 +2126,7 @@ fam_do_iter_unlocked (void)
 		if (FAMNextEvent(fam_connection, &ev) != 1) {
 			FAMClose(fam_connection);
 			g_free(fam_connection);
-			fam_connection = FALSE;
+			fam_connection = NULL;
 			return FALSE;
 		}
 
@@ -2263,6 +2263,11 @@ do_monitor_add (GnomeVFSMethod *method,
 	/* We need to queue up incoming messages to avoid blocking on write
 	   if there are many monitors being added */
 	fam_do_iter_unlocked ();
+
+	if (fam_connection == NULL) {
+		G_UNLOCK (fam_connection);
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 	
 	if (monitor_type == GNOME_VFS_MONITOR_FILE) {
 		FAMMonitorFile (fam_connection, filename, 
@@ -2304,6 +2309,11 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	/* We need to queue up incoming messages to avoid blocking on write
 	   if there are many monitors being canceled */
 	fam_do_iter_unlocked ();
+
+	if (fam_connection == NULL) {
+		G_UNLOCK (fam_connection);
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 	
 	FAMCancelMonitor (fam_connection, &handle->request);
 	G_UNLOCK (fam_connection);

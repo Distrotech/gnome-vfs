@@ -1,5 +1,10 @@
 2003-05-23  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/file-method.c:
+	Handle the fam connection going away if the connection breaks.
+	
+2003-05-23  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c (do_monitor_add):
 	Make FAM usage threadsafe.
 
