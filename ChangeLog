@@ -1,3 +1,48 @@
+2001-02-21  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: John Sullivan<sullivan@eazel.com>
+
+	Fixed bug 6626, Applications deleted from the
+	short list reappear (unchecked)
+	
+	The original intent of this dialog button was to allow the user to
+	delete their custom added applications.  The logic has been
+	added to handle this and update the control properly.
+	There is a larger issue that if the user wants to delete system
+	level applications, the current API makes it impossible to do
+	so.
+	
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	(application_lookup_or_create), (application_lookup),
+	(application_remove), (gnome_vfs_application_registry_init),
+	(gnome_vfs_application_registry_clear),
+	(gnome_vfs_application_registry_shutdown),
+	(gnome_vfs_application_registry_sync),
+	(gnome_vfs_application_registry_save_mime_application):
+	Renamed a potentially confusing global variable.
+	
+
+	(gnome_vfs_application_is_user_owned_application):
+	New function that returns a value indicating if this
+	is a user owned or system owned application.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(create_application_list_item),
+	(populate_default_applications_list),
+	(initialize_edit_applications_dialog),
+	(show_new_application_window), (delete_selected_application),
+	(add_or_update_application), (add_item_to_application_list):
+	Determine if application data is user owned and act accordingly.
+	
+	(check_button_status):
+	Remove delete button handling in certain cases and use new
+	update_delete_button function instead.
+	
+	(update_delete_button):
+	New function to that sensitizes the delete button
+	based on user ownership of the selected application item.
+	
 2001-02-20  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Mike Fleming  <mfleming@eazel.com>

@@ -82,17 +82,19 @@ gboolean	gnome_vfs_application_registry_supports_mime_type  (const char *app_id,
 								    const char *mime_type);
 gboolean        gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
 								    const char *uri_scheme);
+gboolean	gnome_vfs_application_is_user_owned_application     (const GnomeVFSMimeApplication *application);
 
 /*
  * Mime type functions
  * Note that mime_type can be a specific (image/png) or generic (image/<star>) type
  */
 
-void		gnome_vfs_application_registry_clear_mime_types	(const char *app_id);
-void		gnome_vfs_application_registry_add_mime_type	(const char *app_id,
-								 const char *mime_type);
-void		gnome_vfs_application_registry_remove_mime_type	(const char *app_id,
-								 const char *mime_type);
+void		gnome_vfs_application_registry_clear_mime_types		(const char *app_id);
+void		gnome_vfs_application_registry_add_mime_type		(const char *app_id,
+								 	 const char *mime_type);
+void		gnome_vfs_application_registry_remove_mime_type		(const char *app_id,
+								 	 const char *mime_type);
+
 
 /*
  * Commit function, should be called if ANY stuff changes have been made.
@@ -109,6 +111,7 @@ void		gnome_vfs_application_registry_reload		(void);
 GnomeVFSMimeApplication *
 		gnome_vfs_application_registry_get_mime_application(const char *app_id);
 void		gnome_vfs_application_registry_save_mime_application(const GnomeVFSMimeApplication *application);
+
 
 #ifdef __cplusplus
 }

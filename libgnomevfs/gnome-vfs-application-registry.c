@@ -98,7 +98,7 @@ static int previous_key_lang_level = -1;
  * A hash table containing application registry record (Application)
  * keyed by application ids.
  */
-static GHashTable *applications = NULL;
+static GHashTable *global_applications = NULL;
 /*
  * A hash table containing GList's of application registry records (Application)
  * keyed by the mime types
@@ -185,7 +185,7 @@ application_lookup_or_create (const char *app_id, gboolean user_owned)
 
 	g_return_val_if_fail(app_id != NULL, NULL);
 
-	application = g_hash_table_lookup (applications, app_id);
+	application = g_hash_table_lookup (global_applications, app_id);
 	if (application != NULL) {
 		if ( ! user_owned) {
 			/* if we find only a user app, do magic */
@@ -194,7 +194,7 @@ application_lookup_or_create (const char *app_id, gboolean user_owned)
 				new_application = application_new (app_id, FALSE/*user_owned*/);
 				new_application->user_application = application;
 				/* override the user application */
-				g_hash_table_insert (applications, new_application->app_id,
+				g_hash_table_insert (global_applications, new_application->app_id,
 						     new_application);
 				return new_application;
 			} else {
@@ -216,7 +216,7 @@ application_lookup_or_create (const char *app_id, gboolean user_owned)
 
 	application = application_new (app_id, user_owned);
 
-	g_hash_table_insert (applications, application->app_id, application);
+	g_hash_table_insert (global_applications, application->app_id, application);
 
 	return application;
 }
@@ -226,10 +226,10 @@ application_lookup (const char *app_id)
 {
 	g_return_val_if_fail(app_id != NULL, NULL);
 
-	if (applications == NULL)
+	if (global_applications == NULL)
 		return NULL;
 
-	return g_hash_table_lookup (applications, app_id);
+	return g_hash_table_lookup (global_applications, app_id);
 }
 
 static const char *
@@ -495,7 +495,7 @@ application_remove (Application *application)
 
 	g_return_if_fail (application != NULL);
 
-	if (applications == NULL) {
+	if (global_applications == NULL) {
 		return;
 	}
 
@@ -512,7 +512,7 @@ application_remove (Application *application)
 		if (application->user_application)
 			application_clear_mime_types (application->user_application);
 
-		g_hash_table_remove (applications, application->app_id);
+		g_hash_table_remove (global_applications, application->app_id);
 	} else {
 		/* This must be a user application */
 		g_assert (main_application->user_application == application);
@@ -909,7 +909,7 @@ gnome_vfs_application_registry_init (void)
 	/*
 	 * The hash tables that store the mime keys.
 	 */
-	applications = g_hash_table_new (g_str_hash, g_str_equal);
+	global_applications = g_hash_table_new (g_str_hash, g_str_equal);
 	generic_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	specific_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	
@@ -967,8 +967,8 @@ remove_apps (gpointer key, gpointer value, gpointer user_data)
 static void
 gnome_vfs_application_registry_clear (void)
 {
-	if (applications != NULL)
-		g_hash_table_foreach_remove (applications, remove_apps, NULL);
+	if (global_applications != NULL)
+		g_hash_table_foreach_remove (global_applications, remove_apps, NULL);
 }
 
 void
@@ -976,9 +976,9 @@ gnome_vfs_application_registry_shutdown (void)
 {
 	gnome_vfs_application_registry_clear ();
 
-	if (applications != NULL) {
-		g_hash_table_destroy (applications);
-		applications = NULL;
+	if (global_applications != NULL) {
+		g_hash_table_destroy (global_applications);
+		global_applications = NULL;
 	}
 
 	if(generic_mime_types != NULL) {
@@ -1495,8 +1495,8 @@ gnome_vfs_application_registry_sync (void)
 		 "# Do NOT edit by hand\n# Generated: %s\n",
 		 ctime (&curtime));
 
-	if (applications != NULL)
-		g_hash_table_foreach (applications, application_sync_foreach, fp);
+	if (global_applications != NULL)
+		g_hash_table_foreach (global_applications, application_sync_foreach, fp);
 
 	fclose (fp);
 
@@ -1574,5 +1574,21 @@ gnome_vfs_application_registry_save_mime_application (const GnomeVFSMimeApplicat
 			application->requires_terminal);
 	/* FIXME: Need to save supported_uri_schemes information */
 	user_file_dirty = TRUE;
+}
+
+gboolean
+gnome_vfs_application_is_user_owned_application (const GnomeVFSMimeApplication *application)
+{
+	Application *i_application;
+
+	g_return_val_if_fail (application != NULL, FALSE);
+
+	/* make us a new user application */
+	i_application = g_hash_table_lookup (global_applications, application->id);
+	if (i_application != NULL) {
+		return i_application->user_owned;
+	}
+	
+	return FALSE;
 }
 
