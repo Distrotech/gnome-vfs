@@ -889,6 +889,7 @@ fast_move (GnomeVFSURI *source_dir_uri,
 	return result;
 }
 
+/* FIXME: This function does not deal with recursive copying of multiple directories properly.   */
 GnomeVFSResult
 gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 		    const GList *source_name_list,

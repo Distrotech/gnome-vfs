@@ -24,6 +24,8 @@
 #define _GNOME_VFS_COMPLEX_OPS_H
 
 
+/* FIXME: These functions don't deal with recursive copying correctly yet.  */
+
 GnomeVFSResult	gnome_vfs_xfer_uri	(GnomeVFSURI *source_dir_uri,
 					 const GList *source_name_list,
 					 GnomeVFSURI *target_dir_uri,
