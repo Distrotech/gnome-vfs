@@ -84,10 +84,10 @@ typedef struct
 } EggDesktopEntry;
 
 
-static gint egg_find_file_in_user_data_dir       (const char  *file, 
-					          GError     **error);
-static gint egg_find_file_in_secondary_data_dirs (const char  *file,
-						  GError     **error);
+
+static gint egg_find_file_in_data_dirs (const gchar  *file,
+                                        gchar **data_dirs,
+				        GError      **error);
 static gint egg_find_file_in_data_dir            (const gchar *file,
 						  GError **error);
 
@@ -192,38 +192,11 @@ egg_desktop_entries_new (gchar                  **legal_start_groups,
 }
 
 static gint
-egg_find_file_in_user_data_dir (const char *file, GError **error)
+egg_find_file_in_data_dirs (const gchar  *file,
+                            gchar       **data_dirs,
+                            GError      **error)
 {
   gchar *data_dir, *path;
-  gint fd;
-
-  path = NULL;
-  fd = -1;
-
-  data_dir = egg_get_user_data_dir ();
-
-  if (data_dir) 
-    {
-      path = g_build_filename (data_dir, "applications", file, NULL);
-      g_free (data_dir);
-      data_dir = NULL;
-    }
-
-  fd = open (path, O_RDONLY);
-
-  if (fd < 0)
-    g_set_error (error, G_FILE_ERROR,
-                 g_file_error_from_errno (errno),
-		 _("File could not be opened: %s"),
-                 g_strerror (errno));
-
-  return fd;
-}
-
-static gint
-egg_find_file_in_secondary_data_dirs (const char *file, GError **error)
-{
-  gchar *data_dir, *path, **secondary_data_dirs;
   int i, fd;
   GError *file_error;
 
@@ -231,24 +204,47 @@ egg_find_file_in_secondary_data_dirs (const char *file, GError **error)
   path = NULL;
   fd = -1;
 
-  secondary_data_dirs = egg_get_secondary_data_dirs ();
-
   i = 0;
-  while (secondary_data_dirs && (data_dir = secondary_data_dirs[i]) && fd < 0)
+  while (data_dirs && (data_dir = data_dirs[i]) && fd < 0)
     {
-        path = g_build_filename (data_dir, "applications", file, NULL);
+      char *candidate_file, *sub_dir;
 
-        fd = open (path, O_RDONLY);
+      candidate_file = (gchar *) file;
+      sub_dir = g_strdup ("");
+      while (candidate_file != NULL && fd < 0)
+        {
+          char *p;
 
-        if (fd < 0 && file_error == NULL)
-          g_set_error (&file_error, G_FILE_ERROR,
-                       g_file_error_from_errno (errno),
-                       _("File could not be opened: %s"),
-                       g_strerror (errno));
-        i++;
+          path = g_build_filename (data_dir, "applications", sub_dir,
+                                   candidate_file, NULL);
+
+          fd = open (path, O_RDONLY);
+
+          if (fd < 0 && file_error == NULL)
+            g_set_error (&file_error, G_FILE_ERROR,
+                         g_file_error_from_errno (errno),
+                         _("File could not be opened: %s"),
+                         g_strerror (errno));
+
+          candidate_file = strchr (candidate_file, '-');
+
+          if (candidate_file == NULL)
+            break;
+
+          candidate_file++;
+
+          g_free (sub_dir);
+          sub_dir = g_strndup (file, candidate_file - file - 1);
+
+          for (p = sub_dir; *p != '\0'; p++) 
+            {
+              if (*p == '-')
+                *p = G_DIR_SEPARATOR;
+            }
+        }
+      g_free (sub_dir);
+      i++;
     }
-
-  g_strfreev (secondary_data_dirs);
 
   if (file_error)
     g_propagate_error (error, file_error);
@@ -260,17 +256,24 @@ static gint
 egg_find_file_in_data_dir (const gchar *file, GError **error)
 {
   gint fd;
+  gchar **data_dirs;
   GError *file_error;
   GError *secondary_error;
 
   file_error = NULL;
   secondary_error = NULL;
 
-  fd = egg_find_file_in_user_data_dir (file, &file_error);
+
+  data_dirs = g_new0 (char *, 2);
+  data_dirs[0] = egg_get_user_data_dir ();
+  fd = egg_find_file_in_data_dirs (file, data_dirs, &file_error);
+  g_strfreev (data_dirs);
 
   if (fd < 0)
     { 
-      fd = egg_find_file_in_secondary_data_dirs (file, &secondary_error);
+      data_dirs = egg_get_secondary_data_dirs ();
+      fd = egg_find_file_in_data_dirs (file, data_dirs, &secondary_error);
+      g_strfreev (data_dirs);
 
       if (fd >= 0)
        {

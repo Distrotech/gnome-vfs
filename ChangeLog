@@ -1,4 +1,8 @@
-2004-07-17  Ray Strode  <rstrode@redhat.com>
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/egg*.[ch]: sync up from libegg
+
+2004-07-18  Ray Strode  <rstrode@redhat.com>
 
 	Fix compile warnings and look at NotShowIn and
 	OnlyShowIn when building association lists.

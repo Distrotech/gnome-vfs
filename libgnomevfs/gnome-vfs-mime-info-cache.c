@@ -52,7 +52,6 @@ static void gnome_vfs_mime_info_cache_reload (void);
 
 static GnomeVFSMimeInfoCache *mime_info_cache = NULL;
 
-
 static void
 free_mime_types_map_list (GList *list)
 {
