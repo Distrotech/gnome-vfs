@@ -1,0 +1,275 @@
+# Danish translation of gnome-vfs
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Kenneth Christiansen <kenneth@ripen.dk>, 1999.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs CVS\n"
+"POT-Creation-Date: 1999-09-22 21:07+0200\n"
+"PO-Revision-Date: 1999-09-23 01:12+02:00\n"
+"Last-Translator: Kenneth Christiansen <kenneth@ripen.dk>\n"
+"Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Ingen fejl"
+
+#. GNOME_VFS_ERROR_NOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "Fil ikke fundet"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr "Genetisk fejl"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "Intern fejl"
+
+#. GNOME_VFS_ERROR_BADPARAMS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "invalide parametere"
+
+#. GNOME_VFS_ERROR_NOTSUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "Ikke-understøttet operation"
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "I/O fejl"
+
+#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "Data korrupteret"
+
+#. GNOME_VFS_ERROR_WRONGFORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Format ikke valid"
+
+#. GNOME_VFS_ERROR_BADFILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "Dårlig filhåndterer"
+
+#. GNOME_VFS_ERROR_TOOBIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "Fil for stor"
+
+#. GNOME_VFS_ERROR_NOSPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "Ikke mere plads på enhed"
+
+#. GNOME_VFS_ERROR_READONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "Læs-kun filsystem"
+
+#. GNOME_VFS_ERROR_INVALIDURI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "Invalid URI"
+
+#. GNOME_VFS_ERROR_NOTOPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "Fil ikke åbnet"
+
+#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ACCESSDENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "Adgang forbudt"
+
+#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "For mange åbne filer"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTADIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "Ikke en mappe"
+
+#. GNOME_VFS_ERROR_INPROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "Fil eksisterer"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr "Operation ikke tillad"
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "Er en mappe"
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Ikke nok hukommelse"
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "Vært ikke fundet"
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "Ugyldigt værtsnavn"
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "Vært har ingen adresse"
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "Logind fejlede"
+
+#: libgnomevfs/gnome-vfs-result.c:135
+msgid "Unknown error"
+msgstr "Ukendt fejl"
+
+#: libgnomevfs/gnome-vfs-init.c:48
+msgid "GNOME VFS already initialized."
+msgstr "GNOME VFS er allerede initialiseret"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
+msgid "Dying."
+msgstr "Dør."
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr "Fejl under læsning af: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr "Fejl under skrivning til: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Kan ikke skrive: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:607
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Kan ikke oprette socket: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "Kan ikke binde '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:625
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Kan ikke lytte på '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:647
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Kan ikke modtage forbindelser på '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1291
+msgid "Cannot initialize CORBA."
+msgstr "Kan ikke initialisere CORBA"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1298
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1305
+msgid "Cannot activate POA manager."
+msgstr "Kan ikke aktivere POA håndtering"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1329
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Brug: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1340
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Kan ikke åbne filbeskriver %d"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1363
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1373
+msgid "Cannot setup Request object."
+msgstr "Kan ikke sætte forespørgselsobjekt op."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1380
+msgid "Cannot extract IOR."
+msgstr "Kan ikke få IOR."
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:84
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr "Fejl under skrivning til 'wakeup GnomeVFSJob' kanal."
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:379
+#: libgnomevfs-pthread/gnome-vfs-job.c:1071
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "Ukendt job ID %d"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:636
+#: libgnomevfs-pthread/gnome-vfs-job.c:720
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Kan ikke åbne pibe for åben GIOChannel: %s"
