@@ -1,3 +1,8 @@
+gnome-vfs 2.5.0
+
+	* Featurelets:
+		+ make the ssh method work with newer ssh (Mitch)
+
 gnome-vfs 2.4.0
 
 	* Featurelets:

@@ -236,9 +236,7 @@ ssh_connect (SshHandle **handle_return,
 
 	/* You can add more error checking here */
 	memset (buffer, '\0', LINE_LENGTH);
-	g_print ("reading error\n");
 	res = ssh_read (handle->error_fd, &buffer, LINE_LENGTH, &bytes_read);
-	g_print ("finished reading error\n");
 	if (bytes_read != 0 && res == GNOME_VFS_OK) {
 		if (strncmp ("Permission denied", buffer,
 					strlen("Permission denied")) == 0) {
