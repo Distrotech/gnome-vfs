@@ -4,19 +4,20 @@
 #
 # Sittichai Makekhuntod <hae_ha@thaimail.com>, 2003.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-04-16 01:17+0700\n"
-"Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
+"PO-Revision-Date: 2005-02-15 17:45+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0;"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -173,9 +174,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "โวลุม Pcfs ของ Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "โวลุม AFFS"
+msgstr "โวลุม SAM-QFS ของซัน"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -202,9 +202,9 @@ msgid "Unknown"
 msgstr "ไม่รู้จัก"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "ไม่รู้จัก op ชนิด %u"
+msgstr "ไม่รู้จักปฏิบัติการชนิด %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -246,7 +246,7 @@ msgstr "หยุดปฏิบัติแล้ว"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "ฟังก์ชันเลิกใช้แล้ว  ไม่รองรับการแก้ไขฐานข้อมูล MIME อีกต่อไป"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -305,7 +305,7 @@ msgstr "รูปแบบใช้ไม่ได้"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr ""
+msgstr "ไฟล์แฮนเดิลเสีย"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -491,23 +491,22 @@ msgstr "เรียกใช้คำสั่งไม่สำเร็จ"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "หมดเวลาคอย"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "เกิดข้อผิดพลาดทั่วไป"
+msgstr "เกิดข้อผิดพลาดกับ name server"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "ทรัพยากรถูกล็อคอยู่"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "ฟังก์ชันเลิกใช้แล้ว"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -551,107 +550,96 @@ msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
-#, fuzzy
 msgid "CD-R"
-msgstr "CD-ROM"
+msgstr "CD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
-#, fuzzy
 msgid "CD-RW"
-msgstr "CD-ROM"
+msgstr "CD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "CD-ROM"
+msgstr "DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
-#, fuzzy
 msgid "DVD-RAM"
-msgstr "ไดรฟ์ซีดี"
+msgstr "DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
 msgid "DVD-R"
-msgstr ""
+msgstr "DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
 msgid "DVD-RW"
-msgstr ""
+msgstr "DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-R/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-R/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-R/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-R/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-RW/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RW/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RW/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RW/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
-msgstr ""
+msgstr "ดิสก์"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
-#, fuzzy
 msgid "USB Drive"
-msgstr "ไดรฟ์ Zip"
+msgstr "ไดรฟ์ USB"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "ไดรฟ์ IEEE 1394"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "SD/MMC"
-msgstr ""
+msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
@@ -659,9 +647,8 @@ msgid "Memory Stick"
 msgstr "Memory Stick"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "Smart Media"
-msgstr "Memory Stick"
+msgstr "Smart Media"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
@@ -674,7 +661,7 @@ msgstr "กล้อง"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
 msgid "Root Volume"
@@ -764,7 +751,7 @@ msgstr "เครือข่ายวินโดวส์"
 #: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "ไม่สามารถจำแนกเอกลักษณ์ของเครื่องฝั่งโน้น (%s) ได้"
 
 #: modules/sftp-method.c:1339
 #, c-format
@@ -774,14 +761,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"เหตุการณ์นี้จะเกิดเมื่อคุณเข้าระบบไปยังคอมพิวเตอร์ฝั่งโน้นเป็นครั้งแรก\n"
+"\n"
+"ข้อความบอกเอกลักษณ์ที่เครื่องฝั่งโน้นส่งมาคือ \"%s\"  "
+"ถ้าคุณต้องการมั่นใจว่าปลอดภัยที่จะดำเนินการต่อ กรุณาติดต่อผู้ดูแลระบบ"
 
 #: modules/sftp-method.c:1347
 msgid "Log In Anyway"
-msgstr ""
+msgstr "เข้าระบบต่อไป"
 
 #: modules/sftp-method.c:1348
 msgid "Cancel Login"
-msgstr ""
+msgstr "ยกเลิกการเข้าระบบ"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -816,11 +807,11 @@ msgstr "โปรแกรมตัวแสดงปริยาย"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "โปรแกรมเทอร์มินอลปริยาย"
+msgstr "โปรแกรมเทอร์มินัลปริยาย"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "อาร์กิวเมนต์ exec สำหรับเทอร์มินอลปริยาย"
+msgstr "อาร์กิวเมนต์ exec สำหรับเทอร์มินัลปริยาย"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -836,254 +827,220 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "โปรแกรมเทอร์มินอลปริยาย ไว้ใช้สำหรับ โปรแกรมที่ต้องใช้เทอร์มินอล"
+msgstr "โปรแกรมเทอร์มินัลปริยาย ไว้ใช้สำหรับ โปรแกรมที่ต้องใช้เทอร์มินัล"
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "อาร์กิวเมนต์สำหรับโปรแกรมเทอร์มินอลปริยาย"
+msgstr "อาร์กิวเมนต์สำหรับโปรแกรมเทอร์มินัลปริยาย"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "เรียกใช้โปรแกรมในเทอร์มินอล"
+msgstr "เรียกใช้โปรแกรมในเทอร์มินัล"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด aim (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด callto (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด ghelp (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "ตั้งเป็น true ถ้าโปรแกรมในที่จัดการ URL นี้ควรถูกเรียกใช้ในเทอร์มินอล"
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด h323 (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "ตั้งเป็น true ถ้าโปรแกรมในที่จัดการ URL นี้ควรถูกเรียกใช้ในเทอร์มินอล"
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด http (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "ตั้งเป็น true ถ้าโปรแกรมในที่จัดการ URL นี้ควรถูกเรียกใช้ในเทอร์มินอล"
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด https (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด info (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด mailto (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด man (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "คำสั่งสำหรับจัดการ URL ชนิด trash (ถ้าเปิดใช้)"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "จัดการ URL ชนิด man"
+msgstr "คำสั่งจัดการ URL ชนิด aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "จัดการ URL ชนิด callto"
+msgstr "คำสั่งจัดการ URL ชนิด callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "จัดการ URL ชนิด ghelp"
+msgstr "คำสั่งจัดการ URL ชนิด ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "จัดการ URL ชนิด H323"
+msgstr "คำสั่งจัดการ URL ชนิด h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "จัดการ URL ชนิด ghelp"
+msgstr "คำสั่งจัดการ URL ชนิด http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "จัดการ URL ชนิด ghelp"
+msgstr "คำสั่งจัดการ URL ชนิด https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "จัดการ URL ชนิด info"
+msgstr "คำสั่งจัดการ URL ชนิด info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "จัดการ URL ชนิด mailto"
+msgstr "คำสั่งจัดการ URL ชนิด mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "จัดการ URL ชนิด man"
+msgstr "คำสั่งจัดการ URL ชนิด man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "จัดการ URL ชนิด trash"
+msgstr "คำสั่งจัดการ URL ชนิด trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด man"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด callto"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด ghelp"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด H323"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด ghelp"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด ghelp"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด info"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด mailto"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด man"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด trash"
+msgstr "ตั้งเป็นค่าจริงถ้าต้องการให้โปรแกรมในคีย์ \"command\" จัดการ URL ชนิด trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "ตั้งเป็น true ถ้าโปรแกรมในที่จัดการ URL นี้ควรถูกเรียกใช้ในเทอร์มินอล"
+msgstr "ตั้งเป็นค่าจริงถ้าโปรแกรมที่จัดการ URL นี้ควรถูกเรียกใช้ในเทอร์มินัล"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด man"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด callto"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด ghelp"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด H323"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด ghelp"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด trash"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด info"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด mailto"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด man"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด trash"
+msgstr "กำหนดให้คำสั่งนี้จัดการ URL ชนิด trash"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"รายการโดเมน dns-sd (คั่นด้วยจุลภาค) ที่น่าจะมองเห็นได้ในเครือข่าย"
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "โดเมนเพิ่มเติมที่จะมองหาบริการ dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "วิธีแสดงผลบริการ DNS-SD ในเครือข่ายท้องถิ่น"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "ค่าที่เป็นไปได้คือ \"merged\", \"separate\" และ \"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1122,15 +1079,14 @@ msgid "HTTP proxy username"
 msgstr "ชื่อบัญชีผู้ใช้พร็อกซี HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"ถ้าตั้งเป็น true ต้องผ่านการตรวจสอบสิทธิ์ ก่อนเซิร์ฟเวอร์พร็อกซีจะยอมให้ใช้ ชื่อผู้ใช้และรหัสผ่าน "
-"เอามาจาก \"/system/http_proxy/authentication_user\" และ \"/system/http_proxy/"
-"authentication_password\""
+"ถ้าตั้งเป็นค่าจริง การเชื่อมต่อผ่านพร็อกซีจะต้องผ่านการตรวจสอบสิทธิ์ก่อน "
+"ชื่อผู้ใช้และรหัสผ่านเอามาจาก \"/system/http_proxy/authentication_user\" "
+"และ \"/system/http_proxy/authentication_password\""
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
