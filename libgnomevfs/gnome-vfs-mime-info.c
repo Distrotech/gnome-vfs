@@ -731,12 +731,12 @@ gnome_vfs_mime_info_clear (void)
 }
 
 /**
- * gnome_vfs_mime_info_shutdown:
+ * _gnome_vfs_mime_info_shutdown:
  * 
  * Remove the MIME database from memory.
  **/
 void
-gnome_vfs_mime_info_shutdown (void)
+_gnome_vfs_mime_info_shutdown (void)
 {
 	gnome_vfs_mime_info_clear ();
 
@@ -782,7 +782,7 @@ gnome_vfs_mime_info_reload (void)
 	user_mime_dir.force_reload = FALSE;
 
 	/* 3. Tell anyone who cares */
-	gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 }
 
 

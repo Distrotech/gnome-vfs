@@ -1,3 +1,9 @@
+2002-12-19  Michael Meeks  <michael@ximian.com>
+
+	* big sed job to '_' prefix 'internal' methods, it
+	turns out that the modules use loads of these
+	methods, based on Tim Janik's patch (thanks Tim)
+
 2002-12-18  Diego Gonzalez   <diego@pemas.net>
 
 	* libgnomevfs/gnome-vfs-job.h:

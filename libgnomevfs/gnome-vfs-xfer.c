@@ -2216,7 +2216,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 }
 
 GnomeVFSResult
-gnome_vfs_xfer_private (const GList *source_uri_list,
+_gnome_vfs_xfer_private (const GList *source_uri_list,
 			const GList *target_uri_list,
 			GnomeVFSXferOptions xfer_options,
 			GnomeVFSXferErrorMode error_mode,

@@ -59,7 +59,7 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	if (result != GNOME_VFS_OK)
 		return result;
 
-	*handle = gnome_vfs_handle_new (uri, method_handle, open_mode);
+	*handle = _gnome_vfs_handle_new (uri, method_handle, open_mode);
 	
 	return GNOME_VFS_OK;
 }
@@ -89,7 +89,7 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 	if (result != GNOME_VFS_OK)
 		return result;
 
-	*handle = gnome_vfs_handle_new (uri, method_handle, open_mode);
+	*handle = _gnome_vfs_handle_new (uri, method_handle, open_mode);
 
 	return GNOME_VFS_OK;
 }
@@ -103,7 +103,7 @@ gnome_vfs_close_cancellable (GnomeVFSHandle *handle,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	return gnome_vfs_handle_do_close (handle, context);
+	return _gnome_vfs_handle_do_close (handle, context);
 }
 
 GnomeVFSResult
@@ -124,7 +124,7 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 		bytes_read = &dummy_bytes_read;
 	}
 
-	return gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_read,
+	return _gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_read,
 					 context);
 }
 
@@ -146,7 +146,7 @@ gnome_vfs_write_cancellable (GnomeVFSHandle *handle,
 		bytes_written = &dummy_bytes_written;
 	}
 
-	return gnome_vfs_handle_do_write (handle, buffer, bytes,
+	return _gnome_vfs_handle_do_write (handle, buffer, bytes,
 					  bytes_written, context);
 }
 
@@ -161,7 +161,7 @@ gnome_vfs_seek_cancellable (GnomeVFSHandle *handle,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	return gnome_vfs_handle_do_seek (handle, whence, offset, context);
+	return _gnome_vfs_handle_do_seek (handle, whence, offset, context);
 }
 
 GnomeVFSResult
@@ -199,7 +199,7 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 		return GNOME_VFS_ERROR_CANCELLED;
 
 
-	result =  gnome_vfs_handle_do_get_file_info (handle, info,
+	result =  _gnome_vfs_handle_do_get_file_info (handle, info,
 						     options,
 						     context);
 
@@ -232,7 +232,7 @@ gnome_vfs_truncate_handle_cancellable (GnomeVFSHandle *handle,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	return gnome_vfs_handle_do_truncate (handle, length, context);
+	return _gnome_vfs_handle_do_truncate (handle, length, context);
 }
 
 GnomeVFSResult
@@ -442,6 +442,6 @@ gnome_vfs_file_control_cancellable (GnomeVFSHandle *handle,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	return gnome_vfs_handle_do_file_control (handle, operation, operation_data, context);
+	return _gnome_vfs_handle_do_file_control (handle, operation, operation_data, context);
 }
 

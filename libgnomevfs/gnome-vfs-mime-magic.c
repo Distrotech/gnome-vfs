@@ -253,7 +253,7 @@ match_pattern (const char *scanner, const char **resulting_scanner, const char *
 }
 
 GnomeMagicEntry *
-gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
+_gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 {
 	GArray *array;
 	GnomeMagicEntry newent, *retval;
@@ -528,7 +528,7 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 
 	for (offset = magic_entry->range_start; offset <= magic_entry->range_end; offset++) {
 		/* this check is done only as an optimization
-		 * gnome_vfs_mime_sniff_buffer_get already implements the laziness.
+		 * _gnome_vfs_mime_sniff_buffer_get already implements the laziness.
 		 * This gets called a million times though and every bit performance
 		 * is valuable. This way we avoid making the call.
 		 */
@@ -536,7 +536,7 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length) {
 
 			if (!sniff_buffer->read_whole_file) {
-				if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+				if (_gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
 								     offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
 					return FALSE;
 				}
@@ -564,7 +564,7 @@ gnome_vfs_mime_get_magic_table (void)
 	G_LOCK (mime_magic_table_mutex);
 
 	if (mime_magic_table == NULL) {
-		mime_magic_table = gnome_vfs_mime_magic_parse
+		mime_magic_table = _gnome_vfs_mime_magic_parse
 			(SYSCONFDIR "/gnome-vfs-mime-magic" , NULL);
 	}
 
@@ -574,7 +574,7 @@ gnome_vfs_mime_get_magic_table (void)
 }
 
 const char *
-gnome_vfs_mime_get_type_from_magic_table (GnomeVFSMimeSniffBuffer *buffer)
+_gnome_vfs_mime_get_type_from_magic_table (GnomeVFSMimeSniffBuffer *buffer)
 {
 	GnomeMagicEntry *magic_table;
 	
@@ -597,7 +597,7 @@ gnome_vfs_mime_test_get_magic_table (const char *table_path)
 {
 	G_LOCK (mime_magic_table_mutex);
   	if (mime_magic_table == NULL) {
-		mime_magic_table = gnome_vfs_mime_magic_parse (table_path, NULL);
+		mime_magic_table = _gnome_vfs_mime_magic_parse (table_path, NULL);
   	}
 	G_UNLOCK (mime_magic_table_mutex);
 
@@ -695,7 +695,7 @@ gnome_vfs_mime_dump_magic_table (void)
 }
 
 void
-gnome_vfs_mime_clear_magic_table (void)
+_gnome_vfs_mime_clear_magic_table (void)
 {
 	G_LOCK (mime_magic_table_mutex);
   	g_free (mime_magic_table);
@@ -715,7 +715,7 @@ gnome_vfs_mime_clear_magic_table (void)
 const char *
 gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
 {
-	return gnome_vfs_get_mime_type_internal (buffer, NULL);
+	return _gnome_vfs_get_mime_type_internal (buffer, NULL);
 }
 
 enum {
@@ -723,18 +723,18 @@ enum {
 };
 
 /**
- * gnome_vfs_sniff_buffer_looks_like_text:
+ * _gnome_vfs_sniff_buffer_looks_like_text:
  * @sniff_buffer: buffer to examine
  *
  * Return value: returns %TRUE if the contents of @sniff_buffer appear to
  * be text.
  **/
 gboolean
-gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
+_gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
 	gchar *end;
 	
-	gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
+	_gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
 
 	if (sniff_buffer->buffer_length == 0) {
 		return FALSE;
@@ -819,19 +819,19 @@ enum {
 };
 
 /**
- * gnome_vfs_sniff_buffer_looks_like_mp3:
+ * _gnome_vfs_sniff_buffer_looks_like_mp3:
  * @sniff_buffer: buffer to examine
  *
  * Return value: returns %TRUE if the contents of @sniff_buffer appear to
  * be an MP3.
  **/
 gboolean
-gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
+_gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
 	unsigned long mp3_header;
 	int offset;
 	
-	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_MP3_SNIFF_LENGTH) != GNOME_VFS_OK) {
+	if (_gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_MP3_SNIFF_LENGTH) != GNOME_VFS_OK) {
 		return FALSE;
 	}
 
@@ -880,7 +880,7 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 			 */
 			offset += 1 + length;
 
-			if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, offset + 4) != GNOME_VFS_OK) {
+			if (_gnome_vfs_mime_sniff_buffer_get (sniff_buffer, offset + 4) != GNOME_VFS_OK) {
 				return FALSE;
 			}
 			mp3_header = get_4_byte_value (&sniff_buffer->buffer[offset]);

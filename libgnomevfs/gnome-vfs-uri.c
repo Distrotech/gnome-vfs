@@ -348,7 +348,7 @@ set_uri_element (GnomeVFSURI *uri,
 	}
 	
 	gnome_vfs_remove_optional_escapes (uri->text);
-	gnome_vfs_canonicalize_pathname (uri->text);
+	_gnome_vfs_canonicalize_pathname (uri->text);
 }
 
 static const gchar *

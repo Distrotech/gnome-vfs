@@ -278,7 +278,7 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	if (module_element != NULL)
 		goto add_module_out;
 
-	module_name = gnome_vfs_configuration_get_module_path (name, &args);
+	module_name = _gnome_vfs_configuration_get_module_path (name, &args);
 	if (module_name == NULL)
 		goto add_module_out;
 

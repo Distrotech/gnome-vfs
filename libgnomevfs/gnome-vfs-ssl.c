@@ -65,7 +65,7 @@ struct GnomeVFSSSL {
 };
 
 void 
-gnome_vfs_ssl_init () {
+_gnome_vfs_ssl_init () {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #endif

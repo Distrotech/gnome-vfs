@@ -390,20 +390,20 @@ struct GnomeVFSJob {
 	int priority;
 };
 
-GnomeVFSJob 	*gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
+GnomeVFSJob 	*_gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
 						   int			 priority,
 				      		   GFunc           	 callback,
 				      		   gpointer        	 callback_data);
-void         	 gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);
-void         	 gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
+void         	 _gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);
+void         	 _gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
 				      		   GnomeVFSOpType  	 type,
 				      		   GFunc           	 callback,
 				      		   gpointer        	 callback_data);
-void         	 gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
-void     	 gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
-void         	 gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
+void         	 _gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
+void     	 _gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
+void         	 _gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
 int          	 gnome_vfs_job_get_count 	  (void);
 
-gboolean	 gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
+gboolean	 _gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

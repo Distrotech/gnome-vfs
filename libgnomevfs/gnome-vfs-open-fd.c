@@ -418,7 +418,7 @@ gnome_vfs_open_fd (GnomeVFSHandle **handle, int filedes)
 	
 	file_handle = file_handle_new (uri, filedes);
 	
-	*handle = gnome_vfs_handle_new (uri, (GnomeVFSMethodHandle*)file_handle, open_mode);
+	*handle = _gnome_vfs_handle_new (uri, (GnomeVFSMethodHandle*)file_handle, open_mode);
 	if (!handle) {
 		return GNOME_VFS_ERROR_INTERNAL;
 	}

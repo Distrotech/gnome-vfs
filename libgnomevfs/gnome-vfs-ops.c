@@ -246,7 +246,7 @@ gnome_vfs_tell (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return gnome_vfs_handle_do_tell (handle, offset_return);
+	return _gnome_vfs_handle_do_tell (handle, offset_return);
 }
 
 /**
@@ -761,7 +761,7 @@ gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	result = gnome_vfs_monitor_do_add (uri->method, handle, uri,
+	result = _gnome_vfs_monitor_do_add (uri->method, handle, uri,
 						monitor_type, callback, 
 						user_data);
 
@@ -783,7 +783,7 @@ gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return gnome_vfs_monitor_do_cancel (handle);
+	return _gnome_vfs_monitor_do_cancel (handle);
 }
 
 /**

@@ -112,7 +112,7 @@ gnome_vfs_context_peek_current		  (void)
 {
 	const GnomeVFSContext *ret;
 	
-	gnome_vfs_get_current_context ((GnomeVFSContext **)&ret);
+	_gnome_vfs_get_current_context ((GnomeVFSContext **)&ret);
 
 	/* If the context is NULL, then this must be a synchronous call */
 	if (ret == NULL) {

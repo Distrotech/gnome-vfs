@@ -79,11 +79,11 @@ gnome_vfs_pthread_init (void)
 	private_is_primary_thread = g_private_new (NULL);
 	g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
 	
-	gnome_vfs_module_callback_private_init ();
+	_gnome_vfs_module_callback_private_init ();
 	
-	gnome_vfs_async_job_map_init ();
-	gnome_vfs_thread_pool_init ();
-	gnome_vfs_job_queue_init ();
+	_gnome_vfs_async_job_map_init ();
+	_gnome_vfs_thread_pool_init ();
+	_gnome_vfs_job_queue_init ();
 }
 
 /**
@@ -121,15 +121,15 @@ gnome_vfs_init (void)
 			bonobo_activation_init (0, bogus_argv);
 		}
 
-		gnome_vfs_ssl_init ();
+		_gnome_vfs_ssl_init ();
 
 		retval = gnome_vfs_method_init ();
 
 		if (retval) {
-			retval = gnome_vfs_process_init ();
+			retval = _gnome_vfs_process_init ();
 		}
 		if (retval) {
-			retval = gnome_vfs_configuration_init ();
+			retval = _gnome_vfs_configuration_init ();
 		}
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
@@ -173,7 +173,7 @@ gnome_vfs_initialized (void)
 void
 gnome_vfs_shutdown (void)
 {
-	gnome_vfs_thread_backend_shutdown ();
+	_gnome_vfs_thread_backend_shutdown ();
 	gnome_vfs_mime_shutdown ();
 }
 
@@ -195,8 +195,8 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 	gnome_vfs_pthread_init ();
 
 	gnome_vfs_method_init ();
-	gnome_vfs_process_init ();
-	gnome_vfs_configuration_init ();
+	_gnome_vfs_process_init ();
+	_gnome_vfs_configuration_init ();
 
 	signal (SIGPIPE, SIG_IGN);
 

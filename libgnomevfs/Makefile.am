@@ -41,6 +41,7 @@ libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 
 libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
+# mime-sniff-buffers and cancellabe-ops are used by modules
 noinst_HEADERS =				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\

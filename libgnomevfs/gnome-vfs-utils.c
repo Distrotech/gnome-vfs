@@ -654,7 +654,7 @@ gnome_vfs_make_uri_canonical_old (const char *original_uri_text)
  * gnome_vfs_make_path_name_canonical:
  * @path: a file path, relative or absolute
  * 
- * Calls gnome_vfs_canonicalize_pathname, allocating storage for the 
+ * Calls _gnome_vfs_canonicalize_pathname, allocating storage for the 
  * result and providing for a cleaner memory management.
  * 
  * Return value: a canonical version of @path
@@ -666,7 +666,7 @@ gnome_vfs_make_path_name_canonical (const gchar *path)
 	char *result;
 
 	path_clone = g_strdup (path);
-	result = gnome_vfs_canonicalize_pathname (path_clone);
+	result = _gnome_vfs_canonicalize_pathname (path_clone);
 	if (result != path_clone) {
 		g_free (path_clone);
 		return g_strdup (result);
@@ -711,7 +711,7 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 {
 	const char *path_part;
 
-	if (!gnome_vfs_istr_has_prefix (uri, "file:/")) {
+	if (!_gnome_vfs_istr_has_prefix (uri, "file:/")) {
 		return NULL;
 	}
 	
@@ -720,9 +720,9 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 		return NULL;
 	}
 	
-	if (gnome_vfs_istr_has_prefix (path_part, "///")) {
+	if (_gnome_vfs_istr_has_prefix (path_part, "///")) {
 		path_part += 2;
-	} else if (gnome_vfs_istr_has_prefix (path_part, "//")) {
+	} else if (_gnome_vfs_istr_has_prefix (path_part, "//")) {
 		return NULL;
 	}
 
@@ -794,7 +794,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
         /* We only handle the file scheme for now */
-	if (g_ascii_strcasecmp (scheme, "file") != 0 || !gnome_vfs_istr_has_prefix (path, "/")) {
+	if (g_ascii_strcasecmp (scheme, "file") != 0 || !_gnome_vfs_istr_has_prefix (path, "/")) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
@@ -1452,7 +1452,7 @@ gnome_vfs_uri_is_local_scheme (const char *uri)
 
 	is_local_scheme = FALSE;
 	for (temp_scheme = *local_schemes, i = 0; temp_scheme != NULL; i++, temp_scheme = local_schemes[i]) {
-		is_local_scheme = gnome_vfs_istr_has_prefix (uri, temp_scheme);
+		is_local_scheme = _gnome_vfs_istr_has_prefix (uri, temp_scheme);
 		if (is_local_scheme) {
 			break;
 		}

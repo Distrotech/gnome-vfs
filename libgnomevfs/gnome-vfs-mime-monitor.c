@@ -139,7 +139,7 @@ mime_dir_changed_callback (GnomeVFSMonitorHandle    *handle,
 	else if (monitor_callback_data->type == LOCAL_MIME_DIR)
 		_gnome_vfs_mime_info_mark_user_mime_dir_dirty ();
 		
-	gnome_vfs_mime_monitor_emit_data_changed (monitor_callback_data->monitor);
+	_gnome_vfs_mime_monitor_emit_data_changed (monitor_callback_data->monitor);
 }
 
 static void
@@ -171,7 +171,7 @@ gnome_vfs_mime_monitor_get (void)
 
 
 void
-gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor)
+_gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor)
 {
 	g_return_if_fail (GNOME_VFS_IS_MIME_MONITOR (monitor));
 

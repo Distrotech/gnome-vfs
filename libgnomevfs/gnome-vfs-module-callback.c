@@ -147,7 +147,7 @@ async_callback_invoke (gconstpointer in,
 
 	g_static_mutex_lock (&async_callback_lock);
 	response_data.done = FALSE;
-	gnome_vfs_dispatch_module_callback (async_callback->callback,
+	_gnome_vfs_dispatch_module_callback (async_callback->callback,
 					    in, in_size,
 					    out, out_size,
 					    async_callback->callback_data, 
@@ -443,7 +443,7 @@ free_stack_tables_to_free (void)
 }
 
 void
-gnome_vfs_module_callback_private_init (void)
+_gnome_vfs_module_callback_private_init (void)
 {
 	callback_stacks_key = g_private_new (stack_table_destroy);
 	async_callback_stacks_key = g_private_new (stack_table_destroy);
@@ -907,7 +907,7 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
  */
 
 GnomeVFSModuleCallbackStackInfo *
-gnome_vfs_module_callback_get_stack_info (void)
+_gnome_vfs_module_callback_get_stack_info (void)
 {
 	GnomeVFSModuleCallbackStackInfo *stack_info;
 
@@ -929,7 +929,7 @@ gnome_vfs_module_callback_get_stack_info (void)
 }
 
 void
-gnome_vfs_module_callback_free_stack_info (GnomeVFSModuleCallbackStackInfo *stack_info)
+_gnome_vfs_module_callback_free_stack_info (GnomeVFSModuleCallbackStackInfo *stack_info)
 {
 	clear_callback_table (stack_info->current_callbacks);
 	g_hash_table_destroy (stack_info->current_callbacks); 
@@ -940,7 +940,7 @@ gnome_vfs_module_callback_free_stack_info (GnomeVFSModuleCallbackStackInfo *stac
 }
 
 void
-gnome_vfs_module_callback_use_stack_info (GnomeVFSModuleCallbackStackInfo *stack_info)
+_gnome_vfs_module_callback_use_stack_info (GnomeVFSModuleCallbackStackInfo *stack_info)
 {
 	initialize_per_thread_if_needed ();
 	copy_callback_table_to_stack_table (stack_info->current_callbacks, 
@@ -950,7 +950,7 @@ gnome_vfs_module_callback_use_stack_info (GnomeVFSModuleCallbackStackInfo *stack
 }
 
 void
-gnome_vfs_module_callback_clear_stacks (void)
+_gnome_vfs_module_callback_clear_stacks (void)
 {
 	initialize_per_thread_if_needed ();
 	clear_stack_table (g_private_get (callback_stacks_key));
@@ -958,7 +958,7 @@ gnome_vfs_module_callback_clear_stacks (void)
 }
 
 void
-gnome_vfs_module_callback_set_in_async_thread (gboolean in_async_thread)
+_gnome_vfs_module_callback_set_in_async_thread (gboolean in_async_thread)
 {
 	initialize_per_thread_if_needed ();
 	g_private_set (in_async_thread_key, GINT_TO_POINTER (in_async_thread));
