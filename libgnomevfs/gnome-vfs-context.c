@@ -43,7 +43,7 @@ struct GnomeVFSContext {
 /* This is a token Context to return in situations
  * where we don't normally have a context: eg, during sync calls
  */
-const GnomeVFSContext sync_context = {NULL};
+static const GnomeVFSContext sync_context = {NULL};
 
 /**
  * gnome_vfs_context_new:

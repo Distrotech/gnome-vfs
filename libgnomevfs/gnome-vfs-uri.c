@@ -93,7 +93,7 @@ typedef struct {
 	char bv[32];
 } UriStrspnSet; 
 
-UriStrspnSet uri_strspn_sets[] = {
+static UriStrspnSet uri_strspn_sets[] = {
 	{":@]" GNOME_VFS_URI_PATH_STR, FALSE, ""},
 	{"@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
 	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""},

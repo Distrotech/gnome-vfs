@@ -883,8 +883,8 @@ static GnomeVFSMonitorHandle *fstab_monitor = NULL;
 static GnomeVFSUnixMountCallback fstab_callback = NULL;
 static GnomeVFSMonitorHandle *mtab_monitor = NULL;
 static GnomeVFSUnixMountCallback mtab_callback = NULL;
-guint mtab_poll_tag = 0;
-guint fstab_poll_tag = 0;
+static guint mtab_poll_tag = 0;
+static guint fstab_poll_tag = 0;
 
 static void
 fstab_monitor_callback (GnomeVFSMonitorHandle *handle,

@@ -1,3 +1,12 @@
+2004-07-21  Christophe Fergeau <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-context.c 
+	* libgnomevfs/gnome-vfs-method.c
+	* libgnomevfs/gnome-vfs-mime-info.c
+	* libgnomevfs/gnome-vfs-unix-mounts.c
+	* libgnomevfs/gnome-vfs-uri.c: marked a bunch of global variable which
+	  weren't meant to be exported as static
+
 2004-07-20  Josselin Mouette <joss@debian.org>
 
 	* modules/tar-method.c: prevent crash when opening tar:/// in Nautilus

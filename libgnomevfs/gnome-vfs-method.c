@@ -57,7 +57,7 @@ static void (*daemon_force_probe_callback) (GnomeVFSVolumeMonitor *volume_monito
 
 static GHashTable *module_hash = NULL;
 G_LOCK_DEFINE_STATIC (gnome_vfs_method_init);
-GStaticRecMutex module_hash_lock = G_STATIC_REC_MUTEX_INIT;
+static GStaticRecMutex module_hash_lock = G_STATIC_REC_MUTEX_INIT;
 
 static GList *module_path_list = NULL;
 

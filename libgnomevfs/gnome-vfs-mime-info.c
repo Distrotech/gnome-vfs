@@ -1108,15 +1108,6 @@ gnome_vfs_mime_get_key_list (const char *mime_type)
 	return list;
 }
 
-gint
-str_cmp_callback  (gconstpointer a,
-		   gconstpointer b);
-gint
-str_cmp_callback  (gconstpointer a,
-		   gconstpointer b)
-{
-	return (strcmp ((char *)a, (char *)b));
-}
 
 /**
  * gnome_vfs_mime_set_extensions_list:
