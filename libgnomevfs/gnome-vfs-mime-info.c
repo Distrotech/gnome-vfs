@@ -223,7 +223,6 @@ context_new (GHashTable *hash_table, GString *str)
 		(GDestroyNotify) g_free);
 
 	g_hash_table_insert (hash_table, context->mime_type, context);
-
 	return context;
 }
 
@@ -233,22 +232,6 @@ context_destroy (GnomeMimeContext *context)
 	g_hash_table_destroy (context->keys);
 	g_free (context->mime_type);
 	g_free (context);
-}
-
-static void
-context_destroy_and_unlink (GnomeMimeContext *context)
-{
-	/*
-	 * Remove the context from our hash tables, we dont know
-	 * where it is: so just remove it from both (it can
-	 * only be in one).
-	 */
-	g_hash_table_remove (specific_types,        context->mime_type);
-	g_hash_table_remove (registered_types,      context->mime_type);
-	g_hash_table_remove (specific_types_user,   context->mime_type);
-	g_hash_table_remove (registered_types_user, context->mime_type);
-
-	context_destroy (context);
 }
 
 /* this gives us a number of the language in the current language list,
@@ -287,7 +270,7 @@ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
 		return;
 	}
 
-/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level); */
+	/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level);*/
 
 	g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
 
@@ -449,6 +432,7 @@ load_type_info_from (const char *filename,
 
 			if (format == FORMAT_KEYS && c == ':') {
 				key = last_str_end;
+
 				APPEND_CHAR (line, '\0');
 				last_str_end = line->len;
 
@@ -498,8 +482,9 @@ load_type_info_from (const char *filename,
 		}
 	}
 
+	/* This happens if the last line of the file doesn't end with '\n' */
 	if (context != NULL) {
-		if (key && line->str [0]) {
+		if (last_str_end && line->str [0]) {
 			APPEND_CHAR (line, '\0');
 			context_add_key (context,
 					 line->str + key,
@@ -507,7 +492,8 @@ load_type_info_from (const char *filename,
 					 line->str + last_str_end);
 		} else {
 			if (g_hash_table_size (context->keys) < 1) {
-				context_destroy_and_unlink (context);
+				g_hash_table_remove (hash_table, context->mime_type);
+				context_destroy (context);
 			}
 		}
 	}
