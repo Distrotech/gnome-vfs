@@ -28,6 +28,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-backend.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-mime.h"
 
 #include <liboaf/liboaf.h>
 
@@ -78,6 +79,7 @@ void
 gnome_vfs_shutdown (void)
 {
 	gnome_vfs_backend_shutdown ();
+	gnome_vfs_mime_shutdown ();
 }
 
 void

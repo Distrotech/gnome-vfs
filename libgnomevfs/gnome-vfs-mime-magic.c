@@ -470,6 +470,15 @@ gnome_vfs_mime_get_magic_table (void)
 	return mime_magic_table;
 }
 
+void
+gnome_vfs_mime_clear_magic_table (void)
+{
+	G_LOCK (mime_magic_table_mutex);
+  	g_free (mime_magic_table);
+  	mime_magic_table = NULL;
+	G_UNLOCK (mime_magic_table_mutex);
+}
+
 /**
  * gnome_vfs_get_mime_type_for_buffer:
  * @buffer: a sniff buffer referencing either a file or data in memory

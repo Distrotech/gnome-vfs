@@ -518,11 +518,21 @@ maybe_reload (void)
 }
 
 void
+gnome_vfs_mime_info_clear (void)
+{
+	if (specific_types != NULL) {
+		g_hash_table_foreach_remove (specific_types, remove_keys, NULL);
+	}
+	if (generic_types) {
+		g_hash_table_foreach_remove (generic_types, remove_keys, NULL);
+	}
+}
+
+void
 gnome_vfs_mime_info_reload (void)
 {
 	/* 1. Clean */
-	g_hash_table_foreach_remove (specific_types, remove_keys, NULL);
-	g_hash_table_foreach_remove (generic_types, remove_keys, NULL);
+	gnome_vfs_mime_info_clear ();
 	
 	/* 2. Reload */
 	load_mime_type_info ();

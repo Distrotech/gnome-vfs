@@ -24,6 +24,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-sniff-buffer.h"
 #include "gnome-vfs-module-shared.h"
 
@@ -284,12 +285,35 @@ mime_hash_func (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
+mime_extensions_empty (void)
+{
+	GList *p;
+	int i;
+	for (i = 0; i < 2; i++) {
+
+		if (mime_extensions [i] != NULL) {
+			g_hash_table_foreach_remove (mime_extensions [i], 
+				mime_hash_func, NULL);
+		}
+
+		for (p = mime_regexs [i]; p != NULL; p = p->next){
+			RegexMimePair *mp = p->data;
+
+			g_free (mp->mime_type);
+			regfree (&mp->regex);
+			g_free (mp);
+		}
+		g_list_free (mime_regexs [i]);
+		mime_regexs [i] = NULL;
+	}
+}
+
+static void
 maybe_reload (void)
 {
 	time_t now = time (NULL);
 	gboolean need_reload = FALSE;
 	struct stat s;
-	int i;
 
 	if (last_checked + 5 >= now)
 		return;
@@ -307,21 +331,7 @@ maybe_reload (void)
 	if (!need_reload)
 		return;
 
-	for (i = 0; i < 2; i++){
-		GList *l;
-
-		g_hash_table_foreach_remove (mime_extensions [i], mime_hash_func, NULL);
-
-		for (l = mime_regexs [i]; l; l = l->next){
-			RegexMimePair *mp = l->data;
-
-			g_free (mp->mime_type);
-			regfree (&mp->regex);
-			g_free (mp);
-		}
-		g_list_free (mime_regexs [i]);
-		mime_regexs [i] = NULL;
-	}
+	mime_extensions_empty ();
 
 	mime_load (&gnome_mime_dir);
 	mime_load (&user_mime_dir);
@@ -345,6 +355,14 @@ mime_init (void)
 
 	last_checked = time (NULL);
 	module_inited = TRUE;
+}
+
+void
+gnome_vfs_mime_shutdown (void)
+{
+	mime_extensions_empty ();
+	gnome_vfs_mime_info_clear ();
+	gnome_vfs_mime_clear_magic_table ();
 }
 
 /**
@@ -394,6 +412,7 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 			}
 
 			/* Search for UPPER case extension */
+ 			g_free (upext);
 			upext = g_strdup (ext);
 			g_strup (upext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);

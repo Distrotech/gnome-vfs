@@ -1,3 +1,22 @@
+2000-06-07  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_shutdown):
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_info_clear),
+	(gnome_vfs_mime_info_reload):
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_clear_magic_table):
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	* libgnomevfs/gnome-vfs-mime.c: (mime_extensions_empty),
+	(maybe_reload), (gnome_vfs_mime_shutdown):
+	* libgnomevfs/gnome-vfs-mime.h:
+	Add calls that clear the different mime type tables and call them
+	from gnome_vfs_shutdown.
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	(gnome_vfs_mime_type_or_default):
+	Fix a leak.
+
 2000-06-07  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c: (func_lookup):

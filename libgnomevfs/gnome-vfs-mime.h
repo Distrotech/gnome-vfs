@@ -31,6 +31,8 @@
 
 BEGIN_GNOME_DECLS
 
+void 	     gnome_vfs_mime_shutdown 				(void);
+
 /* do not free any of the returned gchar* values */
 const char  *gnome_vfs_mime_type				(const gchar* filename);
 const char  *gnome_vfs_mime_type_or_default			(const gchar *filename,

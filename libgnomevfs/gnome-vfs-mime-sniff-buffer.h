@@ -39,6 +39,8 @@ typedef GnomeVFSResult (* GnomeVFSSniffBufferReadCall)(gpointer context,
 		
 typedef struct GnomeVFSMimeSniffBuffer GnomeVFSMimeSniffBuffer;
 
+void			 gnome_vfs_mime_clear_magic_table 		(void);
+
 GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_from_handle 	
 					(GnomeVFSHandle 		*file);
 GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_from_memory 

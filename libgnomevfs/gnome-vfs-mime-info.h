@@ -43,7 +43,7 @@ gboolean    gnome_vfs_mime_needsterminal	  (const char* mime_type,
 gchar      *gnome_vfs_mime_program_name		  (const char *program_name);
 
 void        gnome_vfs_mime_info_reload            (void);
-
+void	    gnome_vfs_mime_info_clear		  (void);
 
 END_GNOME_DECLS
 
