@@ -52,9 +52,7 @@
 
 #include "gnome-vfs-slave.h"
 
-#if USING_OAF
 #include <liboaf/liboaf.h>
-#endif
 
 
 /*  #define SLAVE_DEBUG */
@@ -1392,11 +1390,7 @@ init_corba (int *argc,
 	CORBA_ORB orb;
 	PortableServer_POA poa;
 
-#if USING_OAF
 	orb = oaf_init (*argc, argv);
-#else
-	orb = gnorba_CORBA_init (argc, argv, GNORBA_INIT_SERVER_FUNC, ev);
-#endif
 
 	if (ev->_major != CORBA_NO_EXCEPTION) {
 		error (_("Cannot initialize CORBA."));

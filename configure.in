@@ -77,33 +77,25 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	-Werror"
 fi
 
-dnl Whether to use OAF
-AC_ARG_ENABLE(oaf, 
-            [  --enable-oaf=[no/yes]      Use OAF instead of GOAD.],,enable_oaf=no)
-
-if test "x$enable_oaf" = "xyes"; then
-        AC_PATH_PROG(OAF_CONFIG,oaf-config,no)
-        if test x$OAF_CONFIG = xno; then
-                AC_MSG_ERROR("You enabled OAF support but oaf-config was not found")
-        else
-                OAF_LIBS=`$OAF_CONFIG --libs`
-                OAF_CFLAGS=`$OAF_CONFIG --cflags`
-                GNORBA_LIBNAME=
-        fi
+AC_PATH_PROG(OAF_CONFIG,oaf-config,no)
+if test x$OAF_CONFIG = xno; then
+	AC_MSG_ERROR("The program oaf-config was not found")
 else
-        OAF_LIBS=
-        OAF_CFLAGS=
-        GNORBA_LIBNAME=gnorba
+	AC_MSG_CHECKING(for Oaf >= 0.3.0)
+	vers=`$OAF_CONFIG --version | \
+		awk 'BEGIN { FS = "."; } { printf "%d", $1 * 1000 + $2;}'`
+	if test "$vers" -ge 3; then
+	        OAF_LIBS=`$OAF_CONFIG --libs`
+        	OAF_CFLAGS=`$OAF_CONFIG --cflags`
+		AC_MSG_RESULT(found)
+	else
+		AC_MSG_RESULT(not found)	
+		AC_MSG_ERROR(Please install the oaf and oaf-devel packages)
+	fi
 fi
 
 AC_SUBST(OAF_LIBS)
 AC_SUBST(OAF_CFLAGS)
-
-AM_CONDITIONAL(USING_OAF, test "x$enable_oaf" = "xyes")
-
-if test "x$enable_oaf" = "xyes"; then
-	AC_DEFINE(USING_OAF)
-fi
 
 dnl
 dnl gnome vfs Documentation
