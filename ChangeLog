@@ -1,3 +1,12 @@
+2005-02-09  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/sftp-method.c (sftp_connect): Increased timeout and
+	return GNOME_VFS_ERROR_TIMEOUT instead if ERROR_IO.
+	
+	* modules/pty-open.c (_gnome_vfs_pty_fork_on_pty_name): Double
+	fork so that we don't produce zombies!
+	This should fix bug #139872.
+
 2005-02-09  Alexander Larsson  <alexl@redhat.com>
 
 	reviewed by: <delete if not using a buddy>

@@ -1245,14 +1245,14 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		FD_SET (in_fd, &ifds);
 		FD_SET (prompt_fd, &ifds);
 
-		tv.tv_sec = 10;
+		tv.tv_sec = 20;
 		tv.tv_usec = 0;
 
 		ret = select (MAX (in_fd, prompt_fd)+1, &ifds, NULL, NULL, &tv);
 
 		if (ret <= 0) {
 			/* Timeout */
-			res = GNOME_VFS_ERROR_IO;
+			res = GNOME_VFS_ERROR_TIMEOUT;
 			goto bail;
 		}
 

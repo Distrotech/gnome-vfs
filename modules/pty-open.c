@@ -366,7 +366,8 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 	int fd, i;
 	char c;
 	int ready_a[2], ready_b[2];
-	pid_t pid;
+	pid_t pid, grandchild_pid;
+	int pid_pipe[2];
 	int stdin_pipe[2];
 	int stdout_pipe[2];
 	int stderr_pipe[2];
@@ -377,6 +378,12 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		/* Error setting up pipes.  Bail. */
 		goto bail_ready;
 	}
+
+	if (pipe(pid_pipe)) {
+		/* Error setting up pipes. Bail. */
+		goto bail_pid;
+	}
+	
 	if (pipe(stdin_pipe)) {
 		/* Error setting up pipes.  Bail. */
 		goto bail_stdin;
@@ -402,11 +409,30 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		/* Child. Close the parent's ends of the pipes. */
 		close(ready_a[0]);
 		close(ready_b[1]);
+		close(pid_pipe[0]);
 
 		close(stdin_pipe[1]);
 		close(stdout_pipe[0]);
 		close(stderr_pipe[0]);
 
+		/* Fork a intermediate child. This is needed to not
+		 * produce zombies! */
+		grandchild_pid = fork();
+
+		if (grandchild_pid < 0) {
+			/* Error during fork! */
+			n_write (pid_pipe[1], &grandchild_pid, 
+					sizeof (grandchild_pid));
+			_exit (1);
+		} else if (grandchild_pid > 0) {
+			/* Parent! (This is the actual intermediate child;
+			 * so write the pid to the parent and then exit */
+			n_write (pid_pipe[1], &grandchild_pid, 
+					sizeof (grandchild_pid));
+			close (pid_pipe[1]);
+			_exit (0);
+		}
+		
 		/* Start a new session and become process-group leader. */
 		setsid();
 		setpgid(0, 0);
@@ -453,11 +479,34 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		 * handshake, and return the child's PID. */
 		close(ready_b[0]);
 		close(ready_a[1]);
+		close(pid_pipe[1]);
 
 		close(stdin_pipe[0]);
 		close(stdout_pipe[1]);
 		close(stderr_pipe[1]);
 
+		/* Reap the intermediate child */
+            wait_again:	
+		if (waitpid (pid, NULL, 0) < 0) {
+			if (errno == EINTR) {
+				goto wait_again;
+			} else if (errno == ECHILD) {
+				; /* NOOP! Child already reaped. */
+			} else {
+				g_warning ("waitpid() should not fail"
+					  	"in pty-open.c");
+			}
+		}
+		
+		/*
+		 * Read the child pid from the pid_pipe 
+		 * */
+		if (n_read (pid_pipe[0], child, sizeof (pid_t)) 
+				!= sizeof (pid_t) || *child == -1) {
+			g_warning ("Error while spanning child!");
+			goto bail_fork;
+		}
+		
 		/* Wait for the child to be ready, set the window size, then
 		 * signal that we're ready.  We need to synchronize here to
 		 * avoid possible races when the child has to do more setup
@@ -482,19 +531,19 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		n_write(ready_b[1], &c, 1);
 		close(ready_a[0]);
 		close(ready_b[1]);
+		close(pid_pipe[0]);
 
 		*stdin_fd = stdin_pipe[1];
 		*stdout_fd = stdout_pipe[0];
 		*stderr_fd = stderr_pipe[0];
 
-		*child = pid;
 		return 0;
 		break;
 	}
 	g_assert_not_reached();
 	return -1;
 
-
+ bail_fork:
 	close(stderr_pipe[0]);
 	close(stderr_pipe[1]);
  bail_stderr:
@@ -504,6 +553,9 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 	close(stdin_pipe[0]);
 	close(stdin_pipe[1]);
  bail_stdin:
+	close(pid_pipe[0]);
+	close(pid_pipe[1]);
+ bail_pid:
 	close(ready_a[0]);
 	close(ready_a[1]);
 	close(ready_b[0]);
