@@ -24,6 +24,7 @@
 #include "gnome-vfs.h"
 
 #include <stdio.h>
+#include <unistd.h>
 
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
@@ -71,7 +72,7 @@ main (int argc, char **argv)
 		show_result (result, "read", text_uri);
 	
 		buffer[bytes_read] = 0;
-		puts (buffer);
+		write (1,buffer,bytes_read);
 		if(!bytes_read) break;
 	}
 

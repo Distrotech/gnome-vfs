@@ -538,7 +538,7 @@ create_handle (HttpFileHandle **handle_return,
 
 		msg = g_strdup_printf(_("%s to retrieve"), sz);
 
-		gnome_vfs_context_emit_message(context, msg);
+		if(context) gnome_vfs_context_emit_message(context, msg);
 		
 		g_free(sz);
 		g_free(msg);

@@ -35,6 +35,8 @@ noinst_PROGRAMS =				\
 	test-xfer				\
 	test-shell				\
 	test-uri				\
+	test-unlink				\
+	test-dirop				\
 	test-mime-info				\
 	$(oaf_programs)
 
@@ -176,6 +178,14 @@ test_escape_LDFLAGS =
 test_uri_SOURCES = test-uri.c
 test_uri_LDADD = $(libraries)
 test_uri_LDFLAGS = 
+
+test_unlink_SOURCES = test-unlink.c
+test_unlink_LDADD = $(libraries)
+test_unlink_LDFLAGS = 
+
+test_dirop_SOURCES = test-dirop.c
+test_dirop_LDADD = $(libraries)
+test_dirop_LDFLAGS = 
 
 test_find_directory_SOURCES = test-find-directory.c
 test_find_directory_LDADD = $(libraries)

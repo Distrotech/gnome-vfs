@@ -1,3 +1,38 @@
+2000-09-01  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-context.c:
+	(gnome_vfs_context_emit_message):
+	The fallback error message that is sent if context==NULL is now sent
+	to stderr rather than stdout. It was confusing test programs before.
+
+	* modules/http-method.c: (create_handle):
+	Don't emit message if context==NULL
+
+	* test/Makefile.am:
+	Added some test programs...
+
+	* test/test-dirop.c:
+	New test to test make_directory and remove_directory.
+
+	* test/test-unlink.c:
+	New test to test unlink.
+
+	* test/test-info.c: (main):
+	Now returns a result so get_file_info's success can be tested from
+	shell scripts.
+
+	* test/test-sync-create.c: (main):
+	* test/test-sync-write.c: (main):
+	Removed superflous debugging info.
+
+	* test/test-sync.c: (main):
+	Cleaned up code a bit so this is 8 bit clean.
+
+	* test/test-remote:
+	A shell script that calls many of the test programs to check that
+	a filesystem behaves in a sensible fasion. Its geared towards 
+	testing remote filesystems such as FTP and WebDAV.
+
 2000-09-01  Pavel Cisler  <pavel@eazel.com>
 
 	Bugzilla task 2186 -- Move/Copy/Link from multiple directories fails.

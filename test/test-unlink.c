@@ -1,8 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* test-sync.c - Test program for synchronous operation of the GNOME
+/* test-unlink.c - Test program for unlink operation in the GNOME
    Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000 Eazel Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,14 +20,15 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> 
-					 Ian McKellar <yakk@yakk.net>
-
-	 */
+   Authors: 
+   	Ettore Perazzoli <ettore@gnu.org> 
+	Ian McKellar <yakk@yakk.net.au>
+ */
 
 #include "gnome-vfs.h"
 
 #include <stdio.h>
+#include <unistd.h>
 
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
@@ -41,9 +43,6 @@ int
 main (int argc, char **argv)
 {
 	GnomeVFSResult    result;
-	GnomeVFSHandle   *handle;
-	gchar             buffer[1024];
-	GnomeVFSFileSize  bytes_read;
 	GnomeVFSURI 	 *uri;
 	gchar            *text_uri;
 
@@ -63,25 +62,10 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+        text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_WRITE);
-	show_result (result, "open", text_uri);
-
-	while( result==GNOME_VFS_OK && !feof(stdin)) {
-		GnomeVFSFileSize temp;
-
-		bytes_read = fread(buffer, 1, sizeof buffer - 1, stdin);
-		if(!bytes_read) break;
-		buffer[bytes_read] = 0;
-		result = gnome_vfs_write (handle, buffer, bytes_read,
-				 	&temp);
-		show_result (result, "write", text_uri);
-	
-	}
-
-	result = gnome_vfs_close (handle);
-	show_result (result, "close", text_uri);
+	result = gnome_vfs_unlink (text_uri);
+	show_result (result, "unlink", text_uri);
 
 	g_free (text_uri);
 

@@ -71,7 +71,6 @@ main (int argc, char **argv)
 	while( result==GNOME_VFS_OK && !feof(stdin)) {
 		GnomeVFSFileSize temp;
 
-		g_print("[loop]\n");
 		bytes_read = fread(buffer, 1, sizeof buffer - 1, stdin);
 		if(!bytes_read) break;
 		buffer[bytes_read] = 0;

@@ -116,7 +116,7 @@ gnome_vfs_context_emit_message           (GnomeVFSContext *ctx,
         GnomeVFSMessageCallbacks *callbacks;
         
         if (ctx == NULL) {
-                printf("Debug: NULL context so not reporting status: %s\n", message);
+                fprintf(stderr, "Debug: NULL context so not reporting status: %s\n", message);
                 return;
         }
         

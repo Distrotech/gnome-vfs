@@ -157,7 +157,7 @@ main (int argc,
 			fprintf (stderr, "%s: %s: %s\n",
 				 argv[0], uri, gnome_vfs_result_to_string (result));
 			i++;
-			continue;
+			return result;
 		}
 
 		print_file_info (&info);
