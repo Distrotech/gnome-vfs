@@ -279,7 +279,7 @@ libgnomevfs_2_la_SOURCES =			\
 	xdgmime.c				\
 	xdgmimeglob.c				\
 	xdgmimeint.c				\
-	$(libgnomevfs_built_cfiles)			\
+	$(libgnomevfs_built_cfiles)		\
 	$(NULL)
 
 #	$(GOB_SRCLIST)				\

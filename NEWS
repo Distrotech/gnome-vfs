@@ -1,3 +1,14 @@
+gnome-vfs 2.5.4
+	* Features
+		+ performance tweaking of copy block size
+		+ correct units for kilobytes according to HIG
+		+ some cleanups of the schemas texts
+		
+	* Bugs fixed:
+		+ fixed up daemon failure handling
+		+ cd name reading
+		+ g_object_new crasher
+		+ removed debug spew
 gnome-vfs 2.5.3
 	* Features
 		+ New authentication callbacks, allowing
