@@ -24,19 +24,16 @@
 #include <config.h>
 #include "gnome-vfs-method.h"
 
+#include "gnome-vfs-configuration.h"
+#include "gnome-vfs-private.h"
+#include <gmodule.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-transform.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
 
-#include <glib.h>
-#include <gmodule.h>
-
-#include <libgnomevfs/gnome-vfs-transform.h>
-#include <libgnomevfs/gnome-vfs-module.h>
-#include <libgnomevfs/gnome-vfs-private.h>
-
-
 struct _ModuleElement {
 	char *name;
 	const char *args;

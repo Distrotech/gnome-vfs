@@ -1,9 +1,11 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-#ifndef _BONOBO_STREAM_VFS_H_
-#define _BONOBO_STREAM_VFS_H_
+
+#ifndef BONOBO_STREAM_VFS_H
+#define BONOBO_STREAM_VFS_H
 
 #include <bonobo/bonobo-object.h>
-#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
 
 G_BEGIN_DECLS
 
@@ -40,4 +42,4 @@ void bonobo_stream_vfs_storageinfo_from_file_info (Bonobo_StorageInfo *si,
 	
 G_END_DECLS
 
-#endif /* _BONOBO_STREAM_VFS_H_ */
+#endif /* BONOBO_STREAM_VFS_H */

@@ -36,8 +36,12 @@
 #include <config.h>
 #include "gnome-vfs-xfer.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
+#include "gnome-vfs-cancellable-ops.h"
+#include "gnome-vfs-directory.h"
+#include "gnome-vfs-ops.h"
+#include "gnome-vfs-utils.h"
+#include <glib/gstrfuncs.h>
+#include <glib/gmessages.h>
 #include <string.h>
 #include <sys/time.h>
 

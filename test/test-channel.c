@@ -21,20 +21,24 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
+#include <glib/gconvert.h> /* workaround for bug in giochannel.h */
+#include <glib/giochannel.h>
+#include <glib/gmain.h>
+#include <glib/gmessages.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>
 
 #define BUFFER_SIZE 4096
 
 static GMainLoop *main_loop;
 
-static gboolean io_channel_callback (GIOChannel *source,
-				     GIOCondition condition,
-				     gpointer data)
+static gboolean
+io_channel_callback (GIOChannel *source,
+		     GIOCondition condition,
+		     gpointer data)
 {
 	gchar buffer[BUFFER_SIZE + 1];
 	guint bytes_read;
@@ -42,7 +46,7 @@ static gboolean io_channel_callback (GIOChannel *source,
 	printf ("\n\n************ IO Channel callback!\n");
 
 	if (condition & G_IO_IN) {
-		g_io_channel_read (source, buffer, sizeof (buffer) - 1, &bytes_read);
+		g_io_channel_read_chars (source, buffer, sizeof (buffer) - 1, &bytes_read, NULL);
 		buffer[bytes_read] = 0;
 		printf ("---> Read %d byte(s):\n%s\n\n(***END***)\n",
 			bytes_read, buffer);
@@ -57,7 +61,7 @@ static gboolean io_channel_callback (GIOChannel *source,
 	if (condition & G_IO_HUP) {
 		printf ("\n----- EOF -----\n");
 		fflush (stdout);
-		g_io_channel_close (source);
+		g_io_channel_shutdown (source, FALSE, NULL);
 		g_main_loop_quit (main_loop);
 		return FALSE;
 	}

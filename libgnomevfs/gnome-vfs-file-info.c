@@ -25,10 +25,10 @@
 #include <config.h>
 #include "gnome-vfs-file-info.h"
 
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
 #include <string.h>
-#include <glib.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 
 /* Mutex for making GnomeVFSFileInfo ref's/unref's atomic */
 /* Note that an atomic increment function (such as is present in NSPR) is preferable */
@@ -239,7 +239,7 @@ gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 	}
 
 	g_assert (a->mime_type != NULL && b->mime_type != NULL);
-	return g_strcasecmp (a->mime_type, b->mime_type) == 0;
+	return g_ascii_strcasecmp (a->mime_type, b->mime_type) == 0;
 }
 
 GList *

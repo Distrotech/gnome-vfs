@@ -7,12 +7,15 @@
  *
  * Copyright 2001, Ximian, Inc.
  */
+
 #include <config.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/stat.h>
 #include "bonobo-stream-vfs.h"
+
 #include <errno.h>
+#include <fcntl.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <stdio.h>
+#include <sys/stat.h>
 
 static BonoboObjectClass *bonobo_stream_vfs_parent_class;
 

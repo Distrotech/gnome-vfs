@@ -24,8 +24,8 @@
 #include <config.h>
 #include "gnome-vfs-shellpattern-filter.h"
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 
 #ifdef _POSIX_SOURCE
 #include <fnmatch.h>

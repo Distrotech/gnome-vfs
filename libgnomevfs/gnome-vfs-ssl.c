@@ -28,11 +28,9 @@
 #include <config.h>
 #include "gnome-vfs-ssl.h"
 
-#include <string.h>
-#include <glib.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 #include "gnome-vfs-ssl-private.h"
+#include <glib/gmem.h>
+#include <string.h>
 
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>

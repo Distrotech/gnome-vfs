@@ -36,12 +36,14 @@
 
 #include <config.h>
 
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-cancellable-ops.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <libgnomevfs/gnome-vfs-module.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
-
-#include <libgnomevfs/gnome-vfs.h>
-#include <libgnomevfs/gnome-vfs-private.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -156,7 +158,7 @@ get_operation_settings (const char *function_identifier)
 
 	for (node = settings_list; node != NULL; node = node->next) {
 	        settings = node->data;
-		if (g_strcasecmp (settings->operation_name, function_identifier) == 0) {
+		if (g_ascii_strcasecmp (settings->operation_name, function_identifier) == 0) {
 			return settings;
 		}
 	}
@@ -245,7 +247,7 @@ parse_result_text (const char *result_text,
 	int i;
 
 	for (i = 0; i < NUM_RESULT_STRINGS; i++) {
-		if (g_strcasecmp (result_text, result_strings[i]) == 0) {
+		if (g_ascii_strcasecmp (result_text, result_strings[i]) == 0) {
 			*result_code = i;
 			return TRUE;
 		}
@@ -268,7 +270,7 @@ load_settings (const char *filename)
 	if (doc == NULL
 	    || doc->xmlRootNode == NULL
 	    || doc->xmlRootNode->name == NULL
-	    || g_strcasecmp (doc->xmlRootNode->name, "testmodule") != 0) {
+	    || g_ascii_strcasecmp (doc->xmlRootNode->name, "testmodule") != 0) {
 		xmlFreeDoc(doc);
 		return FALSE;
 	}
@@ -291,7 +293,7 @@ load_settings (const char *filename)
 		xmlFree (str);
 
 		str = xmlGetProp(node, "execute_operation");
-		if (str != NULL && g_strcasecmp (str, "FALSE") == 0) {
+		if (str != NULL && g_ascii_strcasecmp (str, "FALSE") == 0) {
 			operation->skip = TRUE;
 		}
 		xmlFree (str);

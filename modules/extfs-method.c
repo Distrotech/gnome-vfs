@@ -26,31 +26,34 @@
 /* TODO: Support archives on non-local file systems.  Although I am not
    that sure it's such a terrific idea anymore.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <errno.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <fcntl.h>
-#include <unistd.h>
+#include <glib/ghash.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+#include <glib/gutils.h>
+#include <libgnomevfs/gnome-vfs-cancellable-ops.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-parse-ls.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-#include "gnome-vfs-mime.h"
+#ifndef HAVE_GETDELIM
+ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
+#endif
 
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
-
-#include "extfs-method.h"
-
-
 #define EXTFS_COMMAND_DIR	PREFIX "/lib/vfs/extfs"
 
-
 /* Our private handle struct.  */
 struct _ExtfsHandle {
 	GnomeVFSOpenMode open_mode;
@@ -178,7 +181,7 @@ get_basename (const gchar *pth)
 	gchar *path = strip_separators(pth);
 	gchar *s;
 
-	s = g_strdup(g_basename(path));
+	s = g_path_get_basename (path);
 
 	g_free(path);
 

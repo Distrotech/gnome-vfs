@@ -30,7 +30,8 @@
 
 #include "gnome-vfs-backend-private.h"
 #include "gnome-vfs-callbacks.h"
-#include "gnome-vfs.h"
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-result.h>
 #include <gmodule.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,12 +40,12 @@
 static GModule *gmod = NULL;
 static gboolean (* gnome_vfs_backend_module_init)(gboolean deps_init);
 
-static char backend_lower[128] = "";
+static char *backend_lower;
 
 const char *
 gnome_vfs_backend_name (void)
 {
-	return (*backend_lower) ? backend_lower : NULL;
+	return backend_lower;
 }
 
 void
@@ -65,19 +66,17 @@ gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 	if (backend == NULL) {
 		backend = "pthread";
 	}
-
-	strcpy (backend_lower, backend);
-	g_strdown (backend_lower);
+	backend_lower = g_ascii_strdown (backend);
 
 	g_snprintf (backend_filename, sizeof (backend_filename), 
-		"libgnomevfs-%s.so.0", backend_lower);
+		    "libgnomevfs-%s.so.0", backend_lower);
 
 	gmod = g_module_open (backend_filename, G_MODULE_BIND_LAZY);
 	if (gmod == NULL) {
 		g_error("Could not open %s: %s", backend_filename, g_module_error());
 	}
 	g_snprintf (backend_filename, sizeof (backend_filename), 
-		"gnome_vfs_%s_init", backend_lower);
+		    "gnome_vfs_%s_init", backend_lower);
 
 	if (!g_module_symbol (gmod, backend_filename, 
 		(gpointer *)&gnome_vfs_backend_module_init)) {

@@ -98,7 +98,7 @@ read_hex_byte (const char **pos)
 		if (**pos >= '0' && **pos <= '9') {
 			retval += **pos - '0';
 		} else {
-			retval += tolower (**pos) - 'a' + 10;
+			retval += g_ascii_tolower (**pos) - 'a' + 10;
 		}
 
   		(*pos)++;
@@ -192,7 +192,7 @@ read_num_val(const char **offset, int bsize, int *result)
 	const char *scanner = *offset;
 	
 	if (*scanner == '0') {
-		if (tolower (scanner[1]) == 'x') {
+		if (g_ascii_tolower (scanner[1]) == 'x') {
 			fmttype = 'x';
 		} else {
 			fmttype = 'o';

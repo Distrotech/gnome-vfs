@@ -21,13 +21,13 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gtimer.h>
+#include <glib/gmain.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-init.h>
 #include <popt.h>
 #include <stdio.h>
 

@@ -21,16 +21,13 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
+#include <libgnomevfs/gnome-vfs-directory.h>
+#include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "gnome-vfs.h"
-
-
 static const gchar *
 type_to_string (GnomeVFSFileType type)
 {
@@ -88,7 +85,6 @@ directory_visit_callback (const gchar *rel_path,
 	return TRUE;
 }
 
-
 int
 main (int argc, char **argv)
 {

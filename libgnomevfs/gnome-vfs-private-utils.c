@@ -502,8 +502,8 @@ gnome_vfs_istr_has_prefix (const char *haystack, const char *needle)
 		}
 		hc = *h++;
 		nc = *n++;
-		hc = tolower ((guchar) hc);
-		nc = tolower ((guchar) nc);
+		hc = g_ascii_tolower (hc);
+		nc = g_ascii_tolower (nc);
 	} while (hc == nc);
 	return FALSE;
 }
@@ -536,8 +536,8 @@ gnome_vfs_istr_has_suffix (const char *haystack, const char *needle)
 		}
 		hc = *--h;
 		nc = *--n;
-		hc = tolower ((guchar) hc);
-		nc = tolower ((guchar) nc);
+		hc = g_ascii_tolower (hc);
+		nc = g_ascii_tolower (nc);
 	} while (hc == nc);
 	return FALSE;
 }

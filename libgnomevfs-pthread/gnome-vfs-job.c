@@ -27,22 +27,21 @@ System (version for POSIX threads).
 
    */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include <glib.h>
 #include "gnome-vfs-job.h"
-#include "gnome-vfs-async-job-map.h"
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-module-api.h"
 
+#include "gnome-vfs-async-job-map.h"
+#include "gnome-vfs-job-slave.h"
 #include <errno.h>
 #include <fcntl.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-cancellable-ops.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <libgnomevfs/gnome-vfs-module-api.h>
 #include <string.h>
 #include <unistd.h>
-
-#include "gnome-vfs-job-slave.h"
 
 GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
 
@@ -802,10 +801,11 @@ serve_channel_read (GnomeVFSHandle *handle,
 			   collecting data while the main thread is
 			   busy. */
 			
-			io_result = g_io_channel_write (channel_out,
-							(char *) buffer + written_bytes_in_buffer,
-							filled_bytes_in_buffer - written_bytes_in_buffer,
-							&bytes_written);
+			io_result = g_io_channel_write_chars
+				(channel_out,
+				 (char *) buffer + written_bytes_in_buffer,
+				 filled_bytes_in_buffer - written_bytes_in_buffer,
+				 &bytes_written, NULL);
 			
 			if (gnome_vfs_context_check_cancellation(context)) {
 				goto end;
@@ -863,7 +863,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
  end:
 	g_free (buffer);
-	g_io_channel_close (channel_out);
+	g_io_channel_shutdown (channel_out, TRUE, NULL);
 	g_io_channel_unref (channel_out);
 	g_io_channel_unref (channel_in);
 }
@@ -887,8 +887,8 @@ serve_channel_write (GnomeVFSHandle *handle,
 		GnomeVFSFileSize bytes_written;
 		gchar *p;
 
-		io_result = g_io_channel_read (channel_in, buffer, buffer_size,
-					       &bytes_read);
+		io_result = g_io_channel_read_chars (channel_in, buffer, buffer_size,
+						     &bytes_read, NULL);
 		if (io_result == G_IO_ERROR_AGAIN || io_result == G_IO_ERROR_UNKNOWN)
 			/* we will get G_IO_ERROR_UNKNOWN if a signal occurrs */
 			continue;
@@ -917,7 +917,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 	}
 
  end:
-	g_io_channel_close (channel_in);
+	g_io_channel_shutdown (channel_in, TRUE, NULL);
 	g_io_channel_unref (channel_in);
 	g_io_channel_unref (channel_out);
 }

@@ -22,44 +22,50 @@
    Author: Gene Z. Ragan <gzr@eazel.com> 
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
+#include "cdda-cddb.h"
 #include <ctype.h>
 #include <errno.h>
-#include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
-#include <libgnomevfs/gnome-vfs.h>
+#include <gconf/gconf.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <pwd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
 
-
-#define size16 short
-#define size32 int
-
-#include <cdda_interface.h>
 #include <cdda_paranoia.h>
 
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
-#include "gnome-vfs-mime.h"
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSFileInfo *file_info;
+	cdrom_drive *drive;	
+	int access_count;
+	unsigned int cddb_discid;
+	gboolean use_cddb;
+	DiscData disc_data;
+} CDDAContext;
 
-#include "cdda-cddb.h"
-#include "cdda-method.h"
+typedef struct {
+	GnomeVFSURI *uri;
+	gboolean inited;
+	gboolean wrote_header;
+	cdrom_paranoia *paranoia;
+	long cursor;
+	long first_sector, last_sector;
+} ReadHandle;
 
 CDDAContext *global_context = NULL;
 

@@ -1,7 +1,11 @@
+#include <config.h>
+
 #include <gmodule.h>
 #include <libgnomevfs/gnome-vfs-app-context.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-standard-callbacks.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>

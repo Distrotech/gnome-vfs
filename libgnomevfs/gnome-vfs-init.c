@@ -24,13 +24,17 @@
 #include <config.h>
 #include "gnome-vfs-init.h"
 
-#include "gnome-vfs.h"
 #include "gnome-vfs-backend.h"
-#include "gnome-vfs-private.h"
 #include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-mime.h"
 
+#include "gnome-vfs-configuration.h"
+#include "gnome-vfs-i18n.h"
+#include "gnome-vfs-method.h"
+#include "gnome-vfs-process.h"
+#include "gnome-vfs-utils.h"
 #include <bonobo-activation/bonobo-activation.h>
+#include <glib/gmessages.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);

@@ -24,15 +24,18 @@
 
 #include <config.h>
 
-#include <glib.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <fcntl.h>
+#include <glib/glist.h>
+#include <glib/gmain.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-backend.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-backend.h"
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END

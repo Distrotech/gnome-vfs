@@ -26,10 +26,14 @@
 #include <config.h>
 #include "gnome-vfs-uri.h"
 
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-transform.h"
-#include "gnome-vfs.h"
+#include "gnome-vfs-utils.h"
 #include <ctype.h>
+#include <glib/ghash.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gstring.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -140,6 +144,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	const char *cur;
 	const char *next_delimiter;
 	char *ret;
+	char *host;
 	gboolean success;
 
 	g_assert (host_return != NULL);
@@ -273,7 +278,9 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 done:
 	if (*host_return != NULL) {
-		g_strdown (*host_return);
+		host = g_ascii_strdown (*host_return);
+		g_free (*host_return);
+		*host_return = host;
 
 	}
 
@@ -348,16 +355,18 @@ static const gchar *
 get_method_string (const gchar *substring, gchar **method_string)
 {
 	const gchar *p;
+	char *method;
 	
 	for (p = substring;
-	     isalnum ((unsigned char)*p) || *p == '+' || *p == '-' || *p == '.';
+	     g_ascii_isalnum (*p) || *p == '+' || *p == '-' || *p == '.';
 	     p++)
 		;
 
 	if (*p == ':') {
 		/* Found toplevel method specification.  */
-		*method_string = g_strndup (substring, p - substring);
-		g_strdown (*method_string);
+		method = g_strndup (substring, p - substring);
+		*method_string = g_ascii_strdown (method);
+		g_free (method);
 		p++;
 	} else {
 		*method_string = g_strdup ("file");
@@ -1042,7 +1051,7 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	GString *string;
 	gchar *result;
 
-	string = g_string_new(uri->method_string);
+	string = g_string_new (uri->method_string);
 	g_string_append_c (string, ':');
 
 	if (uri->parent == NULL) {

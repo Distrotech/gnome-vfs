@@ -27,29 +27,27 @@
                   NFS version 2.
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "nfs-method.h"
 
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <limits.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <utime.h>
-#include <string.h>
-
-#include <libgnomevfs/gnome-vfs-mime.h>
-#include <libgnomevfs/gnome-vfs-module.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-module-shared.h>
-#include <libgnomevfs/gnome-vfs-result.h>
-#include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
+#include <limits.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <utime.h>
 
 /* this is a work-around for some systems, which define these 
  * symbols without guards
@@ -57,7 +55,6 @@
 #undef MIN
 #undef MAX
 
-#include "nfs-method.h"
 #include <netdb.h>
 #include <rpc/rpc.h>
 #include <rpc/pmap_prot.h>

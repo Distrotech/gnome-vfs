@@ -2,11 +2,10 @@ NULL =
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
-	-I$(top_srcdir)/intl			\
-	-I$(top_builddir)/intl			\
-	-I$(top_srcdir)/libgnomevfs		\
+	-I$(top_builddir)			\
 	$(BONOBO_ACTIVATION_CFLAGS)		\
 	$(VFS_CFLAGS)				\
+	-DG_DISABLE_DEPRECATED			\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
 noinst_PROGRAMS =				\

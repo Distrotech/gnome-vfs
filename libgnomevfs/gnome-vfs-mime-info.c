@@ -32,7 +32,7 @@
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-private-utils.h"
 #include <ctype.h>
 #include <dirent.h>
 #include <stdio.h>
@@ -150,7 +150,7 @@ does_string_contain_caps (const char *string)
 
 	temp_c = string;
 	while (*temp_c != '\0') {
-		if (isupper ((guchar) *temp_c)) {
+		if (g_ascii_isupper (*temp_c)) {
 			return TRUE;
 		}
 		temp_c++;

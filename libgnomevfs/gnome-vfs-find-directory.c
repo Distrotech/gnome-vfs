@@ -25,9 +25,7 @@
 #include <config.h>
 #include "gnome-vfs-find-directory.h"
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
+#include "gnome-vfs-cancellable-ops.h"
 
 /**
  * gnome_vfs_find_directory:

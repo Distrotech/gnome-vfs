@@ -26,13 +26,13 @@
 #include <config.h>
 #include "gnome-vfs-seekable.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
-#include <glib.h>
+#include "gnome-vfs-ops.h"
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <stdio.h>
-#include <stdlib.h> /* for mkstemp */
+#include <stdlib.h>
 #include <string.h>
-#include <unistd.h> /* for close */
+#include <unistd.h>
 
 static GnomeVFSResult	do_open		(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,

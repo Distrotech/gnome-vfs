@@ -5,10 +5,8 @@ INCLUDES =					\
 	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
 	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
 	-I$(top_srcdir)				\
-	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)			\
-	-I$(top_builddir)/intl			\
-	-I$(top_builddir)/libgnomevfs		\
+	-I$(builddir)				\
 	$(BONOBO_CFLAGS)			\
 	$(GCONF_CFLAGS) 			\
 	$(GLIB_CFLAGS)				\
@@ -20,6 +18,7 @@ INCLUDES =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
+	-DG_DISABLE_DEPRECATED			\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
@@ -161,6 +160,7 @@ libgnomevfs_la_SOURCES =			\
 	eel-cut-n-paste.h			\
 	fnmatch.h				\
 	gnome-vfs-backend-private.h		\
+	gnome-vfs-i18n.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\

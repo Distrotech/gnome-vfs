@@ -21,17 +21,14 @@
 
    Author: Michael Meeks <michael@imaginator.com> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
+#include <errno.h>
+#include <glib/gmessages.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-
-#include <glib.h>
-
-#include "gnome-vfs.h"
 
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)

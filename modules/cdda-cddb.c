@@ -21,6 +21,7 @@
 
 */
 
+#include "cdda-cddb.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +47,6 @@
 #include <cdda_interface.h>
 
 #include "cdda-cdrom-extensions.h"
-#include "cdda-cddb.h"
 
 /* This is here to work around a broken header file.
  * cdda_interface.h has a statically defined array of

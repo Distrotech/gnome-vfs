@@ -19,11 +19,12 @@
 
    Author: Seth Nickell <snickell@stanford.edu> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
+#include <glib/gmain.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <popt.h>
 #include <stdio.h>
 #include <string.h>

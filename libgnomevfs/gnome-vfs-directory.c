@@ -24,8 +24,11 @@
 #include <config.h>
 #include "gnome-vfs-directory.h"
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-cancellable-ops.h"
+#include "gnome-vfs-method.h"
+#include "gnome-vfs-ops.h"
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 
 #define VFS_MAXIMUM_SYMBOLIC_LINK_DEPTH 256
 

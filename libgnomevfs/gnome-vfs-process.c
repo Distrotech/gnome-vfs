@@ -28,17 +28,20 @@
 #include <config.h>
 #include "gnome-vfs-process.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
+#include "gnome-vfs-private-utils.h"
 #include <errno.h>
-#include <glib.h>
+#include <glib/gconvert.h> /* workaround for giochannel.h bug */
+#include <glib/ghash.h>
+#include <glib/giochannel.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gmessages.h>
+#include <glib/gmem.h>
 #include <signal.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-
 /* A launched process.  */
 struct _GnomeVFSProcess {
 	pid_t pid;
@@ -46,7 +49,6 @@ struct _GnomeVFSProcess {
 	gpointer callback_data;
 };
 
-
 /* Have we been initialized yet?  */
 static gboolean initialized = FALSE;
 
@@ -64,7 +66,6 @@ static volatile gint wake_up_channel_out_fd = -1;
 /* The sigaction we had before installing the SIGCHLD handler.  */
 static struct sigaction old_sigchld_action;
 
-
 static void
 foreach_pid_func (gpointer key,
 		  gpointer value,
@@ -109,8 +110,8 @@ wake_up (GIOChannel *source,
 	gint status;
 
 	do {
-		result = g_io_channel_read (source, (gchar *) &process,
-					    sizeof (process), &bytes_read);
+		result = g_io_channel_read_chars (source, (gchar *) &process,
+						  sizeof (process), &bytes_read, NULL);
 	} while (result == G_IO_ERROR_AGAIN);
 	if (result != G_IO_ERROR_NONE) {
 		g_warning (__FILE__ ": Cannot read from the notification channel (error %d)",
@@ -119,8 +120,8 @@ wake_up (GIOChannel *source,
 	}
 
 	do {
-		result = g_io_channel_read (source, (gchar *) &status,
-					    sizeof (status), &bytes_read);
+		result = g_io_channel_read_chars (source, (gchar *) &status,
+						  sizeof (status), &bytes_read, NULL);
 	} while (result == G_IO_ERROR_AGAIN);
 	if (result != G_IO_ERROR_NONE) {
 		g_warning (__FILE__ ": Cannot read from the notification channel (error %d)",
@@ -141,7 +142,6 @@ wake_up (GIOChannel *source,
 	return TRUE;
 }
 
-
 gboolean
 gnome_vfs_process_init (void)
 {
@@ -178,7 +178,6 @@ gnome_vfs_process_init (void)
 	return TRUE;
 }
 
-
 /**
  * gnome_vfs_process_new:
  * @file_name: Name of the executable.

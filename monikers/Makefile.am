@@ -3,7 +3,7 @@ INCLUDES = \
 	-I$(topbuilddir)			\
 	$(VFS_CFLAGS)				\
 	$(BONOBO_CFLAGS)			\
-	-DVERSION=\""$(VERSION)"\"		\
+	-DG_DISABLE_DEPRECATED			\
 	-DG_LOG_DOMAIN=\"GnomeVFSMonikers\"
 
 EXTRA_DIST = \

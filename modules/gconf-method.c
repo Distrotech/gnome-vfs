@@ -22,23 +22,14 @@
 
 /* FIXME bugzilla.eazel.com 1180: More error checking */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include <string.h>
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
-#include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
-
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-module.h"
-
-#include "file-method.h"
+#include <gconf/gconf.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <string.h>
 
 static GnomeVFSResult do_open           (GnomeVFSMethod *method,
 				         GnomeVFSMethodHandle **method_handle,

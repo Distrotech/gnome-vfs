@@ -21,8 +21,10 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#include "gnome-vfs.h"
+#include <config.h>
 
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

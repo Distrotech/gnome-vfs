@@ -24,17 +24,14 @@
 #include <config.h>
 #include "gnome-vfs-result.h"
 
-#include <netdb.h>
+#include "gnome-vfs-i18n.h"
+#include <glib/gtypes.h>
 #include <errno.h>
+#include <netdb.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
-
 extern int h_errno;
 
-
-static gchar *status_strings[] = {
+static char *status_strings[] = {
 	/* GNOME_VFS_OK */				N_("No error"),
 	/* GNOME_VFS_ERROR_NOT_FOUND */			N_("File not found"),
 	/* GNOME_VFS_ERROR_GENERIC */			N_("Generic error"),
@@ -132,8 +129,7 @@ gnome_vfs_result_from_h_errno (void)
 	}
 }
 
-
-const gchar *
+const char *
 gnome_vfs_result_to_string (GnomeVFSResult error)
 {
 	if ((guint) error >= (guint) (sizeof (status_strings)

@@ -24,10 +24,9 @@
 #include <config.h>
 #include "gnome-vfs-inet-connection.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
 #include <errno.h>
-#include <glib.h>
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <string.h>
@@ -37,13 +36,11 @@
 
 extern int h_errno;
 
-
 struct GnomeVFSInetConnection {
 	struct sockaddr_in addr;
 	guint sock;
 };
 
-
 GnomeVFSResult
 gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 				  const gchar *host_name,

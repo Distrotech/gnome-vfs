@@ -22,20 +22,16 @@
 		 Michael Fleming <mfleming@eazel.com>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "http-cache.h"
+
 #include "http-method.h"
-
-#include <string.h>
-#include <gnome-vfs.h>
-#include <gnome-vfs-method.h>
-#include <glib.h>
-
+#include <glib/ghash.h>
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <pthread.h>
-
+#include <string.h>
 
 /* Cache file info for 5 minutes */
 #define US_CACHE_FILE_INFO (1000 * 1000 * 60 * 5)

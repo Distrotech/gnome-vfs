@@ -20,28 +20,21 @@
 
    Author: Ian McKellar <yakk@yakk.net> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "ssh-method.h"
-
+#include <errno.h>
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-cancellation.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-parse-ls.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include <errno.h>
-
-#include "gnome-vfs-mime.h"
-
-#include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-utils.h"
-#include "gnome-vfs-module-shared.h"
-#include "gnome-vfs-parse-ls.h"
-
-#include <glib/gstrfuncs.h>
 
 typedef struct {
 	GnomeVFSMethodHandle method_handle;

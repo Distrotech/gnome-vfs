@@ -21,19 +21,15 @@
 
    Author: Maciej Stachowiak <mjs@eazel.com>
 */
-#ifdef HAVE_CONFIG_H
+
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-mime-handlers.h"
-#include "gnome-vfs-mime-info.h"
-
-
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libgnomevfs/gnome-vfs-mime-info.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 int
 main (int argc, char **argv)

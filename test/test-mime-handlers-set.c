@@ -21,14 +21,12 @@
 
    Author: Maciej Stachowiak <mjs@eazel.com>
 */
-#ifdef HAVE_CONFIG_H
+
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-application-registry.h"
-#include "gnome-vfs-mime-handlers.h"
-
+#include <libgnomevfs/gnome-vfs-application-registry.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,9 +51,9 @@ usage (const char *name)
 static GnomeVFSMimeActionType
 str_to_action_type (const char *str)
 {
-	if (strcasecmp (str, "component") == 0) {
+	if (g_ascii_strcasecmp (str, "component") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
-	} else if (strcasecmp (str, "application") == 0) {
+	} else if (g_ascii_strcasecmp (str, "application") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
 	} else {
 		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
@@ -100,8 +98,8 @@ static gboolean
 str_to_bool (const char *str)
 {
 	return ((str != NULL) &&
-		((strcasecmp (str, "true") == 0) || 
-		 (strcasecmp (str, "yes") == 0)));
+		((g_ascii_strcasecmp (str, "true") == 0) || 
+		 (g_ascii_strcasecmp (str, "yes") == 0)));
 }
 
 

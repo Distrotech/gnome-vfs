@@ -2,16 +2,14 @@ lib_LTLIBRARIES = libgnomevfs-pthread.la
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
-	-I$(top_srcdir)/intl			\
-	-I$(top_builddir)/intl			\
-	-I$(top_srcdir)/libgnomevfs		\
-	-I$(top_builddir)/libgnomevfs		\
+	-I$(top_builddir)			\
 	$(GLIB_CFLAGS)				\
 	$(GTK_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
 	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
+	-DG_DISABLE_DEPRECATED			\
 	-DPREFIX=\"$(prefix)\"			\
 	-DG_LOG_DOMAIN=\"GnomeVFS-pthread\"
 

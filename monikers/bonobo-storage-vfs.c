@@ -6,13 +6,15 @@
  *   Michael Meeks <michael@helixcode.com>
  */
 #include <config.h>
+#include "bonobo-storage-vfs.h"
+
+#include "bonobo-stream-vfs.h"
+#include <bonobo/bonobo-storage.h>
+#include <libgnomevfs/gnome-vfs-directory.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <string.h>
-
-#include <bonobo/bonobo-storage.h>
-#include "bonobo-storage-vfs.h"
-#include "bonobo-stream-vfs.h"
 
 static BonoboObjectClass *bonobo_storage_vfs_parent_class;
 

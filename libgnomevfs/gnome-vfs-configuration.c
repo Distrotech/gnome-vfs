@@ -24,12 +24,19 @@
 #include <config.h>
 #include "gnome-vfs-configuration.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
 #include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
-#include <glib.h>
+#include <glib/ghash.h>
+#include <glib/glist.h>
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+#include <glib/gutils.h>
+#include "gnome-vfs-i18n.h"
+#include "gnome-vfs-private.h"
+#include <sys/stat.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>

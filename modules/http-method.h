@@ -23,6 +23,8 @@
 #ifndef HTTP_METHOD_H
 #define HTTP_METHOD_H
 
+#include <glib/gtypes.h>
+
 typedef gint64 utime_t;
 
 utime_t http_util_get_utime (void);

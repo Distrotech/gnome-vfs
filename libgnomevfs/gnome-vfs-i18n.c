@@ -20,27 +20,26 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-i18n.h"
 
+#include "gnome-vfs-private-utils.h"
+#include <ctype.h>
 #include <errno.h>
-#include <glib.h>
+#include <fcntl.h>
+#include <glib/ghash.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
-#include <ctype.h>
-
-#include <stdlib.h> /* for mkstemp */
-#include <unistd.h> /* for close */
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include <unistd.h>
 
 static GHashTable *alias_table = NULL;
 static GHashTable *category_table = NULL;

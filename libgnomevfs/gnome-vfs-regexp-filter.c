@@ -24,8 +24,7 @@
 #include <config.h>
 #include "gnome-vfs-regexp-filter.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
+#include <glib/gmessages.h>
 #include <regex.h>
 #include <sys/types.h>
 

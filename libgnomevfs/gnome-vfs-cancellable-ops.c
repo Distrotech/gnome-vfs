@@ -28,9 +28,9 @@
 #include <config.h>
 #include "gnome-vfs-cancellable-ops.h"
 
+#include <glib/gmessages.h>
+#include <glib/gutils.h>
 #include <string.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 
 GnomeVFSResult
 gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,

@@ -1,5 +1,24 @@
 2001-08-03  Darin Adler  <darin@bentspoon.com>
 
+	reviewed by: <delete if not using a buddy>
+
+	* ChangeLog:
+	* Makefile.am:
+	* bonobo-storage-vfs.c:
+	* bonobo-stream-vfs.c:
+	* bonobo-stream-vfs.h:
+
+2001-08-03  Darin Adler  <darin@bentspoon.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* Makefile.am:
+	* bonobo-storage-vfs.c:
+	* bonobo-stream-vfs.c:
+	* bonobo-stream-vfs.h:
+
+2001-08-03  Darin Adler  <darin@bentspoon.com>
+
 	* Makefile.am: Use CFLAGS from gnome-vfs instead of hard-coding
 	things like -Wno-unused which are gcc-specific.
 

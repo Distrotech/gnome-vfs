@@ -27,9 +27,11 @@
 
 #include <config.h>
 
-#include "gnome-vfs-private-utils.h"
-#include "gnome-vfs.h"
+#include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -363,7 +365,6 @@ main (int argc, char **argv)
 	make_asserts_break ("GnomeVFS");
 
 	/* Initialize the libraries we use. */
-	g_thread_init (NULL);
 	gnome_vfs_init ();
 
 	/* Test the "make canonical" call for pathnames. */

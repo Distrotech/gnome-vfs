@@ -148,15 +148,10 @@ inherit_from_current (GnomeVFSAppContext* app_context)
 
 	if (current_app_context != NULL) {
 		/* Copy all of the attributes that the new context doesn't override */
-		g_hash_table_freeze (app_context->attributes);
 		g_hash_table_foreach (current_app_context->attributes,
-			attributes_copy_conditional, app_context->attributes);
-		g_hash_table_thaw (app_context->attributes);
-
-		g_hash_table_freeze (app_context->callbacks);
+				      attributes_copy_conditional, app_context->attributes);
 		g_hash_table_foreach (current_app_context->callbacks,
-			callbacks_copy_conditional, app_context->callbacks);
-		g_hash_table_thaw (app_context->callbacks);
+				      callbacks_copy_conditional, app_context->callbacks);
 	}
 }
 

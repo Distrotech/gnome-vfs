@@ -21,16 +21,12 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "gnome-vfs-job-slave.h"
-#include "gnome-vfs-async-job-map.h"
 
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-thread-pool.h"
-#include "gnome-vfs.h"
+#include <glib/gmessages.h>
 #include <pthread.h>
 #include <unistd.h>
 
@@ -146,7 +142,7 @@ gnome_vfs_thread_backend_shutdown (void)
 		/* Some threads are still trying to quit, wait a bit until they
 		 * are done.
 		 */
-		g_main_iteration (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 		usleep (20000);
 	}
 

@@ -24,7 +24,11 @@
 
 #include <glib/gtypes.h>
 #include <stdio.h>
-#include <stdarg.h>
+
+#define size16 short
+#define size32 int
+
+#include <cdda_interface.h>
 
 #define CURRENT_CDDBREVISION		2
 #define MAX_TRACKS					100

@@ -24,16 +24,18 @@
    NB. This code leaks everywhere, don't loose hair.
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
 #include <ctype.h>
 #include <errno.h>
 #include <glib/ghash.h>
 #include <glib/gstrfuncs.h>
+#include <glib/gstring.h>
+#include <glib/gmessages.h>
 #include <glib/gutils.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-directory.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <popt.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -244,7 +246,7 @@ simple_regexp (const char *regexp, const char *fname)
 		    !(i > 0 && regexp [i - 1] == '\\'))
 			continue;
 
-		if (toupper (regexp [i]) != toupper (fname [j])) {
+		if (g_ascii_tolower (regexp [i]) != g_ascii_tolower (fname [j])) {
 			ret = FALSE;
 			break;
 		}
@@ -333,7 +335,7 @@ do_cd (void)
 		return;
 	}
 
-	if (!g_strcasecmp (p, "..")) {
+	if (!g_ascii_strcasecmp (p, "..")) {
 		guint lp;
 		char **tmp;
 		GString *newp = g_string_new ("");
@@ -344,13 +346,13 @@ do_cd (void)
 			return;
 
 		while (tmp [lp + 1]) {
-			g_string_sprintfa (newp, "%s/", tmp [lp]);
+			g_string_printfa (newp, "%s/", tmp [lp]);
 			lp++;
 		}
 		g_free (cur_dir);
 		cur_dir = newp->str;
 		g_string_free (newp, FALSE);
-	} else if (!g_strcasecmp (p, ".")) {
+	} else if (!g_ascii_strcasecmp (p, ".")) {
 	} else {
 		char *newpath;
 
@@ -930,53 +932,53 @@ main (int argc, const char **argv)
 		if (!ptr)
 			continue;
 
-		if (g_strcasecmp (ptr, "ls") == 0)
+		if (g_ascii_strcasecmp (ptr, "ls") == 0)
 			do_ls ();
-		else if (g_strcasecmp (ptr, "cd") == 0)
+		else if (g_ascii_strcasecmp (ptr, "cd") == 0)
 			do_cd ();
-		else if (g_strcasecmp (ptr, "dump") == 0)
+		else if (g_ascii_strcasecmp (ptr, "dump") == 0)
 			do_dump ();
-		else if (g_strcasecmp (ptr, "type") == 0 ||
-			 g_strcasecmp (ptr, "cat") == 0)
+		else if (g_ascii_strcasecmp (ptr, "type") == 0 ||
+			 g_ascii_strcasecmp (ptr, "cat") == 0)
 			do_cat ();
-		else if (g_strcasecmp (ptr, "cp") == 0)
+		else if (g_ascii_strcasecmp (ptr, "cp") == 0)
 			do_cp ();
-		else if (g_strcasecmp (ptr, "rm") == 0)
+		else if (g_ascii_strcasecmp (ptr, "rm") == 0)
 			do_rm ();
-		else if (g_strcasecmp (ptr, "mkdir") == 0)
+		else if (g_ascii_strcasecmp (ptr, "mkdir") == 0)
 			do_mkdir ();
-		else if (g_strcasecmp (ptr, "rmdir") == 0)
+		else if (g_ascii_strcasecmp (ptr, "rmdir") == 0)
 			do_rmdir ();
-		else if (g_strcasecmp (ptr, "mv") == 0)
+		else if (g_ascii_strcasecmp (ptr, "mv") == 0)
 			do_mv ();
-		else if (g_strcasecmp (ptr, "info") == 0 ||
-			 g_strcasecmp (ptr, "stat") == 0)
+		else if (g_ascii_strcasecmp (ptr, "info") == 0 ||
+			 g_ascii_strcasecmp (ptr, "stat") == 0)
 			do_info ();
-		else if (g_strcasecmp (ptr, "findtrash") == 0)
+		else if (g_ascii_strcasecmp (ptr, "findtrash") == 0)
 			do_findtrash ();
-		else if (g_strcasecmp (ptr, "sync") == 0)
+		else if (g_ascii_strcasecmp (ptr, "sync") == 0)
 			fprintf (vfserr, "a shell is like a boat, it lists or syncs (RMS)\n");
-		else if (g_strcasecmp (ptr,"help") == 0 ||
-			 g_strcasecmp (ptr,"?")    == 0 ||
-			 g_strcasecmp (ptr,"info") == 0 ||
-			 g_strcasecmp (ptr,"man")  == 0)
+		else if (g_ascii_strcasecmp (ptr,"help") == 0 ||
+			 g_ascii_strcasecmp (ptr,"?")    == 0 ||
+			 g_ascii_strcasecmp (ptr,"info") == 0 ||
+			 g_ascii_strcasecmp (ptr,"man")  == 0)
 			list_commands ();
-		else if (g_strcasecmp (ptr,"exit") == 0 ||
-			 g_strcasecmp (ptr,"quit") == 0 ||
-			 g_strcasecmp (ptr,"q")    == 0 ||
-			 g_strcasecmp (ptr,"bye") == 0)
+		else if (g_ascii_strcasecmp (ptr,"exit") == 0 ||
+			 g_ascii_strcasecmp (ptr,"quit") == 0 ||
+			 g_ascii_strcasecmp (ptr,"q")    == 0 ||
+			 g_ascii_strcasecmp (ptr,"bye") == 0)
 			exit = 1;
 
 		/* File ops */
-		else if (g_strcasecmp (ptr, "open") == 0)
+		else if (g_ascii_strcasecmp (ptr, "open") == 0)
 			do_open ();
-		else if (g_strcasecmp (ptr, "create") == 0)
+		else if (g_ascii_strcasecmp (ptr, "create") == 0)
 			do_create ();
-		else if (g_strcasecmp (ptr, "close") == 0)
+		else if (g_ascii_strcasecmp (ptr, "close") == 0)
 			do_close ();
-		else if (g_strcasecmp (ptr, "read") == 0)
+		else if (g_ascii_strcasecmp (ptr, "read") == 0)
 			do_read ();
-		else if (g_strcasecmp (ptr, "seek") == 0)
+		else if (g_ascii_strcasecmp (ptr, "seek") == 0)
 			do_seek ();
 		
 		else

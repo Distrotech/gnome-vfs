@@ -20,13 +20,13 @@
 
    Author: Pavel Cisler <pavel@eazel.com> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-async-job-map.h"
 
 #include "gnome-vfs-job.h"
-#include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-pthread.h"
+#include <glib/ghash.h>
+#include <glib/gmessages.h>
 
 static GHashTable *async_job_map;
 static guint async_job_map_next_id;

@@ -106,7 +106,7 @@ get_priority (char *def, int *priority)
 static int
 list_find_type (gconstpointer value, gconstpointer type)
 {
-	return g_strcasecmp((const char *) value, (const char *) type);
+	return g_ascii_strcasecmp((const char *) value, (const char *) type);
 }
 
 static void
@@ -436,18 +436,17 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 			}
 
 			/* Search for UPPER case extension */
-			upext = g_strdup (ext);
-			g_strup (upext);
+			upext = g_ascii_strup (ext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
+			g_free (upext);
 			if (list != NULL) {
-				g_free (upext);
 				list = g_list_first (list);
 				result = (const char *) list->data;
 				break;
 			}
 
 			/* Final check for lower case */
-			g_strdown (upext);
+			upext = g_ascii_strdown (ext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
  			g_free (upext);
 			if (list != NULL) {

@@ -23,18 +23,14 @@
             Michael Meeks <mmeeks@gnu.org>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
 #include <string.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
-#include "efs-method.h"
-
+int default_permissions = 0644;
 
 typedef struct _GnomeVFSFileSystem GnomeVFSFileSystem;
 

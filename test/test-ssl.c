@@ -22,15 +22,17 @@
    Author: Ian McKellar <yakk@yakk.net> 
  */
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-ssl.h"
-#include "gnome-vfs-socket.h"
-#include "gnome-vfs-socket-buffer.h"
+#include <config.h>
 
+#include <glib/gmessages.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-socket-buffer.h>
+#include <libgnomevfs/gnome-vfs-socket.h>
+#include <libgnomevfs/gnome-vfs-ssl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
 enum {
 	SSL, SOCKET, SOCKETBUFFER

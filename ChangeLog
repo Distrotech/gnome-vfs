@@ -1,3 +1,171 @@
+2001-08-03  Darin Adler  <darin@bentspoon.com>
+
+	Made builds noticeably faster by not using catch-all includes
+	like <gnome-vfs.h> inside gnome-vfs sources.
+	
+	* libgnomevfs/Makefile.am: Add gnome-vfs-i18n.h, add
+	G_DISABLE_DEPRECATED, get rid of unneeded -I directives.
+	
+	* libgnomevfs-pthread/Makefile.am: Add G_DISABLE_DEPRECATED, get
+	rid of unneeded -I directives.
+	
+	* modules/Makefile.am: Add G_DISABLE_DEPRECATED, get rid of
+	unneeded -I directives. Remove cdda-method.h, extfs-method.h,
+	file-method.h, ssh-method.h, test-method.h, ftp-method.h,
+	gconf-method.h, pipe-method.h, efs-method.h.
+	
+	* test/Makefile.am: Add G_DISABLE_DEPRECATED, get rid of unneeded
+	-I directives.
+	
+	* libgnomevfs/gnome-vfs-app-context.c: (inherit_from_current):
+	Don't use obsolete g_hash_table_freeze/thaw.
+
+	* libgnomevfs/eel-cut-n-paste.c: (stolen_strcasecmp),
+	(stolen_istr_has_prefix):
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_name),
+	(gnome_vfs_backend_loadinit):
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_matches):
+	* libgnomevfs/gnome-vfs-helpers.c: (istr_has_prefix),
+	(is_valid_scheme_character), (gnome_vfs_x_make_uri_canonical):
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type), (sort_application_list):
+	* libgnomevfs/gnome-vfs-mime-info.c: (does_string_contain_caps):
+	* libgnomevfs/gnome-vfs-mime-magic.c: (read_hex_byte),
+	(read_num_val):
+	* libgnomevfs/gnome-vfs-mime.c: (list_find_type),
+	(gnome_vfs_mime_type_from_name_or_default):
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(gnome_vfs_istr_has_prefix), (gnome_vfs_istr_has_suffix):
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri),
+	(get_method_string):
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+	* modules/http-method.c: (check_header),
+	(proxy_should_for_hostname), (connect_to_uri), (build_request),
+	(make_request), (process_propfind_propstat):
+	* modules/test-method.c: (get_operation_settings),
+	(parse_result_text), (load_settings):
+	* modules/translate-method.c: (tr_args_parse):
+	* test/test-mime-handlers-set.c: (str_to_action_type),
+	(str_to_bool):
+	* test/test-shell.c: (simple_regexp), (do_cd), (main):
+	Use new g_ascii calls instead of locale-sensitive ones from the
+	standard library or the old deprecated glib ones.
+
+	* libgnomevfs/gnome-vfs-process.c: (wake_up):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (serve_channel_read),
+	(serve_channel_write):
+	* test/test-channel.c: (io_channel_callback):
+	Use g_io_channel_write_chars, g_io_channel_shutdown, and
+	g_io_channel_read_chars instead of g_io_channel_write,
+	g_io_channel_close, and g_io_channel_read.
+	
+	* libgnomevfs/gnome-vfs-private.h: Remove everything but the two
+	path defines in here.
+	
+	* libgnomevfs/gnome-vfs-i18n.h:
+	New file, contains i18n funtions that were previously in
+	gnome-vfs-private.h. (They are still private.)
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	(gnome_vfs_thread_backend_shutdown):
+	Use g_main_context_iteration instead of g_main_iteration.
+
+	* modules/extfs-method.c: (get_basename):
+	* modules/ftp-method.c: (ls_to_file_info):
+	Use g_path_get_basename instead of g_basename.
+
+	* libgnomevfs/eel-cut-n-paste.c:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-backend.c:
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-configuration.c:
+	* libgnomevfs/gnome-vfs-directory-filter.c:
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-find-directory.c:
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-helpers.c:
+	* libgnomevfs/gnome-vfs-i18n.c:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-iobuf.c:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-parse-ls.c:
+	* libgnomevfs/gnome-vfs-process.c:
+	* libgnomevfs/gnome-vfs-regexp-filter.c:
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-seekable.c:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.c:
+	* libgnomevfs/gnome-vfs-ssl.c:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	* libgnomevfs/stolen-glib-extensions.c:
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.h:
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	* modules/bzip2-method.c:
+	* modules/cdda-cddb.c:
+	* modules/cdda-cddb.h:
+	* modules/cdda-method.c:
+	* modules/efs-method.c:
+	* modules/extfs-method.c:
+	* modules/file-method.c:
+	* modules/ftp-method.c:
+	* modules/gconf-method.c:
+	* modules/gzip-method.c:
+	* modules/http-authn.c:
+	* modules/http-cache.c:
+	* modules/http-method.c:
+	* modules/http-method.h:
+	* modules/nfs-method.c:
+	* modules/pipe-method.c:
+	* modules/ssh-method.c:
+	* modules/test-method.c:
+	* modules/translate-method.c:
+	* test/test-async-cancel.c:
+	* test/test-async-directory.c:
+	* test/test-async.c:
+	* test/test-callback.c:
+	* test/test-channel.c:
+	* test/test-directory-visit.c:
+	* test/test-directory.c:
+	* test/test-dirop.c:
+	* test/test-escape.c:
+	* test/test-find-directory.c:
+	* test/test-info.c:
+	* test/test-mime-handlers-set.c:
+	* test/test-mime-handlers.c:
+	* test/test-mime-info.c:
+	* test/test-mime.c:
+	* test/test-module-selftest.c:
+	* test/test-seek.c:
+	* test/test-shell.c:
+	* test/test-ssl.c:
+	* test/test-symlinks.c:
+	* test/test-sync-create.c:
+	* test/test-sync-write.c:
+	* test/test-sync.c:
+	* test/test-unlink.c:
+	* test/test-uri.c:
+	* test/test-xfer.c:
+	Fix includes.
+	
+	* modules/cdda-method.h: Removed.
+	* modules/efs-method.h: Removed.
+	* modules/extfs-method.h: Removed.
+	* modules/file-method.h: Removed.
+	* modules/ftp-method.h: Removed.
+	* modules/gconf-method.h: Removed.
+	* modules/pipe-method.h: Removed.
+	* modules/ssh-method.h: Removed.
+
 2001-08-02  Darin Adler  <darin@bentspoon.com>
 
 	* Makefile.am:

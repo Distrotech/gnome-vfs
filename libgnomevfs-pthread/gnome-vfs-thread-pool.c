@@ -21,9 +21,12 @@
    Author: Pavel Cisler <pavel@eazel.com>
 */
 
-#include <glib.h>
-#include "gnome-vfs-pthread.h"
+#include <config.h>
 #include "gnome-vfs-thread-pool.h"
+
+#include "gnome-vfs-pthread.h"
+#include <glib/glist.h>
+#include <glib/gmessages.h>
 
 #undef DEBUG_PRINT
 

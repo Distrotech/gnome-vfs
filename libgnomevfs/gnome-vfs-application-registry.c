@@ -31,13 +31,12 @@
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-result.h"
 #include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

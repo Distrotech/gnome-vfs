@@ -20,14 +20,13 @@
 
    Author: Pavel Cisler <pavel@eazel.com>
 */
-#ifdef HAVE_CONFIG_H
+
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-uri.h"
-#include "gnome-vfs-find-directory.h"
-
+#include <glib/gmessages.h>
+#include <libgnomevfs/gnome-vfs-find-directory.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <stdio.h>
 #include <string.h>
 

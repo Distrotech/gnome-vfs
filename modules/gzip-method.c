@@ -21,25 +21,21 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <zlib.h>
 
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
-
-#include <zlib.h>
-#include <time.h>
-#include <stdio.h>
-#include <string.h>
-
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-ops.h"
-
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
 
 struct _GZipMethodHandle {
 	GnomeVFSURI *uri;

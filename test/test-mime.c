@@ -20,13 +20,13 @@
 
    Author: Pavel Cisler <pavel@eazel.com>
 */
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-mime-magic.h"
+#include <config.h>
+
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-mime-magic.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 
 #include <stdio.h>
 #include <string.h>

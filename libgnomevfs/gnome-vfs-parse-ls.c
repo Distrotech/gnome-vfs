@@ -28,9 +28,10 @@
 #include <config.h>
 #include "gnome-vfs-parse-ls.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
-#include <glib.h>
+#include "gnome-vfs-i18n.h"
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <grp.h>
 #include <pwd.h>
 #include <stdio.h>
@@ -52,18 +53,18 @@
 
 /* FIXME bugzilla.eazel.com 1179:
  * remove these globals.  */
-static gint saveuid = -993;
-static gchar saveuname[TUNMLEN];
-static gint my_uid = -993;
+static int saveuid = -993;
+static char saveuname[TUNMLEN];
+static int my_uid = -993;
 
-static gint savegid = -993;
-static gchar savegname[TGNMLEN];
-static gint my_gid = -993;
+static int savegid = -993;
+static char savegname[TGNMLEN];
+static int my_gid = -993;
 
 #define myuid	( my_uid < 0? (my_uid = getuid ()): my_uid )
 #define	mygid	( my_gid < 0? (my_gid = getgid ()): my_gid )
 
-static gint finduid (gchar *uname)
+static int finduid (char *uname)
 {
 	struct passwd *pw;
 	
@@ -80,7 +81,7 @@ static gint finduid (gchar *uname)
 	return saveuid;
 }
 
-static gint findgid (gchar *gname)
+static int findgid (char *gname)
 {
 	struct group *gr;
 	
@@ -101,13 +102,13 @@ static gint findgid (gchar *gname)
 /* FIXME bugzilla.eazel.com 1188: This is ugly.  */
 #define MAXCOLS 30
 
-static gint
-vfs_split_text (gchar *p,
-		gchar *columns[],
-		gint column_ptr[])
+static int
+vfs_split_text (char *p,
+		char *columns[],
+		int column_ptr[])
 {
-	gchar *original = p;
-	gint  numcols;
+	char *original = p;
+	int  numcols;
 
 	for (numcols = 0; *p && numcols < MAXCOLS; numcols++) {
 		while (*p == ' ' || *p == '\r' || *p == '\n') {
@@ -122,28 +123,28 @@ vfs_split_text (gchar *p,
 	return numcols;
 }
 
-static gint
-is_num (const gchar *s)
+static int
+is_num (const char *s)
 {
 	if (!s || s[0] < '0' || s[0] > '9')
 		return 0;
 	return 1;
 }
 
-static gint
-is_dos_date (gchar *str)
+static int
+is_dos_date (char *str)
 {
-	if (strlen (str) == 8 && str[2] == str[5] && strchr ("\\-/", (gint)str[2]) != NULL)
+	if (strlen (str) == 8 && str[2] == str[5] && strchr ("\\-/", (int)str[2]) != NULL)
 		return 1;
 
 	return 0;
 }
 
-static gint
-is_week (gchar *str, struct tm *tim)
+static int
+is_week (char *str, struct tm *tim)
 {
-	static gchar *week = "SunMonTueWedThuFriSat";
-	gchar *pos;
+	static char *week = "SunMonTueWedThuFriSat";
+	char *pos;
 
 	if ((pos = strstr (week, str)) != NULL) {
 		if (tim != NULL)
@@ -153,11 +154,11 @@ is_week (gchar *str, struct tm *tim)
 	return 0;    
 }
 
-static gint
-is_month (const gchar *str, struct tm *tim)
+static int
+is_month (const char *str, struct tm *tim)
 {
-	static gchar *month = "JanFebMarAprMayJunJulAugSepOctNovDec";
-	gchar *pos;
+	static char *month = "JanFebMarAprMayJunJulAugSepOctNovDec";
+	char *pos;
     
 	if ((pos = strstr (month, str)) != NULL) {
 		if (tim != NULL)
@@ -167,10 +168,10 @@ is_month (const gchar *str, struct tm *tim)
 	return 0;
 }
 
-static gint
-is_time (const gchar *str, struct tm *tim)
+static int
+is_time (const char *str, struct tm *tim)
 {
-	gchar *p, *p2;
+	char *p, *p2;
 
 	if ((p = strchr (str, ':')) && (p2 = strrchr (str, ':'))) {
 		if (p != p2) {
@@ -192,9 +193,9 @@ is_time (const gchar *str, struct tm *tim)
 	return 1;
 }
 
-static gint is_year (const gchar *str, struct tm *tim)
+static int is_year (const char *str, struct tm *tim)
 {
-	glong year;
+	long year;
 
 	if (strchr (str,':'))
 		return 0;
@@ -208,7 +209,7 @@ static gint is_year (const gchar *str, struct tm *tim)
 	if (year < 1900 || year > 3000)
 		return 0;
 
-	tim->tm_year = (gint) (year - 1900);
+	tim->tm_year = (int) (year - 1900);
 
 	return 1;
 }
@@ -220,8 +221,8 @@ static gint is_year (const gchar *str, struct tm *tim)
  * where "2904 1234" is filename. Well, this code decodes it as year :-(.
  */
 
-static gint
-vfs_parse_filetype (gchar c)
+static int
+vfs_parse_filetype (char c)
 {
 	switch (c) {
         case 'd':
@@ -249,11 +250,11 @@ vfs_parse_filetype (gchar c)
 	}
 }
 
-static gint
-vfs_parse_filemode (const gchar *p)
+static int
+vfs_parse_filemode (const char *p)
 {
 	/* converts rw-rw-rw- into 0666 */
-	gint res = 0;
+	int res = 0;
 
 	switch (*(p++)) {
 	case 'r':
@@ -353,17 +354,17 @@ vfs_parse_filemode (const gchar *p)
 	return res;
 }
 
-static gint
-vfs_parse_filedate (gint idx,
-		    gchar *columns[],
+static int
+vfs_parse_filedate (int idx,
+		    char *columns[],
 		    time_t *t)
 {	/* This thing parses from idx in columns[] array */
 
-	gchar *p;
+	char *p;
 	struct tm tim;
-	gint d[3];
-	gint	got_year = 0;
-	gint current_mon;
+	int d[3];
+	int	got_year = 0;
+	int current_mon;
 	time_t now;
     
 	/* Let's setup default time values */
@@ -385,7 +386,7 @@ vfs_parse_filedate (gint idx,
 	if (is_month (p, &tim)) {
 		/* And we expect, it followed by day number */
 		if (is_num (columns[idx]))
-			tim.tm_mday = (gint)atol (columns [idx++]);
+			tim.tm_mday = (int)atol (columns [idx++]);
 		else
 			return 0; /* No day */
 
@@ -463,18 +464,18 @@ vfs_parse_filedate (gint idx,
 	return idx;
 }
 
-gint
-gnome_vfs_parse_ls_lga (const gchar *p,
+int
+gnome_vfs_parse_ls_lga (const char *p,
 			struct stat *s,
-			gchar **filename,
-			gchar **linkname)
+			char **filename,
+			char **linkname)
 {
-	gchar *columns [MAXCOLS]; /* Points to the string in column n */
-	gint column_ptr [MAXCOLS]; /* Index from 0 to the starting positions of the columns */
-	gint idx, idx2, num_cols;
-	gint i;
-	gint nlink;
-	gchar *p_copy, *p_pristine;
+	char *columns [MAXCOLS]; /* Points to the string in column n */
+	int column_ptr [MAXCOLS]; /* Index from 0 to the starting positions of the columns */
+	int idx, idx2, num_cols;
+	int i;
+	int nlink;
+	char *p_copy, *p_pristine;
 
 	if (strncmp (p, "total", 5) == 0)
 		return 0;
@@ -550,7 +551,7 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 
 	/* This is device */
 	if (S_ISCHR (s->st_mode) || S_ISBLK (s->st_mode)) {
-		gint maj, min;
+		int maj, min;
 	
 		if (!is_num (columns[idx2])
 		    || sscanf (columns [idx2], " %d,", &maj) != 1)
@@ -600,8 +601,8 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 	      || (num_cols == idx + 3 && s->st_nlink > 1))) /* Maybe a hardlink?
 							       (in extfs) */
 	    && idx2) {
-		gint p;
-		gchar *s;
+		int p;
+		char *s;
 	    
 		if (filename) {
 			s = g_strndup (p_copy + column_ptr [idx],
@@ -626,8 +627,8 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 			/* 
 			 *filename = g_strdup (columns [idx++]);
 			 */
-			gint p;
-			gchar *s;
+			int p;
+			char *s;
 
 			s = g_strdup (p_pristine + column_ptr [idx]);
 			p = strcspn (s, "\r\n");
@@ -644,7 +645,7 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 
  error:
 	{
-		static gint errorcount = 0;
+		static int errorcount = 0;
 
 		if (++errorcount < 5)
 			g_warning (_("Could not parse: %s"), p_copy);

@@ -24,11 +24,12 @@
 #include <config.h>
 #include "gnome-vfs-directory-filter.h"
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-regexp-filter.h"
+#include "gnome-vfs-shellpattern-filter.h"
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <string.h>
 
-
 struct GnomeVFSDirectoryFilter {
 	/* Filter type.  */
 	GnomeVFSDirectoryFilterType type;

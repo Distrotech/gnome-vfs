@@ -22,18 +22,19 @@
 		 Michael Fleming <mfleming@eazel.com>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "http-authn.h"
-#include "http-method.h"
 
-#include <string.h>
-#include <gnome-vfs.h>
-#include <gnome-vfs-method.h>
+#include "http-method.h"
+#include <glib/ghash.h>
+#include <glib/gmessages.h>
+#include <glib/gstring.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <stdio.h>
-#include <glib.h>
+#include <string.h>
 
 /* Authentication session information
  * Key: host:port/path

@@ -26,12 +26,10 @@
 #ifndef GNOME_VFS_JOB_PTHREAD_H
 #define GNOME_VFS_JOB_PTHREAD_H
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <semaphore.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
-
 
 #define GNOME_VFS_JOB_DEBUG 0
 

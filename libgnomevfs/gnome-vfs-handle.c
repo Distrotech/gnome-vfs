@@ -24,10 +24,9 @@
 #include <config.h>
 #include "gnome-vfs-handle.h"
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-seekable.h"
+#include <glib/gmessages.h>
 
-
 struct GnomeVFSHandle {
 	/* URI of the file being accessed through the handle.  */
 	GnomeVFSURI *uri;

@@ -1,4 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs-private.h - Private header file for the GNOME Virtual
    File System.
 
@@ -24,66 +25,7 @@
 #ifndef GNOME_VFS_PRIVATE_H
 #define GNOME_VFS_PRIVATE_H
 
-#include <config.h>
-#include <glib.h>
-
-/* The i18n defines */
-#ifdef ENABLE_NLS
-#    include <libintl.h>
-#    undef _
-#    define _(String) dgettext (PACKAGE, String)
-#    ifdef gettext_noop
-#        define N_(String) gettext_noop (String)
-#    else
-#        define N_(String) (String)
-#    endif
-#else
-/* Stubs that do something close enough.  */
-#    define textdomain(String) (String)
-#    define gettext(String) (String)
-#    define dgettext(Domain,Message) (Message)
-#    define dcgettext(Domain,Message,Type) (Message)
-#    define bindtextdomain(Domain,Directory) (Domain)
-#    define _(String) (String)
-#    define N_(String) (String)
-#endif
-
 #define GNOME_VFS_MODULE_DIR     LIBDIR "/vfs/modules"
 #define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/vfs/modules"
-
-#include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-configuration.h"
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-handle.h"
-#include "gnome-vfs-inet-connection.h"
-#include "gnome-vfs-iobuf.h"
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-cancellable-ops.h"
-#include "gnome-vfs-parse-ls.h"
-#include "gnome-vfs-regexp-filter.h"
-#include "gnome-vfs-seekable.h"
-#include "gnome-vfs-shellpattern-filter.h"
-#include "gnome-vfs-private-utils.h"
-
-/* AIX requires this to be the first thing in the file.  */
-#ifndef __GNUC__
-# if HAVE_ALLOCA_H
-#  include <alloca.h>
-# else
-#  ifdef _AIX
-#pragma alloca
-#  else
-#   ifndef alloca /* predefined by HP cc +Olibcalls */
-char *alloca ();
-#   endif
-#  endif
-# endif
-#endif
-
-#ifndef HAVE_GETDELIM
-#include <stdio.h>
-#include <unistd.h> /* ssize_t */
-ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
-#endif
 
 #endif /* GNOME_VFS_PRIVATE_H */

@@ -33,32 +33,25 @@
 /* FIXME bugzilla.eazel.com 1465: FtpUri / FtpConnectionUri refcounting or something. */
 /* FIXME bugzilla.eazel.com 1466: do_get_file_info_from_handle */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include <ctype.h> /* for isspace */
-#include <stdlib.h> /* for atoi */
-#include <stdio.h> /* for sscanf */
-#include <string.h>
-
-#include <sys/types.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
-
+#include <ctype.h> /* for isspace */
 #include <gconf/gconf-client.h>
-
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-iobuf.h"
-#include "gnome-vfs-inet-connection.h"
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-parse-ls.h"
-#include "gnome-vfs-utils.h"
-
-#include "ftp-method.h"
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-inet-connection.h>
+#include <libgnomevfs/gnome-vfs-iobuf.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-parse-ls.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
+#include <netinet/in.h>
+#include <stdio.h> /* for sscanf */
+#include <stdlib.h> /* for atoi */
+#include <string.h>
+#include <sys/types.h>
 
 /* Standard FTP proxy port */
 #define DEFAULT_FTP_PROXY_PORT 8080
@@ -72,6 +65,31 @@
 #define IS_300(X) ((X) >= 300 && (X) < 400)
 #define IS_400(X) ((X) >= 400 && (X) < 500)
 #define IS_500(X) ((X) >= 500 && (X) < 600)
+
+typedef struct {
+	GnomeVFSMethodHandle method_handle;
+	GnomeVFSInetConnection *inet_connection;
+	GnomeVFSIOBuf *iobuf;
+	GnomeVFSURI *uri;
+	gchar *cwd;
+	GString *response_buffer;
+	gchar *response_message;
+	gint response_code;
+	GnomeVFSInetConnection *data_connection;
+	GnomeVFSIOBuf *data_iobuf;
+	enum {
+		FTP_NOTHING,
+		FTP_READ,
+		FTP_WRITE,
+		FTP_READDIR
+	} operation;
+	gchar *dirlist;
+	gchar *dirlistptr;
+	gchar *server_type; /* the response from TYPE */
+	gboolean anonymous;
+	GnomeVFSResult fivefifty; /* the result to return for an FTP 550 */
+	GnomeVFSFileInfoOptions file_info_options;
+} FtpConnection;
 
 static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
 static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
@@ -933,12 +951,12 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 		   would give the stat_to_file_info function this
 		   information.  Also, there may be more fields here that are not 
 		   valid that we haven't dealt with.  */
-		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_DEVICE;
-		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_INODE;
-		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
+		file_info->valid_fields |= ~(GNOME_VFS_FILE_INFO_FIELDS_DEVICE
+					     | GNOME_VFS_FILE_INFO_FIELDS_INODE
+					     | GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE);
 		file_info->io_block_size = 0;
 
-		file_info->name = g_strdup (g_basename(filename));
+		file_info->name = g_path_get_basename (filename);
 
 		if(*(file_info->name) == '\0') {
 			g_free (file_info->name);

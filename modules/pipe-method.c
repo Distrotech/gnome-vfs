@@ -20,25 +20,18 @@
 
    Author: Elliot Lee <sopwith@redhat.com> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include "pipe-method.h"
-
-#include <stdio.h>
-#include <string.h>
-
-#include "gnome-vfs-mime.h"
-
-#include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-utils.h"
-#include "gnome-vfs-module-shared.h"
 
 #include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-cancellation.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
+#include <stdio.h>
+#include <string.h>
 
 struct _FileHandle {
 	GnomeVFSURI *uri;

@@ -26,13 +26,17 @@
 
 #include <config.h>
 #include "stolen-glib-extensions.h"
+
 #include "eel-cut-n-paste.h"
 #include <ctype.h>
+#include <glib/glist.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
 #include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
 #include <sys/utsname.h>
-#include <glib.h>
 
 typedef struct {
 	GHashTable *hash_table;

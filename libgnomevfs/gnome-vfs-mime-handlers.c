@@ -97,9 +97,9 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 
 	action_type_string = gnome_vfs_mime_get_value (mime_type, "default_action_type");
 
-	if (action_type_string != NULL && strcasecmp (action_type_string, "application") == 0) {
+	if (action_type_string != NULL && g_ascii_strcasecmp (action_type_string, "application") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
-	} else if (action_type_string != NULL && strcasecmp (action_type_string, "component") == 0) {
+	} else if (action_type_string != NULL && g_ascii_strcasecmp (action_type_string, "component") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
 	} else {
 		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
@@ -495,7 +495,7 @@ sort_application_list (gconstpointer a, gconstpointer b)
 	application1 = (GnomeVFSMimeApplication *) a;
 	application2 = (GnomeVFSMimeApplication *) b;
 
-	return g_strcasecmp (application1->name, application2->name);
+	return g_ascii_strcasecmp (application1->name, application2->name);
 }
 
 /**

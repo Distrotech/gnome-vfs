@@ -24,13 +24,11 @@
 #include <config.h>
 #include "gnome-vfs-iobuf.h"
 
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
 #include <unistd.h>
 #include <string.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
-
 #define BUFFER_SIZE 4096
 
 struct Buffer {

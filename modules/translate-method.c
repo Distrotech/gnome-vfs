@@ -20,27 +20,28 @@
 
    Author: Elliot Lee <sopwith@redhat.com> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-#include <glib.h>
-#include <string.h>
+
 #include <ctype.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
+#include <signal.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
-#include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <signal.h>
-
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-private-utils.h"
 
 typedef struct {
 	enum {
@@ -1085,21 +1086,21 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 	for (i = 0; i < argc; i++) {
 #define CHECK_ARG() if((++i) >= argc) { badargs = TRUE; goto out; }
 #define CHECK_MODE(my_mode) if (mode_determined && pa->mode != (my_mode)) { badargs = TRUE ; goto out; } else { pa->mode = my_mode; mode_determined = TRUE; }
-		if (g_strcasecmp(argv[i], "-pattern") == 0) {
+		if (g_ascii_strcasecmp(argv[i], "-pattern") == 0) {
 			CHECK_ARG();
 			CHECK_MODE(MODE_BASIC);
 			pa->u.basic.trans_string = g_strdup(argv[i]);
-		} else if (g_strcasecmp(argv[i], "-real-method") == 0) {
+		} else if (g_ascii_strcasecmp(argv[i], "-real-method") == 0) {
 			CHECK_ARG();
 			pa->real_method_name = g_strdup(argv[i]);
-		} else if (g_strcasecmp(argv[i], "-exec") == 0) {
+		} else if (g_ascii_strcasecmp(argv[i], "-exec") == 0) {
 			CHECK_ARG();
 			CHECK_MODE(MODE_EXEC);
 			pa->u.exec.orig_string = g_strdup(argv[i]);
-		} else if (g_strcasecmp(argv[i], "-retain") == 0) {
+		} else if (g_ascii_strcasecmp(argv[i], "-retain") == 0) {
 			CHECK_MODE(MODE_EXEC);
 			pa->u.exec.retain = TRUE;
-		} else if (g_strcasecmp(argv[i], "-default-mime-type") == 0) {
+		} else if (g_ascii_strcasecmp(argv[i], "-default-mime-type") == 0) {
 			CHECK_ARG();
 			pa->default_mime_type = g_strdup(argv[i]);
 		} else {

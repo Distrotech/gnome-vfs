@@ -33,7 +33,8 @@
 #include "gnome-vfs-helpers.h"
 #include <ctype.h>
 #include <errno.h>
-#include <glib.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <libxml/parser.h>
 #include <libxml/xmlmemory.h>
 #include <locale.h>
@@ -48,8 +49,8 @@ stolen_strcasecmp (const char *string_a, const char *string_b)
 	 * didn't have code that already relies on 'NULL == ""', I
 	 * would change it right now.
 	 */
-	return g_strcasecmp (string_a == NULL ? "" : string_a,
-		             string_b == NULL ? "" : string_b);
+	return g_ascii_strcasecmp (string_a == NULL ? "" : string_a,
+				   string_b == NULL ? "" : string_b);
 }
 
 int
@@ -164,8 +165,8 @@ stolen_istr_has_prefix (const char *haystack, const char *needle)
 		}
 		hc = *h++;
 		nc = *n++;
-		hc = tolower ((guchar) hc);
-		nc = tolower ((guchar) nc);
+		hc = g_ascii_tolower (hc);
+		nc = g_ascii_tolower (nc);
 	} while (hc == nc);
 	return FALSE;
 }

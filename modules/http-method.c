@@ -31,49 +31,36 @@
    - Handle redirection.
    - Handle persistent connections.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "http-method.h"
 
+#include "http-authn.h"
+#include "http-cache.h"
+#include <arpa/inet.h>
 #include <ctype.h>
-#include <string.h>
-#include <unistd.h>
-
-#include <glib.h>
-
-#include <stdlib.h> /* for atoi */
-
+#include <gconf/gconf-client.h>
+#include <libgnomevfs/gnome-vfs-inet-connection.h>
+#include <libgnomevfs/gnome-vfs-mime-sniff-buffer.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-api.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
+#include <libgnomevfs/gnome-vfs-socket-buffer.h>
+#include <libgnomevfs/gnome-vfs-socket.h>
+#include <libgnomevfs/gnome-vfs-ssl.h>
+#include <libgnomevfs/gnome-vfs-standard-callbacks.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
-
-#include <sys/time.h>
-
-
-#include <gconf/gconf-client.h>
-
-#include <pthread.h>
-
-#include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
+#include <pthread.h>
 #include <stdarg.h>
 #include <stdio.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-mime-sniff-buffer.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-module-api.h"
-#include "gnome-vfs-standard-callbacks.h"
-#include "gnome-vfs-socket-buffer.h"
-#include "gnome-vfs-socket.h"
-#include "gnome-vfs-ssl.h"
-
-#include "http-method.h"
-#include "http-cache.h"
-#include "http-authn.h"
+#include <stdlib.h> /* for atoi */
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 #define EAZEL_XML_NS "http://services.eazel.com/namespaces"
 
@@ -512,7 +499,7 @@ check_header (const char *header,
 	const char *p, *q;
 
 	for (p = header, q = name; *p != '\0' && *q != '\0'; p++, q++) {
-		if (tolower (*p) != tolower (*q))
+		if (g_ascii_tolower (*p) != g_ascii_tolower (*q))
 			break;
 	}
 
@@ -838,7 +825,7 @@ proxy_should_for_hostname (const char *hostname)
 	inet_aton("255.0.0.0", &in_mask); 
 
 	if (hostname != NULL 
-		&& (strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
+		&& (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
 			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
 		ret = FALSE;
 	}
@@ -1066,7 +1053,7 @@ connect_to_uri (
 	g_return_val_if_fail (p_proxy_connect != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (toplevel_uri != NULL, GNOME_VFS_ERROR_INTERNAL);
 
-	if (!strcasecmp (gnome_vfs_uri_get_scheme (&toplevel_uri->uri), 
+	if (!g_ascii_strcasecmp (gnome_vfs_uri_get_scheme (&toplevel_uri->uri), 
 				"https")) {
 		if (!gnome_vfs_ssl_enabled ()) {
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
@@ -1185,8 +1172,8 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 	/* Request line.  */
 	request = g_string_new ("");
 
-	g_string_sprintfa (request, "%s %s%s HTTP/1.0\r\n", method, uri_string,
-		strlen(gnome_vfs_uri_get_path (uri)) == 0 ? "/" : "" );
+	g_string_printfa (request, "%s %s%s HTTP/1.0\r\n", method, uri_string,
+			  strlen(gnome_vfs_uri_get_path (uri)) == 0 ? "/" : "" );
 
 	DEBUG_HTTP (("-->Making request '%s %s'", method, uri_string));
 	
@@ -1195,11 +1182,11 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 
 	/* `Host:' header.  */
 	if(toplevel_uri->host_port && toplevel_uri->host_port != 0) {
-		g_string_sprintfa (request, "Host: %s:%d\r\n",
-			   toplevel_uri->host_name, toplevel_uri->host_port);
+		g_string_printfa (request, "Host: %s:%d\r\n",
+				  toplevel_uri->host_name, toplevel_uri->host_port);
 	} else {
-		g_string_sprintfa (request, "Host: %s:80\r\n",
-			   toplevel_uri->host_name);
+		g_string_printfa (request, "Host: %s:80\r\n",
+				  toplevel_uri->host_name);
 	}
 
 	/* `Accept:' header.  */
@@ -1212,7 +1199,7 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 		user_agent = USER_AGENT_STRING;
 	}
 
-	g_string_sprintfa (request, "User-Agent: %s\r\n", user_agent);
+	g_string_printfa (request, "User-Agent: %s\r\n", user_agent);
 
 	return request;
 }
@@ -1311,12 +1298,12 @@ make_request (HttpFileHandle **handle_return,
 		
 		/* `Content-Length' header.  */
 		if (data != NULL) {
-			g_string_sprintfa (request, "Content-Length: %d\r\n", data->len);
+			g_string_printfa (request, "Content-Length: %d\r\n", data->len);
 		}
 		
 		/* Extra headers. */
 		if (extra_headers != NULL) {
-			g_string_append(request, extra_headers);
+			g_string_append (request, extra_headers);
 		}
 
 		/* Empty line ends header section.  */
@@ -1677,7 +1664,7 @@ process_propfind_propstat (xmlNodePtr node,
 				} else if (strcmp ((char *)l->name, "nautilus-treat-as-directory") == 0
 					   && l->ns != NULL && l->ns->href != NULL
 					   && strcmp (l->ns->href, EAZEL_XML_NS) == 0
-					   && strcasecmp (node_content_xml, "TRUE") == 0) {
+					   && g_ascii_strcasecmp (node_content_xml, "TRUE") == 0) {
 					treat_as_directory = TRUE;
 				}
 				/* Unfortunately, we don't have a mapping for "creationdate" */

@@ -113,8 +113,8 @@ istr_has_prefix (const char *haystack, const char *needle)
 		}
 		hc = *h++;
 		nc = *n++;
-		hc = tolower ((guchar) hc);
-		nc = tolower ((guchar) nc);
+		hc = g_ascii_tolower (hc);
+		nc = g_ascii_tolower (nc);
 	} while (hc == nc);
 	return FALSE;
 }
@@ -744,7 +744,7 @@ gnome_vfs_x_format_uri_for_display (const char *uri)
 static gboolean
 is_valid_scheme_character (char c)
 {
-	return isalnum ((guchar) c) || c == '+' || c == '-' || c == '.';
+	return g_ascii_isalnum (c) || c == '+' || c == '-' || c == '.';
 }
 
 static gboolean
@@ -1071,9 +1071,7 @@ gnome_vfs_x_make_uri_canonical (const char *uri)
 	/* Lower-case the scheme. */
 	for (p = canonical_uri; *p != ':'; p++) {
 		g_assert (*p != '\0');
-		if (isupper (*p)) {
-			*p = tolower (*p);
-		}
+		*p = g_ascii_tolower (*p);
 	}
 
 	if (!relative_uri) {

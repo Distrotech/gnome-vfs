@@ -21,13 +21,12 @@
 
    Author: Maciej Stachowiak <mjs@eazel.com>
 */
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
-#include "gnome-vfs-mime-handlers.h"
-#include "gnome-vfs.h"
+#include <config.h>
+
 #include <bonobo-activation/bonobo-activation.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <stdio.h>
 #include <string.h>
 

@@ -27,16 +27,16 @@
 */
 
 #include <config.h>
-
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>
 #endif
-
 #include "gnome-vfs-utils.h"
+
+#include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
 #include <ctype.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
 #include <pwd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -707,7 +707,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
         /* We only handle the file scheme for now */
-	if (g_strcasecmp (scheme, "file") != 0 || !gnome_vfs_istr_has_prefix (path, "/")) {
+	if (g_ascii_strcasecmp (scheme, "file") != 0 || !gnome_vfs_istr_has_prefix (path, "/")) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 

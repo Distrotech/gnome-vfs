@@ -24,41 +24,31 @@
    	Pavel Cisler <pavel@eazel.com>
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #define _LARGEFILE64_SOURCE
 
-#include <glib.h>
-/* FIXME: We need to use gettext, but we can't use the gettext helpers
- * in libgnome since it depends on us, not the other way around.
- * What's the good GNOME 2.0 solution for this?
- */
-#define _(String) (String)
-#define N_(String) (String)
+#include <libgnomevfs/gnome-vfs-cancellation.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
 #include <limits.h>
 #include <malloc.h>
+#include <stdio.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <utime.h>
-#include <string.h>
-
-#include "gnome-vfs-mime.h"
-
-#include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-method.h"
-#include "gnome-vfs-utils.h"
-#include "gnome-vfs-module-shared.h"
-#include "file-method.h"
-
 
 #ifdef PATH_MAX
 #define	GET_PATH_MAX()	PATH_MAX

@@ -24,8 +24,7 @@
 #include <config.h>
 #include "gnome-vfs-cancellation.h"
 
-#include "gnome-vfs-private.h"
-#include "gnome-vfs.h"
+#include "gnome-vfs-utils.h"
 #include <unistd.h>
 
 /* WARNING: this code is not general-purpose.  It is supposed to make the two

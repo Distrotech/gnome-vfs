@@ -24,19 +24,18 @@
 
 #include <config.h>
 
-#include <stdio.h>
-#include <string.h>
-#include <bzlib.h>
-#include <time.h>
-#include <string.h>
-
-#include "gnome-vfs-handle.h"
-#include "gnome-vfs-module.h"
-#include "gnome-vfs-mime.h"
-#include "gnome-vfs-ops.h"
-
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <stdio.h>
+#include <string.h>
+#include <string.h>
+#include <time.h>
+
+#include <bzlib.h>
 
 #ifdef HAVE_OLDER_BZIP2
 #define BZ2_bzDecompressInit  bzDecompressInit

@@ -21,16 +21,12 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
-#include "gnome-vfs-job.h"
 #include "gnome-vfs-async-job-map.h"
-
+#include "gnome-vfs-job.h"
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <unistd.h>
 
 void           pthread_gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                 *handle);

@@ -34,9 +34,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private-utils.h"
-#include <glib.h>
+#include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <gmodule.h>
 
 /* List of modules that have self-test code */
@@ -87,7 +86,6 @@ main (int argc, char **argv)
 	make_asserts_break ("GnomeVFS");
 
 	/* Initialize the libraries we use. */
-	g_thread_init (NULL);
 	gnome_vfs_init ();
 
 	running_result = TRUE;
