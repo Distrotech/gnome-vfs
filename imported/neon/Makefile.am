@@ -3,7 +3,11 @@ NULL =
 INCLUDES =					\
 	$(NEON_CFLAGS)				\
 	$(LIBGNOMEVFS_CFLAGS)		\
-     $(NULL)
+        -I$(top_srcdir)                         \
+        -I$(top_builddir)                       \
+        -I$(top_srcdir)/libgnomevfs             \
+        -I$(top_builddir)/libgnomevfs           \
+        $(NULL)
 
 noinst_LTLIBRARIES = libneon.la
 

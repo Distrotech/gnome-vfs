@@ -1,13 +1,14 @@
 #include <unistd.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-mime-info-cache.h"
-#include "gnome-vfs-mime-handlers.h"
-#include "gnome-vfs-mime-monitor.h"
+#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-mime-info-cache.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libgnomevfs/gnome-vfs-mime-monitor.h>
 
-void gnome_vfs_mime_info_reload (void);
+void mime_cache_info_reload (void);
+
 gpointer foo (const char *mime_type);
 
-void gnome_vfs_mime_info_reload (void)
+void mime_cache_info_reload (void)
 {
         g_print ("mime cache reloaded...\n");
 }
@@ -55,7 +56,7 @@ int main (int argc, char **argv)
 
         g_signal_connect (G_OBJECT (gnome_vfs_mime_monitor_get ()),
                           "data_changed", 
-                           (GCallback) gnome_vfs_mime_info_reload,
+                           (GCallback) mime_cache_info_reload,
                            NULL);
 
         main_loop = g_main_loop_new (NULL, FALSE);

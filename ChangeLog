@@ -1,3 +1,9 @@
+2004-07-22  Ray Strode  <rstrode@redhat.com>
+
+	* imported/neon/Makefile.am:
+	* test/test-mime-info-cache.c:
+	Small build fixes for distcheck
+
 2004-07-22  Dave Camp  <dave@novell.com>
 
 	* configure.in:
