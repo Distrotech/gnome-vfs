@@ -415,6 +415,9 @@ do_open (GnomeVFSMethod *method,
 		char *quoted_name;
 		name = gnome_vfs_unescape_string (uri->text, 
 						  G_DIR_SEPARATOR_S);
+		if (name == NULL) {
+			return GNOME_VFS_ERROR_INVALID_URI;
+		}
 		quoted_name = g_shell_quote (name);
 		g_free (name);
 
@@ -456,6 +459,9 @@ do_create (GnomeVFSMethod *method,
 	}
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (name == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 	quoted_name = g_shell_quote (name);
 
 	cmd = g_strdup_printf ("cat > %s", quoted_name);
@@ -591,7 +597,9 @@ get_access_info (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
                                {'w', GNOME_VFS_PERM_ACCESS_WRITABLE}};
 
      name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-
+     if (name == NULL) {
+	     return;
+     }
 
      if ( *name == '\0' ) {
              quoted_name = g_shell_quote ("/");
@@ -783,6 +791,10 @@ do_get_file_info (GnomeVFSMethod *method,
 	char *quoted_name;
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (name == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+		
 	quoted_name = g_shell_quote (name);
 
 	if (*name != '\0') {
@@ -824,6 +836,9 @@ do_make_directory (GnomeVFSMethod *method,
 	char *quoted_name;
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (name == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 	quoted_name = g_shell_quote (name);
 
 	cmd = g_strdup_printf ("mkdir %s", quoted_name);
@@ -853,8 +868,9 @@ do_remove_directory (GnomeVFSMethod *method,
 	gchar *quoted_name;
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-	if (name == NULL)
+	if (name == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 	quoted_name = g_shell_quote (name);
 
 	cmd = g_strdup_printf ("rm -rf %s", quoted_name);
@@ -894,6 +910,11 @@ do_move (GnomeVFSMethod *method,
 	old_name = gnome_vfs_unescape_string (old_uri->text, G_DIR_SEPARATOR_S);
 	new_name = gnome_vfs_unescape_string (new_uri->text, G_DIR_SEPARATOR_S);
 
+	if ((old_name == NULL) || (new_name == NULL)) {
+		g_free (old_name);
+		g_free (new_name);
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 	quoted_old_name = g_shell_quote (old_name);
 	quoted_new_name = g_shell_quote (new_name);
 
@@ -926,8 +947,9 @@ do_unlink (GnomeVFSMethod *method,
 	gchar *quoted_name;
 
 	name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-	if (name == NULL)
+	if (name == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 	quoted_name = g_shell_quote (name);
 
 	cmd = g_strdup_printf ("rm -rf %s", quoted_name);
@@ -993,8 +1015,9 @@ do_set_file_info (GnomeVFSMethod *method,
 	gchar *full_name;
 
 	full_name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-	if (full_name == NULL)
+	if (full_name == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
 		char *encoded_dir;
