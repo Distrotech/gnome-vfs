@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.0\n"
-"POT-Creation-Date: 2000-12-05 15:26+0100\n"
-"PO-Revision-Date: 2000-11-24 13:29+01:00\n"
+"POT-Creation-Date: 2000-12-11 15:25+0100\n"
+"PO-Revision-Date: 2000-12-11 15:25+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -426,43 +426,53 @@ msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:336
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:340
 msgid "Edit Applications List"
 msgstr "Rediger applikasjonslisten"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Velg applikasjoner som skal være i menyen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
 msgid "Add Application..."
 msgstr "Legg til applikasjon..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:391
 msgid "Edit Application..."
 msgstr "Rediger applikasjon..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:397
 msgid "Delete Application"
 msgstr "Slett applikasjon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:426
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
 msgid "Edit Components List"
 msgstr "Redgier komponentliste"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Velg visninger som skal være i menyen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:623
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
+msgid ""
+"The MIME type entered contained upper case characters. Upper case characters "
+"were changed to lower case for you."
+msgstr "MIME-typen som ble skrevet inn inneholdt store bokstaver. De store bokstavene ble omgjort til små bokstaver for deg."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+msgid "Add New MIME Type"
+msgstr "Legg til ny MIME-type"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
 msgid "Add Mime Type"
 msgstr "Legg til MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -470,35 +480,35 @@ msgstr ""
 "Legg til en ny MIME-type\n"
 "For eksempel:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:632
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
 msgid "Mime Type:"
 msgstr "MIME-type:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
 msgid "Type in a description for this mime-type."
 msgstr "Skriv inn en beskrivelse for denne MIME-typen."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:650
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:786
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:885
 msgid "File Extensions "
 msgstr "Filtyper "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:806
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:905
 msgid "Add..."
 msgstr "Legg til..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:811
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:910
 msgid "    Remove    "
 msgstr "    Fjern     "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:981
 msgid "Add New Extension"
 msgstr "Legg til ny filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:886
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -506,43 +516,43 @@ msgstr ""
 "Skriv inn filtypen for denne MIME-typen.\n"
 "For eksempel: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:891
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:990
 msgid "Extension:"
 msgstr "Filtype:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1051
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1150
 msgid "New Application"
 msgstr "Ny applikasjon"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1060
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1164
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1159
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1263
 msgid "Application Name:"
 msgstr "Applikasjonsnavn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1068
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1173
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1167
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1272
 msgid "Application Command:"
 msgstr "Applikasjonskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1076
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1175
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
 msgid "Open Behavior"
 msgstr "Oppførsel ved åpning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1082
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1181
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Can open multiple files"
 msgstr "Kan åpne flere filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1085
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1192
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1184
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1291
 msgid "Can open from URI"
 msgstr "Kan åpne fra URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1155
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1254
 msgid "Edit Application"
 msgstr "Redigér applikasjon"
 
