@@ -376,7 +376,8 @@ gnome_vfs_configuration_add_directory (const char *dir)
 	if(configuration)
 		return;
 
-	g_return_if_fail (strcmp(dir, GNOME_VFS_MODULE_CFGDIR)))
+	if(!strcmp(dir, GNOME_VFS_MODULE_CFGDIR))
+		return;
 
 	config_dirs = g_realloc(config_dirs, sizeof(char *) * (++num_config_dirs + 1));
 	config_dirs[num_config_dirs-1] = g_strdup(dir);
