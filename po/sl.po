@@ -1,14 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# Slovenian translation for gnome-vfs.
+# Copyright (C) 2000 Free Software Foundation, Inc.
 # Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
 #
+
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
 "POT-Creation-Date: 2000-06-24 03:20+0200\n"
-"PO-Revision-Date: 2000-05-02 02:53+0200\n"
+"PO-Revision-Date: 2000-06-24 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
-"Language-Team: sl <aagdsafdsaaaa@li.org>\n"
+"Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso8599-2\n"
 "Content-Transfer-Encoding: 8bit\n"
