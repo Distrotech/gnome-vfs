@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2000-07-24 12:40+0200\n"
-"PO-Revision-Date: 2000-07-24 12:41+0200\n"
+"Project-Id-Version: gnome-vfs 0.3.1.0\n"
+"POT-Creation-Date: 2000-10-12 22:50+0200\n"
+"PO-Revision-Date: 2000-10-12 22:59+0200\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s : %d NUL harflerini içeriyor ."
+msgstr "%s : %d NUL harflerini içeriyor."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
@@ -33,21 +33,21 @@ msgstr "%s : %d modül ismini içermiyor ."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ayarlama dosyasý `%s' bulunamadý : %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:269
+#: libgnomevfs/gnome-vfs-file-info.c:342
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Tanýnmayan sýralama kuralý %d"
 
-#: libgnomevfs/gnome-vfs-init.c:71
+#: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "Gnome VFS çoktan baþlatýldý ."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:653
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 #, c-format
 msgid "Could not parse: %s"
 msgstr "%s'yi tarayamadým "
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:655
+#: libgnomevfs/gnome-vfs-parse-ls.c:658
 msgid "More parsing errors will be ignored."
 msgstr "Þimdiden sonra ortaya çikacak hatalar gözardý edilecek ."
 
@@ -231,7 +231,7 @@ msgstr "Çok fazla bað var"
 msgid "Read only file system"
 msgstr "Salt okunur dosya yönetim sistemi"
 
-#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Ayný dosya yönetim sisteminde deðil"
@@ -241,114 +241,119 @@ msgstr "Ayný dosya yönetim sisteminde deðil"
 msgid "Name too long"
 msgstr "Isim fazalsýndan uzun"
 
-#: libgnomevfs/gnome-vfs-result.c:133
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "Service not available"
+msgstr "Hizmet eriþilir deðil"
+
+#: libgnomevfs/gnome-vfs-result.c:140
 msgid "Unknown error"
 msgstr "Tanýnmayan hata"
 
-#: libgnomevfs/gnome-vfs-utils.c:41
+#: libgnomevfs/gnome-vfs-utils.c:57
 msgid "1 byte"
 msgstr "1 bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:43
+#: libgnomevfs/gnome-vfs-utils.c:59
 #, c-format
 msgid "%u bytes"
 msgstr "%u bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:50
+#: libgnomevfs/gnome-vfs-utils.c:66
 #, c-format
 msgid "%.1fK"
 msgstr "%.1f bin"
 
-#: libgnomevfs/gnome-vfs-utils.c:54
+#: libgnomevfs/gnome-vfs-utils.c:70
 #, c-format
 msgid "%.1fM"
 msgstr "%.1f milyon"
 
-#: libgnomevfs/gnome-vfs-utils.c:58
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1fG"
 msgstr "%.1f milyar"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:338
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
 msgstr "Ölüyorum ..."
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:503
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
 msgstr "%s'yi okurken hata oluþtu "
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:525
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
 msgstr "%s'yi yazamadým "
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:574
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
 msgstr "%s'yi yazamadým "
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:602
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Geçici `%s' dosyasýný yaratamadým"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:616
+#: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "%s : Socket'i yaratamadým"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:634
+#: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "%s : `%s''yi baðlayamadým "
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:641
+#: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "%s : `%s''yi dinleyemedim "
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "%s : `%s''ye baðlantýlarý kabul edemiyorum"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1281
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot initialize CORBA."
 msgstr "CORBA'yý iþletemedim ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1288
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "RootPOA için ana referansý çözemedim ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1295
+#: libgnomevfs-corba/gnome-vfs-slave.c:1292
 msgid "Cannot activate POA manager."
 msgstr "POA yöneticisini iþletemiyorum ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1320
+#: libgnomevfs-corba/gnome-vfs-slave.c:1317
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Kullaným : %s <ior> [ <ior_fd> ] \n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1331
+#: libgnomevfs-corba/gnome-vfs-slave.c:1328
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Dosya çevircisini ( %d ) açamadým ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1354
+#: libgnomevfs-corba/gnome-vfs-slave.c:1351
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr "`%S' için haber etme \"yolu\" bulunamadý ."
+msgstr "`%s' için haber etme \"yolu\" bulunamadý ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1364
+#: libgnomevfs-corba/gnome-vfs-slave.c:1361
 msgid "Cannot setup Request object."
 msgstr "Istek objesini kuramadým ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1371
+#: libgnomevfs-corba/gnome-vfs-slave.c:1368
 msgid "Cannot extract IOR."
 msgstr "IOR'u ayýramadým "
 
@@ -397,63 +402,63 @@ msgstr "GNOME::VFS::Slave %s'yi öldüremedim -- hata %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "GNOME::VFS::Slave ( IOR bilinmiyor ) 'i öldüremedim -- hata %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:161
+#: libgnomevfs-pthread/gnome-vfs-job.c:165
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "GnomeVFSJob kanalýný uyandýrmak için yazým yapamadým ."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:568
-#: libgnomevfs-pthread/gnome-vfs-job.c:1516
+#: libgnomevfs-pthread/gnome-vfs-job.c:760
+#: libgnomevfs-pthread/gnome-vfs-job.c:1624
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Tanýnmayan iþlem numarasý %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:972
-#: libgnomevfs-pthread/gnome-vfs-job.c:1093
+#: libgnomevfs-pthread/gnome-vfs-job.c:1053
+#: libgnomevfs-pthread/gnome-vfs-job.c:1173
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmak için bir boruç yaratamadým "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1549
+#: libgnomevfs-pthread/gnome-vfs-job.c:1657
 msgid "Operation stopped"
 msgstr "Iþlem durduruldu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:306
 msgid "Edit Applications List"
 msgstr "Uygulama listesini deðiþtir"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:326
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "\"%s\" MIME türü için mönü'de varolacak uygulamalarý seç"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:349
 msgid "Add Application..."
 msgstr "Uygulama ekle ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
 msgid "Edit Application..."
 msgstr "Uygulamayý deðiþtir ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:357
 msgid "Delete Application"
 msgstr "Uygulamayý sil ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:382
 msgid "Edit Components List"
 msgstr "Parçalar listesinin deðiþtir"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:402
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "\"%s\" MIME türü için mönü'de varolacak bakýþlarý seç"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
 msgid "Add Mime Type"
 msgstr "MIME türü ekle"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:581
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -461,23 +466,23 @@ msgstr ""
 "Yeni bir MIMe türünü ekle \n"
 "Mesela :      image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:586
 msgid "Mime Type:"
 msgstr "MIME türü :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
 msgid "Type in a description for this mime-type."
 msgstr "Bu MIME türü için bir anlatým ver ."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:605
 msgid "Description:"
 msgstr "Anlatým :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:643
 msgid "Add New Extension"
 msgstr "Yeni bir sonek ekle"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -485,130 +490,195 @@ msgstr ""
 "Bu MIME türü için geçerli olan sonekler .\n"
 "Mesela     :  .html .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:649
 msgid "Extension:"
 msgstr "Sonek :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:790
 msgid "New Application"
 msgstr "Yeni uygulama"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:731
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:799
 msgid "Application Name:"
 msgstr "Uygulama ismi :"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:739
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:807
 msgid "Application Command:"
 msgstr "Uygulama komutasý :"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:747
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:815
 msgid "Open Behavior"
 msgstr "Açma heybeti"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:753
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
 msgid "Can open multiple files"
 msgstr "Çoðu dosyayý ayný anda açamýyorum"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:756
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:824
 msgid "Can open from URI"
 msgstr "URI'den açamadým"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+#: mime-type-capplet/nautilus-mime-type-capplet.c:349
 msgid "Change Icon"
 msgstr "Simgeyi deðiþtir"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:374
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1203
 msgid "Mime Type"
 msgstr "MIME türü"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+#: mime-type-capplet/nautilus-mime-type-capplet.c:382
 msgid "Add new Mime type..."
 msgstr "Yeni bir MIME türü ekle ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:403
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
 msgid "Delete this Mime type..."
 msgstr "Bu MIME türünü sil ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:418
+#: mime-type-capplet/nautilus-mime-type-capplet.c:404
 msgid "Use Viewer"
 msgstr "Göstericiyi kullan"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:424
+#: mime-type-capplet/nautilus-mime-type-capplet.c:410
 msgid "Open With Application"
 msgstr "Uygulamayla aç"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:436
+#: mime-type-capplet/nautilus-mime-type-capplet.c:422
 msgid "Edit List"
 msgstr "Listeyi deðiþtir"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:465
+#: mime-type-capplet/nautilus-mime-type-capplet.c:451
 msgid "Add"
 msgstr "Ekle"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:468
+#: mime-type-capplet/nautilus-mime-type-capplet.c:454
 msgid "Remove"
 msgstr "Sil"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:646
-#: mime-type-capplet/nautilus-mime-type-capplet.c:788
-#: mime-type-capplet/nautilus-mime-type-capplet.c:993
+#: mime-type-capplet/nautilus-mime-type-capplet.c:640
+#: mime-type-capplet/nautilus-mime-type-capplet.c:783
+#: mime-type-capplet/nautilus-mime-type-capplet.c:917
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1100
 msgid "None"
 msgstr "Yok"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1202
 msgid "Description"
 msgstr "Anlatým"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1204
 msgid "Extension"
 msgstr "Sonek"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1205
 msgid "Action"
 msgstr "Eylem"
 
-#: modules/file-method.c:357
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:267
+msgid "Can't find an hbox, using a normal file selection"
+msgstr ""
+"hbox kutusunu bulamadým, vasat dosya seçim diyaloðunu kullanýyorum"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:273
+msgid "Preview"
+msgstr "Önizleme"
+
+#: modules/efs-method.c:493 modules/file-method.c:366
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tanýnmayan GnomeVFSSeekPosition verisi %d"
 
-#: modules/http-method.c:520
-#, c-format
-msgid "Invalid header `%s'"
-msgstr "Geçersiz baþlýk `%s'"
-
-#: modules/http-method.c:537
+#: modules/http-method.c:1119
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s alýnacaktýr"
 
-#: modules/http-method.c:734
+#: modules/http-method.c:1483
 #, c-format
 msgid "Closing connection to %s"
 msgstr "`%s''ye olan baðlantýyý kes ."
 
-#: modules/http-method.c:878
+#: modules/http-method.c:1671
 #, c-format
 msgid "%s of %s read"
 msgstr "%s / %s okundu"
 
-#: modules/http-method.c:881
+#: modules/http-method.c:1674
 #, c-format
 msgid "%s read"
 msgstr "%s okundu"
 
-#. Multi-Status
-#: modules/http-method.c:1060
-msgid "HTTP server returned an invalid PROPFIND response"
-msgstr "HTTP sunucusu geçersiz bir PROPFIND cevabýný gönderdi"
+#: test/gnome-file-selection/gnome-file-selection.c:671
+msgid "Back"
+msgstr "Geri"
+
+#: test/gnome-file-selection/gnome-file-selection.c:672
+msgid "Go to the previously visited directory"
+msgstr "Önceki gezilen dizine geç"
+
+#: test/gnome-file-selection/gnome-file-selection.c:680
+msgid "Up"
+msgstr "Yukarý"
+
+#: test/gnome-file-selection/gnome-file-selection.c:681
+msgid "Go to the parent directory"
+msgstr "Üst dizine geç"
+
+#: test/gnome-file-selection/gnome-file-selection.c:689
+msgid "Forward"
+msgstr "Ileri"
+
+#: test/gnome-file-selection/gnome-file-selection.c:690
+msgid "Go to the next visited directory"
+msgstr "Bir sonraki gezilen dizine git"
+
+#: test/gnome-file-selection/gnome-file-selection.c:699
+msgid "Rescan"
+msgstr "Yeniden tara"
+
+#: test/gnome-file-selection/gnome-file-selection.c:700
+msgid "Rescan the current directory"
+msgstr "Geçerli dizini yeniden tara"
+
+#: test/gnome-file-selection/gnome-file-selection.c:709
+msgid "Home"
+msgstr "Bark"
+
+#: test/gnome-file-selection/gnome-file-selection.c:710
+msgid "Go to the home directory"
+msgstr "Ev dizinine geç"
+
+#: test/gnome-file-selection/gnome-file-selection.c:806
+msgid "Name"
+msgstr "Isim"
+
+#: test/gnome-file-selection/gnome-file-selection.c:807
+msgid "Size"
+msgstr "Boyut"
+
+#: test/gnome-file-selection/gnome-file-selection.c:808
+msgid "Date"
+msgstr "Tarih"
+
+#: test/gnome-file-selection/gnome-file-selection.c:837
+msgid "Enter name:"
+msgstr "Ismi belirle:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:860
+msgid "Show:"
+msgstr "Göster:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:887
+msgid "Show dotfiles"
+msgstr "Noktayla baþlayan gizli dosyalarý göster"
+
