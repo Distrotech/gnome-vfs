@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 
    `split_toplevel_uri()' derived from Midnight Commander code by Norbert
    Warmuth, Miguel de Icaza, Janne Kukonlehto, Dugan Porter, Jakub Jelinek.  */
@@ -496,11 +496,16 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	size = 0;
 	u = uri;
 	while (1) {
-		if (u->method_string != NULL)
-			size += strlen (u->method_string);
 		if (u->text != NULL)
 			size += strlen (u->text);
-		size += 1;	/* '#' or ':' */
+
+		if (u->parent != NULL
+		    || ! (hide_options
+			  & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD)) {
+			if (u->method_string != NULL)
+				size += strlen (u->method_string);
+			size += 1;	/* '#' or ':' */
+		}
 
 		if (u->parent == NULL)
 			break;
@@ -566,7 +571,10 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			memcpy (p, toplevel_info, len);
 		}
 
-		if (u->method_string != NULL) {
+		if (u->method_string != NULL
+		    && (u->parent != NULL
+			|| ! (hide_options
+			      & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD))) {
 			if (u->parent == NULL)
 				*(--p) = ':';
 			len = strlen (u->method_string);

@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifndef _GNOME_VFS_TYPES_H
@@ -182,7 +182,8 @@ enum _GnomeVFSURIHideOptions {
 	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,
 	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,
 	GNOME_VFS_URI_HIDE_HOST_NAME = 1 << 2,
-	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3
+	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3,
+	GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD = 1 << 4
 };
 typedef enum _GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 

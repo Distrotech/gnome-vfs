@@ -24,6 +24,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-init.h			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs-ops.h				\
+	gnome-vfs-process.h			\
 	gnome-vfs-result.h			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
@@ -36,7 +37,6 @@ noinst_HEADERS =				\
 	gnome-vfs-module.h			\
 	gnome-vfs-private-types.h		\
 	gnome-vfs-private.h			\
-	gnome-vfs-process.h			\
 	gnome-vfs-regexp-filter.h		\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h		\

@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifndef _GNOME_VFS_PROCESS_H
@@ -36,6 +36,14 @@ enum _GnomeVFSProcessResult {
 };
 typedef enum _GnomeVFSProcessResult GnomeVFSProcessResult;
 
+enum _GnomeVFSProcessOptions {
+	GNOME_VFS_PROCESS_DEFAULT = 0,
+	GNOME_VFS_PROCESS_USEPATH = 1 << 0,
+	GNOME_VFS_PROCESS_CLOSEFDS = 1 << 1,
+	GNOME_VFS_PROCESS_SETSID = 1 << 2
+};
+typedef enum _GnomeVFSProcessOptions GnomeVFSProcessOptions;
+
 typedef struct _GnomeVFSProcess GnomeVFSProcess;
 
 typedef void (* GnomeVFSProcessInitFunc) (gpointer data);
@@ -49,8 +57,7 @@ gboolean 	 gnome_vfs_process_init	(void);
 
 GnomeVFSProcess *gnome_vfs_process_new 	(const gchar *file_name,
 					 gchar *const argv[],
-					 gboolean use_search_path,
-					 gboolean close_file_descriptors,
+					 GnomeVFSProcessOptions options,
 					 GnomeVFSProcessInitFunc init_func,
 					 gpointer init_data,
 					 GnomeVFSProcessCallback callback,

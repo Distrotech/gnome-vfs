@@ -1,1 +1,16 @@
-Ettore Perazzoli <ettore@comm2000.it>
+Main author:
+	Ettore Perazzoli <ettore@gnu.org>
+
+FTP method:
+	Miguel de Icaza <miguel@gnu.org>, based on the GNU Midnight
+	Commander code by:
+		Norbert Warmuth
+		Ching Hui
+		Jakup Jelinek
+		Pavel Macheck
+
+BZIP2 method:
+	Cody Russell <bratsche@dfw.net>
+
+GConf method:
+	Dave Camp <campd@oit.edu>

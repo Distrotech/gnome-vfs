@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 /* WARNING: This is *NOT* MT-safe at all.  It is supposed to call all processes
@@ -238,8 +238,7 @@ gnome_vfs_process_init (void)
 GnomeVFSProcess *
 gnome_vfs_process_new (const gchar *file_name,
 		       gchar *const argv[],
-		       gboolean use_search_path,
-		       gboolean close_file_descriptors,
+		       GnomeVFSProcessOptions options,
 		       GnomeVFSProcessInitFunc init_func,
 		       gpointer init_data,
 		       GnomeVFSProcessCallback callback,
@@ -259,9 +258,11 @@ gnome_vfs_process_new (const gchar *file_name,
 	if (child_pid == 0) {
 		if (init_func != NULL)
 			(* init_func) (init_data);
-		if (close_file_descriptors)
+		if (options & GNOME_VFS_PROCESS_SETSID)
+			setsid ();
+		if (options & GNOME_VFS_PROCESS_CLOSEFDS)
 			shut_down_file_descriptors ();
-		if (use_search_path)
+		if (options & GNOME_VFS_PROCESS_USEPATH)
 			execvp (file_name, argv);
 		else
 			execv (file_name, argv);
@@ -305,7 +306,6 @@ gnome_vfs_process_free (GnomeVFSProcess *process)
  * 
  * Return value: A numeric value reporting the result of the operation.
  **/
-
 GnomeVFSProcessResult
 gnome_vfs_process_signal (GnomeVFSProcess *process,
 			  guint signal_number)

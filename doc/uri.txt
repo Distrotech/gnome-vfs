@@ -17,5 +17,5 @@ Examples:
 	file:/home/michael/foo.txt  -  these open
 	     /home/michael/foo.txt  -  the same file.
 	
-	ftp:ftp.gnome.org/pub/baa.txt.gz       -  this opens the raw gzip data
-	ftp:ftp.gnome.org/pub/baa.txt.gz#gzip  -  this opens the unzipped data
+	ftp://ftp.gnome.org/pub/baa.txt.gz      -  this opens the raw gzip data
+	ftp://ftp.gnome.org/pub/baa.txt.gz#gzip -  this opens the unzipped data

@@ -1,3 +1,37 @@
+1999-10-07  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-process.c: If the
+	`GNOME_VFS_PROCESS_SETSID' option is set, call `setsid()'
+	after forking and calling the user-specified function.
+
+	* libgnomevfs/gnome-vfs-private.h: Do not #include
+	"gnome-vfs-process.h".
+
+	* libgnomevfs/gnome-vfs.h: #include "gnome-vfs-process.h".  This
+	makes the GnomeVFSProcess stuff public, thus making my work on the
+	file manager slightly easier.  It should not be public in the
+	final version though; instead, I would like to have something like
+	this in glib or gnome-libs.
+
+	* libgnomevfs/Makefile.am: Install `gnome-vfs-process.h'.
+
+	* libgnomevfs/gnome-vfs-process.h (gnome_vfs_process_new): Update
+	prototype.
+
+	* libgnomevfs/gnome-vfs-process.c (gnome_vfs_process_new): New
+	parameter `options' instead of `use_search_path' and
+	`close_file_descriptors'.
+	* libgnomevfs-corba/gnome-vfs-slave-launch.c
+	(gnome_vfs_slave_launch): Updated accordingly.
+
+	* libgnomevfs/gnome-vfs-process.h: New enum
+	`GnomeVFSProcessOptions'.
+
+	* libgnomevfs/gnome-vfs-types.h: New value
+	`GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD' in `GnomeVFSURIHideOptions'.
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): Honour
+	it.
+
 1999-10-07  Miguel de Icaza  <miguel@gnu.org>
 
 	* modules/ftp-method.c (linear_read): Close first to comply to

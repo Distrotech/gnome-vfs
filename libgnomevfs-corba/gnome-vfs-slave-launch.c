@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -161,7 +161,8 @@ gnome_vfs_slave_launch (GNOME_VFS_Slave_Notify notify_object,
 	args[2] = ior_fd_string;
 	args[3] = NULL;
 
-	process = gnome_vfs_process_new (args[0], args, TRUE, FALSE,
+	process = gnome_vfs_process_new (args[0], args,
+					 GNOME_VFS_PROCESS_USEPATH,
 					 initialize_process, pdata,
 					 NULL, NULL);
 	g_free (pdata);
