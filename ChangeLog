@@ -1,3 +1,10 @@
+2004-07-20  Christophe Fergeau  <teuf@gnome.org>
+	
+	* modules/sftp-method.c: use memset instead of bzero
+	* libgnomevfs/gnome-vfs-resolve.c: include strings.h if available
+	  since this file uses bzero which is defined there. Fixes part of
+	  bug #147887
+
 2004-07-18  Christian Kellner <gicmo@gnome-de.org>
 
 	* po/POTFILES.skip: Added neon files because we do not use neon strings

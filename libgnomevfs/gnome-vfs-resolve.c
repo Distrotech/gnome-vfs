@@ -24,7 +24,12 @@
 #include <errno.h>
 #include <glib/gmem.h>
 #include <glib/gmessages.h>
+#ifdef HAVE_STRING_H
 #include <string.h>
+#endif
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
+#endif
 /* Keep <sys/types.h> above the network includes for FreeBSD. */
 #include <sys/types.h>
 #include <netdb.h>

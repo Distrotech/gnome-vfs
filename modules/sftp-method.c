@@ -1705,7 +1705,7 @@ do_open (GnomeVFSMethod        *method,
 
 	buffer_write_gint32 (&msg, sftp_mode);
 
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	buffer_write_file_info (&msg, &info, GNOME_VFS_SET_FILE_INFO_NONE);
 
 	buffer_send (&msg, conn->out_fd);
