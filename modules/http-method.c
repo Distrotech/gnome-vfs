@@ -1050,29 +1050,14 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlParserCtxtPtr parserContext;
 	xmlDocPtr doc = NULL;
 	xmlNodePtr cur = NULL;
-	gchar *raw_uri = gnome_vfs_uri_to_string (uri,
-                GNOME_VFS_URI_HIDE_USER_NAME
-                |GNOME_VFS_URI_HIDE_PASSWORD
-                |GNOME_VFS_URI_HIDE_HOST_NAME
-                |GNOME_VFS_URI_HIDE_HOST_PORT
-                |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
-	gchar *unescaped_uri, *uri_string;
+	gchar *raw_uri;
+	gchar *unescaped_uri_string;
+	GnomeVFSURI *unescaped_uri;
 	gchar *extraheaders = g_strdup_printf("Depth: %d\r\n", depth);
 
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
 		"<D:propfind xmlns:D=\"DAV:\"><D:allprop/></D:propfind>";
-
-	unescaped_uri = gnome_vfs_unescape_string(raw_uri, "/");
-	g_free(raw_uri);
-
-	if(unescaped_uri[strlen(unescaped_uri)-1] == '/') {
-		uri_string = unescaped_uri;
-	} else {
-		uri_string = g_strconcat(unescaped_uri, "/", NULL);
-		g_free(unescaped_uri);
-	}
-
 
 	request = g_byte_array_append(request, request_str, 
 			strlen(request_str));
@@ -1125,11 +1110,18 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	cur = cur->childs;
 
+	raw_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	unescaped_uri_string = gnome_vfs_unescape_string(raw_uri, "/");
+	unescaped_uri = gnome_vfs_uri_new(unescaped_uri_string);
+	g_free(raw_uri);
+	g_free(unescaped_uri_string);
+
+
 	while(cur != NULL) {
 		if(!strcmp((char *)cur->name, "response")) {
 			GnomeVFSFileInfo *file_info =
 				process_propfind_response(cur->childs, 
-					uri);
+					unescaped_uri);
 			/* if the file has a filename or we're doing a PROPFIND on a single 
 			 * resource... */
 			if(file_info->name || depth==0) { 
@@ -1143,8 +1135,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 		cur = cur->next;
 	}
 
+	gnome_vfs_uri_unref(unescaped_uri);
+
 	g_free(buffer);
-	g_free(uri_string);
 	g_free(extraheaders);
 
 	xmlFreeParserCtxt(parserContext);

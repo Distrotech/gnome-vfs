@@ -1,5 +1,12 @@
 2000-08-09  Ian McKellar  <yakk@yakk.net.au>
 
+	* modules/http-method.c: (make_propfind_request):
+	Fixed another WebDAV directory listing bug. If the current URI
+	contained escaped characters (%20 for example) it would not be
+	culled. Now it is.
+
+2000-08-09  Ian McKellar  <yakk@yakk.net.au>
+
 	* modules/http-method.c: (process_propfind_response):
 	Fixed a bug where the current directory could show up in WebDAV
 	directory listings.
