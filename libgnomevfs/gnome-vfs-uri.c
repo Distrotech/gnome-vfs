@@ -56,6 +56,10 @@
        joe:password@foo.se
 
 */
+/*
+   FIXME tenix is the following more correct?
+   [user[:password]@]hostname[:port]/remote-dir, e.g.:
+ */
 
 static gchar *
 split_toplevel_uri (const gchar *path, guint path_len,
