@@ -1,0 +1,10 @@
+Update by unpacking the new version, setting CVSROOT and running something like this:
+(replacing 0.24.6 with the new version number)
+
+ cd neon-0.24.6/src
+ cvs import -m "Import of upstream 0.24.6" gnome-vfs/imported/neon NEON_DIST NEON_0_24_6
+
+This imports the changes to the head of the import branch. Then you need to merge the changes to HEAD.
+This should be done like:
+
+ cvs checkout -jNEON_0_24_6 -jNEON_0_24_7 gnome-vfs/imported/neon

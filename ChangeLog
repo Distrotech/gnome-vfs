@@ -1,5 +1,16 @@
 2004-07-02  Alexander Larsson  <alexl@redhat.com>
 
+	Patch from Christian Kellner to import the latest neon library
+	
+	* Makefile.am:
+	* acinclude.m4:
+	* configure.in:
+	* imported/Makefile.am:
+	* imported/neon/*:
+	Import latest neon sources.
+
+2004-07-02  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-dns-sd.c:
 	include unistd.h, patch from Ray Simard
 

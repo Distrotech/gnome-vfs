@@ -65,10 +65,6 @@ AC_SUBST(LIBIDL_REQUIRED)
 AC_SUBST(ORBIT_REQUIRED)
 AC_SUBST(XML_REQUIRED)
 
-PKG_CHECK_MODULES(MODULES_XML, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED libxml-2.0 >= $XML_REQUIRED)
-AC_SUBST(MODULES_XML_CFLAGS)
-AC_SUBST(MODULES_XML_LIBS)
-
 PKG_CHECK_MODULES(MODULES, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED)
 AC_SUBST(MODULES_LIBS)
 AC_SUBST(MODULES_CFLAGS)
@@ -354,6 +350,12 @@ VFS_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'" $VFS_GLIB_CFLAGS"
 AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)
+
+dnl
+dnl http-method (neon checks)
+dnl
+
+NEON_BUNDLED(imported/neon)
 
 dnl
 dnl efs-method.c
@@ -798,6 +800,8 @@ Makefile
 gnome-vfs.spec
 libgnomevfs/gnome-vfs-file-size.h
 libgnomevfs/Makefile
+imported/Makefile
+imported/neon/Makefile
 modules/Makefile
 modules/extfs/Makefile
 modules/extfs/ar
