@@ -1,5 +1,13 @@
 2001-02-27  Maciej Stachowiak  <mjs@eazel.com>
 
+	another unreviewed change to fix tinderox
+
+	* mime-type-capplet/Makefile.am: Install .desktop file in both the
+	places the .spec file expects it. Not sure if it was removed
+	intentionally or not.
+
+2001-02-27  Maciej Stachowiak  <mjs@eazel.com>
+
 	unreviewed change to fix tinderox
 
 	* mime-type-capplet/Makefile.am: Add .desktop.in file to
