@@ -2,6 +2,8 @@
 
 	* modules/file-method.c (do_open): Removed wrong directory test.
 	(do_create): Removed stupid stat check.
+	(do_seek): Call LSEEK() correctly.
+	(do_tell): Likewise.
 
 1999-09-05  Michael Meeks  <michael@imaginator.com>
 
