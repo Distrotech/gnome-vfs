@@ -1,1 +1,2 @@
 modules/efs-method.c
+monikers/GNOME_VFS_Moniker_std.server.in

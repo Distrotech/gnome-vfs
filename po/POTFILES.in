@@ -22,3 +22,5 @@ monikers/GNOME_VFS_Moniker_std.server.in.in
 schemas/desktop_default_applications.schemas.in
 schemas/desktop_gnome_url_handlers.schemas.in
 schemas/system_http_proxy.schemas.in
+modules/network-method.c
+schemas/system_smb.schemas.in
