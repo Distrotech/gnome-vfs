@@ -1,3 +1,21 @@
+2000-11-29  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_magic_table),
+	(gnome_vfs_mime_clear_magic_table): Eliminate the unused "mmap"
+	optimization. We haven't been generating the binary file for a
+	while, and we've determined there's no real speed issue.
+
+	* data/mime/gnome-vfs.applications: Use tabs consistently instead
+	of some tabs and some spaces. Get rid of some extra whitespace on
+	some lines. Fix some "can_open_uris" lines that said
+	"can_open_urls" instead.
+	
+	* data/mime/gnome-vfs.keys: Use tabs consistently instead of some
+	tabs and some spaces.
+
 2000-11-29  Pavel Cisler  <pavel@eazel.com>
 
 	* test/test-mime.c: (main):

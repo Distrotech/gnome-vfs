@@ -35,7 +35,7 @@ application/andrew-inset
 	
 application/mac-binhex40
 	description=Macintosh BinHex archive
-        [da]description=Macintosh BinHex-arkiv
+	[da]description=Macintosh BinHex-arkiv
 	[fi]description=Machintoshin BinHex-paketti
 	[fr]description=Archive BinHex Macintosh
 	[no]description=Macintosh BinHex-arkiv
@@ -53,7 +53,7 @@ application/mspowerpoint
 	description=Microsoft PowerPoint document
 	[da]description=Microsoft PowerPoint-dokument
 	[fi]description=Microsoft PowerPoint -asiakirja
- 	[fr]description=Document Microsoft PowerPoint
+	[fr]description=Document Microsoft PowerPoint
 	[no]description=Microsoft PowerPoint dokument
 	[sv]description=Microsoft PowerPoint-dokument
 	default_action_type=application
