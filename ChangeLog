@@ -1,3 +1,8 @@
+2005-01-18  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-daemon.c: (main):
+	Create volume monitor early to avoid possible deadlock later (#161997)
+
 2005-01-16 Paolo Borelli <pborelli@katamail.com> 
 
 	* modules/sftp-method.c: always check gnome_vfs_unescape_string

@@ -602,7 +602,13 @@ main (int argc, char *argv [])
 	if (!gnome_vfs_init ()) {
 		g_error (_("Could not initialize gnome vfs"));
 		return 1;
-		}
+	}
+
+	/* Call this here so the volume monitor exists when registerVolumeMonitor()
+	 * calls arrive. Otherwise there is a deadlock situation wrt reentrancy
+	 * since the constructor does corba calls (gconf).
+	 */
+	gnome_vfs_get_volume_monitor ();
 	
 	factory = bonobo_generic_factory_new ("OAFIID:GNOME_VFS_Daemon_Factory",
 					      gnome_vfs_daemon_factory,
