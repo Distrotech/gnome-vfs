@@ -1,3 +1,9 @@
+2002-03-11  James Henstridge  <james@daa.com.au>
+
+	* configure.in: shell doesn't need semicolons to terminate
+	statements.  In fact it can be harmful if an m4 expansion leaves a
+	semicolon on a line alone, as that is a syntax error.
+
 2002-03-09  Darin Adler  <darin@bentspoon.com>
 
 	* test/.cvsignore: Ignore test-performance.

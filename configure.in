@@ -291,7 +291,7 @@ fi
 AC_CHECK_LIB(bz2, bzCompressInit, AC_DEFINE(HAVE_OLDER_BZIP2))
 AC_CHECK_HEADERS(bzlib.h,
 	BZ2_LIBS="$BZ2_LIBS -lbz2",
-	AC_MSG_ERROR([Gnome-vfs requires libbz2 to compile.]);
+	AC_MSG_ERROR([Gnome-vfs requires libbz2 to compile.])
 	)
 AC_SUBST(BZ2_LIBS)
 
@@ -301,11 +301,11 @@ fi
 
 dnl modules/cdda
 
-AM_CONDITIONAL(HAVE_CDDA, false);
+AM_CONDITIONAL(HAVE_CDDA, false)
 AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
-	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
-		AM_CONDITIONAL(HAVE_CDDA, true);
-	])
+	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface"
+	AM_CONDITIONAL(HAVE_CDDA, true)
+])
 
 dnl ******************************
 dnl OpenSSL
