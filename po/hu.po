@@ -7,12 +7,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
-"POT-Creation-Date: 2002-07-24 04:20-0400\n"
-"PO-Revision-Date: 2001-03-05 18:20+00:00\n"
+"POT-Creation-Date: 2002-08-08 21:32+0200\n"
+"PO-Revision-Date: 2002-08-08 21:35+0200\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
@@ -23,7 +23,7 @@ msgstr "%s:%d NUL karaktereket tartalmaz."
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d nem tartalmaz metÛdus nevet."
+msgstr "%s:%d nem tartalmaz met√≥dus nevet."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
@@ -33,35 +33,35 @@ msgstr "%s:%d nem tartalmaz modulnevet."
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "'%s' konfigur·ciÛs f·jlt nem tal·ltam: %s"
+msgstr "'%s' konfigur√°ci√≥s f√°jlt nem tal√°ltam: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:706
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Ismeretlen op tÌpus: %u"
+msgstr "Ismeretlen op t√≠pus: %u"
 
 #: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Nem tudok csıvezetÈket lÈtrehozni a GIOChannel megnyit·s·hoz: %s"
+msgstr "Nem tudok cs≈ëvezet√©ket l√©trehozni a GIOChannel megnyit√°s√°hoz: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1600
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Ismeretlen munkatÌpus: %u"
+msgstr "Ismeretlen munkat√≠pus: %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1633
 msgid "Operation stopped"
-msgstr "A m˚velet le·llÌtva"
+msgstr "A m≈±velet le√°ll√≠tva"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Nem tudom Èrtelmezni: %s"
+msgstr "Nem tudom √©rtelmezni: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "A tˆbbi ÈrtelmezÈsi hiba felett elnÈzek."
+msgstr "A t√∂bbi √©rtelmez√©si hiba felett eln√©zek."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -71,7 +71,7 @@ msgstr "Nincs hiba"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Nem tal·ltam a f·jlt"
+msgstr "Nem tal√°ltam a f√°jlt"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
@@ -81,17 +81,17 @@ msgstr "Alap hiba"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Belsı hiba"
+msgstr "Bels≈ë hiba"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Rossz paramÈterek"
+msgstr "Rossz param√©terek"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Nem t·mogatott m˚velet"
+msgstr "Nem t√°mogatott m≈±velet"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -101,32 +101,32 @@ msgstr "I/O hiba"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Adat sÈr¸lt"
+msgstr "Adat s√©r√ºlt"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Nem jÛ form·tum"
+msgstr "Nem j√≥ form√°tum"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Rossz f·jl handle"
+msgstr "Rossz f√°jl handle"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "A f·jl t˙l nagy"
+msgstr "A f√°jl t√∫l nagy"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Nincs hely az eszkˆzˆn"
+msgstr "Nincs hely az eszk√∂z√∂n"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Csak olvashatÛ f·jlrendszer"
+msgstr "Csak olvashat√≥ f√°jlrendszer"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -136,132 +136,132 @@ msgstr "Rossz URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Nincs nyitva a f·jl"
+msgstr "Nincs nyitva a f√°jl"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "A nyit·s mÛdja nem helyes"
+msgstr "A nyit√°s m√≥dja nem helyes"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Hozz·fÈrÈs letiltva"
+msgstr "Hozz√°f√©r√©s letiltva"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "T˙l sok nyitott f·jl"
+msgstr "T√∫l sok nyitott f√°jl"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "F·jl vÈge"
+msgstr "F√°jl v√©ge"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Nem kˆnyvt·r"
+msgstr "Nem k√∂nyvt√°r"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "A m˚velet folyamatban"
+msgstr "A m≈±velet folyamatban"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "A m˚velet megszakadt"
+msgstr "A m≈±velet megszakadt"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "A f·jl lÈtezik"
+msgstr "A f√°jl l√©tezik"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Ciklikus linket tal·ltam"
+msgstr "Ciklikus linket tal√°ltam"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "A m˚velet nem engedett"
+msgstr "A m≈±velet nem engedett"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Kˆnyvt·r"
+msgstr "K√∂nyvt√°r"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Nincs elÈg memÛria"
+msgstr "Nincs el√©g mem√≥ria"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Nem tal·ltam a gÈpet"
+msgstr "Nem tal√°ltam a g√©pet"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "A gÈpnÈv nem valÛs"
+msgstr "A g√©pn√©v nem val√≥s"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "A gÈpnek nincs cÌme"
+msgstr "A g√©pnek nincs c√≠me"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "A belÈpÈs nem siker¸lt"
+msgstr "A bel√©p√©s nem siker√ºlt"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "A m˚velet le·llÌtva"
+msgstr "A m≈±velet le√°ll√≠tva"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "A kˆnyvt·r foglalt"
+msgstr "A k√∂nyvt√°r foglalt"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "A kˆnyvt·r nem ¸res"
+msgstr "A k√∂nyvt√°r nem √ºres"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "T˙l sok link"
+msgstr "T√∫l sok link"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Csak olvashatÛ f·jlrendszer"
+msgstr "Csak olvashat√≥ f√°jlrendszer"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Nem ugyan azon a f·jlrendszeren van"
+msgstr "Nem ugyan azon a f√°jlrendszeren van"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "A nÈv t˙l hossz˙"
+msgstr "A n√©v t√∫l hossz√∫"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "A szolg·ltat·s nem elÈrhetı"
+msgstr "A szolg√°ltat√°s nem el√©rhet≈ë"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "A kÈrÈs elavultt· teszi a szolg·ltat·s adatait"
+msgstr "A k√©r√©s elavultt√° teszi a szolg√°ltat√°s adatait"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -274,12 +274,12 @@ msgstr "Ismeretlen hiba"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
-msgstr "1 b·jt"
+msgstr "1 b√°jt"
 
 #: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
-msgstr "%u b·jt"
+msgstr "%u b√°jt"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
@@ -305,32 +305,31 @@ msgstr "Ismeretlen GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Nem tal√°lhat√≥ √©rv√©nyes be√°ll√≠t√≥f√°jl a k√∂vetjez≈ë helyen: %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Haszn√°ld a %s k√∂rnyezeti v√°ltoz√≥t egy m√°sik hely megad√°s√°ra.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Standard Moniker factory"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "MonikerExtender f√°jl"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "√°ltal√°nos Gnome VFS moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Alap hiba"
+msgstr "√°ltal√°nos f√°jlmoniker"
 
 #~ msgid "3D Studio image"
-#~ msgstr "3D Studio kÈp"
+#~ msgstr "3D Studio k√©p"
 
 #~ msgid "AIFC audio"
 #~ msgstr "AIFC hang"
@@ -339,7 +338,7 @@ msgstr "Alap hiba"
 #~ msgstr "AIFF hang"
 
 #~ msgid "ANIM animation"
-#~ msgstr "ANIM anim·ciÛ"
+#~ msgstr "ANIM anim√°ci√≥"
 
 #~ msgid "AVI video"
 #~ msgstr "AVI video"
@@ -348,65 +347,65 @@ msgstr "Alap hiba"
 #~ msgstr "AbiWord dokumentum"
 
 #~ msgid "Adobe FrameMaker font"
-#~ msgstr "Adobe FrameMaker bet˚kÈszlet"
+#~ msgstr "Adobe FrameMaker bet≈±k√©szlet"
 
 #~ msgid "Adobe font metrics"
-#~ msgstr "Adobe bet˚metrika"
+#~ msgstr "Adobe bet≈±metrika"
 
 #~ msgid "Andrew Toolkit inset"
 #~ msgstr "Andrew Toolkit inset"
 
 #~ msgid "ApplixWare Graphics image"
-#~ msgstr "ApplixWare Graphics kÈp"
+#~ msgstr "ApplixWare Graphics k√©p"
 
 #~ msgid "Applixware Words document"
 #~ msgstr "Applixware Words dokumentum"
 
 #~ msgid "Applixware spreadsheet"
-#~ msgstr "Applixware munkaf¸zet"
+#~ msgstr "Applixware munkaf√ºzet"
 
 #~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD kÈp"
+#~ msgstr "AutoCAD k√©p"
 
 #~ msgid "BCPIO document"
 #~ msgstr "BCPIO dokumentum"
 
 #~ msgid "BDF font"
-#~ msgstr "BDF bet˚kÈszlet"
+#~ msgstr "BDF bet≈±k√©szlet"
 
 #~ msgid "C shell script"
-#~ msgstr "C shell parancsf·jl"
+#~ msgstr "C shell parancsf√°jl"
 
 #~ msgid "C source code"
-#~ msgstr "C forr·skÛd"
+#~ msgstr "C forr√°sk√≥d"
 
 #, fuzzy
 #~ msgid "C source code header"
-#~ msgstr "C forr·skÛd"
+#~ msgstr "C forr√°sk√≥d"
 
 #~ msgid "C++ source code"
-#~ msgstr "C++ forr·skÛd"
+#~ msgstr "C++ forr√°sk√≥d"
 
 #~ msgid "CGI program"
 #~ msgstr "CGI program"
 
 #~ msgid "CGM image"
-#~ msgstr "CGM kÈp"
+#~ msgstr "CGM k√©p"
 
 #~ msgid "CMU raster image"
-#~ msgstr "CMU raszterkÈp"
+#~ msgstr "CMU raszterk√©p"
 
 #~ msgid "CPIO archive"
-#~ msgstr "CPIO archÌvum"
+#~ msgstr "CPIO arch√≠vum"
 
 #~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "CPIO archÌvum (gzip-pel tˆmˆrÌtve)"
+#~ msgstr "CPIO arch√≠vum (gzip-pel t√∂m√∂r√≠tve)"
 
 #~ msgid "DCL script"
-#~ msgstr "DCL parancsf·jl"
+#~ msgstr "DCL parancsf√°jl"
 
 #~ msgid "DOS font"
-#~ msgstr "DOS bet˚kÈszlet"
+#~ msgstr "DOS bet≈±k√©szlet"
 
 #~ msgid "DOS/Windows program"
 #~ msgstr "DOS/Windows program"
@@ -427,31 +426,31 @@ msgstr "Alap hiba"
 #~ msgstr "Dolby Digital hang"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs Lisp forr·skÛd"
+#~ msgstr "Emacs Lisp forr√°sk√≥d"
 
 #~ msgid "Enlightenment theme"
-#~ msgstr "Enlightenment tÈma"
+#~ msgstr "Enlightenment t√©ma"
 
 #~ msgid "FLC animation"
-#~ msgstr "FLC anim·ciÛ"
+#~ msgstr "FLC anim√°ci√≥"
 
 #~ msgid "FLI animation"
-#~ msgstr "FLI anim·ciÛ"
+#~ msgstr "FLI anim√°ci√≥"
 
 #~ msgid "FastTracker II audio"
 #~ msgstr "FastTracker II hang"
 
 #~ msgid "Fortran source code"
-#~ msgstr "Fortran forr·skÛd"
+#~ msgstr "Fortran forr√°sk√≥d"
 
 #~ msgid "FrameMaker interchange document"
-#~ msgstr "FrameMaker cserÈlhetı dokumentum"
+#~ msgstr "FrameMaker cser√©lhet≈ë dokumentum"
 
 #~ msgid "G3 fax image"
-#~ msgstr "G3 faxkÈp"
+#~ msgstr "G3 faxk√©p"
 
 #~ msgid "GIF image"
-#~ msgstr "GIF kÈp"
+#~ msgstr "GIF k√©p"
 
 #~ msgid "GIMP document"
 #~ msgstr "GIMP dokumentum"
@@ -460,25 +459,25 @@ msgstr "Alap hiba"
 #~ msgstr "GMC link"
 
 #~ msgid "GNOME application details"
-#~ msgstr "GNOME alkalmaz·s rÈszletei"
+#~ msgstr "GNOME alkalmaz√°s r√©szletei"
 
 #~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "GNU Oleo munkaf¸zet"
+#~ msgstr "GNU Oleo munkaf√ºzet"
 
 #~ msgid "GNU mail message"
-#~ msgstr "GNU elektronikus levÈl"
+#~ msgstr "GNU elektronikus lev√©l"
 
 #~ msgid "GTK configuration"
-#~ msgstr "GTK be·llÌt·sok"
+#~ msgstr "GTK be√°ll√≠t√°sok"
 
 #~ msgid "Glade project"
 #~ msgstr "Glade projekt"
 
 #~ msgid "GnuCash Workbook"
-#~ msgstr "GnuCash munkaf¸zet"
+#~ msgstr "GnuCash munkaf√ºzet"
 
 #~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Gnumeric munkaf¸zet"
+#~ msgstr "Gnumeric munkaf√ºzet"
 
 #~ msgid "HDF document"
 #~ msgstr "HDF dokumentum"
@@ -490,13 +489,13 @@ msgstr "Alap hiba"
 #~ msgstr "IDL dokumentum"
 
 #~ msgid "IEF image"
-#~ msgstr "IEF kÈp"
+#~ msgstr "IEF k√©p"
 
 #~ msgid "IFF image"
-#~ msgstr "IFF kÈp"
+#~ msgstr "IFF k√©p"
 
 #~ msgid "ILBM image"
-#~ msgstr "ILBM kÈp"
+#~ msgstr "ILBM k√©p"
 
 #~ msgid "ISI video"
 #~ msgstr "ISI video"
@@ -508,40 +507,40 @@ msgstr "Alap hiba"
 #~ msgstr "JBuilder projekt"
 
 #~ msgid "JPEG image"
-#~ msgstr "JPEG kÈp"
+#~ msgstr "JPEG k√©p"
 
 #~ msgid "Java byte code"
-#~ msgstr "Java b·jtkÛd"
+#~ msgstr "Java b√°jtk√≥d"
 
 #~ msgid "Java source code"
-#~ msgstr "Java forr·skÛd"
+#~ msgstr "Java forr√°sk√≥d"
 
 #~ msgid "KDE application details"
-#~ msgstr "KDE alkalmaz·s rÈszletei"
+#~ msgstr "KDE alkalmaz√°s r√©szletei"
 
 #~ msgid "KIllustrator document"
 #~ msgstr "KIllustrator dokumentum"
 
 #~ msgid "KPresenter presentation"
-#~ msgstr "KPresenter prezent·ciÛ"
+#~ msgstr "KPresenter prezent√°ci√≥"
 
 #~ msgid "KSpread spreadsheet"
-#~ msgstr "KSpread munkaf¸zet"
+#~ msgstr "KSpread munkaf√ºzet"
 
 #~ msgid "KWord document"
 #~ msgstr "KWord dokumentum"
 
 #~ msgid "Korn shell script"
-#~ msgstr "Korn shell parancsf·jl"
+#~ msgstr "Korn shell parancsf√°jl"
 
 #~ msgid "LHA archive"
-#~ msgstr "LHA archÌvum"
+#~ msgstr "LHA arch√≠vum"
 
 #~ msgid "LHARC archive"
-#~ msgstr "LHARC archÌvum"
+#~ msgstr "LHARC arch√≠vum"
 
 #~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX bet˚kÈszlet"
+#~ msgstr "LIBGRX bet≈±k√©szlet"
 
 #~ msgid "LightWave object"
 #~ msgstr "LightWave objektum"
@@ -550,10 +549,10 @@ msgstr "Alap hiba"
 #~ msgstr "LightWave scene"
 
 #~ msgid "Linux PSF console font"
-#~ msgstr "Linux PSF konzolos bet˚kÈszlet"
+#~ msgstr "Linux PSF konzolos bet≈±k√©szlet"
 
 #~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Lotus 1-2-3 munkaf¸zet"
+#~ msgstr "Lotus 1-2-3 munkaf√ºzet"
 
 #~ msgid "M3 audio URL"
 #~ msgstr "M3 hang URL"
@@ -568,7 +567,7 @@ msgstr "Alap hiba"
 #~ msgstr "MP3 hang"
 
 #~ msgid "MP3 audio playlist"
-#~ msgstr "MP3 lej·tszandÛ lista"
+#~ msgstr "MP3 lej√°tszand√≥ lista"
 
 #~ msgid "MPEG video"
 #~ msgstr "MPEG video"
@@ -580,22 +579,22 @@ msgstr "Alap hiba"
 #~ msgstr "MS video"
 
 #~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Macintosh AppleDouble kÛdol·s˙ f·jl"
+#~ msgstr "Macintosh AppleDouble k√≥dol√°s√∫ f√°jl"
 
 #~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Macintosh BinHex kÛdol·s˙ f·jl"
+#~ msgstr "Macintosh BinHex k√≥dol√°s√∫ f√°jl"
 
 #~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Macintosh StuffIt archÌvum"
+#~ msgstr "Macintosh StuffIt arch√≠vum"
 
 #~ msgid "Macromedia Flash file"
-#~ msgstr "Macromedia Flash f·jl"
+#~ msgstr "Macromedia Flash f√°jl"
 
 #~ msgid "MathML document"
 #~ msgstr "MathML dokumentum"
 
 #~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Microsoft Excel munkaf¸zet"
+#~ msgstr "Microsoft Excel munkaf√ºzet"
 
 #~ msgid "Microsoft PowerPoint document"
 #~ msgstr "Microsoft PowerPoint dokumentum"
@@ -613,10 +612,10 @@ msgstr "Alap hiba"
 #~ msgstr "ODA dokumentum"
 
 #~ msgid "PBM image"
-#~ msgstr "PBM kÈp"
+#~ msgstr "PBM k√©p"
 
 #~ msgid "PCF font"
-#~ msgstr "PCF bet˚kÈszlet"
+#~ msgstr "PCF bet≈±k√©szlet"
 
 #~ msgid "PDF document"
 #~ msgstr "PDF dokumentum"
@@ -625,55 +624,55 @@ msgstr "Alap hiba"
 #~ msgstr "PEF program"
 
 #~ msgid "PGM image"
-#~ msgstr "PGM kÈp"
+#~ msgstr "PGM k√©p"
 
 #~ msgid "PGN chess game"
-#~ msgstr "PGN sakkj·tszma"
+#~ msgstr "PGN sakkj√°tszma"
 
 #~ msgid "PGP keys"
 #~ msgstr "PGP kulcs"
 
 #~ msgid "PGP message"
-#~ msgstr "PGP ¸zenet"
+#~ msgstr "PGP √ºzenet"
 
 #~ msgid "PGP signature"
-#~ msgstr "PGP al·Ìr·s"
+#~ msgstr "PGP al√°√≠r√°s"
 
 #~ msgid "PGP-encrypted file"
-#~ msgstr "PGP-vel titkosÌtott f·jl"
+#~ msgstr "PGP-vel titkos√≠tott f√°jl"
 
 #~ msgid "PHP script"
-#~ msgstr "PHP parancsf·jl"
+#~ msgstr "PHP parancsf√°jl"
 
 #~ msgid "PN RealAudio document"
 #~ msgstr "PN RealAudio dokumentum"
 
 #~ msgid "PNG image"
-#~ msgstr "PNG kÈp"
+#~ msgstr "PNG k√©p"
 
 #~ msgid "PNM image"
-#~ msgstr "PNM kÈp"
+#~ msgstr "PNM k√©p"
 
 #~ msgid "PPM image"
-#~ msgstr "PPM kÈp"
+#~ msgstr "PPM k√©p"
 
 #~ msgid "Palm OS database"
-#~ msgstr "Palm OS adatb·zis"
+#~ msgstr "Palm OS adatb√°zis"
 
 #~ msgid "Perl script"
-#~ msgstr "Perl parancsf·jl"
+#~ msgstr "Perl parancsf√°jl"
 
 #~ msgid "Photoshop document"
 #~ msgstr "Photoshop dokumentum"
 
 #~ msgid "PostScript Type 1 font"
-#~ msgstr "PostScript Type 1 bet˚kÈszlet"
+#~ msgstr "PostScript Type 1 bet≈±k√©szlet"
 
 #~ msgid "PostScript document"
 #~ msgstr "PostScript dokumentum"
 
 #~ msgid "Python source code"
-#~ msgstr "Python forr·skÛd"
+#~ msgstr "Python forr√°sk√≥d"
 
 #~ msgid "QuickTime movie"
 #~ msgstr "QuickTime film"
@@ -685,16 +684,16 @@ msgstr "Alap hiba"
 #~ msgstr "Quicken for Windows dokumentum"
 
 #~ msgid "RAR archive"
-#~ msgstr "RAR archÌvum"
+#~ msgstr "RAR arch√≠vum"
 
 #~ msgid "README document"
 #~ msgstr "README dokumentum"
 
 #~ msgid "RGB image"
-#~ msgstr "RGB kÈp"
+#~ msgstr "RGB k√©p"
 
 #~ msgid "RIFF audio"
-#~ msgstr "RIFF kÈp"
+#~ msgstr "RIFF k√©p"
 
 #~ msgid "RPM package"
 #~ msgstr "RPM csomag"
@@ -706,10 +705,10 @@ msgstr "Alap hiba"
 #~ msgstr "RealVideo video"
 
 #~ msgid "S/MIME file"
-#~ msgstr "S/MIME f·jl"
+#~ msgstr "S/MIME f√°jl"
 
 #~ msgid "S/MIME signature"
-#~ msgstr "S/MIME al·Ìr·s"
+#~ msgstr "S/MIME al√°√≠r√°s"
 
 #~ msgid "SGI video"
 #~ msgstr "SGI video"
@@ -718,22 +717,22 @@ msgstr "Alap hiba"
 #~ msgstr "SGML dokumentum"
 
 #~ msgid "SMIL script"
-#~ msgstr "SMIL parancsf·jl"
+#~ msgstr "SMIL parancsf√°jl"
 
 #~ msgid "SQL code"
-#~ msgstr "SQL kÛd"
+#~ msgstr "SQL k√≥d"
 
 #~ msgid "SV4 CPIO archive"
-#~ msgstr "SV4 CPIO archÌvum"
+#~ msgstr "SV4 CPIO arch√≠vum"
 
 #~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "SV4 CPIP archÌvum (CRC-vel)"
+#~ msgstr "SV4 CPIP arch√≠vum (CRC-vel)"
 
 #~ msgid "SVG art"
 #~ msgstr "SVG rajz"
 
 #~ msgid "Scheme source code"
-#~ msgstr "Scheme forr·skÛd"
+#~ msgstr "Scheme forr√°sk√≥d"
 
 #~ msgid "Scream Tracker 3 audio"
 #~ msgstr "Scream Tracker 3 hang"
@@ -751,7 +750,7 @@ msgstr "Alap hiba"
 #~ msgstr "Speech dokumentum"
 
 #~ msgid "Speedo font"
-#~ msgstr "Speedo bet˚kÈszlet"
+#~ msgstr "Speedo bet≈±k√©szlet"
 
 #~ msgid "Spreadsheet Interchange document"
 #~ msgstr "Spreadsheet Interchange dokumentum"
@@ -763,25 +762,25 @@ msgstr "Alap hiba"
 #~ msgstr "StarOffice Writer dokumentum"
 
 #~ msgid "StarOffice presentation"
-#~ msgstr "StarOffice prezent·ciÛ"
+#~ msgstr "StarOffice prezent√°ci√≥"
 
 #~ msgid "StarOffice spreadsheet"
-#~ msgstr "StarOffice munkaf¸zet"
+#~ msgstr "StarOffice munkaf√ºzet"
 
 #~ msgid "Sun mu-law audio"
-#~ msgstr "Sun µ-law hang"
+#~ msgstr "Sun ƒæ-law hang"
 
 #~ msgid "SunOS News font"
-#~ msgstr "SunOS News bet˚kÈszlet"
+#~ msgstr "SunOS News bet≈±k√©szlet"
 
 #~ msgid "TIFF image"
-#~ msgstr "TIFF kÈp"
+#~ msgstr "TIFF k√©p"
 
 #~ msgid "TarGA image"
-#~ msgstr "TarGA kÈp"
+#~ msgstr "TarGA k√©p"
 
 #~ msgid "Tcl script"
-#~ msgstr "Tcl parancsf·jl"
+#~ msgstr "Tcl parancsf√°jl"
 
 #~ msgid "TeX document"
 #~ msgstr "TeX dokumentum"
@@ -790,10 +789,10 @@ msgstr "Alap hiba"
 #~ msgstr "TeX dvi dokumentum"
 
 #~ msgid "TeX font"
-#~ msgstr "TeX bet˚kÈszlet"
+#~ msgstr "TeX bet≈±k√©szlet"
 
 #~ msgid "TeX font metrics"
-#~ msgstr "TeX bet˚metrika"
+#~ msgstr "TeX bet≈±metrika"
 
 #~ msgid "TeXInfo document"
 #~ msgstr "TeXInfo dokumentum"
@@ -802,16 +801,16 @@ msgstr "Alap hiba"
 #~ msgstr "ToutDoux dokumentum"
 
 #~ msgid "TrueType font"
-#~ msgstr "TrueType bet˚kÈszlet"
+#~ msgstr "TrueType bet≈±k√©szlet"
 
 #~ msgid "USENET news message"
-#~ msgstr "USENET hÌrcsoportbeli ¸zenet"
+#~ msgstr "USENET h√≠rcsoportbeli √ºzenet"
 
 #~ msgid "Unidata netCDF document"
 #~ msgstr "Unidata netCDF dokumentum"
 
 #~ msgid "V font"
-#~ msgstr "V bet˚kÈszlet"
+#~ msgstr "V bet≈±k√©szlet"
 
 #~ msgid "VOC audio"
 #~ msgstr "VOC hang"
@@ -823,13 +822,13 @@ msgstr "Alap hiba"
 #~ msgstr "Vivo video"
 
 #~ msgid "WAIS source code"
-#~ msgstr "WAIS forr·skÛd"
+#~ msgstr "WAIS forr√°sk√≥d"
 
 #~ msgid "Wavelet video"
 #~ msgstr "Wavelet video"
 
 #~ msgid "Windows bitmap image"
-#~ msgstr "Windows bitmap kÈp"
+#~ msgstr "Windows bitmap k√©p"
 
 #~ msgid "Windows icon image"
 #~ msgstr "Windows ikon"
@@ -841,88 +840,88 @@ msgstr "Alap hiba"
 #~ msgstr "WordPerfect dokumentum"
 
 #~ msgid "X bitmap image"
-#~ msgstr "X bitmap kÈp"
+#~ msgstr "X bitmap k√©p"
 
 #~ msgid "X window image"
-#~ msgstr "X window kÈp"
+#~ msgstr "X window k√©p"
 
 #~ msgid "XML document"
 #~ msgstr "XML dokumentum"
 
 #~ msgid "XPM image"
-#~ msgstr "XPM kÈp"
+#~ msgstr "XPM k√©p"
 
 #~ msgid "Xbase database"
-#~ msgstr "Xbase adatb·zis"
+#~ msgstr "Xbase adatb√°zis"
 
 #~ msgid "active server page"
 #~ msgstr "active server page"
 
 #~ msgid "address card"
-#~ msgstr "cÌmjegyzÈkk·rtya"
+#~ msgstr "c√≠mjegyz√©kk√°rtya"
 
 #~ msgid "ar archive"
-#~ msgstr "ar archÌvum"
+#~ msgstr "ar arch√≠vum"
 
 #~ msgid "arj archive"
-#~ msgstr "arj archÌvum"
+#~ msgstr "arj arch√≠vum"
 
 #~ msgid "authors list"
-#~ msgstr "szerzık list·ja"
+#~ msgstr "szerz≈ëk list√°ja"
 
 #~ msgid "backup file"
-#~ msgstr "biztons·gi mentÈs"
+#~ msgstr "biztons√°gi ment√©s"
 
 #~ msgid "basic audio"
-#~ msgstr "egyszer˚ hang"
+#~ msgstr "egyszer≈± hang"
 
 #~ msgid "bibliography record"
-#~ msgstr "bibliogr·fiabejegyÈs"
+#~ msgstr "bibliogr√°fiabejegy√©s"
 
 #~ msgid "binary program"
-#~ msgstr "bin·ris program"
+#~ msgstr "bin√°ris program"
 
 #~ msgid "block device"
-#~ msgstr "blokkos eszkˆz"
+#~ msgstr "blokkos eszk√∂z"
 
 #~ msgid "bzip-compressed file"
-#~ msgstr "bzip-pel tˆmˆrÌtett f·jl"
+#~ msgstr "bzip-pel t√∂m√∂r√≠tett f√°jl"
 
 #~ msgid "calendar file"
-#~ msgstr "napt·rf·jl"
+#~ msgstr "napt√°rf√°jl"
 
 #~ msgid "calendar or event document"
-#~ msgstr "napt·r vagy esemÈny tÌpus˙ dokumentum"
+#~ msgstr "napt√°r vagy esem√©ny t√≠pus√∫ dokumentum"
 
 #~ msgid "character device"
-#~ msgstr "karakteres eszkˆz"
+#~ msgstr "karakteres eszk√∂z"
 
 #~ msgid "comma-separated text document"
-#~ msgstr "vesszıkkel elv·lasztott szˆveg"
+#~ msgstr "vessz≈ëkkel elv√°lasztott sz√∂veg"
 
 #~ msgid "compound document"
-#~ msgstr "ˆsszetett dokumentum"
+#~ msgstr "√∂sszetett dokumentum"
 
 #~ msgid "compress-compressed file"
-#~ msgstr "compress-szel tˆmˆrÌtett f·jl"
+#~ msgstr "compress-szel t√∂m√∂r√≠tett f√°jl"
 
 #~ msgid "compressed GIMP document"
-#~ msgstr "tˆmˆrÌtett GIMP dokumentum"
+#~ msgstr "t√∂m√∂r√≠tett GIMP dokumentum"
 
 #~ msgid "directory information file"
-#~ msgstr "kˆnyvt·r-inform·ciÛs f·jl"
+#~ msgstr "k√∂nyvt√°r-inform√°ci√≥s f√°jl"
 
 #~ msgid "document type definition"
-#~ msgstr "dokumentumtÌpus definÌciÛja"
+#~ msgstr "dokumentumt√≠pus defin√≠ci√≥ja"
 
 #~ msgid "email headers"
-#~ msgstr "levÈlfejlÈc"
+#~ msgstr "lev√©lfejl√©c"
 
 #~ msgid "email message"
-#~ msgstr "elektronikus levÈl"
+#~ msgstr "elektronikus lev√©l"
 
 #~ msgid "encrypted message"
-#~ msgstr "titkosÌtott ¸zenet"
+#~ msgstr "titkos√≠tott √ºzenet"
 
 #~ msgid "enriched text document"
 #~ msgstr "enriched text dokumentum"
@@ -931,121 +930,121 @@ msgstr "Alap hiba"
 #~ msgstr "mappa"
 
 #~ msgid "gtar archive"
-#~ msgstr "gtar archÌvum"
+#~ msgstr "gtar arch√≠vum"
 
 #~ msgid "gzip-compressed file"
-#~ msgstr "gzip-pel tˆmˆrÌtett f·jl"
+#~ msgstr "gzip-pel t√∂m√∂r√≠tett f√°jl"
 
 #~ msgid "help page"
-#~ msgstr "s˙gÛ"
+#~ msgstr "s√∫g√≥"
 
 #~ msgid "mail delivery report"
-#~ msgstr "jelentÈs levÈlkÈzbesÌtÈsrıl"
+#~ msgstr "jelent√©s lev√©lk√©zbes√≠t√©sr≈ël"
 
 #~ msgid "mail disposition report"
-#~ msgstr "jelentÈs levÈlkidob·srÛl"
+#~ msgstr "jelent√©s lev√©lkidob√°sr√≥l"
 
 #~ msgid "mail system report"
-#~ msgstr "levelezırendszer jelentÈse"
+#~ msgstr "levelez≈ërendszer jelent√©se"
 
 #~ msgid "makefile"
 #~ msgstr "makefile"
 
 #~ msgid "manual page"
-#~ msgstr "kÈzikˆnyvoldal"
+#~ msgstr "k√©zik√∂nyvoldal"
 
 #~ msgid "manual page (compressed)"
-#~ msgstr "kÈzikˆnyvoldal (tˆmˆrÌtett)"
+#~ msgstr "k√©zik√∂nyvoldal (t√∂m√∂r√≠tett)"
 
 #~ msgid "memory dump"
-#~ msgstr "memÛriatartalom"
+#~ msgstr "mem√≥riatartalom"
 
 #~ msgid "message digest"
-#~ msgstr "ˆmlesztett ¸zenet"
+#~ msgstr "√∂mlesztett √ºzenet"
 
 #~ msgid "message in several formats"
-#~ msgstr "tˆbbfÈle form·tum˙ ¸zenet"
+#~ msgstr "t√∂bbf√©le form√°tum√∫ √ºzenet"
 
 #~ msgid "multi-part message"
-#~ msgstr "tˆbbrÈszes ¸zenet"
+#~ msgstr "t√∂bbr√©szes √ºzenet"
 
 #~ msgid "named pipe"
-#~ msgstr "nÈvvel rendelkezı csıvezetÈk"
+#~ msgstr "n√©vvel rendelkez≈ë cs≈ëvezet√©k"
 
 #~ msgid "object code"
-#~ msgstr "t·rgykÛd"
+#~ msgstr "t√°rgyk√≥d"
 
 #~ msgid "ogg audio"
 #~ msgstr "ogg hang"
 
 #~ msgid "partial email message"
-#~ msgstr "rÈszleges elektronikus levÈl"
+#~ msgstr "r√©szleges elektronikus lev√©l"
 
 #~ msgid "plain text document"
-#~ msgstr "egyszer˚ szˆveg"
+#~ msgstr "egyszer≈± sz√∂veg"
 
 #~ msgid "profiler results"
-#~ msgstr "profiler eredmÈnyek"
+#~ msgstr "profiler eredm√©nyek"
 
 #~ msgid "reference to remote file"
-#~ msgstr "hivatkoz·s t·voli f·jlra"
+#~ msgstr "hivatkoz√°s t√°voli f√°jlra"
 
 #~ msgid "rejected patch file"
-#~ msgstr "visszautasÌtott patch f·jl"
+#~ msgstr "visszautas√≠tott patch f√°jl"
 
 #~ msgid "rich text document"
 #~ msgstr "rich text dokumentum"
 
 #~ msgid "search results"
-#~ msgstr "keresÈsi eredmÈnyek"
+#~ msgstr "keres√©si eredm√©nyek"
 
 #~ msgid "shared library"
-#~ msgstr "osztott programkˆnyvt·r"
+#~ msgstr "osztott programk√∂nyvt√°r"
 
 #~ msgid "shell archive"
-#~ msgstr "shell archÌvum"
+#~ msgstr "shell arch√≠vum"
 
 #~ msgid "shell script"
-#~ msgstr "parancsf·jl"
+#~ msgstr "parancsf√°jl"
 
 #~ msgid "signed message"
-#~ msgstr "al·Ìrt ¸zenet"
+#~ msgstr "al√°√≠rt √ºzenet"
 
 #~ msgid "socket"
-#~ msgstr "illesztıpont"
+#~ msgstr "illeszt≈ëpont"
 
 #~ msgid "software author credits"
-#~ msgstr "szoftver szerzıinek felsorol·sa"
+#~ msgstr "szoftver szerz≈ëinek felsorol√°sa"
 
 #~ msgid "software installation instructions"
-#~ msgstr "szoftvertelepÌtÈsi leÌr·s"
+#~ msgstr "szoftvertelep√≠t√©si le√≠r√°s"
 
 #~ msgid "software license terms"
-#~ msgstr "szoftver felhaszn·l·si szerzıdÈse"
+#~ msgstr "szoftver felhaszn√°l√°si szerz≈ëd√©se"
 
 #~ msgid "source code patch"
-#~ msgstr "forr·skÛd patch"
+#~ msgstr "forr√°sk√≥d patch"
 
 #~ msgid "style sheet"
-#~ msgstr "stÌluslap"
+#~ msgstr "st√≠luslap"
 
 #~ msgid "symbolic link"
 #~ msgstr "szimbolikus link"
 
 #~ msgid "tab-separated text document"
-#~ msgstr "tabul·torokkal elv·lasztott szˆveg"
+#~ msgstr "tabul√°torokkal elv√°lasztott sz√∂veg"
 
 #~ msgid "tar archive"
-#~ msgstr "tar archÌvum"
+#~ msgstr "tar arch√≠vum"
 
 #~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "tar archÌvum (bzip2-vel tˆmˆrÌtett)"
+#~ msgstr "tar arch√≠vum (bzip2-vel t√∂m√∂r√≠tett)"
 
 #~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "tar archÌvum (gzip-pel tˆmˆrÌtett)"
+#~ msgstr "tar arch√≠vum (gzip-pel t√∂m√∂r√≠tett)"
 
 #~ msgid "theme"
-#~ msgstr "tÈma"
+#~ msgstr "t√©ma"
 
 #~ msgid "troff document"
 #~ msgstr "troff dokumentum"
@@ -1060,10 +1059,10 @@ msgstr "Alap hiba"
 #~ msgstr "troff ms input dokumentum"
 
 #~ msgid "unknown type"
-#~ msgstr "ismeretlen tÌpus"
+#~ msgstr "ismeretlen t√≠pus"
 
 #~ msgid "ustar archive"
-#~ msgstr "ustar archÌvum"
+#~ msgstr "ustar arch√≠vum"
 
 #~ msgid "wave audio"
 #~ msgstr "wave hang"
@@ -1075,31 +1074,31 @@ msgstr "Alap hiba"
 #~ msgstr "xfig vektorgrafika"
 
 #~ msgid "zip archive"
-#~ msgstr "zip archÌvum"
+#~ msgstr "zip arch√≠vum"
 
 #~ msgid "zoo archive"
-#~ msgstr "zoo archÌvum"
+#~ msgstr "zoo arch√≠vum"
 
 #~ msgid "GNOME VFS already initialized."
-#~ msgstr "A GNOME VFS m·r el van indÌtva."
+#~ msgstr "A GNOME VFS m√°r el van ind√≠tva."
 
 #~ msgid "Dying."
 #~ msgstr "Meghalok."
 
 #~ msgid "Error reading: %s"
-#~ msgstr "Olvas·si hiba: %s"
+#~ msgstr "Olvas√°si hiba: %s"
 
 #~ msgid "Error writing: %s"
-#~ msgstr "Õr·si hiba: %s"
+#~ msgstr "√çr√°si hiba: %s"
 
 #~ msgid "Cannot write: %s"
-#~ msgstr "Nem tudom Ìrni: %s"
+#~ msgstr "Nem tudom √≠rni: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Nem tudok ideiglenes f·jlt lÈrtrehozni '%s' nÈven"
+#~ msgstr "Nem tudok ideiglenes f√°jlt l√©rtrehozni '%s' n√©ven"
 
 #~ msgid "Cannot create socket: %s"
-#~ msgstr "Nem tudok socket-et csin·lni: %s"
+#~ msgstr "Nem tudok socket-et csin√°lni: %s"
 
 #~ msgid "Cannot bind `%s': %s"
 #~ msgstr "Nem tudom bind-olni '%s'-t: %s"
@@ -1111,45 +1110,45 @@ msgstr "Alap hiba"
 #~ msgstr "Nem tudok kapcsolatokat fogadni '%s'-n: %s"
 
 #~ msgid "Cannot initialize CORBA."
-#~ msgstr "Nem tudom a CORBA-t beindÌtani."
+#~ msgstr "Nem tudom a CORBA-t beind√≠tani."
 
 #~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Nem tudom a RootPOA-nak a kezdeti referenci·j·t megkapni."
+#~ msgstr "Nem tudom a RootPOA-nak a kezdeti referenci√°j√°t megkapni."
 
 #~ msgid "Cannot activate POA manager."
-#~ msgstr "Nem tudom a POA kezelıt aktiv·lni."
+#~ msgstr "Nem tudom a POA kezel≈ët aktiv√°lni."
 
 #~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Haszn·lat: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Haszn√°lat: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Nem tudom megnyitni a %d f·jlleÌrÛt."
+#~ msgstr "Nem tudom megnyitni a %d f√°jlle√≠r√≥t."
 
 #~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Nincs ÈrtesÌtı fel¸let a '%s'-hez"
+#~ msgstr "Nincs √©rtes√≠t≈ë fel√ºlet a '%s'-hez"
 
 #~ msgid "Cannot setup Request object."
-#~ msgstr "Nem tudom be·llÌtani a Request objektumot."
+#~ msgstr "Nem tudom be√°ll√≠tani a Request objektumot."
 
 #~ msgid "Cannot extract IOR."
 #~ msgstr "Nem tudom kivenni az IOR-t."
 
 # libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Szokatlan szˆveget kaptam az al·rendelt folyamattÛl: '%s'"
+#~ msgstr "Szokatlan sz√∂veget kaptam az al√°rendelt folyamatt√≥l: '%s'"
 
 # libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #~ msgid "Cannot get object for `%s'"
 #~ msgstr "Nem kapok objektumot a '%s'-nek"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t le·llÌtani -- hiba: %s"
+#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t le√°ll√≠tani -- hiba: %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Nem tudok a '%s' socket-ra kapcsolÛdni: %s"
+#~ msgstr "Nem tudok a '%s' socket-ra kapcsol√≥dni: %s"
 
 #~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t elindÌtani"
+#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t elind√≠tani"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 #~ msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et rezetelni -- hiba: %s"
@@ -1159,49 +1158,49 @@ msgstr "Alap hiba"
 #~ "Nem tudom rezetelni a GNOME::VFS::Slave-et (ismeretlen IOR) -- hiba: %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et le·llÌtani -- hiba: %s"
+#~ msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et le√°ll√≠tani -- hiba: %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 #~ msgstr ""
-#~ "Nem tudom a GNOME::VFS::Slave-et le·llÌtani (ismeretlen IOR) -- hiba: %s"
+#~ "Nem tudom a GNOME::VFS::Slave-et le√°ll√≠tani (ismeretlen IOR) -- hiba: %s"
 
 #~ msgid "File Types and Programs"
-#~ msgstr "F·jtÌpusok Ès programok"
+#~ msgstr "F√°jt√≠pusok √©s programok"
 
 #~ msgid "Specify which programs are used to open or view each file type"
 #~ msgstr ""
-#~ "Add meg, hogy melyik programmal nyitod meg vagy nÈzed meg az egyes "
-#~ "f·jltÌpusokat."
+#~ "Add meg, hogy melyik programmal nyitod meg vagy n√©zed meg az egyes "
+#~ "f√°jlt√≠pusokat."
 
 #~ msgid "MIME Type"
-#~ msgstr "MIME-tÌpus"
+#~ msgstr "MIME-t√≠pus"
 
 #~ msgid "Change Icon"
 #~ msgstr "Ikon csere"
 
 #~ msgid "Change File Extensions"
-#~ msgstr "F·jlkiterjesztÈs megv·ltoztat·sa"
+#~ msgstr "F√°jlkiterjeszt√©s megv√°ltoztat√°sa"
 
 #~ msgid "Default Action:"
-#~ msgstr "AlapÈrtelmezett m˚velet"
+#~ msgstr "Alap√©rtelmezett m≈±velet"
 
 #~ msgid "Use Viewer"
-#~ msgstr "NÈzegetı haszn·lata"
+#~ msgstr "N√©zeget≈ë haszn√°lata"
 
 #~ msgid "Open With Application"
-#~ msgstr "Megnyit·s alkalmaz·ssal"
+#~ msgstr "Megnyit√°s alkalmaz√°ssal"
 
 #~ msgid "Edit List"
-#~ msgstr "Lista szerkesztÈse"
+#~ msgstr "Lista szerkeszt√©se"
 
 #~ msgid "Add New MIME Type..."
-#~ msgstr "⁄j MIME-tÌpus hozz·ad·sa..."
+#~ msgstr "√öj MIME-t√≠pus hozz√°ad√°sa..."
 
 #~ msgid "Delete This MIME Type"
-#~ msgstr "A MIME-tÌpus tˆrlÈse"
+#~ msgstr "A MIME-t√≠pus t√∂rl√©se"
 
 #~ msgid "Revert to System Defaults"
-#~ msgstr "Vissza·llÌt·s a rendszer alapÈrtÈkeire"
+#~ msgstr "Vissza√°ll√≠t√°s a rendszer alap√©rt√©keire"
 
 #~ msgid "None"
 #~ msgstr "Semmi"
@@ -1211,88 +1210,88 @@ msgstr "Alap hiba"
 #~ "you have ever made to File Types and Programs.\n"
 #~ "Revert anyway?"
 #~ msgstr ""
-#~ "A rendszerbe·llÌt·sok vissza·llÌt·sa minden saj·t\n"
-#~ "f·jltÌpus- Ès programv·toztat·st tˆrˆl.\n"
-#~ "Biztos, vagy a vissza·llÌt·sban?"
+#~ "A rendszerbe√°ll√≠t√°sok vissza√°ll√≠t√°sa minden saj√°t\n"
+#~ "f√°jlt√≠pus- √©s programv√°toztat√°st t√∂r√∂l.\n"
+#~ "Biztos, vagy a vissza√°ll√≠t√°sban?"
 
 #~ msgid "none"
 #~ msgstr "semmi"
 
 #~ msgid "View as %s"
-#~ msgstr "MegjelenÌtÈs, mint %s"
+#~ msgstr "Megjelen√≠t√©s, mint %s"
 
 #~ msgid "Description"
-#~ msgstr "LeÌr·s"
+#~ msgstr "Le√≠r√°s"
 
 #~ msgid "Extension"
-#~ msgstr "KiterjesztÈs"
+#~ msgstr "Kiterjeszt√©s"
 
 #~ msgid "Default Action"
-#~ msgstr "AlapÈrtelmezett m˚velet"
+#~ msgstr "Alap√©rtelmezett m≈±velet"
 
 #~ msgid "Edit Applications List"
-#~ msgstr "Alkalmaz·s lista szerkesztÈse"
+#~ msgstr "Alkalmaz√°s lista szerkeszt√©se"
 
 #~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "A '%s' MIME-tÌpusokhoz elıbukkanÛ men¸kben megjelenı alkalmaz·sok"
+#~ msgstr "A '%s' MIME-t√≠pusokhoz el≈ëbukkan√≥ men√ºkben megjelen≈ë alkalmaz√°sok"
 
 #~ msgid "Add Application..."
-#~ msgstr "Alkalmaz·st hozz·ad..."
+#~ msgstr "Alkalmaz√°st hozz√°ad..."
 
 #~ msgid "Edit Application..."
-#~ msgstr "Alkalmaz·st szerkeszt..."
+#~ msgstr "Alkalmaz√°st szerkeszt..."
 
 #~ msgid "Delete Application"
-#~ msgstr "Alkalmaz·st tˆrˆl"
+#~ msgstr "Alkalmaz√°st t√∂r√∂l"
 
 #~ msgid "Edit Components List"
-#~ msgstr "Komponens lista szerkesztÈse"
+#~ msgstr "Komponens lista szerkeszt√©se"
 
 #~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "A '%s' MIME-tÌpushoz tartozÛ, men¸ben megjelenı nÈzetek"
+#~ msgstr "A '%s' MIME-t√≠pushoz tartoz√≥, men√ºben megjelen≈ë n√©zetek"
 
 #~ msgid ""
 #~ "The MIME type entered contained upper case characters. Upper case "
 #~ "characters were changed to lower case for you."
 #~ msgstr ""
-#~ "A megadott MIME-tÌpus nagybet˚ket is tartalmazott. A nagybet˚k kisbet˚kre "
-#~ "lettek cserÈlve."
+#~ "A megadott MIME-t√≠pus nagybet≈±ket is tartalmazott. A nagybet≈±k kisbet≈±kre "
+#~ "lettek cser√©lve."
 
 #~ msgid "Add New MIME Type"
-#~ msgstr "⁄j MIME-tÌpus hozz·ad·sa"
+#~ msgstr "√öj MIME-t√≠pus hozz√°ad√°sa"
 
 #~ msgid "Add MIME Type"
-#~ msgstr "MIME-tÌpus hozz·ad·sa"
+#~ msgstr "MIME-t√≠pus hozz√°ad√°sa"
 
 #~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "⁄j MIME tÌpus (pl. image/x-thumper):"
+#~ msgstr "√öj MIME t√≠pus (pl. image/x-thumper):"
 
 #~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "LeÌr·s (pl. Thumper image):"
+#~ msgstr "Le√≠r√°s (pl. Thumper image):"
 
 #~ msgid "File Extensions "
-#~ msgstr "F·jlkiterjesztÈsek"
+#~ msgstr "F√°jlkiterjeszt√©sek"
 
 #~ msgid "Add..."
-#~ msgstr "Hozz·ad·s..."
+#~ msgstr "Hozz√°ad√°s..."
 
 #~ msgid "    Remove    "
-#~ msgstr " Elt·volÌt·s "
+#~ msgstr " Elt√°vol√≠t√°s "
 
 #~ msgid "Add New Extension"
-#~ msgstr "⁄j kiterjesztÈs hozz·ad·sa"
+#~ msgstr "√öj kiterjeszt√©s hozz√°ad√°sa"
 
 #~ msgid ""
 #~ "Type in the extensions for this mime-type (without dot).\n"
 #~ "You can enter several extensions seperated by a space,\n"
 #~ "for example: html htm"
 #~ msgstr ""
-#~ "Õrd be a MIME-tÌpus kiterjesztÈseit (pont nÈlk¸l).\n"
-#~ "Tˆbb szÛkˆzzel elv·lasztott kiterjesztÈst is megadhatsz,\n"
+#~ "√çrd be a MIME-t√≠pus kiterjeszt√©seit (pont n√©lk√ºl).\n"
+#~ "T√∂bb sz√≥k√∂zzel elv√°lasztott kiterjeszt√©st is megadhatsz,\n"
 #~ "pl: html htm"
 
 #~ msgid "Extension:"
-#~ msgstr "KiterjesztÈs:"
+#~ msgstr "Kiterjeszt√©s:"
 
 #~ msgid "You must enter a name."
 #~ msgstr "Meg kell adnod egy nevet."
@@ -1305,59 +1304,59 @@ msgstr "Alap hiba"
 #~ "Check your spelling and make sure you have\n"
 #~ "the right permissions to execute this file."
 #~ msgstr ""
-#~ "\"%s\" nem lÈtezik vagy nem futtathatÛ.\n"
-#~ "Ellenırizd, hogy nem gÈpelted-e el, valamint\n"
-#~ "azt is, hogy rendelkezel-e a megfelelı\n"
-#~ "jogosults·gokkal."
+#~ "\"%s\" nem l√©tezik vagy nem futtathat√≥.\n"
+#~ "Ellen≈ërizd, hogy nem g√©pelted-e el, valamint\n"
+#~ "azt is, hogy rendelkezel-e a megfelel≈ë\n"
+#~ "jogosults√°gokkal."
 
 #~ msgid ""
 #~ "The command \"%s\" cannot be found.\n"
 #~ "You must use a command that can work from any command line."
 #~ msgstr ""
-#~ "A kˆvetkezı parancs nem tal·lhatÛ: \"%s\".\n"
-#~ "Olyan parancsot kell megadnod, ami b·rmilyen parancssorbÛl futtathatÛ."
+#~ "A k√∂vetkez≈ë parancs nem tal√°lhat√≥: \"%s\".\n"
+#~ "Olyan parancsot kell megadnod, ami b√°rmilyen parancssorb√≥l futtathat√≥."
 
 #~ msgid "Bad Application Name"
-#~ msgstr "Rossz alkalmaz·snÈv"
+#~ msgstr "Rossz alkalmaz√°sn√©v"
 
 #~ msgid "Bad Application Command"
-#~ msgstr "Rossz alkalmaz·sparancs"
+#~ msgstr "Rossz alkalmaz√°sparancs"
 
 #~ msgid "Add Application"
-#~ msgstr "Alkalmaz·s hozz·ad·sa..."
+#~ msgstr "Alkalmaz√°s hozz√°ad√°sa..."
 
 #~ msgid "Edit Application"
-#~ msgstr "Alkalmaz·s szerkesztÈse"
+#~ msgstr "Alkalmaz√°s szerkeszt√©se"
 
 #~ msgid "Application Name:"
-#~ msgstr "Alkalmaz·s neve:"
+#~ msgstr "Alkalmaz√°s neve:"
 
 #~ msgid "Application Command:"
-#~ msgstr "Alkalmaz·sparancs:"
+#~ msgstr "Alkalmaz√°sparancs:"
 
 #~ msgid "Open Behavior"
-#~ msgstr "Megnyit·si viselkedÈs"
+#~ msgstr "Megnyit√°si viselked√©s"
 
 #~ msgid "Can open multiple files"
-#~ msgstr "Tˆbb f·jlt megnyithat"
+#~ msgstr "T√∂bb f√°jlt megnyithat"
 
 #~ msgid "Can open from URI"
 #~ msgstr "Megnyithat URI-t"
 
 #~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "hbox nem tal·lhatÛ, szokv·nyos f·jlkiv·lasztÛ haszn·lata."
+#~ msgstr "hbox nem tal√°lhat√≥, szokv√°nyos f√°jlkiv√°laszt√≥ haszn√°lata."
 
 #~ msgid "Preview"
-#~ msgstr "ElınÈzet"
+#~ msgstr "El≈ën√©zet"
 
 #~ msgid "Select an icon"
-#~ msgstr "V·lassz egy ikont"
+#~ msgstr "V√°lassz egy ikont"
 
 #~ msgid "%s to retrieve"
-#~ msgstr "letˆltendı %s"
+#~ msgstr "let√∂ltend≈ë %s"
 
 #~ msgid "Closing connection to %s"
-#~ msgstr "Kapcsolat bont·sa: %s"
+#~ msgstr "Kapcsolat bont√°sa: %s"
 
 #~ msgid "%s of %s read"
 #~ msgstr "%s/%s olvasva"
@@ -1369,95 +1368,95 @@ msgstr "Alap hiba"
 #~ msgstr "Vissza"
 
 #~ msgid "Go to the previously visited directory"
-#~ msgstr "Visszaugr·s az elızıleg haszn·lt kˆnyvt·rba"
+#~ msgstr "Visszaugr√°s az el≈ëz≈ëleg haszn√°lt k√∂nyvt√°rba"
 
 #~ msgid "Up"
 #~ msgstr "Fel"
 
 #~ msgid "Go to the parent directory"
-#~ msgstr "Ugr·s a sz¸lıkˆnyvt·rba"
+#~ msgstr "Ugr√°s a sz√ºl≈ëk√∂nyvt√°rba"
 
 #~ msgid "Forward"
-#~ msgstr "Elıre"
+#~ msgstr "El≈ëre"
 
 #~ msgid "Go to the next visited directory"
-#~ msgstr "Ugr·s az ez ut·n haszn·lt kˆnyvt·rba"
+#~ msgstr "Ugr√°s az ez ut√°n haszn√°lt k√∂nyvt√°rba"
 
 #~ msgid "Rescan"
-#~ msgstr "⁄jraolvas·s"
+#~ msgstr "√öjraolvas√°s"
 
 #~ msgid "Rescan the current directory"
-#~ msgstr "Az aktu·lis kˆnyvt·r ˙jraolvas·sa"
+#~ msgstr "Az aktu√°lis k√∂nyvt√°r √∫jraolvas√°sa"
 
 #~ msgid "Home"
-#~ msgstr "Saj·t kˆnyvt·r"
+#~ msgstr "Saj√°t k√∂nyvt√°r"
 
 #~ msgid "Go to the home directory"
-#~ msgstr "Ugr·s a saj·t kˆnyvt·rba"
+#~ msgstr "Ugr√°s a saj√°t k√∂nyvt√°rba"
 
 #~ msgid "Name"
-#~ msgstr "NÈv"
+#~ msgstr "N√©v"
 
 #~ msgid "Size"
-#~ msgstr "MÈret"
+#~ msgstr "M√©ret"
 
 #~ msgid "Date"
-#~ msgstr "D·tum"
+#~ msgstr "D√°tum"
 
 #~ msgid "Enter name:"
-#~ msgstr "NÈv megad·sa:"
+#~ msgstr "N√©v megad√°sa:"
 
 #~ msgid "Show:"
-#~ msgstr "MegjelenÌtÈs:"
+#~ msgstr "Megjelen√≠t√©s:"
 
 #~ msgid "Show dotfiles"
-#~ msgstr "Rejtett f·jlok megjelenÌtÈse"
+#~ msgstr "Rejtett f√°jlok megjelen√≠t√©se"
 
 #~ msgid "New Application"
-#~ msgstr "⁄j alkalmaz·s"
+#~ msgstr "√öj alkalmaz√°s"
 
 #~ msgid "Expects URIs as arguments"
-#~ msgstr "A v·rt argumentum URI"
+#~ msgstr "A v√°rt argumentum URI"
 
 #~ msgid ""
 #~ "Add a new MIME Type\n"
 #~ "For example:  image/tiff; text/x-scheme"
 #~ msgstr ""
-#~ "⁄j MIME-tÌpus hozz·ad·sa.\n"
+#~ "√öj MIME-t√≠pus hozz√°ad√°sa.\n"
 #~ "Pl:  image/tiff; text/x-scheme"
 
 #~ msgid "MIME Type:"
-#~ msgstr "MIME-tÌpus:"
+#~ msgstr "MIME-t√≠pus:"
 
 #~ msgid "Type in a description for this mime-type."
-#~ msgstr "Õrd be a MIME-tÌpus leÌr·s·t."
+#~ msgstr "√çrd be a MIME-t√≠pus le√≠r√°s√°t."
 
 #~ msgid "Description:"
-#~ msgstr "LeÌr·s:"
+#~ msgstr "Le√≠r√°s:"
 
 #~ msgid "Add new MIME type..."
-#~ msgstr "⁄j MIME-tÌpus hozz·ad·sa..."
+#~ msgstr "√öj MIME-t√≠pus hozz√°ad√°sa..."
 
 #~ msgid "No Description"
-#~ msgstr "Nincs leÌr·s"
+#~ msgstr "Nincs le√≠r√°s"
 
 #~ msgid "Add Mime Type"
-#~ msgstr "MIME tÌpus hozz·ad·sa"
+#~ msgstr "MIME t√≠pus hozz√°ad√°sa"
 
 #~ msgid "Mime Type"
-#~ msgstr "MIME tÌpus"
+#~ msgstr "MIME t√≠pus"
 
 #~ msgid "Unknown sort rule %d"
-#~ msgstr "Ismeretlen rendezÈsi mÛd: %d"
+#~ msgstr "Ismeretlen rendez√©si m√≥d: %d"
 
 #~ msgid "Error writing to the wakeup GnomeVFSJob channel."
-#~ msgstr "Nem siker¸lt a GnomeVFSJob wakeup csatorn·j·ba Ìrni."
+#~ msgstr "Nem siker√ºlt a GnomeVFSJob wakeup csatorn√°j√°ba √≠rni."
 
 #~ msgid "Remove"
-#~ msgstr "TˆrlÈs"
+#~ msgstr "T√∂rl√©s"
 
 #~ msgid "Action"
-#~ msgstr "M˚velet"
+#~ msgstr "M≈±velet"
 
 #~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "A HTTP kiszolg·lÛ rossz PROPFIND v·lasszal tÈrt vissza"
+#~ msgstr "A HTTP kiszolg√°l√≥ rossz PROPFIND v√°lasszal t√©rt vissza"
