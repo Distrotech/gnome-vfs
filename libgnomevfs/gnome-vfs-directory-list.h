@@ -87,4 +87,17 @@ GnomeVFSDirectoryListPosition
 	gnome_vfs_directory_list_position_prev  (GnomeVFSDirectoryListPosition
 						 	position);
 
+GnomeVFSResult	gnome_vfs_directory_list_load
+					(GnomeVFSDirectoryList **list,
+					 const gchar *uri,
+					 GnomeVFSFileInfoOptions options,
+					 gchar *meta_keys[],
+					 const GnomeVFSDirectoryFilter *filter);
+GnomeVFSResult	gnome_vfs_directory_list_load_from_uri
+					(GnomeVFSDirectoryList **list,
+					 GnomeVFSURI *uri,
+					 GnomeVFSFileInfoOptions options,
+					 gchar *meta_keys[],
+					 const GnomeVFSDirectoryFilter *filter);
+
 #endif /* _GNOME_VFS_DIRECTORY_LIST_H */

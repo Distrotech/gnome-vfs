@@ -450,7 +450,7 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	len = strlen (uri_string);
 	if (len == 0)
-		return gnome_vfs_uri_new ("");
+		return gnome_vfs_uri_new (path);
 
 	len--;
 	while (uri_string[len] == '/' && len > 0)

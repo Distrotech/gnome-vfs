@@ -920,11 +920,11 @@ load_directory_sorted (const gchar *uri,
 
 	list_buffer->_length = 0;
 
-	result = gnome_vfs_directory_load (&list,
-					   uri,
-					   options,
-					   meta_key_array,
-					   filter);
+	result = gnome_vfs_directory_list_load (&list,
+						uri,
+						options,
+						meta_key_array,
+						filter);
 
 	if (result != GNOME_VFS_OK) {
 		GNOME_VFS_Slave_Notify_load_directory (notify_objref, result,

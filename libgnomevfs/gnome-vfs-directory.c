@@ -198,70 +198,6 @@ gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 }
 
 
-static GnomeVFSResult
-load_from_handle (GnomeVFSDirectoryList **list,
-		  GnomeVFSDirectoryHandle *handle)
-{
-	GnomeVFSResult result;
-	GnomeVFSFileInfo *info;
-
-	*list = gnome_vfs_directory_list_new ();
-
-	while (1) {
-		info = gnome_vfs_file_info_new ();
-		result = gnome_vfs_directory_read_next (handle, info);
-		if (result != GNOME_VFS_OK)
-			break;
-		gnome_vfs_directory_list_append (*list, info);
-	}
-
-	gnome_vfs_file_info_destroy (info);
-
-	if (result != GNOME_VFS_ERROR_EOF) {
-		gnome_vfs_directory_list_destroy (*list);
-		return result;
-	}
-
-	return GNOME_VFS_OK;
-}
-
-GnomeVFSResult
-gnome_vfs_directory_load (GnomeVFSDirectoryList **list,
-			  const gchar *text_uri,
-			  GnomeVFSFileInfoOptions options,
-			  gchar *meta_keys[],
-			  const GnomeVFSDirectoryFilter *filter)
-{
-	GnomeVFSDirectoryHandle *handle;
-	GnomeVFSResult result;
-
-	result = gnome_vfs_directory_open (&handle, text_uri, options,
-					   meta_keys, filter);
-	if (result != GNOME_VFS_OK)
-		return result;
-
-	return load_from_handle (list, handle);
-}
-
-GnomeVFSResult
-gnome_vfs_directory_load_from_uri (GnomeVFSDirectoryList **list,
-				   GnomeVFSURI *uri,
-				   GnomeVFSFileInfoOptions options,
-				   gchar *meta_keys[],
-				   const GnomeVFSDirectoryFilter *filter)
-{
-	GnomeVFSDirectoryHandle *handle;
-	GnomeVFSResult result;
-
-	result = gnome_vfs_directory_open_from_uri (&handle, uri, options,
-						    meta_keys, filter);
-	if (result != GNOME_VFS_OK)
-		return result;
-
-	return load_from_handle (list, handle);
-}
-
-
 struct _DirectoryReference {
 	ino_t inode;
 	dev_t device;

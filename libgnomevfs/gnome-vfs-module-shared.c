@@ -135,7 +135,7 @@ gnome_vfs_set_meta_for_list (GnomeVFSFileInfo *info,
 		return GNOME_VFS_OK;
 
 	for (p = meta_keys; p != NULL; p = p->next) {
-		result = set_meta (info, file_name, p->data);
+		result = gnome_vfs_set_meta (info, file_name, p->data);
 		if (result != GNOME_VFS_OK)
 			break;
 	}

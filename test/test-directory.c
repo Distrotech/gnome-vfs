@@ -212,12 +212,13 @@ main (int argc, char **argv)
 	}
 
 	/* Load with no filters and without requesting any metadata.  */
-	result = gnome_vfs_directory_load (&list, text_uri,
-					   (GNOME_VFS_FILE_INFO_GETMIMETYPE
-					    | GNOME_VFS_FILE_INFO_FASTMIMETYPE
-					    | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
-					   NULL,
-					   NULL);
+	result = gnome_vfs_directory_list_load
+		(&list, text_uri,
+		 (GNOME_VFS_FILE_INFO_GETMIMETYPE
+		  | GNOME_VFS_FILE_INFO_FASTMIMETYPE
+		  | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
+		 NULL,
+		 NULL);
 
 	if (result == GNOME_VFS_OK && measure_speed) {
 		gdouble elapsed_seconds;

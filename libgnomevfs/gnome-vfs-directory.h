@@ -47,19 +47,6 @@ GnomeVFSResult	gnome_vfs_directory_close
 					(GnomeVFSDirectoryHandle *handle);
 
 
-GnomeVFSResult	gnome_vfs_directory_load
-					(GnomeVFSDirectoryList **list,
-					 const gchar *uri,
-					 GnomeVFSFileInfoOptions options,
-					 gchar *meta_keys[],
-					 const GnomeVFSDirectoryFilter *filter);
-GnomeVFSResult	gnome_vfs_directory_load_from_uri
-					(GnomeVFSDirectoryList **list,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 gchar *meta_keys[],
-					 const GnomeVFSDirectoryFilter *filter);
-
 GnomeVFSResult  gnome_vfs_directory_visit
 					(const gchar *uri,
 					 GnomeVFSFileInfoOptions info_options,

@@ -1,3 +1,30 @@
+1999-10-04  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/module-shared.c (gnome_vfs_set_meta_for_list): Use
+	`gnome_vfs_set_meta()' instead of `set_meta()'.
+
+	* libgnomevfs/gnome-vfs-seekable.c (init_seek): Removed local
+	variable `txt_uri'.
+
+	* libgnomevfs-corba/gnome-vfs-slave.c (load_directory_sorted):
+	Updated to use `gnome_vfs_directory_list_load()' instead of
+	`gnome_vfs_directory_load()'.
+	* libgnomevfs-pthread/gnome-vfs-job.c
+	(execute_load_directory_sorted):  Likewise.
+	* test/test-directory.c (main): Likewise.
+
+	* libgnomevfs/gnome-vfs-directory-list.c
+	(gnome_vfs_directory_list_load): New version of
+	`gnome_vfs_directory_load', for consistency.
+	(gnome_vfs_directory_list_load_from_uri): Likewise for
+	`gnome_vfs_directory_load_from_uri'.
+
+	* libgnomevfs/gnome-vfs-directory.c (gnome_vfs_directory_load):
+	Removed.
+	(gnome_vfs_directory_load_from_uri): Removed.
+	(gnome_vfs_uri_append_path): If the original URI is empty, return
+	the URI from the new path.
+
 1999-09-30  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs/gnome-vfs-uri.c (my_streq): New function.

@@ -21,9 +21,9 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it>
 
-   `gnome_vfs_canonicalize_pathname()' derived from Midnight Commander code by
-   Norbert Warmuth, Miguel de Icaza, Janne Kukonlehto, Dugan Porter, Jakub
-   Jelinek.  */
+   `gnome_vfs_canonicalize_pathname()' derived from code by Brian Fox and Chet
+   Ramey in GNU Bash, the Bourne Again SHell.  Copyright (C) 1987, 1988, 1989,
+   1990, 1991, 1992 Free Software Foundation, Inc.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>

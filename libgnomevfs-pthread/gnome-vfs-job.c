@@ -880,7 +880,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 
 	load_directory_job = &job->info.load_directory;
 
-	result = gnome_vfs_directory_load_from_uri
+	result = gnome_vfs_directory_list_load_from_uri
 		(&directory_list,
 		 load_directory_job->request.uri,
 		 load_directory_job->request.options,
