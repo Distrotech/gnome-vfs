@@ -326,6 +326,8 @@ if test $have_gethostbyname = no; then
   done
 fi
 
+AC_CHECK_LIB(bz2, bzCompressInit, AC_DEFINE(HAVE_OLDER_BZIP2))
+
 if test $have_socket = yes; then
     AC_STRUCT_LINGER
 fi

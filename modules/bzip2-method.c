@@ -36,6 +36,13 @@
 #include "gnome-vfs-mime.h"
 #include "bzip2-method.h"
 
+#ifdef HAVE_OLDER_BZIP2
+#define BZ2_bzDecompressInit  bzDecompressInit
+#define BZ2_bzCompressInit    bzCompressInit
+#define BZ2_bzDecompress      bzDecompress
+#define BZ2_bzCompress        bzCompress
+#endif
+
 #define BZ_BUFSIZE   5000
 
 struct _Bzip2MethodHandle {
@@ -166,7 +173,7 @@ bzip2_method_handle_init_for_decompress (Bzip2MethodHandle *handle)
 	handle->bzstream.avail_in = 0;
 
 	/* FIXME bugzilla.eazel.com 1177: Make small, and possibly verbosity, configurable! */
-	if (bzDecompressInit (&handle->bzstream, 0, 0) != BZ_OK) {
+	if (BZ2_bzDecompressInit (&handle->bzstream, 0, 0) != BZ_OK) {
 		g_free (handle->buffer);
 		return FALSE;
 	}
@@ -194,7 +201,7 @@ bzip2_method_handle_init_for_compress (Bzip2MethodHandle *handle)
 	handle->bzstream.avail_out = BZ_BUFSIZE;
 
 	/* FIXME bugzilla.eazel.com 1174: We want this to be user configurable.  */
-	if (bzCompressInit (&handle->bzstream, 3, 0, 30) != BZ_OK) {
+	if (BZ2_bzCompressInit (&handle->bzstream, 3, 0, 30) != BZ_OK) {
 		g_free (handle->buffer);
 		return FALSE;
 	}
@@ -264,7 +271,7 @@ flush_write (Bzip2MethodHandle *bzip2_handle)
 		if (done)
 			break;
 
-		bz_result = bzCompress (bzstream, BZ_FINISH);
+		bz_result = BZ2_bzCompress (bzstream, BZ_FINISH);
 
 		done = (bzstream->avail_out != 0 || bz_result == BZ_STREAM_END);
 	}
@@ -439,7 +446,7 @@ do_read (GnomeVFSMethod *method,
 		result = fill_buffer (bzip2_handle, num_bytes);
 		RETURN_IF_FAIL (result);
 
-		bz_result = bzDecompress (&bzip2_handle->bzstream);
+		bz_result = BZ2_bzDecompress (&bzip2_handle->bzstream);
 
 		if (bzip2_handle->last_bz_result != BZ_OK
 		    && bzstream->avail_out == num_bytes) {
@@ -496,7 +503,7 @@ do_write (GnomeVFSMethod *method,
 			bzstream->avail_out += written;
 		}
 
-		bz_result = bzCompress (bzstream, BZ_RUN);
+		bz_result = BZ2_bzCompress (bzstream, BZ_RUN);
 		result = result_from_bz_result (bz_result);
 	}
 
