@@ -1,14 +1,14 @@
 # French translation of gnome-vfs.
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# Copyright (C) 1999-2003 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@ldsol.com>, 1999-2000.
-# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2002.
+# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2003.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.1.5\n"
-"POT-Creation-Date: 2003-03-31 13:23+0200\n"
-"PO-Revision-Date: 2002-12-19 18:47+0100\n"
+"Project-Id-Version: gnome-vfs 2.2.4\n"
+"POT-Creation-Date: 2003-05-04 18:25+0200\n"
+"PO-Revision-Date: 2003-05-04 18:17+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -216,7 +216,7 @@ msgstr "L'hôte n'a pas d'adresse"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Échec de la connexion"
+msgstr "La connexion a échoué"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -273,35 +273,55 @@ msgstr "Erreur de protocole"
 msgid "Could not find master browser"
 msgstr "Impossible de trouver le navigateur maître"
 
-#: libgnomevfs/gnome-vfs-result.c:170
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "No default action associated"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "No handler for URL scheme"
+msgstr ""
+
+#. GNOME_VFS_ERROR_PARSE
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Error parsing command line"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: libgnomevfs/gnome-vfs-result.c:80
+msgid "Error launching command"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
 msgstr "1 octet"
 
-#: libgnomevfs/gnome-vfs-utils.c:85
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
 msgstr "%u octets"
 
-#: libgnomevfs/gnome-vfs-utils.c:92
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Ko"
 
-#: libgnomevfs/gnome-vfs-utils.c:96
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mo"
 
-#: libgnomevfs/gnome-vfs-utils.c:100
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Go"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1088
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valide)"
 
@@ -322,6 +342,56 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
 "Utilisez la variable d'environnement %s pour spécifier un emplacement "
 "différent.\n"
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:163
+msgid "Applications"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:166
+msgid "Cards"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:169
+msgid "Files"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:172
+msgid "Folders"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:175
+msgid "Help"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:178
+msgid "Hosts"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:181
+msgid "Links"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:184
+msgid "Mail"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:187
+msgid "Tools"
+msgstr ""
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Windows"
+msgstr ""
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
