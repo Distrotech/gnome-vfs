@@ -1,3 +1,19 @@
+2002-02-18  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_gzip):
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_get_mime_type_internal):
+
+	Prioritize suffix matching over gzip sniffing. Not
+	very elegant, but the number of gzip'd documents misidentified
+	as gzip files far exceeds the number of improperly suffixed
+	gzip files.
+	
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+
+	Minor menu tweaks.
+
 2002-02-17  Alexander Larsson  <alla@lysator.liu.se>
 
 	* modules/vfolder-desktop-method.c (vfolder_info_insert_entry):

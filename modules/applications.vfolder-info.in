@@ -46,6 +46,9 @@
         <Keyword>Application</Keyword>
       </Query>
       <DontShowIfEmpty/>
+
+      <Exclude>cddb-slave.desktop</Exclude>
+      <Exclude>gnomecc.desktop</Exclude>
     </Folder>
 
     <!-- Development Tools -->
@@ -149,6 +152,9 @@
 	</And>
       </Query>
 
+      <Exclude>cddb-slave.desktop</Exclude>
+      <Exclude>gnomecc.desktop</Exclude>
+
       <Folder>
 	<Name>Advanced</Name>
 	<Desktop>Advanced.directory</Desktop>
@@ -159,6 +165,17 @@
 	  </And>
 	</Query>
 	<DontShowIfEmpty/>
+	<Folder>
+	  <Name>Sawfish</Name>
+	  <Desktop>Sawfish.directory</Desktop>
+	  <Query>
+	    <And>
+	      <Keyword>Sawfish</Keyword>
+	      <Keyword>Settings</Keyword>
+	    </And>
+	  </Query>
+	  <DontShowIfEmpty/>
+	</Folder>
       </Folder>
       <Folder>
 	<Name>System</Name>
@@ -171,19 +188,8 @@
 	</Query>
 	<DontShowIfEmpty/>
       </Folder>
-      <Folder>
-	<Name>Sawfish</Name>
-	<Desktop>Sawfish.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Sawfish</Keyword>
-	    <Keyword>Settings</Keyword>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
     </Folder>
-
+    
     <!-- System Tools-->
     <Folder>
       <Name>System</Name>
@@ -191,6 +197,9 @@
       <Query>
 	<And>
 	  <Keyword>Application</Keyword>
+	  <Not>
+	    <Keyword>Settings</Keyword>
+	  </Not>
 	  <Keyword>System</Keyword>
 	</And>
       </Query>

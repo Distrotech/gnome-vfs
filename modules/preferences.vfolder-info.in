@@ -9,7 +9,7 @@
 
   <!-- Root folder -->
   <Folder>
-    <Name>Desktop Preferences</Name>
+    <Name>Preferences</Name>
     <Desktop>Settings.directory</Desktop>
     <Query>
       <And>
@@ -24,6 +24,9 @@
       </And>
     </Query>
 
+    <Exclude>cddb-slave.desktop</Exclude>
+    <Exclude>gnomecc.desktop</Exclude>
+
     <Folder>
       <Name>Advanced</Name>
       <Desktop>Advanced.directory</Desktop>
@@ -34,6 +37,17 @@
         </And>
       </Query>
       <DontShowIfEmpty/>
+      <Folder>
+	<Name>Sawfish</Name>
+	<Desktop>Sawfish.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>Sawfish</Keyword>
+	    <Keyword>Settings</Keyword>
+	  </And>
+	</Query>
+	<DontShowIfEmpty/>
+      </Folder>
     </Folder>
     <Folder>
       <Name>System</Name>
@@ -41,17 +55,6 @@
       <Query>
         <And>
 	  <Keyword>System</Keyword>
-	  <Keyword>Settings</Keyword>
-        </And>
-      </Query>
-      <DontShowIfEmpty/>
-    </Folder>
-    <Folder>
-      <Name>Sawfish</Name>
-      <Desktop>Sawfish.directory</Desktop>
-      <Query>
-        <And>
-	  <Keyword>Sawfish</Keyword>
 	  <Keyword>Settings</Keyword>
         </And>
       </Query>

@@ -516,15 +516,27 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 			return result;
 		}
 		
-		/* Special handling of gzip files -- use the file name to make a more
-		 * accurate guess of the file type for formats such as gnumeric.gz and
-		 * pdf.gz. Without this, these would always get identified as gzip even though
-		 * their name would suggest otherwise.
+		/* So many file types come compressed by gzip that extensions are
+		 * more reliable than magic typing. If the file has a suffix, then
+		 * use the type from the suffix.
+		 *
 		 * FIXME bugzilla.eazel.com 6867:
-		 * Generalize this so that we can have different magic patters
-		 * other than gzip do this.
+		 * Allow specific mime types to override magic detection
 		 */
 		if (gnome_vfs_sniff_buffer_looks_like_gzip (buffer, file_name)) {
+			/* gzip -- treat extensions as a more accurate source
+			 * of type information.
+			 */
+			
+			if (file_name != NULL) {
+				result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+			}
+			
+			if (result != NULL) {
+				return result;
+			}
+			
+			/* Didn't find an extension match, assume gzip. */
 			return "application/x-gzip";
 		}
 		
