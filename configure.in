@@ -433,6 +433,7 @@ modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
 mime-type-capplet/Makefile
+mime-type-capplet/libuuid/Makefile
 man/Makefile
 man/gnome-vfs-mime.5
 devel-docs/Makefile

@@ -1,3 +1,11 @@
+2001-02-26  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Rebecca Schulman <rebecka@eazel.com>
+
+	Forgot to add libuuid/Makefile
+	
+	* configure.in:
+
 2001-02-26  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* configure.in: upped version to 0.6.2.0 for development
