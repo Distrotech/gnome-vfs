@@ -1,3 +1,8 @@
+2002-10-01  Yanko Kaneti <yaneti@declera.com>
+
+	* schemas/system_http_proxy.schemas: reorder some elements so that it 
+	validates.
+
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
         * modules/ssh-method.c: 
         Quote filenames using g_shell_quote before passing them to ssh
