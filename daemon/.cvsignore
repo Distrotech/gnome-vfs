@@ -1,0 +1,5 @@
+vfs-client
+vfs-daemon
+Makefile
+Makefile.in
+GNOME_VFS_Daemon*.[ch]
