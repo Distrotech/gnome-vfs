@@ -1,3 +1,10 @@
+2000-04-12  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c.c:
+	(gnome_vfs_xfer_uri_internal), (count_items_and_size):
+	Make the move operation properly preflight by only adding up
+	the items to move nonrecursively.
+
 2000-04-11  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c.c:

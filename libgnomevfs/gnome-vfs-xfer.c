@@ -562,7 +562,8 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 		      GnomeVFSXferOptions xfer_options,
 		      GnomeVFSXferProgressInfo *progress_info,
 		      GnomeVFSXferProgressCallback progress_callback,
-		      gpointer data)
+		      gpointer data,
+		      gboolean move)
 {
 	GnomeVFSFileInfoOptions info_options;
 	GnomeVFSDirectoryVisitOptions visit_options;
@@ -588,7 +589,7 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 	}
 
 	return gnome_vfs_visit_list (dir_uri, name_list, info_options,
-		visit_options, (xfer_options & GNOME_VFS_XFER_RECURSIVE) != 0,
+		visit_options, !move && (xfer_options & GNOME_VFS_XFER_RECURSIVE) != 0,
 		count_each_file_size_one, &each_params);
 }
 
@@ -1346,7 +1347,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 	progress_info->phase = GNOME_VFS_XFER_PHASE_COLLECTING;
 	result = count_items_and_size (source_dir_uri, *source_name_list,
 				       xfer_options, progress_info,
-				       progress_callback, data);
+				       progress_callback, data, move);
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
