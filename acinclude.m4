@@ -1,4 +1,4 @@
-AC_DEFUN(AM_GNOME_CHECK_TYPE,
+AC_DEFUN([AM_GNOME_CHECK_TYPE],
   [AC_CACHE_CHECK([$1 in <sys/types.h>], ac_cv_type_$1,
      [AC_TRY_COMPILE([
 #include <sys/types.h>
@@ -13,12 +13,12 @@ AC_DEFUN(AM_GNOME_CHECK_TYPE,
    fi
 ])
 
-AC_DEFUN(AM_GNOME_SIZE_T,
+AC_DEFUN([AM_GNOME_SIZE_T],
   [AM_GNOME_CHECK_TYPE(size_t, unsigned)
    AC_PROVIDE([AC_TYPE_SIZE_T])
 ])
 
-AC_DEFUN(AM_GNOME_OFF_T,
+AC_DEFUN([AM_GNOME_OFF_T],
   [AM_GNOME_CHECK_TYPE(off_t, long)
    AC_PROVIDE([AC_TYPE_OFF_T])
 ])
@@ -33,7 +33,7 @@ dnl Autoconf macros for libgnutls
 dnl AM_PATH_LIBGNUTLS([MINIMUM-VERSION, [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND ]]])
 dnl Test for libgnutls, and define LIBGNUTLS_CFLAGS and LIBGNUTLS_LIBS
 dnl
-AC_DEFUN(AM_PATH_LIBGNUTLS,
+AC_DEFUN([AM_PATH_LIBGNUTLS],
 [dnl
 dnl Get the cflags and libraries from the libgnutls-config script
 dnl

@@ -1,5 +1,12 @@
 2004-04-16  Alexander Larsson  <alexl@redhat.com>
 
+	* acinclude.m4:
+	* configure.in:
+	Fix underquoted m4 definitions. (#133126)
+	Patch from Alexander Winston
+
+2004-04-16  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
 	Better statfs portability (#136468)
