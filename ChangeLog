@@ -1,3 +1,22 @@
+2000-09-20  Darin Adler  <darin@eazel.com>
+
+	* data/mime/gnome-vfs.applications: Both EOG and The Gimp had
+	entries that claim they can handle URIs, but the versions of these
+	programs that I have can't.
+	
+	* libgnomevfs/gnome-vfs-configuration.c: (parse_line):
+	* libgnomevfs/gnome-vfs-mime-info.c: (does_string_contains_caps):
+	On IRC, gmorten pointed out that we must cast to unsigned char before
+	calling functions like isspace and isupper. There are probably other
+	cases of this mistake here and in Nautilus, but here are some fixes.
+	
+	* libgnomevfs/gnome-vfs-gen-mimedb.c: Removed an unnecessary
+	include of <ctype.h>.
+	
+	* test/test-uri.c: (main): Fixed some typos and enabled some
+	tests.  We like to put the "wrong" results in here with a FIXME
+	instead of commenting out the tests altogether.
+
 2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
 
 	Renabled and cleaned up read only volume check now.

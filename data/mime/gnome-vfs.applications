@@ -42,7 +42,7 @@ gimp
 	command=gimp
 	name=The GIMP
 	can_open_multiple_files=true
-	can_open_uris=true
+	can_open_uris=false
 	requires_terminal=false
 	mime_types=image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/x-xpixmap,image/x-bmp,image/x-png,image/x-portable-anymap,image/x-portable-bitmap,image/x-portable-graymap,image/x-portable-pixmap,image/x-psd,image/x-xbitmap,image/x-xcf
 
@@ -50,7 +50,7 @@ eog
 	command=eog
 	name=Eye of Gnome
 	can_open_multiple_files=true
-	can_open_uris=true
+	can_open_uris=false
 	requires_terminal=false
 	mime_types=image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/x-xpixmap,image/x-bmp,image/x-png,image/x-portable-anymap,image/x-portable-bitmap,image/x-portable-graymap,image/x-portable-pixmap
 
@@ -68,9 +68,4 @@ staroffice
 	can_open_multiple_files=true
 	can_open_uris=false
 	requires_terminal=false
-
-mime_types=application/x-soffice-presentation,application/x-soffice-spreadsheet,application/x-soffice-word,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
-
-
-
-
+	mime_types=application/x-soffice-presentation,application/x-soffice-spreadsheet,application/x-soffice-word,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint

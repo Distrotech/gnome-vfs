@@ -225,7 +225,7 @@ parse_line (Configuration *configuration,
 		p++;
 	}
 
-	while (*p && isspace(*p))
+	while (*p && isspace ((guchar) *p))
 		p++;
 
 	if (*p == '\0') {
@@ -241,12 +241,12 @@ parse_line (Configuration *configuration,
 	}
 
 	module_name = p;
-	while(*p && !isspace(*p)) p++;
+	while(*p && !isspace ((guchar) *p)) p++;
 
 	if(*p) {
 		*p = '\0';
 		p++;
-		while(*p && isspace(*p)) p++;
+		while(*p && isspace ((guchar) *p)) p++;
 		if(*p)
 			args = p;
 	}

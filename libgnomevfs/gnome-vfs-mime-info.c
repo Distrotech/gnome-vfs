@@ -117,7 +117,7 @@ does_string_contains_caps (const char *string)
 
 	temp_c = string;
 	while (*temp_c != '\0') {
-		if (isupper (*temp_c)) {
+		if (isupper ((guchar) *temp_c)) {
 			return TRUE;
 		}
 		temp_c++;
