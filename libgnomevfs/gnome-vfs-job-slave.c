@@ -25,14 +25,13 @@
 #include <config.h>
 #endif
 
-#include <glib.h>
-#include <gtk/gtk.h>
-#include <unistd.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
 #include "gnome-vfs-job-slave.h"
+
+#include "gnome-vfs-private.h"
+#include "gnome-vfs.h"
+#include <gtk/gtk.h>
+#include <pthread.h>
+#include <unistd.h>
 
 /* FIXME bugzilla.eazel.com 1130:
  * - would use a GStaticMutex here but the initializer macro is broken.
@@ -46,21 +45,20 @@ static volatile gboolean gnome_vfs_done_quitting = FALSE;
 static void *
 thread_routine (void *data)
 {
-	GnomeVFSJobSlave *slave;
+	GnomeVFSJob *job;
 	guint bytes_written;
 
-	slave = (GnomeVFSJobSlave *) data;
+	job = (GnomeVFSJob *) data;
 
 	/* Let the main thread know we are alive.  */
-	JOB_DEBUG (("thread routine sending wakeup %p", slave->job));
-	g_io_channel_write (slave->job->wakeup_channel_out, "A",
+	JOB_DEBUG (("thread routine sending wakeup %p", job));
+	g_io_channel_write (job->wakeup_channel_out, "A",
 			    1, &bytes_written);
  
-	while (gnome_vfs_job_execute (slave->job))
+	while (gnome_vfs_job_execute (job))
 		;
 
-	gnome_vfs_job_destroy (slave->job);
-
+	gnome_vfs_job_destroy (job);
 	
 	g_mutex_lock (gnome_vfs_thread_count_mutex);
 	/* the thread is done, take it out of the count */
@@ -71,13 +69,14 @@ thread_routine (void *data)
 }
 
 
-GnomeVFSJobSlave *
-gnome_vfs_job_slave_new (GnomeVFSJob *job)
+gboolean
+gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
-	GnomeVFSJobSlave *new_job;
 	gboolean abort_early;
+	pthread_attr_t thread_attr;
+	pthread_t thread;
 	
-	g_return_val_if_fail (job != NULL, NULL);
+	g_return_val_if_fail (job != NULL, FALSE);
 
 
 	if (gnome_vfs_thread_count_mutex == NULL) {
@@ -108,49 +107,26 @@ gnome_vfs_job_slave_new (GnomeVFSJob *job)
 		 * because they would potentially block indefinitely and prevent the
 		 * app from quitting.
 		 */
-		return NULL;
+		return FALSE;
 	}
-		
-	new_job = g_new (GnomeVFSJobSlave, 1);
-
-	new_job->job = job;
-
-	pthread_attr_init (&new_job->pthread_attr);
-	pthread_attr_setdetachstate (&new_job->pthread_attr,
+	
+	pthread_attr_init (&thread_attr);
+	pthread_attr_setdetachstate (&thread_attr,
 				     PTHREAD_CREATE_DETACHED);
 
-	if (pthread_create (&new_job->pthread, &new_job->pthread_attr,
-			    thread_routine, new_job) != 0) {
+	if (pthread_create (&thread, &thread_attr,
+			    thread_routine, job) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
-
+		
 		g_mutex_lock (gnome_vfs_thread_count_mutex);
 		/* we didn't really get a new thread so take it off the count */
 		gnome_vfs_slave_thread_count--;
 		g_mutex_unlock (gnome_vfs_thread_count_mutex);
-
-		return NULL;
+		
+		return FALSE;
 	}
-
-	return new_job;
-}
-
-void
-gnome_vfs_job_slave_cancel (GnomeVFSJobSlave *slave)
-{
-	g_return_if_fail (slave != NULL);
-
-	pthread_cancel (slave->pthread);
-}
-
-/* FIXME bugzilla.eazel.com 1227: This is wrong.  */
-void
-gnome_vfs_job_slave_destroy (GnomeVFSJobSlave *slave)
-{
-	g_return_if_fail (slave != NULL);
-
-	gnome_vfs_job_slave_cancel (slave);
-
-	g_free (slave);
+	
+	return TRUE;
 }
 
 void
@@ -200,8 +176,6 @@ gnome_vfs_thread_backend_shutdown (void)
 	}
 }
 
-extern int gnome_vfs_debug_get_thread_count (void);
-
 int
 gnome_vfs_debug_get_thread_count (void)
 {
@@ -222,4 +196,3 @@ gnome_vfs_debug_get_thread_count (void)
 
 	return result;		
 }
-

@@ -1,3 +1,20 @@
+2000-09-21  Darin Adler  <darin@eazel.com>
+
+	Fixed code that was creating a separate "job slave" object that
+	was never really used. Fixes a storage leak.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.h:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	Changed to take a GnomeVFSJob pointer instead of GnomeVFSJobSlave.
+	(gnome_vfs_job_create_slave): Replaced the old
+	gnome_vfs_job_slave_new with this simpler function.
+	Also removed a lot of unused functions.
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
+	Use the new gnome_vfs_job_create_slave instead of
+	gnome_vfs_job_slave_new and don't even try to keep a slave pointer
+	around.
+
 2000-09-21  Rebecca Schulman  <rebecka@eazel.com>
 
 	* libgnomevfs/gnome-vfs-directory-filter.c: (common_filter):

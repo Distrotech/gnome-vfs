@@ -26,9 +26,10 @@
 #ifndef GNOME_VFS_JOB_PTHREAD_H
 #define GNOME_VFS_JOB_PTHREAD_H
 
-typedef struct GnomeVFSJob GnomeVFSJob;
+#include "gnome-vfs.h"
+#include "gnome-vfs-private.h"
 
-#include "gnome-vfs-job-slave.h"
+typedef struct GnomeVFSJob GnomeVFSJob;
 
 #define GNOME_VFS_JOB_DEBUG 0
 
@@ -291,10 +292,6 @@ typedef struct {
 
 /* FIXME bugzilla.eazel.com 1135: Move private stuff out of the header.  */
 struct GnomeVFSJob {
-	/* The slave thread that executes jobs (see module
-           `gnome-vfs-job-slave.c'). */
-	GnomeVFSJobSlave *slave;
-
 	/* Handle being used for file access.  */
 	GnomeVFSHandle *handle;
 

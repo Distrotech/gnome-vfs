@@ -35,20 +35,18 @@ System (version for POSIX threads).
 #include <config.h>
 #endif
 
+#include "gnome-vfs-job.h"
+
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
 
-#include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-
-#include "gnome-vfs-job.h"
+#include "gnome-vfs-job-slave.h"
 
 #if GNOME_VFS_JOB_DEBUG
 
@@ -619,46 +617,42 @@ dispatch_job_callback (GIOChannel *source,
 GnomeVFSJob *
 gnome_vfs_job_new (void)
 {
-	GnomeVFSJobSlave *slave;
 	GnomeVFSJob *new_job;
 	gint pipefd[2];
 	gchar c;
 	guint bytes_read;
 	GIOError error;
-
+	
 	if (pipe (pipefd) != 0) {
 		g_warning ("Cannot create pipe for the new GnomeVFSJob: %s",
 			   g_strerror (errno));
 		return NULL;
 	}
-
+	
 	new_job = g_new0 (GnomeVFSJob, 1);
-
+	
 	new_job->access_lock = g_mutex_new ();
 	new_job->execution_condition = g_cond_new ();
 	new_job->notify_ack_condition = g_cond_new ();
 	new_job->notify_ack_lock = g_mutex_new ();
-
+	
 	new_job->is_empty = TRUE;
-
+	
 	new_job->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
 	new_job->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new_job->wakeup_channel_lock = g_mutex_new ();
-
+	
 	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_DEFAULT, G_IO_IN,
 			     dispatch_job_callback, new_job, NULL);
-
-	slave = gnome_vfs_job_slave_new (new_job);
-	if (slave == NULL) {
+	
+	if (!gnome_vfs_job_create_slave (new_job)) {
 		g_warning ("Cannot create job slave.");
 		g_free (new_job);
 		return NULL;
 	}
-
-	new_job->slave = slave;
-
+	
 	JOB_DEBUG (("new job %p", new_job));
-
+	
 	/* Wait for the thread to come up. 
 	 *
 	 * Keep reading until we get the synch character from the slave thread --
@@ -668,7 +662,7 @@ gnome_vfs_job_new (void)
 	for (;;) {
 		error = g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
 		JOB_DEBUG (("new job ready to rip %p, %c, %d, %d", 
-			new_job, c, bytes_read, error));
+			    new_job, c, bytes_read, error));
 		JOB_DEBUG_ONLY(if (error !=  G_IO_ERROR_NONE) perror("system error:"));
 		if (bytes_read > 0)
 			break;

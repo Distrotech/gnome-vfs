@@ -21,29 +21,17 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_JOB_SLAVE_PTHREAD_H
-#define _GNOME_VFS_JOB_SLAVE_PTHREAD_H
-
-typedef struct _GnomeVFSJobSlave GnomeVFSJobSlave;
-
-#include <pthread.h>
+#ifndef GNOME_VFS_JOB_SLAVE_H
+#define GNOME_VFS_JOB_SLAVE_H
 
 #include "gnome-vfs-job.h"
 
-struct _GnomeVFSJobSlave {
-	GnomeVFSJob *job;
-	pthread_t pthread;
-	pthread_attr_t pthread_attr;
-};
+gboolean gnome_vfs_job_create_slave        (GnomeVFSJob *job);
 
-
-GnomeVFSJobSlave *gnome_vfs_job_slave_new (GnomeVFSJob *job);
-void gnome_vfs_job_slave_cancel (GnomeVFSJobSlave *slave);
-void gnome_vfs_job_slave_destroy (GnomeVFSJobSlave *slave);
-
-/* call this before taking down the idle task in the master thread
- * to give pending slave threads a chance to finish cleanly
+/* Call this before taking down the idle task in the master thread to
+ * give pending slave threads a chance to finish cleanly.
  */
-void gnome_vfs_thread_backend_shutdown (void);
+void     gnome_vfs_thread_backend_shutdown (void);
+int      gnome_vfs_debug_get_thread_count  (void);
 
-#endif /* _GNOME_VFS_JOB_SLAVE_PTHREAD_H */
+#endif /* GNOME_VFS_JOB_SLAVE_H */
