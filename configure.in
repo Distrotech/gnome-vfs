@@ -168,7 +168,7 @@ dnl
 dnl gconf-method.c
 dnl
 
-AM_PATH_GCONF(0.1.0,,,gconf-gtk)
+AM_PATH_GCONF(0.1.0,,,gconf)
 
 if test "x$gconf_enabled" = xyes; then 
     AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
