@@ -1,3 +1,8 @@
+2004-10-11  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c (do_read_directory):
+	Ignore entries with empty name. (#154670)
+
 2004-10-09  Christian Kellner <gicmo@gnome.org>
 
 	* modules/http-neon-method.c:

@@ -1721,6 +1721,8 @@ do_read_directory (GnomeVFSMethod *method,
 	} while (entry->smbc_type == SMBC_COMMS_SHARE ||
 		 entry->smbc_type == SMBC_IPC_SHARE ||
 		 entry->smbc_type == SMBC_PRINTER_SHARE ||
+		 entry->name == NULL ||
+		 strlen (entry->name) == 0 ||
 		 (entry->smbc_type == SMBC_FILE_SHARE &&
 		  is_hidden_entry (entry->name)));
 		
