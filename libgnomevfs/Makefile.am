@@ -35,8 +35,11 @@ INCLUDES =					\
 lib_LTLIBRARIES = libgnomevfs-2.la
 
 libgnomevfs_2_la_LIBADD =			\
+	$(LTLIBOBJS)				\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
+libgnomevfs_2_la_LDFLAGS =			\
+	-no-undefined
 
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 

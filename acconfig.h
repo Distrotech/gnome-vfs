@@ -15,6 +15,7 @@
 #undef ENABLE_PROFILER
 #undef HAVE_OPENSSL
 #undef HAVE_FAM
+#undef HAVE_OFF64_T
 #undef GETTEXT_PACKAGE
 
 /* Define if you have the Andrew File System.  */

@@ -1,3 +1,41 @@
+2003-04-24  Masahiro Sakai  <sakai@tom.sfc.keio.ac.jp>
+
+	* configure.in: fix IPV6 test. check inet_pton() and off64_t.
+
+	* configure.in: call AC_LIBTOOL_WIN32_DLL. This is necessary for
+	building DLL on some win32 platform.
+	
+	* modules/cdemenu-module.conf
+	* modules/default-modules.conf: remove "lib" prefix from module names
+	since it is added automatically by g_module_build_path(), and it
+	breaks on Cygwin. (Cygwin uses "cyg" as library prefix.)
+	
+	* libgnomevfs/Makefile.am
+	* modules/Makefile.am
+	* modules/vfolder/Makefile.am: add -no-undefined to each library's
+	LDFLAGS, and write each library's depencency libraries explicitly
+	in its LIBADD. These are necessary for building DLL on some win32
+	platform.
+
+	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): add $(LTLIBOBJS)
+	to link getdelim.lo.
+
+	* libgnomevfs/getdelim.c: add prototype and fix to work on Cygwin.
+
+	* modules/file-method.c:
+	don't use lseek64() when off64_t is not available.
+	(do_read_directory): call G_UNLOCK(readdir) when readdir() is failed.
+	(find_trash_in_one_hierarchy_level): fix to work without readdir_r().
+
+	* modules/vfolder/Makefile.am (module_flags): add -module
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): comment
+	out vfolder_monitor_emit() call since this function is not defined.
+
+	* modules/http-method.c: if inet_pton() is not available, define
+	the function using inet_aton().
+	[FIXME: should be done using AC_REPLACE_FUNCS].
+
 2003-04-24  Michael Meeks  <michael@ximian.com>
 
 	* TODO: waffle unproductively - this file is really stale.

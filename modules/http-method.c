@@ -858,6 +858,19 @@ host_port_from_string (const char *http_proxy,
 	return TRUE;
 }
 
+/* FIXME: should be done using AC_REPLACE_FUNCS */
+#ifndef HAVE_INET_PTON
+static int
+inet_pton(int af, const char *hostname, void *pton)
+{
+	struct in_addr in;
+	if (!inet_aton(hostname, &in))
+	    return 0;
+	memcpy(pton, &in, sizeof(in));
+	return 1;
+}
+#endif
+
 static gboolean
 proxy_should_for_hostname (const char *hostname)
 {

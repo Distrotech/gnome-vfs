@@ -29,6 +29,8 @@
    necessary.  Returns the number of characters read (not including the
    null terminator), or -1 on error or EOF.  */
 
+ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
+
 ssize_t
 getdelim (lineptr, n, terminator, stream)
      char **lineptr;
@@ -39,11 +41,13 @@ getdelim (lineptr, n, terminator, stream)
   char *line, *p;
   size_t size, copy;
 
+#ifndef __CYGWIN__
   if (!__validfp (stream) || lineptr == NULL || n == NULL)
     {
       __set_errno (EINVAL);
       return -1;
     }
+#endif
 
   if (ferror (stream))
     return -1;
@@ -67,9 +71,11 @@ getdelim (lineptr, n, terminator, stream)
   copy = size;
   p = line;
 
+#ifndef __CYGWIN__
   if (stream->__buffer == NULL && stream->__userbuf)
     {
       /* Unbuffered stream.  Not much optimization to do.  */
+#endif
 
       while (1)
 	{
@@ -95,6 +101,7 @@ getdelim (lineptr, n, terminator, stream)
 	  p = line + len;
 	  copy = size - len;
 	}
+#ifndef __CYGWIN__
     }
   else
     {
@@ -164,6 +171,7 @@ getdelim (lineptr, n, terminator, stream)
 	    }
 	}
     }
+#endif
 
  lose:
   if (p == *lineptr)
@@ -174,4 +182,6 @@ getdelim (lineptr, n, terminator, stream)
   return p - *lineptr;
 }
 
+#ifdef weak_alias
 weak_alias (__getdelim, getdelim)
+#endif

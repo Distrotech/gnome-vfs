@@ -15,6 +15,7 @@ AC_ISC_POSIX
 AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_AWK
+AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL
 
@@ -80,6 +81,18 @@ dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
 
+AC_CACHE_CHECK([for off64_t],
+	ac_cv_have_off64_t,
+	AC_TRY_COMPILE([
+#		define _LARGEFILE64_SOURCE
+#		include <sys/types.h>],
+		[off64_t testoffset],
+	ac_cv_have_off64_t=yes,
+	ac_cv_have_off64_t=no))
+if test x"$ac_cv_have_off64_t" = "xyes" ; then
+	AC_DEFINE(HAVE_OFF64_T)
+fi
+
 GETTEXT_PACKAGE=gnome-vfs-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
@@ -88,7 +101,7 @@ ALL_LINGUAS="am ar az be bg bn bs ca cs da de el eo es et eu fa fi fr ga gl he h
 AM_GLIB_GNU_GETTEXT
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton)
 AC_REPLACE_FUNCS(getdelim)
 
 dnl Specify the gconf configuration source, 
@@ -581,7 +594,7 @@ if test $enable_ipv6 = yes; then
   dnl Now we would check for specific functions like getaddrinfo.
   dnl =================================================================
   have_getaddrinfo=no
-  if test $have_ipv6=yes; then
+  if test $have_ipv6 = yes; then
     AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
     if test $have_getaddrinfo != yes; then
       # getaddrinfo is not in the default libraries.  See if it's in some other.
@@ -589,7 +602,7 @@ if test $enable_ipv6 = yes; then
         AC_CHECK_LIB($lib, getaddrinfo, [LIBS="$LIBS -l$lib";have_getaddrinfo=yes; break])
       done
     fi
-    if test $have_getaddrinfo=yes; then
+    if test $have_getaddrinfo = yes; then
       AC_DEFINE(ENABLE_IPV6)
     fi
   fi 		

@@ -46,4 +46,4 @@ libmoniker_gnome_vfs_std_la_LIBADD = \
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la             	
 
 libmoniker_gnome_vfs_std_la_LDFLAGS = \
-	-module -avoid-version 
+	-module -avoid-version -no-undefined

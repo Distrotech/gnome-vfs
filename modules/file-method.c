@@ -97,7 +97,7 @@ GET_PATH_MAX (void)
 #define OPEN open
 #endif
 
-#ifdef HAVE_LSEEK64
+#if defined(HAVE_LSEEK64) && defined(HAVE_OFF64_T)
 #define LSEEK lseek64
 #define OFF_T off64_t
 #else
@@ -816,7 +816,9 @@ do_read_directory (GnomeVFSMethod *method,
 	result = readdir (handle->dir);
 
 	if (result == NULL && errno != 0) {
-		return gnome_vfs_result_from_errno ();
+		GnomeVFSResult ret = gnome_vfs_result_from_errno ();
+		G_UNLOCK (readdir);
+		return ret;
 	}
 	if (result != NULL) {
 		memcpy (handle->current_entry, result, sizeof (struct dirent));
@@ -1123,18 +1125,38 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 
 	item_buffer = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
 	for (;;) {
+#ifdef HAVE_READDIR_R
 		if (readdir_r (directory, item_buffer, &item) != 0 || item == NULL) {
 			break;
 		}
-
-		if (gnome_vfs_context_check_cancellation (context))
+#else
+		G_LOCK (readdir);
+		item = readdir (directory);
+		if (item == NULL) {
+			G_UNLOCK (readdir);
 			break;
+		}
+#endif
+
+		if (gnome_vfs_context_check_cancellation (context)) {
+#ifndef HAVE_READDIR_R
+			G_UNLOCK (readdir);
+#endif
+			break;
+		}
 
 		if (strcmp (item->d_name, ".") == 0
-			|| strcmp (item->d_name, "..") == 0)
+			|| strcmp (item->d_name, "..") == 0) {
+#ifndef HAVE_READDIR_R
+			G_UNLOCK (readdir);
+#endif
 			continue;
+		}
 
 		item_path = append_to_path (current_directory, item->d_name);
+#ifndef HAVE_READDIR_R
+		G_UNLOCK (readdir);
+#endif
 		if (lstat (item_path, &stat_buffer) == 0 
 			&& S_ISDIR (stat_buffer.st_mode)
 			&& near_device_id == stat_buffer.st_dev) {
