@@ -69,6 +69,20 @@ static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
 					 GnomeVFSContext *context);
 static gboolean       do_is_local       (GnomeVFSMethod *method,
 					 const GnomeVFSURI *uri);
+static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
+					 GnomeVFSURI *uri,
+					 GnomeVFSFileInfoOptions options,
+					 const GnomeVFSDirectoryFilter *filter,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
+		                         GnomeVFSMethodHandle *method_handle,
+		                         GnomeVFSFileInfo *file_info,
+		                         GnomeVFSContext *context);
+	/* FIXME bugzilla.eazel.com 1137: implement filters */
 
 guint ftp_connection_uri_hash(gconstpointer c);
 gint ftp_connection_uri_equal(gconstpointer c, gconstpointer d);
@@ -735,6 +749,7 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
 }
 
 
+#if 0
 static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
@@ -790,14 +805,70 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	return GNOME_VFS_ERROR_NOT_FOUND;
 
 }
+#endif
 
 static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 GnomeVFSContext *context) {
+	GnomeVFSURI *parent = gnome_vfs_uri_get_parent(uri);
+	GnomeVFSResult result;
 
-	return internal_get_file_info(method, uri, file_info, options, context);
+	if (parent == NULL) {
+		FtpConnection *conn;
+		/* this is a request for info about the root directory */
+
+		/* is the host there? */
+		result = ftp_connection_aquire(uri, &conn);
+		
+		if(result != GNOME_VFS_OK) {
+			/* doesn't look like it */
+			return result;
+		}
+
+		ftp_connection_release(conn);
+
+		file_info->name = g_strdup("/");
+		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		file_info->mime_type = g_strdup("x-special/directory");
+		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE|
+			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		return GNOME_VFS_OK;
+	} else {
+		GnomeVFSMethodHandle *method_handle;
+		gchar *name;
+
+		result = do_open_directory(method, &method_handle, parent,
+				options, NULL, context);
+
+		gnome_vfs_uri_unref(parent);
+
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+
+	       	name = gnome_vfs_uri_extract_short_name(uri);
+
+		while (result == GNOME_VFS_OK) {
+			result = do_read_directory(method, method_handle, 
+					file_info, context);
+			if (result == GNOME_VFS_OK) {
+				if (file_info->name && !strcmp(file_info->name,
+						       	name)) {
+					g_free(name);
+					return GNOME_VFS_OK;
+				}
+
+				gnome_vfs_file_info_clear(file_info);
+			}
+
+
+		}
+
+	}
+
+	return GNOME_VFS_ERROR_NOT_FOUND;
 }
 
 static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
