@@ -1,3 +1,16 @@
+2003-01-07  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/gzip-method.c (write_gzip_header):
+	Set creation time. Based on patch by davh@davh.dk. (#41172)
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_extract_dirname):
+	Don't crash on NULL uri->text. Patch by Dennis Haney. (#79730)
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_peekc):
+	Return correct char instead of first in buffer.
+	
+	Patch from ksato@users.sourceforge.net (#102202)
+
 ==== gnome-vfs 2.1.6 ====
 	
 2003-01-06  Alexander Larsson  <alexl@redhat.com>

@@ -1644,6 +1644,10 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
+	if (uri->text == NULL) {
+		return NULL;
+	}
+	
 	base = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
 
 	if (base == NULL || base == uri->text) {
