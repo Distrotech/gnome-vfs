@@ -1,3 +1,8 @@
+2001-05-12  Maciej Stachowiak  <mjs@eazel.com>
+
+	* devel-docs/gnome-vfs/Makefile.am: Fix build for people who don't
+	have gtk-doc installed.
+
 2001-05-09  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.h: Added dummy member to

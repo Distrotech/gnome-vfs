@@ -38,7 +38,11 @@ html/book1.html: sgml/libgnome-vfs.sgml
 sgml/libgnome-vfs.sgml: $(tmpl_sources)
 	$(MAKE) sgml	
 
+if ENABLE_GTK_DOC
 gnome-vfs-decl.txt: scan
+else
+gnome-vfs-decl.txt:
+endif
 
 scan:
 	cd $(srcdir) \
