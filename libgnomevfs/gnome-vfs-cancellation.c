@@ -27,6 +27,7 @@
 
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-client.h"
+#include "gnome-vfs-client-call.h"
 #include <unistd.h>
 
 /* WARNING: this code is not general-purpose.  It is supposed to make the two
@@ -40,10 +41,11 @@ struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
 	gint pipe_out;
-	GList *client_calls;
+	GnomeVFSClientCall *client_call;
 };
 
-G_LOCK_DEFINE_STATIC (client_calls);
+G_LOCK_DEFINE_STATIC (pipes);
+G_LOCK_DEFINE_STATIC (client_call);
 
 
 /**
@@ -63,7 +65,7 @@ gnome_vfs_cancellation_new (void)
 	new->cancelled = FALSE;
 	new->pipe_in = -1;
 	new->pipe_out = -1;
-	new->client_calls = NULL;
+	new->client_call = NULL;
 
 	return new;
 }
@@ -83,8 +85,8 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 		close (cancellation->pipe_in);
 		close (cancellation->pipe_out);
 	}
-	/* Can't have any outstanding calls when destroying the cancellation */
-	g_assert (cancellation->client_calls == NULL);
+	/* Can't have outstanding calls when destroying the cancellation */
+	g_assert (cancellation->client_call == NULL);
 	
 	g_free (cancellation);
 }
@@ -93,29 +95,24 @@ void
 _gnome_vfs_cancellation_add_client_call (GnomeVFSCancellation *cancellation,
 					 GnomeVFSClientCall *client_call)
 {
-	G_LOCK (client_calls);
-	cancellation->client_calls = g_list_prepend (cancellation->client_calls,
-						     client_call);
-	G_UNLOCK (client_calls);
+	G_LOCK (client_call);
+	/* Each client call uses its own context/cancellation */
+	g_assert (cancellation->client_call == NULL);
+	
+	cancellation->client_call = client_call;
+	G_UNLOCK (client_call);
 }
 
 void
 _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
 					    GnomeVFSClientCall *client_call)
 {
-	G_LOCK (client_calls);
-	cancellation->client_calls = g_list_remove (cancellation->client_calls,
-						    client_call);
-	G_UNLOCK (client_calls);
+	G_LOCK (client_call);
+	g_assert (cancellation->client_call == client_call);
+	
+	cancellation->client_call = NULL;
+	G_UNLOCK (client_call);
 }
-
-static void
-dup_client_call (gpointer       data,
-		 gpointer       user_data)
-{
-	CORBA_Object_duplicate (data, NULL);
-}
-
 
 /**
  * gnome_vfs_cancellation_cancel:
@@ -126,10 +123,9 @@ dup_client_call (gpointer       data,
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
-	GList *l;
-	GList *client_calls_copy;
 	GNOME_VFS_AsyncDaemon daemon;
 	GnomeVFSClient *client;
+	GNOME_VFS_ClientCall client_call;
 	
 	g_return_if_fail (cancellation != NULL);
 
@@ -141,22 +137,27 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	if (cancellation->pipe_out >= 0)
 		write (cancellation->pipe_out, "c", 1);
 
-	G_LOCK (client_calls);
-	client_calls_copy = g_list_copy (cancellation->client_calls);
-	g_list_foreach (client_calls_copy, dup_client_call, NULL);
-	G_UNLOCK (client_calls);
-	
-	l = client_calls_copy;
-	
-	client = _gnome_vfs_get_client ();
-	daemon = _gnome_vfs_client_get_async_daemon (client);
-
-	while (l != NULL) {
-		GNOME_VFS_AsyncDaemon_Cancel (daemon, l->data, NULL);
-		CORBA_Object_release (l->data, NULL);
+	client_call = CORBA_OBJECT_NIL;
+	G_LOCK (client_call);
+	if (cancellation->client_call != NULL) {
+		/* We need to delay the finishing of the client call to avoid
+		 * the cancel call below to cancel the next call in the job thread
+		 * if the job finishes after we drop the lock.
+		 */
+		_gnome_vfs_client_call_delay_finish (cancellation->client_call);
+		client_call = CORBA_Object_duplicate (BONOBO_OBJREF (cancellation->client_call), NULL);
 	}
-	
-	g_list_free (client_calls_copy);
+	G_UNLOCK (client_call);
+
+	if (client_call != CORBA_OBJECT_NIL) {
+		client = _gnome_vfs_get_client ();
+		daemon = _gnome_vfs_client_get_async_daemon (client);
+
+		/* DAEMON-TODO: Doesn't this cause reentrancy? Do we care? */
+		GNOME_VFS_AsyncDaemon_Cancel (daemon, client_call, NULL);
+		_gnome_vfs_client_call_delay_finish_done (cancellation->client_call);
+		CORBA_Object_release (client_call, NULL);
+	}
 
 	cancellation->cancelled = TRUE;
 }
@@ -186,12 +187,19 @@ gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
  * `gnome_vfs_cancellation_check()' returns %TRUE or if `select()' reports that
  * input is available on the file descriptor returned by
  * `gnome_vfs_cancellation_get_fd()'.
+ *
+ * This is an old deprecated function, don't call it, you don't need to.
  **/
 void
 gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
 {
 	gchar c;
 
+	/* ALEX: What the heck is this supposed to be used for?
+	 * It seems totatlly wrong, and isn't used by anything.
+	 */
+	g_assert_not_reached ();
+	
 	if (cancellation == NULL)
 		return;
 
@@ -223,15 +231,19 @@ gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation)
 {
 	g_return_val_if_fail (cancellation != NULL, -1);
 
+	G_LOCK (pipes);
 	if (cancellation->pipe_in <= 0) {
 		gint pipefd [2];
 
-		if (pipe (pipefd) == -1)
+		if (pipe (pipefd) == -1) {
+			G_UNLOCK (pipes);
 			return -1;
+		}
 
 		cancellation->pipe_in = pipefd [0];
 		cancellation->pipe_out = pipefd [1];
 	}
+	G_UNLOCK (pipes);
 
 	return cancellation->pipe_in;
 }

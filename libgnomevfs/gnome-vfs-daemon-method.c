@@ -51,7 +51,7 @@ do_open (GnomeVFSMethod *method,
 
 	uri_str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-	client_call = _gnome_vfs_client_call_get ();
+	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
 	res = GNOME_VFS_AsyncDaemon_Open (daemon,
@@ -61,8 +61,12 @@ do_open (GnomeVFSMethod *method,
 					  BONOBO_OBJREF (client_call),
 					  BONOBO_OBJREF (client),
 					  &ev);
+
+	_gnome_vfs_client_call_finished (client_call, context);
+	
 	*method_handle = (GnomeVFSMethodHandle *)handle;
 	g_free (uri_str);
+	
 	if (BONOBO_EX (&ev)) {
 		CORBA_exception_free (&ev);
 		res = GNOME_VFS_ERROR_INTERNAL;
@@ -82,15 +86,21 @@ do_close (GnomeVFSMethod *method,
 	GnomeVFSResult res;
 	CORBA_Environment ev;
 	GnomeVFSClientCall *client_call;
+	GnomeVFSClient *client;
 
 	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
 	
-	client_call = _gnome_vfs_client_call_get ();
+	client = _gnome_vfs_get_client ();
+	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
 	res = GNOME_VFS_DaemonHandle_Close ((GNOME_VFS_DaemonHandle) method_handle,
 					    BONOBO_OBJREF (client_call),
+					    BONOBO_OBJREF (client),
 					    &ev);
+
+	_gnome_vfs_client_call_finished (client_call, context);
+	
 	if (BONOBO_EX (&ev)) {
 		CORBA_exception_free (&ev);
 		res = GNOME_VFS_ERROR_INTERNAL;
@@ -113,14 +123,20 @@ do_read (GnomeVFSMethod *method,
 	CORBA_Environment ev;
 	GNOME_VFS_buffer *buf;
 	GnomeVFSClientCall *client_call;
+	GnomeVFSClient *client;
 		
-	client_call = _gnome_vfs_client_call_get ();
+	client = _gnome_vfs_get_client ();
+	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
 	res = GNOME_VFS_DaemonHandle_Read ((GNOME_VFS_DaemonHandle) method_handle,
 					   &buf, num_bytes,
 					   BONOBO_OBJREF (client_call),
+					   BONOBO_OBJREF (client),
 					   &ev);
+
+	_gnome_vfs_client_call_finished (client_call, context);
+	
 	if (BONOBO_EX (&ev)) {
 		CORBA_exception_free (&ev);
 		res = GNOME_VFS_ERROR_INTERNAL;

@@ -3,6 +3,7 @@
 
 #include <bonobo/bonobo-object.h>
 #include <GNOME_VFS_Daemon.h>
+#include "gnome-vfs-context.h"
 
 G_BEGIN_DECLS
 
@@ -17,7 +18,9 @@ typedef struct _GnomeVFSClientCall GnomeVFSClientCall;
 struct _GnomeVFSClientCall {
 	BonoboObject parent;
 
-	GMutex *mutex;
+	GMutex *delay_finish_mutex;
+	GCond *delay_finish_cond;
+	gboolean delay_finish;
 };
 
 typedef struct {
@@ -28,7 +31,12 @@ typedef struct {
 
 GType gnome_vfs_client_call_get_type (void) G_GNUC_CONST;
 
-GnomeVFSClientCall *_gnome_vfs_client_call_get (void);
+GnomeVFSClientCall *_gnome_vfs_client_call_get               (GnomeVFSContext    *context);
+void                _gnome_vfs_client_call_finished          (GnomeVFSClientCall *client_call,
+							      GnomeVFSContext    *context);
+void                _gnome_vfs_client_call_delay_finish      (GnomeVFSClientCall *client_call);
+void                _gnome_vfs_client_call_delay_finish_done (GnomeVFSClientCall *client_call);
+
 
 G_END_DECLS
 

@@ -74,23 +74,30 @@ module GNOME {
 
 		/* Daemon objects */
 		interface DaemonHandle : Bonobo::Unknown {
-			Result Close (in ClientCall client_call);
+			Result Close (in ClientCall client_call,
+				      in Client client);
 			Result Read (out buffer buf,
 				     in FileSize num_bytes,
-				     in ClientCall client_call);
+				     in ClientCall client_call,
+				     in Client client);
 			Result Write (in buffer buf,
 				      out FileSize bytes_written_return,
-				      in ClientCall client_call);
+				      in ClientCall client_call,
+				      in Client client);
 			Result Seek (in long whence,
 				     in FileOffset offset,
-				     in ClientCall client_call);
+				     in ClientCall client_call,
+				     in Client client);
 			Result Tell (out FileOffset offset,
-				     in ClientCall client_call);
+				     in ClientCall client_call,
+				     in Client client);
 			Result GetFileInfo (out FileInfo file_info,
 					    in long options,
-					    in ClientCall client_call);
+					    in ClientCall client_call,
+					    in Client client);
 			Result Truncate (in FileSize length,
-					 in ClientCall client_call);
+					 in ClientCall client_call,
+					 in Client client);
 
 			
 		};

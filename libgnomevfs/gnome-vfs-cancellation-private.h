@@ -38,7 +38,6 @@ void _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellat
 						 GnomeVFSClientCall   *client_call);
 
 
-
 G_END_DECLS
 
 #endif /* GNOME_VFS_CANCELLATION_PRIVATE_H */

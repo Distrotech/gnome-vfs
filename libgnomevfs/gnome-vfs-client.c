@@ -65,10 +65,8 @@ static void
 daemon_connection_broken (gpointer connection,
 			  GnomeVFSClient *client)
 {
-	/* TODO: This might deadlock if the signal get emitted while
-	 * we hold the lock. Is broken meant to be emitted in an idle,
-	 * or do we need recursive locks?
-	 * I think ORBit is meant to run this on the main loop though. Look it up.
+	/* This is run in an idle, so some code might run between the
+	 * connection going bork and this code running.
 	 */
 	G_LOCK (the_client);
 	CORBA_Object_release (client->priv->daemon, NULL);
@@ -76,9 +74,10 @@ daemon_connection_broken (gpointer connection,
 	CORBA_Object_release (client->priv->async_daemon, NULL);
 	client->priv->async_daemon = CORBA_OBJECT_NIL;
 
-	/* TODO: Free all objects tied to the daemon:
+	/* DAEMON-TODO: Free all objects tied to the daemon:
 	 * DaemonMonitor - free, mark for recreation on daemon reconnect
-	 * DaemonHandles - Will keep giving I/O errors and be freed on close.
+	 * DaemonHandles - Calling these will keep giving I/O errors and they
+	 * will be freed on close of the corresponding handle close.
 	 */
 	
 	G_UNLOCK (the_client);
@@ -91,7 +90,7 @@ activate_daemon (GnomeVFSClient *client)
 	CORBA_Environment  ev;
 	
 	CORBA_exception_init (&ev);
-	/* TODO: This call isn't really threadsafe */
+	/* DAEMON-TODO: This call isn't really threadsafe */
 	client->priv->daemon = bonobo_activation_activate_from_id ("OAFIID:GNOME_VFS_Daemon",
 								   0, NULL, &ev);
 	CORBA_exception_free (&ev);
@@ -111,8 +110,7 @@ activate_daemon (GnomeVFSClient *client)
 	if (client->priv->daemon != CORBA_OBJECT_NIL) {
 		ORBit_small_listen_for_broken (client->priv->daemon, G_CALLBACK (daemon_connection_broken), client);
 		
-		/* TODO: Set up objects that were up before a previous daemon disconnected */
-		
+		/* DAEMON-TODO: Set up monitors that were up before a previous daemon disconnected */
 	}
 }
 
@@ -122,7 +120,8 @@ activate_daemon (GnomeVFSClient *client)
  *
  * Returns a local duplicate of the daemon reference.
  * The client is guaranteed to be registred with the daemon.
- * May return NULL. Safe to call from a thread. 
+ * May return CORBA_OBJECT_NIL. May return an object where the
+ * connection has died. Safe to call from a thread. 
  */
 GNOME_VFS_Daemon
 _gnome_vfs_client_get_daemon (GnomeVFSClient *client)
@@ -144,6 +143,15 @@ _gnome_vfs_client_get_daemon (GnomeVFSClient *client)
 	return daemon;
 }
 
+/**
+ * gnome_vfs_client_get_async_daemon:
+ * @client: The client object
+ *
+ * Returns a local duplicate of the asyncdaemon reference.
+ * The client is guaranteed to be registred with the daemon.
+ * May return CORBA_OBJECT_NIL. May return an object where the
+ * connection has died. Safe to call from a thread. 
+ */
 GNOME_VFS_AsyncDaemon
 _gnome_vfs_client_get_async_daemon (GnomeVFSClient *client)
 {
@@ -178,6 +186,7 @@ _gnome_vfs_client_get_async_daemon (GnomeVFSClient *client)
 }
 
 
+/* Returns local singleton object */
 GnomeVFSClient *
 _gnome_vfs_get_client (void)
 {
