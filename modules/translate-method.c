@@ -174,8 +174,7 @@ static pid_t tr_exec_open_child (char **argv, /*OUT*/ FILE ** p_from_stream, /*O
 
 	ret = gnome_vfs_forkexec (	argv[0],
 					(const char * const*)argv,
-					GNOME_VFS_PROCESS_SETSID 
-						| GNOME_VFS_PROCESS_CLOSEFDS,
+					GNOME_VFS_PROCESS_CLOSEFDS,
 					tr_forkexec_cb,
 					(gpointer) &cb_data
 	);
@@ -265,22 +264,31 @@ static void tr_exec_pass_uri (char *uri_string, FILE * out_stream)
 static char * tr_exec_do_retain (TranslateMethod *tm, char * uri_string)
 {
 	char * child_result = NULL;
-	
+	int tries;
+
 	g_mutex_lock (tm->exec_state.retain_lock);
 
-	if ( 0 == tm->exec_state.retain_pid ) {
-		tm->exec_state.retain_pid = tr_exec_open_child (tm->pa.u.exec.argv, &(tm->exec_state.retain_from), &(tm->exec_state.retain_to));
-		if ( -1 == tm->exec_state.retain_pid ) {
+
+	/* re-execute the child process in case it unexpectedly disappears */  
+	for (tries = 0 ; ( ! child_result ) && tries < 3 ; tries ++) {
+		if ( 0 == tm->exec_state.retain_pid ) {
+			tm->exec_state.retain_pid = tr_exec_open_child (tm->pa.u.exec.argv, &(tm->exec_state.retain_from), &(tm->exec_state.retain_to));
+			if ( -1 == tm->exec_state.retain_pid ) {
+				tm->exec_state.retain_pid = 0;
+				goto error;
+			}
+		}
+
+		g_assert (uri_string);
+		tr_exec_pass_uri (uri_string, tm->exec_state.retain_to);
+
+		child_result = tr_getline (tm->exec_state.retain_from);
+
+		if (NULL == child_result) {
 			tm->exec_state.retain_pid = 0;
-			goto error;
 		}
 	}
-
-	g_assert (uri_string);
-	tr_exec_pass_uri (uri_string, tm->exec_state.retain_to);
-
-	child_result = tr_getline (tm->exec_state.retain_from);
-
+	
 error:
 	g_mutex_unlock (tm->exec_state.retain_lock);
 
@@ -351,6 +359,10 @@ static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri
 
 	if (tm->pa.u.exec.retain) {
 		child_result = tr_exec_do_retain (tm, uri_string);
+
+		if ( NULL == child_result ) {
+			goto error;
+		}
 	} else {
 		pid_t child_pid;
 		FILE *from_stream, *to_stream;

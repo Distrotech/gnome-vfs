@@ -1,3 +1,11 @@
+2000-09-23  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/translate-method.c: (tr_exec_open_child),
+	(tr_exec_do_retain), (tr_handle_exec):
+
+	Make vfs-translate's -exec -retain more robust.  Leaking processes
+	is less likely; processes are restarted if they die
+
 2000-09-22  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (http_handle_close):
