@@ -115,9 +115,11 @@ module GNOME {
 		};
 		
 		interface DaemonDirHandle : Bonobo::Unknown {
-			Result Close (in ClientCall client_call);
+			Result Close (in ClientCall client_call,
+				      in Client client);
 			Result Read (out FileInfoList file_info_list,
-				     in ClientCall client_call);
+				     in ClientCall client_call,
+				     in Client client);
 		};
 		
 
@@ -149,46 +151,57 @@ module GNOME {
 			Result GetFileInfo (in string uri,
 					    out FileInfo file_info,
 					    in long options,
-					    in ClientCall client_call);
+					    in ClientCall client_call,
+					    in Client client);
 			Result Truncate (in string uri,
 					 in FileSize length,
-					 in ClientCall client_call);
-			Result IsLocal (in string uri,
-					in ClientCall client_call);
+					 in ClientCall client_call,
+					 in Client client);
+			boolean IsLocal (in string uri,
+					in ClientCall client_call,
+					in Client client);
 			Result FindDirectory (in string find_near_uri,
 					      in long kind,
 					      out string result_uri,
 					      in boolean create_if_needed,
 					      in boolean find_if_needed,
 					      in unsigned long perm,
-					      in ClientCall client_call);
+					      in ClientCall client_call,
+					      in Client client);
 			Result MakeDirectory (in string uri,
 					      in unsigned long perm,
-					      in ClientCall client_call);
+					      in ClientCall client_call,
+					      in Client client);
 			Result RemoveDirectory (in string uri,
-						in ClientCall client_call);
+						in ClientCall client_call,
+						in Client client);
 			Result Move (in string old_uri,
 				     in string new_uri,
 				     in boolean force_replace,
-				     in ClientCall client_call);
+				     in ClientCall client_call,
+				     in Client client);
 			Result Unlink (in string uri,
-				       in ClientCall client_call);
+				       in ClientCall client_call,
+				       in Client client);
 			Result CheckSameFS (in string uri_a,
 					    in string uri_b,
 					    out boolean same_fs,
-					    in ClientCall client_call);
+					    in ClientCall client_call,
+					    in Client client);
 			Result SetFileInfo (in string uri,
 					    in FileInfo info,
 					    in long mask,
-					    in ClientCall client_call);
+					    in ClientCall client_call,
+					    in Client client);
 			Result CreateSymbolicLink (in string uri,
 						   in string target_referece,
-						   in ClientCall client_call);
+						   in ClientCall client_call,
+						   in Client client);
 			Result MonitorAdd (in string uri,
 					   in long monitor_type,
-					   in Client client,
 					   out DaemonMonitor monitor,
-					   in ClientCall client_call);
+					   in ClientCall client_call,
+					   in Client client);
 		};
 	};
 };
