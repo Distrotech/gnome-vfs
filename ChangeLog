@@ -1,3 +1,9 @@
+2004-05-11  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Include sys/param.h when looking for statfs(). Fixes FreeBSD build.
+	Patch from Joe Marcus Clarke
+	
 2004-04-20  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/sftp-method.c: fix method error reporting, return
