@@ -2044,7 +2044,7 @@ gnome_vfs_uri_list_parse (const gchar* uri_list)
 	 */
 	while (p != NULL) {
 		if (*p != '#') {
-			while (isspace ((int)*p))
+			while (g_ascii_isspace (*p))
 				p++;
 
 			q = p;
@@ -2056,7 +2056,7 @@ gnome_vfs_uri_list_parse (const gchar* uri_list)
 			if (q > p) {
 				q--;
 				while (q > p
-				       && isspace ((int)*q))
+				       && g_ascii_isspace (*q))
 					q--;
 
 				retval = g_malloc (q - p + 2);

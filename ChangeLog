@@ -1,4 +1,14 @@
+2001-08-31  Darin Adler  <darin@bentspoon.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_list_parse):
+	Use g_ascii_isspace instead of isspace. This fixes the char
+	subscript problem in an even better way, and makes sure we don't
+	interpret spaces with locale-specific rules.
+
+	* test/.cvsignore: Ignore this.
+
 2001-08-27  Sander Vesik <sander.vesik@sun.com>
+
 	* libgnomevfs/gnome-vfs-uri.c: cast argument to isspace so -Werror
 	does not cause breakage on solaris - using char as a subscript
 	generates a warning.
@@ -6,8 +16,6 @@
 2001-08-27  Martin Baulig  <baulig@suse.de>
 
 	* modules/file-method.c: Only #include <fam.h> if we HAVE_FAM.
-	(FIXME: The configure.in contains a check for `fam', but what the
-	hell is this ?)
 
 2001-08-26  Maciej Stachowiak  <mjs@noisehavoc.org>
 

@@ -18,6 +18,7 @@ test-mime
 test-mime-handlers
 test-mime-handlers-set
 test-mime-info
+test-monitor
 test-seek
 test-shell
 test-ssl
