@@ -1,3 +1,9 @@
+1999-12-14  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c: Implement gnome_vfs_async_load_directory_uri
+	in terms of gnome_vfs_async_load_directory by converting the GnomeVFSURI to a string.
+	Also, fill in the 'op_info' in gnome_vfs_async_load_directory.
+
 1999-12-09  Havoc Pennington  <hp@redhat.com>
 
 	* modules/gconf-method.c (vfs_module_init): Some updates, the

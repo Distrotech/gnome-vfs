@@ -329,6 +329,36 @@ G_STMT_START{								\
 }G_STMT_END
 
 GnomeVFSResult
+gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
+				    GnomeVFSURI *uri,
+				    GnomeVFSFileInfoOptions options,
+				    gchar *meta_keys[],
+				    GnomeVFSDirectorySortRule sort_rules[],
+				    gboolean reverse_order,
+				    GnomeVFSDirectoryFilterType filter_type,
+				    GnomeVFSDirectoryFilterOptions filter_options,
+				    const gchar *filter_pattern,
+				    guint items_per_notification,
+				    GnomeVFSAsyncDirectoryLoadCallback callback,
+				    gpointer callback_data)
+{
+	char *str_uri;
+	GnomeVFSResult retval;
+
+	str_uri = gnome_vfs_uri_to_string(uri, 0);
+
+	retval = gnome_vfs_async_load_directory(handle_return, str_uri, options, meta_keys,
+						sort_rules, reverse_order, filter_type,
+						filter_options,
+						filter_pattern,
+						items_per_notification,
+						callback,
+						callback_data);
+
+	g_free(str_uri);
+}
+
+GnomeVFSResult
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *uri,
 				GnomeVFSFileInfoOptions options,
@@ -348,6 +378,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSSlaveProcess *slave;
 	guint num_meta_keys, num_sort_rules;
 	guint i;
+	GnomeVFSAsyncDirectoryOpInfo *op_info;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -366,8 +397,6 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	slave->callback = callback;
 	slave->callback_data = callback_data;
 
-#if 0
-	GnomeVFSAsyncDirectoryOpInfo *op_info;
 	op_info = &slave->op_info.directory;
 
 	op_info->list = NULL;
@@ -379,7 +408,6 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		for (i = 0; i < num_meta_keys; i++)
 			op_info->meta_keys[i] = g_strdup (meta_keys[i]);
 	}
-#endif
 
 	/* Prepare the CORBA parameters.  */
 

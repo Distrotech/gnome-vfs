@@ -580,7 +580,7 @@ gnome_vfs_directory_list_position_next (GnomeVFSDirectoryListPosition position)
 {
 	GList *list;
 
-	g_return_val_if_fail (position != NULL, NULL);
+	g_return_val_if_fail (position != GNOME_VFS_DIRECTORY_LIST_POSITION_NONE, GNOME_VFS_DIRECTORY_LIST_POSITION_NONE);
 
 	list = position;
 	return list->next;
