@@ -1,3 +1,12 @@
+2001-03-01  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+	
+	* mime-type-capplet/Makefile.am:
+	The capplet .desktop should be copied to the Documents
+	directory of the control-center .desktop files directory,
+	not the root level.
+
 2001-02-28  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys.in:
