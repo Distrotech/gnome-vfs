@@ -14,36 +14,3 @@ GnomeVFSFileSize
 
 </para>
 
-<!-- ##### MACRO GNOME_VFS_OFFSET_IS_LONG_LONG ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO GNOME_VFS_SIZE_FORMAT_STR ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO GNOME_VFS_OFFSET_FORMAT_STR ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### TYPEDEF GnomeVFSFileSize ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### TYPEDEF GnomeVFSFileOffset ##### -->
-<para>
-
-</para>
-
-

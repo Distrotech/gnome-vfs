@@ -34,8 +34,6 @@
 #include "gnome-vfs-monitor.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-utils.h"
-#include "eggdesktopentries.h"
-#include "eggdirfuncs.h"
 
 typedef struct {
 	char *path;
@@ -130,16 +128,14 @@ gnome_vfs_mime_info_cache_blow_global_cache (void)
 static void
 gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 {
-	EggDesktopEntries *entries;
 	GError *load_error;
+	GKeyFile *key_file;
 	gchar *filename, **mime_types;
 	int i;
-	static gchar *allowed_start_groups[] = { "MIME Cache", NULL };
 	struct stat buf;
 
 	load_error = NULL;
 	mime_types = NULL;
-	entries = NULL;
 
 	if (dir->mime_info_cache_map != NULL &&
 	    dir->cache_monitor_handle == NULL &&
@@ -155,6 +151,8 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 							  (GDestroyNotify) g_free,
 							  NULL);
 
+	key_file = g_key_file_new ();
+
 	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
 
 	if (stat (filename, &buf) < 0)
@@ -165,32 +163,27 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 
 	dir->mime_info_cache_timestamp = buf.st_mtime;
 
-	entries =
-		egg_desktop_entries_new_from_file (allowed_start_groups,
-						   EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
-						   EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS |
-						   EGG_DESKTOP_ENTRIES_DISCARD_TRANSLATIONS,
-						   filename,
-						   &load_error);
+	g_key_file_load_from_file (key_file, filename, G_KEY_FILE_NONE, &load_error);
+
 	g_free (filename);
 	filename = NULL;
 
 	if (load_error != NULL)
 		goto error;
 
-	mime_types = egg_desktop_entries_get_keys (entries, "MIME Cache",
-						   NULL, &load_error);
+	mime_types = g_key_file_get_keys (key_file, "MIME Cache",
+					  NULL, &load_error);
 
 	if (load_error != NULL)
 		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
 		gchar **desktop_file_ids;
-		desktop_file_ids = egg_desktop_entries_get_string_list (entries,
-									"MIME Cache",
-									mime_types[i],
-									NULL,
-									&load_error);
+		desktop_file_ids = g_key_file_get_string_list (key_file,
+							       "MIME Cache",
+							       mime_types[i],
+							       NULL,
+							       &load_error);
 
 		if (load_error != NULL) {
 			g_error_free (load_error);
@@ -206,15 +199,14 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 	}
 
 	g_strfreev (mime_types);
-	egg_desktop_entries_free (entries);
+	g_key_file_free (key_file);
 
 	return;
 error:
 	if (filename)
 		g_free (filename);
 
-	if (entries != NULL)
-		egg_desktop_entries_free (entries);
+	g_key_file_free (key_file);
 
 	if (mime_types != NULL)
 		g_strfreev (mime_types);
@@ -226,17 +218,15 @@ error:
 static void
 gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 {
-	EggDesktopEntries *entries;
+	GKeyFile *key_file;
 	GError *load_error;
 	gchar *filename, **mime_types;
 	char **desktop_file_ids;
 	int i;
 	struct stat buf;
-	static gchar *allowed_start_groups[] = { "Default Applications", NULL };
 
 	load_error = NULL;
 	mime_types = NULL;
-	entries = NULL;
 
 	if (dir->defaults_list_map != NULL &&
 	    dir->defaults_monitor_handle == NULL &&
@@ -251,6 +241,8 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	dir->defaults_list_map = g_hash_table_new_full (g_str_hash, g_str_equal,
 							g_free, (GDestroyNotify)g_strfreev);
 
+	key_file = g_key_file_new ();
+
 	filename = g_build_filename (dir->path, "defaults.list", NULL);
 
 	if (stat (filename, &buf) < 0)
@@ -261,52 +253,46 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	dir->defaults_list_timestamp = buf.st_mtime;
 
-	entries =
-		egg_desktop_entries_new_from_file (allowed_start_groups,
-						   EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
-						   EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS |
-						   EGG_DESKTOP_ENTRIES_DISCARD_TRANSLATIONS,
-						   filename,
-						   &load_error);
+	g_key_file_load_from_file (key_file, filename, G_KEY_FILE_NONE, &load_error);
+
 	g_free (filename);
 	filename = NULL;
 
 	if (load_error != NULL)
 		goto error;
 
-	mime_types = egg_desktop_entries_get_keys (entries, "Default Applications",
-						   NULL, &load_error);
+	mime_types = g_key_file_get_keys (key_file, "Default Applications",
+					  NULL, &load_error);
 
 	if (load_error != NULL)
 		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
-		desktop_file_ids = egg_desktop_entries_get_string_list (entries,
-								       "Default Applications",
-								       mime_types[i],
-								       NULL,
-								       &load_error);
+		desktop_file_ids = g_key_file_get_string_list (key_file,
+							       "Default Applications",
+							       mime_types[i],
+							       NULL,
+							       &load_error);
 		if (load_error != NULL) {
 			g_error_free (load_error);
 			load_error = NULL;
 			continue;
 		}
-		
+
 		g_hash_table_replace (dir->defaults_list_map,
 				      g_strdup (mime_types[i]),
 				      desktop_file_ids);
 	}
 
 	g_strfreev (mime_types);
-	egg_desktop_entries_free (entries);
+	g_key_file_free (key_file);
 
 	return;
 error:
 	if (filename)
 		g_free (filename);
 
-	if (entries != NULL)
-		egg_desktop_entries_free (entries);
+	g_key_file_free (key_file);
 
 	if (mime_types != NULL)
 		g_strfreev (mime_types);
@@ -406,28 +392,25 @@ static char **
 gnome_vfs_mime_info_cache_get_search_path (void)
 {
 	char **args = NULL;
-	char **data_dirs;
-	char *user_data_dir;
+	const char * const *data_dirs;
+	const char *user_data_dir;
 	int i, length, j;
 
-	data_dirs = egg_get_secondary_data_dirs ();
+	data_dirs = g_get_system_data_dirs ();
 
 	for (length = 0; data_dirs[length] != NULL; length++);
 
 	args = g_new (char *, length + 2);
 
 	j = 0;
-	user_data_dir = egg_get_user_data_dir ();
+	user_data_dir = g_get_user_data_dir ();
 	args[j++] = g_build_filename (user_data_dir, "applications", NULL);
-	g_free (user_data_dir);
 
 	for (i = 0; i < length; i++) {
 		args[j++] = g_build_filename (data_dirs[i],
 					      "applications", NULL);
 	}
 	args[j++] = NULL;
-
-	g_strfreev (data_dirs);
 
 	return args;
 }
@@ -436,7 +419,7 @@ static gboolean
 gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *dir,
                                                       const char *desktop_entry)
 {
-	EggDesktopEntries *entries;
+	GKeyFile *key_file;
 	GError *load_error;
 	int i;
 	gboolean can_show_in;
@@ -446,12 +429,10 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 	can_show_in = TRUE;
 
 	filename = g_build_filename ("applications", desktop_entry, NULL);
-	entries =
-		egg_desktop_entries_new_from_file (NULL,
-						   EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS |
-						   EGG_DESKTOP_ENTRIES_DISCARD_TRANSLATIONS,
-						   filename,
-						   &load_error);
+
+	key_file = g_key_file_new ();
+	g_key_file_load_from_data_dirs (key_file, filename, NULL,
+					G_KEY_FILE_NONE, &load_error);
 	g_free (filename);
 
 	if (load_error != NULL) {
@@ -459,21 +440,21 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 		return FALSE;
 	}
 
-	if (egg_desktop_entries_has_key (entries,
-					 egg_desktop_entries_get_start_group (entries),
-					 "OnlyShowIn")) {
+	if (g_key_file_has_key (key_file,
+				g_key_file_get_start_group (key_file),
+				"OnlyShowIn", NULL)) {
 
 		char **only_show_in_list;
-		only_show_in_list = egg_desktop_entries_get_string_list (entries,
-									 egg_desktop_entries_get_start_group (entries),
-									 "OnlyShowIn",
-									 NULL,
-									 &load_error);
+		only_show_in_list = g_key_file_get_string_list (key_file,
+								g_key_file_get_start_group (key_file),
+								"OnlyShowIn",
+								NULL,
+								&load_error);
 
 		if (load_error != NULL) {
 			g_error_free (load_error);
 			g_strfreev (only_show_in_list);
-			egg_desktop_entries_free (entries);
+			g_key_file_free (key_file);
 			return FALSE;
 		}
 
@@ -488,15 +469,15 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 		g_strfreev (only_show_in_list);
 	}
 
-	if (egg_desktop_entries_has_key (entries,
-					 egg_desktop_entries_get_start_group (entries),
-					 "NotShowIn")) {
+	if (g_key_file_has_key (key_file,
+				g_key_file_get_start_group (key_file),
+				"NotShowIn", NULL)) {
 		char **not_show_in_list;
-		not_show_in_list = egg_desktop_entries_get_string_list (entries,
-									egg_desktop_entries_get_start_group (entries),
-									"NotShowIn",
-									NULL,
-									&load_error);
+		not_show_in_list = g_key_file_get_string_list (key_file,
+							       g_key_file_get_start_group (key_file),
+							       "NotShowIn",
+							       NULL,
+							       &load_error);
 
 		if (load_error != NULL) {
 			g_error_free (load_error);
@@ -513,7 +494,7 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 		g_strfreev (not_show_in_list);
 	}
 
-	egg_desktop_entries_free (entries);
+	g_key_file_free (key_file);
 	return can_show_in;
 }
 

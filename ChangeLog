@@ -1,3 +1,68 @@
+2004-11-22  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* doc/Makefile.am:
+
+	Recognize deprecated apis
+
+	* doc/gnome-vfs-2.0-docs.sgml:
+	* doc/gnome-vfs-2.0-sections.txt:
+
+	Move the mime deprecated api to a separate document
+	for clarity.
+
+	* doc/tmpl/gnome-vfs-application-registry.sgml:
+	* doc/tmpl/gnome-vfs-file-size.sgml:
+	* doc/tmpl/gnome-vfs-mime-database.sgml:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+
+	Fully deprecate.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_application),
+	(gnome_vfs_mime_application_copy),
+	(gnome_vfs_mime_application_free),
+	(gnome_vfs_mime_application_new_from_id),
+	(gnome_vfs_mime_action_launch_with_env),
+	(gnome_vfs_mime_application_launch_with_env),
+	(expand_application_parameters), (expand_component_parameters),
+	(copy_str_list), (guess_deprecated_fields_from_exec),
+	(gnome_vfs_mime_application_new_from_desktop_id),
+	(gnome_vfs_mime_get_default_application_for_uri),
+	(gnome_vfs_mime_get_all_applications_for_uri),
+	(gnome_vfs_mime_application_get_desktop_id),
+	(gnome_vfs_mime_application_get_desktop_file_path),
+	(gnome_vfs_mime_application_get_name),
+	(gnome_vfs_mime_application_get_generic_name),
+	(gnome_vfs_mime_application_get_icon),
+	(gnome_vfs_mime_application_get_exec),
+	(gnome_vfs_mime_application_supports_uris),
+	(gnome_vfs_mime_application_requires_terminal),
+	(gnome_vfs_mime_application_get_startup_notify),
+	(gnome_vfs_mime_application_get_startup_wm_class):
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+
+	Adapt the API to the new desktop entries based
+	backend and add some features previously provided by
+	the application registry.
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_init),
+	(gnome_vfs_mime_info_cache_dir_init_defaults_list),
+	(gnome_vfs_mime_info_cache_get_search_path),
+	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
+	* libgnomevfs/gnome-vfs-mime-info-cache.h:
+
+	Port to the glib key file parser.
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_url_show_with_env):
+
+	Use the new API here.
+
+	* test/test-mime-handlers.c: (print_application_info), (main):
+
+	Rewrite to test not deprecated API.
+
 2004-11-16  Mark McLoughlin  <mark@skynet.ie>
 
 	Remove the vfolder and cdemenu methods - the panel and

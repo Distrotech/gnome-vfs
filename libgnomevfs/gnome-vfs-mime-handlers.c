@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-mime-handlers.h"
 
-#include "eggdesktopentries.h"
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-info-cache.h"
@@ -41,10 +40,28 @@
 
 #define GCONF_DEFAULT_VIEWER_EXEC_PATH   "/desktop/gnome/applications/component_viewer/exec"
 
+#define MIXED_API_WARNING "Cannot call %s with a GNOMEVFSMimeApplication structure "\
+			  "constructed by the deprecated application registry", \
+			  __FUNCTION__
+
+struct _GnomeVFSMimeApplicationPrivate
+{
+	char *desktop_file_path;
+	char *generic_name;
+	char *icon;
+	char *exec;
+	gboolean supports_uris;
+	gboolean startup_notify;
+	char *startup_wm_class;
+};
+
 extern GList * _gnome_vfs_configuration_get_methods_list (void);
 
-static GnomeVFSResult expand_parameters                          (gpointer                  action,
-								  GnomeVFSMimeActionType    type,
+static GnomeVFSResult expand_application_parameters              (GnomeVFSMimeApplication  *application,
+								  GList                   **uri_list,
+								  int                      *argc,
+								  char                   ***argv);
+static GnomeVFSResult expand_component_parameters                (gpointer                  action,
 								  GList                    *uris,
 								  int                      *argc,
 								  char                   ***argv);
@@ -163,73 +180,6 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
 	return action;
 }
 
-static gboolean
-mime_application_supports_uri_scheme (GnomeVFSMimeApplication *application,
-				      const char *uri_scheme)
-{
-	/* The default supported uri scheme is "file" */
-	if (application->supported_uri_schemes == NULL
-	    && g_ascii_strcasecmp ((const char *) uri_scheme, "file") == 0) {
-		return TRUE;
-	}
-	return g_list_find_custom (application->supported_uri_schemes,
-				   uri_scheme,
-				   (GCompareFunc)g_ascii_strcasecmp) != NULL;
-}
-
-
-/* This should be public, but we're in an API freeze */
-GnomeVFSMimeApplication *
-gnome_vfs_mime_get_default_application_for_scheme (const char *mime_type,
-						   const char *uri_scheme)
-{
-	char *default_application_id;
-	GnomeVFSMimeApplication *default_application;
-
-	default_application = NULL;
-
-	/* First, try the default for the mime type */
-	default_application_id = gnome_vfs_mime_get_default_desktop_entry (mime_type);
-
-	if (default_application_id != NULL
-	    && default_application_id[0] != '\0') {
-		default_application =
-			gnome_vfs_mime_application_new_from_id (default_application_id);
-		g_free (default_application_id);
-	}
-
-	if (default_application != NULL &&
-	    !mime_application_supports_uri_scheme (default_application, uri_scheme)) {
-		gnome_vfs_mime_application_free (default_application);
-		default_application = NULL;
-	}
-	
-	if (default_application == NULL) {
-		GList *all_applications, *l;
-			
-		/* Failing that, try something from the complete list */
-		all_applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
-
-		for (l = all_applications; l != NULL; l = l->next) {
-			default_application = 
-				gnome_vfs_mime_application_new_from_id ((char *) l->data);
-			
-			if (default_application != NULL &&
-			    !mime_application_supports_uri_scheme (default_application, uri_scheme)) {
-				gnome_vfs_mime_application_free (default_application);
-				default_application = NULL;
-			}
-			if (default_application != NULL)
-				break;
-		}
-		g_list_foreach (all_applications, (GFunc) g_free, NULL);
-		g_list_free (all_applications);
-	}
-
-	return default_application;
-}
-
-
 /**
  * gnome_vfs_mime_get_default_application:
  * @mime_type: A const char * containing a mime type, e.g. "image/png"
@@ -250,7 +200,6 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 
 	/* First, try the default for the mime type */
 	default_application_id = gnome_vfs_mime_get_default_desktop_entry (mime_type);
-
 	if (default_application_id != NULL
 	    && default_application_id[0] != '\0') {
 		default_application =
@@ -1083,6 +1032,15 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->expects_uris = application->expects_uris;
 	result->supported_uri_schemes = copy_str_list (application->supported_uri_schemes);
 	result->requires_terminal = application->requires_terminal;
+	
+	result->priv = g_new0 (GnomeVFSMimeApplicationPrivate, 1);
+	result->priv->desktop_file_path = g_strdup (application->priv->desktop_file_path);
+	result->priv->generic_name = g_strdup (application->priv->generic_name);
+	result->priv->icon = g_strdup (application->priv->icon);
+	result->priv->exec = g_strdup (application->priv->exec); 
+	result->priv->supports_uris = application->priv->supports_uris;
+	result->priv->startup_notify = application->priv->startup_notify;
+	result->priv->startup_wm_class = g_strdup (application->priv->startup_wm_class);
 
 	return result;
 }
@@ -1098,6 +1056,17 @@ void
 gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application) 
 {
 	if (application != NULL) {
+		GnomeVFSMimeApplicationPrivate *priv = application->priv;
+	
+		if (priv != NULL) {
+			g_free (priv->desktop_file_path);
+			g_free (priv->generic_name);
+			g_free (priv->icon);
+			g_free (priv->exec);
+			g_free (priv->startup_wm_class);
+		}
+		g_free (priv);
+
 		g_free (application->name);
 		g_free (application->command);
 		g_list_foreach (application->supported_uri_schemes,
@@ -1175,114 +1144,7 @@ gnome_vfs_mime_component_list_free (GList *list)
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
-	EggDesktopEntries *entries;
-	GError *entries_error;
-	GnomeVFSMimeApplication *application;
-	char *filename, *p;
-
-	application = NULL;
-	entries_error = NULL;
-
-	filename = g_build_filename ("applications", id, NULL);
-
-	entries =
-		egg_desktop_entries_new_from_file (NULL,
-				EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
-			        EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS,
-				filename,
-				NULL);
-	g_free (filename);
-	
-	if (entries == NULL)
-		return NULL;
-
-	application = g_new0 (GnomeVFSMimeApplication, 1);
-
-	application->id = g_strdup (id);
-	application->name = egg_desktop_entries_get_locale_string (entries,
-								   egg_desktop_entries_get_start_group (entries),
-								   "Name", NULL, NULL);
-	if (application->name == NULL) 
-		goto error;
-
-	application->command = egg_desktop_entries_get_string (entries,
-			                                       egg_desktop_entries_get_start_group (entries),
-							       "Exec", NULL);
-
-	if (application->command == NULL) 
-		goto error;
-
-	application->requires_terminal = egg_desktop_entries_get_boolean (entries,
-			                                       egg_desktop_entries_get_start_group (entries),
-							       "Terminal", &entries_error);
-
-	if (entries_error != NULL) {
-		g_error_free (entries_error);
-                application->requires_terminal = FALSE;
-	}
-
-	egg_desktop_entries_free (entries);
-	entries = NULL;
-
-	/* Guess on these last fields based on parameters passed to Exec line
-	 */
-	if ((p = strstr (application->command, "%f")) != NULL
-		|| (p = strstr (application->command, "%d")) != NULL
-		|| (p = strstr (application->command, "%n")) != NULL) {
-
-	  	do {
-			*p = '\0';
-			p--;
-		} while (p >= application->command && g_ascii_isspace (*p)); 
-		
-		application->can_open_multiple_files = FALSE;
-		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
-		application->supported_uri_schemes = NULL;
-	} else if ((p = strstr (application->command, "%F")) != NULL
-		   || (p = strstr (application->command, "%D")) != NULL
-		   || (p = strstr (application->command, "%N")) != NULL) {
-	  	do {
-			*p = '\0';
-			p--;
-		} while (p >= application->command && g_ascii_isspace (*p)); 
-		
-		application->can_open_multiple_files = TRUE;
-		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
-		application->supported_uri_schemes = NULL;
-	} else if ((p = strstr (application->command, "%u")) != NULL) {
-		do {
-			*p = '\0';
-			p--;
-		} while (p >= application->command && g_ascii_isspace (*p)); 
-
-		application->can_open_multiple_files = FALSE;
-		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
-		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
-	} else if ((p = strstr (application->command, "%U")) != NULL) {
-		do {
-			*p = '\0';
-			p--;
-		} while (p >= application->command && g_ascii_isspace (*p)); 
-
-		application->can_open_multiple_files = TRUE;
-		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
-		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
-	} else {
-		application->can_open_multiple_files = FALSE;
-		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
-		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
-	} 
-
-	return application;
-
-error:
-	if (entries) 
-		egg_desktop_entries_free (entries);
-
-	if (application) 
-		gnome_vfs_mime_application_free (application);
-
-	return NULL;
+	return gnome_vfs_mime_application_new_from_desktop_id (id);
 }
 
 /** 
@@ -1352,8 +1214,8 @@ gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,
 					 
 	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
 	
-		result = expand_parameters (action->action.component, action->action_type,
-					    uris, &argc, &argv);
+		result = expand_component_parameters (action->action.component,
+					              uris, &argc, &argv);
 					    
 		if (result != GNOME_VFS_OK) {
 			return result;
@@ -1428,34 +1290,15 @@ gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
                                             char                   **envp)
 {
 	GnomeVFSResult result;
-	GList *u;
-	char *scheme;
 	char **argv;
 	int argc;
 	
 	g_return_val_if_fail (app != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (uris != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	
-	/* check that all uri schemes are supported */
-	if (app->supported_uri_schemes != NULL) {
-		for (u = uris; u != NULL; u = u->next) {
-
-			scheme = gnome_vfs_get_uri_scheme (u->data);
-		
-			if (!g_list_find_custom (app->supported_uri_schemes,
-						 scheme, (GCompareFunc) strcmp)) {
-				g_free (scheme);
-				return GNOME_VFS_ERROR_NOT_SUPPORTED;
-			}
-			
-			g_free (scheme);
-		}
-	}
-
 	while (uris != NULL) {
 		
-		result = expand_parameters (app, GNOME_VFS_MIME_ACTION_TYPE_APPLICATION,
-				            uris, &argc, &argv);
+		result = expand_application_parameters (app, &uris, &argc, &argv);
 		
 		if (result != GNOME_VFS_OK) {
 			return result;
@@ -1481,66 +1324,174 @@ gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
 		}
 		
 		g_strfreev (argv);
-		uris = uris->next;
-		
-		if (app->can_open_multiple_files) {
-			break;
-		}
 	}
 	
 	return GNOME_VFS_OK;		
 }
 
 static GnomeVFSResult
-expand_parameters (gpointer                 action,
-		   GnomeVFSMimeActionType   type,
-                   GList                   *uris,
-		   int                     *argc,
-		   char                  ***argv)		   
+expand_application_parameters (GnomeVFSMimeApplication *app,
+			       GList                  **uri_list,
+			       int                     *argc,
+			       char                  ***argv)		   
 {
-	GnomeVFSMimeApplication *app = NULL;
+	GList *uris = *uri_list;
+	GnomeVFSResult result = GNOME_VFS_OK;
+	GPtrArray *args;
+	int c_argc, i;
+	char **c_argv;
+	char *path;
+
+	if (!g_shell_parse_argv (app->priv->exec, &c_argc, &c_argv, NULL)) {
+		return GNOME_VFS_ERROR_PARSE;
+	}
+
+	args = g_ptr_array_new ();
+
+	for (i = 0; i < c_argc && uris != NULL; i++) {
+		/* replace %u with a single URL */
+		if (strcmp (c_argv[i], "%u") == 0) {
+			g_ptr_array_add (args, g_strdup (uris->data));
+			uris = uris->next;
+
+		/* replace %U with a list of URLS */
+		} else if (strcmp (c_argv[i], "%U") == 0) {
+			while (uris != NULL) {
+				g_ptr_array_add (args, g_strdup (uris->data));
+				uris = uris->next;
+			}
+
+		/* replace %f with a local path */
+		} else if (strcmp (c_argv[i], "%f") == 0) {
+			path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+			if (path != NULL)
+				g_ptr_array_add (args, g_strdup (path));
+			else
+				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+
+			uris = uris->next;
+
+		/* replace %F with a list of local paths */
+		} else if (strcmp (c_argv[i], "%F") == 0) {
+			while (uris != NULL) {
+				path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+				if (path != NULL)
+					g_ptr_array_add (args, g_strdup (path));
+				else
+					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+				
+				uris = uris->next;
+			}
+
+		/* replace %d with a single directory */
+		} else if (strcmp (c_argv[i], "%d") == 0) {
+			path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+			if (path != NULL) {
+				g_ptr_array_add (args, g_path_get_dirname (path));
+				uris = uris->next;
+			}
+			else
+				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+
+		/* replace %D with a list of directories */
+		} else if (strcmp (c_argv[i], "%D") == 0) {
+			while (uris != NULL) {
+				path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+				if (path != NULL)
+				{
+					path = g_path_get_dirname (path);
+					g_ptr_array_add (args, g_strdup (path));
+					uris = uris->next;
+				}
+				else
+					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+			}
+
+		/* replace %n with a filename */
+		} else if (strcmp (c_argv[i], "%n") == 0) {
+			path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+			if (path != NULL) {
+				g_ptr_array_add (args, g_path_get_basename (path));
+				uris = uris->next;
+			}
+			else
+				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+
+		/* replace %N with a list of filenames */
+		} else if (strcmp (c_argv[i], "%N") == 0) {
+			while (uris != NULL)
+			{
+				path = gnome_vfs_get_local_path_from_uri (uris->data);
+
+				if (path != NULL) {
+					g_ptr_array_add (args, g_path_get_basename (path));
+					uris = uris->next;
+				}
+				else
+					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+			}
+
+		/* otherwise take arg from command */
+		} else {
+			g_ptr_array_add (args, g_strdup (c_argv[i]));
+		}
+	}
+
+	g_strfreev (c_argv);
+
+	g_ptr_array_add (args, NULL);
+	*argc = args->len;
+	*argv = (char **)args->pdata;
+	
+	g_ptr_array_free (args, FALSE);
+
+	/* Break the cycle if there are no substitutions */
+	if (*uri_list == uris)
+		*uri_list = NULL;
+	else
+		*uri_list = uris;
+
+	return result;
+}
+
+static GnomeVFSResult
+expand_component_parameters (gpointer                 action,
+			     GList                   *uris,
+			     int                     *argc,
+			     char                  ***argv)		   
+{
 	Bonobo_ServerInfo *server = NULL;
 	GConfClient *client;
-	char *path;
 	char *command = NULL;
 	char **c_argv, **r_argv;
 	int c_argc, max_r_argc;
 	int i, c;
 	gboolean added_arg;
 
-	/* figure out what command to parse */	
-	switch (type) {
-	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
-		app = (GnomeVFSMimeApplication *) action;
-		command = g_strdup (app->command);
-		break;
-		
-	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
-		if (!gconf_is_initialized ()) {
-			if (!gconf_init (0, NULL, NULL)) {
-				return GNOME_VFS_ERROR_INTERNAL;
-			}
-		}
-	
-		client = gconf_client_get_default ();
-		g_return_val_if_fail (client != NULL, GNOME_VFS_ERROR_INTERNAL);
-	
-		command = gconf_client_get_string (client, GCONF_DEFAULT_VIEWER_EXEC_PATH, NULL);
-		g_object_unref (client);
-		
-		if (command == NULL) {
-			g_warning ("No default component viewer set\n");
+	if (!gconf_is_initialized ()) {
+		if (!gconf_init (0, NULL, NULL)) {
 			return GNOME_VFS_ERROR_INTERNAL;
 		}
-		
-		server = (Bonobo_ServerInfo *) action;
-		
-		break;
-
-	default:
-		g_assert_not_reached ();
 	}
-
+	
+	client = gconf_client_get_default ();
+	g_return_val_if_fail (client != NULL, GNOME_VFS_ERROR_INTERNAL);
+	
+	command = gconf_client_get_string (client, GCONF_DEFAULT_VIEWER_EXEC_PATH, NULL);
+	g_object_unref (client);
+		
+	if (command == NULL) {
+		g_warning ("No default component viewer set\n");
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+		
+	server = (Bonobo_ServerInfo *) action;
+		
 	if (!g_shell_parse_argv (command,
 				 &c_argc,
 				 &c_argv,
@@ -1559,45 +1510,9 @@ expand_parameters (gpointer                 action,
 		/* replace %s with the uri parameters */
 		if (strcmp (c_argv[c], "%s") == 0) {
 			while (uris != NULL) {
-				if (app != NULL) {
-					switch (app->expects_uris) {
-					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
-						r_argv[i] = g_strdup (uris->data);
-						break;
-	
-					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS:
-						r_argv[i] = gnome_vfs_get_local_path_from_uri (uris->data);
-						if (r_argv[i] == NULL) {
-							g_strfreev (c_argv);
-							g_strfreev (r_argv);
-							return GNOME_VFS_ERROR_NOT_SUPPORTED;
-						}
-						break;
-			
-					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES:
-						/* this really means use URIs for non local files */
-						path = gnome_vfs_get_local_path_from_uri (uris->data);
-			
-						if (path != NULL) {
-							r_argv[i] = path;
-						} else {
-							r_argv[i] = g_strdup (uris->data);
-						}				
-			
-						break;
-				
-					default:
-						g_assert_not_reached ();
-					}	
-				} else {
-					r_argv[i] = g_strdup (uris->data);
-				}
+				r_argv[i] = g_strdup (uris->data);
 				i++;
 				uris = uris->next;
-				
-				if (app != NULL && !app->can_open_multiple_files) {
-					break;
-				}
 			}
 			added_arg = TRUE;
 			
@@ -1616,44 +1531,9 @@ expand_parameters (gpointer                 action,
 	/* if there is no %s or %c, append the parameters to the end */
 	if (!added_arg) {
 		while (uris != NULL) {
-			if (app != NULL) {
-				switch (app->expects_uris) {
-				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
-					r_argv[i] = g_strdup (uris->data);
-					break;
-
-				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS:
-					r_argv[i] = gnome_vfs_get_local_path_from_uri (uris->data);
-					if (r_argv[i] == NULL) {
-						g_strfreev (r_argv);
-						return GNOME_VFS_ERROR_NOT_SUPPORTED;
-					}
-					break;
-		
-				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES:
-					/* this really means use URIs for non local files */
-					path = gnome_vfs_get_local_path_from_uri (uris->data);
-		
-					if (path != NULL) {
-						r_argv[i] = path;
-					} else {
-						r_argv[i] = g_strdup (uris->data);
-					}				
-		
-					break;
-			
-				default:
-					g_assert_not_reached ();
-				}
-			} else {
-				r_argv[i] = g_strdup (uris->data);
-			}
+			r_argv[i] = g_strdup (uris->data);
 			i++;
 			uris = uris->next;
-			
-			if (app != NULL && !app->can_open_multiple_files) {
-				break;
-			}
 		}
 	}		
 	
@@ -1691,4 +1571,493 @@ copy_str_list (GList *string_list)
 				       g_strdup ((char *) node->data));
 				       }
 	return g_list_reverse (copy);
+}
+
+static void
+guess_deprecated_fields_from_exec (GnomeVFSMimeApplication *application)
+{
+	char *p;
+
+	application->command = g_strdup (application->priv->exec);
+
+	/* Guess on these last fields based on parameters passed to Exec line
+	 */
+	if ((p = strstr (application->command, "%f")) != NULL
+		|| (p = strstr (application->command, "%d")) != NULL
+		|| (p = strstr (application->command, "%n")) != NULL) {
+
+	  	do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+		
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
+		application->supported_uri_schemes = NULL;
+	} else if ((p = strstr (application->command, "%F")) != NULL
+		   || (p = strstr (application->command, "%D")) != NULL
+		   || (p = strstr (application->command, "%N")) != NULL) {
+	  	do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+		
+		application->can_open_multiple_files = TRUE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
+		application->supported_uri_schemes = NULL;
+	} else if ((p = strstr (application->command, "%u")) != NULL) {
+		do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
+	} else if ((p = strstr (application->command, "%U")) != NULL) {
+		do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+
+		application->can_open_multiple_files = TRUE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
+	} else {
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
+	} 
+}
+
+/**
+ * gnome_vfs_mime_application_new_from_desktop_id:
+ * @id: the identifier of a desktop entry
+ *
+ * Returns a new #GnomeVFSMimeApplication.
+ *
+ * Return value: a #GnomeVFSMimeApplication
+ *
+ * Since: 2.8
+ */
+GnomeVFSMimeApplication *
+gnome_vfs_mime_application_new_from_desktop_id (const char *id)
+{
+	GError *err = NULL;
+	GKeyFile *key_file;
+	GnomeVFSMimeApplication *app;
+	char *filename, *group = NULL;
+
+	g_return_val_if_fail (id != NULL, NULL);
+
+	app = g_new0 (GnomeVFSMimeApplication, 1);
+	app->priv = g_new0 (GnomeVFSMimeApplicationPrivate, 1);
+	app->id = g_strdup (id);
+
+	filename = g_build_filename ("applications", id, NULL);
+	key_file = g_key_file_new ();
+
+	if (!g_key_file_load_from_data_dirs (key_file, filename,
+					     &app->priv->desktop_file_path,
+					     G_KEY_FILE_NONE, &err)) {
+		goto exit;
+	}
+
+	group = g_key_file_get_start_group (key_file);
+
+	app->name = g_key_file_get_locale_string (key_file, group, "Name",
+						  NULL, &err);
+	if (err) goto exit;
+
+	/* Not REQUIRED by the specification but required in our context */
+	app->priv->exec = g_key_file_get_string (key_file, group, "Exec", &err);
+	if (err) goto exit;
+
+	app->requires_terminal = g_key_file_get_boolean (key_file, group,
+							 "Terminal", &err);
+	if (err) {
+		g_error_free (err);
+		err = NULL;
+		app->requires_terminal = FALSE;
+	}
+
+	app->priv->startup_notify = g_key_file_get_boolean (key_file, group,
+						            "StartupNotify", &err);
+	if (err) {
+		g_error_free (err);
+		err = NULL;
+		app->priv->startup_notify = FALSE;
+	}
+
+	app->priv->generic_name = g_key_file_get_locale_string
+					(key_file, group, "GenericName", NULL, NULL);
+ 
+	app->priv->icon = g_key_file_get_string (key_file, group, "IconName", NULL);	
+	
+	app->priv->startup_wm_class = g_key_file_get_string (key_file, group,
+						             "StartupWMClass", NULL);
+						       
+	app->priv->supports_uris = strstr (app->priv->exec, "%u") ||
+				   strstr (app->priv->exec, "%U");
+
+	guess_deprecated_fields_from_exec (app);
+
+exit:
+	g_free (group);
+	g_free (filename);
+	g_key_file_free (key_file);
+
+	if (err) {
+		g_error_free (err);
+		gnome_vfs_mime_application_free (app);
+		return NULL;
+	}
+
+	return app;
+}
+
+/**
+ * gnome_vfs_mime_application_get_default_application_for_uri:
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php"
+ * @uri: a stringified URI
+ *
+ * Query the MIME database for the application to be executed on the file
+ * identified by @uri of MIME type @mime_type by default.
+ * 
+ * Return value: A GnomeVFSMimeApplication representing the default handler
+ *
+ * Since: 2.8
+ */
+GnomeVFSMimeApplication *
+gnome_vfs_mime_get_default_application_for_uri (const char *uri,
+						const char *mime_type)
+{
+	GList *applications, *l;
+	GnomeVFSMimeApplication *app = NULL;
+	char *scheme;
+	gboolean local;
+	
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (mime_type != NULL, NULL);
+	
+	scheme = gnome_vfs_get_uri_scheme (uri);
+	if (scheme != NULL) {
+		local = (strcmp (scheme, "file") == 0);
+	} else {
+		return NULL;
+	}
+	g_free (scheme);
+	
+	app = gnome_vfs_mime_get_default_application (mime_type);
+	if (local || gnome_vfs_mime_application_supports_uris (app)) {
+		return app;
+	} else {
+		gnome_vfs_mime_application_free (app);
+		app = NULL;
+	}
+
+	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
+
+	for (l = applications; l != NULL; l = l->next) {
+		app = gnome_vfs_mime_application_new_from_id (l->data);
+
+		if (app != NULL)
+		{
+			if (local || gnome_vfs_mime_application_supports_uris (app)) {
+				break;
+			} else {
+				gnome_vfs_mime_application_free (app);
+				app = NULL;
+			}
+		}
+	}
+
+	g_list_foreach (applications, (GFunc) g_free, NULL);
+	g_list_free (applications);
+
+	return app;
+}
+
+/**
+ * gnome_vfs_mime_application_get_default_application_for_uri:
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php"
+ * @uri: a stringified URI
+ * 
+ * Return an alphabetically sorted list of GnomeVFSMimeApplication
+ * data structures representing all applications in the MIME database able
+ * to handle the file identified by @uri of MIME type @mime_type (and supertypes).
+ * 
+ * Return value: A GList * where the elements are GnomeVFSMimeApplication *
+ * representing all possible handlers
+ *
+ * Since: 2.8
+ */
+GList *
+gnome_vfs_mime_get_all_applications_for_uri (const char *uri,
+					     const char *mime_type)
+{
+	GList *applications, *l, *result = NULL;
+	GnomeVFSMimeApplication *app;
+	char *scheme;
+	gboolean local;
+	
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (mime_type != NULL, NULL);
+	
+	scheme = gnome_vfs_get_uri_scheme (uri);
+	if (scheme != NULL) {
+		local = (strcmp (scheme, "file") == 0);
+	} else {
+		return NULL;
+	}
+	g_free (scheme);
+
+	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
+
+	for (l = applications; l != NULL; l = l->next) {
+		app = gnome_vfs_mime_application_new_from_id (l->data);
+
+		if (app != NULL)
+		{
+			if (local || gnome_vfs_mime_application_supports_uris (app)) {
+				result = g_list_append (result, app);
+			} else {
+				gnome_vfs_mime_application_free (app);
+			}
+		}
+	}		
+
+	g_list_foreach (applications, (GFunc) g_free, NULL);
+	g_list_free (applications);
+
+	return result;
+}
+
+/**
+ * gnome_vfs_mime_application_get_desktop_file_path:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the identifier of the desktop entry.
+ *
+ * Return value: the identifier of the desktop entry
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_desktop_id (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->id;
+}
+
+/**
+ * gnome_vfs_mime_application_get_desktop_file_path:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the path of the desktop entry, a configuration
+ * file describing the properties of a particular program like
+ * it's name, how it is to be launched, how it appears in menus.
+ *
+ * Return value: the path of the .desktop file
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_desktop_file_path (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->desktop_file_path;
+}
+
+/**
+ * gnome_vfs_mime_application_get_name:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the name of the application.
+ *
+ * Return value: the name of the application.
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_name (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	return app->name;
+}
+
+/**
+ * gnome_vfs_mime_application_get_generic_name:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the generic name of the application.
+ *
+ * Return value: the generic name of the application.
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_generic_name (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->generic_name;
+}
+
+/**
+ * gnome_vfs_mime_application_get_icon:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the filename of an icon representing the specified application.
+ *
+ * Return value: the filename of the icon with or without path information.
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_icon (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->icon;
+}
+
+/**
+ * gnome_vfs_mime_application_get_exec:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the program to execute, possibly with arguments
+ * and parameter variables, as specified by the
+ * <ulink url="http://www.freedesktop.org/standards/desktop-entry-spec">
+ * Desktop Entry Specification</ulink>
+ *
+ * Return value: the command line to execute
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_exec (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->exec;
+}
+
+/**
+ * gnome_vfs_mime_application_supports_uris:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns whether the application accept uris as command
+ * lines arguments.
+ *
+ * Return value: %TRUE if the application can handle uris
+ *
+ * Since: 2.8
+ */
+gboolean
+gnome_vfs_mime_application_supports_uris (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, FALSE);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return FALSE;
+	}
+
+	return app->priv->supports_uris;
+}
+
+/**
+ * gnome_vfs_mime_application_requires_terminal:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns whether the application runs in a terminal window.
+ *
+ * Return value: %TRUE if the application runs in a terminal
+ *
+ * Since: 2.8
+ */
+gboolean
+gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, FALSE);
+	
+	return app->requires_terminal;
+}
+
+/**
+ * gnome_vfs_mime_application_get_startup_notify:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns whether the application supports startup notification.
+ * If true, it is KNOWN that the application will send a
+ * "remove" message when started with the DESKTOP_LAUNCH_ID
+ * environment variable set.
+ *
+ * Return value: %TRUE if the application supports startup notification
+ *
+ * Since: 2.8
+ */
+gboolean
+gnome_vfs_mime_application_get_startup_notify (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, FALSE);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return FALSE;
+	}
+
+	return app->priv->startup_notify;
+}
+
+/**
+ * gnome_vfs_mime_application_get_startup_wm_class:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the WM class of the main window of the application.
+ *
+ * Return value: The WM class of the application's window
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_startup_wm_class (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->startup_wm_class;
 }

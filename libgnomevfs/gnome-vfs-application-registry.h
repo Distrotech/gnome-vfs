@@ -25,6 +25,16 @@
  * 	Based on original mime-info database code by Miguel de Icaza
  */
 
+/* DEPRECATED 
+ *
+ * Do not use in new code.
+ *
+ * Use the api in gnome-vfs-mime-handlers.h instead.
+ *
+ */
+ 
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
+
 #ifndef GNOME_VFS_APPLICATION_REGISTRY_H
 #define GNOME_VFS_APPLICATION_REGISTRY_H
 
@@ -152,3 +162,5 @@ void		gnome_vfs_application_registry_save_mime_application(const GnomeVFSMimeApp
 G_END_DECLS
 
 #endif /* GNOME_VFS_APPLICATION_REGISTRY_H */
+
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */

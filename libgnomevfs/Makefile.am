@@ -38,6 +38,7 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
 	gnome-vfs-mime.h			\
+	gnome-vfs-mime-deprecated.h		\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info-cache.h		\
 	gnome-vfs-mime-monitor.h		\
@@ -139,8 +140,6 @@ libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
 # mime-sniff-buffers and cancellabe-ops are used by modules
 noinst_HEADERS =				\
-	eggdesktopentries.h			\
-	eggdirfuncs.h				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
@@ -214,6 +213,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
+	gnome-vfs-mime-deprecated.h		\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info-cache.h		\
 	gnome-vfs-mime-monitor.h		\
@@ -241,8 +241,6 @@ CORBA_SOURCE = \
 
 libgnomevfs_2_la_SOURCES =			\
 	$(CORBA_SOURCE)				\
-	eggdesktopentries.c			\
-	eggdirfuncs.c				\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-address.c			\
 	gnome-vfs-async-job-map.c		\

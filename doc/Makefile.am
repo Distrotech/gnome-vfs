@@ -10,7 +10,7 @@ DOC_MODULE=gnome-vfs-2.0
 DOC_MAIN_SGML_FILE=gnome-vfs-2.0-docs.sgml
 
 # Extra options to supply to gtkdoc-scan
-SCAN_OPTIONS=
+SCAN_OPTIONS=--deprecated-guards="GNOME_VFS_DISABLE_DEPRECATED"
 
 # The directory containing the source code. Relative to $(srcdir)
 DOC_SOURCE_DIR=../libgnomevfs

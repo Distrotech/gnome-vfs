@@ -18,6 +18,8 @@
  * Boston, MA 02111-1307, USA. 
  */
 
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
+
 #ifndef GNOME_VFS_MIME_INFO_CACHE_H
 #define GNOME_VFS_MIME_INFO_CACHE_H
 
@@ -30,4 +32,6 @@ gchar              *gnome_vfs_mime_get_default_desktop_entry (const char *mime_t
 
 G_END_DECLS
 
-#endif
+#endif /* GNOME_VFS_MIME_INFO_CACHE_H */
+
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */

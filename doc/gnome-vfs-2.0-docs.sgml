@@ -32,6 +32,7 @@
 <!ENTITY gnome-vfs-file-async-ops SYSTEM "xml/gnome-vfs-async-ops.xml">
 <!ENTITY gnome-vfs-result SYSTEM "xml/gnome-vfs-result.xml">
 <!ENTITY gnome-vfs-mime-database SYSTEM "xml/gnome-vfs-mime-database.xml">
+<!ENTITY gnome-vfs-mime-database-deprecated SYSTEM "xml/gnome-vfs-mime-database-deprecated.xml">
 <!ENTITY gnome-vfs-module SYSTEM "xml/gnome-vfs-module.xml">
 <!ENTITY gnome-vfs-module-shared SYSTEM "xml/gnome-vfs-module-shared.xml">
 <!ENTITY gnome-vfs-module-callback-module-api SYSTEM "xml/gnome-vfs-module-callback-module-api.xml">
@@ -184,9 +185,10 @@
       appropriate actions when files are activated. 
     </para>
 
-    &gnome-vfs-application-registry;
     &gnome-vfs-mime-database;
     &gnome-vfs-mime-monitor;
+    &gnome-vfs-mime-database-deprecated; 
+    &gnome-vfs-application-registry;
   </chapter>
 
   <chapter id="modules">

@@ -2159,19 +2159,15 @@ gnome_vfs_url_show_with_env (const char  *url,
 		return result;
 	}
 	
-	type = _gnome_vfs_get_slow_mime_type (url);
+	g_free (scheme);
 
-	if (type == NULL) {
-		g_free (scheme);
-		return GNOME_VFS_ERROR_BAD_PARAMETERS;
-	}
+	type = _gnome_vfs_get_slow_mime_type (url);
 
 	params.data = (char *) url;
 	params.prev = NULL;
 	params.next = NULL;
 	
-	app = gnome_vfs_mime_get_default_application_for_scheme (type, scheme);
-	g_free (scheme);
+	app = gnome_vfs_mime_get_default_application_for_uri (url, type);
 	
 	if (app != NULL) {
 		result = gnome_vfs_mime_application_launch_with_env (app, &params, envp);

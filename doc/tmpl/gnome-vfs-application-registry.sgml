@@ -1,9 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-Application Registry
+Deprecated Application Registry API
 
 <!-- ##### SECTION Short_Description ##### -->
-
-stores supported MIME types and URIs of various applications
+do not use in new code
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
