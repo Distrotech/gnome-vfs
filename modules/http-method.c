@@ -1350,6 +1350,9 @@ make_request (HttpFileHandle **handle_return,
 	gchar *proxy_host = NULL;
 	guint proxy_port;
 	const gchar *path;
+
+	connection = NULL;
+	iobuf = NULL;
 	
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
@@ -1368,6 +1371,7 @@ make_request (HttpFileHandle **handle_return,
 							   proxy_port,
 							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
+		g_free (proxy_host);
 	} else {
 		proxy_connect = FALSE;
 
@@ -1378,7 +1382,7 @@ make_request (HttpFileHandle **handle_return,
 	}
 
 	if (result != GNOME_VFS_OK) {
-		return result;
+		goto error;
 	}
 	
 	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
@@ -1484,9 +1488,11 @@ make_request (HttpFileHandle **handle_return,
 	return result;
 
  error:
-	g_free (proxy_host);
+ 	*handle_return = NULL;
 	gnome_vfs_iobuf_destroy (iobuf);
-	gnome_vfs_inet_connection_destroy (connection, NULL);
+	if (connection != NULL) {
+		gnome_vfs_inet_connection_destroy (connection, NULL);
+	}
 	return result;
 }
 
@@ -1588,6 +1594,7 @@ do_create (GnomeVFSMethod *method,
 		result = make_request (&handle, uri, "HEAD", NULL, NULL,
 				       context);
 		http_handle_close (handle, context);
+
 		if (result != GNOME_VFS_OK &&
 		    result != GNOME_VFS_ERROR_NOT_FOUND) {
 			return result;
@@ -1598,6 +1605,7 @@ do_create (GnomeVFSMethod *method,
 	}
 
       	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
+	http_handle_close(handle, context);
 
 	if (result != GNOME_VFS_OK) {
 		/* the PUT failed */
@@ -1606,7 +1614,6 @@ do_create (GnomeVFSMethod *method,
 
 	/* clean up */
 	g_byte_array_free(bytes, TRUE);
-	http_handle_close(handle, context);
 
 	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
 	result = do_open(method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
@@ -1621,29 +1628,33 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
-	HttpFileHandle *handle;
-	GnomeVFSResult result = GNOME_VFS_OK;
+	HttpFileHandle *old_handle;
+	HttpFileHandle *new_handle;
+	GnomeVFSResult result;
 
 	DEBUG_HTTP (("+Close"));
 
-	handle = (HttpFileHandle *) method_handle;
+	old_handle = (HttpFileHandle *) method_handle;
 
 	/* if the handle was opened in write mode then:
 	 * 1) there won't be a connection open, and
 	 * 2) there will be data to_be_written...
 	 */
-	if (handle->to_be_written != NULL) {
-		GnomeVFSURI *uri = handle->uri;
-		GByteArray *bytes = handle->to_be_written;
+	if (old_handle->to_be_written != NULL) {
+		GnomeVFSURI *uri = old_handle->uri;
+		GByteArray *bytes = old_handle->to_be_written;
 
 #ifndef DAV_NO_CACHE
 		cache_invalidate_uri (uri);
 #endif /* DAV_NO_CACHE */
 
-		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
+		result = make_request (&new_handle, uri, "PUT", bytes, NULL, context);
+		http_handle_close (new_handle, context);
+	} else {
+		result = GNOME_VFS_OK;
 	}
 
-	http_handle_close (handle, context);
+	http_handle_close (old_handle, context);
 
 	DEBUG_HTTP (("-Close"));
 
@@ -1914,7 +1925,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 	gint depth,
 	GnomeVFSContext *context)
 {
-	HttpFileHandle *handle;
 	GnomeVFSResult result = GNOME_VFS_OK;
 	GnomeVFSFileSize bytes_read, num_bytes=(64*1024);
 	gchar *buffer = g_malloc(num_bytes);
@@ -1948,7 +1958,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 #endif /* DAV_NO_CACHE */
 
-	result = make_request (&handle, uri, "PROPFIND", request, 
+	result = make_request (handle_return, uri, "PROPFIND", request, 
 			extraheaders, context);
 
 	/* FIXME bugzilla.eazel.com 3834: It looks like some http
@@ -1957,18 +1967,18 @@ make_propfind_request (HttpFileHandle **handle_return,
 	 * redirects or any other legal response. This case probably
 	 * needs to be made more robust.
 	 */
-	if (result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
-		DEBUG_HTTP (("HTTP server returned an invalid PROPFIND response: %d", handle->server_status));
+	if (result == GNOME_VFS_OK && (*handle_return)->server_status != 207) { /* Multi-Status */
+		DEBUG_HTTP (("HTTP server returned an invalid PROPFIND response: %d", (*handle_return)->server_status));
+		http_handle_close (*handle_return, context);
+		*handle_return = NULL;
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	if (result == GNOME_VFS_OK) {
-		*handle_return = handle;
-	} else {
+	if (result != GNOME_VFS_OK) {
+		g_assert (*handle_return == NULL);
 		xmlFreeParserCtxt(parserContext);
 		g_free(buffer);
 		g_free(extraheaders);
-		*handle_return = NULL;
 		return result;
 	}
 
@@ -2013,15 +2023,15 @@ make_propfind_request (HttpFileHandle **handle_return,
 					uri);
 
 			if(file_info->name) { 
-				handle->files = g_list_append(handle->files, file_info);
+				(*handle_return)->files = g_list_append((*handle_return)->files, file_info);
 			} else {
 				/* This response refers to the root node */
 				/* Abandon the old information that came from create_handle*/
 
-				file_info->name = handle->file_info->name;
-				handle->file_info->name = NULL;
-				gnome_vfs_file_info_unref (handle->file_info);
-				handle->file_info = file_info;
+				file_info->name = (*handle_return)->file_info->name;
+				(*handle_return)->file_info->name = NULL;
+				gnome_vfs_file_info_unref ((*handle_return)->file_info);
+				(*handle_return)->file_info = file_info;
 				found_root_node_props = TRUE;
 			}
 			
@@ -2046,9 +2056,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 	 */
 
 	if (depth == 0) {
-		cache_add_uri (uri, handle->file_info);
+		cache_add_uri (uri, (*handle_return)->file_info);
 	} else {
-		cache_add_uri_and_children (uri, handle->file_info, handle->files);
+		cache_add_uri_and_children (uri, (*handle_return)->file_info, (*handle_return)->files);
 	}
 #endif /* DAV_NO_CACHE */
 
@@ -2238,6 +2248,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (file_info, handle->file_info);
 		} else {
+			g_assert (handle == NULL); /* Make sure we're not leaking some old one */
 			result = make_request (&handle, uri, "HEAD", NULL, NULL, 
 				       	context);
 
@@ -2265,7 +2276,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		}
 
 		http_handle_close (handle, context);
-		handle = NULL;
 #ifndef DAV_NO_CACHE
 	}
 #endif /* DAV_NO_CACHE */
@@ -2323,17 +2333,16 @@ static GnomeVFSResult do_make_directory(GnomeVFSMethod * method,
 
 	if ( GNOME_VFS_OK == result) {
 		result = GNOME_VFS_ERROR_FILE_EXISTS;
-	} else if ( GNOME_VFS_ERROR_NOT_FOUND == result) {
-		http_handle_close (handle, context);
-		handle = NULL;
+	} else {
+		g_assert (handle == NULL); /* Make sure we're not leaking an old one */
+		if ( GNOME_VFS_ERROR_NOT_FOUND == result) {
 #ifndef DAV_NO_CACHE
-		cache_invalidate_uri_parent (uri);
+			cache_invalidate_uri_parent (uri);
 #endif /* DAV_NO_CACHE */
-		result =  make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+			result =  make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+		}
 	}
-
 	http_handle_close (handle, context);
-	handle = NULL;
 
 	DEBUG_HTTP (("-Make_Directory"));
 

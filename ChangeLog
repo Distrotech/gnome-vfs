@@ -1,3 +1,23 @@
+2000-10-26  John Sullivan  <sullivan@eazel.com>
+
+	Crashed while fiddling around in WebDAV looking at some other
+	bug. Found cause of crash, and cleaned up various callers
+	of offending routine (make_request). Maybe this will improve 
+	general stability for WebDAV.
+
+	* modules/http-method.c: 
+	(make_request): Fixed case where failure in 
+	gnome_vfs_inet_connection_create would cause this routine to
+	leave *handle_return uninitialized (now it sets it to NULL);
+	rearranged code a little to fix leaks.
+	(do_create): Rearranged code slightly for clarity. 
+	(do_close): Fixed leak of handle.
+	(make_propfind_request): combined handle and handle_return
+	into single variable for clarity and to avoid leaks.
+	(do_get_file_info): added assert, removed unnecessary handle = NULL 
+	line.
+	(do_make_directory): clarified use of handle
+
 2000-10-26  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-corba/Makefile.am:
