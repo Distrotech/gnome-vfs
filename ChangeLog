@@ -1,3 +1,16 @@
+2000-06-26  Michael Meeks  <michael@helixcode.com>
+
+	* modules/efs-method.c (do_make_directory): add error handling
+	on efs close. (do_make_directory): commit.
+	(do_close): re-write, adding commit.
+	(do_unlink): add commit.
+
+	* Makefile.am (SUBDIRS): move SUBDIRS_OAF up the build so
+	it is made in time for the tests.
+
+	* test/test-shell.c (list_commands): expand help.
+	(syntax_error): kill. (main): update argument handling.
+
 2000-06-26  Pavel  <pavel@eazel.com>
 
 	* Makefile.am:

@@ -249,27 +249,28 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
-	FileHandle *file_handle;
-	gint close_retval, fs_close_retval;
+	GnomeVFSResult result;
+	FileHandle    *file_handle;
 
 	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
 
 	file_handle = (FileHandle *) method_handle;
 
-	if (file_handle->file)
-		close_retval = efs_file_close (file_handle->file);
+	if (efs_file_close (file_handle->file) < 0)
+		result = gnome_vfs_result_from_errno ();
+
+	else if (efs_commit (file_handle->dir) < 0)
+		result = gnome_vfs_result_from_errno ();
+
+	else if (efs_close (file_handle->dir) < 0)
+		result = gnome_vfs_result_from_errno ();
+
 	else
-		g_warning ("FIXME: Opening of directories is tough");
+		result = GNOME_VFS_OK;
 
-	fs_close_retval = efs_close (file_handle->dir);
-
-	/* FIXME: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
 
-	if (close_retval == 0)
-		return GNOME_VFS_OK;
-	else
-		return gnome_vfs_result_from_errno ();
+	return result;
 }
 
 static GnomeVFSResult
@@ -725,7 +726,11 @@ do_make_directory (GnomeVFSMethod *method,
 	else
 		result = GNOME_VFS_OK;
 
-	efs_close (dir);
+	if (efs_commit (dir) < 0)
+		result = GNOME_VFS_ERROR_INTERNAL;
+
+	else if (efs_close (dir) < 0)
+		result = GNOME_VFS_ERROR_INTERNAL;
 
 	return result;
 }
@@ -776,11 +781,16 @@ do_unlink (GnomeVFSMethod *method,
 		return result;
 
 	if (!efs_erase (dir, uri->text))
-		result = GNOME_VFS_ERROR_NOT_FOUND;
+		result = gnome_vfs_result_from_errno ();
+
+	else if (efs_commit (dir) < 0)
+		result = gnome_vfs_result_from_errno ();
+
+	else if (efs_close (dir) < 0)
+		result = gnome_vfs_result_from_errno ();
+
 	else
 		result = GNOME_VFS_OK;
-
-	efs_close (dir);
 
 	return result;
 }

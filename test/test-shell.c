@@ -36,7 +36,7 @@
 #include <errno.h>
 #include <unistd.h>
 
-#include <glib.h>
+#include <gnome.h>
 
 #include "gnome-vfs.h"
 
@@ -144,29 +144,16 @@ list_commands ()
 	printf ("command can be one or all of:\n");
 	printf (" * ls:                     list files\n");
 	printf (" * cd:                     enter storage\n");
-	printf (" * cat,type <stream name>: dump text file to console\n");
-	printf (" * dump     <stream name>: dump binary file to console\n");
+	printf (" * mv:                     move object\n");
+	printf (" * rm:                     remove stream\n");
+	printf (" * mkdir:                  make storage\n");
+	printf (" * rmdir:                  remove storage\n");
+	printf (" * info,stat:              get information on object\n");
+	printf (" * cat,type:               dump text file to console\n");
+	printf (" * dump:                   dump binary file to console\n");
 	printf (" * sync:                   for sinkers\n");
 	printf (" * quit,exit,bye:          exit\n");
 }
-
-#if 0
-static void
-syntax_error (char *err)
-{
-	if (err) {
-		printf("Error: '%s'\n",err);
-		exit(1);
-	}
-		
-	printf ("Sytax:\n");
-	printf (" ole <ole-file> [-i] [commands...]\n\n");
-	printf (" -i: Interactive, queries for fresh commands\n\n");
-
-	list_commands ();
-	exit(1);
-}
-#endif
 
 static gboolean
 simple_regexp (const char *regexp, const char *fname)
@@ -633,54 +620,59 @@ do_dump (void)
 		return;
 }
 
+int interactive = 0;
+const struct poptOption options [] = {
+	{ "interactive", 'i', POPT_ARG_NONE, &interactive, 0,
+	  "Allow interactive input", NULL  },
+	{ NULL, '\0', 0, NULL, 0 }
+};
+
 int
 main (int argc, char **argv)
 {
-	int exit = 0, interact = 0;
+	poptContext popt_context;
+	int exit = 0;
 	char *buffer = g_new (char, 1024) ;
+	const char **args;
+	FILE *instream;
 
-	cur_dir = g_get_current_dir ();
-
-	if (cur_dir && cur_dir [strlen (cur_dir)] != '/') {
-		char *new_dir = g_strconcat (cur_dir, "/", NULL);
-		g_free (cur_dir);
-		cur_dir = new_dir;
-	}
+	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
+				    options, 0, &popt_context);
 
 	if (!gnome_vfs_init ()) {
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
 
-#if 0
-	if (argc > 1 && argv [argc - 1] [0] == '-'
-	    && argv [argc - 1] [1] == 'i') 
-#endif
-		interact = 1;
-#if 0
-	else {
-		char *str=g_strdup(argv[1]) ;
-		for (lp=2;lp<argc;lp++)
-			str = g_strconcat(str," ",argv[lp],NULL); /* FIXME Mega leak :-) */
-		buffer = str; /* and again */
-	}
-#endif
+	instream = stdin;
+	args = poptGetArgs (popt_context);
+	if (!args)
+		cur_dir = g_get_current_dir ();
+	else
+		cur_dir = g_strdup (args [0]);
 
-	do
-	{
+	if (cur_dir && cur_dir [strlen (cur_dir)] != '/') {
+		char *new_dir = g_strconcat (cur_dir, "/", NULL);
+		g_free (cur_dir);
+		cur_dir = new_dir;
+	}
+		
+	poptFreeContext (popt_context);
+
+	do {
 		char *ptr;
 
-		if (interact) {
+		if (interactive) {
 			fprintf (stdout,"%s > ", cur_dir);
 			fflush (stdout);
-			fgets (buffer, 1023, stdin);
 		}
+		fgets (buffer, 1023, stdin);
 
 		arg_data = g_strsplit (g_strchomp (buffer), delim, -1);
 		arg_cur  = 0;
-		if (!arg_data && interact) continue;
-		if (!interact)
-			printf ("Command : '%s'\n", arg_data[0]);
+		if (!arg_data && interactive) continue;
+		if (!interactive)
+			printf ("Command : '%s'\n", arg_data [0]);
 		ptr = arg_data[arg_cur++];
 		if (!ptr)
 			continue;
@@ -722,8 +714,7 @@ main (int argc, char **argv)
 
 		g_strfreev (arg_data);
 		arg_data = NULL;
-	}
-	while (!exit && interact);
+	} while (!exit);
 
 	g_free (buffer);
 	g_free (cur_dir);
