@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-10 15:17+0900\n"
-"PO-Revision-Date: 2004-07-10 15:15+0900\n"
+"POT-Creation-Date: 2004-07-23 10:14+0900\n"
+"PO-Revision-Date: 2004-07-23 10:04+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,95 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Bonobo を初期化できませんでした"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, c-format
+msgid "File could not be opened: %s"
+msgstr "ファイルを開けませんでした: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "ファイル '%s' を開けませんでした: %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+msgid "File is empty"
+msgstr "ファイルが空です"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "ファイル '%s' からの読み込みに失敗しました: %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+".desktop エントリの行 '%s' はエントリ、グループまたはコメントではありません。"
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr ".desktop エントリ・ファイルが正しい起動グループで開始していません。"
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr ".desktop エントリの行 '%s' が UTF-8 ではありません。"
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr ".desktop エントリに不明なエンコーディング '%s' が含まれています。"
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr ".desktop エントリにグループ '%s' がありません。"
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr ".desktop エントリにキー '%s' がありません。"
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ".desktop エントリのキー '%s' には解釈することのできない値があります。"
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+".desktop エントリのキー '%s' はロケール '%s' で翻訳された値が含まれていませ"
+"ん。"
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr ""
+".desktop エントリに不正なエスケープ・シーケンス '%s' が含まれています。"
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr ".desktop エントリの行末にエスケープ文字が含まれています。"
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr "値 '%s' を数字として解釈できません。"
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr "値 '%s' を論理値として解釈できません。"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -172,134 +258,138 @@ msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris ボリューム"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Sun SAM-QFS Volume"
+msgstr "Sun SAM-QFS ボリューム"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "拡張 DOS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Xenix ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "XFS Linux ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "XIAFS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "不明"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
 msgstr "CD ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
 msgstr "空の CD-R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
 msgstr "CD-R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
 msgstr "空の CD-RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
 msgstr "CD-RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
 msgstr "空の DVD-R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
 msgstr "DVD-R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
 msgstr "空の DVD-RAM ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
 msgstr "空の DVD-RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
 msgstr "DVD-RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
 msgstr "空の DVD+RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
 msgstr "DVD+RW ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
 msgstr "空の DVD+R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
 msgstr "DVD+R ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
 msgstr "光学ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
 msgstr "オーディオ・ディスク"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
 msgstr "コンパクト・フラッシュ"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
 msgstr "メモリ・スティック"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
 msgstr "スマート・メディア"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
 msgstr "SD/MMC メディア"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
 msgstr "フロッピー"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
 msgstr "Mac OS"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
 msgstr "Mac OS X"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
 msgstr "Windows"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
 msgstr "Linux"
 
@@ -321,6 +411,30 @@ msgstr "ジョブの種類 %u が不明です"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "操作を停止しました"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"廃止予定の関数です。MIME 型データベースに対するユーザの変更はもうサポートして"
+"いません。"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -461,7 +575,7 @@ msgstr "許可されていない操作です"
 msgid "Is a directory"
 msgstr "これはフォルダ"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "メモリが足りません"
@@ -562,11 +676,26 @@ msgid "Error launching command"
 msgstr "コマンドを起動する際にエラーが発生しました"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "タイムアウトです"
 
-#: libgnomevfs/gnome-vfs-result.c:180
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+msgid "Nameserver error"
+msgstr "ネームサーバのエラーです"
+
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr "リソースがロックされています"
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr "廃止予定の関数呼び出しです"
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
@@ -593,55 +722,55 @@ msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "フロッピー"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Zip ドライブ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "メモリ・スティック"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "カメラ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Root ボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "オーディオ CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "不明なボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -649,13 +778,13 @@ msgstr ""
 "されていないようです。"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "ボリュームをマウントできません。おそらくデバイスの中にメディアがないようで"
 "す。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -663,7 +792,7 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。フォーマットされていないフロッピー"
 "はマウントできません。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -671,28 +800,28 @@ msgstr ""
 "選択したボリュームをマウントできません。フォーマットされていないボリュームは"
 "マウントできません。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "選択したフロッピー・ドライブをマウントできません。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "選択したボリュームをマウントできません。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "選択したボリュームをアンマウントできません。"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "コマンドの起動に失敗しました"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "メディアを排出できません"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "接続済のサーバをアンマウントできません"
 
@@ -746,15 +875,15 @@ msgstr "ツール"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "ネットワーク"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "ホーム"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
@@ -1018,8 +1147,8 @@ msgid "How to display local DNS-SD service"
 msgstr "ローカルの DNS-SD サービスの表示方法"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr "設定可能な値: \"merged\"、\"separate\"、\"disable\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "設定可能な値: \"merged\"、\"separate\"、\"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
