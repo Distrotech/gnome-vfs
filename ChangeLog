@@ -1,3 +1,8 @@
+2000-07-25  Pavel Cisler <pavel@eazel.com>
+
+	* modules/file-method.c: (do_find_directory), (do_check_same_fs):
+	Use lstat instead of stat to correctly treat symbolic links.
+
 2000-07-24  Fatih Demir	<kabalak@gmx.net> # which EMAIL_ADDRESS ?
 
 	* mime-type-capplet/nautilus-mime-type.desktop: Added the
