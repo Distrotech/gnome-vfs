@@ -46,6 +46,7 @@ modules_LTLIBRARIES =				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
+	libnntp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
 	libdesktop.la				\
@@ -126,6 +127,13 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h
+
+### `nntp' method
+
+libnntp_la_SOURCES = 				\
+	nntp-method.c 				\
+	nntp-method.h
+libfile_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
 
