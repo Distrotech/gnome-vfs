@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-07-08 08:49+0400\n"
+"POT-Creation-Date: 2004-08-04 08:37+0400\n"
+"PO-Revision-Date: 2004-08-04 10:32+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,9 @@ msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
 
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Не удалось провести разбор: %s"
+msgstr "Не удалось открыть файл: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
@@ -35,45 +35,47 @@ msgid "Failed to open file '%s': %s"
 msgstr "Произошёл сбой при открытии файла \"%s\":%s "
 
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "Файл существует"
+msgstr "Файл пуст"
 
 #: libgnomevfs/eggdesktopentries.c:360
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "Произошёл сбой при открытии файла \"%s\":%s "
+msgstr "Произошёл сбой при чтении из файла \"%s\":%s "
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"элементы рабочего стола содержат строку \"%s\", не являющуюся элементом, "
+"группой или комментарием"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "файл элементов рабочего стола не начинается с начальной группы"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
+"элементы рабочего стола содержат строку \"%s\" не в кодировке УТФ-8 (UTF-8)"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "элементы рабочего стола содержат неизвестную кодировку \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "элементы рабочего стола не содержат группу \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "элементы рабочего стола не содержат ключа \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
@@ -81,31 +83,37 @@ msgstr ""
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
+"элементы рабочего стола содержат ключ \"%s\", значение которого не может "
+"быть понято."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"элементы рабочего стола не содержат переведённого значения ключа \"%s\" "
+"длялокали \"%s\"."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
+"элементы рабочего стола содержат недопустимую экранирующую "
+"последовательность \"%s\""
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "элементы рабочего стола содержат экранирующий символ в конце строки"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Значение \"%s\" не может быть понято как число."
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Значение \"%s\" не может быть понято булевое."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -254,9 +262,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Том ОС Solaris формата Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "Том формата AFFS"
+msgstr "Том формата Sun SAM-QFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -284,118 +291,111 @@ msgstr "Неизвестно"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "Компакт-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Чистый записываемый компакт-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "Дисковод компакт-дисков"
+msgstr "Записывемый компакт-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Чистый перезаписываемый компакт-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "Дисковод компакт-дисков"
+msgstr "Перезаписываемый компакт-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "Дисковод компакт-дисков"
+msgstr "Видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Чистый записывемый (-R) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "Записывемый (-R) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Чистый записывемый (-RAM) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "Записывемый (-RAM) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Чистый перезаписывемый (-RW) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "Перезаписывемый (-RW) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Чистый перезаписывемый (+RW) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "Перезаписывемый (+RW) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Чистый записывемый (+R) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "Записывемый (+R) видео-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "Оптический диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
-msgstr "Аудио компакт-диск"
+msgstr "Аудио-диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Карта памяти (CF)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Мемори стик"
+msgstr "Карта памяти (Мемори стик)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Карта памяти (SM)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "Карта памяти (SD/MMC)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Дискета"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Диск ОС Mac OS"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Диск ОС Mac OS Х"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Окна"
+msgstr "Диск ОС Windows"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "Диск ОС Линукс"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -433,10 +433,18 @@ msgstr "Действие остановлено"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Устаревшая функция. Пользовательские изменения базы данных MIME больше не "
+"поддерживаются."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -684,19 +692,18 @@ msgstr "Произошёл таймаут"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Произошла общая ошибка"
+msgstr "Произошла ошибка сервера имён"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Ресурс заблокирован"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Функция устарела"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -725,7 +732,7 @@ msgstr "%.1f Мб"
 msgid "%.1f GB"
 msgstr "%.1f Гб"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1115
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (недопустимый Юникод)"
@@ -773,14 +780,12 @@ msgstr "Неизвестный том"
 msgid "Network server"
 msgstr "Сетевой сервер"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -898,12 +903,12 @@ msgstr "Значение GnomeVFSSeekPosition %d неизвестно"
 msgid "Windows Network"
 msgstr "Сеть ОС Виндоуз (Windows)"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Идентификационная информация удалённого компьютера (%s) неизвестна."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -917,11 +922,11 @@ msgstr ""
 "убедиться, что продолжение соединения будет полностью безопасна, свяжитесь с "
 "ситемным администратором."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Войти всё равно"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Отменить вход"
 
@@ -990,190 +995,188 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Аргумент выполнения, использующийся исходным терминальным приложением."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
 msgstr "Запускать программу в терминале"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"aim\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"callto\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"ghelp\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"info\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"mailto\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"man\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"trash\", если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа H323, если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа HTTP, если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
 msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа HTTPS, если ключ "
+"установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа aim"
+msgstr "Обработчик ссылок (URL) типа \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа callto"
+msgstr "Обработчик ссылок (URL) типа \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа ghelp"
+msgstr "Обработчик ссылок (URL) типа \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа info"
+msgstr "Обработчик ссылок (URL) типа \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа mail"
+msgstr "Обработчик ссылок (URL) типа \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа man"
+msgstr "Обработчик ссылок (URL) типа \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Обрабатывать ссылки (URLs) типа trash"
+msgstr "Обработчик ссылок (URL) типа \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "Обрабатывать ссылки (URLs) типа H232"
+msgstr "Обработчик ссылок (URL) типа H232"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
-msgstr "Обрабатывать ссылки (URLs) типа HTTP"
+msgstr "Обработчик ссылок (URL) типа HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
-msgstr "Обрабатывать ссылки (URLs) типа HTTPS"
+msgstr "Обработчик ссылок (URL) типа HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа aim."
+"будет обрабатывать ссылки (URL) типа \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа callto."
+"будет обрабатывать ссылки (URL) типа \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа ghelp."
+"будет обрабатывать ссылки (URL) типа \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа info."
+"будет обрабатывать ссылки (URL) типа \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа mailto."
+"будет обрабатывать ссылки (URL) типа \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа man."
+"будет обрабатывать ссылки (URL) типа \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа trash."
+"будет обрабатывать ссылки (URL) типа \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle H323 URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа H323."
+"будет обрабатывать ссылки (URL) типа H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTP URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа HTTP."
+"будет обрабатывать ссылки (URL) типа HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа HTTPS."
+"будет обрабатывать ссылки (URL) типа HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
@@ -1182,74 +1185,44 @@ msgstr ""
 "(URL), будет запускаться в терминале."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа aim."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа callto."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа ghelp."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа info."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа mailto."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа man."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа trash."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle H323 URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа H323."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа HTTP."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа HTTPS."
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1269,11 +1242,10 @@ msgid "How to display local DNS-SD service"
 msgstr "Как отображать локальный сервис типа DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-#, fuzzy
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
 "Возможные значения \"merged\" (\"совместные\"), \"separate\" (\"раздельные"
-"\") и \"disabled\" (\"отключено\")"
+"\") и \"disabled\" (\"отключено\")."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
