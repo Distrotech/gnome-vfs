@@ -1,3 +1,9 @@
+Mon May 20 10:51:32 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: make note if we have had a slash
+	  on the end of a path, and in that case don't allow the 'file'
+	  specific operations on it
+
 Mon May 20 10:41:17 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: fix root path reading (case where

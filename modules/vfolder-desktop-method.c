@@ -455,6 +455,7 @@ any_subdir (const char *dirname)
 typedef struct {
 	const gchar *scheme;
 	gboolean     is_all_scheme;
+	gboolean     ends_in_slash;
 	gchar       *path;
 	gchar       *file;
 	GnomeVFSURI *uri;
@@ -465,6 +466,8 @@ static gboolean
 vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 {
 	vuri->scheme = (gchar *) gnome_vfs_uri_get_scheme (uri);
+
+	vuri->ends_in_slash = FALSE;
 
 	if (strncmp (vuri->scheme, "all-", strlen ("all-")) == 0) {
 		vuri->scheme += strlen ("all-");
@@ -489,8 +492,10 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 		}
 
 		/* kill trailing slashes (leave first if all slashes) */
-		while (last_slash > 0 && vuri->path [last_slash] == '/')
+		while (last_slash > 0 && vuri->path [last_slash] == '/') {
 			vuri->path [last_slash--] = '\0';
+			vuri->ends_in_slash = TRUE;
+		}
 
 		/* get basename start */
 		while (last_slash >= 0 && vuri->path [last_slash] != '/')
@@ -506,6 +511,7 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 			vuri->file = NULL;
 		}
 	} else {
+		vuri->ends_in_slash = TRUE;
 		vuri->path = "/";
 		vuri->file = NULL;
 	}
@@ -3537,6 +3543,11 @@ do_open (GnomeVFSMethod *method,
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
+	/* These can't be very nice FILE names */
+	if (vuri.file == NULL ||
+	    vuri.ends_in_slash)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	info = get_vfolder_info (vuri.scheme, &result, context);
 	if (info == NULL)
 		return result;
@@ -3641,7 +3652,9 @@ do_create (GnomeVFSMethod *method,
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
-	if (vuri.file == NULL)
+	/* These can't be very nice FILE names */
+	if (vuri.file == NULL ||
+	    vuri.ends_in_slash)
 		return GNOME_VFS_ERROR_INVALID_URI;
 	
 	if ( ! check_ext (vuri.file, ".desktop") &&
@@ -4027,6 +4040,11 @@ do_truncate (GnomeVFSMethod *method,
 	VFolderURI vuri;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
+
+	/* These can't be very nice FILE names */
+	if (vuri.file == NULL ||
+	    vuri.ends_in_slash)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	if (vuri.is_all_scheme)
 		return GNOME_VFS_ERROR_READ_ONLY;
