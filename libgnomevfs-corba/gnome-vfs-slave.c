@@ -33,7 +33,9 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef HAVE_ALLOCA_H
 #include <alloca.h>
+#endif
 #include <errno.h>
 #include <fcntl.h>
 #include <stdarg.h>
