@@ -1,3 +1,9 @@
+2004-02-11  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.5.7
+
 2004-02-09  Christophe Fergeau  <teuf@gnome.org>
 
         * modules/http-method.c (parse_ignore_host):

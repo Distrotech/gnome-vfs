@@ -1,3 +1,10 @@
+gnome-vfs 2.5.7
+	* Bugs fixed:
+	        + proxy mask parsing bug fixed
+		+ Eject code on freebsd
+		+ Fixed leaks
+		+ DESTDIR install fixes
+
 gnome-vfs 2.5.6
 	* Features
 		+ mime sniffing default method changed
