@@ -1,3 +1,8 @@
+2004-11-29  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update for release.
+
 2004-11-28  James Henstridge  <james@jamesh.id.au>
 
 	* libgnomevfs/xdgmimeparent.c (_xdg_mime_parent_read_from_file):
