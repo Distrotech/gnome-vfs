@@ -1,3 +1,11 @@
+2001-03-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	* configure.in:
+	One final try to get this right. Check for the presence of the
+	cdparanoia headers instead of the library. The use of an
+	underscore in the library name seems to confuse the AM_CHECK_LIB
+	macro.
+
 2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
 
 	* configure.in:
