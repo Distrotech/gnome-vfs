@@ -7,47 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-05 15:00+0100\n"
 "PO-Revision-Date: 2004-02-22 19:52+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
-"Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
+"Language-Team: Azerbaijani Turkish <translation-team-az@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Bonobo başladıla bilmədi"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome vfs başladıla bilmədi"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Fayl sistemi"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Nişan qeydi bacarılmadı (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "'%s' faylı üçün mə'lumat alına bilmədi: %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "'%s' faylı açıla bilmədi: %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"'%s' rəsmi yüklənə bilmədi: səbəb bilinmir, deyəsən xətalı rəsm faylıdır"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -245,12 +220,12 @@ msgstr "Oxuna bilmədi: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Növbəti oxuma xətaları diqqətə alınmayacaq."
+msgstr "Növbəti oxuma xətaları diqqətə alınmayacaqdır."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
-msgstr "Xəta yoxdur"
+msgstr "Xətasız"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -275,7 +250,7 @@ msgstr "Hökmsüz parametrlər"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
-msgstr "Dəstəklənməyən gedişat"
+msgstr "Dəstəklənməyən əməliyyat"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -290,7 +265,7 @@ msgstr "Mə'lumat xəsərlidir"
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "Şəkil hökmsüzdür"
+msgstr "Format hökmsüzdür"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -310,7 +285,7 @@ msgstr "Avadanlıqda yer yoxdur"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "Yalınz oxuna bilən fayl sistemi"
+msgstr "Sırf oxuna bilən fayl sistemi"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -330,7 +305,7 @@ msgstr "Açma modu hökmlü deyil"
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
-msgstr "İcazə yoxdur"
+msgstr "İcazə rədd edildi"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -340,7 +315,7 @@ msgstr "Həddindən çox açıq fayl"
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
-msgstr "Fayl sonu"
+msgstr "Faylın sonu"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:57
@@ -350,7 +325,7 @@ msgstr "Qovluq deyil"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
-msgstr "Əməliyyat gedir"
+msgstr "Əməliyyat fəaliyyətdədir"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -475,7 +450,7 @@ msgstr "Əmr sətri təhlil edilərkən xəta"
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
-msgstr "Əmr verilərkən xəta"
+msgstr "Əmri yerinə gətirmə xətası"
 
 #: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
@@ -485,8 +460,8 @@ msgstr "Namə'lum xəta"
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u bayt"
+msgstr[1] "%u bayt"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -511,7 +486,7 @@ msgstr "(hökmsüz Yunikod)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr "Floppi"
+msgstr "Disket"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
@@ -551,7 +526,7 @@ msgstr "Şəbəkə vericisi"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdə disket yoxdur."
+msgstr "Disket sürücüsü bağlana bilmədi. Deyəsən sürücüdə disket yoxdur."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -563,8 +538,8 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdəki disketin şəkilləndirməsi "
-"bağlamaq üçün uyğun deyil."
+"Disket sürücüsü bağlana bilmədi. Deyəsən sürücüdəki disketin şəkilləndirməsi "
+"bağlanmaq üçün uyğun deyil."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
@@ -586,16 +561,16 @@ msgstr "Seçili sürücü bağlana bilmədi."
 msgid "Unable to unmount the selected volume."
 msgstr "Seçili sürücü ayırıla bilmədi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Əmr başladıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Mediya çıxardıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:469
 msgid "Unable to unmount connected server"
 msgstr "Bağlı verici ayırıla bilmədi"
 
@@ -657,7 +632,11 @@ msgstr "Şəbəkə"
 msgid "Home"
 msgstr "Ev"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Fayl sistemi"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Namə'lum GnomeVFSSeekPosition %d"
