@@ -124,7 +124,7 @@ read_file (SeekableMethodHandle *mh)
 	GnomeVFSResult   result;
 	guint8           buffer[BLK_SIZE];
 	GnomeVFSFileSize blk_read, blk_write;
-		
+
 	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	do {
@@ -138,7 +138,8 @@ read_file (SeekableMethodHandle *mh)
 		if (blk_write != blk_read)
 			return GNOME_VFS_ERROR_NO_SPACE;
 		
-	} while (blk_read == BLK_SIZE);
+	} while (blk_read > 0);
+	//} while (blk_read == BLK_SIZE);
 
 	result = gnome_vfs_seek (mh->tmp_file, GNOME_VFS_SEEK_START, 0);
 
@@ -179,9 +180,9 @@ init_seek (SeekableMethodHandle *mh)
 	GnomeVFSResult   result;
 	gchar            *stem;
 	gint             fd;
-	
+
 	/* Create a temporary file name */
-	stem = g_strdup("/tmp/gnome-vfs-seekable-temp-XXXXX"); /* template */
+	stem = g_strdup("/tmp/gnome-vfs-seekable-temp-XXXXXX"); /* template */
 	fd = mkstemp(stem);
 	if (fd < 0) {
 		g_free(stem);
@@ -195,10 +196,9 @@ init_seek (SeekableMethodHandle *mh)
 	g_free(stem);
 	
 	/* Open the file */
-	result = gnome_vfs_create (&mh->tmp_file, mh->tmp_uri, 
+	result = gnome_vfs_open (&mh->tmp_file, mh->tmp_uri, 
 				   GNOME_VFS_OPEN_READ | GNOME_VFS_OPEN_WRITE |
-				   GNOME_VFS_OPEN_RANDOM,
-				   TRUE, S_IWUSR | S_IRUSR);
+				   GNOME_VFS_OPEN_RANDOM);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -217,7 +217,7 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 {
 	GnomeVFSMethod       *m  = g_new (GnomeVFSMethod, 1);
 	SeekableMethodHandle *mh = g_new (SeekableMethodHandle, 1);
-	
+
 	g_return_val_if_fail (m != NULL, NULL);
 	g_return_val_if_fail (mh != NULL, NULL);
 	g_return_val_if_fail (uri != NULL, NULL);
@@ -347,7 +347,7 @@ do_seek (GnomeVFSMethod *method,
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
-
+	
 	return gnome_vfs_seek (mh->tmp_file, whence, offset);
 }
 

@@ -755,11 +755,11 @@ do_open (GnomeVFSMethod *method,
 	GnomeVFSResult result = GNOME_VFS_OK;
 
 	g_return_val_if_fail (uri->parent == NULL, GNOME_VFS_ERROR_INVALID_URI);
-	g_return_val_if_fail (mode == GNOME_VFS_OPEN_READ || 
-						mode == GNOME_VFS_OPEN_WRITE,
+	g_return_val_if_fail (!(mode & GNOME_VFS_OPEN_READ && 
+						mode & GNOME_VFS_OPEN_WRITE),
 			      GNOME_VFS_ERROR_INVALID_OPEN_MODE);
 
-	if(mode == GNOME_VFS_OPEN_READ) {
+	if(mode & GNOME_VFS_OPEN_READ) {
 		result = make_request (&handle, uri, "GET", NULL, NULL,
 			       	context);
 	} else {

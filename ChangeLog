@@ -1,3 +1,13 @@
+2000-07-13  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-seekable.c: (read_file), (init_seek),
+	(gnome_vfs_seek_emulate), (do_seek):
+	Various fixes related to tmpfile changes and also random bug fixes
+	to make seekable emulation actually work.
+	
+	* modules/http-method.c: (do_open):
+	Fix to http-method so it works with the gnome-vfs-seekable code.
+
 2000-07-12  Ian McKellar  <yakk@yakk.net.au>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):
