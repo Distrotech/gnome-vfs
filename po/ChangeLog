@@ -1,7 +1,3 @@
-1999-12-23  Fatih Demir <kabalak@gmx.net>
-
-	* tr.po: Added tr.po for Turkish translation .
-
 2000-01-04  Kjartan Maraas  <kmaraas@online.no>
 
 	* update.sh: A little script that lets people
@@ -31,7 +27,6 @@
 
         * no.po: Updated Norwegian translation.
 
->>>>>>> 1.12
 1999-11-19  Kjartan Maraas  <kmaraas@online.no>
 
         * no.po: Added Norwegian translation.
