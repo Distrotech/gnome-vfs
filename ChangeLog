@@ -1,3 +1,8 @@
+2002-01-31  John Harper  <jsh@unfactored.org>
+
+	* libgnomevfs/Makefile.am: install gnome-vfs-cancellable-ops.h
+	in the module-only header directory
+
 2002-01-31  Jeff Waugh  <jdub@perkypants.org>
 
 	* gnome-vfs-2.0.pc.in:

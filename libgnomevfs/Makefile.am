@@ -33,6 +33,7 @@ libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
 libgnomevfsmoduleinclude_HEADERS =		\
+	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-iobuf.h			\
 	gnome-vfs-method.h			\
