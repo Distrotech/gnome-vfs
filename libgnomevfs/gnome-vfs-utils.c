@@ -491,7 +491,7 @@ gnome_vfs_unescape_string (const gchar *escaped_string,
 }
 
 /**
- * gnome_vfs_unescape_for_display:
+ * gnome_vfs_unescape_string_for_display:
  * @escaped: The string encoded with escaped sequences
  * 
  * Similar to gnome_vfs_unescape_string, but it returns something
