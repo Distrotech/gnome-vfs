@@ -321,6 +321,15 @@ do_read_directory (GnomeVFSMethod *method,
 }
 
 
+static void
+set_directory_mime_type (GnomeVFSFileInfo *file_info)
+{
+	g_free (file_info->mime_type);
+
+	file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+}
+
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
@@ -337,6 +346,9 @@ do_get_file_info (GnomeVFSMethod *method,
 						   file_info,
 						   options,
 						   context);
+
+	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
+		set_directory_mime_type (file_info);
 	
 	gnome_vfs_uri_unref (file_uri);
 
@@ -357,6 +369,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 							       file_info,
 							       options,
 							       context);
+
+	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
+		set_directory_mime_type (file_info);
 
 	return result;
 }

@@ -1,3 +1,10 @@
+2002-06-02  Alex Graveley  <alex@ximian.com>
+
+	* modules/desktop-method.c (do_get_file_info): Set mime_type to
+	"x-directory/vfolder-desktop", to allow launcher creation from
+	nautilus.
+	(do_get_file_info_from_handle): Ditto.
+
 Fri May 31 10:23:01 2002  George Lebl <jirka@5z.com>
 
 	* modules/applications.vfolder-info.in,
