@@ -1,3 +1,8 @@
+2002-11-04 Frederic Vannere <homere@krow.org>
+
+	* modules/ftp-method.c: add support for Microsoft and Netware FTP 
+	  servers
+
 2002-11-04  bugzilla-gnome@thewrittenword.com
 	
 	* configure.in:
