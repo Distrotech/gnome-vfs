@@ -426,7 +426,7 @@ force_probe (PortableServer_Servant _servant,
 	
 	monitor = gnome_vfs_get_volume_monitor ();
 
-	_gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (monitor));
+	gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (monitor));
 }
 
 

@@ -1,3 +1,13 @@
+2004-01-27  David Hawthorne  <david.hawthorne@sun.com>
+
+	* daemon/gnome-vfs-daemon.c
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.h
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	  gnome_vfs_volume_monitor_daemon_force_probe shouldn't be internal
+	  to libgnomevfs (the daemon uses it), fixes bug #132652 (and the
+	  build on Solaris)
+
 2004-01-23  Alexander Larsson  <alexl@redhat.com>
 
 	* schemas/Makefile.am:

@@ -157,7 +157,7 @@ force_probe (void)
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
 	if (gnome_vfs_get_is_daemon ()) {
-		_gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor));
+		gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor));
 	} else {
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_daemon (client);
