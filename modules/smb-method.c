@@ -1415,7 +1415,7 @@ do_get_file_info (GnomeVFSMethod *method,
 			| GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
 			| GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+		file_info->mime_type = g_strdup ("application/x-desktop");
 		return GNOME_VFS_OK;
 	}
 
@@ -1657,7 +1657,7 @@ do_read_directory (GnomeVFSMethod *method,
 				GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
 				| GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 			file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-			file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+			file_info->mime_type = g_strdup ("application/x-desktop");
 			return GNOME_VFS_OK;
 		}
 	}
@@ -1704,7 +1704,7 @@ do_read_directory (GnomeVFSMethod *method,
 			| GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
 			| GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+		file_info->mime_type = g_strdup ("application/x-desktop");
 		break;
 	case SMBC_PRINTER_SHARE:
 		/* Ignored above for now */

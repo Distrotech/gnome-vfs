@@ -1,5 +1,20 @@
 2004-01-09  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/Makefile.am:
+	* modules/network-method.c:
+	* modules/default-modules.conf:
+	Network method
+	
+	* modules/computer-method.c:
+	* modules/smb-method.c:
+	Switch desktop file type to application/x-desktop
+	
+	* schemas/Makefile.am:
+	* schemas/system_smb.schemas.in:
+	New workgroup setting
+
+2004-01-09  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/sftp-method.c (do_rename): 
 	Fix rename.
 	based on patch from David O'Callaghan <david.ocallaghan@cs.tcd.ie>

@@ -851,7 +851,7 @@ do_read_directory (GnomeVFSMethod *method,
 	g_free (entry->data);
 	g_list_free_1 (entry);
 
-	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+	file_info->mime_type = g_strdup ("application/x-desktop");
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	file_info->valid_fields |=
 		GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
@@ -886,7 +886,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	} else {
 		file_info->name = gnome_vfs_uri_extract_short_name (uri);
 		
-		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+		file_info->mime_type = g_strdup ("application/x-desktop");
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 		file_info->valid_fields |=
 			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
@@ -914,7 +914,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 	
-	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+	file_info->mime_type = g_strdup ("application/x-desktop");
 	file_info->size = file_handle->len;
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	file_info->valid_fields |=

@@ -60,6 +60,7 @@ modules_LTLIBRARIES =				\
 	libcomputer.la				\
 	libextfs.la				\
 	libfile.la				\
+	libnetwork.la				\
 	libnntp.la				\
 	libvfs-test.la				\
 	$(HTTP_LTLIBS)				\
@@ -121,6 +122,12 @@ libextfs_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libfile_la_SOURCES = file-method.c fstype.c
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
+###  `computer' method
+
+libnetwork_la_SOURCES = network-method.c
+libnetwork_la_LDFLAGS = $(module_flags)
+libnetwork_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `nntp' method
 
