@@ -91,6 +91,9 @@ application/x-compressed-tar
 	regex,2: tar\.gz$
 	ext: tgz
 
+application/x-core-file
+	regex: core
+
 application/x-cpio
 	ext: cpio
 
@@ -121,6 +124,9 @@ application/x-gzip
 application/x-hdf
 	ext: hdf
 
+application/x-kde-app-info
+	ext: kdelnk
+
 application/x-lha
 	ext: lha
 
@@ -139,6 +145,9 @@ application/x-php
 application/x-profile
         regex: gmon\.out$
 
+application/x-reject
+	ext: rej
+	
 application/x-rpm
 	ext: rpm
 
@@ -243,8 +252,22 @@ audio/x-voc
 audio/x-wav:
 	ext: wav
 
+audio/x-xi
+	ext: xi
+
 audio/x-xm
 	ext: xm XM
+
+
+
+font/afm
+	ext: afm
+
+font/ttf
+	ext: ttf
+
+font/x-pcf
+	ext: pcf
 
 
 
@@ -381,6 +404,9 @@ text/vnd.latex-z
 text/xml
 	ext: xml
 
+text/x-authors:
+	regex: AUTHORS
+	
 text/x-c
 	ext: c h
 
@@ -389,6 +415,12 @@ text/x-C++
 
 text/x-comma-separated-values
 	ext: csv
+
+text/x-copying:
+	regex: COPYING	
+
+text/x-credits:
+	regex: CREDITS
 
 text/x-dcl
 	ext: dcl
@@ -408,11 +440,17 @@ text/x-fortran:
 text/x-idl
         ext: idl
 
+text/x-install:
+	regex: INSTALL
+
 text/x-java
 	ext: java
 
 text/x-gtkrc
         regex: [.|]gtkrc
+
+text/x-makefile:
+	regex: [Mm]akefile
 
 text/x-perl
 	ext: pl perl
@@ -420,11 +458,17 @@ text/x-perl
 text/x-python:
 	ext: py
 
+text/x-readme:
+	regex: README.*
+
 text/x-scheme
 	ext: scm
 
 text/x-setext
 	ext: etx
+
+text/x-sql
+	ext: sql
 
 text/x-vCalendar:
 	ext: vcs vcf

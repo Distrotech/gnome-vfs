@@ -1,5 +1,16 @@
 2000-05-02  John Sullivan  <sullivan@eazel.com>
 
+	* data/mime/gnome-vfs.mime:
+	Added a bunch of MIME types that were in the 1.0 branch
+	of gnome-libs but not in HEAD.
+	
+	* data/mime/gnome-vfs.keys:
+	Added a few missing keys that people had run into, and
+	put the icon for core files here so it doesn't need to
+	be special-cased in Nautilus.
+
+2000-05-02  John Sullivan  <sullivan@eazel.com>
+
 	* data/mime/gnome-vfs.keys: Added description for
 	image/svg.
 

@@ -78,6 +78,10 @@ application/x-compressed-tar
 	description=tar archive
 	icon-filename=gnome-package.png
 
+application/x-core-file
+	description=memory dump
+	icon-filename=i-core.png
+
 application/x-cpio
 	description=CPIO document
 
@@ -251,6 +255,9 @@ image/xpm
 image/x-bmp
 	description=Windows bitmap
 
+image/x-compressed-xcf
+	description=GIMP image archive
+
 image/x-png
 	description=PNG image	
 
@@ -271,6 +278,9 @@ image/x-rgb
 	
 image/x-xbitmap
 	description=X bitmap
+
+image/x-xcf
+	description=GIMP image
 
 image/x-xpixmap
 	description=X pixmap
