@@ -2,12 +2,13 @@
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@ldsol.com>, 1999-2000.
 # maintainer: Christophe Merlet (RedFox) <christophe@merlet.net>, 2000-2002.
+# Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.13\n"
-"POT-Creation-Date: 2002-06-12 00:32-0700\n"
-"PO-Revision-Date: 2002-04-28 22:33+0200\n"
+"Project-Id-Version: gnome-vfs 2.0.0\n"
+"POT-Creation-Date: 2002-07-28 10:42+0200\n"
+"PO-Revision-Date: 2002-07-28 10:38+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,33 +35,33 @@ msgstr "%s:%d ne contient pas de nom de module."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Le fichier de configuration « %s » n'a pas été trouvé : %s"
 
-#: libgnomevfs/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:706
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Type d'op %u inconnu"
 
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Ne peut créer un pipeline pour ouvrir GIOChannel : %s"
+msgstr "Impossible de créer un tube pour ouvrir GIOChannel : %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1600
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Type de job %u inconnu"
+msgstr "Type de tâche inconnu %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1633
 msgid "Operation stopped"
-msgstr "Opération stoppée"
+msgstr "Opération arrêtée"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ne peut analyser : %s"
+msgstr "Impossible d'analyser : %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Les autres erreurs d'analyses seront ignorées."
+msgstr "Les autres erreurs d'analyse seront ignorées."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -100,7 +101,7 @@ msgstr "Erreur d'E/S"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Données corrompues"
+msgstr "Données détériorées"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
@@ -110,7 +111,7 @@ msgstr "Format non valide"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Mauvais descripteur de fichier"
+msgstr "Descripteur de fichier incorrect"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -195,7 +196,7 @@ msgstr "Est un répertoire"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Pas assez de mémoire"
+msgstr "Mémoire saturée"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -215,7 +216,7 @@ msgstr "L'hôte n'a pas d'adresse"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Échec du login"
+msgstr "Échec de la connexion"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -260,37 +261,37 @@ msgstr "Service non disponible"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Donnée de requête de service obsolète"
+msgstr "Données de demande de service obsolètes"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
 msgstr "Erreur de protocole"
 
-#: libgnomevfs/gnome-vfs-result.c:137
+#: libgnomevfs/gnome-vfs-result.c:169
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:70
 msgid "1 byte"
 msgstr "1 octet"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:72
 #, c-format
 msgid "%u bytes"
 msgstr "%u octets"
 
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Ko"
 
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mo"
 
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:87
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Go"
@@ -304,7 +305,7 @@ msgstr "GnomeVFSSeekPosition %d inconnue"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "N'a pas trouvé un fichier de réglages valide à %s\n"
+msgstr "Fichier de réglages valide introuvable à %s\n"
 
 #: modules/test-method.c:592
 #, c-format
