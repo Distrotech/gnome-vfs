@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-08-15 12:25+0900\n"
+"PO-Revision-Date: 2004-08-18 20:26+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -280,9 +280,8 @@ msgid "Unknown"
 msgstr "알 수 없음"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R 디스크"
+msgstr "CD-ROM 디스크"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -389,9 +388,9 @@ msgid "Linux Disk"
 msgstr "리눅스 디스크"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "알 수 없는 파일작업 형식 %u"
+msgstr "알 수 없는 작동 방식 %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -1342,6 +1341,3 @@ msgstr "SMB 작업 그룹"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "사용자가 속해 있는 Windows 작업 그룹"
-
-#~ msgid "CD Disc"
-#~ msgstr "CD 디스크"
