@@ -1,3 +1,8 @@
+2004-08-13  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ftp-method.c (ftp_connection_create):
+	Don't ask for password for anonymous.
+
 2004-08-13  Mark McLoughlin  <mark@skynet.ie>
 
 	* schemas/desktop_gnome_url_handlers.schemas.in:

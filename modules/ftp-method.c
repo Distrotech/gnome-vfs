@@ -1239,8 +1239,10 @@ ftp_connection_create (FtpConnectionPool *pool,
 			g_free (pass);
                 	return result;
 		}
-	} else if ((gnome_vfs_uri_get_user_name (uri) == NULL) ||
-		   (gnome_vfs_uri_get_password (uri) == NULL)) {
+	} else if (gnome_vfs_uri_get_user_name (uri) == NULL ||
+		   /* If name set, do this if no password or anon ftp */
+		   (strcmp (gnome_vfs_uri_get_user_name (uri), "anonymous") != 0 &&
+		    gnome_vfs_uri_get_password (uri) == NULL)) {
 		got_connection = FALSE;
 		uri_has_username = FALSE;
 		if (gnome_vfs_uri_get_user_name (uri) != NULL) {
@@ -1304,6 +1306,9 @@ ftp_connection_create (FtpConnectionPool *pool,
        	} else {
                	user = g_strdup (gnome_vfs_uri_get_user_name (uri));
                	pass = g_strdup (gnome_vfs_uri_get_password (uri));
+		if (pass == NULL) {
+			pass = g_strdup ("nobody@gnome.org");
+		}
 		
 		result = try_login (uri, &pool->ip, conn,
 				    user, pass, cancellation);
