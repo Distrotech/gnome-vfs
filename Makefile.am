@@ -1,17 +1,9 @@
 SUBDIRS_GNOME=monikers doc schemas
 
-if HAVE_GTK
-GTK_SUBDIR=gtk
-else
-GTK_SUBDIR=
-endif
-
-
 SUBDIRS =					\
 	libgnomevfs				\
 	modules					\
 	daemon					\
-	$(GTK_SUBDIR)				\
 	schemas					\
 	devel-docs				\
 	doc					\

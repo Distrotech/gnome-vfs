@@ -1,5 +1,12 @@
 2004-02-25  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in: 
+	* Makefile.am (SUBDIRS):
+	* gtk/*
+	Remove gtk module. Now in libgnomeui
+
+2004-02-25  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c:
 	remove fam watch if fam connection dies
 	make fam global vars static.
