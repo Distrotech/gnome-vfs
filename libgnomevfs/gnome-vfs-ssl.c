@@ -446,9 +446,9 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    GnomeVFSFileSize *bytes_read,
 		    GnomeVFSCancellation *cancellation)
 {
+#ifdef HAVE_OPENSSL
 	GnomeVFSResult res;
 	int ret;
-#ifdef HAVE_OPENSSL
 	int error;
 	
 	if (bytes == 0) {
@@ -487,6 +487,9 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 	
 	return GNOME_VFS_OK;
 #elif defined HAVE_GNUTLS
+	GnomeVFSResult res;
+	int ret;
+
 	if (bytes == 0) {
 		*bytes_read = 0;
 		return GNOME_VFS_OK;
@@ -544,9 +547,9 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     GnomeVFSFileSize *bytes_written,
 		     GnomeVFSCancellation *cancellation)
 {
+#ifdef HAVE_OPENSSL
 	GnomeVFSResult res;
 	int ret;
-#ifdef HAVE_OPENSSL
 	int error;
 	
 	if (bytes == 0) {
@@ -580,6 +583,9 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 	*bytes_written = ret;
 	return GNOME_VFS_OK;
 #elif defined HAVE_GNUTLS
+	GnomeVFSResult res;
+	int ret;
+
 	if (bytes == 0) {
 		*bytes_written = 0;
 		return GNOME_VFS_OK;
@@ -628,9 +634,9 @@ void
 gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 		       GnomeVFSCancellation *cancellation) 
 {
+#ifdef HAVE_OPENSSL
 	int ret;
 	GnomeVFSResult res;	
-#ifdef HAVE_OPENSSL
 	int error;
 
  retry:
@@ -655,7 +661,9 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 	if (ssl->private->timeout)
 		g_free (ssl->private->timeout);
 #elif defined HAVE_GNUTLS
-
+	int ret;
+	GnomeVFSResult res;
+	
  retry:
 	ret = gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
 	
