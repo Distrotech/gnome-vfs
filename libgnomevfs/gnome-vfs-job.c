@@ -1577,9 +1577,6 @@ execute_xfer (GnomeVFSJob *job)
 
 	job_close (job);
 
-	gnome_vfs_uri_list_free (xfer_op->request.source_uri_list);
-	gnome_vfs_uri_list_free (xfer_op->request.target_uri_list);
-
 	return FALSE;
 }
 

@@ -1,3 +1,9 @@
+2000-09-27  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_xfer):
+	Fix a double-destroy I introduced with my change to
+	gnome_vfs_op_destroy yesterday.
+
 2000-09-27  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c: (try_one_pattern_on_buffer),
