@@ -27,11 +27,17 @@
 #endif
 
 #include <string.h>
+#include <glib.h>
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
 /* Special refcount used on stack-allocated file_info's */
 #define FILE_INFO_REFCOUNT_STACK ((guint)(-1))
+
+/* Mutex for making GnomeVFSFileInfo ref's/unref's atomic */
+/* Note that an atomic increment function (such as is present in NSPR) is preferable */
+static GStaticMutex file_info_ref_lock = G_STATIC_MUTEX_INIT;
+
 
 /**
  * gnome_vfs_file_info_new:
@@ -96,10 +102,15 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	g_free (info->symlink_name);
 	g_free (info->mime_type);
 
+	/* Ensure the ref count is maintained correctly */
+	g_static_mutex_lock (&file_info_ref_lock);
+
 	old_refcount = info->refcount;
 	memset (info, 0, sizeof (*info));
-
 	info->refcount = old_refcount;
+
+	g_static_mutex_unlock (&file_info_ref_lock);
+
 }
 
 
@@ -116,7 +127,10 @@ gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
 	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
 	g_return_if_fail (info->refcount > 0);
 
+	g_static_mutex_lock (&file_info_ref_lock);
 	info->refcount += 1;
+	g_static_mutex_unlock (&file_info_ref_lock);
+	
 }
 
 /**
@@ -132,7 +146,9 @@ gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
 	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
 	g_return_if_fail (info->refcount > 0);
 
+	g_static_mutex_lock (&file_info_ref_lock);
 	info->refcount -= 1;
+	g_static_mutex_unlock (&file_info_ref_lock);
 
 	if (info->refcount == 0) {
 		gnome_vfs_file_info_clear (info);
@@ -175,6 +191,14 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 	g_return_if_fail (dest != NULL);
 	g_return_if_fail (src != NULL);
 
+	/* The primary purpose of this lock is to guarentee that the
+	 * refcount is correctly maintained, not to make the copy
+	 * atomic.  If you want to make the copy atomic, you probably
+	 * want serialize access differently (or perhaps you shouldn't
+	 * use copy)
+	 */
+	g_static_mutex_lock (&file_info_ref_lock);
+
 	old_refcount = dest->refcount;
 
 	/* Copy basic information all at once; we will fix pointers later.  */
@@ -189,6 +213,7 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 
 	dest->refcount = old_refcount;
 
+	g_static_mutex_unlock (&file_info_ref_lock);
 
 }
 

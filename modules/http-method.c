@@ -45,9 +45,13 @@
 #include <gnome-xml/parser.h>
 #include <gnome-xml/tree.h>
 #include <gnome-xml/xmlmemory.h>
+#include <sys/time.h>
+
 
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
+
+#include <pthread.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -58,23 +62,438 @@
 
 #if 0
 #include <stdio.h>
+#include <stdarg.h>
 #include <pthread.h>
-static gboolean once = FALSE;
 
-#define DEBUG_HTTP(x)							\
-	do {								\
-		if (!once) {						\
-			setvbuf (stdout, NULL, _IOLBF, 0);		\
-			once = TRUE;					\
-		}							\
-		printf ("HTTP: [0x%08x] ", (unsigned int) pthread_self());	\
-		printf x;			\
-		putchar ('\n');			\
-	} while (0);
+static void
+my_debug_printf(char *fmt, ...)
+{
+	va_list args;
+	gchar * out;
+
+	g_assert (fmt);
+
+	va_start (args, fmt);
+
+	out = g_strdup_vprintf (fmt, args);
+
+	fprintf (stderr, "HTTP: [0x%08x] %s\n", (unsigned int) pthread_self(), out);
+
+	g_free (out);
+	va_end (args);
+}
+
+#define DEBUG_HTTP(x) my_debug_printf x
 #else
 static int nothing;
 #define DEBUG_HTTP(x) nothing = 1;
 #endif
+
+#undef DAV_NO_CACHE
+#ifndef DAV_NO_CACHE
+
+/* Cache file info for 5 minutes */
+#define US_CACHE_FILE_INFO (1000 * 1000 * 60 * 5)
+/* Cache directory listings for 500 ms */
+#define US_CACHE_DIRECTORY (1000 * 500)
+
+/* Mutex for cache data structures */
+/* The GLib mutex abstraction doesn't allow recursive mutexs */
+static pthread_mutex_t cache_rlock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+
+/* Hash maps char * URI ---> FileInfoCacheEntry */
+GHashTable * gl_file_info_cache = NULL;
+/* in-order list of cache entries  for expiration */
+GList * gl_file_info_cache_list = NULL;
+GList * gl_file_info_cache_list_last = NULL;
+
+typedef gint64 utime_t;
+
+typedef struct {
+	gchar *			uri_string;
+	GnomeVFSFileInfo *	file_info;
+	utime_t			create_time;
+	GList *			my_list_node; /*node for me in gl_file_info_cache_list*/
+} FileInfoCacheEntry;
+
+static FileInfoCacheEntry * 	cache_entry_new ();
+static void 			cache_entry_free (FileInfoCacheEntry * entry);
+static void			cache_trim ();
+static GnomeVFSFileInfo *	cache_check (const gchar * uri_string);
+static GnomeVFSFileInfo *	cache_check_uri (GnomeVFSURI *uri);
+#if 0
+static GnomeVFSFileInfo *	cache_check_directory (const gchar * uri_string);
+#endif 
+static void			cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info);
+static void			cache_add (const gchar * uri_string, GnomeVFSFileInfo * file_info);
+static void			cache_add_uri_and_children (
+					GnomeVFSURI *uri, 
+					GnomeVFSFileInfo *file_info, 
+					GList *file_info_list
+				);
+#if 0
+static void			cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info);
+#endif
+static void			cache_invalidate (const gchar * uri_string);
+static void			cache_invalidate_uri (GnomeVFSURI *uri);
+
+static utime_t
+get_utime()
+{
+    struct timeval tmp;
+    gettimeofday (&tmp, NULL);
+    return (utime_t)tmp.tv_usec + ((gint64)tmp.tv_sec) * 1000000LL;
+}
+
+static void
+cache_init ()
+{
+	pthread_mutex_lock (&cache_rlock);
+	gl_file_info_cache = g_hash_table_new (g_str_hash, g_str_equal);
+	pthread_mutex_unlock (&cache_rlock);
+
+}
+
+static void
+cache_shutdown ()
+{
+	GList *node, *node_next;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	for (	node = g_list_first (gl_file_info_cache_list) ; 
+		NULL != node ; 
+		node = node_next
+	) {
+		node_next = g_list_next (node);
+		cache_entry_free ((FileInfoCacheEntry*) node->data);
+	}
+
+	g_list_free (gl_file_info_cache_list);
+	
+	g_hash_table_destroy (gl_file_info_cache);
+
+	pthread_mutex_unlock (&cache_rlock);
+
+}
+
+static FileInfoCacheEntry *
+cache_entry_new ()
+{
+	FileInfoCacheEntry *ret;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	ret = g_new0 (FileInfoCacheEntry, 1);
+	ret->create_time = get_utime();
+	
+	gl_file_info_cache_list = g_list_prepend (gl_file_info_cache_list, ret);
+
+	/* Note that since we've prepended, gl_file_info_cache_list points to us*/
+
+	ret->my_list_node = gl_file_info_cache_list;
+
+	if (NULL == gl_file_info_cache_list_last) {
+		gl_file_info_cache_list_last = ret->my_list_node;
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+
+	return ret;
+}
+
+/* Warning: as this function removes the cache entry from gl_file_info_cache_list, 
+ * callee's must be careful when calling this during a list iteration
+ */
+static void
+cache_entry_free (FileInfoCacheEntry * entry)
+{
+	if (entry) {
+		pthread_mutex_lock (&cache_rlock);
+
+		g_hash_table_remove (gl_file_info_cache, entry->uri_string);
+		g_free (entry->uri_string);	/* This is the same string as in the hash table */
+		gnome_vfs_file_info_unref (entry->file_info);
+
+		if (gl_file_info_cache_list_last == entry->my_list_node) {
+			gl_file_info_cache_list_last = g_list_previous (entry->my_list_node);
+		}
+	
+		gl_file_info_cache_list = g_list_remove_link (gl_file_info_cache_list, entry->my_list_node);
+		g_list_free_1 (entry->my_list_node);
+
+		g_free (entry);
+
+		pthread_mutex_unlock (&cache_rlock);
+	}
+
+}
+
+static void
+cache_trim ()
+{
+	GList *node, *node_previous;
+	utime_t utime_expire;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	utime_expire = get_utime() - US_CACHE_FILE_INFO;
+
+	for (	node = gl_file_info_cache_list_last ; 
+		node && (utime_expire > ((FileInfoCacheEntry *)node->data)->create_time) ;
+		node = node_previous
+	) {
+		node_previous = g_list_previous (node);
+
+		DEBUG_HTTP (("Cache: Expire: '%s'",((FileInfoCacheEntry *)node->data)->uri_string));
+
+		cache_entry_free ((FileInfoCacheEntry *)(node->data));
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+}
+
+/* Note: doesn't bother trimming entries, so the check can fast */
+static GnomeVFSFileInfo *
+cache_check (const gchar * uri_string)
+{
+	FileInfoCacheEntry *entry;
+	utime_t utime_expire;
+	GnomeVFSFileInfo *ret;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	utime_expire = get_utime() - US_CACHE_FILE_INFO;
+
+	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
+
+	if (entry && (utime_expire > entry->create_time)) {
+		entry = NULL;
+	}
+
+	if (entry) {
+		gnome_vfs_file_info_ref (entry->file_info);
+
+		DEBUG_HTTP (("Cache: Hit: '%s'",entry->uri_string));
+
+		ret = entry->file_info;
+	} else {
+		ret = NULL;
+	}
+	pthread_mutex_unlock (&cache_rlock);
+	return ret;
+}
+
+static gchar *
+cache_uri_to_string  (GnomeVFSURI *uri)
+{
+	gchar *uri_string;
+	size_t uri_length;
+
+	uri_string = gnome_vfs_uri_to_string (uri,
+				      GNOME_VFS_URI_HIDE_USER_NAME
+				      |GNOME_VFS_URI_HIDE_PASSWORD
+				      |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+
+	if (uri_string) {
+		uri_length = strlen (uri_string);
+		/* Trim off trailing '/'s */
+		if ( '/' == uri_string[uri_length-1] ) {
+			uri_string[uri_length-1] = 0;
+		}
+	}
+
+	return uri_string;
+}
+
+static GnomeVFSFileInfo *
+cache_check_uri (GnomeVFSURI *uri)
+{
+	gchar *uri_string;
+	GnomeVFSFileInfo *ret;
+
+	uri_string = cache_uri_to_string (uri);
+
+	ret = cache_check (uri_string);
+	g_free (uri_string);
+	return ret;
+}
+
+
+#if 0
+/* Directory operations demand fresher cache entries */
+static GnomeVFSFileInfo *
+cache_check_directory (const gchar * uri_string)
+{
+	FileInfoCacheEntry *entry;
+	utime_t utime_expire;
+	GnomeVFSFileInfo *ret;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	utime_expire = get_utime() - US_CACHE_DIRECTORY;
+
+	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
+
+	if (entry && (utime_expire > entry->create_time)) {
+		entry = NULL;
+	}
+
+	if (entry) {
+		gnome_vfs_file_info_ref (entry->file_info);
+		ret = entry->file_info;
+	} else {
+		ret = NULL;
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+
+	return ret;
+}
+#endif /* 0 */
+
+/* Note that this neither strdups uri_string nor calls cache_trim() */
+static void
+cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info)
+{
+	FileInfoCacheEntry *entry;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
+
+	DEBUG_HTTP (("Cache: Add: '%s'", uri_string));
+
+	if (entry) {
+		entry->create_time = get_utime();
+
+		gnome_vfs_file_info_ref (file_info);
+		gnome_vfs_file_info_unref (entry->file_info);
+		entry->file_info = file_info;
+
+		/* Now, move us to the top of the list */
+		if (	gl_file_info_cache_list_last == entry->my_list_node
+			&& NULL != g_list_previous (gl_file_info_cache_list_last)) {
+
+			gl_file_info_cache_list_last = g_list_previous (gl_file_info_cache_list_last);
+		}
+		gl_file_info_cache_list = g_list_remove_link (gl_file_info_cache_list, entry->my_list_node);
+		g_list_free_1 (entry->my_list_node);
+		gl_file_info_cache_list = g_list_prepend (gl_file_info_cache_list, entry);
+		/* Since we prepended a node, gl_file_info_cache_list points to our node */
+		entry->my_list_node = gl_file_info_cache_list;
+	} else {
+		entry = cache_entry_new();
+
+		entry->uri_string =  uri_string; 
+		entry->file_info = file_info;
+		gnome_vfs_file_info_ref (file_info);
+
+		g_hash_table_insert (gl_file_info_cache, entry->uri_string, entry);
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+}
+
+static void
+cache_add (const gchar * uri_string, GnomeVFSFileInfo * file_info)
+{
+	cache_trim ();
+	cache_add_no_strdup (g_strdup(uri_string), file_info);
+}
+
+static void
+cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList *file_info_list)
+{
+	gchar *uri_string;
+	gchar *child_string;
+	GList *node;
+
+	cache_trim();
+
+	uri_string = cache_uri_to_string (uri);
+
+	if (uri_string) {
+		/* Note--can't use no_strdup because we use uri_string below */ 
+		cache_add (uri_string, file_info);
+
+		for (node = file_info_list ; NULL != node ; node = g_list_next (node)) {
+			GnomeVFSFileInfo *child_info;
+			child_info = (GnomeVFSFileInfo *) node->data;
+			child_string = g_strconcat (uri_string, "/", child_info->name, NULL);
+			cache_add_no_strdup (child_string, child_info);
+		}
+	}
+
+	g_free (uri_string);
+}
+
+#if 0
+static void
+cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
+{
+	cache_trim ();
+
+	cache_add_no_strdup (cache_uri_to_string (uri), file_info);
+}
+#endif
+
+
+static void
+cache_invalidate (const gchar * uri_string)
+{
+	FileInfoCacheEntry *entry;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
+
+	if (entry) {
+		DEBUG_HTTP (("Cache: Invalidate: '%s'", entry->uri_string));
+
+		cache_entry_free (entry);
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+}
+
+static void
+cache_invalidate_uri (GnomeVFSURI *uri)
+{
+	gchar *uri_string;
+
+	uri_string = cache_uri_to_string (uri);
+
+	if (uri_string) {
+		cache_invalidate (uri_string);
+	}
+
+	g_free (uri_string);
+}
+
+
+#if 0
+/* FIXME open_directory needs to use this so that file info for deleted files in a directory gets flushed */
+/* (this function is not yet done */
+/* Invalidates entry and everything cached beneath it */
+static void
+cache_invalidate_entry_and_children (const gchar * uri_string)
+{
+	FileInfoCacheEntry *entry;
+
+	pthread_mutex_lock (&cache_rlock);
+
+	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
+
+	if (entry) {
+		cache_entry_free (entry);
+	}
+
+	pthread_mutex_unlock (&cache_rlock);
+}
+#endif
+
+#endif /* DAV_NO_CACHE */
 
 
 /* What do we qualify ourselves as?  */
@@ -437,7 +856,6 @@ check_header (const gchar *header,
 	while (*p == ' ' || *p == '\t')
 		p++;
 
-	DEBUG_HTTP (("Valid header `%s' found; value `%s'\n", header, p));
 	return p;
 }
 
@@ -454,8 +872,6 @@ parse_header (HttpFileHandle *handle,
 		if (value != NULL)
 			return (* headers[i].set_func) (handle, value);
 	}
-
-	DEBUG_HTTP (("Unknown header `%s'", header));
 
 	/* Simply ignore headers we don't know.  */
 	return TRUE;
@@ -479,8 +895,9 @@ get_header (GnomeVFSIOBuf *iobuf,
 		gchar c;
 
 		result = gnome_vfs_iobuf_read (iobuf, &c, 1, &bytes_read);
-		if (result != GNOME_VFS_OK)
+		if (result != GNOME_VFS_OK) {
 			return result;
+		}
 		if (bytes_read == 0) {
 			return GNOME_VFS_ERROR_EOF;
 		}
@@ -491,9 +908,10 @@ get_header (GnomeVFSIOBuf *iobuf,
 				gchar next;
 
 				result = gnome_vfs_iobuf_peekc (iobuf, &next);
-				if (result != GNOME_VFS_OK)
+				if (result != GNOME_VFS_OK) {
 					return result;
-
+				}
+				
 				if (next == '\t' || next == ' ') {
 					if (count > 0
 					    && s->str[count - 1] == '\r')
@@ -511,7 +929,7 @@ get_header (GnomeVFSIOBuf *iobuf,
 
 		count++;
 	}
-
+	
 	return GNOME_VFS_OK;
 }
 
@@ -532,8 +950,9 @@ create_handle (HttpFileHandle **handle_return,
 
 	/* This is the status report string, which is the first header.  */
 	result = get_header (iobuf, header_string);
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
 		goto error;
+	}
 
 	if (! parse_status (header_string->str, &server_status)) {
 		result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
@@ -558,14 +977,14 @@ create_handle (HttpFileHandle **handle_return,
 			break;
 
 		if (! parse_header (*handle_return, header_string->str)) {
-			DEBUG_HTTP (("Invalid header `%s'", header_string->str));
 			result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
 			break;
 		}
 	}
 
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
 		goto error;
+	}
 
 	g_string_free (header_string, TRUE);
 
@@ -766,6 +1185,10 @@ make_request (HttpFileHandle **handle_return,
 	guint proxy_port;
 	const gchar *path;
 
+#ifndef DAV_NO_CACHE
+	cache_invalidate_uri (uri);
+#endif /* DAV_NO_CACHE */
+
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
 	if (toplevel_uri->host_port == 0)
@@ -777,8 +1200,6 @@ make_request (HttpFileHandle **handle_return,
 		result = GNOME_VFS_ERROR_INVALID_URI;
 	} else if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, &proxy_host, &proxy_port)) {
 		proxy_connect = TRUE;
-
-		DEBUG_HTTP (("Connecting to proxy '%s:%u'", proxy_host, (unsigned int) proxy_port));
 
 		result = gnome_vfs_inet_connection_create (&connection,
 							   proxy_host,
@@ -794,9 +1215,10 @@ make_request (HttpFileHandle **handle_return,
 							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 	}
 
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
 		return result;
-
+	}
+	
 	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
 
 	if (proxy_connect) {
@@ -886,9 +1308,10 @@ make_request (HttpFileHandle **handle_return,
 	}
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_iobuf_flush (iobuf);
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
 		goto error;
-
+	}
+	
 	/* Read the headers and create our internal HTTP file handle.  */
 	result = create_handle (handle_return, uri, connection, iobuf,
 				context);
@@ -1192,6 +1615,17 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 		}
 		node = node->next;
 	}
+
+	if ( ! (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) ) {
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name_or_default (file_info->name, "text/plain"));
+	}
+
+	if ( ! (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE ) ) {
+		/* Is this a reasonable assumption ? */
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	}
 }
 
 static GnomeVFSFileInfo *
@@ -1202,7 +1636,6 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	gnome_vfs_file_info_init(file_info);
 	while(n != NULL) {
 		if(!strcmp((char *)n->name, "href")) {
 			gchar *nc = xmlNodeGetContent(n);
@@ -1348,7 +1781,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 	unescaped_uri_string = gnome_vfs_unescape_string(raw_uri, "/");
 	unescaped_uri = gnome_vfs_uri_new(unescaped_uri_string);
 	g_free(raw_uri);
+	raw_uri = NULL;
 	g_free(unescaped_uri_string);
+	unescaped_uri_string = NULL;
 
 	found_root_node_props = FALSE;
 	while(cur != NULL) {
@@ -1369,6 +1804,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 				handle->file_info = file_info;
 				found_root_node_props = TRUE;
 			}
+			
 		} else {
 			DEBUG_HTTP(("expecting <response> got <%s>\n", cur->name));
 		}
@@ -1379,6 +1815,11 @@ make_propfind_request (HttpFileHandle **handle_return,
 		DEBUG_HTTP (("Failed to find root request node properties during propfind"));
 		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
 	}
+
+#ifndef DAV_NO_CACHE
+	cache_add_uri_and_children (uri, handle->file_info, handle->files);
+#endif /* DAV_NO_CACHE */
+
 
 	gnome_vfs_uri_unref(unescaped_uri);
 
@@ -1400,21 +1841,57 @@ do_open_directory(GnomeVFSMethod *method,
 {
 	/* TODO move to using the gnome_vfs_file_info_list family of functions */
 	GnomeVFSResult result;
+	HttpFileHandle *handle = NULL;
+#ifndef DAV_NO_CACHE
+	GnomeVFSFileInfo * file_info_cached;
+#endif /*DAV_NO_CACHE*/
 
-	DEBUG_HTTP (("+Open_Directory options: %d dirfilter: 0x%08x", options, (unsigned int) filter));
+	DEBUG_HTTP (("+Open_Directory options: %d dirfilter: 0x%08x URI: '%s'", options, (unsigned int) filter, gnome_vfs_uri_to_string( uri, 0)));
 
-	result = make_propfind_request((HttpFileHandle **)method_handle, uri, 1, context);
+#ifndef DAV_NO_CACHE
+	/* Check the cache--is this even a directory?  
+	 * (Nautilus, in particular, seems to like to make this call on non directories
+	 */
+
+	file_info_cached = cache_check_uri (uri);
+
+	if (file_info_cached) {
+		if ( GNOME_VFS_FILE_TYPE_DIRECTORY != file_info_cached->type ) {
+			gnome_vfs_file_info_unref (file_info_cached);
+			result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+			goto error;
+		}
+		gnome_vfs_file_info_unref (file_info_cached);
+	}
+
+#endif /*DAV_NO_CACHE*/
+
+	result = make_propfind_request(&handle, uri, 1, context);
+	/* mfleming -- is this necessary?  Most DAV server's I've seen don't have the horrible
+	 * lack-of-trailing-/-is-a-301 problem for PROPFIND's
+	 */
 	if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
 		if(uri->text && *uri->text &&
 				uri->text[strlen(uri->text)-1] != '/') {
 			GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
-			result = do_open_directory(method, method_handle, tmpuri, options, filter, context);
+			result = do_open_directory(method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, filter, context);
 			gnome_vfs_uri_unref(tmpuri);
 
 		}
 	}
 
-	DEBUG_HTTP (("-Open_Directory"));
+	if (GNOME_VFS_FILE_TYPE_DIRECTORY != handle->file_info->type) {
+		result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+		http_handle_close (handle, context);
+		handle = NULL;
+	}
+
+	*method_handle = (GnomeVFSMethodHandle *)handle;
+
+#ifndef DAV_NO_CACHE
+error:
+#endif /*DAV_NO_CACHE*/
+	DEBUG_HTTP (("-Open_Directory (%d)", result));
 
 	return result;
 }
@@ -1454,33 +1931,19 @@ do_read_directory (GnomeVFSMethod *method,
 		GnomeVFSFileInfo *original_info = g_list_nth_data(handle->files, 0);
 		gboolean found_entry = FALSE;
 
+		/* mfleming -- Why is this check here?  Does anyone set original_info->name to NULL? */
 		if(original_info->name && original_info->name[0]) {
-
-			/* copy file info from our GnomeVFSFileInfo to the one that was
-			 * passed to us.
-			 */
-			/*
-			file_info->name = g_strdup(original_info->name);
-			file_info->mime_type = g_strdup(original_info->mime_type);
-			file_info->size = original_info->size;
-			*/
-			memcpy(file_info, original_info, sizeof(*file_info));
-			if(!file_info->mime_type) {
-				/* we didn't get a mime type - lets guess */
-				file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name_or_default (file_info->name, "text/plain"));
-				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-			}
+			gnome_vfs_file_info_copy (file_info, original_info); 
 			found_entry = TRUE;
 		}
 
-		/* discard our GnomeVFSFileInfo */
+		/* remove our GnomeVFSFileInfo from the list */
 		handle->files = g_list_remove(handle->files, original_info);
-		//gnome_vfs_file_info_unref(original_info);
-		g_free(original_info);
+		gnome_vfs_file_info_unref(original_info);
 
 		DEBUG_HTTP (("-Read_Directory"));
-		
+	
+		/* mfleming -- Is this necessary? */
 		if(found_entry) {
 			return GNOME_VFS_OK;
 		} else {
@@ -1503,51 +1966,65 @@ do_get_file_info (GnomeVFSMethod *method,
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
+#ifndef DAV_NO_CACHE
+	GnomeVFSFileInfo * file_info_cached;
+#endif /*DAV_NO_CACHE*/
 
 	DEBUG_HTTP (("+Get_File_Info options: %d", options));
 
-	/*
-	 * Start off by making a PROPFIND request.  Fall back to a HEAD if it fails
-	 */
+#ifndef DAV_NO_CACHE
+	file_info_cached = cache_check_uri (uri);
 
-	result = make_propfind_request(&handle, uri, 0, context);
-
-	/* Note that theoretically we could not bother with this request if we get a 404 back,
-	 * but since some servers seem to return wierd things on PROPFIND (mostly 200 OK's...)
-	 * I'm not going to count on the PROPFIND response....
-	 */ 
-	if (result == GNOME_VFS_OK) {
-		gnome_vfs_file_info_copy (file_info, handle->file_info);
+	if (file_info_cached) {
+		gnome_vfs_file_info_copy (file_info, file_info_cached);
+		gnome_vfs_file_info_unref (file_info_cached);
+		result = GNOME_VFS_OK;
 	} else {
-		result = make_request (&handle, uri, "HEAD", NULL, NULL, 
-			       	context);
+#endif /*DAV_NO_CACHE*/
+		/*
+		 * Start off by making a PROPFIND request.  Fall back to a HEAD if it fails
+		 */
 
+		result = make_propfind_request(&handle, uri, 0, context);
+
+		/* Note that theoretically we could not bother with this request if we get a 404 back,
+		 * but since some servers seem to return wierd things on PROPFIND (mostly 200 OK's...)
+		 * I'm not going to count on the PROPFIND response....
+		 */ 
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (file_info, handle->file_info);
 		} else {
-			if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-				/* FIXME - mfleming - is this code really appropriate?
-				 * In any case, it doesn't seem to be appropriate for a DAV-enabled
-				 * server, since they don't seem to send 301's when you PROPFIND collections
-				 * without a trailing '/'
-				 */
-				if(uri->text && *uri->text &&
-						uri->text[strlen(uri->text)-1] != '/') {
-					GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
+			result = make_request (&handle, uri, "HEAD", NULL, NULL, 
+				       	context);
 
-					result = do_get_file_info(method, tmpuri, file_info, options, context);
-					gnome_vfs_uri_unref(tmpuri);
+			if (result == GNOME_VFS_OK) {
+				gnome_vfs_file_info_copy (file_info, handle->file_info);
+			} else {
+				if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
+					/* FIXME - mfleming - is this code really appropriate?
+					 * In any case, it doesn't seem to be appropriate for a DAV-enabled
+					 * server, since they don't seem to send 301's when you PROPFIND collections
+					 * without a trailing '/'
+					 */
+					if(uri->text && *uri->text &&
+							uri->text[strlen(uri->text)-1] != '/') {
+						GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
+
+						result = do_get_file_info(method, tmpuri, file_info, options, context);
+						gnome_vfs_uri_unref(tmpuri);
+					}
 				}
+
+				DEBUG_HTTP (("-Get_File_Info"));
+				return result;
 			}
-
-			DEBUG_HTTP (("-Get_File_Info"));
-			return result;
 		}
+
+		http_handle_close (handle, context);
+		handle = NULL;
+#ifndef DAV_NO_CACHE
 	}
-
-	http_handle_close (handle, context);
-	handle = NULL;
-
+#endif /* DAV_NO_CACHE */
 	DEBUG_HTTP (("-Get_File_Info"));
 
 	return result;
@@ -1659,6 +2136,10 @@ do_move (GnomeVFSMethod *method,
 	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
 	http_handle_close (handle, context);
 
+#ifndef DAV_NO_CACHE
+	cache_invalidate_uri (new_uri);
+#endif /*DAV_NO_CACHE*/
+
 	DEBUG_HTTP (("-Move"));
 
 	return result;
@@ -1759,6 +2240,10 @@ vfs_module_init (const char *method_name, const char *args)
 		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, val_gconf);
 	}
 
+#ifndef DAV_NO_CACHE
+	cache_init();
+#endif /*DAV_NO_CACHE*/
+
 	return &method;
 }
 
@@ -1769,6 +2254,10 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 
 	gtk_object_destroy(GTK_OBJECT(gl_client));
 	gtk_object_unref(GTK_OBJECT(gl_client));
+
+#ifndef DAV_NO_CACHE
+	cache_shutdown();
+#endif /*DAV_NO_CACHE*/
 
 #ifdef G_THREADS_ENABLED
 	if (g_thread_supported ()) 

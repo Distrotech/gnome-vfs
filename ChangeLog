@@ -1,3 +1,26 @@
+2000-10-02  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_clear),
+	(gnome_vfs_file_info_ref), (gnome_vfs_file_info_unref),
+	(gnome_vfs_file_info_copy):
+	Made the GnomeVFSFileInfo ref count mechanism thread-safe 
+	(increments and decrements are not guarenteed to be atomic)
+	
+	* modules/http-method.c: (my_debug_printf), (get_utime),
+	(cache_init), (cache_shutdown), (cache_entry_new),
+	(cache_entry_free), (cache_trim), (cache_check),
+	(cache_uri_to_string), (cache_check_uri), (cache_check_directory),
+	(cache_add_no_strdup), (cache_add), (cache_add_uri_and_children),
+	(cache_add_uri), (cache_invalidate), (cache_invalidate_uri),
+	(cache_invalidate_entry_and_children), (check_header),
+	(parse_header), (get_header), (create_handle), (make_request),
+	(process_propfind_propstat), (process_propfind_response),
+	(make_propfind_request), (do_open_directory), (do_read_directory),
+	(do_get_file_info), (do_move), (vfs_module_init),
+	(vfs_module_shutdown):
+	Add the first phase of file info caching for DAV.  (These code paths
+	are not executing for non-DAV sites).  Caching is on by default now.
+
 2000-10-02  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* gnome-vfs.spec.in: Really fix installation of the
