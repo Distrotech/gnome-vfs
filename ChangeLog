@@ -1,3 +1,12 @@
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
+	* acconfig.h (GNOME_PLATFORM_VERSION): Added.  This is hardcoded
+	to be 1002000 in configure.in for the GNOME 1.2.x platform.
+
+	* configure.in (PLATFORM_GNOME_2): New automake conditional; true
+	if GNOME_PLATFORM_VERSION >= 1095000 (you need to patch configure.in
+	to make this happen, ie. when compiling for gnome-libs HEAD).
+
 2000-08-31  Mathieu Lacage  <mathieu@eazel.com>
 
 	fixes bugs 1119 and 1839

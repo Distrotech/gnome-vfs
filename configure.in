@@ -12,6 +12,11 @@ AC_PROG_CC
 AC_PROG_AWK
 AM_PROG_LIBTOOL
 
+dnl Version of the GNOME Platform (1002000 for GNOME 1.2.x)
+GNOME_PLATFORM_VERSION=1002000
+AC_DEFINE_UNQUOTED(GNOME_PLATFORM_VERSION, "$GNOME_PLATFORM_VERSION")
+AM_CONDITIONAL(PLATFORM_GNOME_2, test $GNOME_PLATFORM_VERSION -ge 1095000)
+
 dnl Let people disable the gtk-doc stuff.
 AC_ARG_ENABLE(gtk-doc, [  --enable-gtk-doc  Use gtk-doc to build documentation [default=auto]], enable_gtk_doc="$enableval", enable_gtk_doc=auto)
 
