@@ -1,5 +1,17 @@
 2000-08-09  Pavel Cisler  <pavel@eazel.com>
 
+	* modules/file-method.c: (append_trash_path),
+	(find_trash_in_one_hierarchy_level), (find_trash_in_hierarchy),
+	(try_creating_trash_in), (find_trash_directory),
+	(do_find_directory):
+	Fix a ton of bugs in the new find directory calls.
+	
+	* test/Makefile.am:
+	* test/test-find-directory.c:
+	Mini test tool for the gnome_vfs_find_directory call.
+
+2000-08-09  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:
 	(gnome_vfs_find_directory_cancellable):
 	* libgnomevfs/gnome-vfs-cancellable-ops.h:

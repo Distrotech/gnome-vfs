@@ -21,6 +21,7 @@ noinst_PROGRAMS =				\
 	test-directory				\
 	test-directory-visit			\
 	test-escape				\
+	test-find-directory			\
 	test-info				\
 	test-mime				\
 	test-mime-handlers			\
@@ -168,6 +169,11 @@ test_escape_LDFLAGS =
 test_uri_SOURCES = test-uri.c
 test_uri_LDADD = $(libraries)
 test_uri_LDFLAGS = 
+
+test_find_directory_SOURCES = test-find-directory.c
+test_find_directory_LDADD = $(libraries)
+test_find_directory_LDFLAGS = 
+
 
 EXTRA_DIST =					\
 	$(test_files)				\
