@@ -53,10 +53,10 @@ GTKDOC_CC=$(LIBTOOL) --mode=compile $(CC)
 GTKDOC_LD=$(LIBTOOL) --mode=link $(CC)
 
 dist-hook-local:
-	mkdir $(distdir)/TEXT;          \
-	for f in $(srcdir)/TEXT/* ; do  \
-	  test -f $$f && cp -p $$f $(distdir)/TEXT; \
-	done
+#	mkdir $(distdir)/TEXT;          \
+#	for f in $(srcdir)/TEXT/* ; do  \
+#	  test -f $$f && cp -p $$f $(distdir)/TEXT; \
+#	done
 
 
 ####################################
@@ -171,9 +171,9 @@ dist-check-gtkdoc:
 endif
 
 dist-hook: dist-check-gtkdoc dist-hook-local
-	mkdir $(distdir)/tmpl
-	mkdir $(distdir)/sgml
-	mkdir $(distdir)/html
+	test -d $(distdir)/tmpl || mkdir $(distdir)/tmpl
+	test -d $(distdir)/tmpl || mkdir $(distdir)/sgml
+	test -d $(distdir)/tmpl || mkdir $(distdir)/html
 	-cp $(srcdir)/tmpl/*.sgml $(distdir)/tmpl
 	-cp $(srcdir)/sgml/*.sgml $(distdir)/sgml
 	-cp $(srcdir)/html/index.sgml $(distdir)/html

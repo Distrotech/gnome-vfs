@@ -1,3 +1,11 @@
+2001-05-17  Robin * Slomkowski  <rslomkow@rslomkow.org>
+
+	* doc/Makefile.am:
+		(dist-hook): checked for the existence of dirs
+		before creating them.
+		(dist-hook-local): commented out this whole section
+		as it broke make dist as there are no TEXT dirs.
+
 Thu May 17 18:52:41 2001  Jonathan Blandford  <jrb@redhat.com>
 
 	* configure.in:
