@@ -1,3 +1,9 @@
+2004-05-16  Georges Karabin  <gkarabin@pobox.com>
+
+	* doc/writing-modules.sgml: fixed prototypes of the module virtual 
+	  functions, corrected a few spelling/grammatical mistakes,
+	  reformulated some sentences for clarity.
+
 2004-05-15  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/sftp-method.c: fix filling of the 'type' field in 
