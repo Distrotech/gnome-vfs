@@ -1,3 +1,15 @@
+2004-04-15 Joe Marcus Clarke <marcus@FreeBSD.org>
+
+	* configure.in:
+	Add check for the posix_openpt() function (similar to getpt).
+
+	* modules/pty-open.c: (_gnome_vfs_pty_getpt)
+	Try to use posix_openpt() to get our master pty.
+
+	* modules/sftp-mthod.c:
+	Define TEMP_FAILURE_RETRY if it is not already defined.  Note: this is a
+	GNU'ism, and not very portable.  A better solution might need to be found.
+
 2004-04-15  Alexander Larsson  <alexl@redhat.com>
 
         * modules/sftp-method.c (sftp_connect):

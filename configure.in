@@ -559,7 +559,7 @@ dnl ****************************
 AC_CHECK_HEADERS(sys/un.h stropts.h termios.h)
 
 # Check for PTY handling functions.
-AC_CHECK_FUNCS(getpt grantpt unlockpt ptsname ptsname_r)
+AC_CHECK_FUNCS(getpt posix_openpt grantpt unlockpt ptsname ptsname_r)
 
 # Pull in the right libraries for various functions which might not be
 # bundled into an exploded libc.
