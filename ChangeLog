@@ -1,3 +1,8 @@
+2004-10-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_new_directory_with_unique_name):
+	Set vfs_status on callback.
+
 2004-10-18  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/eggdesktopentries.c

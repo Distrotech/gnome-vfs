@@ -2176,6 +2176,8 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 		gnome_vfs_uri_unref (target_uri);
 	}
 
+	progress->progress_info->vfs_status = result;
+	
 	call_progress_uri (progress, NULL, target_uri,
 		GNOME_VFS_XFER_PHASE_OPENTARGET);
 
