@@ -1,3 +1,13 @@
+2002-08-05  Federico Mena Quintero  <federico@ximian.com>
+
+	Should fix #48539.
+
+	* modules/fstype.c (filesystem_type_uncached): Merged fix from GNU
+	findutils-4.1.7; return a copied string instead of a pointer to a
+	string on the stack...
+	(filesystem_type): Free the string we got when we must cache a new
+	value.
+
 2002-07-26  Ian McKellar  <yakk@yakk.net>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
