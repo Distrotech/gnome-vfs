@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-17 02:12+0100\n"
-"PO-Revision-Date: 2002-12-17 02:13+0100\n"
+"POT-Creation-Date: 2002-12-19 09:24+0100\n"
+"PO-Revision-Date: 2002-12-19 09:25+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -278,31 +278,31 @@ msgstr "Kunde inte hitta huvudbläddrare"
 msgid "Unknown error"
 msgstr "Okänt fel"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
-msgid "%u bytes"
-msgstr "%u byte"
+msgid "%u size"
+msgstr "%u storlek"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f kB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
@@ -337,3 +337,9 @@ msgstr "allmän Gnome VFS-moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "Allmän filmoniker"
+
+#~ msgid "%u byte"
+#~ msgstr "%u byte"
+
+#~ msgid "%u bytes"
+#~ msgstr "%u byte"
