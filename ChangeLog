@@ -1,3 +1,8 @@
+2001-05-31  Robin * Slomkowski  <rslomkow@rslomkow.org>
+
+	* gnome-vfs.spec.in:removed html/*.txt line as it doesn't seem
+		to get populated.
+
 2001-05-30  Seth Nickell  <snickell@stanford.edu>
 
 	* devel-docs/gnome-vfs/tmpl/libgnome-vfs.sgml:
