@@ -9,30 +9,30 @@ msgstr ""
 "POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2001-02-24 11:22+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
-"Language-Team: Românã <ro@li.org>\n"
+"Language-Team: RomÃ¢nÄƒ <ro@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d conþine caractere NUL"
+msgstr "%s:%d conÅ£ine caractere NUL"
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d nu conþine nici un nume de metodã."
+msgstr "%s:%d nu conÅ£ine nici un nume de metodÄƒ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d nu conþine nici un nume de modul."
+msgstr "%s:%d nu conÅ£ine nici un nume de modul."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Fiºierul configurare `%s' nu a fost gãsit: %s"
+msgstr "FiÅŸierul configurare `%s' nu a fost gÄƒsit: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
@@ -51,7 +51,7 @@ msgstr "ID activitate necunoscut %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
-msgstr "Operaþia opritã"
+msgstr "OperaÅ£ia opritÄƒ"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -70,17 +70,17 @@ msgstr "Nici o eroare"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Fiºierul nu a fost gãsit"
+msgstr "FiÅŸierul nu a fost gÄƒsit"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Eroare genericã"
+msgstr "Eroare genericÄƒ"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Eroare internã"
+msgstr "Eroare internÄƒ"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -90,7 +90,7 @@ msgstr "Parametrii invalid"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Operaþiune nesuportatã"
+msgstr "OperaÅ£iune nesuportatÄƒ"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -110,22 +110,22 @@ msgstr "Formatul nu este valid"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Descriptor fiºier prost"
+msgstr "Descriptor fiÅŸier prost"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Fiºierul prea mare"
+msgstr "FiÅŸierul prea mare"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Nu mai este spaþiu pe dispozitiv"
+msgstr "Nu mai este spaÅ£iu pe dispozitiv"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Sistem fiºiere doar-citire"
+msgstr "Sistem fiÅŸiere doar-citire"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -135,7 +135,7 @@ msgstr "URI invalid"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Fiºierul nu este deschis"
+msgstr "FiÅŸierul nu este deschis"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -150,12 +150,12 @@ msgstr "Acces respins"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Prea multe fiºiere deschise"
+msgstr "Prea multe fiÅŸiere deschise"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Sfârºit fiºier"
+msgstr "SfÃ¢rÅŸit fiÅŸier"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -165,27 +165,27 @@ msgstr "Nu este un director"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operaþia în progres"
+msgstr "OperaÅ£ia Ã®n progres"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Operaþia întreruptã"
+msgstr "OperaÅ£ia Ã®ntreruptÄƒ"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Fiºierul existã "
+msgstr "FiÅŸierul existÄƒ "
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Am înâlnit legãturi care cicleazã"
+msgstr "Am Ã®nÃ¢lnit legÄƒturi care cicleazÄƒ"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Operaþia nu este permisã"
+msgstr "OperaÅ£ia nu este permisÄƒ"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -195,12 +195,12 @@ msgstr "Este un director"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Memorie insuficientã"
+msgstr "Memorie insuficientÄƒ"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Gazda nu a fost gãsitã"
+msgstr "Gazda nu a fost gÄƒsitÄƒ"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -210,17 +210,17 @@ msgstr "Numele gazdei este invalid"
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Gazda nu are adresã"
+msgstr "Gazda nu are adresÄƒ"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Login eºuat"
+msgstr "Login eÅŸuat"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "S-a renunþat la operaþie"
+msgstr "S-a renunÅ£at la operaÅ£ie"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -235,17 +235,17 @@ msgstr "Directorul nu este gol"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Prea multe legãturi"
+msgstr "Prea multe legÄƒturi"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Sistem fiºier doar-citire"
+msgstr "Sistem fiÅŸier doar-citire"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Nu se aflã pe acelaºi sistem de fiºiere"
+msgstr "Nu se aflÄƒ pe acelaÅŸi sistem de fiÅŸiere"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -260,7 +260,7 @@ msgstr "Serviciul nu este disponibil"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Cerere pentru date servicii ieºite din uz"
+msgstr "Cerere pentru date servicii ieÅŸite din uz"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -270,7 +270,7 @@ msgstr "Nici o eroare"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
-msgstr "Eroare necunoscutã"
+msgstr "Eroare necunoscutÄƒ"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
@@ -327,7 +327,7 @@ msgstr ""
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 #, fuzzy
 msgid "generic file moniker"
-msgstr "Eroare genericã"
+msgstr "Eroare genericÄƒ"
 
 #~ msgid "3D Studio image"
 #~ msgstr "Imagine 3D Studio"
@@ -339,7 +339,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Audio AIFF"
 
 #~ msgid "ANIM animation"
-#~ msgstr "Animaþie ANIM"
+#~ msgstr "AnimaÅ£ie ANIM"
 
 #~ msgid "AVI video"
 #~ msgstr "Video AVI"
@@ -378,14 +378,14 @@ msgstr "Eroare genericã"
 #~ msgstr "Script shell C"
 
 #~ msgid "C source code"
-#~ msgstr "Cod sursã C"
+#~ msgstr "Cod sursÄƒ C"
 
 #, fuzzy
 #~ msgid "C source code header"
-#~ msgstr "Cod sursã C"
+#~ msgstr "Cod sursÄƒ C"
 
 #~ msgid "C++ source code"
-#~ msgstr "Cod sursã C++"
+#~ msgstr "Cod sursÄƒ C++"
 
 #~ msgid "CGI program"
 #~ msgstr "Program CGI"
@@ -397,10 +397,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Imagine raster CMU"
 
 #~ msgid "CPIO archive"
-#~ msgstr "Arhivã CPIO"
+#~ msgstr "ArhivÄƒ CPIO"
 
 #~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "Arhivã CPIO (compresatã cu gzip)"
+#~ msgstr "ArhivÄƒ CPIO (compresatÄƒ cu gzip)"
 
 #~ msgid "DCL script"
 #~ msgstr "Script DCL"
@@ -415,31 +415,31 @@ msgstr "Eroare genericã"
 #~ msgstr "Document DSSSL"
 
 #~ msgid "DXF vector graphic"
-#~ msgstr "Graficã vectorialã DXF"
+#~ msgstr "GraficÄƒ vectorialÄƒ DXF"
 
 #~ msgid "Debian package"
 #~ msgstr "Pachet Debian"
 
 #~ msgid "Dia diagram"
-#~ msgstr "Diagramã Dia"
+#~ msgstr "DiagramÄƒ Dia"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "Cod sursã Emacs Lisp"
+#~ msgstr "Cod sursÄƒ Emacs Lisp"
 
 #~ msgid "Enlightenment theme"
-#~ msgstr "Temã Enlightenment"
+#~ msgstr "TemÄƒ Enlightenment"
 
 #~ msgid "FLC animation"
-#~ msgstr "Animaþie FLC"
+#~ msgstr "AnimaÅ£ie FLC"
 
 #~ msgid "FLI animation"
-#~ msgstr "Animaþie FLI"
+#~ msgstr "AnimaÅ£ie FLI"
 
 #~ msgid "FastTracker II audio"
 #~ msgstr "Audio FastTracker II"
 
 #~ msgid "Fortran source code"
-#~ msgstr "Cod sursã Fortran"
+#~ msgstr "Cod sursÄƒ Fortran"
 
 #~ msgid "FrameMaker interchange document"
 #~ msgstr "Document FrameMaker interchange"
@@ -454,20 +454,20 @@ msgstr "Eroare genericã"
 #~ msgstr "Document GIMP"
 
 #~ msgid "GMC link"
-#~ msgstr "Legãturã GMC"
+#~ msgstr "LegÄƒturÄƒ GMC"
 
 #~ msgid "GNOME application details"
-#~ msgstr "Detalii aplicaþie GNOME"
+#~ msgstr "Detalii aplicaÅ£ie GNOME"
 
 #, fuzzy
 #~ msgid "GNU Oleo Spreadsheet"
 #~ msgstr "Spreadsheet Gnumeric"
 
 #~ msgid "GNU mail message"
-#~ msgstr "Mesaj poºtã GNU"
+#~ msgstr "Mesaj poÅŸtÄƒ GNU"
 
 #~ msgid "GTK configuration"
-#~ msgstr "Configuraþie GTK"
+#~ msgstr "ConfiguraÅ£ie GTK"
 
 #~ msgid "Gnumeric spreadsheet"
 #~ msgstr "Spreadsheet Gnumeric"
@@ -476,7 +476,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Document HDF"
 
 #~ msgid "HTML page"
-#~ msgstr "Paginã HTML"
+#~ msgstr "PaginÄƒ HTML"
 
 #~ msgid "IDL document"
 #~ msgstr "Document IDL"
@@ -503,10 +503,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Cod Java"
 
 #~ msgid "Java source code"
-#~ msgstr "Cod sursã Java"
+#~ msgstr "Cod sursÄƒ Java"
 
 #~ msgid "KDE application details"
-#~ msgstr "Detalii aplicaþie KDE"
+#~ msgstr "Detalii aplicaÅ£ie KDE"
 
 #, fuzzy
 #~ msgid "KIllustrator document"
@@ -528,10 +528,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Script shell Korn"
 
 #~ msgid "LHA archive"
-#~ msgstr "Arhivã LHA"
+#~ msgstr "ArhivÄƒ LHA"
 
 #~ msgid "LHARC archive"
-#~ msgstr "Arhivã LHARC"
+#~ msgstr "ArhivÄƒ LHARC"
 
 #~ msgid "LIBGRX font"
 #~ msgstr "Font LIBGRX"
@@ -540,10 +540,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Obiect LightWave"
 
 #~ msgid "LightWave scene"
-#~ msgstr "Scenã LightWave"
+#~ msgstr "ScenÄƒ LightWave"
 
 #~ msgid "Linux PSF console font"
-#~ msgstr "Font consolã Linux PSF"
+#~ msgstr "Font consolÄƒ Linux PSF"
 
 #, fuzzy
 #~ msgid "Lotus 1-2-3 spreadsheet"
@@ -562,7 +562,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Audio MP3"
 
 #~ msgid "MP3 audio playlist"
-#~ msgstr "Listã audio MP3"
+#~ msgstr "ListÄƒ audio MP3"
 
 #~ msgid "MPEG video"
 #~ msgstr "Video MPEG"
@@ -575,13 +575,13 @@ msgstr "Eroare genericã"
 #~ msgstr "Video MS"
 
 #~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Fiºier codat Macintosh AppleDouble"
+#~ msgstr "FiÅŸier codat Macintosh AppleDouble"
 
 #~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Fiºier codat Macintosh BinHex"
+#~ msgstr "FiÅŸier codat Macintosh BinHex"
 
 #~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Arhivã Macintosh StuffIt"
+#~ msgstr "ArhivÄƒ Macintosh StuffIt"
 
 #~ msgid "MathML document"
 #~ msgstr "Document MathML"
@@ -600,7 +600,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Video Microsoft"
 
 #~ msgid "Nautilus link"
-#~ msgstr "Legãturã Nautilus"
+#~ msgstr "LegÄƒturÄƒ Nautilus"
 
 #~ msgid "ODA document"
 #~ msgstr "Document ODA"
@@ -621,7 +621,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Imagine PGM"
 
 #~ msgid "PGN chess game"
-#~ msgstr "Joc ºah PGN"
+#~ msgstr "Joc ÅŸah PGN"
 
 #~ msgid "PGP keys"
 #~ msgstr "Chei PGP"
@@ -630,10 +630,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Mesaj PGP"
 
 #~ msgid "PGP signature"
-#~ msgstr "Semnãturã PGP"
+#~ msgstr "SemnÄƒturÄƒ PGP"
 
 #~ msgid "PGP-encrypted file"
-#~ msgstr "Fiºier criptat PGP"
+#~ msgstr "FiÅŸier criptat PGP"
 
 #~ msgid "PHP script"
 #~ msgstr "Script PHP"
@@ -651,7 +651,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Imagine PPM"
 
 #~ msgid "Palm OS database"
-#~ msgstr "Bazã de date Palm OS"
+#~ msgstr "BazÄƒ de date Palm OS"
 
 #~ msgid "Perl script"
 #~ msgstr "Script Perl"
@@ -666,7 +666,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Document PostScript"
 
 #~ msgid "Python source code"
-#~ msgstr "Cod sursã Python"
+#~ msgstr "Cod sursÄƒ Python"
 
 #~ msgid "QuickTime movie"
 #~ msgstr "Film QuickTIme"
@@ -680,7 +680,7 @@ msgstr "Eroare genericã"
 #~ msgstr "document calendar sau eveniment"
 
 #~ msgid "RAR archive"
-#~ msgstr "Arhivã RAR"
+#~ msgstr "ArhivÄƒ RAR"
 
 #~ msgid "README document"
 #~ msgstr "Document README"
@@ -701,10 +701,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Video RealVideo"
 
 #~ msgid "S/MIME file"
-#~ msgstr "Fiºier S/MIME"
+#~ msgstr "FiÅŸier S/MIME"
 
 #~ msgid "S/MIME signature"
-#~ msgstr "Semnãturã S/MIME"
+#~ msgstr "SemnÄƒturÄƒ S/MIME"
 
 #~ msgid "SGI video"
 #~ msgstr "Video SGI"
@@ -719,16 +719,16 @@ msgstr "Eroare genericã"
 #~ msgstr "Cod SQL"
 
 #~ msgid "SV4 CPIO archive"
-#~ msgstr "Arhivã SV4 CPIO"
+#~ msgstr "ArhivÄƒ SV4 CPIO"
 
 #~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "Arhivã SV4 CPIO (cu CRC)"
+#~ msgstr "ArhivÄƒ SV4 CPIO (cu CRC)"
 
 #~ msgid "SVG art"
-#~ msgstr "Artã SVG"
+#~ msgstr "ArtÄƒ SVG"
 
 #~ msgid "Scheme source code"
-#~ msgstr "Cod sursã Scheme"
+#~ msgstr "Cod sursÄƒ Scheme"
 
 #~ msgid "Scream Tracker 3 audio"
 #~ msgstr "Audio Scream Tracker 3"
@@ -766,7 +766,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Spreadsheet StarOffice"
 
 #~ msgid "Sun mu-law audio"
-#~ msgstr "Audio Sun µ-law"
+#~ msgstr "Audio Sun Ä¾-law"
 
 #~ msgid "SunOS News font"
 #~ msgstr "Font SunOS News"
@@ -802,7 +802,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Font TrueType"
 
 #~ msgid "USENET news message"
-#~ msgstr "MEsaj ºtiri USENET"
+#~ msgstr "MEsaj ÅŸtiri USENET"
 
 #~ msgid "Unidata netCDF document"
 #~ msgstr "Document Unidata netCDF"
@@ -820,7 +820,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Video Vivo"
 
 #~ msgid "WAIS source code"
-#~ msgstr "Cod sursã WAIS"
+#~ msgstr "Cod sursÄƒ WAIS"
 
 #~ msgid "Wavelet video"
 #~ msgstr "Video Wavelet"
@@ -848,31 +848,31 @@ msgstr "Eroare genericã"
 
 #, fuzzy
 #~ msgid "Xbase database"
-#~ msgstr "Bazã de date Palm OS"
+#~ msgstr "BazÄƒ de date Palm OS"
 
 #~ msgid "active server page"
-#~ msgstr "paginã active server"
+#~ msgstr "paginÄƒ active server"
 
 #~ msgid "address card"
-#~ msgstr "carte adresã"
+#~ msgstr "carte adresÄƒ"
 
 #~ msgid "ar archive"
-#~ msgstr "Arhivã ar"
+#~ msgstr "ArhivÄƒ ar"
 
 #~ msgid "arj archive"
-#~ msgstr "Arhivã arj"
+#~ msgstr "ArhivÄƒ arj"
 
 #~ msgid "authors list"
-#~ msgstr "listã autori"
+#~ msgstr "listÄƒ autori"
 
 #~ msgid "backup file"
-#~ msgstr "fiºier backup"
+#~ msgstr "fiÅŸier backup"
 
 #~ msgid "basic audio"
 #~ msgstr "audio standard"
 
 #~ msgid "bibliography record"
-#~ msgstr "înregistare bibliograficã"
+#~ msgstr "Ã®nregistare bibliograficÄƒ"
 
 #~ msgid "binary program"
 #~ msgstr "program binar"
@@ -881,10 +881,10 @@ msgstr "Eroare genericã"
 #~ msgstr "dispozitiv de tip block"
 
 #~ msgid "bzip-compressed file"
-#~ msgstr "fiºier compresat bzip"
+#~ msgstr "fiÅŸier compresat bzip"
 
 #~ msgid "calendar file"
-#~ msgstr "fiºier calendar"
+#~ msgstr "fiÅŸier calendar"
 
 #~ msgid "calendar or event document"
 #~ msgstr "document calendar sau eveniment"
@@ -893,22 +893,22 @@ msgstr "Eroare genericã"
 #~ msgstr "dispozitiv de tip caracter"
 
 #~ msgid "comma-separated text document"
-#~ msgstr "document text virgulã-separat"
+#~ msgstr "document text virgulÄƒ-separat"
 
 #~ msgid "compound document"
 #~ msgstr "document compus"
 
 #~ msgid "compress-compressed file"
-#~ msgstr "Fiºier compresat compress"
+#~ msgstr "FiÅŸier compresat compress"
 
 #~ msgid "compressed GIMP document"
 #~ msgstr "document compresat GIMP"
 
 #~ msgid "directory information file"
-#~ msgstr "fiºier informaþie director"
+#~ msgstr "fiÅŸier informaÅ£ie director"
 
 #~ msgid "document type definition"
-#~ msgstr "definiþie tip document"
+#~ msgstr "definiÅ£ie tip document"
 
 #~ msgid "email headers"
 #~ msgstr "headere email"
@@ -920,25 +920,25 @@ msgstr "Eroare genericã"
 #~ msgstr "mesaj criptat"
 
 #~ msgid "enriched text document"
-#~ msgstr "document text îmbogãþit"
+#~ msgstr "document text Ã®mbogÄƒÅ£it"
 
 #~ msgid "folder"
 #~ msgstr "dosar"
 
 #~ msgid "gtar archive"
-#~ msgstr "arhivã gtar"
+#~ msgstr "arhivÄƒ gtar"
 
 #~ msgid "gzip-compressed file"
-#~ msgstr "fiºier compresat gzip"
+#~ msgstr "fiÅŸier compresat gzip"
 
 #~ msgid "help page"
-#~ msgstr "paginã help"
+#~ msgstr "paginÄƒ help"
 
 #~ msgid "mail delivery report"
 #~ msgstr "report livrare mail"
 
 #~ msgid "mail disposition report"
-#~ msgstr "report dispoziþie mail"
+#~ msgstr "report dispoziÅ£ie mail"
 
 #~ msgid "mail system report"
 #~ msgstr "report sistem mail"
@@ -947,10 +947,10 @@ msgstr "Eroare genericã"
 #~ msgstr "makefile"
 
 #~ msgid "manual page"
-#~ msgstr "paginã manual"
+#~ msgstr "paginÄƒ manual"
 
 #~ msgid "manual page (compressed)"
-#~ msgstr "paginã manual (compresatã)"
+#~ msgstr "paginÄƒ manual (compresatÄƒ)"
 
 #~ msgid "memory dump"
 #~ msgstr "dump memorie"
@@ -959,7 +959,7 @@ msgstr "Eroare genericã"
 #~ msgstr "digest mesaj"
 
 #~ msgid "message in several formats"
-#~ msgstr "mesaj în câteva formate"
+#~ msgstr "mesaj Ã®n cÃ¢teva formate"
 
 #~ msgid "multi-part message"
 #~ msgstr "mesaj multi-parte"
@@ -974,7 +974,7 @@ msgstr "Eroare genericã"
 #~ msgstr "audio ogg"
 
 #~ msgid "partial email message"
-#~ msgstr "mesaj email parþial"
+#~ msgstr "mesaj email parÅ£ial"
 
 #~ msgid "plain text document"
 #~ msgstr "document text simplu"
@@ -983,22 +983,22 @@ msgstr "Eroare genericã"
 #~ msgstr "rezultate profiler"
 
 #~ msgid "reference to remote file"
-#~ msgstr "referinþã la fiºier la distanþã"
+#~ msgstr "referinÅ£Äƒ la fiÅŸier la distanÅ£Äƒ"
 
 #~ msgid "rejected patch file"
-#~ msgstr "fiºier patch respins"
+#~ msgstr "fiÅŸier patch respins"
 
 #~ msgid "rich text document"
 #~ msgstr "document rich text"
 
 #~ msgid "search results"
-#~ msgstr "rezultate cãutare"
+#~ msgstr "rezultate cÄƒutare"
 
 #~ msgid "shared library"
-#~ msgstr "bibliotecã comunã"
+#~ msgstr "bibliotecÄƒ comunÄƒ"
 
 #~ msgid "shell archive"
-#~ msgstr "arhivã shell"
+#~ msgstr "arhivÄƒ shell"
 
 #~ msgid "shell script"
 #~ msgstr "script shell"
@@ -1013,34 +1013,34 @@ msgstr "Eroare genericã"
 #~ msgstr "credite autor software"
 
 #~ msgid "software installation instructions"
-#~ msgstr "intrucþiuni instalare software"
+#~ msgstr "intrucÅ£iuni instalare software"
 
 #~ msgid "software license terms"
-#~ msgstr "termeni licenþiere software"
+#~ msgstr "termeni licenÅ£iere software"
 
 #~ msgid "source code patch"
-#~ msgstr "patch cod sursã"
+#~ msgstr "patch cod sursÄƒ"
 
 #~ msgid "style sheet"
 #~ msgstr "style sheet"
 
 #~ msgid "symbolic link"
-#~ msgstr "legãturã simbolicã"
+#~ msgstr "legÄƒturÄƒ simbolicÄƒ"
 
 #~ msgid "tab-separated text document"
 #~ msgstr "document text tab-separat"
 
 #~ msgid "tar archive"
-#~ msgstr "arhivã tar"
+#~ msgstr "arhivÄƒ tar"
 
 #~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "arhivã tar (compresatã bzip2)"
+#~ msgstr "arhivÄƒ tar (compresatÄƒ bzip2)"
 
 #~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "arhivã tar (compresatã bzip2)"
+#~ msgstr "arhivÄƒ tar (compresatÄƒ bzip2)"
 
 #~ msgid "theme"
-#~ msgstr "temã"
+#~ msgstr "temÄƒ"
 
 #, fuzzy
 #~ msgid "troff document"
@@ -1059,7 +1059,7 @@ msgstr "Eroare genericã"
 #~ msgstr "tip necunoscut"
 
 #~ msgid "ustar archive"
-#~ msgstr "arhivã ustar"
+#~ msgstr "arhivÄƒ ustar"
 
 #~ msgid "wave audio"
 #~ msgstr "audio wave"
@@ -1068,16 +1068,16 @@ msgstr "Eroare genericã"
 #~ msgstr "dosar web"
 
 #~ msgid "xfig vector graphic"
-#~ msgstr "graficã vectorialã xfig"
+#~ msgstr "graficÄƒ vectorialÄƒ xfig"
 
 #~ msgid "zip archive"
-#~ msgstr "arhivã zip"
+#~ msgstr "arhivÄƒ zip"
 
 #~ msgid "zoo archive"
-#~ msgstr "arhivã zoo"
+#~ msgstr "arhivÄƒ zoo"
 
 #~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS a fost deja iniþializat."
+#~ msgstr "GNOME VFS a fost deja iniÅ£ializat."
 
 #~ msgid "Dying."
 #~ msgstr "Mor."
@@ -1092,7 +1092,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Nu pot scrie: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Nu pot crea fiºierul temporar `%s' "
+#~ msgstr "Nu pot crea fiÅŸierul temporar `%s' "
 
 #~ msgid "Cannot create socket: %s"
 #~ msgstr "Nu pot crea socketul: %s"
@@ -1107,10 +1107,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Nu pot accepta conexiuni pe `%s': %s"
 
 #~ msgid "Cannot initialize CORBA."
-#~ msgstr "Nu pot iniþializa CORBA"
+#~ msgstr "Nu pot iniÅ£ializa CORBA"
 
 #~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Nu pot rezolva referinþa iniþialã la RootPOA"
+#~ msgstr "Nu pot rezolva referinÅ£a iniÅ£ialÄƒ la RootPOA"
 
 #~ msgid "Cannot activate POA manager."
 #~ msgstr "Nu pot activa managerul POA"
@@ -1119,10 +1119,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Folosire: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Nu pot deschide descriptorul fiºier %d."
+#~ msgstr "Nu pot deschide descriptorul fiÅŸier %d."
 
 #~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Interfaþa notificare pentru `%s' nu a fost gãsitã."
+#~ msgstr "InterfaÅ£a notificare pentru `%s' nu a fost gÄƒsitÄƒ."
 
 #~ msgid "Cannot setup Request object."
 #~ msgstr "Nu pot seta obiectul Cerere."
@@ -1131,37 +1131,37 @@ msgstr "Eroare genericã"
 #~ msgstr "Nu pot extrage IOR."
 
 #~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Am obþinut ºir ciudat de la procesul dependent: `%s'"
+#~ msgstr "Am obÅ£inut ÅŸir ciudat de la procesul dependent: `%s'"
 
 #~ msgid "Cannot get object for `%s'"
-#~ msgstr "Nu pot obþine obiectul pentru `%s'"
+#~ msgstr "Nu pot obÅ£ine obiectul pentru `%s'"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Nu pot omorî GNOME::VFS::Slave::Notify -- excepþie %s"
+#~ msgstr "Nu pot omorÃ® GNOME::VFS::Slave::Notify -- excepÅ£ie %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
 #~ msgstr "Nu pot conecta socketul `%s': %s"
 
 #~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Nu pot iniþializa GNOME::VFS:Slave::Notify"
+#~ msgstr "Nu pot iniÅ£ializa GNOME::VFS:Slave::Notify"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nu pot reseta GNOME::VFS:Slave %s - excepþie %s"
+#~ msgstr "Nu pot reseta GNOME::VFS:Slave %s - excepÅ£ie %s"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Nu pot reseta GNOME::VFS::Slave (IOR necunoscut) -- excepþie %s"
+#~ msgstr "Nu pot reseta GNOME::VFS::Slave (IOR necunoscut) -- excepÅ£ie %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nu pot omorî GNOME::VFS::Slave %s -- excepþie %s"
+#~ msgstr "Nu pot omorÃ® GNOME::VFS::Slave %s -- excepÅ£ie %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Nu pot omorî GNOME::VFS::Slave (IOR necunoscut) -- excepþie %s"
+#~ msgstr "Nu pot omorÃ® GNOME::VFS::Slave (IOR necunoscut) -- excepÅ£ie %s"
 
 #~ msgid "%s to retrieve"
 #~ msgstr "%s pentru a fi primit"
 
 #~ msgid "Closing connection to %s"
-#~ msgstr "Închid conexiunea la %s"
+#~ msgstr "ÃŽnchid conexiunea la %s"
 
 #~ msgid "%s of %s read"
 #~ msgstr "Am citit %s din %s"
@@ -1170,7 +1170,7 @@ msgstr "Eroare genericã"
 #~ msgstr "Am citit %s"
 
 #~ msgid "Back"
-#~ msgstr "Înapoi"
+#~ msgstr "ÃŽnapoi"
 
 #~ msgid "Go to the previously visited directory"
 #~ msgstr "Mergi la directorul precedent vizitat"
@@ -1179,138 +1179,138 @@ msgstr "Eroare genericã"
 #~ msgstr "Sus"
 
 #~ msgid "Go to the parent directory"
-#~ msgstr "Mergi la directorul pãrinte"
+#~ msgstr "Mergi la directorul pÄƒrinte"
 
 #~ msgid "Forward"
-#~ msgstr "Înainte"
+#~ msgstr "ÃŽnainte"
 
 #~ msgid "Go to the next visited directory"
-#~ msgstr "Mergi la directorul urmãtor visitat"
+#~ msgstr "Mergi la directorul urmÄƒtor visitat"
 
 #~ msgid "Rescan"
-#~ msgstr "Rescaneazã"
+#~ msgstr "RescaneazÄƒ"
 
 #~ msgid "Rescan the current directory"
-#~ msgstr "Rescaneazã directorul curent"
+#~ msgstr "RescaneazÄƒ directorul curent"
 
 #~ msgid "Home"
-#~ msgstr "Acasã"
+#~ msgstr "AcasÄƒ"
 
 #~ msgid "Go to the home directory"
-#~ msgstr "Mergi la directorul acasã"
+#~ msgstr "Mergi la directorul acasÄƒ"
 
 #~ msgid "Name"
 #~ msgstr "Nume"
 
 #~ msgid "Size"
-#~ msgstr "Mãrime"
+#~ msgstr "MÄƒrime"
 
 #~ msgid "Date"
 #~ msgstr "Data"
 
 #~ msgid "Enter name:"
-#~ msgstr "Introduceþi numele:"
+#~ msgstr "IntroduceÅ£i numele:"
 
 #~ msgid "Show:"
-#~ msgstr "Aratã:"
+#~ msgstr "AratÄƒ:"
 
 #~ msgid "Show dotfiles"
-#~ msgstr "Aratã fiºierele care încep cu ."
+#~ msgstr "AratÄƒ fiÅŸierele care Ã®ncep cu ."
 
 #~ msgid "Edit Applications List"
-#~ msgstr "Editeazã lista aplicaþiilor"
+#~ msgstr "EditeazÄƒ lista aplicaÅ£iilor"
 
 #~ msgid "Select applications to appear in menu for mime type \"%s\""
 #~ msgstr ""
-#~ "Selecteazã aplicaþiile pentru a apãrea în meniu pentru tipul mine \"%s\""
+#~ "SelecteazÄƒ aplicaÅ£iile pentru a apÄƒrea Ã®n meniu pentru tipul mine \"%s\""
 
 #~ msgid "Add Application..."
-#~ msgstr "Adaugã aplicaþie..."
+#~ msgstr "AdaugÄƒ aplicaÅ£ie..."
 
 #~ msgid "Edit Application..."
-#~ msgstr "Editeazã aplicaþie..."
+#~ msgstr "EditeazÄƒ aplicaÅ£ie..."
 
 #~ msgid "Delete Application"
-#~ msgstr "ªterge aplicaþie"
+#~ msgstr "Åžterge aplicaÅ£ie"
 
 #~ msgid "Edit Components List"
-#~ msgstr "Editeazã lista componentelor"
+#~ msgstr "EditeazÄƒ lista componentelor"
 
 #~ msgid "Select views to appear in menu for mime type \"%s\""
 #~ msgstr ""
-#~ "Selecteazã vizualizãrile pentru a apare în meniu pentru tipul mime \"%s\""
+#~ "SelecteazÄƒ vizualizÄƒrile pentru a apare Ã®n meniu pentru tipul mime \"%s\""
 
 #~ msgid ""
 #~ "The MIME type entered contained upper case characters. Upper case "
 #~ "characters were changed to lower case for you."
 #~ msgstr ""
-#~ "Tipul MIME introdus conþine litere mari. Ele au fost schimbate în litere "
+#~ "Tipul MIME introdus conÅ£ine litere mari. Ele au fost schimbate Ã®n litere "
 #~ "mici pentru dvs."
 
 #~ msgid "Add New MIME Type"
-#~ msgstr "Adaugã tip MIME nou"
+#~ msgstr "AdaugÄƒ tip MIME nou"
 
 #~ msgid "Add Mime Type"
-#~ msgstr "Adaugã tip MIME"
+#~ msgstr "AdaugÄƒ tip MIME"
 
 #~ msgid ""
 #~ "Add a new Mime Type\n"
 #~ "For example:  image/tiff; text/x-scheme"
 #~ msgstr ""
-#~ "Adaugã un nou tip Mime Type\n"
+#~ "AdaugÄƒ un nou tip Mime Type\n"
 #~ "De examplu:  image/tiff; text/x-scheme"
 
 #~ msgid "Mime Type:"
 #~ msgstr "Tip mime:"
 
 #~ msgid "Type in a description for this mime-type."
-#~ msgstr "Introduceþi o descriere pentru acest tip mime."
+#~ msgstr "IntroduceÅ£i o descriere pentru acest tip mime."
 
 #~ msgid "Description:"
 #~ msgstr "Descriere:"
 
 #~ msgid "File Extensions "
-#~ msgstr "Extensii fiºier "
+#~ msgstr "Extensii fiÅŸier "
 
 #~ msgid "Add..."
-#~ msgstr "Adaugã..."
+#~ msgstr "AdaugÄƒ..."
 
 #~ msgid "    Remove    "
 #~ msgstr "    Elimina    "
 
 #~ msgid "Add New Extension"
-#~ msgstr "Adaugã extensie nouã"
+#~ msgstr "AdaugÄƒ extensie nouÄƒ"
 
 #~ msgid ""
 #~ "Type in the extensions for this mime-type.\n"
 #~ "For example:  .html, .htm"
 #~ msgstr ""
-#~ "Introduceþi extensiile pentru acest tip mime.\n"
+#~ "IntroduceÅ£i extensiile pentru acest tip mime.\n"
 #~ "De examplu:  .html, .htm"
 
 #~ msgid "Extension:"
 #~ msgstr "Extensia:"
 
 #~ msgid "New Application"
-#~ msgstr "Aplicaþie nouã"
+#~ msgstr "AplicaÅ£ie nouÄƒ"
 
 #~ msgid "Application Name:"
-#~ msgstr "Numele aplicaþiei:"
+#~ msgstr "Numele aplicaÅ£iei:"
 
 #~ msgid "Application Command:"
-#~ msgstr "Comandã aplicaþie:"
+#~ msgstr "ComandÄƒ aplicaÅ£ie:"
 
 #~ msgid "Open Behavior"
 #~ msgstr "Purtare la deschidere"
 
 #~ msgid "Can open multiple files"
-#~ msgstr "Nu pot deschide fiºiere multiple"
+#~ msgstr "Nu pot deschide fiÅŸiere multiple"
 
 #~ msgid "Expects URIs as arguments"
-#~ msgstr "Aºteaptã URIuri ca argumente"
+#~ msgstr "AÅŸteaptÄƒ URIuri ca argumente"
 
 #~ msgid "Edit Application"
-#~ msgstr "Editeazã aplicaþie"
+#~ msgstr "EditeazÄƒ aplicaÅ£ie"
 
 #~ msgid "Can open from URI"
 #~ msgstr "Nu pot deschide de la URI"
@@ -1319,34 +1319,34 @@ msgstr "Eroare genericã"
 #~ msgstr "Tip mime"
 
 #~ msgid "Change Icon"
-#~ msgstr "Schimbã iconul"
+#~ msgstr "SchimbÄƒ iconul"
 
 #~ msgid "Change File Extensions"
-#~ msgstr "Schimbã extensiile fiºier"
+#~ msgstr "SchimbÄƒ extensiile fiÅŸier"
 
 #~ msgid "Default Action:"
-#~ msgstr "Acþiunea implicitã:"
+#~ msgstr "AcÅ£iunea implicitÄƒ:"
 
 #~ msgid "Use Viewer"
-#~ msgstr "Foloseºte vizualizator"
+#~ msgstr "FoloseÅŸte vizualizator"
 
 #~ msgid "Open With Application"
-#~ msgstr "Deschide cu aplicaþie"
+#~ msgstr "Deschide cu aplicaÅ£ie"
 
 #~ msgid "Edit List"
-#~ msgstr "Editeazã lista"
+#~ msgstr "EditeazÄƒ lista"
 
 #~ msgid "Add new Mime type..."
-#~ msgstr "Adaugã tip mime nou..."
+#~ msgstr "AdaugÄƒ tip mime nou..."
 
 #~ msgid "Delete this Mime type..."
-#~ msgstr "ªterge acest tip mime..."
+#~ msgstr "Åžterge acest tip mime..."
 
 #~ msgid "Revert to System Defaults"
-#~ msgstr "Restaureazã setãrile implicite"
+#~ msgstr "RestaureazÄƒ setÄƒrile implicite"
 
 #~ msgid "No Description"
-#~ msgstr "Fãrã descriere"
+#~ msgstr "FÄƒrÄƒ descriere"
 
 #~ msgid "None"
 #~ msgstr "Nimic"
@@ -1357,16 +1357,16 @@ msgstr "Eroare genericã"
 #~ "Mime configuration.\n"
 #~ "Revert to System Settings ?\n"
 #~ msgstr ""
-#~ "Restaurarea la setãrile implicite\n"
-#~ "va pierde toate configuraþiile MIME\n"
+#~ "Restaurarea la setÄƒrile implicite\n"
+#~ "va pierde toate configuraÅ£iile MIME\n"
 #~ "personale.\n"
-#~ "Restaureazã setãrile implicite ?\n"
+#~ "RestaureazÄƒ setÄƒrile implicite ?\n"
 
 #~ msgid "none"
 #~ msgstr "nimic"
 
 #~ msgid "View as %s"
-#~ msgstr "Vizualizeazã ca %s"
+#~ msgstr "VizualizeazÄƒ ca %s"
 
 #~ msgid "Description"
 #~ msgstr "Descriere"
@@ -1375,10 +1375,10 @@ msgstr "Eroare genericã"
 #~ msgstr "Extensie"
 
 #~ msgid "Default Action"
-#~ msgstr "Acþiune implicitã"
+#~ msgstr "AcÅ£iune implicitÄƒ"
 
 #~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Nu gãsesc hbox, folosesc un selector fiºiere normal"
+#~ msgstr "Nu gÄƒsesc hbox, folosesc un selector fiÅŸiere normal"
 
 #~ msgid "Preview"
 #~ msgstr "Previzualizare"
