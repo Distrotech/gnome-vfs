@@ -550,16 +550,26 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 	uri->parent        = parent;
 
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
+
 	if (!p1) {
 		set_uri_element (uri, p, strlen (p));
 		return uri;
 	}
 
 	set_uri_element (uri, p, p1 - p);
+
+	if (! strchr (p1, ':')) {
+		return uri;
+	}
+
 	new_uri = parse_uri_substring (p1 + 1, uri);
 
-	return uri;
+	if (new_uri)
+		return new_uri;
+	else
+		return uri;
 }
+
 /**
  * gnome_vfs_uri_new:
  * @text_uri: A string representing a URI.
@@ -631,13 +641,11 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 	set_uri_element (uri, p, p1 - p);
 
-	p2 = p1 + 1;
-		
-	if (*p2 == 0) {
-		gnome_vfs_uri_unref (uri);
+	if (! strchr (p1, ':')) {
 		g_free (new_uri_string);
-		return NULL;
+		return uri;
 	}
+
 	new_uri = parse_uri_substring (p2, uri);
 
 	g_free (new_uri_string);

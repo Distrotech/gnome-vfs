@@ -1,3 +1,10 @@
+2000-08-10  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (parse_uri_substring,
+	gnome_vfs_uri_new): Tolerate fragment identifiers by just ignoring
+	them; differentiate them from the gnome-vfs method chaning syntax
+	by checking for a colon past the pound sign.
+
 2000-08-08  J Shane Culpepper  <pepper@eazel.com>
 
 	* modules/http-method.c: (process_propfind_response),
