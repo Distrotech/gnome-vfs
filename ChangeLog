@@ -1,3 +1,8 @@
+1999-09-27  Cody Russell  <bratsche@dfw.net>
+	* modules/bzip2-method.c: At Ettore's request, reformatted the
+	code to look more like the rest of the code. Function return
+	values are now on the preceeding line of the function name.
+
 1999-09-27  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (dispatch_open_callback):

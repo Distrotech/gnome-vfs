@@ -105,10 +105,10 @@ G_STMT_START					\
       return __tmp_result;			\
 } G_STMT_END
 
-static Bzip2MethodHandle
-*bzip2_method_handle_new(GnomeVFSHandle *parent_handle,
-                         GnomeVFSURI *uri,
-                         GnomeVFSOpenMode open_mode)
+static Bzip2MethodHandle *
+bzip2_method_handle_new(GnomeVFSHandle *parent_handle,
+                        GnomeVFSURI *uri,
+                        GnomeVFSOpenMode open_mode)
 {
    Bzip2MethodHandle *new;
 
@@ -123,7 +123,8 @@ static Bzip2MethodHandle
    return new;
 }
 
-static void bzip2_method_handle_destroy(Bzip2MethodHandle *handle)
+static void
+bzip2_method_handle_destroy(Bzip2MethodHandle *handle)
 {
    gnome_vfs_uri_unref(handle->uri);
    g_free(handle->buffer);
@@ -182,7 +183,8 @@ bzip2_method_handle_init_for_compress(Bzip2MethodHandle *handle)
    return TRUE;
 }
 
-static GnomeVFSResult result_from_bz_result(gint bz_result)
+static GnomeVFSResult
+result_from_bz_result(gint bz_result)
 {
    switch(bz_result)
    {
@@ -210,7 +212,8 @@ static GnomeVFSResult result_from_bz_result(gint bz_result)
    }
 }
 
-static GnomeVFSResult flush_write(Bzip2MethodHandle *bzip2_handle)
+static GnomeVFSResult
+flush_write(Bzip2MethodHandle *bzip2_handle)
 {
    GnomeVFSHandle *parent_handle;
    GnomeVFSResult result;
@@ -243,11 +246,6 @@ static GnomeVFSResult flush_write(Bzip2MethodHandle *bzip2_handle)
 
       bz_result = bzCompress(bzstream, BZ_FINISH);
 
-/*
-      if(bz_result == BZ_BUF_ERROR)
-         bz_result = BZ_OK;
-*/
-
       done = (bzstream->avail_out != 0 || bz_result == BZ_STREAM_END);
    }
 
@@ -260,9 +258,10 @@ static GnomeVFSResult flush_write(Bzip2MethodHandle *bzip2_handle)
 /* Open */
 /* TODO: Check that there is no subpath. */
 
-static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
-                              GnomeVFSURI *uri,
-                              GnomeVFSOpenMode open_mode)
+static GnomeVFSResult
+do_open(GnomeVFSMethodHandle **method_handle,
+        GnomeVFSURI *uri,
+        GnomeVFSOpenMode open_mode)
 {
     GnomeVFSHandle *parent_handle;
     GnomeVFSURI *parent_uri;
@@ -310,11 +309,12 @@ static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
 
 /* Create */
 
-static GnomeVFSResult do_create(GnomeVFSMethodHandle **method_handle,
-                                GnomeVFSURI *uri,
-                                GnomeVFSOpenMode mode,
-                                gboolean exclusive,
-                                guint perm)
+static GnomeVFSResult
+do_create(GnomeVFSMethodHandle **method_handle,
+          GnomeVFSURI *uri,
+          GnomeVFSOpenMode mode,
+          gboolean exclusive,
+          guint perm)
 {
    _GNOME_VFS_METHOD_PARAM_CHECK(method_handle != NULL);
    _GNOME_VFS_METHOD_PARAM_CHECK(uri != NULL);
@@ -324,7 +324,8 @@ static GnomeVFSResult do_create(GnomeVFSMethodHandle **method_handle,
 
 /* Close */
 
-static GnomeVFSResult do_close(GnomeVFSMethodHandle *method_handle)
+static GnomeVFSResult
+do_close(GnomeVFSMethodHandle *method_handle)
 {
    Bzip2MethodHandle *bzip2_handle;
    GnomeVFSResult result;
@@ -350,7 +351,8 @@ static GnomeVFSResult do_close(GnomeVFSMethodHandle *method_handle)
 
 /* Read */
 
-static GnomeVFSResult fill_buffer(Bzip2MethodHandle *bzip2_handle,
+static GnomeVFSResult
+fill_buffer(Bzip2MethodHandle *bzip2_handle,
                                   GnomeVFSFileSize num_bytes)
 {
    GnomeVFSResult result;
@@ -384,10 +386,11 @@ static GnomeVFSResult fill_buffer(Bzip2MethodHandle *bzip2_handle,
 
 /* TODO: Concatenated Bzip2 file handling. */
 
-static GnomeVFSResult do_read(GnomeVFSMethodHandle *method_handle,
-                              gpointer buffer,
-                              GnomeVFSFileSize num_bytes,
-                              GnomeVFSFileSize *bytes_read)
+static GnomeVFSResult
+do_read(GnomeVFSMethodHandle *method_handle,
+        gpointer buffer,
+        GnomeVFSFileSize num_bytes,
+        GnomeVFSFileSize *bytes_read)
 {
    Bzip2MethodHandle *bzip2_handle;
    GnomeVFSResult result;
@@ -437,10 +440,11 @@ static GnomeVFSResult do_read(GnomeVFSMethodHandle *method_handle,
 
 /* Write. */
 
-static GnomeVFSResult do_write(GnomeVFSMethodHandle *method_handle,
-                               gconstpointer buffer,
-                               GnomeVFSFileSize num_bytes,
-                               GnomeVFSFileSize *bytes_written)
+static GnomeVFSResult
+do_write(GnomeVFSMethodHandle *method_handle,
+         gconstpointer buffer,
+         GnomeVFSFileSize num_bytes,
+         GnomeVFSFileSize *bytes_written)
 {
    Bzip2MethodHandle *bzip2_handle;
    GnomeVFSResult result;
@@ -480,18 +484,21 @@ static GnomeVFSResult do_write(GnomeVFSMethodHandle *method_handle,
    return result;
 }
 
-static gboolean do_is_local(const GnomeVFSURI *uri)
+static gboolean
+do_is_local(const GnomeVFSURI *uri)
 {
    g_return_val_if_fail(uri != NULL, FALSE);
    return gnome_vfs_uri_is_local(uri->parent);
 }
 
-GnomeVFSMethod *vfs_module_init(void)
+GnomeVFSMethod *
+vfs_module_init(void)
 {
    return &method;
 }
 
-void vfs_module_shutdown(GnomeVFSMethod *method)
+void
+vfs_module_shutdown(GnomeVFSMethod *method)
 {
    return;
 }
