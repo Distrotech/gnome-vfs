@@ -129,8 +129,7 @@ ALL_LINGUAS="am ar az be bg bn bs ca cs cy da de el eo es et eu fa fi fr ga gl h
 AM_GLIB_GNU_GETTEXT
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton)
-AC_REPLACE_FUNCS(getdelim)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim)
 
 dnl Specify the gconf configuration source, 
 dnl default to xml::$(sysconfdir)/gconf/gconf.xml.defaults

@@ -175,5 +175,5 @@ libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
 # TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl getdelim.c
+EXTRA_DIST = check-headers.pl 
 
