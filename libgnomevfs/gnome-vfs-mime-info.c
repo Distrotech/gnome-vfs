@@ -30,10 +30,12 @@
 #include "gnome-vfs-mime-info.h"
 
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-private.h"
 
+#include <gtk/gtkmain.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -50,7 +52,6 @@
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)
 #endif
-
 
 
 /* The only goal of this function is to make sure no comment line is ever returned
@@ -94,6 +95,8 @@ typedef struct {
 #define DELETED_KEY "deleted"
 #define DELETED_VALUE "moilegrandvizir"
 
+#define RELOAD_IF_NEEDED_TIMEOUT_INTERVAL	5000
+
 /* These ones are used to automatically reload mime info on demand */
 static mime_dir_source_t gnome_mime_dir, user_mime_dir;
 static time_t last_checked;
@@ -136,6 +139,7 @@ static GHashTable *registered_types_user;
 
 
 /* Prototypes */
+static void	      reload_if_needed (void);
 static GnomeVFSResult write_back_mime_user_file (void);
 static GnomeVFSResult write_back_keys_user_file (void);
 static gboolean       does_string_contains_caps (const char *string);
@@ -780,6 +784,16 @@ load_mime_type_info (void)
 	mime_list_load (&user_mime_dir);
 }
 
+static gboolean
+reload_if_needed_idle_function (gpointer user_data)
+{
+	g_message ("called reload_if_needed_idle_function");
+	reload_if_needed ();
+
+	/* Do call this again */
+	return TRUE;
+}
+
 static void
 gnome_vfs_mime_init (void)
 {
@@ -808,6 +822,10 @@ gnome_vfs_mime_init (void)
 	 * Load
 	 */
 	load_mime_type_info ();
+
+	/* Reload periodically if info changed; don't wait to be asked. */
+	gtk_timeout_add (RELOAD_IF_NEEDED_TIMEOUT_INTERVAL, 
+			 reload_if_needed_idle_function, NULL);
 
 	last_checked = time (NULL);
 	gnome_vfs_mime_inited = TRUE;
@@ -900,6 +918,9 @@ gnome_vfs_mime_info_reload (void)
 	
 	/* 2. Reload */
 	load_mime_type_info ();
+
+	/* 3. Tell anyone who cares */
+	gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 }
 
 

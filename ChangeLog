@@ -1,3 +1,45 @@
+2000-12-22  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+
+	GNOME_VFS part of fix for bug 4798 (icon changes in MIME
+	type capplet aren't reflected automatically in Nautilus)
+
+	I invented an object that emits signals when the MIME
+	data changes. Clients can connect to the signal to do
+	their evil deeds. Unfortunately, the granularity of the
+	signal is just "some MIME data changed", but we can live
+	with that for now.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.h: 
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_get_type), 
+	(gnome_vfs_mime_monitor_get),
+	(gnome_vfs_mime_monitor_initialize),
+	(gnome_vfs_mime_monitor_initialize_class),
+	(gnome_vfs_mime_monitor_emit_data_changed): 
+	New files that define new class GnomeVFSMIMEMonitor.
+	Its only purpose is to emit signals, and its only
+	public function is gnome_vfs_mime_monitor_get (), which
+	returns the one global GnomeVFSMIMEMonitor object so you
+	can connect to its signals. The only signal it emits is
+	"data_changed".
+
+	* libgnomevfs/gnome-vfs-mime-private.h: Added prototype
+	for gnome_vfs_mime_monitor_emit_data_changed so it can
+	be called by other gnome-vfs-mime code.
+
+	* libgnomevfs/Makefile.am: Add new .c & .h files to build.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(reload_if_needed_idle_function), 
+	(gnome_vfs_mime_init): Poll every 5 seconds to reload if
+	any data on disk has changed. It was already checking
+	every time someone asked for data, but this lets clients
+	be notified without them having to ask.
+	(gnome_vfs_mime_info_reload): 
+	Call gnome_vfs_mime_monitor_emit_data_changed
+
 2000-12-21  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
