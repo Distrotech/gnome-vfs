@@ -1,31 +1,34 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Josu Waliño <josu@elhuyar.com>, 2002
+# translation of eu.po to Basque
+# translation of gnome-vfs.gnome-2-4.po to basque
+# Copyright (C) 2001, 2004 Free Software Foundation, Inc.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.0.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
-"PO-Revision-Date: 2001-05-25 13:35+0200\n"
-"Last-Translator: Unmantained\n"
-"Language-Team: Euskara\n"
+"Project-Id-Version: eu\n"
+"POT-Creation-Date: 2004-04-15 14:39+0200\n"
+"PO-Revision-Date: 2004-04-15 15:45+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n == 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:590
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Ezin izan da ondokoa analizatu: %s"
+msgstr "Ezin izan da Bonobo hasieratu"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Ezin izan da gnome vfs hasieratu"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO 9660 bolumena"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -38,14 +41,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d(e)k ez du metodo-izenik."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d(e)k ez du metodo-izenik."
+msgstr "%s:%d(e)k ez du amaierako markarik."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s: %d(e)k aukera ezezaguna du, %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -59,169 +62,165 @@ msgstr "Ezin izan da `%s' konfigurazio-fitxategia aurkitu: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS sareko bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Autodetektatutako bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "CDROM gailua"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
-#, fuzzy
 msgid "CD Digital Audio"
-msgstr "Dolby Digital audioa"
+msgstr "CD Audio digitala"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Hardware gailuaren bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2 Linux bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3 Linux bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MSDOS bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr ""
+msgstr "CDROM bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs CDROM bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
-#, fuzzy
 msgid "Windows NT Volume"
-msgstr "Windows ikonoaren irudia"
+msgstr "Windows NT bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr ""
+msgstr "Sistemaren bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
-#, fuzzy
 msgid "Memory Volume"
-msgstr "memoria-irteera"
+msgstr "Memoriaren bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "Minix bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS sareko bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
+msgstr "Netware bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS Linux bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Windows partekatua bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "SuperMount bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Solaris/BSD bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs Solaris bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "PcFS Solaris bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "DOS hobetua bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Windows VFAT bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Xenix bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS Linux bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS bolumena"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
-#, fuzzy
 msgid "Unknown"
-msgstr "Errore ezezaguna"
+msgstr "Ezezaguna"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
-msgstr "%u op-mota ezezaguna"
+msgstr "%u op mota ezezaguna"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ezin izan da GIOChannel irekitzeko kanalizazioa sortu: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "%u motako lana ezezaguna"
+msgstr "%u lan-mota ezezaguna"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Eragiketa geldiarazita"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ezin izan da ondokoa analizatu: %s"
+msgstr "Ezin izan da hau analizatu: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "Gainerako analisi-erroreei ez zaie jaramonik egingo."
 
@@ -248,7 +247,7 @@ msgstr "Barne-errorea"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "Baliogabeko parametroa"
+msgstr "Baliogabeko parametroak"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
@@ -288,7 +287,7 @@ msgstr "Ez da lekurik geratzen gailuan"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "Irakurtzeko soilik fitxategi-sistema"
+msgstr "Irakurtzeko soilik den fitxategi-sistema"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -308,7 +307,7 @@ msgstr "Irekitze-modua ez da baliozkoa"
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
-msgstr "Atzipena ukatuta"
+msgstr "Sarbidea ukatuta"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -333,7 +332,7 @@ msgstr "Eragiketa egiten ari da"
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
-msgstr "Eragiketa etenda"
+msgstr "Eragiketa eten egin da"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -383,7 +382,7 @@ msgstr "Saio-hasierak huts egin du"
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
-msgstr "Eragiketa etenda"
+msgstr "Eragiketa bertan behera utzi da"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -403,7 +402,7 @@ msgstr "Esteka gehiegi"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "Irakurtzeko soilik fitxategi-sistema"
+msgstr "Irakurtzeko soilik den fitxategi-sistema"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
@@ -413,7 +412,7 @@ msgstr "Ez dago fitxategi-sistema berean"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "Izen luzeegia"
+msgstr "Izen luzeegia da"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -432,45 +431,44 @@ msgstr "Protokolo-errorea"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Ezin izan da ondokoa analizatu: %s"
+msgstr "Arakatzaile maisua ezin izan da aurkitu"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "Ez dago asoziatutako ekintza lehenetsirik"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Ez dago URL eskemarako kudeatzailearik"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Errorea komando-lerroa analizatzean"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
-msgstr ""
+msgstr "Errorea komandoa abiaraztean"
 
 #: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
 msgstr "Errore ezezaguna"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u byte"
+msgstr[0] "byte %u"
 msgstr[1] "%u byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
@@ -485,162 +483,159 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (Unicode baliogabea)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Disketea"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CDROMa"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
-#, fuzzy
 msgid "Zip Drive"
-msgstr "zip artxiboa"
+msgstr "ZIP gailua"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Memoria arkatza"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Kamara"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Erroa bolumena"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "CD audioa"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Errore ezezaguna"
+msgstr "Bolumen ezezaguna"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Sareko zerbitzaria"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Ezin da bolumena muntau. Baliteke gailuan euskarririk ez egotea."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Ezin da diskete gailua muntatu. Baliteke disketeak muntatu ezin daitekeen "
+"formatua edukitzea."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Ezin da hautatutako bolumena muntatu. Baliteke bolumenak muntatu ezin daitekeen "
+"formatua edukitzea."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Ezin da hautatutako diskete gailua muntatu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Ezin da hautatutako bolumena muntatu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Ezin da hautatutako bolumena desmuntatu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
-msgstr ""
+msgstr "Huts egin du komandoa abiatzean."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Ezin da euskarria egotzi."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Ezin da konektatutako zerbitzaria desmuntatu."
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
-#, fuzzy
 msgid "Applications"
-msgstr "KDE aplikazioaren xehetasunak"
+msgstr "Aplikazioak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr ""
+msgstr "Kartak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-#, fuzzy
 msgid "Files"
-msgstr "Fitxategia badago"
+msgstr "Fitxategiak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-#, fuzzy
 msgid "Folders"
-msgstr "karpeta"
+msgstr "Karpetak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "Laguntza"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr ""
+msgstr "Ostalariak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "Estekak"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "Posta"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Tresnak"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Leihoak"
 
 #: modules/computer-method.c:525
 msgid "Network"
-msgstr ""
+msgstr "Sarea"
 
 #: modules/computer-method.c:543
 msgid "Home"
-msgstr ""
+msgstr "Etxea"
 
 #: modules/computer-method.c:561
-#, fuzzy
 msgid "Filesystem"
-msgstr "Fitxategia badago"
+msgstr "Fitxategi-sistema"
 
 #: modules/file-method.c:385
 #, c-format
@@ -648,49 +643,47 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "%d nomeVFSSeekPosition ezezaguna"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Windows ikonoaren irudia"
+msgstr "Windows sarea"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Ez da ezarpen-fitxategi baliozkoa aurkitu %s-(e)n\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Erabili %s ingurugiro-aldagaia beste kokaleku bat zehazteko.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Moniker estandarraren fabrika"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "MonikerExtender fitxategia"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "Gnome VFS generikoaren monikerra"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Errore generikoa"
+msgstr "fitxategi generikoaren monikerra"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Osagai lehenetsia, bistaratzaile aplikazioarena."
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Terminal aplikazio lehenetsia"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Exec argumentua, terminal lehenetsirako"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -704,172 +697,181 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "Terminal aplikazio lehenetsia, terminala eskatzen duten aplikazioetan erabiltzeko."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Exec argumentua terminal aplikazio lehenetsian erabiltzeko."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "H323 URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "HTTP URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "HTTPS URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "Kudeatu H323 URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr ""
+msgstr "Kudeatu HTTP URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Kudeatu HTTPS URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr ""
+msgstr "Kudeatu callto URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr ""
+msgstr "Kudeatu ghelp URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle info URLs"
-msgstr ""
+msgstr "Kudeatu info URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle mailto URLs"
-msgstr ""
+msgstr "Kudeatu mailto URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle man URLs"
-msgstr ""
+msgstr "Kudeatu man URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr ""
+msgstr "Kudeatu trash URLak"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Exekutatu programa terminalean"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu H323 URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu HTTP URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu HTTPS URLak \"komandoa\"n. "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu callto URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu ghelp URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu info URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu mailto URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu man URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Ezarri egi gisa (true) programa bat zehaztuta edukitzeko "
+"kudeatu trash URLak \"komandoa\"n."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "callto URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "ghelp URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "info URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "postaren goiburukoak"
+msgstr "mailto URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "man URL kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "trash URL kudeatzailea"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Autentifikatu proxy zerbitzariaren konexioak"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Proxy konfigurazio automatikoaren URLa"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Proxy-aren konfigurazioa gaitzen du HTTP internet bidez sarbidetzean"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP proxy ostalariaren izena"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP proxy-aren ataka"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP proxy ostalariaren izena"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP proxy-aren pasahitza"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP proxy-aren ataka"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP proxy-ko erabiltzaile-izena"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -880,78 +882,87 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Proxy-rik gabe konektatuko diren ostalariak"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Pasahitza, HTTP proxy-a erabiltzean autentifikatzeko."
 
 #: schemas/system_http_proxy.schemas.in.h:13
-#, fuzzy
 msgid "Proxy configuration mode"
-msgstr "GTKren konfigurazioa"
+msgstr "Proxy-aren konfigurazio modua"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS proxy ostalariaren izena"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS proxy-aren ataka"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "HTTP Seguruaren proxy ostalariaren izena"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "HTTP Seguruaren proxy -aren ataka"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Hautatu proxy-aren konfigurazio modua. Onartutako balioak \"none\", "
+"\"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Ordenagailuaren izena, proxy FTPa egiten duenarena."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Ordenagailuaren izena, proxy HTTPa egiten duenarena."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Ordenagailuaren izena, proxy HTTP segurua egiten duenarena."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Ordenagailuaren izena, proxy socks egiten duenarena."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Ordenagailuaren ataka, \"/system/http_proxy/host\"-ean definituta "
+"proxy-arena egiteko."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Ordenagailuaren ataka, \"/system/proxy/ftp_host\"-ean definituta "
+"proxy-arena egiteko."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Ordenagailuaren ataka, \"/system/proxy/secure_host\"-ean definituta "
+"proxy-arena egiteko."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Ordenagailuaren ataka, \"/system/proxy/socks_host\"-ean definituta "
+"proxy-arena egiteko."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -963,749 +974,24 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URLa proxy-aren konfigurazioko balioak eskaintzeko."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Erabili HTTP proxy-a"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Erabiltzaile-izena HTTP proxy-a egiterakoan egiaztatzeko."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB lan-taldea"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
 
 #~ msgid "1 byte"
-#~ msgstr "1 byte"
+#~ msgstr "byte 1"
 
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS dagoeneko hasieratuta dago."
-
-#~ msgid "3D Studio image"
-#~ msgstr "3Dko estudio-irudia"
-
-#~ msgid "AIFC audio"
-#~ msgstr "AIFC audioa"
-
-#~ msgid "AIFF audio"
-#~ msgstr "AIFF audioa"
-
-#~ msgid "ANIM animation"
-#~ msgstr "ANIM animazioa"
-
-#~ msgid "AVI video"
-#~ msgstr "AVI bideoa"
-
-#~ msgid "AbiWord document"
-#~ msgstr "AbiWord dokumentua"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "FrameMaker-en adobe letra-tipoa"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "Adobe letra-tipoen neurriak"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "Andrew Toolkit-en txertatzea"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "ApplixWare Graphics-en irudia"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "Applixware Words-en dokumentua"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Applixware-ren kalkulu-orria"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD irudia"
-
-#~ msgid "BCPIO document"
-#~ msgstr "BCPIO dokumentua"
-
-#~ msgid "BDF font"
-#~ msgstr "BDF letra-tipoa"
-
-#~ msgid "C shell script"
-#~ msgstr "C shell script-a"
-
-#~ msgid "C source code"
-#~ msgstr "C iturburu-kodea"
-
-#~ msgid "C++ source code"
-#~ msgstr "C++ iturburu-kodea"
-
-#~ msgid "CGI program"
-#~ msgstr "CGI programa"
-
-#~ msgid "CGM image"
-#~ msgstr "CGM irudia"
-
-#~ msgid "CMU raster image"
-#~ msgstr "CMU bilbe-irudia"
-
-#~ msgid "CPIO archive"
-#~ msgstr "CPIO artxiboa"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "CPIO artxiboa (gzip konprimitua)"
-
-#~ msgid "DCL script"
-#~ msgstr "DCL script-a"
-
-#~ msgid "DOS font"
-#~ msgstr "DOS letra-tipoa"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "DOS/Windows programa"
-
-#~ msgid "DSSSL document"
-#~ msgstr "DSSSL dokumentua"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "DXF bektore-grafikoa"
-
-#~ msgid "Debian package"
-#~ msgstr "Debian paketea"
-
-#~ msgid "Dia diagram"
-#~ msgstr "Dia diagrama"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs-en Lisp iturburu-kodea"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "Enlightenment gaia"
-
-#~ msgid "FLC animation"
-#~ msgstr "FLC animazioa"
-
-#~ msgid "FLI animation"
-#~ msgstr "FLI animazioa"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "FastTracker II audioa"
-
-#~ msgid "Fortran source code"
-#~ msgstr "Fortran iturburu-kodea"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "FrameMaker-en trukatze-dokumentua"
-
-#~ msgid "G3 fax image"
-#~ msgstr "G3 fax-irudia"
-
-#~ msgid "GIF image"
-#~ msgstr "GIF irudia"
-
-#~ msgid "GIMP document"
-#~ msgstr "GIMP dokumentua"
-
-#~ msgid "GMC link"
-#~ msgstr "GMC esteka"
-
-#~ msgid "GNOME application details"
-#~ msgstr "GNOME aplikazioaren xehetasunak"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "GNU Oleo kalkulu-orria"
-
-#~ msgid "GNU mail message"
-#~ msgstr "GNUren mezu elektronikoa"
-
-#~ msgid "Glade project"
-#~ msgstr "Glade proiektua"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "GnuCash laneko liburua"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Gnumeric kalkulu-orria"
-
-#~ msgid "HDF document"
-#~ msgstr "HDF dokumentua"
-
-#~ msgid "HTML page"
-#~ msgstr "HTML orria"
-
-#~ msgid "IDL document"
-#~ msgstr "IDL dokumentua"
-
-#~ msgid "IEF image"
-#~ msgstr "IEF irudia"
-
-#~ msgid "IFF image"
-#~ msgstr "IFF irudia"
-
-#~ msgid "ILBM image"
-#~ msgstr "ILBM irudia"
-
-#~ msgid "ISI video"
-#~ msgstr "ISI bideoa"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "Impulse Tracker audioa"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "JBuilder proiektua"
-
-#~ msgid "JPEG image"
-#~ msgstr "JPEG irudia"
-
-#~ msgid "Java byte code"
-#~ msgstr "Java byte-kodea"
-
-#~ msgid "Java source code"
-#~ msgstr "Java iturburu-kodea"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "KIllustrator dokumentua"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "KPresenter aurkezpena"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "KSpread kalkulu-orria"
-
-#~ msgid "KWord document"
-#~ msgstr "KWord dokumentua"
-
-#~ msgid "Korn shell script"
-#~ msgstr "Korn shell script-a"
-
-#~ msgid "LHA archive"
-#~ msgstr "LHA artxiboa"
-
-#~ msgid "LHARC archive"
-#~ msgstr "LHARC artxiboa"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX letra-tipoa"
-
-#~ msgid "LightWave object"
-#~ msgstr "LightWave objektua"
-
-#~ msgid "LightWave scene"
-#~ msgstr "LightWave eszena"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "Linux-en PSF kontsolarako letra-tipoak"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Lotus 1-2-3 kalkulu-orria"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "M3 audioaren URLa"
-
-#~ msgid "MIDI audio"
-#~ msgstr "MIDI audioa"
-
-#~ msgid "MOD audio"
-#~ msgstr "MOD audioa"
-
-#~ msgid "MP3 audio"
-#~ msgstr "MP3 audioa"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "MP3 audioaren erreprodukzio-zerrenda"
-
-#~ msgid "MPEG video"
-#~ msgstr "MPEG bideoa"
-
-#~ msgid "MS ASF video"
-#~ msgstr "MS ASF bideoa"
-
-#~ msgid "MS video"
-#~ msgstr "MS bideoa"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Macintosh-en AppleDouble kodedun fitxategia"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Macintosh-en BinHex kodedun fitxategia"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Macintosh-en StuffIt artxiboa"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "Macromedia Flash fitxategia"
-
-#~ msgid "MathML document"
-#~ msgstr "MathML dokumentua"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Microsoft Excel-en kalkulu-orria"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Microsoft PowerPoint-eko dokumentua"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "Microsoft Word-eko dokumentua"
-
-#~ msgid "Microsoft video"
-#~ msgstr "Microsoft bideoa"
-
-#~ msgid "Nautilus link"
-#~ msgstr "Nautilus esteka"
-
-#~ msgid "ODA document"
-#~ msgstr "ODA dokumentua"
-
-#~ msgid "PBM image"
-#~ msgstr "PBM irudia"
-
-#~ msgid "PCF font"
-#~ msgstr "PCF letra-tipoa"
-
-#~ msgid "PDF document"
-#~ msgstr "PDF dokumentua"
-
-#~ msgid "PEF program"
-#~ msgstr "PEF programa"
-
-#~ msgid "PGM image"
-#~ msgstr "PGM irudia"
-
-#~ msgid "PGN chess game"
-#~ msgstr "PGN xake-jokoa"
-
-#~ msgid "PGP keys"
-#~ msgstr "PGP gakoak"
-
-#~ msgid "PGP message"
-#~ msgstr "PGP mezua"
-
-#~ msgid "PGP signature"
-#~ msgstr "PGP sinadura"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "PGPk enkriptatutako fitxategia"
-
-#~ msgid "PHP script"
-#~ msgstr "PHP script-a"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "PN RealAudio dokumentua"
-
-#~ msgid "PNG image"
-#~ msgstr "PNG irudia"
-
-#~ msgid "PNM image"
-#~ msgstr "PNM irudia"
-
-#~ msgid "PPM image"
-#~ msgstr "PPM irudia"
-
-#~ msgid "Palm OS database"
-#~ msgstr "Palm OS datu-basea"
-
-#~ msgid "Perl script"
-#~ msgstr "Perl script-a"
-
-#~ msgid "Photoshop document"
-#~ msgstr "Photoshop-eko dokumentua"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "PostScript Type 1 letra-tipoa"
-
-#~ msgid "PostScript document"
-#~ msgstr "PostScript-eko dokumentua"
-
-#~ msgid "Python source code"
-#~ msgstr "Python iturburu-kodea"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "QuickTime filma"
-
-#~ msgid "Quicken document"
-#~ msgstr "Quicken dokumentua"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Windows-erako Quicken dokumentua"
-
-#~ msgid "RAR archive"
-#~ msgstr "RAR artxiboa"
-
-#~ msgid "README document"
-#~ msgstr "README dokumentua"
-
-#~ msgid "RGB image"
-#~ msgstr "RGB irudia"
-
-#~ msgid "RIFF audio"
-#~ msgstr "RIFF audioa"
-
-#~ msgid "RPM package"
-#~ msgstr "RPM paketea"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "RealAudio/Video dokumentua"
-
-#~ msgid "RealVideo video"
-#~ msgstr "RealVideo bideoa"
-
-#~ msgid "S/MIME file"
-#~ msgstr "S/MIME fitxategia"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "S/MIME sinadura"
-
-#~ msgid "SGI video"
-#~ msgstr "SGI bideoa"
-
-#~ msgid "SGML document"
-#~ msgstr "SGML dokumentua"
-
-#~ msgid "SMIL script"
-#~ msgstr "SMIL script-a"
-
-#~ msgid "SQL code"
-#~ msgstr "SQL kodea"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "SV4 CPIO artxiboa"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "SV4 CPIP artxiboa (CRCrekin)"
-
-#~ msgid "SVG art"
-#~ msgstr "SVG artea"
-
-#~ msgid "Scheme source code"
-#~ msgstr "Scheme iturburu-kodea"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Scream Tracker 3 audioa"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "Scream Tracker audioa"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "Scream Tracker instrumentua"
-
-#~ msgid "Setext document"
-#~ msgstr "Setext dokumentua"
-
-#~ msgid "Speech document"
-#~ msgstr "Speech dokumentua"
-
-#~ msgid "Speedo font"
-#~ msgstr "Speedo letra-tipoa"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Kalkulu-orriaren trukatze-dokumentua"
-
-#~ msgid "Stampede package"
-#~ msgstr "Stampede paketea"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "StarOffice Writer dokumentua"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "StarOffice aurkezpena"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "StarOffice kalkulu-orria"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "Sun µ-law audioa"
-
-#~ msgid "SunOS News font"
-#~ msgstr "SunOS News letra-tipoa"
-
-#~ msgid "TIFF image"
-#~ msgstr "TIFF irudia"
-
-#~ msgid "TarGA image"
-#~ msgstr "TarGA irudia"
-
-#~ msgid "Tcl script"
-#~ msgstr "Tcl script-a"
-
-#~ msgid "TeX document"
-#~ msgstr "TeX dokumentua"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "TeX dvi dokumentua"
-
-#~ msgid "TeX font"
-#~ msgstr "TeX letra-tipoa"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "TeX letra-tipoen neurriak"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "TeXInfo dokumentua"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "ToutDoux dokumentua"
-
-#~ msgid "TrueType font"
-#~ msgstr "TrueType letra-tipoak"
-
-#~ msgid "USENET news message"
-#~ msgstr "USENET berrien mezua"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Unidata netCDF dokumentua"
-
-#~ msgid "V font"
-#~ msgstr "V letra-tipoa"
-
-#~ msgid "VOC audio"
-#~ msgstr "VOC audioa"
-
-#~ msgid "VRML document"
-#~ msgstr "VRML dokumentua"
-
-#~ msgid "Vivo video"
-#~ msgstr "Vivo bideoa"
-
-#~ msgid "WAIS source code"
-#~ msgstr "WAIS iturburu-kodea"
-
-#~ msgid "Wavelet video"
-#~ msgstr "Wavelet bideoa"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "Windows bit-maparen irudia"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "Windows metafitxategi grafikoak"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "WordPerfect dokumentua"
-
-#~ msgid "X bitmap image"
-#~ msgstr "X bit-maparen irudia"
-
-#~ msgid "X window image"
-#~ msgstr "X leihoaren irudia"
-
-#~ msgid "XML document"
-#~ msgstr "XML dokumentua"
-
-#~ msgid "XPM image"
-#~ msgstr "XPM irudia"
-
-#~ msgid "Xbase database"
-#~ msgstr "Xbase datu-basea"
-
-#~ msgid "active server page"
-#~ msgstr "zerbitzari aktiboaren orrialdea"
-
-#~ msgid "address card"
-#~ msgstr "helbide-txartela"
-
-#~ msgid "ar archive"
-#~ msgstr "ar artxiboa"
-
-#~ msgid "arj archive"
-#~ msgstr "arj artxiboa"
-
-#~ msgid "authors list"
-#~ msgstr "egileen zerrenda"
-
-#~ msgid "backup file"
-#~ msgstr "babeskopia"
-
-#~ msgid "basic audio"
-#~ msgstr "oinarrizko audioa"
-
-#~ msgid "bibliography record"
-#~ msgstr "bibliografi erregistroa"
-
-#~ msgid "binary program"
-#~ msgstr "programa bitarra"
-
-#~ msgid "block device"
-#~ msgstr "bloke-gailua"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "bzip- konprimitutako fitxategia"
-
-#~ msgid "calendar file"
-#~ msgstr "egutegi-fitxategia"
-
-#~ msgid "calendar or event document"
-#~ msgstr "egutegia edo gertaeren dokumentua"
-
-#~ msgid "character device"
-#~ msgstr "karaktere-gailua"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "komaz bereizitako testua"
-
-#~ msgid "compound document"
-#~ msgstr "dokumentu konposatua"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "compress- konprimitutako fitxategia"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "GIMP dokumentu konprimitua"
-
-#~ msgid "directory information file"
-#~ msgstr "direktorioen informazio-fitxategia"
-
-#~ msgid "document type definition"
-#~ msgstr "dokumentu-motaren definizioa"
-
-#~ msgid "email message"
-#~ msgstr "mezu elektronikoa"
-
-#~ msgid "encrypted message"
-#~ msgstr "enkriptatutako mezua"
-
-#~ msgid "enriched text document"
-#~ msgstr "testu aberastua"
-
-#~ msgid "gtar archive"
-#~ msgstr "gtar artxiboa"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "gzip- konprimitutako fitxategia"
-
-#~ msgid "help page"
-#~ msgstr "laguntza-orrialdea"
-
-#~ msgid "mail delivery report"
-#~ msgstr "posta-bidalketaren txostena"
-
-#~ msgid "mail disposition report"
-#~ msgstr "posta-eskuratzearen txostena"
-
-#~ msgid "mail system report"
-#~ msgstr "posta-sistemaren txostena"
-
-#~ msgid "makefile"
-#~ msgstr "makefile"
-
-#~ msgid "manual page"
-#~ msgstr "eskuliburuaren orrialdea"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "eskuliburuaren orrialdea (konprimitua)"
-
-#~ msgid "message digest"
-#~ msgstr "mezuaren laburpena"
-
-#~ msgid "message in several formats"
-#~ msgstr "mezua hainbat formatutan"
-
-#~ msgid "multi-part message"
-#~ msgstr "zati anitzeko mezua"
-
-#~ msgid "named pipe"
-#~ msgstr "izendun kanalizazioa"
-
-#~ msgid "object code"
-#~ msgstr "objektu-kodea"
-
-#~ msgid "ogg audio"
-#~ msgstr "ogg audioa"
-
-#~ msgid "partial email message"
-#~ msgstr "mezu elektronikoaren zatia"
-
-#~ msgid "plain text document"
-#~ msgstr "testu arrunta"
-
-#~ msgid "profiler results"
-#~ msgstr "profilaren emaitzak"
-
-#~ msgid "reference to remote file"
-#~ msgstr "urruneko fitxategiaren erreferentzia"
-
-#~ msgid "rejected patch file"
-#~ msgstr "adabaki-fitxategia ezetsia"
-
-#~ msgid "rich text document"
-#~ msgstr "testu aberastuko dokumentua"
-
-#~ msgid "search results"
-#~ msgstr "bilaketaren emaitzak"
-
-#~ msgid "shared library"
-#~ msgstr "liburutegi konpartitua"
-
-#~ msgid "shell archive"
-#~ msgstr "shell artxiboa"
-
-#~ msgid "shell script"
-#~ msgstr "shell script-a"
-
-#~ msgid "signed message"
-#~ msgstr "sinatutako mezua"
-
-#~ msgid "socket"
-#~ msgstr "socket-a"
-
-#~ msgid "software author credits"
-#~ msgstr "Software-egileen kredituak"
-
-#~ msgid "software installation instructions"
-#~ msgstr "softwarea instalatzeko jarraibideak"
-
-#~ msgid "software license terms"
-#~ msgstr "softwarearen lizentzia"
-
-#~ msgid "source code patch"
-#~ msgstr "iturburu-kodearen adabakia"
-
-#~ msgid "style sheet"
-#~ msgstr "estilo-orria"
-
-#~ msgid "symbolic link"
-#~ msgstr "esteka sinbolikoa"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "tabulazioz bereizitako testua"
-
-#~ msgid "tar archive"
-#~ msgstr "tar artxiboa"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "tar artxiboa (bzip2-konprimitua)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "tar artxiboa (gzip-konprimitua)"
-
-#~ msgid "theme"
-#~ msgstr "gaia"
-
-#~ msgid "troff document"
-#~ msgstr "troff dokumentua"
-
-#~ msgid "troff me input document"
-#~ msgstr "troff me sarrera-dokumentua"
-
-#~ msgid "troff mm input document"
-#~ msgstr "troff mm sarrera-dokumentua"
-
-#~ msgid "troff ms input document"
-#~ msgstr "troff ms sarrera-dokumentua"
-
-#~ msgid "unknown type"
-#~ msgstr "mota ezezaguna"
-
-#~ msgid "ustar archive"
-#~ msgstr "ustar artxiboa"
-
-#~ msgid "wave audio"
-#~ msgstr "wave audioa"
-
-#~ msgid "web folder"
-#~ msgstr "web karpeta"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "xfig bektore-grafikoa"
-
-#~ msgid "zoo archive"
-#~ msgstr "zoo artxiboa"
