@@ -1,3 +1,14 @@
+2004-03-08  Dave Camp  <dave@ximian.com>
+
+	* modules/sftp-method.c: (sftp_connect), (sftp_get_connection),
+	(sftp_connection_close), (sftp_connection_ref),
+	(close_and_remove_connection), (sftp_connection_unref), (do_open),
+	(do_create), (do_write), (do_get_file_info), (do_open_directory),
+	(do_make_directory), (do_remove_directory), (do_move), (do_rename),
+	(do_unlink), (do_set_file_info), (do_create_symlink),
+	(close_thunk), (vfs_module_shutdown): Fix some threadsafety and
+	refcounting problems.
+
 2004-03-07  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
