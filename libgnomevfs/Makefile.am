@@ -79,6 +79,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h		\
 	gnome-vfs-ssl.h				\
+	gnome-vfs-ssl-private.h			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\

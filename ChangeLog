@@ -1,3 +1,29 @@
+2001-05-14  Ian McKellar <yakk@yakk.net>
+
+	* libgnomevfs/Makefile.am:
+	Build fix.
+
+2001-05-14  Ian McKellar  <yakk@yakk.net>
+
+	* README.SSL:
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init):
+	* libgnomevfs/gnome-vfs-ssl-private.h:
+	* libgnomevfs/gnome-vfs-ssl.c:
+	(gnome_vfs_ssl_init), (gnome_vfs_ssl_enabled), (gnome_vfs_ssl_new),
+	(gnome_vfs_ssl_new_from_uri), (gnome_vfs_ssl_read),
+	(gnome_vfs_ssl_write), (gnome_vfs_ssl_destroy):
+	* libgnomevfs/gnome-vfs-ssl.h:
+	Added an OpenSSL based SSL abstraction to gnome-vfs. This is so that
+	modules (particularly the http module) will be able to implement SSL
+	support.
+
+	* test/Makefile.am:
+	* test/test-ssl.c: (show_result), (main):
+	Added a very simple test program for the SSL routines.
+
 2001-05-16  Michael K. Fleming  <mfleming@eazel.com>
 
 	gnome_vfs_app_context_get_current was not addref'ing
