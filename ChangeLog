@@ -1,3 +1,8 @@
+2004-03-02  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime.c (_gnome_vfs_get_mime_type_internal):
+	Extension before sniffed for bzip2.
+
 2004-02-28  Bryan Forbes  <mxpxfifws@yahoo.com>
 
 	* libgnomevfs/gnome-vfs-drive.h: changed GnomeVFSDriveClass to follow
