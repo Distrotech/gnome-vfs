@@ -1,5 +1,11 @@
 2002-08-23  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/vfolder-method.c (do_move): Remove fake CHANGED
+	event for .directory files since it is really a bug in nautilus
+	renames (see bug #89616).
+
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-info.c (vfolder_info_emit_change): Call
 	gnome_vfs_escape_path_string() on the path arg.  This fixes some
 	strange behavior in nautilus when editing .desktop files with

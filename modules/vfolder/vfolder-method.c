@@ -1431,20 +1431,15 @@ do_move (GnomeVFSMethod *method,
 			}
 		}
 
-		/* do the .directory name change before the actual move */
-		set_dot_directory_locale_name (old_child.folder, new_vuri.file);
-
-		/* tell the listeners about the display name change first */
-		folder_emit_changed (old_child.folder, 
-				     ".directory",
-				     GNOME_VFS_MONITOR_EVENT_CHANGED);
-
 		folder_remove_subfolder (old_parent, old_child.folder);
 		folder_add_exclude (old_parent, old_vuri.file);
 
 		folder_make_user_private (old_child.folder);
 		folder_set_name (old_child.folder, new_vuri.file);
 		folder_add_subfolder (new_parent, old_child.folder);
+
+		/* do the .directory name change */
+		set_dot_directory_locale_name (old_child.folder, new_vuri.file);
 
 		vfolder_info_emit_change (info, 
 					  old_uri->text,
