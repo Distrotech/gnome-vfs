@@ -1,3 +1,8 @@
+2000-07-12  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* modules/gconf-method.c: (vfs_module_init):
+	Update for GConf api changes.
+	
 2000-07-11  Robin Slomkowski  <rslomkow@eazel.com>
 
 	* gnome-vfs.spec.in: removed a '.'

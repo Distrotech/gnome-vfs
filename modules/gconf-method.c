@@ -31,6 +31,7 @@
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
+
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 
@@ -681,7 +682,7 @@ vfs_module_init (const char *method_name, const char *args)
 	gtk_type_init();
 	gtk_signal_init();
 
-	client = gconf_client_new();
+	client = gconf_client_get_default ();
 
 	gtk_object_ref(GTK_OBJECT(client));
 	gtk_object_sink(GTK_OBJECT(client));
