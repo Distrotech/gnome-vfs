@@ -1017,6 +1017,9 @@ main (int argc, const char **argv)
 	popt_context = poptGetContext ("test-vfs", argc, argv,
 				       options, 0);
 
+	while (poptGetNextOpt (popt_context) != -1)
+		;
+
 	if (interactive)
 		vfserr = stderr;
 	else

@@ -1,3 +1,9 @@
+2003-09-18  William Jon McCann  <mccann@jhu.edu>
+
+	* test/test-shell.c (main):
+	* test/test-async-directory.c (main):
+	Process options before getting leftover arguments.
+
 2003-09-11 Mathieu Lacage <mathieu@gnome.org>
 
 	* libgnomevfs/gnome-vfs-file-info.c: make gnome_vfs_file_info_matches
