@@ -1,3 +1,11 @@
+=== gnome-vfs 2.4.1 ===
+
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* NEWS:
+	* configure.in: 
+	  Version 2.4.1
+
 2003-10-12  Christophe Fergeau  <teuf@gnome.org>
 	
 Backport patches from HEAD:

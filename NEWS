@@ -1,3 +1,16 @@
+gnome-vfs-2.4.1
+	
+	* Bugs fixed
+		+ Allow to create symlinks to huge files on 
+                  nearly full file systems (James M. Cape)
+		+ Fix compilation on HP/UX
+
+	* Translations
+		+ he (Gil "Dolfin" Osher), it (Luca Ferretti), 
+	          lv (Peteris Krisjanis), mr (Jitendra Shah), 
+                  nl (Vincent van Adrighem), pt_BR (Augusta Marques da Silva), 
+ 	          ro (Mi?u Moldovan), ta (Dinesh)
+		  
 gnome-vfs 2.4.0
 
 	* Featurelets:
