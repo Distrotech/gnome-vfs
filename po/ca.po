@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2000-07-30 23:00+0200\n"
+"POT-Creation-Date: 2000-08-02 20:34+0200\n"
+"PO-Revision-Date: 2000-08-02 18:45+0200\n"
 "Last-Translator: Quico Llach <quico@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -420,194 +420,201 @@ msgstr "Operació aturada"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
 msgid "Edit Applications List"
-msgstr ""
+msgstr "Edita la llista d'aplicacions"
 
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr ""
+"Seleccioneu les aplicacions que han d'aparèixer al menú per al tipus de MIME "
+"\"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
 msgid "Add Application..."
-msgstr ""
+msgstr "Afegeix una aplicació..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
 msgid "Edit Application..."
-msgstr ""
+msgstr "Edita una aplicació..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
 msgid "Delete Application"
-msgstr ""
+msgstr "Suprimeix una aplicació"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
 msgid "Edit Components List"
-msgstr ""
+msgstr "Edita la llista de components"
 
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr ""
+"Seleccioneu les vistes que han d'aparèixer al menú per al tipus de MIME "
+"\"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
 msgid "Add Mime Type"
-msgstr ""
+msgstr "Afegeix un tipus de MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
+"Afegiu un nou tipus de MIME\n"
+"Per exemple:  image/tiff; text/x-scheme"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
 msgid "Mime Type:"
-msgstr ""
+msgstr "Tipus de MIME:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
 msgid "Type in a description for this mime-type."
-msgstr ""
+msgstr "Escriviu una desripció per a aquest tips de MIME."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
 msgid "Description:"
-msgstr ""
+msgstr "Descripció:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
 msgid "Add New Extension"
-msgstr ""
+msgstr "Afegeix una nova extensió"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
 msgstr ""
+"Escriviu les extensions per a aquest tipus de MIME.\n"
+"Per exemple:  .html, .htm"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
 msgid "Extension:"
-msgstr ""
+msgstr "Extensió:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
 msgid "New Application"
-msgstr ""
+msgstr "Nova aplicació"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
 msgid "Application Name:"
-msgstr ""
+msgstr "Nom de l'aplicació:"
 
 #. Application Command label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
 msgid "Application Command:"
-msgstr ""
+msgstr "Ordre de l'aplicació:"
 
 #. Open Behavior frame
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
 msgid "Open Behavior"
-msgstr ""
+msgstr "Obre el comportament"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
-#, fuzzy
 msgid "Can open multiple files"
-msgstr "Massa fitxers oberts"
+msgstr "Es poden obrir diversos fitxers"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Can open from URI"
-msgstr ""
+msgstr "Es pot obrir des de l'URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:366
+#: mime-type-capplet/nautilus-mime-type-capplet.c:371
 msgid "Change Icon"
-msgstr ""
+msgstr "Canvia la icona"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:380
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1084
+#: mime-type-capplet/nautilus-mime-type-capplet.c:385
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1102
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipus de MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:402
+#: mime-type-capplet/nautilus-mime-type-capplet.c:407
 msgid "Add new Mime type..."
-msgstr ""
+msgstr "Afegeix un nou tipus de MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:409
+#: mime-type-capplet/nautilus-mime-type-capplet.c:414
 msgid "Delete this Mime type..."
-msgstr ""
+msgstr "Suprimeix aquest tipus de MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:424
+#: mime-type-capplet/nautilus-mime-type-capplet.c:429
 msgid "Use Viewer"
-msgstr ""
+msgstr "Utilitza el visualitzador"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:430
+#: mime-type-capplet/nautilus-mime-type-capplet.c:435
 msgid "Open With Application"
-msgstr ""
+msgstr "Obre amb l'aplicació"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:442
+#: mime-type-capplet/nautilus-mime-type-capplet.c:447
 msgid "Edit List"
-msgstr ""
+msgstr "Edita la llista"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:471
+#: mime-type-capplet/nautilus-mime-type-capplet.c:476
 msgid "Add"
-msgstr ""
+msgstr "Afegeix"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:474
+#: mime-type-capplet/nautilus-mime-type-capplet.c:479
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:652
-#: mime-type-capplet/nautilus-mime-type-capplet.c:794
-#: mime-type-capplet/nautilus-mime-type-capplet.c:999
+#: mime-type-capplet/nautilus-mime-type-capplet.c:657
+#: mime-type-capplet/nautilus-mime-type-capplet.c:799
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1083
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1101
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1085
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1103
 msgid "Extension"
-msgstr ""
+msgstr "Extensió"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1086
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1104
 msgid "Action"
-msgstr ""
+msgstr "Acció"
 
 #: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Desconeguda GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:520
+#: modules/http-method.c:521
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Encapçalament no vàlid `%s'"
 
-#: modules/http-method.c:537
+#: modules/http-method.c:538
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s per recuperar"
 
-#: modules/http-method.c:734
+#: modules/http-method.c:735
 #, c-format
 msgid "Closing connection to %s"
 msgstr "S'està tancant la connexió a %s"
 
-#: modules/http-method.c:878
+#: modules/http-method.c:879
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s llegit"
 
-#: modules/http-method.c:881
+#: modules/http-method.c:882
 #, c-format
 msgid "%s read"
 msgstr "%s llegit"
 
 #. Multi-Status
-#: modules/http-method.c:1060
+#: modules/http-method.c:1075
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "El servidor HTTP ha retornat una resposta PROPFIND no vàlida"
 
