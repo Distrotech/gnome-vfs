@@ -5,6 +5,7 @@
 	* modules/smb-method.c: (smb_uri_type), (do_open_directory):
 	Use the smb.conf defined workgroup as the default if not
 	set in gconf.
+	Patch from James Henstridge <james@jamesh.id.au>
 	
 2004-10-07  Christian Kellner  <gicmo@gnome.org>
 
