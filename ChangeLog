@@ -1,3 +1,8 @@
+2001-02-07  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: Changed version to 2.0
+	FIRST COMMIT AFTER BRANCHING gnome-vfs-1
+
 2001-02-06  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>
