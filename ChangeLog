@@ -1,3 +1,9 @@
+2004-07-17  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial 
+	version of gnome_vfs_mime_get_default_desktop_entries (still 
+	needs work though)
+
 2004-07-17  Dave Camp  <dave@novell.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c:
@@ -10,7 +16,7 @@
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial working 
 	version of gnome_vfs_mime_get_all_desktop_entries (still needs
-	work tho)
+	work though)
 
 2004-07-16  Dave Camp  <dave@novell.com>
 
