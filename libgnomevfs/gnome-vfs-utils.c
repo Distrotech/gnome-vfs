@@ -34,6 +34,7 @@
 
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
+#include "gnome-vfs-ops.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
 #include <pwd.h>
@@ -56,6 +57,10 @@
 #define KILOBYTE_FACTOR 1024.0
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
 #define GIGABYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
+
+
+#define READ_CHUNK_SIZE 8192
+
 
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
@@ -908,4 +913,75 @@ gnome_vfs_is_executable_command_string (const char *command_string)
 	g_free (executable_name);
 
 	return found;
+}
+
+/**
+ * gnome_vfs_read_entire_file:
+ * @uri: URI of the file to read
+ * @file_size: after reading the file, contains the size of the 
+ * file read
+ * @file_contents: contains the file_size bytes, the contents 
+ * of the file at uri.
+ * 
+ * Reads an entire file into memory for convenience. Beware accidentally
+ * loading large files into memory with this function.
+ *
+ * Return value: An integer representing the result of the operation
+ */
+GnomeVFSResult
+gnome_vfs_read_entire_file (const char *uri,
+			    int *file_size,
+			    char **file_contents)
+{
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+	char *buffer;
+	GnomeVFSFileSize total_bytes_read;
+	GnomeVFSFileSize bytes_read;
+
+	*file_size = 0;
+	*file_contents = NULL;
+
+	/* Open the file. */
+	result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+
+	/* Read the whole thing. */
+	buffer = NULL;
+	total_bytes_read = 0;
+	do {
+		buffer = g_realloc (buffer, total_bytes_read + READ_CHUNK_SIZE);
+		result = gnome_vfs_read (handle,
+					 buffer + total_bytes_read,
+					 READ_CHUNK_SIZE,
+					 &bytes_read);
+		if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
+			g_free (buffer);
+			gnome_vfs_close (handle);
+			return result;
+		}
+
+		/* Check for overflow. */
+		if (total_bytes_read + bytes_read < total_bytes_read) {
+			g_free (buffer);
+			gnome_vfs_close (handle);
+			return GNOME_VFS_ERROR_TOO_BIG;
+		}
+
+		total_bytes_read += bytes_read;
+	} while (result == GNOME_VFS_OK);
+
+	/* Close the file. */
+	result = gnome_vfs_close (handle);
+	if (result != GNOME_VFS_OK) {
+		g_free (buffer);
+		return result;
+	}
+
+	/* Return the file. */
+	*file_size = total_bytes_read;
+	*file_contents = g_realloc (buffer, total_bytes_read);
+	return GNOME_VFS_OK;
 }

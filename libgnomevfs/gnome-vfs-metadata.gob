@@ -33,7 +33,7 @@ class Gnome:Vfs:Metadata from G:Object {
     self_save_keys (self);
   }
 
-  virtual public char *get_int (self, const char *key) {
+  virtual public int get_int (self, const char *key) {
     gpointer value;
     if (!self->_priv->keys_loaded) self_load_keys (self);
 
@@ -98,6 +98,9 @@ class Gnome:Vfs:Metadata from G:Object {
     xmlDocPtr doc;
     xmlNodePtr node;
     xmlChar *key, *value, *type;
+    char *file_buffer;
+    int file_size;
+    GnomeVFSResult result;
 
     if (self->_priv->strings != NULL) {
       g_hash_table_destroy (self->_priv->strings);
@@ -111,7 +114,13 @@ class Gnome:Vfs:Metadata from G:Object {
 
     /* FIXME: must allow for loading out of URIs */
     printf ("Key file uri is %s, local is %s\n", self->key_file_uri, gnome_vfs_get_local_path_from_uri (self->key_file_uri));
-    doc = xmlParseFile (gnome_vfs_get_local_path_from_uri (self->key_file_uri));
+
+    result = gnome_vfs_read_entire_file (self->key_file_uri, &file_size, &file_buffer);
+    if (result != GNOME_VFS_OK) return;
+
+    doc = xmlParseMemory (file_buffer, file_size);
+
+    g_free (file_buffer);
 
     if (doc == NULL
 	|| doc->xmlRootNode == NULL
@@ -146,8 +155,8 @@ class Gnome:Vfs:Metadata from G:Object {
   private void save_keys (self)
   {
     xmlDocPtr doc;
-    char *document_contents;
-    int document_length;
+    /*char *document_contents;
+    int document_length;*/
 
     xmlIndentTreeOutput = TRUE;
     doc = xmlNewDoc ("1.0");
@@ -160,7 +169,7 @@ class Gnome:Vfs:Metadata from G:Object {
 
     /* FIXME: save to the proper file */
     xmlSaveFormatFile ("/tmp/test.xml", doc, 1);
-    xmlDocDumpFormatMemory (doc, &document_contents, &document_length, 1);
+    /*xmlDocDumpFormatMemory (doc, &document_contents, &document_length, 1);*/
 
     xmlFreeDoc (doc);
   }

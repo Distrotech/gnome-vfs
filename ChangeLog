@@ -1,3 +1,15 @@
+2002-06-15  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-metadata.gob:
+
+	Load XML properly using GnomeVFS rather than just from local files.
+	
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_read_entire_file):
+	* libgnomevfs/gnome-vfs-utils.h:
+
+	Add convenience function for reading in entire files (very useful for
+	use with libxml).
+
 2002-06-15  James Henstridge  <james@daa.com.au>
 
 	* modules/Makefile.am: link modules back against libgnomevfs-2.la

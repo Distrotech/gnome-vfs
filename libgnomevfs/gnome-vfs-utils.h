@@ -118,6 +118,11 @@ char *gnome_vfs_icon_path_from_filename       (const char *filename);
 #define GNOME_VFS_ASSERT_SECONDARY_THREAD g_assert (!gnome_vfs_is_primary_thread())
 gboolean	gnome_vfs_is_primary_thread (void);
 
+/* Reads the contents of an entire file into memory */
+GnomeVFSResult  gnome_vfs_read_entire_file (const char *uri,
+					    int *file_size,
+					    char **file_contents);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_UTILS_H */
