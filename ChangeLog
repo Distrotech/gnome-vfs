@@ -1,3 +1,13 @@
+2004-10-28  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c: (filename_charset_cache_free),
+	(vfs_get_filename_charset),
+	(gnome_vfs_format_uri_for_display_internal),
+	(gnome_vfs_format_uri_for_display),
+	(gnome_vfs_make_uri_from_input_internal),
+	(gnome_vfs_make_uri_from_input):
+	Correctly handle the new forms of G_BROKEN_FILENAMES
+
 2004-10-27  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c
