@@ -2062,12 +2062,8 @@ do_set_file_info (GnomeVFSMethod *method,
 
 #ifdef HAVE_FAM
 static gboolean
-fam_callback (GIOChannel *source,
-	      GIOCondition condition,
-	      gpointer data)
+fam_do_iter_unlocked (void)
 {
-	G_LOCK (fam_connection);
-
 	while (FAMPending(fam_connection)) {
 		FAMEvent ev;
 		FileMonitorHandle *handle;
@@ -2078,7 +2074,6 @@ fam_callback (GIOChannel *source,
 			FAMClose(fam_connection);
 			g_free(fam_connection);
 			fam_connection = FALSE;
-			G_UNLOCK (fam_connection);
 			return FALSE;
 		}
 
@@ -2131,6 +2126,7 @@ fam_callback (GIOChannel *source,
 			} else
 				info_uri = gnome_vfs_uri_append_file_name (handle->uri, ev.filename);
 
+			/* This queues an idle, so there are no reentrancy issues */
 			gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
 						    info_uri, 
 						    event_type);
@@ -2138,9 +2134,22 @@ fam_callback (GIOChannel *source,
 		}
 	}
 
+	return TRUE;
+}
+
+static gboolean
+fam_callback (GIOChannel *source,
+	      GIOCondition condition,
+	      gpointer data)
+{
+	gboolean res;
+	G_LOCK (fam_connection);
+
+	res = fam_do_iter_unlocked ();
+
 	G_UNLOCK (fam_connection);
 
-	return TRUE;
+	return res;
 }
 
 
@@ -2194,6 +2203,10 @@ do_monitor_add (GnomeVFSMethod *method,
 	handle->cancelled = FALSE;
 	gnome_vfs_uri_ref (uri);
 	filename = get_path_from_uri (uri);
+
+	/* We need to queue up incoming messages to avoid blocking on write
+	   if there are many monitors being added */
+	fam_do_iter_unlocked ();
 	
 	if (monitor_type == GNOME_VFS_MONITOR_FILE) {
 		G_LOCK (fam_connection);
@@ -2233,6 +2246,11 @@ do_monitor_cancel (GnomeVFSMethod *method,
 
 	handle->cancelled = TRUE;
 	G_LOCK (fam_connection);
+
+	/* We need to queue up incoming messages to avoid blocking on write
+	   if there are many monitors being canceled */
+	fam_do_iter_unlocked ();
+	
 	FAMCancelMonitor (fam_connection, &handle->request);
 	G_UNLOCK (fam_connection);
 

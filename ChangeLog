@@ -1,3 +1,13 @@
+2003-02-10  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.1
+
+	* modules/file-method.c:
+	Queue up fam events before adding/removing monitors to avoid
+	deadlocking. Fixes gnome-theme-manager hang.
+
 2003-02-09  Christophe Fergeau <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-configuration.c: fixed a memory leak

@@ -1,3 +1,9 @@
+gnome-vfs 2.2.1
+
+	* Bugs fixed:
+	       + Fixed deadlock wrt fam while adding many monitors
+	       + fixed memleak
+
 gnome-vfs 2.2.0
 
 	* Bugs fixed:
