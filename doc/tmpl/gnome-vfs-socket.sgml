@@ -57,6 +57,7 @@ gnome-vfs-socket
 @read: 
 @write: 
 @close: 
+@set_timeout: 
 
 <!-- ##### FUNCTION gnome_vfs_socket_new ##### -->
 <para>

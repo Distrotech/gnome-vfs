@@ -1344,7 +1344,9 @@ connect_to_uri (
 	g_return_val_if_fail (toplevel_uri != NULL, GNOME_VFS_ERROR_INTERNAL);
 
 	if (!g_ascii_strcasecmp (gnome_vfs_uri_get_scheme (&toplevel_uri->uri), 
-				"https")) {
+				"https") ||
+	    !g_ascii_strcasecmp (gnome_vfs_uri_get_scheme (&toplevel_uri->uri), 
+				"davs")) {
 		if (!gnome_vfs_ssl_enabled ()) {
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}

@@ -1,3 +1,9 @@
+2004-07-07  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-method.c (connect_to_uri): 
+	* modules/default-modules.conf:
+	Introduce davs for ssl dav.
+
 2004-07-06  Christian Kellner <gicmo@gnome-de.org>
 	* libgnomevfs/gnome-vfs-inet-connection.[ch]: 
 	* libgnomevfs/gnome-vfs-socket.[ch]:
