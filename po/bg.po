@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-01-24 14:53+0200\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2003-01-15 15:06+0200\n"
 "Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
@@ -15,22 +15,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d съдържа NUL символи."
 
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не съдържа име на метод."
 
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не съдържа име на модул."
 
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Конфигурационният файл \"%s\" не е намерен: %s"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-01-20 20:46+0100\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2001-02-24 11:22+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
 "Language-Team: Românã <ro@li.org>\n"
@@ -14,22 +14,22 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d conþine caractere NUL"
 
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d nu conþine nici un nume de metodã."
 
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d nu conþine nici un nume de modul."
 
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Fiºierul configurare `%s' nu a fost gãsit: %s"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-01-27 15:12+0200\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2003-01-27 04:26--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -13,22 +13,22 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d містить символи NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не містить назви методу."
 
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не містить назви модулю."
 
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Не знайдено конфігураційного файлу \"%s\": %s"
@@ -38,8 +38,7 @@ msgstr "Не знайдено конфігураційного файлу \"%s\"
 msgid "Unknown op type %u"
 msgstr "Невідомий тип операції %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1026
-#: libgnomevfs/gnome-vfs-job.c:1171
+#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
@@ -335,4 +334,3 @@ msgstr "загальний монікер GNOME VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "загальний файловий монікер"
-

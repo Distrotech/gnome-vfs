@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-01-20 20:46+0100\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2002-10-28 19:39+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -14,25 +14,25 @@ msgstr ""
 "X-Generator: KBabel 0.9.6\n"
 
 # libgnomevfs/gnome-vfs-configuration.c:223
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d утрымлівае NUL сымбаляў."
 
 # libgnomevfs/gnome-vfs-configuration.c:240
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ня ўтрымлівае назву мэтаду."
 
 # libgnomevfs/gnome-vfs-configuration.c:269
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ня утрымлівае назву модулу."
 
 # libgnomevfs/gnome-vfs-configuration.c:322
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Канфігурацыйны файл `%s' адсутнічае: %s"

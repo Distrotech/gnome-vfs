@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2003-01-20 20:46+0100\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2001-11-11 12:25GMT+0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
@@ -14,22 +14,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s : %d NUL hərfləini daxil edir."
 
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s : %d metod adını daxil etmir ."
 
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s : %d modul adını daxil etmir ."
 
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Quraşdırma faylı `%s' tapıla bilmədi : %s"

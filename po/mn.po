@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2003-01-08 06:02+0100\n"
+"POT-Creation-Date: 2003-02-10 16:08+0100\n"
 "PO-Revision-Date: 2003-01-16 21:01+0100\n"
 "Last-Translator: Sanlig Badral <badral@chinggis.com>\n"
 "Language-Team: mongolian <mn@li.org>\n"
@@ -15,42 +15,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.1\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d NUL тэмдэгт агуулж байна."
 
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d методын нэр агуулаагүй байна."
 
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d модулын нэр агуулаагүй байна."
 
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "»%s« Тохируулгын файл олдсонгүй: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:731
+#: libgnomevfs/gnome-vfs-job.c:737
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Тодорхойгүй үйлдийн төрөл %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
+#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel нээх шугам үүсгэгдэхгүй байна: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1655
+#: libgnomevfs/gnome-vfs-job.c:1661
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Тодорхойгүй ажилын хэв %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1688
+#: libgnomevfs/gnome-vfs-job.c:1694
 msgid "Operation stopped"
 msgstr "Үйлдэл зослоо"
 
@@ -337,4 +337,3 @@ msgstr "Ерөнхий GNOME-VFS-Moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "Ерөнхий файл мoniker"
-
