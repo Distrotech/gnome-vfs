@@ -1,16 +1,17 @@
 # GNOME VFS Greek translation.
-# Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+# Copyright (C) 2000-2001 Free Software Foundation, Inc.
 # Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
-# Simos Xenitellis <simos@teiath.gr>, 2000, 2001.
+# Simos Xenitellis <simos@teiath.gr>, 2000-2001.
 # Spiros did 90 messages.
 # Simos added 34. (15/07/2000)
-# simos: 384 messages, 14Feb2001, sgpbea.
+# simos: 384 messages, 14Feb2001, (sgpbea).
+# simos: 384 messages, 18Feb2001, two fuzzies.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0\n"
-"POT-Creation-Date: 2001-02-14 00:36+0000\n"
-"PO-Revision-Date: 2001-02-14 00:41:44+0900\n"
+"POT-Creation-Date: 2001-02-18 15:56+0000\n"
+"PO-Revision-Date: 2001-02-18 15:59:52+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -1356,39 +1357,39 @@ msgstr "Άγνωστη ταυτότητα εργασίας %u"
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:340
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:373
 msgid "Edit Applications List"
 msgstr "Επεξεργασία Λίστας Εφαρμογών"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
 #, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr "Επιλογή εφαρμογών για εμφάνιση στο μενού για το είδος MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:417
 msgid "Add Application..."
 msgstr "Προσθήκη Εφαρμογής..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:391
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:424
 msgid "Edit Application..."
 msgstr "Επεξεργασία Εφαρμογής..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:397
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
 msgid "Delete Application"
 msgstr "Διαγραφή Εφαρμογής"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:463
 msgid "Edit Components List"
 msgstr "Επεξεργασία Λίστα Συστατικών"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:483
 #, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
 msgstr "Επιλογή όψεων για εμφάνιση στο μενού για το είδος MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:703
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
@@ -1396,15 +1397,15 @@ msgstr ""
 "Το είδος MIME που εισάγατε περιέχει κεφαλαία γράμματα. Τα κεφαλαία γράμματα "
 "αλλάχτηκαν αυτόματα σε πεζά."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:706
 msgid "Add New MIME Type"
 msgstr "Προσθήκη Νέου Είδους Mime"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:754
 msgid "Add MIME Type"
 msgstr "Προσθήκη Είδους MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:757
 msgid ""
 "Add a new MIME Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -1412,35 +1413,35 @@ msgstr ""
 "Προσθήκη νέου Είδους MIME\n"
 "Για παράδειγμα: image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:763
 msgid "MIME Type:"
 msgstr "Είδος MIME:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
-msgid "Type in a description for this mime-type."
-msgstr "Εισάγετε μια περιγραφή για αυτό το είδος-mime."
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:775
+msgid "Type a description for this MIME type."
+msgstr "Εισάγετε μια περιγραφή για αυτό το είδος MIME."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:781
 msgid "Description:"
 msgstr "Περιγραφή:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:895
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
 msgid "File Extensions "
 msgstr "Επεκτάσεις Αρχείων"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:915
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
 msgid "Add..."
 msgstr "Προσθήκη..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:920
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
 msgid "    Remove    "
 msgstr "    Διαγραφή"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:994
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
 msgid "Add New Extension"
 msgstr "Προσθήκη Νέας Επέκτασης"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:998
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
@@ -1450,136 +1451,131 @@ msgstr ""
 "Μπορείτε να εισάγετε πολλές επεκτάσεις διαχωρίζοντάς τες με διάστημα,\n"
 "για παράδειγμα: html htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1005
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid "Extension:"
 msgstr "Επέκταση:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1168
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1176
 msgid "New Application"
 msgstr "Νέα Εφαρμογή"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1177
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1284
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1285
 msgid "Application Name:"
 msgstr "Όνομα Εφαρμογής:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1193
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1294
 msgid "Application Command:"
 msgstr "Εντολή Εφαρμογής:"
 
 #. Open Behavior frame
 #. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1302
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1202
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1303
 msgid "Open Behavior"
 msgstr "Συμπεριφορά Ανοίγματος"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1200
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1308
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1208
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1309
 msgid "Can open multiple files"
 msgstr "Μπορούν να ανοιχτούν πολλαπλά αρχεία"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1203
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1211
 msgid "Expects URIs as arguments"
 msgstr "Αναμένει URI ως ορίσματα"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1275
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1276
 msgid "Edit Application"
 msgstr "Επεξεργασία Εφαρμογής"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1313
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1314
 msgid "Can open from URI"
 msgstr "Μπορεί να ανοιχτεί από URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:621
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1682
+#: mime-type-capplet/nautilus-mime-type-capplet.c:722
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1787
 msgid "MIME Type"
 msgstr "Είδος MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet.c:729
 msgid "Change Icon"
 msgstr "Αλλαγή Εικονιδίου"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:635
+#: mime-type-capplet/nautilus-mime-type-capplet.c:736
 msgid "Change File Extensions"
 msgstr "Αλλαγή Επέκτασης Αρχείου"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:643
+#: mime-type-capplet/nautilus-mime-type-capplet.c:744
 msgid "Default Action:"
 msgstr "Εξ' ορισμού Ενέργεια:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:655
+#: mime-type-capplet/nautilus-mime-type-capplet.c:756
 msgid "Use Viewer"
 msgstr "Χρήση Θέασης"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:661
+#: mime-type-capplet/nautilus-mime-type-capplet.c:762
 msgid "Open With Application"
 msgstr "Άνοιγμα με Εφαρμογή"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:673
+#: mime-type-capplet/nautilus-mime-type-capplet.c:774
 msgid "Edit List"
 msgstr "Επεξεργασία Λίστας"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:698
+#: mime-type-capplet/nautilus-mime-type-capplet.c:799
 msgid "Add new MIME type..."
 msgstr "Προσθήκη νέου είδους MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:704
+#: mime-type-capplet/nautilus-mime-type-capplet.c:805
 msgid "Delete this MIME type..."
 msgstr "Διαγραφή αυτού του είδους MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:715
+#: mime-type-capplet/nautilus-mime-type-capplet.c:816
 msgid "Revert to System Defaults"
 msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:796
-msgid "No Description"
-msgstr "Χωρίς Περιγραφή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:926
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1070
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1022
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1166
 msgid "None"
 msgstr "Τίποτα"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1166
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1271
 msgid ""
-"Reverting to system settings\n"
-"will lose all your personal \n"
-"MIME configuration.\n"
+"Reverting to system settings will lose any changes\n"
+"you have ever made to File Types and Programs.\n"
 "Revert anyway?"
 msgstr ""
-"Η επαναφορά στις ρυθμίσεις συστήματος\n"
-"θα διαγράψει όλες τις προσωπικές σας \n"
-"ρυθμίσεις MIME.\n"
+"Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
+"ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
+"και Προγράμματα.\n"
 "Επαναφορά στις Ρυθμίσεις Συστήματος;"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1235
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1423
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1547
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1340
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1647
 msgid "none"
 msgstr "τίποτα"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1272
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1453
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1583
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1377
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1553
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1683
 #, c-format
 msgid "View as %s"
 msgstr "Εμφάνιση ως %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1681
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1786
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1683
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1788
 msgid "Extension"
 msgstr "Επέκταση"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1684
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1789
 msgid "Default Action"
 msgstr "Εξ' ορισμού ενέργεια"
 
@@ -1596,22 +1592,22 @@ msgstr "Επισκόπηση"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Άγνωστη GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1176
+#: modules/http-method.c:1177
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s προς λήψη"
 
-#: modules/http-method.c:1581
+#: modules/http-method.c:1582
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Τερματισμός σύνδεσης με %s"
 
-#: modules/http-method.c:1825
+#: modules/http-method.c:1848
 #, c-format
 msgid "%s of %s read"
 msgstr "%s από %s αναγνώστηκαν"
 
-#: modules/http-method.c:1828
+#: modules/http-method.c:1851
 #, c-format
 msgid "%s read"
 msgstr "%s αναγνώστηκαν"
@@ -1679,6 +1675,9 @@ msgstr "Εμφάνιση:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Εμφάνιση κρυφών αρχείων"
+
+#~ msgid "No Description"
+#~ msgstr "Χωρίς Περιγραφή"
 
 #~ msgid "Add Mime Type"
 #~ msgstr "Προσθήκη Είδους Mime"
