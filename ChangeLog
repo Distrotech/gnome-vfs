@@ -1,3 +1,8 @@
+2000-10-23  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c:
+	Turn off debugging spew, add myself to the "Authors" comment
+
 2000-10-22  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (cache_add_uri_and_children),

@@ -22,6 +22,7 @@
    Authors: 
 		 Ettore Perazzoli <ettore@gnu.org> (core HTTP)
 		 Ian McKellar <yakk@yakk.net> (WebDAV/PUT)
+		 Michael Fleming <mfleming@eazel.com> (Caching, Cleanup)
 		 The friendly GNU Wget sources
 	*/
 
@@ -64,7 +65,7 @@
 #include "http-method.h"
 
 
-#if 1
+#if 0
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>
