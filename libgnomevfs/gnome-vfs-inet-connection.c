@@ -391,12 +391,13 @@ gnome_vfs_inet_connection_write (GnomeVFSInetConnection *connection,
 				 GnomeVFSCancellation *cancellation)
 {
 	gint    write_val;
-	fd_set  write_fds;
+	fd_set  write_fds, *read_fds, pipe_fds;
 	int max_fd, cancel_fd;
 	struct timeval timeout;
 
 
 	cancel_fd = -1;
+	read_fds  = NULL;
 	
 write_loop:	
 	write_val = write (connection->sock, buffer, bytes);
@@ -409,7 +410,9 @@ write_loop:
 
 		if (cancellation != NULL) {
 			cancel_fd = gnome_vfs_cancellation_get_fd (cancellation);
-			FD_SET (cancel_fd, &write_fds);
+			read_fds = &pipe_fds;
+			FD_ZERO (read_fds);
+			FD_SET (cancel_fd, read_fds);
 			max_fd = MAX (max_fd, cancel_fd);
 		}
 
@@ -420,14 +423,14 @@ write_loop:
 		}
 
 		
-		write_val = select (max_fd + 1, NULL, &write_fds, NULL,
+		write_val = select (max_fd + 1, read_fds, &write_fds, NULL,
 					connection->timeout ? &timeout : NULL);
 				
 		if (write_val == 0) {
 			return GNOME_VFS_ERROR_TIMEOUT;
 		} else if (write_val != -1) {
 
-			if (cancel_fd != -1 && FD_ISSET (cancel_fd, &write_fds)) {
+			if (cancel_fd != -1 && FD_ISSET (cancel_fd, read_fds)) {
 				return GNOME_VFS_ERROR_CANCELLED;
 			}
 			
