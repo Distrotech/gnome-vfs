@@ -402,10 +402,11 @@ The key value pairs for a .application file are as follows:
    for some known applications that support "http" scheme URIs and
    local file paths, but not "file" scheme URIs.)
 
-5. [to be implemented] all_gnome_vfs_schemes_supported: If "true", all
-   gnome-vfs schemes should be included in the set of "supported
-   schemes". Other schemes can be added by also including a
-   supported_uri_schemes key as well.  
+5. uses_gnomevfs: If "true", all gnome-vfs schemes should be included 
+   in the set of "supported schemes". Other schemes can be added by 
+   also including a supported_uri_schemes key as well. When this key
+   is "true", if expects_uris is "false", it is automatically set to
+   "true".
 
 [may want to discuss issue of using cover scripts to make programs
 easily invokable rather than teaching clients to pass command-line

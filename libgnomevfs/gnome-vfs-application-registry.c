@@ -27,7 +27,7 @@
 
 #include "config.h"
 #include "gnome-vfs-application-registry.h"
-
+#include "gnome-vfs-configuration.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
@@ -705,7 +705,7 @@ load_application_info_from (const char *filename, gboolean user_owned)
 	Application *application;
 	char *key;
 	char *lang;
-	
+
 	fp = fopen (filename, "r");
 	if (fp == NULL)
 		return;
@@ -1594,7 +1594,8 @@ gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
 						    const char *uri_scheme)
 {
 	Application *application;
-
+	gboolean uses_gnomevfs;
+	
 	g_return_val_if_fail (app_id != NULL, FALSE);
 	g_return_val_if_fail (uri_scheme != NULL, FALSE);
 
@@ -1604,7 +1605,10 @@ gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
 	if (application == NULL)
 		return FALSE;
 
+	uses_gnomevfs = real_get_bool_value (application, GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS, NULL);
+
 	if (strcmp (uri_scheme, "file") == 0 &&
+	    uses_gnomevfs == FALSE &&
 	    application->supported_uri_schemes == NULL &&
 	    application->user_application->supported_uri_schemes == NULL) {
 		return TRUE;
@@ -1623,6 +1627,21 @@ gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
 				 /*glib is const incorrect*/(gpointer) uri_scheme,
 				 (GCompareFunc) strcmp) != NULL)) {
 		return TRUE;
+	}
+	/* check in the list of uris supported by gnome-vfs if necessary */
+	else if (uses_gnomevfs) {
+		GList *supported_uris;
+		gboolean res;
+		
+		supported_uris = gnome_vfs_configuration_get_methods_list();
+		res = (g_list_find_custom(supported_uris,
+					  /*glib is const incorrect*/(gpointer) uri_scheme,
+					  (GCompareFunc) strcmp) != NULL);
+
+		g_list_foreach(supported_uris, (GFunc) g_free, NULL);
+		g_list_free(supported_uris);
+
+		return res;
 	}
 
 	return FALSE;
@@ -1851,6 +1870,7 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
 {
 	Application *i_application;
 	GnomeVFSMimeApplication *application;
+	gboolean uses_gnomevfs = FALSE;
 
 	g_return_val_if_fail (app_id != NULL, NULL);
 
@@ -1888,6 +1908,29 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
 			(i_application,
 			 GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL,
 			 NULL);
+
+	uses_gnomevfs = real_get_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS, NULL);
+
+	if (uses_gnomevfs) {
+		GList *methods_list = 
+			gnome_vfs_configuration_get_methods_list();
+		GList *l;
+		if (application->expects_uris == GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS) {
+			application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS;
+		}
+		for (l = methods_list; l != NULL; l = l->next) {
+			if (g_list_find_custom (application->supported_uri_schemes,
+						/*glib is const incorrect*/(gpointer) l->data,
+						(GCompareFunc) strcmp) == NULL) {
+				application->supported_uri_schemes = 
+					g_list_prepend(application->supported_uri_schemes, 
+						       l->data);
+			} else {
+				g_free(l->data);
+			}			
+		}
+		g_list_free(methods_list);
+	}	
 
 	return application;
 }
