@@ -1,3 +1,9 @@
+2000-08-11  Dan Winship  <danw@helixcode.com>
+
+	* data/mime/gnome-vfs.applications: gnumeric can open Excel files.
+
+	* data/mime/gnome-vfs.keys: Excel files can be opened by gnumeric.
+
 2000-08-11  Ali Abdin <aliabdin@aucegypt.edu>
 
         * libgnomevfs/gnome-vfs-mime-snif-buffer.h:
