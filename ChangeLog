@@ -1,3 +1,9 @@
+2004-10-27  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_application_new_from_id):
+	Chomp spaces off command strings.
+
 2004-10-26  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:

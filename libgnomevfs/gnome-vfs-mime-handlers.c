@@ -1229,24 +1229,41 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	if ((p = strstr (application->command, "%f")) != NULL
 		|| (p = strstr (application->command, "%d")) != NULL
 		|| (p = strstr (application->command, "%n")) != NULL) {
-		*p = '\0';
+
+	  	do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+		
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
 		application->supported_uri_schemes = NULL;
 	} else if ((p = strstr (application->command, "%F")) != NULL
 		   || (p = strstr (application->command, "%D")) != NULL
 		   || (p = strstr (application->command, "%N")) != NULL) {
-		*p = '\0';
+	  	do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+		
 		application->can_open_multiple_files = TRUE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
 		application->supported_uri_schemes = NULL;
 	} else if ((p = strstr (application->command, "%u")) != NULL) {
-		*p = '\0';
+		do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
 		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
 	} else if ((p = strstr (application->command, "%U")) != NULL) {
-		*p = '\0';
+		do {
+			*p = '\0';
+			p--;
+		} while (p >= application->command && g_ascii_isspace (*p)); 
+
 		application->can_open_multiple_files = TRUE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
 		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
