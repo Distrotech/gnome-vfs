@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-29 12:20+0300\n"
-"PO-Revision-Date: 2004-01-30 08:56+0300\n"
+"PO-Revision-Date: 2004-01-30 10:09+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -851,39 +851,39 @@ msgstr "Обработчик ссылок (URLs) типа trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Соединения с прокси-сервером требуют авторизации"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Ссылка (URL) на автоматическую конфигурацию серсиса прокси"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Включает установки сервиса прокси для протокола HTTP через Интернет."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Имя узла для сервиса прокси протокола FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Порт для сервиса прокси протокола FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Имя узла для сервиса прокси протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Пароль для сервиса прокси протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Порт для сервиса прокси протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Имя пользователя для сервиса прокси протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -891,80 +891,93 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Если включено, то соединения с прокси-сервером требуют авторизации. Пара "
+"значенийимя_пользователя/пароль определяется ключами \"/system/http_proxy/"
+"authentication_user\" и \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Узлы вне сервиса прокси"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Пароль для авторизации сервисом прокси протокола HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Режим конфигурации сервиса прокси"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Узел для сервиса прокси протокола SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Порт для сервиса прокси протокола SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Узел для сервиса прокси защищённого протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Порт для сервиса прокси защищённого протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Режим конфигурации сервиса прокси. Возможные значения \"none\" (\"отсутствует"
+"\"), \"manual\" (\"ручной\"), \"auto\" (\"автоматический\")."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Имя узла для сервиса сервиса прокси протокола FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Имя узла для сервиса сервиса прокси протокола HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Имя узла для сервиса сервиса прокси защищённого протокола HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Имя узла для сервиса сервиса прокси протокола SOCKS."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Порт на узле, определённом ключом \"/system/http_proxy/host\" для сервиса "
+"прокси."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Порт на узле, определённом ключом \"/system/proxy/ftp_host\" для сервиса "
+"прокси."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Порт на узле, определённом ключом \"/system/proxy/secure_host\" для сервиса "
+"прокси."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Порт на узле, определённом ключом \"/system/proxy/socks_host\" для сервиса "
+"прокси."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -973,28 +986,37 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Этот ключ содержит список узлов, соединение с которыми осуществляется "
+"напрямую, минуя сервис прокси (если последний активен). Значения могут быть "
+"именами узлов, доменами (с использованием расширителей типа *.foo.com), "
+"адресами узлов протокола IP (в вариантах IPv4 и IPv6) и сетевыми адресами с "
+"использованием маски (наподобие 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
 msgstr ""
+"Ссылка (URL), предоставляющая значения для автоматической конфигурации "
+"сервиса прокси."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Использовать сервис прокси для протокола HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
+"Имя пользователя для использования в авторизации сервисом прокси для "
+"протокола HTTP."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Окна"
+msgstr "Сеть ОС Виндоуз (Windows)"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Рабочая группа для протокола SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr ""
+"Рабочая группа сети ОС Виндоуз (Windows), в которую входит пользователь"
