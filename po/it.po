@@ -1,20 +1,20 @@
 # Italian localisation for gnome-vfs
 # Copyright (C) 2000 Free Software Foundation, Inc.
 # Christopher R. Gabriel <cgabriel@pluto.linux.it>	
-# Luca Ferretti <elle.uca@infinito.it>
-# Alessio Frusciante <algol@firenze.linux.it>
+# Luca Ferretti <elle.uca@infinito.it>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2003-12-08 11:50+0100\n"
-"Last-Translator: Alessio Frusciante <algol@firenze.linux.it>\n"
+"Project-Id-Version: gnome-vfs\n"
+"POT-Creation-Date: 2004-02-06 16:33+0100\n"
+"PO-Revision-Date: 2004-02-09 13:18+0100\n"
+"Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
@@ -36,22 +36,22 @@ msgstr "%s:%d contiene caratteri NULL."
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d non contiene il nome del metodo."
+msgstr "%s:%d non contiene alcun nome di metodo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d non contiene il nome del metodo."
+msgstr "%s:%d non ha marcatore finale di opzioni."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s: %d ha opzioni sconosciute %s."
+msgstr "%s:%d ha l'opzione sconosciuta %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d non contiene il nome del modulo."
+msgstr "%s:%d non contiene alcun nome di modulo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
@@ -68,7 +68,7 @@ msgstr "Volume di rete AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Volume autorilevato"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -77,11 +77,11 @@ msgstr "Unità CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "CD Audio Digitale"
+msgstr "CD audio digitale"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Volume dispositivo hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
@@ -127,7 +127,7 @@ msgstr "Volume di sistema"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Volume di memoria"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
@@ -147,11 +147,11 @@ msgstr "Volume Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Volume Windows condiviso"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Volume SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
@@ -171,7 +171,7 @@ msgstr "Volume Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Volume DOS avanzato"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
@@ -196,7 +196,7 @@ msgstr "Sconosciuto"
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Tipo di op %u sconosciuto."
+msgstr "Tipo di op %u sconosciuto"
 
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
@@ -210,7 +210,7 @@ msgstr "Tipo di job %u sconosciuto"
 
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
-msgstr "Operazione interrotta"
+msgstr "Operazione fermata"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
@@ -219,7 +219,7 @@ msgstr "Impossibile analizzare: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Ulteriori errori di analisi verranno ignorati."
+msgstr "Ulteriori errori di analisi sono ignorati."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -279,7 +279,7 @@ msgstr "File troppo grande"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "Spazio insufficiente sulla periferica"
+msgstr "Spazio insufficiente sul dispositivo"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -354,7 +354,7 @@ msgstr "È una directory"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
-msgstr "Memoria insufficiente"
+msgstr "Memoria non sufficiente"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -394,7 +394,7 @@ msgstr "Directory non vuota"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
-msgstr "Troppi link"
+msgstr "Troppi collegamenti"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
@@ -419,12 +419,12 @@ msgstr "Servizio non disponibile"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "Richiesta dati da servizio obsoleto"
+msgstr "Richiesta dati obsoleti di servizio"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Protocol error"
-msgstr "Errore protocollo"
+msgstr "Errore di protocollo"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
@@ -436,10 +436,11 @@ msgstr "Impossibile trovare un master browser"
 msgid "No default action associated"
 msgstr "Nessuna azione predefinita associata"
 
+# O "Nessun gestore per questo schema di URL"?
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "Nessun gestore per schema URL"
+msgstr "Nessun gestore per URL scheme"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -456,14 +457,14 @@ msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
 msgstr[1] "%u byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
 msgstr "%.1f kB"
 
@@ -485,33 +486,35 @@ msgstr " (Unicode non valido)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Floppy"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
-msgstr ""
+msgstr "Unità Zip"
 
+# ma dai!!!! 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#, fuzzy
 msgid "Memory Stick"
-msgstr ""
+msgstr "Barretta di memoria"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Fotocamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Volume root"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "CD audio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
 msgid "Unknown volume"
@@ -519,55 +522,63 @@ msgstr "Volume sconosciuto"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Server di rete"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Impossibile montare l'unità floppy. È probabile che nell'unità non ci sia "
+"alcun supporto."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
+"Impossibile montare il volume. È probabile che nel dispositivo non ci sia "
+"alcun supporto."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Impossibile montare l'unità floppy. È probabile che il supporto sia in un "
+"formato che non può essere montato."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Impossibile montare il volume selezionato. È probabile che il supporto sia "
+"in un formato che non può essere montato."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Impossibile montare l'unità floppy selezionata."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Impossibile montare il volume selezionato."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Impossibile smontare il volume selezionato."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
-msgstr ""
+msgstr "Avvio del comando fallito"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Impossibile espellere il supporto"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Impossibile smontare il server connesso"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -621,26 +632,26 @@ msgstr "Finestre"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Rete"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: modules/computer-method.c:557
 msgid "Filesystem"
-msgstr "Filesystem"
+msgstr "File system"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "GnomeVFSSeekPosition %d sconosciuta."
+msgstr "GnomeVFSSeekPosition %d sconosciuta"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Nessun file di impostazione valido è stato trovato presso %s\n"
+msgstr "Impossibile trovare un file d'impostazioni valido presso %s\n"
 
 #: modules/test-method.c:592
 #, c-format
@@ -666,15 +677,15 @@ msgstr "moniker file generico"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Applicazione di visualizzatore componente predefinita"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Applicazione di terminale predefinita"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Argomento exec per il terminale predefinito"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -683,186 +694,201 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"L'applicazione da usare per visualizzare i file che richiedono un componente "
+"per essere visualizzati. Il parametro %s viene sostituito con l'URI del "
+"file, il parametro %c viene sostituito con l'IID del componente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Applicatione di terminale predefinita da usare per applicazioni che "
+"richiedono un terminale."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "L'argomento exec da usare per l'applicazione di terminale predefinita."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Gestore URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Gestore URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Gestore URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "Come gestire URL h323"
+msgstr "Gestione di URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "Come gestire URL di man"
+msgstr "Gestione di URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "Handle HTTPS URLs"
-msgstr "Come gestire URL di man"
+msgstr "Gestione di URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "Nessun gestore per schema URL"
+msgstr "Gestione di URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "Come gestire URL di ghelp"
+msgstr "Gestione di URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "Come gestire URL di info"
+msgstr "Gestione di URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "Come gestire URL mailto"
+msgstr "Gestione di URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "Come gestire URL di man"
+msgstr "Gestione di URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "Come gestire URL del cestino"
+msgstr "Gestione di URL trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr "Esegui programma in un terminale"
+msgstr "Eseguire programma nel terminale"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"command\" gestisca "
+"gli URL man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Impostare a vero affiché in programma specificato in \"trash/command\" "
+"gestisca gli URL trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
+"Impostare a vero se il programma che gestisce quest'URL deve essere eseguito "
+"in un terminale."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Gestore URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Gestore URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Gestore URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Gestore file non corretto"
+msgstr "Gestore URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Gestore URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Gestore URL trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Autenticazione connessioni al server proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "URL di configurazione automatica del proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Abilita le impostazioni del proxy per gli accessi HTTP su Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Nome dell'host proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Porta proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Nome dell'host proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Password per proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Porta proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Nome utente per proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -870,80 +896,95 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Se impostata a vero, le connessioni al server proxy richiedono "
+"l'autenticazione. La combinazione nome utente/password è definita nelle "
+"chiavi \"/system/http_proxy/authentication_user\" e \"/system/http_proxy/"
+"authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Host non sottoposti a proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Password da fornire come autenticazione nell'effettuare proxy HTPP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Modalità di configurazione proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Nome dell'host proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Porta del proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Nome dell'host proxy HTTP sicuro"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Porta del proxy HTTP sicuro"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Selezionare la modalità di configurazione del proxy. Valori ammessi sono "
+"\"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Il nome della macchina attraverso la quale effettuare il proxy FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Il nome della macchina attraverso la quale effettuare il proxy HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
 msgstr ""
+"Il nome della macchina attraverso la quale effettuare il proxy HTTP sicuro."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Il nome della macchina attraverso la quale effettuare il proxy SOCKS."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"La porta sulla macchina definita in \"/system/http_proxy/host\" attraverso "
+"la quale effettuare il proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"La porta sulla macchina definita in \"/system/proxy/ftp_host\" attraverso la "
+"quale effettuare il proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"La porta sulla macchina definita in \"/system/proxy/secure_host\" attraverso "
+"la quale effettuare il proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"La porta sulla macchina definita in \"/system/proxy/socks_host\" attraverso "
+"la quale effettuare il proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -952,58 +993,33 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Questa chiave contiene una lista di host a cui connettersi direttamente, "
+"invece che attraverso il proxy (qualora sia attivo). Valori ammessi sono "
+"nomi degli host, domini (usando un metacarattere iniziale come *.foo.com), "
+"indirizzi IP degli host (sia IPv4 che IPv6) ed indirizzi di rete con una "
+"maschera di rete (qualcosa come 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL che fornisce i valori di configurazione del proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Usare proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Nome utente da fornire come autenticazione nell'effettuare proxy HTTP."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Finestre"
+msgstr "Rete Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Workgroup SMB"
 
+# mi sa che l'originale è un po' errato. s/window/Windows
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
-
-#~ msgid "How to handle http URLs"
-#~ msgstr "Come gestire URL http"
-
-#~ msgid "How to handle https URLs"
-#~ msgstr "Come gestire URL https"
-
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Gestore URL per le pagine di ghelp"
-
-#~ msgid "URL handler for h323 uris"
-#~ msgstr "Gestore URL per gli uri h323"
-
-#~ msgid "URL handler for http uris"
-#~ msgstr "Gestore URL per gli uri http"
-
-#~ msgid "URL handler for https uris"
-#~ msgstr "Gestore URL per gli uri https"
-
-#~ msgid "URL handler for info pages"
-#~ msgstr "Gestore URL per le pagine di info"
-
-#~ msgid "URL handler for mailto uris"
-#~ msgstr "Gestore URL per gli uri mailto"
-
-#~ msgid "URL handler for man pages"
-#~ msgstr "Gestore URL per le pagine di man"
-
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Gestore URL per le pagine del cestino"
+msgstr "Il workgroup Windows di cui fa parte l'utente"
