@@ -37,8 +37,7 @@
 
 #include <gnome.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-module.h"
 
 #include "file-method.h"
 
@@ -897,7 +896,12 @@ do_make_directory (GnomeVFSURI *uri,
 
 
 GnomeVFSMethod *
-init (void)
+vfs_module_init (void)
 {
 	return &method;
+}
+
+void
+vfs_module_shutdown (GnomeVFSMethod *method)
+{
 }

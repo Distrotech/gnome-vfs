@@ -28,8 +28,7 @@
 #include <glib.h>
 #include <gmodule.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-module.h"
 
 
 static GHashTable *method_hash = NULL;
@@ -46,12 +45,59 @@ gnome_vfs_method_init (void)
 	return TRUE;
 }
 
+static GnomeVFSMethod *
+module_get_sane_handle (gchar *module_name)
+{
+	GnomeVFSMethod *method;
+	GModule        *module;
+	GnomeVFSMethod * (*init_function) (void) = NULL;
+	void           * (*shutdown_function) (GnomeVFSMethod *) = NULL;
+	
+	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
+	if (module == NULL) {
+		g_warning ("Cannot load module `%s'", module_name);
+		return NULL;
+	}
+
+	if (! g_module_symbol (module, GNOME_VFS_MODULE_INIT, (gpointer *) &init_function) ||
+	    !init_function) {
+		g_warning ("module '%s' has no init fn", module_name);
+		return NULL;
+	}
+
+	if (! g_module_symbol (module, GNOME_VFS_MODULE_SHUTDOWN, (gpointer *) &shutdown_function) ||
+	    !shutdown_function)
+		g_warning ("module '%s' has no shutdown fn", module_name);
+
+	method = init_function ();
+
+	if (method == NULL) {
+		g_warning ("module '%s' returned a NULL handle", module_name);
+		return NULL;
+	}
+
+	/* Some basic checks */
+	if (!method->open) {
+		g_warning ("module '%s' has no open fn", module_name);
+		return NULL;
+	} else if (!method->create) {
+		g_warning ("module '%s' has no create fn", module_name);
+		return NULL;
+	} else if (!method->get_file_info) {
+		g_warning ("module '%s' has no get-file-info fn", module_name);
+		return NULL;
+	} else if (!method->is_local) {
+		g_warning ("module '%s' has no is-local fn", module_name);
+		return NULL;
+	}
+
+	return method;
+}
+
 GnomeVFSMethod *
 gnome_vfs_method_get (const gchar *name)
 {
 	GnomeVFSMethod *method;
-	GnomeVFSMethod * (*init_function) (void);
-	GModule *module;
 	gchar *module_name;
 
 	g_return_val_if_fail (name != NULL, NULL);
@@ -65,22 +111,10 @@ gnome_vfs_method_get (const gchar *name)
 
 	module_name = g_strconcat (PREFIX "/lib/vfs/modules/lib", name, ".so",
 				   NULL);
-	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
-	if (module == NULL) {
-		g_warning ("Cannot load module `%s'", module_name);
-		return NULL;
-	}
+	if (!(method = module_get_sane_handle (module_name)))
+	    return NULL;
 
 	g_free (module_name);
-
-	if (! g_module_symbol (module, "init", (gpointer *) &init_function))
-		return NULL;
-
-	method = init_function ();
-	if (method == NULL)
-		return NULL;
-
-	/* FIXME: Check method for sanity.  */
 
 	G_LOCK (method_hash);
 	g_hash_table_insert (method_hash, g_strdup (name), method);

@@ -28,8 +28,7 @@
 #include <zlib.h>
 #include <time.h>
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-module.h"
 
 #include "gzip-method.h"
 
@@ -722,7 +721,13 @@ do_is_local (const GnomeVFSURI *uri)
 /* Init.  */
 
 GnomeVFSMethod *
-init (void)
+vfs_module_init (void)
 {
 	return &method;
 }
+
+void
+vfs_module_shutdown (GnomeVFSMethod *method)
+{
+}
+

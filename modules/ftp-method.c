@@ -29,8 +29,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <time.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
+#include "gnome-vfs-module.h"
 
 #include <netdb.h>		/* struct hostent */
 #include <sys/socket.h>		/* AF_INET */
@@ -2079,7 +2078,12 @@ static GnomeVFSMethod method = {
 };
 
 GnomeVFSMethod *
-init (void)
+vfs_module_init (void)
 {
 	return &method;
+}
+
+void
+vfs_module_shutdown (GnomeVFSMethod *method)
+{
 }
