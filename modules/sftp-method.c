@@ -1788,7 +1788,7 @@ do_create (GnomeVFSMethod        *method,
 
 	buffer_write_gint32 (&msg, ssh_mode);
 
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0,  sizeof (GnomeVFSFileInfo));
 	info.permissions = perm;
 	buffer_write_file_info (&msg, &info, GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
 
