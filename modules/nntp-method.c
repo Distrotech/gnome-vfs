@@ -814,6 +814,12 @@ parse_date_string (const char* date_string, time_t *t)
 		g_message("error parsing %s, %s", date_string, temp_str); 
 	}
 	
+	if (filename != NULL) {
+		g_free (filename);
+	}
+	if (linkname != NULL) {
+		g_free (linkname);
+	}
 	
 	g_free(temp_str);
 	*t = s.st_mtime;
@@ -904,6 +910,8 @@ parse_header(const char* header_str, char** filename, char** folder_name, char**
 		file_start = strrchr (temp_str, '-');
 	
 		if (file_start == NULL) {
+			g_free (*message_id);
+			g_free (temp_str);
 			return FALSE;
 		}
 	
