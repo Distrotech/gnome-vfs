@@ -1,8 +1,24 @@
+2000-08-07  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_has_parent):
+	Fixed so it matches the _get_parent function by just calling
+	_get_parent. It would be hard to get the corresponding result
+	otherwise. Someone performance-obsessed could move the common
+	code out into a separate function if they like.
+	
+	* test/test-uri.c: (test_uri_has_parent), (main):
+	Added a test of gnome_vfs_uri_has_parent to this tool.
+	
+	* modules/http-method.c: (make_propfind_request):
+	Changed a g_warning to a g_message. Maybe yakk will change it
+	back or something, but it happens too often to be a drop-into-
+	the-debugger warning.
+
 2000-08-07  Rebecca Schulman  <rebecka@eazel.com>
 
 	* libgnomevfs/gnome-vfs-result.c:
 	* libgnomevfs/gnome-vfs-types.h:
-	added a new error message GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+	added a new error code GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 
 2000-08-07  Maciej Stachowiak  <mjs@eazel.com>
 

@@ -961,17 +961,14 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 gboolean
 gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 {
-	g_return_val_if_fail (uri != NULL, FALSE);
+	GnomeVFSURI *parent;
 
-	if (uri->parent != NULL)
-		return TRUE;
-
-	if (uri->text == NULL)
+	parent = gnome_vfs_uri_get_parent (uri);
+	if (parent == NULL) {
 		return FALSE;
+	}
 
-	if (strcmp (uri->text, GNOME_VFS_URI_PATH_STR) == 0)
-		return FALSE;
-
+	gnome_vfs_uri_unref (parent);
 	return TRUE;
 }
 

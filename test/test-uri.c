@@ -123,6 +123,29 @@ test_uri_parent (const char *input,
 	g_free (output);
 }
 
+static void
+test_uri_has_parent (const char *input,
+		     const char *expected_output)
+{
+	GnomeVFSURI *uri;
+	const char *output;
+	gboolean has;
+
+	uri = gnome_vfs_uri_new (input);
+	if (uri == NULL) {
+		output = "URI NULL";
+	} else {
+		has = gnome_vfs_uri_has_parent (uri);
+		gnome_vfs_uri_unref (uri);
+		output = has ? "TRUE" : "FALSE";
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("gnome_vfs_uri_has_parent (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+}
+
 /*
  * Ensure that gnome_vfs_uri_{get_host_name,get_scheme,get_user_name,get_password} 
  * return expected results
@@ -236,7 +259,6 @@ main (int argc, char **argv)
 	test_uri_host_port ("http://yakk:womble@www.eazel.com:42/blah/", 42);
 	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "/blah/", gnome_vfs_uri_get_path );
 
-
 	test_uri_parent ("", "URI NULL");
 	test_uri_parent ("http://www.eazel.com", "NULL");
 	test_uri_parent ("http://www.eazel.com/", "NULL");
@@ -249,6 +271,19 @@ main (int argc, char **argv)
 	test_uri_parent ("FILE://", "NULL");
 	test_uri_parent ("man:as", "NULL");
 	test_uri_parent ("pipe:gnome-info2html2 as", "NULL");
+
+	test_uri_has_parent ("", "URI NULL");
+	test_uri_has_parent ("http://www.eazel.com", "FALSE");
+	test_uri_has_parent ("http://www.eazel.com/", "FALSE");
+	test_uri_has_parent ("http://www.eazel.com/dir", "TRUE");
+	test_uri_has_parent ("http://www.eazel.com/dir/", "TRUE");
+	test_uri_has_parent ("http://yakk:womble@www.eazel.com:42/blah/", "TRUE");
+	test_uri_has_parent ("file:", "FALSE");
+	test_uri_has_parent ("http:", "FALSE");
+	test_uri_has_parent ("file:/", "FALSE");
+	test_uri_has_parent ("FILE://", "FALSE");
+	test_uri_has_parent ("man:as", "FALSE");
+	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
 
 	/* FIXME: Do we want GnomeVFSURI to just refuse to deal with
          * URIs that we don't have a module for?

@@ -1076,7 +1076,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 			extraheaders, context);
 
 	if(result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
-		g_warning(_("HTTP server returned an invalid PROPFIND response"));
+		g_message(_("HTTP server returned an invalid PROPFIND response"));
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
