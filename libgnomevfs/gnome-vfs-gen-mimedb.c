@@ -34,8 +34,7 @@ int main(int argc, char *argv[])
 		} else if(g_file_exists(argv[1]))
 			filename = argv[1];
 	} else {
-		/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-		filename = gnome_config_file("gnome-vfs-mime-magic");
+	        filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
 	}
 
 	if(!filename) {

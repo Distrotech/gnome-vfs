@@ -546,8 +546,7 @@ gnome_vfs_mime_get_magic_table (void)
 	if (mime_magic_table == NULL) {
 		/* try reading the pre-parsed table */
 
-		/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-		filename = gnome_config_file ("gnome-vfs-mime-magic.dat");
+	        filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic.dat", NULL);
 
 		if (filename != NULL) {
 			file = open (filename, O_RDONLY);
@@ -574,11 +573,7 @@ gnome_vfs_mime_get_magic_table (void)
   	if (mime_magic_table == NULL) {
 		/* don't have a pre-parsed table, use original text file */
 
-		/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-		filename = gnome_config_file ("gnome-vfs-mime-magic");
-		if (filename != NULL) {
-			mime_magic_table = gnome_vfs_mime_magic_parse(filename, NULL);
-		}
+	        filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
 		g_free (filename);
   	}
 

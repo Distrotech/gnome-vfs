@@ -1,3 +1,16 @@
+2000-07-17  Mathieu Lacage <mathieu@eazel.com>
+
+	This should fix bug 796.
+	
+	* libgnomevfs/Makefile.am: add -DGNOME_VFS_DATADIR and
+	-DGNOME_VFS_CONFDIR.
+	* libgnomevfs/gnome-vfs-mime.c:(mime_init) look into gnome_vfs 
+	prefix instead of gnome-libs one.
+	* libgnomevfs/gnome-vfs-mime-magic.c:(gnome_vfs_mime_get_magic_table)
+	idem.
+	* libgnomevfs/gnome-vfs-gen-mimedb.c:(main) idem.
+	* libgnomevfs/gnome-vfs-mime-info.c:(gnome_vfs_mime_init) idem.
+	
 2000-07-17  Seth Nickell  <seth@eazel.com>
 
 	* modules/search-method.c: (search_directory_handle_new),

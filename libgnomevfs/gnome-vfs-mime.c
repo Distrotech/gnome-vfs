@@ -345,11 +345,12 @@ mime_init (void)
 	mime_extensions [0] = g_hash_table_new (g_str_hash, g_str_equal);
 	mime_extensions [1] = g_hash_table_new (g_str_hash, g_str_equal);
 	
-	/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-	gnome_mime_dir.dirname = gnome_unconditional_datadir_file ("mime-info");
+	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
 
 	/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
+	/* I think the bug does not apply here. You really want to have a look  into the user 
+	   directory there. -- mathieu@eazel.com */
 	user_mime_dir.dirname  = gnome_util_home_file ("mime-info");
 	user_mime_dir.system_dir = FALSE;
 

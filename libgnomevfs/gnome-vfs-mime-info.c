@@ -752,8 +752,7 @@ gnome_vfs_mime_init ()
 	 * Setup the descriptors for the information loading
 	 */
 
-	/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-	gnome_mime_dir.dirname = gnome_unconditional_datadir_file ("mime-info");
+	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
 	
 	/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */

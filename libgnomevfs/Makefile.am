@@ -1,11 +1,14 @@
 NULL = 
 
 INCLUDES =					\
+	-DGNOME_VFS_CONFDIR=\"$(sysconfdir)\"	\
+	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_builddir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)			\
+	$(NULL)
 
 CPPFLAGS =					\
 	-D_GNU_SOURCE				\
@@ -13,7 +16,8 @@ CPPFLAGS =					\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
-	-DG_LOG_DOMAIN=\"GnomeVFS\"
+	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
+	$(NULL)
 
 lib_LTLIBRARIES = libgnomevfs.la
 
