@@ -70,8 +70,7 @@ typedef enum {
  * @GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
  * @GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
  *
- * Identifies the kind of file represented by a #GnomeVFSFileInfo struct. (note,
- * use of MIME types is preferred as this field may eventually disappear)
+ * Identifies the kind of file represented by a #GnomeVFSFileInfo struct. 
  **/
 
 typedef enum {
