@@ -1,3 +1,17 @@
+2000-12-15  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	Fixed bug 4810 (typing "gzip:" in the uri text field
+	crashes Nautilus)
+
+	* modules/gzip-method.c: 
+	changed VALID_URI to check uri->parent, since all the code
+	that uses it assumes the parent is good.
+	(do_open), (do_get_file_info): return GNOME_VFS_ERROR_INVALID_URI
+	instead of GNOME_VFS_ERROR_NOT_FOUND, to match other modules'
+	behavior.
+
 2000-12-14  Rebecca Schulman  <rebecka@eazel.com>
 
 	* doc/mime-data-specification.txt:
