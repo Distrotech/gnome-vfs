@@ -47,6 +47,7 @@
 typedef struct {
 	char *description;
 	char *parent_classes;
+	char *aliases;
 } MimeEntry;
 
 typedef struct {
@@ -92,6 +93,7 @@ mime_entry_free (MimeEntry *entry)
 	
 	g_free (entry->description);
 	g_free (entry->parent_classes);
+	g_free (entry->aliases);
 	g_free (entry);
 }
 
@@ -291,7 +293,7 @@ read_next (xmlTextReaderPtr reader)
 }
 
 static char *
-handle_simple_string (const char *filename, xmlTextReaderPtr reader)
+handle_simple_string (xmlTextReaderPtr reader)
 {
 	int ret;
 	char *text = NULL;
@@ -309,6 +311,22 @@ handle_simple_string (const char *filename, xmlTextReaderPtr reader)
 
 		ret = read_next (reader);
 	}
+	return text;
+}
+
+static char *
+handle_attribute (xmlTextReaderPtr  reader,
+		  const char       *attribute)
+{
+	xmlChar *xml_text = NULL;
+	char *text = NULL;
+
+	xml_text = xmlTextReaderGetAttribute (reader, attribute);
+	if (xml_text != NULL) {
+		text = g_strdup (xml_text);
+		xmlFree (xml_text);
+	}
+	g_print ("looking for %s: got %s\n", attribute, text);
 	return text;
 }
 
@@ -343,14 +361,14 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 				
 				if (lang_level > previous_lang_level) {
 					char *comment;
-					comment = handle_simple_string (filename, reader);
+					comment = handle_simple_string (reader);
 					g_free (entry->description);
 					entry->description = comment;
 					previous_lang_level = lang_level;
 				}
-			} else if (!strcmp (name, "is-subclass-of")) {
+			} else if (!strcmp (name, "sub-class-of")) {
 				char *mime_type;
-				mime_type = handle_simple_string (filename, reader);
+				mime_type = handle_attribute (reader, "type");
 				if (entry->parent_classes) {
 					char *new;
 					new = g_strdup_printf ("%s:%s",
@@ -360,6 +378,19 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 					entry->parent_classes = new;
 				} else {
 					entry->parent_classes = g_strdup (mime_type);
+				}
+			} else if (!strcmp (name, "alias")) {
+				char *mime_type;
+				mime_type = handle_attribute (reader, "type");
+				if (entry->aliases) {
+					char *new;
+					new = g_strdup_printf ("%s:%s",
+							       entry->aliases,
+							       mime_type);
+					g_free (entry->aliases);
+					entry->aliases =new;
+				} else {
+					entry->aliases = g_strdup (mime_type);
 				}
 			}
 		}
@@ -526,6 +557,8 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 		return entry->description;
 	} else if (!strcmp (key, "parent_classes")) {
 		return entry->parent_classes;
+	} else if (!strcmp (key, "aliases")) {
+		return entry->aliases;
 	}
 
 	return NULL;

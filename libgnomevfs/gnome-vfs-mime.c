@@ -31,6 +31,7 @@
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-mime-utils.h"
+#include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-result.h"
@@ -571,6 +572,151 @@ gnome_vfs_get_supertype_from_mime_type (const char *mime_type)
 	}
         return extract_prefix_add_suffix (mime_type, "/", "/*");
 }
+
+
+/**
+ * gnome_vfs_mime_type_is_equal:
+ * @a: A const char * containing a mime type, e.g. "image/png"
+ * @b: A const char * containing a mime type, e.g. "image/png"
+ * 
+ * Compares two mime types to determine if they are equivalent.  They are
+ * equivalent if and only if they refer to the same mime type.
+ * 
+ * Return value: %TRUE, if a and b are equivalent mime types
+ **/
+gboolean
+gnome_vfs_mime_type_is_equal (const char *a,
+			      const char *b)
+{
+	const gchar *alias_list;
+	gchar **aliases;
+	
+	g_return_val_if_fail (a != NULL, FALSE);
+	g_return_val_if_fail (b != NULL, FALSE);
+
+	/* First -- check if they're identical strings */
+	if (a == b)
+		return TRUE;
+	if (strcmp (a, b) == 0)
+		return TRUE;
+
+	/* next, check to see if 'a' is an alias for 'b' */
+	alias_list = gnome_vfs_mime_get_value (a, "aliases");
+	if (alias_list != NULL) {
+		int i;
+
+		aliases = g_strsplit (alias_list,
+				      ":",
+				      -1);
+		for (i = 0; aliases && aliases[i] != NULL; i++) {
+			if (strcmp (b, aliases[i]) == 0) {
+				g_strfreev (aliases);
+				return TRUE;
+			}
+		}
+		g_strfreev (aliases);
+	}
+
+	/* Finally, see if 'b' is an alias for 'a' */
+	alias_list = gnome_vfs_mime_get_value (b, "aliases");
+	if (alias_list != NULL) {
+		int i;
+
+		aliases = g_strsplit (alias_list,
+				      ":",
+				      -1);
+		for (i = 0; aliases && aliases[i] != NULL; i++) {
+			if (strcmp (a, aliases[i]) == 0) {
+				g_strfreev (aliases);
+				return TRUE;
+			}
+		}
+		g_strfreev (aliases);
+	}
+
+	return FALSE;
+}
+
+/**
+ * gnome_vfs_mime_type_is_equivalent:
+ * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @base_mime_type: A const char * containing either a mime type or a subtype.
+ * 
+ * Compares @mime_type to @base_mime_type.  There are a three possible
+ * relationships between the two strings.  If they are identical and @mime_type
+ * is the same as @base_mime_type, then #GNOME_VFS_MIME_IDENTICAL is returned.
+ * This would be the case if "audio/midi" and "audio/x-midi" are passed in.
+ *
+ * If @base_mime_type is a parent type of @mime_type, then
+ * #GNOME_VFS_MIME_PARENT is returned.  As an example, "text/plain" is a parent
+ * of "text/rss", "image" is a parent of "image/png", and
+ * "application/octet-stream" is a parent of almost all types.
+ *
+ * Finally, if the two mime types are unrelated, than #GNOME_VFS_MIME_UNRELATED
+ * is returned.
+ * 
+ * Return value:
+ **/
+GnomeVFSMimeEquivalence
+gnome_vfs_mime_type_get_equivalance (const char *mime_type,
+				     const char *base_mime_type)
+{
+	const gchar *parent_list;
+	char *supertype;
+
+	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_MIME_UNRELATED);
+	g_return_val_if_fail (base_mime_type != NULL, GNOME_VFS_MIME_UNRELATED);
+
+	if (gnome_vfs_mime_type_is_equal (mime_type, base_mime_type))
+		return GNOME_VFS_MIME_IDENTICAL;
+
+	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
+
+	/* First, check if base_mime_type is a super type, and if it is, if
+	 * mime_type is one */
+	if (gnome_vfs_mime_type_is_supertype (base_mime_type)) {
+		if (! strcmp (supertype, base_mime_type)) {
+			g_free (supertype);
+			return GNOME_VFS_MIME_PARENT;
+		}
+	}
+
+	/* Both application/octet-stream and text/plain are special cases */
+	if (strcmp (base_mime_type, "text/plain") == 0 &&
+	    strcmp (supertype, "text/*") == 0) {
+		g_free (supertype);
+		return GNOME_VFS_MIME_PARENT;
+	}
+	g_free (supertype);
+
+	if (strcmp (base_mime_type, "application/octet-stream") == 0)
+		return GNOME_VFS_MIME_PARENT;
+
+	/* Then, check the parent-types of mime_type and compare  */
+	parent_list = gnome_vfs_mime_get_value (mime_type, "parent_classes");
+	if (parent_list) {
+		char **parents;
+		gboolean found_parent = FALSE;
+		int i;
+
+		parents = g_strsplit (parent_list, ":", -1);
+		for (i = 0; parents && parents[i] != NULL; i++) {
+			if (gnome_vfs_mime_type_get_equivalance (parents[i], base_mime_type)) {
+				found_parent = TRUE;
+				break;
+			}
+		}
+		g_strfreev (parents);
+
+		if (found_parent) {
+			return GNOME_VFS_MIME_PARENT;
+		}
+	}
+
+	return GNOME_VFS_MIME_UNRELATED;
+}
+
+
 
 static void
 file_date_record_update_mtime (FileDateRecord *record)

@@ -37,6 +37,7 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
 	gnome-vfs-mime-utils.h			\
+	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-module-callback.h		\
@@ -86,6 +87,7 @@ s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
 	( cd $(srcdir) && glib-mkenums \
 			--fhead "#include <libgnomevfs/gnome-vfs.h>\n" \
       --fhead "#include <libgnomevfs/gnome-vfs-mime-handlers.h>\n" \
+      --fhead "#include <libgnomevfs/gnome-vfs-mime.h>\n" \
 			--fhead "#include <glib-object.h>" \
       --fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {" 	\

@@ -1,3 +1,15 @@
+Mon Jul 19 18:42:58 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c
+	(gnome_vfs_mime_type_get_equivalance): New function.
+	(gnome_vfs_mime_type_is_equal): New function.
+
+	* libgnomevfs/Makefile.am (libgnomevfs_headers_to_scan_for_enums):
+	scan for gnome-vfs-mime.h
+
+	* libgnomevfs/gnome-vfs-mime-info.c (handle_mime_info): Store
+	aliases as well as mime types.
+
 2004-07-19  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
