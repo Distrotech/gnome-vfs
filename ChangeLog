@@ -1,3 +1,27 @@
+2000-10-23  Pavel Cisler  <pavel@eazel.com>
+
+	More work on 2989, this should conclud the GnomeVFS portion of the work.
+
+	* libgnomevfs/gnome-vfs-find-directory.c:
+	Add comments about the meaning of the parameters.
+
+	* modules/file-method.c: (find_trash_in_hierarchy),
+	(try_creating_trash_in), (save_trash_entry_cache),
+	(update_one_cached_trash_entry), (add_local_cached_trash_entry),
+	(read_saved_cached_trash_entries), (create_trash_near),
+	(find_locally_cached_trash_entry_for_device_id),
+	(find_or_create_trash_near), (find_trash_directory),
+	(do_find_directory):
+	Add a logic where the create_if needed flag can be specified
+	without the find_if_needed to signify that we want to just create
+	the Trash in the right place without first searching for an existing
+	one.
+	Fix a bug where a newly created Trash item would not get cached.
+	Fix a leak in read_saved_cached_trash_entries.
+	Fix a bug in create_trash_near that would cause the call to try
+	create in one directory above the disk we asked to create it.
+	Added some debugging code.
+	Tons of cleanup and comments.
 
 2000-10-24  Grahame Bowland  <gbowland@gbowland.com>
 

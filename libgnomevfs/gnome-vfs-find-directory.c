@@ -36,10 +36,22 @@
  * @kind: kind of well known directory
  * @result: newly created URI of the directory we found
  * @create_if_needed: If directory we are looking for does not exist, try to create it
+ * @create_if_needed: If we don't know where trash is yet, look for it.
  * @permissions: If creating, use these permissions
  * 
  * Used to return well known directories such as Trash, Desktop, etc. from different
  * file systems.
+ * 
+ * There is quite a complicated logic behind finding/creating a Trash directory
+ * and you need to be aware of some implications:
+ * Finding the Trash the first time when using the file method may be pretty 
+ * expensive. A cache file is used to store the location of that Trash file
+ * for next time.
+ * If @ceate_if_needed is specified without @find_if_needed, you may end up
+ * creating a Trash file when there already is one. Your app should start out
+ * by doing a gnome_vfs_find_directory with the @find_if_needed to avoid this
+ * and then use the @create_if_needed flag to create Trash lazily when it is
+ * needed for throwing away an item on a given disk.
  * 
  * Return value: An integer representing the result of the operation
  **/
