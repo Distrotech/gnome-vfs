@@ -1,5 +1,20 @@
 2000-10-16  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug 3042, Adding new mime type doesn't work.
+		
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window):
+		
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(add_mime_clicked):
+	Write proper description key.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_add_extension):
+	Work in progress on adding user defined extensions
+
+2000-10-16  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 3040, Action column has wrong contents
 
 	Corrected an instance where text was not getting freed

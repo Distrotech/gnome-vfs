@@ -1348,6 +1348,10 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 	
 	list = gnome_vfs_mime_get_extensions_list (mime_type);	
 	if (list == NULL) {
+		/* List is NULL. This means there are no current registered extensions. 
+		 * Add the new extension and it will cause the list to be created next time.
+		 */
+		result = gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extension);
 		return result;
 	}
 
