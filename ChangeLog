@@ -1,3 +1,9 @@
+2003-01-06  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version to 2.1.6.
+
 2002-12-19  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_format_file_size_for_display):

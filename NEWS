@@ -1,3 +1,15 @@
+gnome-vfs 2.1.6
+
+	* Bugs fixed:
+	       + fixed -lpthreads build failure (Owen Taylor)
+	       + Handle directory moves overwriting themselves (Alex Larsson)
+	       + Correct libdir handling (Frederic Crozat)
+	* Featurelets
+	       + Deprecated gnome_vfs_mime_shutdown, gnome_vfs_loadinit,
+	         gnome_vfs_preinit and gnome_vfs_postinit. (Alex Larsson)
+	       + Lots of docs updates (Diego Gonzalez)
+	       + _ prefix internal functions. (Tim Janik)
+
 gnome-vfs 2.1.5
 
 	* Featurelets
