@@ -1,3 +1,12 @@
+2002-06-25  Jody Goldberg <jody@gnome.org>
+ 
+ 	* libgnomevfs/gnome-vfs-mime.c (file_date_record_update_mtime) : track
+ 	  monitor files even if they do not exist at start up. That way we can
+ 	  notice the first user defined mime type is added.
+ 	(mime_fill_from_file) : ditto.
+ 	(mime_load) : don't ignore the unborn files just because their parent
+ 	  dir does not exist yet.
+
 2002-06-25  Damon Chaplin  <damon@ximian.com>
 
 	* libgnomevfs/gnome-vfs-async-job-map.c (gnome_vfs_async_job_map_init):
