@@ -2,6 +2,8 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Ilmar Kerm <ikerm@hot.ee>, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
+# Kitt <peroona@hot.ee>, 2005.
+# Priit Laes <amd@store20.com>, 2005.
 # 
 # 
 msgid ""
@@ -9,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-vfs Gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-27 04:31+0100\n"
-"PO-Revision-Date: 2005-01-28 18:44+0200\n"
-"Last-Translator: kitt <peroona@hot.ee>\n"
+"PO-Revision-Date: 2005-01-28 19:58+0300\n"
+"Last-Translator: Priit Laes <amd@tt.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +34,7 @@ msgstr "ISO 9660 seade"
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d sisaldab NUL märke."
+msgstr "%s:%d sisaldab NUL sümboleid."
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
@@ -47,7 +49,7 @@ msgstr "%s:%d ei sisalda meetodi nime."
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s:%d on teadmata häälestus %s."
+msgstr "%s:%d sisaldab tundmatuid valikuid %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -257,7 +259,7 @@ msgstr "Ei suuda töödelda: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr "Järgmisi töötlemise vigu ignoreeritakse."
+msgstr "Järgmiseid töötlemise vigu ignoreeritakse."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -297,12 +299,12 @@ msgstr "I/O viga"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
-msgstr "Vigased andmed"
+msgstr "Andmed vigased"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "Formaat ei ole kehtiv"
+msgstr "Vorming ei ole kehtiv"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -501,7 +503,7 @@ msgstr "Vaheaeg saabunud"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
 msgid "Nameserver error"
-msgstr "Üldine viga"
+msgstr "Nimeserveri viga"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
@@ -671,7 +673,7 @@ msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
 msgid "Root Volume"
-msgstr "Root seade"
+msgstr "Juurseade"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:888
 msgid "Audio CD"
@@ -705,15 +707,15 @@ msgstr "Valitud ketast ei õnnestunud külge ühendada. Ketas on tõenäoliselt 
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr "Valitud flopiketast ei õnnestunud külge ühendada"
+msgstr "Valitud flopiketast ei õnnestunud külge ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr "Valitud ketast ei õnnestunud külge ühendada"
+msgstr "Valitud ketast ei õnnestunud külge ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Valitud ketast ei õnnestunud lahti ühendada"
+msgstr "Valitud ketast ei õnnestunud lahti ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:257
 #: libgnomevfs/gnome-vfs-volume-ops.c:313
@@ -722,7 +724,7 @@ msgstr "Tõrge käsu täitmisel"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
-msgstr "Ei suuda meediat tagastada"
+msgstr "Ei suuda meediat väljastada"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
@@ -810,7 +812,7 @@ msgstr "Vaikimisi terminali rakendus"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Esmase terminali exec argument "
+msgstr "Vaikimisi terminali käivitusargument "
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -819,11 +821,11 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Vaikimisi terminali rakendus terminali vajavate rakenduste jaoks"
+msgstr "Vaikimisi terminalirakendus terminali vajavate rakenduste jaoks."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Vaikimisi terminali rakenduse exec argument"
+msgstr "Vaikimisi terminalirakenduse käivitusargument."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -955,47 +957,47 @@ msgstr "Tõene, kui käsku, mis määratud seda tüüpi URLide käsitlemiseks, t
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"aim\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"aim\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"callto\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"callto\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"ghelp\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"ghelp\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"h323\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"h323\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"http\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"http\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"https\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"https\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"info\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"info\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"mailto\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"mailto\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"man\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"man\" URLe"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Kuigi määratud käsk peaks käsitlema \"trash\" URLe"
+msgstr "Kas määratud käsk peaks käsitlema \"trash\" URLe"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid "Comma separated list of dns-sd domains that should be visible in the network location."
-msgstr "Võrgukohas näha olevate dns-sd domeenide rida"
+msgstr "Võrgukohas näha olevate, komadega eraldatud dns-sd domeenide rida"
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1003,19 +1005,19 @@ msgstr "Dns-sd teenuste otsimise lisa lingid"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "Kuidas kuvada kohaliku DNS-SD teenindust"
+msgstr "Kuidas kuvada kohalikku DNS-SD teenust"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Võimalikud väärtused on \"merged\", \"separate\" ja \"disabled\"."
+msgstr "Võimalikud väärtused on \"kokkupandud\", \"eraldatud\" ja \"keelatud\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Autendi proksiserveri ühendused"
+msgstr "Proksiserveri ühenduste autentimine"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "Automaatse proksi konfiguratsiooni URL"
+msgstr "Automaatne proksi konfigureerimise URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
@@ -1059,7 +1061,7 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Proksi seadistamine"
+msgstr "Proksi seadistusrežiim"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
