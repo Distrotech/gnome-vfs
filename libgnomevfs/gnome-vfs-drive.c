@@ -126,6 +126,16 @@ gnome_vfs_drive_init (GnomeVFSDrive *drive)
 	G_UNLOCK (drives);
 }
 
+/** 
+ * gnome_vfs_drive_ref:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSDrive *
 gnome_vfs_drive_ref (GnomeVFSDrive *drive)
 {
@@ -139,6 +149,14 @@ gnome_vfs_drive_ref (GnomeVFSDrive *drive)
 	return drive;
 }
 
+/** 
+ * gnome_vfs_drive_unref:
+ * @drive:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_unref (GnomeVFSDrive *drive)
 {
@@ -185,18 +203,48 @@ gnome_vfs_drive_finalize (GObject *object)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
+/** 
+ * gnome_vfs_drive_get_id:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gulong 
 gnome_vfs_drive_get_id (GnomeVFSDrive *drive)
 {
 	return drive->priv->id;
 }
 
+/** 
+ * gnome_vfs_drive_get_device_type:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSDeviceType
 gnome_vfs_drive_get_device_type (GnomeVFSDrive *drive)
 {
 	return drive->priv->device_type;
 }
 
+/** 
+ * gnome_vfs_drive_get_mounted_volume:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolume *
 gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 {
@@ -217,6 +265,14 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 	return vol;
 }
 
+/** 
+ * gnome_vfs_drive_volume_list_free:
+ * @volumes:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_volume_list_free (GList *volumes)
 {
@@ -229,6 +285,16 @@ gnome_vfs_drive_volume_list_free (GList *volumes)
 	}
 }
 
+/** 
+ * gnome_vfs_drive_get_mounted_volumes:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GList *
 gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
 {
@@ -245,6 +311,16 @@ gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
 	return return_list;
 }
 
+/** 
+ * gnome_vfs_drive_is_mounted:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
 {
@@ -286,49 +362,129 @@ _gnome_vfs_drive_add_mounted_volume  (GnomeVFSDrive      *drive,
 	G_UNLOCK (drives);
 }
 
+/** 
+ * gnome_vfs_drive_get_device_path:
+ * @drive:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_drive_get_device_path (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->device_path);
 }
 
-
+/** 
+ * gnome_vfs_drive_get_activation_uri:
+ * @drive:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->activation_uri);
 }
 
+/** 
+ * gnome_vfs_drive_get_hal_udi:
+ * @drive:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_drive_get_hal_udi (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->hal_udi);
 }
 
+/** 
+ * gnome_vfs_drive_get_display_name:
+ * @drive:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_drive_get_display_name (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->display_name);
 }
 
+/** 
+ * gnome_vfs_drive_get_icon:
+ * @drive:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_drive_get_icon (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->icon);
 }
 
+/** 
+ * gnome_vfs_drive_is_user_visible:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_drive_is_user_visible (GnomeVFSDrive *drive)
 {
 	return drive->priv->is_user_visible;
 }
 
+/** 
+ * gnome_vfs_drive_is_connected:
+ * @drive:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
 {
 	return drive->priv->is_connected;
 }
 
+/** 
+ * gnome_vfs_drive_compare:
+ * @a:
+ * @b:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gint
 gnome_vfs_drive_compare (GnomeVFSDrive *a,
 			 GnomeVFSDrive *b)
@@ -373,6 +529,15 @@ decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
 	}
 }
 
+/** 
+ * gnome_vfs_drive_to_corba:
+ * @drive:
+ * @corba_drive:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
 			  GNOME_VFS_Drive *corba_drive)

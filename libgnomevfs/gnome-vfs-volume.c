@@ -90,6 +90,16 @@ gnome_vfs_volume_init (GnomeVFSVolume *volume)
 	
 }
 
+/** 
+ * gnome_vfs_volume_ref:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolume *
 gnome_vfs_volume_ref (GnomeVFSVolume *volume)
 {
@@ -103,6 +113,14 @@ gnome_vfs_volume_ref (GnomeVFSVolume *volume)
 	return volume;
 }
 
+/** 
+ * gnome_vfs_volume_unref:
+ * @volume:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_unref (GnomeVFSVolume *volume)
 {
@@ -144,24 +162,66 @@ gnome_vfs_volume_finalize (GObject *object)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
+
+/** 
+ * gnome_vfs_volume_get_volume_type:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolumeType
 gnome_vfs_volume_get_volume_type (GnomeVFSVolume *volume)
 {
 	return volume->priv->volume_type;
 }
 
+
+/** 
+ * gnome_vfs_volume_get_device_type:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSDeviceType
 gnome_vfs_volume_get_device_type (GnomeVFSVolume *volume)
 {
 	return volume->priv->device_type;
 }
 
+/** 
+ * gnome_vfs_volume_get_id:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gulong
 gnome_vfs_volume_get_id (GnomeVFSVolume *volume)
 {
 	return volume->priv->id;
 }
 
+/** 
+ * gnome_vfs_volume_get_drive:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSDrive *
 gnome_vfs_volume_get_drive (GnomeVFSVolume *volume)
 {
@@ -194,60 +254,160 @@ _gnome_vfs_volume_set_drive           (GnomeVFSVolume     *volume,
 	G_UNLOCK (volumes);
 }
 
+/** 
+ * gnome_vfs_volume_get_device_path:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_device_path (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->device_path);
 }
 
+/** 
+ * gnome_vfs_volume_get_activation_uri:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_activation_uri (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->activation_uri);
 }
 
+/** 
+ * gnome_vfs_volume_get_hal_udi:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->hal_udi);
 }
 
+/** 
+ * gnome_vfs_volume_get_filesystem_type:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_filesystem_type (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->filesystem_type);
 }
 
+/** 
+ * gnome_vfs_volume_get_display_name:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_display_name (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->display_name);
 }
 
+/** 
+ * gnome_vfs_volume_get_icon:
+ * @volume:
+ *
+ *
+ *
+ * Returns: a newly allocated string
+ *
+ * Since: 2.6
+ */
 char *
 gnome_vfs_volume_get_icon (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->icon);
 }
 
+/** 
+ * gnome_vfs_volume_is_user_visible:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_volume_is_user_visible (GnomeVFSVolume *volume)
 {
 	return volume->priv->is_user_visible;
 }
 
+/** 
+ * gnome_vfs_volume_is_read_only:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_volume_is_read_only (GnomeVFSVolume *volume)
 {
 	return volume->priv->is_read_only;
 }
 
+/** 
+ * gnome_vfs_volume_is_mounted:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_volume_is_mounted (GnomeVFSVolume *volume)
 {
 	return volume->priv->is_mounted;
 }
 
+/** 
+ * gnome_vfs_volume_handles_trash:
+ * @volume:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gboolean
 gnome_vfs_volume_handles_trash (GnomeVFSVolume *volume)
 {
@@ -292,6 +452,17 @@ _gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type)
 	}
 }
 
+/** 
+ * gnome_vfs_volume_compare:
+ * @a:
+ * @b:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 gint
 gnome_vfs_volume_compare (GnomeVFSVolume *a,
 			  GnomeVFSVolume *b)
@@ -341,6 +512,14 @@ decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
 	}
 }
 
+/** 
+ * gnome_vfs_volume_to_corba:
+ * @volume:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_to_corba (GnomeVFSVolume *volume,
 			   GNOME_VFS_Volume *corba_volume)

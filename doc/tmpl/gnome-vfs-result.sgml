@@ -106,3 +106,12 @@ Result of I/O operations, the equivalent of errno
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_result_from_h_errno_val ##### -->
+<para>
+
+</para>
+
+@h_errno_code: 
+@Returns: 
+
+

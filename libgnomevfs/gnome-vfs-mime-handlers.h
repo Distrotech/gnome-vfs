@@ -65,8 +65,9 @@ typedef struct {
  * This data structure describes an action that can be done 
  * on a file.
  **/
+typedef struct _GnomeVFSMimeAction GnomeVFSMimeAction;
 
-typedef struct {
+struct _GnomeVFSMimeAction{
 	GnomeVFSMimeActionType action_type;
 	union {
 		Bonobo_ServerInfo *component;
@@ -76,7 +77,7 @@ typedef struct {
 
 	/* Padded to avoid future breaks in ABI compatibility */
 	void *reserved1;
-} GnomeVFSMimeAction;
+};
 
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                   (GnomeVFSMimeApplication *application);
 GnomeVFSMimeActionType   gnome_vfs_mime_get_default_action_type            (const char              *mime_type);

@@ -166,7 +166,7 @@ gnome_vfs_result_from_h_errno (void)
 
 /**
  * gnome_vfs_result_from_h_errno_val:
- * @h_errno: A integer containing representing the same error codes
+ * @h_errno_code: A integer containing representing the same error codes
  * as the system h_errno.
  * 
  * Converts the error code of @h_errno into a #GnomeVFSResult.

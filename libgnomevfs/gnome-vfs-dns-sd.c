@@ -956,7 +956,7 @@ howl_browse_reply (sw_discovery                 discovery,
 
 /**
  * gnome_vfs_dns_sd_browse:
- * @handle_out: A pointer to a pointer to a GnomeVFSDNSSDBrowseHandle object
+ * @handle: A pointer to a pointer to a GnomeVFSDNSSDBrowseHandle object
  * @domain: The dns domain to browse, or "local" for multicast DNS
  * @type: The type of services to browse for
  * @callback: function to be called when services are discovered
@@ -1260,7 +1260,7 @@ howl_resolve_timeout (gpointer data)
 
 /**
  * gnome_vfs_dns_sd_resolve:
- * @handle_out: A pointer to a pointer to a GnomeVFSDNSSDResolveHandle object
+ * @handle: A pointer to a pointer to a GnomeVFSDNSSDResolveHandle object
  * @name: Name of the service to resolve in UTF-8 encoding
  * @type: The type of services to resolve
  * @domain: The dns domain of the service to resolve, or "local" for multicast DNS
@@ -1476,6 +1476,7 @@ howl_browse_reply_sync (sw_discovery                  discovery,
 /**
  * gnome_vfs_dns_sd_browse_sync:
  * @domain: The dns domain to browse, or "local" for multicast DNS
+ * @type: type of the service to browse for
  * @timeout_msec: maximum time to browse, in milliseconds
  * @n_services: pointer to location to store number of returned services
  * @services: pointer to location to store returned services
@@ -1615,12 +1616,12 @@ howl_resolve_reply_sync (sw_discovery                   discovery,
  * @name: Name of the service to resolve in UTF-8 encoding
  * @type: The type of services to resolve
  * @domain: The dns domain of the service to resolve, or "local" for multicast DNS
- * @timeout: maximum time(in milliseconds) to try to resolve
+ * @timeout_msec: maximum time(in milliseconds) to try to resolve
  * @host: location to store the host name or ip of the host hosting the service
  * @port: location to store the port number to use for the service
  * @text: location to store a hash table giving additional options about the service
- * @text_raw_len_out: location to store length of @text_raw_out
- * @text_raw_out: location to store raw version of the additional options in @text
+ * @text_raw_len: location to store length of @text_raw_out
+ * @text_raw: location to store raw version of the additional options in @text
  *
  * Tries to resolve a specific service (typically recieved from
  * gnome_vfs_dns_sd_browse()) into a hostname/ip, port number and additional

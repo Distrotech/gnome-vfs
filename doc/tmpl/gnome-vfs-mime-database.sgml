@@ -74,6 +74,13 @@ functions for getting information about files based on their MIME type
 @reserved1: 
 @reserved2: 
 
+<!-- ##### STRUCT GnomeVFSMimeAction ##### -->
+<para>
+
+</para>
+
+@action_type: 
+
 <!-- ##### FUNCTION gnome_vfs_mime_application_copy ##### -->
 <para>
 

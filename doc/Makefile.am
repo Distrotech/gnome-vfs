@@ -25,6 +25,9 @@ FIXXREF_OPTIONS=
 HFILE_GLOB=$(top_srcdir)/libgnomevfs/*.h
 CFILE_GLOB=$(top_srcdir)/libgnomevfs/*.c
 
+
+
+
 # Headers to ignore
 IGNORE_HFILES=					\
 	GNOME_VFS_Daemon.h			\
@@ -69,8 +72,13 @@ extra_files = version.xml.in
 
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
-GTKDOC_CFLAGS =
-GTKDOC_LIBS =
+GTKDOC_CFLAGS = \
+        -I$(top_srcdir)         \
+	$(VFS_CFLAGS)		\
+	$(LIBGNOMEVFS_CFLAGS)
+
+GTKDOC_LIBS = $(LIBGNOMEVFS_LIBS) \
+	$(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 include $(top_srcdir)/gtk-doc.make
 

@@ -41,6 +41,11 @@
 <!ENTITY gnome-vfs-xfer SYSTEM "xml/gnome-vfs-xfer.xml">
 <!ENTITY gnome-vfs-socket-buffer SYSTEM "xml/gnome-vfs-socket-buffer.xml">
 <!ENTITY gnome-vfs-monitor SYSTEM "xml/gnome-vfs-monitor.xml">
+<!ENTITY gnome-vfs-volume SYSTEM "xml/gnome-vfs-volume.xml">
+<!ENTITY gnome-vfs-drive SYSTEM "xml/gnome-vfs-drive.xml">
+<!ENTITY gnome-vfs-volume-monitor SYSTEM "xml/gnome-vfs-volume-monitor.xml">
+<!ENTITY gnome-vfs-dns-sd SYSTEM "xml/gnome-vfs-dns-sd.xml">
+<!ENTITY gnome-vfs-resolve SYSTEM "xml/gnome-vfs-resolve.xml">
 ]>
 
 <book id="index">
@@ -54,6 +59,15 @@
 	<affiliation>
 	  <address>
 	    <email>snickell@Stanford.edu</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Christophe</firstname>
+	<surname>Fergeau</surname>
+	<affiliation>
+	  <address>
+	    <email>teuf@gnome.org</email>
 	  </address>
 	</affiliation>
       </author>
@@ -73,62 +87,90 @@
       <year>2001</year>
       <holder>The Free Software Foundation</holder>
     </copyright>
+    <copyright>
+      <year>2004</year>
+      <holder>Christophe Fergeau</holder>
+    </copyright>
+
   </bookinfo>
 
   &gnome-vfs-about;
   &gnome-vfs-init;
-
-  <chapter id="gnome-vfs-directory-operations">
-    <title>Directory Handling</title>
-    <para>
-      Functions for creating, removing, and listing directories.
-    </para>
-
-    &gnome-vfs-directory-basic-ops;
-    &gnome-vfs-directory-list-ops;
-    &gnome-vfs-directory-find-ops;
-  </chapter>
-
-  <chapter id="gnome-vfs-file-operations">
-    <title>File Handling</title>
-    <para>
-      GnomeVFS file operations are, for the most part, patterned after
-      their POSIX equivalents, with the systematic difference that they
-      accept URIs rather than paths on the local filesystem. This makes
-      them easy to learn as if you are already familiar with basic commands
-      such as open(), seek(), write(), etc you will feel right at home
-      with GnomeVFS after learning a little about URIs.
-    </para>
-
-    <para>
-      GnomeVFS also provides asynchronous versions of these basic operations 
-      for allowing application developers to provide non-blocking file I/O 
-      without the use of threads.
-    </para>
-
-    &gnome-vfs-file-basic-ops;
-    &gnome-vfs-file-rw-ops;
-    &gnome-vfs-file-info-ops;
-    &gnome-vfs-file-trunc-ops;
-    &gnome-vfs-file-advanced-ops;
-    &gnome-vfs-file-async-ops;
-  </chapter>
-
-
-  <chapter id="advanced-operations">
-    <title>Advanced Operations</title>
-      &gnome-vfs-monitor;
-      &gnome-vfs-cancellation;
-      &gnome-vfs-xfer;
-  </chapter>
-
+  
   <chapter id="data-types">
-    <title>Data Types</title>
-    &gnome-vfs-file-info;
-    &gnome-vfs-file-size;
+    <title>Basic Data Types</title>
     &gnome-vfs-result;
     &gnome-vfs-uri;
+    &gnome-vfs-utils;
+    &gnome-vfs-file-info;
+    &gnome-vfs-file-size;
   </chapter>
+
+  <chapter id="gnome-vfs-file-and-dirs-ops">
+    <title>Files and Directories Manipulation</title>
+
+    <sect1 id="gnome-vfs-file-operations">
+      <title>File Handling</title>
+      <para>
+	GnomeVFS file operations are, for the most part, patterned after
+	their POSIX equivalents, with the systematic difference that they
+	accept URIs rather than paths on the local filesystem. This makes
+	them easy to learn as if you are already familiar with basic commands
+	such as open(), seek(), write(), etc you will feel right at home
+	with GnomeVFS after learning a little about URIs.
+      </para>
+      
+      <para>
+	GnomeVFS also provides asynchronous versions of these basic operations 
+	for allowing application developers to provide non-blocking file I/O 
+	without the use of threads.
+      </para>
+      
+      &gnome-vfs-file-basic-ops;
+      &gnome-vfs-file-rw-ops;
+      &gnome-vfs-file-info-ops;
+      &gnome-vfs-xfer;
+      &gnome-vfs-file-trunc-ops;
+      &gnome-vfs-file-advanced-ops;
+      &gnome-vfs-file-async-ops;
+    </sect1>
+
+    <sect1 id="gnome-vfs-directory-operations">
+      <title>Directory Handling</title>
+      <para>
+	Functions for creating, removing, and listing directories.
+      </para>
+
+      &gnome-vfs-directory-basic-ops;
+      &gnome-vfs-directory-list-ops;
+      &gnome-vfs-directory-find-ops;
+    </sect1>
+
+
+    <sect1 id="advanced-operations">
+      <title>Advanced Operations</title>
+      &gnome-vfs-monitor;
+      &gnome-vfs-cancellation;
+    </sect1>
+  </chapter>
+
+  <chapter id="volumes">
+    <title>Volumes and Drives Handling</title>
+    &gnome-vfs-volume;
+    &gnome-vfs-drive;
+    &gnome-vfs-volume-monitor;
+  </chapter>
+
+  <chapter id="networking">
+    <title>Networking</title>
+    &gnome-vfs-dns-sd;
+    &gnome-vfs-resolve;
+    &gnome-vfs-ssl;
+    &gnome-vfs-socket;
+    &gnome-vfs-socket-buffer;
+    &gnome-vfs-inet-connection;    
+  </chapter>
+
 
   <chapter id="mime-registry">
     <title>MIME Registry</title>
@@ -163,20 +205,11 @@
     &gnome-vfs-module;
     &gnome-vfs-module-shared;
     &gnome-vfs-module-callback-module-api;
-    &gnome-vfs-ssl;
     &gnome-vfs-context;
-    &gnome-vfs-socket;
-    &gnome-vfs-socket-buffer;
     &gnome-vfs-transform;
     &gnome-vfs-parse-ls;
-  </chapter>
-
-  <chapter>
-    <title>Other Stuff</title>
-
-    &gnome-vfs-utils;
     &gnome-vfs-standard-callbacks;
-    &gnome-vfs-inet-connection;
     &gnome-vfs-module-callback;
   </chapter>
+
 </book>

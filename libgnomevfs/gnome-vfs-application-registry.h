@@ -64,6 +64,7 @@ G_BEGIN_DECLS
 #define GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL "requires_terminal"
 
 /** 
+ * GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS
  * 
  * Application registry key for determining if an application
  * is using gnome-vfs and thus can open any URI supported by

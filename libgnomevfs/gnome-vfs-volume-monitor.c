@@ -146,6 +146,16 @@ gnome_vfs_volume_monitor_init (GnomeVFSVolumeMonitor *volume_monitor)
 
 G_LOCK_DEFINE_STATIC (volume_monitor_ref);
 
+/** 
+ * gnome_vfs_volume_monitor_ref:
+ * @volume_monitor:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolumeMonitor *
 gnome_vfs_volume_monitor_ref (GnomeVFSVolumeMonitor *volume_monitor)
 {
@@ -159,6 +169,14 @@ gnome_vfs_volume_monitor_ref (GnomeVFSVolumeMonitor *volume_monitor)
 	return volume_monitor;
 }
 
+/** 
+ * gnome_vfs_volume_monitor_unref:
+ * @volume_monitor:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_monitor_unref (GnomeVFSVolumeMonitor *volume_monitor)
 {
@@ -231,6 +249,15 @@ _gnome_vfs_get_volume_monitor_internal (gboolean create)
 	return the_volume_monitor;
 }
 
+/** 
+ * gnome_vfs_get_volume_monitor:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolumeMonitor *
 gnome_vfs_get_volume_monitor (void)
 {
@@ -368,6 +395,16 @@ _gnome_vfs_volume_monitor_find_connected_server_by_gconf_id (GnomeVFSVolumeMonit
 	return ret;
 }
 
+/** 
+ * gnome_vfs_volume_monitor_get_volume_by_id:
+ * @volume_monitor:
+ * @id:
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolume *
 gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monitor,
 					   gulong                 id)
@@ -407,6 +444,16 @@ gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monitor
 	return NULL;
 }
 
+/** 
+ * gnome_vfs_volume_monitor_get_drive_by_id:
+ * @volume_monitor:
+ * @id:
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSDrive *
 gnome_vfs_volume_monitor_get_drive_by_id  (GnomeVFSVolumeMonitor *volume_monitor,
 					   gulong                 id)
@@ -468,6 +515,14 @@ _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
 	}
 }
 
+/** 
+ * gnome_vfs_volume_monitor_emit_pre_unmount:
+ * @volume_monitor:
+ * @volume:
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
 					   GnomeVFSVolume        *volume)
@@ -573,6 +628,16 @@ _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 	gnome_vfs_drive_unref (drive);
 }
 
+/** 
+ * gnome_vfs_volume_monitor_get_mounted_volumes:
+ * @volume_monitor:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GList *
 gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_monitor)
 {
@@ -591,6 +656,16 @@ gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_moni
 	return ret;
 }
 
+/** 
+ * gnome_vfs_volume_monitor_get_connected_drives:
+ * @volume_monitor:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GList *
 gnome_vfs_volume_monitor_get_connected_drives (GnomeVFSVolumeMonitor *volume_monitor)
 {
@@ -697,6 +772,17 @@ _gnome_vfs_volume_monitor_uniquify_drive_name (GnomeVFSVolumeMonitor *volume_mon
 	return unique_name;
 }
 
+/** 
+ * gnome_vfs_volume_monitor_get_volume_for_path:
+ * @volume_monitor:
+ * @path:
+ *
+ *
+ *
+ * Returns:
+ *
+ * Since: 2.6
+ */
 GnomeVFSVolume *
 gnome_vfs_volume_monitor_get_volume_for_path  (GnomeVFSVolumeMonitor *volume_monitor,
 					       const char            *path)

@@ -640,7 +640,7 @@ gnome_vfs_make_uri_canonical_old (const char *original_uri_text)
 
 	uri = gnome_vfs_uri_new_private (original_uri_text, TRUE, TRUE, FALSE);
 	if (uri == NULL) {
-		return NULL;;
+		return NULL;
 	} 
 
 	result = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
@@ -1037,6 +1037,9 @@ gnome_vfs_read_entire_file (const char *uri,
 	GnomeVFSFileSize total_bytes_read;
 	GnomeVFSFileSize bytes_read;
 
+	g_assert (file_size != NULL);
+	g_assert (file_contents != NULL);
+
 	*file_size = 0;
 	*file_contents = NULL;
 
@@ -1183,7 +1186,7 @@ gnome_vfs_format_uri_for_display (const char *uri)
 {
 	static gboolean broken_filenames;
 	
-	broken_filenames = g_getenv ("G_BROKEN_FILENAMES") != NULL;
+	broken_filenames = (g_getenv ("G_BROKEN_FILENAMES") != NULL);
 
 	return gnome_vfs_format_uri_for_display_internal (uri, broken_filenames);
 }
@@ -1369,7 +1372,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 
 /**
  * gnome_vfs_make_uri_from_input:
- * @location: a possibly mangled "uri", in UTF8
+ * @uri: a possibly mangled "uri", in UTF8
  *
  * Takes a user input path/URI and makes a valid URI out of it.
  *
@@ -1386,14 +1389,15 @@ gnome_vfs_make_uri_from_input (const char *location)
 {
 	static gboolean broken_filenames;
 
-	broken_filenames = g_getenv ("G_BROKEN_FILENAMES") != NULL;
+	broken_filenames = (g_getenv ("G_BROKEN_FILENAMES") != NULL);
 
 	return gnome_vfs_make_uri_from_input_internal (location, broken_filenames, TRUE);
 }
 
 /**
  * gnome_vfs_make_uri_from_input_with_dirs:
- * @in: a relative or absolute path
+ * @uri: a relative or absolute path
+ * @dirs: directory to use as a base directory if @uri is a relative path.
  *
  * Determines a fully qualified URL from a relative or absolute input path.
  * Basically calls gnome_vfs_make_uri_from_input except it specifically
@@ -1788,7 +1792,7 @@ file_uri_from_local_relative_path (const char *location)
 
 /**
  * gnome_vfs_make_uri_from_shell_arg:
- * @location: a possibly mangled "uri"
+ * @uri: a possibly mangled "uri"
  *
  * Similar to gnome_vfs_make_uri_from_input, except that:
  * 
@@ -1828,7 +1832,9 @@ gnome_vfs_make_uri_from_shell_arg (const char *location)
 
 /**
  * gnome_vfs_make_uri_full_from_relative:
- * 
+ * @base_uri: uri to use as the base for the full uri
+ * @relative_uri: full or relative path to append to the base uri
+ *
  * Returns a full URI given a full base URI, and a secondary URI which may
  * be relative.
  *
@@ -1841,7 +1847,8 @@ gnome_vfs_make_uri_from_shell_arg (const char *location)
  **/
 
 char *
-gnome_vfs_make_uri_full_from_relative (const char *base_uri, const char *relative_uri)
+gnome_vfs_make_uri_full_from_relative (const char *base_uri, 
+				       const char *relative_uri)
 {
 	return gnome_vfs_uri_make_full_from_relative (base_uri, relative_uri);
 }
@@ -1923,7 +1930,12 @@ _gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
 	*resolved_text_uri = NULL;
 
 	uri = gnome_vfs_uri_new (text_uri);
-	if (uri == NULL || uri->text == NULL) {
+
+	if (uri == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+	if (uri->text == NULL) {
+		gnome_vfs_uri_unref (uri);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
@@ -1933,6 +1945,7 @@ _gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
 		*resolved_text_uri = gnome_vfs_uri_to_string (resolved_uri, GNOME_VFS_URI_HIDE_NONE);
 		gnome_vfs_uri_unref (resolved_uri);
 	}
+	gnome_vfs_uri_unref (uri);
 	return res;
 }
 

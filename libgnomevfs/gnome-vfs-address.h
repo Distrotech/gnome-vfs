@@ -50,7 +50,7 @@ struct sockaddr *gnome_vfs_address_get_sockaddr      (GnomeVFSAddress *address,
 										    guint16          port,
 										    int             *len);
 
-GnomeVFSAddress *gnome_vfs_address_dup               (GnomeVFSAddress *addres);
+GnomeVFSAddress *gnome_vfs_address_dup               (GnomeVFSAddress *address);
 void             gnome_vfs_address_free              (GnomeVFSAddress *address);
 
 G_END_DECLS

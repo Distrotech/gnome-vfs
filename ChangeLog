@@ -1,3 +1,43 @@
+2004-08-16  Christophe Fergeau  <teuf@gnome.org>
+
+	* doc/Makefile.am:
+	* doc/gnome-vfs-2.0-docs.sgml:
+	* doc/gnome-vfs-2.0-sections.txt:
+	* doc/gnome-vfs-2.0.types:
+	* doc/tmpl/gnome-vfs-dns-sd.sgml:
+	* doc/tmpl/gnome-vfs-drive.sgml:
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* doc/tmpl/gnome-vfs-mime-database.sgml:
+	* doc/tmpl/gnome-vfs-resolve.sgml:
+	* doc/tmpl/gnome-vfs-result.sgml:
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* doc/tmpl/gnome-vfs-socket.sgml:
+	* doc/tmpl/gnome-vfs-ssl.sgml:
+	* doc/tmpl/gnome-vfs-utils.sgml:
+	* doc/tmpl/gnome-vfs-volume-monitor.sgml:
+	* doc/tmpl/gnome-vfs-volume.sgml:
+	* libgnomevfs/gnome-vfs-address.h:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-resolve.c:
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	* libgnomevfs/gnome-vfs-utils.c: Huge API doc clean up (added new API 
+	  in the built html doc, reorganized the index a bit, ...). Now the
+	  doc for each function needs to be written ;)
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_make_uri_canonical_old), (gnome_vfs_read_entire_file),
+	(gnome_vfs_format_uri_for_display),
+	(gnome_vfs_make_uri_from_input),
+	(gnome_vfs_make_uri_full_from_relative),
+	(_gnome_vfs_uri_resolve_all_symlinks): fixed a memory leak, small
+	  clean ups
+
 2004-08-15  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_get_vol_name):

@@ -483,7 +483,16 @@ unmount_connected_server (GnomeVFSVolume *volume,
 	g_free (detailed_error);
 }
 
-
+/** 
+ * gnome_vfs_volume_unmount:
+ * @volume:
+ * @callback:
+ * @user_data:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 			  GnomeVFSVolumeOpCallback  callback,
@@ -513,6 +522,16 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 	}
 }
 
+/** 
+ * gnome_vfs_volume_eject:
+ * @volume:
+ * @callback:
+ * @user_data:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 			GnomeVFSVolumeOpCallback  callback,
@@ -542,6 +561,16 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 	}
 }
 
+/** 
+ * gnome_vfs_drive_mount:
+ * @drive:
+ * @callback:
+ * @user_data:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 		       GnomeVFSVolumeOpCallback  callback,
@@ -562,6 +591,16 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 	g_free (device_path);
 }
 
+/** 
+ * gnome_vfs_drive_unmount:
+ * @drive:
+ * @callback:
+ * @user_data:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 			 GnomeVFSVolumeOpCallback  callback,
@@ -584,6 +623,16 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 	gnome_vfs_drive_volume_list_free (vol_list);
 }
 
+/** 
+ * gnome_vfs_drive_eject:
+ * @drive:
+ * @callback:
+ * @user_data:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 		       GnomeVFSVolumeOpCallback  callback,
@@ -617,6 +666,16 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 }
 
 
+/** 
+ * gnome_vfs_connect_to_server:
+ * @uri:
+ * @display_name:
+ * @icon:
+ *
+ *
+ *
+ * Since: 2.6
+ */
 void
 gnome_vfs_connect_to_server (char                     *uri,
 			     char                     *display_name,

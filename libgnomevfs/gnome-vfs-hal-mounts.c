@@ -75,14 +75,14 @@
  */
 
 
-/** If this is defined then only mounted volumes are shown which gives
+/* If this is defined then only mounted volumes are shown which gives
  *  a Mac OS X like experience. Otherwise unmounted volumes are shown
  *  as a drive icon. Obviously, this requires an automounter like
  *  gnome-volume-manager.
  */
 /*#define HAL_ONLY_SHOW_MOUNTED_VOLUMES*/
 
-/** If this is defined use the standard icons available. Otherwise new
+/* If this is defined use the standard icons available. Otherwise new
  *  a new, more fine grained icon set is used. See below..
  *
  */
@@ -212,7 +212,7 @@ _hal_free_vol (GnomeVFSHalVolume *vol)
 }
 
 
-/** Given a UDI for a HAL device of capability 'storage', this
+/* Given a UDI for a HAL device of capability 'storage', this
  *  function retrieves all the relevant properties into a convenient
  *  structure.  Returns NULL if UDI is invalid or device is not of
  *  capability 'storage'.
@@ -277,7 +277,7 @@ error:
 	return NULL;
 }
 
-/** Given a UDI for a HAL device of capability 'volume', this function
+/* Given a UDI for a HAL device of capability 'volume', this function
  *  retrieves all the relevant properties into a convenient structure.
  *  Returns NULL if UDI is invalid or device is not of capability
  *  'volume'.
@@ -805,7 +805,7 @@ _hal_old_school_mount_point (GnomeVFSHalDrive *hal_drive,
 /***********************************************************************/
 
 
-/** Add a drive where the media is not partition based.
+/* Add a drive where the media is not partition based.
  *
  *  It's safe to call this function multiple times for the same HAL 
  *  UDI (Unique Device Identifier).
@@ -891,7 +891,7 @@ out:
 }
 
 
-/** Add a hal-volume, that is, a HalDevice of capability 'volume'. 
+/* Add a hal-volume, that is, a HalDevice of capability 'volume'. 
  *
  *  It's safe to call this function multiple times for the same HAL 
  *  UDI (Unique Device Identifier).
@@ -1134,7 +1134,7 @@ out:
 }
 
 
-/** Remove a hal-volume, that is, a HalDevice of capability 'volume'. 
+/*  Remove a hal-volume, that is, a HalDevice of capability 'volume'. 
  *
  *  It's safe to call this function even though the hal-volume doesn't
  *  correspond to any (GnomeVFSDrive, GnomeVFSVolume) pair.
@@ -1163,7 +1163,7 @@ _hal_remove_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 }
 
 
-/** Call when a HAL volume is unmounted.
+/*  Call when a HAL volume is unmounted.
  *
  *  It's safe to call this function even though the hal-volume doesn't
  *  correspond to GnomeVFSVolume object.

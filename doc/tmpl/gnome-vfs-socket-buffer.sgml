@@ -83,3 +83,19 @@ gnome-vfs-socket-buffer
 @buffer: 
 
 
+<!-- ##### FUNCTION gnome_vfs_socket_buffer_read_until ##### -->
+<para>
+
+</para>
+
+@socket_buffer: 
+@buffer: 
+@bytes: 
+@boundary: 
+@boundary_len: 
+@bytes_read: 
+@got_boundary: 
+@cancellation: 
+@Returns: 
+
+

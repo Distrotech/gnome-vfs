@@ -1,8 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-gnome-vfs-ssl
+SSL support functions
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Functions to send and receive encrypted data over a socket.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -86,6 +86,17 @@ gnome-vfs-ssl
 </para>
 
 @ssl: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_ssl_set_timeout ##### -->
+<para>
+
+</para>
+
+@ssl: 
+@timeout: 
+@cancellation: 
 @Returns: 
 
 
