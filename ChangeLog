@@ -1,3 +1,9 @@
+2000-11-02  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: gnome-vfs 0.4 has been tagged
+	as GNOME-VFS_0_4 and the version of cvs has been upped
+	to 0.4.0
+
 2000-11-02  Robin * Slomkowski <rslomkow@eazel.com>
 
 	configure.in: upped version number for release
