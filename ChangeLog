@@ -1,3 +1,11 @@
+2000-06-05  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (call_progress),
+	(count_items_and_size), (handle_name_conflicts), (copy_file),
+	(copy_directory), (copy_items), (gnome_vfs_xfer_uri_internal),
+	(gnome_vfs_xfer_private):
+	Added more bug numbers to FIXMEs.
+
 2000-06-05  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c:

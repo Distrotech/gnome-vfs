@@ -23,17 +23,16 @@
    Pavel Cisler <pavel@eazel.com> 
    */
 
-/* FIXME: Check that all the progress_info passed to the callback is
+/* FIXME bugzilla.eazel.com 1193:
+   Check that all the progress_info passed to the callback is
    correct.  */
-/* FIXME: Check that all the flags passed by address are set at least once by
+/* FIXME bugzilla.eazel.com 1197: 
+   Check that all the flags passed by address are set at least once by
    functions that are expected to set them.  */
-/* FIXME: There should be a `context' thingy in the file methods that would
-   allow us to set a prefix URI for all the operation.  This way we can
+/* FIXME bugzilla.eazel.com 1198: 
+   There should be a concept of a `context' in the file methods that would
+   allow us to set a prefix URI for all the operations.  This way we can
    greatly optimize access to "strange" file systems.  */
-/* FIXME: Handle all the GnomeVFSXferOptions.  */
-/* FIXME: Move/copy symlinks properly.  */
-/* FIXME: Redo progress_callback calling - should be called in the xfer thread
- 	  only switching to the master thread to display progress dialogs, etc.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -169,7 +168,7 @@ call_progress (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 {
 	int result;
 
-	/* FIXME: should use proper progress result values from an enum here */
+	/* FIXME bugzilla.eazel.com 1199: should use proper progress result values from an enum here */
 
 	result = 0;
 	progress_set_source_target_uris (progress, NULL, NULL);
@@ -637,7 +636,7 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 		      gboolean move)
 {
 	/*
-	 * FIXME:
+	 * FIXME bugzilla.eazel.com 1200:
 	 * Deal with errors here, respond to skip by pulling items from the name list
 	 */
 	GnomeVFSFileInfoOptions info_options;
@@ -766,7 +765,7 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
 		
 		if (result == GNOME_VFS_OK) {
-			/* FIXME:
+			/* FIXME bugzilla.eazel.com 1201:
 			 * use a better way to tell if a file exists here
 			 */
 
@@ -775,7 +774,7 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 			/* no error getting info -- file exists, ask what to do */
 			replace = handle_overwrite (&result, progress, error_mode,
 						  overwrite_mode, &replace, &skip);
-			/* FIXME:
+			/* FIXME bugzilla.eazel.com 1207:
 			 * move items to Trash here
 			 */
 
@@ -1109,7 +1108,7 @@ copy_file (GnomeVFSFileInfo *info,
 	if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_CLOSETARGET) == 0) 
 		result = GNOME_VFS_ERROR_INTERRUPTED;
 
-	/* FIXME: Check errors here.  */
+	/* FIXME bugzilla.eazel.com 1208: Check errors here.  */
 	gnome_vfs_close (source_handle);
 	gnome_vfs_close (target_handle);
 
@@ -1143,9 +1142,6 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 	}
 
 	progress->progress_info->bytes_copied = 0;
-	/* FIXME:
-	 * use a better progress phase here??
-	 */
 	if (call_progress_with_uris_often (progress, 
 			       source_dir_uri, target_dir_uri, 
 			       GNOME_VFS_XFER_PHASE_COPYING) 
@@ -1202,7 +1198,7 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 							    xfer_options, error_mode, overwrite_mode, 
 							    progress, skip);
 				} else {
-					/* FIXME */
+					/* need to implement symbolic links*/
 					g_assert (!"unimplemented");
 				}
 
@@ -1296,7 +1292,7 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 							    &overwrite_mode_abort,
 							    progress, &skip);
 				} else {
-					/* FIXME */
+					/* need to implement symbolic links*/
 					g_assert (!"unimplemented");
 				}
 
@@ -1648,7 +1644,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 	if (target_name_list == NULL)
 		target_name_list = g_string_list_deep_copy (source_names);
 
-	/* FIXME:
+	/* FIXME bugzilla.eazel.com 1213:
 	 * check if destination is writable
 	 * and bail if not
 	 */
@@ -1670,7 +1666,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 					       xfer_options, progress, move);
 		if (result == GNOME_VFS_OK) {
 
-			/* FIXME:
+			/* FIXME bugzilla.eazel.com 1214:
 			 * check if destination has enough space
 			 * and bail if not
 			 */
@@ -1710,7 +1706,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 				if (result == GNOME_VFS_OK) {
 
 					if (!move && (xfer_options & GNOME_VFS_XFER_REMOVESOURCE)) {
-						/* FIXME:
+						/* FIXME bugzilla.eazel.com 1215:
 						 */
 					}
 				}
@@ -1792,12 +1788,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 	progress_state.async_job_data = data;
 
 	if ((xfer_options & GNOME_VFS_XFER_EMPTY_DIRECTORIES) != 0) {
-		/* Assume a directory empty operation (Empty Trash, etc.).
-		 * FIXME:
-		 * We should have proper calls for Empty Trash,
-		 * this overloading is used just to avoid having to add 
-		 * a new call to the backend API
-		 */
+		/* Directory empty operation (Empty Trash, etc.). */
 		const GList *p;
 		GList *uri_list;
 		g_assert (source_name_list != NULL);
@@ -1820,24 +1811,14 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		}
 		g_list_free (uri_list);
 	} else if ((xfer_options & GNOME_VFS_XFER_NEW_UNIQUE_DIRECTORY) != 0) {
-		/* Assume a new directory create operation
-		 * FIXME:
-		 * We should have proper calls for Empty Trash,
-		 * this overloading is used just to avoid having to add 
-		 * a new call to the backend API
-		 */
+		/* New directory create operation */
 		g_assert (source_dir == NULL);
 		g_assert (source_name_list == NULL);
 		
 		result = gnome_vfs_new_directory_with_unique_name (target_dir, 
 			target_name_list->data, error_mode, overwrite_mode, &progress_state);
 	} else if ((xfer_options & GNOME_VFS_XFER_DELETE_ITEMS) != 0) {
-		/* Assume a new directory create operation
-		 * FIXME:
-		 * We should have proper calls for Empty Trash,
-		 * this overloading is used just to avoid having to add 
-		 * a new call to the backend API
-		 */
+		/* Delete items operation */
 		g_assert (target_dir == NULL);
 		g_assert (target_name_list == NULL);
 				
@@ -1848,6 +1829,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		      error_mode, xfer_options, &progress_state);
 		gnome_vfs_uri_unref (source_dir_uri);
 	} else {
+		/* Copy items operation */
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)
 			return GNOME_VFS_ERROR_INVALIDURI;
@@ -1868,7 +1850,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		gnome_vfs_uri_unref (target_dir_uri);
 	}
 
-	/* FIXME:
+	/* FIXME bugzilla.eazel.com 1218:
 	 * 
 	 * The async job setup will try to call the callback function with the callback data
 	 * even though they are usually dead at this point because the callback detected
