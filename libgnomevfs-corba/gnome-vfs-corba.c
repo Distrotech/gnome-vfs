@@ -24,7 +24,11 @@
 #include <config.h>
 #endif
 
+#if GNOME_PLATFORM_VERSION < 1095000
 #include <orb/orbit.h>
+#else
+#include <orbit/orbit.h>
+#endif
 
 #include <liboaf/liboaf.h>
 

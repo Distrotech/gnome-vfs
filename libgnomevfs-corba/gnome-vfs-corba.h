@@ -25,7 +25,11 @@
 #define _GNOME_VFS_CORBA_H
 
 #include <glib.h>
+#if GNOME_PLATFORM_VERSION < 1095000
 #include <orb/orbit.h>
+#else
+#include <orbit/orbit.h>
+#endif
 
 extern CORBA_ORB gnome_vfs_orb;
 extern PortableServer_POA gnome_vfs_poa;

@@ -26,7 +26,11 @@
 #endif
 
 #include <glib.h>
+#if GNOME_PLATFORM_VERSION < 1095000
 #include <orb/orbit.h>
+#else
+#include <orbit/orbit.h>
+#endif
 
 #include <sys/socket.h>
 #include <sys/types.h>

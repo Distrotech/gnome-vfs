@@ -1,5 +1,14 @@
 2001-03-24  Martin Baulig  <baulig@suse.de>
 
+	* modules/file-method.c: Only #include <libgnome/gnome-defs.h>
+	and <libgnome/gnome-i18n.h> for GNOME 1.x. Define `_' and `N_'
+	to be a noop for GNOME 2.0 [FIXME: need a better solution for this].
+
+	* libgnomevfs-corba/*.[ch]: #include <orb/orbit.h> for GNOME 1.x
+	and <orbit/orbit.h> for GNOME 2.0.
+
+2001-03-24  Martin Baulig  <baulig@suse.de>
+
 	* autogen.sh: Check whether gnome-autogen.sh is in the PATH
 	and print an error message otherwise.
 
