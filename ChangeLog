@@ -1,3 +1,16 @@
+2001-01-12  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fix bug 4797, user can choose an icon anywhere on his filesystem
+	to associate it to a given mime type but the icon will not be used.
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(entry_changed), (ientry_destroy), (browse_clicked),
+	(nautilus_mime_type_show_icon_selection),
+	(nautilus_mime_type_icon_entry_init),
+	(nautilus_mime_type_icon_entry_set_pixmap_subdir):
+	Remove ability to navigate to directories outside of the
+	shared pixmap path.
+
 2001-01-09  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.h:
