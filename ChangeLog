@@ -1,3 +1,11 @@
+2000-10-31  Ali Abdin  <aliabdin@aucegypt.edu>
+
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys:
+	* data/mime/gnome-vfs.mime:
+	Temporary support for "audio/x-ogg" (until the mime issue is cleared
+	up with the Ogg Vorbis crew)
+	
 2000-10-31  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Add vendor.

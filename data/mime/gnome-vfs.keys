@@ -665,15 +665,20 @@ audio/x-mp3-playlist
 
 # also image/x-mp3
 audio/x-mpeg
-	description=MP3 audio
-	[fr]description=Audio MP3
-	[sv]description=MP3-ljud
-	icon-filename=i-music
+        description=MP3 audio
+        [fr]description=Audio MP3
+        [sv]description=MP3-ljud
+        icon-filename=i-music 
 
 audio/x-mpegurl
-	description=MPEG URL
-	default_action=application
-	default_application_id=xmms
+        description=MPEG URL
+        default_action=application
+        default_application_id=xmms
+
+audio/x-ogg
+	description=OGG Audio
+	[fr]description=Audio OGG
+	icon-filename=i-music
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
