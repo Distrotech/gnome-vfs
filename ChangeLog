@@ -1,3 +1,9 @@
+2005-02-22  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_read_cancellable), (gnome_vfs_write_cancellable):
+	Return OK on read/writes of 0 bytes.
+
 2005-02-16  Ryan Lortie  <desrt@desrt.ca>
 
 	* modules/http-proxy.c (parse_ignore_host): Fix for unused variable

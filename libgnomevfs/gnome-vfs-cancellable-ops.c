@@ -125,6 +125,11 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 		bytes_read = &dummy_bytes_read;
 	}
 
+	if (bytes == 0) {
+		*bytes_read = 0;
+		return GNOME_VFS_OK;
+	}
+	
 	return _gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_read,
 					 context);
 }
@@ -147,6 +152,11 @@ gnome_vfs_write_cancellable (GnomeVFSHandle *handle,
 		bytes_written = &dummy_bytes_written;
 	}
 
+	if (bytes == 0) {
+		*bytes_written = 0;
+		return GNOME_VFS_OK;
+	}
+	
 	return _gnome_vfs_handle_do_write (handle, buffer, bytes,
 					  bytes_written, context);
 }
