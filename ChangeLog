@@ -1,5 +1,8 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update for 2.8.1
+
 	* modules/http-proxy.c: (construct_gl_http_proxy):
 	Make sure proxy is non-empty before using it.
 	Patch from Mark McLoughlin.

@@ -1,3 +1,20 @@
+gnome-vfs 2.8.1
+
+    * Bugs fixed:
+        + ftp-method: Don't ask for password if hostname wrong
+	+ fix detection of and build with kerberos
+	+ allow unref of the volume monitor after shutdown
+	+ Fix http issues with gtik
+	+ Fix leaks
+	+ Fix default application handling. Now user defaults
+	  override system defaults.
+	+ Don't keep re-reading /etc/fstab
+	+ Read the right fstab file on solaris
+	+ sftp-method: use password if in uri
+	+ http-method: fix seek to end of file
+	+ http-method: various webdav fixes
+	+ Handle empty but non-null http proxy hostname.
+	
 gnome-vfs 2.8.0
 
     * Bugs fixed:

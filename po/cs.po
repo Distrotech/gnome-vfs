@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-13 09:57+0200\n"
+"POT-Creation-Date: 2004-09-21 15:28+0200\n"
 "PO-Revision-Date: 2004-09-05 17:06+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -431,12 +431,12 @@ msgstr "Operace zastavena"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1013
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1031
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
-#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
-#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
-#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
-#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
-#: libgnomevfs/gnome-vfs-mime-info.c:730
+#: libgnomevfs/gnome-vfs-mime-info.c:649 libgnomevfs/gnome-vfs-mime-info.c:656
+#: libgnomevfs/gnome-vfs-mime-info.c:664 libgnomevfs/gnome-vfs-mime-info.c:671
+#: libgnomevfs/gnome-vfs-mime-info.c:679 libgnomevfs/gnome-vfs-mime-info.c:696
+#: libgnomevfs/gnome-vfs-mime-info.c:703 libgnomevfs/gnome-vfs-mime-info.c:710
+#: libgnomevfs/gnome-vfs-mime-info.c:717 libgnomevfs/gnome-vfs-mime-info.c:725
+#: libgnomevfs/gnome-vfs-mime-info.c:732
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -999,12 +999,12 @@ msgstr "Neznámé GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Síť Windows"
 
-#: modules/sftp-method.c:1339
+#: modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identita vzdáleného počítače (%s) není známa."
 
-#: modules/sftp-method.c:1340
+#: modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1017,11 +1017,11 @@ msgstr ""
 "Identita odeslaná vzdáleným počítačem je %s. Pokud si chcete být úplně "
 "jisti, že je bezpečné pokračovat, kontaktujte správce systému."
 
-#: modules/sftp-method.c:1348
+#: modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "Přesto se přihlásit"
 
-#: modules/sftp-method.c:1349
+#: modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "Zrušit přihlašování"
 
