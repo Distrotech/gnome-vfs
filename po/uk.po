@@ -178,9 +178,8 @@ msgid "GMC link"
 msgstr "посилання GMC"
 
 #: data/mime/gnome-vfs.keys.in.h:42
-#, fuzzy
 msgid "GNOME application details"
-msgstr "Виправити список програм"
+msgstr "╤нформац╕я про програму GNOME"
 
 #: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNU mail message"
@@ -239,9 +238,8 @@ msgid "Java source code"
 msgstr "вих╕дний код Java"
 
 #: data/mime/gnome-vfs.keys.in.h:57
-#, fuzzy
 msgid "KDE application details"
-msgstr "Виправити список програм"
+msgstr "╤нформац╕я про програму KDE"
 
 #: data/mime/gnome-vfs.keys.in.h:58
 msgid "Korn shell script"
@@ -829,7 +827,7 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:204
 msgid "rich text document"
-msgstr ""
+msgstr "документ rich text"
 
 #: data/mime/gnome-vfs.keys.in.h:205
 msgid "search results"
