@@ -1,3 +1,10 @@
+2000-10-19  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory):
+	Fix bugs 3861 and 3882 - emptying the Trash containing
+	items with fancy names.
+	Neither was PR2 but I noticed the bug and it was trivial to fix.
+
 2000-10-18  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (make_propfind_request):

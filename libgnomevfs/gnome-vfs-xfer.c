@@ -441,7 +441,7 @@ empty_directory (GnomeVFSURI *uri,
 			continue;
 		}
 
-		item_uri = gnome_vfs_uri_append_string (uri, info.name);
+		item_uri = gnome_vfs_uri_append_file_name (uri, info.name);
 		
 		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = remove_directory (item_uri, TRUE, 
