@@ -74,9 +74,11 @@ utils
 
 </para>
 
-@string: 
+@escaped_string: 
 @illegal_characters: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@string: 
 
 
 <!-- ##### FUNCTION gnome_vfs_make_uri_canonical ##### -->

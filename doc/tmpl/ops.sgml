@@ -124,8 +124,10 @@ synchronous file operations similar to posix calls, but using uris
 
 @text_uri: 
 @info: 
-@Param3: 
+@options: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param3: 
 
 
 <!-- ##### FUNCTION gnome_vfs_get_file_info_uri ##### -->
@@ -135,8 +137,10 @@ synchronous file operations similar to posix calls, but using uris
 
 @uri: 
 @info: 
-@Param3: 
+@options: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param3: 
 
 
 <!-- ##### FUNCTION gnome_vfs_get_file_info_from_handle ##### -->
@@ -146,8 +150,10 @@ synchronous file operations similar to posix calls, but using uris
 
 @handle: 
 @info: 
-@Param3: 
+@options: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param3: 
 
 
 <!-- ##### FUNCTION gnome_vfs_truncate ##### -->

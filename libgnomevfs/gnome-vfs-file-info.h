@@ -182,40 +182,112 @@ typedef struct {
 	GnomeVFSFileInfo *file_info;
 } GnomeVFSGetFileInfoResult;
 
+/**
+ * GNOME_VFS_FILE_INFO_SYMLINK:
+ * @info: GnomeVFSFileInfo struct
+ *
+ * Determines whether a file is a symbolic link given @info.
+ *
+ * Return value: %TRUE if @info indicates that the file is a symbolic link
+ */
 #define GNOME_VFS_FILE_INFO_SYMLINK(info)		\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_SYMLINK)
 
+/**
+ * GNOME_VFS_FILE_INFO_SET_SYMLINK:
+ * @info: GnomeVFSFileInfo struct
+ * @value: if %TRUE, @info is set to indicate the file is a symbolic link
+ *
+ * Set the symbolic link field in @info to @value.
+ */
 #define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value)			\
 	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK)	\
 	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SYMLINK))
 
+/**
+ * GNOME_VFS_FILE_INFO_LOCAL:
+ * @info: GnomeVFSFileInfo struct
+ *
+ * Determines whether a file is local given @info.
+ *
+ * Return value: %TRUE if @info indicates that the file is local
+ */
 #define GNOME_VFS_FILE_INFO_LOCAL(info)			\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_LOCAL)
 
+/**
+ * GNOME_VFS_FILE_INFO_SET_LOCAL:
+ * @info: GnomeVFSFileInfo struct
+ * @value: if %TRUE, @info is set to indicate the file is local
+ *
+ * Set the "local file" field in @info to @value.
+ */
 #define GNOME_VFS_FILE_INFO_SET_LOCAL(info, value)			\
 	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_LOCAL)		\
 	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_LOCAL))
 
 
-
+/**
+ * GNOME_VFS_FILE_INFO_SUID:
+ * @info: GnomeVFSFileInfo struct
+ *
+ * Determines whether a file belongs to the super user.
+ *
+ * Return value: %TRUE if @info indicates that the file is set SUID.
+ */
 #define GNOME_VFS_FILE_INFO_SUID(info)			\
 	((info)->permissions & GNOME_VFS_PERM_SUID)
 
+/**
+ * GNOME_VFS_FILE_INFO_SGID:
+ * @info: GnomeVFSFileInfo struct
+ *
+ * Determines whether a file belongs to the super user's group.
+ *
+ * Return value: %TRUE if @info indicates that the file is set SGID.
+ */
 #define GNOME_VFS_FILE_INFO_SGID(info)			\
 	((info)->permissions & GNOME_VFS_PERM_SGID)
 
+/**
+ * GNOME_VFS_FILE_INFO_STICKY:
+ * @info: GnomeVFSFileInfo struct
+ *
+ * Determines whether a file has the sticky bit set, given @info
+ *
+ * Return value: %TRUE if @info indicates that the file has the sticky bit set.
+ */
 #define GNOME_VFS_FILE_INFO_STICKY(info)		\
 	((info)->permissions & GNOME_VFS_PERM_STICKY)
 
-
+/**
+ * GNOME_VFS_FILE_INFO_SET_SUID:
+ * @info: GnomeVFSFileInfo struct
+ * @value: if %TRUE, @info is set to indicate the file belongs to the super user
+ *
+ * Set the SUID field in @info to @value.
+ */
 #define GNOME_VFS_FILE_INFO_SET_SUID(info, value)		\
 	(value ? ((info)->permissions |= GNOME_VFS_PERM_SUID)	\
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_SUID))
 
+/**
+ * GNOME_VFS_FILE_INFO_SET_SGID:
+ * @info: GnomeVFSFileInfo struct
+ * @value: if %TRUE, @info is set to indicate the file belongs to the super user's group
+ *
+ * Set the SGID field in @info to @value.
+ */
 #define GNOME_VFS_FILE_INFO_SET_SGID(info, value)		\
 	(value ? ((info)->permissions |= GNOME_VFS_PERM_SGID)	\
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_SGID))
-
+/**
+ * GNOME_VFS_FILE_INFO_SET_STICKY:
+ * @info: GnomeVFSFileInfo struct
+ * @value: if %TRUE, @info is set to indicate the file has the sticky bit set
+ *
+ * Set the sticky bit in @info to @value.
+ */
 #define GNOME_VFS_FILE_INFO_SET_STICKY(info, value)			\
 	(value ? ((info)->permissions |= GNOME_VFS_PERM_STICKY)		\
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))

@@ -99,7 +99,7 @@ GnomeVFSURI 	     *gnome_vfs_uri_ref                   (GnomeVFSURI *uri);
 void        	      gnome_vfs_uri_unref                 (GnomeVFSURI *uri);
 
 GnomeVFSURI          *gnome_vfs_uri_append_string         (const GnomeVFSURI *uri,
-						           const char *path);
+						           const char *uri_fragment);
 GnomeVFSURI          *gnome_vfs_uri_append_path           (const GnomeVFSURI *uri,
 						           const char *path);
 GnomeVFSURI          *gnome_vfs_uri_append_file_name      (const GnomeVFSURI *uri,
@@ -131,8 +131,8 @@ void		     gnome_vfs_uri_set_password           (GnomeVFSURI *uri,
 gboolean	     gnome_vfs_uri_equal	          (const GnomeVFSURI *a,
 						           const GnomeVFSURI *b);
 
-gboolean	     gnome_vfs_uri_is_parent	          (const GnomeVFSURI *parent,
-						           const GnomeVFSURI *item,
+gboolean	     gnome_vfs_uri_is_parent	          (const GnomeVFSURI *possible_parent,
+						           const GnomeVFSURI *possible_child,
 						           gboolean recursive);
 				  
 const gchar 	    *gnome_vfs_uri_get_path                (const GnomeVFSURI *uri);

@@ -69,6 +69,16 @@ ensure_dot_gnome_exists (void)
 	return retval;
 }
 
+/**
+ * gnome_vfs_init:
+ *
+ * If GnomeVFS is not already initialized, initialize it. This must be
+ * called prior to performing any other GnomeVFS operations, and may
+ * be called multiple times without error.
+ * 
+ * Return value: %TRUE if GnomeVFS is successfully initialized (or was
+ * already initialized)
+ **/
 gboolean 
 gnome_vfs_init (void)
 {
@@ -121,7 +131,14 @@ gnome_vfs_init (void)
 	return retval;
 }
 
-
+/**
+ * gnome_vfs_initialized:
+ *
+ * Detects if GnomeVFS has already been initialized (GnomeVFS must be
+ * initialized prior to using any methods or operations).
+ * 
+ * Return value: %TRUE if GnomeVFS has already been initialized
+ **/
 gboolean
 gnome_vfs_initialized (void)
 {
@@ -133,6 +150,13 @@ gnome_vfs_initialized (void)
 	return out;
 }
 
+/**
+ * gnome_vfs_shutdown:
+ *
+ * Cease all active GnomeVFS operations and unload the MIME
+ * database from memory.
+ * 
+ **/
 void
 gnome_vfs_shutdown (void)
 {
@@ -165,6 +189,12 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 	G_UNLOCK (vfs_already_initialized);
 }
 
+/**
+ * gnome_vfs_is_primary_thread:
+ *
+ * Return value: %TRUE if the current thread is the thread with the 
+ * main glib event loop
+ **/
 gboolean
 gnome_vfs_is_primary_thread (void)
 {

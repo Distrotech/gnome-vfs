@@ -46,8 +46,10 @@ uri
 </para>
 
 @uri: 
-@path: 
+@uri_fragment: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@path: 
 
 
 <!-- ##### FUNCTION gnome_vfs_uri_append_path ##### -->
@@ -221,10 +223,13 @@ uri
 
 </para>
 
-@parent: 
-@item: 
+@possible_parent: 
+@possible_child: 
 @recursive: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@parent: 
+@item: 
 
 
 <!-- ##### FUNCTION gnome_vfs_uri_get_path ##### -->

@@ -2249,14 +2249,11 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 	result = GNOME_VFS_OK;
 
 	return result;
+}
+
 /**
  * gnome_vfs_xfer_uri_list:
- *
- * This function will transfer multiple files to a multiple targets.  Given a
- * a source uri(s) and a destination uri(s).   There are a list of options that
- * your application can use to control how the transfer is done.
- *
- * @source_urilist: A Glist of uris  (ie file;//)
+ * @source_uri_list: A Glist of uris  (ie file;//)
  * @target_uri_list: A GList of uris  
  * @xfer_options: These are options you wish to set for the transfer. For
  * instance by setting the xfer behavior you can either make a copy or a 
@@ -2270,11 +2267,13 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
  * to overwrite a file.
  * @data: Data to be want passed back in callbacks from the xfer engine
  *
+ * This function will transfer multiple files to a multiple targets.  Given a
+ * a source uri(s) and a destination uri(s).   There are a list of options that
+ * your application can use to control how the transfer is done.
+ *
  * Returns: If all goes well it returns GNOME_VFS_OK.  Check GnomeVFSResult for
  * other values.
  **/
-}
-
 GnomeVFSResult
 gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 			 const GList *target_uri_list,
@@ -2307,16 +2306,9 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 
 	return result;
 }
+
 /**
  * gnome_vfs_xfer_uri:
- *
- * This function will allow a person to copy data from one location to another.
- * The location is specified using a URIs as the means to describe the location
- * of the data.  Like any copy there are several options that can be set.
- * These can be set using the xfer_options.    In addition there are callback
- * mechanisms and error codes to provide feedback in the copy
- * process.
- *
  * @source_uri: This is the location of where your data resides.  
  * @target_uri: This is the location of where you want your data to go.
  * @xfer_options: Set the kind of transfers you want.  These are:
@@ -2346,7 +2338,6 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
  * by some sort of signal that interrupted the transfer.
  * GNOME_VFS_ERROR_MODE_QUERY: This means that no error has occured and that
  * you should query with the GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR.  See
- * 
  * @overwrite_mode:  This sets the options to deal with data that are duplicate
  * between the source and the destination.  Your choices are:
  * GNOME_VFS_XFER_OVERWRITE_MODE_ABORT:  This means abort the transfer if you
@@ -2358,9 +2349,17 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
  * @progress_callback:  This is an important call back because this is how you
  * communicate with your copy process.  
  * @data: Data to be want passed back in callbacks from the xfer engine
+ * 
+ * This function will allow a person to copy data from one location to another.
+ * The location is specified using a URIs as the means to describe the location
+ * of the data.  Like any copy there are several options that can be set.
+ * These can be set using the xfer_options.    In addition there are callback
+ * mechanisms and error codes to provide feedback in the copy
+ * process.
+ *
+ * Return value: An integer representing the result of the operation.
+ *
  **/
-
-
 GnomeVFSResult	
 gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
 		    const GnomeVFSURI *target_uri,
@@ -2388,20 +2387,22 @@ gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
 	g_list_free (target_uri_list);
 
 	return result;
+}
 
 /**
  * gnome_vfs_xfer_delete_list:
- *
- * @uri_list:  This is a list containing uris
+ * @source_uri_list:  This is a list containing uris
  * @error_mode:  Decide how you want to deal with interruptions
  * @xfer_options: Set whatever transfer options you need.
  * @progress_callback: Callback to check on progress of transfer.
  * @data: Data to be want passed back in callbacks from the xfer engine
+ *
+ * Unlink items in the list @source_uri_list from their filesystems.
+ *
+ * Return value: %GNOME_VFS_OK if successful, or the appropriate error code otherwise
  **/
-}
-
 GnomeVFSResult 
-gnome_vfs_xfer_delete_list (const GList *uri_list, 
+gnome_vfs_xfer_delete_list (const GList *source_uri_list, 
                             GnomeVFSXferErrorMode error_mode,
                             GnomeVFSXferOptions xfer_options,
 		            GnomeVFSXferProgressCallback
@@ -2412,7 +2413,7 @@ gnome_vfs_xfer_delete_list (const GList *uri_list,
 	GnomeVFSXferProgressInfo progress_info;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (source_uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (progress_callback != NULL || error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
 			      GNOME_VFS_ERROR_BAD_PARAMETERS);
 
@@ -2421,7 +2422,7 @@ gnome_vfs_xfer_delete_list (const GList *uri_list,
 	progress_state.user_data = data;
 	call_progress (&progress_state, GNOME_VFS_XFER_PHASE_INITIAL);
 
-	result = gnome_vfs_xfer_delete_items (uri_list, error_mode, xfer_options,
+	result = gnome_vfs_xfer_delete_items (source_uri_list, error_mode, xfer_options,
 		&progress_state);
 	
 	call_progress (&progress_state, GNOME_VFS_XFER_PHASE_COMPLETED);

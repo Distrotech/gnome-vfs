@@ -72,7 +72,7 @@ char *gnome_vfs_escape_set 		     (const char      *string,
  * Unix path, since pieces of Unix paths can't contain "/". ASCII 0
  * is always illegal due to the limitations of NULL-terminated strings.
  */
-char *gnome_vfs_unescape_string              (const char      *string,
+char *gnome_vfs_unescape_string              (const char      *escaped_string,
 					      const char      *illegal_characters);
 
 /* returns a copy of uri, converted to a canonical form */
@@ -114,9 +114,13 @@ GnomeVFSResult	gnome_vfs_get_volume_free_space	(const GnomeVFSURI 	*vfs_uri,
 char *gnome_vfs_icon_path_from_filename       (const char *filename);
 
 /* TRUE if the current thread is the thread with the main glib event loop */
-#define GNOME_VFS_ASSERT_PRIMARY_THREAD g_assert (gnome_vfs_is_primary_thread())
-#define GNOME_VFS_ASSERT_SECONDARY_THREAD g_assert (!gnome_vfs_is_primary_thread())
 gboolean	gnome_vfs_is_primary_thread (void);
+
+/* Asserts that the current thread is the thread with the main glib event loop */
+#define GNOME_VFS_ASSERT_PRIMARY_THREAD g_assert (gnome_vfs_is_primary_thread())
+
+/* Asserts that the current thread is NOT the thread with the main glib event loop */
+#define GNOME_VFS_ASSERT_SECONDARY_THREAD g_assert (!gnome_vfs_is_primary_thread())
 
 /* Reads the contents of an entire file into memory */
 GnomeVFSResult  gnome_vfs_read_entire_file (const char *uri,

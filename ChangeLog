@@ -1,5 +1,24 @@
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/tmpl/ops.sgml:
+	* doc/tmpl/uri.sgml:
+	* doc/tmpl/utils.sgml:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+
+	Document some 30 GnomeVFS functions, bringing our coverage to
+	a miserable 54%.
+	
+2002-06-15  Seth Nickell  <snickell@stanford.edu>
+
 	* .cvsignore:
 	* libgnomevfs/.cvsignore:
 

@@ -937,7 +937,7 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 /**
  * gnome_vfs_uri_append_string:
  * @uri: A GnomeVFSURI.
- * @uri_fragment_string: A piece of a URI (ie a fully escaped partial path)
+ * @uri_fragment: A piece of a URI (ie a fully escaped partial path)
  * 
  * Create a new URI obtained by appending @path to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
@@ -947,7 +947,7 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
  **/
 GnomeVFSURI *
 gnome_vfs_uri_append_string (const GnomeVFSURI *uri,
-			     const gchar *uri_part_string)
+			     const gchar *uri_fragment)
 {
 	gchar *uri_string;
 	GnomeVFSURI *new_uri;
@@ -955,13 +955,13 @@ gnome_vfs_uri_append_string (const GnomeVFSURI *uri,
 	guint len;
 
 	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (uri_part_string != NULL, NULL);
+	g_return_val_if_fail (uri_fragment != NULL, NULL);
 
 	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	len = strlen (uri_string);
 	if (len == 0) {
 		g_free (uri_string);
-		return gnome_vfs_uri_new (uri_part_string);
+		return gnome_vfs_uri_new (uri_fragment);
 	}
 
 	len--;
@@ -971,14 +971,14 @@ gnome_vfs_uri_append_string (const GnomeVFSURI *uri,
 
 	uri_string[len + 1] = '\0';
 
-	while (*uri_part_string == GNOME_VFS_URI_PATH_CHR) {
-		uri_part_string++;
+	while (*uri_fragment == GNOME_VFS_URI_PATH_CHR) {
+		uri_fragment++;
 	}
 
-	if (uri_part_string[0] != GNOME_VFS_URI_MAGIC_CHR) {
-		new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, uri_part_string, NULL);
+	if (uri_fragment[0] != GNOME_VFS_URI_MAGIC_CHR) {
+		new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, uri_fragment, NULL);
 	} else {
-		new_string = g_strconcat (uri_string, uri_part_string, NULL);
+		new_string = g_strconcat (uri_string, uri_fragment, NULL);
 	}
 	new_uri = gnome_vfs_uri_new (new_string);
 
@@ -1015,7 +1015,7 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 /**
  * gnome_vfs_uri_append_file_name:
  * @uri: A GnomeVFSURI.
- * @path: any "regular" file name (can include #, /, etc)
+ * @filename: any "regular" file name (can include #, /, etc)
  * 
  * Create a new URI obtained by appending @file_name to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
@@ -1025,12 +1025,12 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
  **/
 GnomeVFSURI *
 gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
-				const gchar *file_name)
+				const gchar *filename)
 {
 	gchar *escaped_string;
 	GnomeVFSURI *new_uri;
 	
-	escaped_string = gnome_vfs_escape_string (file_name);
+	escaped_string = gnome_vfs_escape_string (filename);
 	new_uri = gnome_vfs_uri_append_string (uri, escaped_string);
 	g_free (escaped_string);
 	return new_uri;
@@ -1751,6 +1751,16 @@ gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)
 
 /* The following functions are useful for creating URI hash tables.  */
 
+/**
+ * gnome_vfs_uri_hequal:
+ * @a: a pointer to a GnomeVFSURI
+ * @b: a pointer to a GnomeVFSURI
+ *
+ * Function intended for use as a hash table "are these two items
+ * the same" comparison. Useful for creating a hash table of URIs.
+ *
+ * Return value: %TRUE if the URIs are the same
+ **/
 gint
 gnome_vfs_uri_hequal (gconstpointer a,
 		      gconstpointer b)
@@ -1758,6 +1768,15 @@ gnome_vfs_uri_hequal (gconstpointer a,
 	return gnome_vfs_uri_equal (a, b);
 }
 
+/**
+ * gnome_vfs_uri_hash:
+ * @p: a pointer to a GnomeVFSURI
+ *
+ * Creates an integer value from a GnomeVFSURI, appropriate
+ * for using as the key to a hash table entry.
+ *
+ * Return value: a hash key corresponding to @p
+ **/
 guint
 gnome_vfs_uri_hash (gconstpointer p)
 {
@@ -1797,6 +1816,14 @@ gnome_vfs_uri_hash (gconstpointer p)
 #undef HASH_NUMBER
 }
 
+/**
+ * gnome_vfs_uri_list_ref:
+ * @list: list of GnomeVFSURI elements
+ *
+ * Increments the reference count of the items in @list by one.
+ *
+ * Return value: @list
+ **/
 GList *
 gnome_vfs_uri_list_ref (GList *list)
 {
@@ -1804,6 +1831,16 @@ gnome_vfs_uri_list_ref (GList *list)
 	return list;
 }
 
+/**
+ * gnome_vfs_uri_list_unref:
+ * @list: list of GnomeVFSURI elements
+ *
+ * Decrements the reference count of the items in @list by one.
+ * Note that the list is *not freed* even if each member of the list
+ * is freed.
+ *
+ * Return value: @list
+ **/
 GList *
 gnome_vfs_uri_list_unref (GList *list)
 {
@@ -1811,12 +1848,28 @@ gnome_vfs_uri_list_unref (GList *list)
 	return list;
 }
 
+/**
+ * gnome_vfs_uri_list_copy:
+ * @list: list of GnomeVFSURI elements
+ *
+ * Creates a duplicate of @list, and references each member of
+ * that list.
+ *
+ * Return value: a newly referenced duplicate of @list
+ **/
 GList *
 gnome_vfs_uri_list_copy (GList *list)
 {
 	return g_list_copy (gnome_vfs_uri_list_ref (list));
 }
 
+/**
+ * gnome_vfs_uri_list_free:
+ * @list: list of GnomeVFSURI elements
+ *
+ * Decrements the reference count of each member of @list by one,
+ * and frees the list itself.
+ **/
 void
 gnome_vfs_uri_list_free (GList *list)
 {

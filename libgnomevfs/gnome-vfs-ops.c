@@ -189,7 +189,7 @@ gnome_vfs_read (GnomeVFSHandle *handle,
  * @handle: Handle of the file to write data to
  * @buffer: Pointer to the buffer containing the data to be written
  * @bytes: Number of bytes to write
- * @bytes_write: Pointer to a variable that will hold the number of bytes
+ * @bytes_written: Pointer to a variable that will hold the number of bytes
  * effectively written on return.
  * 
  * Write @bytes into the file opened through @handle.  As with Unix system
@@ -233,7 +233,8 @@ gnome_vfs_seek (GnomeVFSHandle *handle,
  * @offset_return: Pointer to a variable that will contain the current position
  * on return
  * 
- * Return the current position on @handle.
+ * Return the current position on @handle. This is the point in the file
+ * pointed to by handle that reads and writes will occur on.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -311,7 +312,7 @@ gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
  * to retrieve for the file
  * 
  * Retrieve information about an open file.  The information will be stored in
- * @*info.
+ * @info.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -325,6 +326,15 @@ gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
 								NULL);
 }
 
+/**
+ * gnome_vfs_truncate:
+ * @text_uri: URI of the file to be truncated
+ * @length: length of the new file at @text_uri
+ * 
+ * Truncate the file at @text_uri to @length bytes.
+ * 
+ * Return value: An integer representing the result of the operation
+ **/
 GnomeVFSResult
 gnome_vfs_truncate (const char *text_uri, GnomeVFSFileSize length)
 {
@@ -343,12 +353,32 @@ gnome_vfs_truncate (const char *text_uri, GnomeVFSFileSize length)
 }
 
 
+/**
+ * gnome_vfs_truncate_uri:
+ * @uri: URI of the file to be truncated
+ * @length: length of the new file at @uri
+ * 
+ * Truncate the file at @uri to be only @length bytes. Data past @length
+ * bytes will be discarded.
+ * 
+ * Return value: An integer representing the result of the operation
+ **/
 GnomeVFSResult
 gnome_vfs_truncate_uri (GnomeVFSURI *uri, GnomeVFSFileSize length)
 {
 	return gnome_vfs_truncate_uri_cancellable(uri, length, NULL);
 }
 
+/**
+ * gnome_vfs_truncate_handle:
+ * @handle: a handle to the file to be truncated
+ * @length: length of the new file the handle is open to
+ * 
+ * Truncate the file pointed to be @handle to be only @length bytes. 
+ * Data past @length bytes will be discarded.
+ * 
+ * Return value: An integer representing the result of the operation
+ **/
 GnomeVFSResult
 gnome_vfs_truncate_handle (GnomeVFSHandle *handle, GnomeVFSFileSize length)
 {
@@ -360,7 +390,8 @@ gnome_vfs_truncate_handle (GnomeVFSHandle *handle, GnomeVFSFileSize length)
  * @uri: URI of the directory to be created
  * @perm: Unix-style permissions for the newly created directory
  * 
- * Create @uri as a directory.
+ * Create a directory at @uri. Only succeeds if a file or directory
+ * does not already exist at @uri.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -415,10 +446,10 @@ gnome_vfs_remove_directory_from_uri (GnomeVFSURI *uri)
 }
 
 /**
- * gnome_vfs_remove_directory_from:
+ * gnome_vfs_remove_directory:
  * @text_uri: URI of the directory to be removed
  * 
- * Remove @text_uri.  @uri must be an empty directory.
+ * Remove @text_uri.  @text_uri must be an empty directory.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -445,7 +476,7 @@ gnome_vfs_remove_directory (const gchar *text_uri)
  * gnome_vfs_unlink_from_uri:
  * @uri: URI of the file to be unlinked
  * 
- * Unlink @uri.
+ * Unlink @uri (i.e. delete the file).
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -472,10 +503,10 @@ gnome_vfs_create_symbolic_link (GnomeVFSURI *uri, const gchar *target_reference)
 }
 
 /**
- * gnome_vfs_unlink_from_uri:
+ * gnome_vfs_unlink:
  * @text_uri: URI of the file to be unlinked
  * 
- * Unlink @text_uri.
+ * Unlink @text_uri (i.e. delete the file).
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -502,6 +533,8 @@ gnome_vfs_unlink (const gchar *text_uri)
  * gnome_vfs_move_uri:
  * @old_uri: Source URI
  * @new_uri: Destination URI
+ * @force_replace: If %TRUE, move target to @new_uri even if there 
+ * is already a file at @new_uri. If there is a file, it will be discarded.
  * 
  * Move a file from URI @old_uri to @new_uri.  This will only work if @old_uri 
  * and @new_uri are on the same file system.  Otherwise, it is necessary 
@@ -522,6 +555,8 @@ gnome_vfs_move_uri (GnomeVFSURI *old_uri,
  * gnome_vfs_move:
  * @old_text_uri: Source URI
  * @new_text_uri: Destination URI
+ * @force_replace: if %TRUE, perform the operation even if it unlinks an existing
+ * file at @new_text_uri
  * 
  * Move a file from URI @old_text_uri to @new_text_uri.  This will only work 
  * if @old_text_uri and @new_text_uri are on the same file system.  Otherwise,
@@ -560,54 +595,55 @@ gnome_vfs_move (const gchar *old_text_uri,
 
 /**
  * gnome_vfs_check_same_fs_uris:
- * @a: A URI
- * @b: Another URI
+ * @source_uri: A URI
+ * @target_uri: Another URI
  * @same_fs_return: Pointer to a boolean variable which will be set to %TRUE
- * if @a and @b are on the same file system on return.
+ * if @source_uri and @target_uri are on the same file system on return.
  * 
- * Check if @a and @b are on the same file system.
+ * Check if @source_uri and @target_uri are on the same file system.
  * 
  * Return value: An integer representing the result of the operation.
  **/
 GnomeVFSResult
-gnome_vfs_check_same_fs_uris (GnomeVFSURI *a,
-			      GnomeVFSURI *b,
+gnome_vfs_check_same_fs_uris (GnomeVFSURI *source_uri,
+			      GnomeVFSURI *target_uri,
 			      gboolean *same_fs_return)
 {
-	return gnome_vfs_check_same_fs_uris_cancellable (a, b, same_fs_return,
+	return gnome_vfs_check_same_fs_uris_cancellable (source_uri, 
+							 target_uri, 
+							 same_fs_return,
 							 NULL);
 }
 
 /**
  * gnome_vfs_check_same_fs:
- * @a: A URI
- * @b: Another URI
+ * @source: A URI
+ * @target: Another URI
  * @same_fs_return: Pointer to a boolean variable which will be set to %TRUE
- * if @a and @b are on the same file system on return.
- * 
- * Check if @a and @b are on the same file system.
+ *
+ * Return %TRUE if @source and @target are on the same file system.
  * 
  * Return value: An integer representing the result of the operation.
  **/
 GnomeVFSResult
-gnome_vfs_check_same_fs (const gchar *a,
-			 const gchar *b,
+gnome_vfs_check_same_fs (const gchar *source,
+			 const gchar *target,
 			 gboolean *same_fs_return)
 {
 	GnomeVFSURI *a_uri, *b_uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (source != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (target != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	*same_fs_return = FALSE;
 
-	a_uri = gnome_vfs_uri_new (a);
+	a_uri = gnome_vfs_uri_new (source);
 	if (a_uri == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	b_uri = gnome_vfs_uri_new (b);
+	b_uri = gnome_vfs_uri_new (target);
 	if (b_uri == NULL) {
 		gnome_vfs_uri_unref (a_uri);
 		return GNOME_VFS_ERROR_INVALID_URI;

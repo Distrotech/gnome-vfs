@@ -374,29 +374,32 @@ unescape_character (const char *scanner)
 	return (first_digit << 4) | second_digit;
 }
 
-/*  Decode %xx escaped characters
-**  -----------------------------
-**
-** This function takes a pointer to a string in which some
-** characters may have been encoded in %xy form, where xy is
-** the ASCII hex code for character 16x+y.
-*/
-
-gchar *
-gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters)
+/**
+ * gnome_vfs_unescape_string:
+ * @escaped_string: an escaped URI, path, or other string
+ *
+ * Decodes escaped characters (e.g. %xx sequences) in @escaped_string.
+ * Characters are encoded in %xy form, where xy is the ASCII hex code 
+ * for character 16x+y.
+ * 
+ * Return value: a newly allocated string with the unescaped equivalents
+ **/
+char *
+gnome_vfs_unescape_string (const gchar *escaped_string, 
+			   const gchar *illegal_characters)
 {
 	const gchar *in;
 	gchar *out, *result;
 	gint character;
 	
-	if (escaped == NULL) {
+	if (escaped_string == NULL) {
 		return NULL;
 	}
 
-	result = g_malloc (strlen (escaped) + 1);
+	result = g_malloc (strlen (escaped_string) + 1);
 	
 	out = result;
-	for (in = escaped; *in != '\0'; in++) {
+	for (in = escaped_string; *in != '\0'; in++) {
 		character = *in;
 		if (*in == HEX_ESCAPE) {
 			character = unescape_character (in + 1);
@@ -414,7 +417,7 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
 	}
 	
 	*out = '\0';
-	g_assert (out - result <= strlen (escaped));
+	g_assert (out - result <= strlen (escaped_string));
 	return result;
 	
 }
@@ -623,8 +626,10 @@ gnome_vfs_list_deep_free (GList *list)
 
 /**
  * gnome_vfs_get_local_path_from_uri:
+ * @uri: URI to convert to a local path
  * 
- * Return a local path for a file:/// URI.
+ * Create a local path for a file:/// URI. Do not use with URIs
+ * of other methods.
  *
  * Return value: the local path 
  * NULL is returned on error or if the uri isn't a file: URI
@@ -655,23 +660,25 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 
 /**
  * gnome_vfs_get_uri_from_local_path:
+ * @local_full_path: a full local filesystem path (i.e. not relative)
  * 
- * Return a file:/// URI for a local path.
+ * Returns a file:/// URI for the local path @local_full_path.
  *
- * Return value: the URI (NULL for some bad errors).
+ * Return value: the URI corresponding to @local_full_path 
+ * (NULL for some bad errors).
  **/
 char *
-gnome_vfs_get_uri_from_local_path (const char *local_path)
+gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 {
 	char *escaped_path, *result;
 	
-	if (local_path == NULL) {
+	if (local_full_path == NULL) {
 		return NULL;
 	}
 
-	g_return_val_if_fail (local_path[0] == '/', NULL);
+	g_return_val_if_fail (local_full_path[0] == '/', NULL);
 
-	escaped_path = gnome_vfs_escape_path_string (local_path);
+	escaped_path = gnome_vfs_escape_path_string (local_full_path);
 	result = g_strconcat ("file://", escaped_path, NULL);
 	g_free (escaped_path);
 	return result;

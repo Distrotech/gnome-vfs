@@ -1384,12 +1384,13 @@ gnome_vfs_mime_reset (void)
 
 
 /**
- * gnome_vfs_mime_registered_mime_type_delete
+ * gnome_vfs_mime_registered_mime_type_delete:
+ * @mime_type: string representing the existing type to delete
  *
  * Delete a mime type for the user which runs this command.
  * You can undo this only by calling gnome_vfs_mime_reset
  *
- * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
+ * Return value: %GNOME_VFS_OK if the operation succeeded, otherwise an error code
  */
 
 void
