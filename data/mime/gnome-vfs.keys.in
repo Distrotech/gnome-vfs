@@ -340,6 +340,10 @@ application/x-shared-library-la
 	_description=shared library
 	icon_filename=gnome-library.png
 
+application/x-slp
+	_description=Stampede package
+	icon_filename=gnome-pack-slp.png
+
 application/x-smil
 	_description=SMIL script
 
@@ -379,11 +383,19 @@ application/x-tar
 	icon_filename=gnome-package.png
 	vfs_method=tar
 
+application/x-tex
+	_description=TeX document
+	icon_filename=gnome-tex.png
+
 application/x-theme
 	_description=theme
 
 application/x-toutdoux
 	_description=ToutDoux document
+
+# also text/x-troff
+application/x-troff
+	_description=troff document
 
 application/x-troff-man-compressed
 	_description=manual page (compressed)
@@ -969,8 +981,9 @@ text/x-tex
 text/x-texinfo
 	_description=TeXInfo document
 
+# also application/x-troff
 text/x-troff
-	_description=Troff document
+	_description=troff document
 
 text/x-troff-man
 	_description=manual page

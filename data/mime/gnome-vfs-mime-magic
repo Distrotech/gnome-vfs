@@ -41,6 +41,7 @@
 0	string		\000\000\001\272			video/mpeg
 0	string		\000\000\001\263			video/mpeg
 0	string		\377\330\377				image/jpeg
+# The below ignores the details available (architecture, type, version)
 0	string		\xed\xab\xee\xdb			application/x-rpm
 0	string		Rar!					application/x-rar
 0	string		GIF8					image/gif

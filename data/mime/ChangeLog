@@ -1,3 +1,14 @@
+2001-02-07  Aaron Brick  <aaron@eazel.com>
+
+	* combed mc.keys for missed types, adding:
+
+		application/x-slp
+		application/x-tex (a duplicate)
+
+		and dismissing the rest.
+
+	* added a comment to the RPM-detecting magic.
+
 2001-01-31  Rebecca Schulman  <rebecka@eazel.com>
 
 	* data/mime/gnome-vfs.keys.in:
