@@ -1,5 +1,12 @@
 2004-08-26  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/file-method.c (find_disk_top_directory):
+	Correctly handle top directory if its a symlink.
+	Remove on-disk caching of trash directories. Thats
+	not useful anymore, since we don't search for folders.
+
+2004-08-26  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-cdrom.c (_gnome_vfs_get_cdrom_type):
 	Check drive status before disk status.
 
