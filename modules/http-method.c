@@ -838,7 +838,6 @@ parse_ignore_host (gpointer data, gpointer user_data)
 {
 	gchar *hostname, *input, *netmask;
 	gboolean ip_addr = FALSE, has_error = FALSE;
-	guint32 mask;
 	struct in_addr host;
 #ifdef ENABLE_IPV6
 	struct in6_addr host6;
@@ -866,9 +865,8 @@ parse_ignore_host (gpointer data, gpointer user_data)
 			if (*endptr != '\0' || width < 0 || width > 32) {
 				has_error = TRUE;
 			}
-			mask = ~0 << width;
-			elt->mask.s_addr = htonl (mask);
-			elt->addr.s_addr = htonl (ntohl(elt->addr.s_addr) & mask);
+			elt->mask.s_addr = htonl (~0 << width);
+			elt->addr.s_addr &= elt->mask.s_addr;
 		}
 		else {
 			elt->mask.s_addr = 0xffffffff;
