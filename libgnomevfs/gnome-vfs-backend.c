@@ -160,6 +160,7 @@ typedef struct {
 		GnomeVFSAsyncGetFileInfoCallback get_file_info;
 		GnomeVFSAsyncSetFileInfoCallback set_file_info;
 		GnomeVFSAsyncDirectoryLoadCallback load_directory;
+		GnomeVFSAsyncFindDirectoryCallback find_directory;
 	} callback;
 	gpointer callback_data;
 	GnomeVFSAsyncHandle *handle;
@@ -597,7 +598,7 @@ report_failure_get_file_info_callback (gpointer callback_data)
 	g_list_free (results);
 
 	/* Free the callback data. */
-	gnome_vfs_file_info_list_free (data->uris);
+	gnome_vfs_uri_list_unref (data->uris);
 	g_free (data);
 
 	return FALSE;
@@ -618,7 +619,7 @@ report_failure_get_file_info (GnomeVFSResult result,
 	data->callback.get_file_info = callback;
 	data->result = result;
 	data->callback_data = callback_data;
-	data->uris = gnome_vfs_file_info_list_copy (uris);
+	data->uris = gnome_vfs_uri_list_ref (uris);
 	g_idle_add (report_failure_get_file_info_callback, data);
 }
 
@@ -641,6 +642,87 @@ gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 		      (handle_return, uris, options,
 		       callback, callback_data));
 	report_failure_get_file_info (result, uris, callback, callback_data);
+}
+
+static gboolean
+report_faliure_find_directory_callback (gpointer callback_data)
+{
+	CallbackData *data;
+	GList *results;
+	GList *p;
+	GnomeVFSFindDirectoryResult *result_item;
+
+	results = NULL;
+	data = callback_data;
+	/* Create a list of all the files with the same result for
+	 * each one.
+	 */
+	for (p = data->uris; p != NULL; p = p->next) {
+		result_item = g_new (GnomeVFSFindDirectoryResult, 1);
+		result_item->result = data->result;
+		result_item->uri = NULL;
+		results = g_list_prepend (results, result_item);
+	}
+
+	(* data->callback.find_directory) (NULL, results, data->callback_data);
+
+	/* Free the results list. */
+	g_list_foreach (results, (GFunc) g_free, NULL);
+	g_list_free (results);
+
+	/* Free the callback data. */
+	gnome_vfs_uri_list_free (data->uris);
+
+	g_free (data);
+
+	return FALSE;
+}
+
+
+static void
+report_failure_find_directory (GnomeVFSResult result,
+			       GList *uris,
+		       	       GnomeVFSAsyncFindDirectoryCallback callback,
+		       	       gpointer callback_data)
+{
+	CallbackData *data;
+
+	if (result == GNOME_VFS_OK)
+		return;
+
+	data = g_new0 (CallbackData, 1);
+	data->callback.find_directory = callback;
+	data->result = result;
+	data->callback_data = callback_data;
+	data->uris = gnome_vfs_uri_list_ref (uris);
+	g_idle_add (report_faliure_find_directory_callback, data);
+}
+
+void
+gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
+				GList *near_uri_list,
+				GnomeVFSFindDirectoryKind kind,
+				gboolean create_if_needed,
+		   		gboolean find_if_needed,
+				guint permissions,
+				GnomeVFSAsyncFindDirectoryCallback callback,
+				gpointer callback_data)
+{
+	static GnomeVFSResult	 
+		(*real_gnome_vfs_async_find_directory) (GnomeVFSAsyncHandle **handle_return,
+						        GList *near_uri_list,
+						        GnomeVFSFindDirectoryKind kind,
+						        gboolean create_if_needed,
+						        gboolean find_if_needed,
+						        GnomeVFSAsyncFindDirectoryCallback callback,
+						        gpointer callback_data);
+
+	GnomeVFSResult result;
+
+	CALL_BACKEND (gnome_vfs_async_find_directory,
+		      (handle_return, near_uri_list, kind, create_if_needed, find_if_needed,
+		       callback, callback_data));
+	report_failure_find_directory (result, near_uri_list, callback, callback_data);
 }
 
 static gboolean

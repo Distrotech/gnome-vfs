@@ -258,7 +258,6 @@ job_notify_and_close (GnomeVFSJob *job)
 	return retval;
 }
 
-
 static void
 dispatch_open_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
@@ -412,8 +411,31 @@ dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 		gnome_vfs_uri_unref (result_item->uri);
 		gnome_vfs_file_info_unref (result_item->file_info);
+		g_free (result_item);
 	}
 	g_list_free (result_list);
+}
+
+static void
+dispatch_find_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
+{
+	GnomeVFSAsyncFindDirectoryCallback callback;
+	GnomeVFSFindDirectoryResult *result_item;
+	GList *p;
+
+	callback = (GnomeVFSAsyncFindDirectoryCallback) op->callback;
+
+	(* callback) ((GnomeVFSAsyncHandle *) job,
+		      op->specifics.find_directory.notify.result_list,
+		      op->callback_data);
+
+	for (p = op->specifics.find_directory.notify.result_list; p != NULL; p = p->next) {
+		result_item = p->data;
+
+		gnome_vfs_uri_unref (result_item->uri);
+		g_free (result_item);
+	}
+	g_list_free (op->specifics.find_directory.notify.result_list);
 }
 
 static void
@@ -535,6 +557,7 @@ dispatch_job_callback (GIOChannel *source,
 		case GNOME_VFS_OP_XFER:
 		case GNOME_VFS_OP_GET_FILE_INFO:
 		case GNOME_VFS_OP_SET_FILE_INFO:
+		case GNOME_VFS_OP_FIND_DIRECTORY:
 			break;
 		}
 	} else {
@@ -574,6 +597,9 @@ dispatch_job_callback (GIOChannel *source,
 			break;
 		case GNOME_VFS_OP_SET_FILE_INFO:
 			dispatch_set_file_info_callback (job, op);
+			break;
+		case GNOME_VFS_OP_FIND_DIRECTORY:
+			dispatch_find_directory_callback (job, op);
 			break;
 		default:
 			g_warning (_("Unknown job ID %d"), op->type);
@@ -685,7 +711,6 @@ gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 	g_free (job);
 }
 
-
 static void
 gnome_vfs_op_destroy (GnomeVFSOp *op)
 {
@@ -926,7 +951,6 @@ serve_channel_write (GnomeVFSHandle *handle,
 	g_io_channel_unref (channel_out);
 }
 
-
 /* Job execution.  This is performed by the slave thread.  */
 
 static gboolean
@@ -1393,6 +1417,33 @@ execute_set_file_info (GnomeVFSJob *job)
 }
 
 static gboolean
+execute_find_directory (GnomeVFSJob *job)
+{
+	GnomeVFSFindDirectoryOp *op;
+	GList *p;
+	GnomeVFSGetFileInfoResult *result_item;
+
+	op = &job->current_op->specifics.find_directory;
+	for (p = op->request.uris; p != NULL; p = p->next) {
+		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
+
+		result_item->result = gnome_vfs_find_directory_cancellable ((GnomeVFSURI *)p->data,
+									op->request.kind,
+									&result_item->uri,
+									op->request.create_if_needed,
+									op->request.find_if_needed,
+									op->request.permissions,
+									job->current_op->context);
+		op->notify.result_list = g_list_prepend (op->notify.result_list, result_item);
+	}
+
+	op->notify.result_list = g_list_reverse (op->notify.result_list);
+	
+	job_oneway_notify_and_close (job);
+	return FALSE;
+}
+
+static gboolean
 execute_load_directory (GnomeVFSJob *job)
 {
 	GnomeVFSLoadDirectoryOp *load_directory_op;
@@ -1425,7 +1476,6 @@ execute_load_directory (GnomeVFSJob *job)
 	return FALSE;
 }
 
-
 static gint
 xfer_callback (GnomeVFSXferProgressInfo *info,
 	       gpointer data)
@@ -1527,6 +1577,8 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		return execute_write (job);
 	case GNOME_VFS_OP_LOAD_DIRECTORY:
 		return execute_load_directory (job);
+	case GNOME_VFS_OP_FIND_DIRECTORY:
+		return execute_find_directory (job);
 	case GNOME_VFS_OP_XFER:
 		return execute_xfer (job);
 	case GNOME_VFS_OP_GET_FILE_INFO:

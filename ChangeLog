@@ -1,3 +1,22 @@
+2000-08-13  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_find_directory):
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_get_file_info_callback),
+	(dispatch_find_directory_callback), (dispatch_job_callback),
+	(execute_find_directory), (gnome_vfs_job_execute):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(report_failure_get_file_info_callback),
+	(report_failure_get_file_info), (gnome_vfs_async_get_file_info),
+	(report_faliure_find_directory_callback),
+	(report_failure_find_directory), (gnome_vfs_async_find_directory):
+	* libgnomevfs/gnome-vfs-types.h:
+
+	Add async version of gnome_vfs_find_directory. pthread backend only for now.
+	
 2000-08-12  Robin * Slomkowski
 
 	* configure.in: just bumped the version on HEAD

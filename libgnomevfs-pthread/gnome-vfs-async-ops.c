@@ -126,6 +126,14 @@ GnomeVFSResult pthread_gnome_vfs_async_load_directory_uri     (GnomeVFSAsyncHand
 							       guint                                items_per_notification,
 							       GnomeVFSAsyncDirectoryLoadCallback   callback,
 							       gpointer                             callback_data);
+GnomeVFSResult pthread_gnome_vfs_async_find_directory 	      (GnomeVFSAsyncHandle **handle_return,
+							       GList *uris,
+							       GnomeVFSFindDirectoryKind kind,
+							       gboolean create_if_needed,
+							       gboolean find_if_needed,
+							       guint permissions,
+							       GnomeVFSAsyncFindDirectoryCallback callback,
+							       gpointer user_data);
 GnomeVFSResult pthread_gnome_vfs_async_xfer                   (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *source_directory_uri,
 							       const GList                         *source_name_list,
@@ -144,7 +152,6 @@ guint          pthread_gnome_vfs_async_add_status_callback    (GnomeVFSAsyncHand
 void           pthread_gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle                 *handle,
 							       guint                                callback_id);
 
-
 GnomeVFSResult
 pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
@@ -567,6 +574,45 @@ pthread_gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
+GnomeVFSResult
+pthread_gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
+					GList *uris,
+					GnomeVFSFindDirectoryKind kind,
+					gboolean create_if_needed,
+					gboolean find_if_needed,
+					guint permissions,
+					GnomeVFSAsyncFindDirectoryCallback callback,
+					gpointer user_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSFindDirectoryOp *get_info_op;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	job = gnome_vfs_job_new ();
+	if (job == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	gnome_vfs_job_prepare (job, GNOME_VFS_OP_FIND_DIRECTORY,
+			       (GFunc) callback, user_data);
+
+	get_info_op = &job->current_op->specifics.find_directory;
+
+	get_info_op->request.uris = gnome_vfs_uri_list_copy (uris);
+	get_info_op->request.kind = kind;
+	get_info_op->request.create_if_needed = create_if_needed;
+	get_info_op->request.find_if_needed = find_if_needed;
+	get_info_op->request.permissions = permissions;
+	get_info_op->notify.result_list = NULL;
+
+	gnome_vfs_job_go (job);
+
+	*handle_return = (GnomeVFSAsyncHandle *) job;
+
+	return GNOME_VFS_OK;
+}
+
 static GnomeVFSDirectorySortRule *
 copy_sort_rules (GnomeVFSDirectorySortRule *rules)
 {
@@ -671,7 +717,6 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
-
 static GList *
 copy_string_list (const GList *list)
 {

@@ -67,13 +67,14 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_READ,
 	GNOME_VFS_OP_WRITE,
 	GNOME_VFS_OP_LOAD_DIRECTORY,
+	GNOME_VFS_OP_FIND_DIRECTORY,
 	GNOME_VFS_OP_XFER,
 	GNOME_VFS_OP_GET_FILE_INFO,
 	GNOME_VFS_OP_SET_FILE_INFO
 };
 typedef enum GnomeVFSOpType GnomeVFSOpType;
 
-struct GnomeVFSOpenOp {
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -82,10 +83,9 @@ struct GnomeVFSOpenOp {
 	struct {
 		GnomeVFSResult result;
 	} notify;
-};
-typedef struct GnomeVFSOpenOp GnomeVFSOpenOp;
+} GnomeVFSOpenOp;
 
-struct GnomeVFSOpenAsChannelOp {
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -96,10 +96,10 @@ struct GnomeVFSOpenAsChannelOp {
 		GnomeVFSResult result;
 		GIOChannel *channel;
 	} notify;
-};
-typedef struct GnomeVFSOpenAsChannelOp GnomeVFSOpenAsChannelOp;
+} GnomeVFSOpenAsChannelOp;
 
-struct GnomeVFSCreateOp {
+
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -110,10 +110,10 @@ struct GnomeVFSCreateOp {
 	struct {
 		GnomeVFSResult result;
 	} notify;
-};
-typedef struct GnomeVFSCreateOp GnomeVFSCreateOp;
+} GnomeVFSCreateOp;
 
-struct GnomeVFSCreateLinkOp {
+
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		char *uri_reference;
@@ -122,10 +122,10 @@ struct GnomeVFSCreateLinkOp {
 	struct {
 		GnomeVFSResult result;
 	} notify;
-};
-typedef struct GnomeVFSCreateLinkOp GnomeVFSCreateLinkOp;
+} GnomeVFSCreateLinkOp;
 
-struct GnomeVFSCreateAsChannelOp {
+
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -137,20 +137,20 @@ struct GnomeVFSCreateAsChannelOp {
 		GnomeVFSResult result;
 		GIOChannel *channel;
 	} notify;
-};
-typedef struct GnomeVFSCreateAsChannelOp GnomeVFSCreateAsChannelOp;
+} GnomeVFSCreateAsChannelOp;
 
-struct GnomeVFSCloseOp {
+
+typedef struct {
 	struct {
 	} request;
 
 	struct {
 		GnomeVFSResult result;
 	} notify;
-};
-typedef struct GnomeVFSCloseOp GnomeVFSCloseOp;
+} GnomeVFSCloseOp;
 
-struct GnomeVFSReadOp {
+
+typedef struct {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gpointer buffer;
@@ -160,10 +160,10 @@ struct GnomeVFSReadOp {
 		GnomeVFSResult result;
 		GnomeVFSFileSize bytes_read;
 	} notify;
-};
-typedef struct GnomeVFSReadOp GnomeVFSReadOp;
+} GnomeVFSReadOp;
 
-struct GnomeVFSWriteOp {
+
+typedef struct {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gconstpointer buffer;
@@ -173,8 +173,8 @@ struct GnomeVFSWriteOp {
 		GnomeVFSResult result;
 		GnomeVFSFileSize bytes_written;
 	} notify;
-};
-typedef struct GnomeVFSWriteOp GnomeVFSWriteOp;
+} GnomeVFSWriteOp;
+
 
 typedef struct {
 	struct {
@@ -202,11 +202,24 @@ typedef struct {
 	} notify;
 } GnomeVFSSetFileInfoOp;
 
-
+
+typedef struct {
+	struct {
+		GList *uris; /* GnomeVFSURI* */
+		GnomeVFSFindDirectoryKind kind;
+		gboolean create_if_needed;
+		gboolean find_if_needed;
+		guint permissions;
+	} request;
+
+	struct {
+		GList *result_list; /* GnomeVFSFindDirectoryResult */
+	} notify;
+} GnomeVFSFindDirectoryOp;
 
 /* "Complex operations.  */
 
-struct GnomeVFSLoadDirectoryOp {
+typedef struct {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSFileInfoOptions options;
@@ -223,10 +236,9 @@ struct GnomeVFSLoadDirectoryOp {
 		GnomeVFSDirectoryList *list;
 		guint entries_read;
 	} notify;
-};
-typedef struct GnomeVFSLoadDirectoryOp GnomeVFSLoadDirectoryOp;
+} GnomeVFSLoadDirectoryOp;
 
-struct GnomeVFSXferOp {
+typedef struct {
 	struct {
 		gchar *source_directory_uri;
 		GList *source_name_list;
@@ -246,8 +258,7 @@ struct GnomeVFSXferOp {
 	struct {
 		gint value;
 	} notify_answer;
-};
-typedef struct GnomeVFSXferOp GnomeVFSXferOp;
+} GnomeVFSXferOp;
 
 typedef union {
 	GnomeVFSOpenOp open;
@@ -262,6 +273,7 @@ typedef union {
 	GnomeVFSXferOp xfer;
 	GnomeVFSGetFileInfoOp get_file_info;
 	GnomeVFSSetFileInfoOp set_file_info;
+	GnomeVFSFindDirectoryOp find_directory;
 } GnomeVFSSpecificOp;
 
 typedef struct {
@@ -279,7 +291,6 @@ typedef struct {
 	GnomeVFSContext *context;
 } GnomeVFSOp;
 
-
 /* FIXME bugzilla.eazel.com 1135: Move private stuff out of the header.  */
 struct GnomeVFSJob {
 	/* The slave thread that executes jobs (see module
@@ -333,7 +344,6 @@ struct GnomeVFSJob {
 	GnomeVFSOp *notify_op;
 };
 
-
 GnomeVFSJob *  gnome_vfs_job_new     (void);
 void           gnome_vfs_job_destroy (GnomeVFSJob    *job);
 void           gnome_vfs_job_prepare (GnomeVFSJob    *job,

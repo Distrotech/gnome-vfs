@@ -643,6 +643,16 @@ typedef gint    (* GnomeVFSAsyncXferProgressCallback)
 						 GnomeVFSXferProgressInfo *info,
 						 gpointer data);
 
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+} GnomeVFSFindDirectoryResult;
+
+typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
+						(GnomeVFSAsyncHandle *handle,
+						 GList *results /* GnomeVFSFindDirectoryResult */,
+						 gpointer data);
+
 
 
 /* Used to report user-friendly status messages you might want to display. */

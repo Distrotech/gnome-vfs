@@ -195,6 +195,15 @@ GnomeVFSResult	gnome_vfs_async_xfer		(GnomeVFSAsyncHandle **handle_return,
 						 gpointer sync_callback_data);
 
 
+void		gnome_vfs_async_find_directory 	(GnomeVFSAsyncHandle **handle_return,
+						 GList *near_uri_list,
+					  	 GnomeVFSFindDirectoryKind kind,
+					  	 gboolean create_if_needed,
+		   			  	 gboolean find_if_needed,
+					  	 guint permissions,
+					  	 GnomeVFSAsyncFindDirectoryCallback callback,
+					  	 gpointer user_data);
+					  	 
 guint           gnome_vfs_async_add_status_callback
                                                 (GnomeVFSAsyncHandle *handle,
 						 GnomeVFSStatusCallback callback,
