@@ -1,3 +1,12 @@
+2002-07-15  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element):
+	canonize NULL uri into "/". "start-here:" will now be
+	canonized into "start-here:///", fixing some monitoring
+	problem in nautilus
+	
+	* test/test-uri.c: (main): Fix test due to canonization change
+
 2002-07-11  Michael Meeks  <michael@ximian.com>
  
 	* libgnomevfs/gnome-vfs-mime-info.c

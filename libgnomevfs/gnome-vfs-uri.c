@@ -310,7 +310,7 @@ set_uri_element (GnomeVFSURI *uri,
 	char *escaped_text;
 
 	if (text == NULL || len == 0) {
-		uri->text = NULL;
+		uri->text = g_strdup("/");;
 		return;
 	}
 
