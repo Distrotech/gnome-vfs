@@ -1,6 +1,11 @@
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	Clean up indentation and line breaks
+
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
 	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
 	new function for checking if desktop files are meant for
 	GNOME.
