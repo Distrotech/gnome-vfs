@@ -13,15 +13,15 @@ endif
 SUBDIRS =					\
 	libgnomevfs				\
 	libgnomevfs-pthread			\
+	$(SUBDIRS_OAF)				\
 	idl					\
 	modules					\
 	data					\
 	man					\
 	devel-docs				\
+	$(SUBDIRS_GCONF)			\
 	test					\
-	po					\
-	$(SUBDIRS_OAF)				\
-	$(SUBDIRS_GCONF)
+	po
 
 
 EXTRA_DIST =					\
