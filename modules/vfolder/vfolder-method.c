@@ -1031,9 +1031,8 @@ do_remove_directory_unlocked (VFolderInfo *info,
 		if (result != GNOME_VFS_OK)
 			return result;
 	} 
-	else if (!folder_is_user_private (folder))
-		folder_add_exclude (parent, folder_get_name (folder));
 
+	folder_add_exclude (parent, folder_get_name (folder));
 	folder_remove_subfolder (parent, folder);
 
 	return GNOME_VFS_OK;
@@ -1110,9 +1109,8 @@ do_unlink_unlocked (VFolderInfo *info,
 		if (entry_is_user_private (entry))
 			folder_remove_include (parent, 
 					       entry_get_filename (entry));
-		else
-			folder_add_exclude (parent, 
-					    entry_get_displayname (entry));
+
+		folder_add_exclude (parent, entry_get_displayname (entry));
 	}
 
 	folder_remove_entry (parent, entry);
