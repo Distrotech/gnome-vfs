@@ -1,3 +1,9 @@
+2004-07-22  Christophe Fergeau <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-utils.c: lower case the uri scheme before
+	  looking for a handler for it.
+	* doc/tmpl/gnome-vfs-result.sgml: sync with gnome-vfs-result.h changes
+
 2004-07-22  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/egg*.[ch]: sync up from libegg again

@@ -1749,8 +1749,8 @@ gnome_vfs_get_uri_scheme (const char *uri)
 	if (colon == NULL) {
 		return NULL;
 	}
-	
-	return g_strndup (uri, colon - uri);
+
+	return g_ascii_strdown (uri, colon - uri);
 }
 
 /* Note that NULL's and full paths are also handled by this function.
