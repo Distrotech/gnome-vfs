@@ -1,5 +1,11 @@
 2004-12-13  Marco Pesenti Gritti  <marco@gnome.org>
 
+	* libgnomevfs/xdgmime.h:
+
+	Sync
+
+2004-12-13  Marco Pesenti Gritti  <marco@gnome.org>
+
 	* libgnomevfs/xdgmimeglob.c: (_xdg_glob_hash_lookup_file_name):
 
 	Resync
