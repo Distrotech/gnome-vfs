@@ -512,7 +512,9 @@ update_workgroup_cache (void)
 	dir = smb_context->opendir (smb_context, "smb://");
 	if (dir != NULL) {
 		while ((dirent = smb_context->readdir (smb_context, dir)) != NULL) {
-			if (dirent->smbc_type == SMBC_WORKGROUP) {
+			if (dirent->smbc_type == SMBC_WORKGROUP &&
+			    dirent->name != NULL &&
+			    strlen (dirent->name) > 0) {
 				g_hash_table_insert (workgroups,
 						     g_ascii_strdown (dirent->name, -1),
 						     GINT_TO_POINTER (1));
