@@ -199,16 +199,46 @@ libftp_la_LIBADD = $(MODULES_LIBS) $(GSSAPI_LIBS) ../libgnomevfs/libgnomevfs-2.l
 
 HTTP_LTLIBS = libhttp.la
 
-libhttp_la_SOURCES =				\
+## The old module
+HTTP_OLD_SOURCES = 				\
 	http-method.c				\
 	http-method.h				\
 	http-authn.c				\
 	http-authn.h				\
 	http-cache.c				\
-	http-cache.h				\
+	http-cache.h				
+
+HTTP_OLD_LIBADD =				\
+	$(MODULES_GCONF_LIBS) 		\
+	$(MODULES_XML_LIBS) 		\
+	../libgnomevfs/libgnomevfs-2.la
+
+## The neon module
+HTTP_NEON_SOURCES = 			\
+	http-neon-method.c			\
+	http-neon-mehtod.h			\
+	http-proxy.h				\
+	http-proxy.c
+
+HTTP_NEON_LIBADD =				\
+		$(MODULES_GCONF_LIBS) 	\
+	../imported/neon/libneon.la   \
+	../libgnomevfs/libgnomevfs-2.la
+
+if USE_HTTP_NEON
+HTTP_SOURCES = $(HTTP_NEON_SOURCES)
+HTTP_LIBS = $(HTTP_NEON_LIBADD)
+else
+HTTP_SOURCES = $(HTTP_OLD_SOURCES)
+HTTP_LIBS = $(HTTP_OLD_LIBADD)
+endif
+
+libhttp_la_SOURCES =			\
+	$(HTTP_SOURCES)			\
 	$(NULL)
+
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(MODULES_GCONF_LIBS) $(MODULES_XML_LIBS) ../libgnomevfs/libgnomevfs-2.la
+libhttp_la_LIBADD  = $(HTTP_LIBS)
 
 libvfs_pipe_la_SOURCES = pipe-method.c
 libvfs_pipe_la_LDFLAGS = $(module_flags)

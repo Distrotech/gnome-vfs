@@ -442,8 +442,6 @@ have_gssapi=no
 AC_PATH_PROG([KRB5_CONFIG], krb5-config, none, $PATH:/usr/kerberos/bin)
 					   
 if test "x$KRB5_CONFIG" != "xnone"; then
-   ne_save_CPPFLAGS=$CPPFLAGS
-   ne_save_LIBS=$NEON_LIBS
    GSSAPI_LIBS="`${KRB5_CONFIG} --libs gssapi`"
    GSSAPI_CFLAGS="`${KRB5_CONFIG} --cflags gssapi`"
    
@@ -471,19 +469,20 @@ if test "x$KRB5_CONFIG" != "xnone"; then
    ])
 fi   
 	   
-dnl AC_CHECK_HEADER(gssapi/gssapi.h, [
-dnl	AC_CHECK_LIB(gssapi_krb5, gss_init_sec_context,
-dnl	     GSSAPI_LIBS="GSSAPI_LIBS -lgssapi_krb5"
-dnl	     AC_DEFINE(HAVE_GSSAPI, 1, [defined if gssapi is availible])
-dnl	)
-dnl ])
-
-dnl
+dnl ******************************
 dnl http-method (neon checks)
-dnl
+dnl ******************************
+AC_ARG_ENABLE(http_neon, [  --disable-http-neon       build without the new neon http module
+										    but use the old one])
+if test "x$enable_http_neon" != "xno"; then
+     NEON_BUNDLED(imported/neon)
+     AM_CONDITIONAL(USE_HTTP_NEON, true)
+else
+	AM_CONDITIONAL(USE_HTTP_NEON, false)   
+fi
 
-NEON_BUNDLED(imported/neon)
-    
+dnl REMOVE THE FOLLOWING LINE AFTER NEON CHECK-IN
+AM_CONDITIONAL(USE_HTTP_NEON, false)  
     
 dnl modules/cdemenu-desktop
 

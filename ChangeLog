@@ -1,8 +1,14 @@
+2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
+
+	* modules/Makefile.am
+	* configure.in: cleanups and ability to switch between
+	neon and the old module.
+		
 2004-07-16  William Jon McCann  <mccann@jhu.edu>
 
 	* modules/sftp-method.c (sftp_connect):
 	Initialize strings to prevent crash.  Fixes #147194.
-
+				
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-resolve.h: 
