@@ -128,8 +128,8 @@ static time_t last_checked;
 /* To initialize the module automatically */
 static gboolean gnome_vfs_mime_inited = FALSE;
 
-/* you will write back the file if and only if this var' value is 0 */
-static int should_write_file_back = 0;
+/* you will write back or reload the file if and only if this var' value is 0 */
+static int gnome_vfs_is_frozen = 0;
 
 static GList *current_lang = NULL;
 /* we want to replace the previous key if the current key has a higher
@@ -159,7 +159,6 @@ static GHashTable *registered_types_user;
 
 
 /* Prototypes */
-static void	      reload_if_needed (void);
 static GnomeVFSResult write_back_mime_user_file (void);
 static GnomeVFSResult write_back_keys_user_file (void);
 static const char *   gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type,
@@ -683,6 +682,9 @@ reload_if_needed (void)
 	gboolean need_reload = FALSE;
 	struct stat s;
 
+	if (gnome_vfs_is_frozen > 0)
+		return;
+
 	if (now > last_checked + 5)
 		need_reload = TRUE;
 
@@ -777,7 +779,7 @@ gnome_vfs_mime_info_reload (void)
 void
 gnome_vfs_mime_freeze (void)
 {
-	should_write_file_back++;
+	gnome_vfs_is_frozen++;
 }
 
 
@@ -792,9 +794,9 @@ gnome_vfs_mime_freeze (void)
 void
 gnome_vfs_mime_thaw (void)
 {
-	should_write_file_back--;
+	gnome_vfs_is_frozen--;
 
-	if (should_write_file_back == 0) {
+	if (gnome_vfs_is_frozen == 0) {
 		write_back_mime_user_file ();
 		write_back_keys_user_file ();
 	}
@@ -858,7 +860,7 @@ gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *va
 
 	retval = set_value_real (mime_type, key, value, specific_types_user);
 
-	if (should_write_file_back == 0) {
+	if (gnome_vfs_is_frozen == 0) {
 		return write_back_keys_user_file ();
 	}
 
@@ -1460,7 +1462,7 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, 
 
 	result = set_value_real (mime_type, key, value, registered_types_user);
 
-	if (should_write_file_back == 0) {
+	if (gnome_vfs_is_frozen == 0) {
 		result = write_back_mime_user_file ();
 	}
 

@@ -31,7 +31,9 @@ G_BEGIN_DECLS
 	
 	/* functions to freeze/thaw the internal hash tables to 
 	   avoid writing them back to disk everytime you modify 
-	   them through the _set_ functions */
+	   them through the _set_ functions, or accidentally
+	   reloading them from disk during an edit.
+	 */
 void             gnome_vfs_mime_freeze                          (void);
 void             gnome_vfs_mime_thaw                            (void);
 

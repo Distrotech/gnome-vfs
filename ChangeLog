@@ -1,3 +1,9 @@
+2002-06-04  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (reload_if_needed) : honour
+	  gnome_vfs_is_frozen.
+	(gnome_vfs_is_frozen) : rename from should_write_file_back.
+
 2002-06-04  Kristian Rietveld  <kris@gtk.org>
 
 	* libgnomevfs/gnome-vfs-standard-callbacks.h: add
