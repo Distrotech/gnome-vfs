@@ -1,5 +1,12 @@
 2000-12-18  Darin Adler  <darin@eazel.com>
 
+	* modules/bzip2-method.c: (do_open), (do_get_file_info): Applied
+	the same 3 fixes that John Sullivan made to the gzip method to the
+	bzip2 method, since it is just a copy. An example of the evils of
+	copy and paste code.
+
+2000-12-18  Darin Adler  <darin@eazel.com>
+
 	reviewed by: Pavel Cisler <pavel@eazel.com>
 
 	Fixed bug 5217 (Nautilus crashes if you type cdda: in the
