@@ -1,3 +1,7 @@
+2002-02-25  Hasbullah Bin Pit <sebol@ikhlas.com>
+
+	* configure.in: REALLY Added ms (Malay) at ALL_LINGUAS.
+
 2002-02-25  Seth Nickell  <snickell@stanford.edu>
 
 	* NEWS:
