@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2001-04-28 14:52+0200\n"
-"PO-Revision-Date: 2001-04-28 14:51+02:00\n"
+"POT-Creation-Date: 2001-06-10 19:46+0200\n"
+"PO-Revision-Date: 2001-06-10 19:46+02:00\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk> \n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -1018,27 +1018,27 @@ msgstr "zip-arkiv"
 msgid "zoo archive"
 msgstr "zoo-arkiv"
 
-#: libgnomevfs/gnome-vfs-configuration.c:187
+#: libgnomevfs/gnome-vfs-configuration.c:224
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d indeholder NUL-tegn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:204
+#: libgnomevfs/gnome-vfs-configuration.c:241
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d indeholder intet metodenavn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:270
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d indeholder intet modulnavn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:286
+#: libgnomevfs/gnome-vfs-configuration.c:323
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen '%s' kunne ikke findes: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:69
+#: libgnomevfs/gnome-vfs-init.c:80
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS er allerede klargjort."
 
@@ -1251,7 +1251,12 @@ msgstr "Tjeneste ikke tilgængelig"
 msgid "Request obsoletes service's data"
 msgstr "Forespørgsel overflødiggør tjenestens data"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Protocol error"
+msgstr "Protokolfejl"
+
+#: libgnomevfs/gnome-vfs-result.c:142
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
@@ -1279,50 +1284,42 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:690
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Ukendt operationstype %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:978
-#: libgnomevfs-pthread/gnome-vfs-job.c:1123
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette ledning til åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1578
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ukendt jobtype %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1609
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
-#: modules/efs-method.c:493 modules/file-method.c:380
+#: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1191
-#, c-format
-msgid "%s to retrieve"
-msgstr "%s tilbage at hente"
+#~ msgid "%s to retrieve"
+#~ msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1684
-#, c-format
-msgid "Closing connection to %s"
-msgstr "Lukker forbindelsen til %s"
+#~ msgid "Closing connection to %s"
+#~ msgstr "Lukker forbindelsen til %s"
 
-#: modules/http-method.c:1950
-#, c-format
-msgid "%s of %s read"
-msgstr "%s af %s læst"
+#~ msgid "%s of %s read"
+#~ msgstr "%s af %s læst"
 
-#: modules/http-method.c:1953
-#, c-format
-msgid "%s read"
-msgstr "%s læst"
+#~ msgid "%s read"
+#~ msgstr "%s læst"
 
 #~ msgid "Dying."
 #~ msgstr "Døende."
