@@ -24,8 +24,8 @@ gnome_vfs_daemon_handle_finalize (GObject *object)
 	GnomeVFSDaemonHandle *handle;
 
 	handle = GNOME_VFS_DAEMON_HANDLE (object);
+	g_print ("gnome_vfs_daemon_handle_finalize()\n");
 	
-	/* DAEMON-TODO: What thread does this run on? Does it matter? */
         if (handle->real_handle != NULL) {
 		gnome_vfs_close_cancellable (handle->real_handle, NULL);
 	}
@@ -124,7 +124,6 @@ gnome_vfs_daemon_handle_new (GnomeVFSHandle *real_handle)
 	GnomeVFSDaemonHandle *daemon_handle;
         PortableServer_POA poa;
 
-	/* DAEMON-TODO: Should this be per-request? */
 	poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST);
 	daemon_handle = g_object_new (GNOME_TYPE_VFS_DAEMON_HANDLE,
 				      "poa", poa,

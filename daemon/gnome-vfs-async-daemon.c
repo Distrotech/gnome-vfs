@@ -5,7 +5,9 @@
 #include "gnome-vfs-async-daemon.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-daemon-handle.h"
+#include "gnome-vfs-client-call.h"
 #include "gnome-vfs-daemon.h"
+#include <unistd.h>
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSAsyncDaemon,
@@ -54,7 +56,8 @@ gnome_vfs_async_daemon_get_context (const GNOME_VFS_ClientCall client_call,
 	G_UNLOCK (client_call_context);
 
 	gnome_vfs_daemon_add_context (client, context);
-	
+	_gnome_vfs_daemon_set_current_daemon_client_call (client_call);
+
 	return context;
 }
 
@@ -64,6 +67,7 @@ gnome_vfs_async_daemon_drop_context (const GNOME_VFS_ClientCall client_call,
 				     GnomeVFSContext *context)
 {
 	if (context != NULL) {
+		_gnome_vfs_daemon_set_current_daemon_client_call (NULL);
 		gnome_vfs_daemon_remove_context (client, context);
 		G_LOCK (client_call_context);
 		if (async_daemon != NULL) {
@@ -143,8 +147,8 @@ cancel_client_call_callback (gpointer data)
 	G_UNLOCK (client_call_context);
 
 
-	bonobo_object_unref (client_call);
-
+	CORBA_Object_release (client_call, NULL);
+	return FALSE;
 }
 
 static void
@@ -156,7 +160,7 @@ gnome_vfs_async_daemon_cancel (PortableServer_Servant _servant,
 	
 	/* Ref the client_call so it won't go away if the call finishes while
 	 * waiting for the idle */
-	bonobo_object_ref (client_call);
+	CORBA_Object_duplicate (client_call, NULL);
 
 	g_idle_add (cancel_client_call_callback, client_call);
 
