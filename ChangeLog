@@ -1,3 +1,8 @@
+2004-04-20  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/sftp-method.c: fix method error reporting, return
+	HOST_NOT_FOUND when trying to use the method with an empty host name.
+
 2004-04-20  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
