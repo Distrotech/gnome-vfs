@@ -1,3 +1,9 @@
+2005-02-01  Christian Kellner  <gicmo@gnome.org>
+
+	* OUTSTANDING_API_ISSUES: Remove that file because
+	it is very old, wasn't maintained and we can't do
+	API changes like that anyway.
+		
 2005-01-31  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/dns-sd-method.c:
