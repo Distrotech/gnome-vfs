@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
 "POT-Creation-Date: 2000-04-19 15:50+0200\n"
-"PO-Revision-Date: 2000-03-19 02:31+0200\n"
+"PO-Revision-Date: 2000-04-19 23:51+0200\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,17 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr ""
+msgstr "%s:%d turi savyje NUL simboliø."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s:%d neturi savyje metodo vardo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr ""
+msgstr "%s:%d neturi savyje modulio vardo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:285
 #, c-format
@@ -40,11 +40,11 @@ msgstr "GNOME VFS jau inicializuota."
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "Negalëjau parsinti: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "Vëlesnës parsinimo klaidos bus ignoruotos."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -59,7 +59,7 @@ msgstr "Byla nerasta"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
-msgstr ""
+msgstr "Paprasta klaida"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:42
@@ -109,12 +109,12 @@ msgstr "Kaupiklyje nebëra vietos"
 #. GNOME_VFS_ERROR_READONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr ""
+msgstr "Tik skaitoma bylø sistema"
 
 #. GNOME_VFS_ERROR_INVALIDURI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr ""
+msgstr "Negaliojantis URI"
 
 #. GNOME_VFS_ERROR_NOTOPEN
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -124,7 +124,7 @@ msgstr "Byla neatidaryta"
 #. GNOME_VFS_ERROR_INVALIDOPENMODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr ""
+msgstr "Atidarymo bûdas negaliojantis"
 
 #. GNOME_VFS_ERROR_ACCESSDENIED
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -149,7 +149,7 @@ msgstr "Ne katalogas"
 #. GNOME_VFS_ERROR_INPROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr ""
+msgstr "Vyksta operacija"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -164,7 +164,7 @@ msgstr "Byla egzistuoja"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Rasti amþini ciklai nuorodose"
 
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -224,12 +224,12 @@ msgstr "Per daug nuorodø"
 #. GNOME_VFS_ERROR_READONLYFS
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr ""
+msgstr "Tik skaitoma bylø sistema"
 
 #. GNOME_VFS_ERROR_NOTSAMEFS
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr ""
+msgstr "Ne toje paèioje bylø sistemoje"
 
 #. GNOME_VFS_ERROR_NAMETOOLONG
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -350,17 +350,17 @@ msgstr ""
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "Gauta keista eilutë ið vaikinio proceso: ¥%s´"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr ""
+msgstr "Negaliu gauti objekto, skirto ¥%s´"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "Negaliu nuþudyti GNOME::VFS::Slave::Notify -- iðimtis %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
 #, c-format
@@ -369,7 +369,7 @@ msgstr "Negaliu prijungti lizdo ¥%s´: %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr ""
+msgstr "Negaliu inicializuoti GNOME::VFS:Slave::Notify"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:119
 #, c-format
@@ -399,7 +399,7 @@ msgstr ""
 #: libgnomevfs-pthread/gnome-vfs-job.c:1253
 #, c-format
 msgid "Unknown job ID %d"
-msgstr ""
+msgstr "Neþinomas job'o ID %d"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:784
 #: libgnomevfs-pthread/gnome-vfs-job.c:879
@@ -418,51 +418,51 @@ msgstr ""
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
-msgstr ""
+msgstr "ftpfs: Negaliojantis hosto vardas."
 
 #: modules/ftp-method.c:376
 msgid "ftpfs: Invalid host address."
-msgstr ""
+msgstr "ftpfs: Negaliojantis hosto adresas."
 
 #: modules/ftp-method.c:396
 #, c-format
 msgid "ftpfs: making connection to %s"
-msgstr ""
+msgstr "ftpfs: bandau prisijungti prie %s"
 
 #: modules/ftp-method.c:402
 msgid "ftpfs: connection interrupted by user"
-msgstr ""
+msgstr "ftpfs: jungtis pertraukta vartotojo"
 
 #: modules/ftp-method.c:404
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
-msgstr ""
+msgstr "ftpfs: prisijungimas prie serverio nepavyko: %s"
 
 #: modules/ftp-method.c:480
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr ""
+msgstr "Laukiu kito bandymo... %d (Control-C atðaukti)"
 
 #: modules/ftp-method.c:751
 msgid " FTP: Password required for "
-msgstr ""
+msgstr " FTP: Slaptaþodis reikalingas "
 
 #: modules/ftp-method.c:790
 msgid "ftpfs: sending login name"
-msgstr ""
+msgstr "ftpfs: siunèiu prisijungimo vardà"
 
 #: modules/ftp-method.c:796
 msgid "ftpfs: sending user password"
-msgstr ""
+msgstr "ftpfs: siunèiu vartotojo slaptaþodá"
 
 #: modules/ftp-method.c:802
 msgid "ftpfs: logged in"
-msgstr ""
+msgstr "ftpfs: prisijungta"
 
 #: modules/ftp-method.c:814
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
-msgstr ""
+msgstr "ftpfs: neteisingas prisijungimas vartotojui %s"
 
 #: modules/ftp-method.c:827
 msgid "ftpfs: aborting transfer."
@@ -471,89 +471,89 @@ msgstr "ftpfs: nutraukiu siuntimà."
 #: modules/ftp-method.c:829
 #, c-format
 msgid "ftpfs: abort error: %s"
-msgstr ""
+msgstr "ftpfs: nutraukimo klaida: %s"
 
 #: modules/ftp-method.c:834
 msgid "ftpfs: abort failed"
-msgstr ""
+msgstr "ftpfs: nutraukimas nepavyko"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
-msgstr ""
+msgstr "ftpfs: negalëjau pereiti á pasyvø reþimà"
 
 #: modules/ftp-method.c:1088
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
-msgstr ""
+msgstr "ftpfs: áraðau bylà %d (%d)"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
-msgstr ""
+msgstr "ftpfs: CWD nepavyko."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs: negalëjau atsekti symlinko"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Atseku symlinkà..."
 
 #: modules/ftp-method.c:1498
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
+msgstr "ftpfs: Skaitau FTP katalogà %s... (nenaudok UNIX ls pasirinkèiø)"
 
 #: modules/ftp-method.c:1502
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
-msgstr ""
+msgstr "ftpfs: Skaitau FTP katalogà %s..."
 
 #: modules/ftp-method.c:1568
 msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr ""
+msgstr "ftpfs: FTP katalogo skaitymas nutrauktas vartotojo"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr ""
+msgstr "ftpfs: gavau sàraðà"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
+msgstr "ftpfs: nepavyko; nëra kur besugráþti"
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
-msgstr ""
+msgstr "Pradedu tiesiná siuntimà..."
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
-msgstr ""
+msgstr "Paruoðiu gavimo pratæsimà..."
 
 #: modules/http-method.c:500
 #, c-format
 msgid "Invalid header `%s'"
-msgstr ""
+msgstr "Negalima antraðtë ¥%s´"
 
 #: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
-msgstr ""
+msgstr "%s, kurá parsiøsti"
 
 #: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
-msgstr ""
+msgstr "Uþdarau jungtá su %s"
 
 #: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
-msgstr ""
+msgstr "%s ið %s perskaityti"
 
 #: modules/http-method.c:808
 #, c-format
 msgid "%s read"
-msgstr ""
+msgstr "%s perskaityti"
 
 #. Multi-Status
 #: modules/http-method.c:970
 msgid "HTTP server returned an invalid PROPFIND response"
-msgstr ""
+msgstr "HTTP serveris gràþino negalimà PROPFIND atsakymà"
