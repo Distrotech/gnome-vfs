@@ -3,6 +3,7 @@
 #endif
 
 #define _LARGEFILE64_SOURCE
+#define _BSD_SOURCE /* so S_ISVTX and hence GNOME_VFS_PERM_STICKY will be defined */
 
 #include <dirent.h>
 #include <errno.h>
@@ -95,18 +96,12 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 		file_info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
 
 	file_info->permissions
-		= statptr->st_mode & (S_IRUSR | S_IWUSR | S_IXUSR
-				      | S_IRGRP | S_IWGRP | S_IXGRP
-				      | S_IROTH | S_IWOTH | S_IXOTH
-				      | S_ISUID | S_ISGID);
-
-#ifdef S_ISVTX
-	GNOME_VFS_FILE_INFO_SET_STICKY (file_info,
-					(statptr->st_mode & S_ISVTX) ? TRUE
-					                             : FALSE);
-#else
-	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
-#endif
+		= statptr->st_mode & (GNOME_VFS_PERM_USER_ALL
+				      | GNOME_VFS_PERM_GROUP_ALL
+				      | GNOME_VFS_PERM_OTHER_ALL
+				      | GNOME_VFS_PERM_SUID
+				      | GNOME_VFS_PERM_SGID
+				      | GNOME_VFS_PERM_STICKY);
 
 	file_info->device = statptr->st_dev;
 	file_info->inode = statptr->st_ino;

@@ -1,3 +1,17 @@
+2001-03-14  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+
+	Fixed bug 3337 (Sticky bit doesn't display correctly)
+
+	* libgnomevfs/gnome-vfs-types.h: Set the sticky bit
+	mask to 0 if S_ISVTX isn't defined, so we don't stomp
+	on other unknown uses of this bit.
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_stat_to_file_info): Use GNOME_VFS style
+	constants; #define _BSD_SOURCE so the sticky bit
+	is defined.
+
 2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Robin Slomkowski  <rslomkow@eazel.com>
