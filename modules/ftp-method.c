@@ -46,7 +46,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include <gtk/gtk.h>
 #ifdef HAVE_GCONF
 #include <gconf/gconf-client.h>
 #endif

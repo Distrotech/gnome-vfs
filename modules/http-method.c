@@ -56,7 +56,6 @@
 #include <sys/time.h>
 
 
-#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 
 #include <pthread.h>
@@ -2589,19 +2588,7 @@ vfs_module_init (const char *method_name,
 		gconf_init (argc, argv, NULL);
 	}
 
-	/* ensure GTK is inited for gconf-client. */
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_type_init ();
-#else
-	gtk_type_init (G_TYPE_DEBUG_NONE);
-#endif
-
 	gl_client = gconf_client_get_default ();
-
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_object_ref (GTK_OBJECT (gl_client));
-	gtk_object_sink (GTK_OBJECT (gl_client));
-#endif
 
 	gl_mutex = g_mutex_new ();
 	
@@ -2612,10 +2599,6 @@ vfs_module_init (const char *method_name,
 		g_error_free (gconf_error);
 		gconf_error = NULL;
 	}
-
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_signal_connect (GTK_OBJECT (gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
-#endif
 
 	/* Load the http proxy setting */	
 	proxy_value = gconf_client_get (gl_client, KEY_GCONF_USE_HTTP_PROXY, &gconf_error);
@@ -2649,16 +2632,7 @@ vfs_module_init (const char *method_name,
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_signal_disconnect_by_func (GTK_OBJECT(gl_client), (GtkSignalFunc) sig_gconf_value_changed, NULL);
-#endif
-
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_object_destroy (GTK_OBJECT (gl_client));
-	gtk_object_unref (GTK_OBJECT (gl_client));
-#else
 	g_object_unref (G_OBJECT (gl_client));
-#endif
 
 	http_authn_shutdown ();
 	

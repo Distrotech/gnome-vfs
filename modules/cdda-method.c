@@ -30,7 +30,6 @@
 #include <errno.h>
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
-#include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
@@ -1022,12 +1021,6 @@ vfs_module_init (const char *method_name,
 	if (!gconf_is_initialized ()) {
 		gconf_init (1, argv, NULL);
 	}
-
-#if GNOME_PLATFORM_VERSION < 1095000
-        gtk_type_init ();
-#else
-        gtk_type_init (G_TYPE_DEBUG_NONE);
-#endif
 
 	return &method;
 }

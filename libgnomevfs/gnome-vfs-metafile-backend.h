@@ -1,6 +1,5 @@
-/* -*- Mode: IDL; tab-width: 8; indent-tabs-mode: 8; c-basic-offset: 8 -*- */
-
-/* gnome-vfs-metafile.h - server side of GnomeVFS::Metafile
+/*
+ * gnome-vfs-metafile-backend.h - server side of GnomeVFS::Metafile
  *
  * Copyright (C) 2001 Eazel, Inc.
  * Copyright (C) 2001 Free Software Foundation
@@ -24,35 +23,39 @@
 #ifndef GNOME_VFS_METAFILE_H
 #define GNOME_VFS_METAFILE_H
 
+#include <glib/gmacros.h>
 #include "gnome-vfs-metafile-server.h"
-#include <gtk/gtk.h>
 #include <bonobo/bonobo-object.h>
-#include <bonobo/bonobo-xobject.h>
 #include <libxml/tree.h>
 
-#define GNOME_VFS_TYPE_METAFILE	          (gnome_vfs_metafile_get_type ())
-#define GNOME_VFS_METAFILE(obj)	          (GTK_CHECK_CAST ((obj), GNOME_VFS_TYPE_METAFILE, GnomeVFSMetafile))
-#define GNOME_VFS_METAFILE_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GNOME_VFS_TYPE_METAFILE, GnomeVFSMetafileClass))
-#define GNOME_VFS_IS_METAFILE(obj)         (GTK_CHECK_TYPE ((obj), GNOME_VFS_TYPE_METAFILE))
-#define GNOME_VFS_IS_METAFILE_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GNOME_VFS_TYPE_METAFILE))
+G_BEGIN_DECLS
+
+#define GNOME_VFS_METAFILE_TYPE        (gnome_vfs_mime_monitor_get_type ())
+#define GNOME_VFS_METAFILE(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), GNOME_VFS_METAFILE_TYPE, GnomeVFSMIMEMonitor))
+#define GNOME_VFS_METAFILE_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), GNOME_VFS_METAFILE_TYPE, GnomeVFSMIMEMonitorClass))
+#define GNOME_VFS_IS_METAFILE(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), GNOME_VFS_METAFILE_TYPE))
+#define GNOME_VFS_IS_METAFILE_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), GNOME_VFS_METAFILE_TYPE))
 
 typedef struct GnomeVFSMetafileDetails GnomeVFSMetafileDetails;
 
 typedef struct {
-	BonoboXObject parent_slot;
+	BonoboObject parent_slot;
 	GnomeVFSMetafileDetails *details;
 } GnomeVFSMetafile;
 
 typedef struct {
-	BonoboXObjectClass parent_slot;
-	POA_GnomeVFS_Metafile__epv epv;
+	BonoboObjectClass parent_slot;
+
+	POA_GNOME_VFS_Metafile__epv epv;
 } GnomeVFSMetafileClass;
 
-GtkType gnome_vfs_metafile_get_type (void);
+GType             gnome_vfs_metafile_get_type (void);
 
-GnomeVFSMetafile *gnome_vfs_metafile_get (const char *directory_uri);
+GnomeVFSMetafile *gnome_vfs_metafile_get      (const char *directory_uri);
 
 /* Specifications for in-directory metafile. */
 #define GNOME_VFS_METAFILE_NAME_SUFFIX ".gnome-metadata.xml"
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_METAFILE_H */

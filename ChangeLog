@@ -1,3 +1,42 @@
+2001-08-02  Michael Meeks  <michael@ximian.com>
+
+	* doc/Makefile.am (dist-hook): fix directory creation
+	brokenness.
+
+	* modules/ssh-method.c: kill gtk include.
+
+	* modules/ftp-method.c: ditto.
+
+	* modules/cdda-method.c: kill gtk crud.
+
+	* modules/http-method.c: ditto.
+
+	* modules/gconf-method.c (vfs_module_init): kill curious gtk
+	type inits - gconf doesn't use gtk anymore.
+	(vfs_module_shutdown): ditto.
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: kill gtk include
+	(gnome_vfs_thread_backend_shutdown): and gtk cruft.
+
+	* libgnomevfs/gnome-vfs-metafile-backend.c: basic port to GObject,
+	try and contain the madness a little.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: don't include gtkmain.h
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c: remove curious unused
+	parent class setting, port to GObject, clean hard core cruft.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.h: include a class structure,
+	what was someone smoking here ?
+
+	* configure.in: don't depend on Gtk+ - that's just broken.
+
+	* libgnomevfs/Makefile.am (noinst_HEADERS): add eel-cut-n-paste.h,
+	stolen-glib-extensions.h and gnome-vfs-metafile-backend.h
+	(libgnomevfsinclude_HEADERS): install gnome-vfs-metafile.h
+
+	* Makefile.am (SUBDIRS): add 'intl'.
+
 2001-08-01  Seth Nickell  <snickell@stanford.edu>
 
 	* idl/gnome-vfs-metafile-server.idl:

@@ -174,8 +174,8 @@ endif
 
 dist-hook: dist-check-gtkdoc dist-hook-local
 	test -d $(distdir)/tmpl || mkdir $(distdir)/tmpl
-	test -d $(distdir)/tmpl || mkdir $(distdir)/sgml
-	test -d $(distdir)/tmpl || mkdir $(distdir)/html
+	test -d $(distdir)/sgml || mkdir $(distdir)/sgml
+	test -d $(distdir)/html || mkdir $(distdir)/html
 	-cp $(srcdir)/tmpl/*.sgml $(distdir)/tmpl
 	-cp $(srcdir)/sgml/*.sgml $(distdir)/sgml
 	-cp $(srcdir)/html/index.sgml $(distdir)/html

@@ -24,55 +24,15 @@
 
 #include <config.h>
 #include "gnome-vfs-mime-monitor.h"
-
 #include "gnome-vfs-mime-private.h"
 
-#include <gtk/gtksignal.h>
-
-#define GNOME_VFS_MIME_MONITOR(obj) \
-	GTK_CHECK_CAST (obj, gnome_vfs_mime_monitor_get_type (), GnomeVFSMIMEMonitor)
-
-typedef struct {
-	GtkObjectClass parent_class;
-} GnomeVFSMIMEMonitorClass;
+#include <gobject/gsignal.h>
 
 enum {
 	DATA_CHANGED,
 	LAST_SIGNAL
 };
 static guint signals[LAST_SIGNAL];
-
-static GtkType    gnome_vfs_mime_monitor_get_type         (void);
-static void       gnome_vfs_mime_monitor_initialize_class (GnomeVFSMIMEMonitorClass *class);
-static void       gnome_vfs_mime_monitor_initialize       (GnomeVFSMIMEMonitor      *monitor);
-
-static gpointer parent_class;
-
-static GtkType
-gnome_vfs_mime_monitor_get_type (void)
-{
-	GtkType parent_type;
-	static GtkType type;
-
-	if (type == 0) {
-		static GtkTypeInfo info = {
-			"GnomeVFSMIMEMonitor",
-			sizeof (GnomeVFSMIMEMonitor),
-			sizeof (GnomeVFSMIMEMonitorClass),
-			(GtkClassInitFunc)gnome_vfs_mime_monitor_initialize_class,
-			(GtkObjectInitFunc)gnome_vfs_mime_monitor_initialize,
-			NULL,
-			NULL,
-			NULL
-		};
-
-		parent_type = GTK_TYPE_OBJECT;
-		type = gtk_type_unique (parent_type, &info);
-		parent_class = gtk_type_class (parent_type);
-	}
-
-	return type;
-}
 
 static GnomeVFSMIMEMonitor *global_mime_monitor = NULL;
 
@@ -82,43 +42,54 @@ gnome_vfs_mime_monitor_get (void)
 {
         if (global_mime_monitor == NULL) {
 		global_mime_monitor = GNOME_VFS_MIME_MONITOR
-			(gtk_object_new (gnome_vfs_mime_monitor_get_type (), NULL));
+			(g_object_new (gnome_vfs_mime_monitor_get_type (), NULL));
         }
         return global_mime_monitor;
 }
 
 static void
-gnome_vfs_mime_monitor_initialize (GnomeVFSMIMEMonitor *monitor)
+gnome_vfs_mime_monitor_class_init (GnomeVFSMIMEMonitorClass *klass)
 {
-}
-
-static void
-gnome_vfs_mime_monitor_initialize_class (GnomeVFSMIMEMonitorClass *class)
-{
-	GtkObjectClass *object_class;
-
-	object_class = GTK_OBJECT_CLASS (class);
-
-	signals[DATA_CHANGED]
-		= gtk_signal_new ("data_changed",
-				  GTK_RUN_LAST,
-#if GNOME_PLATFORM_VERSION < 1095000
-				  object_class->type,
-#else
-				  G_OBJECT_CLASS_TYPE (G_OBJECT (object_class)),
-#endif
-				  0,
-				  gtk_marshal_NONE__NONE,
-				  GTK_TYPE_NONE, 0);
-
-#if GNOME_PLATFORM_VERSION < 1095000
-	gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
-#endif
+	signals [DATA_CHANGED] = 
+		g_signal_new ("data_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (GnomeVFSMIMEMonitorClass, data_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
+			      G_TYPE_NONE, 0);
 }
 
 void
 gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor)
 {
-	gtk_signal_emit (GTK_OBJECT (monitor),
-			 signals[DATA_CHANGED]);	
+	g_return_if_fail (GNOME_VFS_IS_MIME_MONITOR (monitor));
+
+	g_signal_emit (G_OBJECT (monitor),
+		       signals [DATA_CHANGED], 0);
+}
+
+GType
+gnome_vfs_mime_monitor_get_type (void)
+{
+	static GType type = 0;
+
+	if (type == 0) {
+		GTypeInfo info = {
+			sizeof (GnomeVFSMIMEMonitorClass),
+			(GBaseInitFunc) NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc) gnome_vfs_mime_monitor_class_init,
+			NULL, /* class_finalize */
+			NULL, /* class_data */
+			sizeof (GnomeVFSMIMEMonitor),
+			0, /* n_preallocs */
+			(GInstanceInitFunc) NULL
+		};
+		
+		type = g_type_register_static (
+			G_TYPE_OBJECT, "GnomeVFSMIMEMonitor", &info, 0);
+	}
+
+	return type;
 }

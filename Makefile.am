@@ -13,7 +13,7 @@ SUBDIRS =					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GNOME)			\
-	po
+	po intl
 
 
 EXTRA_DIST =					\

@@ -110,7 +110,6 @@ libgnomevfsinclude_HEADERS =			\
 	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
-	$(CORBA_SOURCE)				\
 	eel-cut-n-paste.c			\
 	stolen-glib-extensions.c			\
 	fnmatch.c				\
@@ -133,7 +132,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
-	gnome-vfs-metafile-backend.c		\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime-handlers.c               \
 	gnome-vfs-mime-info.c			\
@@ -167,7 +165,14 @@ libgnomevfs_la_SOURCES =			\
 	$(NULL)
 
 noinst_HEADERS =				\
-	gnome-vfs-backend-private.h
+	gnome-vfs-backend-private.h		\
+	stolen-glib-extensions.h		\
+	eel-cut-n-paste.h
+
+badly_written_code = \
+	gnome-vfs-metafile-backend.h		\
+	gnome-vfs-metafile-backend.c		\
+	$(CORBA_SOURCE)
 
 BUILT_SOURCES = 		\
 	$(CORBA_SOURCE)		\

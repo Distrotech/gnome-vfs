@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.6.2.0\n"
-"POT-Creation-Date: 2001-07-17 16:08+0200\n"
+"POT-Creation-Date: 2001-08-02 21:54+0100\n"
 "PO-Revision-Date: 2001-03-06 15:46CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
@@ -1030,7 +1030,7 @@ msgstr "%s:%d neobsahuje meno modulu."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfiguraèný súbor '%s' nebol nájdený: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:79
+#: libgnomevfs/gnome-vfs-init.c:76
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS u¾ bolo inicializované."
 
@@ -1384,8 +1384,8 @@ msgstr "Neznáma GnomeVFSSeekPosition %d"
 
 #~ msgid "Specify which programs are used to open or view each file type"
 #~ msgstr ""
-#~ "Zadajte program, ktorý sa má pou¾íva» pre otváranie alebo prezeranie "
-#~ "daného typu súborov"
+#~ "Zadajte program, ktorý sa má pou¾íva» pre otváranie alebo prezeranie daného "
+#~ "typu súborov"
 
 #~ msgid "MIME Type"
 #~ msgstr "Typ MIME"
@@ -1467,8 +1467,8 @@ msgstr "Neznáma GnomeVFSSeekPosition %d"
 #~ msgstr "Vyberte pohµady, ktoré budú v menu pre typ MIME \"%s\""
 
 #~ msgid ""
-#~ "The MIME type entered contained upper case characters. Upper case "
-#~ "characters were changed to lower case for you."
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
 #~ msgstr ""
 #~ "Zadaný typ MIME obsahoval veµké písmená. Tie boli automaticky zmenené na "
 #~ "malé."

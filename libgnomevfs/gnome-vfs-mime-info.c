@@ -35,7 +35,6 @@
 #include "gnome-vfs-private.h"
 #include <ctype.h>
 #include <dirent.h>
-#include <gtk/gtkmain.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>

@@ -25,21 +25,38 @@
 #ifndef GNOME_VFS_MIME_MONITOR_H
 #define GNOME_VFS_MIME_MONITOR_H
 
-#include <gtk/gtkobject.h>
+#include <gobject/gobject.h>
+
+G_BEGIN_DECLS
+
+#define GNOME_VFS_MIME_MONITOR_TYPE        (gnome_vfs_mime_monitor_get_type ())
+#define GNOME_VFS_MIME_MONITOR(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), GNOME_VFS_MIME_MONITOR_TYPE, GnomeVFSMIMEMonitor))
+#define GNOME_VFS_MIME_MONITOR_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), GNOME_VFS_MIME_MONITOR_TYPE, GnomeVFSMIMEMonitorClass))
+#define GNOME_VFS_IS_MIME_MONITOR(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), GNOME_VFS_MIME_MONITOR_TYPE))
+#define GNOME_VFS_IS_MIME_MONITOR_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), GNOME_VFS_MIME_MONITOR_TYPE))
+
+typedef struct _GnomeVFSMIMEMonitorPrivate GnomeVFSMIMEMonitorPrivate;
 
 typedef struct {
-	GtkObject object;
+	GObject object;
+
+	GnomeVFSMIMEMonitorPrivate *priv;
 } GnomeVFSMIMEMonitor;
 
-/* Instead of a class declaration here, I will just document
- * the signals.
- *
- *	"data_changed", no parameters
- */
+typedef struct {
+	GObjectClass parent_class;
+
+	/* signals */
+	void (*data_changed) (GnomeVFSMIMEMonitor *monitor);
+} GnomeVFSMIMEMonitorClass;
+
+GType                gnome_vfs_mime_monitor_get_type (void);
 
 /* There's a single GnomeVFSMIMEMonitor object.
  * The only thing you need it for is to connect to its signals.
  */
-GnomeVFSMIMEMonitor *           gnome_vfs_mime_monitor_get                          (void);
+GnomeVFSMIMEMonitor *gnome_vfs_mime_monitor_get      (void);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_MIME_MONITOR_H */

@@ -25,7 +25,7 @@
 #include "gnome-vfs-metafile-backend.h"
 
 #include "eel-cut-n-paste.h"
-#include <gtk/gtkmain.h>
+#include <gobject/gobject.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-helpers.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
@@ -53,7 +53,7 @@
 static void gnome_vfs_metafile_init       (GnomeVFSMetafile      *metafile);
 static void gnome_vfs_metafile_class_init (GnomeVFSMetafileClass *klass);
 
-static void destroy (GtkObject *metafile);
+static void destroy (BonoboObject *metafile);
 
 static CORBA_boolean corba_is_read (PortableServer_Servant  servant,
 				    CORBA_Environment      *ev);
@@ -63,7 +63,7 @@ static CORBA_char *corba_get		      (PortableServer_Servant  servant,
 					       const CORBA_char       *key,
 					       const CORBA_char       *default_value,
 					       CORBA_Environment      *ev);
-static GnomeVFS_MetadataList *corba_get_list (PortableServer_Servant  servant,
+static GNOME_VFS_MetadataList *corba_get_list (PortableServer_Servant  servant,
 					       const CORBA_char      *file_name,
 					       const CORBA_char      *list_key,
 					       const CORBA_char      *list_subkey,
@@ -79,7 +79,7 @@ static void corba_set_list (PortableServer_Servant       servant,
 			    const CORBA_char            *file_name,
 			    const CORBA_char            *list_key,
 			    const CORBA_char            *list_subkey,
-			    const GnomeVFS_MetadataList *list,
+			    const GNOME_VFS_MetadataList *list,
 			    CORBA_Environment           *ev);
 					       
 static void corba_copy             (PortableServer_Servant   servant,
@@ -99,10 +99,10 @@ static void corba_rename_directory (PortableServer_Servant  servant,
 				    CORBA_Environment      *ev);
 
 static void corba_register_monitor   (PortableServer_Servant          servant,
-				      const GnomeVFS_MetafileMonitor  monitor,
+				      const GNOME_VFS_MetafileMonitor  monitor,
 				      CORBA_Environment              *ev);
 static void corba_unregister_monitor (PortableServer_Servant          servant,
-				      const GnomeVFS_MetafileMonitor  monitor,
+				      const GNOME_VFS_MetafileMonitor  monitor,
 				      CORBA_Environment              *ev);
 
 static char    *get_file_metadata      (GnomeVFSMetafile *metafile,
@@ -149,7 +149,7 @@ static void gnome_vfs_metafile_set_metafile_contents (GnomeVFSMetafile *metafile
 					             xmlDocPtr metafile_contents);
 char  *gnome_vfs_metafile_make_uri_canonical (const char *uri);
 
-BONOBO_TYPE_FUNC_FULL (GnomeVFSMetafile, GnomeVFS_Metafile, BONOBO_X_OBJECT_TYPE, gnome_vfs_metafile)
+BONOBO_TYPE_FUNC_FULL (GnomeVFSMetafile, GNOME_VFS_Metafile, BONOBO_OBJECT_TYPE, gnome_vfs_metafile)
 
 typedef struct MetafileReadState {
 	gboolean use_public_metafile;
@@ -191,7 +191,7 @@ static GHashTable *metafiles;
 static void
 gnome_vfs_metafile_class_init (GnomeVFSMetafileClass *klass)
 {
-	GTK_OBJECT_CLASS (klass)->destroy = destroy;
+	BONOBO_OBJECT_CLASS (klass)->destroy = destroy;
 
 	klass->epv.is_read            = corba_is_read;
 	klass->epv.get                = corba_get;
@@ -211,12 +211,11 @@ gnome_vfs_metafile_init (GnomeVFSMetafile *metafile)
 {
 	metafile->details = g_new0 (GnomeVFSMetafileDetails, 1);
 	
-	metafile->details->node_hash = g_hash_table_new (g_str_hash, g_str_equal);
-	
+	metafile->details->node_hash = g_hash_table_new (g_str_hash, g_str_equal);	
 }
 
 static void
-destroy (GtkObject *object)
+destroy (BonoboObject *object)
 {
 	GnomeVFSMetafile  *metafile;
 
@@ -243,7 +242,7 @@ destroy (GtkObject *object)
 	g_free (metafile->details);
 
 #ifdef METAFILE_CODE_READY
-	EEL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+	EEL_CALL_PARENT (BONOBO_OBJECT_CLASS, destroy, (object));
 #endif
 }
 
@@ -320,7 +319,7 @@ gnome_vfs_metafile_new (const char *directory_uri)
 {
 	GnomeVFSMetafile *metafile;
 	
-	metafile = GNOME_VFS_METAFILE (gtk_object_new (GNOME_VFS_TYPE_METAFILE, NULL));
+	metafile = GNOME_VFS_METAFILE (g_object_new (GNOME_VFS_TYPE_METAFILE, NULL));
 
 	gnome_vfs_metafile_set_directory_uri (metafile, directory_uri);
 
@@ -503,7 +502,7 @@ corba_get (PortableServer_Servant  servant,
 	return result;
 }
 
-static GnomeVFS_MetadataList *
+static GNOME_VFS_MetadataList *
 corba_get_list (PortableServer_Servant  servant,
 	        const CORBA_char       *file_name,
 	        const CORBA_char       *list_key,
@@ -513,7 +512,7 @@ corba_get_list (PortableServer_Servant  servant,
 	GnomeVFSMetafile  *metafile;
 
 	GList *metadata_list;
-	GnomeVFS_MetadataList *result;
+	GNOME_VFS_MetadataList *result;
 	int	len;
 	int	buf_pos;
 	GList   *list_ptr;
@@ -523,7 +522,7 @@ corba_get_list (PortableServer_Servant  servant,
 	metadata_list = get_file_metadata_list (metafile, file_name, list_key, list_subkey);
 
 	len = g_list_length (metadata_list);
-	result = GnomeVFS_MetadataList__alloc ();
+	result = GNOME_VFS_MetadataList__alloc ();
 	result->_maximum = len;
 	result->_length  = len;
 	result->_buffer  = CORBA_sequence_CORBA_string_allocbuf (len);
@@ -575,7 +574,7 @@ corba_set_list (PortableServer_Servant      servant,
 		const CORBA_char            *file_name,
 		const CORBA_char            *list_key,
 		const CORBA_char            *list_subkey,
-		const GnomeVFS_MetadataList *list,
+		const GNOME_VFS_MetadataList *list,
 		CORBA_Environment           *ev)
 {
 	GnomeVFSMetafile  *metafile;
@@ -656,11 +655,11 @@ corba_rename_directory (PortableServer_Servant  servant,
 }
 
 static GList *
-find_monitor_node (GList *monitors, const GnomeVFS_MetafileMonitor monitor)
+find_monitor_node (GList *monitors, const GNOME_VFS_MetafileMonitor monitor)
 {
 	GList                    *node;
 	CORBA_Environment	  ev;
-	GnomeVFS_MetafileMonitor  cur_monitor;		
+	GNOME_VFS_MetafileMonitor  cur_monitor;		
 
 	CORBA_exception_init (&ev);
 
@@ -680,7 +679,7 @@ find_monitor_node (GList *monitors, const GnomeVFS_MetafileMonitor monitor)
 
 static void
 corba_register_monitor (PortableServer_Servant          servant,
-			const GnomeVFS_MetafileMonitor  monitor,
+			const GNOME_VFS_MetafileMonitor  monitor,
 			CORBA_Environment              *ev)
 {
 	GnomeVFSMetafile          *metafile;
@@ -696,7 +695,7 @@ corba_register_monitor (PortableServer_Servant          servant,
 
 static void
 corba_unregister_monitor (PortableServer_Servant          servant,
-			  const GnomeVFS_MetafileMonitor  monitor,
+			  const GNOME_VFS_MetafileMonitor  monitor,
 			  CORBA_Environment              *ev)
 {
 	GnomeVFSMetafile          *metafile;
@@ -719,13 +718,13 @@ gnome_vfs_metafile_notify_metafile_ready (GnomeVFSMetafile *metafile)
 {
 	GList                     *node;
 	CORBA_Environment          ev;
-	GnomeVFS_MetafileMonitor   monitor;		
+	GNOME_VFS_MetafileMonitor   monitor;		
 
 	CORBA_exception_init (&ev);
 	
 	for (node = metafile->details->monitors; node != NULL; node = node->next) {
 		monitor = node->data;
-		GnomeVFS_MetafileMonitor_metafile_ready (monitor, &ev);
+		GNOME_VFS_MetafileMonitor_metafile_ready (monitor, &ev);
 		/* FIXME bugzilla.eazel.com 6664: examine ev for errors */
 	}
 	
@@ -738,13 +737,13 @@ call_metafile_changed (GnomeVFSMetafile *metafile,
 {
 	GList                     *node;
 	CORBA_Environment          ev;
-	GnomeVFS_MetafileMonitor   monitor;		
+	GNOME_VFS_MetafileMonitor   monitor;		
 
 	CORBA_exception_init (&ev);
 	
 	for (node = metafile->details->monitors; node != NULL; node = node->next) {
 		monitor = node->data;
-		GnomeVFS_MetafileMonitor_metafile_changed (monitor, file_names, &ev);
+		GNOME_VFS_MetafileMonitor_metafile_changed (monitor, file_names, &ev);
 		/* FIXME bugzilla.eazel.com 6664: examine ev for errors */
 	}
 	
@@ -2099,7 +2098,7 @@ directory_request_write_metafile (GnomeVFSMetafile *metafile)
 	if (metafile->details->write_idle_id == 0) {
 		bonobo_object_ref (BONOBO_OBJECT (metafile));
 		metafile->details->write_idle_id =
-			gtk_idle_add (metafile_write_idle_callback,
-				      metafile);
+			g_idle_add (metafile_write_idle_callback,
+				    metafile);
 	}
 }

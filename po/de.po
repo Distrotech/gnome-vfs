@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2001-07-29 07:49+0200\n"
+"POT-Creation-Date: 2001-08-02 21:54+0100\n"
 "PO-Revision-Date: 2001-07-29 07:48+0200\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -1029,7 +1029,7 @@ msgstr "%s:%d enthält keinen Modulnamen"
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsdatei `%s' wurde nicht gefunden: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:79
+#: libgnomevfs/gnome-vfs-init.c:76
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS bereits initialisiert."
 

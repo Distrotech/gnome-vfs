@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-02-28 12:28+0200\n"
+"POT-Creation-Date: 2001-08-02 21:54+0100\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -354,1408 +354,1275 @@ msgid "Macintosh StuffIt archive"
 msgstr "арх╕в Macintosh StuffIt"
 
 #: data/mime/gnome-vfs.keys.in.h:86
+msgid "Macromedia Flash file"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
 msgstr "документ MathML"
 
-#: data/mime/gnome-vfs.keys.in.h:87
+#: data/mime/gnome-vfs.keys.in.h:88
 msgid "Microsoft Excel spreadsheet"
 msgstr "таблиця Microsoft Excel"
 
-#: data/mime/gnome-vfs.keys.in.h:88
+#: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
 msgstr "документ Microsoft PowerPoint"
 
-#: data/mime/gnome-vfs.keys.in.h:89
+#: data/mime/gnome-vfs.keys.in.h:90
 msgid "Microsoft Word document"
 msgstr "документ Microsoft Word"
 
-#: data/mime/gnome-vfs.keys.in.h:90
+#: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
 msgstr "в╕део Microsoft"
 
-#: data/mime/gnome-vfs.keys.in.h:91
+#: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
 msgstr "посилання Nautilus"
 
-#: data/mime/gnome-vfs.keys.in.h:92
+#: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
 msgstr "документ ODA"
 
-#: data/mime/gnome-vfs.keys.in.h:93
+#: data/mime/gnome-vfs.keys.in.h:94
 msgid "PBM image"
 msgstr "зображення PBM"
 
-#: data/mime/gnome-vfs.keys.in.h:94
+#: data/mime/gnome-vfs.keys.in.h:95
 msgid "PCF font"
 msgstr "шрифт PCF"
 
-#: data/mime/gnome-vfs.keys.in.h:95
+#: data/mime/gnome-vfs.keys.in.h:96
 msgid "PDF document"
 msgstr "документ PDF"
 
-#: data/mime/gnome-vfs.keys.in.h:96
+#: data/mime/gnome-vfs.keys.in.h:97
 msgid "PEF program"
 msgstr "програма PEF"
 
-#: data/mime/gnome-vfs.keys.in.h:97
+#: data/mime/gnome-vfs.keys.in.h:98
 msgid "PGM image"
 msgstr "зображення PGM"
 
-#: data/mime/gnome-vfs.keys.in.h:98
+#: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
 msgstr "шахова гра PGN"
 
-#: data/mime/gnome-vfs.keys.in.h:99
+#: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
 msgstr "ключ╕ PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:100
+#: data/mime/gnome-vfs.keys.in.h:101
 msgid "PGP message"
 msgstr "пов╕домлення PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:101
+#: data/mime/gnome-vfs.keys.in.h:102
 msgid "PGP signature"
 msgstr "п╕дпис PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:102
+#: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
 msgstr "файл закодований PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:103
+#: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
 msgstr "скрипт PHP"
 
-#: data/mime/gnome-vfs.keys.in.h:104
+#: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
 msgstr "документ PN RealAudio"
 
-#: data/mime/gnome-vfs.keys.in.h:105
+#: data/mime/gnome-vfs.keys.in.h:106
 msgid "PNG image"
 msgstr "зображення PNG"
 
-#: data/mime/gnome-vfs.keys.in.h:106
+#: data/mime/gnome-vfs.keys.in.h:107
 msgid "PNM image"
 msgstr "зображення PNM"
 
-#: data/mime/gnome-vfs.keys.in.h:107
+#: data/mime/gnome-vfs.keys.in.h:108
 msgid "PPM image"
 msgstr "зображення PPM"
 
-#: data/mime/gnome-vfs.keys.in.h:108
+#: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
 msgstr "база даних Palm OS"
 
-#: data/mime/gnome-vfs.keys.in.h:109
+#: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
 msgstr "скрипт Perl"
 
-#: data/mime/gnome-vfs.keys.in.h:110
+#: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
 msgstr "документ Photoshop"
 
-#: data/mime/gnome-vfs.keys.in.h:111
+#: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
 msgstr "шрифт PostScript Type 1"
 
-#: data/mime/gnome-vfs.keys.in.h:112
+#: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
 msgstr "документ PostScript"
 
-#: data/mime/gnome-vfs.keys.in.h:113
+#: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
 msgstr "вих╕дний код Python"
 
-#: data/mime/gnome-vfs.keys.in.h:114
+#: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
 msgstr "ф╕льм QuickTime"
 
-#: data/mime/gnome-vfs.keys.in.h:115
+#: data/mime/gnome-vfs.keys.in.h:116
 msgid "Quicken document"
 msgstr "документ Quicken"
 
-#: data/mime/gnome-vfs.keys.in.h:116
+#: data/mime/gnome-vfs.keys.in.h:117
 msgid "Quicken for Windows document"
 msgstr "документ Quicken для Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:117
+#: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
 msgstr "арх╕в RAR"
 
-#: data/mime/gnome-vfs.keys.in.h:118
+#: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
 msgstr "документ README"
 
-#: data/mime/gnome-vfs.keys.in.h:119
+#: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
 msgstr "зображення RGB"
 
-#: data/mime/gnome-vfs.keys.in.h:120
+#: data/mime/gnome-vfs.keys.in.h:121
 msgid "RIFF audio"
 msgstr "ауд╕о RIFF"
 
-#: data/mime/gnome-vfs.keys.in.h:121
+#: data/mime/gnome-vfs.keys.in.h:122
 msgid "RPM package"
 msgstr "пакет RPM"
 
-#: data/mime/gnome-vfs.keys.in.h:122
+#: data/mime/gnome-vfs.keys.in.h:123
 msgid "RealAudio/Video document"
 msgstr "документ RealAudio/Video"
 
-#: data/mime/gnome-vfs.keys.in.h:123
+#: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
 msgstr "в╕део RealVideo"
 
-#: data/mime/gnome-vfs.keys.in.h:124
+#: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
 msgstr "файл S/MIME"
 
-#: data/mime/gnome-vfs.keys.in.h:125
+#: data/mime/gnome-vfs.keys.in.h:126
 msgid "S/MIME signature"
 msgstr "п╕дпис S/MIME"
 
-#: data/mime/gnome-vfs.keys.in.h:126
+#: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
 msgstr "в╕део SGI"
 
-#: data/mime/gnome-vfs.keys.in.h:127
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
 msgstr "документ SGML"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
 msgstr "скрипт SMIL"
 
-#: data/mime/gnome-vfs.keys.in.h:129
+#: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
 msgstr "код SQL"
 
-#: data/mime/gnome-vfs.keys.in.h:130
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
 msgstr "арх╕в SV4 CPIO"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
 msgstr "арх╕в SV4 CPIP (з CRC)"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
 msgstr "мистецтво SVG"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
 msgstr "вих╕дний код Scheme"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
 msgstr "ауд╕о Scream Tracker 3"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "Scream Tracker audio"
 msgstr "ауд╕о Scream Tracker"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "Scream Tracker instrument"
 msgstr "╕нструмент Scream Tracker"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "Setext document"
 msgstr "документ Setext"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "Speech document"
 msgstr "документ Speech"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "Speedo font"
 msgstr "шрифт Speedo"
 
-#: data/mime/gnome-vfs.keys.in.h:140
+#: data/mime/gnome-vfs.keys.in.h:141
 msgid "Spreadsheet Interchange document"
 msgstr "документ Spreadsheet Interchange"
 
-#: data/mime/gnome-vfs.keys.in.h:141
+#: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
 msgstr "пакет Stampede"
 
-#: data/mime/gnome-vfs.keys.in.h:142
+#: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
 msgstr "документ StarOffice Writer"
 
-#: data/mime/gnome-vfs.keys.in.h:143
+#: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
 msgstr "презентац╕я StarOffice"
 
-#: data/mime/gnome-vfs.keys.in.h:144
+#: data/mime/gnome-vfs.keys.in.h:145
 msgid "StarOffice spreadsheet"
 msgstr "таблиця StarOffice"
 
-#: data/mime/gnome-vfs.keys.in.h:145
+#: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun mu-law audio"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:146
+#: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
 msgstr "шрифт SunOS News"
 
-#: data/mime/gnome-vfs.keys.in.h:147
+#: data/mime/gnome-vfs.keys.in.h:148
 msgid "TIFF image"
 msgstr "зображення TIFF"
 
-#: data/mime/gnome-vfs.keys.in.h:148
+#: data/mime/gnome-vfs.keys.in.h:149
 msgid "TarGA image"
 msgstr "зображення TarGA"
 
-#: data/mime/gnome-vfs.keys.in.h:149
+#: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
 msgstr "скрипт Tcl"
 
-#: data/mime/gnome-vfs.keys.in.h:150
+#: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
 msgstr "документ TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:151
+#: data/mime/gnome-vfs.keys.in.h:152
 msgid "TeX dvi document"
 msgstr "документ dvi TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:152
+#: data/mime/gnome-vfs.keys.in.h:153
 msgid "TeX font"
 msgstr "шрифт TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:153
+#: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
 msgstr "метрики шрифта TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:154
+#: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
 msgstr "документ TeXInfo"
 
-#: data/mime/gnome-vfs.keys.in.h:155
+#: data/mime/gnome-vfs.keys.in.h:156
 msgid "ToutDoux document"
 msgstr "документ ToutDoux"
 
-#: data/mime/gnome-vfs.keys.in.h:156
+#: data/mime/gnome-vfs.keys.in.h:157
 msgid "TrueType font"
 msgstr "шрифт TrueType"
 
-#: data/mime/gnome-vfs.keys.in.h:157
+#: data/mime/gnome-vfs.keys.in.h:158
 msgid "USENET news message"
 msgstr "пов╕домлення новин USENET"
 
-#: data/mime/gnome-vfs.keys.in.h:158
+#: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
 msgstr "документ Unidata netCDF"
 
-#: data/mime/gnome-vfs.keys.in.h:159
+#: data/mime/gnome-vfs.keys.in.h:160
 msgid "V font"
 msgstr "шрифт V"
 
-#: data/mime/gnome-vfs.keys.in.h:160
+#: data/mime/gnome-vfs.keys.in.h:161
 msgid "VOC audio"
 msgstr "ауд╕о VOC"
 
-#: data/mime/gnome-vfs.keys.in.h:161
+#: data/mime/gnome-vfs.keys.in.h:162
 msgid "VRML document"
 msgstr "документ VRML"
 
-#: data/mime/gnome-vfs.keys.in.h:162
+#: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
 msgstr "в╕део Vivo"
 
-#: data/mime/gnome-vfs.keys.in.h:163
+#: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
 msgstr "вих╕дний код WAIS"
 
-#: data/mime/gnome-vfs.keys.in.h:164
+#: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
 msgstr "в╕део Wavelet"
 
-#: data/mime/gnome-vfs.keys.in.h:165
+#: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
 msgstr "растрове зображення Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:166
+#: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
 msgstr "зображення п╕ктограми Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:167
+#: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
 msgstr "граф╕ка Windows metafile"
 
-#: data/mime/gnome-vfs.keys.in.h:168
+#: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
 msgstr "документ WordPerfect"
 
-#: data/mime/gnome-vfs.keys.in.h:169
+#: data/mime/gnome-vfs.keys.in.h:170
 msgid "X bitmap image"
 msgstr "растрове зображення X Window"
 
-#: data/mime/gnome-vfs.keys.in.h:170
+#: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
 msgstr "зображення X Window"
 
-#: data/mime/gnome-vfs.keys.in.h:171
+#: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
 msgstr "документ XML"
 
-#: data/mime/gnome-vfs.keys.in.h:172
+#: data/mime/gnome-vfs.keys.in.h:173
 msgid "XPM image"
 msgstr "зображення XPM"
 
-#: data/mime/gnome-vfs.keys.in.h:173
+#: data/mime/gnome-vfs.keys.in.h:174
 msgid "Xbase database"
 msgstr "база даних Xbase"
 
-#: data/mime/gnome-vfs.keys.in.h:174
+#: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
 msgstr "Active Server Page"
 
-#: data/mime/gnome-vfs.keys.in.h:175
+#: data/mime/gnome-vfs.keys.in.h:176
 msgid "address card"
 msgstr "адреска картка"
 
-#: data/mime/gnome-vfs.keys.in.h:176
+#: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
 msgstr "Арх╕в ar"
 
-#: data/mime/gnome-vfs.keys.in.h:177
+#: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
 msgstr "Арх╕в arj"
 
-#: data/mime/gnome-vfs.keys.in.h:178
+#: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
 msgstr "список автор╕в"
 
-#: data/mime/gnome-vfs.keys.in.h:179
+#: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
 msgstr "резервний файл"
 
-#: data/mime/gnome-vfs.keys.in.h:180
+#: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
 msgstr "основний звук"
 
-#: data/mime/gnome-vfs.keys.in.h:181
+#: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
 msgstr "б╕бл╕ограф╕чний запис"
 
-#: data/mime/gnome-vfs.keys.in.h:182
+#: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
 msgstr "дв╕йкова програма"
 
-#: data/mime/gnome-vfs.keys.in.h:183
+#: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
 msgstr "блоковий пристр╕й"
 
-#: data/mime/gnome-vfs.keys.in.h:184
+#: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
 msgstr "файл стиснений bzip"
 
-#: data/mime/gnome-vfs.keys.in.h:185
+#: data/mime/gnome-vfs.keys.in.h:186
 msgid "calendar file"
 msgstr "календарний файл"
 
-#: data/mime/gnome-vfs.keys.in.h:186
+#: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:187
+#: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
 msgstr "символьний пристр╕й"
 
-#: data/mime/gnome-vfs.keys.in.h:188
+#: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
 msgstr "розд╕лений комами текстовий документ"
 
-#: data/mime/gnome-vfs.keys.in.h:189
+#: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:190
+#: data/mime/gnome-vfs.keys.in.h:191
 msgid "compress-compressed file"
 msgstr "файл стиснений compress"
 
-#: data/mime/gnome-vfs.keys.in.h:191
+#: data/mime/gnome-vfs.keys.in.h:192
 msgid "compressed GIMP document"
 msgstr "стиснений документ GIMP"
 
-#: data/mime/gnome-vfs.keys.in.h:192
+#: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
 msgstr "╕нформац╕йний файл каталогу"
 
-#: data/mime/gnome-vfs.keys.in.h:193
+#: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
 msgstr "визначення типу документу"
 
-#: data/mime/gnome-vfs.keys.in.h:194
+#: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
 msgstr "заголовки електронно╖ пошти"
 
-#: data/mime/gnome-vfs.keys.in.h:195
+#: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
 msgstr "пов╕домлення електронно╖ пошти"
 
-#: data/mime/gnome-vfs.keys.in.h:196
+#: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
 msgstr "зашифроване пов╕домлення"
 
-#: data/mime/gnome-vfs.keys.in.h:197
+#: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:198
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
 msgstr "тека"
 
-#: data/mime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
 msgstr "арх╕в gtar"
 
-#: data/mime/gnome-vfs.keys.in.h:200
+#: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
 msgstr "файл стиснутий gzip"
 
-#: data/mime/gnome-vfs.keys.in.h:201
+#: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
 msgstr "стор╕нка дов╕дки"
 
-#: data/mime/gnome-vfs.keys.in.h:202
+#: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
 msgstr "зв╕т в╕двантаження пошти"
 
-#: data/mime/gnome-vfs.keys.in.h:203
+#: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:204
+#: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
 msgstr "зв╕т поштово╖ системи"
 
-#: data/mime/gnome-vfs.keys.in.h:205
+#: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
 msgstr "файл make"
 
-#: data/mime/gnome-vfs.keys.in.h:206
+#: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
 msgstr "стор╕нка пос╕бника"
 
-#: data/mime/gnome-vfs.keys.in.h:207
+#: data/mime/gnome-vfs.keys.in.h:208
 msgid "manual page (compressed)"
 msgstr "стор╕нка пос╕бника (стиснута)"
 
-#: data/mime/gnome-vfs.keys.in.h:208
+#: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
 msgstr "в╕дбиток пам'ят╕"
 
-#: data/mime/gnome-vfs.keys.in.h:209
+#: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
 msgstr "зб╕рка пов╕домлень"
 
-#: data/mime/gnome-vfs.keys.in.h:210
+#: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
 msgstr "пов╕домлення в дек╕лькох форматах"
 
-#: data/mime/gnome-vfs.keys.in.h:211
+#: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
 msgstr "багаточастинне пов╕домлення"
 
-#: data/mime/gnome-vfs.keys.in.h:212
+#: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
 msgstr "найменований канал"
 
-#: data/mime/gnome-vfs.keys.in.h:213
+#: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
 msgstr "об'╓ктний код"
 
-#: data/mime/gnome-vfs.keys.in.h:214
+#: data/mime/gnome-vfs.keys.in.h:215
 msgid "ogg audio"
 msgstr "ауд╕о ogg"
 
-#: data/mime/gnome-vfs.keys.in.h:215
+#: data/mime/gnome-vfs.keys.in.h:216
 msgid "partial email message"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:216
+#: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
 msgstr "простий текстовий документ"
 
-#: data/mime/gnome-vfs.keys.in.h:217
+#: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
 msgstr "результати проф╕лювання"
 
-#: data/mime/gnome-vfs.keys.in.h:218
+#: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
 msgstr "посилання на в╕ддалений файл"
 
-#: data/mime/gnome-vfs.keys.in.h:219
+#: data/mime/gnome-vfs.keys.in.h:220
 msgid "rejected patch file"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:220
+#: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
 msgstr "документ rich text"
 
-#: data/mime/gnome-vfs.keys.in.h:221
+#: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
 msgstr "результати пошуку"
 
-#: data/mime/gnome-vfs.keys.in.h:222
+#: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
 msgstr "сп╕льна б╕бл╕отека"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
 msgstr "арх╕в оболонки"
 
-#: data/mime/gnome-vfs.keys.in.h:224
+#: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
 msgstr "скрипт оболонки"
 
-#: data/mime/gnome-vfs.keys.in.h:225
+#: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
 msgstr "п╕дписане пов╕домлення"
 
-#: data/mime/gnome-vfs.keys.in.h:226
+#: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
 msgstr "сокет"
 
-#: data/mime/gnome-vfs.keys.in.h:227
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
 msgstr ""
 
-#: data/mime/gnome-vfs.keys.in.h:230
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
 msgstr "латка вих╕дного коду"
 
-#: data/mime/gnome-vfs.keys.in.h:231
+#: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
 msgstr "таблиця стилю"
 
-#: data/mime/gnome-vfs.keys.in.h:232
+#: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
 msgstr "символьне посилання"
 
-#: data/mime/gnome-vfs.keys.in.h:233
+#: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
 msgstr "текстовий документ розд╕лений табуляц╕ями"
 
-#: data/mime/gnome-vfs.keys.in.h:234
+#: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
 msgstr "арх╕в tar"
 
-#: data/mime/gnome-vfs.keys.in.h:235
+#: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
 msgstr "арх╕в tar (стиснутий bzip2)"
 
-#: data/mime/gnome-vfs.keys.in.h:236
+#: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
 msgstr "арх╕в tar (стиснутий gzip)"
 
-#: data/mime/gnome-vfs.keys.in.h:237
+#: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
 msgstr "тема"
 
-#: data/mime/gnome-vfs.keys.in.h:238
+#: data/mime/gnome-vfs.keys.in.h:239
 msgid "troff document"
 msgstr "документ troff"
 
-#: data/mime/gnome-vfs.keys.in.h:239
+#: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
 msgstr "вх╕дний документ troff me"
 
-#: data/mime/gnome-vfs.keys.in.h:240
+#: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
 msgstr "вх╕дний документ troff mm"
 
-#: data/mime/gnome-vfs.keys.in.h:241
+#: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
 msgstr "вх╕дний документ troff ms"
 
-#: data/mime/gnome-vfs.keys.in.h:242
+#: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
 msgstr "нев╕домий тип"
 
-#: data/mime/gnome-vfs.keys.in.h:243
+#: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
 msgstr "арх╕в ustar"
 
-#: data/mime/gnome-vfs.keys.in.h:244
+#: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
 msgstr "ауд╕о wave"
 
-#: data/mime/gnome-vfs.keys.in.h:245
+#: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
 msgstr "веб-тека"
 
-#: data/mime/gnome-vfs.keys.in.h:246
+#: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
 msgstr "векторна граф╕ка xfig"
 
-#: data/mime/gnome-vfs.keys.in.h:247
+#: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
 msgstr "арх╕в zip"
 
-#: data/mime/gnome-vfs.keys.in.h:248
+#: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
 msgstr "арх╕в zoo"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Знищення."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Помилка зситування: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Помилка запису: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Неможливо записати: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Неможливо створити тимчасовий файл \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Неможливо створити сокет: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Неможливо зв'язати \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Неможливе прослуховування на \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Неможливо визначити початкове посилання на RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Неможливо актив╕зувати менеджер POA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Використання: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Неможливо в╕дкрити файловий дескриптор %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Незнайдено ╕нтерфейсу спов╕щення для \"%s\"."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Неможливо встановити об'╓кт запиту."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Неможливо отримати IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Отримано дивний рядок в╕д п╕дпорядкованого процесу: \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Неможливо отримати об'╓кт для \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Неможливо з'╓днати сокет \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Неможливо скинути значення GNOME::VFS::Slave %s -- виключення %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-"Неможливо скинути значення GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
-
-#: libgnomevfs/gnome-vfs-configuration.c:187
+#: libgnomevfs/gnome-vfs-configuration.c:216
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d м╕стить символи NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:204
+#: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не м╕стить назви методу."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:262
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не м╕стить назви модулю."
 
-#: libgnomevfs/gnome-vfs-configuration.c:286
+#: libgnomevfs/gnome-vfs-configuration.c:315
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Не знайдено конф╕гурац╕йного файлу \"%s\": %s"
 
-#: libgnomevfs/gnome-vfs-init.c:69
+#: libgnomevfs/gnome-vfs-init.c:76
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS вже ╕н╕ц╕ал╕зовано"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:650
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Неможливо проанал╕зувати: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:656
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 msgid "More parsing errors will be ignored."
 msgstr "╤нш╕ помилки анал╕зу буде про╕гноровано."
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
 msgstr "Без помилок"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
 msgstr "Файл не знайдено"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
 msgstr "Загальна помилка"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
 msgstr "Внутр╕шня помилка"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
 msgstr "Нев╕рн╕ параметри"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
 msgstr "Операц╕я не п╕дтриму╓ться"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
 msgstr "Помилка В/В"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
 msgstr "Дан╕ з╕псовано"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
 msgstr "Формат нев╕рний"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
 msgstr "Поганий номер файлу"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
 msgstr "Файл надто великий"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
 msgstr "Не лишилося в╕льно м╕сця на пристро╖"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
 msgstr "Файлова система лише для зчитування"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
 msgstr "Нев╕рний URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
 msgstr "Файл не в╕дкрито"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
 msgstr "Нев╕рний режим в╕дкриття"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
 msgstr "Доступ заборонено"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
 msgstr "Надто багато в╕дкритих файл╕в"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
 msgstr "К╕нець файлу"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
 msgstr "Не каталог"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
 msgstr "Операц╕я викону╓ться"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
 msgstr "Операц╕ю перервано"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
 msgstr "Файл ╕сну╓"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
 msgstr "Знайдено цикл╕чне посилання"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
 msgstr "Операц╕ю не дозволено"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
 msgstr "Це каталог"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Недостатньо пам'ят╕"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
 msgstr "Хосту не знайдено"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
 msgstr "Нев╕рна назва хосту"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
 msgstr "Хост не ма╓ адреси"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
 msgstr "Ре╓страц╕я не вдалась"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
 msgstr "Операц╕ю в╕дм╕нено"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
 msgstr "Каталог зайнято"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
 msgstr "Каталог не порожн╕й"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
 msgstr "Надто багато посилань"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
 msgstr "Файлова система лише для зчитування"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
 msgstr "Не на т╕й сам╕й файлов╕й систем╕"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
 msgstr "Назва надто довга"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
 msgstr "Серв╕с не доступний"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
 msgstr "Запит застир╕лих серв╕сних даних"
+
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:78
+#, fuzzy
+msgid "Protocol error"
+msgstr "Без помилок"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
 msgstr "Нев╕дома помилка"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:66
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:68
 #, c-format
 msgid "%u bytes"
 msgstr "%u байт╕в"
 
-#: libgnomevfs/gnome-vfs-utils.c:77
+#: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Кб"
 
-#: libgnomevfs/gnome-vfs-utils.c:81
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Мб"
 
-#: libgnomevfs/gnome-vfs-utils.c:85
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Гб"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Нев╕домий тип операц╕╖ %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1574
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Нев╕домий тип завдання %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Операц╕ю зупинено"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Типи файл╕в ╕ програми"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Вказати програми для в╕дкривання чи показу файл╕в кожного типу"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "Тип MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Зм╕нити п╕ктограму"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Зм╕нити розширення файл╕в"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Типова д╕я:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Використовувати програму перегляду"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "В╕дкрити програмою"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Виправити список"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Додати новий тип MIME..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Стерти цей тип MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Повернутись до типових налаштувань"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Нема╓"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Повернення до системних установок вс╕х зм╕н, що\n"
-"ви будь-коли вносили до тип╕в файл╕в ╕ програм.\n"
-"Повернутись до систених установок?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "нема╓"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Показати як %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Опис"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Розширення"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Типова д╕я"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Виправити список програм"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Вибер╕ть програми, що мають з'являтись у меню для типу MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Додати програму..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Виправити програму..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Стерти програму"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Виправити список компонент╕в"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr ""
-"Вибрати програми перегляду, що мають з'являтись в меню для типу MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"Введений тип MIME м╕стить велик╕ л╕тери. Л╕тери у верхньому ре╜╕стр╕ буду "
-"зам╕нено на символи в нижньому ре╜╕стр╕."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Додати новий тип MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Додати тип MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Новий тип MIME (наприклад, image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Опис (наприклад, Фальшиве зображення):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Розширення файл╕в "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Додати..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Видалити    "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Додати нове розширення"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Введ╕ть розширення для цього типу MIME (без крапки).\n"
-"Ви можете ввести дек╕лька розширень розд╕лених комами,\n"
-"наприклад: html, htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Розширення:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Ви ма╓те ввести назву."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Ви ма╓те ввести команду."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"Файлу \"%s\" не ╕сну╓, або його не можна виконати.\n"
-"Перев╕рте написання та переконайтесь, що ви ма╓те\n"
-"достатньо прав для виконання файлу."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Не вдалось знайти команду \"%s\".\n"
-"Вам потр╕бно ввести команду, яка працюватиме з будь-якого командного рядка."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Погана назва програми"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Погана команда програми"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Додати програму"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Виправити програму"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Назва програми:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Команда програми:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Повед╕нка в╕дкривання"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Може в╕дкривати багато файл╕в"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Може в╕дкривати з URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Неможливо знайти hbox, використову╓ться звичайний вибор файлу"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Перегляд"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Виб╕р п╕ктограми"
-
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Нев╕домий GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1179
-#, c-format
-msgid "%s to retrieve"
-msgstr "%s для в╕дновлення"
+#~ msgid "Dying."
+#~ msgstr "Знищення."
 
-#: modules/http-method.c:1584
-#, c-format
-msgid "Closing connection to %s"
-msgstr "Закриття з'╓днання з %s"
+#~ msgid "Error reading: %s"
+#~ msgstr "Помилка зситування: %s"
 
-#: modules/http-method.c:1850
-#, c-format
-msgid "%s of %s read"
-msgstr "%s з %s зчитано"
+#~ msgid "Error writing: %s"
+#~ msgstr "Помилка запису: %s"
 
-#: modules/http-method.c:1853
-#, c-format
-msgid "%s read"
-msgstr "%s зчитано"
+#~ msgid "Cannot write: %s"
+#~ msgstr "Неможливо записати: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Назад"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Неможливо створити тимчасовий файл \"%s\""
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Перейти в попередн╕й каталог"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "Неможливо створити сокет: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Вгору"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "Неможливо зв'язати \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Перейти в батьк╕вський каталог"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "Неможливе прослуховування на \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "Вперед"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Перейти в наступний каталог"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Перечитати"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "Неможливо визначити початкове посилання на RootPOA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Перечитати поточкий каталог"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "Неможливо актив╕зувати менеджер POA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Дом╕вка"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Використання: %s <ior> [<ior_fd>]\n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Перейти в домашн╕й каталог"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Неможливо в╕дкрити файловий дескриптор %d."
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Назва"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "Незнайдено ╕нтерфейсу спов╕щення для \"%s\"."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Розм╕р"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "Неможливо встановити об'╓кт запиту."
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Дата"
+#~ msgid "Cannot extract IOR."
+#~ msgstr "Неможливо отримати IOR."
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Введ╕ть назву:"
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Отримано дивний рядок в╕д п╕дпорядкованого процесу: \"%s\""
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Показати:"
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "Неможливо отримати об'╓кт для \"%s\""
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Показати крапков╕ файли"
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
+
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "Неможливо з'╓днати сокет \"%s\": %s"
+
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Неможливо скинути значення GNOME::VFS::Slave %s -- виключення %s"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr ""
+#~ "Неможливо скинути значення GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr ""
+#~ "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Типи файл╕в ╕ програми"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr "Вказати програми для в╕дкривання чи показу файл╕в кожного типу"
+
+#~ msgid "MIME Type"
+#~ msgstr "Тип MIME"
+
+#~ msgid "Change Icon"
+#~ msgstr "Зм╕нити п╕ктограму"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Зм╕нити розширення файл╕в"
+
+#~ msgid "Default Action:"
+#~ msgstr "Типова д╕я:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Використовувати програму перегляду"
+
+#~ msgid "Open With Application"
+#~ msgstr "В╕дкрити програмою"
+
+#~ msgid "Edit List"
+#~ msgstr "Виправити список"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Додати новий тип MIME..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Стерти цей тип MIME"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Повернутись до типових налаштувань"
+
+#~ msgid "None"
+#~ msgstr "Нема╓"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Повернення до системних установок вс╕х зм╕н, що\n"
+#~ "ви будь-коли вносили до тип╕в файл╕в ╕ програм.\n"
+#~ "Повернутись до систених установок?"
+
+#~ msgid "none"
+#~ msgstr "нема╓"
+
+#~ msgid "View as %s"
+#~ msgstr "Показати як %s"
+
+#~ msgid "Description"
+#~ msgstr "Опис"
+
+#~ msgid "Extension"
+#~ msgstr "Розширення"
+
+#~ msgid "Default Action"
+#~ msgstr "Типова д╕я"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Виправити список програм"
+
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Вибер╕ть програми, що мають з'являтись у меню для типу MIME \"%s\""
+
+#~ msgid "Add Application..."
+#~ msgstr "Додати програму..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Виправити програму..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Стерти програму"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Виправити список компонент╕в"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr ""
+#~ "Вибрати програми перегляду, що мають з'являтись в меню для типу MIME \"%s\""
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "Введений тип MIME м╕стить велик╕ л╕тери. Л╕тери у верхньому ре╜╕стр╕ буду "
+#~ "зам╕нено на символи в нижньому ре╜╕стр╕."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Додати новий тип MIME"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Додати тип MIME"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Новий тип MIME (наприклад, image/x-thumper):"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Опис (наприклад, Фальшиве зображення):"
+
+#~ msgid "File Extensions "
+#~ msgstr "Розширення файл╕в "
+
+#~ msgid "Add..."
+#~ msgstr "Додати..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Видалити    "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Додати нове розширення"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Введ╕ть розширення для цього типу MIME (без крапки).\n"
+#~ "Ви можете ввести дек╕лька розширень розд╕лених комами,\n"
+#~ "наприклад: html, htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Розширення:"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Ви ма╓те ввести назву."
+
+#~ msgid "You must enter a command."
+#~ msgstr "Ви ма╓те ввести команду."
+
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "Файлу \"%s\" не ╕сну╓, або його не можна виконати.\n"
+#~ "Перев╕рте написання та переконайтесь, що ви ма╓те\n"
+#~ "достатньо прав для виконання файлу."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "Не вдалось знайти команду \"%s\".\n"
+#~ "Вам потр╕бно ввести команду, яка працюватиме з будь-якого командного рядка."
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Погана назва програми"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Погана команда програми"
+
+#~ msgid "Add Application"
+#~ msgstr "Додати програму"
+
+#~ msgid "Edit Application"
+#~ msgstr "Виправити програму"
+
+#~ msgid "Application Name:"
+#~ msgstr "Назва програми:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Команда програми:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Повед╕нка в╕дкривання"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Може в╕дкривати багато файл╕в"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Може в╕дкривати з URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Неможливо знайти hbox, використову╓ться звичайний вибор файлу"
+
+#~ msgid "Preview"
+#~ msgstr "Перегляд"
+
+#~ msgid "Select an icon"
+#~ msgstr "Виб╕р п╕ктограми"
+
+#~ msgid "%s to retrieve"
+#~ msgstr "%s для в╕дновлення"
+
+#~ msgid "Closing connection to %s"
+#~ msgstr "Закриття з'╓днання з %s"
+
+#~ msgid "%s of %s read"
+#~ msgstr "%s з %s зчитано"
+
+#~ msgid "%s read"
+#~ msgstr "%s зчитано"
+
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Перейти в попередн╕й каталог"
+
+#~ msgid "Up"
+#~ msgstr "Вгору"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Перейти в батьк╕вський каталог"
+
+#~ msgid "Forward"
+#~ msgstr "Вперед"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Перейти в наступний каталог"
+
+#~ msgid "Rescan"
+#~ msgstr "Перечитати"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Перечитати поточкий каталог"
+
+#~ msgid "Home"
+#~ msgstr "Дом╕вка"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Перейти в домашн╕й каталог"
+
+#~ msgid "Name"
+#~ msgstr "Назва"
+
+#~ msgid "Size"
+#~ msgstr "Розм╕р"
+
+#~ msgid "Date"
+#~ msgstr "Дата"
+
+#~ msgid "Enter name:"
+#~ msgstr "Введ╕ть назву:"
+
+#~ msgid "Show:"
+#~ msgstr "Показати:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Показати крапков╕ файли"
