@@ -1,3 +1,9 @@
+2004-04-15  Bastien Nocera  <hadess@hadess.net>
+
+	* programs/.cvsignore:
+	* programs/Makefile.am:
+	* programs/gnomevfs-rm.c: add a test for unlink (Closes: #135796)
+
 2004-04-09  Guntupalli Karunakar  <karunakar@freedomink.org>
 
         * configure.in: Added "gu" (Gujarati) to ALL_LINGUAS.

@@ -13,12 +13,13 @@ libraries =						\
 	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
 
-bin_PROGRAMS =					\
+bin_PROGRAMS =						\
 	gnomevfs-cat					\
 	gnomevfs-copy					\
 	gnomevfs-info					\
 	gnomevfs-ls					\
-	gnomevfs-mkdir				\
+	gnomevfs-mkdir					\
+	gnomevfs-rm					\
 	$(NULL)
 
 gnomevfs_cat_SOURCES = gnomevfs-cat.c
@@ -35,4 +36,7 @@ gnomevfs_ls_LDADD = $(libraries)
 
 gnomevfs_mkdir_SOURCES = gnomevfs-mkdir.c
 gnomevfs_mkdir_LDADD = $(libraries)
+
+gnomevfs_rm_SOURCES = gnomevfs-rm.c
+gnomevfs_rm_LDADD = $(libraries)
 
