@@ -68,6 +68,9 @@
 # special Nautilus link type
 0:32	string		\<NAUTILUS_OBJECT\ NAUTILUS_LINK	application/x-nautilus-link
 
+# special GMC link type
+0:32	string		\URL:					application/x-gmc-link
+
 # xpm rule needs to go before text/x-c
 0	string		/*\ XPM\ */				image/x-xpixmap
 

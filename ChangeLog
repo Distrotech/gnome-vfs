@@ -1,3 +1,10 @@
+2000-07-28  Gene Z. Ragan  <gzr@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys:
+	Added magic and mime type for GMC links.
+	application/x-gmc-link
+	
 2000-07-27  Seth Nickell  <seth@eazel.com>
 
 	* libgnomevfs/gnome-vfs-file-info.h:

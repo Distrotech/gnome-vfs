@@ -160,6 +160,9 @@ application/x-font-pcf
 application/x-font-speedo
 	description=Speedo font
 
+application/x-gmc-link
+	description=GMC link
+
 application/x-gtar
 	description=gtar archive
 	icon-filename=gnome-package.png
