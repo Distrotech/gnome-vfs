@@ -1,5 +1,5 @@
 Main VFS engine:
-	Ettore Perazzoli <ettore@helixcode.com>
+	Ettore Perazzoli <ettore@ximian.com>
 
 VFS engine contributors:
 	Elliot Lee <sopwith@redhat.com>
@@ -12,19 +12,19 @@ VFS engine contributors:
 	Rebecca Schulman <rebecka@eazel.com>
 	Seth Nickel <seth@eazel.com>
 	Ian McKellar <yakk@yakk.net.au>
-	Michael Meeks <michael@helixcode.com>
-	Dan Winship  <danw@helixcode.com>
+	Michael Meeks <michael@ximian.com>
+	Dan Winship  <danw@ximian.com>
 	Mathieu Lacage  <mathieu@eazel.com>
 
 "file" method: 
-	Ettore Perazzoli <ettore@helixcode.com>
+	Ettore Perazzoli <ettore@ximian.com>
 	Pavel Cisler <pavel@eazel.com>
 
 "gzip", "extfs" methods:
-	Ettore Perazzoli <ettore@helixcode.com>
+	Ettore Perazzoli <ettore@ximian.com>
 
 "http" methods:
-	Ettore Perazzoli <ettore@helixcode.com>
+	Ettore Perazzoli <ettore@ximian.com>
 	Mike Fleming <mfleming@eazel.com.com>
 	
 "ftp" method:
@@ -55,7 +55,7 @@ Misc changes:
 	J Shane Culpepper  <pepper@eazel.com>
 	Ali Abdin  <aliabdin@aucegypt.edu>
 	Seth Nickell  <seth@eazel.com>
-	Chris Toshok  <toshok@helixcode.com>
+	Chris Toshok  <toshok@ximian.com>
 	Glynn Foster  <glynn.foster@sun.com>
 	Martin Baulig  <baulig@suse.de>
 	Jarkko Ranta  <jjranta@cc.joensuu.fi>
