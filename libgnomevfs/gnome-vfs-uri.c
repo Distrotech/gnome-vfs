@@ -277,7 +277,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 done:
 	if (*host_return != NULL) {
-		host = g_ascii_strdown (*host_return);
+		host = g_ascii_strdown (*host_return, -1);
 		g_free (*host_return);
 		*host_return = host;
 
@@ -364,7 +364,7 @@ get_method_string (const gchar *substring, gchar **method_string)
 	if (*p == ':') {
 		/* Found toplevel method specification.  */
 		method = g_strndup (substring, p - substring);
-		*method_string = g_ascii_strdown (method);
+		*method_string = g_ascii_strdown (method, -1);
 		g_free (method);
 		p++;
 	} else {

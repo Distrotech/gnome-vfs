@@ -435,7 +435,7 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 			}
 
 			/* Search for UPPER case extension */
-			upext = g_ascii_strup (ext);
+			upext = g_ascii_strup (ext, -1);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
 			g_free (upext);
 			if (list != NULL) {
@@ -445,7 +445,7 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 			}
 
 			/* Final check for lower case */
-			upext = g_ascii_strdown (ext);
+			upext = g_ascii_strdown (ext, -1);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
  			g_free (upext);
 			if (list != NULL) {
