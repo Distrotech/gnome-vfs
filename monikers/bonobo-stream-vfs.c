@@ -28,18 +28,18 @@ bonobo_stream_vfs_storageinfo_from_file_info (Bonobo_StorageInfo *si,
 
 	si->name = CORBA_string_dup (fi->name);
 
-	if (fi->flags & GNOME_VFS_FILE_INFO_FIELDS_SIZE)
+	if (fi->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE)
 		si->size = fi->size;
 	else
 		si->size = 0;
 
-	if (fi->flags & GNOME_VFS_FILE_INFO_FIELDS_TYPE &&
+	if (fi->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE &&
 	    fi->type == GNOME_VFS_FILE_TYPE_DIRECTORY)
 		si->type = Bonobo_STORAGE_TYPE_DIRECTORY;
 	else
 		si->type = Bonobo_STORAGE_TYPE_REGULAR;
 
-	if (fi->flags & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE &&
+	if (fi->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE &&
 	    fi->mime_type)
 		si->content_type = CORBA_string_dup (fi->mime_type);
 	else
