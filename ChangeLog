@@ -1,3 +1,10 @@
+2001-09-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init): Don't warn on
+	re-init (it's a harmless no-op) 
+	* libgnomevfs/gnome-vfs-init.h: Remove gnome_vfs_options
+	declaration, since it's not defined anywhere anyway.
+
 2001-09-01  Darin Adler  <darin@bentspoon.com>
 
 	* idl/.cvsignore: Remove this now that this directory is empty.

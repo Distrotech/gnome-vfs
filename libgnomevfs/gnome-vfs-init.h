@@ -44,10 +44,6 @@ void     gnome_vfs_preinit     (gpointer app,
 void     gnome_vfs_postinit    (gpointer app,
 				gpointer modinfo);
 
-#ifdef POPT_AUTOHELP
-extern struct poptOption gnome_vfs_options[];
-#endif
-
 G_END_DECLS
 
 #endif

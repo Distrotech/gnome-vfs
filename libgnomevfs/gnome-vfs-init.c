@@ -77,7 +77,6 @@ gnome_vfs_init (void)
 		}
 		
 	} else {
-		g_warning (_("GNOME VFS already initialized."));
 		retval = TRUE;	/* Who cares after all.  */
 	}
 
