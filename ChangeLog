@@ -1,3 +1,9 @@
+2002-01-20  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-seekable.c: Use /* */ not // in comments.
+	* modules/extfs-method.c, modules/bzip2-method.c, gzip-method.c:
+	Same here too. From Tim Mooney <mooney@dogbert.cc.ndsu.nodak.edu>.
+	
 2002-01-20  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in: 
