@@ -1,3 +1,9 @@
+2000-11-29  Rebecca Schulman  <rebecka@eazel.com>
+
+	* modules/file-method.c: (rename_helper):
+	Fixed bug 1185, that removing a directory 
+	always returns NOT_EMPTY on an error.
+
 2000-11-22  Michael K. Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (sig_gconf_value_changed):

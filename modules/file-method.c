@@ -1821,10 +1821,7 @@ rename_helper (const gchar *old_full_name,
 				return GNOME_VFS_ERROR_CANCELLED;
 			retval = rmdir (new_full_name);
 			if (retval != 0) {
-				/* FIXME bugzilla.eazel.com 1185:
-				 * Maybe we could be more accurate here?
-				 */
-				return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+				return gnome_vfs_result_from_errno ();
 			}
 
 			if (gnome_vfs_context_check_cancellation (context))
