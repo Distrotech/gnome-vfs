@@ -1,3 +1,9 @@
+2002-10-21 Stephen Browne <stephen.browne@sun.com>
+
+	* modules/cdemenu-desktop-method.c: Find correct titles 
+	and use last defintion instead of first found of a menu
+	that is defined multiple times.
+
 2002-10-12  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/vfolder/applications.vfolder-info-default.in:
