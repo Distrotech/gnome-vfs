@@ -1,3 +1,16 @@
+2002-05-12  Rachel Hestilow  <hestilow@ximian.com>
+
+	* modules/Makefile.am:
+	* modules/default-modules.conf: Add tar module.
+
+	* modules/tar-method.c:
+	* modules/tarpet.h:
+	  Added. Many thanks to Abi Brady for 
+	  her cleanroom tar header implementation.
+	
+	* docs/tarpet: Added: tar format documentation used for
+	cleanroom.
+
 2002-05-10  Naba Kumar  <kh_naba@users.sourceforge.net>
 
         * configure.in: Added "hi" to ALL_LINGUAS.

@@ -61,6 +61,7 @@ modules_LTLIBRARIES =				\
 	libvfs-translate.la			\
 	$(CDEMENU_LTLIBS)                       \
 	libssh.la				\
+	libtar.la				\
 	$(NULL)
 
 # Not currently supported
@@ -197,6 +198,10 @@ libvfs_pipe_la_LIBADD  = $(MODULES_LIBS)
 libvfs_translate_la_SOURCES = translate-method.c
 libvfs_translate_la_LDFLAGS = $(module_flags)
 libvfs_translate_la_LIBADD  = $(MODULES_LIBS)
+
+libtar_la_SOURCES = tar-method.c tarpet.h 
+libtar_la_LDFLAGS = $(module_flags)
+libtar_la_LIBADD  = $(MODULES_LIBS)
 
 #if HAVE_LIBEFS
 #vefsmoduledir = $(modulesdir)
