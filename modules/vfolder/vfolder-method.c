@@ -1462,7 +1462,7 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 				file_info,
 				GNOME_VFS_FILE_INFO_FOLLOW_LINKS, 
 				context);
-		gnom_vfs_uri_unref (link_uri);
+		gnome_vfs_uri_unref (link_uri);
 
 		if (result != GNOME_VFS_OK) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);
