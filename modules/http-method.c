@@ -2285,7 +2285,7 @@ do_get_file_info (GnomeVFSMethod *method,
 					http_handle_close (handle, context);
 				}
 				/* evil hack */
-				if (HTTP_REDIRECTED (handle->server_status)) {
+				if (handle != NULL && HTTP_REDIRECTED (handle->server_status)) {
 					g_free (file_info->mime_type);
 					file_info->mime_type = g_strdup ("text/html");
 				}

@@ -1,5 +1,13 @@
+2000-11-02  Darin Adler  <darin@eazel.com>
+
+	Fix bug 4377 (Crash in the http method as a result of a redirect).
+
+	* modules/http-method.c: (do_get_file_info): Add missing check for
+	NULL.
+
 2000-11-02  Rebecca Schulman  <rebecka@eazel.com>
-	Fixed bug 4121, that the vault will
+
+	Fixed bug 4121, that the vault will ... <line disconnected>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
 	handle errors on closing, which is when the http module
