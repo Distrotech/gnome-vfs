@@ -1,13 +1,13 @@
 # gnome-vfsr translation to Catalan.
 # Copyright (C) 2000 Free Software Foundation, Inc.
-# Softcatalà <info@softcatala.org>, 2000.
+# Softcatalà <info@softcatala.org>, 2000-2001.
 #
 # Traducció per Softcatalà <info@softcatala.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2001-02-26 21:59-0800\n"
-"PO-Revision-Date: 2000-08-02 18:45+0200\n"
+"POT-Creation-Date: 2001-02-27 13:56+0100\n"
+"PO-Revision-Date: 2001-02-26 21:38+0100\n"
 "Last-Translator: Quico Llach <quico@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -511,8 +511,9 @@ msgid "RealVideo video"
 msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:124
+#, fuzzy
 msgid "S/MIME file"
-msgstr ""
+msgstr "Tipus de MIME"
 
 #: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME signature"
@@ -988,7 +989,7 @@ msgstr ""
 #: data/mime/gnome-vfs.keys.in.h:242
 #, fuzzy
 msgid "unknown type"
-msgstr "Error desconegut"
+msgstr "Tipus d'op %u desconegut"
 
 #: data/mime/gnome-vfs.keys.in.h:243
 msgid "ustar archive"
@@ -1240,12 +1241,12 @@ msgstr "Nom massa llarg"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Service not available"
-msgstr ""
+msgstr "El servei no està disponible"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Sol·licita les dades de serveis obsolets"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
@@ -1261,19 +1262,19 @@ msgid "%u bytes"
 msgstr "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:77
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f K"
-msgstr "%.1fK"
+msgstr "%.1f K"
 
 #: libgnomevfs/gnome-vfs-utils.c:81
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f MB"
-msgstr "%.1fM"
+msgstr "%.1f MB"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f GB"
-msgstr "%.1fG"
+msgstr "%.1f GB"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -1404,9 +1405,9 @@ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "No es pot matar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown op type %u"
-msgstr "Treball desconegut amb ID %d"
+msgstr "Tipus d'op %u desconegut"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:974
 #: libgnomevfs-pthread/gnome-vfs-job.c:1119
@@ -1415,177 +1416,174 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Treball desconegut amb ID %d"
+msgstr "Tipus de feina %u desconegut"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
 msgstr "Operació aturada"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:386
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Applications List"
 msgstr "Edita la llista d'aplicacions"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:408
-#, fuzzy, c-format
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
+#, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr ""
 "Seleccioneu les aplicacions que han d'aparèixer al menú per al tipus de MIME "
 "\"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:432
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
 msgid "Add Application..."
 msgstr "Afegeix una aplicació..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:439
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
 msgid "Edit Application..."
 msgstr "Edita una aplicació..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:445
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
 msgid "Delete Application"
 msgstr "Suprimeix una aplicació"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:479
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
 msgid "Edit Components List"
 msgstr "Edita la llista de components"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:499
-#, fuzzy, c-format
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
+#, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
 msgstr ""
 "Seleccioneu les vistes que han d'aparèixer al menú per al tipus de MIME "
 "\"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
 msgstr ""
+"El tipus de MIME introduït contenia caràcters en majúscules; aquests "
+"caràcters s'han canviat a minúscules per a la vostra comoditat."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
 msgid "Add New MIME Type"
-msgstr "Afegeix un tipus de MIME"
+msgstr "Afegeix un tipus nou de MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:768
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
 msgid "Add MIME Type"
 msgstr "Afegeix un tipus de MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:772
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
 msgid "New MIME type (e.g. image/x-thumper):"
-msgstr ""
+msgstr "Tipus nou de MIME (p.ex. image/x-thumper):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
 msgid "Description (e.g. Thumper image):"
-msgstr ""
+msgstr "Descripció (p.ex. imatge Thumper):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
 msgid "File Extensions "
-msgstr "Extensió"
+msgstr "Extensions de fitxer "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
 msgid "Add..."
-msgstr "Afegeix"
+msgstr "Afegeix..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
 msgid "    Remove    "
-msgstr "Elimina"
+msgstr "    Elimina    "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
 msgid "Add New Extension"
 msgstr "Afegeix una nova extensió"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
 "for example: html htm"
 msgstr ""
-"Escriviu les extensions per a aquest tipus de MIME.\n"
-"Per exemple:  .html, .htm"
+"Escriviu les extensions per a aquest tipus de MIME (sense el punt).\n"
+"Podeu introduir diverses extensions separant-les amb un espai,\n"
+"per exemple: html htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
 msgid "Extension:"
 msgstr "Extensió:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
 msgid "You must enter a name."
-msgstr ""
+msgstr "Heu d'introduir un nom."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
 msgid "You must enter a command."
-msgstr ""
+msgstr "Heu d'introduir una ordre."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1195
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
 #, c-format
 msgid ""
 "\"%s\" does not exist or is not executable.\n"
 "Check your spelling and make sure you have\n"
 "the right permissions to execute this file."
 msgstr ""
+"\"%s\" no existeix o no és un executable.\n"
+"Comproveu que ho heu escrit correctament i que teniu\n"
+"els permisos necessaris per executar aquest fitxer."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1201
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
 #, c-format
 msgid ""
 "The command \"%s\" cannot be found.\n"
 "You must use a command that can work from any command line."
 msgstr ""
+"No es pot trobar l'ordre \"%s\".\n"
+"Heu d'utilitzar una ordre que funcioni des de qualsevol línia d'ordres."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
 msgid "Bad Application Name"
-msgstr "Nom de l'aplicació:"
+msgstr "Nom incorrecte de l'aplicació"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1214
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
 msgid "Bad Application Command"
-msgstr "Ordre de l'aplicació:"
+msgstr "Ordre incorrecta de l'aplicació"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1246
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
 msgid "Add Application"
-msgstr "Afegeix una aplicació..."
+msgstr "Afegeix una aplicació"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1247
-#, fuzzy
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
 msgid "Edit Application"
-msgstr "Edita una aplicació..."
+msgstr "Edita una aplicació"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
 msgid "Application Name:"
 msgstr "Nom de l'aplicació:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1270
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
 msgid "Application Command:"
 msgstr "Ordre de l'aplicació:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
 msgid "Open Behavior"
 msgstr "Obre el comportament"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
 msgid "Can open multiple files"
 msgstr "Es poden obrir diversos fitxers"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1295
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
 msgid "Can open from URI"
 msgstr "Es pot obrir des de l'URI"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:735
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-#, fuzzy
 msgid "MIME Type"
 msgstr "Tipus de MIME"
 
@@ -1594,14 +1592,12 @@ msgid "Change Icon"
 msgstr "Canvia la icona"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:749
-#, fuzzy
 msgid "Change File Extensions"
-msgstr "Afegeix una nova extensió"
+msgstr "Canvia les extensions de fitxer"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:757
-#, fuzzy
 msgid "Default Action:"
-msgstr "Suprimeix una aplicació"
+msgstr "Acció per defecte:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:769
 msgid "Use Viewer"
@@ -1616,18 +1612,16 @@ msgid "Edit List"
 msgstr "Edita la llista"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:811
-#, fuzzy
 msgid "Add New MIME Type..."
 msgstr "Afegeix un nou tipus de MIME..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:817
-#, fuzzy
 msgid "Delete This MIME Type"
-msgstr "Suprimeix aquest tipus de MIME..."
+msgstr "Suprimeix aquest tipus de MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:828
 msgid "Revert to System Defaults"
-msgstr ""
+msgstr "Torna als valors per defecte del sistema"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1069
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1213
@@ -1640,21 +1634,23 @@ msgid ""
 "you have ever made to File Types and Programs.\n"
 "Revert anyway?"
 msgstr ""
+"Si torneu als paràmetres del sistema perdreu qualsevol canvi\n"
+"que mai hagueu fet als tipus de fitxer i als programes.\n"
+"Voleu tornar-hi igualment?"
 
 #. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1387
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1587
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-#, fuzzy
 msgid "none"
-msgstr "Cap"
+msgstr "cap"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1428
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1614
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1757
 #, c-format
 msgid "View as %s"
-msgstr ""
+msgstr "Visualitza com a %s"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1876
 msgid "Description"
@@ -1665,21 +1661,21 @@ msgid "Extension"
 msgstr "Extensió"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-#, fuzzy
 msgid "Default Action"
-msgstr "Suprimeix una aplicació"
+msgstr "Acció per defecte"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
 msgid "Can't find an hbox, using a normal file selection"
 msgstr ""
+"No es pot trobar cap hbox, s'està utilitzant una selecció de fitxer normal"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
 msgid "Preview"
-msgstr ""
+msgstr "Previsualitza"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
 msgid "Select an icon"
-msgstr ""
+msgstr "Seleccioneu una icona"
 
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
@@ -1708,77 +1704,73 @@ msgstr "%s llegit"
 
 #: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 #: test/gnome-file-selection/gnome-file-selection.c:668
 msgid "Go to the previously visited directory"
-msgstr ""
+msgstr "Vés al directori visitat anteriorment"
 
 #: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
-msgstr ""
+msgstr "Amunt"
 
 #: test/gnome-file-selection/gnome-file-selection.c:677
-#, fuzzy
 msgid "Go to the parent directory"
-msgstr "No és un directori"
+msgstr "Vés al directori pare"
 
 #: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
-msgstr ""
+msgstr "Endavant"
 
 #: test/gnome-file-selection/gnome-file-selection.c:686
 msgid "Go to the next visited directory"
-msgstr ""
+msgstr "Vés al directori visitat següent"
 
 #: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
-msgstr ""
+msgstr "Torna a explorar"
 
 #: test/gnome-file-selection/gnome-file-selection.c:696
 msgid "Rescan the current directory"
-msgstr ""
+msgstr "Torna a explorar el directori actual"
 
 #: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
-msgstr ""
+msgstr "Inici"
 
 #: test/gnome-file-selection/gnome-file-selection.c:706
-#, fuzzy
 msgid "Go to the home directory"
-msgstr "No és un directori"
+msgstr "Vés al directori arrel"
 
 #: test/gnome-file-selection/gnome-file-selection.c:802
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: test/gnome-file-selection/gnome-file-selection.c:803
 msgid "Size"
-msgstr ""
+msgstr "Mida"
 
 #: test/gnome-file-selection/gnome-file-selection.c:804
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: test/gnome-file-selection/gnome-file-selection.c:833
 msgid "Enter name:"
-msgstr ""
+msgstr "Introduïu el nom:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:856
 msgid "Show:"
-msgstr ""
+msgstr "Mostra:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
-msgstr ""
+msgstr "Mostra els fiters de plantilla"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:1
-#: mime-type-capplet/files-types-capplet.desktop.in.h:1
 msgid "File Types and Programs"
 msgstr ""
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:2
-#: mime-type-capplet/files-types-capplet.desktop.in.h:2
 msgid "Specify which programs are used to open or view each file type"
 msgstr ""
 

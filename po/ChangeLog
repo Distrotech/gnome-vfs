@@ -1,3 +1,10 @@
+2001-02-27  Pablo Saratxaga <pablo@mandrakesoft.com>
+
+	* ca.po: Updated Catalan file
+	* wa.po: Added Walloon file
+	* da.po,el.po: removed duplicate entries
+	* nn.po,sl.po: fixed charset= value in header
+
 2001-02-26  Rebecca Schulman  <rebecka@eazel.com>
 	* po/POTFILES.in:
 	* po/da.po:
