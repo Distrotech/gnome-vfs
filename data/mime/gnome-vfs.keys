@@ -1542,7 +1542,6 @@ text/*
 	short_list_application_ids_for_novice_user_level=gedit,xfte
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
-	icon_filename=i-regular
 
 # also application/x-abiword
 text/abiword
@@ -1609,7 +1608,6 @@ text/html
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
-	icon_filename=i-regular
 
 text/htmlh
 	description=help page
@@ -1646,7 +1644,6 @@ text/plain
 	short_list_application_ids_for_novice_user_level=gedit
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
-	icon_filename=i-regular
 
 text/rfc822-headers
 	description=email headers
@@ -1702,7 +1699,6 @@ text/x-c
 	[fr]description=Code source C
 	[no]description=C-kildekode
 	[sv]description=C-källkod
-	icon_filename=i-regular
 
 text/x-c++
 	description=C++ source code
@@ -1719,12 +1715,10 @@ text/x-comma-separated-values
 text/x-copying
 	description=software license terms
 	[fr]description=Termes de la licence du logiciel
-	icon_filename=i-regular
 
 text/x-credits
 	description=software author credits
 	[fr]description=Crédits des auteurs du logiciel
-	icon_filename=i-regular
 
 # also application/x-csh
 text/x-csh
@@ -1799,7 +1793,6 @@ text/x-java
 	[fr]description=Code source Java
 	[no]description=Java-kildekode
 	[sv]description=Java-källkod
-	icon_filename=i-regular
 
 text/x-ksh
 	can_be_executable=TRUE
@@ -1821,7 +1814,6 @@ text/x-patch
 	[fr]description=Code source patch
 	[no]description=kildekodepatch
 	[sv]description=källkodspatch
-	icon_filename=i-regular
 
 # also application/x-perl
 text/x-perl
@@ -1832,18 +1824,15 @@ text/x-perl
 	[fr]description=Script Perl
 	[no]description=Perl skript
 	[sv]description=Perlskript
-	icon_filename=i-regular
 
 text/x-python
 	description=Python source code
 	[fr]description=Code source Python
-	icon_filename=i-regular
 
 # translate and capitalize "README" as appropriate
 text/x-readme
 	description=README document
 	[fr]description=Document LISEZMOI
-	icon_filename=i-regular
 
 text/x-scheme
 	description=Scheme source code
@@ -1867,7 +1856,6 @@ text/x-sh
 	[fr]description=Script shell
 	[no]description=skallskript
 	[sv]description=skalskript
-	icon_filename=i-regular
 
 text/x-speech
 	description=Speech document
@@ -1965,7 +1953,6 @@ text/xml
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_hacker_user_level=mozilla
-	icon_filename=i-regular
 
 video/isivideo
 	description=ISI video
