@@ -21,8 +21,10 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_OPS_H
-#define _GNOME_VFS_OPS_H
+#ifndef GNOME_VFS_OPS_H
+#define GNOME_VFS_OPS_H
+
+#include <libgnomevfs/gnome-vfs-types.h>
 
 GnomeVFSResult	 gnome_vfs_open			(GnomeVFSHandle **handle,
 						 const gchar *text_uri,
@@ -124,4 +126,4 @@ GnomeVFSResult   gnome_vfs_set_file_info        (const gchar *text_uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSSetFileInfoMask mask);
 
-#endif /* _GNOME_VFS_OPS_H */
+#endif /* GNOME_VFS_OPS_H */
