@@ -76,6 +76,8 @@ static GnomeVFSResult
 	GnomeVFSResult (*retval)();
 
 	g_snprintf(cbuf, sizeof(cbuf), "%s_%s", backend_lower, func_name);
+	g_assert(gmod);
+
 	if (!g_module_symbol(gmod, cbuf, (gpointer *)&retval))
 		retval = NULL;
 

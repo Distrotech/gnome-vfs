@@ -167,14 +167,19 @@ set_uri_element (GnomeVFSURI *uri,
 						&toplevel->host_port,
 						&toplevel->password);
 	} else {
+#if 0
+/* This causes problems for URI's that may not be relative, but may still not have a leading / */
 		if (text[0] != '/') {
 			uri->text = g_malloc (len + 2);
 			uri->text[0] = '/';
 			memcpy (uri->text + 1, text, len);
 			uri->text[len + 1] = 0;
 		} else {
+#endif
 			uri->text = g_strndup (text, len);
+#if 0
 		}
+#endif
 	}
 
 	gnome_vfs_canonicalize_pathname (uri->text);

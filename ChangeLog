@@ -1,3 +1,9 @@
+2000-02-16  Elliot Lee  <sopwith@redhat.com>
+	* libgnomevfs/gnome-vfs-uri.c: Don't add leading /
+	* libgnomevfs/gnome-vfs-backend.c: Add assert to ensure initialization.
+	* modules/default-methods.conf: Pass filename to gnome-man2html2 instead of redirecting
+	it as input.
+
 2000-02-15  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-configuration.c:
