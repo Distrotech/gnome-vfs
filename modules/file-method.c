@@ -716,7 +716,7 @@ read_directory (DirectoryHandle *handle,
 	gchar *full_name;
 	gboolean filter_called;
 
-	/* This makes sure we do try to filter the file more than
+	/* This makes sure we don't try to filter the file more than
            once.  */
 	filter_called = FALSE;
 

@@ -2,7 +2,7 @@
 /* test-shell.c - A small program to allow testing of a wide variety of
    gnome-vfs functionality
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -88,8 +88,7 @@ do_ls (void)
 	     info; info = gnome_vfs_directory_list_next (list)) {
 		char prechar = '\0', postchar = '\0';
 
-		/* FIXME: Bug no.1 type field invalid */
-		if (1 || info->type & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
+		if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
 			switch (info->type) {
 			case GNOME_VFS_FILE_TYPE_DIRECTORY:
 				prechar = '[';
@@ -147,6 +146,7 @@ list_commands ()
 	printf (" * cd:                     enter storage\n");
 	printf (" * cat,type <stream name>: dump text file to console\n");
 	printf (" * dump     <stream name>: dump binary file to console\n");
+	printf (" * sync:                   for sinkers\n");
 	printf (" * quit,exit,bye:          exit\n");
 }
 
@@ -171,17 +171,24 @@ syntax_error (char *err)
 static gboolean
 simple_regexp (const char *regexp, const char *fname)
 {
-	int      i;
+	int      i, j;
 	gboolean ret = TRUE;
 
 	g_return_val_if_fail (fname != NULL, FALSE);
 	g_return_val_if_fail (regexp != NULL, FALSE);
 
-	for (i = 0; regexp [i] && fname [i]; i++) {
-		if (regexp [i] == '.')
+	for (i = j = 0; regexp [i] && fname [j]; j++, i++) {
+		if (regexp [i] == '\\' &&
+		    !(i > 0 && regexp [i - 1] == '\\')) {
+			j--;
+			continue;
+		}
+
+		if (regexp [i] == '.' &&
+		    !(i > 0 && regexp [i - 1] == '\\'))
 			continue;
 
-		if (toupper (regexp [i]) != toupper (fname [i])) {
+		if (toupper (regexp [i]) != toupper (fname [j])) {
 			ret = FALSE;
 			break;
 		}
@@ -190,7 +197,10 @@ simple_regexp (const char *regexp, const char *fname)
 	if (regexp [i] && regexp [i] == '*')
 		ret = TRUE;
 
-	else if (!regexp [i] && fname [i])
+	else if (!regexp [i] && fname [j])
+		ret = FALSE;
+	
+	else if (!fname [j] && regexp [i])
 		ret = FALSE;
 
 /*	if (ret)
@@ -234,8 +244,14 @@ get_regexp_name (const char *regexp, const char *path, gboolean dir)
 	     info; info = gnome_vfs_directory_list_next (list)) {
 
 		if (simple_regexp (regexp, info->name)) {
-			if ((dir  && info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) ||
-			    (!dir && info->type != GNOME_VFS_FILE_TYPE_DIRECTORY)) {
+			if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
+				if ((dir  && info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) ||
+				    (!dir && info->type != GNOME_VFS_FILE_TYPE_DIRECTORY)) {
+					res = g_strdup (info->name);
+					break;
+				}
+			} else {
+				fprintf (stderr, "Can't cope with no type data");
 				res = g_strdup (info->name);
 				break;
 			}
@@ -286,8 +302,10 @@ do_cd (void)
 			char *ptr;
 			
 			ptr = get_regexp_name (p, cur_dir, TRUE);
-			if (!ptr)
+			if (!ptr) {
+				fprintf (stderr, "Can't find '%s'\n", p);
 				return;
+			}
 
 			newpath = g_strconcat (cur_dir, ptr, "/", NULL);
 		}
@@ -310,6 +328,9 @@ get_fname (void)
 	
 	reg_name = arg_data [arg_cur++];
 	fname = get_regexp_name (reg_name, cur_dir, FALSE);
+
+	if (!fname)
+		fname = reg_name;
 
 	if (cur_dir)
 		f = g_strconcat (cur_dir, fname, NULL);
@@ -533,6 +554,8 @@ main (int argc, char **argv)
 			do_cat ();
 		else if (g_strcasecmp (ptr, "cp") == 0)
 			do_cp ();
+		else if (g_strcasecmp (ptr, "sync") == 0)
+			fprintf (stderr, "a shell is like a boat, it lists or syncs (RMS)\n");
 		else if (g_strcasecmp (ptr,"help") == 0 ||
 			 g_strcasecmp (ptr,"?")    == 0 ||
 			 g_strcasecmp (ptr,"info") == 0 ||
