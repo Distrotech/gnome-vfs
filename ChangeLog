@@ -1,3 +1,23 @@
+2000-07-07  Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_add_extension), (gnome_vfs_mime_remove_extension):
+	Changed code to used renamed gnome_vfs_mime_extensions_list_free
+	
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	(gnome_vfs_mime_get_extensions_pretty_string):
+	Return a list with period prepended, comma seperated items.
+
+	(gnome_vfs_mime_extensions_list_free):
+	Changed name form gnome_vfs_mime_extension_list_free
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_extension_list), (init_mime_capplet),
+	(nautilus_mime_type_capplet_update_info), (populate_mime_list),
+	(create_mime_list_and_scroller):
+	More exciting UI layout work and feature completion.
+
 2000-07-07  Seth Nickell  <set EMAIL_ADDRESS environment variable>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory), (copy_items):

@@ -1085,6 +1085,58 @@ gnome_vfs_mime_get_extensions_string (const char *mime_type)
 
 	return NULL;
 }
+	
+/**
+ * gnome_vfs_mime_get_extensions_pretty_string:
+ * @mime_type: the mime type
+ *
+ * Returns a string containing comma seperated extensions for this mime-type
+ */
+char *
+gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
+{
+	GList *extensions, *element;
+	char *ext_str, *tmp_str;
+	
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
+	ext_str = NULL;
+	tmp_str = NULL;
+
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+
+	maybe_reload ();
+	
+	extensions = gnome_vfs_mime_get_extensions_list (mime_type);
+	if (extensions != NULL) {
+		for (element = extensions; element != NULL; element = element->next) {
+			if (ext_str != NULL) {
+				tmp_str = ext_str;
+
+				if (element->next == NULL) {
+					ext_str = g_strconcat (tmp_str, ".", (char *)element->data, NULL);
+				} else {
+					ext_str = g_strconcat (tmp_str, ".", (char *)element->data, ", ", NULL);
+				}
+				g_free (tmp_str);
+			} else {
+				if (g_list_length (extensions) == 1) {
+					ext_str = g_strconcat (".", (char *)element->data, NULL);
+				} else {
+					ext_str = g_strconcat (".", (char *)element->data, ", ", NULL);
+				}
+			}
+		}
+
+		gnome_vfs_mime_extensions_list_free (extensions);
+	}
+
+	return ext_str;
+}
 
 
 /**
@@ -1095,7 +1147,7 @@ gnome_vfs_mime_get_extensions_string (const char *mime_type)
  * to free the list and all of its elements.
  */
 void
-gnome_vfs_mime_extension_list_free (GList *list)
+gnome_vfs_mime_extensions_list_free (GList *list)
 {
 	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);

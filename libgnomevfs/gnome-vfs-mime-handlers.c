@@ -1331,7 +1331,7 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 	/* Check for duplicates */
 	for (element = list; element != NULL; element = element->next) {
 		if (strcmp (extension, (char *)element->data) == 0) {					
-			gnome_vfs_mime_extension_list_free (list);
+			gnome_vfs_mime_extensions_list_free (list);
 			return GNOME_VFS_OK;
 		}
 	}
@@ -1358,7 +1358,7 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 		gnome_vfs_mime_commit_registered_types ();
 	}
 	
-	gnome_vfs_mime_extension_list_free (list);
+	gnome_vfs_mime_extensions_list_free (list);
 
 	return GNOME_VFS_OK;
 }
@@ -1396,7 +1396,7 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 
 	/* Exit if we found no match */
 	if (!in_list) {
-		gnome_vfs_mime_extension_list_free (list);
+		gnome_vfs_mime_extensions_list_free (list);
 		return GNOME_VFS_OK;
 	}
 	
@@ -1418,7 +1418,7 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 		gnome_vfs_mime_commit_registered_types ();
 	}
 	
-	gnome_vfs_mime_extension_list_free (list);
+	gnome_vfs_mime_extensions_list_free (list);
 
 	return GNOME_VFS_OK;
 }

@@ -36,8 +36,9 @@ const char *gnome_vfs_mime_program       		 (const char *mime_type);
 const char *gnome_vfs_mime_description   		 (const char *mime_type);
 GList 	   *gnome_vfs_mime_get_extensions_list 		 (const char *mime_type);
 char 	   *gnome_vfs_mime_get_extensions_string 	 (const char *mime_type);
+char 	   *gnome_vfs_mime_get_extensions_pretty_string  (const char *mime_type);
 
-void	   gnome_vfs_mime_extension_list_free 		 (GList      *list);
+void	   gnome_vfs_mime_extensions_list_free 		 (GList      *list);
 const char *gnome_vfs_mime_test          		 (const char *mime_type);
 const char *gnome_vfs_mime_composetyped  		 (const char *mime_type);
 gboolean    gnome_vfs_mime_copiousoutput 		 (const char *mime_type,
