@@ -1,3 +1,16 @@
+2001-02-05  Rebecca Schulman  <rebecka@eazel.com>
+
+	reviewed by: Maciej Stachowiak <mjs@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	Add bzip as a magic pattern
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component),
+	(gnome_vfs_mime_get_short_list_components):
+	Return short list components in order of 
+	their appearance on the short list rather than
+	in alphabetical order
+
 2001-02-05  Michael K. Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (vfs_module_init):

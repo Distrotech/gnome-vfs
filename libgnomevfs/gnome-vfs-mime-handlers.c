@@ -253,7 +253,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	short_list = gnome_vfs_mime_get_short_list_components (mime_type);
 
 	if (short_list != NULL) {
-		sort[1] = g_strdup ("has (['");
+		sort[1] = g_strdup ("prefer_by_list_order (iid, ['");
 
 		for (p = short_list; p != NULL; p = p->next) {
  			prev = sort[1];
@@ -263,7 +263,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 								    "','", NULL);
 			} else {
 				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
-								    "'], iid)", NULL);
+								    "'])", NULL);
 			}
 			g_free (prev);
 		}
@@ -279,9 +279,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Prefer something that matches the supertype to something that matches `*' */
 	sort[3] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
 
-	/* At lowest priority, alphebetize by name, for the sake of consistency */
 	sort[4] = g_strdup ("name");
-
 	sort[5] = NULL;
 
 	info_list = oaf_query (query, sort, &ev);
@@ -550,22 +548,6 @@ join_str_list (const char *separator, GList *list)
 }
 
 
-/* sort_component_list
- *
- * Sort list alphabetically by component name
- */
- 
-static int
-sort_component_list (gconstpointer a, gconstpointer b)
-{
-	OAF_ServerInfo *component1, *component2;
-		
-	component1 = (OAF_ServerInfo *) a;
-	component2 = (OAF_ServerInfo *) b;
-
-	return g_strcasecmp (component1->iid, component2->iid);
-}
-
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
@@ -652,10 +634,9 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 				     "', '", supertype,
 				     "', '*'])",
-				     " AND prefer_by_list_order(iid, ['", iids_delimited, "'])", NULL);
+				     " AND has(['", iids_delimited, "'], iid)", NULL);
 		
-		/* Alphebetize by name, for the sake of consistency */
-		sort[0] = g_strdup ("name");
+		sort[0] = g_strconcat ("prefer_by_list_order(iid, ['", iids_delimited, "'])", NULL);
 		sort[1] = NULL;
 		
 		info_list = oaf_query (query, sort, &ev);
@@ -680,9 +661,6 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	g_list_free_deep (supertype_additions);
 	g_list_free_deep (supertype_removals);
 	g_list_free (iid_list);
-
-	/* Sort list alphabetically by component name */
-	preferred_components = g_list_sort (preferred_components, sort_component_list);
 
 	return preferred_components;
 }
