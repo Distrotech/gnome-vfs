@@ -1225,8 +1225,9 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 }
 
 static GnomeVFSResult
-xmit_request (GnomeVFSSocketBuffer *socket_buffer, GString * request, 
-		GByteArray *data)
+xmit_request (GnomeVFSSocketBuffer *socket_buffer, 
+	      GString *request, 
+	      GByteArray *data)
 {
 	GnomeVFSResult result;
 	GnomeVFSFileSize bytes_written;
@@ -1388,7 +1389,7 @@ http_handle_close (HttpFileHandle *handle,
 		if (handle->socket_buffer) {
 			gnome_vfs_socket_buffer_flush (handle->socket_buffer);
 			gnome_vfs_socket_buffer_destroy (handle->socket_buffer,
-					TRUE);
+							 TRUE);
 			handle->socket_buffer = NULL;
 		}
 

@@ -1,5 +1,22 @@
 2001-06-03  Maciej Stachowiak  <mjs@eazel.com>
 
+	* libgnomevfs/gnome-vfs-socket-buffer.h,
+	libgnomevfs/gnome-vfs-socket-buffer.c (buffer_init,
+	gnome_vfs_socket_buffer_new, gnome_vfs_socket_buffer_destroy,
+	refill_input_buffer, gnome_vfs_socket_buffer_read,
+	gnome_vfs_socket_buffer_peekc, flush,
+	gnome_vfs_socket_buffer_write, gnome_vfs_socket_buffer_flush):
+	Completed reverse-engineering.
+
+	* libgnomevfs/gnome-vfs-socket.h,
+	libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_write,
+	(gnome_vfs_socket_read: Related cleanups.
+
+	* modules/http-method.c (xmit_request, http_handle_close): Style
+	fixes.
+
+2001-06-03  Maciej Stachowiak  <mjs@eazel.com>
+
 	* libgnomevfs/gnome-vfs-socket.h, libgnomevfs/gnome-vfs-socket.c
 	(gnome_vfs_socket_new, gnome_vfs_socket_write,
 	gnome_vfs_socket_close, gnome_vfs_socket_read): Continued Seth's

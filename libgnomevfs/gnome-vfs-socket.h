@@ -39,7 +39,7 @@ typedef GnomeVFSResult (*GnomeVFSSocketReadFunc)  (gpointer connection,
 						   GnomeVFSFileSize bytes, 
 						   GnomeVFSFileSize *bytes_read);
 typedef GnomeVFSResult (*GnomeVFSSocketWriteFunc) (gpointer connection, 
-						   gpointer buffer,
+						   gconstpointer buffer,
 						   GnomeVFSFileSize bytes,
 						   GnomeVFSFileSize *bytes_written);
 
@@ -55,12 +55,12 @@ typedef struct {
 GnomeVFSSocket* gnome_vfs_socket_new     (GnomeVFSSocketImpl *impl, 
 					  void               *connection);
 GnomeVFSResult  gnome_vfs_socket_write   (GnomeVFSSocket     *socket, 
-					  char               *buffer,
+					  gconstpointer       buffer,
 					  int                 bytes, 
 					  GnomeVFSFileSize   *bytes_written);
 GnomeVFSResult  gnome_vfs_socket_close   (GnomeVFSSocket     *socket);
 GnomeVFSResult  gnome_vfs_socket_read    (GnomeVFSSocket     *socket, 
-					  char               *buffer, 
+					  gpointer            buffer, 
 					  GnomeVFSFileSize    bytes, 
 					  GnomeVFSFileSize   *bytes_read);
 #endif /* _GNOME_VFS_SOCKET_H */

@@ -27,6 +27,9 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include "gnome-vfs-socket.h"
 
@@ -50,7 +53,7 @@ GnomeVFSSocket* gnome_vfs_socket_new (GnomeVFSSocketImpl *impl,
 
 GnomeVFSResult  
 gnome_vfs_socket_write (GnomeVFSSocket *socket, 
-			char *buffer,
+			gconstpointer buffer,
 			int bytes, 
 			GnomeVFSFileSize *bytes_written)
 {
@@ -67,7 +70,7 @@ gnome_vfs_socket_close (GnomeVFSSocket *socket)
 
 GnomeVFSResult  
 gnome_vfs_socket_read  (GnomeVFSSocket *socket, 
-			char *buffer, 
+			gpointer buffer, 
 			GnomeVFSFileSize bytes,
 			GnomeVFSFileSize *bytes_read)
 {
