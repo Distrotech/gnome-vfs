@@ -375,21 +375,25 @@ application/zip
 
 audio/basic
 	description=basic audio
+	icon-filename=gnome-audio.png
 
 audio/x-aifc
 	description=AIFC audio
 
 audio/x-aiff
 	description=AIFF audio
+	icon-filename=gnome-audio-x-aiff.png
 
 audio/x-it
 	description=Impulse Tracker audio
 
 audio/x-midi
 	description=MIDI audio
+	icon-filename=gnome-audio-midi.png
 
 audio/x-mod
 	description=MOD audio
+	icon-filename=gnome-audio-x-mod.png
 
 audio/x-mp3
 	description=MP3 audio
@@ -400,9 +404,11 @@ audio/x-mp3-playlist
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
+	icon-filename=gnome-audio-x-pn-realaudio.png
 
 audio/x-real-audio
 	description=RealAudio document
+	icon-filename=gnome-audio-x-pn-realaudio.png
 
 audio/x-riff
 	description=RIFF audio
@@ -415,12 +421,14 @@ audio/x-stm
 
 audio/x-ulaw
 	description=audio
+	icon-filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	description=VOC audio
 
 audio/x-wav
 	description=Wave audio
+	icon-filename=gnome-audio-x-wav.png
 
 audio/x-xi
 	description=Scream Tracker instrument
@@ -440,6 +448,7 @@ image/bmp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-bmp.png
 
 image/cgm
 	description=CGM image
@@ -458,9 +467,11 @@ image/gif
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-gif.png
 
 image/ief
 	description=IEF image
+	icon-filename=gnome-image-ief.png
 
 image/jpeg
 	description=JPEG image
@@ -473,6 +484,7 @@ image/jpeg
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-jpeg.png
 
 # also image/x-png
 image/png
@@ -486,6 +498,7 @@ image/png
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-png.png
 
 image/svg
 	description=SVG art
@@ -501,6 +514,7 @@ image/tiff
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-tiff.png
 
 image/vnd.dwg
 	description=AutoCAD image
@@ -526,6 +540,7 @@ image/x-bmp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-bmp.png
 
 image/x-cmu-raster
 	description=CMU raster image
@@ -560,6 +575,7 @@ image/x-png
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-png.png
 
 image/x-portable-anymap
 	description=PNM image
@@ -584,6 +600,7 @@ image/x-portable-bitmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-pbm.png
 	
 image/x-portable-graymap
 	description=PGM image
@@ -608,6 +625,7 @@ image/x-portable-pixmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+	icon-filename=gnome-image-ppm.png
 
 image/x-psd
 	description=Photoshop document
@@ -616,12 +634,15 @@ image/x-psd
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
+	icon-filename=gnome-image-psd.png
 
 image/x-rgb
 	description=RGB image
+	icon-filename=gnome-image-rgb.png
 	
 image/x-tga
 	description=TarGA image
+	icon-filename=gnome-image-tga.png
 
 image/x-xbitmap
 	description=X bitmap image
@@ -630,6 +651,7 @@ image/x-xbitmap
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
+	icon-filename=gnome-image-xbm.png
 
 image/x-xcf
 	description=GIMP image
@@ -638,9 +660,11 @@ image/x-xcf
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
+	icon-filename=gnome-image-xcf.png
 
 image/x-xfig
 	description=xfig image
+	icon-filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
 	description=XPM image	
@@ -656,6 +680,7 @@ image/x-xpixmap
 
 image/x-xwindowdump
 	description=X window image
+	icon-filename=gnome-image-xwd.png
 
 message/delivery-status
 	description=mail delivery report

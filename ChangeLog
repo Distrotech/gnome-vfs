@@ -1,3 +1,11 @@
+2000-09-15  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	fixed bug 1870, images files don't have the right icons when
+	thumbnailing is turned off.  Fixed by defining icons in gnome-vfs.keys
+	for all of the common image types.  I also defined icons for the
+	common audio types while I was at it.
+	
 2000-09-15  Mathieu Lacage  <mathieu@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (get_key_name),
