@@ -1,3 +1,7 @@
+2002-05-10  Naba Kumar  <kh_naba@users.sourceforge.net>
+
+        * configure.in: Added "hi" to ALL_LINGUAS.
+
 Wed May  8 15:04:05 2002  Jonathan Blandford  <jrb@redhat.com>
 
 	* Makefile.am: new supdir
