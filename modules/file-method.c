@@ -959,9 +959,15 @@ append_trash_path (const char *path)
 {	
 	/* When creating trash outside of /home/pavel, create it in the form:
 	 * .Trash-pavel to allow sharing the name space for several users.
+	 * Treat "/" specially to avoid creating non-canonical "//foo" path.
 	 */
-	return g_strconcat (path, G_DIR_SEPARATOR_S, TRASH_DIRECTORY_NAME_BASE,
+	if (strcmp (path, "/") == 0) {
+		return g_strconcat (path, TRASH_DIRECTORY_NAME_BASE,
 		"-", g_get_user_name (), NULL);
+	} else {
+		return g_strconcat (path, G_DIR_SEPARATOR_S, TRASH_DIRECTORY_NAME_BASE,
+			"-", g_get_user_name (), NULL);
+	}
 }
 
 /* Try to find the Trash in @current_directory. If not found, collect all the 
@@ -1251,11 +1257,12 @@ do_find_directory (GnomeVFSMethod *method,
 	struct stat home_volume_stat;
 	struct stat stat_buffer;
 	const char *home_directory;
-	char *target_directory;
+	char *target_directory_path;
+	char *target_directory_uri;
 
 	GList *matching_item;
 
-	target_directory = NULL;
+	target_directory_path = NULL;
 	*result_uri = NULL;
 
 	full_name_near = get_path_from_uri (near_uri);
@@ -1319,12 +1326,12 @@ do_find_directory (GnomeVFSMethod *method,
 			}
 
 			if (matching_item != NULL) {
-				target_directory = g_strdup 
+				target_directory_path = g_strdup 
 					(((TrashDirectoryCachedItem *)matching_item->data)->path);
 			} else if (find_if_needed) {
 				if (gnome_vfs_context_check_cancellation (context))
 					return GNOME_VFS_ERROR_CANCELLED;
-				target_directory = g_strdup (find_trash_directory (full_name_near,  
+				target_directory_path = g_strdup (find_trash_directory (full_name_near,  
 					near_item_stat.st_dev, create_if_needed,
 					permissions, context));
 				if (gnome_vfs_context_check_cancellation (context))
@@ -1333,7 +1340,7 @@ do_find_directory (GnomeVFSMethod *method,
 			}
 		} else  {
 			/* volume with a home directory, just create a trash in home */
-			target_directory = append_to_path (home_directory, TRASH_DIRECTORY_NAME_BASE);
+			target_directory_path = append_to_path (home_directory, TRASH_DIRECTORY_NAME_BASE);
 		}
 		break;
 		
@@ -1342,7 +1349,7 @@ do_find_directory (GnomeVFSMethod *method,
 			/* unsupported */
 			break;
 		}
-		target_directory = append_to_path (home_directory, "Desktop");
+		target_directory_path = append_to_path (home_directory, "Desktop");
 		break;
 
 	default:
@@ -1351,18 +1358,20 @@ do_find_directory (GnomeVFSMethod *method,
 
 	g_free (full_name_near);
 
-	if (target_directory == NULL)
+	if (target_directory_path == NULL)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
-	if (create_if_needed && access (target_directory, F_OK) != 0)
-		mkdir (target_directory, permissions);
+	if (create_if_needed && access (target_directory_path, F_OK) != 0)
+		mkdir (target_directory_path, permissions);
 
-	if (access (target_directory, F_OK) != 0) {
-		g_free (target_directory);
+	if (access (target_directory_path, F_OK) != 0) {
+		g_free (target_directory_path);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
-	*result_uri = gnome_vfs_uri_new (target_directory);
-	g_free (target_directory);
+	target_directory_uri = gnome_vfs_get_uri_from_local_path (target_directory_path);
+	g_free (target_directory_path);
+	*result_uri = gnome_vfs_uri_new (target_directory_uri);
+	g_free (target_directory_uri);
 
 	return GNOME_VFS_OK;
 }

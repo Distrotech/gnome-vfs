@@ -1,3 +1,15 @@
+2000-09-29  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug I ran into where I would crash at Nautilus startup 
+	due to the presence of a NautilusDirectory for 
+	"file://.Trash-sullivan"
+
+	* modules/file-method.c: 
+	(append_trash_path): Special-case "/" to avoid creating
+	non-canonical "//.Trash" uris.
+	(do_find_directory): convert path to uri before calling
+	gnome_vfs_uri_new.
+
 2000-09-29  Darin Adler  <darin@eazel.com>
 
 	* test/test-uri.c: (main): Added a test to demonstrate how badly
