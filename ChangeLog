@@ -1,3 +1,9 @@
+2000-08-08  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Added description for application/x-java-byte-code; changed
+	"search results virtual directory" to "search results".
+
 2000-08-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
