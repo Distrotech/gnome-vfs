@@ -1,3 +1,12 @@
+2000-05-01  Ian McKellar  <yakk@yakk.net>
+
+	* modules/ftp-method.c:
+	(ftpfs_chdir_internal): Assume path=="" is equivalent to path=="/".
+	(ftpfs_open_directory): Check return value of retrieve_dir.
+
+	FTP URIs should now work. Miguel says that ftp-method needs to be made
+	thread-safe, but I'm not sure how to do this.
+
 2000-04-26  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:

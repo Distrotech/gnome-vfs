@@ -11,6 +11,9 @@
  * GNOME VFS adaptation:
  *   Miguel de Icaza, International GNOME Support.
  *
+ * Fixes:
+ *   Ian McKellar.
+ *
  * (C) 1999 International GNOME Support.
  * (C) 1995, 1996, 1997, 1998, 1999 The Free Software Foundation
  * (C) 1997, 1998, 1999 Norbert Warmuth
@@ -1205,6 +1208,10 @@ ftpfs_chdir_internal (ftpfs_connection_t *conn, const char *remote_path)
 {
 	int r;
 	char *p;
+
+	/* if remote_path == "", assume remote_path == "/". This is certainly
+	 * Netscape's interpretation. */
+	if(*remote_path == '\0') remote_path = "/";
 	
 	if (!conn->cwd_defered && is_same_dir (remote_path, conn))
 		return COMPLETE;
@@ -2151,6 +2158,10 @@ ftpfs_open_directory (GnomeVFSMethod *method,
 	}
 
 	dent->dir = retrieve_dir (dent->uri->conn, dent->uri->path, TRUE);
+	if(dent->dir == NULL) {
+		g_free(dent);
+		return GNOME_VFS_ERROR_GENERIC;
+	}
 	ftpfs_dir_ref (dent->dir);
 	dent->pos = NULL;
 	dent->options = options;
