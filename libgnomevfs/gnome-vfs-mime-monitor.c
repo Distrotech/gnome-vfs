@@ -113,6 +113,9 @@ gnome_vfs_mime_monitor_init (GnomeVFSMIMEMonitor *monitor)
 	g_free (mime_dir);
 
 	mime_dir = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
+	if (!g_file_test (mime_dir, G_FILE_TEST_EXISTS)) {
+		mkdir (mime_dir, S_IRWXU);
+	}
 	gnome_vfs_monitor_add (&monitor->priv->local_handle,
 			       mime_dir,
 			       GNOME_VFS_MONITOR_DIRECTORY,
