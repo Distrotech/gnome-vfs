@@ -535,7 +535,7 @@ static void
 set_metadata_from_response (GnomeVFSFileInfo *info,
 			    GNOME_VFS_Slave_MetadataResponseList
 			            *response_list,
-			    gchar **meta_keys)
+			    const gchar **meta_keys)
 {
 	guint i;
 

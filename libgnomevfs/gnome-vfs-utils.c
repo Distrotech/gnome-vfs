@@ -46,7 +46,7 @@
 
 
 GList *
-gnome_vfs_string_list_from_string_array (gchar *array[])
+gnome_vfs_string_list_from_string_array (const gchar *array[])
 {
 	GList *list;
 	guint i;

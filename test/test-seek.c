@@ -221,7 +221,7 @@ main (int argc, char **argv)
 		GnomeVFSSeekPosition w = (int)(2.0 * rand () / (RAND_MAX + 1.0));
 
 		if (!seek_test_chunk (handle, ref, seekpos, w, length)) {
-			printf ("Failed: seek (offset %d, whence '%s'), read (length %d), tell = %d\n",
+			printf ("Failed: seek (offset %d, whence '%s'), read (length %d), tell = %ld\n",
 				(int)seekpos, translate_vfs_seek_pos (w, NULL),
 				(int)length, ftell (ref));
 			failures++;

@@ -23,6 +23,8 @@
 
 #include "gnome-vfs-messages.h"
 
+#include <stdio.h>
+
 #ifdef G_THREADS_ENABLED
 #define MUTEX_LOCK(a)	if ((a) != NULL) g_mutex_lock (a)
 #define MUTEX_UNLOCK(a)	if ((a) != NULL) g_mutex_unlock (a)

@@ -94,7 +94,7 @@ static GnomeVFSResult
 open_from_uri (GnomeVFSDirectoryHandle **handle,
 	       GnomeVFSURI *uri,
 	       GnomeVFSFileInfoOptions options,
-	       gchar *meta_keys[],
+	       const gchar *meta_keys[],
 	       const GnomeVFSDirectoryFilter *filter,
 	       GnomeVFSContext *context)
 {
@@ -128,7 +128,7 @@ static GnomeVFSResult
 open (GnomeVFSDirectoryHandle **handle,
       const gchar *text_uri,
       GnomeVFSFileInfoOptions options,
-      gchar *meta_keys[],
+      const gchar *meta_keys[],
       const GnomeVFSDirectoryFilter *filter,
       GnomeVFSContext *context)
 {
@@ -168,7 +168,7 @@ GnomeVFSResult
 gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  const gchar *text_uri,
 			  GnomeVFSFileInfoOptions options,
-			  gchar *meta_keys[],
+			  const gchar *meta_keys[],
 			  const GnomeVFSDirectoryFilter *filter)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -195,7 +195,7 @@ GnomeVFSResult
 gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSURI *uri,
 				   GnomeVFSFileInfoOptions options,
-				   gchar *meta_keys[],
+				   const gchar *meta_keys[],
 				   const GnomeVFSDirectoryFilter *filter)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -311,7 +311,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 			  const gchar *prefix,
 			  GList *ancestor_references, /* DirectoryReference */
 			  GnomeVFSFileInfoOptions info_options,
-			  gchar *meta_keys[],
+			  const gchar *meta_keys[],
 			  const GnomeVFSDirectoryFilter *filter,
 			  GnomeVFSDirectoryVisitOptions visit_options,
 			  GnomeVFSDirectoryVisitFunc callback,
@@ -470,7 +470,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 GnomeVFSResult
 gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSFileInfoOptions info_options,
-			       gchar *meta_keys[],
+			       const gchar *meta_keys[],
 			       const GnomeVFSDirectoryFilter *filter,
 			       GnomeVFSDirectoryVisitOptions visit_options,
 			       GnomeVFSDirectoryVisitFunc callback,
@@ -503,7 +503,7 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 GnomeVFSResult
 gnome_vfs_directory_visit (const gchar *text_uri,
 			   GnomeVFSFileInfoOptions info_options,
-			   gchar *meta_keys[],
+			   const gchar *meta_keys[],
 			   const GnomeVFSDirectoryFilter *filter,
 			   GnomeVFSDirectoryVisitOptions visit_options,
 			   GnomeVFSDirectoryVisitFunc callback,
@@ -529,7 +529,7 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 					GList *file_list,
 					GnomeVFSFileInfoOptions info_options,
-					gchar *meta_keys[],
+					const gchar *meta_keys[],
 					const GnomeVFSDirectoryFilter *filter,
 					GnomeVFSDirectoryVisitOptions
 						visit_options,
@@ -582,7 +582,7 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files (const gchar *text_uri,
 				 GList *file_list,
 				 GnomeVFSFileInfoOptions info_options,
-				 gchar *meta_keys[],
+				 const gchar *meta_keys[],
 				 const GnomeVFSDirectoryFilter *filter,
 				 GnomeVFSDirectoryVisitOptions
 				 	visit_options,

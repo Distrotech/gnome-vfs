@@ -1,3 +1,25 @@
+1999-12-15  Darin Adler  <darin@eazel.com>
+
+        * libgnomevfs/gnome-vfs-async-ops.h
+        * libgnomevfs/gnome-vfs-context.c
+        * libgnomevfs/gnome-vfs-directory-list.c
+        * libgnomevfs/gnome-vfs-directory-list.h
+        * libgnomevfs/gnome-vfs-directory.c
+        * libgnomevfs/gnome-vfs-directory.h
+        * libgnomevfs/gnome-vfs-messages.c
+        * libgnomevfs/gnome-vfs-ops.c
+        * libgnomevfs/gnome-vfs-ops.h
+        * libgnomevfs/gnome-vfs-private-ops.c
+        * libgnomevfs/gnome-vfs-private-ops.h
+        * libgnomevfs/gnome-vfs-utils.c
+        * libgnomevfs/gnome-vfs-utils.h
+        * libgnomevfs-corba/gnome-vfs-async-ops.c
+        * libgnomevfs-corba/gnome-vfs-slave-notify.c
+        * libgnomevfs-pthread/gnome-vfs-async-ops.c
+        * test/test-seek.c
+          Made meta_keys[] take const char* instead of char*.
+          Fixed some warnings.
+
 1999-12-14  Darin Adler  <darin@eazel.com>
 
 	* .cvsignore: Ignore more generated files.

@@ -373,7 +373,7 @@ gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 
 
 static gchar **
-copy_meta_keys (gchar *meta_keys[])
+copy_meta_keys (const gchar *meta_keys[])
 {
 	gchar **new;
 	guint count, i;
@@ -418,7 +418,7 @@ GnomeVFSResult
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *text_uri,
 				GnomeVFSFileInfoOptions options,
-				gchar *meta_keys[],
+				const gchar *meta_keys[],
 				GnomeVFSDirectorySortRule sort_rules[],
 				gboolean reverse_order,
 				GnomeVFSDirectoryFilterType filter_type,
@@ -459,7 +459,7 @@ GnomeVFSResult
 gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 				    GnomeVFSURI *uri,
 				    GnomeVFSFileInfoOptions options,
-				    gchar *meta_keys[],
+				    const gchar *meta_keys[],
 				    GnomeVFSDirectorySortRule sort_rules[],
 				    gboolean reverse_order,
 				    GnomeVFSDirectoryFilterType filter_type,

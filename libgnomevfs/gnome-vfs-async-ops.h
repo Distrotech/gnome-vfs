@@ -119,7 +119,7 @@ GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_ret
 						 const gchar *text_uri,
 						 GnomeVFSFileInfoOptions
 						         options,
-						 gchar *meta_keys[],
+						 const gchar *meta_keys[],
 						 GnomeVFSDirectorySortRule
 						 	sort_rules[],
 						 gboolean reverse_order,
@@ -138,7 +138,7 @@ GnomeVFSResult	 gnome_vfs_async_load_directory_uri
 						 GnomeVFSURI *uri,
 						 GnomeVFSFileInfoOptions
 						         options,
-						 gchar *meta_keys[],
+						 const gchar *meta_keys[],
 						 GnomeVFSDirectorySortRule
 						 	sort_rules[],
 						 gboolean reverse_order,

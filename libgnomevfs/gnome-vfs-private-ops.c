@@ -137,7 +137,7 @@ GnomeVFSResult
 gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *info,
 					 GnomeVFSFileInfoOptions options,
-					 gchar *meta_keys[],
+					 const gchar *meta_keys[],
 					 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
@@ -156,7 +156,7 @@ GnomeVFSResult
 gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions options,
-						 gchar *meta_keys[],
+						 const gchar *meta_keys[],
 						 GnomeVFSContext *context)
 
 {

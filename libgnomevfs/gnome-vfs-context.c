@@ -24,6 +24,8 @@
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-messages.h"
 
+#include <stdio.h>
+
 struct _GnomeVFSContext {
         GnomeVFSCancellation *cancellation;
         GnomeVFSMessageCallbacks *callbacks;
