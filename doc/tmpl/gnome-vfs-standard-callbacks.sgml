@@ -2,7 +2,7 @@
 gnome-vfs-standard-callbacks
 
 <!-- ##### SECTION Short_Description ##### -->
-
+standard callbacks for use by gnome-vfs module writers
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

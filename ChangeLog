@@ -1,3 +1,18 @@
+2003-05-24  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* doc/Makefile.am
+	* doc/gnome-vfs-2.0-docs.sgml (added)
+	* doc/gnome-vfs-2.0-overrides.txt (added)
+	* doc/gnome-vfs-2.0-sections.txt (added)
+	* doc/gnome-vfs-2.0.types (added)
+	* doc/gnome-vfs-docs.sgml (removed)
+	* doc/gnome-vfs-overrides.txt (removed)
+	* doc/gnome-vfs-sections.txt (removed)
+	* doc/gnome-vfs.types (removed): fixed API docs building so that they 
+          appear in devhelp
+	* doc/tmpl/*.tmpl: removed unnecessary \n in section names,
+          added descriptions for some sections
+
 2003-05-23  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/file-method.c:

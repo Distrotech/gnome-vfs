@@ -2,7 +2,7 @@
 gnome-vfs-utils
 
 <!-- ##### SECTION Short_Description ##### -->
-
+various utilities functions to manipulate uris
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

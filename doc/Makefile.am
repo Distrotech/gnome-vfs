@@ -2,10 +2,10 @@ NULL =
 ## Process this file with automake to create Makefile.in.
 
 # The name of the module.
-DOC_MODULE=gnome-vfs
+DOC_MODULE=gnome-vfs-2.0
 
 # The top-level SGML file.
-DOC_MAIN_SGML_FILE=gnome-vfs-docs.sgml
+DOC_MAIN_SGML_FILE=gnome-vfs-2.0-docs.sgml
 
 # The directory containing the source code. Relative to $(srcdir)
 DOC_SOURCE_DIR=../libgnomevfs
@@ -84,7 +84,7 @@ dist-hook-local:
 
 # ... except for TARGET_DIR, which we override
 
-TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)-2.0
+TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
 
 EXTRA_DIST = 				\
 	$(content_files)		\
