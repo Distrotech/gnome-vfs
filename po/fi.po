@@ -8,26 +8,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
-"PO-Revision-Date: 2003-06-16 21:20+0200\n"
+"POT-Creation-Date: 2004-02-05 22:05+0200\n"
+"PO-Revision-Date: 2004-02-05 23:43+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:588
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Pääselainta ei löytynyt"
+msgstr "Bonobon käynnistys epäonnistui"
 
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Gnome-vfs:n käynnistys epäonnistui"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO-9660-taltio"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -40,14 +40,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d ei sisällä metodin nimeä."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d ei sisällä metodin nimeä."
+msgstr "%s:%d ei sisällä valitsimien loppumerkintää."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d sisältää tuntemattomia valitsimia %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -61,139 +61,138 @@ msgstr "Asetustiedostoa '%s' ei löytynyt: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS-verkkotaltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Automaattisesti tunnistunut taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "CD-ROM-asema"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD-digitaaliääni"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Laitetiedostotaltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2-Linux-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3-Linux-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MSDOS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "CDROM-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs CDROM -taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Windows NT -taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Järjestelmätaltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Muistitaltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Minix-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS-verkkotaltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Netware-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS-Linux-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Windows-jaettu taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "SuperMount-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Solaris/BSD-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs-Solaris-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Pcfs-Solaris-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Paranneltu DOS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Windows-VFAT-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Xenix-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS-Linux-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Tuntematon virhe"
+msgstr "Tuntematon"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -458,16 +457,16 @@ msgid "Unknown error"
 msgstr "Tuntematon virhe"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u tavua"
+msgstr[0] "%u tavu"
 msgstr[1] "%u tavua"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f kt"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
@@ -487,90 +486,94 @@ msgstr " (virheellistä Unicodea)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Levyke"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
-msgstr ""
+msgstr "Zip-asema"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Muistitikku"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Juuritaltio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "Ääni-CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Tuntematon virhe"
+msgstr "Tuntematon taltio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Verkkopalvelin"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Levykeaseman liittäminen ei onnistu. Luultavasti asemassa ei ole levykettä."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Taltion liittäminen ei onnistu. Luultavasti asemassa ei ole levyä."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Levykeaseman liittäminen ei onnistu. Levyke on luultavasti muodossa, jota ei "
+"voi liittää."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Valitun taltion liittäminen ei onnistu. Taltio on luultavasti muodossa, jota "
+"ei voi liittää."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Valitun levykeaseman liittäminen ei onnistu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Valitun taltion liittäminen ei onnistu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Valitun taltion irrottaminen ei onnistu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
-msgstr ""
+msgstr "Komennon käynnistäminen epäonnistui"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Levyn poistaminen asemasta ei onnistu"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Yhdistetyn palvelimen irrottaminen ei onnistu"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -624,16 +627,15 @@ msgstr "Ikkunat"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Verkko"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Koti"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Tiedostot"
+msgstr "Tiedostojärjestelmä"
 
 #: modules/file-method.c:384
 #, c-format
@@ -669,15 +671,15 @@ msgstr "yleinen tiedostomoniker"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Oletusarvoinen komponenttien katselusovellus"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Oletusarvoinen päätesovellus"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Päätesovelluksen suoritusvalitsin"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -686,185 +688,198 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Sovellus, jolla katsellaan tiedostoja, jotka vaativat siihen komponentin. "
+"Parametri %s korvautuu tiedoston URI:lla, parametri %c komponentin IID:llä."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "Oletusarvoinen päätesovelma päätteen vaativille sovelluksille."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Päätesovelman valitsin, joka määrittää mitä suoritetaan."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "H323 URL -käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "HTTP URL -käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "HTTPS URL -käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele H323-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele HTTP-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Käsittele HTTPS-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele callto-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele ghelp-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele info-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele mailto-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele man-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Käsittele trash-URL:t"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Suorita sovellus päätteessä"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee H323-URL:"
+"eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTP-URL:"
+"eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee HTTPS-"
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee callto-"
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee ghelp-"
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee info-URL:"
+"eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee mailto-"
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee man-URL:"
+"eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Aseta todeksi, jos avaimessa \"command\" annettu komento käsittelee trash-"
+"URL:eja."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
+"Tosi, jos tämän URL:n käsittelevä ohjelma tulisi käynnistää päätteessä."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "callto-URL:ien käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "ghelp-URL:ien käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "info-URL:ien käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Virheellinen tiedostokahva"
+msgstr "mailto-URL:ien käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "man-URL:ien käsittelin"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "trash-URL:ien käsittelin"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Todenna välipalvelinyhteydet"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Automaattisten välipalvelinasetusten URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr ""
+"Ota välipalvelinasetukset käyttöön, kun HTTP:tä käytetään Internetissä."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP-välipalvelimen nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP-välipalvelimen portti"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP-välipalvelimen nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP-välipalvelimen salasana"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP-välipalvelimen portti"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP-välipalvelimen käyttäjätunnus"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -872,80 +887,93 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Jos tosi, yhteydet välipalvelimeen vaativat todennuksen. Käyttäjätunnus-"
+"salasana-yhdistelmän määrittelevät avaimet \"/system/http_proxy/"
+"authentication_user\" ja \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Välityspalvelinta käyttämättömät isäntäkoneet"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP-välipalvelimelle välittyvä todentava salasana."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Välipalvelimen asetustapa"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS-välipalvelimen nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS-välipalvelimen portti"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "SHTTP-välipalvelimen nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "SHTTP-välipalvelimen portti"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Valitse välipalvelimen asetustapa. Mahdolliset arvot ovat \"none\" (ei "
+"mikään), \"manual\" (asetukset käsin), \"auto\" (automaattinen)."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "FTP-välipalvelimena toimivan koneen nimi."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "HTTP-välipalvelimena toimivan koneen nimi."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "SHTTP-välipalvelimena toimivan koneen nimi."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "SOCKS-välipalvelimena toimivan koneen nimi."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/"
+"http_proxy/host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
+"ftp_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
+"secure_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
+"socks_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -954,39 +982,35 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Tämä avain sisältää luettelon isäntäkoneista, joihin yhteys muodostetaan "
+"suoraan, ei välipalvelimen kautta (vaikka se olisi toiminnassa). Arvot "
+"voivat olla konenimiä, verkkoalueita (joissa alussa jokerimerkki, kuten *."
+"testi.fi), IP-osoitteita (IPv4 tai IPv6) ja verkko-osoitteita "
+"verkkopeitteellä (kuten 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL, joka tarjoaa välipalvelinasetukset."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Käytä HTTP-välipalvelinta"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP-välipalvelimelle välittyvä todentava käyttäjätunnus"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Ikkunat"
+msgstr "Windows-verkko"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB-työryhmä"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "URL-tyypille ei ole käsittelintä"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "URL-tyypille ei ole käsittelintä"
+msgstr "Windows-työryhmä, johon käyttäjä kuuluu"
 
 #~ msgid "1 byte"
 #~ msgstr "1 tavu"
