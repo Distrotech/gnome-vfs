@@ -239,4 +239,10 @@ jcc
         requires_terminal=false
         mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++
 
-
+applix
+	command=applix
+	name=ApplixWare
+	can_open_multiple_files=true
+	can_open_urls=false
+	requires_terminal=false
+	mime_types=application/x-applix-spreadsheet,application/x-applix-word,image/x-applix-graphic,application/msword,application/rtf,application/vnd.ms-excel

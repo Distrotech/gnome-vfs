@@ -66,10 +66,10 @@ application/msword
 	[no]description=Microsoft Word dokument
 	[sv]description=Microsoft Word-dokument
 	default_action_type=application
-	default_application_id=abiword
-	short_list_application_ids_for_novice_user_level=staroffice,abiword
-	short_list_application_ids_for_intermediate_user_level=staroffice,abiword
-	short_list_application_ids_for_hacker_user_level=staroffice,abiword
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
+	short_list_application_ids_for_intermediate_user_level=staroffice,abiword,applix
+	short_list_application_ids_for_hacker_user_level=staroffice,abiword,applix
 
 application/octet-stream
 	description=unknown data
@@ -163,9 +163,9 @@ application/rtf
 	[sv]description=rik text
 	default_action_type=application
 	default_application_id=abiword
-	short_list_application_ids_for_novice_user_level=staroffice,abiword
-	short_list_application_ids_for_intermediate_user_level=staroffice,abiword
-	short_list_application_ids_for_hacker_user_level=staroffice,abiword
+	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
+	short_list_application_ids_for_intermediate_user_level=staroffice,abiword,applix
+	short_list_application_ids_for_hacker_user_level=staroffice,abiword,applix
 	
 application/vnd.ms-excel
 	description=Microsoft Excel document
@@ -175,10 +175,10 @@ application/vnd.ms-excel
 	[sv]description=Microsoft Excel-dokument
 	default_action_type=application
 	default_application_id=gnumeric
-	short_list_application_ids_for_novice_user_level=gnumeric,staroffice
-	short_list_application_ids_for_intermediate_user_level=gnumeric,staroffice
-	short_list_application_ids_for_hacker_user_level=gnumeric,staroffice
-
+	short_list_application_ids_for_novice_user_level=gnumeric,staroffice,applix
+	short_list_application_ids_for_intermediate_user_level=gnumeric,staroffice,applix
+	short_list_application_ids_for_hacker_user_level=gnumeric,staroffice,applix
+	
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
 	[da]description=Applix-regneark
@@ -186,6 +186,11 @@ application/x-applix-spreadsheet
 	[no]description=Applix regneark
 	[sv]description=Applix-kalkylblad
 	icon-filename=i-spreadsheet
+	default_action_type=application
+	default_application_id=applix
+	short_list_application_ids_for_novice_user_level=applix
+	short_list_application_ids_for_intermediate_user_level=applix
+	short_list_application_ids_for_hacker_user_level=applix
 
 application/x-applix-word
 	description=Applix Word document
@@ -193,6 +198,11 @@ application/x-applix-word
 	[fr]description=Document Applix Word
 	[no]description=Applix Word dokument
 	[sv]description=Applix Word-dokument
+	default_action_type=application
+	default_application_id=applix
+	short_list_application_ids_for_novice_user_level=applix
+	short_list_application_ids_for_intermediate_user_level=applix
+	short_list_application_ids_for_hacker_user_level=applix
 
 application/x-arj
 	description=arj archive
@@ -1011,6 +1021,11 @@ image/x-applix-graphic
 	description=Applix image
 	[fr]description=Image Applix
 	[sv]description=Applix-bild
+	default_action_type=application
+	default_application_id=applix
+	short_list_application_ids_for_novice_user_level=applix
+	short_list_application_ids_for_intermediate_user_level=applix
+	short_list_application_ids_for_hacker_user_level=applix
 
 # also image/bmp
 image/x-bmp
@@ -1616,6 +1631,10 @@ video/msvideo
 	description=MS video
 	[fr]description=Vidéo MS
 	[sv]description=MS-video
+	default_application_id=xanim
+	short_list_application_ids_for_novice_user_level=xanim
+	short_list_application_ids_for_intermediate_user_level=xanim
+	short_list_application_ids_for_hacker_user_level=xanim
 
 video/quicktime
 	description=QuickTime movie
@@ -1679,6 +1698,10 @@ video/x-msvideo
 	description=MS video
 	[fr]description=Vidéo MS
 	[sv]description=MS-video
+	default_application_id=xanim
+	short_list_application_ids_for_novice_user_level=xanim
+	short_list_application_ids_for_intermediate_user_level=xanim
+	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-real-video
 	description=RealVideo document

@@ -1,3 +1,10 @@
+2000-11-01  Aaron Brick <aaron@eazel.com>
+
+	* data/mime/gnome-vfs.[ak]*:
+	added support for applixware
+	changed default for .doc/.xls to staroffice
+	added a handler (xanim) for video/[x-]msvideo
+	
 2000-11-01  Darin Adler  <darin@eazel.com>
 
 	Fix bug 4287 (Zope Studio-authored sites default to Icon View).
