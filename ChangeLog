@@ -1,3 +1,7 @@
+2004-03-30  Adam Weinberger  <adamw@gnome.org>
+
+	* configure.in: Added en_CA to ALL_LINGUAS.
+
 2004-03-30  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-parse-ls.c (finduid, findgid):
