@@ -1,3 +1,11 @@
+2001-05-01  Seth Nickell  <snickell@stanford.edu>
+
+	* test/mime-test-files/somepage.php:
+	* test/mime-test-files/
+
+	Add a directory for placing files for doing checks on how
+	GnomeVFS recognizes their MIME type.
+	
 Fri Apr 27 13:32:32 2001  Jonathan Blandford  <jrb@webwynk.net>
 
 	* libgnomevfs/gnome-vfs-configuration.c
