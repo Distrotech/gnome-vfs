@@ -889,10 +889,10 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 			result = gnome_vfs_read (source_handle, buffer,
 						 block_size, &bytes_read);
-			if (result != GNOME_VFS_OK)
+			if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
-		} while (retry && bytes_read > 0);
+		} while (retry && bytes_read > 0 && result != GNOME_VFS_ERROR_EOF);
 
 		if (result != GNOME_VFS_OK || bytes_read == 0 || *skip) {
 			break;

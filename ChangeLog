@@ -1,3 +1,9 @@
+2000-09-21  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file_data):
+	Properly handle GNOME_VFS_ERROR_EOF.
+	Fixes bugzilla 3225.
+
 2000-09-21  Mike Fleming  <mfleming@eazel.com>
 
 	* gnome-vfs.spec.in:
