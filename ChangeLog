@@ -1,3 +1,9 @@
+2005-03-14  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* modules/http-neon-method.c: (http_get_file_info), (http_options),
+	(do_create), (do_close), (do_make_directory), (do_move): Don't leak
+	quite as many requests. Bug #16826, still one that needs attention.
+
 2005-03-07  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
