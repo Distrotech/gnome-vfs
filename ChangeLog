@@ -1,3 +1,20 @@
+2000-12-06  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	Fixed 4736: Nautilus doesn't respect umask when creating a new
+	folder.
+	* libgnomevfs/gnome-vfs-xfer.c: (create_directory), 
+	Easy fix, we already do respect umask, just need to create new
+	folders with 0777 instead of just 0700.
+
+	Fixed 4324: modification date doesn't get preserved during copy:
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(copy_file), (copy_directory), (copy_items):
+	Added a gnome_vfs_file_info_set_type to the end of copy_file
+	and copy_items, copying over the mod date, permissions and owner.
+
 2000-12-06  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: pavel@eazel.com

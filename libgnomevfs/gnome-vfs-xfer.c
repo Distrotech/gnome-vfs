@@ -908,7 +908,7 @@ create_directory (GnomeVFSURI *dir_uri,
 	do {
 		retry = FALSE;
 
-		result = gnome_vfs_make_directory_for_uri (dir_uri, 0700);
+		result = gnome_vfs_make_directory_for_uri (dir_uri, 0777);
 
 		if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 			gboolean force_replace;
@@ -1160,7 +1160,6 @@ copy_file (GnomeVFSFileInfo *info,
 	if (call_progress_with_uris_often (progress, source_uri, target_uri, 
 		GNOME_VFS_XFER_PHASE_OPENTARGET) != GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
 
-
 		result = copy_file_data (target_handle, source_handle,
 					progress, xfer_options, error_mode,
 					/* use an arbitrary default block size of 4096 
@@ -1178,16 +1177,23 @@ copy_file (GnomeVFSFileInfo *info,
 	}
 
 	close_result = gnome_vfs_close (source_handle);
-	if (result == GNOME_VFS_OK &&
-	    close_result != GNOME_VFS_OK) {
+	if (result == GNOME_VFS_OK && close_result != GNOME_VFS_OK) {
 		handle_error (&close_result, progress, error_mode, skip);
 		return close_result;
 	}
+
 	close_result = gnome_vfs_close (target_handle);
-	if (result == GNOME_VFS_OK &&
-	    close_result != GNOME_VFS_OK) {
+	if (result == GNOME_VFS_OK && close_result != GNOME_VFS_OK) {
 		handle_error (&close_result, progress, error_mode, skip);
 		return close_result;
+	}
+
+	if (result == GNOME_VFS_OK) {
+		/* ignore errors while setting file info attributes at this point */
+		gnome_vfs_set_file_info_uri (target_uri, info,
+			GNOME_VFS_SET_FILE_INFO_PERMISSIONS
+			| GNOME_VFS_SET_FILE_INFO_OWNER
+			| GNOME_VFS_SET_FILE_INFO_TIME);
 	}
 
 	if (*skip) {
@@ -1198,7 +1204,8 @@ copy_file (GnomeVFSFileInfo *info,
 }
 
 static GnomeVFSResult
-copy_directory (GnomeVFSURI *source_dir_uri,
+copy_directory (GnomeVFSFileInfo *source_file_info,
+		GnomeVFSURI *source_dir_uri,
 		GnomeVFSURI *target_dir_uri,
 		GnomeVFSXferOptions xfer_options,
 		GnomeVFSXferErrorMode *error_mode,
@@ -1239,6 +1246,7 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 		gnome_vfs_directory_close (source_directory_handle);
 		return GNOME_VFS_OK;
 	}
+	
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_directory_close (source_directory_handle);
 		return result;
@@ -1276,12 +1284,12 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 			
 			if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
 				result = copy_file (&info, source_uri, dest_uri, 
-						    xfer_options, error_mode, overwrite_mode, 
-						    progress, skip);
+					xfer_options, error_mode, overwrite_mode, 
+					progress, skip);
 			} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-				result = copy_directory (source_uri, dest_uri, 
-						    xfer_options, error_mode, overwrite_mode, 
-						    progress, skip);
+				result = copy_directory (&info, source_uri, dest_uri, 
+					xfer_options, error_mode, overwrite_mode, 
+					progress, skip);
 			} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 				result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
 			}
@@ -1300,6 +1308,14 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 
 	gnome_vfs_directory_close (dest_directory_handle);
 	gnome_vfs_directory_close (source_directory_handle);
+
+	if (result == GNOME_VFS_OK) {
+		/* ignore errors while setting file info attributes at this point */
+		gnome_vfs_set_file_info_uri (target_dir_uri, source_file_info,
+			GNOME_VFS_SET_FILE_INFO_PERMISSIONS
+			| GNOME_VFS_SET_FILE_INFO_OWNER
+			| GNOME_VFS_SET_FILE_INFO_TIME);
+	}
 
 	return result;
 }
@@ -1372,10 +1388,10 @@ copy_items (const GList *source_uri_list,
 							    &overwrite_mode_abort, 
 							    progress, &skip);
 				} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					result = copy_directory (source_uri, target_uri, 
-							    xfer_options, error_mode,
-							    &overwrite_mode_abort,
-							    progress, &skip);
+					result = copy_directory (&info, source_uri, target_uri, 
+								 xfer_options, error_mode,
+								 &overwrite_mode_abort,
+								 progress, &skip);
                                 } else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 					result = gnome_vfs_create_symbolic_link (target_uri, info.symlink_name);
                                 }
