@@ -1,3 +1,7 @@
+2001-09-07  Darin Adler  <darin@bentspoon.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: Remove a stray include.
+
 2001-09-07  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* doc/Makefile.am: Fix stamp creation so the docs get built only

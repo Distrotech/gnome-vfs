@@ -39,7 +39,6 @@ System (version for POSIX threads).
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-i18n.h>
-#include <libgnomevfs/gnome-vfs-module-api.h>
 #include <libgnomevfs/gnome-vfs-backend.h>
 #include <string.h>
 #include <unistd.h>
