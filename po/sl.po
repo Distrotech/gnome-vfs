@@ -36,7 +36,7 @@ msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
 #: libgnomevfs/gnome-vfs-job.c:737
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Neznan tip operacije %u"
+msgstr "Neznana vrsta operacije %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
@@ -1475,7 +1475,7 @@ msgstr "generični vzdevčnik datotek"
 #~ msgstr "ftpfs: CWD (sprememba delovnega direktorija) ni uspela."
 
 #~ msgid "ftpfs: couldn't resolve symlink"
-#~ msgstr "ftpfs: ne morem razvozlati simbolne povezave"
+#~ msgstr "ftpfs: ne morem razvozlati simbolične povezave"
 
 #~ msgid "Resolving symlink..."
 #~ msgstr "Razvozljujem simbolno povezavo..."
