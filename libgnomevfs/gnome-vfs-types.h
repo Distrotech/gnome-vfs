@@ -123,7 +123,6 @@ typedef enum {
 /* Includes to provide compatibility with programs that
    still include gnome-vfs-types.h directly */
 #include <libgnomevfs/gnome-vfs-uri.h>
-#include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-directory-filter.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>

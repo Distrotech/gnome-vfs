@@ -36,6 +36,7 @@
 #include <libgnomevfs/gnome-vfs-transform.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-method-type.h>
+#include <libgnomevfs/gnome-vfs-types.h>
 
 typedef gpointer GnomeVFSMethodHandle;
 

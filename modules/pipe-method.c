@@ -28,10 +28,14 @@
 #include <string.h>
 
 #include "gnome-vfs-mime.h"
-#include "gnome-vfs-method.h"
+
+#include "gnome-vfs-cancellation.h"
+#include "gnome-vfs-context.h"
 #include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
+#include "gnome-vfs-method.h"
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-module-shared.h"
+
 #include "pipe-method.h"
 
 struct _FileHandle {

@@ -1,5 +1,17 @@
 2001-07-07  Seth Nickell  <snickell@stanford.edu>
 
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-types.h:
+
+	Tweak includes a little more.
+	
+	* modules/pipe-method.c:
+	* modules/ssh-method.c:
+
+	Make module's include more cleanely.
+	
+2001-07-07  Seth Nickell  <snickell@stanford.edu>
+
 	Deprecate (other than a couple structs I didn't find a home
 	for) gnome-vfs-types.h in favour of having types distributed
 	throughout corresponding .h files. The primary motivation for
