@@ -69,7 +69,7 @@
 	    Most operations come in Handle (think file descriptor) and URI form. The URI form may be
 	    more convenient if you do not want to track handles, etc, but just be aware that both are
 	    at your disposal and may be used interchangably. For example <function>gnome_vfs_open</function>
-	    and <function>gnome_vfs_oper_uri</function>.
+	    and <function>gnome_vfs_open_uri</function>.
 	  </para>
 	</listitem>
       </itemizedlist>
