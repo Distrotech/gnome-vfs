@@ -1,3 +1,10 @@
+2004-07-20  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-handlers.c: 
+	When unable to guess an application's file loading
+	capabilities from its Exec= line, assume it will
+	only accept one local file at a time. 
+
 Mon Jul 19 18:48:26 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime.c

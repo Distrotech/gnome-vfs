@@ -1157,7 +1157,11 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
 		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
-	}
+	} else { /* If we can't guess then assume the lowest common denominator */
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
+		application->supported_uri_schemes = NULL;
+        }
 
 	return application;
 

@@ -766,3 +766,4 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 
 	return g_strdup (desktop_entry);
 }
+
