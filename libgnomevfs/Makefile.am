@@ -15,6 +15,7 @@ INCLUDES =					\
 	-DDATADIR=\"$(datadir)\"		\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DPREFIX=\"$(prefix)\"			\
+	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)

@@ -113,6 +113,7 @@ gnome_vfs_init (void)
 
 	if (!vfs_already_initialized) {
 #ifdef ENABLE_NLS
+		bindtextdomain (GETTEXT_PACKAGE, GNOMEVFS_LOCALEDIR);
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 #endif   
 		gnome_vfs_pthread_init ();
