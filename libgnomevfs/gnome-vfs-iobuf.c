@@ -155,7 +155,7 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 			*bytes_read = 0;
 	}
 
-	if (result == GNOME_VFS_ERROR_EOF  && input_buffer->byte_count != 0)
+	if (result == GNOME_VFS_ERROR_EOF)
 		result = GNOME_VFS_OK;
 	return result;
 }

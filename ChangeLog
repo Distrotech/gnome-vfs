@@ -1,6 +1,14 @@
 2000-09-28  Mike Fleming  <mfleming@eazel.com>
 
 	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_read):
+	* modules/http-method.c: (http_file_handle_new), (get_header):
+
+	I decided that the previous fix wasn't that great of an idea and
+	fixed the caller of gnome_vfs_iobuf-read.
+
+2000-09-28  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_read):
 
 	gnome_vfs_iobuf_read was returning GNOME_VFS_OK if a read was attempted
 	at the end of file.  It now correctly returhns GNOME_VFS_ERROR_EOF.

@@ -164,19 +164,7 @@ struct _HttpFileHandle {
 
 	/* File info for this file */
 	GnomeVFSFileInfo *file_info;
-#if 0
-	gchar *mime_type;
-	gchar *location;
 
-	time_t access_time;
-	time_t last_modified;
-
-	/* Expected size, as reported by the HTTP headers.  */
-	GnomeVFSFileSize size;
-	/* Whether the size is known from the headers.  */
-	gboolean size_is_known : 1;
-
-#endif /* 0 */
 	/* Bytes read so far.  */
 	GnomeVFSFileSize bytes_read;
 
@@ -227,14 +215,6 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	result->uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE );
 	result->uri = uri;
 	gnome_vfs_uri_ref(result->uri);
-
-#if 0
-	result->location = NULL;
-	result->mime_type = NULL;
-	result->last_modified = 0;
-	result->size = 0;
-	result->size_is_known = FALSE;
-#endif /* 0 */
 
 	result->file_info = defaults_file_info_new();
 	result->file_info->name = gnome_vfs_uri_extract_short_name (uri);
@@ -397,17 +377,6 @@ set_content_type (HttpFileHandle *handle,
 	return TRUE;
 }
 
-#if 0
-static gboolean
-set_location (HttpFileHandle *handle,
-	      const gchar *value)
-{
-	g_free (handle->location);
-	handle->location = g_strdup (value);
-	return TRUE;
-}
-#endif /* 0 */
-
 static gboolean
 set_last_modified (HttpFileHandle *handle,
 		   const gchar *value)
@@ -445,9 +414,6 @@ typedef struct _Header Header;
 static Header headers[] = {
 	{ "Content-Length", set_content_length },
 	{ "Content-Type", set_content_type },
-#if 0	
-	{ "Location", set_location },
-#endif /* 0 */
 	{ "Last-Modified", set_last_modified },
 	{ "Date", set_access_time },
 	{ NULL, NULL }
@@ -503,6 +469,7 @@ get_header (GnomeVFSIOBuf *iobuf,
 	    GString *s)
 {
 	GnomeVFSResult result;
+	GnomeVFSFileSize bytes_read;
 	guint count;
 
 	g_string_truncate (s, 0);
@@ -511,9 +478,12 @@ get_header (GnomeVFSIOBuf *iobuf,
 	while (1) {
 		gchar c;
 
-		result = gnome_vfs_iobuf_read (iobuf, &c, 1, NULL);
+		result = gnome_vfs_iobuf_read (iobuf, &c, 1, &bytes_read);
 		if (result != GNOME_VFS_OK)
 			return result;
+		if (bytes_read == 0) {
+			return GNOME_VFS_ERROR_EOF;
+		}
 
 		if (c == '\n') {
 			/* Handle continuation lines.  */
@@ -1523,46 +1493,6 @@ do_read_directory (GnomeVFSMethod *method,
 	}
 }
  
-/* File info handling.  */
-#if 0
-static GnomeVFSResult
-get_file_info_from_http_handle (HttpFileHandle *handle,
-				GnomeVFSFileInfo *file_info,
-				GnomeVFSFileInfoOptions options)
-{
-	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
-	file_info->name = g_strdup (g_basename (handle->uri_string));
-	if (file_info->name == NULL)
-		file_info->name = g_strdup ("");
-	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->permissions = 0444;
-	
-	file_info->atime = handle->access_time;
-	file_info->mtime = handle->last_modified;
-	file_info->mime_type = g_strdup (handle->mime_type);
-
-	if (handle->size_is_known) {
-		file_info->size = handle->size;
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;		
-	}
-
-	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, FALSE);
-	GNOME_VFS_FILE_INFO_SET_SUID (file_info, FALSE);
-	GNOME_VFS_FILE_INFO_SET_SGID (file_info, FALSE);
-	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
-
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
-		GNOME_VFS_FILE_INFO_FIELDS_FLAGS |
-		GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS |
-		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
-		GNOME_VFS_FILE_INFO_FIELDS_ATIME |
-		GNOME_VFS_FILE_INFO_FIELDS_MTIME |
-		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
-		GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-	return GNOME_VFS_OK;
-}
-#endif /* 0 */
 
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
