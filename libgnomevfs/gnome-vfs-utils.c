@@ -823,6 +823,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		/* linux/ncp_fs.h: NCP_SUPER_MAGIC == 0x564c */
 		if (statfs_buffer2.f_type == 0x564c)
 #elif defined(__sun)
+		g_free (unescaped_path);
 		if (strcmp(statfs_buffer.f_basetype, "ncpfs") == 0)
 #endif
 		{
