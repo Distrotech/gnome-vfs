@@ -1,3 +1,11 @@
+2000-10-09  Glynn Foster  <glynn.foster@sun.com>
+
+	* configure.in:
+	* libgnomevfs/gnome-vfs-utils.c: (istr_has_prefix),
+	(gnome_vfs_get_volume_free_space):
+	Added Solaris-specific changes to needed for getting the
+	free volume space.
+
 2000-10-09  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* configure.in: upped the version to 0.3.1.0 as 0.3.1 has already been

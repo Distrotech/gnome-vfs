@@ -120,7 +120,7 @@ ALL_LINGUAS="ca da de el fr ga gl hu it ja ko lt nl no pl pt_BR ru sl sv tr uk"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs)
 AC_REPLACE_FUNCS(getdelim)
 
 dnl
@@ -172,7 +172,7 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/resource.h sys/vfs.h sys/mount.h)
+AC_CHECK_HEADERS(sys/resource.h sys/vfs.h sys/mount.h sys/statvfs.h)
 
 dnl turn warnings into errors to enforce clean code
 

@@ -40,6 +40,9 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#if HAVE_SYS_STATVFS_H
+#include <sys/statvfs.h>
+#endif
 #if HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #elif HAVE_SYS_MOUNT_H
@@ -374,11 +377,11 @@ istr_has_prefix (const char *haystack, const char *needle)
 		}
 		hc = *h++;
 		nc = *n++;
-		if (isupper (hc)) {
-			hc = tolower (hc);
+		if (isupper ((guchar)hc)) {
+			hc = tolower ((guchar)hc);
 		}
-		if (isupper (nc)) {
-			nc = tolower (nc);
+		if (isupper ((guchar)nc)) {
+			nc = tolower ((guchar)nc);
 		}
 	} while (hc == nc);
 	return FALSE;
@@ -471,9 +474,13 @@ GnomeVFSResult
 gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
 {	
 	size_t total_blocks, block_size;
-	struct statfs statfs_buffer;
        	int statfs_result;
 	const char *path, *scheme;
+#if HAVE_STATVFS
+	struct statvfs statfs_buffer;
+#else
+	struct statfs statfs_buffer;
+#endif
 
  	*size = 0;
 
@@ -490,7 +497,12 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 
-	statfs_result = statfs ("/", &statfs_buffer);
+#if HAVE_STATVFS
+	statfs_result = statvfs ("/", &statfs_buffer);
+#else
+	statfs_result = statfs ("/", &statfs_buffer);   
+#endif  
+
 	g_return_val_if_fail (statfs_result == 0, FALSE);
 	block_size = statfs_buffer.f_bsize; 
 	total_blocks = statfs_buffer.f_blocks;
