@@ -1,3 +1,8 @@
+2000-06-12  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* libgnomevfs/Makefile.am:
+	Make the private header really private by not installing it.
+	
 2000-06-12  Eskil Heyn Olsen  <eskil@eazel.com>
 
 	* gnome-vfs.spec.in: Changed the Requires to what the configure.in

@@ -84,7 +84,6 @@ noinst_HEADERS=\
 	fnmatch.h
 
 libgnomevfs_la_SOURCES =			\
-	gnome-vfs-mime-private.h		\
 	gnome-vfs-backend.c			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
@@ -120,6 +119,9 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	fnmatch.c
+
+noinst_HEADERS =				\
+	gnome-vfs-mime-private.h
 
 ## [The following is copied from gnome-libs.]
 
