@@ -1,3 +1,12 @@
+2004-07-30  Christian Kellner <gicmo@gnome-de.org>
+	
+	* configure.in: Added checks for res_ninit and rearranged the
+	resolver checks.
+	* libgnomevfs/gnome-vfs-resolve.c: Added support for resolver
+	reloads and fixed a memory leak. The reload support is partially
+	based on a patch from Christophe Fergeau <teuf@gnome.org>. Fixes 
+	#76283
+ 	
 2004-07-31  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/sftp-method.c: (do_create): use memset instead of bzero

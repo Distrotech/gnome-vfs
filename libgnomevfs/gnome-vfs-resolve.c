@@ -1,21 +1,21 @@
 /* gnome-vfs-resolve.c - Resolver API
 
-   Copyright (C) 2004 Christian Kellner <gicmo@gnome-de.org>
+Copyright (C) 2004 Christian Kellner <gicmo@gnome-de.org>
 
-   The Gnome Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Library General Public License as
-   published by the Free Software Foundation; either version 2 of the
-   License, or (at your option) any later version.
+The Gnome Library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Library General Public License as
+published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.
 
-   The Gnome Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Library General Public License for more details.
+The Gnome Library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Library General Public License for more details.
 
-   You should have received a copy of the GNU Library General Public
-   License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+You should have received a copy of the GNU Library General Public
+License along with the Gnome Library; see the file COPYING.LIB.  If not,
+write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+Boston, MA 02111-1307, USA.
 
 */
 
@@ -24,6 +24,8 @@
 #include <errno.h>
 #include <glib/gmem.h>
 #include <glib/gmessages.h>
+#include <glib/gthread.h>
+#include <glib-object.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -41,6 +43,13 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/time.h>
+
+#ifdef HAVE_RES_NINIT
+#include <arpa/nameser.h>
+#include <resolv.h>
+/* RELOAD_TIMEVAL specifies the minimum of seconds between resolver reloads */
+#define RELOAD_TIMEVAL 2
+#endif
 
 #include <libgnomevfs/gnome-vfs-resolve.h>
 
@@ -64,7 +73,6 @@ struct GnomeVFSResolveHandle_ {
 };
 
 #ifndef HAVE_GETADDRINFO
-
 static GnomeVFSResult
 resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 {
@@ -125,31 +133,61 @@ resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 
 #endif
 
+static gboolean
+restart_resolve ()
+{
+#ifdef HAVE_RES_NINIT
+	   static GTimeVal last_reload = { 0, 0 };
+	   static GStaticMutex mutex = G_STATIC_MUTEX_INIT;
+	   GTimeVal now;
+	   gboolean ret;
+
+	   g_static_mutex_lock (&mutex);
+	   g_get_current_time (&now);
+	   
+	   if ((now.tv_sec - last_reload.tv_sec) > RELOAD_TIMEVAL) {
+
+			 last_reload.tv_sec = now.tv_sec;
+			 ret = (res_ninit (&_res) == 0);
+	   } else {
+
+			 ret = FALSE;
+	   }
+	
+	   g_static_mutex_unlock (&mutex);
+	   return ret;
+#else
+	   return FALSE;
+#endif
+}
+
+
+
 #ifdef HAVE_GETADDRINFO
 static GnomeVFSResult
 _gnome_vfs_result_from_gai_error (int error)
 {
 
-	switch (error) {
-
-	case EAI_NONAME: return GNOME_VFS_ERROR_HOST_NOT_FOUND;
-	case EAI_ADDRFAMILY:		
-	case EAI_NODATA: return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
-	case EAI_SYSTEM: return gnome_vfs_result_from_errno ();
-	case EAI_FAIL:
-	case EAI_AGAIN: return GNOME_VFS_ERROR_NAMESERVER;
-		
-	case EAI_MEMORY: return GNOME_VFS_ERROR_NO_MEMORY;
-
-     /* We should not get these errors there just here to have
-	   complete list of getaddrinfo errors*/
-	case EAI_FAMILY:
-	case EAI_SOCKTYPE:
-	case EAI_SERVICE:
-	case EAI_BADFLAGS:
-	default:
-		return GNOME_VFS_ERROR_INTERNAL;
-	}
+	   switch (error) {
+			 
+	   case EAI_NONAME: return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+	   case EAI_ADDRFAMILY:		
+	   case EAI_NODATA: return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
+	   case EAI_SYSTEM: return gnome_vfs_result_from_errno ();
+	   case EAI_FAIL:
+	   case EAI_AGAIN: return GNOME_VFS_ERROR_NAMESERVER;
+			 
+	   case EAI_MEMORY: return GNOME_VFS_ERROR_NO_MEMORY;
+			 
+			 /* We should not get these errors there just here to have
+			    complete list of getaddrinfo errors*/
+	   case EAI_FAMILY:
+	   case EAI_SOCKTYPE:
+	   case EAI_SERVICE:
+	   case EAI_BADFLAGS:
+	   default:
+			 return GNOME_VFS_ERROR_INTERNAL;
+	   }
 }
 
 #endif
@@ -175,7 +213,9 @@ gnome_vfs_resolve (const char              *hostname,
 #ifdef HAVE_GETADDRINFO
 	   struct addrinfo hints, *result;
 	   int res;
+	   gboolean retry = TRUE;
 
+restart:	   
 	   bzero (&hints, sizeof (hints));
 	   hints.ai_socktype = SOCK_STREAM;
 
@@ -192,7 +232,12 @@ gnome_vfs_resolve (const char              *hostname,
 	   res = getaddrinfo (hostname, NULL, &hints, &result);
 	   
 	   if (res != 0) {
-			 return _gnome_vfs_result_from_gai_error (res);
+			 if (retry && restart_resolve ()) {
+				    retry = FALSE;
+				    goto restart;
+			 } else {
+				    return _gnome_vfs_result_from_gai_error (res);
+			 }
 	   }
 
 	   *handle = g_new0 (GnomeVFSResolveHandle, 1);
@@ -205,11 +250,13 @@ gnome_vfs_resolve (const char              *hostname,
 	   struct hostent resbuf, *result = &resbuf;
 	   GnomeVFSResult ret;
 	   int res;
+	   gboolean retry = TRUE;
 #ifdef HAVE_GETHOSTBYNAME_R_GLIBC
 	   size_t buflen;
 	   char *buf;
 	   int h_errnop;
-	   
+
+restart:	   
 	   buf = NULL;
 	   buflen = INIT_BUFSIZE;
 	   h_errnop = 0;
@@ -228,7 +275,13 @@ gnome_vfs_resolve (const char              *hostname,
 	   } while (res == ERANGE);
 
 	   if (res != 0 || result == NULL || result->h_addr_list[0] == NULL) {
-	    			 return gnome_vfs_result_from_h_errno_val (h_errnop);	 
+			 g_free (buf);
+			 if (retry && restart_resolve ()) {
+				    retry = FALSE;
+				    goto restart;
+			 } else {
+				    return gnome_vfs_result_from_h_errno_val (h_errnop);
+			 }
 	   }
 
 	   ret = resolvehandle_from_hostent (result, handle);
@@ -236,7 +289,8 @@ gnome_vfs_resolve (const char              *hostname,
 #elif HAVE_GETHOSTBYNAME_R_SOLARIS
 	   size_t buflen;
 	   char *buf;
-	   int h_errnop;
+	   int h_errnop;	   
+restart:
 	   
 	   buf = NULL;
 	   buflen = INIT_BUFSIZE;
@@ -255,7 +309,14 @@ gnome_vfs_resolve (const char              *hostname,
 	   } while (h_errnop == ERANGE);
 
 	   if (result == NULL) {
-	    			 return gnome_vfs_result_from_h_errno_val (h_errnop);	 
+			 g_free (buf);
+		   
+			 if (retry && restart_resolve ()) {
+				    retry = FALSE;
+				    goto restart;
+			 } else {
+				    return gnome_vfs_result_from_h_errno_val (h_errnop);
+			 }
 	   }
 
 	   ret = resolvehandle_from_hostent (result, handle);	
@@ -263,20 +324,33 @@ gnome_vfs_resolve (const char              *hostname,
 #elif HAVE_GETHOSTBYNAME_R_HPUX
 	   struct hostent_data buf;
 
+restart:
 	   res = gethostbyname_r (hostname, result, &buf);
 
 	   if (res != 0) {
-			 return gnome_vfs_result_from_h_errno_val (res);
+			 if (retry && restart_resolve ()) {
+				    retry = FALSE;
+				    goto restart;
+			 } else {
+				    return gnome_vfs_result_from_h_errno_val (h_errnop);
+			 }
 	   }
+
 	   ret = resolvehandle_from_hostent (result, handle);
 #else
 	   res = 0;/* only set to avoid unused variable error */
 	   
 	   G_LOCK (dns_lock);
+restart:
 	   result = gethostbyname (hostname);
 
 	   if (result == NULL) {
-			 ret = gnome_vfs_result_from_h_errno ();
+			 if (retry && restart_resolve ()) {
+				    retry = FALSE;
+				    goto restart;
+			 } else {
+				    ret = gnome_vfs_result_from_h_errno ();
+			 }
 	   } else {
 			 ret = resolvehandle_from_hostent (result, handle);
 	   }
@@ -338,7 +412,7 @@ gnome_vfs_resolve_next_address (GnomeVFSResolveHandle  *handle,
 #else
 	   if (handle->current) {
 			 *address = gnome_vfs_address_dup (handle->current->data);
-			  handle->current = handle->current->next;
+			 handle->current = handle->current->next;
 	   }
 #endif	
 	   return *address != NULL ? TRUE : FALSE;	

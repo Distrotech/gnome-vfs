@@ -102,24 +102,6 @@ VFS_CFLAGS="$warnCFLAGS $complCFLAGS"
 dnl semaphore functions are in librt.so on solaris
 AC_SEARCH_LIBS(sem_wait, rt)
 
-dnl need libresolv for dns-sd stuff			 
-AC_MSG_CHECKING(for res_search)
-AC_TRY_LINK_FUNC(res_search, AC_MSG_RESULT(yes),
-	[ AC_MSG_RESULT(no)
-	saved_LIBS="$LIBS"
-	LIBS="$LIBS -lresolv"
-	AC_MSG_CHECKING(for res_search in -lresolv)
-	AC_LINK_IFELSE([[
-#include <resolv.h>
-int main()
-{
-	res_search (0, 0, 0, 0, 0);
-	return 0;
-}]],
-	[ LIBS="$LIBS -lresolv" AC_MSG_RESULT(yes)],
-	[ LIBS="$saved_LIBS" AC_MSG_RESULT(no)])
-])
-			 
 dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
@@ -709,121 +691,71 @@ else
 	USE_HAL=""
 fi
 
-PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0)
-LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS"
-LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS $HOWL_LIBS"
-AC_SUBST(LIBGNOMEVFS_CFLAGS)
-AC_SUBST(LIBGNOMEVFS_LIBS)
-
-PKG_CHECK_MODULES(LIBGNOMEVFSDAEMON, glib-2.0 $USE_HAL)
-AC_SUBST(LIBGNOMEVFSDAEMON_CFLAGS)
-AC_SUBST(LIBGNOMEVFSDAEMON_LIBS)
-					       	
-dnl ****************************
-dnl *** Checks for pty stuff ***
-dnl ****************************
-
-AC_CHECK_HEADERS(sys/un.h stropts.h termios.h)
-
-# Check for PTY handling functions.
-AC_CHECK_FUNCS(getpt posix_openpt grantpt unlockpt ptsname ptsname_r)
-
-# Pull in the right libraries for various functions which might not be
-# bundled into an exploded libc.
-AC_CHECK_FUNC(socketpair,[have_socketpair=1],AC_CHECK_LIB(socket,socketpair,[have_socketpair=1; LIBS="$LIBS -lsocket"]))
-if test x$have_socketpair = x1 ; then
-	AC_DEFINE(HAVE_SOCKETPAIR,1,[Define if you have the socketpair function.])
-fi
-  
-dnl **********************
-dnl *** Checks for FAM ***
-dnl **********************
-
-FAM_MISSING_WARNING="Gnome-vfs depends on FAM to provide notification when files are altered (either through filesystem polling, or a kernel notification mechanism). If Gnome-vfs is built without FAM support, directories viewed with Nautilus or other applications will not remain in synch with the actual filesystem when they are altered by external processes. Particularly if you are a distributor please compile Nautilus with FAM support. FAM is available from http://oss.sgi.com/projects/fam/. A patch to add Linux Kernel 2.4 directory notify support to FAM (highly desirable) is available from http://people.redhat.com/alexl/files/"
-FAM_LIBS=
-AC_CHECK_LIB(fam, FAMOpen,
-  [AC_CHECK_HEADERS(fam.h,
-    [AC_DEFINE(HAVE_FAM, [], [Define if we have FAM])
-     FAM_LIBS="-lfam"],
-    AC_MSG_WARN(*** FAM support will not be built (header files not found) $FAM_MISSING_WARNING ***))],
-  AC_MSG_WARN(*** FAM support will not be built (FAM library not found) $FAM_MISSING_WARNING ***))
-AC_SUBST(FAM_LIBS)
-
-dnl **************************
-dnl *** Checks for gtk-doc ***
-dnl **************************
-
-GTK_DOC_CHECK([1.0])
-
-dnl ******************************
-dnl *** End checks for gtk-doc ***
-dnl ******************************
-
-
-dnl borrowed from gnu findutils
-dnl and relicensed as LGPL by the FSF
-
-AC_ARG_WITH(afs,
-[  --with-afs              support -fstype afs],
-[  AC_DEFINE(AFS, [], [Define if you have the Andrew File System])
-  CPPFLAGS="$CPPFLAGS -I/usr/afsws/include"
-  LIBS="$LIBS -L/usr/afsws/lib -L/usr/afsws/lib/afs -lsys -lrx -llwp"])
-
-AC_MSG_CHECKING(how to get filesystem type)
-fstype=no
-# The order of these tests is important.
-AC_TRY_CPP([#include <sys/statvfs.h>
-#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_STATVFS, [],
-							[Define to use SVR4 statvfs to get filesystem type]) fstype=SVR4)
-if test $fstype = no; then
-AC_TRY_CPP([#include <sys/statfs.h>
-#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_USG_STATFS, [],
-							[Define to use SVR3.2 statfs to get filesystem type]) fstype=SVR3)
-fi
-if test $fstype = no; then
-AC_TRY_CPP([#include <sys/statfs.h>
-#include <sys/vmount.h>], AC_DEFINE(FSTYPE_AIX_STATFS, [],
-							 [Define to use AIX3 statfs to get filesystem type]) fstype=AIX)
-fi
-if test $fstype = no; then  
-AC_TRY_CPP([#include <mntent.h>], AC_DEFINE(FSTYPE_MNTENT, [],
-						    [Define to use 4.3BSD getmntent to get filesystem typ]) fstype=4.3BSD)
-fi
-if test $fstype = no; then  
-AC_EGREP_HEADER(f_type;, sys/mount.h, AC_DEFINE(FSTYPE_STATFS, [],
-							   [Define to use 4.4BSD and OSF1 statfs to get filesystem typ]) fstype=4.4BSD/OSF1)
-fi
-if test $fstype = no; then  
-AC_TRY_CPP([#include <sys/mount.h>
-#include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT, [],
-							   [Define to use Ultrix getmnt to get filesystem typ]) fstype=Ultrix)
-fi
-AC_MSG_RESULT($fstype)
-
-dnl Check for libpopt
-
-AC_CHECK_LIB(popt, poptGetArg, POPT_LIBS=-lpopt,
-        [AC_CHECK_HEADER(popt.h, , AC_MSG_ERROR([[
-*** Couldn't find popt. Please download and install from
-*** ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/ and try again.]]))])
-AC_SUBST(POPT_LIBS)
-
-dnl Final touch
-
-AC_SUBST(CFLAGS)
-AC_SUBST(CPPFLAGS)
-AC_SUBST(LDFLAGS)
-
-dnl This is needed by `test/vfs-run.in'
-TOP_BUILDDIR="`pwd`"
-AC_SUBST(TOP_BUILDDIR)
-
 dnl ==============================================================================
 dnl Check for a supported resolver functions
 dnl ==============================================================================
 dnl This is just a mix of the old code and new one taken from the gnet library and
-dnl evolution.
-    
+dnl evolution. 
+
+need_lib_resolve=no
+dnl need libresolv for dns-sd stuff			 
+AC_MSG_CHECKING(for res_search)
+AC_TRY_LINK_FUNC(res_search, AC_MSG_RESULT(yes),
+	[ AC_MSG_RESULT(no)
+	saved_LIBS="$LIBS"
+	LIBS="$LIBS -lresolv"
+	AC_MSG_CHECKING(for res_search in -lresolv)
+	AC_LINK_IFELSE([[
+		#include <resolv.h>
+		int main()
+		{
+			res_search (0, 0, 0, 0, 0);
+			return 0;
+		}
+	]],[ 
+	  RESOLVER_LIBS="-lresolv"
+	  need_lib_resolve=yes
+	  AC_MSG_RESULT(yes)
+	],[ 
+	  AC_MSG_RESULT(no)
+	])
+	  LIBS="$saved_LIBS" 
+])
+
+
+dnl check for res_ninit (thread-safe version of res_init)
+dnl this detection code comes from Mozilla
+AC_CACHE_CHECK([for res_ninit()], have_res_ninit,
+	[AC_TRY_LINK([
+        	  #ifdef linux
+        	  #define _BSD_SOURCE 1
+        	  #endif
+        	  #include <resolv.h>
+        ], [
+		int foo = res_ninit (&_res);
+	], [
+		have_res_ninit=yes
+	], [
+		have_res_ninit=no
+	])
+])
+
+if test "x$have_res_ninit" = "xyes"; then
+    AC_DEFINE([HAVE_RES_NINIT], 1, [Indicates if res_ninit is available])
+else
+    AC_CHECK_LIB(bind, res_ninit, 
+    		AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
+		RESOLVER_LIBS="-lbind",
+    		AC_CHECK_LIB(resolv, res_ninit, 
+			AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
+			if test "x$need_lib_resolv" = "xno"; then
+				RESOLVER_LIBS="-lresolv"
+			fi
+		)
+    )
+fi
+
+
 have_getaddrinfo=no
 have_resolver=no
 AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes; have_resolver=yes)
@@ -1014,6 +946,114 @@ dnl ============================================================================
 dnl End of IPv6 checks
 dnl ==============================================================================
 
+PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0)
+LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS"
+LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS $HOWL_LIBS $RESOLVER_LIBS"
+AC_SUBST(LIBGNOMEVFS_CFLAGS)
+AC_SUBST(LIBGNOMEVFS_LIBS)
+
+PKG_CHECK_MODULES(LIBGNOMEVFSDAEMON, glib-2.0 $USE_HAL)
+AC_SUBST(LIBGNOMEVFSDAEMON_CFLAGS)
+AC_SUBST(LIBGNOMEVFSDAEMON_LIBS)
+					       	
+dnl ****************************
+dnl *** Checks for pty stuff ***
+dnl ****************************
+
+AC_CHECK_HEADERS(sys/un.h stropts.h termios.h)
+
+# Check for PTY handling functions.
+AC_CHECK_FUNCS(getpt posix_openpt grantpt unlockpt ptsname ptsname_r)
+
+# Pull in the right libraries for various functions which might not be
+# bundled into an exploded libc.
+AC_CHECK_FUNC(socketpair,[have_socketpair=1],AC_CHECK_LIB(socket,socketpair,[have_socketpair=1; LIBS="$LIBS -lsocket"]))
+if test x$have_socketpair = x1 ; then
+	AC_DEFINE(HAVE_SOCKETPAIR,1,[Define if you have the socketpair function.])
+fi
+  
+dnl **********************
+dnl *** Checks for FAM ***
+dnl **********************
+
+FAM_MISSING_WARNING="Gnome-vfs depends on FAM to provide notification when files are altered (either through filesystem polling, or a kernel notification mechanism). If Gnome-vfs is built without FAM support, directories viewed with Nautilus or other applications will not remain in synch with the actual filesystem when they are altered by external processes. Particularly if you are a distributor please compile Nautilus with FAM support. FAM is available from http://oss.sgi.com/projects/fam/. A patch to add Linux Kernel 2.4 directory notify support to FAM (highly desirable) is available from http://people.redhat.com/alexl/files/"
+FAM_LIBS=
+AC_CHECK_LIB(fam, FAMOpen,
+  [AC_CHECK_HEADERS(fam.h,
+    [AC_DEFINE(HAVE_FAM, [], [Define if we have FAM])
+     FAM_LIBS="-lfam"],
+    AC_MSG_WARN(*** FAM support will not be built (header files not found) $FAM_MISSING_WARNING ***))],
+  AC_MSG_WARN(*** FAM support will not be built (FAM library not found) $FAM_MISSING_WARNING ***))
+AC_SUBST(FAM_LIBS)
+
+dnl **************************
+dnl *** Checks for gtk-doc ***
+dnl **************************
+
+GTK_DOC_CHECK([1.0])
+
+dnl ******************************
+dnl *** End checks for gtk-doc ***
+dnl ******************************
+
+
+dnl borrowed from gnu findutils
+dnl and relicensed as LGPL by the FSF
+
+AC_ARG_WITH(afs,
+[  --with-afs              support -fstype afs],
+[  AC_DEFINE(AFS, [], [Define if you have the Andrew File System])
+  CPPFLAGS="$CPPFLAGS -I/usr/afsws/include"
+  LIBS="$LIBS -L/usr/afsws/lib -L/usr/afsws/lib/afs -lsys -lrx -llwp"])
+
+AC_MSG_CHECKING(how to get filesystem type)
+fstype=no
+# The order of these tests is important.
+AC_TRY_CPP([#include <sys/statvfs.h>
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_STATVFS, [],
+							[Define to use SVR4 statvfs to get filesystem type]) fstype=SVR4)
+if test $fstype = no; then
+AC_TRY_CPP([#include <sys/statfs.h>
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_USG_STATFS, [],
+							[Define to use SVR3.2 statfs to get filesystem type]) fstype=SVR3)
+fi
+if test $fstype = no; then
+AC_TRY_CPP([#include <sys/statfs.h>
+#include <sys/vmount.h>], AC_DEFINE(FSTYPE_AIX_STATFS, [],
+							 [Define to use AIX3 statfs to get filesystem type]) fstype=AIX)
+fi
+if test $fstype = no; then  
+AC_TRY_CPP([#include <mntent.h>], AC_DEFINE(FSTYPE_MNTENT, [],
+						    [Define to use 4.3BSD getmntent to get filesystem typ]) fstype=4.3BSD)
+fi
+if test $fstype = no; then  
+AC_EGREP_HEADER(f_type;, sys/mount.h, AC_DEFINE(FSTYPE_STATFS, [],
+							   [Define to use 4.4BSD and OSF1 statfs to get filesystem typ]) fstype=4.4BSD/OSF1)
+fi
+if test $fstype = no; then  
+AC_TRY_CPP([#include <sys/mount.h>
+#include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT, [],
+							   [Define to use Ultrix getmnt to get filesystem typ]) fstype=Ultrix)
+fi
+AC_MSG_RESULT($fstype)
+
+dnl Check for libpopt
+
+AC_CHECK_LIB(popt, poptGetArg, POPT_LIBS=-lpopt,
+        [AC_CHECK_HEADER(popt.h, , AC_MSG_ERROR([[
+*** Couldn't find popt. Please download and install from
+*** ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/ and try again.]]))])
+AC_SUBST(POPT_LIBS)
+
+dnl Final touch
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+
+dnl This is needed by `test/vfs-run.in'
+TOP_BUILDDIR="`pwd`"
+AC_SUBST(TOP_BUILDDIR)
     
 
 dnl Disable rebuild of glib-mkenum -generated source code:
