@@ -20,6 +20,8 @@ test-mime
 test-mime-handlers
 test-mime-handlers-set
 test-seek
+test-shell
+test-symlinks
 test-sync
 test-sync-write
 test-xfer

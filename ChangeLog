@@ -1,3 +1,33 @@
+2000-06-22  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_edit_user_file_full),
+	(gnome_vfs_mime_edit_user_file_args),
+	(gnome_vfs_mime_edit_user_file_multiple),
+	(gnome_vfs_mime_edit_user_file),
+	(gnome_vfs_mime_set_default_action_type),
+	(gnome_vfs_mime_set_default_application),
+	(gnome_vfs_mime_set_default_component),
+	(gnome_vfs_mime_set_short_list_applications),
+	(gnome_vfs_mime_set_short_list_components),
+	(gnome_vfs_mime_id_in_application_list),
+	(gnome_vfs_mime_id_in_component_list),
+	(gnome_vfs_mime_add_application_to_short_list),
+	(gnome_vfs_mime_remove_application_from_list),
+	(gnome_vfs_mime_remove_application_from_short_list),
+	(gnome_vfs_mime_add_component_to_short_list),
+	(gnome_vfs_mime_remove_component_from_list),
+	(gnome_vfs_mime_remove_component_from_short_list),
+	(gnome_vfs_mime_add_extension), (gnome_vfs_mime_remove_extension),
+	(gnome_vfs_mime_extend_all_applications),
+	(gnome_vfs_mime_remove_from_all_applications),
+	(gnome_vfs_mime_define_application):
+	Added some rudimentary error handling.
+	
+	* test/.cvsignore:
+	Some new files are generated but not yet ignored.
+
 2000-06-22  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
@@ -140,7 +170,7 @@
 	* modules/ftp-method.h:
 	Removed references to new-ftp.
 	
-2000-06-21  Rebecka Schulman  <set EMAIL_ADDRESS environment variable>
+2000-06-21  Rebecka Schulman  <rebecka@eazel.com>
 
 	* test/test-async-directory.c: (type_to_string):
 	Fixed constant errors that were uncaught in previous
