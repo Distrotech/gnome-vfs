@@ -44,7 +44,7 @@ System (version for POSIX threads).
 #include <string.h>
 #include <unistd.h>
 
-GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
+static GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
 
 #if GNOME_VFS_JOB_DEBUG
 
