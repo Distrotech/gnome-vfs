@@ -33,8 +33,11 @@ G_BEGIN_DECLS
 typedef gpointer GnomeVFSMethodHandle;
 /**
  * GnomeVFSHandle:
- * 
- * blash
+ *
+ * Handle to a file, a handle is obtained using gnome_vfs_open and gnome_vfs_create
+ * family of functions on the file. A handle represents a file stream, gnome_vfs_close,
+ * gnome_vfs_write, gnome_vfs_read and all the other operations take a GnomeVFSHandle
+ * that identifies the file where the operation is going to be performed.
  **/
 typedef struct GnomeVFSHandle GnomeVFSHandle;
 

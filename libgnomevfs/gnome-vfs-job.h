@@ -73,7 +73,7 @@ G_STMT_START{					\
 
 #endif
 
-/* GNOME_VFS_OP_MODULE_CALLBABK: is not a real OpType; 
+/* GNOME_VFS_OP_MODULE_CALLBACK: is not a real OpType; 
  * its intended to mark GnomeVFSAsyncModuleCallback's in the 
  * job_callback queue
  */
