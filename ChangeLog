@@ -1,3 +1,11 @@
+2000-09-08  Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/Makefile.am: Don't attempt to build binary version of
+	mime database.
+
+	* gnome-vfs.spec.in: Don't include gnome-vfs-genmimedb or the
+	binary version of the mime database that it generates.
+	
 2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 2766, viewer menu code is not finished.

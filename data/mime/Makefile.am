@@ -17,5 +17,5 @@ sysconf_DATA = gnome-vfs-mime-magic
 
 EXTRA_DIST = $(mime_DATA) $(sysconf_DATA) $(applications_DATA)
 
-install-data-local:
-	$(top_builddir)/libgnomevfs/gnome-vfs-gen-mimedb $(DESTDIR)$(sysconfdir)/gnome-vfs-mime-magic
+#install-data-local:
+#	$(top_builddir)/libgnomevfs/gnome-vfs-gen-mimedb $(DESTDIR)$(sysconfdir)/gnome-vfs-mime-magic
