@@ -1,3 +1,10 @@
+2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_application_new_from_id): Get
+	"can_open_multiple_files" and "can_open_uris" from the right
+	properties.
+
 2000-06-01  JP Rosevear  <jpr@arcavia.com>
 
 	* mime-type-capplet/Makefile.am: Make the capplet build if gnomevfs
