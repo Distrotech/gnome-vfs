@@ -1,6 +1,6 @@
 2000-05-16  Gene Z. Ragan  <gzr@eazel.com>
 
-	* libgnomevfs/gnome-vfs-uti/main.c:
+	* libgnomevfs/gnome-vfs-uri.c:
 	Reverted due to accidental check-in during last commit.
 
 2000-05-16  Gene Z. Ragan  <gzr@eazel.com>
@@ -111,7 +111,6 @@
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_cancel):
 	Allow the caller to cancel a task even if we are done with it.
-	
 	* test/test-async-cancel.c: (test_get_file_info): Tweak message.
 
 2000-05-08  Darin Adler  <darin@eazel.com>
