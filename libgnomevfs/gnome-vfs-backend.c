@@ -79,7 +79,7 @@ gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 	g_free (backend_filename);
 
 	init_func = g_strdup_printf ("gnome_vfs_%s_init", backend_lower);
-	if (!g_module_symbol (gmod, backend_filename, 
+	if (!g_module_symbol (gmod, init_func, 
 		(gpointer *)&gnome_vfs_backend_module_init)) {
 		g_module_close (gmod); 
 		gmod = NULL;

@@ -1,5 +1,8 @@
 2001-10-10  jacob berkman  <jacob@ximian.com>
 
+	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_backend_loadinit):
+	fix a thinko
+
 	* libgnomevfs-corba/Makefile.am (libgnomevfs_corba_la_LDFLAGS): 
 	* libgnomevfs-pthread/Makefile.am
 	(libgnomevfs_pthread_la_LDFLAGS): build with -module
