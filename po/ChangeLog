@@ -1,3 +1,17 @@
+2001-08-14  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.39.
+
+2001-08-08  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.39.
+
+2001-08-08  gettextize  <bug-gnu-utils@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.10.39.
+	* cat-id-tbl.c: Remove file.
+	* stamp-cat-id: Remove file.
+
 2001-08-03  Seth Nickell  <snickell@stanford.edu>
 
 	reviewed by: <delete if not using a buddy>

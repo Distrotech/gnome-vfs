@@ -7,25 +7,25 @@ INCLUDES = \
 	-DG_LOG_DOMAIN=\"GnomeVFSMonikers\"
 
 EXTRA_DIST = \
-	GNOME_VFS_Moniker_std.oaf.in.in
+	GNOME_VFS_Moniker_std.server.in.in
 
 moniker_LTLIBRARIES = libmoniker_gnome_vfs_std.la
 monikerdir = $(libdir)/bonobo/monikers
 
-GNOME_VFS_Moniker_std.oaf.in: $(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in
+GNOME_VFS_Moniker_std.server.in: $(srcdir)/GNOME_VFS_Moniker_std.server.in.in
 	sed -e "s|\@MONIKER_LIBDIR\@|$(monikerdir)|" \
-		$(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in \
-		> GNOME_VFS_Moniker_std.oaf.in
+		$(srcdir)/GNOME_VFS_Moniker_std.server.in.in \
+		> GNOME_VFS_Moniker_std.server.in
 
-CLEANFILES+=GNOME_VFS_Moniker_std.oaf GNOME_VFS_Moniker_std.oaf.in
+CLEANFILES+=GNOME_VFS_Moniker_std.server GNOME_VFS_Moniker_std.server.in
 
-oafdir = $(datadir)/oaf
-oaf_DATA = GNOME_VFS_Moniker_std.oaf
+serverdir = $(libdir)/bonobo/servers
+server_DATA = GNOME_VFS_Moniker_std.server
 
-@XML_I18N_MERGE_OAF_RULE@
+@XML_I18N_MERGE_SERVER_RULE@
 
 clean-local:
-	-rm -f $(oaf_DATA)
+	-rm -f $(server_DATA)
 
 libmoniker_gnome_vfs_std_la_SOURCES = \
 	gnome-moniker-std.c		\

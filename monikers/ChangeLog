@@ -1,3 +1,8 @@
+2001-08-14  Michael Meeks  <michael@ximian.com>
+
+	* Makefile.am: s/oaf/server/, install in
+	$(libdir)/bonobo/servers
+
 2001-08-03  Darin Adler  <darin@bentspoon.com>
 
 	reviewed by: <delete if not using a buddy>

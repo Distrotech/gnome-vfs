@@ -1,3 +1,7 @@
+2001-08-14  Michael Meeks  <michael@ximian.com>
+
+	* configure.in (BONOBO_ACTIVATION_REQUIRED): require 0.9.1
+
 2001-08-10  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: added zh_TW.Big5 to ALL_LINGUAS. (Please tell me
