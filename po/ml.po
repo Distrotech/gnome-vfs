@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.2.x\n"
-"POT-Creation-Date: 2003-03-20 21:54+0530\n"
+"POT-Creation-Date: 2003-03-31 13:23+0200\n"
 "PO-Revision-Date: 2003-03-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -34,22 +34,22 @@ msgstr ""
 msgid "Configuration file `%s' was not found: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-job.c:741
+#: libgnomevfs/gnome-vfs-job.c:744
 #, c-format
 msgid "Unknown op type %u"
 msgstr "അറിയാത്ത op ഇനം %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1030 libgnomevfs/gnome-vfs-job.c:1175
+#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-job.c:1665
+#: libgnomevfs/gnome-vfs-job.c:1668
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "അറിയാത്ത തരം ജോലി %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1698
+#: libgnomevfs/gnome-vfs-job.c:1701
 msgid "Operation stopped"
 msgstr "പ്രവ‌ര്‍ത്തനം അവസാനിപ്പിച്ചു"
 
@@ -306,7 +306,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1109
+#: libgnomevfs/gnome-vfs-utils.c:1107
 msgid " (invalid Unicode)"
 msgstr "(അസാധുവായ യുണികോഡ്)"
 

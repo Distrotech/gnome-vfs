@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2003-03-10 20:34+0100\n"
+"POT-Creation-Date: 2003-03-31 13:23+0200\n"
 "PO-Revision-Date: 2000-08-27 14:00+0000\n"
 "Last-Translator: Alastair McKinstry <mckinstry@computer.org>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -33,22 +33,22 @@ msgstr ""
 msgid "Configuration file `%s' was not found: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-job.c:746
+#: libgnomevfs/gnome-vfs-job.c:744
 #, fuzzy, c-format
 msgid "Unknown op type %u"
 msgstr "Job ID gan aithne: %d"
 
-#: libgnomevfs/gnome-vfs-job.c:1035 libgnomevfs/gnome-vfs-job.c:1180
+#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-job.c:1670
+#: libgnomevfs/gnome-vfs-job.c:1668
 #, fuzzy, c-format
 msgid "Unknown job kind %u"
 msgstr "Job ID gan aithne: %d"
 
-#: libgnomevfs/gnome-vfs-job.c:1703
+#: libgnomevfs/gnome-vfs-job.c:1701
 msgid "Operation stopped"
 msgstr ""
 
@@ -300,7 +300,7 @@ msgstr "%.1fM"
 msgid "%.1f GB"
 msgstr "%.1fG"
 
-#: libgnomevfs/gnome-vfs-utils.c:1109
+#: libgnomevfs/gnome-vfs-utils.c:1107
 msgid " (invalid Unicode)"
 msgstr ""
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-vfs\n"
-"POT-Creation-Date: 2003-03-10 20:34+0100\n"
+"POT-Creation-Date: 2003-03-31 13:23+0200\n"
 "PO-Revision-Date: 2003-02-12 10:19+0530\n"
 "Last-Translator: Sayamindu Dasgupta <unmadindu@Softhome.net>\n"
 "Language-Team: Bengali (bn) <gnome-translation@bengalinux.org>\n"
@@ -35,22 +35,22 @@ msgstr "%s:%dতে কোন মডিউলের নাম নেই"
 msgid "Configuration file `%s' was not found: %s"
 msgstr "কনফিগারেশন ফাইল `%s পাওয়া গেল না: %s'"
 
-#: libgnomevfs/gnome-vfs-job.c:746
+#: libgnomevfs/gnome-vfs-job.c:744
 #, c-format
 msgid "Unknown op type %u"
 msgstr "অজানা ধরনের অপপ্ %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1035 libgnomevfs/gnome-vfs-job.c:1180
+#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "খোলা জি-আই-ও-চ্যানেল: %sএর জন্য কোন পাইপ তৈরি করা গেল না  "
 
-#: libgnomevfs/gnome-vfs-job.c:1670
+#: libgnomevfs/gnome-vfs-job.c:1668
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "অজানা ধরনের কাজ %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1703
+#: libgnomevfs/gnome-vfs-job.c:1701
 msgid "Operation stopped"
 msgstr "কাজ বন্ধ"
 
@@ -301,7 +301,7 @@ msgstr "%.1f এম-বি"
 msgid "%.1f GB"
 msgstr "%.1f জি-বি"
 
-#: libgnomevfs/gnome-vfs-utils.c:1109
+#: libgnomevfs/gnome-vfs-utils.c:1107
 msgid " (invalid Unicode)"
 msgstr "বেঠিক ইউনিকোড"
 
