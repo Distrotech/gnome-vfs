@@ -772,6 +772,10 @@ do_close_directory (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+#ifndef HAVE_READDIR_R
+G_LOCK_DEFINE_STATIC (readdir);
+#endif
+
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
@@ -786,6 +790,7 @@ do_read_directory (GnomeVFSMethod *method,
 	handle = (DirectoryHandle *) method_handle;
 	
 	errno = 0;
+#ifdef HAVE_READDIR_R	
 	if (readdir_r (handle->dir, handle->current_entry, &result) != 0) {
 		/* Work around a Solaris bug.
 		 * readdir64_r returns -1 instead of 0 at EOF.
@@ -795,6 +800,17 @@ do_read_directory (GnomeVFSMethod *method,
 		}
 		return gnome_vfs_result_from_errno ();
 	}
+#else
+	G_LOCK (readdir);
+	errno = 0;
+	result = readdir (dir);
+
+	if (result != NULL && errno != 0) {
+		return gnome_vfs_result_from_errno ();
+	}
+	memcpy (handle->current_entry, result, sizeof (struct dirent));
+	G_UNLOCK (readdir);
+#endif
 	
 	if (result == NULL) {
 		return GNOME_VFS_ERROR_EOF;

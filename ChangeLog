@@ -1,5 +1,10 @@
 2003-02-18  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in: 
+	* modules/file-method.c (do_read_directory):
+	Check for readdir_r and use locks + readdir if it doesn't exist.
+
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
 	* libgnomevfs/gnome-vfs-mime-magic.c (_gnome_vfs_sniff_buffer_looks_like_mp3):
 	Don't interpret vorbis files with ID3 tags as mp3.
 
