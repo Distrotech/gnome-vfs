@@ -138,20 +138,29 @@ int ne_parse_statusline(const char *status_line, ne_status *st)
     int major, minor, status_code, klass;
 
     /* skip leading garbage if any. */
-    part = strstr(status_line, "HTTP/");
-    if (part == NULL) return -1;
+    if ((part = strstr(status_line, "HTTP/")) != NULL) {
+    
+        minor = major = 0;
 
-    minor = major = 0;
+        /* Parse version string, skipping leading zeroes. */
+        for (part += 5; *part != '\0' && isdigit(*part); part++)
+	    major = major*10 + (*part-'0');
 
-    /* Parse version string, skipping leading zeroes. */
-    for (part += 5; *part != '\0' && isdigit(*part); part++)
-	major = major*10 + (*part-'0');
+        if (*part++ != '.') return -1;
 
-    if (*part++ != '.') return -1;
-
-    for (;*part != '\0' && isdigit(*part); part++)
-	minor = minor*10 + (*part-'0');
-
+        for (;*part != '\0' && isdigit(*part); part++)
+	    minor = minor*10 + (*part-'0');
+		
+    /* workaround for broken ShoutCast and IceCast server
+       which responed with ICY instead of HTTP */
+    } else if ((part = strstr(status_line, "ICY")) != NULL) {
+        major = 1;
+        minor = 0;
+        part += 3;
+    } else {
+        return -1;
+    }		
+		
     if (*part != ' ') return -1;
 
     /* Skip any spaces */

@@ -1,5 +1,11 @@
 2004-09-07  Christian Kellner  <gicmo@gnome-de.org>
 
+	* imported/neon/ne_utils.c (ne_parse_statusline): Workaround
+	ShoutCast and IceCast servers not responding with "HTTP" but
+	"ICY". This should fix bug #151453.
+
+2004-09-07  Christian Kellner  <gicmo@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-ssl.c: Fix build when neither
 	OpenSSL nor GnuTLS is enabled. This should fix #151880.
 	Thanks to Alex Fraser <alex@phatcore.com> for providing 
