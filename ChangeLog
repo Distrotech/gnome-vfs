@@ -1,3 +1,11 @@
+2004-10-05  Christian Kellner  <gicmo@gnome-de.org>
+
+	* ne_gnomevfs.c (ne_sock_connect): Use the same method as in
+	ne_negotiate_ssl ( ). 
+	(ne_sock_close): Don't free the socket because it will get be
+	freed in gnome_vfs_socket_buffer_destroy ( ).
+	This should fix bug #154300.
+
 2004-10-05  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_get_default_action_type):
