@@ -922,8 +922,14 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 	if (filename) {
 
 		gnome_vfs_stat_to_file_info (file_info, &s);
-
-		/* we don't know the io_block size */
+		
+		/* FIXME: This is a hack, but we can't change
+		   the above API until after Gnome 1.4.  Ideally, we
+		   would give the stat_to_file_info function this
+		   information.  Also, there may be more fields here that are not 
+		   valid that we haven't dealt with.  */
+		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_DEVICE;
+		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_INODE;
 		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
 		file_info->io_block_size = 0;
 

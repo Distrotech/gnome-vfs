@@ -1,3 +1,21 @@
+2001-02-16  Rebecca Schulman  <rebecka@eazel.com>
+	Fixed bugzilla.eazel.com 6220, that incorrect
+	file counts messed up the progress bar during FTP
+	copies.
+
+	reviewed by: Gene Regan <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-directory.c: (lookup_ancestor),
+	(directory_visit_internal):
+	Only rely on valid inodes to determine if a link is
+	circular.  Otherwise, use a hard limit for symbolic links
+	of 256, which should be greater than or equal too all
+	systems we'll work with.
+	* libgnomevfs/gnome-vfs-xfer.c: Fix spelling error in a comment
+	* modules/ftp-method.c: (ls_to_file_info):
+	Don't rely on inode and device information being valid.
+	
+
 2001-02-15  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: No one explicitly, but Darin said this change was

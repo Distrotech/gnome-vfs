@@ -626,7 +626,7 @@ remove_directory (GnomeVFSURI *uri,
 }
 
 /* iterates the list of names in a given directory, applies @callback on each,
- * optionaly recurses into directories
+ * optionally recurses into directories
  */
 static GnomeVFSResult
 gnome_vfs_visit_list (const GList *name_uri_list,
