@@ -345,7 +345,7 @@ GnomeVFSResult pthread_gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle
 
 	create_op = &job->current_op->specifics.create_symbolic_link;
 	create_op->request.uri = gnome_vfs_uri_ref (uri);
-	create_op->request.uri_reference = g_strdup(uri_reference);
+	create_op->request.uri_reference = g_strdup (uri_reference);
 
 	gnome_vfs_job_go (job);
 

@@ -1,5 +1,23 @@
 2000-09-26  Darin Adler  <darin@eazel.com>
 
+	More storage leak fixes.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (free_get_file_info_data):
+	Free the URI list.
+	(free_find_directory_data): Free the URI list.
+	(gnome_vfs_op_destroy): Free the reference string in the
+	create_symbolic_link case, the sort rules and pattern in the
+	load_directory case, and the source and target URI lists in the
+	xfer case.
+	(execute_load_directory): Don't free the sort rules and pattern
+	here any more since it's now done in the common cleanup (for both
+	successful and cancelled operations).
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_create_symbolic_link): Whitespace.
+
+2000-09-26  Darin Adler  <darin@eazel.com>
+
 	Fixed some quit time deallocation stuff to be better for leak
 	checking purposes.
 	

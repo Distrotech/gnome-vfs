@@ -409,6 +409,8 @@ free_get_file_info_data (GnomeVFSOp *op)
 	GList *result_list, *p;
 	GnomeVFSGetFileInfoResult *result_item;
 
+	gnome_vfs_uri_list_free (op->specifics.get_file_info.request.uris);
+
 	result_list = op->specifics.get_file_info.notify.result_list;
 
 	for (p = result_list; p != NULL; p = p->next) {
@@ -440,6 +442,8 @@ free_find_directory_data (GnomeVFSOp *op)
 {
 	GList *result_list, *p;
 	GnomeVFSFindDirectoryResult *result_item;
+
+	gnome_vfs_uri_list_free (op->specifics.find_directory.request.uris);
 
 	result_list = op->specifics.find_directory.notify.result_list;
 
@@ -714,11 +718,14 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 {
 	switch (op->type) {
 	case GNOME_VFS_OP_CREATE:
-	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
 		gnome_vfs_uri_unref (op->specifics.create.request.uri);
 		break;
 	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
 		gnome_vfs_uri_unref (op->specifics.create_as_channel.request.uri);
+		break;
+	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+		gnome_vfs_uri_unref (op->specifics.create_symbolic_link.request.uri);
+		g_free (op->specifics.create_symbolic_link.request.uri_reference);
 		break;
 	case GNOME_VFS_OP_FIND_DIRECTORY:
 		free_find_directory_data (op);
@@ -728,6 +735,8 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		break;
 	case GNOME_VFS_OP_LOAD_DIRECTORY:
 		gnome_vfs_uri_unref (op->specifics.load_directory.request.uri);
+		g_free (op->specifics.load_directory.request.sort_rules);
+		g_free (op->specifics.load_directory.request.filter_pattern);
 		break;
 	case GNOME_VFS_OP_OPEN:
 		gnome_vfs_uri_unref (op->specifics.open.request.uri);
@@ -740,10 +749,13 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		gnome_vfs_file_info_clear (&op->specifics.set_file_info.request.info);
 		gnome_vfs_file_info_clear (&op->specifics.set_file_info.notify.info);
 		break;
+	case GNOME_VFS_OP_XFER:
+		gnome_vfs_uri_list_free (op->specifics.xfer.request.source_uri_list);
+		gnome_vfs_uri_list_free (op->specifics.xfer.request.target_uri_list);
+		break;
 	case GNOME_VFS_OP_CLOSE:
 	case GNOME_VFS_OP_READ:
 	case GNOME_VFS_OP_WRITE:
-	case GNOME_VFS_OP_XFER:
 		break;
 	default:
 		g_warning (_("Unknown job ID %d"), op->type);
@@ -928,7 +940,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 	}
 
  end:
-	g_free(buffer);
+	g_free (buffer);
 	g_io_channel_close (channel_out);
 	g_io_channel_unref (channel_out);
 	g_io_channel_unref (channel_in);
@@ -1458,7 +1470,7 @@ execute_find_directory (GnomeVFSJob *job)
 		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
 
 		result_item->result = gnome_vfs_find_directory_cancellable
-			((GnomeVFSURI *)p->data,
+			((GnomeVFSURI *) p->data,
 			 op->request.kind,
 			 &result_item->uri,
 			 op->request.create_if_needed,
@@ -1499,9 +1511,6 @@ execute_load_directory (GnomeVFSJob *job)
 	gnome_vfs_directory_filter_destroy (filter);
 
 	job_close (job);
-
-	g_free (load_directory_op->request.sort_rules);
-	g_free (load_directory_op->request.filter_pattern);
 
 	return FALSE;
 }
