@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-02-29 21:10+0100\n"
-"PO-Revision-Date: 2004-02-29 17:57-0600\n"
+"PO-Revision-Date: 2004-03-06 23:52-0600\n"
 "Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -342,7 +342,7 @@ msgstr "แฟ้มมีอยู่แล้ว"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "ลิงค์วนรอบกลับมาหาตัวเอง"
+msgstr "จุดเชื่อมวนรอบกลับมาหาตัวเอง"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -394,10 +394,11 @@ msgstr "โฟลเดอร์ยุ่งอยู่"
 msgid "Directory not empty"
 msgstr "โฟลเดอร์ไม่ว่าง"
 
+# See docs for EMLINK -- This file has too many hard links.
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
-msgstr "ลิงค์มากเกิน"
+msgstr "แฟ้มนี้มีฮาร์ดลิงก์มากเกินไป"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
@@ -605,7 +606,7 @@ msgstr "โฮสต์"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr "ลิงค์"
+msgstr "ลิงก์"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
