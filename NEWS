@@ -15,9 +15,10 @@ gnome-vfs 2.0.2
 		+ async job map locking fixes (Damon Chaplin)
 		+ MIME file monitoring tracking (Jody)
 		+ configure cleans (Michael)
+		+ async job / dirinfo on cancel leaks (Michael)
 
 	* Featurelets
-		+ more auto regression tests (Michael)
+		+ more / fixed auto-regression tests (Michael)
 		+ doc update (Dave Camp)
 
 gnome-vfs 2.0.1

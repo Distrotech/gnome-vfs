@@ -341,23 +341,23 @@ struct GnomeVFSJob {
 	/* Handle being used for file access.  */
 	GnomeVFSHandle *handle;
 
-	/* By the time the entry routine for the job got reached the job might have been cancelled.
-	 * We find out by checking this flag.
+	/* By the time the entry routine for the job got reached
+	 * the job might have been cancelled. We find out by checking
+	 * this flag.
 	 */
 	gboolean cancelled;
 
-	/* Read or create returned with an error - helps flagging that we do not expect a cancel */
+	/* Read or create returned with an error - helps
+	 * flagging that we do not expect a cancel
+	 */
 	gboolean failed;
-	
-	/* Global lock for accessing data.  */
-	sem_t access_lock;
+
+	/* Global lock for accessing job's 'op' and 'handle' */
+	GMutex *job_lock;
 
 	/* This condition is signalled when the master thread gets a
            notification and wants to acknowledge it.  */
 	GCond *notify_ack_condition;
-
-	/* Mutex associated with `notify_ack_condition'.  */
-	GMutex *notify_ack_lock;
 
 	/* Operations that are being done and those that are completed and
 	 * ready for notification to take place.

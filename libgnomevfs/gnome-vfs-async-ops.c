@@ -45,7 +45,7 @@ gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 		/* have to cancel the callbacks because they still can be pending */
 		gnome_vfs_async_job_cancel_job_and_callbacks (handle, NULL);
 	} else {
-		/* Cancel the job in progress. OK to do outside of job->access_lock,
+		/* Cancel the job in progress. OK to do outside of job->job_lock,
 		 * job lifetime is protected by gnome_vfs_async_job_map_lock.
 		 */
 		gnome_vfs_job_module_cancel (job);
@@ -315,8 +315,8 @@ gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 			return;
 		}
 
-		if (job->op->type != GNOME_VFS_OP_READ
-			&& job->op->type != GNOME_VFS_OP_WRITE) {
+		if (job->op->type != GNOME_VFS_OP_READ &&
+		    job->op->type != GNOME_VFS_OP_WRITE) {
 			gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE,
 					   (GFunc) callback, callback_data);
 			gnome_vfs_job_go (job);
@@ -451,7 +451,6 @@ gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	get_info_op->uris = gnome_vfs_uri_list_copy (uris);
 	get_info_op->options = options;
 
-
 	*handle_return = job->job_handle;
 	gnome_vfs_job_go (job);
 }
@@ -541,7 +540,6 @@ async_load_directory (GnomeVFSURI *uri,
 	load_directory_op->uri = uri == NULL ? NULL : gnome_vfs_uri_ref (uri);
 	load_directory_op->options = options;
 	load_directory_op->items_per_notification = items_per_notification;
-
 
 	result = job->job_handle;
 	gnome_vfs_job_go (job);
@@ -633,9 +631,8 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	xfer_op->progress_sync_callback = progress_sync_callback;
 	xfer_op->sync_callback_data = sync_callback_data;
 
-	gnome_vfs_job_go (job);
-
 	*handle_return = job->job_handle;
+	gnome_vfs_job_go (job);
 
 	return GNOME_VFS_OK;
 }
