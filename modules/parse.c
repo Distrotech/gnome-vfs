@@ -4,6 +4,8 @@
  *  Written by: 1995 Miguel de Icaza
  *              1995 Jakub Jelinek
  *              1998 Pavel Machek
+ *
+ * finduid, findgid are from GNU tar.
  */
 #include <config.h>
 #ifndef NO_SYSLOG_H
@@ -12,7 +14,68 @@
 #include <stdio.h>
 #include <stdlib.h>	/* For atol() */
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
+#include <glib.h>
 #include "parse.h"
+
+#ifndef TUNMLEN 
+#define TUNMLEN 256
+#endif
+#ifndef TGNMLEN
+#define TGNMLEN 256
+#endif
+
+static int saveuid = -993;
+static char saveuname[TUNMLEN];
+static int my_uid = -993;
+
+static int savegid = -993;
+static char savegname[TGNMLEN];
+static int my_gid = -993;
+
+#define myuid	( my_uid < 0? (my_uid = getuid()): my_uid )
+#define	mygid	( my_gid < 0? (my_gid = getgid()): my_gid )
+
+int finduid (char *uname)
+{
+	struct passwd *pw;
+	extern struct passwd *getpwnam ();
+	
+	if (uname[0] != saveuname[0]/* Quick test w/o proc call */
+	    ||0 != strncmp (uname, saveuname, TUNMLEN)) {
+		strncpy (saveuname, uname, TUNMLEN);
+		pw = getpwnam (uname);
+		if (pw) {
+			saveuid = pw->pw_uid;
+		} else {
+			saveuid = myuid;
+		}
+	}
+	return saveuid;
+}
+
+int findgid (char *gname)
+{
+	struct group *gr;
+	extern struct group *getgrnam ();
+	
+	if (gname[0] != savegname[0]/* Quick test w/o proc call */
+	    ||0 != strncmp (gname, savegname, TUNMLEN)) {
+		strncpy (savegname, gname, TUNMLEN);
+		gr = getgrnam (gname);
+		if (gr) {
+			savegid = gr->gr_gid;
+		} else {
+			savegid = mygid;
+		}
+	}
+	return savegid;
+}
 
 /* Following stuff (parse_ls_lga) is used by ftpfs and extfs */
 #define MAXCOLS		30
@@ -217,11 +280,12 @@ int vfs_parse_filedate(int idx, time_t *t)
     struct tm tim;
     int d[3];
     int	got_year = 0;
-
+    int current_mon;
+    time_t now;
+    
     /* Let's setup default time values */
-    tim.tm_year = current_year;
-    tim.tm_mon  = current_mon;
-    tim.tm_mday = current_mday;
+    tim = *localtime (&now);
+    current_mon = tim.tm_mon;
     tim.tm_hour = 0;
     tim.tm_min  = 0;
     tim.tm_sec  = 0;
@@ -482,9 +546,9 @@ error:
       static int errorcount = 0;
 
       if (++errorcount < 5) {
-	message_1s (1, "Could not parse:", p_copy);
+	print_vfs_message (_("Could not parse: %s"), p_copy);
       } else if (errorcount == 5)
-	message_1s (1, "More parsing errors will be ignored.", "(sorry)" );
+	print_vfs_message (_("More parsing errors will be ignored."));
     }
 
     if (p_copy != p)		/* Carefull! */

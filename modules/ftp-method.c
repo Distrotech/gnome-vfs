@@ -57,6 +57,7 @@ static GHashTable *connections_hash;
 static FILE *logfile;
 static int code;
 static int force_expiration;
+static int got_sigpipe;
 
 /* command wait_flag: */
 #define NONE        0x00
@@ -72,7 +73,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 		GnomeVFSOpenMode mode, gboolean exclusive,
 		ftpfs_direntry_t **retval);
 
-static void
+void
 print_vfs_message (char *msg, ...)
 {
 	char *str;
@@ -325,7 +326,7 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 		server_address.sin_family = hp->h_addrtype;
 		
 		/* We copy only 4 bytes, we can not trust hp->h_length, as it comes from the DNS */
-		memcpy (&server_address.sin_addr, &hp->h_addr, 4);
+		memcpy (&server_address.sin_addr, hp->h_addr, 4);
 	}
 	
 	server_address.sin_port = htons (port);
@@ -358,12 +359,11 @@ is_connection_closed (ftpfs_connection_t *conn)
 {
 	fd_set rset;
 	struct timeval t;
-#if 0
-	FIXME
+
 	if (got_sigpipe){
 		return 1;
 	}
-#endif
+
 	t.tv_sec = 0;
 	t.tv_usec = 0;
 	FD_ZERO (&rset);
@@ -385,11 +385,37 @@ is_connection_closed (ftpfs_connection_t *conn)
    second parameter to changetype. */
 #define TYPE_UNKNOWN -1 
 
+static void sig_pipe (int unused)
+{
+	got_sigpipe = 1;
+}
+
+static void
+net_init (void)
+{
+	static int inited;
+	struct sigaction sa;
+
+	if (inited)
+		return;
+	inited = 1;
+	
+	got_sigpipe = 0;
+	sa.sa_handler = sig_pipe;
+	sa.sa_flags = 0;
+	sigemptyset (&sa.sa_mask);
+	sigaction (SIGPIPE, &sa, NULL);
+}
+
 static ftpfs_connection_t *
 ftpfs_connection_connect (ftpfs_connection_t *conn)
 {
 	int retry_seconds = 0;
 
+	if (conn->sock != -1)
+		return conn;
+
+	net_init ();
 	do { 
 		conn->failed_on_login = 0;
 
@@ -428,6 +454,12 @@ ftpfs_connection_connect (ftpfs_connection_t *conn)
 		conn->home = g_strdup ("/");
 	return conn;
 
+}
+
+static void
+ftpfs_connection_dir_flush (ftpfs_connection_t *conn)
+{
+	g_hash_table_foreach_remove (conn->dcache, remove_entry, NULL);
 }
 
 static ftpfs_connection_t *
@@ -593,7 +625,6 @@ command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
 	char *str, *fmt_str;
 	int status;
 	int sock = conn->sock;
-	int got_sigpipe;
 	
 	va_start (ap, fmt);
 	
@@ -932,6 +963,66 @@ open_data_connection (ftpfs_connection_t *conn,
 }
 
 static GnomeVFSResult
+store_file (ftpfs_direntry_t *fe)
+{
+	GnomeVFSResult result = GNOME_VFS_OK;
+	int local_handle, sock, n, total;
+#ifdef HAVE_STRUCT_LINGER
+	struct linger li;
+#else
+	int flag_one = 1;
+#endif
+	char buffer [8192];
+	struct stat s;
+	
+	local_handle = open (fe->local_filename, O_RDONLY);
+	unlink (fe->local_filename);
+	if (local_handle == -1)
+		return GNOME_VFS_ERROR_IO;
+		
+	fstat (local_handle, &s);
+	sock = open_data_connection (fe->conn, "STOR", fe->remote_filename, TYPE_BINARY, 0);
+	if (sock < 0) {
+		close(local_handle);
+		return 0;
+	}
+#ifdef HAVE_STRUCT_LINGER
+	li.l_onoff = 1;
+	li.l_linger = 120;
+	setsockopt (sock, SOL_SOCKET, SO_LINGER, (char *) &li, sizeof (li));
+#else
+	setsockopt(sock, SOL_SOCKET, SO_LINGER, &flag_one, sizeof (flag_one));
+#endif
+	total = 0;
+	
+	while (1) {
+		while ((n = read (local_handle, buffer, sizeof (buffer))) < 0) {
+			result = gnome_vfs_result_from_errno ();
+			goto error_return;
+		}
+		if (n == 0)
+			break;
+		while (write (sock, buffer, n) < 0) {
+			result = gnome_vfs_result_from_errno ();
+			goto error_return;
+		}
+		total += n;
+		print_vfs_message(_("ftpfs: storing file %d (%d)"), 
+				  total, s.st_size);
+	}
+	close (sock);
+	close (local_handle);
+	if (get_reply (fe->conn->sock, NULL, 0) != COMPLETE)
+		result = GNOME_VFS_ERROR_IO;
+	return result;
+ error_return:
+	close (sock);
+	close (local_handle);
+	get_reply (fe->conn->sock, NULL, 0);
+	return result;
+}
+
+static GnomeVFSResult
 linear_start (ftpfs_direntry_t *fe, int offset)
 {
 	fe->local_stat.st_mtime = 0;
@@ -952,26 +1043,33 @@ linear_abort (ftpfs_direntry_t *fe)
 }
 
 static GnomeVFSResult
-linear_read (ftpfs_direntry_t *fe, void *buf, int len)
+linear_read (ftpfs_direntry_t *fe, void *buf, int len, GnomeVFSFileSize *bytes_read)
 {
 	int n;
 	GnomeVFSResult error = GNOME_VFS_OK;
-	
+
+	*bytes_read = 0;
 	while ((n = read (fe->data_sock, buf, len)) < 0) {
 		if (errno == EINTR)
 			continue;
 		break;
 	}
 
-	if (n < 0)
-	    linear_abort (fe);
-
+	if (n < 0){
+		linear_abort (fe);
+		return GNOME_VFS_ERROR_IO;
+	}
+	
 	if (!n) {
 		if ((get_reply (fe->conn->sock, NULL, 0) != COMPLETE))
 			error = GNOME_VFS_ERROR_IO;
 		close (fe->data_sock);
 		fe->data_sock = -1;
 	}
+
+	if (n > 0)
+		*bytes_read = n;
+
 	return error;
 }
 
@@ -1441,9 +1539,10 @@ static GnomeVFSResult
 retrieve_file (ftpfs_direntry_t *fe)
 {
 	GnomeVFSResult ret;
+	GnomeVFSFileSize n;
 	int total = 0;
 	char buffer [8192];
-	int local_handle, n;
+	int local_handle;
 	int stat_size = fe->s.st_size;
 	
 	if (fe->local_filename)
@@ -1463,7 +1562,11 @@ retrieve_file (ftpfs_direntry_t *fe)
 		goto error_3;
 
 	while (1) {
-		if ((n = linear_read (fe, buffer, sizeof (buffer))) < 0){
+		GnomeVFSResult s;
+		
+		s = linear_read (fe, buffer, sizeof (buffer), &n);
+		
+		if (s != GNOME_VFS_OK){
 			ret = GNOME_VFS_ERROR_IO;
 			goto error_1;
 		}
@@ -1582,7 +1685,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 				} else {
 					GnomeVFSResult v;
 					
-					if (IS_LINEAR (flags)) {
+					if (IS_LINEAR (mode)) {
 						fe->local_is_temp = 0;
 						fe->local_filename = NULL;
 						fe->linear_state = LS_LINEAR_CLOSED;
@@ -1660,6 +1763,8 @@ ftpfs_open (GnomeVFSMethodHandle **method_handle,
 	if (!ftpfs_uri)
 		return GNOME_VFS_ERROR_WRONGFORMAT;
 
+#warning Perhaps we want to set linear *only* iff READ is specified (see write method)
+	
 	ret = get_file_entry (
 		ftpfs_uri, FTPFS_DO_OPEN | FTPFS_DO_RESOLVE_SYMLINK,
 		mode, FALSE, &fe);
@@ -1668,9 +1773,6 @@ ftpfs_open (GnomeVFSMethodHandle **method_handle,
 		ftpfs_uri_destroy (ftpfs_uri);
 		return ret;
 	}
-
-	/* FIXME: When we have a GNOME_OPEN_MODE_LINEAR */
-	fe->linear_state = 0;
 
 	fh = g_new (ftpfs_file_handle_t, 1);
 	fh->fe = fe;
@@ -1712,22 +1814,126 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 	      gboolean exclusive,
 	      guint perm)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	ftpfs_file_handle_t *fh;
+	ftpfs_direntry_t *fe;
+	ftpfs_uri_t *ftpfs_uri;
+	GnomeVFSResult ret;
+
+	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+
+	ftpfs_uri = ftpfs_parse_uri (uri);
+	if (!ftpfs_uri)
+		return GNOME_VFS_ERROR_WRONGFORMAT;
+
+#warning Perhaps we want to set linear *only* iff READ is specified (see write method)
+	
+	ret = get_file_entry (
+		ftpfs_uri, FTPFS_DO_TRUNC | FTPFS_DO_RESOLVE_SYMLINK | FTPFS_DO_CREAT,
+		mode, exclusive, &fe);
+	
+	if (ret != GNOME_VFS_OK){
+		ftpfs_uri_destroy (ftpfs_uri);
+		return ret;
+	}
+
+	fh = g_new (ftpfs_file_handle_t, 1);
+	fh->fe = fe;
+	
+	if (!fe->linear_state){
+		int flags;
+
+		if (mode & GNOME_VFS_OPEN_WRITE)
+			flags = O_RDWR;
+		if (mode & GNOME_VFS_OPEN_READ)
+			flags = O_RDONLY;
+		else
+			flags = O_RDONLY;
+		flags |= O_CREAT;
+
+		flags = O_EXCL;
+		
+		fh->local_handle = open (fe->local_filename, flags, perm);
+		if (fh->local_handle < 0){
+			g_free (fh);
+			return GNOME_VFS_ERROR_NOMEM;
+		}
+	} else
+		fh->local_handle = -1;
+
+#ifdef UPLOAD_ZERO_LENGTH_FILE        
+	fh->has_changed = fe->freshly_created;
+#else
+	fh->has_changed = 0;
+#endif
+	ftpfs_connection_ref (fe->conn);
+
+	*method_handle = (GnomeVFSMethodHandle *) fh;
+	
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
 ftpfs_close (GnomeVFSMethodHandle *method_handle)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	ftpfs_file_handle_t *fp;
+	GnomeVFSResult result = GNOME_VFS_OK;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+	fp = (ftpfs_file_handle_t *) method_handle;
+	
+	if (fp->has_changed) {
+		result = store_file (fp->fe);
+		ftpfs_connection_dir_flush (fp->fe->conn);
+	}
+
+	if (fp->fe->linear_state == LS_LINEAR_OPEN)
+		linear_close (fp->fe);
+
+	if (fp->local_handle >= 0)
+		close (fp->local_handle);
+
+	ftpfs_connection_unref (fp->fe->conn);
+	ftpfs_direntry_unref (fp->fe);
+	g_free(fp);
+
+	return result;
 }
 
 static GnomeVFSResult
 ftpfs_read (GnomeVFSMethodHandle *method_handle,
 	    gpointer buffer,
-	    GnomeVFSFileSize num_bytes,
+	    GnomeVFSFileSize count,
 	    GnomeVFSFileSize *bytes_read)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	ftpfs_file_handle_t *fp;
+	int n;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+	
+	fp = (ftpfs_file_handle_t *) method_handle;
+	if (fp->fe->linear_state == LS_LINEAR_CLOSED) {
+		GnomeVFSResult r;
+		
+		print_vfs_message (_("Starting linear transfer..."));
+		r = linear_start (fp->fe, 0);
+		if (r != GNOME_VFS_OK)
+			return r;
+	}
+
+	if (fp->fe->linear_state == LS_LINEAR_CLOSED)
+		g_error ("linear_start() did not set linear_state!");
+
+	if (fp->fe->linear_state == LS_LINEAR_OPEN)
+		return linear_read (fp->fe, buffer, count, bytes_read);
+        
+	n = read (fp->local_handle, buffer, count);
+	if (n < 0){
+		*bytes_read = 0;
+		return GNOME_VFS_ERROR_IO;
+	} else
+		*bytes_read = n;
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -1736,7 +1942,26 @@ ftpfs_write (GnomeVFSMethodHandle *method_handle,
 	     GnomeVFSFileSize num_bytes,
 	     GnomeVFSFileSize *bytes_written)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	GnomeVFSResult result = GNOME_VFS_OK;
+	ftpfs_file_handle_t *fp;
+	int n;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+	
+	fp = (ftpfs_file_handle_t *) method_handle;
+	*bytes_written = 0;
+	
+	if (fp->fe->linear_state){
+		g_warning ("Write attempted on linear file");
+		return GNOME_VFS_ERROR_IO;
+	}
+	n = write (fp->local_handle, buffer, num_bytes);
+	if (n < 0){
+		result = gnome_vfs_result_from_errno ();
+	} else
+		*bytes_written = n;
+	fp->has_changed = 1;
+	return result;
 }
 
 static GnomeVFSResult
@@ -1744,7 +1969,31 @@ ftpfs_seek (GnomeVFSMethodHandle *method_handle,
 	    GnomeVFSSeekPosition whence,
 	    GnomeVFSFileOffset offset)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	ftpfs_file_handle_t *fp;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+	fp = (ftpfs_file_handle_t *) method_handle;
+	
+	
+	if (fp->fe->linear_state == LS_LINEAR_OPEN){
+		g_warning ("Seek is not possible on non-random access files");
+		return GNOME_VFS_ERROR_IO;
+	}
+
+	if (fp->fe->linear_state == LS_LINEAR_CLOSED){
+		print_vfs_message (_("Preparing reget..."));
+		if (whence != SEEK_SET){
+			g_warning ("Seek is not possible on non-random access files");
+			return GNOME_VFS_ERROR_IO;
+		}
+		
+		return linear_start (fp->fe, offset);
+	}
+
+	if (lseek (fp->local_handle, offset, whence) == -1)
+		return gnome_vfs_result_from_errno ();
+	else
+		return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -1752,7 +2001,7 @@ ftpfs_tell (GnomeVFSMethodHandle *method_handle,
 	    GnomeVFSSeekPosition whence,
 	    GnomeVFSFileOffset *offset_return)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_INTERNAL;
 }
 
 static GnomeVFSResult
@@ -1808,7 +2057,7 @@ ftpfs_is_local (const GnomeVFSURI *uri)
 static GnomeVFSResult
 ftpfs_make_directory (GnomeVFSURI *uri, guint perm)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_IO;
 }
 
 static GnomeVFSMethod method = {
