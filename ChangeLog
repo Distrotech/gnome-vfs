@@ -1,3 +1,13 @@
+2000-11-13  Rebecca Schulman  <rebecka@eazel.com>
+
+	Reviewed by: Maciej Stachowiak
+
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-types.h:
+	Add a new gnome vfs error, about the problem of the search
+	index being out of date enough that no results could
+	possibly come back, called GNOME_VFS_ERROR_SERVICE_OBSOLETE
+
 2000-11-13  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Turn "make check" off again.
