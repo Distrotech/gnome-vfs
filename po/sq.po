@@ -1,13 +1,13 @@
 # Përkthimi i mesazheve të gnome-vfs në shqip
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
-# Laurent Dhima <laurenti@alblinux.net>, 2003, 2004.
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
+# Laurent Dhima <laurenti@alblinux.net>, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-10-19 16:51+0200\n"
+"POT-Creation-Date: 2005-02-02 05:54+0100\n"
+"PO-Revision-Date: 2005-02-02 09:43+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -531,7 +531,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (Unicode i pavlefshëm)"
@@ -678,8 +678,7 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -1115,12 +1114,12 @@ msgstr "Përdoruesi për proxy HTTP"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Nëse e vërtetë, atëhere lidhjet me server-in proxy kanë nevojë për "
-"autentifikim. Kombinimi përdorues/fjalëkalim përcaktohet nga \"/system/"
-"http_proxy/authentication_user\" dhe \"/system/http_proxy/"
+"autentifikim. Kombinimi përdorues/fjalëkalim përcaktohet nga "
+"\"/system/http_proxy/authentication_user\" dhe \"/system/http_proxy/"
 "authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
@@ -1230,8 +1229,7 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1241,174 +1239,3 @@ msgstr "Grup pune SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Disk CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Disk bosh CD-R"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Disk CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Disk bosh CD-RW"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Disk CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Disk DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Disk bosh DVD-R"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Disk DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Disk bosh DVD-RAM"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Disk DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Disk bosh DVD-RW"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Disk DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Disk bosh DVD+RW"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Disk DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Disk bosh DVD+R"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Disk DVD+R"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Disk optik"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Disk Audio"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Njësi kompakte Flash"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Njësi Memory Stick"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Njësi Smart Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "Njësi SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Disketë Floppy"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Disk Mac OS"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Disk Mac OS X"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Disk Windows"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Disk Linux"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "E pamundur hapja e file: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Hapja e file '%s' dështoi: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "File është bosh"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Leximi nga file '%s' dështoi: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "elementi i desktop përmban rreshtin '%s' që nuk është një zë, grup, apo "
-#~ "koment"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "file i elementit të desktop nuk fillon me një grup legal nisjeje"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "elementi i desktop përmban rreshtin '%s' që nuk është UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "elementi i desktop përmban kodifikimin e panjohur '%s'"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "elementi i desktop nuk ka grupin '%s'"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "elementi i desktop nuk ka kyçin '%s'"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "elementi i desktop përmban kyçin '%s' që ka një vlerë të pa "
-#~ "interpretueshme."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në gjuhën "
-#~ "'%s'."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "elementi i desktop përmban sekuencën e gabuar escape '%s'"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "elementi i desktop përmban simbolin escape në fund të rreshtit"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Vlera '%s' nuk mund të interpretohet si një numër."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Vlera '%s' nuk mund të interpretohet si një boolean."
-
-#~ msgid "Applications"
-#~ msgstr "Programe"
-
-#~ msgid "Cards"
-#~ msgstr "Letra"
-
-#~ msgid "Files"
-#~ msgstr "Files"
-
-#~ msgid "Folders"
-#~ msgstr "Kartelat"
-
-#~ msgid "Help"
-#~ msgstr "Ndihmë"
-
-#~ msgid "Hosts"
-#~ msgstr "Host-et"
-
-#~ msgid "Links"
-#~ msgstr "Lidhje"
-
-#~ msgid "Mail"
-#~ msgstr "Posta"
-
-#~ msgid "Tools"
-#~ msgstr "Instrumente"
-
-#~ msgid "Windows"
-#~ msgstr "Dritaret"
-
-#~ msgid "desktop entry does not start with legal start group"
-#~ msgstr "elementi i desktop nuk fillon me një grup të ligjshëm nisjeje"
