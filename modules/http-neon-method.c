@@ -2,7 +2,7 @@
 /* http-neon-method.c - The HTTP method implementation for the GNOME Virtual 
    File System using the neon http/webdav library.
 
-   Copyright (C) 2004 Christian Kellner <gicmo@gnome-de.org>
+   Copyright (C) 2004 Christian Kellner <gicmo@gnome.org>
    
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -82,8 +82,8 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
+/* #define DEBUG_HTTP_ENABLE 1 */
 #undef DEBUG_HTTP_ENABLE
-
 #ifdef DEBUG_HTTP_ENABLE
 
 void http_debug_printf(const char *func, const char *fmt, ...) G_GNUC_PRINTF (2,3);
@@ -1418,6 +1418,10 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 	DEBUG_HTTP_FUNC (1);
 	
 	session = ne_get_session (req);
+	
+	if (ne_get_request_private (req, "Headers Returned"))
+		return 0;
+	
 	headers = ne_get_request_private (req, "Headers");
 	uri = ne_get_session_private (session, "GnomeVFSURI");
 
@@ -1438,6 +1442,8 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 
 	g_list_free (*headers);
 	g_free (headers);
+
+	ne_set_request_private (req, "Headers Returned", "TRUE");
 	
 	DEBUG_HTTP_FUNC (0);
 	
@@ -1448,6 +1454,8 @@ static void
 neon_header_catcher (void *userdata, const char *value)
 {
 	GList **headers = (GList **) userdata;
+
+	DEBUG_HTTP_3 ("Catching Header %s,", (char *) value);
 
 	*headers = g_list_prepend (*headers, g_strdup (value));	
 }
@@ -2239,6 +2247,13 @@ get_start:
 			DEBUG_HTTP ("[GET] {ranged} disabled");
 			handle->can_range = FALSE;
 		}
+	
+		/* If we are in a GET we invoke the callback of received headers 
+		   right before reading the data because we might be in a 
+		   stream and we wanna have the headers callbac invoked ASAP
+		*/
+		neon_return_headers (req, NULL, status);
+
 		
 		handle->transfer_state = TRANSFER_READ;
 		handle->transfer.read = req;

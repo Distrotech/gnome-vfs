@@ -1,3 +1,12 @@
+2004-10-09  Christian Kellner <gicmo@gnome.org>
+
+	* modules/http-neon-method.c:
+	Invoke received header callback before reading the data on a
+	GET (See comment in source code for more information)
+	Thanks to Sebastien Bacher  <seb128@debian.org> for
+	helping and testing. This should now finally fix bug
+	#150561.
+		
 2004-10-08  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
