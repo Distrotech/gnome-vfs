@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "POT-Creation-Date: 2003-12-08 10:44+0100\n"
-"PO-Revision-Date: 2003-11-19 11:56+0100\n"
+"PO-Revision-Date: 2003-12-11 22:56+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <franciscojavier.fernandez."
 "serrador@hispalinux.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -719,126 +719,122 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "How to handle callto URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "How to handle ghelp URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "How to handle h323 URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "How to handle http URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "How to handle https URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "How to handle info URLs"
-msgstr "No hay manejador para el esquema de URL"
+msgstr "Cómo manipular las URLs info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "How to handle mailto URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "How to handle man URLs"
-msgstr ""
+msgstr "Cómo manipular las URLs man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "How to handle trash URLs"
-msgstr "No hay manejador para el esquema de URL"
+msgstr "Cómo manipular las URLs trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Ejecutar programa en terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Set to true to have a program specified in command handle callto URLs"
-msgstr ""
+msgstr "Establecer a \"true\" para tener un programa especificado en el comando para manejar las URLs callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Set to true to have a program specified in command handle h323 URLs"
-msgstr ""
+msgstr "Establecer a «true» para tener un programa especificado en el comando para manejar las URLs h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Set to true to have a program specified in command handle http URLs"
-msgstr ""
+msgstr "Establecer a «true» para tener el programa especificado en el comando para manejar las URLs http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Set to true to have a program specified in command handle https URLs"
-msgstr ""
+msgstr "Establecer a «true» para tener un  programa especificado en el comando para manejar las URLs https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "Set to true to have a program specified in command handle mailto URLs"
-msgstr ""
+msgstr "Establecer a «verdadero» para tener un programa especificado en la línea de comandos para manipular las URLs mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in programs/ghelp handle ghelp URLs"
-msgstr ""
+msgstr "Establecer a «verdadero» para tener un programa especificado en la línea de comandos para manipular las URLs ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in programs/info handle info URLs"
-msgstr ""
+msgstr "Establecer a «verdadero» para tener un programa especificado en programs/info que maneje las URLs info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "Set to true to have a program specified in programs/man handle man URLs"
-msgstr ""
+msgstr "Establecer a «verdadero» para tener un programa especificado en programs/man que maneje las URLs man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in trash/command handle trash URLs"
-msgstr ""
+msgstr "Establecer a «verdadero» para tener un programa especificado en programs/trash que maneje las URLs trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "True if the program to handle this URL should be run in a terminal"
-msgstr ""
+msgstr "Verdadero si el programa que maneja esta URL debe ejecutarse en un terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "URL handler for callto uris"
-msgstr ""
+msgstr "Manipulador de URLs callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid "URL handler for ghelp pages"
-msgstr "No hay manejador para el esquema de URL"
+msgstr "Manipulador para URLs ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "URL handler for h323 uris"
-msgstr ""
+msgstr "Manipulador de URLs h323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "URL handler for http uris"
-msgstr ""
+msgstr "Manipulador de URLs http"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "URL handler for https uris"
-msgstr ""
+msgstr "Manipulador de URLs https"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "URL handler for info pages"
-msgstr ""
+msgstr "Manipulador de URLs para páginas info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "URL handler for mailto uris"
-msgstr ""
+msgstr "Manipulador de URLs mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "URL handler for man pages"
-msgstr ""
+msgstr "Manipulador de URLs para páginas man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid "URL handler for trash pages"
-msgstr "No hay manejador para el esquema de URL"
+msgstr "Manipulador URL para páginas trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
