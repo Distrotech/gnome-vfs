@@ -699,6 +699,16 @@ vfolder_info_read_info (VFolderInfo     *info,
 		 */
 		for (iter = info->item_dirs; iter; iter = iter->next) {
 			ItemDir *id = iter->data;
+			VFolderMonitor *dir_monitor;
+
+			/* Add a monitor for the root directory */
+			dir_monitor = 
+				vfolder_monitor_dir_new (id->uri, 
+							 itemdir_monitor_cb, 
+							 id);
+			if (dir_monitor)
+				id->monitors = g_slist_prepend (id->monitors, 
+								dir_monitor);
 
 			gnome_vfs_directory_visit (
 				id->uri,
@@ -1250,10 +1260,17 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	gchar *filename, *filename_ts;
 	GnomeVFSURI *uri;
 
-	g_print ("*** Itemdir '%s' monitor called! ***\n", monitor_uri);
+	g_print ("*** Itemdir '%s' monitor %s%s%s called! ***\n", 
+		 info_uri,
+		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
+
+	/* Operating on the whole directory, ignore */
+	if (!strcmp (monitor_uri, info_uri))
+		return;
 
 	VFOLDER_INFO_WRITE_LOCK (id->info);
-	id->info->loading = TRUE;
 
 	/* Get untimestamped filename */
 	uri = gnome_vfs_uri_new (info_uri);
@@ -1265,13 +1282,14 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		g_free (filename_ts);
 	}
 
-	itemdir_monitor_handle (id,
-				uri,
-				info_uri,
-				filename,
-				event_type);
+	if (filename && filename [0] != '.') {
+		itemdir_monitor_handle (id,
+					uri,
+					info_uri,
+					filename,
+					event_type);
+	}
 
-	id->info->loading = FALSE;
 	VFOLDER_INFO_WRITE_UNLOCK (id->info);
 
 	gnome_vfs_uri_unref (uri);
@@ -1424,7 +1442,11 @@ filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 {
 	VFolderInfo *info = user_data;
 
-	g_print ("*** Filename monitor called! ***\n");
+	g_print ("*** Filename '%s' monitor %s%s%s called! ***\n",
+		 info_uri,
+		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
 
 	if (info->filename_reload_tag) {
 		g_source_remove (info->filename_reload_tag);

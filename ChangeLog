@@ -1,3 +1,22 @@
+2002-08-09  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (fill_file_info_for_directory):
+	Copy code for filling a GnomeVFSFileInfo with a directory's
+	properties to here from get_file_info_internal().
+	(get_file_info_internal): Make child a pointer to a FolderChild,
+	not pass-by-value.
+	(do_get_file_info_from_handle): Use get_file_info_internal(), and
+	be sure to read lock the info.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_read_info): Don't
+	forget to add the moniitor for the root directory, as
+	directory_visit doesn't call create_entry_directory_visit_cb() for
+	the starting directory.
+	(itemdir_monitor_cb): If the file matches the monitored uri,
+	ignore since we only care about events from our children.  Don't
+	set the Vfolder to loading, since we want events to actually be
+	sent.  Check the child filename in question is not hidden.  
+
 2002-08-08  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-method.c (do_create): Don't Forgot to

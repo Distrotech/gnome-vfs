@@ -563,7 +563,12 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 
-	g_print ("EXTEND MONITOR CB: %p, %s\n", folder, folder->name);
+	g_print ("*** Exdended folder %s ('%s') monitor %s%s%s called! ***\n",
+		 folder->name,
+		 info_uri,
+		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
 
 	/* Operating on the whole directory, ignore */
 	if (!strcmp (monitor_uri, info_uri))

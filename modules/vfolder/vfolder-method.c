@@ -626,14 +626,68 @@ do_close_directory (GnomeVFSMethod *method,
 }
 
 
+static void
+fill_file_info_for_directory (GnomeVFSFileInfo        *file_info,
+			      GnomeVFSFileInfoOptions  options,
+			      const gchar             *name,
+			      time_t                   mtime,
+			      gboolean                 read_only,
+			      const gchar             *link_ref)
+{
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
+	file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
+
+	file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+	file_info->ctime = mtime;
+	file_info->mtime = mtime;
+	file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
+				    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
+
+	file_info->name = g_strdup (name);
+
+	if (read_only) {
+		file_info->permissions = (GNOME_VFS_PERM_USER_READ |
+					  GNOME_VFS_PERM_GROUP_READ |
+					  GNOME_VFS_PERM_OTHER_READ);
+		file_info->valid_fields |= 
+			GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+	}
+
+#if 0
+	/* 
+	 * FIXME: Idealy we'd be able to present links as actual symbolic links,
+	 * but panel doesn't like symlinks in the menus, and nautilus seems to
+	 * ignore it altogether.  
+	 */
+	if (link_ref) {
+		if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS)
+			file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		else
+			file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
+
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+
+		file_info->symlink_name = g_strdup (link_ref);
+		file_info->valid_fields |= 
+			GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+	}
+#endif
+}
+
 static GnomeVFSResult
 get_file_info_internal (VFolderInfo             *info,
-			FolderChild              child,
+			FolderChild             *child,
 			GnomeVFSFileInfoOptions  options,
 			GnomeVFSFileInfo        *file_info,
 			GnomeVFSContext         *context)
 {
-	if (child.type == DESKTOP_FILE) {
+	if (child->type == DESKTOP_FILE) {
 		GnomeVFSResult result;
 		GnomeVFSURI *file_uri;
 		gchar *displayname;
@@ -642,8 +696,8 @@ get_file_info_internal (VFolderInfo             *info,
 		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
 			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
 
-		file_uri = entry_get_real_uri (child.entry);
-		displayname = g_strdup (entry_get_displayname (child.entry));
+		file_uri = entry_get_real_uri (child->entry);
+		displayname = g_strdup (entry_get_displayname (child->entry));
 
 		result = gnome_vfs_get_file_info_uri_cancellable (file_uri,
 								  file_info,
@@ -663,65 +717,28 @@ get_file_info_internal (VFolderInfo             *info,
 		file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
 
 		return result;
-	}
-
-	if (child.type != FOLDER)
-		return GNOME_VFS_ERROR_GENERIC;
-
-	if (!child.folder) {
-		/* all-applications root dir */
-		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
-		file_info->name = g_strdup ("/");
-		goto GENERIC_DIR_INFO;
 	} 
-
-	file_info->name = g_strdup (folder_get_name (child.folder));
-
-	if (child.folder->read_only) {
-		file_info->permissions = (GNOME_VFS_PERM_USER_READ |
-					  GNOME_VFS_PERM_GROUP_READ |
-					  GNOME_VFS_PERM_OTHER_READ);
-		file_info->valid_fields |= 
-			GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
-	}
-
-#if 0
-	/* 
-	 * FIXME: Idealy we'd be able to present links as actual symbolic links,
-	 * but panel doesn't like symlinks in the menus, and nautilus seems to
-	 * ignore it altogether.  
-	 */
-	if (child.folder->is_link) {
-		if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS)
-			file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	else if (child->type == FOLDER) {
+		if (child->folder)
+			fill_file_info_for_directory (
+				file_info,
+				options,
+				folder_get_name (child->folder),
+				info->modification_time,
+				child->folder->read_only || info->read_only,
+				folder_get_extend_uri (child->folder));
 		else
-			file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
-
-		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
-
-		file_info->symlink_name = 
-			g_strdup (folder_get_extend_uri (child.folder));
-		file_info->valid_fields |= 
-			GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
-	} else
-		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-#endif
-
-	file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-
- GENERIC_DIR_INFO:
-	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
-
-	file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-	file_info->ctime = info->modification_time;
-	file_info->mtime = info->modification_time;
-	file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
-				    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
-
-	return GNOME_VFS_OK;
+			/* all-applications root dir */
+			fill_file_info_for_directory (file_info,
+						      options,
+						      "/",
+						      info->modification_time,
+						      TRUE /*read-only*/,
+						      NULL);
+		return GNOME_VFS_OK;
+	} 
+	else
+		return GNOME_VFS_ERROR_GENERIC;
 }
 
 
@@ -766,7 +783,7 @@ do_read_directory (GnomeVFSMethod *method,
 		goto READ_NEXT_ENTRY;
 
 	result =  get_file_info_internal (dh->info,
-					  child, 
+					  &child, 
 					  dh->options,
 					  file_info,
 					  context);
@@ -827,7 +844,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	}
 
 	result = get_file_info_internal (info,
-					 child, 
+					 &child, 
 					 options, 
 					 file_info, 
 					 context);
@@ -846,35 +863,21 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
-	FileHandle *handle = (FileHandle *)method_handle;
+	FileHandle *handle = (FileHandle *) method_handle;
+	FolderChild child;
 
-	if (method_handle == (GnomeVFSMethodHandle *) method) {
-		g_free (file_info->mime_type);
-		file_info->mime_type = g_strdup ("text/plain");
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-		return GNOME_VFS_OK;
-	}
+	VFOLDER_INFO_READ_LOCK (handle->info);
 
-	/* we always get mime-type by forcing it below */
-	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
-		options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+	child.type = DESKTOP_FILE;
+	child.entry = handle->entry;
 
-	result = 
-		gnome_vfs_get_file_info_from_handle_cancellable (handle->handle,
-								 file_info,
-								 options,
-								 context);
+	result =  get_file_info_internal (handle->info,
+					  &child, 
+					  options, 
+					  file_info, 
+					  context);
 
-	g_free (file_info->name);
-	file_info->name = g_strdup (entry_get_displayname (handle->entry));
-
-	/* any file is of the .desktop type */
-	g_free (file_info->mime_type);
-	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-	/* Now we wipe those fields we don't support */
-	file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
+	VFOLDER_INFO_READ_UNLOCK (handle->info);
 
 	return result;
 }
