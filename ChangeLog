@@ -1,5 +1,24 @@
 2000-10-02  Mike Fleming  <mfleming@eazel.com>
 
+	More file info caching stuff.  Now caches the contents of directories
+	(for a fairly short time).  This still doesn't squeeze out as much
+	performance as I had hoped, mostly because of Nautilus's habit of
+	hitting ".nautilus-metafile.xml"'s .  Negative caching and updating
+	of the cache following method invocation (rather than just invalidating)
+	could improve performance greatly.
+
+	* modules/http-method.c: (cache_init), (cache_shutdown),
+	(cache_entry_free), (cache_uri_to_string), (cache_check_directory),
+	(cache_check_directory_uri), (cache_add_no_strdup), (cache_add),
+	(cache_add_uri_and_children),
+	(cache_invalidate_entry_and_children),
+	(cache_invalidate_uri_and_children), (cache_invalidate_uri_parent),
+	(make_request), (do_create), (do_close), (make_propfind_request),
+	(do_open_directory), (do_make_directory), (do_remove_directory),
+	(do_move):
+
+2000-10-02  Mike Fleming  <mfleming@eazel.com>
+
 	* modules/http-method.c: (do_open_directory):
 	Fix foolish crasher
 
