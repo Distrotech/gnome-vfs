@@ -1,3 +1,8 @@
+2001-05-16  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-app-context.c:
+	(gnome_vfs_app_context_unref): Fix double-free.
+
 2001-05-15  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c,

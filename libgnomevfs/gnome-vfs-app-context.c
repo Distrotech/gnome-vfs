@@ -21,12 +21,13 @@
    Author: Michael Fleming <mfleming@eazel.com>
 */
 
-#include "gnome-vfs-module-api.h"
+#include <config.h>
 #include "gnome-vfs-app-context.h"
-#include "gnome-vfs-backend-private.h"
 
-#include <string.h>
+#include "gnome-vfs-backend-private.h"
+#include "gnome-vfs-module-api.h"
 #include <stdio.h>
+#include <string.h>
 
 static void	dispatch_destroy_notify 		(GDestroyNotify notify_func,
 			 				 gpointer user_data);
@@ -374,7 +375,6 @@ gnome_vfs_app_context_unref (GnomeVFSAppContext* app_context)
 	if (should_free) {
 		g_hash_table_foreach (app_context->attributes, hash_free_keys_values, NULL);
 		g_hash_table_foreach (app_context->callbacks, hash_dispatch_destroy_notifies, app_context);
-		g_hash_table_foreach (app_context->attributes, hash_free_keys_values, NULL);
 
 		g_free (app_context);
 	}
