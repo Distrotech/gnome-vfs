@@ -849,6 +849,7 @@ set_value_real (const char *mime_type, const char *key, const char *value,
 		context = context_new (user_hash_table, string);
 		/* add the info to the mime type context */
 		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+		g_string_free (string, TRUE);
 	} else
 		g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
 

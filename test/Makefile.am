@@ -25,7 +25,6 @@ noinst_PROGRAMS =				\
 	test-mime-info				\
 	test-monitor				\
 	test-performance			\
-	test-resolv				\
 	test-seek				\
 	test-shell				\
 	test-subdir				\
@@ -66,8 +65,8 @@ test_async_LDADD = $(libraries)
 test_performance_SOURCES = test-performance.c
 test_performance_LDADD = $(libraries)
 
-test_resolv_SOURCES = test-resolv.c
-test_resolv_LDADD = $(libraries)
+#test_resolv_SOURCES = test-resolv.c
+#test_resolv_LDADD = $(libraries)
 
 test_subdir_SOURCES = test-subdir.c
 test_subdir_LDADD = $(libraries)
