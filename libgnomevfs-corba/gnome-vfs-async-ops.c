@@ -54,7 +54,7 @@ struct _GnomeVFSAsyncHandle {
 struct _GnomeVFSAsyncFileOpInfo {
 	GnomeVFSAsyncHandle *current_handle;
 	gpointer buffer;
-	gulong buffer_size;
+	GnomeVFSFileSize buffer_size;
 };
 typedef struct _GnomeVFSAsyncFileOpInfo GnomeVFSAsyncFileOpInfo;
 
@@ -734,9 +734,9 @@ create_notify_object (GnomeVFSAsyncContext *context)
 	base_epv.finalize = NULL;
 	base_epv.default_POA = NULL;
 
-	Notify_epv.open =impl_Notify_open;
+	Notify_epv.open  = impl_Notify_open;
 	Notify_epv.close = impl_Notify_close;
-	Notify_epv.read = impl_Notify_read;
+	Notify_epv.read  = impl_Notify_read;
 	Notify_epv.write = impl_Notify_write;
 	Notify_epv.load_directory = impl_Notify_load_directory;
 	Notify_epv.dying = impl_Notify_dying;

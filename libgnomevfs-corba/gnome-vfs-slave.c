@@ -239,7 +239,7 @@ impl_FileHandle_read (PortableServer_Servant servant,
 	GNOME_VFS_Buffer *buffer;
 	GnomeVFSHandle *handle;
 	GnomeVFSResult result;
-	gulong bytes_read;
+	GnomeVFSFileOffset bytes_read;
 
 	handle = ((FileHandleServant *) servant)->handle;
 
@@ -267,7 +267,7 @@ impl_FileHandle_write (PortableServer_Servant servant,
 {
 	GnomeVFSHandle *handle;
 	GnomeVFSResult result;
-	gulong bytes_written;
+	GnomeVFSFileOffset bytes_written;
 
 	handle = ((FileHandleServant *) servant)->handle;
 	result = gnome_vfs_write (handle, buffer->_buffer, buffer->_length,

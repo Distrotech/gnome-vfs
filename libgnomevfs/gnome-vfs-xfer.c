@@ -257,9 +257,9 @@ xfer_file (GnomeVFSHandle *target_handle,
 	buffer = alloca (block_size);
 
 	do {
-		gulong bytes_read;
-		gulong bytes_to_write;
-		gulong bytes_written;
+		GnomeVFSFileSize bytes_read;
+		GnomeVFSFileSize bytes_to_write;
+		GnomeVFSFileSize bytes_written;
 		gboolean retry;
 
 		progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
@@ -348,12 +348,12 @@ free_xfer_file_list (GList *file_list)
 }
 
 struct _RecursionInfo {
-	gchar *base_path;
-	gulong *files_total_ptr;
-	gulong *bytes_total_ptr;
-	GList **file_list_ptr;
-	GList **file_list_end_ptr;
-	GnomeVFSResult result;
+	gchar             *base_path;
+	gulong            *files_total_ptr;
+	GnomeVFSFileSize  *bytes_total_ptr;
+	GList            **file_list_ptr;
+	GList            **file_list_end_ptr;
+	GnomeVFSResult     result;
 };
 typedef struct _RecursionInfo RecursionInfo;
 
@@ -400,7 +400,7 @@ create_xfer_file_list (GnomeVFSURI *source_dir_uri,
 		       GnomeVFSXferOptions xfer_options,
 		       GList **file_list,
 		       gulong *files_total,
-		       gulong *bytes_total)
+		       GnomeVFSFileSize *bytes_total)
 {
 	GnomeVFSFileInfoOptions info_options;
 	GnomeVFSDirectoryVisitOptions visit_options;
@@ -638,7 +638,6 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 	GnomeVFSXferProgressInfo progress_info;
 	GnomeVFSResult result;
 	GList *file_list;
-	GList *directory_list;
 	GList *p;
 
 	g_return_val_if_fail (source_dir_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);

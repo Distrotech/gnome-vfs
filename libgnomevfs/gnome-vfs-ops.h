@@ -48,21 +48,21 @@ GnomeVFSResult 	 gnome_vfs_close 		(GnomeVFSHandle *handle);
 
 GnomeVFSResult	 gnome_vfs_read			(GnomeVFSHandle *handle,
 						 gpointer buffer,
-						 gulong bytes,
-						 gulong *bytes_read);
+						 GnomeVFSFileSize bytes,
+						 GnomeVFSFileSize *bytes_read);
 
 GnomeVFSResult	 gnome_vfs_write 		(GnomeVFSHandle *handle,
 						 gconstpointer buffer,
-						 gulong bytes,
-						 gulong *bytes_written);
+						 GnomeVFSFileSize bytes,
+						 GnomeVFSFileSize *bytes_written);
 
 GnomeVFSResult	 gnome_vfs_seek			(GnomeVFSHandle *handle,
 						 GnomeVFSSeekPosition whence,
-						 gulong offset);
+						 GnomeVFSFileOffset offset);
 
 GnomeVFSResult	 gnome_vfs_tell			(GnomeVFSHandle *handle,
 						 GnomeVFSSeekPosition whence,
-						 gulong *offset_return);
+						 GnomeVFSFileSize *offset_return);
 
 GnomeVFSResult	 gnome_vfs_get_file_info	(const gchar *text_uri,
 						 GnomeVFSFileInfo *info,

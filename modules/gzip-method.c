@@ -79,13 +79,13 @@ static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
 
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_read);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_read);
 
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_written);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_written);
 
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
@@ -226,7 +226,7 @@ skip_string (GnomeVFSHandle *handle)
 {
 	GnomeVFSResult result;
 	guchar c;
-	gulong bytes_read;
+	GnomeVFSFileSize bytes_read;
 
 	do {
 		result = gnome_vfs_read (handle, &c, 1, &bytes_read);
@@ -241,11 +241,11 @@ skip_string (GnomeVFSHandle *handle)
 
 static gboolean
 skip (GnomeVFSHandle *handle,
-      gulong num_bytes)
+      GnomeVFSFileSize num_bytes)
 {
 	GnomeVFSResult result;
 	guchar *tmp;
-	gulong bytes_read;
+	GnomeVFSFileSize bytes_read;
 
 	tmp = alloca (num_bytes);
 
@@ -267,7 +267,7 @@ write_guint32 (GnomeVFSHandle *handle,
 {
 	guint i;
 	guchar buffer[4];
-	gulong bytes_written;
+	GnomeVFSFileSize bytes_written;
 
 	for (i = 0; i < 4; i++) {
 		buffer[i] = value & 0xff;
@@ -281,8 +281,8 @@ static GnomeVFSResult
 read_guint32 (GnomeVFSHandle *handle,
               guint32 *value_return)
 {
-	GnomeVFSResult result;
-	gulong bytes_read;
+	GnomeVFSResult   result;
+	GnomeVFSFileSize bytes_read;
 	guchar buffer[4];
 
 	result = gnome_vfs_read (handle, buffer, 4, &bytes_read);
@@ -306,7 +306,7 @@ read_gzip_header (GnomeVFSHandle *handle,
 {
 	GnomeVFSResult result;
 	guchar buffer[GZIP_HEADER_SIZE];
-	gulong bytes_read;
+	GnomeVFSFileSize bytes_read;
 	guint mode;
 	guint flags;
 
@@ -331,7 +331,7 @@ read_gzip_header (GnomeVFSHandle *handle,
 
 	if (flags & GZIP_FLAG_EXTRA_FIELD) {
 		guchar tmp[2];
-		gulong bytes_read;
+		GnomeVFSFileSize bytes_read;
 
 		if (gnome_vfs_read (handle, tmp, 2, &bytes_read)
 		    || bytes_read != 2)
@@ -359,7 +359,7 @@ write_gzip_header (GnomeVFSHandle *handle)
 {
 	GnomeVFSResult result;
 	guchar buffer[GZIP_HEADER_SIZE];
-	gulong bytes_written;
+	GnomeVFSFileSize bytes_written;
 
 	buffer[0] = GZIP_MAGIC_1;     /* magic 1 */
 	buffer[1] = GZIP_MAGIC_2;     /* magic 2 */
@@ -399,8 +399,8 @@ flush_write (GZipMethodHandle *gzip_handle)
 	done = FALSE;
 	z_result = Z_OK;
 	while (z_result == Z_OK || z_result == Z_STREAM_END) {
-		gulong bytes_written;
-		gulong len;
+		GnomeVFSFileSize bytes_written;
+		GnomeVFSFileSize len;
 
 		len = Z_BUFSIZE - zstream->avail_out;
 
@@ -555,10 +555,10 @@ do_close (GnomeVFSMethodHandle *method_handle)
 /* Read. */
 static GnomeVFSResult
 fill_buffer (GZipMethodHandle *gzip_handle,
-	     gulong num_bytes)
+	     GnomeVFSFileSize num_bytes)
 {
 	GnomeVFSResult result;
-	gulong count;
+	GnomeVFSFileSize count;
 	z_stream *zstream;
 
 	zstream = &gzip_handle->zstream;
@@ -588,8 +588,8 @@ fill_buffer (GZipMethodHandle *gzip_handle,
 static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
-	 gulong num_bytes,
-	 gulong *bytes_read)
+	 GnomeVFSFileSize num_bytes,
+	 GnomeVFSFileSize *bytes_read)
 {
 	GZipMethodHandle *gzip_handle;
 	GnomeVFSResult result;
@@ -666,8 +666,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
-	  gulong num_bytes,
-	  gulong *bytes_written)
+	  GnomeVFSFileSize num_bytes,
+	  GnomeVFSFileSize *bytes_written)
 {
 	GZipMethodHandle *gzip_handle;
 	GnomeVFSResult result;
@@ -685,7 +685,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 
 	while (zstream->avail_in != 0 && result == GNOME_VFS_OK) {
 		if (zstream->avail_out == 0) {
-			gulong written;
+			GnomeVFSFileSize written;
 
 			zstream->next_out = gzip_handle->buffer;
 			result = gnome_vfs_write (gzip_handle->parent_handle,

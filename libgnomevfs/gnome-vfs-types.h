@@ -106,6 +106,9 @@ typedef enum _GnomeVFSSeekPosition GnomeVFSSeekPosition;
 
 /* Basic types.  */
 
+typedef gulong                GnomeVFSFileSize;
+typedef glong                 GnomeVFSFileOffset;
+
 /* A file handle.  */
 typedef struct _GnomeVFSHandle GnomeVFSHandle;
 
@@ -171,13 +174,13 @@ struct _GnomeVFSFileInfo {
 	guint gid;
 
 	/* Size in bytes.  */
-	gulong size;
+	GnomeVFSFileSize size;
 
 	/* Size measured in units of 512-byte blocks.  */
-	gulong block_count;
+	GnomeVFSFileSize block_count;
 
 	/* Optimal buffer size for reading/writing the file.  */
-	gulong io_block_size;
+	guint io_block_size;
 
 	/* Access, modification and change times.  */
 	time_t atime;
@@ -426,16 +429,16 @@ struct _GnomeVFSXferProgressInfo {
 	gulong files_total;
 
 	/* Total number of bytes to be copied.  */
-	gulong bytes_total;
+	GnomeVFSFileSize bytes_total;
 
 	/* Total size of this file (in bytes).  */
-	gulong file_size;
+	GnomeVFSFileSize file_size;
 
 	/* Bytes copied for this file so far.  */
-	gulong bytes_copied;
+	GnomeVFSFileSize bytes_copied;
 
 	/* Total amount of data copied from the beginning.  */
-	gulong total_bytes_copied;
+	GnomeVFSFileSize total_bytes_copied;
 };
 typedef struct _GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
 
@@ -481,16 +484,16 @@ typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncContext *context,
 						 GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer buffer,
-						 gulong bytes_requested,
-						 gulong bytes_read,
+						 GnomeVFSFileSize bytes_requested,
+						 GnomeVFSFileSize bytes_read,
 						 gpointer callback_data);
 
 typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncContext *context,
 						 GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gconstpointer buffer,
-						 gulong bytes_requested,
-						 gulong bytes_written,
+						 GnomeVFSFileSize bytes_requested,
+						 GnomeVFSFileSize bytes_written,
 						 gpointer callback_data);
 
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)

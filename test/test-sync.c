@@ -37,11 +37,11 @@ show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
 int
 main (int argc, char **argv)
 {
-	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
-	gchar buffer[1024];
-	gulong bytes_read;
-	gchar *text_uri;
+	GnomeVFSResult    result;
+	GnomeVFSHandle   *handle;
+	gchar             buffer[1024];
+	GnomeVFSFileSize  bytes_read;
+	gchar            *text_uri;
 
 	if (argc != 2) {
 		printf ("Usage: %s <uri>\n", argv[0]);

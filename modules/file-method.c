@@ -57,18 +57,18 @@ static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
 static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_read);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_read);
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_written);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_written);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 glong offset);
+					 GnomeVFSFileOffset offset);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 glong *offset_return);
+					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
 					 glong where);
 
@@ -284,9 +284,9 @@ do_close (GnomeVFSMethodHandle *method_handle)
 
 static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
-      gpointer buffer,
-      gulong num_bytes,
-      gulong *bytes_read)
+	 gpointer buffer,
+	 GnomeVFSFileSize num_bytes,
+	 GnomeVFSFileSize *bytes_read)
 {
 	FileHandle *file_handle;
 	gint read_val;
@@ -311,8 +311,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
-	  gulong num_bytes,
-	  gulong *bytes_written)
+	  GnomeVFSFileSize num_bytes,
+	  GnomeVFSFileSize *bytes_written)
 {
 	FileHandle *file_handle;
 	gint write_val;
@@ -354,7 +354,7 @@ seek_position_to_unix (GnomeVFSSeekPosition position)
 static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 glong offset)
+	 GnomeVFSFileOffset offset)
 {
 	FileHandle *file_handle;
 	gint lseek_whence;
@@ -375,7 +375,7 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_tell (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 glong *offset_return)
+	 GnomeVFSFileOffset *offset_return)
 {
 	FileHandle *file_handle;
 	off_t offset;

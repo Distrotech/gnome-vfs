@@ -127,8 +127,8 @@ gnome_vfs_handle_do_close (GnomeVFSHandle *handle)
 GnomeVFSResult
 gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 			  gpointer buffer,
-			  gulong num_bytes,
-			  gulong *bytes_read)
+			  GnomeVFSFileSize num_bytes,
+			  GnomeVFSFileSize *bytes_read)
 {
 	INVOKE_AND_RETURN (handle, read, (handle->method_handle,
 					  buffer, num_bytes, bytes_read));
@@ -137,8 +137,8 @@ gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 			   gconstpointer buffer,
-			   gulong num_bytes,
-			   gulong *bytes_written)
+			   GnomeVFSFileSize num_bytes,
+			   GnomeVFSFileSize *bytes_written)
 {
 	INVOKE_AND_RETURN (handle, write, (handle->method_handle,
 					   buffer, num_bytes, bytes_written));
@@ -148,7 +148,7 @@ gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 			  GnomeVFSSeekPosition whence,
-			  gulong offset)
+			  GnomeVFSFileSize offset)
 {
 	INVOKE_AND_RETURN (handle, seek, (handle->method_handle,
 					  whence, offset));
@@ -157,7 +157,7 @@ gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_handle_do_tell (GnomeVFSHandle *handle,
 			  GnomeVFSSeekPosition whence,
-			  gulong *offset_return)
+			  GnomeVFSFileSize *offset_return)
 {
 	INVOKE_AND_RETURN (handle, tell, (handle->method_handle,
 					  whence, offset_return));

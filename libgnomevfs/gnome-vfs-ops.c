@@ -131,8 +131,8 @@ gnome_vfs_close (GnomeVFSHandle *handle)
 GnomeVFSResult
 gnome_vfs_read (GnomeVFSHandle *handle,
 		gpointer buffer,
-		gulong bytes,
-		gulong *bytes_written)
+		GnomeVFSFileSize bytes,
+		GnomeVFSFileSize *bytes_written)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
@@ -142,8 +142,8 @@ gnome_vfs_read (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_write (GnomeVFSHandle *handle,
 		 gconstpointer buffer,
-		 gulong bytes,
-		 gulong *bytes_written)
+		 GnomeVFSFileSize bytes,
+		 GnomeVFSFileSize *bytes_written)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
@@ -154,7 +154,7 @@ gnome_vfs_write (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_seek (GnomeVFSHandle *handle,
 		GnomeVFSSeekPosition whence,
-		gulong offset)
+		GnomeVFSFileOffset offset)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
@@ -164,7 +164,7 @@ gnome_vfs_seek (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_tell (GnomeVFSHandle *handle,
 		GnomeVFSSeekPosition whence,
-		gulong *offset_return)
+		GnomeVFSFileSize *offset_return)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 

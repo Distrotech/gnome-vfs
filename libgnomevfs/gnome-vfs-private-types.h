@@ -29,13 +29,13 @@ typedef gpointer GnomeVFSMethodHandle;
 
 typedef GnomeVFSResult (* GnomeVFSMethodOpenFunc)
 					(GnomeVFSMethodHandle
-					 	**method_handle_return,
+			       	 	**method_handle_return,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCreateFunc)
 					(GnomeVFSMethodHandle
-					 	**method_handle_return,
+			       	 	**method_handle_return,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
@@ -47,24 +47,24 @@ typedef GnomeVFSResult (* GnomeVFSMethodCloseFunc)
 typedef GnomeVFSResult (* GnomeVFSMethodReadFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_read_return);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_read_return);
 
 typedef GnomeVFSResult (* GnomeVFSMethodWriteFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_written_return);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_written_return);
 
 typedef GnomeVFSResult (* GnomeVFSMethodSeekFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSSeekPosition whence,
-					 glong offset);
+					 GnomeVFSSeekPosition  whence,
+					 GnomeVFSFileOffset    offset);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 glong *offset_return);
+					 GnomeVFSFileOffset *offset_return);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc)
 					(GnomeVFSMethodHandle *method_handle,

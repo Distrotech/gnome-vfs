@@ -80,13 +80,13 @@ typedef struct _GnomeVFSCloseJob GnomeVFSCloseJob;
 struct _GnomeVFSReadJob {
 	struct {
 		GnomeVFSHandle *handle;
-		gulong num_bytes;
+		GnomeVFSFileSize num_bytes;
 		gpointer buffer;
 	} request;
 
 	struct {
 		GnomeVFSResult result;
-		gulong bytes_read;
+		GnomeVFSFileSize bytes_read;
 	} notify;
 };
 typedef struct _GnomeVFSReadJob GnomeVFSReadJob;
@@ -94,13 +94,13 @@ typedef struct _GnomeVFSReadJob GnomeVFSReadJob;
 struct _GnomeVFSWriteJob {
 	struct {
 		GnomeVFSHandle *handle;
-		gulong num_bytes;
+		GnomeVFSFileSize num_bytes;
 		gconstpointer buffer;
 	} request;
 
 	struct {
 		GnomeVFSResult result;
-		gulong bytes_written;
+		GnomeVFSFileSize bytes_written;
 	} notify;
 };
 typedef struct _GnomeVFSWriteJob GnomeVFSWriteJob;

@@ -44,14 +44,19 @@ static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
-					 gulong num_bytes,
-					 gulong *bytes_read);
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_read);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 glong offset);
+					 GnomeVFSFileOffset offset);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 glong *offset_return);
+					 GnomeVFSFileOffset *offset_return);
+static GnomeVFSResult	do_get_file_info
+					(GnomeVFSURI *uri,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys);
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
@@ -66,7 +71,7 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	NULL,
-	NULL,
+	do_get_file_info,
 	do_is_local,
 	NULL,
 	NULL
@@ -79,7 +84,7 @@ struct _FileHandle
 	GnomeVFSURI   *uri;
 	ghttp_request *fd;
 	gboolean       open;
-	glong          offset; /* FIXME: We need a nice long type */
+	GnomeVFSFileOffset          offset; /* FIXME: We need a nice long type */
 };
 typedef struct _FileHandle FileHandle;
 
@@ -173,12 +178,12 @@ do_close (GnomeVFSMethodHandle *method_handle)
 static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
       gpointer buffer,
-      gulong num_bytes,
-      gulong *bytes_read)
+      GnomeVFSFileSize num_bytes,
+      GnomeVFSFileSize *bytes_read)
 {
 	FileHandle   *file_handle;
 	const guint8 *data;
-	glong         length;
+	GnomeVFSFileOffset         length;
 
 	g_return_val_if_fail (buffer        != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (bytes_read    != NULL, GNOME_VFS_ERROR_INTERNAL);
@@ -207,10 +212,10 @@ do_read (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 glong offset)
+	 GnomeVFSFileOffset offset)
 {
 	FileHandle *file_handle;
-	glong       new_offset;
+	GnomeVFSFileOffset       new_offset;
 
 	g_return_val_if_fail (method_handle != NULL,
 			      GNOME_VFS_ERROR_INTERNAL);
@@ -244,7 +249,7 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_tell (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 glong *offset_return)
+	 GnomeVFSFileOffset *offset_return)
 {
 	FileHandle *file_handle;
 
@@ -259,7 +264,136 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 	return GNOME_VFS_OK;
 }
 
-
+static void
+set_mime_type (GnomeVFSFileInfo *info,
+	       const gchar *full_name,
+	       GnomeVFSFileInfoOptions options,
+	       struct stat *statbuf)
+{
+	const gchar *mime_type;
+
+	if (options & GNOME_VFS_FILE_INFO_FASTMIMETYPE) {
+		const gchar *mime_name;
+
+		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
+		    && info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && info->symlink_name != NULL)
+			mime_name = info->symlink_name;
+		else
+			mime_name = full_name;
+
+		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+
+		if (mime_type == NULL)
+			mime_type = mime_type_from_mode (statbuf->st_mode);
+	} else {
+		/* FIXME: This will also stat the file for us...  Which is
+                   not good at all, as we already have the stat info when we
+                   get here, but there is no other way to do this with the
+                   current gnome-libs.  */
+		/* FIXME: We actually *always* follow symlinks here.  It
+                   needs fixing.  */
+		mime_type = gnome_mime_type_from_magic (full_name);
+	}
+
+	info->mime_type = g_strdup (mime_type);
+}
+
+static GnomeVFSResult
+get_stat_info (GnomeVFSFileInfo *file_info,
+	       const gchar *full_name,
+	       GnomeVFSFileInfoOptions options,
+	       struct stat *statptr)
+{
+	struct stat statbuf;
+
+	if (statptr == NULL)
+		statptr = &statbuf;
+
+	if (lstat (full_name, statptr) != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (S_ISLNK (statptr->st_mode)) {
+		file_info->is_symlink = TRUE;
+		file_info->symlink_name = read_link (full_name);
+
+		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
+			if (stat (full_name, statptr) != 0)
+				file_info->type
+					= GNOME_VFS_FILE_TYPE_BROKENSYMLINK;
+		}
+	}
+
+	if (S_ISDIR (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	else if (S_ISCHR (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_CHARDEVICE;
+	else if (S_ISBLK (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_BLOCKDEVICE;
+	else if (S_ISFIFO (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_FIFO;
+	else if (S_ISSOCK (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_SOCKET;
+	else if (S_ISREG (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	else if (! file_info->is_symlink)
+		file_info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
+
+	file_info->permissions
+		= statptr->st_mode & (S_IRUSR | S_IWUSR | S_IXUSR
+				     | S_IRGRP | S_IWGRP | S_IXGRP
+				     | S_IROTH | S_IWOTH | S_IXOTH);
+
+	file_info->device = statptr->st_dev;
+	file_info->inode = statptr->st_ino;
+
+	file_info->link_count = statptr->st_nlink;
+
+	file_info->uid = statptr->st_uid;
+	file_info->gid = statptr->st_gid;
+
+	file_info->size = statptr->st_size;
+	file_info->block_count = statptr->st_blocks;
+	file_info->io_block_size = statptr->st_blksize;
+
+	file_info->atime = statptr->st_atime;
+	file_info->ctime = statptr->st_ctime;
+	file_info->mtime = statptr->st_mtime;
+
+	file_info->is_local = TRUE;
+	file_info->is_suid = (statptr->st_mode & S_ISUID) ? TRUE : FALSE;
+	file_info->is_sgid = (statptr->st_mode & S_ISGID) ? TRUE : FALSE;
+
+#ifdef S_ISVTX
+	file_info->has_sticky_bit
+		= (statptr->st_mode & S_ISVTX) ? TRUE : FALSE;
+#else
+	file_info->has_sticky_bit = FALSE;
+#endif
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+do_get_file_info (GnomeVFSURI *uri,
+		  GnomeVFSFileInfo *file_info,
+		  GnomeVFSFileInfoOptions options,
+		  const GList *meta_keys)
+{
+	GnomeVFSResult result;
+
+	result = get_stat_info (file_info, uri->text, options, &statbuf);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+		set_mime_type (file_info, full_name, options, &statbuf);
+
+	set_meta_for_list (file_info, full_name, meta_keys);
+
+	return GNOME_VFS_OK;
+}
+
 static gboolean
 do_is_local (const GnomeVFSURI *uri)
 {

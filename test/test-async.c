@@ -52,8 +52,8 @@ read_callback (GnomeVFSAsyncContext *context,
 	       GnomeVFSAsyncHandle *handle,
 	       GnomeVFSResult result,
                gpointer buffer,
-               gulong bytes_requested,
-	       gulong bytes_read,
+               GnomeVFSFileSize bytes_requested,
+	       GnomeVFSFileSize bytes_read,
                gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
