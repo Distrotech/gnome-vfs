@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2001-03-09 17:06+0100\n"
-"PO-Revision-Date: 2000-02-26 22:59+0200\n"
+"POT-Creation-Date: 2001-03-15 11:20+0100\n"
+"PO-Revision-Date: 2000-03-12 22:59+0200\n"
 "Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
 "Language-Team:Azerbaijani Turkish \n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "Dia diaqramý"
 
 #: data/mime/gnome-vfs.keys.in.h:31
 msgid "Dolby Digital audio"
-msgstr ""
+msgstr "Dolby Digital Audio"
 
 #: data/mime/gnome-vfs.keys.in.h:32
 msgid "Emacs Lisp source code"
@@ -186,9 +186,8 @@ msgid "GNOME application details"
 msgstr "GNOME proqramlarý detallarý"
 
 #: data/mime/gnome-vfs.keys.in.h:44
-#, fuzzy
 msgid "GNU Oleo Spreadsheet"
-msgstr "Gnomeric hesab cædvæli"
+msgstr "GNU Oleo Hesab Cædvæli"
 
 #: data/mime/gnome-vfs.keys.in.h:45
 msgid "GNU mail message"
@@ -200,11 +199,11 @@ msgstr "GTK qurºularý"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
-msgstr ""
+msgstr "Gleyd lahiyæsi"
 
 #: data/mime/gnome-vfs.keys.in.h:48
 msgid "GnuCash Workbook"
-msgstr ""
+msgstr "GnuKeþ Ýþ Kitabý"
 
 #: data/mime/gnome-vfs.keys.in.h:49
 msgid "Gnumeric spreadsheet"
@@ -244,7 +243,7 @@ msgstr "Impulse Tracker audio"
 
 #: data/mime/gnome-vfs.keys.in.h:58
 msgid "JBuilder Project"
-msgstr ""
+msgstr "JBilder Lahiyæsi"
 
 #: data/mime/gnome-vfs.keys.in.h:59
 msgid "JPEG image"
@@ -263,24 +262,20 @@ msgid "KDE application details"
 msgstr "KDE proqramlarý detallarý"
 
 #: data/mime/gnome-vfs.keys.in.h:63
-#, fuzzy
 msgid "KIllustrator document"
-msgstr "PostScript sænædi"
+msgstr "Killustrator sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:64
-#, fuzzy
 msgid "KPresenter presentation"
-msgstr "StarOffice nümayiþi"
+msgstr "KPresenter nümayiþi"
 
 #: data/mime/gnome-vfs.keys.in.h:65
-#, fuzzy
 msgid "KSpread spreadsheet"
-msgstr "Applixware hesab cædvællæri"
+msgstr "KSpread hesab cædvællæri"
 
 #: data/mime/gnome-vfs.keys.in.h:66
-#, fuzzy
 msgid "KWord document"
-msgstr "AbiWord sænædi"
+msgstr "KWord sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
@@ -311,9 +306,8 @@ msgid "Linux PSF console font"
 msgstr "Linux RSF konsol yazý növlæri"
 
 #: data/mime/gnome-vfs.keys.in.h:74
-#, fuzzy
 msgid "Lotus 1-2-3 spreadsheet"
-msgstr "Gnomeric hesab cædvæli"
+msgstr "Lotus 1-2-3 hesab cædvæli"
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
@@ -340,9 +334,8 @@ msgid "MPEG video"
 msgstr "MPEG video"
 
 #: data/mime/gnome-vfs.keys.in.h:81
-#, fuzzy
 msgid "MS ASF video"
-msgstr "MS video"
+msgstr "MS ASF video"
 
 #: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
@@ -362,16 +355,15 @@ msgstr "Macintosh Stufflt arxivi"
 
 #: data/mime/gnome-vfs.keys.in.h:86
 msgid "Macromedia Flash file"
-msgstr ""
+msgstr "Macromedia Flash faylý"
 
 #: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
 msgstr "MathML sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:88
-#, fuzzy
 msgid "Microsoft Excel spreadsheet"
-msgstr "Microsoft Excel sænædi"
+msgstr "Microsoft Excel hesab cædvæli"
 
 #: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
@@ -482,14 +474,12 @@ msgid "QuickTime movie"
 msgstr "QuickTime filmi"
 
 #: data/mime/gnome-vfs.keys.in.h:116
-#, fuzzy
 msgid "Quicken document"
-msgstr "TeX sænædi"
+msgstr "Quicken sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:117
-#, fuzzy
 msgid "Quicken for Windows document"
-msgstr "tæqvim væ ya hadisæ sænædi"
+msgstr "Windows üçün Quicken sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
@@ -584,14 +574,12 @@ msgid "Speedo font"
 msgstr "Speedo yazý növü"
 
 #: data/mime/gnome-vfs.keys.in.h:141
-#, fuzzy
 msgid "Spreadsheet Interchange document"
-msgstr "FrameMaker mübadilæ sænædi"
+msgstr "Spreadsheet Interchange sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:142
-#, fuzzy
 msgid "Stampede package"
-msgstr "Debian paketi"
+msgstr "Stampede paketi"
 
 #: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
@@ -607,7 +595,6 @@ msgstr "StarOffice hesab cædvæli"
 
 # The sources use a hardcoded latin1 char for mu :-(
 #: data/mime/gnome-vfs.keys.in.h:146
-#, fuzzy
 msgid "Sun µ-law audio"
 msgstr "Sun µ-law audio"
 
@@ -697,7 +684,7 @@ msgstr "Windows timsal ræsmi"
 
 #: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
-msgstr ""
+msgstr "Windows metafayl qrafikasý"
 
 #: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
@@ -720,9 +707,8 @@ msgid "XPM image"
 msgstr "XPM ræsmi"
 
 #: data/mime/gnome-vfs.keys.in.h:174
-#, fuzzy
 msgid "Xbase database"
-msgstr "Palm OS databeyzi"
+msgstr "Xbase databeyzi"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
@@ -981,9 +967,8 @@ msgid "theme"
 msgstr "örtü"
 
 #: data/mime/gnome-vfs.keys.in.h:239
-#, fuzzy
 msgid "troff document"
-msgstr "Troff sænædi"
+msgstr "troff sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
@@ -1050,7 +1035,7 @@ msgstr "%s yi yaza bilmædim "
 #: libgnomevfs-corba/gnome-vfs-slave.c:601
 #, c-format
 msgid "Cannot create temporary file name `%s'"
-msgstr "Müvæqqæti `%s' dosyesini yarada bilmædim"
+msgstr "Müvæqqæti `%s' faylýný yarada bilmædim"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
 #: libgnomevfs-corba/gnome-vfs-slave.c:615
@@ -1093,7 +1078,7 @@ msgstr "Ýstifadæ qaydasý : %s <ior> [ <ior_fd> ] \n"
 #: libgnomevfs-corba/gnome-vfs-slave.c:1245
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr "Dosye izahatçýsýný ( %d ) aça blmædim ."
+msgstr "Fayl izahatçýsýný ( %d ) aça blmædim ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1268
 #, c-format
@@ -1171,7 +1156,7 @@ msgstr "%s : %d modul adýný daxil etmir ."
 #: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Quraþdýrma dosyesi `%s' tapýla bilmædi : %s"
+msgstr "Quraþdýrma faylý `%s' tapýla bilmædi : %s"
 
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
@@ -1194,7 +1179,7 @@ msgstr "Xæta yoxdur"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr "Dosye tapýla bilmædi"
+msgstr "Fayl tapýla bilmædi"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -1234,12 +1219,12 @@ msgstr "Hazýrký þækillændirmæ hökmsüzdür"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr "Xæsærli dosye idaræsi"
+msgstr "Xæsærli fayl idaræsi"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr "Dosye çox böyükdür"
+msgstr "Fayl çox böyükdür"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -1249,7 +1234,7 @@ msgstr "Ýstifadæ edilæcæk yer yoxdur (disk,dolu disk ..)"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Sýrf oxunan dosye idaræ sistemi"
+msgstr "Sýrf oxunan fayl idaræ sistemi"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -1259,7 +1244,7 @@ msgstr "Hökmsüz URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "Dosye açýq deyildir (?)"
+msgstr "Fayl açýq deyildir (?)"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -1274,12 +1259,12 @@ msgstr "Ýcazæ yoxdur"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr "Çox çox açýq dosye vardýr"
+msgstr "Çox çox açýq fayl vardýr"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr "Dosye sonu"
+msgstr "Fayl sonu"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -1299,7 +1284,7 @@ msgstr "Æmæliyyat dayandýrýldý"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr "Dosye onsuz da vardýr"
+msgstr "Fayl onsuz da vardýr"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -1364,12 +1349,12 @@ msgstr "Çox bað var"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr "Sýrf oxunan dosye idaræ sistemi"
+msgstr "Sýrf oxunan fayl idaræ sistemi"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr "Eyni dosye idaræ sistemindæ deyildir"
+msgstr "Eyni fayl idaræ sistemindæ deyildir"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -1426,9 +1411,9 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmaq üçün bir boru yarada bilmædim "
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Namæ'lum væzifæ IDsi %u"
+msgstr "Namæ'lum væzifæ növü %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
@@ -1521,7 +1506,7 @@ msgstr "Göstær:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
-msgstr "Nöqtæ ilæ baþlayan gizli dosyelæri göstær"
+msgstr "Nöqtæ ilæ baþlayan gizli fayllarý göstær"
 
 #~ msgid "Edit Applications List"
 #~ msgstr "Proqram siyahýsýný Düzælt"
@@ -1608,7 +1593,7 @@ msgstr "Nöqtæ ilæ baþlayan gizli dosyelæri göstær"
 #~ msgstr "Açma Davranýþý"
 
 #~ msgid "Can open multiple files"
-#~ msgstr "Bir çox dosyeyi eyni anda aça bilmiræm"
+#~ msgstr "Bir çox faylý eyni anda aça bilmiræm"
 
 #~ msgid "Expects URIs as arguments"
 #~ msgstr "URIlæri arqument olaraq gözlæyær"
@@ -1683,7 +1668,7 @@ msgstr "Nöqtæ ilæ baþlayan gizli dosyelæri göstær"
 
 #~ msgid "Can't find an hbox, using a normal file selection"
 #~ msgstr ""
-#~ "hbox qutusunu tapa bilmædim, normal dosye seçim dialoqunu istifadæ ediræm"
+#~ "hbox qutusunu tapa bilmædim, normal fayl seçim dialoqunu istifadæ ediræm"
 
 #~ msgid "Preview"
 #~ msgstr "Nümayiþ"

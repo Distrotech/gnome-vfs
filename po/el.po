@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.2\n"
-"POT-Creation-Date: 2001-03-01 23:38+0000\n"
+"POT-Creation-Date: 2001-03-15 11:18+0100\n"
 "PO-Revision-Date: 2001-03-01 23:39:19+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -1427,265 +1427,6 @@ msgstr "Άγνωστη είδος εργασίας %u"
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Είδη Αρχείων και Προγράμματα"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr ""
-"Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "Είδος MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Αλλαγή Εικονιδίου"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Αλλαγή Επέκτασης Αρχείου"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Εξ' ορισμού Ενέργεια:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Χρήση Θέασης"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Άνοιγμα με Εφαρμογή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Επεξεργασία Λίστας"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Προσθήκη Νέου Είδους MIME..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Διαγραφή Αυτού Του Είδους MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Τίποτα"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
-"ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
-"και Προγράμματα.\n"
-"Επαναφορά στις Ρυθμίσεις Συστήματος;"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "τίποτα"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Εμφάνιση ως %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Επέκταση"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Εξ' ορισμού ενέργεια"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Επεξεργασία Λίστας Εφαρμογών"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Επιλογή εφαρμογών για εμφάνιση στο μενού για το είδος MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Προσθήκη Εφαρμογής..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Επεξεργασία Εφαρμογής..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Διαγραφή Εφαρμογής"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Επεξεργασία Λίστα Συστατικών"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Επιλογή όψεων για εμφάνιση στο μενού για το είδος MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"Το είδος MIME που εισάγατε περιέχει κεφαλαία γράμματα. Τα κεφαλαία γράμματα "
-"αλλάχτηκαν αυτόματα σε πεζά."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Προσθήκη Νέου Είδους Mime"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Προσθήκη Είδους MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Νέο είδος MIME (π.χ. image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Περιγραφή (π.χ. Εικόνα μορφής thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Επεκτάσεις Αρχείων"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Προσθήκη..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Διαγραφή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Προσθήκη Νέας Επέκτασης"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Εισάγετε τις επεκτάσεις για αυτό το είδος-mime (χωρίς τελεία).\n"
-"Μπορείτε να εισάγετε πολλές επεκτάσεις διαχωρίζοντάς τες με διάστημα,\n"
-"για παράδειγμα: html htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Επέκταση:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Πρέπει να εισάγετε ένα όνομα."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Πρέπει να εισάγετε μια εντολή."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"Το \"%s\" δεν υπάρχει ή δεν είναι εκτελέσιμο.\n"
-"Ελέξτε την ορθογραφία σας και επιβεβαιώστε ότι\n"
-"ότι έχετε δικαίωμα εκτέλεσης του αρχείου."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Η εντολή \"%s\" δε βρέθηκε.\n"
-"Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε γραμμή "
-"εντολών."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Κακό Όνομα Εφαρμογής"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Κακή Εντολή Εφαρμογής"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Προσθήκη Εφαρμογής"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Επεξεργασία Εφαρμογής"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Όνομα Εφαρμογής:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Εντολή Εφαρμογής:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Συμπεριφορά Ανοίγματος"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Μπορούν να ανοιχτούν πολλαπλά αρχεία"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Μπορεί να ανοιχτεί από URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Αδυναμία εύρεσης hbox, χρήση κανονικής επιλογής αρχείων"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Επισκόπηση"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Επιλέξτε εικονίδιο"
-
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
@@ -1774,6 +1515,194 @@ msgstr "Εμφάνιση:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Εμφάνιση κρυφών αρχείων"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Είδη Αρχείων και Προγράμματα"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr ""
+#~ "Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
+
+#~ msgid "MIME Type"
+#~ msgstr "Είδος MIME"
+
+#~ msgid "Change Icon"
+#~ msgstr "Αλλαγή Εικονιδίου"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Αλλαγή Επέκτασης Αρχείου"
+
+#~ msgid "Default Action:"
+#~ msgstr "Εξ' ορισμού Ενέργεια:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Χρήση Θέασης"
+
+#~ msgid "Open With Application"
+#~ msgstr "Άνοιγμα με Εφαρμογή"
+
+#~ msgid "Edit List"
+#~ msgstr "Επεξεργασία Λίστας"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Προσθήκη Νέου Είδους MIME..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Διαγραφή Αυτού Του Είδους MIME"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
+
+#~ msgid "None"
+#~ msgstr "Τίποτα"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
+#~ "ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
+#~ "και Προγράμματα.\n"
+#~ "Επαναφορά στις Ρυθμίσεις Συστήματος;"
+
+#~ msgid "none"
+#~ msgstr "τίποτα"
+
+#~ msgid "View as %s"
+#~ msgstr "Εμφάνιση ως %s"
+
+#~ msgid "Description"
+#~ msgstr "Περιγραφή"
+
+#~ msgid "Extension"
+#~ msgstr "Επέκταση"
+
+#~ msgid "Default Action"
+#~ msgstr "Εξ' ορισμού ενέργεια"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Επεξεργασία Λίστας Εφαρμογών"
+
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Επιλογή εφαρμογών για εμφάνιση στο μενού για το είδος MIME \"%s\""
+
+#~ msgid "Add Application..."
+#~ msgstr "Προσθήκη Εφαρμογής..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Επεξεργασία Εφαρμογής..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Διαγραφή Εφαρμογής"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Επεξεργασία Λίστα Συστατικών"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr "Επιλογή όψεων για εμφάνιση στο μενού για το είδος MIME \"%s\""
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "Το είδος MIME που εισάγατε περιέχει κεφαλαία γράμματα. Τα κεφαλαία γράμματα "
+#~ "αλλάχτηκαν αυτόματα σε πεζά."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Προσθήκη Νέου Είδους Mime"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Προσθήκη Είδους MIME"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Νέο είδος MIME (π.χ. image/x-thumper):"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Περιγραφή (π.χ. Εικόνα μορφής thumper):"
+
+#~ msgid "File Extensions "
+#~ msgstr "Επεκτάσεις Αρχείων"
+
+#~ msgid "Add..."
+#~ msgstr "Προσθήκη..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Διαγραφή"
+
+#~ msgid "Add New Extension"
+#~ msgstr "Προσθήκη Νέας Επέκτασης"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Εισάγετε τις επεκτάσεις για αυτό το είδος-mime (χωρίς τελεία).\n"
+#~ "Μπορείτε να εισάγετε πολλές επεκτάσεις διαχωρίζοντάς τες με διάστημα,\n"
+#~ "για παράδειγμα: html htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Επέκταση:"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Πρέπει να εισάγετε ένα όνομα."
+
+#~ msgid "You must enter a command."
+#~ msgstr "Πρέπει να εισάγετε μια εντολή."
+
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "Το \"%s\" δεν υπάρχει ή δεν είναι εκτελέσιμο.\n"
+#~ "Ελέξτε την ορθογραφία σας και επιβεβαιώστε ότι\n"
+#~ "ότι έχετε δικαίωμα εκτέλεσης του αρχείου."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "Η εντολή \"%s\" δε βρέθηκε.\n"
+#~ "Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε γραμμή "
+#~ "εντολών."
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Κακό Όνομα Εφαρμογής"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Κακή Εντολή Εφαρμογής"
+
+#~ msgid "Add Application"
+#~ msgstr "Προσθήκη Εφαρμογής"
+
+#~ msgid "Edit Application"
+#~ msgstr "Επεξεργασία Εφαρμογής"
+
+#~ msgid "Application Name:"
+#~ msgstr "Όνομα Εφαρμογής:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Εντολή Εφαρμογής:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Συμπεριφορά Ανοίγματος"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Μπορούν να ανοιχτούν πολλαπλά αρχεία"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Μπορεί να ανοιχτεί από URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Αδυναμία εύρεσης hbox, χρήση κανονικής επιλογής αρχείων"
+
+#~ msgid "Preview"
+#~ msgstr "Επισκόπηση"
+
+#~ msgid "Select an icon"
+#~ msgstr "Επιλέξτε εικονίδιο"
 
 #~ msgid "New Application"
 #~ msgstr "Νέα Εφαρμογή"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2001-03-04 11:14+0100\n"
+"POT-Creation-Date: 2001-03-15 11:18+0100\n"
 "PO-Revision-Date: 2001-01-27 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -1422,260 +1422,6 @@ msgstr "Ukendt job-ID %u"
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Filtyper og programmer"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Vi har brug for en god forklaring her."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Ændr ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Ændr fil-endelser"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Standard handling:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Brug visningsprogram"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Åbn med applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Redigér liste"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Tilføj ny MIME-type..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Slet denne Mime-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Gå tilbage til system-standard"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Tilbagegang til system-opsætninger vil\n"
-"fjerne alt i din personlige Mime-opsætning.\n"
-"Skal vi gå tilbage til system-opsætninger?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Vis som %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Standard handling"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Redigér applikationslisten"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, fuzzy, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Vælg applikationer som skal være i menuen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Tilføj applikation..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Redigér applikation..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Slet applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Redigér komponentliste"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Vælg visninger som skal være i menuen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"MIME-typen der blev indtastet indeholdt store bogstaver. Store bogstaver "
-"blev ændret til små bogstaver for dig."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Tilføj ny MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Tilføj MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Ny MIME-type (ex. image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Beskrivelse (ex. Thumper-billede):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Fil-endelser "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Tilføj..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Fjern     "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Tilføj ny filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-#, fuzzy
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Indtast filtypen for denne MIME-type.\n"
-"For eksempel: .html, .htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Filtype:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Du skal indtaste et navn"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Du skal indtaste en kommando"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-#, fuzzy
-msgid "Bad Application Name"
-msgstr "Applikationsnavn:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-#, fuzzy
-msgid "Bad Application Command"
-msgstr "Applikationskommando:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-#, fuzzy
-msgid "Add Application"
-msgstr "Tilføj applikation..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Redigér applikation"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Applikationsnavn:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Applikationskommando:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Opførsel ved åbning"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Kan åbne flere filer"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Kan åbne fra URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Smugkig"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Vælg et ikon"
-
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
@@ -1764,6 +1510,179 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Filtyper og programmer"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr "Vi har brug for en god forklaring her."
+
+#~ msgid "MIME Type"
+#~ msgstr "MIME-type"
+
+#~ msgid "Change Icon"
+#~ msgstr "Ændr ikon"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Ændr fil-endelser"
+
+#~ msgid "Default Action:"
+#~ msgstr "Standard handling:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Brug visningsprogram"
+
+#~ msgid "Open With Application"
+#~ msgstr "Åbn med applikation"
+
+#~ msgid "Edit List"
+#~ msgstr "Redigér liste"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Tilføj ny MIME-type..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Slet denne Mime-type"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Gå tilbage til system-standard"
+
+#~ msgid "None"
+#~ msgstr "Ingen"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Tilbagegang til system-opsætninger vil\n"
+#~ "fjerne alt i din personlige Mime-opsætning.\n"
+#~ "Skal vi gå tilbage til system-opsætninger?"
+
+#~ msgid "none"
+#~ msgstr "ingen"
+
+#~ msgid "View as %s"
+#~ msgstr "Vis som %s"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivelse"
+
+#~ msgid "Extension"
+#~ msgstr "Filtype"
+
+#~ msgid "Default Action"
+#~ msgstr "Standard handling"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Redigér applikationslisten"
+
+#, fuzzy
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Vælg applikationer som skal være i menuen for MIME-type \"%s\""
+
+#~ msgid "Add Application..."
+#~ msgstr "Tilføj applikation..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Redigér applikation..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Slet applikation"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Redigér komponentliste"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr "Vælg visninger som skal være i menuen for MIME-type \"%s\""
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "MIME-typen der blev indtastet indeholdt store bogstaver. Store bogstaver "
+#~ "blev ændret til små bogstaver for dig."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Tilføj ny MIME-type"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Tilføj MIME-type"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Ny MIME-type (ex. image/x-thumper):"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Beskrivelse (ex. Thumper-billede):"
+
+#~ msgid "File Extensions "
+#~ msgstr "Fil-endelser "
+
+#~ msgid "Add..."
+#~ msgstr "Tilføj..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Fjern     "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Tilføj ny filtype"
+
+#, fuzzy
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Indtast filtypen for denne MIME-type.\n"
+#~ "For eksempel: .html, .htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Filtype:"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Du skal indtaste et navn"
+
+#~ msgid "You must enter a command."
+#~ msgstr "Du skal indtaste en kommando"
+
+#, fuzzy
+#~ msgid "Bad Application Name"
+#~ msgstr "Applikationsnavn:"
+
+#, fuzzy
+#~ msgid "Bad Application Command"
+#~ msgstr "Applikationskommando:"
+
+#, fuzzy
+#~ msgid "Add Application"
+#~ msgstr "Tilføj applikation..."
+
+#~ msgid "Edit Application"
+#~ msgstr "Redigér applikation"
+
+#~ msgid "Application Name:"
+#~ msgstr "Applikationsnavn:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Applikationskommando:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Opførsel ved åbning"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Kan åbne flere filer"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Kan åbne fra URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
+
+#~ msgid "Preview"
+#~ msgstr "Smugkig"
+
+#~ msgid "Select an icon"
+#~ msgstr "Vælg et ikon"
 
 #~ msgid "New Application"
 #~ msgstr "Ny applikation"

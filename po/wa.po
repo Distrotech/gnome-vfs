@@ -601,7 +601,7 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun µ-law audio"
-msgstr ""
+msgstr "Son µ-law di SUN"
 
 #: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
@@ -831,7 +831,7 @@ msgstr "Fitchî gzip-sipotchî"
 
 #: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
-msgstr ""
+msgstr "pådje d' aidance"
 
 #: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
@@ -876,7 +876,7 @@ msgstr "Messadje d' on emile"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
-msgstr ""
+msgstr "loméye bûze"
 
 #: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
@@ -918,7 +918,7 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
-msgstr ""
+msgstr "Pårteye lîvreye"
 
 #: data/mime/gnome-vfs.keys.in.h:224
 #, fuzzy
@@ -1010,14 +1010,12 @@ msgid "ustar archive"
 msgstr "Artchive ustar"
 
 #: data/mime/gnome-vfs.keys.in.h:245
-#, fuzzy
 msgid "wave audio"
-msgstr "Son MOD"
+msgstr "Son WAV"
 
 #: data/mime/gnome-vfs.keys.in.h:246
-#, fuzzy
 msgid "web folder"
-msgstr "Ridant"
+msgstr "Ridant waibe"
 
 #: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
@@ -1244,27 +1242,27 @@ msgstr ""
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr ""
+msgstr "Fitchî pår trop lådje"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
-msgstr ""
+msgstr "I gn a pupont d' plaece so l' éndjin"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr ""
+msgstr "Sistinme di fitchîs k' on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr ""
+msgstr "Hårdéye nén valåbe"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr ""
+msgstr "Fitchî nén drovî"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -1279,12 +1277,12 @@ msgstr ""
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr ""
+msgstr "I gn a pår trop di fitchîs di drovîs"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr ""
+msgstr "Fén do fitchî"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -1310,7 +1308,7 @@ msgstr "Li fitchî egzisteye ddja"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Betchfessîs loyéns di trovés"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -1326,22 +1324,22 @@ msgstr "C' est on ridant"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr ""
+msgstr "I gn a pont del mewere assez"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr ""
+msgstr "Lodjeu nén trové"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr ""
+msgstr "Li no do lodjeu n' est nén valåbe"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr ""
+msgstr "Li lodjeu n' a nole adresse"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -1362,22 +1360,22 @@ msgstr ""
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
-msgstr ""
+msgstr "Ridant nén vûde"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr ""
+msgstr "I gn a pår trop d' loyéns"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr ""
+msgstr "sistinme di fitchîs k' on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr ""
+msgstr "Nén sol minme sistinme di fitchîs"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -1425,7 +1423,7 @@ msgstr "%.1f Go"
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
-msgstr ""
+msgstr "Sôre op %u nén cnoxhou"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:974
 #: libgnomevfs-pthread/gnome-vfs-job.c:1119
@@ -1436,7 +1434,7 @@ msgstr ""
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
 #, c-format
 msgid "Unknown job kind %u"
-msgstr ""
+msgstr "Sôre di bouye %u nén cnoxhowe"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
@@ -1445,7 +1443,7 @@ msgstr "Operåcion djokéye"
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "GnomeVFSSeekPosition %d nén cnoxhou"
 
 #: modules/http-method.c:1179
 #, c-format
@@ -1455,17 +1453,17 @@ msgstr ""
 #: modules/http-method.c:1584
 #, c-format
 msgid "Closing connection to %s"
-msgstr ""
+msgstr "Dji clô li raloyaedje a %s"
 
 #: modules/http-method.c:1850
 #, c-format
 msgid "%s of %s read"
-msgstr ""
+msgstr "%s di %s lejhou(s)"
 
 #: modules/http-method.c:1853
 #, c-format
 msgid "%s read"
-msgstr ""
+msgstr "%s lejhou(s)"
 
 #: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
@@ -1477,12 +1475,11 @@ msgstr "Potchî å ridant di dvant"
 
 #: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
-msgstr ""
+msgstr "Å dzeur"
 
 #: test/gnome-file-selection/gnome-file-selection.c:677
-#, fuzzy
 msgid "Go to the parent directory"
-msgstr "Potchî å ridant måjhon"
+msgstr "Potchî å ridant do dzeur"
 
 #: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
@@ -1494,12 +1491,11 @@ msgstr "Potchî å ridant shûvant"
 
 #: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
-msgstr ""
+msgstr "Lere cor on côp"
 
 #: test/gnome-file-selection/gnome-file-selection.c:696
-#, fuzzy
 msgid "Rescan the current directory"
-msgstr "Potchî å ridant måjhon"
+msgstr "Lere cor on côp li ridant do moumint"
 
 #: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
@@ -1581,14 +1577,6 @@ msgstr ""
 #~ msgid "You must enter a command."
 #~ msgstr "Vos dvoz intrer ene comande."
 
-#, fuzzy
-#~ msgid "Bad Application Name"
-#~ msgstr "No do programe:"
-
-#, fuzzy
-#~ msgid "Bad Application Command"
-#~ msgstr "Comande po-z enonder l' programe:"
-
 #~ msgid "Add Application"
 #~ msgstr "Radjouter programe"
 
@@ -1612,10 +1600,6 @@ msgstr ""
 
 #~ msgid "Default Action:"
 #~ msgstr "Prémetowe accion:"
-
-#, fuzzy
-#~ msgid "Open With Application"
-#~ msgstr "Candjî programe"
 
 #~ msgid "Edit List"
 #~ msgstr "Candjî li djîvéye"
