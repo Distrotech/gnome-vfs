@@ -1,3 +1,12 @@
+Thu Jan 10 11:12:24 2002  Owen Taylor  <otaylor@redhat.com>
+
+	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): Reorder
+	to get -ldl in the right place wrt. OPENSSL libs. (Probably
+	irrelevant)
+
+	* configure.in (HAVE_OPENSSL): Omit -ldl here, since we have
+	it already from gmodule.
+
 Tue Jan 08 23:28:27 2002  George Lebl <jirka@5z.com>
 
 	* test/test-shell.c: make things run in a main loop so that we can

@@ -24,8 +24,8 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_2_la_LIBADD =				\
-	$(LIBGNOMEVFS_LIBS)			\
 	$(OPENSSL_LDFLAGS) 			\
+	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
