@@ -6,3 +6,4 @@ gnomevfs-info
 gnomevfs-ls
 gnomevfs-mkdir
 gnomevfs-rm
+gnomevfs-mv

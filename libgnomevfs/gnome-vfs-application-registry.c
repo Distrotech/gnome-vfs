@@ -83,10 +83,8 @@ static ApplicationRegistryDir user_registry_dir;
 /* To initialize the module automatically */
 static gboolean gnome_vfs_application_registry_initialized = FALSE;
 
-
-static GList *current_lang = NULL;
-/* we want to replace the previous key if the current key has a higher
-   language level */
+/* we want to replace the previous key if the current key has a lower
+   (ie: better) language level */
 static char *previous_key = NULL;
 static int previous_key_lang_level = -1;
 
@@ -561,26 +559,27 @@ application_sync (Application *application, FILE *fp)
 	fprintf (fp, "\n");
 }
 
-
 /* this gives us a number of the language in the current language list,
-   the higher the number the "better" the translation */
+   the lower the number the "better" the translation */
 static int
 language_level (const char *lang)
 {
+	const char * const *lang_list;
 	int i;
-	GList *li;
 
 	if (lang == NULL)
-		return 0;
+		lang = "C";
 
-	for (i = 1, li = current_lang; li != NULL; i++, li = g_list_next (li)) {
-		if (strcmp ((const char *) li->data, lang) == 0)
+	/* The returned list is sorted from most desirable to least
+            desirable and always contains the default locale "C". */
+	lang_list = g_get_language_names();
+
+	for (i = 0; lang_list[i]; i++)
+		if (strcmp (lang_list[i], lang) == 0)
 			return i;
-	}
 
 	return -1;
 }
-
 
 static void
 application_add_key (Application *application, const char *key,
@@ -639,7 +638,7 @@ application_add_key (Application *application, const char *key,
 	    /* our language level really sucks and the previous
 	       translation was of better language quality so just
 	       ignore us */
-	    previous_key_lang_level > lang_level) {
+	    previous_key_lang_level < lang_level) {
 		return;
 	}
 
@@ -952,8 +951,6 @@ gnome_vfs_application_registry_init (void)
 	generic_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	specific_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	
-	current_lang = gnome_vfs_i18n_get_language_list ("LC_MESSAGES");
-
 	/*
 	 * Setup the descriptors for the information loading
 	 */
@@ -1071,9 +1068,6 @@ gnome_vfs_application_registry_shutdown (void)
 	gnome_registry_dir.dirname = NULL;
 	g_free(user_registry_dir.dirname);
 	user_registry_dir.dirname = NULL;
-
-	g_list_free(current_lang);
-	current_lang = NULL;
 
 	gnome_vfs_application_registry_initialized = FALSE;
 }

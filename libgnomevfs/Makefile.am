@@ -261,7 +261,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-filesystem-type.c		\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
-	gnome-vfs-i18n.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-job-queue.c			\

@@ -1,3 +1,22 @@
+2005-04-03  Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/Makefile.am: remove gnome-vfs-i18n.c
+
+	* libgnomevfs/gnome-vfs-i18n.c: 'cvs delete' this file.  
+	The function here (gnome_vfs_i18n_get_language_list) used an
+	undocumented and soon to be removed call to bonobo.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: Convert this file to use
+	g_get_language_names() instead of gnome_vfs_i18n_get_language_list.
+	Fix locale prioritisation as per bug #169329.
+
+	* libgnomevfs/gnome-vfs-application-registry.c: Same as above.
+
+	* libgnomevfs/gnome-vfs-private-utils.h: Remove the prototype for
+	gnome_vfs_i18n_get_language_list.
+
+	* programs/.cvsignore: Add gnomevfs-mv.
+
 2005-04-01  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
@@ -7,7 +26,7 @@
 
 2005-03-30  Steve Murphy  <murf@e-tools.com>
 
-        * configure.in: Added "rw" to ALL_LINGUAS.
+	* configure.in: Added "rw" to ALL_LINGUAS.
 
 2005-03-21  Mikael Hallendal  <micke@imendio.com>
 
@@ -62,10 +81,10 @@
 
 2005-03-02  Nate Nielsen <nielsen@memberwebs.com>
 
-        * modules/smb-method.c: (perform_authentication, auth_callback)
-        Fix problems when not on a domain and browsing smb://, or 
-        anonymous shares. Fixes bug #168864 and bug #167020. 
-        Approval for code freeze breakage by luis and kmaraas
+	* modules/smb-method.c: (perform_authentication, auth_callback)
+	Fix problems when not on a domain and browsing smb://, or 
+	anonymous shares. Fixes bug #168864 and bug #167020. 
+	Approval for code freeze breakage by luis and kmaraas
 
 2005-03-01  Alexander Larsson  <alexl@redhat.com>
 

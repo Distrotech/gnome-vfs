@@ -59,9 +59,6 @@ GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
 gboolean	gnome_vfs_atotm		(const gchar *time_string,
 					 time_t *value_return);
 
-GList	       *gnome_vfs_i18n_get_language_list
-					(const gchar *category_name);
-
 GnomeVFSURI    *gnome_vfs_uri_new_private (const gchar *text_uri, 
 					   gboolean allow_unknown_method,
 					   gboolean allow_unsafe_method,

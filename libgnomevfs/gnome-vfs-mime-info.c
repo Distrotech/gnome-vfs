@@ -63,7 +63,6 @@ static time_t last_checked;
 /* To initialize the module automatically */
 static gboolean gnome_vfs_mime_inited = FALSE;
 
-static GList *current_lang = NULL;
 /* we want to replace the previous key if the current key has a higher
    language level */
 
@@ -123,8 +122,6 @@ gnome_vfs_mime_init (void)
 	/*
 	 * The hash tables that store the mime keys.
 	 */
-	current_lang = gnome_vfs_i18n_get_language_list ("LC_MESSAGES");
-
 	mime_entries = g_hash_table_new_full (g_str_hash, 
 					      g_str_equal,
 					      g_free,
@@ -258,20 +255,26 @@ gnome_vfs_mime_thaw (void)
 	/* noop, get rid of this once all the mime editing stuff is gone */
 }
 
+/* this gives us a number of the language in the current language list,
+   the lower the number the "better" the translation */
 static int
-language_level (const char *language) 
+language_level (const char *lang)
 {
-        int i;
-        GList *li;
- 
-        if (language == NULL)
-                return 0;
- 
-        for (i = 1, li = current_lang; li != NULL; i++, li = g_list_next (li)) {                if (strcmp ((const char *) li->data, language) == 0)
-                        return i;
-        }
- 
-        return -1;
+	const char * const *lang_list;
+	int i;
+
+	if (lang == NULL)
+		lang = "C";
+
+	/* The returned list is sorted from most desirable to least
+            desirable and always contains the default locale "C". */
+	lang_list = g_get_language_names();
+
+	for (i = 0; lang_list[i]; i++)
+		if (strcmp (lang_list[i], lang) == 0)
+			return i;
+
+	return -1;
 }
 
 static int
@@ -338,7 +341,7 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 	MimeEntry *entry;
 	int ret;
 	int depth;
-	int previous_lang_level = -1;
+	int previous_lang_level = INT_MAX;
 	
 	entry = g_new0 (MimeEntry, 1);
 
@@ -361,7 +364,8 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 				
 				lang_level = language_level (lang);
 				
-				if (lang_level > previous_lang_level) {
+				if (lang_level != -1 &&
+				    lang_level < previous_lang_level) {
 					char *comment;
 					comment = handle_simple_string (reader);
 					g_free (entry->description);
