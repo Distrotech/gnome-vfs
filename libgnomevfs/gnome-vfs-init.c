@@ -59,16 +59,16 @@ ensure_dot_gnome_exists (void)
 	gboolean retval = TRUE;
 	gchar *dirname;
 
-	dirname = g_build_filename (g_get_home_dir (), ".gnome", NULL);
+	dirname = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
 
 	if (!g_file_test (dirname, G_FILE_TEST_EXISTS)) {
 		if (mkdir (dirname, S_IRWXU) != 0) {
-			g_warning ("Unable to create ~/.gnome directory: %s",
+			g_warning ("Unable to create ~/.gnome2 directory: %s",
 				   g_strerror (errno));
 			retval = FALSE;
 		}
 	} else if (!g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
-		g_warning ("Error: ~/.gnome must be a directory.");
+		g_warning ("Error: ~/.gnome2 must be a directory.");
 		retval = FALSE;
 	}
 

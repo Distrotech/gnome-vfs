@@ -1,3 +1,19 @@
+2004-12-03  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-init.c: (ensure_dot_gnome_exists): check for 
+	~/.gnome2 existence, not ~/.gnome
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: (emit_mime_changed),
+	(gnome_vfs_mime_info_cache_dir_changed),
+	(gnome_vfs_mime_info_cache_dir_defaults_changed),
+	(_gnome_vfs_mime_info_cache_init),
+	(gnome_vfs_mime_get_all_desktop_entries),
+	(gnome_vfs_mime_get_default_desktop_entry):
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_class_init), (gnome_vfs_mime_monitor_init):
+	clean up gnome-vfs-mime-monitor code to remove obsolete stuff, when
+	using gamin or fam, emit a "data-changed" signal as soon as a file 
+	modification is detected.
+
 2004-12-02  Crispin Flowerday  <gnome@flowerday.cx>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h: 

@@ -32,52 +32,17 @@ enum {
 	LAST_SIGNAL
 };
 
-enum {
-	LOCAL_MIME_DIR,
-	GNOME_MIME_DIR
-};
-
 static guint signals[LAST_SIGNAL];
 
 static GnomeVFSMIMEMonitor *global_mime_monitor = NULL;
 
-typedef struct _MonitorCallbackData
-{
-	GnomeVFSMIMEMonitor *monitor;
-	gint type;
-} MonitorCallbackData;
-
-struct _GnomeVFSMIMEMonitorPrivate
-{
-	GnomeVFSMonitorHandle *global_handle;
-	GnomeVFSMonitorHandle *local_handle;
-
-	/* The hoops I jump through */
-	MonitorCallbackData *gnome_callback_data;
-	MonitorCallbackData *local_callback_data;
-
-	guint mime_update_tag;
-};
-
-
+extern void                  _gnome_vfs_mime_info_cache_init                 (void);
 static void                   gnome_vfs_mime_monitor_class_init              (GnomeVFSMIMEMonitorClass *klass);
 static void                   gnome_vfs_mime_monitor_init                    (GnomeVFSMIMEMonitor      *monitor);
-static void                   mime_dir_changed_callback                      (GnomeVFSMonitorHandle    *handle,
-									      const gchar              *monitor_uri,
-									      const gchar              *info_uri,
-									      GnomeVFSMonitorEventType  event_type,
-									      gpointer                  user_data);
-static void                   gnome_vfs_mime_monitor_finalize                (GObject                  *object);
-
-
 
 static void
 gnome_vfs_mime_monitor_class_init (GnomeVFSMIMEMonitorClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-	object_class->finalize = gnome_vfs_mime_monitor_finalize;
-
 	signals [DATA_CHANGED] = 
 		g_signal_new ("data_changed",
 			      G_TYPE_FROM_CLASS (klass),
@@ -91,87 +56,7 @@ gnome_vfs_mime_monitor_class_init (GnomeVFSMIMEMonitorClass *klass)
 static void
 gnome_vfs_mime_monitor_init (GnomeVFSMIMEMonitor *monitor)
 {
-	gchar *mime_dir;
-
-	monitor->priv = g_new (GnomeVFSMIMEMonitorPrivate, 1);
-
-	monitor->priv->gnome_callback_data = g_new (MonitorCallbackData, 1);
-	monitor->priv->local_callback_data = g_new (MonitorCallbackData, 1);
-
-	/* FIXME: Bug #80268.  These wouldn't be private members if we had a
-	 * _full variant.  However, if I want to clean them up, I need to keep
-	 * them around. */
-	monitor->priv->gnome_callback_data->type = GNOME_MIME_DIR;
-	monitor->priv->gnome_callback_data->monitor = monitor;
-	monitor->priv->local_callback_data->type = LOCAL_MIME_DIR;
-	monitor->priv->local_callback_data->monitor = monitor;
-
-	mime_dir = g_strdup (DATADIR "/mime-info");
-	gnome_vfs_monitor_add (&monitor->priv->global_handle,
-			       mime_dir,
-			       GNOME_VFS_MONITOR_DIRECTORY,
-			       mime_dir_changed_callback,
-			       monitor->priv->gnome_callback_data);
-	g_free (mime_dir);
-
-	mime_dir = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
-	if (!g_file_test (mime_dir, G_FILE_TEST_EXISTS)) {
-		mkdir (mime_dir, S_IRWXU);
-	}
-	gnome_vfs_monitor_add (&monitor->priv->local_handle,
-			       mime_dir,
-			       GNOME_VFS_MONITOR_DIRECTORY,
-			       mime_dir_changed_callback,
-			       monitor->priv->local_callback_data);
-	g_free (mime_dir);
-}
-
-static gboolean
-mime_dir_emit_data_changed (gpointer user_data)
-{
-	MonitorCallbackData *monitor_callback_data = (MonitorCallbackData *)user_data;
-
-	_gnome_vfs_mime_monitor_emit_data_changed (monitor_callback_data->monitor);
-	monitor_callback_data->monitor->priv->mime_update_tag = 0;
-
-	return FALSE;	
-}
-
-static void
-mime_dir_changed_callback (GnomeVFSMonitorHandle    *handle,
-			   const gchar              *monitor_uri,
-			   const gchar              *info_uri,
-			   GnomeVFSMonitorEventType  event_type,
-			   gpointer                  user_data)
-{
-	MonitorCallbackData *monitor_callback_data = (MonitorCallbackData *)user_data;
-
-	if (monitor_callback_data->type == GNOME_MIME_DIR)
-		_gnome_vfs_mime_info_mark_gnome_mime_dir_dirty ();
-	else if (monitor_callback_data->type == LOCAL_MIME_DIR)
-		_gnome_vfs_mime_info_mark_user_mime_dir_dirty ();
-
-	/* We delay the callback for a short while in order to combine several
-	 * changes, something which often happens due to several fam events.
-	 */
-	if (monitor_callback_data->monitor->priv->mime_update_tag == 0) {
-               monitor_callback_data->monitor->priv->mime_update_tag = 
-		       g_timeout_add (100, mime_dir_emit_data_changed, user_data);
-       	}
-
-}
-
-static void
-gnome_vfs_mime_monitor_finalize (GObject *object)
-{
-	gnome_vfs_monitor_cancel (GNOME_VFS_MIME_MONITOR (object)->priv->global_handle);
-	gnome_vfs_monitor_cancel (GNOME_VFS_MIME_MONITOR (object)->priv->local_handle);
-	if (GNOME_VFS_MIME_MONITOR (object)->priv->mime_update_tag != 0) {
-		g_source_remove (GNOME_VFS_MIME_MONITOR (object)->priv->mime_update_tag);
-	}
-	g_free (GNOME_VFS_MIME_MONITOR (object)->priv->gnome_callback_data);
-	g_free (GNOME_VFS_MIME_MONITOR (object)->priv->local_callback_data);
-	g_free (GNOME_VFS_MIME_MONITOR (object)->priv);
+	_gnome_vfs_mime_info_cache_init ();
 }
 
 /**

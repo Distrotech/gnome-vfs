@@ -54,6 +54,7 @@ typedef struct {
 } GnomeVFSMimeInfoCache;
 
 extern void _gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor); 
+extern void _gnome_vfs_mime_info_cache_init (void);
 
 static void gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir);
 static void gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir);
@@ -66,7 +67,6 @@ static gboolean gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMi
 static void gnome_vfs_mime_info_cache_dir_add_desktop_entries (GnomeVFSMimeInfoCacheDir *dir,
 							       const char *mime_type,
 							       char **new_desktop_file_ids);
-static void gnome_vfs_mime_info_cache_init (void);
 static GnomeVFSMimeInfoCache *gnome_vfs_mime_info_cache_new (void);
 static void gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache);
 
@@ -301,6 +301,13 @@ error:
 		g_error_free (load_error);
 }
 
+static gboolean
+emit_mime_changed (gpointer data)
+{
+	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+	return FALSE;
+}
+
 static void
 gnome_vfs_mime_info_cache_dir_changed (GnomeVFSMonitorHandle    *handle,
 		                       const gchar              *monitor_uri,
@@ -311,7 +318,9 @@ gnome_vfs_mime_info_cache_dir_changed (GnomeVFSMonitorHandle    *handle,
 	G_LOCK (mime_info_cache);
 	gnome_vfs_mime_info_cache_blow_global_cache ();
 	gnome_vfs_mime_info_cache_dir_init (dir);
+	mime_info_cache->should_ping_mime_monitor = FALSE;
 	G_UNLOCK (mime_info_cache);
+	g_idle_add (emit_mime_changed, NULL);
 }
 
 static void
@@ -324,7 +333,9 @@ gnome_vfs_mime_info_cache_dir_defaults_changed (GnomeVFSMonitorHandle    *handle
 	G_LOCK (mime_info_cache);
 	gnome_vfs_mime_info_cache_blow_global_cache ();
 	gnome_vfs_mime_info_cache_dir_init_defaults_list (dir);
+	mime_info_cache->should_ping_mime_monitor = FALSE;
 	G_UNLOCK (mime_info_cache);
+	g_idle_add (emit_mime_changed, NULL);
 }
 
 static GnomeVFSMimeInfoCacheDir *
@@ -585,16 +596,8 @@ gnome_vfs_mime_info_cache_update_dir_lists (void)
 	}
 }
 
-static gboolean
-emit_mime_changed (gpointer data)
-{
-	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
-	return FALSE;
-}
-
-
-static void
-gnome_vfs_mime_info_cache_init (void)
+void
+_gnome_vfs_mime_info_cache_init (void)
 {
 	G_LOCK (mime_info_cache);
 	if (mime_info_cache == NULL) {
@@ -718,7 +721,7 @@ gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 	GnomeVFSMimeInfoCacheDir *dir;
 	char *type;
 
-	gnome_vfs_mime_info_cache_init ();
+	_gnome_vfs_mime_info_cache_init ();
 
 	G_LOCK (mime_info_cache);
 	mime_types = get_all_parent_types (mime_type);
@@ -766,7 +769,7 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	GnomeVFSMimeInfoCacheDir *dir;
 	int i;
 
-	gnome_vfs_mime_info_cache_init ();
+	_gnome_vfs_mime_info_cache_init ();
 
 	G_LOCK (mime_info_cache);
 
