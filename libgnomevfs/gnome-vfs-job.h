@@ -28,8 +28,10 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include <semaphore.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
+
 
 #define GNOME_VFS_JOB_DEBUG 0
 
@@ -324,15 +326,13 @@ struct GnomeVFSJob {
 	gboolean failed;
 	
 	/* Global lock for accessing data.  */
-	GMutex *access_lock;
+	sem_t access_lock;
 
 	/* This condition is signalled when the master thread gets a
            notification and wants to acknowledge it.  */
 	GCond *notify_ack_condition;
 
-	/* Mutex associated with `notify_ack_condition'.  We cannot just use
-           `access_lock', because we want to keep the lock in the slave thread
-           until the job is really finished.  */
+	/* Mutex associated with `notify_ack_condition'.  */
 	GMutex *notify_ack_lock;
 
 	/* Operations that are being done and those that are completed and

@@ -991,6 +991,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 {
 	GnomeVFSResult result;
 	gpointer buffer;
+	const char *write_buffer;
 
 	*skip = FALSE;
 
@@ -1019,7 +1020,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 			if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
-		} while (retry && bytes_read > 0 && result != GNOME_VFS_ERROR_EOF);
+		} while (retry);
 
 		if (result != GNOME_VFS_OK || bytes_read == 0 || *skip) {
 			break;
@@ -1029,10 +1030,11 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_WRITETARGET;
 
+		write_buffer = buffer;
 		do {
 			retry = FALSE;
 
-			result = gnome_vfs_write (target_handle, buffer,
+			result = gnome_vfs_write (target_handle, write_buffer,
 						  bytes_to_write,
 						  &bytes_written);
 
@@ -1041,6 +1043,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 			}
 
 			bytes_to_write -= bytes_written;
+			write_buffer += bytes_written;
 		} while ((result == GNOME_VFS_OK && bytes_to_write > 0) || retry);
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COPYING;

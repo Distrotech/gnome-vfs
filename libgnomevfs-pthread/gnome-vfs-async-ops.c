@@ -165,7 +165,7 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 		gnome_vfs_job_cancel (job);
 
 		JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
-		g_mutex_lock (job->access_lock);
+		sem_wait (&job->access_lock);
 	
 		/* The lock here is to make sure that either the job doesn't
 		 * get to execute anything or that any callbacks it schedules get cancelled
@@ -174,7 +174,7 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 				
 		job->cancelled = TRUE;
 		JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
-		g_mutex_unlock (job->access_lock);
+		sem_post (&job->access_lock);
 	}
 
 	gnome_vfs_async_job_map_unlock ();

@@ -24,14 +24,13 @@
 #include <config.h>
 #endif
 
-#include <pthread.h>
-
 #include "gnome-vfs-job.h"
 #include "gnome-vfs-async-job-map.h"
+#include "gnome-vfs-pthread.h"
 
 static GHashTable *async_job_map;
 static guint async_job_map_next_id;
-static pthread_mutex_t async_job_map_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+static pthread_mutex_t async_job_map_lock;
 gboolean async_job_map_locked;
 volatile static gboolean async_job_map_shutting_down;
 
@@ -41,6 +40,11 @@ pthread_mutex_t async_job_callback_map_lock;
 
 void async_job_callback_map_destroy (void);
 
+void 
+gnome_vfs_async_job_map_init (void)
+{
+	gnome_vfs_pthread_recursive_mutex_init (&async_job_map_lock);
+}
 
 GnomeVFSJob *
 gnome_vfs_async_job_map_get_job (const GnomeVFSAsyncHandle *handle)

@@ -1,3 +1,34 @@
+2001-02-03  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	Fix 3075 (gnome-vfs dumps core on FreeBSD 4.1-STABLE when you start
+		  Nautilus)
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	(gnome_vfs_async_job_map_init):
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.h:
+	* libgnomevfs-pthread/gnome-vfs-pthread.c:
+	(gnome_vfs_pthread_init), (gnome_vfs_pthread_recursive_mutex_init):
+	* libgnomevfs-pthread/gnome-vfs-pthread.h:
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	(gnome_vfs_thread_pool_init):
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.h:
+	Get rid of recursive mutex static initialization. Add an
+	initializer call that is called during backend init.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel):
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_notify),
+	(gnome_vfs_job_set), (gnome_vfs_job_new), (gnome_vfs_job_destroy),
+	(gnome_vfs_job_go):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Get rid of using "fast" pthread_mutex as a semaphore, use a real
+	semaphore instead.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file_data):
+	Fix a bug with not respecting "Retry" properly.
+
 2001-02-02  Rebecca Schulman  <rebecka@eazel.com>
 	Fix bugs 6241 and 6171, that the default viewer
 	was wrong for various types of files

@@ -164,16 +164,16 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 
 	/* FIXME:
 	 * unlock here to prevent deadlock with async cancel. We should not use the
-	 * access lock at all in the case of synch operaitons like xfer.
+	 * access lock at all in the case of synch operations like xfer.
 	 * Unlocking here is perfectly OK, even though it's a hack.
 	 */
-	g_mutex_unlock (job->access_lock);
+	sem_post (&job->access_lock);
 
 	JOB_DEBUG (("Wait notify condition %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
 	/* Wait for the notify condition.  */
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
 
-	g_mutex_lock (job->access_lock);
+	sem_wait (&job->access_lock);
 
 	JOB_DEBUG (("Unlock notify ack lock %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
 	/* Acknowledgment got: unlock the mutex.  */
@@ -565,7 +565,7 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 	GnomeVFSOp *op;
 
 	JOB_DEBUG (("locking access lock %u, op %d", GPOINTER_TO_UINT (job->job_handle), type));
-	g_mutex_lock (job->access_lock);
+	sem_wait (&job->access_lock);
 
 	op = g_new (GnomeVFSOp, 1);
 	op->type = type;
@@ -589,7 +589,7 @@ gnome_vfs_job_new (GnomeVFSOpType type, GFunc callback, gpointer callback_data)
 	
 	new_job = g_new0 (GnomeVFSJob, 1);
 	
-	new_job->access_lock = g_mutex_new ();
+	sem_init (&new_job->access_lock, 0, 1);
 	new_job->notify_ack_condition = g_cond_new ();
 	new_job->notify_ack_lock = g_mutex_new ();
 
@@ -611,7 +611,7 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 
 	gnome_vfs_op_destroy (job->op);
 
-	g_mutex_free (job->access_lock);
+	sem_destroy (&job->access_lock);
 
 	g_cond_free (job->notify_ack_condition);
 	g_mutex_free (job->notify_ack_lock);
@@ -705,7 +705,7 @@ gnome_vfs_job_go (GnomeVFSJob *job)
 	JOB_DEBUG (("new job %u, op %d, unlocking access lock",
 		GPOINTER_TO_UINT (job->job_handle), job->op->type));
 
-	g_mutex_unlock (job->access_lock);
+	sem_post (&job->access_lock);
 }
 
 #define DEFAULT_BUFFER_SIZE 16384

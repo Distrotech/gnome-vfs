@@ -24,8 +24,11 @@
 #define GNOME_VFS_ASYNC_JOB_MAP_H
 
 #include "gnome-vfs.h"
+#include "gnome-vfs-job.h"
+
 
 /* async job map calls */
+void		 gnome_vfs_async_job_map_init		  (void);
 void	     	 gnome_vfs_async_job_map_shutdown	  (void);
 gboolean     	 gnome_vfs_async_job_completed 	  	  (GnomeVFSAsyncHandle		*handle);
 void 		 gnome_vfs_async_job_map_add_job  	  (GnomeVFSJob			*job);

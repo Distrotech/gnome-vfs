@@ -22,6 +22,7 @@
 */
 
 #include <glib.h>
+#include "gnome-vfs-pthread.h"
 #include "gnome-vfs-thread-pool.h"
 
 #undef DEBUG_PRINT
@@ -43,7 +44,7 @@ typedef struct {
 	volatile gboolean exit_requested;
 } GnomeVFSThreadState;
 
-static pthread_mutex_t thread_list_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+static pthread_mutex_t thread_list_lock;
 
 static const int MAX_AVAILABLE_THREADS = 20; 
 static GList *available_threads;
@@ -51,6 +52,12 @@ static int thread_count;
 
 static void *thread_entry (void *cast_to_state);
 static void destroy_thread_state (GnomeVFSThreadState *state);
+
+void 
+gnome_vfs_thread_pool_init (void)
+{
+	gnome_vfs_pthread_recursive_mutex_init (&thread_list_lock);
+}
 
 static GnomeVFSThreadState *
 new_thread_state (void)
