@@ -25,14 +25,104 @@
 #include <config.h>
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-mime-private.h"
+#include "gnome-vfs-ops.h"
 
 enum {
 	DATA_CHANGED,
 	LAST_SIGNAL
 };
+
+
 static guint signals[LAST_SIGNAL];
 
 static GnomeVFSMIMEMonitor *global_mime_monitor = NULL;
+
+struct _GnomeVFSMIMEMonitorPrivate
+{
+	GnomeVFSMonitorHandle *global_handle;
+	GnomeVFSMonitorHandle *local_handle;
+};
+
+
+static void                   gnome_vfs_mime_monitor_class_init  (GnomeVFSMIMEMonitorClass *klass);
+static void                   gnome_vfs_mime_monitor_init        (GnomeVFSMIMEMonitor      *monitor);
+static void                   mime_dir_changed_callback          (GnomeVFSMonitorHandle    *handle,
+								  const gchar              *monitor_uri,
+								  const gchar              *info_uri,
+								  GnomeVFSMonitorEventType  event_type,
+								  gpointer                  user_data);
+static GnomeVFSMonitorHandle *gnome_vfs_mime_monitor_monitor_dir (const gchar              *mime_dir,
+								  GnomeVFSMIMEMonitor      *monitor);
+static void                   gnome_vfs_mime_monitor_finalize    (GObject                  *object);
+
+
+static void
+gnome_vfs_mime_monitor_class_init (GnomeVFSMIMEMonitorClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->finalize = gnome_vfs_mime_monitor_finalize;
+
+	signals [DATA_CHANGED] = 
+		g_signal_new ("data_changed",
+			      G_TYPE_FROM_CLASS (klass),
+			      G_SIGNAL_RUN_LAST,
+			      G_STRUCT_OFFSET (GnomeVFSMIMEMonitorClass, data_changed),
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
+			      G_TYPE_NONE, 0);
+}
+
+static void
+gnome_vfs_mime_monitor_init (GnomeVFSMIMEMonitor *monitor)
+{
+	gchar *mime_dir;
+
+	monitor->priv = g_new (GnomeVFSMIMEMonitorPrivate, 1);
+	
+	mime_dir = g_strdup (DATADIR "/mime-info");
+	monitor->priv->global_handle =
+		gnome_vfs_mime_monitor_monitor_dir (mime_dir, monitor);
+	g_free (mime_dir);
+
+	mime_dir = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
+	monitor->priv->local_handle =
+		gnome_vfs_mime_monitor_monitor_dir (mime_dir, monitor);
+	g_free (mime_dir);
+}
+
+
+static void
+mime_dir_changed_callback (GnomeVFSMonitorHandle    *handle,
+			   const gchar              *monitor_uri,
+			   const gchar              *info_uri,
+			   GnomeVFSMonitorEventType  event_type,
+			   gpointer                  user_data)
+{
+	gnome_vfs_mime_monitor_emit_data_changed (GNOME_VFS_MIME_MONITOR (user_data));
+}
+
+static GnomeVFSMonitorHandle *
+gnome_vfs_mime_monitor_monitor_dir (const gchar         *mime_dir,
+				    GnomeVFSMIMEMonitor *monitor)
+{
+	GnomeVFSMonitorHandle *retval = NULL;
+
+	gnome_vfs_monitor_add (&retval,
+			       mime_dir,
+			       GNOME_VFS_MONITOR_DIRECTORY,
+			       mime_dir_changed_callback,
+			       monitor);
+	return retval;
+}
+
+static void
+gnome_vfs_mime_monitor_finalize (GObject *object)
+{
+	gnome_vfs_monitor_cancel (GNOME_VFS_MIME_MONITOR (object)->priv->global_handle);
+	gnome_vfs_monitor_cancel (GNOME_VFS_MIME_MONITOR (object)->priv->local_handle);
+	g_free (GNOME_VFS_MIME_MONITOR (object)->priv);
+}
 
 /* Return a pointer to the single global monitor. */
 GnomeVFSMIMEMonitor *
@@ -45,18 +135,6 @@ gnome_vfs_mime_monitor_get (void)
         return global_mime_monitor;
 }
 
-static void
-gnome_vfs_mime_monitor_class_init (GnomeVFSMIMEMonitorClass *klass)
-{
-	signals [DATA_CHANGED] = 
-		g_signal_new ("data_changed",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (GnomeVFSMIMEMonitorClass, data_changed),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE, 0);
-}
 
 void
 gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor)
@@ -82,7 +160,7 @@ gnome_vfs_mime_monitor_get_type (void)
 			NULL, /* class_data */
 			sizeof (GnomeVFSMIMEMonitor),
 			0, /* n_preallocs */
-			(GInstanceInitFunc) NULL
+			(GInstanceInitFunc) gnome_vfs_mime_monitor_init
 		};
 		
 		type = g_type_register_static (

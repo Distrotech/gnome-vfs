@@ -742,16 +742,6 @@ gnome_vfs_mime_info_reload (void)
 	load_mime_type_info ();
 
 	/* 3. Tell anyone who cares */
-	/* FIXME bugzilla.eazel.com 5459:
-	 * This is called only when some client asks for data, so changes made
-	 * to the MIME data via (e.g.) the File Types and Programs capplet
-	 * won't be reflected in clients (e.g. Nautilus) until the next time
-	 * some client asks for MIME data. One way to fix this is to implement
-	 * the gconf solution mentioned in bug 5460. Another possibility is to
-	 * use file-node monitoring to notice when the contents of the data
-	 * directory have changed, but file-node monitoring is only a pipe
-	 * dream at the moment.
-	 */
 	gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 }
 

@@ -1,3 +1,15 @@
+Mon Apr 29 15:54:45 2002  Jonathan Blandford  <jrb@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_info_reload):
+	remove FIXME that's now fixed.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_class_init), (gnome_vfs_mime_monitor_init),
+	(mime_dir_changed_callback), (gnome_vfs_mime_monitor_monitor_dir),
+	(gnome_vfs_mime_monitor_finalize), (gnome_vfs_mime_monitor_get),
+	(gnome_vfs_mime_monitor_get_type): Let the user know if any
+	directory we care about changes.
+
 2002-04-26  Benedikt Roth  <Benedikt.Roth@gmx.net>
 
 	* modules/applications.vfolder-info.in:
