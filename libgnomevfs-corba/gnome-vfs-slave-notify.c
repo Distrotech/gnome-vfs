@@ -90,7 +90,7 @@ impl_Notify_reset (PortableServer_Servant servant,
 	GnomeVFSSlaveProcess *slave;
 	GnomeVFSSlaveProcessResetCallback callback;
 
-	g_warning ("Slave has been reset.");
+	g_message ("Slave has been reset.");
 
 	slave = slave_from_servant (servant);
 	callback = slave->callback;
@@ -112,7 +112,7 @@ impl_Notify_dying (PortableServer_Servant servant,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_warning ("Our slave is dying.");
+	g_message ("Our slave is dying.");
 
 	slave = slave_from_servant (servant);
 
@@ -134,7 +134,7 @@ impl_Notify_dying (PortableServer_Servant servant,
 
 	g_free (slave);
 
-	g_warning ("Slave cleanup done");
+	g_message ("Slave cleanup done");
 }
 
 static void

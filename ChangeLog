@@ -1,3 +1,9 @@
+2000-01-11  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify:
+	(impl_Notify_dying): Changed the messages to use g_message instead
+	of g_warning, since they are normal.
+
 2000-01-11  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_get_basename): Do not
