@@ -1,3 +1,26 @@
+2000-06-23  Michael Meeks  <michael@helixcode.com>
+
+	* test/test-shell.c (get_fname): updates.
+
+	* modules/efs-method.c (do_read_directory): implement.
+	(directory_handle_new): setup new->efs.
+	Begin to loath efs.
+
+	* doc/uri.txt: update.
+
+	* test/Makefile.am (libraries): add LIBEFS_LIBS
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): fix from
+	Rajit, this still looks rather limited to me.
+
+	* configure.in: Add efs check.
+
+	* modules/default-modules.conf (efs): add.
+
+2000-06-22  Michael Meeks  <michael@helixcode.com>
+
+	* configure.in: add --enable-libefs.
+
 2000-06-22  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug #581.  Ui for specifying whether applicaition

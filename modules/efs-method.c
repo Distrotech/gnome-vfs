@@ -155,12 +155,12 @@ do_open (GnomeVFSMethod *method,
 		if (mode & GNOME_VFS_OPEN_WRITE)
 			efs_mode = EFS_WRITE | EFS_CREATE;
 		else
-			return GNOME_VFS_ERROR_INVALIDOPENMODE;
+			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 	
 	MAKE_ABSOLUTE (file_name, uri->parent->text);
 
-	dir = efs_open(file_name, efs_mode, default_permissions);
+	dir = efs_open (file_name, efs_mode, default_permissions);
 
 	if (dir == 0)
 		return gnome_vfs_result_from_errno ();
@@ -168,7 +168,7 @@ do_open (GnomeVFSMethod *method,
 	efs_mode |= EFS_CREATE;
 
 
-	file = efs_file_open(dir, uri->text, efs_mode);
+	file = efs_file_open (dir, uri->text, efs_mode);
 
 	file_handle = file_handle_new (uri, dir, file);
 	
@@ -198,7 +198,7 @@ do_create (GnomeVFSMethod *method,
 	efs_mode = EFS_CREATE;
 	
 	if (!(mode & GNOME_VFS_OPEN_WRITE))
-		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
 	if (mode & GNOME_VFS_OPEN_READ)
 		efs_mode |= EFS_RDWR;
@@ -210,12 +210,12 @@ do_create (GnomeVFSMethod *method,
 
 	MAKE_ABSOLUTE (file_name, uri->parent->text);
 
-	dir = efs_open(file_name, efs_mode, default_permissions);
+	dir = efs_open (file_name, efs_mode, default_permissions);
 
 	if (dir == 0)
 		return gnome_vfs_result_from_errno ();
 
-	file = efs_file_open(dir, uri->text, efs_mode);
+	file = efs_file_open (dir, uri->text, efs_mode);
 
 	file_handle = file_handle_new (uri, dir, file);
 
@@ -236,9 +236,9 @@ do_close (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	close_retval = efs_file_close(file_handle->file);
+	close_retval = efs_file_close (file_handle->file);
 
-	fs_close_retval = efs_close(file_handle->dir);
+	fs_close_retval = efs_close (file_handle->dir);
 
 	/* FIXME: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
@@ -264,7 +264,7 @@ do_read (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	read_val = efs_file_read(file_handle->file, buffer, num_bytes);
+	read_val = efs_file_read (file_handle->file, buffer, num_bytes);
 
 	if (read_val == -1) {
 		*bytes_read = 0;
@@ -290,7 +290,7 @@ do_write (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	write_val = efs_file_write(file_handle->file, (void *) buffer, num_bytes);
+	write_val = efs_file_write (file_handle->file, (void *) buffer, num_bytes);
 
 	if (write_val == -1) {
 		*bytes_written = 0;
@@ -331,7 +331,7 @@ do_seek (GnomeVFSMethod *method,
 	file_handle = (FileHandle *) method_handle;
 	lseek_whence = seek_position_to_unix (whence);
 
-	retval = efs_file_seek(file_handle->file, offset, lseek_whence);
+	retval = efs_file_seek (file_handle->file, offset, lseek_whence);
 	
 	if (retval == -1)
 	  return gnome_vfs_result_from_errno ();
@@ -344,7 +344,7 @@ do_tell (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
-  	return GNOME_VFS_ERROR_NOTSUPPORTED;
+  	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -360,11 +360,10 @@ do_truncate_handle (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	if (efs_file_trunc(file_handle->file, where) == 0) {
+	if (efs_file_trunc (file_handle->file, where) == 0)
 		return GNOME_VFS_OK;
-	} else {
+	else
 	 	return GNOME_VFS_ERROR_GENERIC;
-	}
 }
 
 static GnomeVFSResult
@@ -379,22 +378,19 @@ do_truncate (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL && (strcmp(uri->method_string, "file") == 0));
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	if(do_open(method, &method_handle, uri, EFS_WRITE, context)) {
+	if(do_open (method, &method_handle, uri, EFS_WRITE, context)) {
 	 	file_handle = (FileHandle *) method_handle;
-	 	if(efs_file_trunc(file_handle->file, where) == 0) {
-		  	do_close(method, method_handle, context);
+	 	if (efs_file_trunc (file_handle->file, where) == 0) {
+		  	do_close (method, method_handle, context);
 	   		return GNOME_VFS_OK;
-	 	} else {
+	 	} else
 	   		return GNOME_VFS_ERROR_GENERIC;
-	 	}
-	} else {
+	} else
 	  	return GNOME_VFS_ERROR_GENERIC;
-	}
 }
 
 
-struct _DirectoryHandle
-{
+struct _DirectoryHandle {
 	GnomeVFSURI *uri;
 	EFSDir *dir, *efs;
 	GnomeVFSFileInfoOptions options;
@@ -423,6 +419,7 @@ directory_handle_new (GnomeVFSURI *uri,
 
 	new->uri = gnome_vfs_uri_ref (uri);
 	new->dir = dir;
+	new->efs = efs;
 
 	MAKE_ABSOLUTE (full_name, uri->text);
 	full_name_len = strlen (full_name);
@@ -466,13 +463,13 @@ do_open_directory (GnomeVFSMethod *method,
 
 	MAKE_ABSOLUTE (directory_name, uri->parent->text);
 
-	originaldir = efs_open(directory_name, EFS_RDWR, default_permissions);
+	originaldir = efs_open (directory_name, EFS_RDWR, default_permissions);
 
 	if (originaldir == 0)
 	  	return gnome_vfs_result_from_errno ();
 
-	dir = efs_dir_open(originaldir, uri->text, EFS_RDWR);
-	if (dir == NULL)
+	dir = efs_dir_open (originaldir, uri->text, EFS_RDWR);
+	if (!dir)
 		return gnome_vfs_result_from_errno ();
 
 	*method_handle
@@ -504,10 +501,35 @@ do_close_directory (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
-		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSFileInfo *info,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	DirectoryHandle *directory_handle;
+	EFSDirEntry     *entry;
+
+	directory_handle = (DirectoryHandle *) method_handle;
+	if (!directory_handle || !directory_handle->dir)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	entry = efs_dir_read (directory_handle->dir);
+	if (!entry)
+		return GNOME_VFS_ERROR_EOF;
+
+	info->name = g_strdup (entry->name);
+	if (entry->type == EFS_DIR)
+		info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	else if (entry->type == EFS_FILE)
+		info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	else
+		info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
+
+	info->size = entry->length;
+
+	info->valid_fields =
+		GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+		GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+
+	return GNOME_VFS_OK;
 }
 
 
@@ -519,7 +541,8 @@ do_get_file_info (GnomeVFSMethod *method,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -530,7 +553,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -551,7 +574,7 @@ do_make_directory (GnomeVFSMethod *method,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -559,7 +582,7 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -571,7 +594,7 @@ do_find_directory (GnomeVFSMethod *method,
 		   guint permissions,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -581,7 +604,7 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -589,7 +612,7 @@ do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -599,7 +622,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 		  gboolean *same_fs_return,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -609,7 +632,7 @@ do_set_file_info (GnomeVFSMethod *method,
 		  GnomeVFSSetFileInfoMask mask,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSMethod method = {

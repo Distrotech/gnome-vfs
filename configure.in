@@ -38,6 +38,9 @@ dnl end documentation support
 AC_ARG_ENABLE(gconf,
               [  --enable-gconf          Enable GConf access backend],
               gconf_enabled="yes")
+AC_ARG_ENABLE(libefs,
+              [  --enable-libefs         Enable libefs access backend],
+              libefs_enabled="yes")
 AC_ARG_WITH(default-backend,
 	      [  --with-default-backend=(corba|pthread)		    ],
 	      default_backend="$withval")
@@ -182,6 +185,30 @@ AC_SUBST(GCONF_LIBS)
 AC_SUBST(GCONF_CFLAGS)
 AC_SUBST(GTK_LIBS)
 AC_SUBST(GTK_CFLAGS)
+
+dnl
+dnl efs-method.c
+dnl
+
+AC_MSG_CHECKING(libefs)
+if test "x$libefs_enabled" = xyes; then 
+    AC_PATH_PROG(LIBEFS_CONFIG, libefs-config, no)
+else
+    LIBEFS_CONFIG=no
+fi
+
+if test "x$LIBEFS_CONFIG" = xno; then
+	AC_MSG_RESULT(not found)
+else
+	AC_MSG_RESULT(found)
+	LIBEFS_LIBS=`$LIBEFS_CONFIG --libs`
+	LIBEFS_CFLAGS=`$LIBEFS_CONFIG --cflags`
+fi
+
+AM_CONDITIONAL(HAVE_LIBEFS, test -n "$LIBEFS_LIBS") 
+
+AC_SUBST(LIBEFS_LIBS)
+AC_SUBST(LIBEFS_CFLAGS)
 
 dnl
 dnl ftp-method.c

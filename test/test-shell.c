@@ -314,7 +314,7 @@ do_cd (void)
 			g_free (cur_dir);
 			cur_dir = newpath;
 		} else
-			fprintf (stderr, "Invalid path %s", newpath);
+			fprintf (stderr, "Invalid path %s\n", newpath);
 	}
 }
 
@@ -331,8 +331,11 @@ get_fname (void)
 
 	if (!fname)
 		fname = reg_name;
-
-	if (cur_dir)
+	
+	if (strchr (fname, ':') ||
+	    fname [0] == '/')
+		f = g_strdup (fname);
+	else if (cur_dir)
 		f = g_strconcat (cur_dir, fname, NULL);
 	else
 		f = g_strdup (fname);

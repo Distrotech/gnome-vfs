@@ -329,11 +329,13 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	}
 	new_uri = parse_uri_substring (p2);
 
-	if (new_uri != NULL)
-		new_uri->parent = uri;
-
 	g_free (new_uri_string);
-	return uri;
+
+	if (new_uri != NULL) {
+		new_uri->parent = uri;
+		return new_uri;
+	} else
+		return uri;
 }
 
 

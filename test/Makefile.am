@@ -36,7 +36,8 @@ libraries =						\
 	$(GNOME_LIBDIR)					\
 	$(GNOMEUI_LIBS)					\
 	$(GNOMEGNORBA_LIBS)                             \
-	$(GCONF_LIBS)
+	$(GCONF_LIBS)					\
+	$(LIBEFS_LIBS)
 
 test-async_pthread.o: test-async.c
 	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<
