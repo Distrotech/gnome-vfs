@@ -341,12 +341,12 @@ impl_Notify_open_as_channel (PortableServer_Servant servant,
 	    && context->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL)
 		return;
 
-	context->operation_in_progress = GNOME_VFS_ASYNC_OP_CHANNEL;
-
 	new_channel = NULL;
 	vfs_result = (GnomeVFSResult) result;
 
-	if (vfs_result == GNOME_VFS_OK) {
+	if (vfs_result != GNOME_VFS_OK) {
+		context->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
+	} else {
 		fd = socket (AF_UNIX, SOCK_STREAM, 0);
 		if (fd < 0) {
 			g_warning (_("Cannot create socket: %s"),
@@ -366,6 +366,8 @@ impl_Notify_open_as_channel (PortableServer_Servant servant,
 				vfs_result = GNOME_VFS_ERROR_INTERNAL;
 			} else {
 				new_channel = g_io_channel_unix_new (fd);
+				context->operation_in_progress
+					= GNOME_VFS_ASYNC_OP_CHANNEL;
 			}
 		}
 	}

@@ -1,5 +1,9 @@
 1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(impl_Notify_open_as_channel): If the operation fails, the context
+	is not busy anymore.
+
 	* libgnomevfs/gnome-vfs-method.c: New type `MethodElement'.
 	(gnome_vfs_method_get): Put `MethodElement's in the hash table
 	instead of `GnomeVFSMethod's.
