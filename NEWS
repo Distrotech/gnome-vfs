@@ -1,3 +1,15 @@
+gnome-vfs 2.3.8
+
+	* Bugs fixed:
+	        + CDE menu fixes
+		+ IPV6 build fixes for non-linux
+		+ removed usage of ngettext (for now)
+		+ fix fam crash
+	* Featurelets:
+		+ add dav schema for webdav usage
+		+ Make gnome_vfs_make_uri_from_input be smarter about
+		  when to make http: uris
+
 gnome-vfs 2.3.7
 
 	* Bugs fixed:
