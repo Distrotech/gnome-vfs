@@ -49,7 +49,8 @@ thread_routine (void *data)
 	job = gnome_vfs_async_job_map_get_job (job_handle);
 	
 	if (job == NULL) {
-		JOB_DEBUG (("job already dead, bail %u", GPOINTER_TO_UINT (job_handle)));
+		JOB_DEBUG (("job already dead, bail %u",
+			    GPOINTER_TO_UINT (job_handle)));
 		gnome_vfs_async_job_map_unlock ();
 		return NULL;
 	}
@@ -61,22 +62,19 @@ thread_routine (void *data)
 	gnome_vfs_job_execute (job);
 	complete = gnome_vfs_job_complete (job);
 	
-	JOB_DEBUG (("Unlocking access lock %u", GPOINTER_TO_UINT (job->job_handle)));
+	JOB_DEBUG (("Unlocking access lock %u",
+		    GPOINTER_TO_UINT (job->job_handle)));
 	sem_post (&job->access_lock);
 
 	if (complete) {
+		gnome_vfs_async_job_map_lock ();
 		JOB_DEBUG (("job %u done, removing from map and destroying",
 			GPOINTER_TO_UINT (job_handle)));
-		gnome_vfs_async_job_map_lock ();
-		if (gnome_vfs_async_job_completed (job_handle)) {
-			/* job was still valid, it is our to destroy */
-			gnome_vfs_job_destroy (job);
-		} else {
-			JOB_DEBUG (("job destroyed by other thread %u", GPOINTER_TO_UINT (job_handle)));
-		}
+		gnome_vfs_async_job_completed (job_handle);
+		gnome_vfs_job_destroy (job);
 		gnome_vfs_async_job_map_unlock ();
 	}
-	
+
 	return NULL;
 }
 

@@ -30,7 +30,7 @@
 /* job map bits guarded by this lock */
 static GStaticRecMutex async_job_map_lock = G_STATIC_REC_MUTEX_INIT;
 static guint async_job_map_next_id;
-static gboolean async_job_map_locked;
+static int async_job_map_locked = 0;
 static gboolean async_job_map_shutting_down;
 static GHashTable *async_job_map;
 
@@ -156,13 +156,13 @@ void
 gnome_vfs_async_job_map_lock (void)
 {
 	g_static_rec_mutex_lock (&async_job_map_lock);
-	async_job_map_locked = TRUE;
+	async_job_map_locked++;
 }
 
 void 
 gnome_vfs_async_job_map_unlock (void)
 {
-	async_job_map_locked = FALSE;
+	async_job_map_locked--;
 	g_static_rec_mutex_unlock (&async_job_map_lock);
 }
 
@@ -282,10 +282,12 @@ gnome_vfs_async_job_cancel_job_and_callbacks (GnomeVFSAsyncHandle *job_handle, G
 void
 async_job_callback_map_destroy (void)
 {
-	g_assert (async_job_callback_map != NULL);
-
 	g_static_mutex_lock (&async_job_callback_map_lock);
-	g_hash_table_destroy (async_job_callback_map);
-	async_job_callback_map = NULL;
+
+	if (async_job_callback_map) {
+		g_hash_table_destroy (async_job_callback_map);
+		async_job_callback_map = NULL;
+	}
+
 	g_static_mutex_unlock (&async_job_callback_map_lock);
 }

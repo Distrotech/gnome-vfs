@@ -1,3 +1,39 @@
+2002-07-23  Michael Meeks  <michael@ximian.com>
+
+	* Version 2.0.2
+
+	* libgnomevfs/gnome-vfs-async-job-map.c
+	(async_job_callback_map_destroy): don't assert on the
+	idly built async_job_callback_map.
+
+	* libgnomevfs/gnome-vfs-job-slave.c (thread_routine):
+	always destroy the VFS job, if we are complete, instead
+	of checking for whether we have a callback still
+	registered in the job map, therein lies a race.
+
+	* libgnomevfs/gnome-vfs-job.c
+	(job_oneway_notify, job_notify): don't leak on cancel.
+	(gnome_vfs_job_destroy): blank the memory for good
+	measure.
+
+	* libgnomevfs/gnome-vfs-async-job-map.c
+	(gnome_vfs_async_job_map_unlock),
+	(gnome_vfs_async_job_map_lock): cope with the
+	recursive nature of this properly.
+
+	* libgnomevfs/gnome-vfs-job-queue.c
+	(gnome_vfs_job_queue_shutdown): try locking the
+	job_queue lock before destroying the entire tree, sob.
+	(gnome_vfs_job_queue_run): kill black magic with
+	volatile 'gnome_vfs_quitting' stuff, we don't need
+	that - just hold the job queue lock.
+
+	* test/test-async-cancel.c (wait_until_vfs_jobs_gone):
+	eliminate follow on error, so we can try and isolate
+	problems more accurately.
+	(test_get_file_info): don't leak URIs in lists.
+	(main): if memprof is running, don't quit just loop.
+
 2002-07-22  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* configure.in:
