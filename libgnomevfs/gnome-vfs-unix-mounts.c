@@ -185,6 +185,7 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 		if (sb.st_mtime == last_mtime) {
 			return FALSE;
 		}
+		last_mtime = sb.st_mtime;
 	}
 
 	file = setmntent (read_file, "r");
@@ -382,7 +383,8 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 
 	*return_list = NULL;
 
-	if ((num_mounts = getmntinfo (&mntent, MNT_WAIT)) == 0) {
+	/* Pass MNT_NOWAIT to avoid blocking trying to update NFS mounts. */
+	if ((num_mounts = getmntinfo (&mntent, MNT_NOWAIT)) == 0) {
 	    	return TRUE;
 	}
 
@@ -395,6 +397,16 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 		if (mntent[i].f_flags == MNT_RDONLY) {
 		    	mount_entry->is_read_only = TRUE;
 		}
+
+#ifdef HAVE_SYS_SYSCTL_H
+		if (usermnt != 0) {
+			if (stat (fstab->fs_file, &sb) == 0) {
+				if (sb.st_uid != 0) {
+					mount_entry->is_user_mountable = TRUE;
+				}
+			}
+		}
+#endif
 
 		*return_list = g_list_prepend (*return_list, mount_entry);
 	}
@@ -766,7 +778,10 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 gboolean
 _gnome_vfs_get_unix_mount_table (GList **return_list)
 {
+    	static time_t last_mtime = 0;
     	struct fstab *fstab = NULL;
+	char *stat_file;
+	struct stat fsb;
 	GnomeVFSUnixMountPoint *mount_entry;
 #ifdef HAVE_SYS_SYSCTL_H
 	int usermnt = 0;
@@ -774,6 +789,19 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	struct stat sb;
 #endif
 
+	stat_file = get_fstab_file ();
+ 
+    	if (stat (stat_file, &fsb) < 0) {
+	    	g_warning ("Unable to stat %s: %s", stat_file,
+			   g_strerror (errno));
+		return TRUE;
+	}
+
+	if (last_mtime != 0 && fsb.st_mtime == last_mtime) {
+	    	return FALSE;
+	}
+	last_mtime = fsb.st_mtime;
+ 
 	*return_list = NULL;
 
 	if (!setfsent ()) {
