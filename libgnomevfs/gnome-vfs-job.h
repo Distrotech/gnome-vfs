@@ -31,7 +31,7 @@
 
 typedef struct GnomeVFSJob GnomeVFSJob;
 
-#define GNOME_VFS_JOB_DEBUG 0
+#define GNOME_VFS_JOB_DEBUG 1
 
 #if GNOME_VFS_JOB_DEBUG
 
@@ -76,188 +76,185 @@ enum GnomeVFSOpType {
 typedef enum GnomeVFSOpType GnomeVFSOpType;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSOpenMode open_mode;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-	} notify;
+	GnomeVFSURI *uri;
+	GnomeVFSOpenMode open_mode;
 } GnomeVFSOpenOp;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSOpenMode open_mode;
-		guint advised_block_size;
-	} request;
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncOpenCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+} GnomeVFSOpenOpResult;
 
-	struct {
-		GnomeVFSResult result;
-		GIOChannel *channel;
-	} notify;
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSOpenMode open_mode;
+	guint advised_block_size;
 } GnomeVFSOpenAsChannelOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncOpenAsChannelCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+	GIOChannel *channel;
+} GnomeVFSOpenAsChannelOpResult;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSOpenMode open_mode;
-		gboolean exclusive;
-		guint perm;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-	} notify;
+	GnomeVFSURI *uri;
+	GnomeVFSOpenMode open_mode;
+	gboolean exclusive;
+	guint perm;
 } GnomeVFSCreateOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncCreateCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+} GnomeVFSCreateOpResult;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		char *uri_reference;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-	} notify;
+	GnomeVFSURI *uri;
+	char *uri_reference;
 } GnomeVFSCreateLinkOp;
 
-
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSOpenMode open_mode;
-		gboolean exclusive;
-		guint perm;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-		GIOChannel *channel;
-	} notify;
+	GnomeVFSURI *uri;
+	GnomeVFSOpenMode open_mode;
+	gboolean exclusive;
+	guint perm;
 } GnomeVFSCreateAsChannelOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncCreateAsChannelCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+	GIOChannel *channel;
+} GnomeVFSCreateAsChannelOpResult;
 
 typedef struct {
-	struct {
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-	} notify;
 } GnomeVFSCloseOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncCloseCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+} GnomeVFSCloseOpResult;
 
 typedef struct {
-	struct {
-		GnomeVFSFileSize num_bytes;
-		gpointer buffer;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-		GnomeVFSFileSize bytes_read;
-	} notify;
+	GnomeVFSFileSize num_bytes;
+	gpointer buffer;
 } GnomeVFSReadOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncReadCallback callback;
+	void *callback_data;
+	GnomeVFSFileSize num_bytes;
+	gpointer buffer;
+	GnomeVFSResult result;
+	GnomeVFSFileSize bytes_read;
+} GnomeVFSReadOpResult;
 
 typedef struct {
-	struct {
-		GnomeVFSFileSize num_bytes;
-		gconstpointer buffer;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-		GnomeVFSFileSize bytes_written;
-	} notify;
+	GnomeVFSFileSize num_bytes;
+	gconstpointer buffer;
 } GnomeVFSWriteOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncWriteCallback callback;
+	void *callback_data;
+	GnomeVFSFileSize num_bytes;
+	gconstpointer buffer;
+	GnomeVFSResult result;
+	GnomeVFSFileSize bytes_written;
+} GnomeVFSWriteOpResult;
 
 typedef struct {
-	struct {
-		GList *uris; /* GnomeVFSURI* */
-		GnomeVFSFileInfoOptions options;
-	} request;
-
-	struct {
-		GList *result_list; /* GnomeVFSGetFileInfoResult* */
-	} notify;
+	GList *uris; /* GnomeVFSURI* */
+	GnomeVFSFileInfoOptions options;
 } GnomeVFSGetFileInfoOp;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSFileInfo info;
-		GnomeVFSSetFileInfoMask mask;
-		GnomeVFSFileInfoOptions options;
-	} request;
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncGetFileInfoCallback callback;
+	void *callback_data;
+	GList *result_list; /* GnomeVFSGetFileInfoResult* */
+} GnomeVFSGetFileInfoOpResult;
 
-	struct {
-		GnomeVFSResult set_file_info_result;
-		GnomeVFSResult get_file_info_result;
-		GnomeVFSFileInfo info;
-	} notify;
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSFileInfo info;
+	GnomeVFSSetFileInfoMask mask;
+	GnomeVFSFileInfoOptions options;
 } GnomeVFSSetFileInfoOp;
 
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncSetFileInfoCallback callback;
+	void *callback_data;
+	GnomeVFSResult set_file_info_result;
+	GnomeVFSResult get_file_info_result;
+	GnomeVFSFileInfo info;
+} GnomeVFSSetFileInfoOpResult;
 
 typedef struct {
-	struct {
-		GList *uris; /* GnomeVFSURI* */
-		GnomeVFSFindDirectoryKind kind;
-		gboolean create_if_needed;
-		gboolean find_if_needed;
-		guint permissions;
-	} request;
-
-	struct {
-		GList *result_list; /* GnomeVFSFindDirectoryResult */
-	} notify;
+	GList *uris; /* GnomeVFSURI* */
+	GnomeVFSFindDirectoryKind kind;
+	gboolean create_if_needed;
+	gboolean find_if_needed;
+	guint permissions;
 } GnomeVFSFindDirectoryOp;
 
-/* "Complex operations.  */
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncFindDirectoryCallback callback;
+	void *callback_data;
+	GList *result_list; /* GnomeVFSFindDirectoryResult */
+} GnomeVFSFindDirectoryOpResult;
 
 typedef struct {
-	struct {
-		GnomeVFSURI *uri;
-		GnomeVFSFileInfoOptions options;
-		GnomeVFSDirectorySortRule *sort_rules;
-		gboolean reverse_order;
-		GnomeVFSDirectoryFilterType filter_type;
-		GnomeVFSDirectoryFilterOptions filter_options;
-		gchar *filter_pattern;
-		guint items_per_notification;
-	} request;
-
-	struct {
-		GnomeVFSResult result;
-		GnomeVFSDirectoryList *list;
-		guint entries_read;
-	} notify;
+	GnomeVFSURI *uri;
+	GnomeVFSFileInfoOptions options;
+	GnomeVFSDirectorySortRule *sort_rules;
+	gboolean reverse_order;
+	GnomeVFSDirectoryFilterType filter_type;
+	GnomeVFSDirectoryFilterOptions filter_options;
+	gchar *filter_pattern;
+	guint items_per_notification;
 } GnomeVFSLoadDirectoryOp;
 
 typedef struct {
-	struct {
-		GList *source_uri_list;
-		GList *target_uri_list;
-		GnomeVFSXferOptions xfer_options;
-		GnomeVFSXferErrorMode error_mode;
-		GnomeVFSXferOverwriteMode overwrite_mode;
-		GnomeVFSXferProgressCallback progress_sync_callback;
-		gpointer sync_callback_data;
-	} request;
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncDirectoryLoadCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+	GnomeVFSDirectoryList *list;
+	guint entries_read;
+} GnomeVFSLoadDirectoryOpResult;
 
-	struct {
-		GnomeVFSXferProgressInfo *progress_info;
-	} notify;
-
-	struct {
-		gint value;
-	} notify_answer;
+typedef struct {
+	GList *source_uri_list;
+	GList *target_uri_list;
+	GnomeVFSXferOptions xfer_options;
+	GnomeVFSXferErrorMode error_mode;
+	GnomeVFSXferOverwriteMode overwrite_mode;
+	GnomeVFSXferProgressCallback progress_sync_callback;
+	gpointer sync_callback_data;
 } GnomeVFSXferOp;
+
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSAsyncXferProgressCallback callback;
+	void *callback_data;
+	GnomeVFSXferProgressInfo *progress_info;
+	int reply;
+} GnomeVFSXferOpResult;
 
 typedef union {
 	GnomeVFSOpenOp open;
@@ -338,7 +335,7 @@ struct GnomeVFSJob {
 	GnomeVFSOp *current_op;
 	GnomeVFSOp *notify_op;
 	
-	/* unique identifier of this job (a uint, really) */
+	/* Unique identifier of this job (a uint, really) */
 	GnomeVFSAsyncHandle *job_handle;
 };
 

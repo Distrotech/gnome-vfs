@@ -1,3 +1,47 @@
+2001-01-09  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fixed 5398 (Async callbacks need to be passed over ownership of data)
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c: (async_open),
+	(async_open_as_channel), (async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_read), (pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_create_symbolic_link),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_set_file_info),
+	(pthread_gnome_vfs_async_find_directory), (async_load_directory),
+	(pthread_gnome_vfs_async_xfer):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (wakeup),
+	(job_oneway_notify), (job_notify), (job_oneway_notify_and_close),
+	(job_notify_and_close), (dispatch_open_callback),
+	(dispatch_create_callback), (dispatch_open_as_channel_callback),
+	(dispatch_create_as_channel_callback), (dispatch_close_callback),
+	(dispatch_read_callback), (dispatch_write_callback),
+	(dispatch_load_directory_callback),
+	(free_get_file_info_notify_result),
+	(dispatch_get_file_info_callback),
+	(free_find_directory_notify_result),
+	(dispatch_find_directory_callback),
+	(dispatch_set_file_info_callback), (dispatch_xfer_callback),
+	(gnome_vfs_job_destroy_notify_result), (dispatch_job_callback),
+	(gnome_vfs_job_destroy), (gnome_vfs_op_destroy),
+	(serve_channel_read), (serve_channel_write), (execute_open),
+	(execute_open_as_channel), (execute_create),
+	(execute_create_symbolic_link), (execute_create_as_channel),
+	(execute_close), (execute_read), (execute_write),
+	(execute_load_directory_not_sorted),
+	(execute_load_directory_sorted), (execute_get_file_info),
+	(execute_set_file_info), (execute_find_directory),
+	(execute_load_directory), (xfer_callback), (execute_xfer):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Allocate a new struct for notification results for all async callbacks
+	except for xfer. Pass the notification results as data when waking up
+	the notification callback. Delete the notification results once the
+	callback is done. Remove notification result fields from the different
+	op structures.
+
 2001-01-08  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: mfleming@eazel.com
