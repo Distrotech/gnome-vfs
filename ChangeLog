@@ -1,3 +1,9 @@
+2001-09-30  Anders Carlsson  <andersca@gnu.org>
+
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	(gnome_vfs_module_callback_free_stack_info): Free the stack info
+	structure too.
+
 2001-09-28  Darin Adler  <darin@bentspoon.com>
 
 	* modules/file-method.c: (do_read_directory):

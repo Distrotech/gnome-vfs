@@ -968,7 +968,9 @@ gnome_vfs_module_callback_free_stack_info (GnomeVFSModuleCallbackStackInfo *stac
 	clear_callback_table (stack_info->current_callbacks);
 	g_hash_table_destroy (stack_info->current_callbacks); 
 	clear_callback_table (stack_info->current_async_callbacks);
-	g_hash_table_destroy (stack_info->current_async_callbacks); 
+	g_hash_table_destroy (stack_info->current_async_callbacks);
+	
+	g_free (stack_info);
 }
 
 void
