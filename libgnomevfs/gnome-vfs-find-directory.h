@@ -1,6 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-find-directory.h - Public utility functions for the GNOME Virtual
-   File System.
+
+/* gnome-vfs-find-directory.h - Special directory location functions for
+   the GNOME Virtual File System.
 
    Copyright (C) 2000 Eazel, Inc.
    Copyright (C) 2001 Free Software Foundation
@@ -24,21 +25,22 @@
             Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef _GNOME_VFS_FIND_DIRECTORY_H
-#define _GNOME_VFS_FIND_DIRECTORY_H
+#ifndef GNOME_VFS_FIND_DIRECTORY_H
+#define GNOME_VFS_FIND_DIRECTORY_H
+
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 typedef enum {
 	GNOME_VFS_DIRECTORY_KIND_DESKTOP = 1000,
 	GNOME_VFS_DIRECTORY_KIND_TRASH = 1001
 } GnomeVFSFindDirectoryKind;
 
-#include <glib.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
+GnomeVFSResult gnome_vfs_find_directory (GnomeVFSURI                *near_uri,
+					 GnomeVFSFindDirectoryKind   kind,
+					 GnomeVFSURI               **result,
+					 gboolean                    create_if_needed,
+					 gboolean                    find_if_needed,
+					 guint                       permissions);
 
-GnomeVFSResult	gnome_vfs_find_directory (GnomeVFSURI 			*near_uri,
-					  GnomeVFSFindDirectoryKind 	kind,
-					  GnomeVFSURI 			**result,
-					  gboolean 			create_if_needed,
-		   			  gboolean			find_if_needed,
-					  guint 			permissions);
 #endif

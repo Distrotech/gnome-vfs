@@ -21,25 +21,21 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-inet-connection.h"
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <string.h>
-#include <errno.h>
-
-#include <netdb.h>
-extern int h_errno;
-
-#include <glib.h>
-
-#include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
-#include "gnome-vfs-socket-private.h"
+#include "gnome-vfs.h"
+#include <errno.h>
+#include <glib.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+extern int h_errno;
 
 
 struct GnomeVFSInetConnection {

@@ -25,10 +25,7 @@
    from the main thread exclusively.  But for now this is fine, because we are
    only using this module internally.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "gnome-vfs-process.h"
 
 #include "gnome-vfs-private.h"

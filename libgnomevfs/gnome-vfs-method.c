@@ -21,9 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-method.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -218,13 +217,12 @@ load_module (const gchar *module_name, const char *method_name, const char *args
 		} else if (!VFS_METHOD_HAS_FUNC(temp_method, is_local)) {
 			g_warning ("module '%s' has no is-local fn", module_name);
 			return;
-		}
 #if 0
-		else if (!VFS_METHOD_HAS_FUNC(temp_method, get_file_info) {
+		} else if (!VFS_METHOD_HAS_FUNC(temp_method, get_file_info)) {
 			g_warning ("module '%s' has no get-file-info fn", module_name);
 			return;
-		}
 #endif
+		}
 
 		/* More advanced assumptions.  */
 		if (VFS_METHOD_HAS_FUNC(temp_method, tell) && !VFS_METHOD_HAS_FUNC(temp_method, seek)) {

@@ -23,14 +23,13 @@
 #ifndef GNOME_VFS_CONTEXT_PRIVATE_H
 #define GNOME_VFS_CONTEXT_PRIVATE_H
 
-#include "gnome-vfs-context.h"
-#include "gnome-vfs-types.h"
+#include <libgnomevfs/gnome-vfs-context.h>
 
 void		gnome_vfs_backend_get_current_context (/* OUT */ GnomeVFSContext **context);
 
 void		gnome_vfs_backend_dispatch_callback (GnomeVFSCallback callback,
 						     gpointer user_data,
-						     gconstpointer in, size_t in_size,
-				 		     gpointer out, size_t out_size);
+						     gconstpointer in, gsize in_size,
+				 		     gpointer out, gsize out_size);
 
 #endif /* GNOME_VFS_CONTEXT_PRIVATE_H */

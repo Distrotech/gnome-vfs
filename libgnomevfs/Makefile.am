@@ -41,6 +41,7 @@ libgnomevfs_la_LIBADD =				\
 libgnomevfsincludedir = $(includedir)/libgnomevfs
 
 libgnomevfsinclude_HEADERS =			\
+	gnome-vfs-app-context.h			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
 	gnome-vfs-backend.h			\
@@ -54,56 +55,54 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
-	gnome-vfs.h				\
 	gnome-vfs-handle.h			\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
 	gnome-vfs-method.h			\
-	gnome-vfs-method-type.h			\
-	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info.h			\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-mime-sniff-buffer.h		\
-	gnome-vfs-module.h			\
+	gnome-vfs-mime.h			\
+	gnome-vfs-module-api.h			\
 	gnome-vfs-module-shared.h		\
+	gnome-vfs-module.h			\
 	gnome-vfs-ops.h				\
 	gnome-vfs-parse-ls.h			\
-	gnome-vfs-private.h			\
-	gnome-vfs-private-types.h		\
 	gnome-vfs-private-utils.h		\
+	gnome-vfs-private.h			\
 	gnome-vfs-regexp-filter.h		\
 	gnome-vfs-result.h			\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h		\
-	gnome-vfs-socket.h			\
-	gnome-vfs-socket-private.h		\
 	gnome-vfs-socket-buffer.h		\
-	gnome-vfs-ssl.h				\
+	gnome-vfs-socket.h			\
 	gnome-vfs-ssl-private.h			\
-	gnome-vfs-types.h			\
+	gnome-vfs-ssl.h				\
+	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-transform.h			\
+	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
 	gnome-vfs-xfer.h			\
-	gnome-vfs-shellpattern-filter.h		\
-	gnome-vfs-app-context.h			\
-	gnome-vfs-standard-callbacks.h		\
-	gnome-vfs-module-api.h			\
+	gnome-vfs.h				\
 	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
 	fnmatch.c				\
+	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
+	gnome-vfs-async-ops.c			\
 	gnome-vfs-backend.c			\
+	gnome-vfs-callbacks.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
-	gnome-vfs-directory.c			\
 	gnome-vfs-directory-filter.c		\
+	gnome-vfs-directory.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
@@ -112,24 +111,28 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
 	gnome-vfs-method.c			\
-	gnome-vfs-mime.c			\
 	gnome-vfs-mime-handlers.c               \
 	gnome-vfs-mime-info.c			\
 	gnome-vfs-mime-magic.c			\
 	gnome-vfs-mime-monitor.c		\
 	gnome-vfs-mime-sniff-buffer.c		\
+	gnome-vfs-mime.c			\
+	gnome-vfs-module-api.c			\
 	gnome-vfs-module-shared.c		\
+	gnome-vfs-module.c			\
 	gnome-vfs-ops.c				\
 	gnome-vfs-parse-ls.c			\
 	gnome-vfs-private-utils.c		\
+	gnome-vfs-private.c			\
 	gnome-vfs-process.c			\
 	gnome-vfs-regexp-filter.c		\
 	gnome-vfs-result.c			\
 	gnome-vfs-seekable.c			\
 	gnome-vfs-shellpattern-filter.c		\
-	gnome-vfs-socket.c			\
 	gnome-vfs-socket-buffer.c		\
+	gnome-vfs-socket.c			\
 	gnome-vfs-ssl.c				\
+	gnome-vfs-transform.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
@@ -137,7 +140,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\
-	gnome-vfs-app-context.c			\
 	$(NULL)
 
 noinst_HEADERS =				\

@@ -1,4 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs-xfer.h - File transfers in the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
@@ -20,8 +21,10 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_XFER_H
-#define _GNOME_VFS_XFER_H
+#ifndef GNOME_VFS_XFER_H
+#define GNOME_VFS_XFER_H
+
+#include <libgnomevfs/gnome-vfs-file-info.h>
 
 /* Xfer options.  
  * FIXME bugzilla.eazel.com 1205:
@@ -239,31 +242,24 @@ typedef struct GnomeVFSProgressCallbackState {
 	gint64 update_callback_period;
 } GnomeVFSProgressCallbackState;
 
-GnomeVFSResult	gnome_vfs_xfer_uri_list (const GList *source_uri_list,
-		    			 const GList *target_uri_list,
-				         GnomeVFSXferOptions xfer_options,
-				         GnomeVFSXferErrorMode error_mode,
-				         GnomeVFSXferOverwriteMode
-					 	overwrite_mode,
-				         GnomeVFSXferProgressCallback
-					 	progress_callback,
-				         gpointer data);
+GnomeVFSResult gnome_vfs_xfer_uri_list    (const GList                  *source_uri_list,
+					   const GList                  *target_uri_list,
+					   GnomeVFSXferOptions           xfer_options,
+					   GnomeVFSXferErrorMode         error_mode,
+					   GnomeVFSXferOverwriteMode     overwrite_mode,
+					   GnomeVFSXferProgressCallback  progress_callback,
+					   gpointer                      data);
+GnomeVFSResult gnome_vfs_xfer_uri         (const GnomeVFSURI            *source_uri,
+					   const GnomeVFSURI            *target_uri,
+					   GnomeVFSXferOptions           xfer_options,
+					   GnomeVFSXferErrorMode         error_mode,
+					   GnomeVFSXferOverwriteMode     overwrite_mode,
+					   GnomeVFSXferProgressCallback  progress_callback,
+					   gpointer                      data);
+GnomeVFSResult gnome_vfs_xfer_delete_list (const GList                  *source_uri_list,
+					   GnomeVFSXferErrorMode         error_mode,
+					   GnomeVFSXferOptions           xfer_options,
+					   GnomeVFSXferProgressCallback  progress_callback,
+					   gpointer                      data);
 
-GnomeVFSResult	gnome_vfs_xfer_uri      (const GnomeVFSURI *source_uri,
-				         const GnomeVFSURI *target_uri,
-				         GnomeVFSXferOptions xfer_options,
-				         GnomeVFSXferErrorMode error_mode,
-				         GnomeVFSXferOverwriteMode
-					 	overwrite_mode,
-				         GnomeVFSXferProgressCallback
-					 	progress_callback,
-				         gpointer data);
-
-GnomeVFSResult gnome_vfs_xfer_delete_list    (const GList *source_uri_list,
-				         GnomeVFSXferErrorMode error_mode,
-				         GnomeVFSXferOptions xfer_options,
-				         GnomeVFSXferProgressCallback
-					 	progress_callback,
-				         gpointer data);
-
-#endif /* _GNOME_VFS_XFER_H */
+#endif /* GNOME_VFS_XFER_H */

@@ -25,11 +25,10 @@
    meant to be used within the GNOME VFS and its modules: they are not for
    public consumption through the external API.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-#include <string.h>
+#include "gnome-vfs-cancellable-ops.h"
 
+#include <string.h>
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 

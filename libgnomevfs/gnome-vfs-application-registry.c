@@ -26,29 +26,27 @@
  */
 
 #include "config.h"
+#include "gnome-vfs-application-registry.h"
 
-#include <time.h>
-#include <string.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <glib.h>
-#include <ctype.h>
-
-#include "gnome-vfs-types.h"
-#include "gnome-vfs-result.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
-#include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-result.h"
+#include <ctype.h>
+#include <dirent.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <glib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
 
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)

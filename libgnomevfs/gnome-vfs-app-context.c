@@ -446,8 +446,8 @@ error:
 /* Returns TRUE if there actually was a hook set for this hookname */
 gboolean
 gnome_vfs_callback_call_hook  (const char *hookname,
-			       gconstpointer in, size_t in_size,
-			       gpointer out, size_t out_size)
+			       gconstpointer in, gsize in_size,
+			       gpointer out, gsize out_size)
 {
 	GnomeVFSCallback callback;
 	gpointer user_data;
@@ -484,8 +484,8 @@ typedef struct  {
 } DestroyNotifyIn;
 
 static void /* GnomeVFSCallback */
-destroy_notify_callback (gpointer user_data, gconstpointer in, size_t in_size,
-		         gpointer out, size_t out_size)
+destroy_notify_callback (gpointer user_data, gconstpointer in, gsize in_size,
+		         gpointer out, gsize out_size)
 {
 	DestroyNotifyIn *real_in;
 

@@ -21,26 +21,18 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-configuration.h"
 
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
-#include <dirent.h>
-#include <ctype.h>
-
-#include <glib.h>
-
-#include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
-
-
+#include "gnome-vfs.h"
+#include <ctype.h>
+#include <dirent.h>
+#include <errno.h>
+#include <glib.h>
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
 
 typedef struct _Configuration Configuration;
 struct _Configuration {
@@ -351,7 +343,7 @@ parse_file (Configuration *configuration,
 static void
 configuration_load (void)
 {
-	gchar *file_names[MAX_CFG_FILES];
+	gchar *file_names[MAX_CFG_FILES + 1];
 	GList *list;
 	int i = 0;
 	DIR *dirh;
@@ -362,7 +354,6 @@ configuration_load (void)
 	for (list = configuration->directories; list && i < MAX_CFG_FILES; list = list->next) {
 		VfsDirSource *dir_source = (VfsDirSource *)list->data;
 		struct dirent *dent;
-		int dlen;
 
 		if (stat (dir_source->dirname, &dir_source->s) == -1)
 			continue;
@@ -371,25 +362,23 @@ configuration_load (void)
 		if(!dirh)
 			continue;
 
-		dlen = strlen(dir_source->dirname) + 2;
-
-		while((dent = readdir(dirh))) {
+		while ((dent = readdir(dirh)) && i < MAX_CFG_FILES) {
 			char *ctmp;
 			ctmp = strstr(dent->d_name, ".conf");
 			if(!ctmp || strcmp(ctmp, ".conf"))
 				continue;
-			file_names[i] = alloca(dlen + strlen(dent->d_name));
-			sprintf(file_names[i], "%s/%s", dir_source->dirname, dent->d_name);
+			file_names[i] = g_strdup_printf ("%s/%s", dir_source->dirname, dent->d_name);
 			i++;
 		}
 		closedir(dirh);
 	}
-	file_names[i++] = NULL;
+	file_names[i] = NULL;
 
 	/* Now read these cfg files */
 	for(i = 0; file_names[i]; i++) {
 		/* FIXME: should we try to catch errors? */
 		parse_file (configuration, file_names[i]);
+		g_free (file_names[i]);
 	}
 }
 

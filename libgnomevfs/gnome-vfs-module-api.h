@@ -24,10 +24,11 @@
 #define GNOME_VFS_MODULE_API
 
 #include <glib.h>
-#include <stdlib.h>
 
-gboolean	gnome_vfs_callback_call_hook    (const char * hookname,
-						 gconstpointer in, size_t in_size,
-						 gpointer out, size_t out_size);
+gboolean gnome_vfs_callback_call_hook (const char    *hookname,
+				       gconstpointer  in,
+				       gsize          in_size,
+				       gpointer       out,
+				       gsize          out_size);
 
 #endif /* GNOME_VFS_MODULE_API */

@@ -29,21 +29,21 @@
 #include <config.h>
 #include "gnome-vfs-mime-info.h"
 
-#include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-mime-private.h"
-#include "gnome-vfs-result.h"
+#include "gnome-vfs-mime.h"
 #include "gnome-vfs-private.h"
-
+#include <ctype.h>
+#include <dirent.h>
 #include <gtk/gtkmain.h>
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <sys/types.h>
+#include <time.h>
 #include <unistd.h>
-#include <dirent.h>
+
 #ifdef NEED_GNOMESUPPORT_H
 #include "gnomesupport.h"
 #endif

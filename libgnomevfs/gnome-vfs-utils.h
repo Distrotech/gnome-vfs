@@ -27,10 +27,9 @@
 #ifndef GNOME_VFS_UTILS_H
 #define GNOME_VFS_UTILS_H
 
-#include <glib.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 /* Makes a human-readable string. */
 char *gnome_vfs_format_file_size_for_display (GnomeVFSFileSize  size);

@@ -25,9 +25,8 @@
 #ifndef GNOME_VFS_MIME_HANDLERS_H
 #define GNOME_VFS_MIME_HANDLERS_H
 
-#include <glib.h>
+#include <libgnomevfs/gnome-vfs-result.h>
 #include <liboaf/liboaf.h>
-#include <libgnomevfs/gnome-vfs-types.h> /* for GnomeVFSResult */
 
 typedef enum {
 	GNOME_VFS_MIME_ACTION_TYPE_NONE,

@@ -25,7 +25,6 @@
 #define GNOME_VFS_URI_H
 
 #include <glib.h>
-#include <libgnomevfs/gnome-vfs-method-type.h>
 
 /* This describes a URI element.  */
 typedef struct GnomeVFSURI {
@@ -44,7 +43,7 @@ typedef struct GnomeVFSURI {
 	gchar *method_string;
 
 	/* VFS method to access the element.  */
-	GnomeVFSMethod *method;
+	struct GnomeVFSMethod *method;
 
 	/* Pointer to the parent element, or NULL for toplevel elements.  */
 	struct GnomeVFSURI *parent;

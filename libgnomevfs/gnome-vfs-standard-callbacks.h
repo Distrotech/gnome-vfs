@@ -21,8 +21,10 @@
    Author: Michael Fleming <mfleming@eazel.com>
 */
 
-#ifndef GNOME_VFS_CALLBACK_H
-#define GNOME_VFS_CALLBACK_H
+#ifndef GNOME_VFS_STANDARD_CALLBACKS_H
+#define GNOME_VFS_STANDARD_CALLBACKS_H
+
+#include <glib.h>
 
 /*
  * defined callback structures
@@ -92,12 +94,13 @@ typedef struct {
 	char *uri;		/* Full URI of operation */
 	char *message;		/* A message indicating the current state or
 				 * NULL if there is no message */
-	gint percentage;	/* Percentage indicating completeness 0-100 or
+	int percentage;		/* Percentage indicating completeness 0-100 or
 				 * -1 if there is no progress percentage to
 				 * report */
 } GnomeVFSCallbackStatusMessageIn;
 
 typedef struct {
+	int dummy; /* empty structs not allowed */
 } GnomeVFSCallbackStatusMessageOut;
 
-#endif /* GNOME_VFS_CALLBACK_H */
+#endif /* GNOME_VFS_STANDARD_CALLBACKS_H */

@@ -26,11 +26,11 @@
 #ifndef GNOME_VFS_FILE_INFO_H
 #define GNOME_VFS_FILE_INFO_H
 
-#include <glib.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 /* File flags.  */
 typedef enum {

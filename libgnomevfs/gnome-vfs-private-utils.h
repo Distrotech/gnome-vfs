@@ -28,11 +28,10 @@
  * break even when the GnomeVFS APIs are otherwise frozen.
  */
 
-#include <libgnomevfs/gnome-vfs-process.h>
-#include <libgnomevfs/gnome-vfs-types.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-handle.h>
+#include <libgnomevfs/gnome-vfs-process.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 gchar   	*gnome_vfs_canonicalize_pathname         (char *path);
 GnomeVFSResult   gnome_vfs_remove_optional_escapes 	 (char *escaped_uri);

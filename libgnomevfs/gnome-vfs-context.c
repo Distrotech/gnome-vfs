@@ -20,12 +20,13 @@
 
    Author: Havoc Pennington <hp@redhat.com> */
 
+#include <config.h>
 #include "gnome-vfs-context.h"
-#include "gnome-vfs-cancellation.h"
+
 #include "gnome-vfs-backend-private.h"
+#include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-utils.h"
-
 #include <stdio.h>
 
 #if 1

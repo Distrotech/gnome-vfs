@@ -1,6 +1,5 @@
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-module-shared.h"
 
 #define _LARGEFILE64_SOURCE
 #define _BSD_SOURCE /* so S_ISVTX and hence GNOME_VFS_PERM_STICKY will be defined */
@@ -13,9 +12,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "gnome-vfs-types.h"
 #include "gnome-vfs-module.h"
-#include "gnome-vfs-module-shared.h"
+#include "gnome-vfs-ops.h"
 
 const gchar *
 gnome_vfs_mime_type_from_mode (mode_t mode)

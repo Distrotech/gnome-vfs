@@ -33,16 +33,13 @@
    allow us to set a prefix URI for all the operations.  This way we can
    greatly optimize access to "strange" file systems.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-xfer.h"
 
-#include <sys/time.h>
-#include <string.h>
-
-#include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
-#include "gnome-vfs-private-types.h"
+#include "gnome-vfs.h"
+#include <string.h>
+#include <sys/time.h>
 
 /* Implementation of file transfers (`gnome_vfs_xfer*()' functions).  */
 

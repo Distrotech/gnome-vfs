@@ -26,10 +26,7 @@
 #ifndef GNOME_VFS_SSL_H
 #define GNOME_VFS_SSL_H
 
-#include <glib.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-socket.h"
+#include <libgnomevfs/gnome-vfs-socket.h>
 
 #ifdef __cplusplus
 extern "C" {

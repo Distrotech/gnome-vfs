@@ -22,19 +22,21 @@
            Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef _GNOME_VFS_TRANSFORM_H
-#define _GNOME_VFS_TRANSFORM_H
+#ifndef GNOME_VFS_TRANSFORM_H
+#define GNOME_VFS_TRANSFORM_H
 
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 
 typedef struct GnomeVFSTransform GnomeVFSTransform;
-typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc)(const char *method_name, const char *config_args);
 
-typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
-						  const gchar *old_uri,
-						  gchar **new_uri,
-						  GnomeVFSContext *context);
+typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc) (const char        *method_name,
+							   const char        *config_args);
+
+typedef GnomeVFSResult (* GnomeVFSTransformFunc)          (GnomeVFSTransform *transform,
+							   const char        *old_uri,
+							   char             **new_uri,
+							   GnomeVFSContext   *context);
 
 struct GnomeVFSTransform {
 	GnomeVFSTransformFunc transform;

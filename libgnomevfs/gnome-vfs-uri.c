@@ -23,19 +23,15 @@
 
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-uri.h"
 
+#include "gnome-vfs-private.h"
+#include "gnome-vfs-transform.h"
+#include "gnome-vfs.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
-#include <libgnomevfs/gnome-vfs-transform.h>
-
-/* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
 
 /* 
    split_toplevel_uri
@@ -582,7 +578,7 @@ static void
 remove_internal_relative_components (char *uri_current)
 {
 	char *segment_prev, *segment_cur;
-	size_t len_prev, len_cur;
+	gsize len_prev, len_cur;
 
 	len_prev = len_cur = 0;
 	segment_prev = NULL;
@@ -671,7 +667,7 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 		char *mutable_uri;
 
 		char *uri_current;
-		size_t base_uri_length;
+		gsize base_uri_length;
 		char *separator;
 
 		/* We may need one extra character

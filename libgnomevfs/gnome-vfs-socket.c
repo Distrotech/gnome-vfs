@@ -26,11 +26,7 @@
  *          (reverse-engineered from code by Ian McKellar <yakk@yakk.net>)
  */
 
-
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "gnome-vfs-socket.h"
 
 struct GnomeVFSSocket {

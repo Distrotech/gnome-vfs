@@ -21,9 +21,8 @@
    Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-result.h"
 
 #include <netdb.h>
 #include <errno.h>

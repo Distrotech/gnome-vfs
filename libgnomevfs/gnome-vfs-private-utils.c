@@ -25,21 +25,19 @@
    Ramey in GNU Bash, the Bourne Again SHell.  Copyright (C) 1987, 1988, 1989,
    1990, 1991, 1992 Free Software Foundation, Inc.  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include "gnome-vfs-private-utils.h"
 
 #include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-uri.h"
 #include "gnome-vfs-ops.h"
+#include "gnome-vfs-uri.h"
 #include <ctype.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <time.h>
 #include <unistd.h>
 
 static int

@@ -25,17 +25,14 @@
  *   excellent SSL implementation in Evolution.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-ssl.h"
 
 #include <string.h>
 #include <glib.h>
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-ssl-private.h"
-#include "gnome-vfs-ssl.h"
-#include "gnome-vfs-socket-private.h"
 
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>

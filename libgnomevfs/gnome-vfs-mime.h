@@ -24,15 +24,14 @@
 #ifndef GNOME_VFS_MIME_H
 #define GNOME_VFS_MIME_H
 
-#include <glib.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
 #include <ctype.h>
 #include <dirent.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <regex.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -29,7 +29,6 @@
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
-#include <libgnomevfs/gnome-vfs-types.h>
 
 
 GnomeVFSResult	 gnome_vfs_open			(GnomeVFSHandle **handle,

@@ -2,7 +2,6 @@
 
 	Finished deprecating gnome-vfs-types.h.
 
-	
 	* libgnomevfs/fnmatch.c:
 	* libgnomevfs/gnome-vfs-app-context.c:
 	(gnome_vfs_callback_call_hook), (destroy_notify_callback):

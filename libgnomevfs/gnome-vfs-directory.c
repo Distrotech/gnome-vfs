@@ -21,14 +21,11 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-directory.h"
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
-
-
 
 #define VFS_MAXIMUM_SYMBOLIC_LINK_DEPTH 256
 

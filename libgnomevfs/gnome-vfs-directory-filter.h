@@ -21,8 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_DIRECTORY_FILTER_H
-#define _GNOME_VFS_DIRECTORY_FILTER_H
+#ifndef GNOME_VFS_DIRECTORY_FILTER_H
+#define GNOME_VFS_DIRECTORY_FILTER_H
 
 #include <libgnomevfs/gnome-vfs-file-info.h>
 
@@ -88,4 +88,4 @@ GnomeVFSDirectoryFilterNeeds
 	gnome_vfs_directory_filter_get_needs
 					(const GnomeVFSDirectoryFilter *filter);
 
-#endif /* _GNOME_VFS_DIRECTORY_FILTER_H */
+#endif /* GNOME_VFS_DIRECTORY_FILTER_H */

@@ -21,12 +21,12 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifndef _GNOME_VFS_INET_CONNECTION_H
-#define _GNOME_VFS_INET_CONNECTION_H
+#ifndef GNOME_VFS_INET_CONNECTION_H
+#define GNOME_VFS_INET_CONNECTION_H
 
-#include "gnome-vfs-socket.h"
-#include <libgnomevfs/gnome-vfs-iobuf.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
+#include <libgnomevfs/gnome-vfs-iobuf.h>
+#include <libgnomevfs/gnome-vfs-socket.h>
 
 typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
 
@@ -52,5 +52,6 @@ GnomeVFSIOBuf	*gnome_vfs_inet_connection_get_iobuf
 GnomeVFSSocket * gnome_vfs_inet_connection_to_socket 
 					(GnomeVFSInetConnection *connection);
 
-gint gnome_vfs_inet_connection_get_fd   (GnomeVFSInetConnection *connection);
-#endif /* _GNOME_VFS_INET_CONNECTION_H */
+int gnome_vfs_inet_connection_get_fd   (GnomeVFSInetConnection *connection);
+
+#endif /* GNOME_VFS_INET_CONNECTION_H */

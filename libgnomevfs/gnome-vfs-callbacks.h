@@ -20,17 +20,20 @@
 
    Author: Seth Nickell <snickell@stanford.edu>
 */
-#ifndef _GNOME_VFS_CALLBACKS_H
-#define _GNOME_VFS_CALLBACKS_H
 
-#include <sys/types.h>
+#ifndef GNOME_VFS_CALLBACKS_H
+#define GNOME_VFS_CALLBACKS_H
+
+#include <glib.h>
 
 /* Used to report user-friendly status messages you might want to display. */
-typedef void    (* GnomeVFSStatusCallback)      (const gchar *message,
-						 gpointer     callback_data);
-typedef void (*GnomeVFSCallback) (gpointer user_data,
-				  gconstpointer in, size_t in_size,
-				  gpointer out, size_t out_size);
+typedef void (* GnomeVFSStatusCallback) (const gchar  *message,
+					 gpointer      callback_data);
+typedef void (* GnomeVFSCallback)       (gpointer      user_data,
+					 gconstpointer in,
+					 gsize         in_size,
+					 gpointer      out,
+					 gsize         out_size);
 
 typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
 

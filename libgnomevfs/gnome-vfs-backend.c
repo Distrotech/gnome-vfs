@@ -25,20 +25,16 @@
    Author: Elliot Lee <sopwith@redhat.com>
 */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <config.h>
 #include "gnome-vfs-backend.h"
-#include "gnome-vfs-types.h"
-#include "gnome-vfs-private-types.h"
+
 #include "gnome-vfs-backend-private.h"
 #include "gnome-vfs-callbacks.h"
-
 #include "gnome-vfs.h"
 #include <gmodule.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 static GModule *gmod = NULL;
 static gboolean (* gnome_vfs_backend_module_init)(gboolean deps_init);
@@ -535,14 +531,14 @@ gnome_vfs_backend_get_current_context (/* OUT */ GnomeVFSContext **context)
 void
 gnome_vfs_backend_dispatch_callback (GnomeVFSCallback callback,
 				     gpointer user_data,
-				     gconstpointer in, size_t in_size,
-		 		     gpointer out, size_t out_size)
+				     gconstpointer in, gsize in_size,
+		 		     gpointer out, gsize out_size)
 {
 	static void
 		(*real_gnome_vfs_dispatch_callback) (GnomeVFSCallback callback,
 						     gpointer user_data,
-						     gconstpointer in, size_t in_size,
-				 		     gpointer out, size_t out_size);
+						     gconstpointer in, gsize in_size,
+				 		     gpointer out, gsize out_size);
 
 	CALL_BACKEND (gnome_vfs_dispatch_callback, (callback,
 						    user_data,

@@ -26,28 +26,28 @@
             Darin Adler <darin@eazel.com>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include "gnome-vfs-utils.h"
 
-#ifdef HAVE_SYS_PARAM_H
-#include <sys/param.h>
-#endif
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 #include "gnome-vfs-private-utils.h"
-
+#include "gnome-vfs-private.h"
+#include "gnome-vfs.h"
 #include <ctype.h>
 #include <pwd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include <sys/types.h>
+#include <unistd.h>
+
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+
 #if HAVE_SYS_STATVFS_H
 #include <sys/statvfs.h>
 #endif
+
 #if HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #elif HAVE_SYS_MOUNT_H
@@ -55,9 +55,7 @@
 #endif
 
 #define KILOBYTE_FACTOR 1024.0
-
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
-
 #define GIGABYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
 
 gchar*
