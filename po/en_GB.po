@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-03-07 19:47-0500\n"
+"POT-Creation-Date: 2004-07-06 22:16-0400\n"
+"PO-Revision-Date: 2004-07-06 22:17-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -508,7 +508,7 @@ msgstr "Camera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
@@ -641,7 +641,7 @@ msgstr "Home"
 msgid "Filesystem"
 msgstr "Filesystem"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Unknown GnomeVFSSeekPosition %d"
@@ -653,7 +653,7 @@ msgstr "Windows Network"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "The identity of the remote computer (%s) is unknown."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -663,14 +663,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Log In Anyway"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Cancel Login"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -759,9 +762,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Handle HTTPS URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Handle man URLs"
+msgstr "Handle aim URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -810,10 +812,8 @@ msgstr ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle man URLs."
+msgstr "Set to true to have a program specified in \"command\" handle aim URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -856,9 +856,8 @@ msgid "True if the program to handle this URL should be run in a terminal."
 msgstr "True if the program to handle this URL should be run in a terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "man URL handler"
+msgstr "aim URL handler"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -888,19 +887,19 @@ msgstr "wastebasket URL handler"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Comma separated list of dns-sd domains that should be visible in the network location."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Extra domains to look for dns-sd services in"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "How to display local DNS-SD service"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "Possible values are \"merged\", \"separate\" and \"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
