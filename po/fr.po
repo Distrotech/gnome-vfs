@@ -1975,26 +1975,6 @@ msgstr "Afficher les fichiers cachés"
 #~ msgid "OGG Audio"
 #~ msgstr "Audio OGG"
 
-#: data/mime/gnome-vfs.keys.in:171
-msgid "tar archive (bzip2-compressed)"
-msgstr "Archive tar (comprimé bzip2)"
-
-#: data/mime/gnome-vfs.keys.in:205
-msgid "tar archive (gzip-compressed)"
-msgstr "Archive tar (comprimé gzip)"
-
-#: data/mime/gnome-vfs.keys.in:220
-msgid "CPIO archive (gzip-compressed)"
-msgstr "Archive CPIO (comprimé gzip)"
-
-#: data/mime/gnome-vfs.keys.in:544
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "Archive CPIP SV4 (avec CRC)"
-
-#: data/mime/gnome-vfs.keys.in:570
-msgid "manual page (compressed)"
-msgstr "Page de manuel (comprimé)"
-
 #: mime-type-capplet/file-types-capplet.desktop.in:3
 msgid "File Types and Programs"
 msgstr "Type de fichiers et programmes"

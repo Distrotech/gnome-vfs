@@ -1669,23 +1669,3 @@ msgstr "Zeige:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Zeige versteckte Dateien"
-
-#: data/mime/gnome-vfs.keys.in:171
-msgid "tar archive (bzip2-compressed)"
-msgstr "tar-Archiv (bzip2-komprimiert)"
-
-#: data/mime/gnome-vfs.keys.in:205
-msgid "tar archive (gzip-compressed)"
-msgstr "tar-archiv (gzip-komprimiert)"
-
-#: data/mime/gnome-vfs.keys.in:220
-msgid "CPIO archive (gzip-compressed)"
-msgstr "CPIO-Archive (gzip-komprimiert)"
-
-#: data/mime/gnome-vfs.keys.in:544
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "SV4-CPIP-Archiv (mit CRC)"
-
-#: data/mime/gnome-vfs.keys.in:570
-msgid "manual page (compressed)"
-msgstr "Handbuchseite (komprimiert)"

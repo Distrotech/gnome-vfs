@@ -1660,23 +1660,3 @@ msgstr "Показати:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Показати крапков╕ файли"
-
-#: data/mime/gnome-vfs.keys.in:171
-msgid "tar archive (bzip2-compressed)"
-msgstr "арх╕в tar (стиснутий bzip2)"
-
-#: data/mime/gnome-vfs.keys.in:205
-msgid "tar archive (gzip-compressed)"
-msgstr "арх╕в tar (стиснутий gzip)"
-
-#: data/mime/gnome-vfs.keys.in:220
-msgid "CPIO archive (gzip-compressed)"
-msgstr "арх╕в CPIO (стиснутий gzip)"
-
-#: data/mime/gnome-vfs.keys.in:544
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "арх╕в SV4 CPIP (з CRC)"
-
-#: data/mime/gnome-vfs.keys.in:570
-msgid "manual page (compressed)"
-msgstr "стор╕нка пос╕бника (стиснута)"

@@ -1775,23 +1775,3 @@ msgstr "숨김파일 보기"
 
 #~ msgid "Action"
 #~ msgstr "사용할 프로그램"
-
-#: data/mime/gnome-vfs.keys.in:171
-msgid "tar archive (bzip2-compressed)"
-msgstr "(bzip2로 압축된)tar 저장파일"
-
-#: data/mime/gnome-vfs.keys.in:205
-msgid "tar archive (gzip-compressed)"
-msgstr "(gzip으로 압축된)tar 저장파일"
-
-#: data/mime/gnome-vfs.keys.in:220
-msgid "CPIO archive (gzip-compressed)"
-msgstr "CPIO 보관파일 (gzip압축)"
-
-#: data/mime/gnome-vfs.keys.in:544
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "(CRC를 가지는)SV4 CPIP 파일"
-
-#: data/mime/gnome-vfs.keys.in:570
-msgid "manual page (compressed)"
-msgstr "(압축된)설명서 페이지"
