@@ -1,5 +1,11 @@
 2002-05-24  Seth Nickell  <snickell@stanford.edu>
 
+	* configure.in:
+
+	Bump version number & release.
+
+2002-05-24  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/vfolder-desktop-method.c:
 	(vfolder_info_read_items_merge):
 
