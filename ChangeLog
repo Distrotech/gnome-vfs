@@ -1,3 +1,11 @@
+2000-10-22  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (cache_add_uri_and_children),
+	(process_propfind_response), (make_propfind_request):
+
+	Caching and processing propfind requests now actually works with 
+	filenames containing escape characters (bugzilla.eazel.com bug 3875)
+
 2000-10-22  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* data/mime/gnome-vfs.keys: Started adding Norwegian

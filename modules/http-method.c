@@ -490,13 +490,19 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 
 		for (node = file_info_list ; NULL != node ; node = g_list_next (node)) {
 			GnomeVFSFileInfo *child_info;
+			gchar * child_name_escaped;
 
 			child_info = (GnomeVFSFileInfo *) node->data;
+
+			child_name_escaped = gnome_vfs_escape_path_string (child_info->name);
+			
+			child_string = g_strconcat (uri_string, "/", child_name_escaped, NULL);
+
 			parent_entry->filenames = g_list_prepend (
 							parent_entry->filenames, 
-							g_strdup (child_info->name)); 
+							child_name_escaped); 
+			child_name_escaped = NULL;
 
-			child_string = g_strconcat (uri_string, "/", child_info->name, NULL);
 			cache_add_no_strdup (child_string, child_info);
 		}
 		/* I'm not sure that order matters... */
@@ -1826,25 +1832,30 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 
 	while(n != NULL) {
 		if(!strcmp((char *)n->name, "href")) {
-			gchar *nc = xmlNodeGetContent(n);
-			gchar *nodecontent = gnome_vfs_unescape_string(nc, "/");
-			xmlFree(nc);
+			gchar *nodecontent_escaped = xmlNodeGetContent(n);
+			gchar *nodecontent = gnome_vfs_unescape_string(nodecontent_escaped, "/");
+
 			if(nodecontent && *nodecontent) {
 				gint len;
-				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent);
+				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent_escaped);
 
-				if( !strcmp(base_uri->text, uri->text) ||
-				    !strcmp(second_base->text, uri->text)) {
-					file_info->name = NULL; /* this file is the . directory */
-				} else {
-					file_info->name = gnome_vfs_uri_extract_short_name(uri);
-					gnome_vfs_uri_unref(uri);
+				if (uri) {
+					if( !strcmp(base_uri->text, uri->text) ||
+					    !strcmp(second_base->text, uri->text)) {
+						file_info->name = NULL; /* this file is the . directory */
+					} else {
+						/* extract_short_name returns unescaped */
+						file_info->name = gnome_vfs_uri_extract_short_name(uri);
+						gnome_vfs_uri_unref(uri);
 
-					len = strlen(file_info->name)-1;
-					if(file_info->name[len] == '/') {
-						/* trim trailing `/` - it confuses stuff */
-						file_info->name[len] = '\0';
+						len = strlen(file_info->name)-1;
+						if(file_info->name[len] == '/') {
+							/* trim trailing `/` - it confuses stuff */
+							file_info->name[len] = '\0';
+						}
 					}
+				} else {
+					g_warning("Can't make URI from href in PROPFIND '%s'; silently skipping", nodecontent_escaped);
 				}
 			} else {
 				g_warning("got href without contents in PROPFIND response");
@@ -1865,7 +1876,8 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 					g_strdup(nodecontent);
 			}
 #endif
-			g_free(nodecontent);
+			xmlFree (nodecontent_escaped);
+			g_free (nodecontent);
 		} else if(!strcmp((char *)n->name, "propstat")) {
 			process_propfind_propstat(n->childs, file_info);
 		}
@@ -1892,9 +1904,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlParserCtxtPtr parserContext;
 	xmlDocPtr doc = NULL;
 	xmlNodePtr cur = NULL;
-	gchar *raw_uri;
-	gchar *unescaped_uri_string;
-	GnomeVFSURI *unescaped_uri;
 	gchar *extraheaders = g_strdup_printf("Depth: %d\r\n", depth);
 	gboolean found_root_node_props;
 
@@ -1979,20 +1988,12 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	cur = cur->childs;
 
-	raw_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	unescaped_uri_string = gnome_vfs_unescape_string(raw_uri, "/");
-	unescaped_uri = gnome_vfs_uri_new(unescaped_uri_string);
-	g_free(raw_uri);
-	raw_uri = NULL;
-	g_free(unescaped_uri_string);
-	unescaped_uri_string = NULL;
-
 	found_root_node_props = FALSE;
 	while(cur != NULL) {
 		if(!strcmp((char *)cur->name, "response")) {
 			GnomeVFSFileInfo *file_info =
 				process_propfind_response(cur->childs, 
-					unescaped_uri);
+					uri);
 
 			if(file_info->name) { 
 				handle->files = g_list_append(handle->files, file_info);
@@ -2033,9 +2034,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 		cache_add_uri_and_children (uri, handle->file_info, handle->files);
 	}
 #endif /* DAV_NO_CACHE */
-
-
-	gnome_vfs_uri_unref(unescaped_uri);
 
 	g_free(buffer);
 	g_free(extraheaders);
