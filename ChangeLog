@@ -1,3 +1,9 @@
+2000-12-08  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	replaced all references to the old bonobo-text-plain component
+	with the newer nautilus-text-view component
+	
 2000-12-07  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (process_propfind_propstat),
