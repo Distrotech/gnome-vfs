@@ -3384,7 +3384,7 @@ do_move (GnomeVFSMethod *method,
 			(old_folder->entries, old_entry);
 		entry_unref (old_entry);
 
-		g_free (basename);
+		g_free (old_basename);
 
 		vfolder_info_write_user (info);
 
