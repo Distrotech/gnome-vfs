@@ -276,6 +276,10 @@ struct _FileMonitorHandle {
 	gboolean exists;
 	gboolean dir_monitor; /* TRUE if dir, FALSE if file */
 	GnomeVFSURI *uri;
+	GnomeVFSMonitorHandle *handle; /* A real handle if we're monitoring
+					  an actual file here, or NULL */
+	char *filename; /* Just the basename, used in the free_file_list */
+	gboolean is_directory_file;
 };
 
 #define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
@@ -304,15 +308,20 @@ static void	readitem_entry			(const char *filename,
 						 char **result2);
 static gboolean vfolder_info_reload 		(VFolderInfo *info,
 						 GnomeVFSResult *result,
-						 GnomeVFSContext *context);
+						 GnomeVFSContext *context,
+						 gboolean force_read_items);
 static gboolean vfolder_info_reload_unlocked	(VFolderInfo *info,
 						 GnomeVFSResult *result,
-						 GnomeVFSContext *context);
+						 GnomeVFSContext *context,
+						 gboolean force_read_items);
 static void     invalidate_folder_subfolders    (Folder   *folder,
 						 gboolean  lock_taken);
 static Folder *	resolve_folder			(VFolderInfo *info,
 						 const char *path,
 						 gboolean ignore_basename,
+						 GnomeVFSResult *result,
+						 GnomeVFSContext *context);
+static gboolean	vfolder_info_read_items		(VFolderInfo *info,
 						 GnomeVFSResult *result,
 						 GnomeVFSContext *context);
 
@@ -330,9 +339,18 @@ file_monitor_handle_unref_unlocked (FileMonitorHandle *h)
 	if (h->refcount == 0) {
 		gnome_vfs_uri_unref (h->uri);
 		h->uri = NULL;
+
+		g_free (h->filename);
+		h->filename = NULL;
+
+		if (h->handle != NULL) {
+			gnome_vfs_monitor_cancel (h->handle);
+			h->handle = NULL;
+		}
 	}
 }
 
+/* This includes the .directory files */
 static void
 emit_monitor (Folder *folder, int type)
 {
@@ -355,12 +373,19 @@ emit_and_delete_monitor (VFolderInfo *info, Folder *folder)
 	     li = li->next) {
 		FileMonitorHandle *handle = li->data;
 		li->data = NULL;
+
 		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) handle,
 					    handle->uri,
 					    GNOME_VFS_MONITOR_EVENT_DELETED);
 
-		info->free_folder_monitors = 
-			g_slist_prepend (info->free_folder_monitors, handle);
+		if (handle->dir_monitor)
+			info->free_folder_monitors = 
+				g_slist_prepend (info->free_folder_monitors,
+						 handle);
+		else
+			info->free_file_monitors = 
+				g_slist_prepend (info->free_file_monitors,
+						 handle);
 	}
 	g_slist_free (((Entry *)folder)->monitors);
 	((Entry *)folder)->monitors = NULL;
@@ -1239,7 +1264,9 @@ invalidate_folder_subfolders (Folder   *folder,
 static gboolean
 reread_timeout (gpointer data)
 {
-	vfolder_info_reload (data, NULL, NULL);
+	VFolderInfo *info = data;
+	gboolean force_read_items = info->file_monitors != NULL;
+	vfolder_info_reload (info, NULL, NULL, force_read_items);
 	return FALSE;
 }
 
@@ -1292,7 +1319,8 @@ vfolder_filename_monitor (GnomeVFSMonitorHandle *handle,
 		 * there probably isn't ANY vfolder file, so we
 		 * init to default values really.  I have no clue what's
 		 * right here */
-		vfolder_info_reload (info, NULL, NULL);
+		vfolder_info_reload (info, NULL, NULL,
+				     TRUE /* force read items */);
 	}
 }
 
@@ -1325,7 +1353,8 @@ vfolder_user_filename_monitor (GnomeVFSMonitorHandle *handle,
 		queue_reread_in (info, 200);
 	} else if (event_type == GNOME_VFS_MONITOR_EVENT_DELETED &&
 		   info->user_file_active) {
-		vfolder_info_reload (info, NULL, NULL);
+		gboolean force_read_items = info->file_monitors != NULL;
+		vfolder_info_reload (info, NULL, NULL, force_read_items);
 	}
 }
 
@@ -1344,6 +1373,25 @@ item_dir_monitor (GnomeVFSMonitorHandle *handle,
 		invalidate_folder (info->root);
 		/* second invalidate all entries */
 		info->entries_valid = FALSE;
+
+		if (info->file_monitors != NULL) {
+			GnomeVFSResult result;
+			GSList *li;
+
+			/* Whack all monitors here! */
+			for (li = info->file_monitors;
+			     li != NULL;
+			     li = li->next) {
+				FileMonitorHandle *h = li->data;
+				if (h->handle != NULL)
+					gnome_vfs_monitor_cancel (h->handle);
+				h->handle = NULL;
+			}
+
+			if (vfolder_info_read_items (info, &result, NULL)) {
+				info->entries_valid = TRUE;
+			}
+		}
 	}
 }
 
@@ -2656,6 +2704,222 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 	return TRUE;
 }
 
+static void
+file_monitor (GnomeVFSMonitorHandle *handle,
+	      const gchar *monitor_uri,
+	      const gchar *info_uri,
+	      GnomeVFSMonitorEventType event_type,
+	      gpointer user_data)
+{
+	FileMonitorHandle *h = user_data;
+
+	/* proxy the event through if it is a changed event
+	 * only */
+
+	if (event_type == GNOME_VFS_MONITOR_EVENT_CHANGED &&
+	    h->handle != NULL)
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) h,
+					    h->uri, event_type);
+}
+
+static void
+try_free_file_monitors_create_files_unlocked (VFolderInfo *info)
+{
+	GSList *li, *list;
+
+	list = g_slist_copy (info->free_file_monitors);
+
+	for (li = list; li != NULL; li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		Entry *entry;
+		GnomeVFSResult result;
+		char *dirfile = NULL;
+
+		if (handle->is_directory_file) {
+			VFolderURI vuri;
+			Folder *folder;
+
+			/* Evil! EVIL URI PARSING. this will eat a lot of
+			 * stack if we have lots of free monitors */
+
+			VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+			folder = resolve_folder (info, 
+						 vuri.path,
+						 TRUE /* ignore_basename */,
+						 &result,
+						 NULL);
+
+			if (folder == NULL)
+				continue;
+
+			dirfile = get_directory_file_unlocked (info, folder);
+			if (dirfile == NULL)
+				continue;
+
+			entry = (Entry *)folder;
+		} else {
+			GSList *efile_list;
+
+			efile_list = g_hash_table_lookup (info->entries_ht,
+							  handle->filename);
+
+			if (efile_list == NULL)
+				continue;
+
+			entry = efile_list->data;
+		}
+
+		info->free_file_monitors =
+			g_slist_remove (info->free_file_monitors, handle);
+		entry->monitors =
+			g_slist_prepend (entry->monitors, handle);
+
+		handle->exists = TRUE;
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
+					    handle->uri, 
+					    GNOME_VFS_MONITOR_EVENT_CREATED);
+
+		/* recreate a handle */
+		if (handle->handle == NULL &&
+		    entry->type == ENTRY_FILE) {
+			EntryFile *efile = (EntryFile *)entry;
+			char *uri = gnome_vfs_get_uri_from_local_path
+				(efile->filename);
+
+			gnome_vfs_monitor_add (&(handle->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       handle);
+
+			g_free (uri);
+		} else if (handle->handle == NULL &&
+			   dirfile != NULL) {
+			char *uri = gnome_vfs_get_uri_from_local_path (dirfile);
+
+			gnome_vfs_monitor_add (&(handle->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       handle);
+
+			g_free (uri);
+		}
+
+		g_free (dirfile);
+	}
+
+	g_slist_free (list);
+}
+
+static void
+readd_monitors (VFolderInfo *info)
+{
+	GSList *li;
+
+	if (info->file_monitors == NULL)
+		return;
+
+	for (li = info->file_monitors; li != NULL; li = li->next) {
+		FileMonitorHandle *h = li->data;
+		GnomeVFSResult result;
+		Entry *entry;
+		char *dirfile = NULL;
+
+		/* these are handled below */
+		if ( ! h->exists)
+			continue;
+
+		if (h->is_directory_file) {
+			VFolderURI vuri;
+			Folder *folder;
+
+			/* Evil! EVIL URI PARSING. this will eat a lot of
+			 * stack if we have lots of monitors */
+
+			VFOLDER_URI_PARSE (h->uri, &vuri);
+
+			folder = resolve_folder (info, 
+						 vuri.path,
+						 TRUE /* ignore_basename */,
+						 &result,
+						 NULL);
+			if (folder != NULL)
+				dirfile = get_directory_file_unlocked (info,
+								       folder);
+
+			if (dirfile == NULL) {
+				h->exists = FALSE;
+				gnome_vfs_monitor_callback
+					((GnomeVFSMethodHandle *)h,
+					 h->uri, 
+					 GNOME_VFS_MONITOR_EVENT_DELETED);
+				info->free_file_monitors = g_slist_prepend
+					(info->free_file_monitors, h);
+				file_monitor_handle_ref_unlocked (h);
+				/* it has been unreffed when the entry was
+				 * whacked */
+				continue;
+			}
+
+			entry = (Entry *)folder;
+		} else {
+			GSList *efile_list;
+
+			efile_list = g_hash_table_lookup (info->entries_ht,
+							  h->filename);
+
+			if (efile_list == NULL) {
+				h->exists = FALSE;
+				gnome_vfs_monitor_callback
+					((GnomeVFSMethodHandle *)h,
+					 h->uri, 
+					 GNOME_VFS_MONITOR_EVENT_DELETED);
+				info->free_file_monitors = g_slist_prepend
+					(info->free_file_monitors, h);
+				file_monitor_handle_ref_unlocked (h);
+				/* it has been unreffed when the entry was
+				 * whacked */
+				continue;
+			}
+
+			entry = efile_list->data;
+		}
+
+		/* recreate a handle */
+		if (h->handle == NULL &&
+		    entry->type == ENTRY_FILE) {
+			EntryFile *efile = (EntryFile *)entry;
+			char *uri = gnome_vfs_get_uri_from_local_path
+				(efile->filename);
+
+			gnome_vfs_monitor_add (&(h->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       h);
+
+			g_free (uri);
+		} else if (h->handle == NULL &&
+			   dirfile != NULL) {
+			char *uri = gnome_vfs_get_uri_from_local_path (dirfile);
+
+			gnome_vfs_monitor_add (&(h->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       h);
+
+			g_free (uri);
+		}
+
+		g_free (dirfile);
+	}
+
+	try_free_file_monitors_create_files_unlocked (info);
+}
+
 static gboolean
 vfolder_info_read_items (VFolderInfo *info,
 			 GnomeVFSResult *result,
@@ -2689,6 +2953,8 @@ vfolder_info_read_items (VFolderInfo *info,
 						     result, context))
 			return FALSE;
 	}
+
+	readd_monitors (info);
 
 	return TRUE;
 }
@@ -2748,7 +3014,8 @@ vfolder_info_item_dirs_same (VFolderInfo *info1, VFolderInfo *info2)
 static gboolean
 vfolder_info_reload_unlocked (VFolderInfo *info,
 			      GnomeVFSResult *result,
-			      GnomeVFSContext *context)
+			      GnomeVFSContext *context,
+			      gboolean force_read_items)
 {
 	VFolderInfo *newinfo;
 	gboolean setup_filenames;
@@ -2803,6 +3070,16 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 
 		/* No need to resetup dir monitors */
 		setup_itemdirs = FALSE;
+
+		/* No need to do anything with file monitors */
+	} else {
+		/* Whack all monitors here! */
+		for (li = info->file_monitors; li != NULL; li = li->next) {
+			FileMonitorHandle *h = li->data;
+			if (h->handle != NULL)
+				gnome_vfs_monitor_cancel (h->handle);
+			h->handle = NULL;
+		}
 	}
 
 	setup_filenames = TRUE;
@@ -2861,7 +3138,12 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 	g_slist_free (info->free_folder_monitors);
 	info->folder_monitors = NULL;
 
-	/* FIXME: implement file_monitors */
+	/* we can just copy these for now, they will be readded
+	 * and all the fun stuff will be done with them later */
+	newinfo->file_monitors = info->file_monitors;
+	info->file_monitors = NULL;
+	newinfo->free_file_monitors = info->free_file_monitors;
+	info->free_file_monitors = NULL;
 
 	/* emit changed on all folders, a bit drastic, but oh well,
 	 * we also invalidate all folders at the same time, but that is
@@ -2874,16 +3156,32 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 	memcpy (info, newinfo, sizeof (VFolderInfo));
 	g_free (newinfo);
 
+	if ( ! info->entries_valid &&
+	    force_read_items) {
+		GnomeVFSResult res;
+		/* FIXME: I bet cancelation plays havoc with monitors,
+		 * I'm not sure however */
+		if (info->file_monitors != NULL) {
+			vfolder_info_read_items (info, &res, NULL);
+		} else {
+			if ( ! vfolder_info_read_items (info, result, context))
+				return FALSE;
+		}
+		info->entries_valid = TRUE;
+	}
+
 	return TRUE;
 }
 
 static gboolean
 vfolder_info_reload (VFolderInfo *info,
 		     GnomeVFSResult *result,
-		     GnomeVFSContext *context)
+		     GnomeVFSContext *context,
+		     gboolean force_read_items)
 {
 	G_LOCK (vfolder_lock);
-	if (vfolder_info_reload_unlocked (info, result, context)) {
+	if (vfolder_info_reload_unlocked (info, result, context,
+					  force_read_items)) {
 		G_UNLOCK (vfolder_lock);
 		return TRUE;
 	} else {
@@ -2903,7 +3201,8 @@ vfolder_info_recheck (VFolderInfo *info,
 
 	if (info->filename_statloc != NULL &&
 	     ! check_statloc (info->filename_statloc, curtime)) {
-		if ( ! vfolder_info_reload_unlocked (info, result, context)) {
+		if ( ! vfolder_info_reload_unlocked (info, result, context, 
+						     FALSE /* force read items */)) {
 			/* we have failed, make sure we fail
 			 * next time too */
 			info->filename_statloc->trigger_next = TRUE;
@@ -2914,7 +3213,8 @@ vfolder_info_recheck (VFolderInfo *info,
 	if ( ! reread &&
 	    info->user_filename_statloc != NULL &&
 	     ! check_statloc (info->user_filename_statloc, curtime)) {
-		if ( ! vfolder_info_reload_unlocked (info, result, context)) {
+		if ( ! vfolder_info_reload_unlocked (info, result, context, 
+						     FALSE /* force read items */)) {
 			/* we have failed, make sure we fail
 			 * next time too */
 			info->user_filename_statloc->trigger_next = TRUE;
@@ -3135,9 +3435,22 @@ static gboolean
 make_file_private (VFolderInfo *info, EntryFile *efile)
 {
 	char *newfname;
+	Entry *entry = (Entry *)efile;
 
 	if (efile->per_user)
 		return TRUE;
+
+	/* this file already exists so whack its monitors */
+	if (efile->filename != NULL) {
+		GSList *li;
+
+		for (li = entry->monitors; li != NULL; li = li->next) {
+			FileMonitorHandle *h = li->data;
+			if (h->handle != NULL)
+				gnome_vfs_monitor_cancel (h->handle);
+			h->handle = NULL;
+		}
+	}
 
 	newfname = g_build_filename (g_get_home_dir (),
 				     DOT_GNOME,
@@ -3151,12 +3464,18 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 		    ! copy_file_with_keywords (efile->filename,
 					       newfname,
 					       efile->keywords)) {
+			/* FIXME: what to do with monitors here, they
+			 * have already been whacked, a corner case
+			 * not handled! */
 			g_free (newfname);
 			return FALSE;
 		}
 	} else {
 		if (efile->filename != NULL &&
 		    ! copy_file (efile->filename, newfname)) {
+			/* FIXME: what to do with monitors here, they
+			 * have already been whacked, a corner case
+			 * not handled! */
 			g_free (newfname);
 			return FALSE;
 		}
@@ -3170,12 +3489,74 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 		return FALSE;
 	}
 
+	/* this file already exists so re-add monitors at the new location */
+	if (efile->filename != NULL) {
+		GSList *li;
+		char *uri = gnome_vfs_get_uri_from_local_path (newfname);
+
+		for (li = entry->monitors; li != NULL; li = li->next) {
+			FileMonitorHandle *h = li->data;
+
+			gnome_vfs_monitor_add (&(h->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       h);
+		}
+
+		g_free (uri);
+	}
 
 	g_free (efile->filename);
 	efile->filename = newfname;
 	efile->per_user = TRUE;
 
 	return TRUE;
+}
+
+static void
+try_free_file_monitors_create_dirfile_unlocked (VFolderInfo *info,
+						Folder *folder)
+{
+	GSList *li, *list;
+
+	list = g_slist_copy (info->free_file_monitors);
+
+	for (li = list; li != NULL; li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		Folder *f;
+		VFolderURI vuri;
+		GnomeVFSResult result;
+
+		if ( ! handle->is_directory_file)
+			continue;
+
+		/* Evil! EVIL URI PARSING. this will eat a lot of stack if we
+		 * have lots of free monitors */
+
+		VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+		f = resolve_folder (info, 
+				    vuri.path,
+				    TRUE /* ignore_basename */,
+				    &result,
+				    NULL);
+
+		if (folder != f)
+			continue;
+
+		info->free_file_monitors =
+			g_slist_remove (info->free_file_monitors, handle);
+		((Entry *)folder)->monitors =
+			g_slist_prepend (((Entry *)folder)->monitors, handle);
+
+		handle->exists = TRUE;
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
+					    handle->uri, 
+					    GNOME_VFS_MONITOR_EVENT_CREATED);
+	}
+
+	g_slist_free (list);
 }
 
 static void
@@ -3219,6 +3600,8 @@ make_new_dirfile (VFolderInfo *info, Folder *folder)
 
 	folder->desktop_file = fname;
 	info->dirty = TRUE;
+
+	try_free_file_monitors_create_dirfile_unlocked (info, folder);
 }
 
 static gboolean
@@ -3226,6 +3609,9 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 {
 	char *fname;
 	char *desktop_file;
+	GSList *li;
+	char *uri;
+	gboolean ret;
 
 	if (info->user_desktop_dir == NULL)
 		return FALSE;
@@ -3240,6 +3626,9 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 		return TRUE;
 	}
 
+	/* FIXME: this is broken!  What if the desktop file exists
+	 * in the local but there is a different (but with a same name)
+	 * .directory in the system. */
 	fname = g_build_filename (info->user_desktop_dir,
 				  folder->desktop_file,
 				  NULL);
@@ -3261,16 +3650,44 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 		return FALSE;
 	}
 
-	if ( ! copy_file (desktop_file, fname)) {
-		g_free (desktop_file);
-		g_free (fname);
-		return FALSE;
+	for (li = ((Entry *)folder)->monitors; li != NULL; li = li->next) {
+		FileMonitorHandle *h = li->data;
+		if (h->is_directory_file) {
+			if (h->handle != NULL)
+				gnome_vfs_monitor_cancel (h->handle);
+			h->handle = NULL;
+		}
 	}
+
+	ret = TRUE;
+
+	if ( ! copy_file (desktop_file, fname)) {
+		ret = FALSE;
+		g_free (fname);
+		fname = desktop_file;
+		desktop_file = NULL;
+	}
+
+	uri = gnome_vfs_get_uri_from_local_path (fname);
+
+	for (li = ((Entry *)folder)->monitors; li != NULL; li = li->next) {
+		FileMonitorHandle *h = li->data;
+
+		if (h->is_directory_file) {
+			gnome_vfs_monitor_add (&(h->handle),
+					       uri,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       h);
+		}
+	}
+
+	g_free (uri);
 
 	g_free (desktop_file);
 	g_free (fname);
 
-	return TRUE;
+	return ret;
 }
 
 static Entry *
@@ -4053,12 +4470,17 @@ do_close (GnomeVFSMethod *method,
 		/* Perhaps a bit drastic */
 		/* also this emits the CHANGED monitor signal */
 		invalidate_folder_T (handle->info->root);
+
+		/* the file changed monitor will happen by itself
+		 * as the underlying file is changed */
 	} else if (handle->write &&
 		   handle->entry != NULL &&
 		   handle->entry->type == ENTRY_FOLDER &&
 		   handle->is_directory_file) {
 		/* if we're monitoring this directory, emit the CHANGED
-		 * monitor thing */
+		 * monitor thing, it will also emit a changed on
+		 * the file itself.  It is better to emit changed
+		 * just in case. */
 		emit_monitor ((Folder *)(handle->entry),
 			      GNOME_VFS_MONITOR_EVENT_CHANGED);
 	}
@@ -4625,7 +5047,7 @@ try_free_folder_monitors_create_unlocked (VFolderInfo *info,
 
 	for (li = list; li != NULL; li = li->next) {
 		FileMonitorHandle *handle = li->data;
-		Folder *folder;
+		Folder *f;
 		VFolderURI vuri;
 		GnomeVFSResult result;
 
@@ -4634,13 +5056,13 @@ try_free_folder_monitors_create_unlocked (VFolderInfo *info,
 
 		VFOLDER_URI_PARSE (handle->uri, &vuri);
 
-		folder = resolve_folder (info, 
+		f = resolve_folder (info, 
 					 vuri.path,
 					 FALSE /* ignore_basename */,
 					 &result,
 					 NULL);
 
-		if (folder == NULL)
+		if (folder != f)
 			continue;
 
 		info->free_folder_monitors =
@@ -5354,15 +5776,18 @@ do_monitor_add (GnomeVFSMethod *method,
 	VFolderURI vuri;
 	GnomeVFSResult result;
 	Folder *folder;
+	Entry *entry;
+	GnomeVFSURI *file_uri;
 	FileMonitorHandle *handle;
+	gboolean is_directory_file;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
-	if (monitor_type == GNOME_VFS_MONITOR_DIRECTORY) {
-		info = get_vfolder_info (vuri.scheme, &result, NULL);
-		if (info == NULL)
-			return result;
+	info = get_vfolder_info (vuri.scheme, &result, NULL);
+	if (info == NULL)
+		return result;
 
+	if (monitor_type == GNOME_VFS_MONITOR_DIRECTORY) {
 		G_LOCK (vfolder_lock);
 
 		folder = resolve_folder (info, 
@@ -5370,13 +5795,13 @@ do_monitor_add (GnomeVFSMethod *method,
 					 FALSE /* ignore_basename */,
 					 &result,
 					 NULL);
-		if (folder == NULL)
-			return result;
 
 		handle = g_new0 (FileMonitorHandle, 1);
 		handle->refcount = 2;
 		handle->uri = gnome_vfs_uri_dup (uri);
 		handle->dir_monitor = TRUE;
+		handle->handle = NULL;
+		handle->filename = NULL;
 
 		if (folder == NULL) {
 			handle->exists = FALSE;
@@ -5399,8 +5824,56 @@ do_monitor_add (GnomeVFSMethod *method,
 
 		return GNOME_VFS_OK;
 	} else {
-		/* FIXME: implement */
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		/* These can't be very nice FILE names */
+		if (vuri.file == NULL ||
+		    vuri.ends_in_slash)
+			return GNOME_VFS_ERROR_INVALID_URI;
+
+		G_LOCK (vfolder_lock);
+		file_uri = desktop_uri_to_file_uri (info,
+						    &vuri,
+						    &entry,
+						    &is_directory_file,
+						    NULL /* the_folder */,
+						    FALSE,
+						    &result,
+						    NULL);
+
+		handle = g_new0 (FileMonitorHandle, 1);
+		handle->refcount = 2;
+		handle->uri = gnome_vfs_uri_dup (uri);
+		handle->dir_monitor = FALSE;
+		handle->handle = NULL;
+		handle->filename = g_strdup (vuri.file);
+		handle->is_directory_file = is_directory_file;
+
+		info->file_monitors = 
+			g_slist_prepend (info->file_monitors, handle);
+
+
+		if (file_uri == NULL) {
+			handle->exists = FALSE;
+			info->free_file_monitors = 
+				g_slist_prepend (info->free_file_monitors,
+						 handle);
+		} else {
+			char *uri_string = gnome_vfs_uri_to_string (file_uri, 0);
+			handle->exists = TRUE;
+			gnome_vfs_monitor_add (&(handle->handle),
+					       uri_string,
+					       GNOME_VFS_MONITOR_FILE,
+					       file_monitor,
+					       handle);
+			g_free (uri_string);
+			
+			entry->monitors = g_slist_prepend (entry->monitors,
+							   handle);
+			gnome_vfs_uri_unref (file_uri);
+		}
+
+		G_UNLOCK (vfolder_lock);
+
+		return GNOME_VFS_OK;
 	}
 }
 
@@ -5419,11 +5892,11 @@ do_monitor_cancel (GnomeVFSMethod *method,
 
 	VFOLDER_URI_PARSE (handle->uri, &vuri);
 
-	if (handle->dir_monitor) {
-		info = get_vfolder_info (vuri.scheme, &result, NULL);
-		if (info == NULL)
-			return result;
+	info = get_vfolder_info (vuri.scheme, &result, NULL);
+	if (info == NULL)
+		return result;
 
+	if (handle->dir_monitor) {
 		G_LOCK (vfolder_lock);
 
 		folder = resolve_folder (info, 
@@ -5473,8 +5946,49 @@ do_monitor_cancel (GnomeVFSMethod *method,
 
 		return GNOME_VFS_OK;
 	} else {
-		/* FIXME: implement */
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		G_LOCK (vfolder_lock);
+
+		for (li = info->file_monitors; li != NULL; li = li->next) {
+			FileMonitorHandle *h = li->data;
+			if (h != handle)
+				continue;
+			info->file_monitors = g_slist_delete_link
+				(info->file_monitors, li);
+			file_monitor_handle_unref_unlocked (h);
+			break;
+		}
+
+		for (li = info->free_file_monitors;
+		     li != NULL;
+		     li = li->next) {
+			FileMonitorHandle *h = li->data;
+			if (h != handle)
+				continue;
+			info->free_file_monitors = g_slist_delete_link
+				(info->free_file_monitors, li);
+			file_monitor_handle_unref_unlocked (h);
+			break;
+		}
+
+		for (li = info->entries; li != NULL; li = li->next) {
+			Entry *e = li->data;
+			GSList *link = g_slist_find (e->monitors, handle);
+
+			if (link == NULL)
+				continue;
+			link->data = NULL;
+			e->monitors = g_slist_delete_link (e->monitors, link);
+
+			file_monitor_handle_unref_unlocked (handle);
+			break;
+		}
+
+		G_UNLOCK (vfolder_lock);
+
+		/* Note: last unref of our monitor will cancel the
+		 * underlying handle */
+
+		return GNOME_VFS_OK;
 	}
 }
 
