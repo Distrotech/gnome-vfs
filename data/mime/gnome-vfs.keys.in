@@ -1261,9 +1261,9 @@ video/mpeg
 	_description=MPEG video
 	icon_filename=gnome-video-mpeg.png
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=vlc,xmps,omsomi,mtvp,mtv,mpeg_play,gtv
-	short_list_application_ids_for_intermediate_user_level=vlc,xmps,omsomi,mtvp,mtv,mpeg_play,gtv
-	short_list_application_ids_for_advanced_user_level=vlc,xmps,omsomi,mtvp,mtv,mpeg_play,gtv
+	short_list_application_ids_for_novice_user_level=vlc,xmps,plaympeg,omsomi,mpeg_play,gtv
+	short_list_application_ids_for_intermediate_user_level=vlc,xmps,plaympeg,omsomi,mpeg_play,gtv
+	short_list_application_ids_for_advanced_user_level=vlc,xmps,plaympeg,omsomi,mpeg_play,gtv
 
 video/msvideo
 	_description=MS video

@@ -3,6 +3,13 @@
 	* gnome-vfs.applications:
 	* gnome-vfs.keys.in:
 
+	Added plaympeg, a solid player if a little simple.
+	
+2001-06-06  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+
 	Add VideoLAN to the application list as the preferred player
 	for MPEG files (http://www.videolan.org).
 	
