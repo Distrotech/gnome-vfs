@@ -1,115 +1,114 @@
+# translation of ta.po to Tamil
 # Tamil translation of gnome-vfs.
 # Copyright (C) 2003 gnome-vfs's copyright holder
 # This file is distributed under the same license as the gnome-vfs package.
 # Dinesh Nadarajah <n_dinesh@yahoo.com>, 2003.
+# Jayaradha N <jaya@pune.redhat.com>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Tamil Gnome VFS 2.4\n"
+"Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2003-09-10 19:27+0600\n"
-"Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
-"Language-Team: Tamil <tamilinix@yahoogroups.com>\n"
+"PO-Revision-Date: 2004-08-16 16:33+0530\n"
+"Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
+"Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 
 #: daemon/gnome-vfs-daemon.c:596
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "முதன்மை மேலோடி கண்டுபிடிக்க முடியவில்லை"
+msgstr "போனபோவை துவக்க முடியவில்லை"
 
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "க்னோம் விஏஃப்எஸ் ஐ துவக்க முடியவில்லை"
 
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "அலகிடமுடியவில்லை: %s"
+msgstr "கோப்பை திறக்க முடியவில்லை: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "கோப்பை திறப்பதில் தோல்வி '%s': %s"
 
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "கோப்பு ஏற்கனவே உண்டு"
+msgstr "கோப்பு காலியாக உள்ளது"
 
 #: libgnomevfs/eggdesktopentries.c:360
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "கோப்பு '%s' லிருந்து படிப்பதில் தோல்வி: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "மேல்மேசை உள்ளீட்டில் உள்ள '%s' சரியான தகவை,குழு அல்லது கட்டளை இல்லை"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "மேல்மேசை உள்ளீடு கோப்புகள் முறையான துவக்க குழுவாக இல்லை"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "மேல்மேசையில் உள்ள '%s' உள்ளீடுகள் UTF-8 இல்லை"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "மேல்மேடை உள்ளீடுகள் தெரியாக குறியீட்டு முறையை பயன்படுத்துகிறது '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "மேல்மேசை உள்ளீடுகளில் குழு இல்லை '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "மேல்மேசை உள்ளீடுகளின் '%s' விசை இல்லை"
 
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr "மேல்மேசையில் உள்ள '%s' விசை இல் உள்ள மதிப்பை புரிந்துகொள்ள முடியவில்லை"
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "மேல்மேசையில் விசை '%s' உடன் மொழி '%s' யில் மொழிபெயர்க்கப்படாத தகவல் உள்ளது"
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "'%s' இல் செல்லாத குழு குறிகள் உள்ளது"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "மேல்மேசையில் குழுக்குறிகள் வரியின் முடிவில் உள்ளது"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "மதிப்பு '%s' எண்ணாக புரிந்துகொள்ள முடியாது"
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "மதிப்பு '%s' பூலியனாக புரிந்துகொள்ள முடியாது"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO 9660 பிரிவு"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -122,14 +121,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d இல் முறை பெயர் இல்லை."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d இல் முறை பெயர் இல்லை."
+msgstr "%s:%d இல் முடிவு குறிப்பு தேர்வு இல்லை"
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d தெரியாத தேர்வு %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -143,253 +142,251 @@ msgstr "`%s' அமைவடிவ கோப்பு கண்டுபிட�
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS கொள்பொருள்"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS வலைப்பின்னல்"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "தானாக-கண்டறியப்பட்ட நிறை"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "CD-ROM இயக்கி"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD டிஜிட்டல் ஆடியோ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "வன்பொருள் சாதனம்"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2 லினக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3 லினக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MSDOS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr ""
+msgstr "CDROM பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs CDROM பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "விண்டோஸ் என்டி பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr ""
+msgstr "கணினி பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr ""
+msgstr "நினைவிடம் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "மினிக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS வலைப்பின்னல் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
+msgstr "நெட்வேர் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS லினக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "விண்டோஸ் பகிர்ந்தளிக்கப்பட்ட பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "சிறப்பு ஏற்றி பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "சோலாரிஸ்/BSD பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs சோலாரிஸ் பகிர்வு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Pcfs சோலாரிஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Sun SAM-QFS Volume"
-msgstr ""
+msgstr "சன் SAM-QFS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "மேம்படுத்தப்பட்ட DOS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "விண்டோஸ் VFAT பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
-msgstr ""
+msgstr "ஜெனிக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS லினக்ஸ் பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS பிரிவு"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:104
-#, fuzzy
 msgid "Unknown"
-msgstr "தெரியாத பிழை"
+msgstr "தெரியாத"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "CD வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "வெற்று CD-R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
-msgstr ""
+msgstr "CD-R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "வெற்று CD-RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
-msgstr ""
+msgstr "CD-RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
-msgstr ""
+msgstr "DVD-ROM வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "வெற்று DVD-R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "வெற்று DVD-RAM வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "வெற்று DVD-RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "வெற்று DVD+RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "வெற்று DVD+R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "ஆப்டிக்கல் வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
-msgstr ""
+msgstr "ஆடியோ வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "பொருத்தமான ஃப்ளாஷ் ஊடகம்"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
-msgstr ""
+msgstr "நினைவக ஒட்டு ஊடகம்"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "புத்திசாலி ஊடகம்"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC ஊடகம்"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
-msgstr ""
+msgstr "நெகிழ்வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "மேக் இயங்குதள வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "மேக் இயங்குதள X வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "சாளரங்கள்"
+msgstr "விண்டோஸ் வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "லினக்ஸ் வட்டு"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -430,7 +427,7 @@ msgstr "செயல் நிறுத்தப்பட்டுள்ளத�
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "மதிப்பற்ற செயல். மைம் தரவுத்தளத்தில் பயனீட்டாளர் மாற்றம் செய்வதற்கு ஆதரவு இல்லை"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -439,7 +436,7 @@ msgstr "அலகிடமுடியவில்லை: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "எஞ்சிய பகுப்பு பிழைகள் தவிர்க்கப்படும்"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -559,7 +556,7 @@ msgstr "கோப்பு ஏற்கனவே உண்டு"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr ""
+msgstr "இணைப்புகள் மீண்டும் செல்வது நிறுத்தப்பட்டது"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -639,7 +636,7 @@ msgstr "சேவை கிடையாது"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "தேவையற்ற சேவைதகவல்களை கேட்கிறது"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
@@ -654,12 +651,12 @@ msgstr "முதன்மை மேலோடி கண்டுபிடிக�
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "இயல்பான செயல் எதுவும் சேர்க்கப்படவில்லை"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "URL முறைக்கான கையாளல் எதுவுமில்லை"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -674,37 +671,36 @@ msgstr "கட்டளை தொடங்கும்போது பிழை"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "காலம் கடந்தது"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "இனமற்ற பிழை"
+msgstr "பெயர் சேவகன் பிழை"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "வளங்கள் பூட்டப்பட்டது"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "செயலுக்கான அழைப்பு தேவையற்றதாக்கப்படது"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "தெரியாத பிழை"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u பைட்டுகள்"
+msgstr[0] "%u பைட்"
 msgstr[1] "%u பைட்டுகள்"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
 msgstr "%.1f கி.பை"
 
@@ -726,94 +722,92 @@ msgstr " (தவராண யுனிகோட்)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
-msgstr ""
+msgstr "நெகிழ்வட்டு"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
-msgstr ""
+msgstr "ஜிப் இயக்கி"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
-msgstr ""
+msgstr "நினைவக இணைப்பு"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
-msgstr ""
+msgstr "கேமரா"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
-msgstr ""
+msgstr "மூல பிரிவு"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
-msgstr ""
+msgstr "ஆடியோ CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
-#, fuzzy
 msgid "Unknown volume"
-msgstr "தெரியாத பிழை"
+msgstr "தெரியாத பிரிவு"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
-msgstr ""
+msgstr "வலைப்பின்னல் சேவகன்"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. ஒருவேலை நெகிழ்வட்டு இல்லாமல் இருக்கலாம்"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "பிரிவை ஏற்ற முடியவில்லை.காரணம் சாதனத்தில் ஊடகம் இல்லாமல் இருக்கலாம்"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. நெகிழ்வட்டு ஏற்ற முடியாத நிலையில் உள்ளது"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "தேர்வு செய்யப்பட்ட பிரிவை ஏற்ற முடியவில்லை. சாதனம் ஏற்ற முடியாத நிலையில் உள்ளது"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "தேர்வு செய்யப்பட்ட நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "தேர்வு செய்யப்பட்ட பிரிவை ஏற்ற முடியவில்லை"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "தேர்வு செய்யப்பட்ட பிரிவை ஏற்றத்தை நிறுத்த முடியவில்லை"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:256
 #: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
-msgstr ""
+msgstr "கட்டளையை துவக்குவது தோல்வியுற்றது"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
-msgstr ""
+msgstr "ஊடகத்தை வெளியேற்ற முடியவில்லை"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "இணைக்கப்பட்ட சேவகனின் இணைப்பை துண்டிக்க முடியவில்லை"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -867,16 +861,15 @@ msgstr "சாளரங்கள்"
 
 #: modules/computer-method.c:545
 msgid "Network"
-msgstr ""
+msgstr "வலைப்பின்னல்"
 
 #: modules/computer-method.c:563
 msgid "Home"
-msgstr ""
+msgstr "இல்லம்"
 
 #: modules/computer-method.c:581
-#, fuzzy
 msgid "Filesystem"
-msgstr "கோப்புகள்"
+msgstr "கோப்பு அமைப்புகள்"
 
 #: modules/file-method.c:386
 #, c-format
@@ -884,14 +877,13 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "தெரியாத GnomeVFSSeekPosition %d"
 
 #: modules/network-method.c:1395
-#, fuzzy
 msgid "Windows Network"
-msgstr "சாளரங்கள்"
+msgstr "விண்டோஸ் வலைப்பின்னல்்"
 
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "(%s) தொலை கணினியை கண்டுபிடிக்க முடியவில்லை"
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -901,29 +893,32 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"இது முதல்முதலாக கணினிக்குள் நுழையும் போது ஏற்படும்\n"
+"\n"
+"தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் கணினி மேலாளரை அணுகவும்."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "உள் நுழைவதை ரத்து செய்யவும்"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "செல்லாத அமைப்பை பயன்படுத்துகிறது%s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "வேறு இடத்தை குறிக்க %s சூழல் மாற்றியை பயன்படுத்து\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "நிலையான மோனிகெர் தொழிற்சாலை"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -939,15 +934,15 @@ msgstr "இனமற்ற கோப்பு moniker"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "இயல்பான ான பொருள் காட பயன்பாடுகள்ின்"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "இயல்பான முனைய பயன்பாடுகள்"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "இயல்பான முனையத்திற்கான Exec அளவுரு"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -955,340 +950,340 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
+msgstr "கோப்புகளை பார்க்க தேவைப்படும் பயன்பாடுகளுக்கு பொருள்கள் தேவை. அளவுரு %s அதன் URI யால் மாற்றப்படும், அளவுரு %c அதன் பொருள் அடையாளத்தால் மாற்றப்படும்"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "முனையத்திறகு தேவைப்படும் இயல்பான முனைய பயன்பாடு "
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "exec அளவுரு பயன்படுத்த வேண்டிய இயல்பான முனைய பயன்பாடு"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr ""
+msgstr "கட்டளையை முனையத்தில் இயக்கு"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "\"aim\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "\"callto\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "\"ghelp\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "\"info\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "\"mailto\"ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "\"man\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "\"trash\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
+msgstr "H323 ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
+msgstr "HTTP ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
+msgstr "HTTPS ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr ""
+msgstr "\"aim\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr ""
+msgstr "\"callto\"கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr ""
+msgstr "\"ghelp\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"info\" URLs"
-msgstr ""
+msgstr "\"info\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"mailto\" URLs"
-msgstr ""
+msgstr "\"mailto\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"man\" URLs"
-msgstr ""
+msgstr "\"man\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"trash\" URLs"
-msgstr ""
+msgstr "\"trash\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for H323 URLs"
-msgstr ""
+msgstr "H323 கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for HTTP URLs"
-msgstr ""
+msgstr "HTTP கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for HTTPS URLs"
-msgstr ""
+msgstr "கையாள்வதற்கான URL கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"aim\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"aim\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"info\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"man\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
+msgid "True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை H323 URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
+msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTP URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
-msgstr ""
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTPS URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
+msgstr "இந்த வகை URL ஐ முனையத்தில் இயக்க முடியுமெனில் உண்மை"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"aim\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"callto\"  URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"info\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"mailto\"URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"man\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை \"trash\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle H323 URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை H323 URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை HTTP URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr ""
+msgstr "குறிப்பிட்ட கட்டளை HTTPS URL ஐ கையாளுமா"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "கமாவால் பிரிக்கப்பட்ட வலைப்பின்னலில் பார்க்க முடிந்த dns-sd டொமைன்களின் படியல்"
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "dns-sd சேவைக்காக பார்க்க வேண்டிய கூடுதல் டொமைன்கள்"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "உள் DNS-SD சேவையை காட்டுவது எப்படி"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "இயன்ற மதிப்புகள் \"merged\", \"separate\" மற்றும் \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "ப்ராக்ஸி வேகன் இணைப்பின் அனுமதியை சரிபார்"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "தானாக ப்ராக்ஸி சேவகனை அமைக்கும் URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "HTTP அணுகும் போது ப்ராக்ஸி அமைப்பை செயல்படுத்து"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP ப்ராக்ஸி புரவலன் பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP ப்ராக்ஸி வழி"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி புரவலன் பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி கடவுச்சொல்"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி வழி"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி பயனீட்டாளர் பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
+msgstr "உண்மை யெனில் ப்ராக்ஸியுன் இணைக்க அனுமதி தேவை.  \"/system/http_proxy/authentication_user\" மற்றும் \"/system/http_proxy/authentication_password\"  பயனீட்டாளர்பெயர்/கடவுச்சொல் தேர்வு பெட்டியில் குறிப்பிடப்பட்டிருக்கும்"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "ப்ராக்ஸி இல்லாத புரவலன்"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி பயன்படுத்தும்போது பயன்படுத்த வேண்டிய கடவுச்சொல்"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "ப்ராக்ஸி அமைப்பு பாங்கு"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS ப்ராக்ஸி புரவலன் பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS ப்ராக்ஸி வழி"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "பாதுகாப்பான HTTP ப்ராக்ஸி புரவலன் பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "பாதுகாப்பான HTTP ப்ராக்ஸி வழி"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"ப்ராக்ஸி அமைப்பு வழியை தேர்வு செய்யவும். \"none\", \"manual"
+"\", \"auto\" மதிப்புகளுக்கு ஆதரவு உண்டு"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "FTP ப்ராக்ஸி க்கான கணினி பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி க்கான கணினி பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "பாதுகாப்பான HTTP ப்ராக்ஸி க்கான கணினி பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "socks வழியாக ப்ராக்ஸிக்கான கணினி பெயர்"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
+msgstr "\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
+msgstr "\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1296,35 +1291,25 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
+msgstr "இந்த பட்டியல் ப்ராக்ஸியை(செயலிலிருந்தும்) நேரடியாக பயன்படுத்தாத கணினியின் பட்டியலை காட்டுகிறது. இதில் புரவலன் பெயர், டொமைன்(குழுக்குறிகளை பயன்படுத்தும் உம் *.foo.com) புரவலன் IP முகவரி (both IPv4 மற்றும்IPv6) மற்றும் வலைப்பின்னல் முகவரியுடன் வலைமூடியும் இருக்கும் (உதாரணம் 192.168.0.0/24)"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "ப்ராக்ஸி அமைப்பின் மதிப்பை தரும் URL"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸியை பயன்படுத்து"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP ப்ராக்ஸியை பயன்படுத்தும் போது அனுமதி பெற பயன்படுத்த வேண்டிய பயனீட்டாளர் பெயர்"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB பணிகுழு"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "பயனீட்டாளர் சாளர பணிகுழுவின் அங்கத்தினராவர்"
 
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "கோப்பு கைப்பிடி கெட்டது"
-
-#, fuzzy
-#~ msgid "mailto URL handler"
-#~ msgstr "கோப்பு கைப்பிடி கெட்டது"
-
-#~ msgid "1 byte"
-#~ msgstr "1 பைட்டு"
