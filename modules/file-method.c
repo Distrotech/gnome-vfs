@@ -54,8 +54,9 @@
 #include <string.h>
 #ifdef HAVE_FAM
 #include <fam.h>
+#include <glib/giochannel.h>
 #endif
-#include <gdk/gdk.h>
+
 
 
 /*#include "file-method.h"*/
@@ -1984,10 +1985,10 @@ do_set_file_info (GnomeVFSMethod *method,
 }
 
 #ifdef HAVE_FAM
-static void
-fam_callback (gpointer data, 
-	      gint fd, 
-	      GdkInputCondition condition)
+static gboolean
+fam_callback (GIOChannel *source,
+	      GIOCondition condition,
+	      gpointer data)
 {
 	FileMonitorHandle *handle;
 	GnomeVFSURI *info_uri = NULL;
@@ -1998,12 +1999,11 @@ fam_callback (gpointer data,
 	while (FAMPending(fam_connection)) {
 		FAMEvent ev;
 		if (FAMNextEvent(fam_connection, &ev) != 1) {
-			gdk_input_remove(fd);
 			FAMClose(fam_connection);
 			g_free(fam_connection);
 			fam_connection = FALSE;
 			G_UNLOCK (fam_connection);
-			return;
+			return FALSE;
 		}
 
 		handle = (FileMonitorHandle *)ev.userdata;
@@ -2034,7 +2034,7 @@ fam_callback (gpointer data,
 			case FAMEndExist:
 			case FAMMoved:
 				event_type = -1;
-				g_warning ("bad FAM event");
+				g_warning ("bad FAM event: %d", ev.code);
 				break;
 		}
 
@@ -2047,13 +2047,18 @@ fam_callback (gpointer data,
 	}
 
 	G_UNLOCK (fam_connection);
+
+	return TRUE;
 }
 
 
 
 static gboolean
-monitor_setup ()
+monitor_setup (void)
 {
+	GIOChannel *ioc;
+	gint watch_id;
+
 	G_LOCK (fam_connection);
 
 	if (fam_connection == NULL) {
@@ -2064,8 +2069,11 @@ monitor_setup ()
 			fam_connection = NULL;
 			return FALSE;
 		}
-		gdk_input_add(FAMCONNECTION_GETFD(fam_connection), 
-				GDK_INPUT_READ, fam_callback, fam_connection);
+		ioc = g_io_channel_unix_new (FAMCONNECTION_GETFD(fam_connection));
+		watch_id = g_io_add_watch (ioc,
+					   G_IO_IN | G_IO_HUP | G_IO_ERR,
+					   fam_callback, fam_connection);
+		g_io_channel_unref (ioc);
 	}
 
 	G_UNLOCK (fam_connection);

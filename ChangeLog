@@ -1,3 +1,11 @@
+2001-10-17  jacob berkman  <jacob@ximian.com>
+
+	* configure.in: remove gdk dependency
+
+	* modules/file-method.c (monitor_setup): 
+	(fam_callback): use GIOChannels directly rather than through
+	gdk_input calls (removes an unnecessary gdk dependency)
+
 Tue Oct 16 00:30:27 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: not all systems have the
