@@ -1,3 +1,9 @@
+2002-04-24  Anders Carlsson  <andersca@gnu.org>
+
+	* libgnomevfs/gnome-vfs-mime.c (add_to_key): 
+	NULL out the key and list if we don't find the
+	extension.
+
 2002-04-22  Jody Goldberg <jody@gnome.org>
 
 	* configure.in : post release version bump.
@@ -17,6 +23,7 @@
 	  file-type capplet such that passing NULL as the mime type returns
 	  _all_ applications.
 
+>>>>>>> 1.1263
 2002-04-21  Anders Carlsson  <andersca@gnu.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

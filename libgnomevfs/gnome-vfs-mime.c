@@ -129,6 +129,11 @@ add_to_key (char *mime_type, char *def)
 
 			found = g_hash_table_lookup_extended (mime_extensions [priority], ext,
 							      &orig_key, (gpointer *)&list);
+			if (!found) {
+				orig_key = NULL;
+				list = NULL;
+			}
+			
 			if (!g_list_find_custom (list, mime_type, list_find_type)) {
 				list = g_list_prepend (list, g_strdup (mime_type));
 				g_hash_table_insert (mime_extensions [priority],
