@@ -49,12 +49,6 @@ typedef struct {
 } RegexMimePair;
 
 typedef struct {
-	char *dirname;
-	unsigned int valid : 1;
-	unsigned int system_dir : 1;
-} mime_dir_source_t;
-
-typedef struct {
 	char *file_path;
 	time_t mtime;
 } FileDateRecord;
