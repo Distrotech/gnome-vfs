@@ -34,8 +34,8 @@ dnl Paths for `gnome-config'.
 dnl CORBA backend.
 VFSCORBA_LIBDIR='-L${libdir}'
 VFSCORBA_INCLUDEDIR='-I${includedir}'
-VFSCORBA_INCLUDEDIR="$VFSCORBA_INCLUDEDIR `gnome-config --cflags gnome`"
-VFSCORBA_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnorba`"
+VFSCORBA_INCLUDEDIR="$VFSCORBA_INCLUDEDIR `gnome-config --cflags gnome gnorba gnomeui`"
+VFSCORBA_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnorba gnomeui`"
 AC_SUBST(VFSCORBA_LIBDIR)
 AC_SUBST(VFSCORBA_INCLUDEDIR)
 AC_SUBST(VFSCORBA_LIBS)

@@ -1,0 +1,4 @@
+1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* configure.in: Add gnomeui libs to `VFSCORBA_LIBS'.
+
