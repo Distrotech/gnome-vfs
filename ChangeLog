@@ -1,5 +1,12 @@
 2002-07-16  Michael Meeks  <michael@ximian.com>
 
+	* libgnomevfs/gnome-vfs-async-job-map.c:
+	re-arrange to ensure the locks protect the bits
+	they are supposed to. Kill the volatile things
+	assert on.
+
+2002-07-16  Michael Meeks  <michael@ximian.com>
+
 	* libgnomevfs/gnome-vfs-thread-pool.c
 	(thread_list_locks): don't use a recursive mutex.
 	debug print thread pointer not pthread id.
