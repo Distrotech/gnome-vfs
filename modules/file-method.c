@@ -628,6 +628,8 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	gboolean recursive;
 	char *link_file_path;
 	char *symlink_name;
+	char *symlink_dir;
+	char *newpath;
 	
 	followed_symlink = FALSE;
 	
@@ -684,6 +686,14 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			if (symlink_name == NULL) {
 				g_free (link_file_path);
 				return gnome_vfs_result_from_errno ();
+			}
+			if (symlink_name[0] != '/') {
+				symlink_dir = g_path_get_dirname (link_file_path);
+				newpath = g_build_filename (symlink_dir,
+							    symlink_name, NULL);
+				g_free (symlink_dir);
+				g_free (symlink_name);
+				symlink_name = newpath;
 			}
 			
 			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0

@@ -1583,6 +1583,8 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	if (extensions != NULL) {
 		/* Add extensions to hash table and flush into the file */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
+	} else {
+		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", "");
 	}
 	
 	gnome_vfs_mime_extensions_list_free (list);
