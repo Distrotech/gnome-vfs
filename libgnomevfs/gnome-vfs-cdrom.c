@@ -65,11 +65,11 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	g_string_free (new_dev_path, TRUE);
 
 	if (*fd < 0) {
-		return CDS_DATA_1;
+		return -1;
 	}
 
 	if (ioctl (*fd, CDROMREADTOCHDR, &header) == 0) {
-		return CDS_DATA_1;
+		return -1;
 	}
 
 	type = CDS_DATA_1;
@@ -105,11 +105,11 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);
 	if (*fd < 0) {
-	    	return CDS_DATA_1;
+	    	return -1;
 	}
 
 	if (ioctl (*fd, CDIOREADTOCHEADER, &header) == 0) {
-	    	return CDS_DATA_1;
+	    	return -1;
 	}
 
 	type = CDS_DATA_1;
@@ -144,6 +144,14 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	return type;
 #else
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);
+	if (*fd  < 0) {
+		return -1;
+	}
+	if (ioctl (*fd, CDROM_DRIVE_STATUS, CDSL_CURRENT) != CDS_DISC_OK) {
+		close (*fd);
+		*fd = -1;
+		return -1;
+	}
 	return ioctl (*fd, CDROM_DISC_STATUS, CDSL_CURRENT);
 #endif
 }

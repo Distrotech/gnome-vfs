@@ -805,9 +805,11 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 		case CDS_XA_2_2:
 		case CDS_MIXED:
 			/* Get volume name */
-			tmp_name = _gnome_vfs_get_iso9660_volume_name (fd);
-			display_name = modify_volume_name_for_display (tmp_name);
-			g_free (tmp_name);
+			if (fd > 0) {
+				tmp_name = _gnome_vfs_get_iso9660_volume_name (fd);
+				display_name = modify_volume_name_for_display (tmp_name);
+				g_free (tmp_name);
+			}
 			break;
 			
 		default:
