@@ -1,3 +1,25 @@
+Mon Jun 26 16:04:48 2000  George Lebl <jirka@5z.com>
+
+	* configure.in:  Test the sizes of int, long, and long long to figure
+	  out if we have a 64bit type.  Then set up some variables and build
+	  libgnomevfs/gnome-vfs-file-size.h with this information and a bunch
+	  of defines about the types used.  Also since this header will be
+	  installed into <prefix>/lib/vfs/include/libgnomevfs, the
+	  VFS*_INCLUDEDIR's now add this directory
+
+	* libgnomevfs/Makefile.am: install gnome-vfs-file-size.h to 
+	  $(libdir)/vfs/include/libgnomevfs
+
+	* gnome-vfs-constants.h: Remove the GNOME_VFS_*_FORMAT_STR macros as
+	  they are replaced by ones in gnome-vfs-file-size.h
+
+	* gnome-vfs-types.h: include gnome-vfs-file-size.h and remove the
+	  GnomeVFSFileSize and GnomeVFSFileOffset typedefs
+
+	* gnome-vfs-file-size.h.in:  Skeleton file created by configure to
+	  typedef GnomeVFSFileSize and GnomeVFSFileOffset,
+	  GNOME_VFS_*_FORMAT_STR macros and GNOME_VFS_*_IS_<type> macros
+
 2000-06-26  Michael Meeks  <michael@helixcode.com>
 
 	* doc/uri.txt: update.

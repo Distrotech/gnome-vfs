@@ -123,6 +123,11 @@ libgnomevfs_la_SOURCES =			\
 noinst_HEADERS =				\
 	gnome-vfs-mime-private.h
 
+# Platform specific includes
+libgnomevfsplatofrmincludedir = $(libdir)/vfs/include/libgnomevfs
+libgnomevfsplatofrminclude_HEADERS =			\
+	gnome-vfs-file-size.h
+
 ## [The following is copied from gnome-libs.]
 
 bin_PROGRAMS = gnome-vfs-gen-mimedb

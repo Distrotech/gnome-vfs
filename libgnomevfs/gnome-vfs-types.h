@@ -29,6 +29,20 @@
 #include <time.h>
 #include <glib.h>
 
+/*
+ * This defines GnomeVFSFileSize and GnomeVFSFileOffset
+ *
+ * It also defines GNOME_VFS_SIZE_IS_<type> and GNOME_VFS_OFFSET_IS_<type>
+ * where type is INT, UNSIGNED_INT, LONG, UNSIGNED_LONG, LONG_LONG
+ * or UNSIGNED_LONG_LONG.  Note that size is always unsigned and offset
+ * is always signed.
+ *
+ * It also defines GNOME_VFS_SIZE_FORMAT_STR and GNOME_VFS_OFFSET_FORMAT_STR
+ * which is the string representation to be used in printf style expressions.
+ * This is without the %, so for example for long it would be "ld"
+ */
+#include <libgnomevfs/gnome-vfs-file-size.h>
+
 
 /* Basic enumerations.  */
 
@@ -132,14 +146,6 @@ typedef enum GnomeVFSSeekPosition GnomeVFSSeekPosition;
 
 
 /* Basic types.  */
-
-#ifdef G_HAVE_GINT64
-typedef guint64 GnomeVFSFileSize;
-typedef gint64  GnomeVFSFileOffset;
-#else
-typedef gulong GnomeVFSFileSize;
-typedef glong  GnomeVFSFileOffset;
-#endif
 
 /* A file handle.  */
 typedef struct GnomeVFSHandle GnomeVFSHandle;

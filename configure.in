@@ -62,6 +62,55 @@ AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64)
 AC_REPLACE_FUNCS(getdelim)
 
+dnl
+dnl This is so that we find the 64bit type
+dnl
+AC_CHECK_SIZEOF(int)
+AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(long long)
+
+VFS_SIZE="unsigned long"
+VFS_OFFSET="long"
+VFS_SIZE_IS="UNSIGNED_LONG"
+VFS_OFFSET_IS="LONG"
+VFS_SIZE_PRINTF="lu"
+VFS_OFFSET_PRINTF="ld"
+
+dnl
+dnl See if any of the types is 64 bits, and in case it is, use it
+dnl Note: We test an (int) even though I think using (long) would be fine.
+dnl       This is because glib does it this way for gint64 and so there
+dnl       is probably a reason behind it
+dnl
+case 8 in
+$ac_cv_sizeof_int)
+  VFS_SIZE="unsigned int"
+  VFS_OFFSET="int"
+  VFS_SIZE_IS="UNSIGNED_INT"
+  VFS_OFFSET_IS="INT"
+  VFS_SIZE_PRINTF="u"
+  VFS_OFFSET_PRINTF="d"
+  ;;
+$ac_cv_sizeof_long)
+  # Nothing happens here, we are already using a long
+  ;;
+$ac_cv_sizeof_long_long)
+  VFS_SIZE="unsigned long long"
+  VFS_OFFSET="long long"
+  VFS_SIZE_IS="UNSIGNED_LONG_LONG"
+  VFS_OFFSET_IS="LONG_LONG"
+  VFS_SIZE_PRINTF="Lu"
+  VFS_OFFSET_PRINTF="Ld"
+  ;;
+esac
+
+AC_SUBST(VFS_SIZE)
+AC_SUBST(VFS_OFFSET)
+AC_SUBST(VFS_SIZE_IS)
+AC_SUBST(VFS_OFFSET_IS)
+AC_SUBST(VFS_SIZE_PRINTF)
+AC_SUBST(VFS_OFFSET_PRINTF)
+
 AC_CHECK_HEADERS(sys/resource.h)
 
 dnl turn warnings into errors to enforce clean code
@@ -131,7 +180,7 @@ dnl Paths for `gnome-config'.
 
 dnl CORBA backend.
 VFSCORBA_LIBDIR='-L${libdir}'
-VFSCORBA_INCLUDEDIR='-I${includedir}'
+VFSCORBA_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
 VFSCORBA_INCLUDEDIR="$VFSCORBA_INCLUDEDIR `gnome-config --cflags gnome gnomeui` `orbit-config --cflags server`"
 VFSCORBA_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnomeui` `orbit-config --libs server`"
 AC_SUBST(VFSCORBA_LIBDIR)
@@ -140,7 +189,7 @@ AC_SUBST(VFSCORBA_LIBS)
 
 dnl Pthread backend.
 VFSPTHREAD_LIBDIR='-L${libdir}'
-VFSPTHREAD_INCLUDEDIR='-I${includedir}'
+VFSPTHREAD_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
 VFSPTHREAD_INCLUDEDIR="$VFSPTHREAD_INCLUDEDIR `gnome-config --cflags gnome`"
 VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread `gnome-config --libs gnome` `glib-config --libs gthread`"
 AC_SUBST(VFSPTHREAD_LIBDIR)
@@ -155,7 +204,7 @@ AC_DEFINE_UNQUOTED(GNOME_VFS_DEFAULT_BACKEND, "$default_backend")
 
 VFS_LIBS="-lgnomevfs `glib-config --libs gthread gmodule`"
 VFS_LIBDIR='-L${libdir}'
-VFS_INCLUDEDIR='-I${includedir}'" `glib-config --cflags gthread gmodule`"
+VFS_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'" `glib-config --cflags gthread gmodule`"
 AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)
@@ -165,7 +214,7 @@ dnl
 dnl Flags needed to build the mime-type capplet
 dnl
 CAPPLET_LIBDIR='-L${libdir}'
-CAPPLET_INCLUDEDIR='-I${includedir}'
+CAPPLET_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
 CAPPLET_INCLUDEDIR="$CAPPLET_INCLUDEDIR `gnome-config --cflags gnome gnomeui capplet`"
 CAPPLET_LIBS="`gnome-config --libs gnome gnomeui capplet`"
 AC_SUBST(CAPPLET_LIBDIR)
@@ -298,6 +347,7 @@ dnl Output files
 AC_OUTPUT([
 Makefile
 gnome-vfs.spec
+libgnomevfs/gnome-vfs-file-size.h
 data/Makefile
 data/mime/Makefile
 idl/Makefile
