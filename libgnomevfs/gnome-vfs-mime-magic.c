@@ -1,5 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-
 /*
  * gnome-vfs-mime-magic-magic.c
  *
@@ -8,6 +6,9 @@
  *
  * Adatped to the GNOME needs by:
  *    Elliot Lee (sopwith@cuc.edu)
+ * 
+ * Rewritten by:
+ *    Pavel Cisler <pavel@eazel.com>
  */
 
 /* needed for S_ISSOCK with 'gcc -ansi -pedantic' on GNU/Linux */
@@ -32,398 +33,500 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 
-/****** misc lame parsing routines *******/
-static guchar
-read_octal_str(char **pos)
+
+static gboolean
+is_octal_digit (char ch)
 {
-  guchar retval = 0;
-
-  if(**pos >= '0' && **pos <= '7') {
-    retval += **pos - '0';
-  } else
-    return retval;
-
-  retval *= 8;
-  (*pos)++;
-
-  if(**pos >= '0' && **pos <= '7') {
-    retval += **pos - '0';
-  } else
-    return retval/8;
-
-  (*pos)++;
-
-  retval *= 8;
-
-  if(**pos >= '0' && **pos <= '7') {
-    retval += **pos - '0';
-  } else
-    return retval/8;
-
-  (*pos)++;
-
-  return retval;
-}
-
-static char
-read_hex_str(char **pos)
-{
-  char retval = 0;
-
-  if(**pos >= '0' && **pos <= '9') {
-    retval = **pos - '0';
-  } else if(**pos >= 'a' && **pos <= 'f') {
-    retval = **pos - 'a' + 10;
-  } else if(**pos >= 'A' && **pos <= 'F') {
-    retval = **pos - 'A' + 10;
-  } else
-    g_error("bad hex digit %c", **pos);
-
-  (*pos)++;
-  retval *= 16;
-
-  if(**pos >= '0' && **pos <= '9') {
-    retval += **pos - '0';
-  } else if(**pos >= 'a' && **pos <= 'f') {
-    retval += **pos - 'a' + 10;
-  } else if(**pos >= 'A' && **pos <= 'F') {
-    retval += **pos - 'A' + 10;
-  } else
-    g_error("bad hex digit %c", **pos);
-
-  (*pos)++;
-
-  return retval;
-}
-
-static char *
-read_string_val(char *curpos, char *intobuf, guchar max_len, guchar *into_len)
-{
-  char *intobufend = intobuf+max_len-1;
-  char c;
-
-  *into_len = 0;
-
-  while (*curpos && !isspace(*curpos)) {
-
-    c = *curpos;
-    curpos++;
-    switch(c) {
-    case '\\':
-      switch(*curpos) {
-      case 'x': /* read hex value */
-	curpos++;
-	c = read_hex_str(&curpos);
-	break;
-      case '0': 
-      case '1':
-      case '2':
-      case '3':
-	/* read octal value */
-	c = read_octal_str(&curpos);
-	break;
-      case 'n': c = '\n'; curpos++; break;
-      default:			/* everything else is a literal */
-	c = *curpos; curpos++; break;
-      }
-      break;
-    default:
-      break;
-      /* already setup c/moved curpos */
-    }
-    if (intobuf<intobufend) {
-      *intobuf++=c;
-      (*into_len)++;
-    }
-  }
-
-  *intobuf = '\0';
-  return curpos;
-}
-
-static char *read_num_val(char *curpos, int bsize, char *intobuf)
-{
-  char fmttype, fmtstr[4];
-  int itmp;
-
-  if(*curpos == '0') {
-    if(tolower(*(curpos+1)) == 'x') fmttype = 'x';
-    else fmttype = 'o';
-  } else
-    fmttype = 'u';
-
-  switch(bsize) {
-  case 1:
-    fmtstr[0] = '%'; fmtstr[1] = fmttype; fmtstr[2] = '\0';
-    if(sscanf(curpos, fmtstr, &itmp) < 1) return NULL;
-    *(guchar *)intobuf = (guchar)itmp;
-    break;
-  case 2:
-    fmtstr[0] = '%'; fmtstr[1] = 'h'; fmtstr[2] = fmttype; fmtstr[3] = '\0';
-    if(sscanf(curpos, fmtstr, intobuf) < 1) return NULL;
-    break;
-  case 4:
-    fmtstr[0] = '%'; fmtstr[1] = fmttype; fmtstr[2] = '\0';
-    if(sscanf(curpos, fmtstr, intobuf) < 1) return NULL;
-    break;
-  }
-
-  while(*curpos && !isspace(*curpos)) curpos++;
-
-  return curpos;
-}
-
-GnomeMagicEntry *
-gnome_vfs_mime_magic_parse(const gchar *filename, gint *nents)
-{
-  GArray *array;
-  GnomeMagicEntry newent, *retval;
-  FILE *infile;
-  const char *infile_name;
-  int bsize = 0;
-  char aline[256];
-  char *curpos;
-
-  infile_name = filename;
-
-  if(!infile_name)
-    return NULL;
-
-  infile = fopen(infile_name, "r");
-  if(!infile)
-    return NULL;
-
-  array = g_array_new(FALSE, FALSE, sizeof(GnomeMagicEntry));
-
-  while(fgets(aline, sizeof(aline), infile)) {
-    curpos = aline;
-
-    while(*curpos && isspace(*curpos)) curpos++; /* eat the head */
-    if(!isdigit(*curpos)) continue;
-
-    if(sscanf(curpos, "%hu", &newent.offset) < 1) continue;
-    
-    while(*curpos && !isspace(*curpos)) curpos++; /* eat the offset */
-    while(*curpos && isspace(*curpos)) curpos++; /* eat the spaces */
-    if(!*curpos) continue;
-
-    if(!strncmp(curpos, "byte", strlen("byte"))) {
-      curpos += strlen("byte");
-      newent.type = T_BYTE;
-    } else if(!strncmp(curpos, "short", strlen("short"))) {
-      curpos += strlen("short");
-      newent.type = T_SHORT;
-    } else if(!strncmp(curpos, "long", strlen("long"))) {
-      curpos += strlen("long");
-      newent.type = T_LONG;
-    } else if(!strncmp(curpos, "string", strlen("string"))) {
-      curpos += strlen("string");
-      newent.type = T_STR;
-    } else if(!strncmp(curpos, "date", strlen("date"))) {
-      curpos += strlen("date");
-      newent.type = T_DATE;
-    } else if(!strncmp(curpos, "beshort", strlen("beshort"))) {
-      curpos += strlen("beshort");
-      newent.type = T_BESHORT;
-    } else if(!strncmp(curpos, "belong", strlen("belong"))) {
-      curpos += strlen("belong");
-      newent.type = T_BELONG;
-    } else if(!strncmp(curpos, "bedate", strlen("bedate"))) {
-      curpos += strlen("bedate");
-      newent.type = T_BEDATE;
-    } else if(!strncmp(curpos, "leshort", strlen("leshort"))) {
-      curpos += strlen("leshort");
-      newent.type = T_LESHORT;
-    } else if(!strncmp(curpos, "lelong", strlen("lelong"))) {
-      curpos += strlen("lelong");
-      newent.type = T_LELONG;
-    } else if(!strncmp(curpos, "ledate", strlen("ledate"))) {
-      curpos += strlen("ledate");
-      newent.type = T_LEDATE;
-    } else
-      continue; /* weird type */
-
-    if(*curpos == '&') {
-      curpos++;
-      if(!read_num_val(curpos, 4, (char *)&newent.mask))
-	continue;
-    } else
-      newent.mask = 0xFFFFFFFF;
-
-    while(*curpos && isspace(*curpos)) curpos++;
-
-    switch(newent.type) {
-    case T_BYTE:
-      bsize = 1;
-      break;
-    case T_SHORT:
-    case T_BESHORT:
-    case T_LESHORT:
-      bsize = 2;
-      break;
-    case T_LONG:
-    case T_BELONG:
-    case T_LELONG:
-      bsize = 4;
-      break;
-    case T_DATE:
-    case T_BEDATE:
-    case T_LEDATE:
-      bsize = 4;
-      break;
-    default:
-      /* do nothing */
-      break;
-    }
-
-    if(newent.type == T_STR)
-      curpos = read_string_val(curpos, newent.test, sizeof(newent.test), &newent.test_len);
-    else {
-      newent.test_len = bsize;
-      curpos = read_num_val(curpos, bsize, newent.test);
-    }
-
-    if(!curpos) continue;
-
-    while(*curpos && isspace(*curpos)) curpos++;
-
-    if(!*curpos) continue;
-
-    g_snprintf(newent.mimetype, sizeof(newent.mimetype), "%s", curpos);
-    bsize = strlen(newent.mimetype) - 1;
-    while(newent.mimetype[bsize] && isspace(newent.mimetype[bsize]))
-      newent.mimetype[bsize--] = '\0';
-
-    g_array_append_val(array, newent);
-  }
-  fclose(infile);
-
-  newent.type = T_END;
-  g_array_append_val(array, newent);
-
-  retval = (GnomeMagicEntry *)array->data;
-  if(nents)
-    *nents = array->len;
-
-  g_array_free(array, FALSE);
-
-  return retval;
-}
-
-static void 
-do_byteswap(guchar *outdata,
-		 const guchar *data,
-		 gulong datalen)
-{
-  const guchar *source_ptr = data;
-  guchar *dest_ptr = (guchar *)outdata + datalen - 1;
-  while(dest_ptr >= outdata)
-    *dest_ptr-- = *source_ptr++;
+	return ch >= '0' && ch <= '7';
 }
 
 static gboolean
-gnome_vfs_mime_magic_matches_p(FILE *fh, GnomeMagicEntry *ent)
+is_hex_digit (char ch)
 {
-  char buf[sizeof(ent->test)];
-  gboolean retval = TRUE;
+	if (ch >= '0' && ch <= '9') {
+		return TRUE;
+	}
+	if (ch >= 'a' && ch <= 'f') {
+		return TRUE;
+	}
 
-  fseek(fh, (long)ent->offset, SEEK_SET);
-  fread(buf, ent->test_len, 1, fh);
-
-#if G_BYTE_ORDER == G_LITTLE_ENDIAN
-  if(ent->type >= T_BESHORT && ent->type <= T_BEDATE)
-#else /* assume big endian */
-  if(ent->type >= T_LESHORT && ent->type <= T_LEDATE)
-#endif
-    { /* endian-convert comparison */
-      char buf2[sizeof(ent->test)];
-
-      do_byteswap(buf2, buf, ent->test_len);
-      retval &= !memcmp(ent->test, buf2, ent->test_len);
-    }
-  else /* direct compare */
-    retval &= !memcmp(ent->test, buf, ent->test_len);
-
-  if(ent->mask != 0xFFFFFFFF) {
-  /* FIXME bugzilla.eazel.com 1166:
-   * this never worked
-   */
-    switch(ent->test_len) {
-    case 1:
-      retval &= ((ent->mask & ent->test[0]) == ent->mask);
-      break;
-    case 2:
-      retval &= ((ent->mask & (*(guint16 *)ent->test)) == ent->mask);
-      break;
-    case 4:
-      retval &= ((ent->mask & (*(guint32 *)ent->test)) == ent->mask);
-      break;
-    }
-  }
-
-  return retval;
+	return (ch >= 'A' && ch <= 'F');
 }
 
+/* FIXME:
+ * should return error here
+ */
+static guchar
+read_octal_byte (const char **pos)
+{
+	guchar retval = 0;
+	int count;
+
+	for (count = 0; count < 3; count++) {
+		if (!is_octal_digit (**pos)) {
+			g_error ("bad octal digit %c", **pos);
+			return retval;
+		}
+		
+		retval *= 8;
+		retval += **pos - '0';
+		(*pos)++;
+	}
+
+	return retval;
+}
+
+/* FIXME:
+ * should return error here
+ */
+static guchar
+read_hex_byte (const char **pos)
+{
+	guchar retval = 0;
+	int count;
+
+	for (count = 0; ; count++) {
+		if (!is_hex_digit (**pos)) {
+			g_error ("bad hex digit %c", **pos);
+			return retval;
+		}
+		if (**pos >= '0' && **pos <= '9') {
+			retval += **pos - '0';
+		} else {
+			retval += tolower (**pos) - 'a' + 10;
+		}
+
+  		(*pos)++;
+		if (count >= 1) {
+			break;
+		}
+ 		retval *= 16;
+	}
+
+	return retval;
+}
+
+/* FIXME:
+ * should return error here
+ */
+static const char *
+read_string_val (const char *scanner, char *intobuf, int max_len, guint16 *into_len)
+{
+	char *intobufend;
+	char ch;
+
+	intobufend = intobuf + max_len - 1;
+	*into_len = 0;
+
+	while (*scanner && !isspace (*scanner) && *scanner != '#') {
+		ch = *scanner++;
+
+		switch (ch) {
+		case '\\':
+			switch (*scanner) {
+			case 'x': 
+				/* read hex value */
+				scanner++;
+				ch = read_hex_byte (&scanner);
+				break;
+			case '0': 
+			case '1':
+			case '2':
+			case '3':
+				/* read octal value */
+				ch = read_octal_byte (&scanner);
+				break;
+			case 'n': 
+				ch = '\n'; 
+				scanner++; 
+				break;
+			default:
+				/* everything else is a literal */
+				ch = *scanner; 
+				scanner++; 
+				break;
+			}
+			break;
+		default:
+			break;
+			/* already setup c/moved scanner */
+		}
+		if (intobuf < intobufend) {
+			*intobuf++=ch;
+			(*into_len)++;
+		}
+	}
+
+	*intobuf = '\0';
+	return scanner;
+}
+
+static const char *
+read_hex_pattern (const char *scanner, char *result, int length)
+{
+	if (*scanner == '0') {
+		scanner++;
+	}
+	if (*scanner++ != 'x') {
+		return NULL;
+	}
+	for (;length > 0; length--) {
+		if (!is_hex_digit (scanner[0]) || !is_hex_digit (scanner[1])) {
+			return NULL;
+		}
+		*result++ = read_hex_byte (&scanner);
+	}
+
+	return scanner;
+}
+
+static gboolean
+read_num_val(const char **offset, int bsize, int *result)
+{
+	char fmttype, fmtstr[4];
+	const char *scanner = *offset;
+	
+	if (*scanner == '0') {
+		if (tolower (scanner[1]) == 'x') {
+			fmttype = 'x';
+		} else {
+			fmttype = 'o';
+		}
+	} else {
+		fmttype = 'u';
+	}
+
+	switch (bsize) {
+	case 1:
+		fmtstr[0] = '%'; 
+		fmtstr[1] = fmttype; 
+		fmtstr[2] = '\0';
+		if (sscanf (scanner, fmtstr, result) < 1) {
+			return FALSE;
+		}
+		break;
+	case 2:
+		fmtstr[0] = '%'; 
+		fmtstr[1] = 'h'; 
+		fmtstr[2] = fmttype; 
+		fmtstr[3] = '\0';
+		if (sscanf (scanner, fmtstr, result) < 1) {
+			return FALSE;
+		}
+		break;
+	case 4:
+		fmtstr[0] = '%'; 
+		fmtstr[1] = fmttype; 
+		fmtstr[2] = '\0';
+		if (sscanf (scanner, fmtstr, result) < 1) {
+			return FALSE;
+		}
+		break;
+	}
+
+	while (**offset && !isspace (**offset)) {
+		(*offset)++;
+	}
+
+	return TRUE;
+}
+
+static const char *
+eat_white_space (const char *scanner)
+{
+	while (*scanner && isspace (*scanner)) {
+		scanner++;
+	}
+	return scanner;
+}
+
+static gboolean
+match_pattern (const char *scanner, const char **resulting_scanner, const char *pattern)
+{
+	if (strncmp(scanner, pattern, strlen (pattern)) == 0) {
+		*resulting_scanner = scanner + strlen (pattern);
+		return TRUE;
+	}
+	*resulting_scanner = scanner;
+	return FALSE;
+}
+
+GnomeMagicEntry *
+gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
+{
+	GArray *array;
+	GnomeMagicEntry newent, *retval;
+	FILE *infile;
+	const char *infile_name;
+	int bsize = 0;
+	char parsed_line [256];
+	const char *scanner;
+
+	infile_name = filename;
+
+	if (!infile_name) {
+		return NULL;
+	}
+
+	infile = fopen (infile_name, "r");
+	if (!infile) {
+		return NULL;
+	}
+
+	array = g_array_new (FALSE, FALSE, sizeof (GnomeMagicEntry));
+
+	while (fgets (parsed_line, sizeof (parsed_line), infile)) {
+		scanner = parsed_line;
+
+		/* eat the head */
+		scanner = eat_white_space (scanner);
+
+		if (!*scanner || *scanner == '#') {
+			continue;
+		}
+
+		if (!isdigit (*scanner)) {
+			continue;
+		}
+
+		if (sscanf (scanner, "%hu", &newent.range_start) < 1) {
+			continue;
+		}
+		newent.range_end = newent.range_start;
+
+		while (*scanner && isdigit (*scanner)) {
+			scanner++; /* eat the offset */
+		}
+
+		if (*scanner  == ':') {
+			/* handle an offset range */
+			scanner++; 
+			if (sscanf (scanner, "%hu", &newent.range_end) < 1) {
+				continue;
+			}
+		}
+
+		while (*scanner && !isspace (*scanner)) {
+			scanner++; /* eat the offset */
+		}
+
+		scanner = eat_white_space (scanner);
+
+		if (!*scanner || *scanner == '#') {
+			continue;
+		}
+
+		if (match_pattern (scanner, &scanner, "byte")) {
+			newent.type = T_BYTE;
+		} else if (match_pattern (scanner, &scanner, "short")) {
+			newent.type = T_SHORT;
+		} else if (match_pattern (scanner, &scanner, "long")) {
+			newent.type = T_LONG;
+		} else if (match_pattern (scanner, &scanner, "string")) {
+			newent.type = T_STR;
+		} else if (match_pattern (scanner, &scanner, "date")) {
+			newent.type = T_DATE;
+		} else if (match_pattern (scanner, &scanner, "beshort")) {
+			newent.type = T_BESHORT;
+		} else if (match_pattern (scanner, &scanner, "belong")) {
+			newent.type = T_BELONG;
+		} else if (match_pattern (scanner, &scanner, "bedate")) {
+			newent.type = T_BEDATE;
+		} else if (match_pattern (scanner, &scanner, "leshort")) {
+			newent.type = T_LESHORT;
+		} else if (match_pattern (scanner, &scanner, "lelong")) {
+			newent.type = T_LELONG;
+		} else if (match_pattern (scanner, &scanner, "ledate")) {
+			newent.type = T_LEDATE;
+		} else
+			continue; /* weird type */
+
+		scanner = eat_white_space (scanner);
+		if (!*scanner || *scanner == '#') {
+			continue;
+		}
+		
+		switch (newent.type) {
+		case T_BYTE:
+			bsize = 1;
+			break;
+			
+		case T_SHORT:
+		case T_BESHORT:
+		case T_LESHORT:
+			bsize = 2;
+			break;
+			
+		case T_LONG:
+		case T_BELONG:
+		case T_LELONG:
+			bsize = 4;
+			break;
+			
+		case T_DATE:
+		case T_BEDATE:
+		case T_LEDATE:
+			bsize = 4;
+			break;
+			
+		default:
+			/* do nothing */
+			break;
+		}
+
+		if (newent.type == T_STR) {
+			scanner = read_string_val (scanner, newent.pattern, 
+				sizeof (newent.pattern), &newent.pattern_length);
+		} else {
+			newent.pattern_length = bsize;
+			if (!read_num_val (&scanner, bsize, (int *)&newent.pattern)) {
+				continue;
+			}
+		}
+
+		scanner = eat_white_space (scanner);
+		if (!*scanner || *scanner == '#') {
+			continue;
+		}
+
+		if (*scanner == '&') {
+			scanner++;
+			scanner = read_hex_pattern (scanner, &newent.mask [0], newent.pattern_length);
+			if (!scanner) {
+				g_error ("bad mask");
+				continue;
+			}
+			newent.use_mask = TRUE;
+		} else {
+			newent.use_mask = FALSE;
+		}
+
+		scanner = eat_white_space (scanner);
+		if (!*scanner || *scanner == '#') {
+			continue;
+		}
+
+		g_snprintf (newent.mimetype, sizeof (newent.mimetype), "%s", scanner);
+		bsize = strlen (newent.mimetype) - 1;
+		while (newent.mimetype [bsize] && isspace (newent.mimetype [bsize])) {
+			newent.mimetype [bsize--] = '\0';
+		}
+
+		g_array_append_val (array, newent);
+	}
+	fclose(infile);
+
+	newent.type = T_END;
+	g_array_append_val (array, newent);
+
+	retval = (GnomeMagicEntry *)array->data;
+	if (nents) {
+		*nents = array->len;
+	}
+
+	g_array_free (array, FALSE);
+
+	return retval;
+}
+
+static void 
+endian_swap (guchar *result, const guchar *data, size_t length)
+{
+	const guchar *source_ptr = data;
+	guchar *dest_ptr = result + length - 1;
+	while (dest_ptr >= result) {
+		*dest_ptr-- = *source_ptr++;
+	}
+}
+
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+ #define FIRST_ENDIAN_DEPENDENT_TYPE T_BESHORT
+ #define LAST_ENDIAN_DEPENDENT_TYPE T_BEDATE
+#else	
+ #define FIRST_ENDIAN_DEPENDENT_TYPE T_LESHORT
+ #define LAST_ENDIAN_DEPENDENT_TYPE T_LEDATE
+#endif
+
+static gboolean
+try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_entry)
+{
+	gboolean using_cloned_pattern;
+	char pattern_clone [48];
+	int index;
+
+	using_cloned_pattern = FALSE;
+	if (magic_entry->type >= FIRST_ENDIAN_DEPENDENT_TYPE && magic_entry->type <= LAST_ENDIAN_DEPENDENT_TYPE) { 
+		/* Endian-convert the data we are trying to recognize to
+		 * our host endianness.
+		 */
+		char swap_buffer [sizeof(magic_entry->pattern)];
+
+		g_assert(magic_entry->pattern_length <= 4);
+
+		memcpy (swap_buffer, sniffed_stream, magic_entry->pattern_length);
+
+		endian_swap (pattern_clone, swap_buffer, magic_entry->pattern_length);
+		sniffed_stream = &pattern_clone[0];
+		using_cloned_pattern = TRUE;
+	}
+
+	if (magic_entry->use_mask ) {
+		/* Apply mask to the examined data. At this point the data in
+		 * sniffed_stream is in the same endianness as the mask.
+		 */ 
+
+		if (!using_cloned_pattern) {
+			memcpy (pattern_clone, sniffed_stream, magic_entry->pattern_length);
+			using_cloned_pattern = TRUE;
+			sniffed_stream = &pattern_clone[0];
+		}
+
+		for (index = 0; index < magic_entry->pattern_length; index++) {
+			pattern_clone[index] &= magic_entry->mask[index];
+		}
+	}
+
+	return memcmp (magic_entry->pattern, sniffed_stream, magic_entry->pattern_length) == 0;
+}
+
+
+static gboolean
+gnome_vfs_mime_magic_matches_p (FILE *file, GnomeMagicEntry *magic_entry)
+{
+	int offset;
+	int size_read;
+	char buf[sizeof(magic_entry->pattern)];
+
+	if (fseek (file, (long)magic_entry->range_start, SEEK_SET) < 0) {
+		return FALSE;
+	}
+	size_read = fread (buf, magic_entry->pattern_length + magic_entry->range_end
+		- magic_entry->range_start, 1, file);
+
+	for (offset = 0; offset <= size_read - magic_entry->pattern_length; offset++) {
+		if (try_one_pattern_on_buffer (buf + offset, magic_entry)) {
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
 
 static gboolean
 gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer, 
 	GnomeMagicEntry *magic_entry)
 {
-	char test_pattern[48];
+	int offset;
 
-	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
-		magic_entry->offset + magic_entry->test_len) != GNOME_VFS_OK) {
-		return FALSE;
-	}
-
-	g_assert(magic_entry->test_len <= 48);
-	memcpy (test_pattern, sniff_buffer->buffer + magic_entry->offset, 
-		magic_entry->test_len);
-
-#if G_BYTE_ORDER == G_LITTLE_ENDIAN
-	if (magic_entry->type >= T_BESHORT && magic_entry->type <= T_BEDATE) 
-#else	
-	if (magic_entry->type >= T_LESHORT && magic_entry->type <= T_LEDATE)
-#endif
-	{ 
-		/* Endian-convert the data we are trying to recognize to
-		 * our host endianness.
-		 */
-		char buf2[sizeof(magic_entry->test)];
-
-		g_assert(magic_entry->test_len <= 4);
-
-		memcpy (buf2, test_pattern, magic_entry->test_len);
-
-		do_byteswap(test_pattern, buf2, magic_entry->test_len);
-	}
-
-
-	if (magic_entry->mask != 0xFFFFFFFF) {
-		/* Apply mask to the examined data. At this point the data in
-		 * test_pattern is in the same endianness as the mask.
-		 */ 
-		g_assert(magic_entry->test_len <= 4);
-
-		g_assert((*((guint32 *)magic_entry->test) & magic_entry->mask) ==  
-			*((guint32 *)magic_entry->test));
-
-		switch(magic_entry->test_len) {
-		case 1:
-			test_pattern[0] &= magic_entry->mask;
-			break;
-		case 2:
-			*((guint16 *)test_pattern) &= magic_entry->mask;
-			break;
-		case 4:
-			*((guint32 *)test_pattern) &= magic_entry->mask;
-			break;
-		default:
-			g_assert(!"unimplemented");
+	for (offset = magic_entry->range_start; offset <= magic_entry->range_end; offset++) {
+		if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+			offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
+			return FALSE;
+		}
+		if (try_one_pattern_on_buffer (sniff_buffer->buffer + offset, magic_entry)) {
+			return TRUE;
 		}
 	}
-
-	return memcmp(magic_entry->test, test_pattern, magic_entry->test_len) == 0;
+	return FALSE;
 }
 
 /* We lock this mutex whenever we modify global state in this module.  */
@@ -460,9 +563,9 @@ gnome_vfs_mime_get_magic_table (void)
 		filename = gnome_config_file ("gnome-vfs-mime-magic.dat");
 
 		if (filename != NULL) {
-			file = open(filename, O_RDONLY);
+			file = open (filename, O_RDONLY);
 			if (file >= 0) {
-				if (fstat(file, &sbuf) == 0) {
+				if (fstat (file, &sbuf) == 0) {
 					mmap_result = (GnomeMagicEntry *) mmap(NULL, 
 						sbuf.st_size, 
 						PROT_READ, 
@@ -485,16 +588,119 @@ gnome_vfs_mime_get_magic_table (void)
 		/* don't have a pre-parsed table, use original text file */
 
 		/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
-		filename = gnome_config_file("gnome-vfs-mime-magic");
+		filename = gnome_config_file ("gnome-vfs-mime-magic");
 		if (filename != NULL) {
 			mime_magic_table = gnome_vfs_mime_magic_parse(filename, NULL);
 		}
-		g_free(filename);
+		g_free (filename);
   	}
 
 	G_UNLOCK (mime_magic_table_mutex);
 
 	return mime_magic_table;
+}
+
+
+GnomeMagicEntry *
+gnome_vfs_mime_test_get_magic_table (const char *table_path)
+{
+	G_LOCK (mime_magic_table_mutex);
+  	if (mime_magic_table == NULL) {
+		mime_magic_table = gnome_vfs_mime_magic_parse(table_path, NULL);
+  	}
+	G_UNLOCK (mime_magic_table_mutex);
+
+	return mime_magic_table;
+}
+
+#define HEX_DIGITS "0123456789abcdef"
+
+static void
+print_escaped_string (const guchar *string, int length)
+{
+	for (; length > 0; length--, string++) {
+		if (*string == '\\' || *string == '#') {
+			/* escape \, #, etc. properly */
+			printf ("\\%c", *string);
+		} else if (isprint (*string) && *string > ' ') {
+			/* everything printable except for white space can go directly */
+			printf ("%c", *string);
+		} else {
+			/* everything else goes in hex */
+			printf ("\\x%c%c", HEX_DIGITS[(*string) / 16], HEX_DIGITS[(*string) % 16]);
+		}
+	}
+}
+
+static void
+print_hex_pattern (const guchar *string, int length)
+{
+	printf ("\\x");
+	for (; length > 0; length--, string++) {
+		printf ("%c%c", HEX_DIGITS[(*string) / 16], HEX_DIGITS[(*string) % 16]);
+	}
+}
+void 
+gnome_vfs_mime_dump_magic_table (void)
+{
+	GnomeMagicEntry *magic_table;
+	
+	magic_table = gnome_vfs_mime_get_magic_table ();
+	if (magic_table == NULL) {
+		return;
+	}
+	
+	for (; magic_table->type != T_END; magic_table++) {
+		printf ("%d", magic_table->range_start);
+		if (magic_table->range_start != magic_table->range_end) {
+			printf (":%d", magic_table->range_end);
+		}
+		printf ("\t");
+		switch (magic_table->type) {
+		case T_BYTE:
+			printf("byte");
+			break;
+		case T_SHORT:
+			printf("short");
+			break;
+		case T_LONG:
+			printf("long");
+			break;
+		case T_STR:
+			printf("string");
+			break;
+		case T_DATE:
+			printf("date");
+			break;
+		case T_BESHORT:
+			printf("beshort");
+			break;
+		case T_BELONG:
+			printf("belong");
+			break;
+		case T_BEDATE:
+			printf("bedate");
+			break;
+		case T_LESHORT:
+			printf("leshort");
+			break;
+		case T_LELONG:
+			printf("lelong");
+			break;
+		case T_LEDATE:
+			printf("ledate");
+			break;
+		default:
+			break;
+		}
+		printf ("\t");
+		print_escaped_string (magic_table->pattern, magic_table->pattern_length);
+		if (magic_table->use_mask) {
+			printf (" &");
+			print_hex_pattern (magic_table->mask, magic_table->pattern_length);
+		}
+		printf ("\t%s\n", magic_table->mimetype);
+	}
 }
 
 void
@@ -556,6 +762,8 @@ gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
  * rather than textual descriptions of the files).
  *
  * Returns a pointer to an internal copy of the mime-type for @filename.
+ * 
+ * Deprecated, use gnome_vfs_get_mime_type_for_buffer instead.
  */
 const char *
 gnome_vfs_mime_type_from_magic (const gchar *filename)
@@ -613,7 +821,7 @@ gboolean
 gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
 	int index;
-	unsigned char ch;
+	guchar ch;
 	
 	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
 		GNOME_VFS_TEXT_SNIFF_LENGTH) != GNOME_VFS_OK) {
@@ -666,13 +874,14 @@ gboolean
 gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
 	int offset;
-	unsigned char ch;
+	guchar ch;
 	
 	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 256) != GNOME_VFS_OK) {
 		return FALSE;
 	}
 
 	for (offset = 0; offset < 256; offset++) {
+		/* run through the first 256 bytes looking for a MP3 header */
 		gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 3);
 
 		/* sync field */

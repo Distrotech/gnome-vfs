@@ -1,3 +1,33 @@
+# Copyright (C) Eazel, Inc. 2000
+#
+# MIME magic patterns as used by the GnomeVFS library
+#
+# The format of magic entries is:
+#
+# offsetStart[:offsetEnd] type pattern [&patternMask] type
+#
+# offsetStart and offsetEnd are decimal numbers
+#
+# type is: (byte | short | long | string | date | beshort | belong | bedate | leshort | lelong | ledate")
+#
+# pattern is an ascii string with non-printable characters escaped as hex or octal numbers,
+# spaces and other important whitespace escaped with '\'
+# 
+# pattern mask is a string of hex digits; pattern mask must be the same length as the pattern
+# 
+# type is a valid MIME type
+#
+# Order magic patterns such that ambiguous ones (such as application/x-ms-dos-executable) are
+# at the end of the list and therefore get applied last.
+# Avoid rules that require a seek deep into the examined file. If you must, locate such rules
+# at the end of the list so that they get applied last (as is for example the rule 
+# for application/vnd.ms-excel)
+# 
+# When designing new document formats, make them easily recognizable by defining a sufficiently unique
+# magic pattern near the end of the document start. A good pattern is at least four bytes long and
+# contains one or two non-printable characters.
+#
+
 0	string		%PDF-					application/pdf
 0	string		\177ELF					application/x-executable-file
 0	string		PK\003\004				application/zip
@@ -33,21 +63,25 @@
 0	string		MM\x00\x2a				image/tiff
 0	string		II\x2a\x00				image/tiff
 0	string		\x89PNG					image/png
-0	string		\<!DOCTYPE\ HTML			text/html
-0	string		\<!doctype\ html			text/html
-0	string		\<HEAD					text/html
-0	string		\<head					text/html
-0	string		\<TITLE					text/html
-0	string		\<title					text/html
-0	string		\<html					text/html
-0	string		\<HTML					text/html
-0	string		\<!DOCTYPE				text/sgml
-0	string		\<!doctype				text/sgml
-0	string		\<!SUBDOC				text/sgml
-0	string		\<!subdoc				text/sgml
-0	string		\<!--					text/sgml
+0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-photoshop
+0:64	string		\<!DOCTYPE\ HTML			text/html
+0:64	string		\<!doctype\ html			text/html
+0:64	string		\<HEAD					text/html
+0:64	string		\<head					text/html
+0:64	string		\<TITLE					text/html
+0:64	string		\<title					text/html
+0:64	string		\<html					text/html
+0:64	string		\<HTML					text/html
+0:64	string		\<!DOCTYPE				text/sgml
+0:64	string		\<!doctype				text/sgml
+0:64	string		\<!SUBDOC				text/sgml
+0:64	string		\<!subdoc				text/sgml
+0:64	string		\<!--					text/sgml
 0	string		{\\rtf					text/rtf
-1	string		!/bin/sh				text/x-sh
+0:32	string		\#include				text/x-c
+0:32	string		\#ifndef				text/x-c
+0:32	string		\#ifdef					text/x-c
+1:16	string		!/bin/sh				text/x-sh
 0	string		#!/bin/sh				text/x-sh
 0	string		#!/bin/bash				text/x-sh
 0	string		#!/bin/csh				text/x-csh
@@ -68,13 +102,8 @@
 0	string		Joy!					application/x-pef-executable
 4       string		\x11\xAF				video/x-fli
 4       string		\x12\xAF				video/x-flc
-2080	string		Microsoft\ Word\ 6.0\ Document		application/msword
-2080	string		Documento\ Microsoft\ Word\ 6		application/msword
-2112	string		MSWordDoc				application/msword
 0	string		\x31\xbe\x00\x00			application/msword
 0       string  	PO^Q`           			application/msword
-2080	string		Microsoft\ Excel\ 5.0\ Worksheet	application/vnd.ms-excel
-2114	string		Biff5					application/vnd.ms-excel
 0	string		FFIL					application/x-font-ttf
 65	string		FFIL					application/x-font-ttf
 0	string		LWFN					application/x-font-type1
@@ -96,6 +125,8 @@
 1       string          WPC        		  		application/x-wordperfect
 0	string		MZ					application/x-ms-dos-executable
 0	string		%!					application/postscript
+0	string		/*					text/x-c
+0	string		//					text/x-c++
 0       string		\037\213				application/x-gzip
 0	string		\037\235				application/compress
 0	string		\367\203				application/x-font-tex
@@ -104,6 +135,11 @@
 2	string		\000\021				application/x-font-tex-tfm
 2	string		\000\022				application/x-font-tex-tfm
 0	string		\x36\x04				application/x-font-linux-psf
+2080	string		Microsoft\ Word\ 6.0\ Document		application/msword
+2080	string		Documento\ Microsoft\ Word\ 6		application/msword
+2112	string		MSWordDoc				application/msword
+2080	string		Microsoft\ Excel\ 5.0\ Worksheet	application/vnd.ms-excel
+2114	string		Biff5					application/vnd.ms-excel
 
 
 

@@ -1,3 +1,47 @@
+2000-06-20  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.h:
+	* libgnomevfs/gnome-vfs-mime-magic.c: (is_octal_digit),
+	(is_hex_digit), (read_octal_byte), (read_hex_byte),
+	(read_string_val), (read_hex_pattern), (read_num_val),
+	(eat_white_space), (match_pattern), (gnome_vfs_mime_magic_parse),
+	(endian_swap), (try_one_pattern_on_buffer),
+	(gnome_vfs_mime_magic_matches_p),
+	(gnome_vfs_mime_try_one_magic_pattern),
+	(gnome_vfs_mime_get_magic_table),
+	(gnome_vfs_mime_test_get_magic_table), (print_escaped_string),
+	(print_hex_pattern), (gnome_vfs_mime_dump_magic_table):
+	Rewrote most of the mime rule parser, cleaning it up and fixing
+	a ton of problems.
+	Added support for patterns with masks.
+	Added support for offset ranges.
+	Added support for comments in the magic rule file.
+	Got rid of unused entries in the GnomeMagicEntry struct.
+	Fixed mask support in gnome_vfs_mime_magic_matches_p.
+	Made gnome_vfs_mime_magic_matches_p and 
+	gnome_vfs_mime_try_one_magic_pattern share code.
+	Added a way to dump the MIME magic table and to load an
+	arbitrary table for debugging purposes.
+	
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_text):
+	Added support for UTF-8 text.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_mp3):
+	Added an algorithmic sniffer for audio/x-mp3.
+	
+	* test/test-mime.c: (main):
+	Added a way to load and dump a specific file with magic rules.
+
+	* data/mime/gnome-vfs-mime-magic:
+	Added comments.
+	Added sniff rule for Photoshop documents using a pattern with a mask.
+	Changed html rules to work on an offset range.
+	Added sniff rules for C and C++ files.
+	Reordered rules placing ones that require a seek deep into the
+	examined file last.
+
 2000-06-20  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

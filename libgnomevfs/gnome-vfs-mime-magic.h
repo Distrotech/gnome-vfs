@@ -28,20 +28,22 @@ typedef enum {
 } GnomeMagicType;
 
 typedef struct _GnomeMagicEntry {
-	guint32 mask;
 	GnomeMagicType type;
-	guint16 offset, level;
+	guint16 range_start, range_end;
 	
-	char test[48];
-	guchar test_len;
-	enum { CHECK_EQUAL, CHECK_LT, CHECK_GT, CHECK_AND, CHECK_XOR,
-	       CHECK_ANY } comptype;
-	guint32 compval;
+	guint16 pattern_length;
+	gboolean use_mask;
+	char pattern [48];
+	char mask [48];
 	
 	char mimetype[48];
 } GnomeMagicEntry;
 
-GnomeMagicEntry *gnome_vfs_mime_magic_parse(const gchar *filename, gint *nents);
+GnomeMagicEntry *gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents);
+
+/* testing calls */
+GnomeMagicEntry *gnome_vfs_mime_test_get_magic_table (const char *table_path);
+void gnome_vfs_mime_dump_magic_table (void);
 
 END_GNOME_DECLS
 

@@ -26,6 +26,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-magic.h"
 
 #include <stdio.h>
 
@@ -35,9 +36,14 @@ main (int argc, char **argv)
 	GnomeVFSURI *uri;
 	gboolean magic_only;
 	gboolean suffix_only;
+	gboolean dump_table;
 	const char *result;
+	const char *table_path;
+	struct stat tmp;
 
+	table_path = NULL;
 	magic_only = FALSE;
+	dump_table = FALSE;
 	suffix_only = FALSE;
 	
 	if (!gnome_vfs_init ()) {
@@ -46,19 +52,46 @@ main (int argc, char **argv)
 	}
 
 	if (argc == 1) {
-		fprintf (stderr, "Usage: %s [--magicOnly | --suffixOnly] fileToCheck1 [fileToCheck2 ...] \n", *argv);
+		fprintf (stderr, "Usage: %s [--magicOnly | --suffixOnly] [--dumpTable] "
+			" [--loadTable <table path>] fileToCheck1 [fileToCheck2 ...] \n", *argv);
 		return 1;
 	}
 
+
 	++argv;
-	if (strcmp (*argv, "--magicOnly") == 0) {
-		magic_only = TRUE;
-		++argv;
-	} else if (strcmp (*argv, "--suffixOnly") == 0) {
-		suffix_only = TRUE;
-		++argv;
+	for (; *argv; argv++) {
+		if (strcmp (*argv, "--magicOnly") == 0) {
+			magic_only = TRUE;
+		} else if (strcmp (*argv, "--suffixOnly") == 0) {
+			suffix_only = TRUE;
+		} else if (strcmp (*argv, "--dumpTable") == 0) {
+			dump_table = TRUE;
+		} else if (strcmp (*argv, "--loadTable") == 0) {
+			suffix_only = TRUE;
+			++argv;
+			if (!*argv) {
+				fprintf (stderr, "Table path expected.\n");
+				return 1;
+			}
+			table_path = *argv;
+			if (stat(table_path, &tmp) != 0) {
+				fprintf (stderr, "Table path %s not found.\n", table_path);
+				return 1;
+			}
+		} else {
+			break;
+		}
 	}
-	
+
+
+	if (table_path != NULL) {
+		gnome_vfs_mime_test_get_magic_table (table_path);
+	}
+
+	if (dump_table) {
+		gnome_vfs_mime_dump_magic_table ();
+	}
+
 	for (; *argv != NULL; argv++) {
 		uri = gnome_vfs_uri_new (*argv);
 
