@@ -1,32 +1,33 @@
 # gnome-vfs German translation.
-# Copyright (C) 1999, 2000 Free Software Foundation, Inc.
+# Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Matthias Warkus <mawa@iname.com>, 2000.
+# Christian Meyer  <chrisime@gnome.org>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2002-02-11 13:53-0800\n"
-"PO-Revision-Date: 2001-07-29 07:48+0200\n"
+"Project-Id-Version: gnome-vfs 1.9.x\n"
+"POT-Creation-Date: 2002-03-01 00:34+0100\n"
+"PO-Revision-Date: 2002-03-01 00:24+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d enthält NUL-Zeichen."
+msgstr "%s:%d enthÃ¤lt NUL-Zeichen."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d enthält keinen Methodennamen."
+msgstr "%s:%d enthÃ¤lt keinen Methodennamen."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d enthält keinen Modulnamen"
+msgstr "%s:%d enthÃ¤lt keinen Modulnamen"
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
@@ -41,7 +42,7 @@ msgstr "Unbekannter Operationstyp %u"
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kann keine Pipe für offenen GIOChannel anlegen: %s"
+msgstr "Es kann keine Pipe fÃ¼r offenen GIOChannel angelegt werden: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
@@ -55,11 +56,11 @@ msgstr "Operation angehalten"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Konnte nicht parsen: %s"
+msgstr "Parsen war nicht mÃ¶glich: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Weitere Parsingfehler werden ignoriert"
+msgstr "Weitere Parsing-Fehler werden ignoriert"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -84,52 +85,52 @@ msgstr "Interner Fehler"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Ungültige Parameter"
+msgstr "UngÃ¼ltige Parameter"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Nicht unterstützte Operation"
+msgstr "Nicht unterstÃ¼tzte Operation"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
-msgstr "Eingabe-/Ausgabe-Fehler"
+msgstr "E/A-Fehler"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Daten beschädigt"
+msgstr "Daten beschÃ¤digt"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Format ungültig"
+msgstr "Format ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Fehlerhafter Dateideskriptor"
+msgstr "Falscher Dateideskriptor"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Datei zu groß"
+msgstr "Datei zu groÃŸ"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Kein Platz mehr auf dem Gerät"
+msgstr "Kein Platz mehr auf dem GerÃ¤t"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Schreibgeschütztes Dateisystem"
+msgstr "SchreibgeschÃ¼tztes Dateisystem"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Ungültiger URI"
+msgstr "UngÃ¼ltiger URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -139,7 +140,7 @@ msgstr "Datei nicht offen"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Öffnungsmodus ungültig"
+msgstr "Ã–ffnungsmodus ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -164,7 +165,7 @@ msgstr "Kein Verzeichnis"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operation läuft"
+msgstr "Operation lÃ¤uft"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
@@ -194,7 +195,7 @@ msgstr "Ist ein Verzeichnis"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Nicht genügend Speicher"
+msgstr "Nicht genÃ¼gend Speicher"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -204,7 +205,7 @@ msgstr "Rechner nicht gefunden"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Rechnername ungültig"
+msgstr "Rechnername ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
@@ -224,7 +225,7 @@ msgstr "Operation abgebrochen"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Verzeichnis wird benutzt"
+msgstr "Verzeichnis wird verwendet"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
@@ -239,7 +240,7 @@ msgstr "Zu viele Links"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Schreibgeschütztes Dateisystem"
+msgstr "SchreibgeschÃ¼tztes Dateisystem"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
@@ -259,7 +260,7 @@ msgstr "Dienst nicht erreichbar"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Anfrage lässt Daten des Dienstes veralten"
+msgstr "Anfrage lÃ¤sst Daten des Dienstes veralten"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -277,7 +278,7 @@ msgstr "1 Byte"
 #: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
-msgstr "%u Bytes"
+msgstr "%u Byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
@@ -308,775 +309,20 @@ msgstr ""
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Die %s Umgebungsvariable zum Angeben eines anderen Ortes verwenden.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Standard-Moniker-Fabrik"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "Datei-MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "Allgemeiner GNOME-VFS-Moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Allgemeiner Fehler"
-
-#~ msgid "3D Studio image"
-#~ msgstr "3D-Studio-Bild"
-
-#~ msgid "AIFC audio"
-#~ msgstr "AIFC-Audio"
-
-#~ msgid "AIFF audio"
-#~ msgstr "AIFF-Audio"
-
-#~ msgid "ANIM animation"
-#~ msgstr "ANIM-Animation"
-
-#~ msgid "AVI video"
-#~ msgstr "AVI-Video"
-
-#~ msgid "AbiWord document"
-#~ msgstr "AbiWord-Dokument"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "Adobe-FrameMaker-Schrift"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "Adobe-Schriftmetriken"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "Andrew-Toolkit-Element"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "ApplixWare-Graphics-Bild"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "Applixware-Words-Dokument"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Applixware-Arbeitsblatt"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD-Bild"
-
-#~ msgid "BCPIO document"
-#~ msgstr "BCPIO-Dokument"
-
-#~ msgid "BDF font"
-#~ msgstr "BDF-Schrift"
-
-#~ msgid "C shell script"
-#~ msgstr "C-Shell-Skript"
-
-#~ msgid "C source code"
-#~ msgstr "C-Quellcode"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "C-Quellcode"
-
-#~ msgid "C++ source code"
-#~ msgstr "C++-Quellcode"
-
-#~ msgid "CGI program"
-#~ msgstr "CGI-Programm"
-
-#~ msgid "CGM image"
-#~ msgstr "CGM-Bild"
-
-#~ msgid "CMU raster image"
-#~ msgstr "CMU-Rasterbild"
-
-#~ msgid "CPIO archive"
-#~ msgstr "CPIO-Archiv"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "CPIO-Archive (gzip-komprimiert)"
-
-#~ msgid "DCL script"
-#~ msgstr "DCL-Skript"
-
-#~ msgid "DOS font"
-#~ msgstr "DOS-Schrift"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "DOS-/Windows-Programm"
-
-#~ msgid "DSSSL document"
-#~ msgstr "DSSSL-Dokument"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "DXF-Vektorgrafik"
-
-#~ msgid "Debian package"
-#~ msgstr "Debian-Paket"
-
-#~ msgid "Dia diagram"
-#~ msgstr "Dia-Diagramm"
-
-#~ msgid "Dolby Digital audio"
-#~ msgstr "Dolby Digital-Audio"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs-Lisp-Quellcode"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "Enlightenment-Thema"
-
-#~ msgid "FLC animation"
-#~ msgstr "FLC-Animation"
-
-#~ msgid "FLI animation"
-#~ msgstr "FLI-Animation"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "FastTracker-II-Audio"
-
-#~ msgid "Fortran source code"
-#~ msgstr "Fortran-Quellcode"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "FrameMaker-Austauschdokument"
-
-#~ msgid "G3 fax image"
-#~ msgstr "G3-Faxbild"
-
-#~ msgid "GIF image"
-#~ msgstr "GIF-Bild"
-
-#~ msgid "GIMP document"
-#~ msgstr "GIMP-Dokument"
-
-#~ msgid "GMC link"
-#~ msgstr "GMC-Link"
-
-#~ msgid "GNOME application details"
-#~ msgstr "GNOME-Anwendungsdetails"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "GNU Oleo-Arbeitsblatt"
-
-#~ msgid "GNU mail message"
-#~ msgstr "GNU-Mailnachricht"
-
-#~ msgid "GTK configuration"
-#~ msgstr "GTK-Konfiguration"
-
-#~ msgid "Glade project"
-#~ msgstr "Glade-Projekt"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "GnuCash-Arbeitsbuch"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Gnumeric-Arbeitsblatt"
-
-#~ msgid "HDF document"
-#~ msgstr "HDF-Dokument"
-
-#~ msgid "HTML page"
-#~ msgstr "HTML-Seite"
-
-#~ msgid "IDL document"
-#~ msgstr "IDL-Dokument"
-
-#~ msgid "IEF image"
-#~ msgstr "IEF-Bild"
-
-#~ msgid "IFF image"
-#~ msgstr "IFF-Bild"
-
-#~ msgid "ILBM image"
-#~ msgstr "ILBM-Bild"
-
-#~ msgid "ISI video"
-#~ msgstr "ISI-Video"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "Impulse-Tracker-Audio"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "JBuilder-Projekt"
-
-#~ msgid "JPEG image"
-#~ msgstr "JPEG-Bild"
-
-#~ msgid "Java byte code"
-#~ msgstr "Java-Bytecode"
-
-#~ msgid "Java source code"
-#~ msgstr "Java-Quellcode"
-
-#~ msgid "KDE application details"
-#~ msgstr "KDE-Anwendungsdetails"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "KIllustrator-Dokument"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "KPresenter-Präsentation"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "KSpread-Arbeitsblatt"
-
-#~ msgid "KWord document"
-#~ msgstr "KWord-Dokument"
-
-#~ msgid "Korn shell script"
-#~ msgstr "Korn-Shell-Skript"
-
-#~ msgid "LHA archive"
-#~ msgstr "LHA-Archiv"
-
-#~ msgid "LHARC archive"
-#~ msgstr "LHARC-Archiv"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX-Schrift"
-
-#~ msgid "LightWave object"
-#~ msgstr "LightWave-Objekt"
-
-#~ msgid "LightWave scene"
-#~ msgstr "LightWave-Szene"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "Linux-PSF-Konsolenschrift"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Lotus 1-2-3-Arbeitsblatt"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "M3-Audio-URL"
-
-#~ msgid "MIDI audio"
-#~ msgstr "MIDI-Audio"
-
-#~ msgid "MOD audio"
-#~ msgstr "MOD-Audio"
-
-#~ msgid "MP3 audio"
-#~ msgstr "MP3-Audio"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "MP3-Audio-Titelliste"
-
-#~ msgid "MPEG video"
-#~ msgstr "MPEG-Video"
-
-#~ msgid "MS ASF video"
-#~ msgstr "MS ASF-Video"
-
-#~ msgid "MS video"
-#~ msgstr "MS-Video"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "AppleDouble-encodierte Macintosh-Datei"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "BinHex-encodierte Macintosh-Datei"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Macintosh StuffIt-Archiv"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "Macromedia Flash-Datei"
-
-#~ msgid "MathML document"
-#~ msgstr "MathML-Dokument"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Microsoft Excel-Arbeitsblatt"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Microsoft PowerPoint-Dokument"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "Microsoft Word-Dokument"
-
-#~ msgid "Microsoft video"
-#~ msgstr "Microsoft Video"
-
-#~ msgid "Nautilus link"
-#~ msgstr "Nautilus-Verknüpfung"
-
-#~ msgid "ODA document"
-#~ msgstr "ODA-Dokument"
-
-#~ msgid "PBM image"
-#~ msgstr "PBM-Bild"
-
-#~ msgid "PCF font"
-#~ msgstr "PCF-Schrift"
-
-#~ msgid "PDF document"
-#~ msgstr "PDF-Dokument"
-
-#~ msgid "PEF program"
-#~ msgstr "PEF-Programm"
-
-#~ msgid "PGM image"
-#~ msgstr "PGM-Bild"
-
-#~ msgid "PGN chess game"
-#~ msgstr "PGN-Schachpartie"
-
-#~ msgid "PGP keys"
-#~ msgstr "PGP-Schlüssel"
-
-#~ msgid "PGP message"
-#~ msgstr "PGP-Nachricht"
-
-#~ msgid "PGP signature"
-#~ msgstr "PGP-Signatur"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "PGP-verschlüsselte Datei"
-
-#~ msgid "PHP script"
-#~ msgstr "PHP-Skript"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "PN-RealAudio-Dokument"
-
-#~ msgid "PNG image"
-#~ msgstr "PNG-Bild"
-
-#~ msgid "PNM image"
-#~ msgstr "PNM-Bild"
-
-#~ msgid "PPM image"
-#~ msgstr "PPM-Bild"
-
-#~ msgid "Palm OS database"
-#~ msgstr "Palm-OS-Datenbank"
-
-#~ msgid "Perl script"
-#~ msgstr "Perl-Skript"
-
-#~ msgid "Photoshop document"
-#~ msgstr "Photoshop-Dokument"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "PostScript-Type-1-Schrift"
-
-#~ msgid "PostScript document"
-#~ msgstr "PostScript-Dokument"
-
-#~ msgid "Python source code"
-#~ msgstr "Python-Quellcode"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "QuickTime-Film"
-
-#~ msgid "Quicken document"
-#~ msgstr "Quicken-Dokument"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Quicken für Windows Dokument"
-
-#~ msgid "RAR archive"
-#~ msgstr "RAR-Archiv"
-
-#~ msgid "README document"
-#~ msgstr "README-Dokument"
-
-#~ msgid "RGB image"
-#~ msgstr "RGB-Bild"
-
-#~ msgid "RIFF audio"
-#~ msgstr "RIFF-Audio"
-
-#~ msgid "RPM package"
-#~ msgstr "RPM-Paket"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "RealAudio-/Video-Dokument"
-
-#~ msgid "RealVideo video"
-#~ msgstr "RealVideo-Video"
-
-#~ msgid "S/MIME file"
-#~ msgstr "S/MIME-Datei"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "S/MIME-Signatur"
-
-#~ msgid "SGI video"
-#~ msgstr "SGI-Video"
-
-#~ msgid "SGML document"
-#~ msgstr "SGML-Dokument"
-
-#~ msgid "SMIL script"
-#~ msgstr "SMIL-Skript"
-
-#~ msgid "SQL code"
-#~ msgstr "SQL-Code"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "SV4-CPIO-Archiv"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "SV4-CPIP-Archiv (mit CRC)"
-
-#~ msgid "SVG art"
-#~ msgstr "SVG-Kunstwerk"
-
-#~ msgid "Scheme source code"
-#~ msgstr "Scheme-Quellcode"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Scream-Tracker-3-Audio"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "Scream-Tracker-Audio"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "Scream-Tracker-Instrument"
-
-#~ msgid "Setext document"
-#~ msgstr "Setext-Dokument"
-
-#~ msgid "Speech document"
-#~ msgstr "Sprachdokument"
-
-#~ msgid "Speedo font"
-#~ msgstr "Speedo-Schrift"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Tabellenkalkulation-Austauschdokument"
-
-#~ msgid "Stampede package"
-#~ msgstr "Stampede-Paket"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "StarOffice-Writer-Dokument"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "StarOffice-Präsentation"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "StarOffice-Arbeitsblatt"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "Sun-µ-law-Audio"
-
-#~ msgid "SunOS News font"
-#~ msgstr "SunOS-News-Schrift"
-
-#~ msgid "TIFF image"
-#~ msgstr "TIFF-Bild"
-
-#~ msgid "TarGA image"
-#~ msgstr "TarGA-Bild"
-
-#~ msgid "Tcl script"
-#~ msgstr "Tcl-Skript"
-
-#~ msgid "TeX document"
-#~ msgstr "TeX-Dokument"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "TeX-DVI-Dokument"
-
-#~ msgid "TeX font"
-#~ msgstr "TeX-Schrift"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "TeX-Schriftmetriken"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "Texinfo-Dokument"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "ToutDoux-Dokument"
-
-#~ msgid "TrueType font"
-#~ msgstr "TrueType-Schrift"
-
-#~ msgid "USENET news message"
-#~ msgstr "Usenet-News-Nachricht"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Unidata-netCDF-Dokument"
-
-#~ msgid "V font"
-#~ msgstr "V-Schrift"
-
-#~ msgid "VOC audio"
-#~ msgstr "VOC-Audio"
-
-#~ msgid "VRML document"
-#~ msgstr "VRML-Dokument"
-
-#~ msgid "Vivo video"
-#~ msgstr "Vivo-Video"
-
-#~ msgid "WAIS source code"
-#~ msgstr "WAIS-Quellcode"
-
-#~ msgid "Wavelet video"
-#~ msgstr "Wavelet-Video"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "Windows-Bitmap-Bild"
-
-#~ msgid "Windows icon image"
-#~ msgstr "Windows-Icon-Bild"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "Windows-Metafile-Graphics"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "WordPerfect-Dokument"
-
-#~ msgid "X bitmap image"
-#~ msgstr "X-Bitmap-Bild"
-
-#~ msgid "X window image"
-#~ msgstr "X-Fensterbild"
-
-#~ msgid "XML document"
-#~ msgstr "XML-Dokument"
-
-#~ msgid "XPM image"
-#~ msgstr "XPM-Bild"
-
-#~ msgid "Xbase database"
-#~ msgstr "Xbase-Datenbank"
-
-#~ msgid "active server page"
-#~ msgstr "Active Server Page"
-
-#~ msgid "address card"
-#~ msgstr "Adresskarte"
-
-#~ msgid "ar archive"
-#~ msgstr "ar-Archiv"
-
-#~ msgid "arj archive"
-#~ msgstr "arj-Archiv"
-
-#~ msgid "authors list"
-#~ msgstr "Autorenliste"
-
-#~ msgid "backup file"
-#~ msgstr "Sicherheitskopie"
-
-#~ msgid "basic audio"
-#~ msgstr "einfache Audiodatei"
-
-#~ msgid "bibliography record"
-#~ msgstr "Bibliographieeintrag"
-
-#~ msgid "binary program"
-#~ msgstr "binäres Programm"
-
-#~ msgid "block device"
-#~ msgstr "Blockgerät"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "bzip-komprimierte Datei"
-
-#~ msgid "calendar file"
-#~ msgstr "Kalenderdatei"
-
-#~ msgid "calendar or event document"
-#~ msgstr "Kalender- oder Ereignisdokument"
-
-#~ msgid "character device"
-#~ msgstr "Zeichengerät"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "kommagetrenntes Textdokument"
-
-#~ msgid "compound document"
-#~ msgstr "Verbunddokument"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "compress-komprimierte Datei"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "komprimiertes GIMP-Dokument"
-
-#~ msgid "directory information file"
-#~ msgstr "Verzeichnis-Informationsdatei"
-
-#~ msgid "document type definition"
-#~ msgstr "Dokumenttypenbeschreibung (DTD)"
-
-#~ msgid "email headers"
-#~ msgstr "E-Mail-Kopfzeilen"
-
-#~ msgid "email message"
-#~ msgstr "E-Mail-Nachricht"
-
-#~ msgid "encrypted message"
-#~ msgstr "verschlüsselte Nachricht"
-
-#~ msgid "enriched text document"
-#~ msgstr "reichhaltiges Textdokument"
-
-#~ msgid "folder"
-#~ msgstr "Ordner"
-
-#~ msgid "gtar archive"
-#~ msgstr "gtar-Archiv"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "gzip-komprimierte Datei"
-
-#~ msgid "help page"
-#~ msgstr "Hilfeseite"
-
-#~ msgid "mail delivery report"
-#~ msgstr "Mail-Auslieferungsbericht"
-
-#~ msgid "mail disposition report"
-#~ msgstr "Mail-Verarbeitungsbericht"
-
-#~ msgid "mail system report"
-#~ msgstr "Bericht des Mailsystems"
-
-#~ msgid "makefile"
-#~ msgstr "Makefile"
-
-#~ msgid "manual page"
-#~ msgstr "Handbuchseite"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "Handbuchseite (komprimiert)"
-
-#~ msgid "memory dump"
-#~ msgstr "Speicherauszug"
-
-#~ msgid "message digest"
-#~ msgstr "Nachrichtensammlung"
-
-#~ msgid "message in several formats"
-#~ msgstr "Nachricht in mehreren Formaten"
-
-#~ msgid "multi-part message"
-#~ msgstr "mehrteilige Nachricht"
-
-#~ msgid "named pipe"
-#~ msgstr "named pipe"
-
-#~ msgid "object code"
-#~ msgstr "Objektcode"
-
-#~ msgid "ogg audio"
-#~ msgstr "ogg-Audio"
-
-#~ msgid "partial email message"
-#~ msgstr "E-Mail-Nachrichtenfragment"
-
-#~ msgid "plain text document"
-#~ msgstr "einfaches Textdokument"
-
-#~ msgid "profiler results"
-#~ msgstr "Profiler-Ergebnisse"
-
-#~ msgid "reference to remote file"
-#~ msgstr "Verweis auf Datei im Netz"
-
-#~ msgid "rejected patch file"
-#~ msgstr "zurückgewiesene Patchdatei"
-
-#~ msgid "rich text document"
-#~ msgstr "reichhaltiges Textdokument"
-
-#~ msgid "search results"
-#~ msgstr "Suchergebnisse"
-
-#~ msgid "shared library"
-#~ msgstr "dynamische Bibliothek"
-
-#~ msgid "shell archive"
-#~ msgstr "Shell-Archiv"
-
-#~ msgid "shell script"
-#~ msgstr "Shell-Skript"
-
-#~ msgid "signed message"
-#~ msgstr "signierte Nachricht"
-
-#~ msgid "socket"
-#~ msgstr "Socket"
-
-#~ msgid "software author credits"
-#~ msgstr "Software-Impressum"
-
-#~ msgid "software installation instructions"
-#~ msgstr "Software-Installationsanweisungen"
-
-#~ msgid "software license terms"
-#~ msgstr "Software-Lizenzbedingungen"
-
-#~ msgid "source code patch"
-#~ msgstr "Quellcode-Patch"
-
-#~ msgid "style sheet"
-#~ msgstr "Stylesheet"
-
-#~ msgid "symbolic link"
-#~ msgstr "symbolischer Link"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "tabulatorgetrenntes Textdokument"
-
-#~ msgid "tar archive"
-#~ msgstr "tar-Archiv"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "tar-Archiv (bzip2-komprimiert)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "tar-archiv (gzip-komprimiert)"
-
-#~ msgid "theme"
-#~ msgstr "Thema"
-
-#~ msgid "troff document"
-#~ msgstr "troff-Dokument"
-
-#~ msgid "troff me input document"
-#~ msgstr "troff-me-Eingabedokument"
-
-#~ msgid "troff mm input document"
-#~ msgstr "troff-mm-Eingabedokument"
-
-#~ msgid "troff ms input document"
-#~ msgstr "troff-ms-Eingabedokument"
-
-#~ msgid "unknown type"
-#~ msgstr "unbekannter Typ"
-
-#~ msgid "ustar archive"
-#~ msgstr "ustar-Archiv"
-
-#~ msgid "wave audio"
-#~ msgstr "Wave-Audio"
-
-#~ msgid "web folder"
-#~ msgstr "Web-Ordner"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "XFig-Vektorgrafik"
-
-#~ msgid "zip archive"
-#~ msgstr "zip-Archiv"
-
-#~ msgid "zoo archive"
-#~ msgstr "zoo-Archiv"
-
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS bereits initialisiert."
+msgstr "Allgemeiner Datei-Moniker"
