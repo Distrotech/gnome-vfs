@@ -480,11 +480,13 @@ gnome_vfs_uri_new_private (const gchar *text_uri,
 	if (allow_transforms) {
 		trans = gnome_vfs_transform_get (method_string);
 		if (trans != NULL && trans->transform) {
-			GnomeVFSContext *context;
+			const GnomeVFSContext *context;
 			
-			context = gnome_vfs_context_new ();
-			(* trans->transform) (trans, method_scanner, &new_uri_string, context);
-			gnome_vfs_context_unref (context);
+			context = gnome_vfs_context_peek_current ();
+			(* trans->transform) (trans, 
+					      method_scanner, 
+					      &new_uri_string, 
+					      (GnomeVFSContext *) context);
 			if (new_uri_string != NULL) {
 				toplevel->urn = g_strdup (text_uri);
 				g_free (method_string);

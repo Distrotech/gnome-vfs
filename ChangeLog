@@ -1,5 +1,14 @@
 2002-10-25  Alex Graveley  <alex@ximian.com>
 
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new_private): Use
+	gnome_vfs_context_peek_current() instead of
+	gnome_vfs_context_new() which was triggering an abort if resolving
+	a transform URI from a worker thread because you cannot create
+	contexts in anything other than the primary thread (for some
+	reason).
+
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-common.c (folder_add_include): Don't add
 	the include to a hashtable, since a) we don't use it and b) it was
 	causing memory corruption on folder free.  Fixes #95965.
