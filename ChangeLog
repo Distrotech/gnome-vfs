@@ -1,3 +1,67 @@
+2000-10-30  Darin Adler  <darin@eazel.com>
+
+	Fixed bug 4169 (Visiting "Services" several times causes future
+	navigation to hang).
+	
+	* libgnomevfs/gnome-vfs-async-ops.h: Got rid of the error code
+	result from gnome_vfs_async_cancel.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel): Got rid of the error code result
+	from gnome_vfs_async_cancel.
+	(async_open), (pthread_gnome_vfs_async_open_uri),
+	(pthread_gnome_vfs_async_open), (async_open_as_channel),
+	(pthread_gnome_vfs_async_open_uri_as_channel),
+	(pthread_gnome_vfs_async_open_as_channel), (async_create),
+	(pthread_gnome_vfs_async_create_uri),
+	(pthread_gnome_vfs_async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_close), (pthread_gnome_vfs_async_read),
+	(pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_create_symbolic_link),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_set_file_info),
+	(pthread_gnome_vfs_async_find_directory), (async_load_directory),
+	(pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri): Changed all the ops
+	to not return error codes right away, and do all error reporting
+	through callbacks.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.h: Got rid of the error code
+	result from gnome_vfs_async_cancel.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_op_destroy),
+	(execute_open), (execute_open_as_channel), (execute_create),
+	(execute_create_symbolic_link), (execute_create_as_channel),
+	(execute_load_directory_not_sorted),
+	(execute_load_directory_sorted): For all the operations that now
+	might have NULL for the URI, report an
+	GNOME_VFS_ERROR_INVALID_URI.
+	(gnome_vfs_job_cancel): Got rid of the error code result from
+	gnome_vfs_async_cancel.
+	
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_async_open),
+	(gnome_vfs_async_open_uri), (gnome_vfs_async_open_as_channel),
+	(gnome_vfs_async_create), (gnome_vfs_async_create_as_channel),
+	(gnome_vfs_async_create_uri),
+	(gnome_vfs_async_create_symbolic_link), (gnome_vfs_async_close),
+	(gnome_vfs_async_read), (gnome_vfs_async_write),
+	(gnome_vfs_async_get_file_info), (gnome_vfs_async_find_directory),
+	(gnome_vfs_async_set_file_info),
+	(gnome_vfs_async_load_directory_uri),
+	(gnome_vfs_async_load_directory), (gnome_vfs_async_cancel),
+	(gnome_vfs_async_remove_status_callback): Don't expect a result
+	from the back end for most functions. Get rid of error checking
+	and the fake idle-based callbacks for the errors noticed before
+	entering the back end.
+	
+	* modules/http-method.c: (get_utime), (cache_init),
+	(cache_shutdown), (cache_entry_new), (cache_trim),
+	(defaults_file_info_new): Use (void) instead of () for functions
+	with no parameters.
+	
+	* test/test-find-directory.c: Add missing #include <string.h>.
+
 2000-10-30  Gene Z. Ragan  <gzr@eazel.com>
 
 	Added cdda module files to CVS.  They are not currently built by

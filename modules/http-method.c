@@ -155,7 +155,7 @@ static void			cache_invalidate_uri_parent (GnomeVFSURI *uri);
 
 
 static utime_t
-get_utime()
+get_utime (void)
 {
     struct timeval tmp;
     gettimeofday (&tmp, NULL);
@@ -163,7 +163,7 @@ get_utime()
 }
 
 static void
-cache_init ()
+cache_init (void)
 {
 	pthread_mutex_lock (&cache_rlock);
 	gl_file_info_cache = g_hash_table_new (g_str_hash, g_str_equal);
@@ -171,7 +171,7 @@ cache_init ()
 }
 
 static void
-cache_shutdown ()
+cache_shutdown (void)
 {
 	GList *node, *node_next;
 
@@ -193,7 +193,7 @@ cache_shutdown ()
 }
 
 static FileInfoCacheEntry *
-cache_entry_new ()
+cache_entry_new (void)
 {
 	FileInfoCacheEntry *ret;
 
@@ -252,7 +252,7 @@ cache_entry_free (FileInfoCacheEntry * entry)
 }
 
 static void
-cache_trim ()
+cache_trim (void)
 {
 	GList *node, *node_previous;
 	utime_t utime_expire;
@@ -727,7 +727,7 @@ struct _HttpFileHandle {
 typedef struct _HttpFileHandle HttpFileHandle;
 
 static GnomeVFSFileInfo *
-defaults_file_info_new ()
+defaults_file_info_new (void)
 {
 	GnomeVFSFileInfo *ret;
 

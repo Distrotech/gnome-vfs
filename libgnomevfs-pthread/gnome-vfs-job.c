@@ -709,10 +709,14 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 {
 	switch (op->type) {
 	case GNOME_VFS_OP_CREATE:
-		gnome_vfs_uri_unref (op->specifics.create.request.uri);
+		if (op->specifics.create.request.uri != NULL) {
+			gnome_vfs_uri_unref (op->specifics.create.request.uri);
+		}
 		break;
 	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
-		gnome_vfs_uri_unref (op->specifics.create_as_channel.request.uri);
+		if (op->specifics.create_as_channel.request.uri != NULL) {
+			gnome_vfs_uri_unref (op->specifics.create_as_channel.request.uri);
+		}
 		break;
 	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
 		gnome_vfs_uri_unref (op->specifics.create_symbolic_link.request.uri);
@@ -725,15 +729,21 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		free_get_file_info_data (op);
 		break;
 	case GNOME_VFS_OP_LOAD_DIRECTORY:
-		gnome_vfs_uri_unref (op->specifics.load_directory.request.uri);
+		if (op->specifics.load_directory.request.uri != NULL) {
+			gnome_vfs_uri_unref (op->specifics.load_directory.request.uri);
+		}
 		g_free (op->specifics.load_directory.request.sort_rules);
 		g_free (op->specifics.load_directory.request.filter_pattern);
 		break;
 	case GNOME_VFS_OP_OPEN:
-		gnome_vfs_uri_unref (op->specifics.open.request.uri);
+		if (op->specifics.open.request.uri != NULL) {
+			gnome_vfs_uri_unref (op->specifics.open.request.uri);
+		}
 		break;
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
-		gnome_vfs_uri_unref (op->specifics.open_as_channel.request.uri);
+		if (op->specifics.open_as_channel.request.uri != NULL) {
+			gnome_vfs_uri_unref (op->specifics.open_as_channel.request.uri);
+		}
 		break;
 	case GNOME_VFS_OP_SET_FILE_INFO:
 		gnome_vfs_uri_unref (op->specifics.set_file_info.request.uri);
@@ -1000,11 +1010,14 @@ execute_open (GnomeVFSJob *job)
 
 	open_op = &job->current_op->specifics.open;
 
-	result = gnome_vfs_open_uri_cancellable (&handle, open_op->request.uri,
-						 open_op->request.open_mode,
-						 job->current_op->context);
-
-	job->handle = handle;
+	if (open_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_open_uri_cancellable (&handle, open_op->request.uri,
+							 open_op->request.open_mode,
+							 job->current_op->context);
+		job->handle = handle;
+	}
 	open_op->notify.result = result;
 
 	notify_retval = job_oneway_notify_and_close (job);
@@ -1027,11 +1040,15 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	open_as_channel_op = &job->current_op->specifics.open_as_channel;
 
-	result = gnome_vfs_open_uri_cancellable
-		(&handle,
-		 open_as_channel_op->request.uri,
-		 open_as_channel_op->request.open_mode,
-		 job->current_op->context);
+	if (open_as_channel_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_open_uri_cancellable
+			(&handle,
+			 open_as_channel_op->request.uri,
+			 open_as_channel_op->request.open_mode,
+			 job->current_op->context);
+	}
 
 	if (result != GNOME_VFS_OK) {
 		open_as_channel_op->notify.channel = NULL;
@@ -1093,15 +1110,19 @@ execute_create (GnomeVFSJob *job)
 
 	create_op = &job->current_op->specifics.create;
 
-	result = gnome_vfs_create_uri_cancellable
-						(&handle,
-						 create_op->request.uri,
-						 create_op->request.open_mode,
-						 create_op->request.exclusive,
-						 create_op->request.perm,
-						 job->current_op->context);
-
-	job->handle = handle;
+	if (create_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_create_uri_cancellable
+			(&handle,
+			 create_op->request.uri,
+			 create_op->request.open_mode,
+			 create_op->request.exclusive,
+			 create_op->request.perm,
+			 job->current_op->context);
+		
+		job->handle = handle;
+	}
 	create_op->notify.result = result;
 
 	notify_retval = job_oneway_notify_and_close (job);
@@ -1122,9 +1143,9 @@ execute_create_symbolic_link (GnomeVFSJob *job)
 	create_op = &job->current_op->specifics.create_symbolic_link;
 
 	result = gnome_vfs_create_symbolic_link_cancellable
-						(create_op->request.uri,
-						 create_op->request.uri_reference,
-						 job->current_op->context);
+		(create_op->request.uri,
+		 create_op->request.uri_reference,
+		 job->current_op->context);
 
 	create_op->notify.result = result;
 
@@ -1147,12 +1168,16 @@ execute_create_as_channel (GnomeVFSJob *job)
 
 	create_as_channel_op = &job->current_op->specifics.create_as_channel;
 
-	result = gnome_vfs_open_uri_cancellable
-		(&handle,
-		 create_as_channel_op->request.uri,
-		 create_as_channel_op->request.open_mode,
-		 job->current_op->context);
-
+	if (create_as_channel_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_open_uri_cancellable
+			(&handle,
+			 create_as_channel_op->request.uri,
+			 create_as_channel_op->request.open_mode,
+			 job->current_op->context);
+	}
+	
 	if (result != GNOME_VFS_OK) {
 		create_as_channel_op->notify.channel = NULL;
 		create_as_channel_op->notify.result = result;
@@ -1250,11 +1275,15 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 	JOB_DEBUG (("%p", job));
 	load_directory_op = &job->current_op->specifics.load_directory;
 
-	result = gnome_vfs_directory_open_from_uri
-		(&handle,
-		 load_directory_op->request.uri,
-		 load_directory_op->request.options,
-		 filter);
+	if (load_directory_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_directory_open_from_uri
+			(&handle,
+			 load_directory_op->request.uri,
+			 load_directory_op->request.options,
+			 filter);
+	}
 
 	if (result != GNOME_VFS_OK) {
 		load_directory_op->notify.result = result;
@@ -1337,11 +1366,15 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 	JOB_DEBUG (("%p", job));
 	load_directory_op = &job->current_op->specifics.load_directory;
 
-	result = gnome_vfs_directory_list_load_from_uri
-		(&directory_list,
-		 load_directory_op->request.uri,
-		 load_directory_op->request.options,
-		 filter);
+	if (load_directory_op->request.uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_directory_list_load_from_uri
+			(&directory_list,
+			 load_directory_op->request.uri,
+			 load_directory_op->request.options,
+			 filter);
+	}
 
 	if (result != GNOME_VFS_OK) {
 		load_directory_op->notify.result = result;
@@ -1642,7 +1675,7 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 }
 
 
-GnomeVFSResult
+void
 gnome_vfs_job_cancel (GnomeVFSJob *job)
 {
 	GnomeVFSOp *op;
@@ -1650,14 +1683,14 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 
 	JOB_DEBUG (("async cancel %p", job));
 
-	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_if_fail (job != NULL);
 
 	op = job->current_op;
 	if (op == NULL) {
 		op = job->notify_op;
 	}
 
-	g_return_val_if_fail (op != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_if_fail (op != NULL);
 
 	cancellation = gnome_vfs_context_get_cancellation (op->context);
 	if (cancellation != NULL) {
@@ -1675,6 +1708,4 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	 * set the expectations right.
 	 */
 	JOB_DEBUG (("done cancelling %p", job));
-	
-	return GNOME_VFS_OK;
 }
