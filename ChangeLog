@@ -1,3 +1,14 @@
+2001-03-01  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Mike Engber <engber@eazel.com>
+
+	Fixed bug 6964, gtv not associated with video/mpeg
+		
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys.in:
+	Add gtv to the short list of applications for
+	type video/mpeg.
+
 2001-03-01  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: Robin Slomkowski <rslomkow@eazel.com>
