@@ -1,3 +1,9 @@
+2001-03-07  Darin Adler  <darin@eazel.com>
+
+	Merge from HEAD:
+
+        * gnome-vfs.spec.in: Remove file-types-capplet too.
+
 2001-03-07  Pavel Cisler  <pavel@eazel.com>
 
 	Merge from HEAD:
