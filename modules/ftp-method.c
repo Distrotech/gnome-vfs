@@ -53,6 +53,15 @@
 #endif
 #include <time.h>
 
+#ifdef HAVE_GSSAPI
+#include <gssapi/gssapi.h>
+#include <gssapi/gssapi_generic.h>
+#endif
+
+#define PROT_C 1 /* in the clear */
+#define PROT_S 2 /* safe */
+#define PROT_P 3 /* private */
+
 #define REAP_TIMEOUT (15 * 1000) /* milliseconds */
 #define CONNECTION_CACHE_MIN_LIFETIME (30 * 1000) /* milliseconds */
 #define DIRLIST_CACHE_TIMEOUT 30 /* seconds */
@@ -78,7 +87,7 @@ typedef struct {
 	GList *spare_connections;
 	int num_connections;
 	int num_monitors;
-
+	
 	GHashTable *cached_dirlists; /* path -> FtpCachedDirlist */
 } FtpConnectionPool;
 
@@ -96,6 +105,7 @@ typedef struct {
 	gchar *response_message;
 	gint response_code;
 	GnomeVFSSocketBuffer *data_socketbuf;
+	guint32 my_ip;
 	GnomeVFSFileOffset offset;
 	enum {
 		FTP_NOTHING,
@@ -106,6 +116,12 @@ typedef struct {
 	gchar *server_type; /* the response from TYPE */
 	GnomeVFSResult fivefifty; /* the result to return for an FTP 550 */
 
+#ifdef HAVE_GSSAPI
+	gboolean use_gssapi;
+	gss_ctx_id_t gcontext;
+	int clevel;
+#endif
+	
 	FtpConnectionPool *pool;
 } FtpConnection;
 
@@ -243,9 +259,115 @@ ftp_response_to_vfs_result (FtpConnection *conn)
 
 }
 
+#ifdef HAVE_GSSAPI
+static char *radixN =
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+static char pad = '=';
+
+static char *
+radix_decode (const unsigned char *inbuf,
+	      int *len)
+{
+	int i, D = 0;
+	char *p;
+	unsigned char c = 0;
+	GString *s;
+
+	s = g_string_new (NULL);
+	
+	for (i=0; inbuf[i] && inbuf[i] != pad; i++) {
+		if ((p = strchr(radixN, inbuf[i])) == NULL) {
+			g_string_free (s, TRUE);
+			return NULL;
+		}
+		D = p - radixN;
+		switch (i&3) {
+		case 0:
+			c = D<<2;
+			break;
+		case 1:
+			g_string_append_c (s, c | D>>4);
+			c = (D&15)<<4;
+			break;
+		case 2:
+			g_string_append_c (s, c | D>>2);
+			c = (D&3)<<6;
+			break;
+		case 3:
+			g_string_append_c (s, c | D);
+		}
+	}
+	switch (i&3) {
+	case 1:
+		g_string_free (s, TRUE);
+		return NULL;
+	case 2:
+		if (D&15) {
+			g_string_free (s, TRUE);
+			return NULL;
+		}
+		if (strcmp((char *)&inbuf[i], "==")) {
+			g_string_free (s, TRUE);
+			return NULL;
+		}
+		break;
+	case 3:
+		if (D&3) {
+			g_string_free (s, TRUE);
+			return NULL;
+		}
+		if (strcmp((char *)&inbuf[i], "=")) {
+			g_string_free (s, TRUE);
+			return NULL;
+		}
+	}
+	*len = s->len;
+	return g_string_free (s, FALSE);
+}
+
+static char *
+radix_encode (unsigned char inbuf[],
+	      int len)
+{
+	int i = 0;
+	unsigned char c = 0;
+	GString *s;
+
+	s = g_string_new (NULL);
+	
+	for (i=0; i < len; i++)
+		switch (i%3) {
+		case 0:
+			g_string_append_c (s, radixN[inbuf[i]>>2]);
+			c = (inbuf[i]&3)<<4;
+			break;
+		case 1:
+			g_string_append_c (s, radixN[c|inbuf[i]>>4]);
+			c = (inbuf[i]&15)<<2;
+			break;
+		case 2:
+			g_string_append_c (s, radixN[c|inbuf[i]>>6]);
+			g_string_append_c (s, radixN[inbuf[i]&63]);
+			c = 0;
+		}
+	if (i%3)
+		g_string_append_c (s, radixN[c]);
+	switch (i%3) {
+	case 1:
+		g_string_append_c (s, pad);
+	case 2:
+		g_string_append_c (s, pad);
+	}
+	g_string_append_c (s, '\0');
+	return g_string_free (s, FALSE);
+}
+#endif /* HAVE_GSSAPI */
+
+
 static GnomeVFSResult
-read_response_line(FtpConnection *conn, gchar **line,
-		   GnomeVFSCancellation *cancellation)
+read_response_line (FtpConnection *conn, gchar **line,
+		    GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSFileSize bytes = MAX_RESPONSE_SIZE, bytes_read;
 	gchar *ptr, *buf = g_malloc (MAX_RESPONSE_SIZE+1);
@@ -297,6 +419,41 @@ get_response (FtpConnection *conn, GnomeVFSCancellation *cancellation)
 			return result;
 		}
 
+#ifdef HAVE_GSSAPI
+		if (conn->use_gssapi) {
+			/* This is a GSSAPI-protected response message */
+			int conf_state, decoded_response_len;
+			char *decoded_response;
+			gss_buffer_desc encrypted_buf, decrypted_buf;
+			gss_qop_t maj_stat, min_stat;
+
+			conf_state = (line[0] == '6' && line[1] == '3' &&  line[2] == '1');
+			
+			/* BASE64-decode the response */
+			decoded_response = radix_decode (line + 4, &decoded_response_len);
+			g_free (line);
+			if (decoded_response == NULL) {
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+			
+			/* Unseal the GSSAPI-protected response */
+			encrypted_buf.value = decoded_response;
+			encrypted_buf.length = decoded_response_len;
+			maj_stat = gss_unseal (&min_stat, conn->gcontext, &
+					       encrypted_buf, &decrypted_buf,
+					       &conf_state, NULL);
+			g_free (decoded_response);
+			
+			if (maj_stat != GSS_S_COMPLETE) {
+				g_warning ("failed unsealing reply");
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+
+			line = g_strdup_printf ("%s\r\n", (char *)decrypted_buf.value);
+			gss_release_buffer (&min_stat, &decrypted_buf);
+		}
+#endif /* HAVE_GSSAPI */
+		
 		/* response needs to be at least: "### x"  - I think*/
 		if (g_ascii_isdigit (line[0]) &&
 		    g_ascii_isdigit (line[1]) &&
@@ -330,10 +487,51 @@ static GnomeVFSResult do_control_write (FtpConnection *conn,
 					gchar *command,
 					GnomeVFSCancellation *cancellation) 
 {
-        gchar *actual_command = g_strdup_printf ("%s\r\n", command);
-	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
-	GnomeVFSResult result = gnome_vfs_socket_buffer_write (conn->socket_buf,
-							       actual_command, bytes, &bytes_written, cancellation);
+        gchar *actual_command;
+	GnomeVFSFileSize bytes, bytes_written;
+	GnomeVFSResult result;
+
+
+	actual_command = g_strdup_printf ("%s\r\n", command);
+
+#ifdef HAVE_GSSAPI
+	if (conn->use_gssapi) {
+		gss_buffer_desc in_buf, out_buf;
+		gss_qop_t maj_stat, min_stat;
+		int conf_state;
+		char *base64;
+		
+		/* The session is protected with GSSAPI, so the command
+		   must be sealed properly */
+		in_buf.value = actual_command;
+		in_buf.length = strlen (actual_command) + 1;
+		maj_stat = gss_seal (&min_stat,
+				     conn->gcontext, (conn->clevel == PROT_P),
+				     GSS_C_QOP_DEFAULT,
+				     &in_buf, &conf_state, &out_buf);
+		g_free (actual_command);
+		
+		if (maj_stat != GSS_S_COMPLETE) {
+			g_warning ("Error sealing the command %s", actual_command);
+			return GNOME_VFS_ERROR_GENERIC;
+		} else if ((conn->clevel == PROT_P) && !conf_state) {
+			g_warning ("GSSAPI didn't encrypt the message");
+			return GNOME_VFS_ERROR_GENERIC;
+		}
+		
+		/* Encode the command in BASE64 */
+		base64 = radix_encode (out_buf.value, out_buf.length);
+		gss_release_buffer (&min_stat, &out_buf);
+		
+		actual_command = g_strdup_printf ("%s %s\r\n", (conn->clevel == PROT_P) ? "ENC" : "MIC", base64);
+		g_free (base64);
+	}
+#endif /* HAVE_GSSAPI */
+	
+	bytes = strlen (actual_command);
+	result = gnome_vfs_socket_buffer_write (conn->socket_buf,
+						actual_command, bytes,
+						&bytes_written, cancellation);
 #if 1
 	ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
 #endif
@@ -430,6 +628,8 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	GnomeVFSInetConnection *data_connection;
 	GnomeVFSSocket *socket;
 	GnomeVFSCancellation *cancellation;
+	struct sockaddr_in my_ip;
+	socklen_t my_ip_len;
 	
 	cancellation = get_cancellation (context);
 
@@ -478,10 +678,15 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
+	
+	my_ip_len = sizeof (my_ip);
+	if (getsockname( gnome_vfs_inet_connection_get_fd (data_connection),
+			 &my_ip, &my_ip_len) == 0) {
+		conn->my_ip = my_ip.sin_addr.s_addr;
+	}
 
 	socket = gnome_vfs_inet_connection_to_socket (data_connection);
 	conn->data_socketbuf = gnome_vfs_socket_buffer_new (socket);
-
 	if (conn->offset) {
 		gchar *tmpstring;
 
@@ -718,6 +923,133 @@ query_keyring_for_authn_info (GnomeVFSURI *uri,
         return ret;
 }
 
+#ifdef HAVE_GSSAPI
+static GnomeVFSResult
+ftp_kerberos_login (FtpConnection *conn, 
+		    const char *user,
+		    char *saved_ip,
+		    GnomeVFSCancellation *cancellation)
+
+{
+	char *tmpstring;
+	struct gss_channel_bindings_struct chan;
+	gss_buffer_desc send_tok, recv_tok, *token_ptr;
+	gss_qop_t maj_stat, min_stat;
+	gss_name_t target_name;
+	struct in_addr my_ip;
+	char *decoded_token;
+	char *encoded_token;
+	int len;
+	GnomeVFSResult result;
+	gboolean auth_ok;
+
+	auth_ok = FALSE;
+	result = do_basic_command (conn, "AUTH GSSAPI", cancellation);
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+	
+	if (conn->response_code != 334) {
+		return GNOME_VFS_ERROR_LOGIN_FAILED;
+	}
+
+	if (inet_aton (saved_ip, &my_ip) == 0) {
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	chan.initiator_addrtype = GSS_C_AF_INET; /* OM_uint32  */
+	chan.initiator_address.length = 4;
+	chan.initiator_address.value = &my_ip.s_addr;
+	chan.acceptor_addrtype = GSS_C_AF_INET; /* OM_uint32 */
+	chan.acceptor_address.length = 4;
+	chan.acceptor_address.value = &conn->my_ip;
+	chan.application_data.length = 0;
+	chan.application_data.value = 0;
+
+	send_tok.value = g_strdup_printf ("host@%s", saved_ip);
+	send_tok.length = strlen (send_tok.value) + 1;
+	maj_stat = gss_import_name (&min_stat, &send_tok, gss_nt_service_name,
+				    &target_name);
+	g_free (send_tok.value);
+	if (maj_stat != GSS_S_COMPLETE) {
+		g_warning ("gss_import_name failed");
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	token_ptr = GSS_C_NO_BUFFER;
+	conn->gcontext = GSS_C_NO_CONTEXT;
+	decoded_token = NULL;
+	do {
+		maj_stat = gss_init_sec_context (&min_stat,
+						 GSS_C_NO_CREDENTIAL, &conn->gcontext,
+						 target_name, GSS_C_NO_OID,
+						 GSS_C_MUTUAL_FLAG | GSS_C_REPLAY_FLAG,
+						 0, &chan, token_ptr, NULL, &send_tok,
+						 NULL, NULL);
+		g_free (decoded_token);
+		if (maj_stat != GSS_S_CONTINUE_NEEDED && maj_stat != GSS_S_COMPLETE) {
+			g_warning ("gss_init_sec_context failed");
+			gss_release_name (&min_stat, &target_name);
+			return GNOME_VFS_ERROR_GENERIC;
+		} 
+
+		if (send_tok.length != 0) {
+			/* Encode the GSSAPI-generated token which will be sent
+			   to the remote server in order to perform authentication. */
+			encoded_token = radix_encode (send_tok.value, send_tok.length);
+			
+			/* Sent the BASE64-encoded, GSSAPI-generated authentication
+			   token to the remote server via the ADAT command. */
+			tmpstring = g_strdup_printf ("ADAT %s", encoded_token);
+			g_free (encoded_token);
+			result = do_basic_command (conn, tmpstring, cancellation);
+			g_free (tmpstring);
+			if (result != GNOME_VFS_OK) {
+				gss_release_name (&min_stat, &target_name);
+				gss_release_buffer (&min_stat, &send_tok);
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+		       
+			if (conn->response_code != 235) {
+				/* If the remote server does not support the ADAT command,
+				   use plain-text login. */
+				gss_release_name (&min_stat, &target_name);
+				gss_release_buffer (&min_stat, &send_tok);
+				return GNOME_VFS_ERROR_LOGIN_FAILED;
+			}
+			
+			decoded_token = radix_decode (conn->response_message + 5,
+						      &len);
+			if (decoded_token == NULL) {
+				gss_release_name (&min_stat, &target_name);
+				gss_release_buffer (&min_stat, &send_tok);
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+			
+			token_ptr = &recv_tok;
+			recv_tok.value = decoded_token;
+			recv_tok.length = len;
+			/* decoded_token is freed in the next iteration */
+		}
+	} while (maj_stat == GSS_S_CONTINUE_NEEDED);
+	
+	gss_release_buffer (&min_stat, &send_tok);
+	gss_release_name (&min_stat, &target_name);
+	conn->use_gssapi = TRUE;
+	conn->clevel = PROT_S;
+	
+	tmpstring = g_strdup_printf ("USER %s", g_get_user_name ());
+	result = do_basic_command (conn, tmpstring, cancellation);
+	g_free (tmpstring);
+
+	if (IS_500 (conn->response_code)) {
+		conn->use_gssapi = FALSE;
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	return GNOME_VFS_OK;
+}
+#endif /* HAVE_GSSAPI */
+
 static GnomeVFSResult
 ftp_login (FtpConnection *conn, 
 	   const char *user, const char *password,
@@ -743,8 +1075,6 @@ static GnomeVFSResult
 try_connection (GnomeVFSURI *uri,
 		char **saved_ip,
 		FtpConnection *conn,
-		gchar *user, 
-		gchar *pass,
 		GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSInetConnection* inet_connection;
@@ -790,9 +1120,68 @@ try_connection (GnomeVFSURI *uri,
 	
         result = get_response (conn, cancellation);
 	
-	if (result != GNOME_VFS_OK) {
+	return result;	
+}
+
+static GnomeVFSResult
+try_kerberos (GnomeVFSURI *uri,
+	      char **saved_ip,
+	      FtpConnection *conn,
+	      const char *user, 
+	      GnomeVFSCancellation *cancellation)
+{
+#ifdef HAVE_GSSAPI
+	GnomeVFSResult result;
+
+	if (conn->socket_buf == NULL) {
+		result = try_connection (uri,
+					 saved_ip,
+					 conn,
+					 cancellation);
+		
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+	}
+	
+        result = ftp_kerberos_login (conn, user, *saved_ip, cancellation);
+	
+        if (result != GNOME_VFS_OK) {
+                /* if login failed, don't free socket buf.
+		   Its reused for normal login */
+		if (result != GNOME_VFS_ERROR_LOGIN_FAILED) {
+			gnome_vfs_socket_buffer_destroy (conn->socket_buf, TRUE, cancellation);
+			conn->socket_buf = NULL;
+		}
                 return result;
         }
+	
+	return result;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+}
+
+static GnomeVFSResult
+try_login (GnomeVFSURI *uri,
+	   char **saved_ip,
+	   FtpConnection *conn,
+	   gchar *user, 
+	   gchar *pass,
+	   GnomeVFSCancellation *cancellation)
+{
+	GnomeVFSResult result;
+
+	if (conn->socket_buf == NULL) {
+		result = try_connection (uri,
+					 saved_ip,
+					 conn,
+					 cancellation);
+		
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+	}
 	
         result = ftp_login (conn, user, pass, cancellation);
 	
@@ -812,7 +1201,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 		       GnomeVFSURI *uri,
 		       GnomeVFSContext *context) 
 {
-	FtpConnection *conn = g_new0 (FtpConnection, 1);
+	FtpConnection *conn;
 	GnomeVFSResult result;
 	gchar *user;
 	gchar *pass;
@@ -824,6 +1213,8 @@ ftp_connection_create (FtpConnectionPool *pool,
 	gboolean ret;
 	
 	cancellation = get_cancellation (context);
+	
+	conn = g_new0 (FtpConnection, 1);
 	conn->pool = pool;
 	conn->uri = gnome_vfs_uri_dup (uri);
 	conn->response_buffer = g_string_new ("");
@@ -833,10 +1224,15 @@ ftp_connection_create (FtpConnectionPool *pool,
 	user = NULL;
 	pass = NULL;
 
-	if (pool->user != NULL &&
-	    pool->password != NULL) {
-		result = try_connection (uri, &pool->ip,
-					 conn, pool->user, pool->password, cancellation);
+	result = try_kerberos (uri, &pool->ip, conn,
+			       gnome_vfs_uri_get_user_name (uri),
+			       cancellation);
+	if (result == GNOME_VFS_OK) {
+		/* Logged in successfully using kerberos */
+	} else if (pool->user != NULL &&
+		   pool->password != NULL) {
+		result = try_login (uri, &pool->ip,
+				    conn, pool->user, pool->password, cancellation);
 		if (result != GNOME_VFS_OK) {
                 	gnome_vfs_uri_unref (conn->uri);
                 	g_string_free (conn->response_buffer, TRUE);
@@ -859,8 +1255,8 @@ ftp_connection_create (FtpConnectionPool *pool,
 		G_LOCK (connection_pools);
 		pool->num_connections--;
 		if (ret) {
-                	result = try_connection (uri,  &pool->ip, conn,
-						 user, pass, cancellation);
+                	result = try_login (uri,  &pool->ip, conn,
+					    user, pass, cancellation);
 			g_free (user);
 			g_free (pass);
 			user = NULL;
@@ -891,8 +1287,8 @@ ftp_connection_create (FtpConnectionPool *pool,
 				g_string_free (conn->response_buffer, TRUE);
                         	conn->response_buffer = g_string_new ("");
 				conn->response_code = -1;
-				result = try_connection (uri,  &pool->ip, conn,
-							 user, pass, cancellation);
+				result = try_login (uri,  &pool->ip, conn,
+						    user, pass, cancellation);
 				if (result == GNOME_VFS_OK) {
 					break;
 				}
@@ -911,8 +1307,8 @@ ftp_connection_create (FtpConnectionPool *pool,
                	user = g_strdup (gnome_vfs_uri_get_user_name (uri));
                	pass = g_strdup (gnome_vfs_uri_get_password (uri));
 		
-		result = try_connection (uri, &pool->ip, conn,
-					 user, pass, cancellation);
+		result = try_login (uri, &pool->ip, conn,
+				    user, pass, cancellation);
 		if (result != GNOME_VFS_OK) {
                 	gnome_vfs_uri_unref (conn->uri);
                 	g_string_free (conn->response_buffer, TRUE);
@@ -986,6 +1382,20 @@ ftp_connection_destroy (FtpConnection *conn,
 	if (conn->data_socketbuf) 
 	        gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, TRUE, cancellation);
 
+	if (conn->gcontext != NULL) {
+		gss_qop_t maj_stat, min_stat;
+		gss_buffer_desc output_tok;
+		
+		maj_stat = gss_delete_sec_context (&min_stat,
+						   conn->gcontext,
+						   &output_tok);
+		
+		if (maj_stat == GSS_S_COMPLETE) {
+			gss_release_buffer (&min_stat, &output_tok);
+		}
+		conn->gcontext = NULL;
+	}
+	
 	g_free (conn);
 	total_connections--;
 }

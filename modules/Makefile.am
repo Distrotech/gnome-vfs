@@ -182,7 +182,7 @@ libbzip2_la_LIBADD = $(MODULES_LIBS) $(BZ2_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libftp_la_SOURCES = ftp-method.c
 libftp_la_LDFLAGS = $(module_flags)
-libftp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
+libftp_la_LIBADD = $(MODULES_LIBS) $(GSSAPI_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ### `nfs' method
 

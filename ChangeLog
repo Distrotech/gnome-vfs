@@ -1,6 +1,13 @@
 2004-07-09  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
+	* modules/Makefile.am:
+	* modules/ftp-method.c:
+	Implement kerberos/gssapi support for the ftp method.
+
+2004-07-09  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
 	* libgnomevfs/Makefile.am:
 	* libgnomevfs/gnome-vfs-hal-mounts.[ch]:
 	* libgnomevfs/gnome-vfs-drive.c:
