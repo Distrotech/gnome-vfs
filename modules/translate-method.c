@@ -46,10 +46,28 @@ static void
 tr_apply_default_mime_type(TranslateMethod * tm,
 			   GnomeVFSFileInfo * file_info)
 {
-	if (!file_info->mime_type && tm->pa.default_mime_type) {
-		file_info->mime_type = g_strdup(tm->pa.default_mime_type);
-		file_info->valid_fields |=
-		    GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+	/* Only apply the default mime-type if the real method returns
+	 * unknown mime-type and the the TranslateMethod /has/ a mime-type */
+	if (file_info->mime_type == NULL) {
+		/* FIXME: this may not be needed since methods need to
+		 * return application/octet-stream if it is an unknown
+		 * mime-type, not NULL */
+		if (tm->pa.default_mime_type) {
+			file_info->mime_type =
+			       	g_strdup (tm->pa.default_mime_type);
+			file_info->valid_fields |=
+				GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		}
+			
+	} else {
+		if ((strcmp (file_info->mime_type, "application/octet-stream") == 0) &&
+		    (tm->pa.default_mime_type != NULL)) {
+			g_free (file_info->mime_type);
+			file_info->mime_type =
+				g_strdup (tm->pa.default_mime_type);
+			file_info->valid_fields |=
+				GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		}		
 	}
 }
 

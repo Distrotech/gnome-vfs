@@ -1,3 +1,9 @@
+2000-07-19  Ali Abdin  <aliabdin@aucegypt.edu>
+
+	* modules/translate-method.c: (tr_apply_default_mime_type): 
+	Modified to also apply default mime-type if the mime-type is
+	application/octet-stream
+
 2000-07-19  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c: (get_method_string): Schemes are
