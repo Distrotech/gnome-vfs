@@ -1,3 +1,11 @@
+2001-06-06  Glynn Foster  <glynn.foster@sun.com>
+
+	* libgnomevfs/gnome-vfs-directory.c: 
+	gnome_vfs_directory_list_load (..) Add a petty code comment
+	so that people looking at the API's don't have to root around
+	the code trying to figure what is returned in the GList
+	
+
 2001-06-06  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/about.sgml:

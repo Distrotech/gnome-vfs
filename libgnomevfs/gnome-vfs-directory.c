@@ -651,7 +651,7 @@ load_from_handle (GList **list,
 
 /**
  * gnome_vfs_directory_list_load:
- * @list: An address of a pointer to a list
+ * @list: An address of a pointer to a list of GnomeVFSFileInfo
  * @text_uri: A text URI
  * @options: Options for loading the directory 
  * @filter: Filter to be applied to the files being read
