@@ -1,6 +1,16 @@
 Things to complete
 ------------------
 
+Tasks and TODO items are being tracked at bugzilla@eazel.com.
+
+
+
+
+
+
+-------------------------------------------------------------------
+old TODO items (some of them no longer rellevant):
+
 * take a look at avfs (http://www.inf.bme.hu/~mszeredi/avfs/), it is
 project similar to mc's vfs, and it is pretty well written.
 
@@ -28,9 +38,6 @@ stuff (Wayne Roberts <wroberts@pwav.com>).
 what step the op is performing.  (E.g for `open()': "connecting to
 ftp.some.site.net", "logging in", "getting dir listing", "retrieving
 file.tar", "extracting file.c".)
-
-* The xfer function does not honour all the flags appropriately: it
-doesn't set the attributes and it cannot copy special files.
 
 * Names containing the `#' character are likely to cause disasters.
 We need to provide quoting everywhere.
@@ -99,22 +106,12 @@ Maybe we need to have more than two levels (i.e. more than just
 Implementation issues
 ---------------------
 
-* find . -name '*.[ch]' -print | xargs grep FIXME
-
 * Every time you read or write asynchronously, the CORBA backend will
 dynamically allocate the buffer.  This is lame: we should just
 re-allocate the buffer only if the required is bigger than the one of
 the previous call.
 
 * Portability checks and fixes.  I am sure I forgot lots of details.
-
-* We currently use GNOME MIME functions for file types instead of GNOME
-metadata.  Should this be fixed so that we use the "type" metadata key
-instead?
-
-* MIME functions in GNOME are non-reentrant.  We need to wrap them
-somehow, or the threaded version of the VFS will suffer major
-breakage when figuring out MIME types.
 
 * Metadata key lists are passed as arrays to the API calls, but are
 passed as GLists to the backend modules.  This requires conversion,

@@ -1,22 +1,29 @@
 Main VFS engine:
-	Ettore Perazzoli <ettore@gnu.org>
+	Ettore Perazzoli <ettore@helixcode.com>
 
 VFS engine contributors:
 	Elliot Lee <sopwith@redhat.com>
 	Maciej Stachowiak <mjs@eazel.com>
 	Darin Adler <darin@eazel.com>
 	John Sullivan <sullivan@eazel.com>
+	Pavel Cisler <pavel@eazel.com>
+	Gene Ragan <gzr@eazel.com>
+	Rebecca Schulman <rebecka@eazel.com>
+	Seth Nickel <seth@eazel.com>
+	Ian McKellar <yakk@yakk.net.au>
+	Michael Meeks <michael@helixcode.com>
+	Dan Winship  <danw@helixcode.com>
 
 "file", "http", "gzip", "extfs" methods:
-	Ettore Perazzoli <ettore@gnu.org>
+	Ettore Perazzoli <ettore@helixcode.com>
 
 "ftp" method:
 	Miguel de Icaza <miguel@gnu.org>, based on the GNU Midnight
 	Commander code by:
 		Norbert Warmuth
 		Ching Hui
-		Jakup Jelinek
-		Pavel Macheck
+		Jakub Jelinek
+		Pavel Machek
 
 "bzip" method:
 	Cody Russell <bratsche@dfw.net>
@@ -26,3 +33,13 @@ VFS engine contributors:
 
 "pipe" and "translate" methods:
 	Elliot Lee <sopwith@redhat.com>
+
+"help" method.
+	Jonathan Blandford  <jrb@redhat.com>
+
+MIME API and the MIME capplet:
+	John Sullivan <sullivan@eazel.com>
+	Pavel Cisler <pavel@eazel.com>
+	Maciej Stachowiak <mjs@eazel.com>
+	Gene Ragan <gzr@eazel.com>
+

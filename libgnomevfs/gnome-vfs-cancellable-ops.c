@@ -275,11 +275,14 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	g_assert (near_uri != NULL);
 		
 	if (near_uri->method->find_directory == NULL) {
+		gnome_vfs_uri_unref (near_uri);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
 	result = near_uri->method->find_directory (near_uri->method, near_uri, kind,
 		result_uri, create_if_needed, permissions, context);
+
+	gnome_vfs_uri_unref (near_uri);
 	return result;
 }
 

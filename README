@@ -1,18 +1,7 @@
 This is the GNOME Virtual File System.
 
-Do not use it in real projects yet, because it is still at the
-experimental stage.
+This is still a development version, the APIs are still undergoing
+incompatible changes.
 
-WARNING: If you want to test the GNOME Virtual File System without
-installing it, you must run the programs in the `test' directory with
-the `vfs-run' wrapper script (which is in the `test' directory as
-well).  For example, do:
-
-    ./vfs-run test-sync /etc/passwd
-
-instead of
-
-    ./test-sync /etc/passwd
-
-This will make sure that the VFS modules being used are the ones you
-have compiled, instead of the ones installed on the system.
+GNOME VFS is currently used as one of the foundations of the Nautilus
+file manager.

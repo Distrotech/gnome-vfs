@@ -1,3 +1,15 @@
+2000-07-03  Pavel Cisler  <pavel@eazel.com>
+
+	* AUTHORS:
+	* HACKING:
+	* README:
+	* TODO:
+	Update these for an upcomming release.
+	
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_find_directory_cancellable):
+	Fix a leak.
+
 2000-07-03  Seth Nickell  <seth@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
