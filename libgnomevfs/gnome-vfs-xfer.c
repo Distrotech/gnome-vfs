@@ -2143,7 +2143,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 
 
 		if (result == GNOME_VFS_OK) {
-			if (!move && progress->progress_info->bytes_total > free_bytes) {
+			if (!move && !link && progress->progress_info->bytes_total > free_bytes) {
 				result = GNOME_VFS_ERROR_NO_SPACE;
 				progress_set_source_target_uris (progress, NULL, target_dir_uri);
 				handle_error (&result, progress, &error_mode, &skip);

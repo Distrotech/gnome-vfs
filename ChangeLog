@@ -1,3 +1,8 @@
+2003-09-23  James M. Cape  <jcape@ignore-your.tv>
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri_internal):
+	Don't check volume size info when symlinking (Fixes #48467).
+
 2003-09-17  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-async-job-map.c (_gnome_vfs_async_job_map_get_job):
