@@ -1515,10 +1515,11 @@ gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, const char *
 }
 
 
-static DIR *
+static gboolean
 ensure_user_directory_exist (void)
 {
 	DIR *dir;
+	gboolean retval;
 
 	if (stat (user_mime_dir.dirname, &user_mime_dir.s) != -1)
 		user_mime_dir.valid = TRUE;
@@ -1533,7 +1534,7 @@ ensure_user_directory_exist (void)
 		result = mkdir (user_mime_dir.dirname, S_IRWXU );
 		if (result != 0) {
 			user_mime_dir.valid = FALSE;
-			return NULL;
+			return FALSE;
 		}
 		dir = opendir (user_mime_dir.dirname);
 		if (dir == NULL) {
@@ -1541,7 +1542,9 @@ ensure_user_directory_exist (void)
 		}
 	}
 
-	return dir;
+	retval = (dir != NULL);
+	closedir (dir);
+	return retval;
 }
 
 
@@ -1567,12 +1570,10 @@ write_back_mime_user_file_callback (char		*mime_type,
 static GnomeVFSResult
 write_back_mime_user_file (void)
 {
-	DIR *dir;
 	FILE *file;
 	char *filename;
 
-	dir = ensure_user_directory_exist ();
-	if (dir == NULL) {
+	if (!ensure_user_directory_exist ()) {
 		return gnome_vfs_result_from_errno ();
 	}
 
@@ -1623,12 +1624,10 @@ write_back_keys_user_file_callback (char	     *mime_type,
 static GnomeVFSResult
 write_back_keys_user_file (void)
 {
-	DIR *dir;
 	FILE *file;
 	char *filename;
 
-	dir = ensure_user_directory_exist ();
-	if (dir == NULL) {
+	if (!ensure_user_directory_exist ()) {
 		return gnome_vfs_result_from_errno ();
 	}
 

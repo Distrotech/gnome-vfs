@@ -1,5 +1,11 @@
 2002-12-05  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c: (ensure_user_directory_exist),
+	(write_back_mime_user_file), (write_back_keys_user_file):
+	Ensure directory stream is never leaked.
+
+2002-12-05  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
 	* libgnomevfs/gnome-vfs-mime-monitor.c:
 	(gnome_vfs_mime_monitor_init):
 	Ensure user mime dir exists before monitoring it 
