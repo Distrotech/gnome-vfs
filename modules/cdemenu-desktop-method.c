@@ -614,9 +614,14 @@ create_cde_icon_name_cache (void)
 	mode_t old_mask;
 	char *icon_name_cache_path;
 	
-	if ((t = fork ()) < 0) g_error ("Unable to fork.");
-	else if (t) wait(NULL);
-	else {
+	if ((t = fork ()) < 0) {
+		g_error ("Unable to fork.");
+	} else if (t) {
+		/* On a Solaris box, waitpid() fails with an interrupted system call.
+		   Hence, loop till it succeeds. Avoids zombies
+		*/
+		while ((waitpid (t,NULL,0) == -1) && errno == EINTR);
+	} else {
 		icon_name_cache_path = g_strconcat (g_get_home_dir (), CDE_ICON_NAME_CACHE, NULL);
 		old_mask = umask(033);
 		fd = open (icon_name_cache_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);

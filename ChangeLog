@@ -1,3 +1,10 @@
+2003-05-03  Arvind Samptur  <arvind.samptur@wipro.com>
+	* modules/cdemenu-desktop-method.c:
+	(create_cde_icon_name_cache): While running the dttypes
+	command to create a icon cache for the cde menu, we need
+	to reap the child process. wait() currently on a solaris box
+	fails with an EINTR. So loop till you succeed. Fixes #111628
+
 2003-04-25  Alexander Larsson  <alexl@redhat.com>
 
 	Based on patch by Frank Worsley <fworsley@shaw.ca>
