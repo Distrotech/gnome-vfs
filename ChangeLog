@@ -1,3 +1,16 @@
+2001-08-22  Dan Winship  <danw@ximian.com>
+
+	* libgnomevfs-pthread/gnome-vfs-pthread.c: Add calls to wrap
+	recursive mutex initialization/handling for systems that support
+	them, and to implement them for systems that don't.
+
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c: Use the
+	recursive mutex utilities from gnome-vfs-pthread.c
+
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c: Likewise.
+
+	* modules/http-cache.c: Likewise.
+
 2001-08-06  jacob berkman  <jacob@ximian.com>
 
 	* modules/ftp-method.c (do_open_directory): do a CWD before LIST
