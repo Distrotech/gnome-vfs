@@ -1,3 +1,8 @@
+2000-10-04  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	Move includes around to unbreak the build on Linux.
+
 2000-09-21  Chris Toshok  <toshok@helixcode.com>
 
 	* configure.in: add checks for sys/vfs.h and sys/mount.h
