@@ -64,7 +64,7 @@
 #include "http-method.h"
 
 
-#if 1
+#if 0
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>

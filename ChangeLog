@@ -1,5 +1,10 @@
 2000-10-11  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/http-method.c:
+	Oops. I left the debug messages on
+
+2000-10-11  Mike Fleming  <mfleming@eazel.com>
+
 	* modules/http-method.c: (propfind_href_to_vfs_uri):
 	Forgoet a NULL on g_strconcat, as I'm prone to.
 
