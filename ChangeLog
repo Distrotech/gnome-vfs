@@ -1,5 +1,13 @@
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
+	Final stage in renaming.
+	
+	* modules/ftp-method.c:
+	* modules/ftp-method.h:
+	Changed internal references form new-ftp-method to new-ftp-method.
+	
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
 	Added renamed new-ftp module files as ftp modules.
 	
 	* modules/ftp-method.c: (FTP_DEBUG), (ftp_response_to_vfs_result),

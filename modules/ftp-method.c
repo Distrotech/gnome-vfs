@@ -1,4 +1,4 @@
-/* newftp-method.c - VFS modules for FTP
+/* ftp-method.c - VFS modules for FTP
 
    Copyright (C) 2000 Ian McKellar
 
@@ -50,7 +50,7 @@
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-mime.h"
 
-#include "newftp-method.h"
+#include "ftp-method.h"
 
 /* maximum size of response we're expecting to get */
 #define MAX_RESPONSE_SIZE 4096 
