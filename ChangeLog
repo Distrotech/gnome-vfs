@@ -1,3 +1,8 @@
+2000-10-09  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: upped the version to 0.3.1.0 as 0.3.1 has already been
+	released many moons ago
+
 2000-10-05  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (http_proxy_for_host_port),
