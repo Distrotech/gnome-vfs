@@ -69,8 +69,7 @@ typedef struct _Entry Entry;
 typedef struct _Folder Folder;
 typedef struct _EntryFile EntryFile;
 typedef struct _Keyword Keyword;
-typedef struct _FolderMonitor FolderMonitor;
-typedef struct _FileMonitor FileMonitor;
+typedef struct _FileMonitorHandle FileMonitorHandle;
 typedef struct _StatLoc StatLoc;
 
 /* TODO before 2.0: */
@@ -88,10 +87,6 @@ typedef struct _StatLoc StatLoc;
 /* FIXME: related to the above: we should support things being on non
  * file: filesystems.  Such as having the vfolder info file on http
  * somewhere or some such nonsense :) */
-
-typedef struct {
-	GnomeVFSURI *uri;
-} FileMonitorHandle;
 
 static GnomeVFSMethod *parent_method = NULL;
 
@@ -151,7 +146,7 @@ struct _Entry {
 		      used for the Unallocated query type */
 	char *name;
 
-	/* FIXME: */GSList *monitors;
+	GSList *monitors;
 };
 
 struct _EntryFile {
@@ -172,9 +167,6 @@ struct _Folder {
 	char *desktop_file; /* the .directory file */
 
 	Query *query;
-
-	gboolean monitored;
-	FileMonitorHandle *monitor_handle;
 
 	/* The following is for per file
 	 * access */
@@ -263,8 +255,10 @@ struct _VFolderInfo {
 	/* FIXME: */StatLoc *desktop_dir_statloc;
 	/* FIXME: */StatLoc *user_desktop_dir_statloc;
 
-	/* FIXME: */GSList *file_monitors; /* FileMonitor */
-	/* FIXME: */GSList *folder_monitors; /* FolderMonitor */
+	/* FIXME: */GSList *file_monitors; /* FileMonitorHandle */
+	/* FIXME: */GSList *free_file_monitors; /* FileMonitorHandle */
+	GSList *folder_monitors; /* FileMonitorHandle */
+	GSList *free_folder_monitors; /* FileMonitorHandle */
 
 	GSList *item_dir_monitors; /* GnomeVFSMonitorHandle */
 
@@ -277,14 +271,11 @@ struct _VFolderInfo {
 	guint reread_queue;
 };
 
-struct _FolderMonitor {
-	char *path;
-};
-
-struct _FileMonitor {
-	char *name;
-	char *path;
-	GnomeVFSMonitorHandle *handle;
+struct _FileMonitorHandle {
+	int refcount;
+	gboolean exists;
+	gboolean dir_monitor; /* TRUE if dir, FALSE if file */
+	GnomeVFSURI *uri;
 };
 
 #define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
@@ -319,6 +310,61 @@ static gboolean vfolder_info_reload_unlocked	(VFolderInfo *info,
 						 GnomeVFSContext *context);
 static void     invalidate_folder_subfolders    (Folder   *folder,
 						 gboolean  lock_taken);
+static Folder *	resolve_folder			(VFolderInfo *info,
+						 const char *path,
+						 gboolean ignore_basename,
+						 GnomeVFSResult *result,
+						 GnomeVFSContext *context);
+
+static FileMonitorHandle *
+file_monitor_handle_ref_unlocked (FileMonitorHandle *h)
+{
+	h->refcount ++;
+	return h;
+}
+
+static void
+file_monitor_handle_unref_unlocked (FileMonitorHandle *h)
+{
+	h->refcount --;
+	if (h->refcount == 0) {
+		gnome_vfs_uri_unref (h->uri);
+		h->uri = NULL;
+	}
+}
+
+static void
+emit_monitor (Folder *folder, int type)
+{
+	GSList *li;
+	for (li = ((Entry *)folder)->monitors;
+	     li != NULL;
+	     li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) handle,
+					    handle->uri, type);
+	}
+}
+
+static void
+emit_and_delete_monitor (VFolderInfo *info, Folder *folder)
+{
+	GSList *li;
+	for (li = ((Entry *)folder)->monitors;
+	     li != NULL;
+	     li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		li->data = NULL;
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) handle,
+					    handle->uri,
+					    GNOME_VFS_MONITOR_EVENT_DELETED);
+
+		info->free_folder_monitors = 
+			g_slist_prepend (info->free_folder_monitors, handle);
+	}
+	g_slist_free (((Entry *)folder)->monitors);
+	((Entry *)folder)->monitors = NULL;
+}
 
 static gboolean
 check_ext (const char *name, const char *ext_check)
@@ -626,6 +672,13 @@ entry_unref (Entry *entry)
 	if (entry->refcount == 0) {
 		g_free (entry->name);
 		entry->name = NULL;
+
+		g_slist_foreach (entry->monitors,
+				 (GFunc)file_monitor_handle_unref_unlocked,
+				 NULL);
+		g_slist_free (entry->monitors);
+		entry->monitors = NULL;
+
 		if (entry->type == ENTRY_FILE)
 			destroy_entry_file ((EntryFile *)entry);
 		else /* ENTRY_FOLDER */
@@ -1094,6 +1147,57 @@ query_destroy (Query *query)
 	g_free (query);
 }
 
+static void
+add_folder_monitor_unlocked (VFolderInfo *info,
+			     FileMonitorHandle *handle)
+{
+	VFolderURI vuri;
+	GnomeVFSResult result;
+	Folder *folder;
+
+	VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+	file_monitor_handle_ref_unlocked (handle);
+
+	info->folder_monitors = 
+		g_slist_prepend (info->folder_monitors, handle);
+
+	folder = resolve_folder (info, 
+				 vuri.path,
+				 FALSE /* ignore_basename */,
+				 &result,
+				 NULL);
+
+	if (folder == NULL) {
+		file_monitor_handle_ref_unlocked (handle);
+
+		info->free_folder_monitors = 
+			g_slist_prepend (info->free_folder_monitors, handle);
+
+		if (handle->exists) {
+			handle->exists = FALSE;
+			gnome_vfs_monitor_callback
+				((GnomeVFSMethodHandle *)handle,
+				 handle->uri, 
+				 GNOME_VFS_MONITOR_EVENT_DELETED);
+		}
+	} else {
+		file_monitor_handle_ref_unlocked (handle);
+
+		((Entry *)folder)->monitors = 
+			g_slist_prepend (((Entry *)folder)->monitors, handle);
+
+		if ( ! handle->exists) {
+			handle->exists = TRUE;
+			gnome_vfs_monitor_callback
+				((GnomeVFSMethodHandle *)handle,
+				 handle->uri, 
+				 GNOME_VFS_MONITOR_EVENT_CREATED);
+		}
+	}
+
+}
+
 static inline void
 invalidate_folder_T (Folder *folder)
 {
@@ -1127,10 +1231,7 @@ invalidate_folder_subfolders (Folder   *folder,
 			invalidate_folder_T (subfolder);
 	}
 
-	if (folder->monitored)
-		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) folder->monitor_handle,
-					    folder->monitor_handle->uri,
-					    GNOME_VFS_MONITOR_EVENT_CHANGED);
+	emit_monitor (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
 }
 
 /* FIXME: this is UGLY!, we need to figure out when the file
@@ -1568,6 +1669,26 @@ vfolder_info_free_internals_unlocked (VFolderInfo *info)
 	g_slist_foreach (info->stat_dirs, (GFunc)g_free, NULL);
 	g_slist_free (info->stat_dirs);
 	info->stat_dirs = NULL;
+
+	g_slist_foreach (info->folder_monitors,
+			 (GFunc)file_monitor_handle_unref_unlocked, NULL);
+	g_slist_free (info->folder_monitors);
+	info->folder_monitors = NULL;
+
+	g_slist_foreach (info->free_folder_monitors,
+			 (GFunc)file_monitor_handle_unref_unlocked, NULL);
+	g_slist_free (info->free_folder_monitors);
+	info->free_folder_monitors = NULL;
+
+	g_slist_foreach (info->file_monitors,
+			 (GFunc)file_monitor_handle_unref_unlocked, NULL);
+	g_slist_free (info->file_monitors);
+	info->file_monitors = NULL;
+
+	g_slist_foreach (info->free_file_monitors,
+			 (GFunc)file_monitor_handle_unref_unlocked, NULL);
+	g_slist_free (info->free_file_monitors);
+	info->free_file_monitors = NULL;
 
 	if (info->reread_queue != 0)
 		g_source_remove (info->reread_queue);
@@ -2632,6 +2753,7 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 	VFolderInfo *newinfo;
 	gboolean setup_filenames;
 	gboolean setup_itemdirs;
+	GSList *li;
 
 	/* FIXME: Hmmm, race, there is no locking YAIKES,
 	 * we need filename locking for changes.  eek, eek, eek */
@@ -2720,6 +2842,31 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 		       setup_itemdirs,
 		       /* FIXME: setup_desktop_dirs */ TRUE,
 		       NULL, NULL);
+
+	for (li = info->folder_monitors;
+	     li != NULL;
+	     li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		li->data = NULL;
+
+		add_folder_monitor_unlocked (newinfo, handle);
+
+		file_monitor_handle_unref_unlocked (handle);
+	}
+	g_slist_free (info->folder_monitors);
+	info->folder_monitors = NULL;
+
+	g_slist_foreach (info->free_folder_monitors,
+			 (GFunc)file_monitor_handle_unref_unlocked, NULL);
+	g_slist_free (info->free_folder_monitors);
+	info->folder_monitors = NULL;
+
+	/* FIXME: implement file_monitors */
+
+	/* emit changed on all folders, a bit drastic, but oh well,
+	 * we also invalidate all folders at the same time, but that is
+	 * irrelevant since they should all just be invalid to begin with */
+	invalidate_folder_T (info->root);
 
 	/* FIXME: make sure if this was enough, I think it was */
 
@@ -3904,7 +4051,16 @@ do_close (GnomeVFSMethod *method,
 		 * nothing */
 
 		/* Perhaps a bit drastic */
+		/* also this emits the CHANGED monitor signal */
 		invalidate_folder_T (handle->info->root);
+	} else if (handle->write &&
+		   handle->entry != NULL &&
+		   handle->entry->type == ENTRY_FOLDER &&
+		   handle->is_directory_file) {
+		/* if we're monitoring this directory, emit the CHANGED
+		 * monitor thing */
+		emit_monitor ((Folder *)(handle->entry),
+			      GNOME_VFS_MONITOR_EVENT_CHANGED);
 	}
 
 	whack_handle (handle);
@@ -4459,6 +4615,46 @@ do_is_local (GnomeVFSMethod *method,
 	return TRUE;
 }
 
+static void
+try_free_folder_monitors_create_unlocked (VFolderInfo *info,
+					  Folder *folder)
+{
+	GSList *li, *list;
+
+	list = g_slist_copy (info->free_folder_monitors);
+
+	for (li = list; li != NULL; li = li->next) {
+		FileMonitorHandle *handle = li->data;
+		Folder *folder;
+		VFolderURI vuri;
+		GnomeVFSResult result;
+
+		/* Evil! EVIL URI PARSING. this will eat a lot of stack if we
+		 * have lots of free monitors */
+
+		VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+		folder = resolve_folder (info, 
+					 vuri.path,
+					 FALSE /* ignore_basename */,
+					 &result,
+					 NULL);
+
+		if (folder == NULL)
+			continue;
+
+		info->free_folder_monitors =
+			g_slist_remove (info->free_folder_monitors, handle);
+		((Entry *)folder)->monitors =
+			g_slist_prepend (((Entry *)folder)->monitors, handle);
+
+		handle->exists = TRUE;
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
+					    handle->uri, 
+					    GNOME_VFS_MONITOR_EVENT_CREATED);
+	}
+}
+
 
 static GnomeVFSResult
 do_make_directory (GnomeVFSMethod *method,
@@ -4503,7 +4699,13 @@ do_make_directory (GnomeVFSMethod *method,
 
 	folder = folder_new (vuri.file);
 	parent->subfolders = g_slist_append (parent->subfolders, folder);
+	folder->parent = parent;
 	parent->up_to_date = FALSE;
+
+	try_free_folder_monitors_create_unlocked (info, folder);
+
+	/* parent changed */
+	emit_monitor (parent, GNOME_VFS_MONITOR_EVENT_CHANGED);
 
 	vfolder_info_write_user (info);
 	G_UNLOCK (vfolder_lock);
@@ -4569,6 +4771,8 @@ do_remove_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
 	}
 
+	emit_and_delete_monitor (info, folder);
+
 	if (folder->only_unallocated) {
 		GSList *li = g_slist_find (info->unallocated_folders,
 					   folder);
@@ -4594,6 +4798,9 @@ do_remove_directory (GnomeVFSMethod *method,
 		parent->up_to_date = FALSE;
 
 		entry_unref ((Entry *)folder);
+
+		/* parent changed */
+		emit_monitor (parent, GNOME_VFS_MONITOR_EVENT_CHANGED);
 	}
 
 	vfolder_info_write_user (info);
@@ -4728,6 +4935,13 @@ move_directory_file (VFolderInfo *info,
 	new_folder->desktop_file = old_folder->desktop_file;
 	old_folder->desktop_file = NULL;
 
+	/* is this too drastic, it will requery the folder? */
+	new_folder->up_to_date = FALSE;
+	old_folder->up_to_date = FALSE;
+
+	emit_monitor (new_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+	emit_monitor (old_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+
 	vfolder_info_write_user (info);
 
 	return GNOME_VFS_OK;
@@ -4785,6 +4999,12 @@ move_folder (VFolderInfo *info,
 					     source);
 
 	source->parent = target;
+
+	source->up_to_date = FALSE;
+	target->up_to_date = FALSE;
+
+	emit_monitor (source, GNOME_VFS_MONITOR_EVENT_CHANGED);
+	emit_monitor (target, GNOME_VFS_MONITOR_EVENT_CHANGED);
 
 	vfolder_info_write_user (info);
 
@@ -4891,6 +5111,8 @@ do_move (GnomeVFSMethod *method,
 						      old_entry);
 		entry_unref (old_entry);
 
+		emit_monitor (old_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+
 		vfolder_info_write_user (info);
 
 		G_UNLOCK (vfolder_lock);
@@ -4933,6 +5155,9 @@ do_move (GnomeVFSMethod *method,
 		old_folder->entries = g_slist_remove (old_folder->entries, 
 						      old_entry);
 		entry_unref (old_entry);
+
+		emit_monitor (new_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+		emit_monitor (old_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
 
 		vfolder_info_write_user (info);
 
@@ -4999,6 +5224,8 @@ do_unlink (GnomeVFSMethod *method,
 		g_free (folder->desktop_file);
 		folder->desktop_file = NULL;
 
+		emit_monitor (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+
 		vfolder_info_write_user (info);
 
 		G_UNLOCK (vfolder_lock);
@@ -5018,6 +5245,8 @@ do_unlink (GnomeVFSMethod *method,
 
 	remove_file (the_folder, vuri.file);
 
+	emit_monitor (the_folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+
 	/* evil, we must remove this from the unallocated folders as well
 	 * so that it magically doesn't appear there.  But it's not so simple.
 	 * We only want to remove it if it isn't in that folder already. */
@@ -5036,8 +5265,10 @@ do_unlink (GnomeVFSMethod *method,
 					NULL /* except */,
 					FALSE /* ignore_unallocated */);
 		l = g_slist_find (folder->entries, entry);
-		if (l == NULL)
+		if (l == NULL) {
 			remove_file (folder, vuri.file);
+			emit_monitor (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+		}
 	}
 
 	/* FIXME: if this was a user file and this is the only
@@ -5121,39 +5352,54 @@ do_monitor_add (GnomeVFSMethod *method,
 {
 	VFolderInfo *info;
 	VFolderURI vuri;
-	GnomeVFSContext *context;
 	GnomeVFSResult result;
 	Folder *folder;
 	FileMonitorHandle *handle;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
-	context = gnome_vfs_context_new();
-
 	if (monitor_type == GNOME_VFS_MONITOR_DIRECTORY) {
-		info = get_vfolder_info (vuri.scheme, &result, context);
+		info = get_vfolder_info (vuri.scheme, &result, NULL);
 		if (info == NULL)
 			return result;
+
+		G_LOCK (vfolder_lock);
 
 		folder = resolve_folder (info, 
 					 vuri.path,
 					 FALSE /* ignore_basename */,
 					 &result,
-					 context);
+					 NULL);
 		if (folder == NULL)
 			return result;
 
 		handle = g_new0 (FileMonitorHandle, 1);
-		handle->uri = uri;
-		gnome_vfs_uri_ref (uri);
+		handle->refcount = 2;
+		handle->uri = gnome_vfs_uri_dup (uri);
+		handle->dir_monitor = TRUE;
 
-		folder->monitor_handle = handle;
-		folder->monitored = TRUE;
+		if (folder == NULL) {
+			handle->exists = FALSE;
+			info->free_folder_monitors = 
+				g_slist_prepend (info->free_folder_monitors,
+						 handle);
+		} else {
+			handle->exists = TRUE;
+			((Entry *)folder)->monitors = 
+				g_slist_prepend (((Entry *)folder)->monitors,
+						 handle);
+		}
+
+		info->folder_monitors = 
+			g_slist_prepend (info->folder_monitors, handle);
+
+		G_UNLOCK (vfolder_lock);
 
 		*method_handle_return = (GnomeVFSMethodHandle *) handle;
 
 		return GNOME_VFS_OK;
 	} else {
+		/* FIXME: implement */
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 }
@@ -5162,8 +5408,74 @@ static GnomeVFSResult
 do_monitor_cancel (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
-	/* FIXME: implement */
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	FileMonitorHandle *handle;
+	VFolderInfo *info;
+	VFolderURI vuri;
+	GnomeVFSResult result;
+	Folder *folder;
+	GSList *li;
+
+	handle = (FileMonitorHandle *)method_handle;
+
+	VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+	if (handle->dir_monitor) {
+		info = get_vfolder_info (vuri.scheme, &result, NULL);
+		if (info == NULL)
+			return result;
+
+		G_LOCK (vfolder_lock);
+
+		folder = resolve_folder (info, 
+					 vuri.path,
+					 FALSE /* ignore_basename */,
+					 &result,
+					 NULL);
+
+		for (li = info->folder_monitors; li != NULL; li = li->next) {
+			FileMonitorHandle *h = li->data;
+			if (h != handle)
+				continue;
+			info->folder_monitors = g_slist_delete_link
+				(info->folder_monitors, li);
+			file_monitor_handle_unref_unlocked (h);
+			break;
+		}
+
+		if (folder == NULL) {
+			for (li = info->free_folder_monitors;
+			     li != NULL;
+			     li = li->next) {
+				FileMonitorHandle *h = li->data;
+				if (h != handle)
+					continue;
+				info->free_folder_monitors = g_slist_delete_link
+					(info->free_folder_monitors, li);
+				file_monitor_handle_unref_unlocked (h);
+				break;
+			}
+		} else {
+			for (li = ((Entry *)folder)->monitors;
+			     li != NULL;
+			     li = li->next) {
+				FileMonitorHandle *h = li->data;
+				if (h != handle)
+					continue;
+				((Entry *)folder)->monitors =
+					g_slist_delete_link
+					(((Entry *)folder)->monitors, li);
+				file_monitor_handle_unref_unlocked (h);
+				break;
+			}
+		}
+
+		G_UNLOCK (vfolder_lock);
+
+		return GNOME_VFS_OK;
+	} else {
+		/* FIXME: implement */
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 }
 
 

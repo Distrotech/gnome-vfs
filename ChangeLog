@@ -1,3 +1,12 @@
+Wed Jun 05 12:31:10 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: implement directory monitors
+	  as per the 2.0.0 bug #81670.  Still not completely finished since
+	  according to test-monitor we are getting changes, but nautilus
+	  refuses to update.  So I think there is some problem in nautilus,
+	  perhaps it doesn't like the fact that it has dir monitors but
+	  not file monitors?
+
 2002-06-05  Yanko Kaneti <yaneti@declera.com>
 
 	* configure.in: (ALL_LINGUAS) Added Bulgarian (bg).
