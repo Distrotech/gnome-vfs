@@ -1,5 +1,8 @@
 1999-12-21  Elliot Lee  <sopwith@redhat.com>
 
+	* modules/http-method.c: Don't pass the full URL, since this violates the HTTP spec.
+	* libgnomevfs/gnome-vfs-uri.c: Properly implement handling of all the hide_options.
+
 	* modules/http-method.c: Don't treat redirections as an error.
 
 	This is not quite the "right" solution, since redirections are

@@ -513,7 +513,6 @@ make_request (HttpFileHandle **handle_return,
 	GnomeVFSToplevelURI *toplevel_uri;
 	GString *request;
 	gchar *uri_string;
-	guint len;
 	guint host_port;
 
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
@@ -533,7 +532,12 @@ make_request (HttpFileHandle **handle_return,
 
 	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
 
-	uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME */
+	uri_string = gnome_vfs_uri_to_string (uri,
+					      GNOME_VFS_URI_HIDE_USER_NAME
+					      |GNOME_VFS_URI_HIDE_PASSWORD
+					      |GNOME_VFS_URI_HIDE_HOST_NAME
+					      |GNOME_VFS_URI_HIDE_HOST_PORT
+					      |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
 
 	/* Request line.  */
 	request = g_string_new (method);
@@ -555,8 +559,7 @@ make_request (HttpFileHandle **handle_return,
 	g_string_append (request, "\r\n");
 
 	/* Send the request.  */
-	len = strlen (request->str);
-	result = gnome_vfs_iobuf_write (iobuf, request->str, len,
+	result = gnome_vfs_iobuf_write (iobuf, request->str, request->len,
 					&bytes_written);
 	g_string_free (request, TRUE);
 

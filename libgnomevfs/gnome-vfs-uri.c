@@ -528,7 +528,8 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 		guint count;
 
 		count = 0;
-		concat_list[count++] = "//";
+		if(!(hide_options & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD))
+			concat_list[count++] = "//";
 
 		if (toplevel->user_name != NULL
 		    && ! (hide_options & GNOME_VFS_URI_HIDE_USER_NAME)) {
@@ -541,9 +542,10 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			concat_list[count++] = "@";
 		}
 
-		concat_list[count++] = toplevel->host_name;
+		if(!(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT))
+			concat_list[count++] = toplevel->host_name;
 
-		if (toplevel->host_port != 0) {
+		if (toplevel->host_port != 0 && !(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT)) {
 			port_string = g_strdup_printf ("%d",
 						       toplevel->host_port);
 			concat_list[count++] = ":";
