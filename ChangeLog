@@ -1,3 +1,10 @@
+2000-11-20  Matt Bissiri  <matt@bissiri.org>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_icon_path_from_filename):
+	Do not free the return value of g_getenv.
+	(fixes a segfault that occurs if GNOME_PATH is set)
+
 2000-11-19  Michael K. Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c:

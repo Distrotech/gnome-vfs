@@ -743,17 +743,17 @@ hack_file_exists (const char *filename)
 char *
 gnome_vfs_icon_path_from_filename (const char *relative_filename)
 {
-	char *gnome_var, *full_filename;
+	const char *gnome_var;
+	char *full_filename;
 	char **paths, **temp_paths;
 
 	gnome_var = g_getenv ("GNOME_PATH");
 
 	if (gnome_var == NULL) {
-		gnome_var = g_strdup (GNOME_VFS_PREFIX);
+		gnome_var = GNOME_VFS_PREFIX;
 	}
 
 	paths = g_strsplit (gnome_var, ":", 0); 
-	g_free (gnome_var);
 
 	for (temp_paths = paths; *temp_paths != NULL; temp_paths++) {
 		full_filename = g_strconcat (*temp_paths, "/share/pixmaps/", relative_filename, NULL);
