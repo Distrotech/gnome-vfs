@@ -1,3 +1,8 @@
+2004-08-16  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Add some missing goject-2.0 references to PKG_CHECK macros.
+
 2004-08-16  Christophe Fergeau  <teuf@gnome.org>
 
 	* doc/Makefile.am:
