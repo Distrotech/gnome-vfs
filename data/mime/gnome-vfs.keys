@@ -230,31 +230,12 @@ application/x-tar
 	description=tar archive
 	icon-filename=gnome-package.png
 
-application/x-tex
-	description=TeX document
-
-application/x-texinfo
-	description=TeXInfo document
-
 application/x-theme
 	description=theme
-
-application/x-troff
-	description=Troff document
-
-application/x-troff-man
-	description=manual page
-	icon-filename=gnome-manpage.png
 
 application/x-troff-man-compressed
 	description=manual page archive
 	icon-filename=gnome-manpage.png
-
-application/x-troff-me
-	description=Troff ME-macros document
-
-application/x-troff-ms
-	description=Troff MS-macros document
 
 application/x-unix-archive
 	description=archive
@@ -699,6 +680,25 @@ text/x-sql
 
 text/x-tcl
 	description=Tcl script
+
+text/x-tex
+	description=TeX document
+
+text/x-texinfo
+	description=TeXInfo document
+
+text/x-troff
+	description=Troff document
+
+text/x-troff-man
+	description=manual page
+	icon-filename=gnome-manpage.png
+
+text/x-troff-me
+	description=Troff ME-macros document
+
+text/x-troff-ms
+	description=Troff MS-macros document
 
 text/x-vCalendar
 	description=calendar document

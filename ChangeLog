@@ -1,3 +1,11 @@
+2000-06-20  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Finished renaming of some types
+	from application/x-foo to text/x-foo.
+	* data/mime/gnome-vfs.mime: Removed mysterious colons at the
+	ends of some mime type names that was causing them not to match
+	the keys.
+
 2000-06-19  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

@@ -329,7 +329,7 @@ image/x-portable-graymap
 image/x-portable-pixmap
 	ext: ppm
 
-image/x-psd:
+image/x-psd
 	ext: psd
 
 image/x-rgb
@@ -341,7 +341,7 @@ image/x-tga
 image/x-xbitmap
 	ext: xbm
 
-image/x-xcf:
+image/x-xcf
 	ext: xcf
 
 image/x-xfig
@@ -390,7 +390,7 @@ text/tab-separated-values
 text/xml
 	ext: xml
 
-text/x-authors:
+text/x-authors
 	regex: AUTHORS
 	
 text/x-c
@@ -402,10 +402,10 @@ text/x-c++
 text/x-comma-separated-values
 	ext: csv
 
-text/x-copying:
+text/x-copying
 	regex: COPYING	
 
-text/x-credits:
+text/x-credits
 	regex: CREDITS
 
 text/x-csh
@@ -423,13 +423,13 @@ text/x-dtd
 text/x-emacs-lisp
 	ext: el
 
-text/x-fortran:
+text/x-fortran
 	ext: f
 
 text/x-idl
         ext: idl
 
-text/x-install:
+text/x-install
 	regex: INSTALL
 
 text/x-java
@@ -438,16 +438,16 @@ text/x-java
 text/x-gtkrc
         regex: [.|]gtkrc
 
-text/x-makefile:
+text/x-makefile
 	regex: [Mm]akefile
 
 text/x-perl
 	ext: pl perl
 
-text/x-python:
+text/x-python
 	ext: py
 
-text/x-readme:
+text/x-readme
 	regex: README.*
 
 text/x-scheme
@@ -486,7 +486,7 @@ text/x-troff-me
 text/x-troff-ms
 	ext: ms
 
-text/x-vCalendar:
+text/x-vCalendar
 	ext: vcs vcf
 
 text/x-vCard
@@ -507,7 +507,7 @@ video/x-fli
 video/x-flc
 	ext: flc
 
-video/x-msvideo:
+video/x-msvideo
 	ext: avi
 
 video/x-sgi-movie
