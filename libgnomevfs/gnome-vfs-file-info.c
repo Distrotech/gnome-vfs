@@ -412,7 +412,7 @@ gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 	}
 
 	g_assert (a->mime_type != NULL && b->mime_type != NULL);
-	return strcasecmp (a->mime_type, b->mime_type) == 0;
+	return g_strcasecmp (a->mime_type, b->mime_type) == 0;
 }
 
 gint

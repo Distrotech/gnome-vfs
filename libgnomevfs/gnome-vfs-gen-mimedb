@@ -18,7 +18,7 @@ sed_quote_subst='s/\([\\`\\"$\\\\]\)/\\\1/g'
 # if CDPATH is set.
 if test "${CDPATH+set}" = set; then CDPATH=; export CDPATH; fi
 
-relink_command="gcc -g -Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -o \$progdir/\$file gnome-vfs-gen-mimedb.o .libs/libgnomevfs.so -L/gnome/lib -L/usr/X11R6/lib -L/usr/lib -lgnome -lgnomesupport -lesd -laudiofile -lm -ldb1 -lglib -ldl -lgmodule -lgthread -lglib -lpthread -ldl -Wl,--rpath -Wl,/home/gnome-source/gnome-vfs/libgnomevfs/.libs -Wl,--rpath -Wl,/gnome/lib"
+relink_command="gcc -Wall -O -g -O2 -g -Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -o \$progdir/\$file gnome-vfs-gen-mimedb.o .libs/libgnomevfs.so -L/opt/gnome/lib -L/usr/X11R6/lib -L/usr/lib -lgnome -lgnomesupport -lesd -laudiofile -lm -ldb -lglib -ldl -lgmodule -lgthread -lglib -lpthread -ldl -Wl,--rpath -Wl,/opt/gnome/src/gnome-vfs/libgnomevfs/.libs -Wl,--rpath -Wl,/opt/gnome/lib"
 
 # This environment variable determines our operation mode.
 if test "$libtool_install_magic" = "%%%MAGIC variable%%%"; then

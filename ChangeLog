@@ -1,3 +1,10 @@
+2000-05-03  Michael Meeks  <michael@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-file-info.c: s/strcasecmp/g_strcasecmp/
+
+	* modules/translate-method.c: s/strcasecmp/g_strcasecmp/,
+	indent.
+
 2000-05-02  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.mime:
