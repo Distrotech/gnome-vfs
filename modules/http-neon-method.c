@@ -1824,9 +1824,11 @@ http_list_directory (HttpContext *context, PropfindContext *pfctx)
 	pfh = ne_propfind_create (context->session, context->path, 1);
 	res = ne_propfind_named (pfh, file_info_props, propfind_result, pfctx);
 	
-	if (tofree != NULL)
+	if (tofree != NULL) {
 		g_free (tofree);
-	
+		tofree = NULL;
+	}
+
 	if (res == NE_REDIRECT) {
 		
 		ne_propfind_destroy (pfh);
@@ -2790,11 +2792,17 @@ do_make_directory (GnomeVFSMethod  *method,
 	}
 	
 	http_context_set_uri (hctx, uri);
-	
+
+ mkcol_start:
 	req = ne_request_create (hctx->session, "MKCOL", hctx->path);
 	res = ne_request_dispatch (req);
 
-	if (res == NE_OK) {
+	if (res == NE_REDIRECT) {
+		result = http_follow_redirect (hctx);
+		
+		if (result == GNOME_VFS_OK)
+			goto mkcol_start;
+	} else if (res == NE_OK) {
 		const ne_status *status = ne_get_status (req);
 		if (status->code == 409)
 			result = GNOME_VFS_ERROR_NOT_FOUND;

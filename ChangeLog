@@ -1,3 +1,9 @@
+2004-09-02  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-neon-method.c: (http_list_directory),
+	(do_make_directory):
+	Fix dav redirect handling issues.
+
 2004-09-01  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
