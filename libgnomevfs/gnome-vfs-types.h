@@ -409,7 +409,9 @@ enum _GnomeVFSXferOptions {
 	GNOME_VFS_XFER_SPARSE_ALWAYS = 1 << 5,
 	GNOME_VFS_XFER_SPARSE_NEVER = 1 << 6,
 	GNOME_VFS_XFER_UPDATEMODE = 1 << 7,
-	GNOME_VFS_XFER_REMOVESOURCE = 1 << 8
+	GNOME_VFS_XFER_REMOVESOURCE = 1 << 8,
+	GNOME_VFS_XFER_USE_UNIQUE_NAMES = 1 << 9
+	
 };
 typedef enum _GnomeVFSXferOptions GnomeVFSXferOptions;
 
@@ -417,7 +419,10 @@ typedef enum _GnomeVFSXferOptions GnomeVFSXferOptions;
 enum _GnomeVFSXferProgressStatus {
 	GNOME_VFS_XFER_PROGRESS_STATUS_OK = 0,
 	GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR = 1,
-	GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE = 2
+	GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE = 2,
+	/* during the duplicate status the progress callback is asked to
+	   supply a new unique name */
+	GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE = 3
 };
 typedef enum _GnomeVFSXferProgressStatus GnomeVFSXferProgressStatus;
 
@@ -473,8 +478,8 @@ typedef enum _GnomeVFSXferErrorAction GnomeVFSXferErrorAction;
    error) condition; the other ones are only reported if an error happens in
    that specific phase.  */
 enum _GnomeVFSXferPhase {
-	/* Unknown phase */
-	GNOME_VFS_XFER_PHASE_UNKNOWN,
+	/* Initial phase */
+	GNOME_VFS_XFER_PHASE_INITIAL,
 	/* Collecting file list */
 	GNOME_VFS_XFER_PHASE_COLLECTING,
 	/* File list collected (*) */
@@ -493,7 +498,7 @@ enum _GnomeVFSXferPhase {
 	GNOME_VFS_XFER_PHASE_CLOSESOURCE,
 	/* Closing target file */
 	GNOME_VFS_XFER_PHASE_CLOSETARGET,
-	/* Deletin source file */
+	/* Deleting source file */
 	GNOME_VFS_XFER_PHASE_DELETESOURCE,
 	/* Setting attributes on target file */
 	GNOME_VFS_XFER_PHASE_SETATTRIBUTES,
@@ -542,6 +547,12 @@ struct _GnomeVFSXferProgressInfo {
 
 	/* Total amount of data copied from the beginning.  */
 	GnomeVFSFileSize total_bytes_copied;
+	
+	 /* Target unique name used when duplicating, etc. to avoid collisions */ 
+	 gchar *duplicate_name;
+
+	/* Count used in the unique name e.g. (copy 2), etc. */
+	int duplicate_count;
 };
 typedef struct _GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
 
@@ -562,7 +573,7 @@ typedef struct _GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
    - If the status is `GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE', the return
      value is interpreted as a `GnomeVFSXferOverwriteAction'.  */
 
-typedef gint (* GnomeVFSXferProgressCallback) 	(const GnomeVFSXferProgressInfo *info,
+typedef gint (* GnomeVFSXferProgressCallback) 	(GnomeVFSXferProgressInfo *info,
 						 gpointer data);
 
 
@@ -617,7 +628,7 @@ typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
 
 typedef gint    (* GnomeVFSAsyncXferProgressCallback)
 						(GnomeVFSAsyncHandle *handle,
-						 const GnomeVFSXferProgressInfo *info,
+						 GnomeVFSXferProgressInfo *info,
 						 gpointer data);
 
 

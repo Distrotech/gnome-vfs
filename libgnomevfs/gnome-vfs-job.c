@@ -1153,7 +1153,7 @@ execute_load_directory (GnomeVFSJob *job)
 
 
 static gint
-xfer_callback (const GnomeVFSXferProgressInfo *info,
+xfer_callback (GnomeVFSXferProgressInfo *info,
 	       gpointer data)
 {
 	GnomeVFSJob *job;
@@ -1161,6 +1161,7 @@ xfer_callback (const GnomeVFSXferProgressInfo *info,
 
 	job = (GnomeVFSJob *) data;
 	xfer_job = &job->info.xfer;
+	xfer_job->notify.progress_info = info;
 
 	/* Forward the callback to the master thread, which will fill in the
            `notify_answer' member appropriately.  */
@@ -1195,7 +1196,7 @@ execute_xfer (GnomeVFSJob *job)
 
 		info.status = GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR;
 		info.vfs_status = result;
-		info.phase = GNOME_VFS_XFER_PHASE_UNKNOWN;
+		info.phase = GNOME_VFS_XFER_PHASE_INITIAL;
 		info.source_name = NULL;
 		info.target_name = NULL;
 		info.file_index = 0;

@@ -1,3 +1,45 @@
+2000-04-06  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	* libgnomevfs/gnome-vfs-types.h:
+	Fixed up the copy engine.
+	Added an option to create duplicate items with the help of
+	the progress_callback.
+	Worked around a problem where calling progress_callback in async
+	mode was causing context switches each time and degreaded performance.
+	For now made it only call the callback every 200 ms for cases where
+	response is not important. This will get reworked eventually.
+	(progress_set_source_target_names), (progress_set_source_target_uris),
+	(call_progress), (call_progress_uri), (call_progress_often),
+	(call_progress_with_uris_often):
+	Added a bunch of convenience calls for calling the progress callback.
+	(gnome_vfs_visit_list):
+	Convenience call to iterate a base uri and a list of name, similar to
+	the visit directory calls.
+	(count_items_and_size):
+	New preflight call - calculates the sum and total size of copied files.
+	Made all preflight operations call progress_info and be interruptible.
+	(handle_name_conflicts):
+	New preflight call - finds out if there are conflicts in the target 
+	destination and optionally prompts the user to remove them.
+	(create_directory), (copy_directory), (gnome_vfs_xfer_uri):
+	Reworked the copy engine to use a recursive directory copy instead
+	one that first creates a flat list. This way the copy will be able to
+	deal with directories being moved from under the copy operation
+	properly.
+	(remove_file), (remove_directory):
+	Call progress callback to make them interruptible, make remove_directory
+	optionally recursive.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(xfer_callback):Fixed a bug where notify.progress_info was not being
+	initialized.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs-corba/gnome-vfs-slave.c:
+	Renamed the GNOME_VFS_XFER_PHASE_UNKNOWN to GNOME_VFS_XFER_PHASE_INITIAL
+	(the phase is always known and an initial phase was needed).
+
 2000-04-06  Ian McKellar <yakk@yakk.net>
 
 	* modules/http-method.c:
