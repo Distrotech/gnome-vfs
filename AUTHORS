@@ -1,7 +1,16 @@
-Main author:
+Main VFS engine:
 	Ettore Perazzoli <ettore@gnu.org>
 
-FTP method:
+VFS engine contributors:
+	Elliot Lee <sopwith@redhat.com>
+	Maciej Stachowiak <mjs@eazel.com>
+	Darin Adler <darin@eazel.com>
+	John Sullivan <sullivan@eazel.com>
+
+"file", "http", "gzip", "extfs" methods:
+	Ettore Perazzoli <ettore@gnu.org>
+
+"ftp" method:
 	Miguel de Icaza <miguel@gnu.org>, based on the GNU Midnight
 	Commander code by:
 		Norbert Warmuth
@@ -9,8 +18,11 @@ FTP method:
 		Jakup Jelinek
 		Pavel Macheck
 
-BZIP2 method:
+"bzip" method:
 	Cody Russell <bratsche@dfw.net>
 
-GConf method:
+"gconf" method:
 	Dave Camp <campd@oit.edu>
+
+"pipe" and "translate" methods:
+	Elliot Lee <sopwith@redhat.com>
