@@ -5,7 +5,7 @@
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
-# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 #
 # Konventioner:
 #
@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-09-04 13:56+0200\n"
-"Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
+"POT-Creation-Date: 2005-01-31 11:51+0100\n"
+"PO-Revision-Date: 2005-01-31 11:51+0100\n"
+"Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,16 +92,16 @@ msgstr "Cd-digital lyd"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Hardwareenhedsarkiv"
+msgstr "Enhedsarkiv"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "Ext2 Linux-arkiv"
+msgstr "Ext2-Linux-arkiv"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr "Ext3 Linux-arkiv"
+msgstr "Ext3-Linux-arkiv"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
@@ -543,7 +543,7 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
@@ -1088,7 +1088,7 @@ msgstr "Mulige værdier er \"merged\", \"separate\" og \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Brugerverifikation ved mellemværtstilslutninger"
+msgstr "Brugergodkendelse ved mellemværtstilslutninger"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -1125,11 +1125,11 @@ msgstr "HTTP-mellemværtsbrugernavn"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Hvis sand kræver tilslutningerne til mellemværten brugerverifikation. "
-"Brugernavn-/adgangskodekombinationen defineret i \"/system/http_proxy/"
+"Hvis sand, kræver tilslutningerne til mellemværten brugergodkendelse. "
+"Brugernavn-/adgangskodekombinationen er defineret i \"/system/http_proxy/"
 "authentication_user\" og \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
@@ -1138,7 +1138,7 @@ msgstr "Værter uden mellemvært"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Adgangskode der skal gives som brugerverifikation for HTTP-mellemvært."
+msgstr "Adgangskode der skal gives som brugergodkendelse for HTTP-mellemvært."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1240,7 +1240,7 @@ msgstr "Benyt HTTP-mellemvært"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Brugernavn der skal videregives til brugerverifikation til HTTP-mellemvært."
+"Brugernavn der skal videregives til brugergodkendelse til HTTP-mellemvært."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
