@@ -1,3 +1,11 @@
+gnome-vfs 2.10.0
+    * Translation updates
+
+    Note: The handling of dav:// and http:// changed with this release.
+     If you use http:// the http-method will be in http-only 
+     mode and won't try to retrive file information through webdav.
+     Be sure to use dav:// and davs:// for webdav resources!
+    
 gnome-vfs 2.9.93
 
     * Bugs fixed:
