@@ -40,7 +40,7 @@
 #include <gnome.h>
 
 #include "gnome-vfs-module.h"
-
+#include "module-shared.h"
 #include "file-method.h"
 
 

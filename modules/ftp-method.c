@@ -250,11 +250,19 @@ equal_conn (gconstpointer a, gconstpointer b)
 	if (strcmp (ac->hostname, bc->hostname))
 		return 0;
 
-	if (strcmp (ac->username, bc->username))
-		return 0;
+	if (ac->username && bc->username){
+		if (strcmp (ac->username, bc->username))
+			return 0;
+	} else
+		if (ac->username != bc->username)
+			return 0;
 
-	if (strcmp (ac->password, bc->password))
-		return 0;
+	if (ac->password && bc->password){
+		if (strcmp (ac->password, bc->password))
+			return 0;
+	} else
+		if (ac->password != bc->password)
+			return 0;
 
 	if (ac->port != bc->port)
 		return 0;
@@ -490,8 +498,13 @@ ftpfs_connection_new (const gchar *hostname,
 static void
 ftpfs_uri_destroy (ftpfs_uri_t *uri)
 {
-	if (uri->conn)
-		ftpfs_connection_unref (uri->conn);
+	if (uri->conn){
+		/*
+		 * FIX THIS, we need to add some sort of timmeout to
+		 * it, prolly a cache can keep a ref?
+		 */
+		/* ftpfs_connection_unref (uri->conn); */
+	}
 	g_free (uri->path);
 	g_free (uri);
 }
@@ -1088,6 +1101,34 @@ linear_close (ftpfs_direntry_t *fe)
 {
 	if (fe->data_sock != -1)
 		linear_abort (fe);
+}
+
+enum {
+	OPT_FLUSH = 1,
+	OPT_IGNORE_ERROR = 2
+};
+
+static GnomeVFSResult
+send_ftp_command (GnomeVFSURI *uri, char *cmd, int flags)
+{
+	char res [120];
+	GnomeVFSResult ret;
+	ftpfs_uri_t *ftpfs_uri;
+/*	int flush_directory_cache = (flags & OPT_FLUSH); */
+	int r;
+	
+	ftpfs_uri = ftpfs_uri_new (uri, &ret);
+	if (!ftpfs_uri)
+		return GNOME_VFS_ERROR_INVALIDURI;
+	
+	r = command (ftpfs_uri->conn, TRUE, res, sizeof (res)-1, cmd, ftpfs_uri->path);
+	if (flags & OPT_IGNORE_ERROR)
+		r = COMPLETE;
+	if (r != COMPLETE){
+		ftpfs_uri_destroy (ftpfs_uri);
+		return GNOME_VFS_ERROR_ACCESSDENIED;
+	}
+	return GNOME_VFS_OK;
 }
 
 static int
@@ -2201,6 +2242,48 @@ ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 	return result;
 }
 
+static void
+fill_file_info (const char *filename,
+		ftpfs_direntry_t *dentry,
+		GnomeVFSFileInfo *file_info,
+		GnomeVFSFileInfoOptions options,
+		const GList *meta_keys)
+{
+	struct stat s;
+
+	/*
+	 * Stat
+	 */
+	s = dentry->s;
+	if (dentry->l_stat){
+		file_info->is_symlink = TRUE;
+		file_info->symlink_name = g_strdup (dentry->linkname);
+	} 
+	gnome_vfs_stat_to_file_info (file_info, &s);
+	
+	file_info->name = g_strdup (filename);
+	
+	/*
+	 * Mime type
+	 */
+	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE){
+		const char *mime_name = NULL;
+		const char *mime_type = NULL;
+		
+		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
+		    && file_info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && file_info->symlink_name != NULL)
+			mime_name = file_info->symlink_name;
+		else
+			mime_name = file_info->name;
+		
+		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+		
+		if (mime_type == NULL)
+			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
+	}
+	gnome_vfs_set_meta_for_list (file_info, file_info->name, meta_keys);
+}
 
 static GnomeVFSResult
 ftpfs_get_file_info (GnomeVFSURI *uri,
@@ -2208,24 +2291,74 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 		     GnomeVFSFileInfoOptions options,
 		     const GList *meta_keys)
 {
-#if 0
+	GnomeVFSResult ret;
 	ftpfs_uri_t *ftpfs_uri;
+	ftpfs_dir_t *dir;
+	GList *l;
+	char *dirname, *filename;
 
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	/*
-	 * We need to split get_file_entry in a routine that would
-	 * scan the cache only and use that in the current get-file-entry
-	 */
-	g_error ("Not finished");
-	return GNOME_VFS_ERROR_WRONGFORMAT;
-#else
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
-#endif
+	dirname = g_dirname (ftpfs_uri->path);
+	filename = g_basename (ftpfs_uri->path);
+	if (*dirname == 0){
+		g_free (dirname);
+		dirname = g_strdup ("/");
+	}
+	
+	dir = retrieve_dir (ftpfs_uri->conn, dirname, TRUE);
+	g_free (dirname);
+
+	if (dir == NULL){
+		ftpfs_uri_destroy (ftpfs_uri);
+		return GNOME_VFS_ERROR_NOTFOUND;
+	}
+
+	for (l = dir->file_list; l; l = l->next){
+		ftpfs_direntry_t *fe;
+		
+		fe = l->data;
+
+		if (strcmp (fe->name, filename))
+			continue;
+
+		if (S_ISLNK (fe->s.st_mode)) {
+			if (fe->l_stat == NULL){
+				ftpfs_uri_destroy (ftpfs_uri);
+				return GNOME_VFS_ERROR_NOTFOUND;
+			}
+
+			if (S_ISLNK (fe->l_stat->st_mode)){
+				ftpfs_uri_destroy (ftpfs_uri);
+				return GNOME_VFS_ERROR_LOOP;
+			}
+		}
+
+		fill_file_info (filename, fe, file_info, options, meta_keys);
+		ftpfs_uri_destroy (ftpfs_uri);
+
+		return GNOME_VFS_OK;
+	}
+	return GNOME_VFS_ERROR_NOTFOUND;
 }
 
+static GnomeVFSResult
+ftpfs_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+				 GnomeVFSFileInfo *file_info,
+				 GnomeVFSFileInfoOptions options,
+				 const GList *meta_keys)
+{
+	ftpfs_file_handle_t *fh;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+	fh = (ftpfs_file_handle_t *) method_handle;
+
+	fill_file_info (fh->fe->name, fh->fe, file_info, options, meta_keys);
+	
+	return GNOME_VFS_OK;
+}
 
 static gboolean
 ftpfs_is_local (const GnomeVFSURI *uri)
@@ -2239,15 +2372,14 @@ ftpfs_is_local (const GnomeVFSURI *uri)
 static GnomeVFSResult
 ftpfs_make_directory (GnomeVFSURI *uri, guint perm)
 {
-	g_error ("unimplemented routine reached (mkdir)");
-	return GNOME_VFS_ERROR_IO;
+	return send_ftp_command (uri, "MKD %s", OPT_FLUSH);
 }
 
 static GnomeVFSResult
 ftpfs_remove_directory (GnomeVFSURI *uri)
 {
-	g_error ("unimplemented routine reached (rmdir)");
-	return GNOME_VFS_ERROR_IO;
+	return send_ftp_command (uri, "RMD %s", OPT_FLUSH);
+
 }
 
 static GnomeVFSMethod method = {
@@ -2263,7 +2395,7 @@ static GnomeVFSMethod method = {
 	ftpfs_close_directory,
 	ftpfs_read_directory,
 	ftpfs_get_file_info,
-	NULL,			/* get_file_info_from_handle FIXME */
+	ftpfs_get_file_info_from_handle,
 	ftpfs_is_local,
 	ftpfs_make_directory,
 	ftpfs_remove_directory,
