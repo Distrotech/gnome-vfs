@@ -703,7 +703,7 @@ gnome_vfs_list_deep_free (GList *list)
  * Create a local path for a file:/// URI. Do not use with URIs
  * of other methods.
  *
- * Return value: the local path 
+ * Return value: a newly allocated string containing the local path 
  * NULL is returned on error or if the uri isn't a file: URI
  * without a fragment identifier (or chained URI).
  **/
@@ -736,8 +736,8 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
  * 
  * Returns a file:/// URI for the local path @local_full_path.
  *
- * Return value: the URI corresponding to @local_full_path 
- * (NULL for some bad errors).
+ * Return value: a newly allocated string containing the URI corresponding 
+ * to @local_full_path (NULL for some bad errors).
  **/
 char *
 gnome_vfs_get_uri_from_local_path (const char *local_full_path)
@@ -1335,7 +1335,7 @@ gnome_vfs_make_uri_from_input (const char *location)
  * tries to support paths relative to the specified directories (can be homedir
  * and/or current directory).
  *
- * Return value: the fully qualified URL
+ * Return value: a newly allocated string containing the fully qualified URL
  *
  * Since: 2.4
  */
@@ -1671,7 +1671,8 @@ gnome_vfs_make_uri_canonical (const char *uri)
  *
  * Retrieve the scheme used in @uri 
  *
- * Return value: A string containing the scheme
+ * Return value: A newly allocated string containing the scheme, NULL
+ * if @uri it doesn't seem to contain a scheme
  *
  * Since: 2.2
  **/
@@ -1939,6 +1940,7 @@ _gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
 		gnome_vfs_uri_unref (parent);
 	}
 	gnome_vfs_file_info_unref (info);
+	gnome_vfs_file_info_unref (dirinfo);
 	return is_in_dir;
 }
 

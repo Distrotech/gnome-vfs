@@ -392,6 +392,9 @@ test_uri_is_parent_common (const char *parent, const char *item, gboolean deep, 
 		test_failed ("gnome_vfs_uri_is_parent (%s, %s) resulted in \"%s\" instead of \"%s\"",
 			     parent, item, result ? "TRUE" : "FALSE", expected_result ? "TRUE" : "FALSE");
 	}
+
+	gnome_vfs_uri_unref (item_uri);
+	gnome_vfs_uri_unref (parent_uri);
 }
 
 static void
@@ -413,6 +416,7 @@ test_uri_is_parent_shallow (const char *parent, const char *item, gboolean expec
 		      || (result != NULL && expected != NULL && strcmp (result, (char *)expected) == 0))) {	\
 			test_failed ("%s: returned '%s' expected '%s'", #function, result, expected);	\
 		}											\
+                g_free (result);                                                                      \
 	} G_STMT_END
 
 int

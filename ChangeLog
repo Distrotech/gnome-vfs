@@ -1,3 +1,21 @@
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c: some stuff wasn't properly freed when 
+	  calling gnome_vfs_mime_shutdown
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): fixed a small
+	  leak
+	* libgnomevfs/gnome-vfs-uri.c
+	* libgnomevfs/gnome-vfs-utils.c: fixed a few function descriptions
+	  to explicitly say when these functions return a newly allocated 
+	  string
+	* libgnomevfs/gnome-vfs-utils.c (_gnome_vfs_uri_is_in_subdir): fixed
+	  a memory leak
+	* test/test-uri.c 
+	* test/test-subdir.c
+	* test/test-symlinks.c: fixed some memory leaks (it may seem pointless,
+	  but this will save some precious time the next time  someone runs 
+	  valgrind on those tests)
+
 2003-07-17  Christophe Fergeau  <teuf@gnome.org>
 
 	* test/test-mime-handlers.c: don't segfault on unknown mime types
