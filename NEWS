@@ -1,3 +1,16 @@
+gnome-vfs 2.5.5
+	* Features
+		+ Allow rename to case-different name 
+                  on case-insensitive filesystems (FAT)
+		+ Add smb support (requires samba 3.0)
+		+ Add sftp support
+		+ Use the xdg mime systems (requires shared-mime-data)
+		+ Initial network:// support
+		
+	* Bugs fixed:
+		+ Fix drive/volume casting macros
+		+ Added GPL headers to daemon
+
 gnome-vfs 2.5.4
 	* Features
 		+ performance tweaking of copy block size

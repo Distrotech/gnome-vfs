@@ -1,3 +1,9 @@
+2004-01-12  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in: 
+	Update to 2.5.5
+
 2004-01-09  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-async-daemon.c:
