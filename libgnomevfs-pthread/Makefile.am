@@ -14,9 +14,13 @@ CPPFLAGS =					\
 
 noinst_HEADERS = 				\
 	gnome-vfs-job-slave.h			\
-	gnome-vfs-job.h
+	gnome-vfs-job.h				\
+	gnome-vfs-pthread.h
 
 libgnomevfs_pthread_la_SOURCES =		\
+	gnome-vfs-pthread.c			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-job-slave.c			\
 	gnome-vfs-job.c
+
+libgnomevfs_pthread_la_LDFLAGS=$(VFS_LIBS)

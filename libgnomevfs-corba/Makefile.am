@@ -40,6 +40,8 @@ libgnomevfs_corba_la_SOURCES =			\
 	gnome-vfs-slave-notify.c		\
 	gnome-vfs-slave-process.c
 
+libgnomevfs_corba_la_LDFLAGS=$(GNOME_LIBDIR) $(GNOMEGNORBA_LIBS)
+
 gnome_vfs_slave_SOURCES =			\
 	$(gnome_vfs_slave_built)		\
 	gnome-vfs-slave.c

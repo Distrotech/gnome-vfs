@@ -24,6 +24,19 @@
 #ifndef _GNOME_VFS_INIT_H
 #define _GNOME_VFS_INIT_H
 
-gboolean	gnome_vfs_init			(void);
+gboolean gnome_vfs_init(void);
+
+/* Stuff for use in a GnomeModuleInfo */
+void gnome_vfs_loadinit(gpointer app, gpointer modinfo);
+void gnome_vfs_preinit(gpointer app, gpointer modinfo);
+void gnome_vfs_postinit(gpointer app, gpointer modinfo);
+
+#ifdef HAVE_POPT_H
+#include <popt.h>
+#endif
+
+#ifdef POPT_AUTOHELP
+extern struct poptOption gnome_vfs_options[];
+#endif
 
 #endif

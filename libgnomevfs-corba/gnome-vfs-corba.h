@@ -31,7 +31,6 @@ extern CORBA_ORB gnome_vfs_orb;
 extern PortableServer_POA gnome_vfs_poa;
 extern PortableServer_POAManager gnome_vfs_poa_manager;
 
-
-gboolean gnome_vfs_corba_init (void);
+gboolean gnome_vfs_corba_init (gboolean deps_init);
 
 #endif

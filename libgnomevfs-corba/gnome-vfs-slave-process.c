@@ -51,7 +51,7 @@ gnome_vfs_slave_process_new (void)
 	GnomeVFSSlaveProcess *new;
 	GnomeVFSProcess *process;
 
-	if (! gnome_vfs_corba_init ())
+	if (! gnome_vfs_corba_init (TRUE))
 		return NULL;
 
 	new = g_new (GnomeVFSSlaveProcess, 1);

@@ -159,6 +159,9 @@ bzip2_method_handle_init_for_decompress (Bzip2MethodHandle *handle)
 }
 
 static gboolean
+bzip2_method_handle_init_for_compress (Bzip2MethodHandle *handle) G_GNUC_UNUSED;
+
+static gboolean
 bzip2_method_handle_init_for_compress (Bzip2MethodHandle *handle)
 {
 	handle->bzstream.bzalloc = NULL;

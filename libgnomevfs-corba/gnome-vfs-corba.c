@@ -42,7 +42,7 @@ PortableServer_POAManager gnome_vfs_poa_manager;
 
 
 gboolean
-gnome_vfs_corba_init (void)
+gnome_vfs_corba_init (gboolean deps_init)
 {
 	CORBA_Environment ev;
 
@@ -56,8 +56,18 @@ gnome_vfs_corba_init (void)
 	if (! gnome_vfs_method_init ())
 		return FALSE;
 
+	if(deps_init && !gnome_CORBA_ORB()) {
+		char *argv[] = {"fake", NULL};
+		int argc = 1;
+		CORBA_Environment ev;
+
+		CORBA_exception_init(&ev);
+		gnome_CORBA_init("fake-an-app", VERSION, &argc, argv, GNORBA_INIT_SERVER_FUNC, &ev);
+		CORBA_exception_free(&ev);
+	}
+
 	gnome_vfs_orb = gnome_CORBA_ORB ();
-	if (gnome_vfs_orb == NULL) {
+	if (!gnome_vfs_orb) {
 		/* FIXME?  */
 		g_warning ("GNOME CORBA support was not initialized.");
 		return FALSE;

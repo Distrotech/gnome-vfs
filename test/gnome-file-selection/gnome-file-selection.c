@@ -51,7 +51,9 @@
 
 static GnomeDialogClass *parent_class = NULL;
 
+#if 0
 static const gchar *gnome_file_selection_filter_key = "gnome-file-selection-filter-key";
+#endif
 
 struct _GnomeFileSelectionPrivate {
 	GnomeFileSelectionHistory *history;

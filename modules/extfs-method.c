@@ -595,6 +595,7 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 	handle = g_new (ExtfsDirectoryHandle, 1);
 	handle->directory = directory;
 	handle->prev_position = NULL;
+#warning "This meta_keys needs duplicating"
 	handle->meta_keys = meta_keys; /* FIXME currently unused FIXME strdup? */
 	handle->info_options = info_options; /* FIXME currently unused */
 	handle->filter = filter;

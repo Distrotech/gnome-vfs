@@ -16,7 +16,7 @@ AC_ARG_ENABLE(gconf,
               [  --enable-gconf          Enable GConf access backend],
               gconf_enabled="yes")
 AC_ARG_WITH(default-backend,
-	      [  --with-default-backend=(CORBA|pthread)		    ],
+	      [  --with-default-backend=(corba|pthread)		    ],
 	      default_backend="$withval")
 
 AM_PATH_GLIB(1.2.0,,
@@ -60,20 +60,13 @@ AC_SUBST(VFSPTHREAD_LIBS)
 
 dnl Default backend (CORBA for now).
 if test -z "$default_backend"; then
-	default_backend="CORBA"
+	default_backend="corba"
 fi
-if test "$default_backend" = "CORBA"; then
-	VFS_INCLUDEDIR="$VFSCORBA_INCLUDEDIR"
-	VFS_LIBDIR="$VFSCORBA_LIBDIR"
-	VFS_LIBS="$VFSCORBA_LIBS"
-elif test "$default_backend" = "pthread"; then
-	VFS_INCLUDEDIR="$VFSPTHREAD_INCLUDEDIR"
-	VFS_LIBDIR="$VFSPTHREAD_LIBDIR"
-	VFS_LIBS="$VFSPTHREAD_LIBS"
-else
-	echo "Unknown default backend: $default_backend"
-	exit 1
-fi
+AC_DEFINE_UNQUOTED(GNOME_VFS_DEFAULT_BACKEND, "$default_backend")
+
+VFS_LIBS="-lgnomevfs `glib-config --libs gthread gmodule`"
+VFS_LIBDIR='-L${libdir}'
+VFS_INCLUDEDIR='-I${includedir}'" `glib-config --cflags gthread gmodule`"
 AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)

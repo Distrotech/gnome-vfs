@@ -25,6 +25,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
+
 #include <zlib.h>
 #include <time.h>
 

@@ -535,7 +535,7 @@ static void
 set_metadata_from_response (GnomeVFSFileInfo *info,
 			    GNOME_VFS_Slave_MetadataResponseList
 			            *response_list,
-			    const gchar **meta_keys)
+			    const char **meta_keys)
 {
 	guint i;
 
@@ -567,7 +567,7 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	GnomeVFSAsyncDirectoryOpInfo *op_info;
 	GnomeVFSDirectoryList *list;
 	GnomeVFSAsyncDirectoryLoadCallback callback;
-	gchar **meta_keys;
+	char **meta_keys;
 	guint i;
 
 	slave = slave_from_servant (servant);
@@ -618,7 +618,7 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 		info->metadata_list = NULL;
 		set_metadata_from_response (info,
 					    &slave_info->metadata_response,
-					    meta_keys);
+					    (const char **)meta_keys);
 
 		gnome_vfs_directory_list_append (list, info);
 	}
