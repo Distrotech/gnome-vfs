@@ -1,5 +1,13 @@
 2000-09-01  Mathieu Lacage  <mathieu@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (main),
+	(init_mime_capplet), (populate_mime_list),
+	(create_mime_list_and_scroller):
+	remove debugging output. fix many run-time warnings.
+	Now, can go into fixing real bugs.
+
+2000-09-01  Mathieu Lacage  <mathieu@eazel.com>
+
 	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init):
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(gnome_vfs_mime_get_default_action_without_fallback),
