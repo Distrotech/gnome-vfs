@@ -122,14 +122,6 @@ main (int argc, char **argv)
 	}
 
 
-	if (table_path != NULL) {
-		gnome_vfs_mime_test_get_magic_table (table_path);
-	}
-
-	if (dump_table) {
-		gnome_vfs_mime_dump_magic_table ();
-	}
-
 	if (speed_test) {
 		timer = g_timer_new ();
 		g_timer_start (timer);

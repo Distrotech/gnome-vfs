@@ -153,7 +153,13 @@ noinst_HEADERS =				\
 	gnome-vfs-volume-monitor-client.h	\
 	gnome-vfs-volume-monitor-daemon.h	\
 	gnome-vfs-volume-monitor-private.h 	\
+	xdgmime.h				\
+	xdgmimeglob.h				\
+	xdgmimemagic.h				\
+	xdgmimeint.h				\
 	$(NULL)
+
+
 
 libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellable-ops.h		\
@@ -237,10 +243,10 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime-handlers.c		\
 	gnome-vfs-mime-info.c			\
-	gnome-vfs-mime-magic.c			\
 	gnome-vfs-mime-monitor.c		\
 	gnome-vfs-mime-sniff-buffer.c		\
 	gnome-vfs-mime.c			\
+	gnome-vfs-mime-magic.c			\
 	gnome-vfs-module-callback-marshall.c	\
 	gnome-vfs-module-callback-module-api.c	\
 	gnome-vfs-module-callback-private.c	\
@@ -269,7 +275,11 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-volume-ops.c			\
 	gnome-vfs-volume.c			\
 	gnome-vfs-xfer.c			\
-	$(libgnomevfs_built_cfiles)			\
+	xdgmimemagic.c				\
+	xdgmime.c				\
+	xdgmimeglob.c				\
+	xdgmimeint.c				\
+	$(libgnomevfs_built_cfiles)		\
 	$(NULL)
 
 #	$(GOB_SRCLIST)				\

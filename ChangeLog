@@ -1,3 +1,7 @@
+Wed Jan  7 13:36:53 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/mime*: use the xdg mime system.
+
 2004-01-07  Martin Wehner  <martin.wehner@epost.de>
 
 	* modules/file-method.c (rename_helper):
