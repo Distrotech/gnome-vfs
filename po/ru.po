@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-11-14 19:07+0300\n"
-"PO-Revision-Date: 2000-11-14 19:08+03:00\n"
+"POT-Creation-Date: 2000-11-21 17:30+0300\n"
+"PO-Revision-Date: 2000-11-21 17:32+03:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -427,43 +427,43 @@ msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:333
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:336
 msgid "Edit Applications List"
 msgstr "Правка списка приложений"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Выберите приложения появляющиеся в меню для mime-типа \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:377
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
 msgid "Add Application..."
 msgstr "Добавить приложение..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Application..."
 msgstr "Правка приложения..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:390
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
 msgid "Delete Application"
 msgstr "Удалить приложение"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:423
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:426
 msgid "Edit Components List"
 msgstr "Правка списка компонентов"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:443
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Выберите окна возникающие в меню для mime-типа \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:620
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:623
 msgid "Add Mime Type"
 msgstr "Добавить mime-тип"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:621
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -471,23 +471,35 @@ msgstr ""
 "Добавить новый mime-тип\n"
 "Например: image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:632
 msgid "Mime Type:"
 msgstr "Mime-тип"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:638
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
 msgid "Type in a description for this mime-type."
 msgstr "Напечатать описание для этого mime-типа."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:650
 msgid "Description:"
 msgstr "Описание:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:786
+msgid "File Extensions "
+msgstr "Расширения файлов "
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:806
+msgid "Add..."
+msgstr "Добавить..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:811
+msgid "    Remove    "
+msgstr "    Удалить    "
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
 msgid "Add New Extension"
 msgstr "Добавить новое расширение"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:886
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -495,115 +507,121 @@ msgstr ""
 "Напечатать расширения для этого mime-типа.\n"
 "Например:  .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:891
 msgid "Extension:"
 msgstr "Расширение:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:848
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1051
 msgid "New Application"
 msgstr "Новое приложение"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:857
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:961
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1060
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1164
 msgid "Application Name:"
 msgstr "Название приложения:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:865
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:970
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1068
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1173
 msgid "Application Command:"
 msgstr "Команда приложения:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:873
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:979
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1076
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
 msgid "Open Behavior"
 msgstr "Открыть свойства"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:879
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1082
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
 msgid "Can open multiple files"
 msgstr "Можно открыть много файлов"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1085
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1192
 msgid "Can open from URI"
 msgstr "Можно открыть из URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:952
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1155
 msgid "Edit Application"
 msgstr "Правка приложения"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:356
-msgid "Change Icon"
-msgstr "Изменить пиктограмму"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:368
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1346
+#: mime-type-capplet/nautilus-mime-type-capplet.c:541
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1520
 msgid "Mime Type"
 msgstr "Mime-тип"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
-msgid "Add new Mime type..."
-msgstr "Добавить новый mime-тип..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:548
+msgid "Change Icon"
+msgstr "Изменить пиктограмму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
-msgid "Delete this Mime type..."
-msgstr "Удалить этот mime-тип..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:555
+msgid "Change File Extensions"
+msgstr "Изменить расширения файлов"
 
-#. Set up top right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:401
+#: mime-type-capplet/nautilus-mime-type-capplet.c:563
 msgid "Default Action:"
 msgstr "Действие по умолчанию:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+#: mime-type-capplet/nautilus-mime-type-capplet.c:575
 msgid "Use Viewer"
 msgstr "Использовать программу просмотра"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet.c:581
 msgid "Open With Application"
 msgstr "Открыть в приложении"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+#: mime-type-capplet/nautilus-mime-type-capplet.c:593
 msgid "Edit List"
 msgstr "Правка списка:"
 
-#. Set up bottom right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:435
-msgid "Extensions:"
-msgstr "Расширения:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:612
+msgid "Add new Mime type..."
+msgstr "Добавить новый mime-тип..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:458
-msgid "Add"
-msgstr "Добавить"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+msgid "Delete this Mime type..."
+msgstr "Удалить этот mime-тип..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:461
-msgid "Remove"
-msgstr "Удалить"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:629
+msgid "Revert to System Defaults"
+msgstr "Вернуть к исходным значениям"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:525
+#: mime-type-capplet/nautilus-mime-type-capplet.c:687
 msgid "No Description"
 msgstr "Нет описания"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:648
-#: mime-type-capplet/nautilus-mime-type-capplet.c:793
-#: mime-type-capplet/nautilus-mime-type-capplet.c:928
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1138
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1238
+#: mime-type-capplet/nautilus-mime-type-capplet.c:817
+#: mime-type-capplet/nautilus-mime-type-capplet.c:962
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1313
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1435
 msgid "None"
 msgstr "Нет"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1345
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1058
+msgid ""
+"Reverting to system settings\n"
+"will lose all your personal \n"
+"Mime configuration.\n"
+"Revert to System Settings ?\n"
+msgstr ""
+"Возврат к исходным значениям\n"
+"приведет к утрате всех ваших\n"
+"собственных настроек MIME.\n"
+"Вернуть к исходным?\n"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1519
 msgid "Description"
 msgstr "Описание"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1347
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1521
 msgid "Extension"
 msgstr "Расширение"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1348
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1522
 msgid "Action"
 msgstr "Действие"
 
@@ -620,22 +638,22 @@ msgstr "Просмотр"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1149
+#: modules/http-method.c:1173
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для восстановления"
 
-#: modules/http-method.c:1514
+#: modules/http-method.c:1572
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:1726
+#: modules/http-method.c:1803
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:1729
+#: modules/http-method.c:1806
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
