@@ -1,3 +1,7 @@
+2001-10-02  Darin Adler  <darin@bentspoon.com>
+
+	* Makefile.am: Change from xml-i18n-tools to intltool.
+
 2001-09-25  David Kaelbling <drk@sgi.com>
 
 	* bonobo-storage-fs.c (fs_erase): don't do an

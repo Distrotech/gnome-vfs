@@ -21,8 +21,7 @@ CLEANFILES+=GNOME_VFS_Moniker_std.server GNOME_VFS_Moniker_std.server.in
 
 serverdir = $(libdir)/bonobo/servers
 server_DATA = GNOME_VFS_Moniker_std.server
-
-@XML_I18N_MERGE_SERVER_RULE@
+@INTLTOOL_SERVER_RULE@
 
 clean-local:
 	-rm -f $(server_DATA)
