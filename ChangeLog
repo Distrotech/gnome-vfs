@@ -1,3 +1,7 @@
+2002-06-15  James Henstridge  <james@daa.com.au>
+
+	* modules/Makefile.am: link modules back against libgnomevfs-2.la
+
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 
 	* HACKING:
