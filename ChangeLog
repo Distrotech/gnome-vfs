@@ -1,3 +1,9 @@
+2000-08-01  Darin Adler  <darin@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Added description for "x-special/virtual-directory", which
+	will probably be renamed soon.
+
 2000-08-01  Ian McKellar  <yakk@yakk.net.au>
 
 	* AUTHORS:
