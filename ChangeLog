@@ -1,3 +1,10 @@
+2000-06-14  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_list_free),
+	(gnome_vfs_mime_component_list_free):
+	Fix two leaks John and I found.
+
 2000-06-13  Gene Z. Ragan  <gzr@eazel.com>
 
 	More work in progress and added a new file to the capplet build.
