@@ -1,3 +1,14 @@
+2004-09-03  Ray Strode  <rstrode@redhat.com>
+
+	Cleanup and leak fixes by Christophe Fergeau.
+
+	* libgnomevfs/eggdesktopentries.c:
+	(egg_desktop_entries_free): fix leak
+	(egg_desktop_entries_parse_comment): use
+	g_strndup instead of g_new/strncpy().
+	(egg_desktop_entry_free),
+	(egg_desktop_entries_remove_group_node): fix leak.
+
 2004-09-03  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-ssl.c (handle_ssl_read_write):

@@ -383,12 +383,7 @@ egg_desktop_entries_new_from_file (gchar                  **legal_start_groups,
   egg_desktop_entries_flush_parse_buffer (entries, &entries_error);
 
   if (entries_error) 
-    {
-      g_propagate_error (error, entries_error);
-      egg_desktop_entries_free (entries);
-
-      return NULL;
-    }
+    g_propagate_error (error, entries_error);
 
   return entries;
 }
@@ -408,6 +403,8 @@ egg_desktop_entries_free (EggDesktopEntries *entries)
 
   if (entries->parse_buffer)
     g_string_free (entries->parse_buffer, TRUE);
+
+  g_strfreev (entries->legal_start_groups);
 
   tmp = entries->groups;
   while (tmp != NULL)
@@ -600,10 +597,7 @@ egg_desktop_entries_parse_comment (EggDesktopEntries  *entries,
   entry = g_new0 (EggDesktopEntry, 1);
 
   entry->key = NULL;
-
-  entry->value = g_new (char, length + 1);
-  strncpy (entry->value, line, length);
-  entry->value[length] = '\0';
+  entry->value = g_strndup (line, length);
     
   entries->current_group->entries = g_list_prepend (entries->current_group->entries, entry);
 }
@@ -1703,6 +1697,18 @@ egg_desktop_entries_add_group (EggDesktopEntries *entries,
   entries->current_group = group;
 }
 
+
+static void 
+egg_desktop_entry_free (EggDesktopEntry *entry) 
+{
+  if (entry != NULL)
+    {
+      g_free (entry->key);
+      g_free (entry->value);
+      g_free (entry);
+    }
+}
+
 static void
 egg_desktop_entries_remove_group_node (EggDesktopEntries      *entries,
 				       GList                  *group_node)
@@ -1730,7 +1736,7 @@ egg_desktop_entries_remove_group_node (EggDesktopEntries      *entries,
 
   g_free ((gchar *) group->name);
 
-  g_list_foreach (group->entries, (GFunc) g_free, NULL);
+  g_list_foreach (group->entries, (GFunc) egg_desktop_entry_free, NULL);
   g_list_free (group->entries);
   group->entries = NULL;
 
