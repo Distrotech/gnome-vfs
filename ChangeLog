@@ -1,3 +1,11 @@
+2000-08-03  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+
+	Add the mozilal component as a content handler for
+	x-special/webdav-directory.  Also move the gtkhtml web browser up
+	in the food chain.
+	
 2000-08-03  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Added a couple of description-less
