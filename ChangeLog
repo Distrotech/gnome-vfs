@@ -1,5 +1,10 @@
 2001-08-03  Darin Adler  <darin@bentspoon.com>
 
+	* libgnomevfs/gnome-vfs.h: Remove extern "C" guards.
+	The individual files take care of this.
+
+2001-08-03  Darin Adler  <darin@bentspoon.com>
+
 	Made builds noticeably faster by not using catch-all includes
 	like <gnome-vfs.h> inside gnome-vfs sources.
 	

@@ -1,4 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs.h - The GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
@@ -21,12 +22,8 @@
    Author: Ettore Perazzoli <ettore@comm2000.it>
 */
 
-#ifndef _GNOME_VFS_H
-#define _GNOME_VFS_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+#ifndef GNOME_VFS_H
+#define GNOME_VFS_H
 
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-callbacks.h>
@@ -43,8 +40,4 @@ extern "C" {
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
-
-#endif /* _GNOME_VFS_H */
+#endif /* GNOME_VFS_H */
