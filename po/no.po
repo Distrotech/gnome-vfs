@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-06-15 05:03+0200\n"
-"PO-Revision-Date: 2000-06-15 05:10+02:00\n"
+"POT-Creation-Date: 2000-06-21 20:51+0200\n"
+"PO-Revision-Date: 2000-06-21 20:55+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Flere fortolkningsfeil vil bli ignorert."
 msgid "No error"
 msgstr "Ingen feil"
 
-#. GNOME_VFS_ERROR_NOTFOUND
+#. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
 msgstr "Fil ikke funnet"
@@ -71,12 +71,12 @@ msgstr "Ordinær feil"
 msgid "Internal error"
 msgstr "Intern feil"
 
-#. GNOME_VFS_ERROR_BADPARAMS
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr "Ugyldige parametere"
 
-#. GNOME_VFS_ERROR_NOTSUPPORTED
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
 msgstr "Ikke støttet operasjon"
@@ -86,57 +86,57 @@ msgstr "Ikke støttet operasjon"
 msgid "I/O error"
 msgstr "I/U-feil"
 
-#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
 msgstr "Korrupt data"
 
-#. GNOME_VFS_ERROR_WRONGFORMAT
+#. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
 msgstr "Ugyldig format"
 
-#. GNOME_VFS_ERROR_BADFILE
+#. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr "Ugyldig filhåndtak"
 
-#. GNOME_VFS_ERROR_TOOBIG
+#. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr "Filen er for stor"
 
-#. GNOME_VFS_ERROR_NOSPACE
+#. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
 msgstr "Ikke mer plass på enheten"
 
-#. GNOME_VFS_ERROR_READONLY
+#. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr "Skrivebeskyttet filsystem"
 
-#. GNOME_VFS_ERROR_INVALIDURI
+#. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr "Ugyldig URI"
 
-#. GNOME_VFS_ERROR_NOTOPEN
+#. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
 msgstr "Filen er ikke åpen"
 
-#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
 msgstr "Ugyldig åpningsmodus"
 
-#. GNOME_VFS_ERROR_ACCESSDENIED
+#. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr "Ingen tilgang"
 
-#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr "For mange åpne filer"
@@ -146,12 +146,12 @@ msgstr "For mange åpne filer"
 msgid "End of file"
 msgstr "Slutt på filen"
 
-#. GNOME_VFS_ERROR_NOTADIRECTORY
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr "Ikke en katalog"
 
-#. GNOME_VFS_ERROR_INPROGRESS
+#. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr "Operasjonen er under fremgang"
@@ -161,7 +161,7 @@ msgstr "Operasjonen er under fremgang"
 msgid "Operation interrupted"
 msgstr "Operasjonen avbrutt"
 
-#. GNOME_VFS_ERROR_FILEEXISTS
+#. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
 msgstr "Filen eksisterer"
@@ -171,37 +171,37 @@ msgstr "Filen eksisterer"
 msgid "Looping links encountered"
 msgstr "Lenker i løkke funnet"
 
-#. GNOME_VFS_ERROR_NOTPERMITTED
+#. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
 msgstr "Operasjonen ikke tillatt"
 
-#. GNOME_VFS_ERROR_ISDIRECTORY
+#. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
 msgstr "Er en katalog"
 
-#. GNOME_VFS_ERROR_NOMEM
+#. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
 msgstr "Ikke nok minne"
 
-#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
 msgstr "Verten ikke funnet"
 
-#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
 msgstr "Ugyldig vertsnavn"
 
-#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
 msgstr "Verten har ingen adresse"
 
-#. GNOME_VFS_ERROR_LOGINFAILED
+#. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
 msgstr "Innlogging feilet"
@@ -211,32 +211,32 @@ msgstr "Innlogging feilet"
 msgid "Operation cancelled"
 msgstr "Operasjonen avbrutt"
 
-#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
 msgstr "Katalogen opptatt"
 
-#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
 msgstr "Katalogen er ikke tom"
 
-#. GNOME_VFS_ERROR_TOOMANYLINKS
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
 msgstr "For mange lenker"
 
-#. GNOME_VFS_ERROR_READONLYFS
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
 msgstr "Skrivebeskyttet filsystem"
 
-#. GNOME_VFS_ERROR_NOTSAMEFS
+#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Ikke på samme filsystem"
 
-#. GNOME_VFS_ERROR_NAMETOOLONG
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
 msgstr "Navnet er for langt"
@@ -416,238 +416,178 @@ msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: mime-type-capplet/edit-window.c:191
-msgid "Mime Type: "
-msgstr "MIME-type:"
-
-#. Add icon box
-#: mime-type-capplet/edit-window.c:203
-#: mime-type-capplet/nautilus-mime-type-capplet.c:221
-msgid "Select an icon..."
-msgstr "Velg et ikon:"
-
-#: mime-type-capplet/edit-window.c:226
-#: mime-type-capplet/nautilus-mime-type-capplet.c:240
-msgid "Add"
-msgstr "Legg til"
-
-#: mime-type-capplet/edit-window.c:232
-#: mime-type-capplet/nautilus-mime-type-capplet.c:244
-msgid "Remove"
-msgstr "Fjern"
-
-#. Default application label and menu
-#: mime-type-capplet/edit-window.c:259
-msgid "Application:"
-msgstr "Applikasjon:"
-
-#. Default component label and menu
-#: mime-type-capplet/edit-window.c:266
-msgid "Component:"
-msgstr "Komponent:"
-
-#. we initialize everything
-#: mime-type-capplet/edit-window.c:301
-#, c-format
-msgid "Set actions for %s"
-msgstr "Sett handlinger for %s"
-
-#: mime-type-capplet/edit-window.c:484 mime-type-capplet/edit-window.c:557
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:109
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:155
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:293
-#: mime-type-capplet/nautilus-mime-type-capplet.c:364
-#: mime-type-capplet/nautilus-mime-type-capplet.c:433
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/edit-window.c:523
-msgid "Add an application..."
-msgstr "Legg til en applikasjon..."
-
-#: mime-type-capplet/edit-window.c:568
-msgid "Add a component..."
-msgstr "Legg til en komponent..."
-
-#: mime-type-capplet/edit-window.c:581
-msgid "Select an Application"
-msgstr "Velg en applikasjon"
-
-#: mime-type-capplet/mime-data.c:389
-msgid "Mime Type"
-msgstr "MIME-type"
-
-#: mime-type-capplet/mime-data.c:390
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: mime-type-capplet/mime-data.c:391
-msgid "Application"
-msgstr "Applikasjon"
-
-#: mime-type-capplet/mime-data.c:503
-msgid "You must enter a mime-type"
-msgstr "Du må skrive inn en MIME-type"
-
-#: mime-type-capplet/mime-data.c:506
-msgid "You must add a file-name extension"
-msgstr "Du må legge til en filtypeutvidelse"
-
-#: mime-type-capplet/mime-data.c:510
-msgid ""
-"Please put your mime-type in the format:\n"
-"CATEGORY/TYPE\n"
-"\n"
-"For Example:\n"
-"image/png"
-msgstr ""
-"Vennligst bruk følgende format for MIME-typen:\n"
-"KATEGORI/TYPE\n"
-"\n"
-"For eksempel:\n"
-"image/png"
-
-#: mime-type-capplet/mime-data.c:515
-msgid "This mime-type already exists"
-msgstr "Denne MIME-typen eksisterer allerede"
-
-#: mime-type-capplet/mime-data.c:589
-#, fuzzy
-msgid ""
-"We are unable to create the directory\n"
-"~/.gnome/mime-info\n"
-"\n"
-"We will not be able to save the state."
-msgstr ""
-"Kan ikke opprette katalogen\n"
-"\n"
-"Vil ikke kunne lagre tilstandsdata."
-
-#: mime-type-capplet/mime-data.c:595
-msgid ""
-"We are unable to access the directory\n"
-"~/.gnome/mime-info\n"
-"\n"
-"We will not be able to save the state."
-msgstr ""
-
-#: mime-type-capplet/mime-data.c:606
-msgid ""
-"Cannot create the file\n"
-"~/.gnome/mime-info/user.mime\n"
-"\n"
-"We will not be able to save the state"
-msgstr ""
-
-#: mime-type-capplet/mime-info.c:423
-msgid ""
-"We are unable to create the directory\n"
-"~/.gnome/mime-info.\n"
-"\n"
-"We will not be able to save the state."
-msgstr ""
-
-#: mime-type-capplet/mime-info.c:429
-msgid ""
-"We are unable to access the directory\n"
-"~/.gnome/mime-info.\n"
-"\n"
-"We will not be able to save the state."
-msgstr ""
-
-#: mime-type-capplet/mime-info.c:440
-msgid ""
-"Cannot create the file\n"
-"~/.gnome/mime-info/user.keys.\n"
-"\n"
-"We will not be able to save the state"
-msgstr ""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:315
-msgid "Preferred Applications"
-msgstr "Foretrukne applikasjoner"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:316
-msgid "Default Applications"
-msgstr "Standard applikasjoner"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:319
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:292
 msgid "Edit Applications List"
 msgstr "Rediger applikasjonslisten"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
-msgid "Remove Application"
-msgstr "Fjern applikasjon"
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:312
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Velg applikasjoner som skal være i menyen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:363
-msgid "Add To Preferred"
-msgstr "Legg til som foretrukken"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:333
+msgid "Add Application..."
+msgstr "Legg til applikasjon..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:337
+msgid "Edit Application..."
+msgstr "Rediger applikasjon..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:341
+msgid "Delete Application"
+msgstr "Slett applikasjon"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:366
-msgid "Add New Application..."
-msgstr "Legg til ny applikasjon..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:392
 msgid "Edit Components List"
 msgstr "Redgier komponentliste"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:412
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:386
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
-msgstr ""
+msgstr "Velg visninger som skal være i menyen for MIME-type \"%s\""
 
-#. Create label, menu and edit button for default applications
-#: mime-type-capplet/nautilus-mime-type-capplet.c:196
-msgid "Default Application:"
-msgstr "Standard applikasjon:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:204
-#: mime-type-capplet/nautilus-mime-type-capplet.c:216
-msgid "Edit List"
-msgstr "Rediger liste"
-
-#. Create label, menu and edit button for default components
-#: mime-type-capplet/nautilus-mime-type-capplet.c:209
-msgid "Default Component:"
-msgstr "Standard komponent:"
-
-#. Mime list Add and Delete buttons
-#: mime-type-capplet/nautilus-mime-type-capplet.c:249
-msgid "Add..."
-msgstr "Legg til..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:253
-msgid "Delete"
-msgstr "Slett"
-
-#: mime-type-capplet/new-mime-window.c:47
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:559
 msgid "Add Mime Type"
 msgstr "Legg til MIME-type"
 
-#: mime-type-capplet/new-mime-window.c:48
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:560
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
+"Legg til en ny MIME-type\n"
+"For eksempel:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/new-mime-window.c:53
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:565
 msgid "Mime Type:"
 msgstr "MIME-type:"
 
-#: mime-type-capplet/new-mime-window.c:61
-msgid "Extensions"
-msgstr "Filtyper"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:578
+msgid "Type in a description for this mime-type."
+msgstr "Skriv inn en beskrivelse for denne MIME-typen."
 
-#: mime-type-capplet/new-mime-window.c:65
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:584
+msgid "Description:"
+msgstr "Beskrivelse:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:612
+msgid "Add New Extension"
+msgstr "Legg til ny filtype"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:613
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
 msgstr ""
+"Skriv inn filtypen for denne MIME-typen.\n"
+"For eksempel: .html, .htm"
 
-#: mime-type-capplet/new-mime-window.c:72
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:618
 msgid "Extension:"
 msgstr "Filtype:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:679
+msgid "Add New Application"
+msgstr "Legg til ny applikasjon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:730
+msgid "Application Name:"
+msgstr "Applikasjonsnavn:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:738
+msgid "Application Command:"
+msgstr "Applikasjonskommando:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:728
+msgid "Edit Application"
+msgstr "Rediger applikasjon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:749
+msgid "Open Behavior"
+msgstr "Oppførsel ved åpning"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:755
+msgid "Can open multiple files"
+msgstr "Kan åpne flere filer"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:758
+msgid "Can open from URI"
+msgstr "Kan åpne fra URI"
+
+#. Create label, menu and edit button for default applications
+#: mime-type-capplet/nautilus-mime-type-capplet.c:337
+msgid "Default Application:"
+msgstr "Standard applikasjon:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:345
+#: mime-type-capplet/nautilus-mime-type-capplet.c:356
+msgid "Edit List"
+msgstr "Rediger liste"
+
+#. Create label, menu and edit button for default components
+#: mime-type-capplet/nautilus-mime-type-capplet.c:350
+msgid "Default Viewer:"
+msgstr "Standard visningsprogram:"
+
+#. Add icon box
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+msgid "Select an icon..."
+msgstr "Velg et ikon:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:381
+msgid "Add"
+msgstr "Legg til"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:385
+msgid "Remove"
+msgstr "Fjern"
+
+#. Default Action frame
+#: mime-type-capplet/nautilus-mime-type-capplet.c:399
+msgid "Default Action"
+msgstr "Standard handling"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:405
+msgid "Use None"
+msgstr "Bruk ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+msgid "Use Application"
+msgstr "Bruk applikasjon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+msgid "Use Viewer"
+msgstr "Bruk visningsprogram"
+
+#. Mime list Add and Delete buttons
+#: mime-type-capplet/nautilus-mime-type-capplet.c:423
+msgid "Add..."
+msgstr "Legg til..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:427
+msgid "Delete"
+msgstr "Slett"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:570
+#: mime-type-capplet/nautilus-mime-type-capplet.c:712
+msgid "None"
+msgstr "Ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:941
+msgid "Mime Type"
+msgstr "MIME-type"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:942
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:943
+msgid "Application"
+msgstr "Applikasjon"
 
 #: modules/file-method.c:358
 #, c-format
