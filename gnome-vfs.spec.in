@@ -11,6 +11,7 @@ Name: %name
 Version: %ver
 Release: %rel
 Copyright: LGPL
+Vendor: Eazel, Inc.
 Group: System Environment/Libraries
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
 URL: http://www.gnome.org/

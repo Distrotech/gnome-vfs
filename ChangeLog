@@ -1,3 +1,7 @@
+2000-10-31  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in:
+
 2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/cdda-cddb.c:
