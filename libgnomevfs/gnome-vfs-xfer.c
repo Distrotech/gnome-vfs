@@ -297,6 +297,7 @@ handle_error (GnomeVFSResult *result,
 			*result = GNOME_VFS_ERROR_INTERRUPTED;
 			return FALSE;
 		case GNOME_VFS_XFER_ERROR_ACTION_SKIP:
+			*result = GNOME_VFS_OK;
 			*skip = TRUE;
 			return FALSE;
 		}
@@ -1384,7 +1385,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 			}
 		}
 	}
-	
+
 	/* Done, at last.  At this point, there is no chance to interrupt the
            operation anymore so we don't check the return value.  */
 	call_progress (progress, GNOME_VFS_XFER_PHASE_COMPLETED);

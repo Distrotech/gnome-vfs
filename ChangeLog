@@ -1,5 +1,19 @@
 2000-04-18  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(handle_error):
+	Made the error return value get set to GNOME_VFS_OK after
+	Skip is selected -- This caused gnome_vfs_xfer_private to
+	return an unexpected error that execute_xfer didn't know how
+	to deal with.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_xfer):
+	Properly set up the dummy progress_info and progress_state
+	structs used for reporting unexpexted error results returned
+	by gnome_vfs_xfer_private.
+	
+2000-04-18  Pavel Cisler  <pavel@eazel.com>
 
 	Fixed a bug in error reporting that I introduced in my
 	previous checkin.

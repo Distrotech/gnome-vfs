@@ -1194,7 +1194,12 @@ execute_xfer (GnomeVFSJob *job)
 	/* If the xfer functions returns an error now, something really bad
            must have happened.  */
 	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_INTERRUPTED) {
+		GnomeVFSProgressCallbackState progress_state;
 		GnomeVFSXferProgressInfo info;
+
+		progress_state.progress_info = &info;
+		progress_state.sync_callback = NULL;
+		progress_state.update_callback = NULL;
 
 		info.status = GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR;
 		info.vfs_status = result;
