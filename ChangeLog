@@ -1,6 +1,13 @@
 2000-08-23  Darin Adler  <darin@eazel.com>
 
-	* data/mime/gnome-vfs.keys:
+	* check-mime.pl: Added a check of the .applications file.
+	* data/mime/gnome-vfs.applications: Fixed a lingering use of
+	the old x-special/directory-webdav, which was superceded by
+	x-directory/webdav.
+
+2000-08-23  Darin Adler  <darin@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Added a description for ksh scripts.
 
 2000-08-23  Darin Adler  <darin@eazel.com>
 

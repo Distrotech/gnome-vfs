@@ -26,14 +26,16 @@
 # check-mime.pl: 
 
 # What we check:
+#     types are lower-case in all files
 #     types in gnome-vfs.keys are in alphabetical order
 #     types in gnome-vfs.mime are in alphabetical order
-#     all types in gnome-vfs.mime have descriptions in gnome-vfs.keys
-#     all types in gnome-vfs-mime-magic has descriptions in gnome-vfs.keys
+#     types in gnome-vfs.mime have descriptions in gnome-vfs.keys
+#     types in gnome-vfs-mime-magic have descriptions in gnome-vfs.keys
+#     types in gnome-vfs.applications have descriptions in gnome-vfs.keys
 
 # Other things to check later:
-#     something about the gnome-vfs.applications file
 #     OAFIIDs are consistent (same UUID part for same prefix)
+#     some way of detecting gnome-vfs.keys entries for nonexistent MIME types
 
 use diagnostics;
 use strict;
@@ -159,6 +161,45 @@ while (<MIME>)
       {
 	$previous_type = $type if $type;
 	$type = "";
+      }
+  }
+close MIME;
+
+print STDERR "Reading gnome-vfs.applications.\n";
+
+my %in_applications;
+
+# special case for text/* for now
+# could put in fancier handling later
+$in_applications{"text/*"} = 1;
+
+open MIME, "data/mime/gnome-vfs.applications" or die;
+while (<MIME>)
+  {
+    if (/^\s+mime_types=(.*)/)
+      {
+        foreach my $type (split ",", $1)
+          {
+            next if $in_applications{$type};
+
+            if ($type ne lc $type && !$seen{$type})
+              {
+                print "- $type contains upper-case letters\n";
+              }
+            if (!$described{$type} && !$in_applications{$type})
+              {
+                if (!$in_keys{$type})
+                  {
+                    print "- $type is in gnome-vfs.applications, but not gnome-vfs.keys\n";
+                  }
+                else
+                  {
+                    print "- $type is in gnome-vfs.applications, but has no description in gnome-vfs.keys\n";
+                  }
+              }
+            $seen{$type} = 1;
+            $in_applications{$type} = 1;
+          }
       }
   }
 close MIME;

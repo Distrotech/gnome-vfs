@@ -20,7 +20,7 @@ netscape
 	can_open_multiple_files=true
 	can_open_uris=true
 	requires_terminal=false
-	mime_types=text/html,x-special/webdav-directory
+	mime_types=text/html,x-directory/webdav
 
 lynx
 	command=lynx
@@ -28,7 +28,7 @@ lynx
 	can_open_multiple_files=false
 	can_open_uris=true
 	requires_terminal=true
-	mime_types=text/html,x-special/webdav-directory
+	mime_types=text/html,x-directory/webdav
 
 mozilla
 	command=mozilla
@@ -36,7 +36,7 @@ mozilla
 	can_open_multiple_files=true
 	can_open_uris=true
 	requires_terminal=false
-	mime_types=text/html,x-special/webdav-directory
+	mime_types=text/html,x-directory/webdav
 
 gimp
 	command=gimp
