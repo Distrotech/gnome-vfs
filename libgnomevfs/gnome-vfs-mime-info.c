@@ -1543,7 +1543,8 @@ ensure_user_directory_exist (void)
 	}
 
 	retval = (dir != NULL);
-	closedir (dir);
+	if (retval) 
+		closedir (dir);
 	return retval;
 }
 
