@@ -47,6 +47,9 @@ GnomeVFSResult	 gnome_vfs_mime_set_registered_type_key 	(const char *mime_type,
 							  	 const char *key, 
 							  	 const char *data);
 
+	/* forces a reload of the config files */
+void       	 gnome_vfs_mime_info_reload   	  	 	(void);
+
 #if 0
 	
 	/* functions to freeze/thaw the internal hash tables to 
@@ -55,8 +58,6 @@ GnomeVFSResult	 gnome_vfs_mime_set_registered_type_key 	(const char *mime_type,
 	   reloading them from disk during an edit.
 	 */
 
-	/* forces a reload of the config files */
-void       	 gnome_vfs_mime_info_reload   	  	 	(void);
 
 
 	/* functions which access to the .keys files */

@@ -1,3 +1,14 @@
+2004-07-17  Dave Camp  <dave@novell.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_can_be_executable): Return FALSE for directories.
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_info_reload),
+	(read_next), (handle_simple_string), (handle_mime_info),
+	(load_mime_entry): Fix up the parser.
+	* test/Makefile.am: Disable the mime tests until we're sorted 
+	out
+
 2004-07-17  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial 

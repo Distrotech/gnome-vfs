@@ -271,8 +271,12 @@ gnome_vfs_mime_can_be_executable (const char *mime_type)
 		 * If type is known, we use default value of not executable.
 		 */
 		result = !gnome_vfs_mime_type_is_known (mime_type);
-	}
 
+		if (!strncmp (mime_type, "x-directory", strlen ("x-directory"))) {
+			result = FALSE;
+		}
+	}
+	
 	return result;
 }
 

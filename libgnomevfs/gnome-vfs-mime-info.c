@@ -44,10 +44,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#if 0
-static void gnome_vfs_mime_info_reload (void);
-#endif
-
 typedef struct {
 	char *description;
 } MimeEntry;
@@ -209,14 +205,13 @@ _gnome_vfs_mime_info_shutdown (void)
 	gnome_vfs_mime_info_clear ();
 }
 
-#if 0
 /**
  * gnome_vfs_mime_info_reload:
  *
  * Reload the MIME database from disk and notify any listeners
  * holding active #GnomeVFSMIMEMonitor objects.
  **/
-static void
+void
 gnome_vfs_mime_info_reload (void)
 {
 	if (!gnome_vfs_mime_inited) {
@@ -227,7 +222,6 @@ gnome_vfs_mime_info_reload (void)
 
 	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 }
-#endif
 
 /**
  * gnome_vfs_mime_freeze:
@@ -274,7 +268,7 @@ language_level (const char *language)
 }
 
 static int
-consume_element (xmlTextReaderPtr reader) 
+read_next (xmlTextReaderPtr reader) 
 {
 	int depth;
 	int ret;
@@ -284,16 +278,14 @@ consume_element (xmlTextReaderPtr reader)
 	ret = xmlTextReaderRead (reader);
 	while (ret == 1) {
 		if (xmlTextReaderDepth (reader) == depth) {
-			if (xmlTextReaderNodeType (reader) != XML_READER_TYPE_END_ELEMENT) {
-				g_warning ("Problem consuming element");
-				return 0;
-			}
 			return 1;
+		} else if (xmlTextReaderDepth (reader) < depth) {
+			return 0;
 		}
 		ret = xmlTextReaderRead (reader);
 	}
+
 	return ret;
-			
 }
 
 static char *
@@ -301,9 +293,7 @@ handle_simple_string (const char *filename, xmlTextReaderPtr reader)
 {
 	int ret;
 	char *text = NULL;
-	int depth;
-	
-	depth = xmlTextReaderDepth (reader);
+
 	ret = xmlTextReaderRead (reader);
 	while (ret == 1) {
 		xmlReaderTypes type;		
@@ -313,13 +303,9 @@ handle_simple_string (const char *filename, xmlTextReaderPtr reader)
 				g_free (text);
 			}
 			text = g_strdup (xmlTextReaderConstValue (reader));
-		} else if (type == XML_READER_TYPE_END_ELEMENT) {
-			if (depth == xmlTextReaderDepth (reader)) {
-				break;
-			}
 		}
 
-		ret = xmlTextReaderRead (reader);
+		ret = read_next (reader);
 	}
 	return text;
 }
@@ -339,19 +325,8 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 	ret = xmlTextReaderRead (reader);
 	while (ret == 1) {
 		xmlReaderTypes type;
-		type = xmlTextReaderNodeType (reader);
+		type = xmlTextReaderNodeType (reader);		
 		
-		if (type == XML_READER_TYPE_END_ELEMENT) {
-			if (xmlTextReaderDepth (reader) == depth) {
-				break;
-			} 
-		}
-		
-		if (xmlTextReaderDepth (reader) != depth + 1) {
-			ret = xmlTextReaderRead (reader);
-			continue;
-		}
-
 		if (type == XML_READER_TYPE_ELEMENT) {
 			const char *name;
 			name = xmlTextReaderConstName (reader);
@@ -370,31 +345,22 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 					g_free (entry->description);
 					entry->description = comment;
 					previous_lang_level = lang_level;
-				} else {
-					ret = consume_element (reader);
-					if (ret != 1) {
-						mime_entry_free (entry);
-						return NULL;
-					}
 				}
-				
-			} else {
-				ret = consume_element (reader);
-				if (ret != 1) {
-					mime_entry_free (entry);
-					return NULL;
-				}
-				
 			}
 		}
-		ret = xmlTextReaderRead (reader);
+		ret = read_next (reader);
+	}
+
+	if (ret == -1) {
+		/* Zero out the mime entry, but put it in the cache anyway
+		 * to avoid trying to reread */
+		g_free (entry->description);
+		g_warning ("couldn't parse %s\n", filename);
 	}
 
 	return entry;
 }
-
-
-
+ 
 static MimeEntry *
 load_mime_entry (const char *mime_type, const char *filename)
 {	
@@ -403,25 +369,28 @@ load_mime_entry (const char *mime_type, const char *filename)
 	int ret;
 
 	reader = xmlNewTextReaderFilename (filename);
-	
+
 	if (!reader) {
 		return NULL;
 	}
-		
+	
 	ret = xmlTextReaderRead (reader);
 	
 	entry = NULL;
 	while (ret == 1) {
 		if (xmlTextReaderNodeType (reader) == XML_READER_TYPE_ELEMENT) {
-			entry = handle_mime_info (filename, reader);
+			if (entry) {
+				g_warning ("two mime-info elements in %s", filename);
+			} else {
+				entry = handle_mime_info (filename, reader);
+			}
 		}
-		ret = xmlTextReaderRead (reader);
+		ret = read_next (reader);
 	}
 	xmlFreeTextReader (reader);
 
 	if (ret != 0 || entry == NULL) {
 		mime_entry_free (entry);
-		g_warning ("couldn't parse %s\n", filename);
 		return NULL;
 	}
 		
