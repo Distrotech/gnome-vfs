@@ -1,3 +1,10 @@
+2001-12-12  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(unref_gconf_engine): kill.
+	(get_user_level): kill atexit handler & use the gconf_client
+	API instead of the gconf_engine one.
+
 2001-12-14  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/applications.vfolder-info.in:
@@ -30,7 +37,6 @@
 
 	Change from "programs:/" to "applications:/"
 	
-
 2001-12-05  ERDI Gergo  <cactus@cactus.rulez.org>
 
 	* libgnomevfs/gnome-vfs-context.h: balance G_END_DECLS with

@@ -29,11 +29,9 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-utils.h"
-#include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>
-
-static GConfEngine *gconf_engine = NULL;
 
 static char *         get_user_level                          (void);
 static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list);
@@ -1859,12 +1857,6 @@ Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list)
 	return retval;
 }
 
-static void
-unref_gconf_engine (void)
-{
-	gconf_engine_unref (gconf_engine);
-}
-
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus
  * user level coded into it? Eventually we might want to call this the
@@ -1875,20 +1867,20 @@ static char *
 get_user_level (void)
 {
 	char *user_level = NULL;
+	static GConfClient *gconf_client = NULL;
 
-	/* Create the gconf engine once. */
-	if (gconf_engine == NULL) {
+	/* Create the gconf client once. */
+	if (gconf_client == NULL) {
 		/* This sequence is needed in case no one has initialized GConf. */
 		if (!gconf_is_initialized ()) {
 			char *fake_argv[] = { "gnome-vfs", NULL };
 			gconf_init (1, fake_argv, NULL);
 		}
 
-		gconf_engine = gconf_engine_get_default ();
-		g_atexit (unref_gconf_engine);
+		gconf_client = gconf_client_get_default ();
 	}
 
-	user_level = gconf_engine_get_string (gconf_engine, "/apps/nautilus/user_level", NULL);
+	user_level = gconf_client_get_string (gconf_client, "/apps/nautilus/user_level", NULL);
 
 	if (user_level == NULL) {
 		user_level = g_strdup ("novice");
