@@ -1,3 +1,10 @@
+2003-09-11 Mathieu Lacage <mathieu@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-info.c: make gnome_vfs_file_info_matches
+	match against everything in the FileInfo structure. This effectively makes
+	this function behave like an _equals function but we cannot change the 
+	name of the function.
+
 2003-09-18  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/vfolder/Makefile.am (CLEANFILES):

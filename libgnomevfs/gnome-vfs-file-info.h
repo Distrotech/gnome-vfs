@@ -234,7 +234,7 @@ typedef struct {
            link points to.  */
 	char *symlink_name;
 
-	/* MIME type.  */
+	/* MIME type.  -- ascii string */
 	char *mime_type;
 
 	guint refcount;
