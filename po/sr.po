@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-08-06 19:56+0200\n"
+"POT-Creation-Date: 2004-08-21 14:19+0200\n"
+"PO-Revision-Date: 2004-08-21 14:22+0200\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,21 +75,21 @@ msgid "desktop entries contain unknown encoding '%s'"
 msgstr "„.desktop“ датотека користи непознато кодирање „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
-#: libgnomevfs/eggdesktopentries.c:1220
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "„.desktop“ датотека нема групу „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1047
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "„.desktop“ датотека нема кључ „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
-#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
@@ -98,7 +98,7 @@ msgstr ""
 "разумети."
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1300
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
@@ -106,22 +106,22 @@ msgstr ""
 "„.desktop“ датотека не садржи превод вредности кључа „%s“ у локалитету „%s“."
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2221
+#: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "„.desktop“ датотека садржи неисправан знак за истицање „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2238
+#: libgnomevfs/eggdesktopentries.c:2240
 msgid "desktop entries contain escape character at end of line"
 msgstr "„.desktop“ датотека садржи неисправан знак за истицање на крају реда"
 
-#: libgnomevfs/eggdesktopentries.c:2263
+#: libgnomevfs/eggdesktopentries.c:2265
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Вредност „%s“ се не може посматрати као број."
 
-#: libgnomevfs/eggdesktopentries.c:2290
+#: libgnomevfs/eggdesktopentries.c:2292
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Вредност „%s“ се не може посматрати као истинитосна вредност."
@@ -301,120 +301,118 @@ msgstr "XIAFS диск"
 msgid "Unknown"
 msgstr "Непознат"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-ROM Disc"
-msgstr "ЦД-Р диск"
+msgstr "ЦД-РОМ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+#: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
 msgstr "Празан ЦД-Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "CD-R Disc"
 msgstr "ЦД-Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+#: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
 msgstr "Празан ЦД-РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "CD-RW Disc"
 msgstr "ЦД-РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-ROM Disc"
 msgstr "ДВД-РОМ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
 msgstr "Празан ДВД-Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
 msgstr "ДВД-Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
 msgstr "Празан ДВД-РАМ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
 msgstr "ДВД-РАМ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
 msgstr "Празан ДВД-РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
 msgstr "ДВД-РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+#: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
 msgstr "Празан ДВД+РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+#: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
 msgstr "ДВД+РВ диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
 msgstr "Празан ДВД+Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+#: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
 msgstr "ДВД+Р диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
 msgstr "Оптички диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "Audio Disc"
 msgstr "Звучни диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+#: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
 msgstr "Компактни-флеш (CF)"
 
 # Чаробни штапић? :)
-#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#: libgnomevfs/gnome-vfs-hal-mounts.c:662
 msgid "Memory Stick Media"
 msgstr "Меморијски штапић (MS)"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+#: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
 msgstr "Мудри медиј (SM)"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+#: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
 msgstr "SD/MMC медиј"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
 msgstr "Дискета"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
 msgstr "Мекинтош диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
 msgstr "Мекинтош ОС-Икс диск"
 
 # Транскрипција на нивоу ;-)
-#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#: libgnomevfs/gnome-vfs-hal-mounts.c:691
 msgid "Windows Disk"
 msgstr "Виндуз диск"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+#: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
 msgstr "Линукс диск"
 
-# bug: "op" should be "operation"
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "Непознат тип операције %u"
 
@@ -1025,21 +1023,17 @@ msgstr "Наредба коришћена за баратање „callto“ а�
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Наредба коришћена за баратање „ghelp“ адресама, ако је укључено."
 
-# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
 msgstr "Наредба коришћена за баратање „h323“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Наредба коришћена за баратање „ghelp“ адресама, ако је укључено."
+msgstr "Наредба коришћена за баратање „http“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Наредба коришћена за баратање „trash“ адресама, ако је укључено."
+msgstr "Наредба коришћена за баратање „https“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1069,21 +1063,17 @@ msgstr "Руковаоц „callto“ адресама"
 msgid "The handler for \"ghelp\" URLs"
 msgstr "Руковаоц „ghelp“ адресама"
 
-# bug: inconsistent with other strings; should be "The handler for \"h323\" URLs"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
 msgstr "Руковаоц „h323“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Руковаоц „ghelp“ адресама"
+msgstr "Руковаоц „http“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Руковаоц „ghelp“ адресама"
+msgstr "Руковаоц „https“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1125,9 +1115,7 @@ msgstr ""
 "Укључено ако наредба наведена у кључу „command“ треба да се користи за "
 "„ghelp“ адресе."
 
-# bug: inconsistent; should be "...should handle \"h323\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
@@ -1136,22 +1124,16 @@ msgstr ""
 "„h323“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"Укључено ако наредба наведена у кључу „command“ треба да се користи за "
-"„ghelp“ адресе."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „http“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"Укључено ако наредба наведена у кључу „command“ треба да се користи за "
-"„ghelp“ адресе."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „https“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1205,21 +1187,17 @@ msgstr "Да ли наведена наредба треба да се кори�
 msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Да ли наведена наредба треба да се користи за „ghelp“ адресе."
 
-# bug: inconsistent; should be "...should handle \"h323\" URLs".
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
 msgstr "Да ли наведена наредба треба да се користи за „h323“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Да ли наведена наредба треба да се користи за „ghelp“ адресе."
+msgstr "Да ли наведена наредба треба да се користи за „http“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Да ли наведена наредба треба да се користи за „trash“ адресе."
+msgstr "Да ли наведена наредба треба да се користи за „https“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
