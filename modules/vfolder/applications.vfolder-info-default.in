@@ -6,10 +6,12 @@
     <Parent>applications-all-users:///</Parent>
 
     <!-- Favorites -->
-    <Folder>
-      <Name>Favorites</Name>
-      <ParentLink>favorites:///</ParentLink>
-    </Folder>
+    <!--
+	<Folder>
+      		<Name>Favorites</Name>
+      		<ParentLink>favorites:///</ParentLink>
+    	</Folder>
+    -->
 
     <!-- Settings -->
     <Folder>
