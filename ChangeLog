@@ -1,3 +1,11 @@
+2001-01-26  Seth Nickell  <seth@eazel.com>
+
+	reviewed by: Gene Z. Ragan <gzr@eazel.com>
+
+	* modules/efs-method.h:
+	* modules/file-method.h:
+	Fix messed up header guards.
+
 2001-01-25  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>
