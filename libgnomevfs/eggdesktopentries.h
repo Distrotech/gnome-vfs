@@ -81,7 +81,11 @@ gchar                **egg_desktop_entries_get_keys   (EggDesktopEntries  *entri
 						   gsize            *length,
 						   GError        **error);
 gboolean               egg_desktop_entries_has_group  (EggDesktopEntries  *entries,
-	                                           const char     *group);
+	                                           const gchar     *group);
+
+gboolean               egg_desktop_entries_has_key  (EggDesktopEntries  *entries,
+	                                           const gchar     *group,
+                                                   const gchar     *key);
 
 gchar                 *egg_desktop_entries_get_value         (EggDesktopEntries  *entries,
 				                          const gchar    *group,

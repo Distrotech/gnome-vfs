@@ -1,5 +1,19 @@
 2004-07-17  Ray Strode  <rstrode@redhat.com>
 
+	Fix compile warnings and look at NotShowIn and
+	OnlyShowIn when building association lists.
+
+	* libgnomevfs/egg*.[ch]: sync up from libegg
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_dir_reload_*):
+	Don't ignore errors
+	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
+	new function to check for OnlyShowIn and NotShowIn
+	(gnome_vfs_mime_info_cache_dir_merge_mime): use
+	new is_valid function
+
+2004-07-17  Ray Strode  <rstrode@redhat.com>
+
 	Search in $XDG_CONFIG_DIRS for default.list, too
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 

@@ -204,7 +204,7 @@ egg_find_file_in_user_data_dir (const char *file, GError **error)
 
   if (data_dir) 
     {
-      path = g_build_filename (data_dir, file, NULL);
+      path = g_build_filename (data_dir, "applications", file, NULL);
       g_free (data_dir);
       data_dir = NULL;
     }
@@ -236,12 +236,12 @@ egg_find_file_in_secondary_data_dirs (const char *file, GError **error)
   i = 0;
   while (secondary_data_dirs && (data_dir = secondary_data_dirs[i]) && fd < 0)
     {
-        path = g_build_filename (data_dir, file, NULL);
+        path = g_build_filename (data_dir, "applications", file, NULL);
 
         fd = open (path, O_RDONLY);
 
-        if (fd < 0 && !file_error)
-          g_set_error (error, G_FILE_ERROR,
+        if (fd < 0 && file_error == NULL)
+          g_set_error (&file_error, G_FILE_ERROR,
                        g_file_error_from_errno (errno),
                        _("File could not be opened: %s"),
                        g_strerror (errno));
@@ -1620,7 +1620,7 @@ egg_desktop_entries_get_integer_list (EggDesktopEntries  *entries,
  **/
 gboolean
 egg_desktop_entries_has_group (EggDesktopEntries  *entries,
-			     const char       *group_name)
+			     const gchar       *group_name)
 {
   GList *tmp;
 
@@ -1638,6 +1638,40 @@ egg_desktop_entries_has_group (EggDesktopEntries  *entries,
     }
 
   return FALSE;
+}
+
+/**
+ * egg_desktop_entries_has_key: 
+ * @entries: a #EggDesktopEntries
+ * @group: a group name
+ * @key: a key name
+ * 
+ * Looks whether the .desktop file has the key @key in the group @group.
+ * 
+ * Return value: %TRUE if @key is a part of @group, %FALSE otherwise.
+ **/
+gboolean
+egg_desktop_entries_has_key (EggDesktopEntries  *entries,
+			     const gchar       *group_name,
+                             const gchar       *key)
+{
+  EggDesktopEntry *entry;
+  EggDesktopEntriesGroup *group;
+
+  g_return_val_if_fail (entries != NULL, FALSE);
+  g_return_val_if_fail (group_name != NULL, FALSE);
+  g_return_val_if_fail (key != NULL, FALSE);
+
+  entry = NULL;
+
+  group = egg_desktop_entries_lookup_group (entries, group_name);
+
+  if (!group)
+    return FALSE;
+
+  entry = egg_desktop_entries_lookup_entry (entries, group, key);
+
+  return entry != NULL;
 }
 
 void
