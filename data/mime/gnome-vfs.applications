@@ -395,7 +395,7 @@ omsomi
 	command=omi_gtk
 	name=Open Media System Player
 	can_open_multiple_files=false
-	expects_uirs=false
+	expects_uris=false
 	requires_terminal=false
 	mime_types=video/mpeg,video/x-msvideo,audio/ac3
 

@@ -375,7 +375,7 @@ image/x-cmu-raster
 
 image/x-compressed-xcf
 	regex,2: \.xcf\.gz$
-	regex.2: \.xcf\.bz2$
+	regex,2: \.xcf\.bz2$
 
 image/x-ico
 	ext: ico
@@ -585,11 +585,9 @@ text/xml
 
 video/mpeg
 	ext: mp2 mpe mpeg mpg vob dat
-	icon_filename=gnome-video-mpeg.png
 
 video/quicktime
 	ext: mov qt
-	icon_filename=gnome-video-quicktime.png
 
 video/x-anim
 	regex: *.anim[1-9j]
@@ -605,7 +603,6 @@ video/x-ms-asf
 
 video/x-msvideo
 	ext: avi
-	icon_filename=gnome-video-x-msvideo.png
 
 video/x-sgi-movie
 	ext: movie

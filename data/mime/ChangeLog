@@ -1,5 +1,20 @@
 2001-02-26  Darin Adler  <darin@eazel.com>
 
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	More fixes after adding more checks to check-mime.pl.
+
+	* gnome-vfs.applications: Fixed a typo where it said
+	"expect_uirs".
+	* gnome-vfs.keys.in: Fixed a couple of places that said
+	"default_action" instead of "default_action_type". Got
+	rid of some duplicate icon_filename entries. Fixed a few
+	places that said "icon-filename".
+	* gnome-vfs.mime: Fixed a place that said "regex.2"
+	instead of "regex,2". Got rid of some stray "icon_filename".
+
+2001-02-26  Darin Adler  <darin@eazel.com>
+
 	reviewed by: Pavel Cisler <pavel@eazel.com>
 
 	* gnome-vfs-mime-magic:

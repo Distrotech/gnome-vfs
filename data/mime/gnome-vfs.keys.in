@@ -95,7 +95,7 @@ application/rtf
 application/vnd.lotus-1-2-3
 	_description=Lotus 1-2-3 spreadsheet
 	icon_filename=i-spreadsheet
-	default_action=application
+	default_action_type=application
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_advanced_user_level=gnumeric
@@ -170,7 +170,6 @@ application/x-bzip-compressed-tar
 	_description=tar archive (bzip2-compressed)
 	icon_filename=gnome-compressed.png
 	vfs_method=bzip2
-	icon_filename=gnome-compressed.png
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=guitar
 	short_list_application_ids_for_intermediate_user_level=guitar
@@ -267,7 +266,7 @@ application/x-font-linux-psf
 
 application/x-font-pcf
 	_description=PCF font
-	icon-filename=gnome-font-x-pcf.png
+	icon_filename=gnome-font-x-pcf.png
 
 application/x-font-speedo
 	_description=Speedo font
@@ -283,7 +282,7 @@ application/x-font-tex-tfm
 
 application/x-font-ttf
 	_description=TrueType font
-	icon-filename=gnome-font-ttf.png
+	icon_filename=gnome-font-ttf.png
 
 application/x-font-type1
 	_description=PostScript Type 1 font
@@ -318,7 +317,6 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_advanced_user_level=gnumeric
-	icon_filename=i-spreadsheet
 
 application/x-gtar
 	_description=gtar archive
@@ -387,7 +385,6 @@ application/x-kword
 	short_list_application_ids_for_novice_user_level=kword
 	short_list_application_ids_for_intermediate_user_level=kword
 	short_list_application_ids_for_advanced_user_level=kword
-
 
 application/x-lha
 	_description=LHARC archive
@@ -604,7 +601,7 @@ application/zip
 audio/ac3
 	_description=Dolby Digital audio
 	icon_filename=i-music
-	default_action=application
+	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmps,omsomi
 	short_list_application_ids_for_intermediate_user_level=xmps,omsomi
 	short_list_application_ids_for_advanced_user_level=xmps,omsomi
@@ -848,7 +845,7 @@ image/x-cmu-raster
 
 image/x-compressed-xcf
 	_description=compressed GIMP document
-	icon-filename=gnome-gimp.png
+	icon_filename=gnome-gimp.png
 
 image/x-ico
 	_description=Windows icon image
@@ -1361,7 +1358,6 @@ video/x-sgi-movie
 	short_list_application_ids_for_intermediate_user_level=xanim
 	short_list_application_ids_for_advanced_user_level=xanim
 
-
 x-directory/normal
 	_description=folder
 	default_action_type=component
@@ -1403,14 +1399,13 @@ x-directory/webdav-prefer-directory
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_advanced_user_level=mozilla
 
-
 x-special/device-block
 	_description=block device
 	icon_filename=i-harddisk.png
 
 x-special/device-char
 	_description=character device
-	icon-filename=i-chardev.png
+	icon_filename=i-chardev.png
 
 x-special/fifo
 	_description=named pipe
