@@ -27,12 +27,12 @@ msgstr "%s:%d ne vsebuje imena metode."
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d ne vsebuje imea modula."
+msgstr "%s:%d ne vsebuje imena modula."
 
 #: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
+msgstr "Ne najdem nastavitvene datoteke `%s': %s"
 
 #: libgnomevfs/gnome-vfs-file-info.c:479
 #, c-format
@@ -50,7 +50,7 @@ msgstr "Ne morem razèleniti: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Nadalnje napake pri razèlenitvi bodo ignorirane."
+msgstr "Naslednje napake pri razèlenitvi bodo ignorirane."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -195,7 +195,7 @@ msgstr "Gostitelj ni bil najden"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr "Gostitlejevo ime ni veljavno"
+msgstr "Gostiteljevo ime ni veljavno"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
@@ -272,7 +272,7 @@ msgstr "%.1fG"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:338
 msgid "Dying."
-msgstr "Umira."
+msgstr "Umiram."
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:503
@@ -328,7 +328,7 @@ msgstr "Ne morem razvozlati zaèetne reference na RootPOA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1411
 msgid "Cannot activate POA manager."
-msgstr "Ne morem aktivirat POA upravljalca."
+msgstr "Ne morem aktivirat upravljavca POA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1436
 #, c-format
@@ -338,7 +338,7 @@ msgstr "Uporaba: %s <ior> [<ior_fd>]\n"
 #: libgnomevfs-corba/gnome-vfs-slave.c:1447
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr "Ne morem odpreti datoteènega deskriptorja %d."
+msgstr "Ne morem odpreti datoteènega opisnika %d."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
@@ -411,7 +411,7 @@ msgstr "Neznan ID posla %d"
 #: libgnomevfs-pthread/gnome-vfs-job.c:1044
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Ne morem ustvariti cevi GIOChannel: %s"
+msgstr "Ne morem ustvariti cevi za odprti GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1482
 msgid "Operation stopped"
@@ -451,19 +451,19 @@ msgstr "Izberi poglede, ki naj se ka¾ejo v menuju mime tipov \"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
 msgid "Add Mime Type"
-msgstr "Dodaj Mime Tip"
+msgstr "Dodaj mime tip"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
-"Dodaj nov Mime Tip\n"
+"Dodaj nov mime tip\n"
 "Naprimer:  image/tiff; text/x-scheme"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
 msgid "Mime Type:"
-msgstr "Mime Tip:"
+msgstr "Mime tip:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
 msgid "Type in a description for this mime-type."
@@ -475,7 +475,7 @@ msgstr "Opis:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
 msgid "Add New Extension"
-msgstr "Dodaj Novo Pripono"
+msgstr "Dodaj novo pripono"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
 msgid ""
@@ -492,31 +492,31 @@ msgstr "Pripona:"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
 msgid "New Application"
-msgstr "Nov Program"
+msgstr "Nov program"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:788
 msgid "Application Name:"
-msgstr "Ime Programa:"
+msgstr "Ime programa:"
 
 #. Application ID label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:796
 msgid "Application ID:"
-msgstr "ID Programa:"
+msgstr "ID programa:"
 
 #. Application Command label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Application Command:"
-msgstr "Ukaz Programa:"
+msgstr "Ukaz programa:"
 
 #. Open Behavior frame
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:812
 msgid "Open Behavior"
-msgstr "Odpri Obna¹anje"
+msgstr "Odpri obna¹anje"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:818
@@ -531,17 +531,17 @@ msgstr "Lahko odpre iz URI-a"
 #. Create label, menu and edit button for default applications
 #: mime-type-capplet/nautilus-mime-type-capplet.c:330
 msgid "Default Application:"
-msgstr "Privzet Program"
+msgstr "Privzet program"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:337
 #: mime-type-capplet/nautilus-mime-type-capplet.c:348
 msgid "Edit List"
-msgstr "Uredi Seznam"
+msgstr "Uredi seznam"
 
 #. Create label, menu and edit button for default components
 #: mime-type-capplet/nautilus-mime-type-capplet.c:342
 msgid "Default Viewer:"
-msgstr "Privzet Prikazovalnik:"
+msgstr "Privzet prikazovalnik:"
 
 #. Add icon box
 #: mime-type-capplet/nautilus-mime-type-capplet.c:353
@@ -559,19 +559,19 @@ msgstr "Odstrani"
 #. Default Action frame
 #: mime-type-capplet/nautilus-mime-type-capplet.c:391
 msgid "Default Action"
-msgstr "Privzeto Dejanje"
+msgstr "Privzeto dejanje"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:397
 msgid "No Default"
-msgstr "Ni Privzeto"
+msgstr "Ni privzeto"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:403
 msgid "Use Application"
-msgstr "Uporabi Program"
+msgstr "Uporabi program"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:409
 msgid "Use Viewer"
-msgstr "Uporabi Pregledovalnik"
+msgstr "Uporabi pregledovalnik"
 
 #. Mime list Add and Delete buttons
 #: mime-type-capplet/nautilus-mime-type-capplet.c:415
@@ -589,7 +589,7 @@ msgstr "Brez"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:933
 msgid "Mime Type"
-msgstr "Mime Tip"
+msgstr "Mime tip"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:934
 msgid "Description"
@@ -638,10 +638,10 @@ msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
 #~ msgstr "Brez"
 
 #~ msgid "ftpfs: Invalid host name."
-#~ msgstr "ftpfs: Neveljavno ime gostitelja."
+#~ msgstr "ftpfs: neveljavno ime gostitelja."
 
 #~ msgid "ftpfs: Invalid host address."
-#~ msgstr "ftpfs: Neveljaven naslov gostitelja."
+#~ msgstr "ftpfs: neveljaven naslov gostitelja."
 
 #~ msgid "ftpfs: making connection to %s"
 #~ msgstr "ftpfs: ustvarjam povezavo z %s"
@@ -668,7 +668,7 @@ msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
 #~ msgstr "ftpfs: prijavljen sem"
 
 #~ msgid "ftpfs: Login incorrect for user %s "
-#~ msgstr "ftpfs: Napaèna prijava za uporabnika %s "
+#~ msgstr "ftpfs: napaèna prijava za uporabnika %s "
 
 #~ msgid "ftpfs: aborting transfer."
 #~ msgstr "ftpfs: prekinjam prenos."
@@ -695,10 +695,10 @@ msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
 #~ msgstr "Razvozljujem simbolno povezavo..."
 
 #~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-#~ msgstr "ftpfs: Berem FTP imenik %s... (ne uporabljam UNIX ls opcij)"
+#~ msgstr "ftpfs: berem FTP imenik %s... (ne uporabljam UNIX ls opcij)"
 
 #~ msgid "ftpfs: Reading FTP directory %s..."
-#~ msgstr "ftpfs: Berem FTP imenik %s..."
+#~ msgstr "ftpfs: berem FTP imenik %s..."
 
 #~ msgid "ftpfs: reading FTP directory interrupt by user"
 #~ msgstr "ftpfs: branje FTP imenika je prekinil uporabnik"
@@ -713,4 +713,4 @@ msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
 #~ msgstr "Zaèenjam linearen prenos..."
 
 #~ msgid "Preparing reget..."
-#~ msgstr "Pripraljam ponvni prenos..."
+#~ msgstr "Pripravljam ponovni prenos..."
