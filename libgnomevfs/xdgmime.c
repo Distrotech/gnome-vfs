@@ -38,8 +38,7 @@
 static int initted = 0;
 static XdgGlobHash *global_hash = NULL;
 static XdgMimeMagic *global_magic = NULL;
-
-char *_xdg_mime_type_unknown = "application/octet-stream";
+const char *xdg_mime_type_unknown = "application/octet-stream";
 
 static void
 _xdg_mime_init_from_directory (const char *directory)
@@ -183,7 +182,7 @@ xdg_mime_get_mime_type_for_file (const char *file_name)
   /* FIXME: Need to make sure that max_extent isn't totally broken.  This could
    * be large and need getting from a stream instead of just reading it all
    * in. */
-  max_extent = _xdg_mime_magic_get_max_buffer_extents (global_magic);
+  max_extent = _xdg_mime_magic_get_buffer_extents (global_magic);
   data = malloc (max_extent);
   if (data == NULL)
     return XDG_MIME_TYPE_UNKNOWN;
@@ -236,14 +235,6 @@ xdg_mime_is_valid_mime_type (const char *mime_type)
   return _xdg_utf8_validate (mime_type);
 }
 
-int
-xdg_mime_get_max_buffer_extents (void)
-{
-  xdg_mime_init ();
-
-  return _xdg_mime_magic_get_max_buffer_extents (global_magic);
-}
-
 void
 xdg_mime_shutdown (void)
 {
@@ -258,4 +249,12 @@ xdg_mime_shutdown (void)
 
       initted = 0;
     }
+}
+
+int
+xdg_mime_get_max_buffer_extents (void)
+{
+  xdg_mime_init ();
+  
+  return _xdg_mime_magic_get_buffer_extents (global_magic);
 }

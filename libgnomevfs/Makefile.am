@@ -1,4 +1,4 @@
-NULL = 
+NULL =
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
@@ -6,6 +6,7 @@ INCLUDES =					\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
 	$(MONIKERS_CFLAGS)			\
+	-DXDG_PREFIX=_gnome_vfs_xdg		\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
 	-D_GNU_SOURCE				\
@@ -46,12 +47,12 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
-  
+
 libgnomevfs_headers = 			\
 	$(libgnomevfs_headers_to_scan_for_enums) \
 	gnome-vfs-uri.h				\
 	$(NULL)
-  
+
 # Generate the enums source code, with glib-mkenums:
 # This is based on the same Makefile.am stuff in pango:
 libgnomevfs_built_headers = gnome-vfs-enum-types.h
@@ -90,7 +91,7 @@ s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
 	&& (cmp -s tmp-gnome-vfs-enum-types.c $(srcdir)/gnome-vfs-enum-types.c || cp tmp-gnome-vfs-enum-types.c $(srcdir)/gnome-vfs-enum-types.c ) \
 	&& rm -f tmp-gnome-vfs-enum-types.c \
 	&& echo timestamp > $(@F)
-  
+
 
 # %.c %.h: %.gob
 #	$(top_srcdir)/gob/src/gob2 $<

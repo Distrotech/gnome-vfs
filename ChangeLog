@@ -1,3 +1,11 @@
+Tue Jan 20 14:57:26 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/xdg*.[ch]: Sync to upstream XDG changes.  Merged in
+	GTK+ and other fixes.
+
+	* libgnomevfs/Makefile.am: Use xdg name mangling to avoid
+	collision with GTK+'s copy.
+
 2004-01-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/xdgmimemagic.c (_xdg_mime_magic_insert_match):
