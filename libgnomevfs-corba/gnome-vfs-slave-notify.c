@@ -682,6 +682,65 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	/* FIXME kill process? */
 }
 
+static void
+impl_Notify_get_file_info (PortableServer_Servant servant,
+			   const GNOME_VFS_Result result,
+			   const GNOME_VFS_Slave_FileInfo *file_info,
+			   CORBA_Environment *ev)
+{
+	GnomeVFSSlaveProcess *slave;
+	GnomeVFSAsyncGetFileInfoCallback callback;
+	GnomeVFSFileInfo *info;
+	char **meta_keys;
+	int num_meta_keys;
+	int i;
+
+	slave = slave_from_servant(servant);
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_GET_FILE_INFO) {
+		g_warning ("slave received get_file_info notify, "
+			   "but get_file_info operation is not in progress");
+		return;
+	}
+
+	meta_keys = slave->op_info.directory.meta_keys;
+	num_meta_keys = slave->op_info.directory.num_meta_keys;
+
+	info = gnome_vfs_file_info_new ();
+	memcpy (info, (GnomeVFSFileInfo *) file_info->data._buffer,
+		file_info->data._length);
+
+	if (file_info->name[0] == 0)
+		info->name = NULL;
+	else
+		info->name = g_strdup (file_info->name);
+
+	if (file_info->mime_type[0] == 0)
+		info->mime_type = NULL;
+	else
+		info->mime_type = g_strdup (file_info->mime_type);
+
+	if (file_info->symlink_name[0] == 0)
+		info->symlink_name = NULL;
+	else
+		info->symlink_name
+			= g_strdup (file_info->symlink_name);
+
+	info->metadata_list = NULL;
+	set_metadata_from_response (info,
+				    (GNOME_VFS_Slave_MetadataResponseList *)&file_info->metadata_response,
+				    (const char **)meta_keys);
+
+	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
+
+	callback = (GnomeVFSAsyncGetFileInfoCallback)slave->callback;
+	(* callback) ((GnomeVFSAsyncHandle *) slave, result, info, slave->callback_data);
+
+	for (i = 0; i < num_meta_keys; i++)
+		g_free (meta_keys[i]);
+	g_free (meta_keys);
+	gnome_vfs_file_info_unref(info);
+}
+
 
 gboolean
 gnome_vfs_slave_notify_create (GnomeVFSSlaveProcess *slave)
@@ -700,6 +759,7 @@ gnome_vfs_slave_notify_create (GnomeVFSSlaveProcess *slave)
 	Notify_epv.load_directory = impl_Notify_load_directory;
 	Notify_epv.dying = impl_Notify_dying;
 	Notify_epv.reset = impl_Notify_reset;
+	Notify_epv.get_file_info = impl_Notify_get_file_info;
 
 	Notify_epv.xfer_start = impl_Notify_xfer_start;
 	Notify_epv.xfer_file_start = impl_Notify_xfer_file_start;

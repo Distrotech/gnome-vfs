@@ -349,6 +349,18 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 }
 
 static void
+dispatch_get_file_info_callback (GnomeVFSJob *job)
+{
+	GnomeVFSAsyncGetFileInfoCallback callback = (GnomeVFSAsyncGetFileInfoCallback)job->callback;
+
+	(* callback) ((GnomeVFSAsyncHandle *) job,
+		      job->info.get_file_info.notify.result,
+		      job->info.get_file_info.notify.file_info,
+		      job->callback_data);
+	gnome_vfs_file_info_unref(job->info.get_file_info.notify.file_info);
+}
+
+static void
 dispatch_xfer_callback (GnomeVFSJob *job)
 {
 	GnomeVFSAsyncXferProgressCallback callback;
@@ -414,6 +426,9 @@ dispatch_job_callback (GIOChannel *source,
 		break;
 	case GNOME_VFS_JOB_XFER:
 		dispatch_xfer_callback (job);
+		break;
+	case GNOME_VFS_JOB_GET_FILE_INFO:
+		dispatch_get_file_info_callback (job);
 		break;
 	default:
 		g_warning (_("Unknown job ID %d"), job->type);
@@ -1080,6 +1095,29 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 }
 
 static gboolean
+execute_get_file_info (GnomeVFSJob *job)
+{
+	GnomeVFSGetFileInfoJob *gijob;
+	GnomeVFSResult notify_res;
+
+	gijob = &job->info.get_file_info;
+	gijob->notify.file_info = gnome_vfs_file_info_new();
+	gijob->notify.result = gnome_vfs_get_file_info_uri_cancellable(gijob->request.uri,
+								       gijob->notify.file_info,
+								       gijob->request.options,
+								       (const char **)gijob->request.meta_keys,
+								       job->context);
+	gnome_vfs_uri_unref(gijob->request.uri);
+	g_strfreev(gijob->request.meta_keys);
+
+	notify_res = job_oneway_notify_and_close (job);
+	if(notify_res == GNOME_VFS_OK)
+		return notify_res;
+	else
+		return FALSE;
+}
+
+static gboolean
 execute_load_directory (GnomeVFSJob *job)
 {
 	GnomeVFSLoadDirectoryJob *load_directory_job;
@@ -1108,13 +1146,7 @@ execute_load_directory (GnomeVFSJob *job)
 	g_free (load_directory_job->request.sort_rules);
 	g_free (load_directory_job->request.filter_pattern);
 
-	if (load_directory_job->request.meta_keys != NULL) {
-		gchar **p;
-
-		for (p = load_directory_job->request.meta_keys; *p != NULL; p++)
-			g_free (*p);
-		g_free (load_directory_job->request.meta_keys);
-	}
+	g_strfreev(load_directory_job->request.meta_keys);
 
 	return FALSE;
 }
@@ -1209,6 +1241,8 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		return execute_load_directory (job);
 	case GNOME_VFS_JOB_XFER:
 		return execute_xfer (job);
+	case GNOME_VFS_JOB_GET_FILE_INFO:
+		return execute_get_file_info (job);
 	default:
 		g_warning (_("Unknown job ID %d"), job->type);
 		return FALSE;

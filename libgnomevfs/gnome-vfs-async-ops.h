@@ -115,6 +115,13 @@ GnomeVFSResult	 gnome_vfs_async_write		(GnomeVFSAsyncHandle *handle,
 						 	callback,
 						 gpointer callback_data);
 
+GnomeVFSResult   gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
+						 const char *text_uri,
+						 GnomeVFSFileInfoOptions options,
+						 const char *meta_keys[],
+						 GnomeVFSAsyncGetFileInfoCallback callback,
+						 gpointer callback_data);
+
 GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSFileInfoOptions

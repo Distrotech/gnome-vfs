@@ -97,7 +97,7 @@ xfer_progress_callback (const GnomeVFSXferProgressInfo *info,
 			printf ("Ready to go!\n");
 			return TRUE;
 		case GNOME_VFS_XFER_PHASE_XFERRING:
-			printf ("Transferring `%s' to `%s' (file %ld/%ld, byte %Ld/%Ld in file, %Ld/%Ld total)\n",
+			printf ("Transferring `%s' to `%s' (file %ld/%ld, byte %ld/%ld in file, %Ld/%Ld total)\n",
 				info->source_name,
 				info->target_name,
 				info->file_index,

@@ -440,7 +440,6 @@ pthread_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	return GNOME_VFS_OK;
 }
 
-
 static gchar **
 copy_meta_keys (const gchar *meta_keys[])
 {
@@ -461,6 +460,57 @@ copy_meta_keys (const gchar *meta_keys[])
 
 	return new;
 }
+
+GnomeVFSResult
+pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
+				       const char *uri,
+				       GnomeVFSFileInfoOptions options,
+				       const char *meta_keys[],
+				       GnomeVFSAsyncGetFileInfoCallback callback,
+				       gpointer callback_data);
+GnomeVFSResult
+pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
+				       const char *uri,
+				       GnomeVFSFileInfoOptions options,
+				       const char *meta_keys[],
+				       GnomeVFSAsyncGetFileInfoCallback callback,
+				       gpointer callback_data)
+{
+	GnomeVFSURI *vuri;
+	GnomeVFSJob *job;
+	GnomeVFSGetFileInfoJob *gijob;
+
+	vuri = gnome_vfs_uri_new(uri);
+
+	if(vuri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	job = gnome_vfs_job_new();
+	if (job == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	gnome_vfs_job_prepare(job);
+	job->type = GNOME_VFS_JOB_GET_FILE_INFO;
+	job->callback = callback;
+	job->callback_data = callback_data;
+
+	gijob->request.uri = vuri;
+	gijob->request.meta_keys = copy_meta_keys (meta_keys);
+	gijob->request.options = options;
+	gijob->notify.file_info = NULL;
+	gijob->notify.result = GNOME_VFS_OK;
+
+	gnome_vfs_job_go (job);
+
+	*handle_return = (GnomeVFSAsyncHandle *) job;
+
+	return GNOME_VFS_OK;
+}
+
 
 static GnomeVFSDirectorySortRule *
 copy_sort_rules (GnomeVFSDirectorySortRule *rules)

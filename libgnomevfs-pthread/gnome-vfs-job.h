@@ -37,7 +37,8 @@ enum _GnomeVFSJobType {
 	GNOME_VFS_JOB_READ,
 	GNOME_VFS_JOB_WRITE,
 	GNOME_VFS_JOB_LOAD_DIRECTORY,
-	GNOME_VFS_JOB_XFER
+	GNOME_VFS_JOB_XFER,
+	GNOME_VFS_JOB_GET_FILE_INFO,
 };
 typedef enum _GnomeVFSJobType GnomeVFSJobType;
 
@@ -132,6 +133,19 @@ struct _GnomeVFSWriteJob {
 };
 typedef struct _GnomeVFSWriteJob GnomeVFSWriteJob;
 
+typedef struct {
+	/* request */
+	struct {
+		GnomeVFSURI *uri;
+		GnomeVFSFileInfoOptions options;
+		gchar **meta_keys;
+	} request;
+
+	struct {
+		GnomeVFSResult result;
+		GnomeVFSFileInfo *file_info;
+	} notify;
+} GnomeVFSGetFileInfoJob;
 
 /* "Complex operations.  */
 
@@ -247,6 +261,7 @@ struct _GnomeVFSJob {
 		GnomeVFSWriteJob write;
 		GnomeVFSLoadDirectoryJob load_directory;
 		GnomeVFSXferJob xfer;
+		GnomeVFSGetFileInfoJob get_file_info;
 	} info;
 };
 

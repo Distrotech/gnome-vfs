@@ -72,6 +72,10 @@ module Slave {
 					       in boolean exclusive,
 					       in Permission perm);
 
+	        oneway void get_file_info (in string uri,
+					   in FileInfoOptions info_options,
+					   in MetadataKeyList meta_keys);
+
 		/* Load a directory.  */
 		oneway void load_directory (in string uri,
 					    in FileInfoOptions info_options,
@@ -129,6 +133,9 @@ module Slave {
 
 		/* Directory segment loaded.  */
 		oneway void load_directory (in Result result, in FileInfoList files);
+
+	        /* File info is here. */
+	        oneway void get_file_info (in Result result, in FileInfo file_info);
 
 		/* Files have been collected (if necessary), and the transfer
                    begins.  If `FALSE' is returned, operation is stopped.  */

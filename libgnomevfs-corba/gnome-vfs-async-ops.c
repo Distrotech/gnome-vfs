@@ -366,7 +366,6 @@ corba_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	return GNOME_VFS_OK;
 }
 
-
 #define COUNT_ELEMENTS(count, array, term)				\
 G_STMT_START{								\
 	if ((array) == NULL)						\
@@ -375,6 +374,71 @@ G_STMT_START{								\
 		for ((count) = 0; array[(count)] != (term); (count)++)	\
 			;						\
 }G_STMT_END
+
+GnomeVFSResult
+corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
+				     const char *uri,
+				     GnomeVFSFileInfoOptions options,
+				     const char *meta_keys[],
+				     GnomeVFSAsyncGetFileInfoCallback callback,
+				     gpointer callback_data);
+GnomeVFSResult
+corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
+				     const char *uri,
+				     GnomeVFSFileInfoOptions options,
+				     const char *meta_keys[],
+				     GnomeVFSAsyncGetFileInfoCallback callback,
+				     gpointer callback_data)
+{
+	GnomeVFSSlaveProcess *slave;
+	GNOME_VFS_MetadataKeyList my_meta_keys;
+	int num_meta_keys;
+	GnomeVFSAsyncDirectoryOpInfo *op_info; /* piggyback */
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	slave = gnome_vfs_slave_process_new();
+	if (slave == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	COUNT_ELEMENTS (num_meta_keys, meta_keys, NULL);
+
+	op_info = &slave->op_info.directory;
+	op_info->num_meta_keys = num_meta_keys;
+	if (num_meta_keys == 0) {
+		op_info->meta_keys = NULL;
+	} else {
+		int i;
+		op_info->meta_keys = g_new (gchar *, num_meta_keys);
+		for (i = 0; i < num_meta_keys; i++)
+			op_info->meta_keys[i] = g_strdup (meta_keys[i]);
+	}
+
+	slave->callback = callback;
+	slave->callback_data = callback_data;
+
+	my_meta_keys._length = my_meta_keys._maximum = num_meta_keys;
+	my_meta_keys._buffer = (char **)meta_keys;
+	CORBA_sequence_set_release (&my_meta_keys, FALSE);
+
+	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_GET_FILE_INFO;
+
+	GNOME_VFS_Slave_Request_get_file_info (slave->request_objref,
+					       uri,
+					       options,
+					       &my_meta_keys,
+					       &slave->ev);
+	if (slave->ev._major != CORBA_NO_EXCEPTION) {
+		gnome_vfs_slave_process_destroy (slave);
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	*handle_return = (GnomeVFSAsyncHandle *) slave;
+
+	return GNOME_VFS_OK;
+}
 
 GnomeVFSResult
 corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
@@ -459,6 +523,8 @@ corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 
 	/* Here we go...  */
 
+	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY;
+
 	GNOME_VFS_Slave_Request_load_directory (slave->request_objref,
 						uri,
 						options,
@@ -473,8 +539,6 @@ corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		gnome_vfs_slave_process_destroy (slave);
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
-
-	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY;
 
 	*handle_return = (GnomeVFSAsyncHandle *) slave;
 

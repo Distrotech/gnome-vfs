@@ -991,6 +991,78 @@ load_directory_sorted (const gchar *uri,
 }
 
 static void
+impl_Request_get_file_info (PortableServer_Servant servant,
+			    const CORBA_char *uri,
+			    const GNOME_VFS_Slave_FileInfoOptions info_options,
+			    const GNOME_VFS_MetadataKeyList *meta_keys,
+			    CORBA_Environment *ev)
+{
+	GnomeVFSResult result;
+	char **meta_key_array;
+	guint num_meta_keys;
+	int i, j;
+	GnomeVFSFileInfo *info;
+	GNOME_VFS_Slave_FileInfo out_info, *p;
+	guint info_size;
+
+	num_meta_keys = meta_keys->_length;
+	if (num_meta_keys == 0) {
+		meta_key_array = NULL;
+	} else {
+		meta_key_array = alloca (sizeof (gchar *)
+					 * (num_meta_keys + 1));
+
+		for (i = 0; i < meta_keys->_length; i++)
+			meta_key_array[i] = meta_keys->_buffer[i];
+		meta_key_array[i] = NULL;
+	}
+
+	info = gnome_vfs_file_info_new();
+	result = gnome_vfs_get_file_info(uri, info, info_options, (const char **)meta_key_array);
+
+	p = &out_info;
+	info_size = sizeof (GnomeVFSFileInfo);
+	p->data._length = info_size;
+	p->data._maximum = info_size;
+	p->data._buffer = alloca(info_size);
+	CORBA_sequence_set_release (&p->data, FALSE);
+
+	p->name = info->name?info->name:"";
+	p->symlink_name = info->symlink_name?info->symlink_name:"";
+	p->mime_type = info->mime_type?info->mime_type:"";
+
+	p->metadata_response._length = num_meta_keys;
+	p->metadata_response._maximum = num_meta_keys;
+	p->metadata_response._buffer
+		= alloca(sizeof(GNOME_VFS_Slave_MetadataResponse) * num_meta_keys);
+	CORBA_sequence_set_release (&p->metadata_response, FALSE);
+
+	for (j = 0; j < num_meta_keys; j++) {
+		GNOME_VFS_Slave_MetadataResponse *mp;
+		gconstpointer value;
+		guint value_size;
+
+		mp = p->metadata_response._buffer + j;
+
+		mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[i], &value, &value_size);
+		if(mp->found) {
+			mp->value._length = value_size;
+			mp->value._buffer = (gpointer)value;
+		} else {
+			mp->value._length = 0;
+			mp->value._maximum = 0;
+			mp->value._buffer = NULL;
+		}
+
+		CORBA_sequence_set_release (&mp->value, FALSE);
+	}
+
+	GNOME_VFS_Slave_Notify_get_file_info (notify_objref, (GNOME_VFS_Result)result, &out_info, ev);
+
+	gnome_vfs_file_info_destroy(info);
+}
+
+static void
 impl_Request_load_directory (PortableServer_Servant servant,
 			     const CORBA_char *uri,
 			     const GNOME_VFS_Slave_FileInfoOptions info_options,
@@ -1220,6 +1292,7 @@ init_Request (void)
 	Request_epv.open_as_channel = impl_Request_open_as_channel;
 	Request_epv.create = impl_Request_create;
 	Request_epv.create_as_channel = impl_Request_create_as_channel;
+	Request_epv.get_file_info = impl_Request_get_file_info;
 	Request_epv.load_directory = impl_Request_load_directory;
 	Request_epv.xfer = impl_Request_xfer;
 

@@ -570,6 +570,12 @@ typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSFileSize bytes_written,
 						 gpointer callback_data);
 
+typedef void    (* GnomeVFSAsyncGetFileInfoCallback)
+                                                 (GnomeVFSAsyncHandle *handle,
+						  GnomeVFSResult result,
+						  GnomeVFSFileInfo *file_info,
+						  gpointer callback_data);
+
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
 						(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,

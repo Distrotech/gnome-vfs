@@ -1,5 +1,9 @@
 2000-02-02  Elliot Lee  <sopwith@redhat.com>
 
+	* idl/gnome-vfs-slave.idl, libgnomevfs/gnome-vfs-async-ops.h,
+	libgnomevfs/gnome-vfs-backend.c, libgnomevfs/gnome-vfs-types.h, libgnomevfs-corba/*.[ch], libgnomevfs-pthread/*.[ch]:
+	Implement asynchronous get_file_info operation. Compiles but is untested.
+
 	* libgnomevfs/gnome-vfs-method.c: Pass method_name and config options to the module.
 	* libgnomevfs/gnome-vfs-private-types.h: Pass GnomeVFSMethod
 	pointer as first arg to all method implementation routines.

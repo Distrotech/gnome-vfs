@@ -66,7 +66,7 @@ directory_visit_callback (const gchar *rel_path,
 	printf ("directory_visit_callback -- rel_path `%s' data `%s'\n",
 		rel_path, (gchar *) data);
 
-	printf ("  File `%s'%s (%s, %s), size %Ld, mode %04o\n",
+	printf ("  File `%s'%s (%s, %s), size %d, mode %04o\n",
 		info->name,
 		GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link]" : "",
 		type_to_string (info->type),
