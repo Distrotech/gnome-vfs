@@ -44,6 +44,7 @@ void
 gnome_vfs_async_job_map_init (void)
 {
 	gnome_vfs_pthread_recursive_mutex_init (&async_job_map_lock);
+	pthread_mutex_init (&async_job_callback_map_lock, NULL);
 }
 
 GnomeVFSJob *
@@ -206,15 +207,13 @@ gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify
 
 	JOB_DEBUG (("adding callback %d ", notify_result->callback_id));
 
-	/* FIXME potential startup race here! */
+	pthread_mutex_lock (&async_job_callback_map_lock);
+	
 	if (async_job_callback_map == NULL) {
 		/* First job, allocate a new hash table. */
 		async_job_callback_map = g_hash_table_new (NULL, NULL);
-		pthread_mutex_init (&async_job_callback_map_lock, NULL);
 	}
 
-	pthread_mutex_lock (&async_job_callback_map_lock);
-	
 	/* we are using async_job_callback_map_lock to ensure atomicity of
 	 * checking/clearing job->cancelled and adding/cancelling callbacks
 	 */
@@ -258,20 +257,20 @@ callback_map_cancel_one (gpointer key, gpointer value, gpointer user_data)
 void
 gnome_vfs_async_job_cancel_job_and_callbacks (GnomeVFSAsyncHandle *job_handle, GnomeVFSJob *job)
 {
-	if (async_job_callback_map == NULL) {
-		JOB_DEBUG (("job %u, no callbacks scheduled yet",
-			    GPOINTER_TO_UINT (job_handle)));
-		return;
-	}
-
 	pthread_mutex_lock (&async_job_callback_map_lock);
 	
 	if (job != NULL) {
 		job->cancelled = TRUE;
 	}
 	
-	g_hash_table_foreach (async_job_callback_map,
-		callback_map_cancel_one, job_handle);
+	if (async_job_callback_map == NULL) {
+		JOB_DEBUG (("job %u, no callbacks scheduled yet",
+			    GPOINTER_TO_UINT (job_handle)));
+	} else {
+		g_hash_table_foreach (async_job_callback_map,
+				      callback_map_cancel_one, job_handle);
+	}
+
 	pthread_mutex_unlock (&async_job_callback_map_lock);
 }
 
@@ -284,5 +283,4 @@ async_job_callback_map_destroy (void)
 	g_hash_table_destroy (async_job_callback_map);
 	async_job_callback_map = NULL;
 	pthread_mutex_unlock (&async_job_callback_map_lock);
-	pthread_mutex_destroy (&async_job_callback_map_lock);
 }
