@@ -1,3 +1,12 @@
+Wed Jan 02 20:45:09 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: organize a todo/fixme list
+	  at the top of the file.  Implement vfolder file rereading.
+	  Implement stating of things that we can't monitor otherwise.
+	  So that we notice changes on disk.  This stuff is now mostly
+	  finished, modulo the .directory files.  Though this is not
+	  well tested yet.
+
 Sun Dec 30 01:40:40 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: Start working on monitoring.  For
