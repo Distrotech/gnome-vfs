@@ -105,21 +105,6 @@ G_STMT_START					\
       return __tmp_result;			\
 } G_STMT_END
 
-#define MAKE_ABSOLUTE(dest, src)		\
-G_STMT_START					\
-{						\
-   if((src)[0] != '/')				\
-   {						\
-      (dest) = alloca(strlen(src) + 2);		\
-      (dest)[0] = '/';				\
-      strcpy((dest), (src));			\
-   }						\
-   else						\
-   {						\
-      (dest) = (src);				\
-   }						\
-} G_STMT_END
-
 static Bzip2MethodHandle
 *bzip2_method_handle_new(GnomeVFSHandle *parent_handle,
                          GnomeVFSURI *uri,

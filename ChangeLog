@@ -1,3 +1,6 @@
+1999-09-25  Cody Russell  <bratsche@dfw.net>
+	* modules/bzip2-method.c: Removed MAKE_ABSOLUTE().
+
 1999-09-25  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs/gnome-vfs-constants.h (GNOME_VFS_OFFSET_FORMAT_STR)
