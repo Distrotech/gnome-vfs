@@ -1,3 +1,15 @@
+2000-10-25  Rebecca Schulman  <rebecka@eazel.com>
+
+	* modules/http-method.c: (do_create):
+	Fixed bugzilla bug 3865, that you couldn't duplicate
+	vault files.  The problem was that the do_create
+	method was ignoring the "exclusive" flag, and 
+	so a copy would create a file and the create 
+	method would silently be ok and overwrite
+	the file, as per http protocol defaults.
+	We now check for existence first, by doing
+	a "HEAD" request.
+
 2000-10-25  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:

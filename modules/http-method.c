@@ -1581,6 +1581,22 @@ do_create (GnomeVFSMethod *method,
 	cache_invalidate_uri_parent (uri);
 #endif /* DAV_NO_CACHE */
 
+	/* Don't ignore exclusive; it should check first whether
+	   the file exists, since the http protocol default is to 
+	   overwrite by default */
+	if (exclusive) {
+		result = make_request (&handle, uri, "HEAD", NULL, NULL,
+				       context);
+		http_handle_close (handle, context);
+		if (result != GNOME_VFS_OK &&
+		    result != GNOME_VFS_ERROR_NOT_FOUND) {
+			return result;
+		}
+		if (result == GNOME_VFS_OK) {
+			return GNOME_VFS_ERROR_FILE_EXISTS;
+		}
+	}
+
       	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
 
 	if (result != GNOME_VFS_OK) {
