@@ -1,5 +1,8 @@
 2001-03-24  Martin Baulig  <baulig@suse.de>
 
+	* autogen.sh: Check whether gnome-autogen.sh is in the PATH
+	and print an error message otherwise.
+
 	* configure.in: Unconditionally require OAF on both platforms;
 	for GNOME 2.0: check for GTK+, but don't check for ORBit.
 
