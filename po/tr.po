@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.1.0\n"
-"POT-Creation-Date: 2000-07-10 17:46+0200\n"
-"PO-Revision-Date: 2000-07-10 17:53+0200\n"
+"Project-Id-Version: gnome-vfs 0.2.0\n"
+"POT-Creation-Date: 2000-07-12 18:21+0200\n"
+"PO-Revision-Date: 2000-07-12 18:22+0200\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -401,19 +401,19 @@ msgstr "GNOME::VFS::Slave ( IOR bilinmiyor ) 'i öldüremedim -- hata %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "GnomeVFSJob kanalýný uyandýrmak için yazým yapamadým ."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:552
-#: libgnomevfs-pthread/gnome-vfs-job.c:1487
+#: libgnomevfs-pthread/gnome-vfs-job.c:568
+#: libgnomevfs-pthread/gnome-vfs-job.c:1524
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Tanýnmayan iþlem numarasý %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:956
-#: libgnomevfs-pthread/gnome-vfs-job.c:1077
+#: libgnomevfs-pthread/gnome-vfs-job.c:972
+#: libgnomevfs-pthread/gnome-vfs-job.c:1093
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmak için bir boruç yaratamadým "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1520
+#: libgnomevfs-pthread/gnome-vfs-job.c:1557
 msgid "Operation stopped"
 msgstr "Iþlem durduruldu"
 
