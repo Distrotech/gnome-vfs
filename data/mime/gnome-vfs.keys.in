@@ -232,6 +232,9 @@ application/x-dia-diagram
 
 application/x-dvi
 	_description=TeX dvi document
+	short_list_application_ids_for_novice_user_level=xdvi
+	short_list_application_ids_for_intermediate_user_level=xdvi
+	short_list_application_ids_for_advanced_user_level=xdvi
 
 application/x-e-theme
 	_description=Enlightenment theme

@@ -1,5 +1,19 @@
 2001-10-24  Seth Nickell  <snickell@stanford.edu>
 
+	* gnome-vfs-mime-magic:
+
+	Remove really questionable mime magic for detecting C/C++ files
+	based on comment characters. This incorrectly detected Java files,
+	and I don't know of an instance where a C/C++ file didn't
+	have an extension, so mime magic really isn't useful here.
+	
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+
+	Add x-dvi (already on the stable branch).
+	
+2001-10-24  Seth Nickell  <snickell@stanford.edu>
+
 	* gnome-vfs.applications:
 	* gnome-vfs.keys.in:
 	* gnome-vfs.mime:
