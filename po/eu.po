@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.0.3\n"
-"POT-Creation-Date: 2002-11-02 08:26+0000\n"
+"POT-Creation-Date: 2002-11-27 13:59-0500\n"
 "PO-Revision-Date: 2001-05-25 13:35+0200\n"
 "Last-Translator: Unmantained\n"
 "Language-Team: Euskara\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d(e)k ez du modulu-izenik."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ezin izan da `%s' konfigurazio-fitxategia aurkitu: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:707
+#: libgnomevfs/gnome-vfs-job.c:731
 #, c-format
 msgid "Unknown op type %u"
 msgstr "%u op-mota ezezaguna"
 
-#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
+#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ezin izan da GIOChannel irekitzeko kanalizazioa sortu: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1601
+#: libgnomevfs/gnome-vfs-job.c:1655
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "%u motako lana ezezaguna"
 
-#: libgnomevfs/gnome-vfs-job.c:1634
+#: libgnomevfs/gnome-vfs-job.c:1688
 msgid "Operation stopped"
 msgstr "Eragiketa geldiarazita"
 

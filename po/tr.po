@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
-"POT-Creation-Date: 2002-11-02 08:26+0000\n"
+"POT-Creation-Date: 2002-11-27 13:59-0500\n"
 "PO-Revision-Date: 2002-02-23 18:35GMT+2\n"
 "Last-Translator: Sinan Imamoglu <sinan_imam@yahoo.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -38,26 +38,26 @@ msgid "Configuration file `%s' was not found: %s"
 msgstr "Ayar dosyas? `%s' bulunamad?: %s"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:712
-#: libgnomevfs/gnome-vfs-job.c:707
+#: libgnomevfs/gnome-vfs-job.c:731
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Bilinmeyen op türü %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1000
 # libgnomevfs-pthread/gnome-vfs-job.c:1145
-#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
+#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Aç?k GIOChannel %s için boru yarat?lam?yor"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1603
-#: libgnomevfs/gnome-vfs-job.c:1601
+#: libgnomevfs/gnome-vfs-job.c:1655
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Bilinmeyen i? tan?t?c?s? %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1639
-#: libgnomevfs/gnome-vfs-job.c:1634
+#: libgnomevfs/gnome-vfs-job.c:1688
 msgid "Operation stopped"
 msgstr "??lem durduruldu"
 

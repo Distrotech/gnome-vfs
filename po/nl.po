@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2002-11-25 05:32+0100\n"
+"POT-Creation-Date: 2002-11-27 13:59-0500\n"
 "PO-Revision-Date: 2002-05-28 20:49+02:00\n"
 "Last-Translator: Mendel Mobach <mendel@mobach.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d bevat geen modulenaam"
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Configuratiebestand '%s' is niet gevonden: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:707
+#: libgnomevfs/gnome-vfs-job.c:731
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Onbekend oper-type %u"
 
-#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
+#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan geen pijp creëren voor GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1601
+#: libgnomevfs/gnome-vfs-job.c:1655
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Onbekend taaktype %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1634
+#: libgnomevfs/gnome-vfs-job.c:1688
 msgid "Operation stopped"
 msgstr "Operatie gestopt"
 
@@ -266,33 +266,37 @@ msgstr "Verzoek maakt gegevens van de service achterhaald"
 msgid "Protocol error"
 msgstr "Protocolfout"
 
-#: libgnomevfs/gnome-vfs-result.c:137
+#: libgnomevfs/gnome-vfs-result.c:169
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:70
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:72
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mb"
 
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:87
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gb"
+
+#: libgnomevfs/gnome-vfs-utils.c:1087
+msgid " (invalid Unicode)"
+msgstr ""
 
 #: modules/file-method.c:382
 #, c-format
