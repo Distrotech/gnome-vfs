@@ -1,5 +1,12 @@
 2000-09-18  Mathieu Lacage  <mathieu@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c: (context_new):
+	fix bug which made us unable to read old mime database 
+	format. the ":" was taken into account when reading the 
+	old database.
+
+2000-09-18  Mathieu Lacage  <mathieu@eazel.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: 
 	(ensure_user_directory_exist): add new function to create the 
 	user's home directory ~/gnome/mime-info if it does not exists

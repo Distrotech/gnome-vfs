@@ -133,8 +133,14 @@ context_new (GHashTable *hash_table, GString *str)
 {
 	GnomeMimeContext *context;
 	char *mime_type;
+	char last_char;
 
 	mime_type = g_strdup (str->str);
+	last_char = mime_type[strlen (mime_type) - 1];
+	if (last_char == ':') {
+		mime_type[strlen (mime_type) - 1] = '\0';
+	}
+
 	context = g_hash_table_lookup (hash_table, mime_type);
 
 	if (context) {
