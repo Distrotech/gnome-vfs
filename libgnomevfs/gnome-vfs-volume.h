@@ -35,6 +35,7 @@ typedef struct _GnomeVFSDrive GnomeVFSDrive;
 typedef enum _GnomeVFSDeviceType GnomeVFSDeviceType;
 typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
 					  char *error,
+					  char *detailed_error,
 					  gpointer data);
 
 #include "gnome-vfs-drive.h"
@@ -72,8 +73,8 @@ enum _GnomeVFSDeviceType {
 
 typedef enum {
 	GNOME_VFS_VOLUME_TYPE_MOUNTPOINT,
-	GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER,
-	GNOME_VFS_VOLUME_TYPE_VFS_MOUNT
+	GNOME_VFS_VOLUME_TYPE_VFS_MOUNT,
+	GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER
 } GnomeVFSVolumeType;
 
 struct _GnomeVFSVolume {
@@ -104,6 +105,9 @@ gboolean           gnome_vfs_volume_is_user_visible     (GnomeVFSVolume *volume)
 gboolean           gnome_vfs_volume_is_read_only        (GnomeVFSVolume *volume);
 gboolean           gnome_vfs_volume_is_mounted          (GnomeVFSVolume *volume);
 gboolean           gnome_vfs_volume_handles_trash       (GnomeVFSVolume *volume);
+
+gint               gnome_vfs_volume_compare             (GnomeVFSVolume *a,
+							 GnomeVFSVolume *b);
 
 
 gboolean gnome_vfs_volume_unmount (GnomeVFSVolume            *volume,

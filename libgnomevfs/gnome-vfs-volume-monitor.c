@@ -640,3 +640,31 @@ _gnome_vfs_volume_monitor_uniquify_drive_name (GnomeVFSVolumeMonitor *volume_mon
 
 	return unique_name;
 }
+
+GnomeVFSVolume *
+gnome_vfs_volume_monitor_get_volume_for_path  (GnomeVFSVolumeMonitor *volume_monitor,
+					       const char            *path)
+{
+	struct stat statbuf;
+	dev_t device;
+	GList *l;
+	GnomeVFSVolume *volume, *res;
+
+	if (stat (path, &statbuf) != 0)
+		return NULL;
+
+	device = statbuf.st_dev;
+
+	res = NULL;
+	g_mutex_lock (volume_monitor->priv->mutex);
+	for (l = volume_monitor->priv->mtab_volumes; l != NULL; l = l->next) {
+		volume = l->data;
+		if (volume->priv->unix_device == device) {
+			res = gnome_vfs_volume_ref (volume);
+			break;
+		}
+	}
+	g_mutex_unlock (volume_monitor->priv->mutex);
+	
+	return res;
+}

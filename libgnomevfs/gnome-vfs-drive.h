@@ -69,6 +69,9 @@ char *             gnome_vfs_drive_get_icon            (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_user_visible     (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_connected        (GnomeVFSDrive *drive);
 
+gint               gnome_vfs_drive_compare             (GnomeVFSDrive *a,
+							GnomeVFSDrive *b);
+
 gboolean gnome_vfs_drive_mount   (GnomeVFSDrive             *drive,
 				  GnomeVFSVolumeOpCallback   callback,
 				  gpointer                   user_data);

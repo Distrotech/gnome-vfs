@@ -94,6 +94,7 @@ typedef struct {
 	/* Result: */
 	gboolean succeeded;
 	char *error_message;
+	char *detailed_error_message;
 } MountThreadInfo;
 
 static char *
@@ -139,7 +140,7 @@ generate_unmount_error_message (char *standard_error,
 {
 	char *message;
 	
-	message = g_strdup (_("Nautilus was unable to unmount the selected volume."));
+	message = g_strdup (_("Unable to unmount the selected volume."));
 	return message;
 }
 
@@ -153,6 +154,7 @@ report_mount_result (gpointer callback_data)
 
 	(info->callback) (info->succeeded,
 			  info->error_message,
+			  info->detailed_error_message,
 			  info->user_data);
 
 	i = 0;
@@ -163,6 +165,7 @@ report_mount_result (gpointer callback_data)
 	g_free (info->mount_point);
 	g_free (info->device_path);
 	g_free (info->error_message);
+	g_free (info->detailed_error_message);
 	g_free (info);
 	
 	return FALSE;
@@ -196,6 +199,7 @@ mount_unmount_thread (void *arg)
 			if (exit_status == 0) {
 				info->succeeded = TRUE;
 				info->error_message = NULL;
+				info->detailed_error_message = NULL;
 			} else {
 				info->succeeded = FALSE;
 				if (info->should_mount) {
@@ -205,13 +209,15 @@ mount_unmount_thread (void *arg)
 					info->error_message = generate_unmount_error_message (standard_error,
 											      info->device_type);
 				}
+				info->detailed_error_message = g_strdup (standard_error);
 			}
 
 			g_free (standard_error);
 		} else {
 			/* spawn failure */
 			info->succeeded = FALSE;
-			info->error_message = g_strdup (error->message);
+			info->error_message = g_strdup (_("Failed to start command"));
+			info->detailed_error_message = g_strdup (error->message);
 			g_error_free (error);
 		}
 	}
@@ -229,22 +235,25 @@ mount_unmount_thread (void *arg)
 				  NULL,
 				  G_SPAWN_SEARCH_PATH,
 				  NULL, NULL,
-				  NULL, NULL,
+				  NULL, &standard_error,
 				  &exit_status,
 				  &error)) {
 			if (exit_status != 0 &&
 			    info->succeeded) {
 				info->succeeded = FALSE;
 				info->error_message = g_strdup (_("Unable to eject media"));
+				info->detailed_error_message = g_strdup (standard_error);
 			}
 		} else {
 			/* Spawn failure */
 			if (info->succeeded) {
 				info->succeeded = FALSE;
-				info->error_message = g_strdup (error->message);
+				info->error_message = g_strdup (_("Failed to start command"));
+				info->detailed_error_message = g_strdup (error->message);
 			}
 			g_error_free (error);
 		}
+		g_free (standard_error);
 	}
 
 	g_idle_add (report_mount_result, info);	
@@ -482,7 +491,7 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 	mount_unmount_operation (mount_path,
 				 device_path,
 				 (volume == NULL) ? GNOME_VFS_DEVICE_TYPE_UNKNOWN:gnome_vfs_volume_get_device_type (volume),
-				 TRUE, FALSE,
+				 FALSE, FALSE,
 				 callback, user_data);
 	g_free (mount_path);
 	g_free (device_path);
@@ -513,7 +522,7 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 	mount_unmount_operation (mount_path,
 				 device_path,
 				 (volume == NULL) ? GNOME_VFS_DEVICE_TYPE_UNKNOWN:gnome_vfs_volume_get_device_type (volume),
-				 TRUE, TRUE,
+				 FALSE, TRUE,
 				 callback, user_data);
 	g_free (mount_path);
 	g_free (device_path);

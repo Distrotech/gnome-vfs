@@ -105,6 +105,8 @@ void _gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_m
 GnomeVFSVolumeMonitor *_gnome_vfs_get_volume_monitor_internal (gboolean create);
 void _gnome_vfs_volume_monitor_shutdown (void);
 
+int _gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type);
+
 void            _gnome_vfs_volume_to_corba   (GnomeVFSVolume         *volume,
 					      GNOME_VFS_Volume       *corba_volume);
 GnomeVFSVolume *_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,

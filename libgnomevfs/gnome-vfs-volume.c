@@ -22,6 +22,7 @@
 */
 
 #include <config.h>
+#include <string.h>
 #include <glib/gthread.h>
 
 #include "gnome-vfs-volume.h"
@@ -251,6 +252,63 @@ gnome_vfs_volume_handles_trash (GnomeVFSVolume *volume)
 	}
 	return FALSE;
 }
+
+int
+_gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type)
+{
+	switch (type) {
+	case GNOME_VFS_DEVICE_TYPE_FLOPPY:
+	case GNOME_VFS_DEVICE_TYPE_ZIP:
+	case GNOME_VFS_DEVICE_TYPE_JAZ:
+		return 0;
+	case GNOME_VFS_DEVICE_TYPE_CDROM:
+	case GNOME_VFS_DEVICE_TYPE_AUDIO_CD:
+	case GNOME_VFS_DEVICE_TYPE_VIDEO_DVD:
+		return 1;
+	case GNOME_VFS_DEVICE_TYPE_CAMERA:
+	case GNOME_VFS_DEVICE_TYPE_MEMORY_STICK:
+	case GNOME_VFS_DEVICE_TYPE_MUSIC_PLAYER:
+		return 2;
+	case GNOME_VFS_DEVICE_TYPE_HARDDRIVE:
+	case GNOME_VFS_DEVICE_TYPE_WINDOWS:
+	case GNOME_VFS_DEVICE_TYPE_APPLE:
+		return 3;
+	case GNOME_VFS_DEVICE_TYPE_NFS:
+	case GNOME_VFS_DEVICE_TYPE_SMB:
+	case GNOME_VFS_DEVICE_TYPE_NETWORK:
+		return 4;
+	default:
+		return 5;
+	}
+}
+
+gint
+gnome_vfs_volume_compare (GnomeVFSVolume *a,
+			  GnomeVFSVolume *b)
+{
+	GnomeVFSVolumePrivate *priva, *privb;
+	gint res;
+	
+	priva = a->priv;
+	privb = b->priv;
+	res = privb->volume_type - priva->volume_type;
+	if (res != 0) {
+		return res;
+	}
+
+	res = _gnome_vfs_device_type_get_sort_group (priva->device_type) - _gnome_vfs_device_type_get_sort_group (privb->device_type);
+	if (res != 0) {
+		return res;
+	}
+
+	res = strcmp (priva->display_name, privb->display_name);
+	if (res != 0) {
+		return res;
+	}
+	
+	return privb->id - priva->id;
+}
+
 
 static CORBA_char *
 corba_string_or_null_dup (char *str)

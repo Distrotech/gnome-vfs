@@ -22,6 +22,7 @@
 */
 
 #include <config.h>
+#include <string.h>
 #include <glib/gthread.h>
 
 #include "gnome-vfs-drive.h"
@@ -258,6 +259,29 @@ gboolean
 gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
 {
 	return drive->priv->is_connected;
+}
+
+gint
+gnome_vfs_drive_compare (GnomeVFSDrive *a,
+			 GnomeVFSDrive *b)
+{
+	GnomeVFSDrivePrivate *priva, *privb;
+	gint res;
+	
+	priva = a->priv;
+	privb = b->priv;
+
+	res = _gnome_vfs_device_type_get_sort_group (priva->device_type) - _gnome_vfs_device_type_get_sort_group (privb->device_type);
+	if (res != 0) {
+		return res;
+	}
+
+	res = strcmp (priva->display_name, privb->display_name);
+	if (res != 0) {
+		return res;
+	}
+	
+	return privb->id - priva->id;
 }
 
 static CORBA_char *

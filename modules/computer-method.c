@@ -873,7 +873,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
 	if (strcmp (uri->text, "/") == 0) {
-		file_info->name = "/";
+		file_info->name = g_strdup ("/");
 		
 		file_info->mime_type = g_strdup ("x-directory/normal");
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
