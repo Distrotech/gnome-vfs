@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2001-05-18 11:50+0200\n"
+"POT-Creation-Date: 2001-07-03 23:17+0200\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -594,8 +594,8 @@ msgid "StarOffice spreadsheet"
 msgstr "preglednica StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun µ-law audio"
-msgstr "zvok v obliki Sun µ-law"
+msgid "Sun mu-law audio"
+msgstr "zvok v obliki Sun mu-law"
 
 #: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
@@ -1242,7 +1242,12 @@ msgstr "Storitev ni na voljo"
 msgid "Request obsoletes service's data"
 msgstr "Zahtevek zastara podatke storitve"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Protocol error"
+msgstr "Napaka v protokolu"
+
+#: libgnomevfs/gnome-vfs-result.c:142
 msgid "Unknown error"
 msgstr "Neznana napaka"
 
