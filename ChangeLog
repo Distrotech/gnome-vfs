@@ -1,3 +1,7 @@
+2004-02-29  Paisa Seeluangsawat  <paisa@users.sf.net>
+
+	* configure.in: Added "th" (Thai) to ALL_LINGUAS.
+
 2004-02-27  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-drive.h:
