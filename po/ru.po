@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-04-26 22:29+0400\n"
-"PO-Revision-Date: 2000-06-05 01:03+00:00\n"
+"POT-Creation-Date: 2000-06-17 20:02+0000\n"
+"PO-Revision-Date: 2000-06-17 20:09+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,17 +27,17 @@ msgstr "%s:%d не содержит названия метода."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не содержит названия модуля."
 
-#: libgnomevfs/gnome-vfs-configuration.c:285
+#: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Конфигурационный файл `%s' не найден: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:483
+#: libgnomevfs/gnome-vfs-file-info.c:479
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Неизвестное правило сортировки %d"
 
-#: libgnomevfs/gnome-vfs-init.c:55
+#: libgnomevfs/gnome-vfs-init.c:67
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS уже инициализирована."
 
@@ -244,110 +244,110 @@ msgstr "Слишком длинное имя"
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: libgnomevfs/gnome-vfs-utils.c:40
+#: libgnomevfs/gnome-vfs-utils.c:41
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:42
+#: libgnomevfs/gnome-vfs-utils.c:43
 #, c-format
 msgid "%u bytes"
 msgstr "%u байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:49
+#: libgnomevfs/gnome-vfs-utils.c:50
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:53
+#: libgnomevfs/gnome-vfs-utils.c:54
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:57
+#: libgnomevfs/gnome-vfs-utils.c:58
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:340
+#: libgnomevfs-corba/gnome-vfs-slave.c:338
 msgid "Dying."
 msgstr ""
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:505
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:503
 #, c-format
 msgid "Error reading: %s"
 msgstr "Ошибка чтения: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:527
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:525
 #, c-format
 msgid "Error writing: %s"
 msgstr "Ошибка записи: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:576
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:574
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Невозможно записать: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:604
+#: libgnomevfs-corba/gnome-vfs-slave.c:602
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Невозможно создать временный файл с именем '%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#: libgnomevfs-corba/gnome-vfs-slave.c:616
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Невозможно создать сокет: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:636
+#: libgnomevfs-corba/gnome-vfs-slave.c:634
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Невозможно связать '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:643
+#: libgnomevfs-corba/gnome-vfs-slave.c:641
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Невозможно слушать на '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:665
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Невозможно принять соединение на '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1402
+#: libgnomevfs-corba/gnome-vfs-slave.c:1397
 msgid "Cannot initialize CORBA."
 msgstr "Невозможно инициализировать CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1409
+#: libgnomevfs-corba/gnome-vfs-slave.c:1404
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Невозможно разрешить первоначальную ссылку на RootPOA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1416
+#: libgnomevfs-corba/gnome-vfs-slave.c:1411
 msgid "Cannot activate POA manager."
 msgstr "Невозможно активировать диспетчер POA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1441
+#: libgnomevfs-corba/gnome-vfs-slave.c:1436
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Используйте: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1447
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Невозможно открыть файловый дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1485
+#: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
 msgstr "Невозможно установить объект запроса."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1492
+#: libgnomevfs-corba/gnome-vfs-slave.c:1487
 msgid "Cannot extract IOR."
 msgstr "Невозможно извлечь IOR."
 
@@ -366,198 +366,380 @@ msgstr "Невозможно получить объект для `%s'"
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr "Невозможно уничтожить GNOME::VFS::Slave::Notify -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "Невозможно подключиться к сокету `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Невозможно инициализировать GNOME::VFS:Slave::Notify"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 msgstr "Невозможно сбросить GNOME::VFS::Slave %s -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Невозможно сбросить GNOME::VFS::Slave (неизвестный IOR) -- исключение %s"
+msgstr ""
+"Невозможно сбросить GNOME::VFS::Slave (неизвестный IOR) -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 msgstr "Невозможно уничтожить GNOME::VFS::Slave %s -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Невозможно уничтожить GNOME::VFS::Slave (неизвестный IOR) исключение %s"
+msgstr ""
+"Невозможно уничтожить GNOME::VFS::Slave (неизвестный IOR) исключение %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:129
+#: libgnomevfs-pthread/gnome-vfs-job.c:161
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:445
-#: libgnomevfs-pthread/gnome-vfs-job.c:1282
+#: libgnomevfs-pthread/gnome-vfs-job.c:545
+#: libgnomevfs-pthread/gnome-vfs-job.c:1449
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Неизвестный идентификатор задания %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:795
-#: libgnomevfs-pthread/gnome-vfs-job.c:890
+#: libgnomevfs-pthread/gnome-vfs-job.c:949
+#: libgnomevfs-pthread/gnome-vfs-job.c:1044
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1300
+#: libgnomevfs-pthread/gnome-vfs-job.c:1482
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
-#: modules/file-method.c:332
+#: mime-type-capplet/mime-data.c:189 mime-type-capplet/mime-data.c:250
+msgid "You must enter a mime-type"
+msgstr "Вы должны ввести mime-тип"
+
+#: mime-type-capplet/mime-data.c:192
+msgid "You must add a description"
+msgstr "Вы должны добавить описание"
+
+#: mime-type-capplet/mime-data.c:197 mime-type-capplet/mime-data.c:257
+msgid ""
+"Please put your mime-type in the format:\n"
+"CATEGORY/TYPE\n"
+"\n"
+"For Example:\n"
+"image/png"
+msgstr ""
+"ПожалуйстаЮ введите ваш mime-тип в формате:\n"
+"КАТЕГОРИЯ/ТИП\n"
+"\n"
+"Например:\n"
+"image/png"
+
+#: mime-type-capplet/mime-data.c:203 mime-type-capplet/mime-data.c:262
+msgid "This mime-type already exists"
+msgstr "Этот mime-тип уже существует"
+
+#: mime-type-capplet/mime-data.c:253
+msgid "You must add a file-name extension"
+msgstr "Вы должны добавить расширение имени файла"
+
+#: mime-type-capplet/mime-data.c:318
+msgid ""
+"We are unable to create the directory\n"
+"~/.gnome/mime-info\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+"Не удалось создать каталог\n"
+"~/.gnome/mime-info\n"
+"\n"
+"Будет невозможно сохранить состояние."
+
+#: mime-type-capplet/mime-data.c:324
+msgid ""
+"We are unable to access the directory\n"
+"~/.gnome/mime-info\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+"Нет доступа к каталогу\n"
+"~/.gnome/mime-info\n"
+"\n"
+"Будет невозможно сохранить состояние."
+
+#: mime-type-capplet/mime-data.c:335
+msgid ""
+"Cannot create the file\n"
+"~/.gnome/mime-info/user.mime\n"
+"\n"
+"We will not be able to save the state"
+msgstr ""
+"Невозможно создать файл\n"
+"~/.gnome/mime-info/user.mime\n"
+"\n"
+"Будет невозможно сохранить состояние."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:288
+msgid "Edit Applications List"
+msgstr "Правка списка приложений"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:308
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Выберите приложения появляющиеся в меню для mime-типа \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:347
+msgid "Edit Components List"
+msgstr "Правка списка компонентов"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:367
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "Выберите окна возникающие в меню для mime-типа \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:540
+msgid "Add Mime Type"
+msgstr "Добавить mime-тип"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:541
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"Добавить новый mime-тип\n"
+"Например: image/tiff; text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:546
+msgid "Mime Type:"
+msgstr "Mime-тип"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:559
+msgid "Type in a description for this mime-type."
+msgstr "Напечатать описание для этого mime-типа."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:565
+msgid "Description:"
+msgstr "Описание:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:592
+msgid "Add New Extension"
+msgstr "Добавить новое расширение"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"Напечатать расширения для этого mime-типа.\n"
+"Например:  .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:598
+msgid "Extension:"
+msgstr "Расширение:"
+
+#. Create label, menu and edit button for default applications
+#: mime-type-capplet/nautilus-mime-type-capplet.c:344
+msgid "Default Application:"
+msgstr "Исходное приложение:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:352
+#: mime-type-capplet/nautilus-mime-type-capplet.c:364
+msgid "Edit List"
+msgstr "Правка списка:"
+
+#. Create label, menu and edit button for default components
+#: mime-type-capplet/nautilus-mime-type-capplet.c:357
+msgid "Default Viewer:"
+msgstr "Просмотр по умолчанию:"
+
+#. Add icon box
+#: mime-type-capplet/nautilus-mime-type-capplet.c:369
+msgid "Select an icon..."
+msgstr "Выбор пиктограммы..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+msgid "Add"
+msgstr "Добавить"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:394
+msgid "Remove"
+msgstr "Удалить"
+
+#. Mime list Add and Delete buttons
+#: mime-type-capplet/nautilus-mime-type-capplet.c:409
+msgid "Add..."
+msgstr "Добавить..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:413
+msgid "Delete"
+msgstr "Удалить"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:538
+#: mime-type-capplet/nautilus-mime-type-capplet.c:607
+msgid "None"
+msgstr "Нет"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:775
+msgid "Mime Type"
+msgstr "Mime-тип"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:776
+msgid "Description"
+msgstr "Описание"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:777
+msgid "Application"
+msgstr "Приложение"
+
+#: modules/file-method.c:358
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:353
+#: modules/ftp-method.c:352
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: Неверное имя хоста."
 
-#: modules/ftp-method.c:376
+#: modules/ftp-method.c:375
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: Неверный адрес хоста."
 
-#: modules/ftp-method.c:396
+#: modules/ftp-method.c:395
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: создание соединения с %s"
 
-#: modules/ftp-method.c:402
+#: modules/ftp-method.c:401
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: соединение прервано пользователем"
 
-#: modules/ftp-method.c:404
+#: modules/ftp-method.c:403
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: не удалось подключиться к серверу: %s"
 
-#: modules/ftp-method.c:480
+#: modules/ftp-method.c:479
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "Ожидание повтора... %d (Control-C для отмены)"
 
-#: modules/ftp-method.c:751
+#: modules/ftp-method.c:750
 msgid " FTP: Password required for "
 msgstr " FTP: Требуется пароль для "
 
-#: modules/ftp-method.c:790
+#: modules/ftp-method.c:789
 msgid "ftpfs: sending login name"
 msgstr "ftpfs: отправка учетного имени"
 
-#: modules/ftp-method.c:796
+#: modules/ftp-method.c:795
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: отправка пароля пользователя"
 
-#: modules/ftp-method.c:802
+#: modules/ftp-method.c:801
 msgid "ftpfs: logged in"
 msgstr "ftpfs: вход"
 
-#: modules/ftp-method.c:814
+#: modules/ftp-method.c:813
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: неправильное имя для пользователя %s"
 
-#: modules/ftp-method.c:827
+#: modules/ftp-method.c:826
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: передача прервана."
 
-#: modules/ftp-method.c:829
+#: modules/ftp-method.c:828
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: ошибка прерывания: %s"
 
-#: modules/ftp-method.c:834
+#: modules/ftp-method.c:833
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: прерывание не удалось"
 
-#: modules/ftp-method.c:911
+#: modules/ftp-method.c:910
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: не удалось установить пассивный режим"
 
-#: modules/ftp-method.c:1088
+#: modules/ftp-method.c:1087
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: хранение файла %d (%d)"
 
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+#: modules/ftp-method.c:1308 modules/ftp-method.c:1510
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: не удалось выполнить CWD."
 
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+#: modules/ftp-method.c:1318 modules/ftp-method.c:1325
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: не удалось разрешить ссылку"
 
-#: modules/ftp-method.c:1374
+#: modules/ftp-method.c:1377
 msgid "Resolving symlink..."
 msgstr "Разрешение символической ссылки..."
 
-#: modules/ftp-method.c:1498
+#: modules/ftp-method.c:1501
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr "ftpfs: чтение FTP каталога %s... (не используйте параметры UNIX ls)"
 
-#: modules/ftp-method.c:1502
+#: modules/ftp-method.c:1505
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: чтение FTP каталога %s..."
 
-#: modules/ftp-method.c:1568
+#: modules/ftp-method.c:1571
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: чтение FTP каталога прервано пользователем"
 
-#: modules/ftp-method.c:1592
+#: modules/ftp-method.c:1595
 msgid "ftpfs: got listing"
 msgstr "ftpfs: получение списка файлов"
 
-#: modules/ftp-method.c:1644
+#: modules/ftp-method.c:1647
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr ""
 
-#: modules/ftp-method.c:2037
+#: modules/ftp-method.c:2040
 msgid "Starting linear transfer..."
 msgstr "Запуск линейной передачи..."
 
-#: modules/ftp-method.c:2107
+#: modules/ftp-method.c:2110
 msgid "Preparing reget..."
 msgstr ""
 
-#: modules/http-method.c:502
+#: modules/http-method.c:503
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Неправильный заголовок '%s'"
 
-#: modules/http-method.c:519
+#: modules/http-method.c:520
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для восстановления"
 
-#: modules/http-method.c:655
+#: modules/http-method.c:656
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:809
+#: modules/http-method.c:810
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:812
+#: modules/http-method.c:813
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
 
 #. Multi-Status
-#: modules/http-method.c:974
+#: modules/http-method.c:975
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-сервер вернул неправильный ответ PROPFIND"
