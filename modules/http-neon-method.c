@@ -1579,17 +1579,17 @@ http_context_set_uri (HttpContext *context, GnomeVFSURI *uri)
 	if (context->path != NULL)
 		g_free (context->path);
 	
-	context->uri = gnome_vfs_uri_ref (uri);
+	context->uri = gnome_vfs_uri_dup (uri);
 	context->scheme = resolve_alias (gnome_vfs_uri_get_scheme (uri));
 	
-	if (gnome_vfs_uri_get_host_port (uri) == 0) {
+	if (gnome_vfs_uri_get_host_port (context->uri) == 0) {
 		if (g_str_equal (context->scheme, "https"))
-			gnome_vfs_uri_set_host_port (uri, DEFAULT_HTTPS_PORT);
+			gnome_vfs_uri_set_host_port (context->uri, DEFAULT_HTTPS_PORT);
 		else 
-			gnome_vfs_uri_set_host_port (uri, DEFAULT_HTTP_PORT);
+			gnome_vfs_uri_set_host_port (context->uri, DEFAULT_HTTP_PORT);
 	}
 	
-	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_USER_NAME
+	uri_string = gnome_vfs_uri_to_string (context->uri, GNOME_VFS_URI_HIDE_USER_NAME
 					      | GNOME_VFS_URI_HIDE_PASSWORD
 					      | GNOME_VFS_URI_HIDE_HOST_NAME
 					      | GNOME_VFS_URI_HIDE_HOST_PORT
@@ -1907,7 +1907,7 @@ end_response (void *userdata, void *response,
 }
 
 static int
-dav_request (ne_request *req)
+dav_request (ne_request *req, gboolean allow_redirect)
 {
 	ne_207_parser   *p207;
 	ne_xml_parser   *p;
@@ -1924,7 +1924,7 @@ dav_request (ne_request *req)
 	ne_207_set_propstat_handlers (p207, NULL, NULL /* end_propstat */);
     
 	ne_add_response_body_reader (req, ne_accept_207, ne_xml_parse_v, p);
-    
+	
 	res = ne_request_dispatch (req);
 	status = (ne_status *) ne_get_status (req);
     
@@ -1935,7 +1935,8 @@ dav_request (ne_request *req)
 			status->code = error;
 			status->klass = error % 100;
 		}
-	} else if (status->klass != 2) {
+	} else if (status->klass != 2 &&
+		   (!allow_redirect || res != NE_REDIRECT)) {
 		return NE_ERROR;
 	}
 	
@@ -2216,6 +2217,8 @@ do_open (GnomeVFSMethod 	*method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 	
+	DEBUG_HTTP_FUNC (1);
+	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 	
@@ -2276,6 +2279,7 @@ do_open (GnomeVFSMethod 	*method,
 	
 	*method_handle = (GnomeVFSMethodHandle *) handle;
 	
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2293,6 +2297,8 @@ do_create (GnomeVFSMethod	 *method,
 	GnomeVFSResult result;
 	int res;
 	ne_request *req;
+	
+	DEBUG_HTTP_FUNC (1);
 	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 
@@ -2346,6 +2352,7 @@ do_create (GnomeVFSMethod	 *method,
 
 	*method_handle = (GnomeVFSMethodHandle *) handle;	
 
+	DEBUG_HTTP_FUNC (0);
 	return result;
 	
 }
@@ -2359,6 +2366,8 @@ do_close (GnomeVFSMethod 	*method,
 	HttpFileHandle *handle;
 	HttpContext    *ctx;
 	int res;
+
+	DEBUG_HTTP_FUNC (1);
 	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	
@@ -2390,6 +2399,7 @@ do_close (GnomeVFSMethod 	*method,
 	
 	
 	http_file_handle_destroy (handle);
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2531,6 +2541,8 @@ do_seek (GnomeVFSMethod	      *method,
 	HttpFileHandle 		*handle;
 	GnomeVFSFileOffset  	 new_position;
 
+	DEBUG_HTTP_FUNC (1);
+	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	
 	handle = (HttpFileHandle *) method_handle;
@@ -2582,6 +2594,7 @@ do_seek (GnomeVFSMethod	      *method,
 		http_transfer_abort (handle);
 	}
 	
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2630,6 +2643,8 @@ do_open_directory (GnomeVFSMethod 	    *method,
 	GnomeVFSResult  result;
 	HttpContext    *hctx;
 	PropfindContext *pfctx;
+
+	DEBUG_HTTP_FUNC (1);
 	
 	result = http_context_open  (uri, &hctx);
 	
@@ -2667,6 +2682,7 @@ do_open_directory (GnomeVFSMethod 	    *method,
 		*method_handle 	= (GnomeVFSMethodHandle  *) pfctx;
 	}
 	
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2677,6 +2693,7 @@ do_close_directory (GnomeVFSMethod 	 *method,
 {
 	PropfindContext *pfctx;
 	
+	DEBUG_HTTP_FUNC (1);
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 
 	pfctx = (PropfindContext *) method_handle;
@@ -2684,7 +2701,8 @@ do_close_directory (GnomeVFSMethod 	 *method,
 	propfind_context_clear (pfctx);
 	g_free (pfctx);
 	
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	DEBUG_HTTP_FUNC (0);
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -2748,6 +2766,8 @@ do_get_file_info_from_handle (GnomeVFSMethod 		*method,
 	HttpFileHandle *handle;
 	GnomeVFSResult  result;
 	
+	DEBUG_HTTP_FUNC (1);
+	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	
 	handle = (HttpFileHandle *) method_handle;
@@ -2788,6 +2808,8 @@ do_make_directory (GnomeVFSMethod  *method,
 	GnomeVFSURI      *uri_parent;
 	ne_request       *req;
 	int 		  res;
+	
+	DEBUG_HTTP_FUNC (1);
 	
 	uri_parent = gnome_vfs_uri_get_parent (uri);
 	
@@ -2832,6 +2854,7 @@ do_make_directory (GnomeVFSMethod  *method,
  out:	
 	gnome_vfs_uri_unref (uri_parent);
 	http_context_free (hctx);
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2846,6 +2869,7 @@ do_remove_directory (GnomeVFSMethod  *method,
 	ne_request     *req;
 	int  		res;
 	
+	DEBUG_HTTP_FUNC (1);
 	result = http_context_open  (uri, &hctx);
 	
 	if (result != GNOME_VFS_OK)
@@ -2868,7 +2892,7 @@ do_remove_directory (GnomeVFSMethod  *method,
 	}
 	
 	req = ne_request_create (hctx->session, "DELETE", hctx->path);
-	res = dav_request (req);
+	res = dav_request (req, FALSE);
 	
 	result = resolve_result (res, req);
 	ne_request_destroy (req);
@@ -2876,7 +2900,19 @@ do_remove_directory (GnomeVFSMethod  *method,
  out:	
 	propfind_context_clear (&pfctx);
 	http_context_free (hctx);
+	DEBUG_HTTP_FUNC (0);
 	return result;
+}
+
+static GnomeVFSURI *
+resolve_schema_alias (GnomeVFSURI *uri)
+{
+	GnomeVFSURI *resolved;
+
+	resolved = gnome_vfs_uri_dup (uri);
+	g_free (resolved->method_string);
+	resolved->method_string = g_strdup (resolve_alias (gnome_vfs_uri_get_scheme (uri)));
+	return resolved;
 }
 
 
@@ -2892,8 +2928,10 @@ do_move (GnomeVFSMethod  *method,
 	char	    *dest;
 	ne_request  *req;
 	int 	     res;
-
+	GnomeVFSURI *dest_uri;
 	
+	DEBUG_HTTP_FUNC (1);
+
 	if (! http_session_uri_equal (old_uri, new_uri)) {
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	}	
@@ -2902,22 +2940,34 @@ do_move (GnomeVFSMethod  *method,
 	
 	if (result != GNOME_VFS_OK)
 		return result;
-	
-	dest = gnome_vfs_uri_to_string (new_uri, GNOME_VFS_URI_HIDE_USER_NAME | 
+
+	dest_uri = resolve_schema_alias (new_uri);
+	dest = gnome_vfs_uri_to_string (dest_uri, GNOME_VFS_URI_HIDE_USER_NAME | 
 					GNOME_VFS_URI_HIDE_PASSWORD);
+	gnome_vfs_uri_unref (dest_uri);
 	
 
+ head_start:
 	req = ne_request_create (hctx->session, "MOVE", hctx->path);
 	
 	ne_add_request_header (req, "Destination", dest);
     	ne_add_request_header (req, "Overwrite", force_replace ? "T" : "F");
-
 	
-	res = dav_request (req);
-	result = resolve_result (res, req);
+	
+	res = dav_request (req, TRUE);
+	if (res == NE_REDIRECT) {
+		result = http_follow_redirect (hctx);
+
+		/* TODO: Do we leak req here? */
+		if (result == GNOME_VFS_OK)
+			goto head_start;
+	} else {
+		result = resolve_result (res, req);
+	}
 
 	http_context_free (hctx);
 	
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2932,6 +2982,7 @@ do_unlink (GnomeVFSMethod  *method,
 	ne_request       *req;
 	int 		  res;
 	
+	DEBUG_HTTP_FUNC (1);
 	result = http_context_open (uri, &hctx);
 	
 	if (result != GNOME_VFS_OK)
@@ -2950,7 +3001,7 @@ do_unlink (GnomeVFSMethod  *method,
 	}
 	
 	req = ne_request_create (hctx->session, "DELETE", hctx->path);
-	res = dav_request (req);
+	res = dav_request (req, FALSE);
 
 	result = resolve_result (res, req);
 	ne_request_destroy (req);
@@ -2958,6 +3009,7 @@ do_unlink (GnomeVFSMethod  *method,
  out:	
 	http_context_free (hctx);
 	gnome_vfs_file_info_unref (file_info);
+	DEBUG_HTTP_FUNC (0);
 	return result;
 }
 
@@ -2984,6 +3036,8 @@ do_set_file_info (GnomeVFSMethod 		*method,
 	GnomeVFSURI *parent_uri, *new_uri;
 	GnomeVFSResult result;
 	
+	DEBUG_HTTP_FUNC (1);
+	
 	if ((mask & ~(GNOME_VFS_SET_FILE_INFO_NAME)) != 0) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
@@ -3004,6 +3058,8 @@ do_set_file_info (GnomeVFSMethod 		*method,
 	result = do_move (method, uri, new_uri, FALSE, context);
 	
 	gnome_vfs_uri_unref (new_uri);
+	
+	DEBUG_HTTP_FUNC (0);
 	
 	return result;
 }
@@ -3102,6 +3158,7 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
 	proxy_init ();
+	/* ne_debug_init (stdout, 0xfffe); */
 	neon_session_pool_init ();
 	http_auth_cache_init ();
 	quick_allow_lookup_init ();

@@ -82,6 +82,7 @@ typedef struct {
 	gchar         *hash_name;
 	gint           in_fd;
 	gint           out_fd;
+	gint           tty_fd;
 	GIOChannel    *error_channel;
 	pid_t          ssh_pid;
 
@@ -1415,6 +1416,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		(*connection)->ref_count = 1;
 		(*connection)->in_fd = in_fd;
 		(*connection)->out_fd = out_fd;
+		(*connection)->tty_fd = tty_fd;
 		(*connection)->error_channel = error_channel;
 		g_io_channel_ref (error_channel);
 		(*connection)->ssh_pid = ssh_pid;
@@ -1449,6 +1451,8 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		close (in_fd);
 		close (out_fd);
 		close (err_fd);
+		if (tty_fd != -1)
+			close (tty_fd);
 		*connection = NULL;
 
 		/* TODO: Do we leak error_channel and connection? */
@@ -1550,6 +1554,8 @@ sftp_connection_close (SftpConnection *conn)
 
 	close (conn->in_fd);
 	close (conn->out_fd);
+	if (conn->tty_fd != -1)
+		close (conn->tty_fd);
 	g_source_remove (conn->event_id);
 	g_io_channel_shutdown (conn->error_channel, FALSE, NULL);
 	g_io_channel_unref (conn->error_channel);

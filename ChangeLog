@@ -1,5 +1,17 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/http-neon-method.c:
+	Don't modify the uri object passed in in http_context_set_uri
+	Handle redirects in do_move.
+	Make close_dir return OK, not NOT_SUPPORTED.
+	Resolve schema aliases for the target file in do_move.
+	Add some debug stuff.
+	
+	* modules/sftp-method.c: (sftp_connect), (sftp_connection_close):
+	Don't leak tty_fd.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/http-neon-method.c (do_seek):
 	Don't restart read on seek, which causes problems
 	for seek-to-end (#153153)
