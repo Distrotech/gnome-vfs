@@ -1,3 +1,8 @@
+2001-10-25  Darin Adler  <darin@bentspoon.com>
+
+	* configure.in: Don't generate Makefiles in the intl and macros
+	subdirectories, since we don't compile in them.
+
 2001-10-24  Havoc Pennington  <hp@redhat.com>
 
 	* modules/file-method.c (get_stat_info): fix memory leak of

@@ -588,7 +588,6 @@ libgnomevfs/gnome-vfs-file-size.h
 data/Makefile
 data/mime/Makefile
 idl/Makefile
-intl/Makefile
 libgnomevfs-pthread/Makefile
 libgnomevfs/Makefile
 modules/Makefile
@@ -608,7 +607,6 @@ po/Makefile.in
 test/Makefile
 test/vfs-run
 doc/Makefile
-macros/Makefile
 ])
 
 chmod u+x test/vfs-run
