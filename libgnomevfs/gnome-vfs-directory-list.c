@@ -53,7 +53,7 @@ remove_entry (GnomeVFSDirectoryList *list,
 	GnomeVFSFileInfo *info;
 
 	info = p->data;
-	gnome_vfs_file_info_destroy (info);
+	gnome_vfs_file_info_unref (info);
 
 	if (list->current_entry == p)
 		list->current_entry = NULL;
@@ -191,7 +191,7 @@ gnome_vfs_directory_list_destroy (GnomeVFSDirectoryList *list)
 			GnomeVFSFileInfo *info;
 
 			info = p->data;
-			gnome_vfs_file_info_destroy (info);
+			gnome_vfs_file_info_unref (info);
 		}
 		g_list_free (list->entries);
 	}
@@ -635,7 +635,7 @@ load_from_handle (GnomeVFSDirectoryList **list,
 		gnome_vfs_directory_list_append (*list, info);
 	}
 
-	gnome_vfs_file_info_destroy (info);
+	gnome_vfs_file_info_unref (info);
 
 	if (result != GNOME_VFS_ERROR_EOF) {
 		gnome_vfs_directory_list_destroy (*list);

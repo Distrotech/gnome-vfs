@@ -1,3 +1,17 @@
+2000-01-18  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-directory.c (directory_visit_internal):
+	Unref instead of destroying the file info.
+	(directory_visit_internal): Likewise.
+	(directory_visit_internal): Likewise.
+	(directory_visit_internal): Likewise.
+	(gnome_vfs_directory_visit_files_at_uri): Likewise.
+
+	* libgnomevfs/gnome-vfs-directory-list.c (remove_entry): Unref
+	instead of destroying the file info.
+	(gnome_vfs_directory_list_destroy): Likewise.
+	(load_from_handle): Likewise.
+
 2000-01-18  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-directory-list.c: (compare_for_sort):

@@ -230,6 +230,11 @@ http_status_to_vfs_result (guint status)
 
 	/* FIXME TODO */
 	switch (status) {
+	case 401:
+	case 407:
+		return GNOME_VFS_ERROR_ACCESSDENIED;
+	case 404:
+		return GNOME_VFS_ERROR_NOTFOUND;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}

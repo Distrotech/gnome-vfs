@@ -331,18 +331,18 @@ directory_visit_internal (GnomeVFSURI *uri,
 		result = gnome_vfs_get_file_info_uri (uri, info,
 						      info_options, NULL);
 		if (result != GNOME_VFS_OK) {
-			gnome_vfs_file_info_destroy (info);
+			gnome_vfs_file_info_unref (info);
 			return result;
 		}
 
 		if (info->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			gnome_vfs_file_info_destroy (info);
+			gnome_vfs_file_info_unref (info);
 			return GNOME_VFS_ERROR_NOTADIRECTORY;
 		}
 
 		ancestor_references = prepend_reference (ancestor_references,
 							 info);
-		gnome_vfs_file_info_destroy (info);
+		gnome_vfs_file_info_unref (info);
 	}
 
 	result = gnome_vfs_directory_open_from_uri (&handle, uri, info_options,
@@ -436,7 +436,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 	}
 
 	gnome_vfs_directory_close (handle);
-	gnome_vfs_file_info_destroy (info);
+	gnome_vfs_file_info_unref (info);
 
 	/* The first time, we are responsible for de-allocating the directory
            reference we have added by ourselves.  */
@@ -574,7 +574,7 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 			break;
 	}
 
-	gnome_vfs_file_info_destroy (info);
+	gnome_vfs_file_info_unref (info);
 	return GNOME_VFS_OK;
 }
 
