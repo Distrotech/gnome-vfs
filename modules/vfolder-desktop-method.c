@@ -153,6 +153,8 @@ struct _Folder {
 
 struct _VFolderInfo
 {
+	char *scheme;
+
 	char *filename;
 	char *user_filename;
 	char *desktop_dir; /* directory with .directorys */
@@ -172,6 +174,8 @@ struct _VFolderInfo
 
 	/* The root folder */
 	Folder *root;
+
+	gboolean dirty;
 };
 
 static Entry *	entry_ref	(Entry *entry);
@@ -625,6 +629,8 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 	const char *path;
 	GSList *list;
 
+	info->scheme = g_strdup (scheme);
+
 	/* Init for programs: */
 	info->filename = g_strconcat (SYSCONFDIR,
 				      "/gnome-vfs-2.0/vfolders/",
@@ -673,6 +679,9 @@ vfolder_info_destroy (VFolderInfo *info)
 {
 	if (info == NULL)
 		return;
+
+	g_free (info->scheme);
+	info->scheme = NULL;
 
 	g_free (info->filename);
 	info->filename = NULL;
@@ -1064,6 +1073,8 @@ vfolder_info_write_user (VFolderInfo *info)
 	xmlSaveFile (info->user_filename, doc);
 
 	xmlFreeDoc(doc);
+
+	info->dirty = FALSE;
 }
 
 /* An EVIL function for quick reading of .desktop files,
@@ -1418,7 +1429,7 @@ copy_file (const char *from, const char *to)
 }
 
 static gboolean
-make_file_private (EntryFile *efile)
+make_file_private (VFolderInfo *info, EntryFile *efile)
 {
 	char *newfname;
 
@@ -1426,10 +1437,14 @@ make_file_private (EntryFile *efile)
 		return TRUE;
 
 	newfname = g_build_filename (g_get_home_dir (),
+				     ".gnome",
+				     "vfolders",
+				     info->scheme,
 				     efile->entry.name,
 				     NULL);
 
-	if ( ! copy_file (efile->filename, newfname)) {
+	if (efile->filename != NULL &&
+	    ! copy_file (efile->filename, newfname)) {
 		g_free (newfname);
 		return FALSE;
 	}
@@ -1442,7 +1457,7 @@ make_file_private (EntryFile *efile)
 }
 
 static void
-make_new_dirfile (Folder *folder)
+make_new_dirfile (VFolderInfo *info, Folder *folder)
 {
 	char *name = g_strdup (folder->entry.name);
 	char *fname;
@@ -1481,6 +1496,7 @@ make_new_dirfile (Folder *folder)
 	close (fd);
 
 	folder->desktop_file = fname;
+	info->dirty = TRUE;
 }
 
 static gboolean
@@ -1490,7 +1506,7 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 	char *desktop_file;
 
 	if (folder->desktop_file == NULL) {
-		make_new_dirfile (folder);
+		make_new_dirfile (info, folder);
 		return TRUE;
 	}
 
@@ -1768,9 +1784,14 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		}
 	} else if (entry->type == ENTRY_FILE) {
 		EntryFile *efile = (EntryFile *)entry;
+		VFolderInfo *info;
 		char *s;
 
-		if ( ! make_file_private (efile)) {
+		info = vfolder_info_from_uri (desktop_uri, result);
+		if (info == NULL)
+			return NULL;
+
+		if ( ! make_file_private (info, efile)) {
 			*result = GNOME_VFS_ERROR_GENERIC;
 			return NULL;
 		}
@@ -1786,6 +1807,52 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		*result = GNOME_VFS_ERROR_IS_DIRECTORY;
 		return NULL;
 	}
+}
+
+static void
+remove_file (Folder *folder, const char *basename)
+{
+	GSList *li;
+	char *s;
+
+	for (li = folder->includes; li != NULL; li = li->next) {
+		const char *include = li->data;
+		if (strcmp (include, basename) == 0) {
+			folder->includes = g_slist_remove_link
+				(folder->includes, li);
+			g_slist_free_1 (li);
+			break;
+		}
+	}
+
+	if (folder->excludes == NULL) {
+		folder->excludes = g_hash_table_new_full
+			(g_str_hash, g_str_equal,
+			 (GDestroyNotify)g_free,
+			 NULL);
+	}
+	s = g_strdup (basename);
+	g_hash_table_replace (folder->excludes, s, s);
+}
+
+static void
+add_file (Folder *folder, const char *basename)
+{
+	GSList *li;
+
+	for (li = folder->includes; li != NULL; li = li->next) {
+		const char *include = li->data;
+		if (strcmp (include, basename) == 0)
+			break;
+	}
+
+	/* if not found */
+	if (li == NULL)
+		folder->includes =
+			g_slist_prepend (folder->includes,
+					 g_strdup (basename));
+	if (folder->excludes != NULL)
+		g_hash_table_remove (folder->excludes, basename);
 }
 
 static gboolean
@@ -1816,6 +1883,11 @@ do_open (GnomeVFSMethod *method,
 {
 	GnomeVFSURI *file_uri;
 	GnomeVFSResult result = GNOME_VFS_OK;
+	VFolderInfo *info;
+
+	info = vfolder_info_from_uri (uri, &result);
+	if (info == NULL)
+		return result;
 
 	if (open_check (method, uri, method_handle, &result))
 		return result;
@@ -1834,6 +1906,9 @@ do_open (GnomeVFSMethod *method,
 					  context);
 	gnome_vfs_uri_unref (file_uri);
 
+	if (info->dirty)
+		vfolder_info_write_user (info);
+
 	return result;
 }
 
@@ -1846,14 +1921,138 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
-	/* FIXME: For now a read only FS */
-	return GNOME_VFS_ERROR_READ_ONLY;
-	/*
+	GnomeVFSResult result = GNOME_VFS_OK;
 	GnomeVFSURI *file_uri;
-	GnomeVFSResult result;
+	const char *scheme;
+	const char *basename;
+	const char *path;
+	VFolderInfo *info;
+	Folder *parent;
+	Entry *entry;
+	EntryFile *efile;
+	char *s;
+	GSList *li;
 
+	scheme = gnome_vfs_uri_get_scheme (uri);
+	basename = gnome_vfs_uri_get_basename (uri);
+	path = gnome_vfs_uri_get_path (uri);
+	if (scheme == NULL ||
+	    basename == NULL ||
+	    path == NULL ||
+	    ( ! check_ext (basename, ".desktop") &&
+	      ! strcmp (basename, ".directory") == 0))
+		return GNOME_VFS_ERROR_INVALID_URI;
 
-	file_uri = desktop_uri_to_file_uri (uri);
+	info = get_vfolder_info (scheme);
+	g_assert (info != NULL);
+
+	if (info->user_filename == NULL)
+		return GNOME_VFS_ERROR_READ_ONLY;
+
+	parent = resolve_folder (info, path,
+				 TRUE /* ignore_basename */,
+				 &result);
+	if (parent == NULL)
+		return result;
+
+	if (strcmp (basename, ".directory") == 0) {
+		char *fname;
+		if (exclusive) {
+			char *desktop_file;
+			desktop_file = get_directory_file (info, parent);
+			if (desktop_file != NULL) {
+				g_free (desktop_file);
+				return GNOME_VFS_ERROR_FILE_EXISTS;
+			}
+		}
+
+		if ( ! make_dirfile_private (info, parent))
+			return GNOME_VFS_ERROR_GENERIC;
+		fname = g_build_filename (g_get_home_dir (),
+					  parent->desktop_file,
+					  NULL);
+		s = gnome_vfs_get_uri_from_local_path (fname);
+		file_uri = gnome_vfs_uri_new (s);
+		g_free (fname);
+		g_free (s);
+
+		if (file_uri == NULL)
+			return GNOME_VFS_ERROR_GENERIC;
+
+		result = (* parent_method->create) (parent_method,
+						    method_handle,
+						    file_uri,
+						    mode,
+						    exclusive,
+						    perm,
+						    context);
+		gnome_vfs_uri_unref (file_uri);
+
+		if (info->dirty)
+			vfolder_info_write_user (info);
+
+		return result;
+	}
+
+	ensure_folder (info, parent);
+
+	entry = find_entry (parent->entries, basename);
+
+	if (entry != NULL &&
+	    entry->type == ENTRY_FOLDER)
+		return GNOME_VFS_ERROR_IS_DIRECTORY;
+
+	efile = (EntryFile *)entry;
+
+	if (efile != NULL) {
+
+		if (exclusive)
+			return GNOME_VFS_ERROR_FILE_EXISTS;
+
+		if ( ! make_file_private (info, efile)) {
+			return GNOME_VFS_ERROR_GENERIC;
+		}
+
+		s = gnome_vfs_get_uri_from_local_path (efile->filename);
+		file_uri = gnome_vfs_uri_new (s);
+		g_free (s);
+
+		if (file_uri == NULL)
+			return GNOME_VFS_ERROR_GENERIC;
+
+		result = (* parent_method->create) (parent_method,
+						    method_handle,
+						    file_uri,
+						    mode,
+						    exclusive,
+						    perm,
+						    context);
+		gnome_vfs_uri_unref (file_uri);
+
+		return result;
+	}
+	
+	li = g_hash_table_lookup (info->entries_ht, basename);
+
+	if (exclusive && li != NULL)
+		return GNOME_VFS_ERROR_FILE_EXISTS;
+
+	if (li == NULL) {
+		efile = file_new (basename);
+		vfolder_info_insert_entry (info, efile);
+	}
+
+	/* this will make a private name for this */
+	if ( ! make_file_private (info, efile))
+		return GNOME_VFS_ERROR_GENERIC;
+
+	add_file (parent, basename);
+	parent->sorted = FALSE;
+
+	s = gnome_vfs_get_uri_from_local_path (efile->filename);
+	file_uri = gnome_vfs_uri_new (s);
+	g_free (s);
+
 	result = (* parent_method->create) (parent_method,
 					    method_handle,
 					    file_uri,
@@ -1863,8 +2062,9 @@ do_create (GnomeVFSMethod *method,
 					    context);
 	gnome_vfs_uri_unref (file_uri);
 
+	vfolder_info_write_user (info);
+
 	return result;
-	*/
 }
 
 static GnomeVFSResult
@@ -2015,6 +2215,11 @@ do_truncate (GnomeVFSMethod *method,
 {
 	GnomeVFSURI *file_uri;
 	GnomeVFSResult result = GNOME_VFS_OK;
+	VFolderInfo *info;
+
+	info = vfolder_info_from_uri (uri, &result);
+	if (info == NULL)
+		return result;
 
 	file_uri = desktop_uri_to_file_uri (uri,
 					    NULL /* the_folder */,
@@ -2029,6 +2234,9 @@ do_truncate (GnomeVFSMethod *method,
 					      context);
 
 	gnome_vfs_uri_unref (file_uri);
+
+	if (info->dirty)
+		vfolder_info_write_user (info);
 
 	return result;
 }
@@ -2373,52 +2581,6 @@ do_remove_directory (GnomeVFSMethod *method,
 	vfolder_info_write_user (info);
 
 	return GNOME_VFS_OK;
-}
-
-static void
-remove_file (Folder *folder, const char *basename)
-{
-	GSList *li;
-	char *s;
-
-	for (li = folder->includes; li != NULL; li = li->next) {
-		const char *include = li->data;
-		if (strcmp (include, basename) == 0) {
-			folder->includes = g_slist_remove_link
-				(folder->includes, li);
-			g_slist_free_1 (li);
-			break;
-		}
-	}
-
-	if (folder->excludes == NULL) {
-		folder->excludes = g_hash_table_new_full
-			(g_str_hash, g_str_equal,
-			 (GDestroyNotify)g_free,
-			 NULL);
-	}
-	s = g_strdup (basename);
-	g_hash_table_replace (folder->excludes, s, s);
-}
-
-static void
-add_file (Folder *folder, const char *basename)
-{
-	GSList *li;
-
-	for (li = folder->includes; li != NULL; li = li->next) {
-		const char *include = li->data;
-		if (strcmp (include, basename) == 0)
-			break;
-	}
-
-	/* if not found */
-	if (li == NULL)
-		folder->includes =
-			g_slist_prepend (folder->includes,
-					 g_strdup (basename));
-	if (folder->excludes != NULL)
-		g_hash_table_remove (folder->excludes, basename);
 }
 
 static GnomeVFSResult

@@ -1,3 +1,9 @@
+Sun Oct 21 02:52:48 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: implement create and some
+	  fixes to saving vfolder doc (though of course that bit isn't
+	  done yet)
+
 Fri Oct 19 23:24:06 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: implement make/remove_directory,
