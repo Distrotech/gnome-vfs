@@ -37,7 +37,7 @@
 #define	TRUE	(!FALSE)
 #endif
 
-const unsigned char _xdg_utf8_skip_data[256] = {
+static const unsigned char _xdg_utf8_skip_data[256] = {
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -49,7 +49,6 @@ const unsigned char _xdg_utf8_skip_data[256] = {
 };
 
 const char * const _xdg_utf8_skip = _xdg_utf8_skip_data;
-
 
 
 /* Returns the number of unprocessed characters. */
