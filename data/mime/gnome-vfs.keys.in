@@ -835,7 +835,6 @@ text/*
 	short_list_application_ids_for_novice_user_level=gedit,xfte
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
-	icon_filename=i-regular
 
 text/abiword
 	_description=AbiWord document
@@ -871,7 +870,6 @@ text/html
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
-	icon_filename=i-regular
 
 text/htmlh
 	_description=Help page
@@ -893,7 +891,6 @@ text/plain
 	short_list_application_ids_for_novice_user_level=gedit
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
-	icon_filename=i-regular
 
 text/rfc822-headers
 	_description=email headers
@@ -918,7 +915,6 @@ text/x-authors
 
 text/x-c
 	_description=C source code
-	icon_filename=i-regular
 
 text/x-c++
 	_description=C++ source code
@@ -928,11 +924,9 @@ text/x-comma-separated-values
 
 text/x-copying
 	_description=GNU license
-	icon_filename=i-regular
 
 text/x-credits
 	_description=author credits
-	icon_filename=i-regular
 
 # also application/x-csh
 text/x-csh
@@ -965,7 +959,6 @@ text/x-install
 
 text/x-java
 	_description=Java source code
-	icon_filename=i-regular
 
 text/x-ksh
 	can_be_executable=TRUE
@@ -976,21 +969,17 @@ text/x-makefile
 
 text/x-patch
 	_description=source code patch
-	icon_filename=i-regular
 
 # also application/x-perl
 text/x-perl
 	can_be_executable=TRUE
 	_description=Perl script
-	icon_filename=i-regular
 
 text/x-python
 	_description=Python script
-	icon_filename=i-regular
 
 text/x-readme
 	_description=README file
-	icon_filename=i-regular
 
 text/x-scheme
 	_description=Scheme source code
@@ -1001,7 +990,6 @@ text/x-setext
 text/x-sh
 	can_be_executable=TRUE
 	_description=shell script
-	icon_filename=i-regular
 
 text/x-speech
 	_description=Speech document
@@ -1049,7 +1037,6 @@ text/xml
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_hacker_user_level=mozilla
-	icon_filename=i-regular
 
 video/isivideo
 	_description=ISI video
