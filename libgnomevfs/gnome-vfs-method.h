@@ -26,6 +26,13 @@
 #ifndef GNOME_VFS_METHOD_H
 #define GNOME_VFS_METHOD_H
 
+/*
+ * The following include helps Solaris copy with its own headers.  (With 64-
+ * bit stuff enabled they like to #define open open64, etc.)
+ * See http://bugzilla.gnome.org/show_bug.cgi?id=71184 for details.
+ */
+#include <unistd.h>
+
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>

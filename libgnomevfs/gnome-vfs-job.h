@@ -26,6 +26,14 @@
 #ifndef GNOME_VFS_JOB_PTHREAD_H
 #define GNOME_VFS_JOB_PTHREAD_H
 
+/*
+ * The following includes help Solaris copy with its own headers.  (With 64-
+ * bit stuff enabled they like to #define open open64, etc.)
+ * See http://bugzilla.gnome.org/show_bug.cgi?id=71184 for details.
+ */
+#include <unistd.h>
+#include <fcntl.h>
+
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
 #include <libgnomevfs/gnome-vfs-module-callback-private.h>

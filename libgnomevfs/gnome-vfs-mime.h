@@ -24,6 +24,8 @@
 #ifndef GNOME_VFS_MIME_H
 #define GNOME_VFS_MIME_H
 
+#include <sys/stat.h>
+
 #include <libgnomevfs/gnome-vfs-uri.h>
 
 G_BEGIN_DECLS

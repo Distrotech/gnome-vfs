@@ -1,3 +1,9 @@
+2002-02-12  Morten Welinder  <terra@diku.dk>
+
+	* libgnomevfs/gnome-vfs-method.h, libgnomevfs/gnome-vfs-job.h,
+	libgnomevfs/gnome-vfs-mime.h, gnome-vfs-parse-ls.h: Fix Solaris
+	compile.
+
 2002-02-11  Seth Nickell  <snickell@stanford.edu>
 
 	* NEWS:

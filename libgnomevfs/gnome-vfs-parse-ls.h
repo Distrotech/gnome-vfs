@@ -28,6 +28,8 @@
 #ifndef GNOME_VFS_PARSE_LS_H
 #define GNOME_VFS_PARSE_LS_H
 
+#include <sys/stat.h>
+
 #include <glib/gmacros.h>
 
 G_BEGIN_DECLS
