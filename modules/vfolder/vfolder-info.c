@@ -1606,6 +1606,7 @@ filename_monitor_handle (gpointer user_data)
 
 	g_hash_table_destroy (monitors);
 
+	info->filename_reload_tag = 0;
 	return FALSE;
 }
 

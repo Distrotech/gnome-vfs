@@ -168,12 +168,18 @@ entry_make_user_private (Entry *entry, Folder *folder)
 	gnome_vfs_uri_unref (dest_uri);
 
 	if (result == GNOME_VFS_OK) {
-		/* Exclude current displayname. */
-		folder_add_exclude (folder, entry_get_displayname (entry));
-		/* Remove include for current filename. */
-		folder_remove_include (folder, entry_get_filename (entry));
-		/* Add include for new private filename. */
-		folder_add_include (folder, filename);
+		if (!strcmp (entry_get_displayname (entry), ".directory")) {
+			folder_set_desktop_file (folder, filename);
+		} else {
+			/* Exclude current displayname. */
+			folder_add_exclude (folder, 
+					    entry_get_displayname (entry));
+			/* Remove include for current filename. */
+			folder_remove_include (folder, 
+					       entry_get_filename (entry));
+			/* Add include for new private filename. */
+			folder_add_include (folder, filename);
+		}
 
 		entry_set_filename (entry, filename);
 		entry_set_weight (entry, 1000);
@@ -384,7 +390,7 @@ entry_quick_read_keys (Entry  *entry,
 	  *result2 = NULL;
 
 	if (gnome_vfs_open (&handle, 
-			    entry->filename, 
+			    entry_get_filename (entry), 
 			    GNOME_VFS_OPEN_READ) != GNOME_VFS_OK)
 		return;
 
@@ -702,8 +708,8 @@ create_dot_directory_entry (Folder *folder)
 		entry = entry_new (folder->info, 
 				   dot_directory, 
 				   ".directory", 
-				   FALSE /*user_private*/,
-				   950   /*weight*/);
+				   TRUE /*user_private*/,
+				   950  /*weight*/);
 	} else {
 		gchar *dirpath = NULL;
 		gchar *full_path;
@@ -722,8 +728,8 @@ create_dot_directory_entry (Folder *folder)
 			entry = entry_new (folder->info,
 					   full_path,
 					   ".directory",
-					   FALSE /*user_private*/,
-					   950   /*weight*/);
+					   TRUE /*user_private*/,
+					   950  /*weight*/);
 			g_free (full_path);
 		}
 	}

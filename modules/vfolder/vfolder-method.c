@@ -33,6 +33,7 @@
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
 
 #include "vfolder-common.h"
 #include "vfolder-util.h"
@@ -1164,6 +1165,124 @@ do_unlink (GnomeVFSMethod *method,
 }
 
 
+static void
+set_desktop_file_key (GString *fullbuf, gchar *key, gchar *value)
+{
+	gchar *key_idx, *val_end;
+
+	/* Remove the name if it already exists */
+	key_idx = strstr (fullbuf->str, key);
+	if (key_idx && (key_idx == fullbuf->str || 
+			key_idx [-1] == '\n' || 
+			key_idx [-1] == '\r')) {
+		/* Look for the end of the value */
+		val_end = strchr (key_idx, '\n');
+		if (val_end < 0)
+			val_end = strchr (key_idx, '\r');
+		if (val_end < 0)
+			val_end = &fullbuf->str [fullbuf->len - 1];
+
+		/* Erase the old name */
+		g_string_erase (fullbuf, 
+				key_idx - fullbuf->str, 
+				val_end - key_idx);
+	}
+
+	/* Mkae sure we don't bump into the last attribute */
+	if (fullbuf->len > 0 && (fullbuf->str [fullbuf->len - 1] != '\n' && 
+				 fullbuf->str [fullbuf->len - 1] != '\r'))
+		g_string_append_c (fullbuf, '\n');
+
+	g_string_append_printf (fullbuf, "%s=%s\n", key, value);
+}
+
+static void
+set_desktop_file_locale_key (GString *fullbuf, gchar *key, gchar *value)
+{
+	GList *locale_list;
+	const gchar *locale;
+	gchar *locale_key;
+
+	/* Get the list of applicable locales */
+	locale_list = gnome_vfs_i18n_get_language_list ("LC_MESSAGES");
+
+	/* Get the localized keyname from the first locale */
+	locale = locale_list ? locale_list->data : NULL;
+	if (!locale || !strcmp (locale, "C"))
+		locale_key = g_strdup (key);
+	else
+		locale_key = g_strdup_printf ("%s[%s]", key, locale);
+
+	set_desktop_file_key (fullbuf, locale_key, value);
+
+	g_list_free (locale_list);
+	g_free (locale_key);
+}
+
+static void
+set_dot_directory_locale_name (Folder *folder, gchar *val)
+{
+	Entry *dot_file;
+	GnomeVFSHandle *handle;
+	GnomeVFSFileSize readlen, writelen, offset = 0;
+	GString *fullbuf;
+	char buf[2048];
+	guint mode, perm;
+
+	dot_file = folder_get_entry (folder, ".directory");
+	if (!dot_file)
+		return;
+	if (!entry_make_user_private (dot_file, folder))
+		return;
+
+	mode = (GNOME_VFS_OPEN_READ  | 
+		GNOME_VFS_OPEN_WRITE | 
+		GNOME_VFS_OPEN_RANDOM);
+
+	perm = (GNOME_VFS_PERM_USER_READ  | 
+		GNOME_VFS_PERM_USER_WRITE | 
+		GNOME_VFS_PERM_GROUP_READ | 
+		GNOME_VFS_PERM_OTHER_READ);
+
+	if (gnome_vfs_open (&handle, 
+			    entry_get_filename (dot_file), 
+			    mode) != GNOME_VFS_OK &&
+	    gnome_vfs_create (&handle, 
+			      entry_get_filename (dot_file),
+			      mode,
+			      TRUE,
+			      perm) != GNOME_VFS_OK)
+		return;
+
+	/* read in the file contents to fullbuf */
+	fullbuf = g_string_new (NULL);
+	while (gnome_vfs_read (handle, 
+			       buf, 
+			       sizeof (buf), 
+			       &readlen) == GNOME_VFS_OK) {
+		g_string_append_len (fullbuf, buf, readlen);
+	}
+
+	/* set the key, replacing if necessary */
+	set_desktop_file_locale_key (fullbuf, "Name", val);
+
+	/* clear it */
+	gnome_vfs_truncate_handle (handle, 0);
+	gnome_vfs_seek (handle, GNOME_VFS_SEEK_START, 0);
+
+	/* write the changed contents */
+	while (fullbuf->len - offset > 0 &&
+	       gnome_vfs_write (handle, 
+				&fullbuf->str [offset],
+				fullbuf->len - offset, 
+				&writelen) == GNOME_VFS_OK) {
+		offset += writelen;
+	}
+
+	gnome_vfs_close (handle);
+	g_string_free (fullbuf, TRUE);
+}
+
 static GnomeVFSResult
 do_move (GnomeVFSMethod *method,
 	 GnomeVFSURI *old_uri,
@@ -1273,18 +1392,28 @@ do_move (GnomeVFSMethod *method,
 				    entry_get_filename (old_child.entry));
 
 		entry_unref (old_child.entry);
+
+		vfolder_info_emit_change (info, 
+					  old_uri->text,
+					  GNOME_VFS_MONITOR_EVENT_DELETED);
+
+		vfolder_info_emit_change (info, 
+					  new_uri->text,
+					  GNOME_VFS_MONITOR_EVENT_CREATED);
 	} 
 	else if (old_child.type == FOLDER) {
+		Folder *iter;
+
 		if (existing_child.type && existing_child.type != FOLDER) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 		}
 
-		if (!strncmp (old_vuri.path, 
-			      new_vuri.path, 
-			      strlen (old_vuri.path))) {
-			VFOLDER_INFO_WRITE_UNLOCK (info);
-			return GNOME_VFS_ERROR_LOOP;
+		for (iter = new_parent->parent; iter; iter = iter->parent) {
+			if (iter == old_child.folder) {
+				VFOLDER_INFO_WRITE_UNLOCK (info);
+				return GNOME_VFS_ERROR_LOOP;
+			}
 		}
 
 		/* ref in case old_parent is new_parent */
@@ -1302,6 +1431,14 @@ do_move (GnomeVFSMethod *method,
 			}
 		}
 
+		/* do the .directory name change before the actual move */
+		set_dot_directory_locale_name (old_child.folder, new_vuri.file);
+
+		/* tell the listeners about the display name change first */
+		folder_emit_changed (old_child.folder, 
+				     ".directory",
+				     GNOME_VFS_MONITOR_EVENT_CHANGED);
+
 		folder_remove_subfolder (old_parent, old_child.folder);
 		folder_add_exclude (old_parent, old_vuri.file);
 
@@ -1309,18 +1446,18 @@ do_move (GnomeVFSMethod *method,
 		folder_set_name (old_child.folder, new_vuri.file);
 		folder_add_subfolder (new_parent, old_child.folder);
 
+		vfolder_info_emit_change (info, 
+					  old_uri->text,
+					  GNOME_VFS_MONITOR_EVENT_DELETED);
+
+		vfolder_info_emit_change (info, 
+					  new_uri->text,
+					  GNOME_VFS_MONITOR_EVENT_CREATED);
+
 		folder_unref (old_child.folder);
 	}
 
 	VFOLDER_INFO_WRITE_UNLOCK (info);
-
-	vfolder_info_emit_change (info, 
-				  old_uri->text,
-				  GNOME_VFS_MONITOR_EVENT_DELETED);
-
-	vfolder_info_emit_change (info, 
-				  new_uri->text,
-				  GNOME_VFS_MONITOR_EVENT_CREATED);
 
 	return GNOME_VFS_OK;
 }
@@ -1407,7 +1544,6 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
-
 	if (!vuri.file)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
@@ -1432,30 +1568,41 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	}
 
 	if (parent->is_link) {
-		GnomeVFSURI *real_uri, *new_uri;
+		gchar *new_uristr;
+		GnomeVFSURI *new_uri;
 
-		real_uri = gnome_vfs_uri_new (folder_get_extend_uri (parent));
-		new_uri = gnome_vfs_uri_append_file_name (real_uri, vuri.file);
-		gnome_vfs_uri_unref (real_uri);
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+
+		new_uristr = vfolder_build_uri (folder_get_extend_uri (parent),
+						vuri.file,
+						NULL);
+		new_uri = gnome_vfs_uri_new (new_uristr);
 		
 		result = 
 			gnome_vfs_create_symbolic_link_cancellable (
 				new_uri,
 				target_reference,
 				context);
-		if (result == GNOME_VFS_OK)
-			folder_set_dirty (parent);
 
-		VFOLDER_INFO_WRITE_UNLOCK (info);
+		gnome_vfs_uri_unref (new_uri);
+
 		return result;
 	} else {
 		GnomeVFSFileInfo *file_info;
 		GnomeVFSURI *link_uri;
+		Folder *linkdir;
 
 		if (!folder_make_user_private (parent)) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return GNOME_VFS_ERROR_READ_ONLY;
 		}
+
+		/* 
+		 * FIXME: need to unlock here to get the file info so we can
+		 * check if the target file is a directory, avoiding a deadlock
+		 * when target is on the same method (always?).  
+		 */
+		VFOLDER_INFO_WRITE_UNLOCK (info);
 
 		link_uri = gnome_vfs_uri_new (target_reference);
 		file_info = gnome_vfs_file_info_new ();
@@ -1467,34 +1614,39 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 				context);
 		gnome_vfs_uri_unref (link_uri);
 
-		if (result != GNOME_VFS_OK) {
+		if (result != GNOME_VFS_OK)
+			return GNOME_VFS_ERROR_NOT_FOUND;
+
+		/* We only support links to directories */
+		if (file_info->type != GNOME_VFS_FILE_TYPE_DIRECTORY)
+			return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+
+		VFOLDER_INFO_WRITE_LOCK (info);
+
+		/* 
+		 * Reget parent, avoiding a race if it was removed while we were
+		 * unlocked.
+		 */
+		parent = vfolder_info_get_parent (info, vuri.path);
+		if (!parent) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return GNOME_VFS_ERROR_NOT_FOUND;
 		}
 
-		/* We only support links to directories */
-		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			Folder *linkdir;
+		linkdir = folder_new (info, vuri.file, TRUE);
+		folder_set_extend_uri (linkdir, target_reference);
+		linkdir->is_link = TRUE;
 
-			linkdir = folder_new (info, vuri.file, TRUE);
-			folder_set_extend_uri (linkdir, target_reference);
-			linkdir->is_link = TRUE;
+		folder_add_subfolder (parent, linkdir);
+		folder_unref (linkdir);
 
-			folder_add_subfolder (parent, linkdir);
-			folder_unref (linkdir);
+		VFOLDER_INFO_WRITE_UNLOCK (info);
 
-			VFOLDER_INFO_WRITE_UNLOCK (info);
+		vfolder_info_emit_change (info, 
+					  uri->text, 
+					  GNOME_VFS_MONITOR_EVENT_CREATED);
 
-			vfolder_info_emit_change (
-				info, 
-				uri->text, 
-				GNOME_VFS_MONITOR_EVENT_CREATED);
-
-			return GNOME_VFS_OK;
-		} else {
-			VFOLDER_INFO_WRITE_UNLOCK (info);
-			return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
-		}
+		return GNOME_VFS_OK;
 	}
 }
 
