@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: 2000-02-07 13:40+01:00\n"
+"POT-Creation-Date: 2000-02-23 05:22+0100\n"
+"PO-Revision-Date: 2000-02-23 05:41+01:00\n"
 "Last-Translator: BL <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "Fil eksisterer"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Fandt lænker der peger i ring"
 
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -319,7 +319,7 @@ msgstr "Kan ikke initialisere CORBA"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1386
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr ""
+msgstr "Kan ikke læse første reference til RootPOA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1393
 msgid "Cannot activate POA manager."
@@ -493,11 +493,11 @@ msgstr "ftpfs: CWD fejlede."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs: kunne læse symlænke"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Læser symlænke..."
 
 #: modules/ftp-method.c:1498
 #, c-format
@@ -527,7 +527,7 @@ msgstr "Starter lineær overførsel..."
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
-msgstr ""
+msgstr "Forbereder fortryd..."
 
 #: modules/http-method.c:471
 #, c-format
