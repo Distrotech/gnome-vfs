@@ -1494,7 +1494,7 @@ gnome_vfs_make_uri_from_input (const char *location)
  * Determines a fully qualified URL from a relative or absolute input path.
  * Basically calls gnome_vfs_make_uri_from_input except it specifically
  * tries to support paths relative to the specified directories (can be homedir
- * and/or current directory).
+ * and/or current directory). See #GnomeVFSMakeURIDirs for more information.
  *
  * Return value: a newly allocated string containing the fully qualified URL
  *

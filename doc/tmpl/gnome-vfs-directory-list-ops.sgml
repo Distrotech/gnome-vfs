@@ -83,12 +83,14 @@ Listing the contents of directories.
 
 </para>
 
-@uri: 
+@text_uri: 
 @info_options: 
 @visit_options: 
 @callback: 
 @data: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_directory_visit_uri ##### -->

@@ -1,4 +1,14 @@
 2005-02-09  Christian Kellner  <gicmo@gnome.org>
+
+	* doc/gnome-vfs-2.0-sections.txt:
+	* doc/tmpl/gnome-vfs-directory-list-ops.sgml:
+	* doc/tmpl/gnome-vfs-utils.sgml:
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-utils.h:
+	Doc updates! This fixes bug #160837.
+
+2005-02-09  Christian Kellner  <gicmo@gnome.org>
 	* libgnomevfs/gnome-vfs-directory.h (gnome_vfs_directory_visit):
 	Rename uri to text_uri to be consistent with the other functions.
 	Fixes bug #140939.

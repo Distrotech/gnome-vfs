@@ -26,6 +26,7 @@ GNOME_VFS_SIZE_IS_UNSIGNED_LONG_LONG
 
 <SECTION>
 <FILE>gnome-vfs-utils</FILE>
+GnomeVFSMakeURIDirs
 gnome_vfs_format_file_size_for_display
 gnome_vfs_format_uri_for_display
 gnome_vfs_url_show

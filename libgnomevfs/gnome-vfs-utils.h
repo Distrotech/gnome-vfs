@@ -35,6 +35,19 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GnomeVFSMakeURIDirs:
+ * @GNOME_VFS_MAKE_URI_DIR_NONE: Don't check any directory
+ * @GNOME_VFS_MAKE_URI_DIR_HOMEDIR: Check the home directory
+ * @GNOME_VFS_MAKE_URI_DIR_CURRENT: Check the current direcotry
+ * 
+ * Flags that can be passed to gnome_vfs_make_uri_from_input_with_dirs().
+ * If the given input might be a relative path it checks for existence of the file
+ * in the directory specified by this flag.
+ * If both flags are passed the current directory is checked first.
+ * 
+ **/
+
 typedef enum {
 	GNOME_VFS_MAKE_URI_DIR_NONE = 0,
 	GNOME_VFS_MAKE_URI_DIR_HOMEDIR = 1 << 0,

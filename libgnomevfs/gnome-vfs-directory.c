@@ -483,16 +483,16 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 
 /**
  * gnome_vfs_directory_visit:
- * @uri: URI to start from
+ * @text_uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
  * @visit_options: Options specifying the type of visit
  * @callback: Callback to be called for every visited file
  * @data: Data to be passed to @callback at each iteration
  * 
- * Visit @uri, retrieving information as specified by @info_options.
+ * Visit @text_uri, retrieving information as specified by @info_options.
  * 
- * Return value: 
+ * Return value:  a GnomeVFSResult indication the success of the operation 
  **/
 GnomeVFSResult
 gnome_vfs_directory_visit (const gchar *text_uri,
