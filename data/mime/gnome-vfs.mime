@@ -97,9 +97,6 @@ application/x-cpio
 application/x-cpio-compressed
 	regex: \.cpio\.gz$
 
-application/x-csh
-	ext: csh
-
 application/x-deb
 	ext: deb
 
@@ -150,9 +147,6 @@ application/x-reject
 	
 application/x-rpm
 	ext: rpm
-
-application/x-sh
-	ext: sh
 
 application/x-shar
 	ext: shar
@@ -432,6 +426,9 @@ text/x-copying:
 text/x-credits:
 	regex: CREDITS
 
+text/x-csh
+	ext: csh
+
 text/x-dcl
 	ext: dcl
 
@@ -477,6 +474,9 @@ text/x-scheme
 text/x-setext
 	ext: etx
 
+text/x-sh
+	ext: sh
+
 text/x-sql
 	ext: sql
 
@@ -485,8 +485,6 @@ text/x-vCalendar:
 
 text/x-vCard
 	ext: gcrd
-
-
 
 video/mpeg
 	ext: mp2 mpe mpeg mpg

@@ -1,3 +1,9 @@
+2000-06-13  Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/gnome-vfs.keys, data/mime/gnome-vfs.mime: Made
+	canonical mime types for shell and c-shell scripts text/x-sh and
+	text/x-csh, not application/x-sh and application/x-csh.
+
 2000-06-12  Maciej Stachowiak  <mjs@eazel.com
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c

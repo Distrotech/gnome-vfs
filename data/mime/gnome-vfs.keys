@@ -646,6 +646,9 @@ text/x-comma-separated-values
 text/x-copying
 	description=GNU license
 
+text/x-csh
+	description=C-Shell script
+
 text/x-emacs-lisp
 	description=Emacs Lisp source code
 
