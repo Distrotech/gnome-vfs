@@ -116,7 +116,6 @@ main (int argc, char **argv)
 	
 		printf ("looks like %s is %s\n", *argv, result);
 		gnome_vfs_uri_unref (uri);
-		g_free (uri_string);
 	}
 	
 	return 0;
