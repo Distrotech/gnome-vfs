@@ -1,6 +1,6 @@
 AC_INIT(libgnomevfs/gnome-vfs.h)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-vfs, 0.2.0)
+AM_INIT_AUTOMAKE(gnome-vfs, 0.3.0)
 AM_ACLOCAL_INCLUDE(macros)
 
 AM_MAINTAINER_MODE
