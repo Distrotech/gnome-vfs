@@ -1,3 +1,8 @@
+2004-07-07  Christian Kellner <gicmo@gnome-de.org>
+	* libgnomevfs/gnome-vfs-socket-buffer.[ch]:
+	added the gnome_vfs_socket_buffer_read_until function and fixed some
+	minor gtk-doc comment typos.
+
 2004-07-07  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/http-method.c (connect_to_uri): 
@@ -23108,3 +23113,4 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* configure.in: Add gnomeui libs to `VFSCORBA_LIBS'.
+

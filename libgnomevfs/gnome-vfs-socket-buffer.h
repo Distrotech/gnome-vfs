@@ -45,7 +45,15 @@ GnomeVFSResult        gnome_vfs_socket_buffer_read     (GnomeVFSSocketBuffer *so
 							GnomeVFSFileSize      bytes, 
 							GnomeVFSFileSize     *bytes_read,
 							GnomeVFSCancellation *cancellation);
-GnomeVFSResult        gnome_vfs_socket_buffer_peekc    (GnomeVFSSocketBuffer *socket_buffer, 
+GnomeVFSResult        gnome_vfs_socket_buffer_read_until (GnomeVFSSocketBuffer *socket_buffer,
+							gpointer buffer,
+							GnomeVFSFileSize bytes,
+							gconstpointer boundary,
+							GnomeVFSFileSize boundary_len,
+							GnomeVFSFileSize *bytes_read,
+							gboolean *got_boundary,
+							GnomeVFSCancellation *cancellation);
+GnomeVFSResult        gnome_vfs_socket_buffer_peekc    (GnomeVFSSocketBuffer *socket_buffer,
 							char                 *character,
 							GnomeVFSCancellation *cancellation);
 GnomeVFSResult        gnome_vfs_socket_buffer_write    (GnomeVFSSocketBuffer *socket_buffer,
