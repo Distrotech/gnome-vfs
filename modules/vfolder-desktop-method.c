@@ -1967,7 +1967,7 @@ add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
 			     NULL /* ns */,
 			     "ReadOnly" /* name */,
 			     NULL /* content */);
-	if (folder->read_only)
+	if (folder->dont_show_if_empty)
 		xmlNewChild (folder_node /* parent */,
 			     NULL /* ns */,
 			     "DontShowIfEmpty" /* name */,
