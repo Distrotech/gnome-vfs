@@ -61,6 +61,9 @@ struct GnomeVFSMimeAction {
 
 typedef struct GnomeVFSMimeAction GnomeVFSMimeAction;
 
+GnomeVFSMimeApplication *gnome_vfs_mime_application_copy		  (GnomeVFSMimeApplication *application);
+void		    gnome_vfs_mime_application_list_free		  (GList 		  *list);
+void		    gnome_vfs_mime_component_list_free		  	  (GList 		  *list);
 
 GnomeVFSMimeAction  *gnome_vfs_mime_get_default_action                    (const char             *mime_type);
 GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application           (const char             *mime_type);

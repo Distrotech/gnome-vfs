@@ -541,16 +541,44 @@ gnome_vfs_mime_remove_from_all_applications_for_uri (const char *mime_type,
 	return;
 }
 
+GnomeVFSMimeApplication *
+gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
+{
+	GnomeVFSMimeApplication *result;
+	
+	result = g_new0 (GnomeVFSMimeApplication, 1);
+	result->name = g_strdup (application->name);
+	result->command = g_strdup (application->command);
+	result->can_open_multiple_files = application->can_open_multiple_files;
+	result->can_open_uris = application->can_open_uris;
+
+	return result;
+}
+
 void
 gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application) 
 {
-	return;
+	g_free (application->name);
+	g_free (application->command);
+	g_free (application);
 }
 
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
 {
 	return;
+}
+
+void
+gnome_vfs_mime_application_list_free (GList *list)
+{
+	g_list_foreach (list, (GFunc)gnome_vfs_mime_application_free, NULL);
+}
+
+void
+gnome_vfs_mime_component_list_free (GList *list)
+{
+	g_list_foreach (list, (GFunc)CORBA_free, NULL);
 }
 
 

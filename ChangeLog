@@ -1,3 +1,14 @@
+2000-05-31  John Sullivan  <sullivan@eazel.com>
+
+	Couldn't wait for Maciej for a few bits here.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_copy): New function
+	(gnome_vfs_mime_application_free): Supplied implementation.
+	(gnome_vfs_mime_application_list_free),
+	(gnome_vfs_mime_component_list_free): New functions.
+
 2000-05-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	Work in progress for the modified Files and Programs
