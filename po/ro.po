@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-08 19:55+0200\n"
+"POT-Creation-Date: 2004-09-13 09:57+0200\n"
 "PO-Revision-Date: 2004-09-08 22:23+0300\n"
 "Last-Translator: Mişu Moldovan <dumol@go.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -430,12 +430,12 @@ msgstr "Operaţie oprită"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1013
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1031
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:641 libgnomevfs/gnome-vfs-mime-info.c:648
-#: libgnomevfs/gnome-vfs-mime-info.c:656 libgnomevfs/gnome-vfs-mime-info.c:663
-#: libgnomevfs/gnome-vfs-mime-info.c:671 libgnomevfs/gnome-vfs-mime-info.c:688
-#: libgnomevfs/gnome-vfs-mime-info.c:695 libgnomevfs/gnome-vfs-mime-info.c:702
-#: libgnomevfs/gnome-vfs-mime-info.c:709 libgnomevfs/gnome-vfs-mime-info.c:717
-#: libgnomevfs/gnome-vfs-mime-info.c:724
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."

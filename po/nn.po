@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-06 21:34+0000\n"
+"POT-Creation-Date: 2004-09-13 09:57+0200\n"
 "PO-Revision-Date: 2004-09-06 21:37+0000\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -48,7 +48,8 @@ msgstr "Klarte ikkje å lesa frå fila «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei "
 "gruppe eller ein merknad"
@@ -81,14 +82,16 @@ msgstr "skrivebordsoppføringane har ikkje nøkkelen «%s»"
 #: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
 #: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 "skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som ikkje "
 "kan tolkast."
 
 #: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%s» "
 "med lokalet «%s»."
@@ -431,16 +434,17 @@ msgstr "Operasjonen vart stoppa"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1013
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1031
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
-#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
-#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
-#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
-#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
-#: libgnomevfs/gnome-vfs-mime-info.c:713
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
+msgstr ""
+"Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -875,7 +879,8 @@ msgstr "Nettverkstenar"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Kan ikkje montera disketten. Det er truleg ikkje nokon diskett i "
 "diskettstasjonen."
@@ -1078,7 +1083,8 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Standard terminalemulator som skal brukast til program som krev ein terminal."
+msgstr ""
+"Standard terminalemulator som skal brukast til program som krev ein terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1196,19 +1202,25 @@ msgstr ""
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «h323»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «h323»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «http»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «http»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «https»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «https»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1479,4 +1491,3 @@ msgstr "SMB-arbeidsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-arbeidsgruppa brukaren er med i"
-

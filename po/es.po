@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-04 00:21+0200\n"
+"POT-Creation-Date: 2004-09-13 09:57+0200\n"
 "PO-Revision-Date: 2004-09-04 00:23+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -57,7 +57,8 @@ msgstr "Falló al leer del archivo «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "las entradas del escritorio contienen la línea «%s» que no es una entrada, "
 "grupo o comentario"
@@ -76,7 +77,8 @@ msgstr "las entradas del escritorio contienen la línea «%s» que no es UTF-8"
 #: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr "las entradas del escritorio contienen una codificación desconocida «%s»"
+msgstr ""
+"las entradas del escritorio contienen una codificación desconocida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
 #: libgnomevfs/eggdesktopentries.c:1215
@@ -92,14 +94,16 @@ msgstr "las entradas del escritorio no tienen la clave «%s»"
 #: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
 #: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 "las entradas del escritorio contienen la clave «%s» la cual tiene un valor "
 "que no puede ser interpretado."
 
 #: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "las entradas del escritorio no contienen ningún valor traducido para la "
 "clave «%s» en el idioma «%s»"
@@ -107,7 +111,8 @@ msgstr ""
 #: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "las entradas del escritorio contienen una secuencia de escape inválida «%s»"
+msgstr ""
+"las entradas del escritorio contienen una secuencia de escape inválida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
@@ -429,26 +434,26 @@ msgstr "La operación ha sido detenida"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:652
-#: libgnomevfs/gnome-vfs-mime-handlers.c:671
-#: libgnomevfs/gnome-vfs-mime-handlers.c:689
-#: libgnomevfs/gnome-vfs-mime-handlers.c:708
-#: libgnomevfs/gnome-vfs-mime-handlers.c:727
-#: libgnomevfs/gnome-vfs-mime-handlers.c:868
-#: libgnomevfs/gnome-vfs-mime-handlers.c:890
-#: libgnomevfs/gnome-vfs-mime-handlers.c:909
-#: libgnomevfs/gnome-vfs-mime-handlers.c:928
-#: libgnomevfs/gnome-vfs-mime-handlers.c:981
-#: libgnomevfs/gnome-vfs-mime-handlers.c:998
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1015
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1033
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1051
-#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
-#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
-#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
-#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
-#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
-#: libgnomevfs/gnome-vfs-mime-info.c:713
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -888,7 +893,8 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -1048,7 +1054,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -1099,7 +1106,8 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1648,4 +1656,3 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-

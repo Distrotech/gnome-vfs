@@ -1,3 +1,25 @@
+gnome-vfs 2.8.0
+
+    * Bugs fixed:
+        + Fixed GnuTLS support
+	+ Recognize fstab names written by HAL
+	+ Fix crashers in webdav caused by redirect
+	+ Various build fixes
+	+ Fixed leak in eggdesktopentries
+	+ Don't use short list when selecting component
+	  for mimetype
+	+ Prioritize exact matches when generating
+	  component shortlist for mimetype
+	+ Fix crashers in defaults.list parsing
+	+ Fix symlink support in ftp method
+	+ Set right type for smb share directories
+	+ Added workaround for IceCast/ShoutCast in neon http method
+	+ Fix crasher when using proxy in the neon http method
+	+ Implement gnome_vfs_mime_type_is_known and gnome_vfs_mime_get_value
+	+ Re-fixed unique names for moving and linking files in gnome_vfs_xfer
+	+ Added hack to make descriptions for folders right
+	+ distribute both http methods in tarball
+
 gnome-vfs 2.7.92
 
 	Note: The HAL support (which is disabled by default) has some
