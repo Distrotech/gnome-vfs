@@ -304,6 +304,27 @@ make_utf8 (const char *str)
 }
 
 static char *
+get_drive_icon_from_type (GnomeVFSDeviceType type)
+{
+	char *icon_name;
+
+	icon_name = "gnome-dev-removable";
+	switch (type) {
+	case GNOME_VFS_DEVICE_TYPE_NFS:
+		icon_name = "gnome-fs-nfs";
+		break;
+		
+	case GNOME_VFS_DEVICE_TYPE_SMB:
+		icon_name = "gnome-fs-smb";
+		break;
+	default:
+		break;
+	}
+	
+	return g_strdup (icon_name);
+}
+
+static char *
 get_icon_from_type (GnomeVFSDeviceType type)
 {
 	char *icon_name;
@@ -499,7 +520,7 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 		}
 	}
 
-	drive->priv->icon = get_icon_from_type (drive->priv->device_type);
+	drive->priv->icon = get_drive_icon_from_type (drive->priv->device_type);
 
 	drive->priv->display_name = get_drive_name (volume_monitor, drive, mount);
 	

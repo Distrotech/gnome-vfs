@@ -47,6 +47,7 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
+	libcomputer.la				\
 	libextfs.la				\
 	libfile.la				\
 	libnntp.la				\
@@ -87,6 +88,12 @@ libcdda_la_SOURCES = \
 
 libcdda_la_LDFLAGS = $(module_flags)
 libcdda_la_LIBADD = -lcdda_paranoia -lcdda_interface ../libgnomevfs/libgnomevfs-2.la
+
+###  `computer' method
+
+libcomputer_la_SOURCES = computer-method.c
+libcomputer_la_LDFLAGS = $(module_flags)
+libcomputer_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `extfs' method
 
