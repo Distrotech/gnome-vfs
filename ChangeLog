@@ -1,3 +1,9 @@
+2004-03-04  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/file-method.c (do_monitor_add):
+	  apply alexl's patch from HEAD to handle NULL filenames
+	  properly, fixes #136011
+
 === gnome-vfs 2.4.2 ===
 
 2003-01-26  Christophe Fergeau  <teuf@gnome.org>
