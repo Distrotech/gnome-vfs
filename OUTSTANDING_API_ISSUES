@@ -45,24 +45,19 @@ Basic recommendations to avoid application breakage:
 * 1205 - [API] separate xfer options and xfer actions
 * 6840 - [API] There is no way to remove a system wide default application.
 * 2801 - [API] GnomeVFSURI should handle URIs with schemes that no module can handle
-* real icon support
-* per-uri-scheme attributes
-* http post support
-* change module stacking to enable proper moniker support
-* redirect support
-* make xfer API not suck
-* Install public headers and module-only headers in different places,
-  separate pkgconfig targets
-* remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
-* buffered I/O API
-* kill gnome-vfs-seekable
-* kill gnome-vfs-transform
-* GClosure-isze everything
-* kill back end API since we only have one back end now and it
+* 8505 - [API] gnome-vfs should return the same file icons as Nautilus
+* 8506 - [API] URI schemes want to specify icon, default application, etc
+* 8507 - [API] it should be possible to do http POSTs
+* 8508 - [API] change module stacking interface to enable proper moniker support
+* 8509 - [API] http redirects should be supported
+* 8510 - [API] make xfer URI less confusing
+* 8511 - [API] split public and module APIs
+* 8512 - [API] gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
+* 8513 - [API] buffered I/O API
+* 8514 - [API] kill gnome-vfs-seekable
+* 8515 - [API] kill gnome-vfs-transform
+* 8516 - [API] GClosure-ize everything
+* 8517 - [API] kill back end API since we only have one back end now and it
   doesn't need to be a module any more
-* things defined in gnome-vfs-helpers should not have an X in their
-  names, some should go into other headers, some back to Eel or
-  Nautilus
-* kill half-baked port of metadata
-* rename `method' to something else (`module'? `protocol'? `scheme'? `scheme handler'?)
-
+* 8518 - [API] gnome-vfs-helpers API needs cleanup
+* 8519 - [API] rename `method' to something else (`module'? `protocol'? `scheme'?)
