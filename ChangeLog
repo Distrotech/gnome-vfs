@@ -1,3 +1,10 @@
+2002-06-27  Michael Meeks  <michael@ximian.com>
+
+	* modules/vfolder-desktop-method.c
+	(try_free_file_monitors_create_files_unlocked): use
+	ensure_folder_unlocked to avoid deadlock.
+	(rescan_monitors): ditto. #84910
+
 2002-06-25  Jody Goldberg <jody@gnome.org>
  
  	* libgnomevfs/gnome-vfs-mime.c (file_date_record_update_mtime) : track

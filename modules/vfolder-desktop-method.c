@@ -2821,10 +2821,11 @@ try_free_file_monitors_create_files_unlocked (VFolderInfo *info)
 					    NULL);
 
 			if (f != NULL) {
-				ensure_folder (info, f,
-					       FALSE /* subfolders */,
-					       NULL /* except */,
-					       FALSE /* ignore_unallocated */);
+				ensure_folder_unlocked (
+					info, f,
+					FALSE /* subfolders */,
+					NULL /* except */,
+					FALSE /* ignore_unallocated */);
 				entry = find_entry (f->entries, vuri.file);
 			}
 
@@ -2875,7 +2876,7 @@ try_free_file_monitors_create_files_unlocked (VFolderInfo *info)
 	g_slist_free (list);
 }
 
-static void
+static void /* unlocked */
 rescan_monitors (VFolderInfo *info)
 {
 	GSList *li;
@@ -2945,10 +2946,11 @@ rescan_monitors (VFolderInfo *info)
 					    NULL);
 
 			if (f != NULL) {
-				ensure_folder (info, f,
-					       FALSE /* subfolders */,
-					       NULL /* except */,
-					       FALSE /* ignore_unallocated */);
+				ensure_folder_unlocked (
+					info, f,
+					FALSE /* subfolders */,
+					NULL /* except */,
+					FALSE /* ignore_unallocated */);
 				entry = find_entry (f->entries, vuri.file);
 			}
 
@@ -3000,7 +3002,7 @@ rescan_monitors (VFolderInfo *info)
 	try_free_file_monitors_create_files_unlocked (info);
 }
 
-static gboolean
+static gboolean /* unlocked */
 vfolder_info_read_items (VFolderInfo *info,
 			 GnomeVFSResult *result,
 			 GnomeVFSContext *context)
