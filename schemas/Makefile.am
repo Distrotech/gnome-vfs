@@ -21,6 +21,6 @@ else
 install-data-local:
 endif
 
-EXTRA_DIST = $(schema_in_files)
+EXTRA_DIST = $(schema_in_files) $(schema_DATA)
 
-CLEANFILES = $(schema_DATA)
+MAINTAINERCLEANFILES = $(schema_DATA)

@@ -1,3 +1,8 @@
+2004-01-23  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/Makefile.am:
+	Dist .schemas files, only clean them on maintainer-clean.
+
 2004-01-22  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-daemon.c: (force_probe),
