@@ -130,7 +130,11 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 		/* we already have enough data read */
 		return GNOME_VFS_OK;
 	}
-	
+
+	if (!buffer->seek) {
+		return GNOME_VFS_ERROR_EOF;
+	}
+
 	if (size < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
 		/* don't bother to read less than this */
 		size = GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;

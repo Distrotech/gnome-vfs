@@ -1,3 +1,9 @@
+2000-07-06  Dan Winship  <danw@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c
+	(gnome_vfs_mime_sniff_buffer_get): don't try to seek if the sniff
+	buffer has no seek function (eg, because it's memory based).
+
 2000-07-05  Robin * Slomkowski <rslomkow@eazel.com>
 
 	* mime-type-capplet/Makefile.am: fixed libgdk_pixbuf
