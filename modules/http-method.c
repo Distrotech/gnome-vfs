@@ -683,6 +683,19 @@ do_open (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+do_create (GnomeVFSMethod *method,
+     GnomeVFSMethodHandle **method_handle,
+     GnomeVFSURI *uri,
+     GnomeVFSOpenMode mode,
+     gboolean exclusive,
+     guint perm,
+     GnomeVFSContext *context)
+{
+	/* FIXME - do we need to do something more intelligent here? */
+	return do_open(method, method_handle, uri, mode, context);
+}
+
+static GnomeVFSResult
 do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
@@ -700,9 +713,9 @@ do_close (GnomeVFSMethod *method,
 		GnomeVFSURI *uri = handle->uri;
 		GByteArray *bytes = handle->to_be_written;
 
-		http_file_handle_destroy(handle);
-
 		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
+
+		http_file_handle_destroy(handle);
 
 		if(result != GNOME_VFS_OK) {
 			http_handle_close (handle, context);
@@ -1179,7 +1192,7 @@ do_is_local (GnomeVFSMethod *method,
 
 static GnomeVFSMethod method = {
 	do_open,
-	NULL,
+	do_create,
 	do_close,
 	do_read,
 	do_write,
