@@ -1,3 +1,9 @@
+2003-07-24  Leena Gunda  <leena.gunda@wipro.com>
+
+	* libgnomevfs/gnome-vfs-process.c: 
+	Create hash table before associating signal handler for SIGCHLD.
+	Fixes bug #118059
+
 2003-07-18  Christophe Fergeau  <teuf@gnome.org>
 
 	* test/test-symlinks.c: removed unnecessary ;, fixes build on older
