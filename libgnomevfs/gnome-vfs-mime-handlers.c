@@ -446,7 +446,7 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
 			     "', '*'])"
-			     "AND bonobo:supported_uri_schemes.defined())", NULL);
+			     " AND bonobo:supported_uri_schemes.defined ()", NULL);
 	g_free (supertype);
 	
 	/* Alphebetize by name, for the sake of consistency */
