@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2001-08-02 15:30-0700\n"
+"POT-Creation-Date: 2001-07-03 23:17+0200\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -1009,268 +1009,268 @@ msgstr "arhiv zip"
 msgid "zoo archive"
 msgstr "arhiv zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:224
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d vsebuje NIÈELNE znake."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:241
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne vsebuje imena metode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:270
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne vsebuje imea modula."
 
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:323
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:76
+#: libgnomevfs/gnome-vfs-init.c:80
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS je ¾e inicializiran."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Ne morem razèleniti: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 msgid "More parsing errors will be ignored."
 msgstr "Nadalnje napake pri razèlenitvi bodo ignorirane."
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
 msgstr "Brez napak"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
 msgstr "Datoteke ni mogoèe najti"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
 msgstr "Generièna napaka"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Internal error"
 msgstr "Interna napaka"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr "Neveljavni parametri"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
 msgstr "Nepodprta operacija"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
 msgstr "V/I napaka"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
 msgstr "Podatki so pokvarjeni"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
 msgstr "Format ni veljaven"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr "Neveljavna datoteèna roèica"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr "Datoteka je prevelika"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
 msgstr "Na napravi ni veè prostora"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr "Datoteèni sistem je le berljiv"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr "Neveljaven URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
 msgstr "Datoteka ni odprta"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
 msgstr "Neveljaven naèin odpiranja"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr "Dostop zavrnjen"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr "Preveè odprtih datotek"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
 msgstr "Konec datoteke"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr "Ni imenik"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr "Operacija poteka"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
 msgstr "Operacija je bila prekinjena"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
 msgstr "Datoteka obstaja"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
 msgstr "Najdene so bile kro¾ne povezave"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
 msgstr "Nedovoljena operacija"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
 msgstr "Je imenik"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
 msgstr "Ni dovolj pomnilnika"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
 msgstr "Gostitelj ni bil najden"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
 msgstr "Gostitlejevo ime ni veljavno"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
 msgstr "Gostitelj nima naslova"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
 msgstr "Prijava ni uspela"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Operation cancelled"
 msgstr "Operacija preklicana"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
 msgstr "Imenik je zaseden"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
 msgstr "Imenik ni prazen"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
 msgstr "Preveè povezav"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
 msgstr "Datoteèni sistem je le berljiv"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Ni na istem datoteènem sistemu"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
 msgstr "Ime je predolgo"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:77
 msgid "Service not available"
 msgstr "Storitev ni na voljo"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
 msgstr "Zahtevek zastara podatke storitve"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:79
 msgid "Protocol error"
 msgstr "Napaka v protokolu"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#: libgnomevfs/gnome-vfs-result.c:142
 msgid "Unknown error"
 msgstr "Neznana napaka"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:68
 msgid "1 byte"
 msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:70
 #, c-format
 msgid "%u bytes"
 msgstr "%u bajtov"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
