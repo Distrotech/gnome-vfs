@@ -1,3 +1,8 @@
+2004-03-09  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-ssl.c: Doh! I managed to break compilation
+	by adding unwanted chars at the beginning of the file :(
+
 2004-03-08  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in: 
