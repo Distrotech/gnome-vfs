@@ -1,3 +1,10 @@
+2000-10-20  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.h: Added missing include
+	that was making this not standalone. This was uncovered by
+	a Nautilus extra-includes-removing pass that caused build
+	breakage.
+
 2000-10-20  Pavel Cisler <pavel@eazel.com>
 
 	Work on bug 2989, not done yet.
