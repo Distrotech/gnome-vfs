@@ -1,7 +1,6 @@
+# translation of el.po to Greek
 # GNOME VFS Greek translation.
 # Copyright (C) 2000-2003 Free Software Foundation, Inc.
-# Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
-# Simos Xenitellis <simos@teiath.gr>, 2000-2001.
 # Spiros did 90 messages.
 # Simos added 34. (15/07/2000)
 # simos: 384 messages, 14Feb2001, (sgpbea).
@@ -9,18 +8,23 @@
 # simos: 405 messages, 27Feb2001, (rgmtsgpbea).
 # simos: 406 messages, 01Mar2001, (rgmtsgpbea).
 # kostas:66 messages, 07Jan2003,updated translation for Gnome2.1x
+# kostas:80 messages, 03Sep2003,updated translation for Gnome2.4x
+# Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
+# Simos Xenitellis <simos@teiath.gr>, 2000-2001.
+# Kostas Papadimas <pkst@gmx.net>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.6.2\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-01-07 17:57+0200\n"
+"Project-Id-Version: el\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-03 13:51+0300\n"
+"PO-Revision-Date: 2003-09-03 13:55+0300\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -283,22 +287,22 @@ msgstr "Αδύνατη η εύρεση πρωτεύοντος φυλλομετρ
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Δεν έχει συσχετιστεί εξ ορισμού ενέργεια"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Σφ'αλμα ανάλυσης γραμμής εντολών"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Σφάλμα εκκίνησης εντολής"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -351,57 +355,54 @@ msgstr ""
 "τοποθεσίας.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
-#, fuzzy
-msgid "Applications"
-msgstr "Προσθήκη Εφαρμογής"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
-msgid "Cards"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
-#, fuzzy
-msgid "Files"
-msgstr "Το αρχείο υπάρχει"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
-#, fuzzy
-msgid "Folders"
-msgstr "φάκελος"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
-msgid "Help"
-msgstr ""
+msgid "Applications"
+msgstr "Εφαρμογές"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
-msgid "Hosts"
-msgstr ""
+msgid "Cards"
+msgstr "Κάρτες"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-msgid "Links"
-msgstr ""
+msgid "Files"
+msgstr "Αρχεία"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-msgid "Mail"
-msgstr ""
+msgid "Folders"
+msgstr "Φάκελοι"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
+msgid "Help"
+msgstr "Βοήθεια"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Hosts"
+msgstr "Συστήματα"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:193
+msgid "Links"
+msgstr "Δεσμοί"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:196
+msgid "Mail"
+msgstr "Αλληλογραφία"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Εργαλεία"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Παράθυρα"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -1529,3 +1530,4 @@ msgstr "γενικό αρχείο moniker"
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
+
