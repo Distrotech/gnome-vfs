@@ -1021,20 +1021,20 @@ impl_Request_load_directory (PortableServer_Servant servant,
 
 
 static GList *
-file_list_to_g_list (const GNOME_VFS_Slave_FileNameList *file_list)
+file_list_to_uri_g_list (const GNOME_VFS_Slave_FileNameList *file_list)
 {
-	GList *new;
+	GList *result;
 	guint i;
 
-	new = NULL;
+	result = NULL;
 
 	i = file_list->_length;
 	while (i > 0) {
 		i--;
-		new = g_list_prepend (new, file_list->_buffer[i]);
+		result = g_list_prepend (result, gnome_vfs_uri_new (file_list->_buffer[i]));
 	}
 
-	return new;
+	return result;
 }
 
 static gint
@@ -1144,34 +1144,33 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 
 static void
 impl_Request_xfer (PortableServer_Servant servant,
-		   const CORBA_char *source_directory,
-		   const GNOME_VFS_Slave_FileNameList *source_names,
-		   const CORBA_char *target_directory,
-		   const GNOME_VFS_Slave_FileNameList *target_names,
+		   const GNOME_VFS_Slave_URIList *source_names,
+		   const GNOME_VFS_Slave_URIList *target_names,
 		   const GNOME_VFS_Slave_XferOptions options,
 		   const GNOME_VFS_Slave_XferOverwriteMode overwrite_mode,
 		   CORBA_Environment *ev)
 {
 	GnomeVFSResult result;
-	GList *source_name_list, *target_name_list;
+	GList *source_uri_list, *target_uri_list;
 
-	source_name_list = file_list_to_g_list (source_names);
-	target_name_list = file_list_to_g_list (target_names);
+	source_uri_list = file_list_to_uri_g_list (source_names);
+	target_uri_list = file_list_to_uri_g_list (target_names);
 
 	operation_in_progress = TRUE;
 
-	result = gnome_vfs_xfer (source_directory,
-				 source_name_list,
-				 target_directory,
-				 target_name_list,
-				 options,
-				 GNOME_VFS_XFER_ERROR_MODE_QUERY,
-				 overwrite_mode,
-				 xfer_progress_callback,
-				 ev);
+	result = gnome_vfs_xfer_uri_list (source_uri_list,
+					  target_uri_list,
+					  options,
+					  GNOME_VFS_XFER_ERROR_MODE_QUERY,
+					  overwrite_mode,
+					  xfer_progress_callback,
+					  ev);
 
 	operation_in_progress = FALSE;
 	stop_operation = FALSE;
+
+	gnome_vfs_uri_list_free (source_uri_list);
+	gnome_vfs_uri_list_free (target_uri_list);
 
 	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_INTERRUPTED)
 		GNOME_VFS_Slave_Notify_xfer_error (notify_objref,

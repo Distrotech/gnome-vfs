@@ -854,7 +854,7 @@ gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
 	return new_uri;
 }
 
-
+
 /**
  * gnome_vfs_uri_to_string:
  * @uri: A GnomeVFSURI.

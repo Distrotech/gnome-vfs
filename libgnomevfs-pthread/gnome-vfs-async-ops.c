@@ -135,10 +135,8 @@ GnomeVFSResult pthread_gnome_vfs_async_find_directory 	      (GnomeVFSAsyncHandl
 							       GnomeVFSAsyncFindDirectoryCallback callback,
 							       gpointer user_data);
 GnomeVFSResult pthread_gnome_vfs_async_xfer                   (GnomeVFSAsyncHandle                **handle_return,
-							       const gchar                         *source_directory_uri,
-							       const GList                         *source_name_list,
-							       const gchar                         *target_directory_uri,
-							       const GList                         *target_name_list,
+							       GList	                           *source_uri_list,
+							       GList  	                           *target_uri_list,
 							       GnomeVFSXferOptions                  xfer_options,
 							       GnomeVFSXferErrorMode                error_mode,
 							       GnomeVFSXferOverwriteMode            overwrite_mode,
@@ -717,35 +715,10 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
-static GList *
-copy_string_list (const GList *list)
-{
-	GList *new, *last, *p;
-
-	if (list == NULL)
-		return NULL;
-
-	new = g_list_alloc ();
-	new->data = g_strdup (list->data);
-	last = new;
-
-	for (p = list->next; p != NULL; p = p->next) {
-		gchar *s;
-
-		s = g_strdup (p->data);
-		last = g_list_append (last, s);
-		last = last->next;
-	}
-
-	return new;
-}
-
 GnomeVFSResult
 pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
-			      const gchar *source_directory_uri,
-			      const GList *source_name_list,
-			      const gchar *target_directory_uri,
-			      const GList *target_name_list,
+			      GList *source_uri_list,
+			      GList *target_uri_list,
 			      GnomeVFSXferOptions xfer_options,
 			      GnomeVFSXferErrorMode error_mode,
 			      GnomeVFSXferOverwriteMode overwrite_mode,
@@ -769,10 +742,8 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			       update_callback_data);
 
 	xfer_op = &job->current_op->specifics.xfer;
-	xfer_op->request.source_directory_uri = g_strdup (source_directory_uri);
-	xfer_op->request.source_name_list = copy_string_list (source_name_list);
-	xfer_op->request.target_directory_uri = g_strdup (target_directory_uri);
-	xfer_op->request.target_name_list = copy_string_list (target_name_list);
+	xfer_op->request.source_uri_list = gnome_vfs_uri_list_copy (source_uri_list);
+	xfer_op->request.target_uri_list = gnome_vfs_uri_list_copy (target_uri_list);
 	xfer_op->request.xfer_options = xfer_options;
 	xfer_op->request.error_mode = error_mode;
 	xfer_op->request.overwrite_mode = overwrite_mode;

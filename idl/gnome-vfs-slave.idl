@@ -86,10 +86,8 @@ module Slave {
 					    in unsigned long items_per_notification);
 
 		/* Transfer files from a directory to another.  */
-		oneway void xfer (in string source_directory,
-				  in FileNameList source_names,
-				  in string target_directory,
-				  in FileNameList target_names,
+		oneway void xfer (in URIList source_names,
+				  in URIList target_names,
 				  in XferOptions options,
 				  in XferOverwriteMode overwrite_mode);
 

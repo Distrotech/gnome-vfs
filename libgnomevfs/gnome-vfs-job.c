@@ -1476,7 +1476,6 @@ execute_load_directory (GnomeVFSJob *job)
 	g_free (load_directory_op->request.sort_rules);
 	g_free (load_directory_op->request.filter_pattern);
 
-
 	return FALSE;
 }
 
@@ -1507,10 +1506,8 @@ execute_xfer (GnomeVFSJob *job)
 
 	xfer_op = &job->current_op->specifics.xfer;
 
-	result = gnome_vfs_xfer_private (xfer_op->request.source_directory_uri,
-					 xfer_op->request.source_name_list,
-					 xfer_op->request.target_directory_uri,
-					 xfer_op->request.target_name_list,
+	result = gnome_vfs_xfer_private (xfer_op->request.source_uri_list,
+					 xfer_op->request.target_uri_list,
 					 xfer_op->request.xfer_options,
 					 xfer_op->request.error_mode,
 					 xfer_op->request.overwrite_mode,
@@ -1544,10 +1541,12 @@ execute_xfer (GnomeVFSJob *job)
 
 	job_close (job);
 
+	gnome_vfs_uri_list_free (xfer_op->request.source_uri_list);
+	gnome_vfs_uri_list_free (xfer_op->request.target_uri_list);
+
 	return FALSE;
 }
 
-
 /* This function is called by the slave thread to execute a
    GnomeVFSJob.  */
 gboolean

@@ -1,3 +1,67 @@
+2000-09-01  Pavel Cisler  <pavel@eazel.com>
+
+	Bugzilla task 2186 -- Move/Copy/Link from multiple directories fails.
+	Reworked the copy engine to use lists of URIs instead of pairs of
+	directory URIs and file name lists.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_visit_list),
+	(count_items_and_size), (directory_add_items_and_size),
+	(handle_name_conflicts), (copy_file_data), (xfer_open_source),
+	(xfer_create_target), (copy_file), (copy_directory), (copy_items),
+	(move_items), (link_items), (gnome_vfs_xfer_empty_trash),
+	(gnome_vfs_xfer_delete_items_common),
+	(gnome_vfs_xfer_delete_items),
+	(gnome_vfs_new_directory_with_unique_name),
+	(gnome_vfs_xfer_uri_internal), (gnome_vfs_xfer_private),
+	(gnome_vfs_xfer_uri_list), (gnome_vfs_xfer_uri):
+	Completely reworked to support the new URI list APIs
+
+	* libgnomevfs/gnome-vfs-xfer.h:	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Renamed xfer calls to represent new APIs better.
+
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_async_xfer):
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	Update to support new APIs.
+	Got rid of copy_string_list that is no longer needed.
+
+	* idl/gnome-vfs-slave.idl:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	(corba_gnome_vfs_async_xfer):
+	* libgnomevfs-corba/gnome-vfs-slave.c: (file_list_to_uri_g_list),
+	(impl_Request_xfer):
+	Update corba backend for new xfer APIs.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_xfer):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_load_directory),
+	(execute_xfer):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Updated pthread backend to support new xfer APIs.
+	Fixed some leaks.
+	
+	* test/test-xfer.c: (main):
+	Update tests to use new APIs.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Fixed FIXME 1193.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(g_string_list_deep_copy):
+	No longer needed.
+	
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	 (gnome_vfs_uri_exists):
+	Added a new convenience call.
+	Fixes FIXME 1201.
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	Fixed some spelling.
+
 2000-09-01  Maciej Stachowiak  <mjs@eazel.com>
 
 	* po/Makefile.in.in: removed since gettextize auto-generates it.

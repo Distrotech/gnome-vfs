@@ -31,7 +31,6 @@
 
 #include "gnome-vfs.h"
 
-
 static int recursive = 0;
 static int remove_source = 0;
 
@@ -66,7 +65,6 @@ struct poptOption options[] = {
 	}
 };
 
-
 static void
 show_result (GnomeVFSResult result, const gchar *what)
 {
@@ -145,40 +143,15 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 	return FALSE;
 }
 
-static void
-split (const GnomeVFSURI *uri,
-       GnomeVFSURI **dir_uri_return,
-       GList **name_list_return)
-{
-	const gchar *basename;
-
-	basename = gnome_vfs_uri_get_basename (uri);
-	if (basename == NULL) {
-		/* If there is no basename, it means that this is a directory
-                   URI.  */
-		*dir_uri_return = gnome_vfs_uri_dup (uri);
-		*name_list_return = NULL;
-	} else {
-		*dir_uri_return = gnome_vfs_uri_get_parent (uri);
-		*name_list_return = g_list_alloc ();
-		/* Evil cast, but safe because we assume the lifespan of `uri'
-                   and `*name_list_return' will be the same.  */
-		(*name_list_return)->data = (gchar *) basename;
-	}
-}
-
-
 int
 main (int argc, char **argv)
 {
 	const char **args;
 	poptContext popt_context;
 	GnomeVFSURI *src_uri, *dest_uri;
-	GnomeVFSURI *src_dir_uri, *dest_dir_uri;
+	GList *src_uri_list, *dest_uri_list;
 	GnomeVFSResult result;
 	GnomeVFSXferOptions xfer_options;
-	GList *src_name_list;
-	GList *dest_name_list;
 
 	if (! gnome_vfs_init ()) {
 		fprintf (stderr,
@@ -212,8 +185,6 @@ main (int argc, char **argv)
 
 	poptFreeContext (popt_context);
 
-	split (src_uri, &src_dir_uri, &src_name_list);
-	split (dest_uri, &dest_dir_uri, &dest_name_list);
 
 	xfer_options = 0;
 	if (recursive) {
@@ -225,23 +196,19 @@ main (int argc, char **argv)
 		xfer_options |= GNOME_VFS_XFER_REMOVESOURCE;
 	}
 
-	result = gnome_vfs_xfer_uri (src_dir_uri, src_name_list,
-				     dest_dir_uri, dest_name_list,
-				     xfer_options,
-				     GNOME_VFS_XFER_ERROR_MODE_QUERY,
-				     GNOME_VFS_XFER_OVERWRITE_MODE_QUERY,
-				     xfer_progress_callback,
-				     NULL);
+	src_uri_list = g_list_append (NULL, src_uri);
+	dest_uri_list = g_list_append (NULL, dest_uri);
+	result = gnome_vfs_xfer_uri_list (src_uri_list, dest_uri_list,
+					  xfer_options,
+					  GNOME_VFS_XFER_ERROR_MODE_QUERY,
+					  GNOME_VFS_XFER_OVERWRITE_MODE_QUERY,
+					  xfer_progress_callback,
+					  NULL);
 
 	show_result (result, "gnome_vfs_xfer");
 
-	gnome_vfs_uri_unref (src_uri);
-	gnome_vfs_uri_unref (dest_uri);
-
-	gnome_vfs_uri_unref (src_dir_uri);
-	gnome_vfs_uri_unref (dest_dir_uri);
-
-	g_list_free (src_name_list);
+	gnome_vfs_uri_list_free (src_uri_list);
+	gnome_vfs_uri_list_free (dest_uri_list);
 
 	return 0;
 }

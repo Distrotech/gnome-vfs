@@ -177,10 +177,8 @@ void          	 gnome_vfs_async_load_directory_uri
 						 gpointer callback_data);
 
 GnomeVFSResult	gnome_vfs_async_xfer		(GnomeVFSAsyncHandle **handle_return,
-						 const gchar *source_dir,
-						 const GList *source_name_list,
-						 const gchar *target_dir,
-						 const GList *target_name_list,
+						 const GList *source_uri_list,
+						 const GList *target_uri_list,
 						 GnomeVFSXferOptions
 						 	xfer_options,
 						 GnomeVFSXferErrorMode

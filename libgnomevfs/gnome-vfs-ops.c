@@ -676,3 +676,23 @@ gnome_vfs_set_file_info (const gchar *text_uri,
 
 	return result;
 }
+
+/**
+ * gnome_vfs_uri_exists:
+ * @uri: A URI
+ * 
+ * Check if the URI points to an existing entity.
+ * 
+ * Return value: TRUE if URI exists.
+ **/
+gboolean
+gnome_vfs_uri_exists (GnomeVFSURI *uri)
+{
+	GnomeVFSFileInfo info;
+	GnomeVFSResult result;
+
+	gnome_vfs_file_info_init (&info);
+	result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+	gnome_vfs_file_info_clear (&info);
+	return result == GNOME_VFS_OK;
+}

@@ -240,10 +240,8 @@ typedef struct {
 
 typedef struct {
 	struct {
-		gchar *source_directory_uri;
-		GList *source_name_list;
-		gchar *target_directory_uri;
-		GList *target_name_list;
+		GList *source_uri_list;
+		GList *target_uri_list;
 		GnomeVFSXferOptions xfer_options;
 		GnomeVFSXferErrorMode error_mode;
 		GnomeVFSXferOverwriteMode overwrite_mode;

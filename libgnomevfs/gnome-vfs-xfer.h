@@ -24,10 +24,8 @@
 #define _GNOME_VFS_COMPLEX_OPS_H
 
 
-GnomeVFSResult	gnome_vfs_xfer_uri	(GnomeVFSURI *source_dir_uri,
-					 const GList *source_name_list,
-					 GnomeVFSURI *target_dir_uri,
-					 const GList *target_name_list,
+GnomeVFSResult	gnome_vfs_xfer_uri_list	(const GList *source_uri_list,
+		    			 const GList *target_uri_list,
 					 GnomeVFSXferOptions xfer_options,
 					 GnomeVFSXferErrorMode error_mode,
 					 GnomeVFSXferOverwriteMode
@@ -36,10 +34,8 @@ GnomeVFSResult	gnome_vfs_xfer_uri	(GnomeVFSURI *source_dir_uri,
 					 	progress_callback,
 					 gpointer data);
 
-GnomeVFSResult	gnome_vfs_xfer		(const gchar *source_dir,
-					 const GList *source_name_list,
-					 const gchar *target_dir,
-					 const GList *target_name_list,
+GnomeVFSResult	gnome_vfs_xfer_uri	(const GnomeVFSURI *source_uri,
+		    			 const GnomeVFSURI *target_uri,
 					 GnomeVFSXferOptions xfer_options,
 					 GnomeVFSXferErrorMode error_mode,
 					 GnomeVFSXferOverwriteMode

@@ -61,7 +61,7 @@ gchar *gnome_vfs_escape_slashes               (const gchar      *string);
  * form. If the illegal characters are in there unescaped, that's OK.
  * Typically you pass "/" for illegal characters when converting to a
  * Unix path, since pieces of Unix paths can't contain "/". ASCII 0
- * is always illegal due to the limitations of NUL-terminated strings.
+ * is always illegal due to the limitations of NULL-terminated strings.
  */
 gchar *gnome_vfs_unescape_string              (const gchar      *string,
 					       const gchar      *illegal_characters);

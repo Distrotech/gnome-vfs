@@ -115,6 +115,8 @@ GnomeVFSResult	 gnome_vfs_check_same_fs	(const gchar *a,
 						 const gchar *b,
 						 gboolean *same_fs_return);
 
+gboolean	 gnome_vfs_uri_exists		(GnomeVFSURI *uri);
+
 GnomeVFSResult   gnome_vfs_set_file_info_uri    (GnomeVFSURI *uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSSetFileInfoMask mask);
