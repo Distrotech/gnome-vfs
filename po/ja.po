@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-07-28 09:14+0900\n"
+"POT-Creation-Date: 2004-08-17 23:34+0900\n"
+"PO-Revision-Date: 2004-08-17 23:33+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -286,9 +286,8 @@ msgid "Unknown"
 msgstr "不明"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R ディスク"
+msgstr "CD-ROM ディスク"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -395,7 +394,7 @@ msgid "Linux Disk"
 msgstr "Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
@@ -1008,19 +1007,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "\"ghelp\" の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "H323 の URL を処理する際に使用するコマンドです (任意)。"
+msgstr "\"h323\" の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "\"ghelp\" の URL を処理する際に使用するコマンドです (任意)。"
+msgstr "\"http\" の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "\"trash\" の URL を処理する際に使用するコマンドです (任意)。"
+msgstr "\"https\" の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1051,19 +1047,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "URL \"ghelp\" の 処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "H323 の URL の処理"
+msgstr "\"h323\" の URL の処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "URL \"ghelp\" の 処理"
+msgstr "URL \"http\" の 処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "URL \"ghelp\" の 処理"
+msgstr "URL \"https\" の 処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1106,30 +1099,27 @@ msgstr ""
 "ます。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"H323 の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE にしま"
-"す。"
+"\"h323\" の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
+"します。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"URL \"ghelp\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
+"URL \"http\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
 "ます。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"URL \"ghelp\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
+"URL \"https\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
 "ます。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1184,19 +1174,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "指定したコマンドで URL \"ghelp\" を処理するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "指定したコマンドで H323 の URL を処理するかどうか"
+msgstr "指定したコマンドで \"h323\" の URL を処理するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "指定したコマンドで URL \"ghelp\" を処理するかどうか"
+msgstr "指定したコマンドで URL \"http\" を処理するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "指定したコマンドで URL \"trash\" を処理するかどうか"
+msgstr "指定したコマンドで URL \"https\" を処理するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
@@ -1396,38 +1383,3 @@ msgstr "SMB ワークグループ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "ユーザが接続している Windows ワークグループです。"
-
-#~ msgid "CD Disc"
-#~ msgstr "CD ディスク"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "HTTP の URL を処理する際に使用するコマンドです (任意)。"
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "HTTPS の URL を処理する際に使用するコマンドです (任意)。"
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "HTTP の URL の処理"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "HTTPS の URL の処理"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "HTTP の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
-#~ "します。"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "HTTPS の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
-#~ "します。"
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "指定したコマンドで HTTP の URL を処理するかどうか"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "指定したコマンドで HTTPS の URL を処理するかどうか"
