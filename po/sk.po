@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-12-20 20:33+0100\n"
-"PO-Revision-Date: 2000-12-20 20:35CET\n"
+"Project-Id-Version: 0.4.2.0\n"
+"POT-Creation-Date: 2001-01-03 12:52+0100\n"
+"PO-Revision-Date: 2001-01-03 12:54CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "Je prieèinok"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr "Nedostatok pamäte"
+msgstr "Nedostatok pamäti"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -256,29 +256,29 @@ msgstr "Po¾iadavka zneplatòuje dáta slu¾by"
 msgid "Unknown error"
 msgstr "Neznáma chyba"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:64
 msgid "1 byte"
 msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:66
 #, c-format
 msgid "%u bytes"
 msgstr "%u bajtov"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:73
 #, c-format
-msgid "%.1fK"
-msgstr "%.1fK"
+msgid "%.1f K"
+msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
-msgid "%.1fM"
-msgstr "%.1fM"
+msgid "%.1f MB"
+msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
-msgid "%.1fG"
-msgstr "%.1fG"
+msgid "%.1f GB"
+msgstr "%.1f GB"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -655,17 +655,17 @@ msgstr "Neznáma GnomeVFSSeekPosition %d"
 msgid "%s to retrieve"
 msgstr "%s e¹te prija»"
 
-#: modules/http-method.c:1574
+#: modules/http-method.c:1577
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Zatváram spojenie na %s"
 
-#: modules/http-method.c:1818
+#: modules/http-method.c:1821
 #, c-format
 msgid "%s of %s read"
 msgstr "%s z %s preèítané"
 
-#: modules/http-method.c:1821
+#: modules/http-method.c:1824
 #, c-format
 msgid "%s read"
 msgstr "%s preèítané"
@@ -692,11 +692,11 @@ msgstr "Dopredu"
 
 #: test/gnome-file-selection/gnome-file-selection.c:690
 msgid "Go to the next visited directory"
-msgstr "Prejde do následujúceho nav¹tíveného prieèinku"
+msgstr "Prejde do nasledujúceho nav¹tíveného prieèinku"
 
 #: test/gnome-file-selection/gnome-file-selection.c:699
 msgid "Rescan"
-msgstr "Znovunaèíta»"
+msgstr "Znovu-naèíta»"
 
 #: test/gnome-file-selection/gnome-file-selection.c:700
 msgid "Rescan the current directory"
@@ -732,5 +732,5 @@ msgstr "Zobrazi»:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
-msgstr "Zobrazi» bodkové súbory"
+msgstr "Zobrazi» skryté súbory"
 
