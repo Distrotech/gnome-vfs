@@ -1165,7 +1165,6 @@ execute_write (GnomeVFSJob *job)
 	return job_oneway_notify_and_close (job);
 }
 
-
 static gboolean
 execute_load_directory_not_sorted (GnomeVFSJob *job,
 				   GnomeVFSDirectoryFilter *filter)

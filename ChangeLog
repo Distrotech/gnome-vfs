@@ -1,3 +1,14 @@
+2000-07-13  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs/gnome-vfs-xfer.c: (remove_file), (remove_directory),
+	(count_each_file_size_one), (gnome_vfs_xfer_empty_trash),
+	(gnome_vfs_xfer_delete_items):
+	First part of fix for Bugzilla bug 1549 - Empty Trash progress dialog
+	doesn't work. Made it so that both preflight calculation and 
+	the erase loop both weight each erased file/directory as if it
+	were a file copy of a file 1024 bytes large.
+
 2000-07-13  Ian McKellar  <yakk@yakk.net.au>
 
 	* libgnomevfs/gnome-vfs-seekable.c: (read_file), (init_seek),

@@ -411,8 +411,13 @@ remove_file (GnomeVFSURI *uri,
 		if (result != GNOME_VFS_OK)
 			retry = handle_error (&result, progress,
 					      error_mode, skip);
-		else
+		else {
 			progress->progress_info->file_index++;
+			/* add some small size for each deleted item because delete overhead
+			 * does not depend on file/directory size
+			 */
+			progress->progress_info->bytes_copied += DEFAULT_SIZE_OVERHEAD;
+		}
 
 		if (call_progress_with_uris_often (progress, uri, NULL, 
 						   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
@@ -511,9 +516,12 @@ remove_directory (GnomeVFSURI *uri,
 			if (result != GNOME_VFS_OK)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
-			else
+			else {
 				progress->progress_info->file_index++;
-
+				/* add some small size for each deleted item */
+				progress->progress_info->bytes_total += DEFAULT_SIZE_OVERHEAD;
+				progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
+			}
 			if (call_progress_with_uris_often (progress, uri, NULL, 
 							   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
 				== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
@@ -615,6 +623,7 @@ count_each_file_size_one (const gchar *rel_path,
 	} else if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 		/* add some small size for each directory */
 		params->progress->progress_info->bytes_total += DEFAULT_SIZE_OVERHEAD;
+		params->progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
 	}
 
 	/* watch out for infinite recursion*/
@@ -1486,6 +1495,11 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 			progress);
 		if (result != GNOME_VFS_OK)
 			break;
+		/* set up a fake total size to represent the bulk of the operation
+		 * -- we'll subtract a proportional value for every deletion
+		 */
+		progress->progress_info->bytes_total 
+			= progress->progress_info->files_total * DEFAULT_SIZE_OVERHEAD;
 	}
 	if (result == GNOME_VFS_OK) {
 		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
@@ -1571,6 +1585,12 @@ gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
 			progress, TRUE);
 		if (result != GNOME_VFS_OK)
 			break;
+
+		/* set up a fake total size to represent the bulk of the operation
+		 * -- we'll subtract a proportional value for every deletion
+		 */
+		progress->progress_info->bytes_total 
+			= progress->progress_info->files_total * DEFAULT_SIZE_OVERHEAD;
 	}
 
 	if (result == GNOME_VFS_OK) {
