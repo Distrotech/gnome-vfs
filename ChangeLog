@@ -1,5 +1,10 @@
 2004-03-03  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime.c (_gnome_vfs_get_mime_type_internal):
+	Prefer extensions for ole-streams. Fixes sniffing of ms office types.
+
+2004-03-03  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c (do_monitor_add):
 	Handle NULL filenames correctly.
 
