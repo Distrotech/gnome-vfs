@@ -1,3 +1,9 @@
+2000-06-05  Rebecca Schulman <rebecka@eazel.com>
+        * modules/file-method.c
+	Fixed lack of error handling for readlink
+	call in read_link.
+	
+
 2000-06-05  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

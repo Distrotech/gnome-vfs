@@ -584,6 +584,10 @@ read_link (const gchar *full_name)
 		guint read_size;
 
                 read_size = readlink (full_name, buffer, size);
+		/* Don't allocate this size if the readlink fails */
+		if (read_size == (int) -1) {
+			return NULL;
+		}
                 if (read_size < size) {
 			buffer[read_size] = 0;
 			return buffer;
@@ -612,6 +616,10 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	} else {
 		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		file_info->symlink_name = read_link (full_name);
+		/* Add error check */
+		if (file_info->symlink_name == NULL) {
+			return gnome_vfs_result_from_errno ();
+		}
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 
 		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
