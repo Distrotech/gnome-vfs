@@ -1,4 +1,10 @@
 2001-01-29  Rebecca Schulman  <rebecka@eazel.com>
+
+	* test/test-mime-handlers.c: (print_application):
+	Remove changes that won't work until the new
+	type GnomeVFSMimeApplicationArgumentType is added.
+
+2001-01-29  Rebecca Schulman  <rebecka@eazel.com>
 	Add new test output, first to debug the
 	mime info test, that fails, and second
 	to add a descrption test to the mime handlers
