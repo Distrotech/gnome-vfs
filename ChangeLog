@@ -1,3 +1,10 @@
+2000-09-22  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (http_handle_close):
+
+	A NULL iobuf was being destroyed, which caused an assertion
+	to be raised.
+
 2000-09-22  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (dispatch_open_callback),

@@ -889,11 +889,20 @@ static void
 http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 {
 	if (handle) {
-		gnome_vfs_iobuf_flush (handle->iobuf);
-		gnome_vfs_iobuf_destroy (handle->iobuf);
-		gnome_vfs_inet_connection_destroy (handle->connection,
-							 context ? gnome_vfs_context_get_cancellation(context) : NULL);
+		/* Both iobuf and connection can be NULL if a create and a close */
+		/* was done with no i/o */
+		if (handle->iobuf) {
+			gnome_vfs_iobuf_flush (handle->iobuf);
+			gnome_vfs_iobuf_destroy (handle->iobuf);
+			handle->iobuf = NULL;
+		}
 
+		if (handle->connection) {
+			gnome_vfs_inet_connection_destroy (handle->connection,
+							 context ? gnome_vfs_context_get_cancellation(context) : NULL);
+			handle->connection = NULL;
+		}
+				
 		if (handle->uri_string) {
 			gchar *msg;
 
