@@ -1,5 +1,10 @@
 1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
 
+	* libgnomevfs-corba/gnome-vfs-slave.c (setup_and_serve_channel):
+	Change `socklen_t' into `int'.
+	(setup_and_serve_channel): Use `[AP]F_UNIX' instead of
+	`[AP]F_LOCAL' if the latter are not available.
+
 	* libgnomevfs-corba/gnome-vfs-slave-process.c: #include
 	<sys/types.h> first, <sys/socket.h> afterwards as pointed out by
 	Michael.

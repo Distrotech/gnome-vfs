@@ -589,7 +589,7 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 	GnomeVFSResult result;
 	struct sockaddr_un saddr;
 	struct sockaddr caller_addr;
-	socklen_t caller_addr_size;
+	int caller_addr_size;
 	guint size;
 	gint socket_fd, fd;
 	gchar socket_name[] = "/tmp/gnome-vfs-XXXXXX";
@@ -602,14 +602,27 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 		goto error;
 	}
 
+#if defined (PF_LOCAL)
 	socket_fd = socket (PF_LOCAL, SOCK_STREAM, 0);
+#elif defined (PF_UNIX)
+	socket_fd = socket (PF_UNIX, SOCK_STREAM, 0);
+#else
+#error
+#endif
 	if (socket_fd < 0) {
 		g_warning (_("Cannot create socket: %s"), g_strerror (errno));
 		result = GNOME_VFS_ERROR_INTERNAL;
 		goto error;
 	}
 
+#if defined (AF_LOCAL)
 	saddr.sun_family = AF_LOCAL;
+#elif defined (AF_UNIX)
+	saddr.sun_family = AF_UNIX;
+#else
+#error
+#endif
+
 	strncpy (saddr.sun_path, socket_name, sizeof (saddr.sun_path));
 	size = (offsetof (struct sockaddr_un, sun_path)
 		+ strlen (saddr.sun_path) + 1);
