@@ -1,0 +1,311 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs\n"
+"POT-Creation-Date: 2000-01-02 13:55+0100\n"
+"PO-Revision-Date: 1999-12-27 18:32+0100\n"
+"Last-Translator: GNOME PL Team\n"
+"Language-Team: Polish <gnomepl@pandora.info.bielsko.pl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Bez b³êdu"
+
+#. GNOME_VFS_ERROR_NOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "Nie odnaleziono pliku"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "B³±d wewnêtrzny"
+
+#. GNOME_VFS_ERROR_BADPARAMS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "Niepoprawne parametry"
+
+#. GNOME_VFS_ERROR_NOTSUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "Nieobs³ugiwana operacja"
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "B³±d We/Wy"
+
+#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "Uszkodzone dane"
+
+#. GNOME_VFS_ERROR_WRONGFORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Niepoprawny format"
+
+#. GNOME_VFS_ERROR_BADFILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "Niepoprawny uchwyt pliku"
+
+#. GNOME_VFS_ERROR_TOOBIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "Zbyt wielki plik"
+
+#. GNOME_VFS_ERROR_NOSPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "Brak miejsca na urz±dzeniu"
+
+#. GNOME_VFS_ERROR_READONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "System plików tylko do odczytu"
+
+#. GNOME_VFS_ERROR_INVALIDURI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "Niepoprawny URI"
+
+#. GNOME_VFS_ERROR_NOTOPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "Nie otwarto plik"
+
+#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ACCESSDENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "Brak dostêpu"
+
+#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "Zbyt wiele otwartych plików"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr "Koniec pliku"
+
+#. GNOME_VFS_ERROR_NOTADIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "To nie katalog"
+
+#. GNOME_VFS_ERROR_INPROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr "Operacja w toku"
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr "Operacja przerwana"
+
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "Plik istnieje"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr "Wyst±pi³y zapêtlone dowi±zania"
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr "Operacja niedozwolona"
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Brak pamiêci"
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "Nie odnaleziono komputera"
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "Niepoprawna nazwa komputera"
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "Komputer nie ma adresu"
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr ""
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr "Anulowano operacjê"
+
+#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "Katalog zajêty"
+
+#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "Katalog nie jest pusty"
+
+#. GNOME_VFS_ERROR_TOOMANYLINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "Zbyt wiele dowi±zañ"
+
+#. GNOME_VFS_ERROR_READONLYFS
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "System plików tylko do odczytu"
+
+#. GNOME_VFS_ERROR_NOTSAMEFS
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NAMETOOLONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "Zbyt d³uga nazwa"
+
+#: libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "Nieznany b³±d"
+
+#: libgnomevfs/gnome-vfs-init.c:55
+msgid "GNOME VFS already initialized."
+msgstr "Zainicjowano ju¿ GNOME VFS."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:333
+msgid "Dying."
+msgstr ""
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:498
+#, c-format
+msgid "Error reading: %s"
+msgstr "B³±d przy odczycie: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:520
+#, c-format
+msgid "Error writing: %s"
+msgstr "B³±d przy zapisie: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:569
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Nie mo¿na zapisaæ: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:597
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Nie mo¿na utworzyæ nazwy pliku tymczasowego '%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:611
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Nie mo¿na utworzyæ gniazdka: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:629
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Nie mo¿na nas³uchiwaæ na '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:658
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Nie mo¿na przyjmowaæ po³±czeñ na '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1303
+msgid "Cannot initialize CORBA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1310
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1317
+msgid "Cannot activate POA manager."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1341
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "U¿ycie: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1352
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Nie mo¿na otworzyæ deskryptora pliku %d."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1375
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+msgid "Cannot setup Request object."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+msgid "Cannot extract IOR."
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:129
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:419
+#: libgnomevfs-pthread/gnome-vfs-job.c:1213
+#, c-format
+msgid "Unknown job ID %d"
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:769
+#: libgnomevfs-pthread/gnome-vfs-job.c:864
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1231
+msgid "Operation stopped"
+msgstr "Zatrzymano operacjê"

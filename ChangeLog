@@ -1,3 +1,7 @@
+2000-01-02  Tomasz K³oczko  <kloczek@pld.org.pl>
+        * configure.in, po/pl.po: added Polish translation
+        (based on GNOME PL translation resources).
+
 1999-12-30  Miguel de Icaza  <miguel@gnu.org>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c
