@@ -1,3 +1,11 @@
+2002-02-29  Arvind Samptur <arvind.samptur@wipro.com>
+	* modules/cde-desktop-method.c: Removing Comment field
+	from the desktop files. Fixes #88484
+
+	* modules/cde-desktop-method.c (do_read_directory):
+	REALLY ignore CDE specific actions that make no sense in GNOME
+	Patch by Stephen Browne. Fixes #88483
+
 2002-07-27  Ian McKellar  <yakk@yakk.net>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:

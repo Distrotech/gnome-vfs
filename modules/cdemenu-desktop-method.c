@@ -237,8 +237,8 @@ do_open (GnomeVFSMethod *method,
 				tmp = strchr(line,'\"'); tmp ++;
 				tmp2 = strchr(tmp,'\"'); if(tmp2) *tmp2='\0';
 				dtfile->contents= g_strdup_printf("[Desktop "
-					"Entry]\nName=%s\nComment=%s\nIcon=%s\nType=Directory\n",
-					 tmp,tmp,get_icon_for_menu(tmp));
+					"Entry]\nName=%s\nIcon=%s\nType=Directory\n",
+					 tmp, get_icon_for_menu(tmp));
 				/* Title is found, dont look for secondary title*/
 				break;
 			}
@@ -256,8 +256,8 @@ do_open (GnomeVFSMethod *method,
 					icon=get_icon_for_action(tmp);
 					if (!icon) icon=g_strdup("NONE");
 					dtfile->contents= g_strdup_printf("[Desktop Entry]\nName=%s"
-								"\nComment=%s\nExec=%s\nIcon=%s\nTerminal=0\n"
-								"Type=Application\n", name, name, exec, icon);
+								"\nExec=%s\nIcon=%s\nTerminal=0\n"
+								"Type=Application\n", name, exec, icon);
 					g_free(icon);
 				} else if ((tmp = strstr(line,"f.exec"))!=NULL){
 					tmp+=6;
@@ -267,10 +267,10 @@ do_open (GnomeVFSMethod *method,
 					end = tmp+(strlen(tmp))-1;
 					if (*end == '\"') *end = '\0';
 					dtfile->contents= g_strdup_printf("[Desktop Entry]\nName=%s"
-								"\nComment=%s\nExec=%s\n"
+								"\nExec=%s\n"
 								"Icon=\n"
 								"Terminal=0\n"
-			  		  			"Type=Application\n", name, name, tmp);
+			  		  			"Type=Application\n", name, tmp);
 				}
 			}
 		}
@@ -368,7 +368,7 @@ do_read_directory (GnomeVFSMethod *method,
 					|| strstr(line,"UpdateWorkspaceMenu"))) {
 					file_info->name = g_strdup("bogus.desktop");
 					file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
- 					break;
+ 					continue;
 			}
 			else if (strstr(line,"f.action") || strstr(line,"f.exec")) {
 					tmp = strchr(line,'\"'); tmp ++;
