@@ -1,3 +1,7 @@
+2004-05-15  ynakai@redhat.com
+
+	* doc/about.sgml: use 0777 permissions instead of 0x777 in sample code
+
 2004-05-15  Morten Welinder  <mortenw@gnome.org>
 
 	* configure.in: fix ngettext detection on Solaris and AIX
