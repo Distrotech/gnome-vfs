@@ -70,9 +70,18 @@ common_filter (const GnomeVFSDirectoryFilter *filter,
 			return FALSE;
 	}
 
-	if (info->name[0] == '.'
-	    && (options & GNOME_VFS_DIRECTORY_FILTER_NODOTFILES))
-		return FALSE;
+	if (info->name[0] == '.') {
+	    if (options & GNOME_VFS_DIRECTORY_FILTER_NODOTFILES)
+		    return FALSE;
+
+	    if ((options & GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR)
+		&& info->name[1] == 0)
+		    return FALSE;
+
+	    if ((options & GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR)
+		&& info->name[1] == '.' && info->name[2] == 0)
+		    return FALSE;
+	}
 
 	return TRUE;
 }
@@ -85,7 +94,7 @@ gnome_vfs_directory_filter_new (GnomeVFSDirectoryFilterType type,
 {
 	GnomeVFSDirectoryFilter *new;
 
-	if (type == GNOME_VFS_DIRECTORY_FILTER_NONE)
+	if (type == GNOME_VFS_DIRECTORY_FILTER_NONE && options == 0)
 		return NULL;
 
 	new = g_new (GnomeVFSDirectoryFilter, 1);

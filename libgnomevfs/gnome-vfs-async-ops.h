@@ -33,9 +33,25 @@ GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncHandle **handle_return,
 						 	callback,
 						 gpointer callback_data);
 
+GnomeVFSResult	 gnome_vfs_async_open_uri	(GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
+						 GnomeVFSOpenMode open_mode,
+						 GnomeVFSAsyncOpenCallback
+						 	callback,
+						 gpointer callback_data);
+
 GnomeVFSResult	 gnome_vfs_async_open_as_channel
 						(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
+						 GnomeVFSOpenMode open_mode,
+						 guint advised_block_size,
+						 GnomeVFSAsyncOpenAsChannelCallback
+						        callback,
+						 gpointer callback_data);
+
+GnomeVFSResult	 gnome_vfs_async_open_uri_as_channel
+						(GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
 						 GnomeVFSOpenMode open_mode,
 						 guint advised_block_size,
 						 GnomeVFSAsyncOpenAsChannelCallback
@@ -51,9 +67,28 @@ GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncHandle **handle_return,
 						 	callback,
 						 gpointer callback_data);
 
+GnomeVFSResult	 gnome_vfs_async_create_uri	(GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
+						 GnomeVFSOpenMode open_mode,
+						 gboolean exclusive,
+						 guint perm,
+						 GnomeVFSAsyncOpenCallback
+						 	callback,
+						 gpointer callback_data);
+
 GnomeVFSResult	 gnome_vfs_async_create_as_channel
 						(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
+						 GnomeVFSOpenMode open_mode,
+						 gboolean exclusive,
+						 guint perm,
+						 GnomeVFSAsyncCreateAsChannelCallback
+	                                                 callback,
+						 gpointer callback_data);
+
+GnomeVFSResult	 gnome_vfs_async_create_uri_as_channel
+						(GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
 						 GnomeVFSOpenMode open_mode,
 						 gboolean exclusive,
 						 guint perm,
@@ -82,6 +117,25 @@ GnomeVFSResult	 gnome_vfs_async_write		(GnomeVFSAsyncHandle *handle,
 
 GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
+						 GnomeVFSFileInfoOptions
+						         options,
+						 gchar *meta_keys[],
+						 GnomeVFSDirectorySortRule
+						 	sort_rules[],
+						 gboolean reverse_order,
+						 GnomeVFSDirectoryFilterType
+						         filter_type,
+						 GnomeVFSDirectoryFilterOptions
+						         filter_options,
+						 const gchar *filter_pattern,
+						 guint items_per_notification,
+						 GnomeVFSAsyncDirectoryLoadCallback
+						         callback,
+						 gpointer callback_data);
+
+GnomeVFSResult	 gnome_vfs_async_load_directory_uri
+					        (GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
 						 GnomeVFSFileInfoOptions
 						         options,
 						 gchar *meta_keys[],

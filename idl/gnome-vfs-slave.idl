@@ -128,7 +128,7 @@ module Slave {
 				   in unsigned long bytes_written);
 
 		/* Directory segment loaded.  */
-		void load_directory (in Result result, in FileInfoList files);
+		oneway void load_directory (in Result result, in FileInfoList files);
 
 		/* Files have been collected (if necessary), and the transfer
                    begins.  If `FALSE' is returned, operation is stopped.  */

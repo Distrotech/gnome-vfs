@@ -564,8 +564,10 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	guint i;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY) {
+		printf ("Return prematurely!\n");
 		return;
+	}
 
 	op_info = &slave->op_info.directory;
 	list = op_info->list;

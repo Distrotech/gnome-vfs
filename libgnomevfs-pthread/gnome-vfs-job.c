@@ -22,6 +22,8 @@
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
 /* FIXME the slave threads do not die properly.  */
+/* FIXME check that all the data is freed properly //in the callback dispatching
+   functions//.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -178,6 +180,8 @@ dispatch_open_callback (GnomeVFSJob *job)
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      open_job->notify.result,
 		      job->callback_data);
+
+	gnome_vfs_uri_unref (open_job->request.uri);
 }
 
 static void
@@ -193,6 +197,8 @@ dispatch_create_callback (GnomeVFSJob *job)
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      create_job->notify.result,
 		      job->callback_data);
+
+	gnome_vfs_uri_unref (open_job->request.uri);
 }
 
 static void
@@ -209,6 +215,8 @@ dispatch_open_as_channel_callback (GnomeVFSJob *job)
 		      open_as_channel_job->notify.channel,
 		      open_as_channel_job->notify.result,
 		      job->callback_data);
+
+	gnome_vfs_uri_unref (open_job->request.uri);
 }
 
 static void
@@ -225,6 +233,8 @@ dispatch_create_as_channel_callback (GnomeVFSJob *job)
 		      create_as_channel_job->notify.channel,
 		      create_as_channel_job->notify.result,
 		      job->callback_data);
+
+	gnome_vfs_uri_unref (open_job->request.uri);
 }
 
 static void
@@ -295,6 +305,8 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 		      load_directory_job->notify.list,
 		      load_directory_job->notify.entries_read,
 		      job->callback_data);
+
+	gnome_vfs_uri_unref (open_job->request.uri);
 }
 
 static void
@@ -572,21 +584,12 @@ execute_open (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
-	GnomeVFSURI *uri;
 	GnomeVFSOpenJob *open_job;
 
 	open_job = &job->info.open;
 
-	uri = gnome_vfs_uri_new (open_job->request.text_uri);
-	if (uri == NULL)
-		result = GNOME_VFS_ERROR_INVALIDURI;
-	else
-		result = gnome_vfs_open_from_uri (&handle,
-						  uri,
-						  open_job->request.open_mode);
-
-	g_free (open_job->request.text_uri);
-	gnome_vfs_uri_unref (uri);
+	result = gnome_vfs_open_from_uri (&handle, open_job->request.uri,
+					  open_job->request.open_mode);
 
 	job->handle = handle;
 	open_job->notify.result = result;
@@ -599,7 +602,6 @@ execute_open_as_channel (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
-	GnomeVFSURI *uri;
 	GnomeVFSOpenAsChannelJob *open_as_channel_job;
 	GnomeVFSOpenMode open_mode;
 	GIOChannel *channel_in, *channel_out;
@@ -607,15 +609,9 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	open_as_channel_job = &job->info.open_as_channel;
 
-	uri = gnome_vfs_uri_new (open_as_channel_job->request.text_uri);
-	if (uri == NULL)
-		result = GNOME_VFS_ERROR_INVALIDURI;
-	else
-		result = gnome_vfs_open_from_uri
-			(&handle, uri, open_as_channel_job->request.open_mode);
-
-	g_free (open_as_channel_job->request.text_uri);
-	gnome_vfs_uri_unref (uri);
+	result = gnome_vfs_open_from_uri
+		(&handle, open_as_channel_job->request.uri,
+		 open_as_channel_job->request.open_mode);
 
 	if (result != GNOME_VFS_OK) {
 		open_as_channel_job->notify.channel = NULL;
@@ -662,23 +658,15 @@ execute_create (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
-	GnomeVFSURI *uri;
 	GnomeVFSCreateJob *create_job;
 
 	create_job = &job->info.create;
 
-	uri = gnome_vfs_uri_new (create_job->request.text_uri);
-	if (uri == NULL)
-		result = GNOME_VFS_ERROR_INVALIDURI;
-	else
-		result = gnome_vfs_create_for_uri (&handle,
-						   uri,
-						   create_job->request.open_mode,
-						   create_job->request.exclusive,
-						   create_job->request.perm);
-
-	g_free (create_job->request.text_uri);
-	gnome_vfs_uri_unref (uri);
+	result = gnome_vfs_create_for_uri (&handle,
+					   create_job->request.uri,
+					   create_job->request.open_mode,
+					   create_job->request.exclusive,
+					   create_job->request.perm);
 
 	job->handle = handle;
 	create_job->notify.result = result;
@@ -691,23 +679,15 @@ execute_create_as_channel (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
-	GnomeVFSURI *uri;
 	GnomeVFSCreateAsChannelJob *create_as_channel_job;
 	GIOChannel *channel_in, *channel_out;
 	gint pipefd[2];
 
 	create_as_channel_job = &job->info.create_as_channel;
 
-	uri = gnome_vfs_uri_new (create_as_channel_job->request.text_uri);
-	if (uri == NULL)
-		result = GNOME_VFS_ERROR_INVALIDURI;
-	else
-		result = gnome_vfs_open_from_uri
-			(&handle, uri,
-			 create_as_channel_job->request.open_mode);
-
-	g_free (create_as_channel_job->request.text_uri);
-	gnome_vfs_uri_unref (uri);
+	result = gnome_vfs_open_from_uri
+		(&handle, create_as_channel_job->request.uri,
+		 create_as_channel_job->request.open_mode);
 
 	if (result != GNOME_VFS_OK) {
 		create_as_channel_job->notify.channel = NULL;
@@ -798,11 +778,12 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	load_directory_job = &job->info.load_directory;
 
-	result = gnome_vfs_directory_open (&handle,
-					   load_directory_job->request.text_uri,
-					   load_directory_job->request.options,
-					   load_directory_job->request.meta_keys,
-					   filter);
+	result = gnome_vfs_directory_open_from_uri
+		(&handle,
+		 load_directory_job->request.uri,
+		 load_directory_job->request.options,
+		 load_directory_job->request.meta_keys,
+		 filter);
 
 	if (result != GNOME_VFS_OK) {
 		load_directory_job->notify.result = result;
@@ -837,7 +818,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
                            `gnome_vfs_directory_list_last()', so we have to go
                            to the next one.  */
 			if (gnome_vfs_directory_list_get_position
-			    	(directory_list) == NULL)
+			    (directory_list) == NULL)
 				gnome_vfs_directory_list_first (directory_list);
 			else
 				gnome_vfs_directory_list_next (directory_list);
@@ -869,11 +850,13 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 
 	load_directory_job = &job->info.load_directory;
 
-	result = gnome_vfs_directory_load (&directory_list,
-					   load_directory_job->request.text_uri,
-					   load_directory_job->request.options,
-					   load_directory_job->request.meta_keys,
-					   filter);
+	result = gnome_vfs_directory_load_from_uri
+		(&directory_list,
+		 load_directory_job->request.uri,
+		 load_directory_job->request.options,
+		 load_directory_job->request.meta_keys,
+		 filter);
+
 	if (result != GNOME_VFS_OK) {
 		load_directory_job->notify.result = result;
 		load_directory_job->notify.list = NULL;
@@ -941,7 +924,6 @@ execute_load_directory (GnomeVFSJob *job)
 
 	job_close (job);
 
-	g_free (load_directory_job->request.text_uri);
 	g_free (load_directory_job->request.sort_rules);
 	g_free (load_directory_job->request.filter_pattern);
 
@@ -967,7 +949,7 @@ xfer_callback (const GnomeVFSXferProgressInfo *info,
 	job = (GnomeVFSJob *) data;
 	xfer_job = &job->info.xfer;
 
-	/* Forward the callback to the master thread, which fill in the
+	/* Forward the callback to the master thread, which will fill in the
            `notify_answer' member appropriately.  */
 	job_notify (job);
 

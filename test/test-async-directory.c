@@ -36,6 +36,7 @@
 
 
 static int measure_speed = 0;
+static int sort = 0;
 static int items_per_notification = 1;
 
 
@@ -51,11 +52,20 @@ struct poptOption options[] = {
 	},
 	{
 		"measure-speed",
-		's',
+		'm',
 		POPT_ARG_NONE,
 		&measure_speed,
 		0,
 		"Measure speed without displaying anything",
+		NULL
+	},
+	{
+		"sort",
+		's',
+		POPT_ARG_NONE,
+		&sort,
+		0,
+		"Sort entries",
 		NULL
 	},
 	{
@@ -204,7 +214,7 @@ main (int argc, char **argv)
 		  | GNOME_VFS_FILE_INFO_FASTMIMETYPE
 		  | GNOME_VFS_FILE_INFO_FOLLOWLINKS), /* options */
 		 NULL, /* meta_keys */
-		 sort_rules, /* sort_rules */
+		 sort ? sort_rules : NULL, /* sort_rules */
 		 FALSE, /* reverse_order */
 		 GNOME_VFS_DIRECTORY_FILTER_NONE, /* filter_type */
 		 0, /* filter_options */

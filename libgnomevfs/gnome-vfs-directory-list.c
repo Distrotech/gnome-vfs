@@ -329,7 +329,11 @@ gnome_vfs_directory_list_sort (GnomeVFSDirectoryList *list,
 	else
 		func = (GnomeVFSListCompareFunc) compare_for_sort;
 
-	gnome_vfs_list_sort (list->entries, func, (gpointer) rules);
+	list->entries = gnome_vfs_list_sort (list->entries,
+					     func, (gpointer) rules);
+
+	gnome_vfs_directory_list_set_position
+		(list, GNOME_VFS_DIRECTORY_LIST_POSITION_NONE);
 }
 
 void
@@ -342,6 +346,24 @@ gnome_vfs_directory_list_sort_custom (GnomeVFSDirectoryList *list,
 
 	gnome_vfs_list_sort (list->entries, (GnomeVFSListCompareFunc) func,
 			     data);
+}
+
+
+GnomeVFSFileInfo *
+gnome_vfs_directory_list_get (GnomeVFSDirectoryList *list,
+			      GnomeVFSDirectoryListPosition position)
+{
+	GList *p;
+	GnomeVFSFileInfo *info;
+
+	g_return_val_if_fail (list != NULL, NULL);
+	g_return_val_if_fail (position != GNOME_VFS_DIRECTORY_LIST_POSITION_NONE,
+			      NULL);
+
+	p = (GList *) position;
+	info = p->data;
+
+	return info;
 }
 
 
@@ -366,7 +388,6 @@ gnome_vfs_directory_list_set_position (GnomeVFSDirectoryList *list,
 				       GnomeVFSDirectoryListPosition position)
 {
 	g_return_if_fail (list != NULL);
-	g_return_if_fail (position != NULL);
 
 	list->current_entry = position;
 }

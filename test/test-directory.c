@@ -37,7 +37,7 @@ static int measure_speed = 0;
 struct poptOption options[] = {
 	{
 		"measure-speed",
-		's',
+		'm',
 		POPT_ARG_NONE,
 		&measure_speed,
 		0,
@@ -123,13 +123,33 @@ sort_list (GnomeVFSDirectoryList *list)
 		GNOME_VFS_DIRECTORY_SORT_BYNAME,
 		GNOME_VFS_DIRECTORY_SORT_NONE
 	};
+	GTimer *timer;
 		
 	printf ("Now sorting...");
 	fflush (stdout);
 
+	if (measure_speed) {
+		timer = g_timer_new ();
+		g_timer_start (timer);
+	} else {
+		timer = NULL;
+	}
+
 	gnome_vfs_directory_list_sort (list, FALSE, rules);
 
-	printf ("  Done!\n");
+	if (measure_speed) {
+		gdouble elapsed_seconds;
+		guint num_entries;
+
+		g_timer_stop (timer);
+		elapsed_seconds = g_timer_elapsed (timer, NULL);
+		num_entries = gnome_vfs_directory_list_get_num_entries (list);
+		printf ("\n%.5f seconds to sort %d entries, %.5f entries/sec.\n",
+			elapsed_seconds, num_entries,
+			(double) num_entries / elapsed_seconds);
+	} else {
+		printf ("  Done!\n");
+	}
 }
 
 static void
@@ -199,7 +219,7 @@ main (int argc, char **argv)
 					   NULL,
 					   NULL);
 
-	if (measure_speed) {
+	if (result == GNOME_VFS_OK && measure_speed) {
 		gdouble elapsed_seconds;
 		guint num_entries;
 
@@ -209,29 +229,24 @@ main (int argc, char **argv)
 		printf ("\n%.5f seconds for %d unsorted entries, %.5f entries/sec.\n",
 			elapsed_seconds, num_entries,
 			(double) num_entries / elapsed_seconds);
-
-		goto end;
 	}
 
-	printf ("Ok\n");
+	if (! measure_speed) {
+		printf ("Ok\n");
 
-	show_result (result, "load_directory", text_uri);
+		show_result (result, "load_directory", text_uri);
 
-	printf ("Raw listing for `%s':\n", text_uri);
-	print_list (list);
-
-	sort_list (list);
-	printf ("Sorted listing for `%s':\n", text_uri);
-	print_list (list);
-
-	if (argc >= 3) {
-		filter_list (list, argv[2]);
-		printf ("Filtered (`%s') listing for `%s':\n",
-			argv[2], text_uri);
+		printf ("Raw listing for `%s':\n", text_uri);
 		print_list (list);
 	}
 
- end:
+	sort_list (list);
+
+	if (! measure_speed) {
+		printf ("Sorted listing for `%s':\n", text_uri);
+		print_list (list);
+	}
+
 	printf ("Destroying.\n");
 	gnome_vfs_directory_list_destroy (list);
 

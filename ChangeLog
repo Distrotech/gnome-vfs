@@ -1,3 +1,80 @@
+1999-09-14  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (dispatch_open_callback):
+	Unref the URI.
+	(dispatch_create_callback): Likewise.
+	(dispatch_open_as_channel_callback): Likewise.
+	(dispatch_create_as_channel_callback): Likewise.
+	(dispatch_load_directory_callback): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_open_uri): New function.
+	(gnome_vfs_async_open_uri_as_channel): New function.
+	(gnome_vfs_async_create_uri): New function.
+	(gnome_vfs_async_load_directory_uri): New function.
+	(gnome_vfs_async_open): Updated to work with the GnomeVFSJob
+	changes using the GnomeVFSURI-based counterpart.
+	(gnome_vfs_async_open_as_channel): Likewise.
+	(gnome_vfs_async_create): Likewise.
+	(gnome_vfs_async_create_as_channel): Likewise.
+	(gnome_vfs_async_load_directory): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open): Updated to
+	work with the GnomeVFSJob changes.
+	(execute_open_as_channel): Likewise.
+	(execute_create): Likewise.
+	(execute_create_as_channel): Likewise.
+	(execute_load_directory_not_sorted): Likewise.
+	(execute_load_directory_sorted): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: Use a `GnomeVFSURI' instead
+	of a string for all the jobs, except for the xfer one.
+
+	* libgnomevfs/gnome-vfs-async-ops.h (gnome_vfs_async_open_uri):
+	New function prototype.
+	(gnome_vfs_async_open_uri_as_channel): New function prototype.
+	(gnome_vfs_async_create_uri): New function prototype.
+	(gnome_vfs_async_create_uri_as_channel): New function prototype.
+	(gnome_vfs_async_load_directory_uri): New function prototype.
+
+	* libgnomevfs/gnome-vfs-directory-list.c
+	(gnome_vfs_directory_list_sort): Re-assign `entries' to sort the
+	list, and set the current position to "none".
+	(gnome_vfs_directory_list_set_position): Allow setting a NULL
+	position.
+
+	* libgnomevfs/gnome-vfs-directory-filter.c
+	(gnome_vfs_directory_filter_new): Do not return NULL if type is
+	"none", but some option is specified.
+
+	* libgnomevfs/gnome-vfs-types.h: New GnomeVFSDirectoryFilterOption
+	`GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR' to skip `.' and
+	`GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR' to skip `..'.
+	* libgnomevfs/gnome-vfs-directory-filter.c (common_filter): Honour
+	them.
+
+	* test/test-directory.c (sort_list): Measure sorting speed if
+	`--measure-speed' is specified.
+	(main): Sort the list even if `--measure-speed' is specified.
+	Removed bogus filtering (it did not fit with the popt argument
+	parsing).
+
+	* test/test-async-directory.c: New option `--sort' (`-s').
+	(main): Do not sort the directory unless it is specified.
+
+	* test/test-async-directory.c: Changed alias for `--measure-speed'
+	from `-s' to `-m'.
+	* test/test-directory.c: Likewise.
+
+	* idl/gnome-vfs-slave.idl
+	(GNOME::VFS:Slave::Notify::load_directory): The problem with
+	`oneway' notifications was an ORBit bug, and has now been
+	fixed: make this method `oneway' again.
+
+	* libgnomevfs/gnome-vfs-directory-list.c
+	(gnome_vfs_directory_list_get): New function.
+	* libgnomevfs/gnome-vfs-directory-list.h: Prototype here.
+
 1999-09-13  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* idl/gnome-vfs-slave.idl: Made all the Notify methods non-oneway.
@@ -84,7 +161,7 @@
 	(job_close): Likewise.
 
 	* test/gnome-file-selection/Makefile.am: Compile the pthread
-	version as well.
+	version of `gnome-file-selection-test' as well.
 
 	* test/gnome-file-selection/gnome-file-selection.c (struct
 	_GnomeFileSelectionPrivate): Removed `GnomeVFSAsyncContext'

@@ -50,11 +50,36 @@ gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 		      GnomeVFSAsyncOpenCallback callback,
 		      gpointer callback_data)
 {
+	GnomeVFSURI *uri;
+	GnomeVFSResult retval;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	retval = gnome_vfs_async_open_uri (handle_return, uri, open_mode,
+					   callback, callback_data);
+
+	gnome_vfs_uri_unref (uri);
+	return retval;
+}
+
+GnomeVFSResult
+gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
+			  GnomeVFSURI *uri,
+			  GnomeVFSOpenMode open_mode,
+			  GnomeVFSAsyncOpenCallback callback,
+			  gpointer callback_data)
+{
 	GnomeVFSJob *job;
 	GnomeVFSOpenJob *open_job;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
@@ -68,7 +93,7 @@ gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 	job->callback_data = callback_data;
 
 	open_job = &job->info.open;
-	open_job->request.text_uri = g_strdup (text_uri);
+	open_job->request.uri = gnome_vfs_uri_ref (uri);
 	open_job->request.open_mode = open_mode;
 
 	gnome_vfs_job_go (job);
@@ -86,11 +111,39 @@ gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 				 GnomeVFSAsyncOpenAsChannelCallback callback,
 				 gpointer callback_data)
 {
+	GnomeVFSResult retval;
+	GnomeVFSURI *uri;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	retval = gnome_vfs_async_open_uri_as_channel
+		(handle_return, uri, open_mode, advised_block_size, callback,
+		 callback_data);
+
+	gnome_vfs_uri_unref (uri);
+
+	return retval;
+}
+
+GnomeVFSResult
+gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
+				     GnomeVFSURI *uri,
+				     GnomeVFSOpenMode open_mode,
+				     guint advised_block_size,
+				     GnomeVFSAsyncOpenAsChannelCallback callback,
+				     gpointer callback_data)
+{
 	GnomeVFSJob *job;
 	GnomeVFSOpenAsChannelJob *open_as_channel_job;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
@@ -104,7 +157,7 @@ gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 	job->callback_data = callback_data;
 
 	open_as_channel_job = &job->info.open_as_channel;
-	open_as_channel_job->request.text_uri = g_strdup (text_uri);
+	open_as_channel_job->request.uri = gnome_vfs_uri_ref (uri);
 	open_as_channel_job->request.open_mode = open_mode;
 	open_as_channel_job->request.advised_block_size = advised_block_size;
 
@@ -124,11 +177,40 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 			GnomeVFSAsyncOpenCallback callback,
 			gpointer callback_data)
 {
+	GnomeVFSURI *uri;
+	GnomeVFSResult retval;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	retval = gnome_vfs_async_create_uri (handle_return, uri, open_mode,
+					     exclusive, perm, callback,
+					     callback_data);
+
+	gnome_vfs_uri_unref (uri);
+
+	return retval;
+}
+
+GnomeVFSResult
+gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
+			    GnomeVFSURI *uri,
+			    GnomeVFSOpenMode open_mode,
+			    gboolean exclusive,
+			    guint perm,
+			    GnomeVFSAsyncOpenCallback callback,
+			    gpointer callback_data)
+{
 	GnomeVFSJob *job;
 	GnomeVFSCreateJob *create_job;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
@@ -142,7 +224,7 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 	job->callback_data = callback_data;
 
 	create_job = &job->info.create;
-	create_job->request.text_uri = g_strdup (text_uri);
+	create_job->request.uri = gnome_vfs_uri_ref (uri);
 	create_job->request.open_mode = open_mode;
 	create_job->request.exclusive = exclusive;
 	create_job->request.perm = perm;
@@ -163,12 +245,17 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 				   GnomeVFSAsyncOpenAsChannelCallback callback,
 				   gpointer callback_data)
 {
+	GnomeVFSURI *uri;
 	GnomeVFSJob *job;
 	GnomeVFSCreateAsChannelJob *create_as_channel_job;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -181,7 +268,7 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 	job->callback_data = callback_data;
 
 	create_as_channel_job = &job->info.create_as_channel;
-	create_as_channel_job->request.text_uri = g_strdup (text_uri);
+	create_as_channel_job->request.uri = gnome_vfs_uri_ref (uri);
 	create_as_channel_job->request.open_mode = open_mode;
 	create_as_channel_job->request.exclusive = exclusive;
 	create_as_channel_job->request.perm = perm;
@@ -338,11 +425,52 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				GnomeVFSAsyncDirectoryLoadCallback callback,
 				gpointer callback_data)
 {
+	GnomeVFSURI *uri;
+	GnomeVFSResult retval;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	retval = gnome_vfs_async_load_directory_uri (handle_return, uri,
+						     options, meta_keys,
+						     sort_rules,
+						     reverse_order,
+						     filter_type,
+						     filter_options,
+						     filter_pattern,
+						     items_per_notification,
+						     callback,
+						     callback_data);
+
+	gnome_vfs_uri_unref (uri);
+
+	return retval;
+}
+
+GnomeVFSResult
+gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
+				    GnomeVFSURI *uri,
+				    GnomeVFSFileInfoOptions options,
+				    gchar *meta_keys[],
+				    GnomeVFSDirectorySortRule sort_rules[],
+				    gboolean reverse_order,
+				    GnomeVFSDirectoryFilterType filter_type,
+				    GnomeVFSDirectoryFilterOptions filter_options,
+				    const gchar *filter_pattern,
+				    guint items_per_notification,
+				    GnomeVFSAsyncDirectoryLoadCallback callback,
+				    gpointer callback_data)
+{
 	GnomeVFSJob *job;
 	GnomeVFSLoadDirectoryJob *load_directory_job;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
@@ -356,7 +484,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	job->callback_data = callback_data;
 
 	load_directory_job = &job->info.load_directory;
-	load_directory_job->request.text_uri = g_strdup (text_uri);
+	load_directory_job->request.uri = gnome_vfs_uri_ref (uri);
 	load_directory_job->request.options = options;
 	load_directory_job->request.meta_keys = copy_meta_keys (meta_keys);
 	load_directory_job->request.sort_rules = copy_sort_rules (sort_rules);

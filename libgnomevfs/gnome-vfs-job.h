@@ -42,7 +42,7 @@ typedef enum _GnomeVFSJobType GnomeVFSJobType;
 
 struct _GnomeVFSOpenJob {
 	struct {
-		gchar *text_uri;
+		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
 	} request;
 
@@ -54,7 +54,7 @@ typedef struct _GnomeVFSOpenJob GnomeVFSOpenJob;
 
 struct _GnomeVFSOpenAsChannelJob {
 	struct {
-		gchar *text_uri;
+		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
 		guint advised_block_size;
 	} request;
@@ -68,7 +68,7 @@ typedef struct _GnomeVFSOpenAsChannelJob GnomeVFSOpenAsChannelJob;
 
 struct _GnomeVFSCreateJob {
 	struct {
-		gchar *text_uri;
+		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
 		gboolean exclusive;
 		guint perm;
@@ -82,7 +82,7 @@ typedef struct _GnomeVFSCreateJob GnomeVFSCreateJob;
 
 struct _GnomeVFSCreateAsChannelJob {
 	struct {
-		gchar *text_uri;
+		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
 		gboolean exclusive;
 		guint perm;
@@ -136,7 +136,7 @@ typedef struct _GnomeVFSWriteJob GnomeVFSWriteJob;
 
 struct _GnomeVFSLoadDirectoryJob {
 	struct {
-		gchar *text_uri;
+		GnomeVFSURI *uri;
 		GnomeVFSFileInfoOptions options;
 		gchar **meta_keys;
 		GnomeVFSDirectorySortRule *sort_rules;
