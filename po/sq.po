@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 13:58+0100\n"
-"PO-Revision-Date: 2004-02-24 14:01+0100\n"
+"POT-Creation-Date: 2004-03-01 11:42+0100\n"
+"PO-Revision-Date: 2004-03-01 12:01+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -15,39 +15,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "E pamundur nisja e Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "E pamundur nisja e gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "File sistemi"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Ruajtja e libërshënuesit dështoi (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "E pamundur marrja e informacioneve për file '%s': %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "E pamundur hapja e file '%s': %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Hapja e figurës '%s' dështoi: shkaku nuk njihet, ndoshta file është i dëmtuar"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -106,7 +80,7 @@ msgstr "CD Digital Audio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Volum Dispozitiv Hardware"
+msgstr "Volum Dispozitivi Hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -245,7 +219,7 @@ msgstr "I pamundur analizimi: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Gabimet e tjera të analizës do të injorohen."
+msgstr "Gabimet e tjera të analizimit do të injorohen."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -295,7 +269,7 @@ msgstr "Format i pavlefshëm"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "Organizues i pavlefshëm i file"
+msgstr "Trajtues i pavlefshëm i file"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -320,7 +294,7 @@ msgstr "URI e pavlefshme"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
-msgstr "File i pahapur"
+msgstr "File nuk u hap"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -355,7 +329,7 @@ msgstr "Oparacioni në kryerje e sipër"
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
-msgstr "Operacion i ndërprerë"
+msgstr "Operacioni u ndërpre"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -365,12 +339,12 @@ msgstr "Ky file ekziston"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "U gjetën links në loop"
+msgstr "U gjetën lidhje në loop"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
-msgstr "Operacion i palejuar"
+msgstr "Operacioni nuk lejohet"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -425,7 +399,7 @@ msgstr "Tepër lidhje"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "File sistem në vetëm lexim"
+msgstr "File sistemi në vetëm lexim"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
@@ -465,7 +439,7 @@ msgstr "Nuk i është shoqëruar asnjë veprim i prezgjedhur"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "Asnjë organizues pë skemën URL"
+msgstr "Asnjë trajtues për skemën URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -506,7 +480,7 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr " (Unicode i pavlefshëm)"
+msgstr " (Unicode e pavlefshme)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
@@ -661,7 +635,11 @@ msgstr "Rrjeti"
 msgid "Home"
 msgstr "Shtëpia"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Filesistemi"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d e panjohur"
@@ -736,31 +714,31 @@ msgstr "Argumenti exec që duhet përdorur për terminalin e prezgjedhur"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr "Organizues URL H323"
+msgstr "Trajtuesi i URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr "Organizues URL HTTP"
+msgstr "Trajtuesi i URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr "Organizues URL HTTPS"
+msgstr "Trajtuesi i URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr "Organizon URLtë H323"
+msgstr "Trajton URLtë H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr "Organizon URLtë HTTP"
+msgstr "Trajton URLtë HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr "Organizon URLtë HTTPS"
+msgstr "Trajton URLtë HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr "Organizon URLtë thirrje"
+msgstr "Trajton thirrjet e URLve"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
@@ -791,92 +769,92 @@ msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve H323."
+"që trajton URLtë H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve HTTP."
+"që trajton URLtë HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve HTTPS."
+"që trajton URLtë HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve callto."
+"që trajton thirrjet e URLve."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve ghelp."
+"që trajton URLtë ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve info."
+"që trajton URLtë info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve mailto."
+"që trajton URLtë mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve man."
+"që trajton URLtë man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Vendose në true për të patur një program të caktuar tek \"komanda\" "
-"organizuese e URLve trash."
+"që trajton URLtë trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
-"E vërtetë nëse programi që manazhon këtë URL duhet të zbatohet në një "
+"E vërtetë nëse programi që trajton këtë URL duhet të zbatohet në një "
 "terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr "organizues URL callto"
+msgstr "trajtues URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr "organizues URL ghelp"
+msgstr "trajtues URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr "organizues URL info"
+msgstr "trajtues URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "mailto URL handler"
-msgstr "organizues URL mailto"
+msgstr "trajtues URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr "organizues URL man"
+msgstr "trajtues URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr "organizues URL trash"
+msgstr "trajtues URL trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -904,7 +882,7 @@ msgstr "Emri i host proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "Password e proxy HTTP"
+msgstr "Fjalëkalimi për proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
@@ -931,7 +909,7 @@ msgstr "Asnjë host proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Fjalëkalimi që duhet dhënë si autentifikuese kur kryen proxy HTTP."
+msgstr "Fjalëkalimi që duhet dhënë si autentifikues kur kryen proxy HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1016,7 +994,7 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Ky çelës përmban një listë me hostet e lidhur direkt, pa përdorur proxy "
+"Ky kyç përmban një listë me hostet e lidhur direkt, pa përdorur proxy "
 "(nëse ai është aktiv). Vlerat mund të jenë hostnames, domains (duke përdorur "
 "si parashtesë një wildcard si p.sh. *.foo.com), adresat IP të host (IPv4 dhe "
 "IPv6) dhe adresat e rrjetit me një netmask (diçka të ngjashme me "
@@ -1042,3 +1020,18 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Ruajtja e libërshënuesit dështoi (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "E pamundur marrja e informacioneve për file '%s': %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "E pamundur hapja e file '%s': %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Hapja e figurës '%s' dështoi: shkaku nuk njihet, ndoshta file është i "
+#~ "dëmtuar"
