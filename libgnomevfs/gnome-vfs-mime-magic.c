@@ -772,46 +772,72 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	return TRUE;
 }
 
+enum {
+	GNOME_VFS_MP3_SNIFF_LENGTH = 256
+};
+
 gboolean
 gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
+	unsigned long mpeg_header;
 	int offset;
-	guchar ch;
 	
-	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 256) != GNOME_VFS_OK) {
+	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_MP3_SNIFF_LENGTH) != GNOME_VFS_OK) {
 		return FALSE;
 	}
 
-	for (offset = 0; offset < 256; offset++) {
-		/* run through the first 256 bytes looking for a MP3 header */
-		gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 3);
-
-		/* sync field */
-		if (sniff_buffer->buffer[offset] != 0xff) {
-			continue;
-		}
-
-		ch = sniff_buffer->buffer[offset + 1] & 0xf6;
-		/* layer 2 or layer 3 */
-		if (ch != 0xf2 && ch != 0xf4) {
-			continue;
-		}
-
-		ch = sniff_buffer->buffer[offset + 2];
-
-		/* bitrate */
-		if ((ch & 0xf0) == 0xf0)
-			continue;
-
-		/* sampling rate index */
-		if ((ch & 0x0c) == 0x0c)
-			continue;
-
-		/* emphasis */
-		if ((sniff_buffer->buffer[offset + 3] & 3) == 2)
-			continue;
-		
+	/*
+	 * Use algorithm described in "ID3 tag version 2.3.0 Informal Standard"
+	 * at "http://www.id3.org/id3v2.3.0.html" to detect a valid header, "An
+	 * ID3v2 tag can be detected with the following pattern:
+	 *      $49 44 33 yy yy xx zz zz zz zz
+	 * Where yy is less than $FF, xx is the 'flags' byte and zz is less than
+	 * $80."
+	 *
+	 * The informal standard also says, "The ID3v2 tag size is encoded with
+	 * four bytes where the most significant bit (bit 7) is set to zero in
+	 * every byte, making a total of 28 bits.  The zeroed bits are ignored,
+	 * so a 257 bytes long tag is represented as $00 00 02 01."
+	 */
+	if (!strncmp ((char *) sniff_buffer->buffer, "ID3", 3)
+		&& (sniff_buffer->buffer[3] != 0xffu)
+		&& (sniff_buffer->buffer[4] != 0xffu)
+		&& (sniff_buffer->buffer[6] < 0x80u)
+		&& (sniff_buffer->buffer[7] < 0x80u)
+		&& (sniff_buffer->buffer[8] < 0x80u)
+		&& (sniff_buffer->buffer[9] < 0x80u)) {
 		return TRUE;
+	}
+
+	/*
+	 * Scan through the first "GNOME_VFS_MP3_SNIFF_LENGTH" bytes of
+	 * potentially (and not all that uncommon) random junk to find a valid
+	 * 32-bit MPEG audio frame header.  See
+	 * "http://www.dv.co.yu/mpgscript/mpeghdr.htm" for details on the
+	 * header format.
+	 *
+	 * The following code was inspired by the "stream_head_shift" and
+	 * "head_check" functions from "mpg123".  See "http://www.mpg123.org/"
+	 * for source and details.
+	 */
+	mpeg_header = 0;
+	for (offset = 0; offset < GNOME_VFS_MP3_SNIFF_LENGTH; offset++) {
+		mpeg_header <<= 8;
+		mpeg_header |= sniff_buffer->buffer[offset];
+		mpeg_header &= 0xfffffffful;
+		/* are all 11 bits of the frame sync set? */
+		if (((mpeg_header & 0xffe00000ul) == 0xffe00000ul)
+			/* is the layer description NOT the reserved "00" pattern? */
+			&& ((mpeg_header >> 17) & 3u)
+			/* is the bitrate index NOT the invalid "1111" pattern? */
+			&& (((mpeg_header >> 12) & 0xfu) != 0xfu)
+			/* is the sampling frequency NOT the reserved "11" pattern? */
+			&& (((mpeg_header >> 10) & 3u) != 3)
+			/* is at least one bit set in the rest of the header? */
+			&& ((mpeg_header & 0xffff0000ul) != 0xfffe0000ul)) {
+			/* then this is most likely the beginning of a valid frame */
+			return TRUE;
+		}
 	}
 
 	return FALSE;

@@ -1,3 +1,16 @@
+2001-02-12  Don Melton  <don@eazel.com>
+
+	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_mp3):
+
+	Fixed bug 5570 (bmp file sometimes appears as an mp3 file)
+
+	Basically I re-wrote the entire function to be much smarter
+	about detecting an MPEG audio header and it now also checks
+	for the existence of an ID3 version 2 tag.
+
 2001-02-12  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6447, "Change file extensions" erases all extensions
