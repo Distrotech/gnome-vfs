@@ -106,7 +106,7 @@ libhttp_la_SOURCES =				\
 	http-method.c				\
 	http-method.h
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(GLIB_LIBS) -lghttp
+libhttp_la_LIBADD  = $(GLIB_LIBS)
 
 libvfs_pipe_la_SOURCES =			\
 	pipe-method.c				\
