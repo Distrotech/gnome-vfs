@@ -537,7 +537,7 @@ application/x-object-file
 # also audio/x-ogg
 application/x-ogg
 	description=ogg file
-	[da]description=oog-lydfil
+	[da]description=OOG-lydfil
 	[fr]description=Audio ogg
 	default_action_type=application
 	default_application_id=ogg123
@@ -584,6 +584,7 @@ application/x-rar
 
 application/x-reject
 	description=rejected patch file
+	[da]description=afvist kildekodelap
 	[fr]description=Fichier patch rejeté
 	[sv]description=avvisad patchfil
 
@@ -705,7 +706,7 @@ application/x-troff-man-compressed
 
 application/x-unix-archive
 	description=archive
-	[da]description=Arkiv
+	[da]description=arkiv
 	[fr]description=Archive
 	[sv]description=arkiv
 
@@ -729,20 +730,20 @@ application/x-wordperfect
 
 application/x-zoo
 	description=zoo archive
-	[da]description=Zoo-arkiv
+	[da]description=zoo-arkiv
 	[fr]description=Archive zoo
 	[sv]description=zoo-arkiv
 
 application/zip
 	description=zip archive
-	[da]description=Zip-arkiv
+	[da]description=zip-arkiv
 	[fr]description=Archive zip
 	[sv]description=zip-arkiv
 	vfs-method=zip
 
 audio/basic
 	description=basic audio
-	[da]description=Grundlæggende lyd
+	[da]description=grundlæggende lyd
 	[fr]description=Audio basic
 	[sv]description=grundläggande ljud
 	icon-filename=gnome-audio.png
@@ -762,17 +763,20 @@ audio/x-aiff
 
 audio/x-it
 	description=Impulse Tracker audio
+	[da]description=Impulse Tracker-lyd
 	[fr]description=Audio Impulse Tracker
 	[sv]description=Impulse Tracker-ljud
 
 audio/x-midi
 	description=MIDI audio
+	[da]description=MIDI-musik
 	[fr]description=Audio Midi
 	[sv]description=MIDI-ljud
 	icon-filename=gnome-audio-midi.png
 
 audio/x-mod
 	description=MOD audio
+	[da]description=MOD-lyd
 	[fr]description=Audio MOD
 	[sv]description=MOD-ljud
 	icon-filename=gnome-audio-x-mod.png
@@ -785,6 +789,7 @@ audio/x-mod
 # also image/x-mpeg
 audio/x-mp3
 	description=MP3 audio
+	[da]description=MP3-lyd
 	[fr]description=Audio MP3
 	[sv]description=MP3-ljud
 	icon-filename=i-music
@@ -796,12 +801,14 @@ audio/x-mp3
 	
 audio/x-mp3-playlist
 	description=MP3 audio playlist
+	[da]description=MP3-spilleliste
 	[fr]description=Audio liste de lecture MP3
 	[sv]description=MP3-ljudspellista
 
 # also image/x-mp3
 audio/x-mpeg
         description=MP3 audio
+	[da]description=MP3-lyd
         [fr]description=Audio MP3
         [sv]description=MP3-ljud
         icon-filename=i-music 
@@ -813,6 +820,7 @@ audio/x-mpeg
 
 audio/x-mpegurl
         description=MPEG URL
+	[da]description=MPEG-adresse
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -822,6 +830,7 @@ audio/x-mpegurl
 # also application/x-ogg
 audio/x-ogg
 	description=OGG Audio
+	[da]description=OGG-lyd
 	[fr]description=Audio OGG
 	icon-filename=i-music
 	default_action_type=application
@@ -832,6 +841,7 @@ audio/x-ogg
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
+	[da]description=PN RealAudio-dokument
 	[fr]description=Document RealAudio PN
 	[sv]description=PN RealAudio-dokument
 	icon-filename=gnome-audio-x-pn-realaudio.png
@@ -843,6 +853,7 @@ audio/x-pn-realaudio
 
 audio/x-real-audio
 	description=RealAudio document
+	[da]description=RealAudio-dokument
 	[fr]description=Document RealAudio
 	[sv]description=RealAudio-dokument
 	icon-filename=gnome-audio-x-pn-realaudio.png
@@ -854,6 +865,7 @@ audio/x-real-audio
 
 audio/x-riff
 	description=RIFF audio
+	[da]description=RIFF-lyd
 	[fr]description=Audio RIFF
 	[sv]description=RIFF-ljud
 	icon-filename=i-music
@@ -865,27 +877,32 @@ audio/x-riff
 
 audio/x-s3m
 	description=Scream Tracker 3 audio
+	[da]description=Scream Tracker 3-lyd
 	[fr]description=Audio Scream Tracker 3
 	[sv]description=Scream Tracker 3-ljud
 
 audio/x-stm
 	description=Scream Tracker audio
+	[da]description=Scream Tracker-lyd
 	[fr]description=Audio Stream Tracker
 	[sv]description=Scream Tracker-ljud
 
 audio/x-ulaw
 	description=audio
+	[da]description=lyd
 	[fr]description=Audio
 	[sv]description=ljud
 	icon-filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	description=VOC audio
+	[da]description=VOC-lyd
 	[fr]description=Audio VOC
 	[sv]description=VOC-ljud
 
 audio/x-wav
 	description=Wave audio
+	[da]description=Wave-lyd
 	[fr]description=Audio Wave
 	[sv]description=Wave-ljud
 	icon-filename=gnome-audio-x-wav.png
@@ -897,17 +914,20 @@ audio/x-wav
 
 audio/x-xi
 	description=Scream Tracker instrument
+	[da]description=Scream Tracker-instrument
 	[fr]description=Instrument Scream Tracker
 	[sv]description=Scream Tracker-instrument
 
 audio/x-xm
 	description=FastTracker II audio
+	[da]description=FastTracker II-lyd
 	[fr]description=Audio FastTracker
 	[sv]description=FastTracker II-ljud
 
 # also image/x-bmp
 image/bmp
 	description=Windows bitmap image
+	[da]description=Windows-bitkortbillede
 	[fr]description=Image bitmap Windows
 	[sv]description=Windows-bitmappbild
 	default_action_type=component
@@ -923,16 +943,19 @@ image/bmp
 
 image/cgm
 	description=CGM image
+	[da]description=CGM-billede
 	[fr]description=Image CGM
 	[sv]description=CGM-bild
 
 image/g3fax
 	description=G3 fax image
+	[da]description=G#-faxbillede
 	[fr]description=Image fax G3
 	[sv]description=G3-faxbild
 
 image/gif
 	description=GIF image
+	[da]description=GIF-billede
 	[fr]description=Image GIF
 	[sv]description=GIF-bild
 	default_action_type=component
@@ -948,12 +971,14 @@ image/gif
 
 image/ief
 	description=IEF image
+	[da]description=IEF-billede
 	[fr]description=Image IEF
 	[sv]description=IEF-bild
 	icon-filename=gnome-image-ief.png
 
 image/jpeg
 	description=JPEG image
+	[da]description=JPEG-billede
 	[fr]description=Image JPEG
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -969,6 +994,7 @@ image/jpeg
 # also image/x-png
 image/png
 	description=PNG image
+	[da]description=PNG-billede
 	[fr]description=Image PNG
 	[sv]description=PNG-bild
 	default_action_type=component
@@ -984,11 +1010,13 @@ image/png
 
 image/svg
 	description=SVG art
+	[da]description=SVG-kunst
 	[fr]description=Art SVG
 	[sv]description=SVG-konst
 
 image/tiff
 	description=TIFF image
+	[da]description=TIFF-billede
 	[fr]description=Image TIFF
 	[sv]description=TIFF-bild
 	default_action_type=component
@@ -1004,21 +1032,25 @@ image/tiff
 
 image/vnd.dwg
 	description=AutoCAD image
+	[da]description=AutoCAD-billede
 	[fr]description=Image AutoCAD
 	[sv]description=AutoCAD-bild
 
 image/vnd.dxf
 	description=DXF vector graphic
+	[da]description=DXF-vektorgrafik
 	[fr]description=Graphique vectoriel DXF
 	[sv]description=DXF-vektorgrafik
 
 image/x-3ds
 	description=3D Studio image
+	[da]description=3D Studio-billede
 	[fr]description=Image 3D Studio
 	[sv]description=3D Studio-bild
 
 image/x-applix-graphic
 	description=Applix image
+	[da]description=Applix-billede
 	[fr]description=Image Applix
 	[sv]description=Applix-bild
 	default_action_type=application
@@ -1030,6 +1062,7 @@ image/x-applix-graphic
 # also image/bmp
 image/x-bmp
 	description=Windows bitmap image
+	[da]description=Windows-bitkortbillede	
 	[fr]description=Image bitmap Windows
 	[sv]description=Windows-bitmappbild
 	default_action_type=component
@@ -1045,42 +1078,50 @@ image/x-bmp
 
 image/x-cmu-raster
 	description=CMU raster image
+	[da]description=CMU-rasterbillede
 	[fr]description=Image raster CMU
 	[sv]description=CMU-rasterbild
 
 image/x-compressed-xcf
 	description=GIMP image archive
+	[da]description=Gimp-billedarkiv
 	[fr]description=Image archive GIMP
 	[sv]description=GIMP-bildarkiv
 
 image/x-ico
 	description=Windows icon image
+	[da]description=Windows-ikonbillede
 	[fr]description=Image icone Windows
 	[sv]description=Windows-ikonbild
 
 image/x-iff
 	description=IFF image
+	[da]description=IFF-billede
 	[fr]description=Image IFF
 	[sv]description=IFF-bild
 
 image/x-ilbm
 	description=ILBM image
+	[da]description=ILBM-billede
 	[fr]description=Image ILBM
 	[sv]description=ILBM-bild
 
 image/x-lwo
 	description=LightWave object
+	[da]description=LightWave-objekt
 	[fr]description=Objet LightWave
 	[sv]description=LightWave-objekt
 
 image/x-lws
 	description=LightWave scene
+	[da]description=LightWave-scene
 	[fr]description=Scène LightWave
 	[sv]description=LightWave-scen
 
 # also image/png
 image/x-png
 	description=PNG image	
+	[da]description=PNG-billede
 	[fr]description=Image PNG
 	[sv]description=PNG-bild
 	default_action_type=component
@@ -1096,6 +1137,7 @@ image/x-png
 
 image/x-portable-anymap
 	description=PNM image
+	[da]description=PNM-billede
 	[fr]description=Image PNM
 	[sv]description=PNM-bild
 	default_action_type=component
@@ -1110,6 +1152,7 @@ image/x-portable-anymap
 	
 image/x-portable-bitmap
 	description=PBM image
+	[da]description=PBM-billede
 	[fr]description=Image PBM
 	[sv]description=PBM-bild
 	default_action_type=component
@@ -1139,6 +1182,7 @@ image/x-portable-graymap
 	
 image/x-portable-pixmap
 	description=PPM image
+	[da]description=PPM-billede
 	[fr]description=Image PPM
 	[sv]description=PPM-bild
 	default_action_type=component
@@ -1154,6 +1198,7 @@ image/x-portable-pixmap
 
 image/x-psd
 	description=Photoshop document
+	[da]description=PhotoShop-dokument
 	[sv]description=Photoshopdokument
 	default_action_type=application
 	default_application_id=eog
@@ -1164,18 +1209,21 @@ image/x-psd
 
 image/x-rgb
 	description=RGB image
+	[da]description=RGB-billede
 	[fr]description=Image RGB
 	[sv]description=RGB-bild
 	icon-filename=gnome-image-rgb.png
 	
 image/x-tga
 	description=TarGA image
+	[da]description=TarGA-billede
 	[fr]description=Image TarGA
 	[sv]description=TarGA-bild
 	icon-filename=gnome-image-tga.png
 
 image/x-xbitmap
 	description=X bitmap image
+	[da]description=X-bitkortbillede
 	[fr]description=Image X bitmap
 	[sv]description=X-bitmappbild
 	default_action_type=application
@@ -1187,6 +1235,7 @@ image/x-xbitmap
 
 image/x-xcf
 	description=GIMP image
+	[da]description=Gimp-billede
 	[fr]description=Image GIMP
 	[sv]description=GIMP-bild
 	default_action_type=application
@@ -1198,12 +1247,14 @@ image/x-xcf
 
 image/x-xfig
 	description=xfig image
+	[da]description=XFig-billede
 	[fr]description=Image xfig
 	[sv]description=xfig-bild
 	icon-filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
 	description=XPM image	
+	[da]description=XPM-billede
 	[fr]description=Image XPM
 	[sv]description=XPM-bild
 	default_action_type=component
@@ -1218,86 +1269,103 @@ image/x-xpixmap
 
 image/x-xwindowdump
 	description=X window image
+	[da]description=X-vinduebillede
 	[sv]description=X-fönsterbild
 	icon-filename=gnome-image-xwd.png
 
 message/delivery-status
 	description=mail delivery report
+	[da]description=leverancerapport over epost
 	[fr]description=Rapport de livraison de courrier
 	[sv]description=e-postleveransrapport
 
 message/disposition-notification
 	description=mail disposition report
+	[da]description=disponeringsrapport over epost
 	[fr]description=Rapport de mise à disposition de courrier
 	[sv]description=e-postdispositionsrapport
 
 message/external-body
 	description=pointer to remote data
+	[da]description=hæfter til fjerndata
 	[fr]description=Pointeur vers des données distantes
 	[sv]description=pekare till fjärrdata
 
 message/news
 	description=USENET news message
+	[da]description=USENET nyhedsmeddelelse
 	[fr]description=Message de nouvelle USENET
 	[sv]description=diskussionsgruppsmeddelande
 
 message/partial
 	description=partial email message
+	[da]description=del af elektronisk brev
 	[fr]description=Message de courrier électronique partiel
 	[sv]description=del av e-postmeddelande
 
 message/rfc822
 	description=email message
+	[da]description=elektronisk brev
 	[fr]description=Message de courrier électronique
 	[sv]description=e-postmeddelande
 
 message/x-gnu-rmail
 	description=GNU mail message
+	[da]description=Gnu-postmeddelelse
 	[fr]description=Message de courrier GNU
 	[sv]description=GNU-epostmeddelande
 
 model/vrml
 	description=VRML data
+	[da]description=VRML-data
 	[fr]description=Donnée VRML
 	[sv]description=VRML-data
 
 multipart/alternative
 	description=message in several formats
+	[da]description=meddelelse i flere formater
 	[fr]description=Message dans différents formats
 	[sv]description=meddelande i flera format
 
 multipart/appledouble
 	description=Macintosh AppleDouble-encoded document
+	[da]description=dokument kodet med Macintosh AppleDouble
 	[fr]description=Document encodé AppleDouble Macintosh
 	[sv]description=dokument kodat med Macintosh AppleDouble
 
 multipart/digest
 	description=message digest
+	[da]description=meddelelsessamling
 	[fr]description=Message digest
 	[sv]description=meddelandesamling
 
 multipart/encrypted
 	description=encrypted message
+	[da]description=krypteret meddelelse
 	[fr]description=Message encrypté
 	[sv]description=krypterat meddelande
 
 multipart/mixed
 	description=multi-part message
+	[da]description=meddelelse i flere dele
 	[fr]description=Message multi-part
 	[sv]description=meddelande i flera delar
 
 multipart/related
 	description=compound document
+	[da]description=sammensat dokument
 	[fr]description=Message composé
 	[sv]description=sammansatt dokument
 
 multipart/report
 	description=mail system report
+	[da]description=epost-systemrapport
 	[fr]description=Rapport de système de courrier
 	[sv]description=e-postsystemrapport
 
 multipart/signed
 	description=signed message
+	[da]description=signeret meddelelse
 	[fr]description=Message signé
 	[sv]description=signerat meddelande
 
@@ -1314,6 +1382,7 @@ text/*
 
 text/abiword
 	description=AbiWord document
+	[da]description=AbiWord-dokument
 	[fr]description=Document AbiWord
 	[sv]description=AbiWord-dokument
 	default_action_type=application
@@ -1329,26 +1398,31 @@ text/bib
 
 text/calendar
 	description=calendar information
+	[da]description=kalenderinformation
 	[fr]description=Information de calendrier
 	[sv]description=kalenderinformation
 
 text/css
 	description=style sheet
+	[da]description=stilark
 	[fr]description=Feuille de style
 	[sv]description=stilmall
 
 text/directory
 	description=directory information
+	[da]description=kataloginformation
 	[fr]description=Information de répertoire
 	[sv]description=kataloginformation
 
 text/enriched
 	description=enriched text
+	[da]description=beriget tekst
 	[fr]description=Text enrichi
 	[sv]description=enriched text
 
 text/html
 	description=HTML document
+	[da]description=HTML-dokument
 	[fr]description=Document HTML
 	[sv]description=HTML-dokument
 	default_action_type=component
@@ -1363,17 +1437,20 @@ text/html
 
 text/htmlh
 	description=Help page
+	[da]description=Hjælpeside
 	[sv]description=Hjälpsida
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
 text/mathml
 	description=MathML document
+	[da]description=MathML-dokument
 	[fr]description=Document MathML
 	[sv]description=MathML-dokument
 
 text/plain
 	description=plain text
+	[da]description=ren tekst
 	[fr]description=Texte plein
 	[sv]description=vanlig text
 	default_action_type=component
@@ -1388,21 +1465,25 @@ text/plain
 
 text/rfc822-headers
 	description=email headers
+	[da]description=Elektronisk brevhoved
 	[fr]description=En-tête de courrier électronique
 	[sv]description=e-posthuvuden
 
 text/richtext
 	description=rich text
+	[da]description=rigtekst
 	[fr]description=Texte riche
 	[sv]description=rik text
 
 text/sgml
 	description=SGML document
+	[da]description=SGML-dokument
 	[fr]description=Document SGML
 	[sv]description=SGML-dokument
 
 text/tab-separated-values
 	description=tab-separated text
+	[da]description=tabulatorsepareret tekst
 	[fr]description=Texte séparé par des tabulations
 	[sv]description=tabbseparerad text
 
@@ -1411,118 +1492,141 @@ text/tab-separated-values
 # mechanism must be returning it (probably a web server)
 text/tex
 	description=TeX document
+	[da]description=TeX-dokument
 	[fr]description=Document TeX
 	[sv]description=TeX-dokument
 
 text/x-authors
 	description=authors list
+	[da]description=forfatterliste
 	[fr]description=Liste d'auteurs
 	[sv]description=författarlista
 
 text/x-c
 	description=C source code
+	[da]description=C-kildekode
 	[fr]description=Code source C
 	[sv]description=C-källkod
 
 text/x-c++
 	description=C++ source code
+	[da]description=C++-kildekode
 	[fr]description=Code source C++
 	[sv]description=C++-källkod
 
 text/x-comma-separated-values
 	description=comma-separated text
+	[da]description=kommasepareret tekst
 	[fr]description=Texte séparé par des virgules
 	[sv]description=kommaseparerad text
 
 text/x-copying
 	description=GNU license
+	[da]description=Gnu-licens
 	[fr]description=Licence GNU
 	[sv]description=GNU-licens
 
 text/x-credits
 	description=author credits
+	[da]description=forfatterliste
 	[fr]description=Crédits d'auteur
 	[sv]description=författarlista
 
 # also application/x-csh
 text/x-csh
 	description=C-Shell script
+	[da]description=C-skalskript
 	[fr]description=Script C-Shell
 	[sv]description=C-skalskript
 
 text/x-dcl
 	description=DCL script
+	[da]description=DCL-skript
 	[fr]description=Script DCL
 	[sv]description=DCL-skript
 
 text/x-dsl
 	description=DSSSL document
+	[da]description=DSSSL-dokument
 	[fr]description=Document DSSSL
 	[sv]description=DSSSL-dokument
 
 text/x-dtd
 	description=document type definition
+	[da]description=dokumenttypedefination
 	[fr]description=Définition de type de document
 	[sv]description=dokumenttypdefinition
 
 text/x-emacs-lisp
 	description=Emacs Lisp source code
+	[da]description=Emacs Lisp-kildekode
 	[fr]description=Code source Emacs Lisp
 	[sv]description=Emacs Lisp-källkod
 
 text/x-fortran
 	description=Fortran source code
+	[da]description=Fortran-kildekode
 	[fr]description=Code source Fortran
 	[sv]description=Fortran-källkod
 
 text/x-gtkrc
 	description=GTK configuration
+	[da]description=Gtk-konfiguration
 	[fr]description=Configuration GTK
 	[sv]description=GTK-konfiguration
 
 text/x-idl
 	description=IDL document
+	[da]description=IDL-dokument
 	[fr]description=Document IDL
 	[sv]description=IDL-dokument
 
 text/x-install
 	description=installation instructions
+	[da]description=Installationsinstruktioner
 	[fr]description=Instructions d'installation
 	[sv]description=installationsinstruktioner
 
 text/x-java
 	description=Java source code
+	[da]description=Java-kildekode
 	[fr]description=Code source Java
 	[sv]description=Java-källkod
 
 text/x-ksh
 	description=Korn shell script
+	[da]description=Korn-skalskript
 	[fr]description=Script Korn Shell
 	[sv]description=Korn-skalskript
 
 text/x-makefile
 	description=Makefile
+	[da]description=Makefil
 	[fr]description=Makefile
 	[sv]description=Makefil
 
 text/x-patch
 	description=source code patch
+	[da]description=kildekodelap
 	[fr]description=Code source patch
 	[sv]description=källkodspatch
 
 # also application/x-perl
 text/x-perl
 	description=Perl script
+	[da]description=Perlskript
 	[fr]description=Script Perl
 	[sv]description=Perlskript
 
 text/x-python
 	description=Python script
+	[da]description=Pythonskript
 	[fr]description=Script Python
 	[sv]description=Pythonskript
 
 text/x-readme
 	description=README file
+	[da]description=README-fil (læs mig)
 	[fr]description=Fichier README
 	[sv]description=README-fil
 
@@ -1533,73 +1637,87 @@ text/x-scheme
 
 text/x-setext
 	description=Setext document
+	[da]description=Setext-dokument
 	[fr]description=Document Setext
 	[sv]description=Setext-dokument
 
 text/x-sh
 	description=shell script
+	[da]description=skalskript
 	[fr]description=Script shell
 	[sv]description=skalskript
 
 text/x-speech
 	description=Speech document
+	[da]description=Speech-dokument
 	[fr]description=Document Speech
 	[sv]description=Speech-dokument
 
 text/x-sql
 	description=SQL source code
+	[da]description=SQL-kildekode
 	[fr]description=Code source SQL
 	[sv]description=SQL-källkod
 
 text/x-tcl
 	description=Tcl script
+	[da]description=Tcl-skript
 	[fr]description=Script Tcl
 	[sv]description=Tcl-skript
 
 # also text/tex
 text/x-tex
 	description=TeX document
+	[da]description=TeX-dokument
 	[fr]description=Document TeX
 	[sv]description=TeX-dokument
 
 text/x-texinfo
 	description=TeXInfo document
+	[da]description=TeXInfo-dokument
 	[fr]description=Document TeXInfo
 	[sv]description=TeXInfo-dokument
 
 text/x-troff
 	description=Troff document
+	[da]description=Troff-dokument
 	[fr]description=Document Trof
 	[sv]description=Troff-dokument
 
 text/x-troff-man
 	description=manual page
+	[da]description=manualside
 	[fr]description=Page de manuel
 	[sv]description=manualsida
 	icon-filename=gnome-manpage.png
 
 text/x-troff-me
 	description=Troff ME-macros document
+	[da]description=Troff ME-makrodokument
 	[fr]description=Document ME-macros Troff
 	[sv]description=Troff ME-makrodokument
 
 text/x-troff-ms
 	description=Troff MS-macros document
+	[da]description=Troff MS-makrodokument
 	[fr]description=Document MS-macros Troff
 	[sv]description=Troff MS-makrodokument
 
 text/x-vcalendar
 	description=calendar or event information
+	[da]description=kalender eller evenementsinformation
 	[fr]description=Information de calendrier ou d'événement
 	[sv]description=kalender eller evenemangsinformation
 
 text/x-vcard
 	description=address card
+	[da]description=adressekort
 	[fr]description=Carte d'adresse
 	[sv]description=adresskort
 
 text/xml
 	description=XML document
+	[da]description=XML-dokument
 	[fr]description=Document XML
 	[sv]description=XML-dokument
 	default_action_type=component
@@ -1614,11 +1732,13 @@ text/xml
 
 video/isivideo
 	description=ISI video
+	[da]description=ISI-film
 	[fr]description=Vidéo ISI
 	[sv]description=ISI-video
 
 video/mpeg
 	description=MPEG movie
+	[da]description=MPEG-film
 	[fr]description=Vidéo MPEG
 	[sv]description=MPEG-film
 	default_action_type=application
@@ -1629,6 +1749,7 @@ video/mpeg
        
 video/msvideo
 	description=MS video
+	[da]description=Microsoft Video-film
 	[fr]description=Vidéo MS
 	[sv]description=MS-video
 	default_application_id=xanim
@@ -1638,6 +1759,7 @@ video/msvideo
 
 video/quicktime
 	description=QuickTime movie
+	[da]description=QuickTime-film
 	[fr]description=Vidéo QuickTime
 	[sv]description=QuickTime-film
 	default_action_type=application
@@ -1648,16 +1770,19 @@ video/quicktime
 
 video/vivo
 	description=Vivo video
+	[da]description=Vivo-film
 	[fr]description=Vidéo Vivo
 	[sv]description=Vivo-video
 
 video/wavelet
 	description=Wavelet video
+	[da]description=Wavelet-film
 	[fr]description=Vidéo Wavelet
 	[sv]description=Wavelet-video
 
 video/x-anim
 	description=animation
+	[da]description=animation
 	[fr]description=Animation
 	[sv]description=animation
 	default_action_type=application
@@ -1676,6 +1801,7 @@ video/x-avi
 
 video/x-flc
 	description=FLC video animation
+	[da]description=FLC-animation
 	[fr]description=Vidéo d'animation FLC
 	[sv]description=FLC-videoanimation
 	default_action_type=application
@@ -1686,6 +1812,7 @@ video/x-flc
 
 video/x-fli
 	description=FLI video animation
+	[da]description=FLI-animation
 	[fr]description=Vidéo d'animation FLI
 	[sv]description=FLI-videoanimation
 	default_action_type=application
@@ -1696,6 +1823,7 @@ video/x-fli
 
 video/x-msvideo
 	description=MS video
+	[da]description=Microsoft Video
 	[fr]description=Vidéo MS
 	[sv]description=MS-video
 	default_application_id=xanim
@@ -1705,6 +1833,7 @@ video/x-msvideo
 
 video/x-real-video
 	description=RealVideo document
+	[da]description=RealVideo-dokument
 	[fr]description=Document RealVideo
         default_action_type=application
         default_application_id=realplayer
@@ -1714,6 +1843,7 @@ video/x-real-video
 
 video/x-sgi-movie
 	description=SGI movie
+	[da]description=SGI-film
 	[fr]description=Vidéo SGI
 	[sv]description=SGI-film
 	default_action_type=application
@@ -1724,6 +1854,7 @@ video/x-sgi-movie
 
 x-directory/normal
 	description=folder
+	[da]description=mappe
 	[fr]description=Répertoire
 	[sv]description=mapp
 	default_action_type=component
@@ -1734,6 +1865,7 @@ x-directory/normal
 
 x-directory/search
 	description=search results
+	[da]description=søgeresultat
 	[fr]description=Résultats de recherche
 	[sv]description=sökresultat
 	default_action_type=component
@@ -1744,6 +1876,7 @@ x-directory/search
 
 x-directory/webdav
 	description=web folder
+	[da]description=webmappe
 	[fr]description=Dossier Web
 	[sv]description=webbmapp
 	default_action_type=component
@@ -1758,26 +1891,31 @@ x-directory/webdav
 
 x-special/device-block
 	description=block device
+	[da]description=blokenhed
 	[fr]description=Périphérique bloc
 	[sv]description=blockenhet
 
 x-special/device-char
 	description=character device
+	[da]description=tegnenhed
 	[fr]description=Périphérique caractère
 	[sv]description=teckenenhet
 
 x-special/fifo
 	description=named pipe
+	[da]description=navngivet rør
 	[fr]description=Conduit nommé
 	[sv]description=namngivet rör
 
 x-special/socket
 	description=socket
+	[da]description=sokkel
 	[fr]description=Socket
 	[sv]description=uttag
 
 x-special/symlink
 	description=link
+	[da]description=lænke
 	[fr]description=Lien
 	[sv]description=länk
 
