@@ -23,6 +23,7 @@ noinst_PROGRAMS =				\
 	test-mime-handlers			\
 	test-mime-handlers-set			\
 	test-mime-info				\
+	test-monitor				\
 	test-seek				\
 	test-shell				\
 	test-symlinks				\
@@ -128,6 +129,9 @@ test_find_directory_LDADD = $(libraries)
 
 test_mime_info_SOURCES = test-mime-info.c
 test_mime_info_LDADD = $(libraries)
+
+test_monitor_SOURCES = test-monitor.c
+test_monitor_LDADD = $(libraries)
 
 test_callback_SOURCES = test-callback.c
 test_callback_LDADD = $(libraries)

@@ -815,7 +815,11 @@ gnome_vfs_uri_relative_new (const gchar *text_uri,
 	char *text_new;
 	GnomeVFSURI *uri;
 
-	text_base = gnome_vfs_uri_to_string (base, 0);
+	if (base == NULL) {
+		text_base = g_strdup ("");
+	} else {
+		text_base = gnome_vfs_uri_to_string (base, 0);
+	}
 	text_new = make_full_uri_from_relative (text_base, text_uri);
 
 	uri = gnome_vfs_uri_new (text_new);

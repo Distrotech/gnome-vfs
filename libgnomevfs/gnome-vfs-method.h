@@ -30,6 +30,7 @@
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-transform.h>
+#include <libgnomevfs/gnome-vfs-monitor.h>
 
 G_BEGIN_DECLS
 
@@ -207,6 +208,15 @@ typedef GnomeVFSResult (* GnomeVFSMethodCreateSymbolicLinkFunc)
                                          GnomeVFSURI *uri,
                                          const gchar *target_reference,
                                          GnomeVFSContext *context);
+typedef GnomeVFSResult (* GnomeVFSMethodMonitorAddFunc)
+     					(GnomeVFSMethod *method,
+      					 GnomeVFSMethodHandle **method_handle_return,
+      					 GnomeVFSURI *uri,
+      					 GnomeVFSMonitorType monitor_type);
+
+typedef GnomeVFSResult (* GnomeVFSMethodMonitorCancelFunc)
+     					(GnomeVFSMethod *method,
+      					 GnomeVFSMethodHandle *handle);
 
 
 
@@ -244,6 +254,8 @@ struct GnomeVFSMethod {
 	GnomeVFSMethodTruncateFunc truncate;
 	GnomeVFSMethodFindDirectoryFunc find_directory;
 	GnomeVFSMethodCreateSymbolicLinkFunc create_symbolic_link;
+	GnomeVFSMethodMonitorAddFunc monitor_add;
+	GnomeVFSMethodMonitorCancelFunc monitor_cancel;
 };
 
 gboolean	   gnome_vfs_method_init   (void);

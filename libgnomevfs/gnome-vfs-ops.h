@@ -132,6 +132,14 @@ GnomeVFSResult   gnome_vfs_set_file_info        (const gchar *text_uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSSetFileInfoMask mask);
 
+GnomeVFSResult gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
+                                      const gchar *text_uri,
+                                      GnomeVFSMonitorType monitor_type,
+                                      GnomeVFSMonitorCallback callback,
+                                      gpointer user_data);
+
+GnomeVFSResult gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_OPS_H */

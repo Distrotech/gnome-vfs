@@ -8,9 +8,9 @@ SUBDIRS =					\
 	data					\
 	man					\
 	devel-docs				\
-	monikers				\
 	doc					\
 	test					\
+	monikers				\
 	po
 
 

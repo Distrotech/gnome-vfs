@@ -1,8 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-monitor.h - File Monitoring for the GNOME Virtual File System.
 
-/* gnome-vfs.h - The GNOME Virtual File System.
-
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2001 Ian McKellar
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,25 +18,28 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ian McKellar <yakk@yakk.net>
 */
 
-#ifndef GNOME_VFS_H
-#define GNOME_VFS_H
+#ifndef GNOME_VFS_MONITOR_PRIVATE_H
+#define GNOME_VFS_MONITOR_PRIVATE_H
 
-#include <libgnomevfs/gnome-vfs-async-ops.h>
-#include <libgnomevfs/gnome-vfs-callbacks.h>
-#include <libgnomevfs/gnome-vfs-directory.h>
-#include <libgnomevfs/gnome-vfs-file-info.h>
-#include <libgnomevfs/gnome-vfs-find-directory.h>
-#include <libgnomevfs/gnome-vfs-init.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-monitor.h>
-#include <libgnomevfs/gnome-vfs-ops.h>
-#include <libgnomevfs/gnome-vfs-result.h>
-#include <libgnomevfs/gnome-vfs-transform.h>
+#include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-xfer.h>
 
-#endif /* GNOME_VFS_H */
+GnomeVFSResult gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
+			  		 GnomeVFSMonitorHandle **handle,
+					 GnomeVFSURI *uri,
+                          		 GnomeVFSMonitorType monitor_type,
+			  		 GnomeVFSMonitorCallback callback,
+			  		 gpointer user_data);
+
+GnomeVFSResult gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle);
+
+/* this is for modules - should it be in a separate header file? */
+void gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
+                                 GnomeVFSURI *info_uri,
+                                 GnomeVFSMonitorEventType event_type);
+#endif /* GNOME_VFS_MONITOR_PRIVATE_H */

@@ -36,6 +36,8 @@
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-monitor-private.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -49,6 +51,23 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <utime.h>
+#include <string.h>
+#include <fam.h>
+#include <gdk/gdk.h>
+
+
+/*#include "file-method.h"*/
+
+#ifdef HAVE_FAM
+FAMConnection *fam_connection = NULL;
+G_LOCK_DEFINE_STATIC (fam_connection);
+
+typedef struct {
+	FAMRequest request;
+	GnomeVFSURI *uri;
+} FileMonitorHandle;
+
+#endif
 
 #ifdef PATH_MAX
 #define	GET_PATH_MAX()	PATH_MAX
@@ -761,7 +780,6 @@ do_read_directory (GnomeVFSMethod *method,
 	
 	return GNOME_VFS_OK;
 }
-
 
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
@@ -2034,6 +2052,163 @@ do_set_file_info (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+#ifdef HAVE_FAM
+static void
+fam_callback (gpointer data, 
+	      gint fd, 
+	      GdkInputCondition condition)
+{
+	FileMonitorHandle *handle;
+	GnomeVFSURI *info_uri = NULL;
+	GnomeVFSMonitorEventType event_type = GNOME_VFS_MONITOR_EVENT_CHANGED;
+
+	G_LOCK (fam_connection);
+
+	while (FAMPending(fam_connection)) {
+		FAMEvent ev;
+		if (FAMNextEvent(fam_connection, &ev) != 1) {
+			gdk_input_remove(fd);
+			FAMClose(fam_connection);
+			g_free(fam_connection);
+			fam_connection = FALSE;
+			G_UNLOCK (fam_connection);
+			return;
+		}
+
+		handle = (FileMonitorHandle *)ev.userdata;
+
+		info_uri = gnome_vfs_uri_append_file_name (handle->uri, 
+				ev.filename);
+
+		switch (ev.code) {
+			case FAMChanged:
+				event_type = GNOME_VFS_MONITOR_EVENT_CHANGED;
+				break;
+			case FAMDeleted:
+				event_type = GNOME_VFS_MONITOR_EVENT_DELETED;
+				break;
+			case FAMStartExecuting:
+				event_type = 
+					GNOME_VFS_MONITOR_EVENT_STARTEXECUTING;
+				break;
+			case FAMStopExecuting:
+				event_type = 
+					GNOME_VFS_MONITOR_EVENT_STOPEXECUTING;
+				break;
+			case FAMCreated:
+				event_type = GNOME_VFS_MONITOR_EVENT_CREATED;
+				break;
+			case FAMAcknowledge:
+			case FAMExists:
+			case FAMEndExist:
+			case FAMMoved:
+				event_type = -1;
+				g_warning ("bad FAM event");
+				break;
+		}
+
+
+		if (event_type != -1) {
+			gnome_vfs_monitor_callback (
+					(GnomeVFSMethodHandle *)handle,
+					info_uri, event_type);
+		}
+	}
+
+	G_UNLOCK (fam_connection);
+}
+
+
+
+static gboolean
+monitor_setup ()
+{
+	G_LOCK (fam_connection);
+
+	if (fam_connection == NULL) {
+		fam_connection = g_malloc0(sizeof(FAMConnection));
+		if (FAMOpen2(fam_connection, "test-monitor") != 0) {
+			g_print ("FAMOpen failed, FAMErrno=%d\n", FAMErrno);
+			g_free(fam_connection);
+			fam_connection = NULL;
+			return FALSE;
+		}
+		gdk_input_add(FAMCONNECTION_GETFD(fam_connection), 
+				GDK_INPUT_READ, fam_callback, fam_connection);
+	}
+
+	G_UNLOCK (fam_connection);
+
+	return TRUE;
+}
+#endif
+
+static GnomeVFSResult
+do_monitor_add (GnomeVFSMethod *method,
+		GnomeVFSMethodHandle **method_handle_return,
+		GnomeVFSURI *uri,
+		GnomeVFSMonitorType monitor_type)
+{
+#ifdef HAVE_FAM
+	FileMonitorHandle *handle;
+	char *filename;
+
+	if (!monitor_setup ()) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	handle = g_new0 (FileMonitorHandle, 1);
+	handle->uri = uri;
+	gnome_vfs_uri_ref (uri);
+	filename = get_path_from_uri (uri);
+	
+	if (monitor_type == GNOME_VFS_MONITOR_FILE) {
+		G_LOCK (fam_connection);
+		FAMMonitorFile (fam_connection, filename, 
+			&handle->request, handle);
+		G_UNLOCK (fam_connection);
+	} else {
+		G_LOCK (fam_connection);
+		FAMMonitorDirectory (fam_connection, filename, 
+			&handle->request, handle);
+		G_UNLOCK (fam_connection);
+	}
+
+	*method_handle_return = (GnomeVFSMethodHandle *)handle;
+
+	g_free (filename);
+
+	return GNOME_VFS_OK;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+}
+
+static GnomeVFSResult
+do_monitor_cancel (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle)
+{
+#ifdef HAVE_FAM
+	FileMonitorHandle *handle = (FileMonitorHandle *)method_handle;
+
+	if (!monitor_setup ()) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	G_LOCK (fam_connection);
+	FAMCancelMonitor (fam_connection, &handle->request);
+	G_UNLOCK (fam_connection);
+
+	gnome_vfs_uri_unref (handle->uri);
+
+	g_free (handle);
+
+	return GNOME_VFS_OK;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+}
+
 static GnomeVFSMethod method = {
 	sizeof (GnomeVFSMethod),
 	do_open,
@@ -2058,7 +2233,9 @@ static GnomeVFSMethod method = {
 	do_set_file_info,
 	do_truncate,
 	do_find_directory,
-	do_create_symbolic_link
+	do_create_symbolic_link,
+	do_monitor_add,
+	do_monitor_cancel
 };
 
 GnomeVFSMethod *

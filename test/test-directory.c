@@ -131,8 +131,8 @@ main (int argc, const char **argv)
 	gchar *text_uri;
 	poptContext popt_context;
 
-	popt_context = poptGetContext ("test-directory", argc, argv,
-				       options, 0);
+	popt_context = poptGetContext ("test-directory", argc, 
+				       (const char **) argv, options, 0);
 
 	while (poptGetNextOpt (popt_context) != -1)
 		;

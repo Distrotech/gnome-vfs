@@ -23,7 +23,7 @@
 
 #include <config.h>
 #include "gnome-vfs-ops.h"
-
+#include "gnome-vfs-monitor-private.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include <glib/gmessages.h>
 
@@ -690,3 +690,39 @@ gnome_vfs_uri_exists (GnomeVFSURI *uri)
 
 	return result == GNOME_VFS_OK;
 }
+
+GnomeVFSResult 
+gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
+                       const gchar *text_uri,
+                       GnomeVFSMonitorType monitor_type,
+                       GnomeVFSMonitorCallback callback,
+                       gpointer user_data)
+{
+	GnomeVFSURI *uri = gnome_vfs_uri_new (text_uri);
+	GnomeVFSResult result;
+
+	if (uri == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+
+	if (!VFS_METHOD_HAS_FUNC(uri->method, monitor_add)) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	result = gnome_vfs_monitor_do_add (uri->method, handle, uri,
+						monitor_type, callback, 
+						user_data);
+
+	gnome_vfs_uri_unref (uri);
+
+	return result;
+}
+
+GnomeVFSResult 
+gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
+{
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	return gnome_vfs_monitor_do_cancel (handle);
+}
+

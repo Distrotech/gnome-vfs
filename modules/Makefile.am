@@ -5,6 +5,7 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(MODULES_XML_GCONF_CFLAGS)		\
+	$(MODULES_FILE_CFLAGS) 			\
 	$(LIBEFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
@@ -75,6 +76,7 @@ libextfs_la_LDFLAGS = $(module_flags)
 
 libfile_la_SOURCES = file-method.c
 libfile_la_LDFLAGS = $(module_flags)
+libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
 
 ###  `ssh' method
 

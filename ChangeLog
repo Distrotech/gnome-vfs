@@ -1,3 +1,35 @@
+2001-08-25  Ian McKellar  <yakk@yakk.net>
+
+	* Makefile.am:
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-monitor-private.h:
+	* libgnomevfs/gnome-vfs-monitor.c: (init_hash_table),
+	(gnome_vfs_monitor_do_add), (destroy_monitor_handle),
+	(gnome_vfs_monitor_do_cancel), (actually_dispatch_callback),
+	(gnome_vfs_monitor_callback):
+	* libgnomevfs/gnome-vfs-monitor.h:
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_monitor_add),
+	(gnome_vfs_monitor_cancel):
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_relative_new):
+	* libgnomevfs/gnome-vfs.h:
+	Added a file/directory monitoring API based off the FAM api.
+
+	* modules/Makefile.am:
+	* modules/file-method.c: (fam_callback), (monitor_setup),
+	(do_monitor_add), (do_monitor_cancel):
+	Added monitoring support to the file method using FAM.
+	
+	* test/Makefile.am:
+	* test/test-monitor.c: (show_result), (callback), (main):
+	Test program for monitoring support.
+
+	* test/test-directory.c: (main):
+	Build fix stuff.
+
 2001-08-25  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/Makefile.am: No such thing as $(builddir), so it

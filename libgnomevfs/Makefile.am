@@ -75,6 +75,8 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-module-api.h			\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-module.h			\
+	gnome-vfs-monitor.h			\
+	gnome-vfs-monitor-private.h		\
 	gnome-vfs-ops.h				\
 	gnome-vfs-parse-ls.h			\
 	gnome-vfs-private-utils.h		\
@@ -126,6 +128,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-module-api.c			\
 	gnome-vfs-module-shared.c		\
 	gnome-vfs-module.c			\
+	gnome-vfs-monitor.c			\
 	gnome-vfs-ops.c				\
 	gnome-vfs-parse-ls.c			\
 	gnome-vfs-private-utils.c		\
