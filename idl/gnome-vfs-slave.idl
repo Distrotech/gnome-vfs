@@ -110,26 +110,25 @@ module Slave {
            operations performed via the `FileHandle' and `Request' interfaces.  */
 	interface Notify {
 		/* Open done.  */
-		oneway void open  (in Result result, in FileHandle handle);
+		void open  (in Result result, in FileHandle handle);
 
 		/* Open done.  Read/write from/to Unix domain socket
                    `channel_path' to access the file.  */
-		oneway void open_as_channel (in Result result,
+		void open_as_channel (in Result result,
 					     in string channel_path);
 
 		/* Close done.  */
-		oneway void close (in Result result);
+		void close (in Result result);
 
 		/* Read done.  */
-		oneway void read  (in Result result, in Buffer data);
+		void read  (in Result result, in Buffer data);
 
 		/* Write done.  */
-		oneway void write (in Result result,
+		void write (in Result result,
 				   in unsigned long bytes_written);
 
 		/* Directory segment loaded.  */
-		oneway void load_directory (in Result result,
-					    in FileInfoList files);
+		void load_directory (in Result result, in FileInfoList files);
 
 		/* Files have been collected (if necessary), and the transfer
                    begins.  If `FALSE' is returned, operation is stopped.  */
@@ -175,14 +174,14 @@ module Slave {
 							 in string target_uri);
 
 		/* An operation has been stopped.  */
-		oneway void stop ();
+		void stop ();
 
 		/* The slave has been reset.  */
-		oneway void reset ();
+		void reset ();
 
 		/* R.I.P.  This is sent just before the `exit()' call in the
                    slave process.  */
-		oneway void dying ();
+		void dying ();
 	};
 
 }; // Slave

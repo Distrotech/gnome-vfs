@@ -1,3 +1,10 @@
+1999-09-13  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* idl/gnome-vfs-slave.idl: Made all the Notify methods non-oneway.
+	[No matter what Sopwith says, ORBit does seem to discard oneway
+	calls.  Too bad, this could give us up to 20% more speed in
+	`load_directory'.]
+
 1999-09-12  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c
