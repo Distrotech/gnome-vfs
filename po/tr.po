@@ -1,17 +1,14 @@
-# KTranslator Generated File
-# KTranslator Generated File
 # -------------------------------------------------------
-# Copyright (C) 1999 Free Software Foundation, Inc.
-# Fatih Demir <kabalak@gmx.net>, 1999.
+# Copyright (C) 1999-2000 Free Software Foundation, Inc.
+# Fatih Demir <kabalak@gmx.net>, 1999-2000 .
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs December-1999-CVS\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: 1999-12-22 16:12+0100\n"
+"Project-Id-Version: gnome-vfs 0.1\n"
+"POT-Creation-Date: 2000-04-17 12:52+0200\n"
+"PO-Revision-Date: 2000-03175 13:12+0100\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
-"Language-Team: Turkish Gnome Tranlation Team <gnotrap@gmx.net>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-9\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,35 +16,34 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr ""
+msgstr "%s : %d NUL harflerini içeriyor ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s : %d metod ismini içermiyor ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr ""
+msgstr "%s : %d modül ismini içermiyor ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:285
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr ""
+msgstr "Ayarlama dosyasý `%s' bulunamadý : %s"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
-msgstr "Gnome VFS çoktaan iþletildi ."
+msgstr "Gnome VFS çoktan baþlatýldý ."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
-#, fuzzy, c-format
 msgid "Could not parse: %s"
-msgstr "%s'yi açamadým"
+msgstr "%s'yi tarayamadým "
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "Þimdiden sonra ortaya çikacak hatalar gözardý edilecek ."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -245,27 +241,27 @@ msgstr "Tanýnmayan hata"
 
 #: libgnomevfs/gnome-vfs-utils.c:40
 msgid "1 byte"
-msgstr ""
+msgstr "1 bayt"
 
 #: libgnomevfs/gnome-vfs-utils.c:42
 #, c-format
 msgid "%u bytes"
-msgstr ""
+msgstr "%u bayt"
 
 #: libgnomevfs/gnome-vfs-utils.c:49
 #, c-format
 msgid "%.1fK"
-msgstr ""
+msgstr "%.1f bin"
 
 #: libgnomevfs/gnome-vfs-utils.c:53
 #, c-format
 msgid "%.1fM"
-msgstr ""
+msgstr "%.1f milyon"
 
 #: libgnomevfs/gnome-vfs-utils.c:57
 #, c-format
 msgid "%.1fG"
-msgstr ""
+msgstr "%.1f milyar"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -353,53 +349,51 @@ msgstr "IOR'u ayýramadým "
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "Madun iþlemden ahmak bir metin aldým : `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, fuzzy, c-format
 msgid "Cannot get object for `%s'"
-msgstr "%s : `%s''ye baðlantýlarý kabul edemiyorum"
+msgstr "`%s' için bir obje alamadým"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave::Notify'i öldüremiyorum -- hata %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, fuzzy, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "%s : Socket'i yaratamadým"
+msgstr "%s : \"socket\"'ine baðlanamadým : %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr ""
+msgstr "GNOME::VFS::Slave::Notify'i baþlatamýyorum"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave %s'yi yeniden baþlatamdým -- hata %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave ( IOR bilinmiyor ) 'i yeniden baþlatamadým --  hata %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave %s'yi öldüremedim -- hata %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave ( IOR bilinmiyor ) 'i öldüremedim -- hata %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "GnomeVFSJob kanalýný uyandýrmak için yazým yapamadým ."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:1248
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Tanýnmayan iþlem numarasý %d"
@@ -410,270 +404,149 @@ msgstr "Tanýnmayan iþlem numarasý %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmak için bir boruç yaratamadým "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
-#, fuzzy
+#: libgnomevfs-pthread/gnome-vfs-job.c:1266
 msgid "Operation stopped"
 msgstr "Iþlem durduruldu"
 
 #: modules/file-method.c:332
-#, fuzzy, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Tanýnmayan GnomeVFSXferProgressStatus'u %d"
+msgstr "Tanýnmayan GnomeVFSSeekPosition verisi %d"
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
-msgstr ""
+msgstr "ftpfs : Geçersiz sunucu ismi ."
 
 #: modules/ftp-method.c:376
 msgid "ftpfs: Invalid host address."
-msgstr ""
+msgstr "ftpfs : Geçersiz sunucu adresi ."
 
 #: modules/ftp-method.c:396
-#, fuzzy, c-format
 msgid "ftpfs: making connection to %s"
-msgstr "`%s''de baðlantýyý bekle .\n"
+msgstr "`%s''ye baðlantý kuruluyor"
 
 #: modules/ftp-method.c:402
-#, fuzzy
 msgid "ftpfs: connection interrupted by user"
-msgstr "Iþlem durduruldu"
+msgstr "ftpfs : Iþlem kullanýcý tarafýndan durduruldu"
 
 #: modules/ftp-method.c:404
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
-msgstr ""
+msgstr "ftpfs : %s sunucusuna baðlantý kurulamadý"
 
 #: modules/ftp-method.c:480
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr ""
+msgstr "Yeniden denemek için bekliyorum ... %d ( Control-C ile durdulur )"
 
 #: modules/ftp-method.c:751
 msgid " FTP: Password required for "
-msgstr ""
+msgstr " FTP : Parola gerekli "
 
 #: modules/ftp-method.c:790
 msgid "ftpfs: sending login name"
-msgstr ""
+msgstr "ftpfs : giriþ ismini gönderiyorum"
 
 #: modules/ftp-method.c:796
 msgid "ftpfs: sending user password"
-msgstr ""
+msgstr "ftpfs : kullanýcý parolasýný gönderiyorum"
 
 #: modules/ftp-method.c:802
 msgid "ftpfs: logged in"
-msgstr ""
+msgstr "ftpfs : giriþ baþarýlý oldu"
 
 #: modules/ftp-method.c:814
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
-msgstr ""
+msgstr "ftpfs : Kullanýcý %s için giriþ baþarýsýz oldu "
 
 #: modules/ftp-method.c:827
 msgid "ftpfs: aborting transfer."
-msgstr ""
+msgstr "ftpfs : transfer iptal edildi ."
 
 #: modules/ftp-method.c:829
 #, c-format
 msgid "ftpfs: abort error: %s"
-msgstr ""
+msgstr "ftpfs : iptal hatasý : %s"
 
 #: modules/ftp-method.c:834
 msgid "ftpfs: abort failed"
-msgstr ""
+msgstr "ftpfs : iptal ediliþ baþarýsýz oldu"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
-msgstr ""
+msgstr "ftpfs : pasif transfer þeklini kuramadým"
 
 #: modules/ftp-method.c:1088
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
-msgstr ""
+msgstr "ftfs : dosya %d'yi oraya yükliyorum ( %d )"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
-msgstr ""
+msgstr "ftpfs : CWD baþarýsýz oldu"
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs : yumþak baðý çözemedim"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Yumþak badý çözüyorum ..."
 
 #: modules/ftp-method.c:1498
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
+msgstr "ftpfs : %s FTP dizinini okuyorum ... ( UNIX ls seçeneklerini kullanmýyorum )"
 
 #: modules/ftp-method.c:1502
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
-msgstr ""
+msgstr "ftpfs : %s FTP dizinini okuyorum ..."
 
 #: modules/ftp-method.c:1568
 msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr ""
+msgstr "ftpfs : FTP dizininin okunmasý kullanýcý tarafýndan iptal edildi"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr ""
+msgstr "ftpfs : dosya listesini aldým"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
+msgstr "ftpfs : baþarýsýz oldu ; geriye dönülecek nokta bilinmiyor"
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
-msgstr ""
+msgstr "Transferi baþlatýyorum ..."
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
-msgstr ""
+msgstr "Yeniden almayý hazýrlýyorum ..."
 
-#: modules/http-method.c:471
-#, fuzzy, c-format
+#: modules/http-method.c:500
 msgid "Invalid header `%s'"
-msgstr "Geçersiz seçenekler"
+msgstr "Geçersiz baþlýk `%s'"
 
-#: modules/http-method.c:488
+#: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
-msgstr ""
+msgstr "%s alýnacaktýr"
 
-#: modules/http-method.c:601
-#, fuzzy, c-format
+#: modules/http-method.c:652
 msgid "Closing connection to %s"
-msgstr "`%s''de baðlantýyý bekle .\n"
+msgstr "`%s''ye olan baðlantýyý kes ."
 
-#: modules/http-method.c:686
+#: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
-msgstr ""
+msgstr "%s / %s okundu"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:808
 #, c-format
 msgid "%s read"
-msgstr ""
+msgstr "%s okundu"
 
-#~ msgid "%s\n"
-#~ msgstr "%s\n"
-
-#~ msgid "***SLAVE*** Notifying `%s'\n"
-#~ msgstr "***TABAN*** `%s''yi tanýtýyorum \n"
-
-#~ msgid "/tmp/gnome-vfs-XXXXXX"
-#~ msgstr "/tmp/gnome-vfs-XXXXXX"
-
-#~ msgid ": "
-#~ msgstr ": "
-
-#~ msgid "Ack needed: lock notify ack."
-#~ msgstr "Ack lazým : haber ack'ini kilitliyorum ."
-
-#~ msgid "Ack needed: signaling condition."
-#~ msgstr "Ack lazým : ortamý arýtýyorum ."
-
-#~ msgid "Ack needed: unlocking notify ack."
-#~ msgstr "Ack lazým : haber ack'inin kilidinin açýyorum ."
-
-#~ msgid "All ok."
-#~ msgstr "Herþey yolunda ."
-
-#~ msgid "Broken"
-#~ msgstr "Kýrýk"
-
-#~ msgid "Cannot create job slave."
-#~ msgstr "Iþlem tabanýný yaratamaým ."
-
-#~ msgid "Cannot create pipe for the new GnomeVFSJob: %s"
-#~ msgstr "%s : Yeni bir GnomeVFSJob için boruç  yaratamadým"
-
-#~ msgid "Checking if ack is needed."
-#~ msgstr "ack gerekli mi diye kontrol ediyorum ."
-
-#~ msgid "Closing file descriptors.\n"
-#~ msgstr "Dosya çeviricilerini kapatýyorum .\n"
-
-#~ msgid "Connection established, now performing operation.\n"
-#~ msgstr "Baðlantý saðlandý ,¨imdi iþlem yapýlacak .\n"
-
-#~ msgid "Creating FileHandle object"
-#~ msgstr "Dosya kontrol objesini yaratýyorum"
-
-#~ msgid "Done"
-#~ msgstr "Oldu"
-
-#~ msgid "Done reading file."
-#~ msgstr "Dosya okundu ."
-
-#~ msgid "Done writing file."
-#~ msgstr "Dosya yazýldý ."
-
-#~ msgid "Error %d"
-#~ msgstr "%d hatasý oluþtu "
-
-#~ msgid "Locking notification lock"
-#~ msgstr "Haber etme kilidini kilitliyorum (?)"
-
-#~ msgid "Locking wakeup channel"
-#~ msgstr "Uyandýrma kanalýný kilitliyorum"
-
-#~ msgid "Notify close"
-#~ msgstr "Kapatýlýþtan haberdar et"
-
-#~ msgid "Notifying done"
-#~ msgstr "Haber edildi"
-
-#~ msgid "Notifying load_directory"
-#~ msgstr "load_directory haberi verildi"
-
-#~ msgid "Opening file"
-#~ msgstr "Dosyayý açýyorum"
-
-#~ msgid "Opening file for channel"
-#~ msgstr "Kanal için dosyayý açýyorum"
-
-#~ msgid "Requested to die."
-#~ msgstr "Ölmem istendi ."
-
-#~ msgid "Requested to reset."
-#~ msgstr "Yeniden baþlamam istendi ."
-
-#~ msgid "Requested to stop."
-#~ msgstr "Durmam istendi ."
-
-#~ msgid "Resetting."
-#~ msgstr "Yeniden baþlýyorum ."
-
-#~ msgid "RootPOA"
-#~ msgstr "RootPOA"
-
-#~ msgid "Sending notification"
-#~ msgstr "Haber gönderiyorum"
-
-#~ msgid "Socket `%s' ready to accept connections...\n"
-#~ msgstr "`%s' socketi baðlantýlarý kabul etmeye hazýr ...\n"
-
-#~ msgid "Unlock notify ack lock"
-#~ msgstr "Haber ack kilidini açtým"
-
-#~ msgid "Unlocking access lock"
-#~ msgstr "Eriþim kilidini açýyorum"
-
-#~ msgid "Wait notify condition"
-#~ msgstr "Haber gönderilmesini bekle"
-
-#~ msgid "Wake up!"
-#~ msgstr "Uyan !"
-
-#~ msgid "a"
-#~ msgstr "a"
-
-#~ msgid "lock channel"
-#~ msgstr "kanalý kitle"
-
-#~ msgid "unlocking wakeup channel."
-#~ msgstr "uyandýrma kanalýnýn kilidini aç ."
+#. Multi-Status
+#: modules/http-method.c:970
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP sunucusu geçersiz bir PROPFIND cevabýný gönderdi"
