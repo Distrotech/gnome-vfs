@@ -7,7 +7,6 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(LIBGNOMEVFS_CFLAGS)			\
-        $(OPENSSL_CFLAGS)                       \
 	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
@@ -24,7 +23,6 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_2_la_LIBADD =				\
-	$(OPENSSL_LDFLAGS) 			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
 
