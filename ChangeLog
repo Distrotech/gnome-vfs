@@ -1,3 +1,35 @@
+2001-02-16  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 6635 (in MIME capplet, descriptions can't be
+	edited though they look editable)
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	(gnome_vfs_mime_set_description): New function,
+	just like existing _set_icon.
+
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_mime_type_capplet_update_mime_list_icon_and_description):
+	Changed name to add the _and_description part. It already handled
+	the description properly but the name was misleading.
+	(really_change_icon): Updated for name change.
+	(update_description_from_input): New function, sets the description
+	in database and UI (list) from what's in the field.
+	(description_entry_changed): Set dirty flag.
+	(description_entry_activate), (description_entry_lost_focus):
+	If dirty flag set, update. 
+	(init_mime_capplet): Hook up text field signal handlers, make
+	field editable, remove "No Description" case since putting status
+	text in editable field is wrong.
+	(nautilus_mime_type_capplet_update_info): Clear dirty flag
+	when description is updated due to selection change.
+
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(icon_selected_cb): Updated for name change.
+
 2001-02-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>
@@ -16,6 +48,7 @@
 	(add_mime_clicked):
 	Check for '\0' instead of ' ' to avoid empty strings
 	
+>>>>>>> 1.944.2.19
 2001-02-16  Rebecca Schulman  <rebecka@eazel.com>
 	Fixed bugzilla.eazel.com 6220, that incorrect
 	file counts messed up the progress bar during FTP

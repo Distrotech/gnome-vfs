@@ -63,7 +63,12 @@ gnome_vfs_mime_get_description (const char *mime_type)
 	return gnome_vfs_mime_get_value (mime_type, "description");
 }
 
-
+GnomeVFSResult
+gnome_vfs_mime_set_description (const char *mime_type, const char *description)
+{
+	return gnome_vfs_mime_edit_user_file
+		(mime_type, "description", description);
+}
 
 GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)
