@@ -2263,7 +2263,7 @@ monitor_setup (void)
 
 	if (fam_connection == NULL) {
 		fam_connection = g_malloc0(sizeof(FAMConnection));
-		if (FAMOpen2(fam_connection, "test-monitor") != 0) {
+		if (FAMOpen2(fam_connection, "gnome-vfs user") != 0) {
 #ifdef DEBUG_FAM
 			g_print ("FAMOpen failed, FAMErrno=%d\n", FAMErrno);
 #endif
