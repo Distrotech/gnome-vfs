@@ -75,7 +75,12 @@ void          	 gnome_vfs_async_create_uri	(GnomeVFSAsyncHandle **handle_return,
 						 GnomeVFSAsyncOpenCallback
 						 	callback,
 						 gpointer callback_data);
-
+void             gnome_vfs_async_create_symbolic_link    
+                                                (GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
+						 const gchar *uri_reference,
+						 GnomeVFSAsyncOpenCallback callback,
+						 gpointer callback_data);
 void          	 gnome_vfs_async_create_as_channel
 						(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,

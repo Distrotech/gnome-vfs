@@ -497,6 +497,10 @@ dispatch_job_callback (GIOChannel *source,
 			if (op->specifics.create.notify.result == GNOME_VFS_OK)
 				handle_cancelled_open (job, op);
 			break;
+		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+			if (op->specifics.create_symbolic_link.notify.result == GNOME_VFS_OK)
+				handle_cancelled_open (job, op);
+			break;
 		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
 			if (op->specifics.create_as_channel.notify.result == GNOME_VFS_OK)
 				handle_cancelled_open (job, op);
@@ -518,6 +522,9 @@ dispatch_job_callback (GIOChannel *source,
 			dispatch_open_as_channel_callback (job, op);
 			break;
 		case GNOME_VFS_OP_CREATE:
+			dispatch_create_callback (job, op);
+			break;
+		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
 			dispatch_create_callback (job, op);
 			break;
 		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
@@ -1010,12 +1017,38 @@ execute_create (GnomeVFSJob *job)
 
 	notify_retval = job_oneway_notify_and_close (job);
 
-	if (result == GNOME_VFS_OK)
-		return notify_retval;
-	else
+	if (result != GNOME_VFS_OK)
 		return FALSE;
+
+	return notify_retval;
 }
 
+static gboolean
+execute_create_symbolic_link (GnomeVFSJob *job)
+{
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+	GnomeVFSCreateLinkOp *create_op;
+	gboolean notify_retval;
+
+	create_op = &job->current_op->specifics.create_symbolic_link;
+
+	result = gnome_vfs_create_symbolic_link_cancellable
+						(create_op->request.uri,
+						 create_op->request.uri_reference,
+						 job->current_op->context);
+
+	job->handle = handle;
+	create_op->notify.result = result;
+
+	notify_retval = job_oneway_notify_and_close (job);
+
+	if (result != GNOME_VFS_OK)
+		return FALSE;
+
+	return notify_retval;
+}
+	
 static gboolean
 execute_create_as_channel (GnomeVFSJob *job)
 {
@@ -1436,6 +1469,8 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		return execute_create (job);
 	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
 		return execute_create_as_channel (job);
+	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+		return execute_create_symbolic_link (job);
 	case GNOME_VFS_OP_CLOSE:
 		return execute_close (job);
 	case GNOME_VFS_OP_READ:

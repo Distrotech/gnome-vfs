@@ -369,6 +369,26 @@ gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 	report_failure_open (result, callback, callback_data);
 }
 
+
+void
+gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
+			     GnomeVFSURI *uri,
+			     const gchar *uri_reference,
+			     GnomeVFSAsyncOpenCallback callback,
+			     gpointer callback_data)
+{
+	static GnomeVFSResult
+		(*real_gnome_vfs_async_create_symbolic_link) (GnomeVFSAsyncHandle **handle_return,
+							      GnomeVFSURI *uri,
+							      const gchar *uri_reference,
+							      GnomeVFSAsyncOpenCallback callback,
+							      gpointer callback_data) = NULL;
+	GnomeVFSResult result;
+	CALL_BACKEND (gnome_vfs_async_create_symbolic_link,
+		      (handle_return, uri, uri_reference, callback, callback_data));
+	report_failure_open (result, callback, callback_data);
+}
+
 static gboolean
 report_failure_close_callback (gpointer callback_data)
 {

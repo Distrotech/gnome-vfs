@@ -60,6 +60,11 @@ GnomeVFSResult pthread_gnome_vfs_async_create_uri             (GnomeVFSAsyncHand
 							       guint                                perm,
 							       GnomeVFSAsyncOpenCallback            callback,
 							       gpointer                             callback_data);
+GnomeVFSResult pthread_gnome_vfs_async_create_symbolic_link   (GnomeVFSAsyncHandle                **handle_return,
+							       GnomeVFSURI                         *uri,
+							       const gchar                         *uri_reference,
+							       GnomeVFSAsyncOpenCallback            callback,
+							       gpointer                             callback_data);
 GnomeVFSResult pthread_gnome_vfs_async_create                 (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *text_uri,
 							       GnomeVFSOpenMode                     open_mode,
@@ -301,6 +306,37 @@ pthread_gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 	create_op->request.open_mode = open_mode;
 	create_op->request.exclusive = exclusive;
 	create_op->request.perm = perm;
+
+	gnome_vfs_job_go (job);
+
+	*handle_return = (GnomeVFSAsyncHandle *) job;
+
+	return GNOME_VFS_OK;
+}
+
+GnomeVFSResult pthread_gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
+							     GnomeVFSURI *uri,
+							     const gchar *uri_reference,
+							     GnomeVFSAsyncOpenCallback callback,
+							     gpointer callback_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSCreateLinkOp *create_op;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	job = gnome_vfs_job_new ();
+	if (job == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	gnome_vfs_job_prepare (job, GNOME_VFS_OP_CREATE_SYMBOLIC_LINK,
+			       (GFunc) callback, callback_data);
+
+	create_op = &job->current_op->specifics.create_symbolic_link;
+	create_op->request.uri = gnome_vfs_uri_ref (uri);
+	create_op->request.uri_reference = g_strdup(uri_reference);
 
 	gnome_vfs_job_go (job);
 

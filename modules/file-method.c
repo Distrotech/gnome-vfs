@@ -537,7 +537,7 @@ get_mime_type (GnomeVFSFileInfo *info,
 
 	mime_type = NULL;
 	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
-		&& (info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) != 0) {
+		&& (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
 		/* we are a symlink and aren't asked to follow -
 		 * return the type for a symlink
 		 */
@@ -585,27 +585,30 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 {
 	struct stat statbuf;
 
-	if (statptr == NULL)
+	if (statptr == NULL) {
 		statptr = &statbuf;
+	}
 
-	if (lstat (full_name, statptr) != 0)
+	if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) {
+		if (stat (full_name, statptr) != 0) {
+			/* failed to resolve the link or some other problem */
+			return gnome_vfs_result_from_errno ();
+		}
+	} else if (lstat (full_name, statptr) != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
 
-	if (!S_ISLNK (statptr->st_mode)) {
-		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, FALSE);
-	} else {
-		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+	if (S_ISLNK (statptr->st_mode)) {
+		/* we are dealing with a symlink and the follow flag is off */
+
+		g_assert ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0);
+		
+		file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
 		file_info->symlink_name = read_link (full_name);
 		if (file_info->symlink_name == NULL) {
 			return gnome_vfs_result_from_errno ();
 		}
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
-
-		if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) {
-			if (stat (full_name, statptr) != 0)
-				file_info->type
-					= GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK;
-		}
 	}
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);

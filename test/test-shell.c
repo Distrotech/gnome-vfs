@@ -168,7 +168,7 @@ do_ls (void)
 			case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
 				prechar = '@';
 				break;
-			case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
+			case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
 				prechar = '#';
 				break;
 			default:
@@ -543,8 +543,8 @@ do_info (void)
 		case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
 			fprintf (stdout, "block");
 			break;
-		case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
-			fprintf (stdout, "broken symlink");
+		case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
+			fprintf (stdout, "symlink");
 			break;
 		default:
 			fprintf (stdout, "Error; invalid value");

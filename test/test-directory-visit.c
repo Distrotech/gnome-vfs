@@ -41,8 +41,8 @@ type_to_string (GnomeVFSFileType type)
 		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 		return "Directory";
-	case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
-		return "Broken symlink";
+	case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
+		return "Symbolic Link";
 	case GNOME_VFS_FILE_TYPE_FIFO:
 		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
@@ -68,7 +68,7 @@ directory_visit_callback (const gchar *rel_path,
 
 	printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
 		info->name,
-		GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link]" : "",
+		(info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) ? " [link]" : "",
 		type_to_string (info->type),
 		gnome_vfs_file_info_get_mime_type (info),
 		(glong) info->size, info->permissions);

@@ -41,8 +41,8 @@ type_to_string (GnomeVFSFileType type)
 		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 		return "Directory";
-	case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
-		return "Broken symlink";
+	case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
+		return "Symbolic Link";
 	case GNOME_VFS_FILE_TYPE_FIFO:
 		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:

@@ -61,6 +61,7 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_OPEN,
 	GNOME_VFS_OP_OPEN_AS_CHANNEL,
 	GNOME_VFS_OP_CREATE,
+	GNOME_VFS_OP_CREATE_SYMBOLIC_LINK,
 	GNOME_VFS_OP_CREATE_AS_CHANNEL,
 	GNOME_VFS_OP_CLOSE,
 	GNOME_VFS_OP_READ,
@@ -110,6 +111,18 @@ struct GnomeVFSCreateOp {
 	} notify;
 };
 typedef struct GnomeVFSCreateOp GnomeVFSCreateOp;
+
+struct GnomeVFSCreateLinkOp {
+	struct {
+		GnomeVFSURI *uri;
+		char *uri_reference;
+	} request;
+
+	struct {
+		GnomeVFSResult result;
+	} notify;
+};
+typedef struct GnomeVFSCreateLinkOp GnomeVFSCreateLinkOp;
 
 struct GnomeVFSCreateAsChannelOp {
 	struct {
@@ -226,6 +239,7 @@ typedef union {
 	GnomeVFSOpenOp open;
 	GnomeVFSOpenAsChannelOp open_as_channel;
 	GnomeVFSCreateOp create;
+	GnomeVFSCreateLinkOp create_symbolic_link;
 	GnomeVFSCreateAsChannelOp create_as_channel;
 	GnomeVFSCloseOp close;
 	GnomeVFSReadOp read;

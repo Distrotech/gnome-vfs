@@ -1,3 +1,41 @@
+2000-07-03  Seth Nickell  <seth@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_create_uri),
+	(pthread_gnome_vfs_async_create_symbolic_link):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (dispatch_job_callback),
+	(execute_create), (execute_create_symbolic_link),
+	(gnome_vfs_job_execute):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_async_create_symbolic_link):
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Added asynchronous calls for the creation of symbolic links.
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	Rename GNOME_VFS_FILE_TYPE_BROKEN_SYMLINK to GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK, remove
+	GNOME_VFS_FILE_FLAGS_SYMLINK. 
+	
+	* test/gnome-file-selection/gnome-file-selection.c:
+	(populate_callback):
+	* test/test-async-directory.c: (type_to_string), (print_list):
+	* test/test-directory-visit.c: (type_to_string),
+	(directory_visit_callback):
+	* test/test-directory.c: (type_to_string), (print_list):
+	* test/test-info.c: (type_to_string):
+	* test/test-shell.c: (do_ls), (do_info):
+	Update pieces of GnomeVFS to reflect the aforementioned change, and check behaviors
+	to reduce breakage regarding the change from a symbolic link as a flag to a type.
+	
+	* modules/file-method.c: (get_mime_type), (get_stat_info):
+	Add handling for GNOME_VFS_INFO_FOLLOW_LINKS.
+
+	* test/test-symlinks.c: (deal_with_result), (create_link_callback),
+	(make_link), (make_link_async), (check_broken_links), (main):
+	Add tests for link following, broken symbolic link checking, and async. link
+	creation checking to the symbolic link checking program.
+	
 2000-06-27  Michael Meeks  <michael@helixcode.com>
 	
 	* modules/efs-method.c (gnome_vfs_file_system_*): Create in-file

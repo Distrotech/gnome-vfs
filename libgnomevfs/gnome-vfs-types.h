@@ -111,7 +111,7 @@ enum GnomeVFSFileType {
 	GNOME_VFS_FILE_TYPE_SOCKET,
 	GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE,
 	GNOME_VFS_FILE_TYPE_BLOCK_DEVICE,
-	GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK
+	GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK
 };
 typedef enum GnomeVFSFileType GnomeVFSFileType;
 
@@ -220,8 +220,6 @@ typedef struct GnomeVFSFileMetadata GnomeVFSFileMetadata;
 /* File flags.  */
 enum GnomeVFSFileFlags {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
-	/* Whether the file is a symlink.  */
-	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
 	/* Whether the file is on a local file system.  */
 	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
 };
