@@ -122,7 +122,7 @@
 0       string  	PO^Q`           			application/msword
 0:64	string		gmr:Workbook				application/x-gnumeric
 0:64	string		\<abiword				text/abiword
-0	string		*BEGIN SPREADSHEETS			application/x-applix-spreadsheet
+0	string		*BEGIN\ SPREADSHEETS			application/x-applix-spreadsheet
 0	string		\x00\x00\x02\x00			application/vnd.lotus-1-2-3
 31      string		Oleo					application/x-oleo
 0	string		FFIL					application/x-font-ttf

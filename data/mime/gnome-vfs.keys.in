@@ -79,11 +79,11 @@ application/postscript
 	short_list_application_ids_for_advanced_user_level=ggv,gv,ghostview
 
 application/qif
-	description=Quicken document
+	_description=Quicken document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=gnucash
 	short_list_application_ids_for_intermediate_user_level=gnucash
-	short_list_application_ids_for_advanced_user_level=gnucash	
+	short_list_application_ids_for_advanced_user_level=gnucash
 
 application/rtf
 	_description=rich text document
@@ -92,14 +92,6 @@ application/rtf
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice,applix
 	short_list_application_ids_for_advanced_user_level=abiword,staroffice,applix
 
-application/vnd.ms-excel
-	_description=Microsoft Excel spreadsheet
-	icon_filename=i-spreadsheet
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=staroffice,gnumeric,applix
-	short_list_application_ids_for_intermediate_user_level=staroffice,gnumeric,applix
-	short_list_application_ids_for_advanced_user_level=staroffice,gnumeric,applix
-
 application/vnd.lotus-1-2-3
 	_description=Lotus 1-2-3 spreadsheet
 	icon_filename=i-spreadsheet
@@ -107,6 +99,14 @@ application/vnd.lotus-1-2-3
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_advanced_user_level=gnumeric
+
+application/vnd.ms-excel
+	_description=Microsoft Excel spreadsheet
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=staroffice,gnumeric,applix
+	short_list_application_ids_for_intermediate_user_level=staroffice,gnumeric,applix
+	short_list_application_ids_for_advanced_user_level=staroffice,gnumeric,applix
 
 # also audio/x-pn-realaudio, audio/x-real-audio
 application/vnd.rn-realmedia
@@ -120,7 +120,6 @@ application/vnd.rn-realmedia
 # also text/abiword
 application/x-abiword
 	_description=AbiWord document
-	icon_filename=i-regular
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=abiword,staroffice
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice
@@ -191,13 +190,6 @@ application/x-class-file
 	short_list_application_ids_for_novice_user_level=java
 	short_list_application_ids_for_intermediate_user_level=java
 	short_list_application_ids_for_advanced_user_level=java
-
-application/x-jbuilder-project
-	_description=JBuilder Project
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=jbuilder
-	short_list_application_ids_for_intermediate_user_level=jbuilder
-	short_list_application_ids_for_advanced_user_level=jbuilder
 
 # we are aware of the crappiness of this description
 application/x-compress
@@ -356,6 +348,13 @@ application/x-java-byte-code
 	short_list_application_ids_for_intermediate_user_level=java
 	short_list_application_ids_for_advanced_user_level=java
 
+application/x-jbuilder-project
+	_description=JBuilder Project
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=jbuilder
+	short_list_application_ids_for_intermediate_user_level=jbuilder
+	short_list_application_ids_for_advanced_user_level=jbuilder
+
 application/x-kde-app-info
 	_description=KDE application details
 	icon_filename=gnome-application-x-kde-app-info.png
@@ -470,10 +469,6 @@ application/x-rar
 	short_list_application_ids_for_intermediate_user_level=guitar
 	short_list_application_ids_for_advanced_user_level=guitar
 
-application/x-reject
-	_description=rejected patch file
-	icon_filename=gnome-application-x-reject.png
-
 #also application/x-rar
 application/x-rar-compressed
 	_description=RAR archive
@@ -482,6 +477,10 @@ application/x-rar-compressed
 	short_list_application_ids_for_novice_user_level=guitar
 	short_list_application_ids_for_intermediate_user_level=guitar
 	short_list_application_ids_for_advanced_user_level=guitar
+
+application/x-reject
+	_description=rejected patch file
+	icon_filename=gnome-application-x-reject.png
 
 application/x-rpm
 	_description=RPM package
@@ -576,6 +575,12 @@ application/x-unix-archive
 application/x-ustar
 	_description=ustar archive
 
+application/x-wais-source
+	_description=WAIS source code
+
+application/x-wordperfect
+	_description=WordPerfect document
+
 application/x-xbase
 	_description=Xbase database
 	icon_filename=i-spreadsheet
@@ -583,12 +588,6 @@ application/x-xbase
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_advanced_user_level=gnumeric
-
-application/x-wais-source
-	_description=WAIS source code
-
-application/x-wordperfect
-	_description=WordPerfect document
 
 application/x-zoo
 	_description=zoo archive
@@ -1293,12 +1292,6 @@ video/msvideo
 	short_list_application_ids_for_intermediate_user_level=xmps,omsomi,gtv,xanim
 	short_list_application_ids_for_advanced_user_level=xmps,omsomi,gtv,xanim
 
-video/x-ms-asf
-	_description=MS ASF video
-	short_list_application_ids_for_novice_user_level=xmps
-	short_list_application_ids_for_intermediate_user_level=xmps
-	short_list_application_ids_for_advanced_user_level=xmps
-
 video/quicktime
 	_description=QuickTime movie
 	icon_filename=gnome-video-quicktime.png
@@ -1341,6 +1334,12 @@ video/x-fli
 	short_list_application_ids_for_intermediate_user_level=xanim
 	short_list_application_ids_for_advanced_user_level=xanim
 
+video/x-ms-asf
+	_description=MS ASF video
+	short_list_application_ids_for_novice_user_level=xmps
+	short_list_application_ids_for_intermediate_user_level=xmps
+	short_list_application_ids_for_advanced_user_level=xmps
+
 video/x-msvideo
 	_description=Microsoft video
 	icon_filename=gnome-video-x-msvideo.png
@@ -1362,6 +1361,7 @@ video/x-sgi-movie
 	short_list_application_ids_for_intermediate_user_level=xanim
 	short_list_application_ids_for_advanced_user_level=xanim
 
+
 x-directory/normal
 	_description=folder
 	default_action_type=component
@@ -1376,9 +1376,19 @@ x-directory/search
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 
+x-directory/webdav
+	_description=web folder
+	default_action_type=component
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_application_ids_for_novice_user_level=mozilla
+	short_list_application_ids_for_intermediate_user_level=mozilla
+	short_list_application_ids_for_advanced_user_level=mozilla
+
 #
 # x-directory/webdav-prefer-directory is returned for DAV directories
-# that contain the nautilus-treat-as-directory property.  This is used
+# that contain the nautilus-treat-as-directory property. This is used
 # in the Eazel storage service to default to the icon view, while still
 # defaulting to a web view for normal web sites that happen to support DAV.
 #
@@ -1389,17 +1399,6 @@ x-directory/webdav-prefer-directory
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_application_ids_for_novice_user_level=mozilla
-	short_list_application_ids_for_intermediate_user_level=mozilla
-	short_list_application_ids_for_advanced_user_level=mozilla
-
-
-x-directory/webdav
-	_description=web folder
-	default_action_type=component
-	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_advanced_user_level=mozilla

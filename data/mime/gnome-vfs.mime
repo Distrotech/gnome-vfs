@@ -32,9 +32,6 @@
 application/andrew-inset
 	ext: ez
 
-application/vnd.ms-powerpoint
-	ext: ppt
-
 application/msword
 	ext: doc
 
@@ -64,6 +61,9 @@ application/vnd.lotus-1-2-3
 
 application/vnd.ms-excel
 	ext: xls xla xlt xlc xld
+
+application/vnd.ms-powerpoint
+	ext: ppt
 
 application/x-applix-spreadsheet
 	ext: as
@@ -174,17 +174,17 @@ application/x-jbuilder-project
 application/x-kde-app-info
 	ext: kdelnk
 
-application/x-kword
-	ext: kwd
-
-application/x-kspread
-	ext: ksp
-
 application/x-killustrator
 	ext: kil
 
 application/x-kpresenter
 	ext: kpr
+
+application/x-kspread
+	ext: ksp
+
+application/x-kword
+	ext: kwd
 
 application/x-lha
 	ext: lha
@@ -600,12 +600,12 @@ video/x-flc
 video/x-fli
 	ext: fli
 
+video/x-ms-asf
+	ext: asf asx
+
 video/x-msvideo
 	ext: avi
 	icon_filename=gnome-video-x-msvideo.png
-
-video/x-ms-asf
-	ext: asf asx
 
 video/x-sgi-movie
 	ext: movie
