@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-15 04:25+0100\n"
-"PO-Revision-Date: 2004-01-15 13:03+0100\n"
+"POT-Creation-Date: 2004-01-24 04:31+0100\n"
+"PO-Revision-Date: 2004-01-25 17:13+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: daemon/gnome-vfs-daemon.c:573
+#: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
 msgstr "Nemohu inicializovat Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:579
+#: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
 
@@ -215,246 +215,246 @@ msgstr "Neznámý typ úlohy %u"
 msgid "Operation stopped"
 msgstr "Operace zastavena"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Nemohu zpracovat: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
 msgstr "Další chyby při zpracovávání budou ignorovány."
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:35
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
 msgstr "Bez chyb"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:36
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
 msgstr "Soubor nenalezen"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:37
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
 msgstr "Obecná chyba"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
 msgstr "Interní chyba"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
 msgstr "Neplatné parametry"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
 msgstr "Nepodporovaná operace"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
 msgstr "Chyba vstupu/výstupu"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
 msgstr "Poškozená data"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
 msgstr "Neplatný formát"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
 msgstr "Chybný handle souboru"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
 msgstr "Příliš velký soubor"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
 msgstr "Došlo místo na zařízení"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
 msgstr "Systém souborů pouze pro čtení"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
 msgstr "Neplatné URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
 msgstr "Soubor nebyl otevřen"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
 msgstr "Režim otevření je neplatný"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
 msgstr "Přístup zamítnut"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
 msgstr "Příliš mnoho otevřených souborů"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
 msgstr "Konec souboru"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
 msgstr "Není adresář"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
 msgstr "Probíhá operace"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
 msgstr "Operace přerušena"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
 msgstr "Soubor existuje"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
 msgstr "Nalezeny odkazy ve smyčce"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
 msgstr "Operace není povolena"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
 msgstr "Je adresář"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Nedostatek paměti"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
 msgstr "Počítač nenalezen"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
 msgstr "Neplatný název počítače"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
 msgstr "Počítač nemá adresu"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
 msgstr "Přihlášení selhalo"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
 msgstr "Operace zrušena"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
 msgstr "Adresář zaneprázdněn"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
 msgstr "Adresář není prázdný"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
 msgstr "Příliš mnoho odkazů"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
 msgstr "Systém souborů pouze pro čtení"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
 msgstr "Není na stejném systému souborů"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
 msgstr "Příliš dlouhý název"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
 msgstr "Služba není k dispozici"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
 msgstr "Požadavek činí data služby zastaralými"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:78
 msgid "Protocol error"
 msgstr "Chyba protokolu"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
 msgstr "Nemohu najít master browser"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
 msgstr "Neasociována implicitní akce"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
 msgstr "Žádná obsluha pro schéma URL"
 
 #. GNOME_VFS_ERROR_PARSE
-#: libgnomevfs/gnome-vfs-result.c:79
+#: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
 msgstr "Chyba při zpracovávání příkazového řádku"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: libgnomevfs/gnome-vfs-result.c:80
+#: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
 msgstr "Chyba při spouštění příkazu"
 
-#: libgnomevfs/gnome-vfs-result.c:174
+#: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -482,60 +482,62 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1106
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
 msgstr "Disketa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
 msgstr "Jednotka Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
 msgstr "Fotoaparát"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
 msgstr "Kořenový svazek"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
 msgstr "Zvukové CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
 msgid "Unknown volume"
 msgstr "Neznámý svazek"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
 msgstr "Síťový server"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#. Handle floppy case
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Nemohu připojit disketovou mechaniku. V mechanice pravděpodobně není disketa."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#. All others
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Nemohu připojit svazek. V mechanice pravděpodobně není médium."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -543,7 +545,7 @@ msgstr ""
 "Nemohu připojit disketovou mechaniku. Disketa je pravděpodobně ve formátu, "
 "který nelze připojit."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -551,28 +553,28 @@ msgstr ""
 "Nemohu připojit vybraný svazek. Svazek je pravděpodobně ve formátu, který "
 "nelze připojit."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Nemohu připojit vybranou disketovou mechaniku."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Nemohu připojit vybraný svazek."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Nemohu odpojit vybraný svazek."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:220
-#: libgnomevfs/gnome-vfs-volume-ops.c:252
+#: libgnomevfs/gnome-vfs-volume-ops.c:253
+#: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
 msgstr "Nemohu spustit příkaz"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:245
+#: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
 msgstr "Nemohu vysunout médium"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:421
+#: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
 msgstr "Nemohu odpojit připojený server"
 
@@ -657,7 +659,7 @@ msgstr "Jiné umístění zadejte pomocí proměnné prostředí %s.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Stadardní generátor monikerů"
+msgstr "Standardní generátor monikerů"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -681,7 +683,7 @@ msgstr "Implicitní aplikace terminálu"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Arugment exec pro implicitní terminál"
+msgstr "Argument exec pro implicitní terminál"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -689,10 +691,7 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
-"Aplikace, kterou používat pro zobrazování souborů, které pro zobrazení "
-"vyžadují komponentu. Parametr %s bude naharazen URI souboru, parametr %c "
-"bude nahrazen IID komponenty."
+msgstr "Aplikace, kterou používat pro zobrazování souborů, které pro zobrazení vyžadují komponentu. Parametr %s bude nahrazen URI souboru, parametr %c bude nahrazen IID komponenty."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -773,8 +772,7 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command- obsluhoval URL HTTPS."
+msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
@@ -975,11 +973,7 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"Tento klíč obsahuje seznam počítačů, které jsou připojeny přímo, ne přes "
-"proxy (pokud je aktivní). Hodnoty mohou být jména počítačů, domény (pomocí "
-"počátečního zástupního znaku, např. *.foo.com), IP adresy počítačů (IPv4 i "
-"IPv6) a adresy sítí s maskou sítě (něco jako 192.168.0.0/24)."
+msgstr "Tento klíč obsahuje seznam počítačů, které jsou připojeny přímo, ne přes proxy (pokud je aktivní). Hodnoty mohou být jména počítačů, domény (pomocí počátečního zástupného znaku, např. *.foo.com), IP adresy počítačů (IPv4 i IPv6) a adresy sítí s maskou sítě (něco jako 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
