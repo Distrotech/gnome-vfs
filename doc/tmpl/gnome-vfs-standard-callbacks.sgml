@@ -28,12 +28,6 @@ gnome-vfs-standard-callbacks
 
 
 
-<!-- ##### TYPEDEF GnomeVFSModuleCallbackAuthenticationIn ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### TYPEDEF GnomeVFSModuleCallbackAuthenticationOut ##### -->
 <para>
 

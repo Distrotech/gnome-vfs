@@ -66,12 +66,6 @@ functions for getting information about files based on their MIME type
 </para>
 
 
-<!-- ##### TYPEDEF GnomeVFSMimeAction ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION gnome_vfs_mime_application_copy ##### -->
 <para>
 

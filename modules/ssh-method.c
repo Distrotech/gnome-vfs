@@ -36,6 +36,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
+#include <sys/signal.h>
 
 typedef struct {
 	GnomeVFSMethodHandle method_handle;

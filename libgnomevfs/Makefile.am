@@ -105,6 +105,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-ops.h				\
 	gnome-vfs-result.h			\
 	gnome-vfs-standard-callbacks.h		\
+	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
 	gnome-vfs-xfer.h			\

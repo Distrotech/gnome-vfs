@@ -52,6 +52,11 @@ typedef struct {
 	GnomeVFSMimeApplicationArgumentType expects_uris;
 	GList *supported_uri_schemes;
 	gboolean requires_terminal;
+
+	/* Padded to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSMimeApplication;
 
 typedef struct {
@@ -61,6 +66,10 @@ typedef struct {
 		void *dummy_component;
 		GnomeVFSMimeApplication *application;
 	} action;
+
+	/* Padded to avoid future breaks in ABI compatibility */
+	void *reserved1;
+
 } GnomeVFSMimeAction;
 
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                   (GnomeVFSMimeApplication *application);

@@ -203,6 +203,11 @@ typedef struct {
 	 * traversing directories. Used by metadata copying.
 	 */
 
+	/* Reserved for future expansions to GnomeVFSXferProgressInfo
+	 * without having to break ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSXferProgressInfo;
 
 /* This is the prototype for functions called during a transfer operation to
@@ -253,6 +258,13 @@ typedef struct GnomeVFSProgressCallbackState {
 
 	/* Period at which the update_callback will be called. */
 	gint64 update_callback_period;
+
+
+	/* Reserved for future expansions to GnomeVFSProgressCallbackState
+	 * without having to break ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSProgressCallbackState;
 
 GnomeVFSResult gnome_vfs_xfer_uri_list    (const GList                  *source_uri_list,

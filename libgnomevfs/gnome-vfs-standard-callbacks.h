@@ -70,6 +70,11 @@ typedef struct {
 		AuthTypeBasic,	/* Password will be transmitted unencrypted */
 		AuthTypeDigest	/* Digest is transferred, not plaintext credentials */		
 	} auth_type;
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSModuleCallbackAuthenticationIn;
 
 typedef struct {
@@ -80,6 +85,11 @@ typedef struct {
 				 * code
 				 */
 	char *password;		/* will be freed by g_free */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSModuleCallbackAuthenticationOut;
 
 /*
@@ -94,10 +104,18 @@ typedef struct {
 
 typedef struct {
 	GnomeVFSURI *uri;		/* URI of operation */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackAdditionalHeadersIn;
 
 typedef struct {
 	GList *headers;			/* list of headers, will be freeed */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackAdditionalHeadersOut;
 
 /*
@@ -113,10 +131,18 @@ typedef struct {
 typedef struct {
 	GnomeVFSURI *uri;		/* URI of operation */
 	GList *headers;			/* list of headers */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackReceivedHeadersIn;
 
 typedef struct {
 	int dummy;
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackReceivedHeadersOut;
 
 /*
@@ -137,10 +163,18 @@ typedef struct {
 	int percentage;		/* Percentage indicating completeness 0-100 or
 				 * -1 if there is no progress percentage to
 				 * report */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackStatusMessageIn;
 
 typedef struct {
 	int dummy; /* empty structs not allowed */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSModuleCallbackStatusMessageOut;
 
 G_END_DECLS

@@ -16,6 +16,32 @@
 
 	Fixes bug #74189.
 
+2002-06-21  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/tmpl/gnome-vfs-method.sgml:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-xfer.h:
+
+	Pad every struct by at least two "void *"s to avoid
+	future breaks in ABI compatibility.
+
+	When we already know we're going to have to add
+	fields to a struct, and can forsee needing extra,
+	pad by a little more (notable GnomeVFSFileInfo).
+	
+	* modules/ssh-method.c:
+
+	Fix compilation problem on Solaris.
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/Makefile.am
+
+	Add gnome-vfs-types.h back in.
+	
 2002-06-21  Stephen Browne <stephen.browne@sun.com>
 
 	* modules/cdemenu-desktop-method.c (find_all_included_files): fix for
