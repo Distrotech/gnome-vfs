@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-04 12:12+0200\n"
-"PO-Revision-Date: 2003-08-04 14:48+0300\n"
+"POT-Creation-Date: 2003-08-14 04:29+0200\n"
+"PO-Revision-Date: 2003-08-14 10:10+0300\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -353,34 +353,36 @@ msgstr "Памылка запуску загада"
 msgid "Unknown error"
 msgstr "Невядомая памылка"
 
+# libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 байт"
+
 # libgnomevfs/gnome-vfs-utils.c:67
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u байт"
-msgstr[1] "%u байта"
-msgstr[2] "%u байтаў"
+msgid "%u bytes"
+msgstr "%u байтаў"
 
 # libgnomevfs/gnome-vfs-utils.c:74
-#: libgnomevfs/gnome-vfs-utils.c:89
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
 # libgnomevfs/gnome-vfs-utils.c:78
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
 # libgnomevfs/gnome-vfs-utils.c:82
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1081
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (нерэчаісны юнікод)"
 
@@ -473,8 +475,4 @@ msgstr "агульная мянушка Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "агульная мянушка файла"
-
-# libgnomevfs/gnome-vfs-utils.c:65
-#~ msgid "1 byte"
-#~ msgstr "1 байт"
 
