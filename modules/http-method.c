@@ -1656,6 +1656,10 @@ do_read (GnomeVFSMethod *method,
 	result = gnome_vfs_iobuf_read (handle->iobuf, buffer, num_bytes,
 				       bytes_read);
 
+	if (*bytes_read == 0) {
+		return GNOME_VFS_ERROR_EOF;
+	}				       
+
 	handle->bytes_read += *bytes_read;
 
 #ifdef HTTP_VFS_CONTEXT_MESSAGES

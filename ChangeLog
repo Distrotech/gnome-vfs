@@ -1,3 +1,10 @@
+2000-10-18  John Sullivan  <sullivan@eazel.com>
+
+	* modules/http-method.c: (do_read):
+	Made http module return GNOME_VFS_ERROR_EOF when it reads
+	0 bytes. It was confusing clients by returning GNOME_VFS_OK
+	in this state.
+
 2000-10-17  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name):
