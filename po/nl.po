@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-31 13:48+0100\n"
+"POT-Creation-Date: 2005-02-10 12:25+0100\n"
 "PO-Revision-Date: 2005-01-31 22:03+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -223,22 +223,22 @@ msgid "Operation stopped"
 msgstr "Operatie gestopt"
 
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:262
-#: libgnomevfs/gnome-vfs-mime-handlers.c:313
-#: libgnomevfs/gnome-vfs-mime-handlers.c:607
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:644
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:823
-#: libgnomevfs/gnome-vfs-mime-handlers.c:845
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:936
-#: libgnomevfs/gnome-vfs-mime-handlers.c:953
-#: libgnomevfs/gnome-vfs-mime-handlers.c:970
-#: libgnomevfs/gnome-vfs-mime-handlers.c:988
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
+#: libgnomevfs/gnome-vfs-mime-handlers.c:255
+#: libgnomevfs/gnome-vfs-mime-handlers.c:306
+#: libgnomevfs/gnome-vfs-mime-handlers.c:600
+#: libgnomevfs/gnome-vfs-mime-handlers.c:619
+#: libgnomevfs/gnome-vfs-mime-handlers.c:637
+#: libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: libgnomevfs/gnome-vfs-mime-handlers.c:675
+#: libgnomevfs/gnome-vfs-mime-handlers.c:816
+#: libgnomevfs/gnome-vfs-mime-handlers.c:838
+#: libgnomevfs/gnome-vfs-mime-handlers.c:857
+#: libgnomevfs/gnome-vfs-mime-handlers.c:876
+#: libgnomevfs/gnome-vfs-mime-handlers.c:929
+#: libgnomevfs/gnome-vfs-mime-handlers.c:946
+#: libgnomevfs/gnome-vfs-mime-handlers.c:963
+#: libgnomevfs/gnome-vfs-mime-handlers.c:981
+#: libgnomevfs/gnome-vfs-mime-handlers.c:999
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -1130,7 +1130,11 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Indien waar, wordt voor een verbinding met de proxyserver aanmeldingscontrole vereist. De combinatie van gebruikersnaam en wachtwoord komt voort uit \"/system/http_proxy/authentication_user\" en \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Indien waar, wordt voor een verbinding met de proxyserver "
+"aanmeldingscontrole vereist. De combinatie van gebruikersnaam en wachtwoord "
+"komt voort uit \"/system/http_proxy/authentication_user\" en \"/system/"
+"http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"

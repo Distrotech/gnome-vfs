@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-02 05:54+0100\n"
+"POT-Creation-Date: 2005-02-10 12:25+0100\n"
 "PO-Revision-Date: 2005-02-02 09:43+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -217,22 +217,22 @@ msgid "Operation stopped"
 msgstr "Operacioni u ndërpre"
 
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:262
-#: libgnomevfs/gnome-vfs-mime-handlers.c:313
-#: libgnomevfs/gnome-vfs-mime-handlers.c:607
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:644
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:823
-#: libgnomevfs/gnome-vfs-mime-handlers.c:845
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:936
-#: libgnomevfs/gnome-vfs-mime-handlers.c:953
-#: libgnomevfs/gnome-vfs-mime-handlers.c:970
-#: libgnomevfs/gnome-vfs-mime-handlers.c:988
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
+#: libgnomevfs/gnome-vfs-mime-handlers.c:255
+#: libgnomevfs/gnome-vfs-mime-handlers.c:306
+#: libgnomevfs/gnome-vfs-mime-handlers.c:600
+#: libgnomevfs/gnome-vfs-mime-handlers.c:619
+#: libgnomevfs/gnome-vfs-mime-handlers.c:637
+#: libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: libgnomevfs/gnome-vfs-mime-handlers.c:675
+#: libgnomevfs/gnome-vfs-mime-handlers.c:816
+#: libgnomevfs/gnome-vfs-mime-handlers.c:838
+#: libgnomevfs/gnome-vfs-mime-handlers.c:857
+#: libgnomevfs/gnome-vfs-mime-handlers.c:876
+#: libgnomevfs/gnome-vfs-mime-handlers.c:929
+#: libgnomevfs/gnome-vfs-mime-handlers.c:946
+#: libgnomevfs/gnome-vfs-mime-handlers.c:963
+#: libgnomevfs/gnome-vfs-mime-handlers.c:981
+#: libgnomevfs/gnome-vfs-mime-handlers.c:999
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -678,7 +678,8 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -1118,8 +1119,8 @@ msgid ""
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Nëse e vërtetë, atëhere lidhjet me server-in proxy kanë nevojë për "
-"autentifikim. Kombinimi përdorues/fjalëkalim përcaktohet nga "
-"\"/system/http_proxy/authentication_user\" dhe \"/system/http_proxy/"
+"autentifikim. Kombinimi përdorues/fjalëkalim përcaktohet nga \"/system/"
+"http_proxy/authentication_user\" dhe \"/system/http_proxy/"
 "authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
@@ -1229,7 +1230,8 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr ""
+"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1238,4 +1240,3 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
-

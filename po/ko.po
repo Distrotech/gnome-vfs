@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.9.91\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-04 07:12+0900\n"
+"POT-Creation-Date: 2005-02-10 12:25+0100\n"
 "PO-Revision-Date: 2005-02-04 07:13+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -216,22 +216,22 @@ msgid "Operation stopped"
 msgstr "작동 중지"
 
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:262
-#: libgnomevfs/gnome-vfs-mime-handlers.c:313
-#: libgnomevfs/gnome-vfs-mime-handlers.c:607
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:644
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:823
-#: libgnomevfs/gnome-vfs-mime-handlers.c:845
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:936
-#: libgnomevfs/gnome-vfs-mime-handlers.c:953
-#: libgnomevfs/gnome-vfs-mime-handlers.c:970
-#: libgnomevfs/gnome-vfs-mime-handlers.c:988
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
+#: libgnomevfs/gnome-vfs-mime-handlers.c:255
+#: libgnomevfs/gnome-vfs-mime-handlers.c:306
+#: libgnomevfs/gnome-vfs-mime-handlers.c:600
+#: libgnomevfs/gnome-vfs-mime-handlers.c:619
+#: libgnomevfs/gnome-vfs-mime-handlers.c:637
+#: libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: libgnomevfs/gnome-vfs-mime-handlers.c:675
+#: libgnomevfs/gnome-vfs-mime-handlers.c:816
+#: libgnomevfs/gnome-vfs-mime-handlers.c:838
+#: libgnomevfs/gnome-vfs-mime-handlers.c:857
+#: libgnomevfs/gnome-vfs-mime-handlers.c:876
+#: libgnomevfs/gnome-vfs-mime-handlers.c:929
+#: libgnomevfs/gnome-vfs-mime-handlers.c:946
+#: libgnomevfs/gnome-vfs-mime-handlers.c:963
+#: libgnomevfs/gnome-vfs-mime-handlers.c:981
+#: libgnomevfs/gnome-vfs-mime-handlers.c:999
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -1082,7 +1082,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "참이면, 프록시 서버에 연결하는 데 인증이 필요합니다. 사용자 이름과 열쇠글은 \"/system/http_proxy/authentication_user\" 및 \"/system/http_proxy/authentication_password\"에서 지정합니다."
+msgstr ""
+"참이면, 프록시 서버에 연결하는 데 인증이 필요합니다. 사용자 이름과 열쇠글은 "
+"\"/system/http_proxy/authentication_user\" 및 \"/system/http_proxy/"
+"authentication_password\"에서 지정합니다."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"

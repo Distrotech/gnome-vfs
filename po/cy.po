@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-08 07:39+0000\n"
+"POT-Creation-Date: 2005-02-10 12:25+0100\n"
 "PO-Revision-Date: 2005-02-08 07:48+0000\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -226,22 +226,22 @@ msgid "Operation stopped"
 msgstr "Ataliwyd y gweithrediad"
 
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:262
-#: libgnomevfs/gnome-vfs-mime-handlers.c:313
-#: libgnomevfs/gnome-vfs-mime-handlers.c:607
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:644
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:823
-#: libgnomevfs/gnome-vfs-mime-handlers.c:845
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:936
-#: libgnomevfs/gnome-vfs-mime-handlers.c:953
-#: libgnomevfs/gnome-vfs-mime-handlers.c:970
-#: libgnomevfs/gnome-vfs-mime-handlers.c:988
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
+#: libgnomevfs/gnome-vfs-mime-handlers.c:255
+#: libgnomevfs/gnome-vfs-mime-handlers.c:306
+#: libgnomevfs/gnome-vfs-mime-handlers.c:600
+#: libgnomevfs/gnome-vfs-mime-handlers.c:619
+#: libgnomevfs/gnome-vfs-mime-handlers.c:637
+#: libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: libgnomevfs/gnome-vfs-mime-handlers.c:675
+#: libgnomevfs/gnome-vfs-mime-handlers.c:816
+#: libgnomevfs/gnome-vfs-mime-handlers.c:838
+#: libgnomevfs/gnome-vfs-mime-handlers.c:857
+#: libgnomevfs/gnome-vfs-mime-handlers.c:876
+#: libgnomevfs/gnome-vfs-mime-handlers.c:929
+#: libgnomevfs/gnome-vfs-mime-handlers.c:946
+#: libgnomevfs/gnome-vfs-mime-handlers.c:963
+#: libgnomevfs/gnome-vfs-mime-handlers.c:981
+#: libgnomevfs/gnome-vfs-mime-handlers.c:999
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -252,8 +252,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Ffwythiant a anargymhellir. Ni chynhelir newidiadau defnyddiwr i'r gronfa ddata "
-"MIME bellach."
+"Ffwythiant a anargymhellir. Ni chynhelir newidiadau defnyddiwr i'r gronfa "
+"ddata MIME bellach."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -712,8 +712,7 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Methu a gosod y gyfrol ddewiswyd. Hwyrach ei fod mewn ffurf na ellir ei "
-"osod."
+"Methu a gosod y gyfrol ddewiswyd. Hwyrach ei fod mewn ffurf na ellir ei osod."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -1209,8 +1208,8 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Y porth ar y peiriant ddiffinnir gan \"/system/proxy/socks_host\" yr ydych yn "
-"ei ddefnyddio fel dirprwy."
+"Y porth ar y peiriant ddiffinnir gan \"/system/proxy/socks_host\" yr ydych "
+"yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1597,4 +1596,3 @@ msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
 #~ msgid "1 byte"
 #~ msgstr "1 beit"
-
