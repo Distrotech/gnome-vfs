@@ -1083,7 +1083,7 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	EggDesktopEntries *entries;
 	GError *entries_error;
 	GnomeVFSMimeApplication *application;
-	char *filename;
+	char *filename, *p;
 
 	application = NULL;
 	entries_error = NULL;
@@ -1101,7 +1101,6 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	
 	if (entries == NULL)
 		return NULL;
-
 
 	application = g_new0 (GnomeVFSMimeApplication, 1);
 
@@ -1121,11 +1120,11 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 
 	application->requires_terminal = egg_desktop_entries_get_boolean (entries,
 			                                       egg_desktop_entries_get_start_group (entries),
-							       "NeedsTerminal", &entries_error);
+							       "Terminal", &entries_error);
 
 	if (entries_error != NULL) {
 		g_error_free (entries_error);
-		goto error;
+                application->requires_terminal = FALSE;
 	}
 
 	egg_desktop_entries_free (entries);
@@ -1133,25 +1132,32 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 
 	/* Guess on these last fields based on parameters passed to Exec line
 	 */
-	if (strstr (application->command, "%f") != NULL
-	    || strstr (application->command, "%n") != NULL) {
+	if ((p = strstr (application->command, "%f")) != NULL
+		|| (p = strstr (application->command, "%d")) != NULL
+		|| (p = strstr (application->command, "%n")) != NULL) {
+		*p = '\0';
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
 		application->supported_uri_schemes = NULL;
-	} else if (strstr (application->command, "%F") != NULL
-		   ||strstr (application->command, "%N") != NULL) {
+	} else if ((p = strstr (application->command, "%F")) != NULL
+		   || (p = strstr (application->command, "%D")) != NULL
+		   || (p = strstr (application->command, "%N")) != NULL) {
+		*p = '\0';
 		application->can_open_multiple_files = TRUE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
 		application->supported_uri_schemes = NULL;
-	} else if (strstr (application->command, "%u") != NULL) {
+	} else if ((p = strstr (application->command, "%u")) != NULL) {
+		*p = '\0';
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
 		application->supported_uri_schemes = NULL;
-	} else if (strstr (application->command, "%U") != NULL) {
+	} else if ((p = strstr (application->command, "%U")) != NULL) {
+		*p = '\0';
 		application->can_open_multiple_files = TRUE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
 		application->supported_uri_schemes = NULL;
-	} else if (strstr (application->command, "%k") != NULL) {
+	} else if ((p = strstr (application->command, "%k")) != NULL) {
+		*p = '\0';
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
 		application->supported_uri_schemes = NULL;

@@ -1,6 +1,31 @@
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_id):
+	look at "Terminal" key instead of "NeedsTerminal".
+	Make it non-fatal if no "Terminal" key exists.
+	Strip off escape characters from command (and 
+	everything after, because if there is anything
+	after it's not going to work anyway).
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_dir_free):
+	Fix this horribly broken function.
+	(gnome_vfs_mime_info_cache_get_search_path),
+	(gnome_vfs_mime_info_cache_get_defaults_search_path):
+	Don't make return value static.
+	(gnome_vfs_mime_get_all_desktop_entries),
+	(gnome_vfs_mime_get_default_desktop_entry):
+	reread the cache from disk every time functions are
+	loaded (temporarily for now anyway).
+
+	* tests/test-mime-info-cache.c:
+	Get rid of some warnings. Run twice to test cache
+	flushing functions.
+
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(gnome_vfs_mime_get_default_application),
 	(gnome_vfs_mime_get_all_applications),
 	(gnome_vfs_mime_application_new_from_id):

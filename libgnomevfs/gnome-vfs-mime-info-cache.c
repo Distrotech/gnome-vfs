@@ -233,22 +233,28 @@ gnome_vfs_mime_info_cache_dir_new (const char *path)
 static void
 gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir)
 {
-	if (dir != NULL)
-		g_free (dir);
-
-	if (dir->mime_info_cache_map != NULL)
+	if (dir == NULL)
+		return;
+	if (dir->mime_info_cache_map != NULL) {
 		g_hash_table_destroy (dir->mime_info_cache_map);
+		dir->mime_info_cache_map = NULL;
+
+	}
+
+	if (dir->defaults_list_map != NULL) {
+		g_hash_table_destroy (dir->defaults_list_map);
+		dir->defaults_list_map = NULL;
+	}
+
+	g_free (dir);
 }
 
 static char **
 gnome_vfs_mime_info_cache_get_search_path (GnomeVFSMimeInfoCache *cache)
 {
-	static char **args = NULL;
+	char **args = NULL;
 	char **data_dirs;
 	int i, length;
-
-	if (args != NULL)
-		return args;
 
 	data_dirs = egg_get_secondary_data_dirs ();
 
@@ -272,12 +278,9 @@ gnome_vfs_mime_info_cache_get_search_path (GnomeVFSMimeInfoCache *cache)
 static char **
 gnome_vfs_mime_info_cache_get_defaults_search_path (GnomeVFSMimeInfoCache *cache)
 {
-	static char **args = NULL;
+	char **args = NULL;
 	char **config_dirs;
 	int i, length;
-
-	if (args != NULL)
-		return args;
 
 	config_dirs = egg_get_secondary_configuration_dirs ();
 
@@ -461,6 +464,9 @@ gnome_vfs_mime_info_cache_new (void)
 static void
 gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache)
 {
+	if (cache == NULL)
+		return;
+
 	g_list_foreach (cache->dirs,
 			(GFunc) gnome_vfs_mime_info_cache_dir_free,
 			NULL);
@@ -486,7 +492,10 @@ gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 {
 	GList *desktop_entries, *list, *dir_list, *tmp;
 
-	if (mime_info_cache == NULL) {
+        /* FIXME: Need to stat some files to determine when to flush 
+	 * the cache.
+	 */
+	if (mime_info_cache == NULL || TRUE) {
 		gnome_vfs_mime_info_cache_load ();
 	}
 
@@ -522,7 +531,10 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	gchar *desktop_entry;
 	GList *dir_list;
 
-	if (mime_info_cache == NULL) {
+        /* FIXME: Need to stat some files to determine when to flush 
+	 * the cache.
+	 */
+	if (mime_info_cache == NULL || TRUE) {
 		gnome_vfs_mime_info_cache_load ();
 	}
 
