@@ -1,3 +1,9 @@
+2003-09-18  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/vfolder/Makefile.am (CLEANFILES):
+	Remove generated vfolder files on make clean.
+	Fixes #121741, patch by Steve Chaplin.
+
 2003-09-17  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-async-job-map.c (_gnome_vfs_async_job_map_get_job):
