@@ -1,3 +1,25 @@
+2004-01-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	Add _gnome_vfs_get_slow_mime_type.
+	
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer-private.h:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	* libgnomevfs/gnome-vfs-mime.c:
+	* libgnomevfs/gnome-vfs-mime.h:
+	Default mime sniffing to first extensions, then
+	sniffing.
+	
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_url_show_with_env):
+	Always get slow mimetype when launching an app
+	
+	* libgnomevfs/xdgmime.c:
+	* libgnomevfs/xdgmime.h:
+	Fix some bugs.
+	
+	* modules/file-method.c: (get_mime_type):
+	Allow you to force slow mime detection.	
+
 2004-01-13  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/xdgmime.c (xdg_mime_init):

@@ -49,6 +49,7 @@ const char  *gnome_vfs_get_mime_type_from_uri			(GnomeVFSURI       *uri);
 const char  *gnome_vfs_get_mime_type_from_file_data		(GnomeVFSURI       *uri);
 #endif
 
+const char *gnome_vfs_get_file_mime_type_fast (const char *path, const struct stat *optional_stat_info);
 const char  *gnome_vfs_get_file_mime_type 			(const char        *path, 
 								 const struct stat *optional_stat_info,
 								 gboolean           suffix_only);

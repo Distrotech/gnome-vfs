@@ -192,9 +192,10 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 }
 
 const char *
-_gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name)
+_gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name, gboolean use_suffix)
 {
 	const char *result;
+	const char *zip_result;
 
 	result = NULL;
 
@@ -204,7 +205,6 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 		if (result != NULL && result != XDG_MIME_TYPE_UNKNOWN) {
 			if ((strcmp (result, "application/x-gzip") == 0) ||
 			    (strcmp (result, "application/zip") == 0)) {
-				
 				/* So many file types come compressed by gzip 
 				 * that extensions are more reliable than magic
 				 * typing. If the file has a suffix, then use 
@@ -214,16 +214,13 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				 * Allow specific mime types to override 
 				 * magic detection
 				 */
-				if (file_name != NULL) {
-					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
-				}
 				
-				if (result != NULL) {
-					return result;
+				if (file_name != NULL) {
+					zip_result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+					if (zip_result != NULL && zip_result != XDG_MIME_TYPE_UNKNOWN) {
+						return zip_result;
+					}
 				}
-				/* Didn't find an extension match,
-				 * assume gzip. */
-				return "application/x-gzip";
 			}
 			return result;
 		}
@@ -250,13 +247,15 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 		}
 	}
 	
-	if ((result == NULL || result == XDG_MIME_TYPE_UNKNOWN) && file_name != NULL) {
+	if (use_suffix &&
+	    (result == NULL || result == XDG_MIME_TYPE_UNKNOWN) &&
+	    file_name != NULL) {
 		/* No type recognized -- fall back on extensions. */
 		result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
 	}
 	
 	if (result == NULL) {
-		result = GNOME_VFS_MIME_TYPE_UNKNOWN;
+		result = XDG_MIME_TYPE_UNKNOWN;
 	}
 	
 	return result;
@@ -303,7 +302,7 @@ gnome_vfs_get_mime_type_common (GnomeVFSURI *uri)
 
 	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 
-	result = _gnome_vfs_get_mime_type_internal (buffer, base_name);
+	result = _gnome_vfs_get_mime_type_internal (buffer, base_name, TRUE);
 	g_free (base_name);
 
 	gnome_vfs_mime_sniff_buffer_free (buffer);
@@ -339,22 +338,9 @@ file_read_binder (gpointer context, gpointer buffer,
 	return GNOME_VFS_OK;
 }
 
-/**
- * gnome_vfs_get_file_mime_type:
- * @path: a path of a file.
- * @optional_stat_info: optional stat buffer.
- * @suffix_only: whether or not to do a magic-based lookup.
- *
- * Tries to guess the mime type of the file represented by @path.
- * If @suffix_only is false, uses the mime-magic based lookup first.
- * Handles passing @path of a non-existent file by falling back
- * on returning a type based on the extension.
- *
- * Returns: the mime-type for this path
- */
-const char *
-gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat_info,
-	gboolean suffix_only)
+static const char *
+gnome_vfs_get_file_mime_type_internal (const char *path, const struct stat *optional_stat_info,
+				       gboolean suffix_only, gboolean suffix_first)
 {
 	const char *result;
 	GnomeVFSMimeSniffBuffer *buffer;
@@ -387,6 +373,14 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat
 		}
 	}
 
+	if (suffix_first && !suffix_only) {
+		result = _gnome_vfs_get_mime_type_internal (NULL, path, TRUE);
+		if (result != NULL &&
+		    result != XDG_MIME_TYPE_UNKNOWN) {
+			return result;
+		}
+	}
+	
 	if (!suffix_only) {
 		file = fopen(path, "r");
 	}
@@ -395,16 +389,61 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat
 		buffer = _gnome_vfs_mime_sniff_buffer_new_generic
 			(file_seek_binder, file_read_binder, file);
 
-		result = _gnome_vfs_get_mime_type_internal (buffer, path);
+		result = _gnome_vfs_get_mime_type_internal (buffer, path, !suffix_first);
 		gnome_vfs_mime_sniff_buffer_free (buffer);
 		fclose (file);
 	} else {
-		result = _gnome_vfs_get_mime_type_internal (NULL, path);
+		result = _gnome_vfs_get_mime_type_internal (NULL, path, !suffix_first);
 	}
 
 	
 	g_assert (result != NULL);
 	return result;
+}
+
+
+/**
+ * gnome_vfs_get_file_mime_type_fast:
+ * @path: a path of a file.
+ * @optional_stat_info: optional stat buffer.
+ *
+ * Tries to guess the mime type of the file represented by @path.
+ * If It uses extention/name detection first, and if that fails
+ * it falls back to mime-magic based lookup. This is faster
+ * than always doing mime-magic, but doesn't always produce
+ * the right answer, so for important decisions 
+ * you should use gnome_vfs_get_file_mime_type.
+ *
+ * Returns: the mime-type for this path
+ */
+const char *
+gnome_vfs_get_file_mime_type_fast (const char *path, const struct stat *optional_stat_info)
+{
+	return gnome_vfs_get_file_mime_type_internal (path, optional_stat_info, FALSE, TRUE);
+}
+
+
+/**
+ * gnome_vfs_get_file_mime_type:
+ * @path: a path of a file.
+ * @optional_stat_info: optional stat buffer.
+ * @suffix_only: whether or not to do a magic-based lookup.
+ *
+ * Tries to guess the mime type of the file represented by @path.
+ * If @suffix_only is false, uses the mime-magic based lookup first.
+ * Handles passing @path of a non-existent file by falling back
+ * on returning a type based on the extension.
+ *
+ * If you need a faster, less accurate version, use
+ * @gnome_vfs_get_file_mime_type_fast.
+ *
+ * Returns: the mime-type for this path
+ */
+const char *
+gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat_info,
+			      gboolean suffix_only)
+{
+	return gnome_vfs_get_file_mime_type_internal (path, optional_stat_info, suffix_only, FALSE);
 }
 
 /**
@@ -455,7 +494,7 @@ gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
 	}
 	
 	buffer = _gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
-	result = _gnome_vfs_get_mime_type_internal (buffer, NULL);	
+	result = _gnome_vfs_get_mime_type_internal (buffer, NULL, FALSE);	
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 	gnome_vfs_close (handle);
 
@@ -480,7 +519,7 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_existing_data
 		(data, data_size);
-	result = _gnome_vfs_get_mime_type_internal (buffer, NULL);	
+	result = _gnome_vfs_get_mime_type_internal (buffer, NULL, FALSE);	
 
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 
@@ -683,6 +722,29 @@ gnome_vfs_get_mime_type (const char *text_uri)
 	info = gnome_vfs_file_info_new ();
 	result = gnome_vfs_get_file_info (text_uri, info,
 					  GNOME_VFS_FILE_INFO_GET_MIME_TYPE |
+					  GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+	if (info->mime_type == NULL || result != GNOME_VFS_OK) {
+		mime_type = NULL;
+	} else {
+		mime_type = g_strdup (info->mime_type);
+	}
+	gnome_vfs_file_info_unref (info);
+
+	return mime_type;
+}
+
+/* This is private due to the feature freeze, maybe it should be public */
+char *
+_gnome_vfs_get_slow_mime_type (const char *text_uri)
+{
+	GnomeVFSFileInfo *info;
+	char *mime_type;
+	GnomeVFSResult result;
+
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (text_uri, info,
+					  GNOME_VFS_FILE_INFO_GET_MIME_TYPE |
+					  GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE |
 					  GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
 	if (info->mime_type == NULL || result != GNOME_VFS_OK) {
 		mime_type = NULL;

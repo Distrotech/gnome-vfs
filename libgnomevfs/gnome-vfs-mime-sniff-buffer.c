@@ -192,5 +192,5 @@ _gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 const char *
 gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
 {
-	return _gnome_vfs_get_mime_type_internal (buffer, NULL);
+	return _gnome_vfs_get_mime_type_internal (buffer, NULL, FALSE);
 }

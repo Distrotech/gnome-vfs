@@ -36,6 +36,7 @@
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-mime-handlers.h"
+#include "gnome-vfs-mime-private.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
 #include <gconf/gconf-client.h>
@@ -2051,7 +2052,7 @@ gnome_vfs_url_show_with_env (const char  *url,
 	
 	g_free (scheme);
 
-	type = gnome_vfs_get_mime_type (url);
+	type = _gnome_vfs_get_slow_mime_type (url);
 
 	if (type == NULL) {
 		return GNOME_VFS_ERROR_BAD_PARAMETERS;

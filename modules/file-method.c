@@ -561,8 +561,16 @@ get_mime_type (GnomeVFSFileInfo *info,
 		 */
 		mime_type = "x-special/symlink";
 	} else {
-		mime_type = gnome_vfs_get_file_mime_type (full_name,
-			stat_buffer, (options & GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE) != 0);
+		if (options & GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE) {
+			mime_type = gnome_vfs_get_file_mime_type (full_name,
+								  stat_buffer, TRUE);
+		} else if (options & GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE) {
+			mime_type = gnome_vfs_get_file_mime_type (full_name,
+								  stat_buffer, FALSE);
+		} else {
+			mime_type = gnome_vfs_get_file_mime_type_fast (full_name,
+								       stat_buffer);
+		}
 	}
 
 	g_assert (mime_type);
