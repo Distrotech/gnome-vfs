@@ -695,20 +695,16 @@ reload_if_needed (void)
 	if (gnome_vfs_is_frozen > 0)
 		return;
 
-	if (now > last_checked + 5)
+	if (gnome_mime_dir.force_reload || user_mime_dir.force_reload)
 		need_reload = TRUE;
-
-	if (gnome_mime_dir.force_reload ||
-	    user_mime_dir.force_reload)
-		need_reload = TRUE;
-
-	if (stat (gnome_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != gnome_mime_dir.s.st_mtime)
+	else if (now > last_checked + 5) {
+		if (stat (gnome_mime_dir.dirname, &s) != -1 &&
+		    s.st_mtime != gnome_mime_dir.s.st_mtime)
 			need_reload = TRUE;
-
-	if (stat (user_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != user_mime_dir.s.st_mtime)
+		else if (stat (user_mime_dir.dirname, &s) != -1 &&
+			 s.st_mtime != user_mime_dir.s.st_mtime)
 			need_reload = TRUE;
+	}
 
 	last_checked = now;
 
