@@ -2371,7 +2371,7 @@ vfs_module_init (const char *method_name, const char *args)
 #endif
 
 
-	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_ONELEVEL, &err_gconf);
+	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &err_gconf);
 
 	if (err_gconf) {
 		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->str));

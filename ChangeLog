@@ -1,3 +1,9 @@
+2000-10-05  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* modules/http-method.c: (vfs_module_init):
+	Workaround a bug in gconf by not preloading a directory that is
+	monitored. 
+	
 2000-10-04  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c:
