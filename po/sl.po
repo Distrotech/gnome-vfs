@@ -55,7 +55,7 @@ msgstr "Nadalnje napake pri razèlenitvi bodo ignorirane."
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
-msgstr "Ni napak"
+msgstr "Brez napak"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -115,7 +115,7 @@ msgstr "Na napravi ni veè prostora"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Datoteèni sistem je mo¾no le brati"
+msgstr "Datoteèni sistem je le berljiv"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -185,7 +185,7 @@ msgstr "Je imenik"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr "Spomina ni dovolj"
+msgstr "Ni dovolj pomnilnika"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -230,7 +230,7 @@ msgstr "Preveè povezav"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr "Datoteèni sistem je samo berljiv"
+msgstr "Datoteèni sistem je le berljiv"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -278,7 +278,7 @@ msgstr "Umira."
 #: libgnomevfs-corba/gnome-vfs-slave.c:503
 #, c-format
 msgid "Error reading: %s"
-msgstr "Napaka pri branju iz: %s"
+msgstr "Napaka pri branju: %s"
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:525
