@@ -87,8 +87,8 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 void http_debug_printf(char *func, char *fmt, ...) G_GNUC_PRINTF (2,3);
 
 
-//#define DEBUG_HTTP_3(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__)
-//#define DEBUG_HTTP_2(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__)
+/* #define DEBUG_HTTP_3(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) */
+/* #define DEBUG_HTTP_2(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) */
 #define DEBUG_HTTP(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__)
 #define DEBUG_HTTP_FUNC(_enter) http_debug_printf (_enter ? "+++" : "---", "%s",__PRETTY_FUNCTION__)
 #define DEBUG_HTTP_3(fmt, ...)	
@@ -1103,7 +1103,7 @@ set_etag (void **etag, const char *value)
 }
 
 /* ************************************************************************** */
-/* Porpfind request handlers */
+/* Propfind request handlers */
 static const ne_propname file_info_props[] = {
 	{"DAV:", "getlastmodified"},
 	{"DAV:", "creationdate"},

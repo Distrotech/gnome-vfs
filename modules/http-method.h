@@ -1,3 +1,9 @@
+/* 
+ * THIS METHOD IS OBSOLETE, IT HAS BEEN SUPERSEDED BY THE HTTP NEON METHOD
+ * IN http-neon-method.c AND http-proxy.c
+ */
+
+
 /* http-method.h - HTTP access method for the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation

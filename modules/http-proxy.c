@@ -26,9 +26,8 @@
 #include <netdb.h>
 
 #include "http-proxy.h"
-//#include "http-neon-method.h"
 
-#define DEBUG_HTTP(x) (g_print x)
+/* #define DEBUG_HTTP(x) (g_print x) */
 
 /* Standard HTTP proxy port */
 #define DEFAULT_HTTP_PROXY_PORT 8080

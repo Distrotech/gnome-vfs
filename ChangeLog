@@ -1,3 +1,12 @@
+2004-07-24  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-neon-method.c: Use /* */ instead of // for comments
+	* modules/http-proxy.c: disable debugging statements
+	* modules/http-method.[ch]
+	* modules/http-authn.[ch]
+	* modules/http-cache.[ch]: added comment at the beginning of the files
+	  that this code is dead
+
 2004-07-23  Dafydd Harries  <daf@muse.19inch.net>
 
 	* Changelog: Converted entry for 2004-01-30 from ISO-8859-2 to UTF-8.

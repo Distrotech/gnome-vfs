@@ -1,4 +1,10 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
+/* 
+ * THIS METHOD IS OBSOLETE, IT HAS BEEN SUPERSEDED BY THE HTTP NEON METHOD
+ * IN http-neon-method.c AND http-proxy.c
+ */
+
 /* http-method.c - The HTTP method implementation for the GNOME Virtual File
    System.
 
