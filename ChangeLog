@@ -1,3 +1,10 @@
+2004-08-06  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-resolve.c (gnome_vfs_resolve_next_address):
+	Small cleanup.
+	* libgnomevfs/gnome-vfs-address.c: Added brackets around macros. Fixed
+	wrong argument check. Patch from desrt@desrt.ca. Fixes bug #149242.
+
 2004-08-04  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-ssl.c: Changed #if to #ifdef. This should

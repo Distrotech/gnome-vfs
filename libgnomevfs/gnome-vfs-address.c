@@ -50,14 +50,14 @@ struct _GnomeVFSAddress {
 # define SIN6_LEN				sizeof (struct sockaddr_in6)
 # define SIN6(__s)				((struct sockaddr_in6 *) __s)
 # define VALID_AF(__sa)			(__sa->sa_family == AF_INET  || __sa->sa_family == AF_INET6)
-# define SA_SIZE(__sa)			__sa->sa_family == AF_INET ? SIN_LEN : \
-   											         SIN6_LEN
-# define AF_SIZE(__af)			__af == AF_INET6 ? SIN6_LEN : SIN_LEN
+# define SA_SIZE(__sa)			(__sa->sa_family == AF_INET ? SIN_LEN : \
+   											         SIN6_LEN)
+# define AF_SIZE(__af)			(__af == AF_INET6 ? SIN6_LEN : SIN_LEN)
 # define MAX_ADDRSTRLEN			INET6_ADDRSTRLEN
 
 #else /* ENABLE_IPV6 */
 
-# define VALID_AF(__sa)			__sa->sa_family == AF_INET
+# define VALID_AF(__sa)			(__sa->sa_family == AF_INET)
 # define AF_SIZE(__af)			SIN_LEN
 # define SA_SIZE(_sa)			SIN_LEN
 # define MAX_ADDRSTRLEN			INET_ADDRSTRLEN
@@ -145,7 +145,7 @@ gnome_vfs_address_new_from_sockaddr (struct sockaddr *sa,
 
 	   g_return_val_if_fail (sa != NULL, NULL);
 	   g_return_val_if_fail (VALID_AF (sa), NULL);
-	   g_return_val_if_fail (len != AF_SIZE (sa->sa_family), NULL);
+	   g_return_val_if_fail (len == AF_SIZE (sa->sa_family), NULL);
 	   
 	   addr = g_new0 (GnomeVFSAddress, 1);
 	   addr->sa = g_memdup (sa, len);

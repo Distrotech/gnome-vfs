@@ -415,7 +415,7 @@ gnome_vfs_resolve_next_address (GnomeVFSResolveHandle  *handle,
 			 handle->current = handle->current->next;
 	   }
 #endif	
-	   return *address != NULL ? TRUE : FALSE;	
+	   return *address != NULL;	
 }
 
 
