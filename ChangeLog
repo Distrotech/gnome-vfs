@@ -1,3 +1,8 @@
+2004-01-16  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	Make FileSize and FileOffset 64bit
+
 2004-01-15  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_read):

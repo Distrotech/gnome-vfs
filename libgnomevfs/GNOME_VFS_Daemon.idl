@@ -3,8 +3,8 @@
 module GNOME {
 	module VFS {
 		typedef long Result;
-		typedef long FileOffset;
-		typedef unsigned long FileSize;
+		typedef long long FileOffset;
+		typedef unsigned long long FileSize;
 		typedef unsigned long Time;
 		typedef sequence<octet> buffer;
 		
