@@ -523,8 +523,7 @@ folder_unref (Folder *folder)
 			g_hash_table_destroy (folder->excludes);
 		}
 
-		if (folder->includes_ht)
-			g_hash_table_destroy (folder->includes_ht);
+		g_slist_foreach (folder->includes, (GFunc) g_free, NULL);
 		g_slist_free (folder->includes);
 
 		/* subfolders */
@@ -1365,19 +1364,10 @@ folder_add_entry (Folder *folder, Entry *entry)
 void
 folder_add_include (Folder *folder, const gchar *include)
 {
-	char *str = g_strdup (include);
-	
 	folder_remove_exclude (folder, include);
 	
-	if (!folder->includes_ht)
-		folder->includes_ht = 
-			g_hash_table_new_full (g_str_hash, 
-					       g_str_equal,
-					       (GDestroyNotify) g_free,
-					       NULL);
-
-	folder->includes = g_slist_prepend (folder->includes, str);
-	g_hash_table_insert (folder->includes_ht, str, folder->includes);
+	folder->includes = g_slist_prepend (folder->includes, 
+					    g_strdup (include));
 
 	vfolder_info_set_dirty (folder->info);
 }
@@ -1387,21 +1377,16 @@ folder_remove_include (Folder *folder, const gchar *file)
 {
 	GSList *li;
 
-	if (!folder->includes_ht)
+	if (!folder->includes)
 		return;
 
-	li = g_hash_table_lookup (folder->includes_ht, file);
+	li = g_slist_find_custom (folder->includes, 
+				  file, 
+				  (GCompareFunc) strcmp);
 	if (li) {
-		g_free (li->data);
-		/* 
-		 * Note: this will NOT change
-		 * folder->includes pointer! 
-		 */
 		folder->includes = g_slist_delete_link (folder->includes, li);
-		g_hash_table_remove (folder->includes_ht, li);
+		vfolder_info_set_dirty (folder->info);
 	}
-
-	vfolder_info_set_dirty (folder->info);
 }
 
 void
