@@ -1,11 +1,19 @@
 2001-02-27  Maciej Stachowiak  <mjs@eazel.com>
 
+	unreviewed change to fix tinderox
+
+	* mime-type-capplet/Makefile.am: Add .desktop.in file to
+	EXTRA_DIST.
+
+2001-02-27  Maciej Stachowiak  <mjs@eazel.com>
+
 	reviewed by: Kjartan Maraas  <kmaraas@gnu.org>
 
 	* po/POTFILES.in: Remove entries spuriously added by
 	xml-i18n-prepare
 
 2001-02-26  Rebecca Schulman  <rebecka@eazel.com>
+
 	Fixed bugzilla.eazel.com bug 7010, that the
 	file types capplet should use .desktop.in
 	xml-i18-tools stuff.
