@@ -128,7 +128,7 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h
-libbftp_la_LDFLAGS = $(module_flags)
+libftp_la_LDFLAGS = $(module_flags)
 
 ### `nntp' method
 
