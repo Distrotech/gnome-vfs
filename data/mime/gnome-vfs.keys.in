@@ -1,4 +1,4 @@
-# This file contains human-readable _descriptions of MIME types.
+# This file contains human-readable descriptions of MIME types.
 # Please complain to aaron@eazel.com about mistakes or missing types,
 # if you don't want to fix them yourself.
 #
@@ -361,7 +361,7 @@ application/x-staroffice-words
 	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/x-stuffit
-	_description=Macintosh StuffIt! archive 
+	_description=Macintosh StuffIt archive 
 
 application/x-sv4cpio
 	_description=SV4Cpio document 
@@ -412,7 +412,6 @@ audio/x-aifc
 
 audio/x-aiff
 	_description=AIFF audio
-
 	icon_filename=gnome-audio-x-aiff.png
 
 audio/x-it
@@ -444,7 +443,6 @@ audio/x-mp3
 audio/x-mp3-playlist
 	_description=MP3 audio playlist
 
-
 # also audio/x-mp3
 audio/x-mpeg
         _description=MP3 audio
@@ -457,7 +455,6 @@ audio/x-mpeg
 
 audio/x-mpegurl
         _description=MPEG URL
-
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -504,7 +501,6 @@ audio/x-riff
 audio/x-s3m
 	_description=Scream Tracker 3 audio
 
-
 audio/x-stm
 	_description=Scream Tracker audio
 
@@ -514,7 +510,6 @@ audio/x-ulaw
 
 audio/x-voc
 	_description=VOC audio
-
 
 audio/x-wav
 	_description=Wave audio
@@ -530,7 +525,6 @@ audio/x-xi
 
 audio/x-xm
 	_description=FastTracker II audio
-
 
 # also image/x-bmp
 image/bmp
@@ -551,7 +545,6 @@ image/cgm
 
 image/g3fax
 	_description=G3 fax image
-
 
 image/gif
 	_description=GIF image
@@ -1184,5 +1177,3 @@ x-special/socket
 
 x-special/symlink
 	_description=link
-
-
