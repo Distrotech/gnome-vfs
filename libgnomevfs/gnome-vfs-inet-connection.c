@@ -267,7 +267,7 @@ gnome_vfs_inet_connection_read (GnomeVFSInetConnection *connection,
 		*bytes_read = read_val;
 	}
 
-	return bytes_read == 0 ? GNOME_VFS_ERROR_EOF : GNOME_VFS_OK;
+	return *bytes_read == 0 ? GNOME_VFS_ERROR_EOF : GNOME_VFS_OK;
 }
 
 /**
