@@ -1,3 +1,8 @@
+2001-06-19  Peter Williams  <peterw@ximian.com>
+
+	* gnome-vfs-2.0.pc.in (prefix): Fix totally
+	broken prefix=/gnome/head/INSTALL. Whoops.
+
 2001-06-15  Havoc Pennington  <hp@redhat.com>
 
 	* modules/gconf-method.c (do_get_file_info): fix one mem leak and
