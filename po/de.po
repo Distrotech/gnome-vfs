@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 00:00+0100\n"
-"PO-Revision-Date: 2003-12-20 00:00+0100\n"
+"POT-Creation-Date: 2003-12-21 13:38+0100\n"
+"PO-Revision-Date: 2003-12-21 13:38+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -637,7 +637,7 @@ msgstr "Fenster"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr "Netzkwerk"
+msgstr "Netzwerk"
 
 #: modules/computer-method.c:539
 msgid "Home"
