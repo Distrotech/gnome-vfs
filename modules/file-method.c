@@ -1360,6 +1360,7 @@ read_saved_cached_trash_entries (void)
 	char escaped_mount_point[PATH_MAX], escaped_trash_path[PATH_MAX];
 	char *mount_point, *trash_path;
 	struct stat stat_buffer;
+	gboolean removed_item;
 
 	/* empty the old locally cached entries */
 	g_list_foreach (cached_trash_directories, 
@@ -1373,6 +1374,7 @@ read_saved_cached_trash_entries (void)
 	cache_file = fopen (cache_file_path, "r");
 
 	if (cache_file != NULL) {
+		removed_item = FALSE;
 		for (;;) {
 			if (fgets (buffer, sizeof (buffer), cache_file) == NULL) {
 				break;
@@ -1387,22 +1389,31 @@ read_saved_cached_trash_entries (void)
 
 				if (trash_path != NULL 
 					&& mount_point != NULL
-					&& (strcmp (trash_path, NON_EXISTENT_TRASH_ENTRY) == 0 || lstat (trash_path, &stat_buffer) == 0)
-					&& lstat (mount_point, &stat_buffer) == 0) {
-					/* We either know the trash doesn't exist or we checked that it's really
+					&& (strcmp (trash_path, NON_EXISTENT_TRASH_ENTRY) != 0 && lstat (trash_path, &stat_buffer) == 0)
+					&& stat (mount_point, &stat_buffer) == 0) {
+					/* We know the trash exist and we checked that it's really
 					 * there - this is a good entry, copy it into the local cache.
+					 * We don't want to rely on old non-existing trash entries, as they
+					 * could have changed now, and they stick around filling up the cache,
+					 * and slowing down startup.
 					 */
 					 add_local_cached_trash_entry (stat_buffer.st_dev, trash_path, mount_point);
 #ifdef DEBUG_FIND_DIRECTORY
 					g_print ("read trash item cache entry %s %s\n", trash_path, mount_point);
 #endif
+				} else {
+					removed_item = TRUE;
 				}
 			}
 			
 			g_free (trash_path);
 			g_free (mount_point);
 		}
-		fclose (cache_file);	
+		fclose (cache_file);
+		/* Save cache to get rid of stuff from on-disk cache */
+		if (removed_item) {
+			save_trash_entry_cache ();
+		}
 	}
 	
 	g_free (cache_file_path);

@@ -1,3 +1,8 @@
+2004-08-30  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c:
+	Trim old non-existing cached trash dirs from on-disk cache.
+
 2004-08-29   Christian Kellner <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-ssl.c: Make GnuTLS work again! This should
