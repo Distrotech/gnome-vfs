@@ -9,6 +9,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs-corba	\
+	$(WERROR)				\
 	$(OBJECT_DIRECTORY_CFLAGS)
 
 CPPFLAGS =					\

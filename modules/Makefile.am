@@ -7,7 +7,8 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	$(XML_CFLAGS)	 			\
 	$(LIBEFS_CFLAGS)			\
-	$(GCONF_CFLAGS)
+	$(GCONF_CFLAGS)				\
+	$(WERROR)
 
 CPPFLAGS =					\
 	-D_GNU_SOURCE				\

@@ -123,12 +123,14 @@ else
 fi
 ])
 
+WERROR=
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	echo "enable compile warnings = $set_more_warnings"
 	CFLAGS="$CFLAGS \
 	-Wall -Wno-uninitialized \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
-	-Wnested-externs -Wpointer-arith -Werror"
+	-Wnested-externs -Wpointer-arith"
+	WERROR="-Werror"
 
 	for option in -Wsign-promo -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -146,6 +148,7 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	done
 	unset option
 fi
+AC_SUBST(WERROR)
 
 using_oaf=no
 AC_PATH_PROG(OAF_CONFIG,oaf-config,no)

@@ -14,7 +14,8 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(top_srcdir)				\
-	-DICONDIR=\"$(datadir)/pixmaps/mc\"
+	-DICONDIR=\"$(datadir)/pixmaps/mc\"	\
+	$(WERROR)
 
 common_sources =				\
 	gicon.c					\

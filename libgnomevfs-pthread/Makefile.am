@@ -5,7 +5,8 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs		\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)			\
+	$(WERROR)
 
 CPPFLAGS =					\
 	-D_GNU_SOURCE				\
