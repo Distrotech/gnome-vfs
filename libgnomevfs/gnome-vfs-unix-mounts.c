@@ -62,6 +62,10 @@
 #include <sys/mnttab.h>
 #endif
 
+#ifdef HAVE_SYS_VFSTAB_H
+#include <sys/vfstab.h>
+#endif
+
 #if defined(HAVE_SYS_MNTCTL_H) && defined(HAVE_SYS_VMOUNT_H) && defined(HAVE_SYS_VFS_H)
 #include <sys/mntctl.h>
 #include <sys/vfs.h>
