@@ -1,4 +1,74 @@
+1999-09-12  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-corba/gnome-vfs-slave.c: Do not #define
+	`SLAVE_DEBUG'.
+	(DPRINTF): Flush stdout.
+
+	* test/test-directory.c: Added speed measurement options.
+	(main): Honour them.
+
+	* libgnomevfs/gnome-vfs-directory-list.h
+	(gnome_vfs_directory_list_get_num_entries): New Prototype.
+
+	* libgnomevfs/gnome-vfs-directory-list.c
+	(struct _GnomeVFSDirectoryList): New member `num_entries'.
+	(remove_entry): Decrement it.
+	(gnome_vfs_directory_list_new): Initialize it.
+	(gnome_vfs_directory_list_prepend): Increment it.
+	(gnome_vfs_directory_list_append): Increment it.
+	(gnome_vfs_directory_list_get_num_entries): New function, returning
+	`num_entries'.
+
+	* libgnomevfs/gnome-vfs-utils.c: #include <string.h>.
+
 1999-09-11  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* test/test-async-directory.c (print_list): Flush stdout after
+	each line.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c
+	(execute_load_directory_sorted): Set result to
+	`GNOME_VFS_ERROR_EOF' for the last notification.
+
+	* test/test-async-directory.c: Added command-line options to
+	control the number of items per notification and measure speed.
+	(main): Set them up and honour them.
+	(directory_load_callback): Do not print anything if measuring speed.
+
+	* test/test-async-directory.c (main): Initialize the libraries
+	correctly according to the version we are compiling (CORBA or
+	pthread).
+	(print_list): New parameter `num_entries'.  Only print out the
+	first `num_entries' elements.
+	(directory_load_callback): Pass the number of entries.
+
+	* test/Makefile.am: Compile `test-async-directory' in two
+	versions: a CORBA and a pthread one.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (JOB_DEBUG): Debugging
+	macro, normally disabled.
+	(job_notify): Set `want_notify_ack' before calling `wakeup'.
+	(job_ack_notify): Debugging messages.
+	(wakeup): Likewise.
+	(job_oneway_notify): Likewise.
+	(job_notify): Likewise.
+	(job_close): Likewise.
+
+	* test/gnome-file-selection/Makefile.am: Compile the pthread
+	version as well.
+
+	* test/gnome-file-selection/gnome-file-selection.c (struct
+	_GnomeFileSelectionPrivate): Removed `GnomeVFSAsyncContext'
+	member, replaced by a `GnomeVFSAsyncHandle' member.
+	(destroy): Don't free the context as it does not exist anymore.
+	(init): Do not initialize the context.  Instead, set the handle to
+	NULL.
+	(start_populating): Load the directory with the new API.
+	(populate_callback): Updated for the new API (get a
+	GnomeVFSAsyncHandle, not a GnomeVFSAsyncContext).
+
+	* test/Makefile.am (SUBDIRS): Compile `gnome-file-selection'
+	again.
 
 	* modules/ftp-method.c: Do not #include "util-url.h" anymore.
 

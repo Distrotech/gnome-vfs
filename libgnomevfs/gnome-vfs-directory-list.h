@@ -60,6 +60,9 @@ GnomeVFSFileInfo *
 	gnome_vfs_directory_list_nth		(GnomeVFSDirectoryList *list,
 						 guint n);
 
+guint	gnome_vfs_directory_list_get_num_entries
+						(GnomeVFSDirectoryList *list);
+
 GnomeVFSDirectoryListPosition
 	gnome_vfs_directory_list_get_position	(GnomeVFSDirectoryList *list);
 void	gnome_vfs_directory_list_set_position   (GnomeVFSDirectoryList *list,

@@ -40,6 +40,8 @@ struct _GnomeVFSDirectoryList {
 	GList *entries;		/* GnomeVFSFileInfo */
 	GList *current_entry;
 	GList *last_entry;
+
+	guint num_entries;
 };
 
 
@@ -57,6 +59,8 @@ remove_entry (GnomeVFSDirectoryList *list,
 	if (list->last_entry == p)
 		list->last_entry = p->prev;
 	list->entries = g_list_remove_link (list->entries, p);
+
+	list->num_entries--;
 
 	g_list_free (p);
 }
@@ -146,6 +150,7 @@ gnome_vfs_directory_list_new (void)
 	new->entries = NULL;
 	new->current_entry = NULL;
 	new->last_entry = NULL;
+	new->num_entries = 0;
 
 	return new;
 }
@@ -180,6 +185,8 @@ gnome_vfs_directory_list_prepend (GnomeVFSDirectoryList *list,
 	list->entries = g_list_prepend (list->entries, info);
 	if (list->last_entry == NULL)
 		list->last_entry = list->entries;
+
+	list->num_entries++;
 }
 
 void
@@ -197,6 +204,8 @@ gnome_vfs_directory_list_append (GnomeVFSDirectoryList *list,
 		g_list_append (list->last_entry, info);
 		list->last_entry = list->last_entry->next;
 	}
+
+	list->num_entries++;
 }
 
 
@@ -336,6 +345,14 @@ gnome_vfs_directory_list_sort_custom (GnomeVFSDirectoryList *list,
 }
 
 
+guint
+gnome_vfs_directory_list_get_num_entries (GnomeVFSDirectoryList *list)
+{
+	g_return_val_if_fail (list != NULL, 0);
+
+	return list->num_entries;
+}
+
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_get_position (GnomeVFSDirectoryList *list)
 {

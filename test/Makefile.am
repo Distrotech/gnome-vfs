@@ -1,4 +1,4 @@
-# SUBDIRS = gnome-file-selection
+SUBDIRS = gnome-file-selection
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
@@ -9,7 +9,8 @@ INCLUDES =					\
 noinst_PROGRAMS =				\
 	test-async_corba			\
 	test-async_pthread			\
-	test-async-directory			\
+	test-async-directory_corba		\
+	test-async-directory_pthread		\
 	test-channel_corba			\
 	test-channel_pthread			\
 	test-copy				\
@@ -43,11 +44,23 @@ test_async_corba_LDADD =					\
 	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
 test_async_corba_LDFLAGS =
 
-test_async_directory_SOURCES = test-async-directory.c
-test_async_directory_LDADD =					\
+test-async-directory_pthread.o: test-async-directory.c
+	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<
+test_async_directory_pthread_SOURCES =
+test_async_directory_pthread_LDADD =					\
+	test-async-directory_pthread.o					\
+	$(libraries)							\
+	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
+test_async_directory_pthread_LDFLAGS =
+
+test-async-directory_corba.o: test-async-directory.c
+	$(COMPILE) -DWITH_CORBA -o $@ -c $<
+test_async_directory_corba_SOURCES =
+test_async_directory_corba_LDADD =				\
+	test-async-directory_corba.o				\
 	$(libraries)						\
 	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
-test_async_directory_LDFLAGS = 
+test_async_directory_corba_LDFLAGS =
 
 test-channel_corba.o: test-channel.c
 	$(COMPILE) -DWITH_CORBA -o $@ -c $<

@@ -35,18 +35,36 @@
 
 #include "gnome-vfs-job.h"
 
+#if 0
+#include <stdio.h>
+#define JOB_DEBUG(x)				\
+G_STMT_START{					\
+	fputs (__FUNCTION__ ": ", stdout);	\
+	printf x;				\
+	fputc ('\n', stdout);			\
+	fflush (stdout);			\
+}G_STMT_END
+#else
+#define JOB_DEBUG(x)
+#endif
+
 
 /* This is used by the master thread to notify the slave thread that it got the
    notification.  */
 static void
 job_ack_notify (GnomeVFSJob *job)
 {
+	JOB_DEBUG (("Checking if ack is needed."));
 	if (job->want_notify_ack) {
+		JOB_DEBUG (("Ack needed: lock notify ack."));
 		g_mutex_lock (job->notify_ack_lock);
+		JOB_DEBUG (("Ack needed: signaling condition."));
 		g_cond_signal (job->notify_ack_condition);
+		JOB_DEBUG (("Ack needed: unlocking notify ack."));
 		g_mutex_unlock (job->notify_ack_lock);
 	}
 
+	JOB_DEBUG (("unlocking wakeup channel."));
 	g_mutex_unlock (job->wakeup_channel_lock);
 }
 
@@ -55,6 +73,8 @@ wakeup (GnomeVFSJob *job)
 {
 	gboolean retval;
 	guint bytes_written;
+
+	JOB_DEBUG (("Wake up!"));
 
 	/* Wake up the main thread.  */
 	g_io_channel_write (job->wakeup_channel_out, "a", 1, &bytes_written);
@@ -73,6 +93,7 @@ wakeup (GnomeVFSJob *job)
 static gboolean
 job_oneway_notify (GnomeVFSJob *job)
 {
+	JOB_DEBUG (("lock channel"));
 	g_mutex_lock (job->wakeup_channel_lock);
 
 	return wakeup (job);
@@ -85,24 +106,30 @@ job_notify (GnomeVFSJob *job)
 {
 	gboolean retval;
 
+	JOB_DEBUG (("Locking wakeup channel"));
 	g_mutex_lock (job->wakeup_channel_lock);
 
+	JOB_DEBUG (("Locking notification lock"));
 	/* Lock notification, so that the master cannot send the signal until
            we are ready to receive it.  */
 	g_mutex_lock (job->notify_ack_lock);
+
+	job->want_notify_ack = TRUE;
 
 	/* Send the notification.  This will wake up the master thread, which
            will in turn signal the notify condition.  */
 	retval = wakeup (job);
 
+	JOB_DEBUG (("Wait notify condition"));
 	/* Wait for the notify condition.  */
-	job->want_notify_ack = TRUE;
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
 	job->want_notify_ack = FALSE;
 
+	JOB_DEBUG (("Unlock notify ack lock"));
 	/* Acknowledgment got: unlock the mutex.  */
 	g_mutex_unlock (job->notify_ack_lock);
 
+	JOB_DEBUG (("Done"));
 	return retval;
 }
 
@@ -111,6 +138,7 @@ static void
 job_close (GnomeVFSJob *job)
 {
 	job->is_empty = TRUE;
+	JOB_DEBUG (("Unlocking access lock"));
 	g_mutex_unlock (job->access_lock);
 }
 
@@ -872,6 +900,10 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		    || count == load_directory_job->request.items_per_notification) {
 			gnome_vfs_directory_list_set_position (directory_list,
 							       previous_p);
+			if (p == NULL)
+				load_directory_job->notify.result = GNOME_VFS_ERROR_EOF;
+			else
+				load_directory_job->notify.result = GNOME_VFS_OK;
 			load_directory_job->notify.entries_read = count;
 			job_notify (job);
 			count = 0;

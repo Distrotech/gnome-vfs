@@ -62,7 +62,7 @@ struct _GnomeFileSelectionPrivate {
 	   does not let us query the icon texts. List of char *'s */
 	GList *file_list;
 
-	GnomeVFSAsyncContext *vfs_async_context;
+	GnomeVFSAsyncHandle *async_handle;
 
 	gboolean populating_in_progress : 1;
 };
@@ -148,7 +148,7 @@ add_file_to_clist (GnomeVFSFileInfo *info,
 
 
 static void
-populate_callback (GnomeVFSAsyncContext *context,
+populate_callback (GnomeVFSAsyncHandle *handle,
 		   GnomeVFSResult result,
 		   GnomeVFSDirectoryList *list,
 		   guint entries_read,
@@ -208,7 +208,7 @@ start_populating (GnomeFileSelection *fs)
 
 	gtk_entry_set_text (GTK_ENTRY (fs->selection_entry), "");
 
-	gnome_vfs_async_load_directory (fs->priv->vfs_async_context,
+	gnome_vfs_async_load_directory (&fs->priv->async_handle,
 					fs->directory,
 					(GNOME_VFS_FILE_INFO_GETMIMETYPE
 					 | GNOME_VFS_FILE_INFO_FASTMIMETYPE
@@ -219,7 +219,7 @@ start_populating (GnomeFileSelection *fs)
 					GNOME_VFS_DIRECTORY_FILTER_NONE,
 					0,
 					NULL,
-					10,
+					1,
 					populate_callback,
 					fs);
 }
@@ -926,7 +926,7 @@ destroy (GtkObject *object)
 	while (fs->priv->populating_in_progress) ;
 	clean_file_list (fs->priv);
 
-	gnome_vfs_async_context_destroy (fs->priv->vfs_async_context);
+	/* FIXME free the handle. */
 
 	g_free (fs->priv);
 
@@ -974,7 +974,7 @@ init (GnomeFileSelection *fs)
 	fs->filter_list = NULL;
 	fs->current_filter = NULL;
 
-	fs->priv->vfs_async_context = gnome_vfs_async_context_new ();
+	fs->priv->async_handle = NULL;
 
 	/* Dialog.  */
 	{

@@ -50,7 +50,7 @@
 #include "gnome-vfs-slave.h"
 
 
-#define SLAVE_DEBUG
+/*  #define SLAVE_DEBUG */
 
 #ifdef SLAVE_DEBUG
 #define DPRINTF(x)					\
@@ -59,6 +59,7 @@ G_STMT_START{						\
 		getpid (), __FUNCTION__, __LINE__);	\
 	printf x;					\
 	putchar ('\n');					\
+	fflush (stdout);				\
 }G_STMT_END
 #else
 #define DPRINTF(x)
@@ -950,6 +951,8 @@ load_directory_sorted (const gchar *uri,
 		list_buffer->_length++;
 
 		info = gnome_vfs_directory_list_next (list);
+		DPRINTF (("***SLAVE*** Notifying `%s'\n",
+			  i->name));
 		if (info == NULL) {
 			GNOME_VFS_Slave_Notify_load_directory
 				(notify_objref, GNOME_VFS_ERROR_EOF,
@@ -959,6 +962,13 @@ load_directory_sorted (const gchar *uri,
 				(notify_objref, GNOME_VFS_OK, list_buffer, ev);
 			list_buffer->_length = 0;
 		}
+
+#if 0
+		if (ev->_major != CORBA_NO_EXCEPTION) {
+			/*  printf ("***SLAVE*** error sending notification.\n"); */
+			fflush (stdout);
+		}
+#endif
 	}
 
 	long_operation_finished ();

@@ -32,6 +32,31 @@
 #include "gnome-vfs.h"
 
 
+static int measure_speed = 0;
+
+struct poptOption options[] = {
+	{
+		"measure-speed",
+		's',
+		POPT_ARG_NONE,
+		&measure_speed,
+		0,
+		"Measure speed without displaying anything",
+		NULL
+	},
+	{
+		NULL,
+		0,
+		0,
+		NULL,
+		0,
+		NULL,
+		NULL
+	}
+};
+
+
+
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
 {
@@ -133,50 +158,86 @@ main (int argc, char **argv)
 {
 	GnomeVFSDirectoryList *list;
 	GnomeVFSResult result;
-	gchar *uri;
+	GTimer *timer;
+	char **args;
+	gchar *text_uri;
+	poptContext popt_context;
 
-	if (argc < 2 || argc > 3) {
-		fprintf (stderr, "Usage: %s <uri> [<pattern>]\n", argv[0]);
+	popt_context = poptGetContext ("test-directory", argc, argv,
+				       options, 0);
+
+	while (poptGetNextOpt (popt_context) != -1)
+		;
+
+	args = poptGetArgs (popt_context);
+	if (args == NULL || args[1] != NULL) {
+		fprintf (stderr, "Usage: %s [<options>] <uri>\n", argv[0]);
 		return 1;
 	}
 
-	uri = argv[1];
+	text_uri = g_strdup (args[0]);
+
+	poptFreeContext (popt_context);
 
 	gnome_vfs_init ();
 
 	printf ("Loading directory...");
 	fflush (stdout);
 
+	if (measure_speed) {
+		timer = g_timer_new ();
+		g_timer_start (timer);
+	} else {
+		timer = NULL;
+	}
+
 	/* Load with no filters and without requesting any metadata.  */
-	result = gnome_vfs_directory_load (&list, uri,
+	result = gnome_vfs_directory_load (&list, text_uri,
 					   (GNOME_VFS_FILE_INFO_GETMIMETYPE
 					    | GNOME_VFS_FILE_INFO_FASTMIMETYPE
 					    | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
 					   NULL,
 					   NULL);
 
+	if (measure_speed) {
+		gdouble elapsed_seconds;
+		guint num_entries;
+
+		g_timer_stop (timer);
+		elapsed_seconds = g_timer_elapsed (timer, NULL);
+		num_entries = gnome_vfs_directory_list_get_num_entries (list);
+		printf ("\n%.5f seconds for %d unsorted entries, %.5f entries/sec.\n",
+			elapsed_seconds, num_entries,
+			(double) num_entries / elapsed_seconds);
+
+		goto end;
+	}
+
 	printf ("Ok\n");
 
-	show_result (result, "load_directory", uri);
+	show_result (result, "load_directory", text_uri);
 
-	printf ("Raw listing for `%s':\n", uri);
+	printf ("Raw listing for `%s':\n", text_uri);
 	print_list (list);
 
 	sort_list (list);
-	printf ("Sorted listing for `%s':\n", uri);
+	printf ("Sorted listing for `%s':\n", text_uri);
 	print_list (list);
 
 	if (argc >= 3) {
 		filter_list (list, argv[2]);
 		printf ("Filtered (`%s') listing for `%s':\n",
-			argv[2], uri);
+			argv[2], text_uri);
 		print_list (list);
 	}
 
+ end:
 	printf ("Destroying.\n");
 	gnome_vfs_directory_list_destroy (list);
 
 	printf ("Done.\n");
+
+	g_free (text_uri);
 
 	return 0;
 }
