@@ -466,8 +466,7 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	if (open_mode & GNOME_VFS_OPEN_RANDOM)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = gnome_vfs_open_from_uri (&parent_handle, parent_uri,
-					  open_mode);
+	result = gnome_vfs_open_uri (&parent_handle, parent_uri, open_mode);
 	RETURN_IF_FAIL (result);
 
 	if (open_mode & GNOME_VFS_OPEN_READ) {

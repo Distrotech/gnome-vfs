@@ -268,8 +268,6 @@ static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
     GnomeVFSURI *parent_uri;
     GnomeVFSResult result;
     Bzip2MethodHandle *bzip2_handle;
-    FILE *file;
-    int bzerr;
 
     _GNOME_VFS_METHOD_PARAM_CHECK(method_handle != NULL);
     _GNOME_VFS_METHOD_PARAM_CHECK(uri != NULL);
@@ -286,7 +284,7 @@ static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
     if(open_mode & GNOME_VFS_OPEN_RANDOM)
         return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-    result = gnome_vfs_open_from_uri(&parent_handle, parent_uri, open_mode);
+    result = gnome_vfs_open_uri(&parent_handle, parent_uri, open_mode);
     RETURN_IF_FAIL(result);
 
     bzip2_handle = bzip2_method_handle_new(parent_handle, uri, open_mode);

@@ -1,4 +1,32 @@
+1999-09-27  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (dispatch_open_callback):
+	Unref before calling the callback, not after that.
+	(dispatch_create_callback): Likewise.
+	(dispatch_open_as_channel_callback): Likewise.
+
+	* modules/bzip2-method.c (do_open): Removed unused variables.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_equal): New function.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_from_uri): Renamed
+	to `gnome_vfs_open_uri'.
+	(gnome_vfs_create_for_uri): Renamed to `gnome_vfs_create_uri'.
+	(gnome_vfs_get_file_info_from_uri): Renamed to
+	`gnome_vfs_get_file_info_uri'.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open_as_channel):
+	Close and unref channels.
+	(execute_create_as_channel): Likewise.
+	(gnome_vfs_job_destroy): Use `g_io_channel_close()' instead of
+	`close()'.
+	(execute_open_as_channel): Wait for ack from the notification.
+	(execute_create_as_channel): Likewise.
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Ignore SIGPIPE.
+
 1999-09-25  Cody Russell  <bratsche@dfw.net>
+
 	* modules/bzip2-method.c: Removed MAKE_ABSOLUTE().
 
 1999-09-25  Ettore Perazzoli  <ettore@comm2000.it>
@@ -21,6 +49,7 @@
 	* configure.in: Added da to ALL_LINGUAS.
 	
 1999-09-18  Cody Russell  <bratsche@dfw.net>
+
 	* modules/bzip2-method.[ch]: Added. Note that this method is not
 	currently finished, and so I've disabled building of it for now.
 

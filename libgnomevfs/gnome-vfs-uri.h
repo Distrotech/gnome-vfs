@@ -53,4 +53,7 @@ void		     gnome_vfs_uri_set_user_name (GnomeVFSURI *uri,
 void		     gnome_vfs_uri_set_password  (GnomeVFSURI *uri,
 						  const gchar *password);
 
+gboolean	     gnome_vfs_uri_equal	 (const GnomeVFSURI *a,
+						  const GnomeVFSURI *b);
+
 #endif /* _GNOME_VFS_URI_H */

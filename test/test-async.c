@@ -55,8 +55,7 @@ read_callback (GnomeVFSAsyncHandle *handle,
                gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
-		printf ("Read failed: %s",
-			gnome_vfs_result_to_string (result));
+		printf ("Read failed: %s", gnome_vfs_result_to_string (result));
 		gtk_main_quit ();
 	} else {
 		printf ("%Ld/%Ld byte(s) read, callback data `%s'\n",

@@ -44,6 +44,8 @@ gnome_vfs_init (void)
 		retval = gnome_vfs_method_init ();
 		if (retval)
 			retval = gnome_vfs_process_init ();
+		if (retval)
+			signal (SIGPIPE, SIG_IGN);
 	} else {
 		g_warning (_("GNOME VFS already initialized."));
 		retval = TRUE;	/* Who cares after all.  */

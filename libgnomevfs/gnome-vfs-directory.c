@@ -341,8 +341,8 @@ directory_visit_internal (GnomeVFSURI *uri,
 		GnomeVFSFileInfo *info;
 
 		info = gnome_vfs_file_info_new ();
-		result = gnome_vfs_get_file_info_from_uri (uri, info,
-							   info_options, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, info,
+						      info_options, NULL);
 		if (result != GNOME_VFS_OK) {
 			gnome_vfs_file_info_destroy (info);
 			return result;
@@ -531,8 +531,8 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 		gboolean stop;
 
 		file_uri = gnome_vfs_uri_append_path (uri, p->data);
-		gnome_vfs_get_file_info_from_uri (file_uri, info, info_options,
-						  meta_keys);
+		gnome_vfs_get_file_info_uri (file_uri, info, info_options,
+					     meta_keys);
 
 		recurse = FALSE;
 		stop = ! (* callback) (info->name, info, FALSE, data,

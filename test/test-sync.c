@@ -57,7 +57,7 @@ main (int argc, char **argv)
 	uri = gnome_vfs_uri_new (argv[1]);
 	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-	result = gnome_vfs_open_from_uri (&handle, uri, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
 	show_result (result, "open", text_uri);
 
 	result = gnome_vfs_read (handle, buffer, sizeof buffer - 1,

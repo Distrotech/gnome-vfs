@@ -45,7 +45,7 @@ gnome_vfs_open (GnomeVFSHandle **handle,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	result = gnome_vfs_open_from_uri (handle, uri, open_mode);
+	result = gnome_vfs_open_uri (handle, uri, open_mode);
 
 	gnome_vfs_uri_unref (uri);
 
@@ -53,9 +53,9 @@ gnome_vfs_open (GnomeVFSHandle **handle,
 }
 
 GnomeVFSResult
-gnome_vfs_open_from_uri (GnomeVFSHandle **handle,
-			 GnomeVFSURI *uri,
-			 GnomeVFSOpenMode open_mode)
+gnome_vfs_open_uri (GnomeVFSHandle **handle,
+		    GnomeVFSURI *uri,
+		    GnomeVFSOpenMode open_mode)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -96,8 +96,7 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	result = gnome_vfs_create_for_uri (handle, uri, open_mode, exclusive,
-					   perm);
+	result = gnome_vfs_create_uri (handle, uri, open_mode, exclusive, perm);
 
 	gnome_vfs_uri_unref (uri);
 
@@ -105,11 +104,11 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 }
 
 GnomeVFSResult
-gnome_vfs_create_for_uri (GnomeVFSHandle **handle,
-			  GnomeVFSURI *uri,
-			  GnomeVFSOpenMode open_mode,
-			  gboolean exclusive,
-			  guint perm)
+gnome_vfs_create_uri (GnomeVFSHandle **handle,
+		      GnomeVFSURI *uri,
+		      GnomeVFSOpenMode open_mode,
+		      gboolean exclusive,
+		      guint perm)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -200,10 +199,10 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 }
 
 GnomeVFSResult
-gnome_vfs_get_file_info_from_uri (GnomeVFSURI *uri,
-				  GnomeVFSFileInfo *info,
-				  GnomeVFSFileInfoOptions options,
-				  gchar *meta_keys[])
+gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
+			     GnomeVFSFileInfo *info,
+			     GnomeVFSFileInfoOptions options,
+			     gchar *meta_keys[])
 {
 	GnomeVFSResult result;
 	GList *meta_list;

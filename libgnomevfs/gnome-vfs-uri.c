@@ -176,6 +176,14 @@ set_uri_element (GnomeVFSURI *uri,
 	gnome_vfs_canonicalize_pathname (uri->text);
 }
 
+/**
+ * gnome_vfs_uri_new:
+ * @text_uri: A string representing a URI.
+ * 
+ * Create a new URI from @text_uri.
+ * 
+ * Return value: The new URI.
+ **/
 GnomeVFSURI *
 gnome_vfs_uri_new (const gchar *text_uri)
 {
@@ -289,6 +297,14 @@ destroy_element (GnomeVFSURI *uri)
 	g_free (uri);
 }
 
+/**
+ * gnome_vfs_uri_ref:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Increment @uri's reference count.
+ * 
+ * Return value: @uri.
+ **/
 GnomeVFSURI *
 gnome_vfs_uri_ref (GnomeVFSURI *uri)
 {
@@ -302,6 +318,13 @@ gnome_vfs_uri_ref (GnomeVFSURI *uri)
 	return uri;
 }
 
+/**
+ * gnome_vfs_uri_unref:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Decrement @uri's reference count.  If the reference count reaches zero,
+ * @uri is destroyed.
+ **/
 void
 gnome_vfs_uri_unref (GnomeVFSURI *uri)
 {
@@ -317,6 +340,12 @@ gnome_vfs_uri_unref (GnomeVFSURI *uri)
 	}
 }
 
+/**
+ * gnome_vfs_uri_destroy:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Destroy @uri.
+ **/
 void
 gnome_vfs_uri_destroy (GnomeVFSURI *uri)
 {
@@ -332,6 +361,14 @@ gnome_vfs_uri_destroy (GnomeVFSURI *uri)
 }
 
 
+/**
+ * gnome_vfs_uri_dup:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Duplicate @uri.
+ * 
+ * Return value: A pointer to a new URI that is exactly the same as @uri.
+ **/
 GnomeVFSURI *
 gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 {
@@ -381,9 +418,19 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 }
 
 
+/**
+ * gnome_vfs_uri_append_path:
+ * @uri: A GnomeVFSURI.
+ * @path: A path component.
+ * 
+ * Create a new URI obtained by appending @path to @uri.  This will take care
+ * of adding an appropriate directory separator between the end of @uri and
+ * the start of @path if necessary.
+ * 
+ * Return value: The new URI obtained by combining @uri and @path.
+ **/
 /* FIXME this must be implemented in a much smarter way.  The most important
    issue is that a `#' in `path' will break things rather badly.  */
-
 GnomeVFSURI *
 gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 			   const gchar *path)
@@ -421,6 +468,17 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 }
 
 
+/**
+ * gnome_vfs_uri_to_string:
+ * @uri: A GnomeVFSURI.
+ * @hide_options: Bitmask specifying what URI elements (e.g. password,
+ * user name etc.) should not be represented in the returned string.
+ * 
+ * Translate @uri into a printable string.  The string will not contain the
+ * URI elements specified by @hide_options.
+ * 
+ * Return value: A malloced printable string representing @uri.
+ **/
 /* FIXME/TODO: Special characters such as `#' in the URI components should be
    replaced.  */
 gchar *
@@ -527,6 +585,14 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 }
 
 
+/**
+ * gnome_vfs_uri_is_local:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Check if @uri is a local (native) file system.
+ * 
+ * Return value: %FALSE if @uri is not a local file system, %TRUE otherwise.
+ **/
 gboolean
 gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 {
@@ -538,6 +604,14 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 /* FIXME Maybe we have to make more definite decisions on what URLs have to
    look like here.  */
 
+/**
+ * gnome_vfs_uri_has_parent:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Check if URI has a parent or not.
+ * 
+ * Return value: %TRUE if @uri has a parent, %FALSE otherwise.
+ **/
 gboolean
 gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 {
@@ -555,6 +629,14 @@ gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_uri_get_parent:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve @uri's parent URI.
+ * 
+ * Return value: A pointer to @uri's parent URI.
+ **/
 GnomeVFSURI *
 gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri)
 {
@@ -602,6 +684,14 @@ gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri)
 }
 
 
+/**
+ * gnome_vfs_uri_get_toplevel:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve the toplevel URI in @uri.
+ * 
+ * Return value: A pointer to the toplevel URI object.
+ **/
 GnomeVFSToplevelURI *
 gnome_vfs_uri_get_toplevel (const GnomeVFSURI *uri)
 {
@@ -616,6 +706,14 @@ gnome_vfs_uri_get_toplevel (const GnomeVFSURI *uri)
 }
 
 
+/**
+ * gnome_vfs_uri_get_host_name:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve the host name for @uri.
+ * 
+ * Return value: A string representing the host name.
+ **/
 const gchar *
 gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri)
 {
@@ -627,6 +725,15 @@ gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri)
 	return toplevel->host_name;
 }
 
+/**
+ * gnome_vfs_uri_get_host_port:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve the host port number in @uri.
+ * 
+ * Return value: The host port number used by @uri.  If the value is zero, the
+ * default port value for the specified toplevel access method is used.
+ **/
 guint
 gnome_vfs_uri_get_host_port (const GnomeVFSURI *uri)
 {
@@ -638,6 +745,14 @@ gnome_vfs_uri_get_host_port (const GnomeVFSURI *uri)
 	return toplevel->host_port;
 }
 
+/**
+ * gnome_vfs_uri_get_user_name:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve the user name in @uri.
+ * 
+ * Return value: A string representing the user name in @uri.
+ **/
 const gchar *
 gnome_vfs_uri_get_user_name (const GnomeVFSURI *uri)
 {
@@ -649,6 +764,14 @@ gnome_vfs_uri_get_user_name (const GnomeVFSURI *uri)
 	return toplevel->user_name;
 }
 
+/**
+ * gnome_vfs_uri_get_password:
+ * @uri: A GnomeVFSURI.
+ * 
+ * Retrieve the password for @uri.
+ * 
+ * Return value: The password for @uri.
+ **/
 const gchar *
 gnome_vfs_uri_get_password (const GnomeVFSURI *uri)
 {
@@ -661,6 +784,13 @@ gnome_vfs_uri_get_password (const GnomeVFSURI *uri)
 }
 
 
+/**
+ * gnome_vfs_uri_set_host_name:
+ * @uri: A GnomeVFSURI.
+ * @host_name: A string representing a host name.
+ * 
+ * Set @host_name as the host name accessed by @uri.
+ **/
 void
 gnome_vfs_uri_set_host_name (GnomeVFSURI *uri,
 			     const gchar *host_name)
@@ -676,6 +806,14 @@ gnome_vfs_uri_set_host_name (GnomeVFSURI *uri,
 	toplevel->host_name = g_strdup (host_name);
 }
 
+/**
+ * gnome_vfs_uri_set_host_port:
+ * @uri: A GnomeVFSURI.
+ * @host_port: A TCP/IP port number.
+ * 
+ * Set the host port number in @uri.  If @host_port is zero, the default port
+ * for @uri's toplevel access method is used.
+ **/
 void
 gnome_vfs_uri_set_host_port (GnomeVFSURI *uri,
 			     guint host_port)
@@ -689,6 +827,13 @@ gnome_vfs_uri_set_host_port (GnomeVFSURI *uri,
 	toplevel->host_port = host_port;
 }
 
+/**
+ * gnome_vfs_uri_set_user_name:
+ * @uri: A GnomeVFSURI.
+ * @user_name: A string representing a user name on the host accessed by @uri.
+ * 
+ * Set @user_name as the user name for @uri.
+ **/
 void
 gnome_vfs_uri_set_user_name (GnomeVFSURI *uri,
 			     const gchar *user_name)
@@ -704,6 +849,13 @@ gnome_vfs_uri_set_user_name (GnomeVFSURI *uri,
 	toplevel->host_name = g_strdup (user_name);
 }
 
+/**
+ * gnome_vfs_uri_set_password:
+ * @uri: A GnomeVFSURI.
+ * @password: A password string.
+ * 
+ * Set @password as the password for @uri.
+ **/
 void
 gnome_vfs_uri_set_password (GnomeVFSURI *uri,
 			    const gchar *password)
@@ -717,4 +869,65 @@ gnome_vfs_uri_set_password (GnomeVFSURI *uri,
 	if (toplevel->password != NULL)
 		g_free (toplevel->password);
 	toplevel->host_name = g_strdup (password);
+}
+
+
+static gboolean
+compare_elements (const GnomeVFSURI *a,
+		  const GnomeVFSURI *b)
+{
+	if (strcmp (a->text, b->text) != 0
+	    || strcmp (a->method_string, b->method_string) != 0)
+		return FALSE;
+
+	/* The following should not happen, but we make sure anyway.  */
+	if (a->method != b->method)
+		return FALSE;
+
+	return TRUE;
+}
+
+/**
+ * gnome_vfs_uri_equal:
+ * @a: A GnomeVFSURI.
+ * @b: A GnomeVFSURI.
+ * 
+ * Compare @a and @b.
+ * 
+ * Return value: %TRUE if @a and @b are equal, %FALSE otherwise.
+ **/
+gboolean
+gnome_vfs_uri_equal (const GnomeVFSURI *a,
+		     const GnomeVFSURI *b)
+{
+	const GnomeVFSToplevelURI *toplevel_a;
+	const GnomeVFSToplevelURI *toplevel_b;
+
+	g_return_val_if_fail (a != NULL, FALSE);
+	g_return_val_if_fail (b != NULL, FALSE);
+
+	/* First check non-toplevel elements.  */
+	while (a->parent != NULL && b->parent != NULL)
+		if (! compare_elements (a, b))
+			return FALSE;
+
+	/* Now we should be at toplevel for both.  */
+	if (a->parent != NULL || b->parent != NULL)
+		return FALSE;
+
+	if (! compare_elements (a, b))
+		return FALSE;
+
+	toplevel_a = (GnomeVFSToplevelURI *) a;
+	toplevel_b = (GnomeVFSToplevelURI *) b;
+
+	/* Finally, compare the extra toplevel members.  */
+
+	if (toplevel_a->host_port != toplevel_b->host_port
+	    || strcmp (toplevel_a->host_name, toplevel_b->host_name) != 0
+	    || strcmp (toplevel_a->user_name, toplevel_b->user_name) != 0
+	    || strcmp (toplevel_a->password, toplevel_b->password) != 0)
+		return FALSE;
+
+	return TRUE;
 }

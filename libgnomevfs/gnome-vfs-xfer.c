@@ -173,8 +173,8 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 	retry = FALSE;
 	*skip = FALSE;
 	do {
-		result = gnome_vfs_open_from_uri (source_handle, source_uri,
-						  GNOME_VFS_OPEN_READ);
+		result = gnome_vfs_open_uri (source_handle, source_uri,
+					     GNOME_VFS_OPEN_READ);
 		if (result != GNOME_VFS_OK)
 			retry = handle_error (&result, progress_info,
 					      error_mode, progress_callback,
@@ -207,9 +207,9 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 	retry = FALSE;
 	*skip = FALSE;
 	do {
-		result = gnome_vfs_create_for_uri (target_handle, target_uri,
-						   GNOME_VFS_OPEN_WRITE,
-						   exclusive, 0600);
+		result = gnome_vfs_create_uri (target_handle, target_uri,
+					       GNOME_VFS_OPEN_WRITE,
+					       exclusive, 0600);
 
 		if (result == GNOME_VFS_ERROR_FILEEXISTS) {
 			gboolean replace;
@@ -433,9 +433,8 @@ create_xfer_file_list (GnomeVFSURI *source_dir_uri,
 		new_source->name = g_strdup (source_name);
 		gnome_vfs_file_info_init (&new_source->info);
 
-		result = gnome_vfs_get_file_info_from_uri (uri,
-							   &new_source->info,
-							   info_options, NULL);
+		result = gnome_vfs_get_file_info_uri (uri, &new_source->info,
+						      info_options, NULL);
 		if (result != GNOME_VFS_OK) {
 			gnome_vfs_uri_unref (uri);
 			g_free (new_source->name);

@@ -28,7 +28,7 @@ GnomeVFSResult	 gnome_vfs_open			(GnomeVFSHandle **handle,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode);
 
-GnomeVFSResult	 gnome_vfs_open_from_uri	(GnomeVFSHandle **handle,
+GnomeVFSResult	 gnome_vfs_open_uri		(GnomeVFSHandle **handle,
 						 GnomeVFSURI *uri,
 						 GnomeVFSOpenMode open_mode);
 
@@ -38,7 +38,7 @@ GnomeVFSResult	 gnome_vfs_create		(GnomeVFSHandle **handle,
 						 gboolean exclusive,
 						 guint perm);
 
-GnomeVFSResult	 gnome_vfs_create_for_uri	(GnomeVFSHandle **handle,
+GnomeVFSResult	 gnome_vfs_create_uri		(GnomeVFSHandle **handle,
 						 GnomeVFSURI *uri,
 						 GnomeVFSOpenMode open_mode,
 						 gboolean exclusive,
@@ -69,7 +69,7 @@ GnomeVFSResult	 gnome_vfs_get_file_info	(const gchar *text_uri,
 						 	options,
 						 gchar *meta_keys[]);
 
-GnomeVFSResult	 gnome_vfs_get_file_info_from_uri
+GnomeVFSResult	 gnome_vfs_get_file_info_uri
 						(GnomeVFSURI *uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions
