@@ -596,7 +596,7 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 	drive->priv->display_name = get_drive_name (volume_monitor, drive, mount);
 	
 	drive->priv->is_user_visible = TRUE;
-	drive->priv->volume = NULL;
+	drive->priv->volumes = NULL;
 
 	uri = gnome_vfs_get_uri_from_local_path (mount->mount_path);
 	mounted_volume = _gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (volume_monitor, uri);
@@ -604,7 +604,7 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 
 	if (mounted_volume != NULL &&
 	    mounted_volume->priv->drive == NULL) {
-		drive->priv->volume = gnome_vfs_volume_ref (mounted_volume);
+		_gnome_vfs_drive_add_mounted_volume (drive, mounted_volume);
 		_gnome_vfs_volume_set_drive (mounted_volume, drive);
 	}
 
@@ -857,14 +857,14 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 	g_free (uri);
 
 	if (containing_drive != NULL &&
-	    containing_drive->priv->volume == NULL) {
+	    g_list_find (containing_drive->priv->volumes, vol) == NULL) {
 		/* Make sure the mounted volume for a visible drive is visible */
 		if (containing_drive->priv->is_user_visible) {
 			vol->priv->is_user_visible = 1;
 		}
 		
 		vol->priv->drive = containing_drive;
-		_gnome_vfs_drive_set_mounted_volume (containing_drive, vol);
+		_gnome_vfs_drive_add_mounted_volume (containing_drive, vol);
 	}
 
 	return vol;

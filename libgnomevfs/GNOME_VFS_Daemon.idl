@@ -55,7 +55,7 @@ module GNOME {
 		struct Drive {
 			long id;
 			long device_type;
-			long volume;
+			sequence<long> volumes;
 			string device_path;
 			string activation_uri;
 			string display_name;

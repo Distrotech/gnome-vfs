@@ -489,10 +489,13 @@ get_data_for_drive (GnomeVFSDrive *drive)
 	char *icon;
 	char *data;
 	char *tmp1, *tmp2;
-	GnomeVFSVolume *volume;
+	GList *volume_list;
 
-	volume = gnome_vfs_drive_get_mounted_volume (drive);
-	if (volume != NULL) {
+	volume_list = gnome_vfs_drive_get_mounted_volumes (drive);
+	if (volume_list != NULL) {
+		GnomeVFSVolume *volume;
+		volume = GNOME_VFS_VOLUME (volume_list->data);
+
 		uri = gnome_vfs_volume_get_activation_uri (volume);
 		tmp1 = gnome_vfs_drive_get_display_name (drive);
 		tmp2 = gnome_vfs_volume_get_display_name (volume);

@@ -60,10 +60,17 @@ GType gnome_vfs_drive_get_type (void) G_GNUC_CONST;
 
 GnomeVFSDrive *gnome_vfs_drive_ref   (GnomeVFSDrive *drive);
 void           gnome_vfs_drive_unref (GnomeVFSDrive *drive);
+void           gnome_vfs_drive_volume_list_free (GList *volumes);
+
 
 gulong             gnome_vfs_drive_get_id              (GnomeVFSDrive *drive);
 GnomeVFSDeviceType gnome_vfs_drive_get_device_type     (GnomeVFSDrive *drive);
+
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 GnomeVFSVolume *   gnome_vfs_drive_get_mounted_volume  (GnomeVFSDrive *drive);
+#endif /*GNOME_VFS_DISABLE_DEPRECATED*/
+
+GList *            gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_device_path     (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_activation_uri  (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_display_name    (GnomeVFSDrive *drive);
@@ -87,5 +94,5 @@ void gnome_vfs_drive_eject   (GnomeVFSDrive             *volume,
 			      gpointer                   user_data);
 
 G_END_DECLS
-
 #endif /* GNOME_VFS_DRIVE_H */
+

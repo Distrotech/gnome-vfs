@@ -71,7 +71,7 @@ struct _GnomeVFSVolumePrivate {
 struct _GnomeVFSDrivePrivate {
 	gulong id;
 	GnomeVFSDeviceType device_type;
-	GnomeVFSVolume *volume; /* Owning ref */
+	GList *volumes; /* GnomeVFSVolume list (Owning ref) */
 
 	/* Only for unix mounts: */
 	char *device_path;
@@ -89,9 +89,9 @@ struct _GnomeVFSDrivePrivate {
 
 void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,
 						 GnomeVFSDrive         *drive);
-void _gnome_vfs_drive_set_mounted_volume        (GnomeVFSDrive         *drive,
+void _gnome_vfs_drive_add_mounted_volume        (GnomeVFSDrive         *drive,
 						 GnomeVFSVolume        *volume);
-void _gnome_vfs_drive_unset_volume              (GnomeVFSDrive         *drive,
+void _gnome_vfs_drive_remove_volume             (GnomeVFSDrive         *drive,
 						 GnomeVFSVolume        *volume);
 void _gnome_vfs_volume_unset_drive              (GnomeVFSVolume        *volume,
 						 GnomeVFSDrive         *drive);

@@ -159,14 +159,20 @@ gnome_vfs_drive_finalize (GObject *object)
 {
 	GnomeVFSDrive *drive = (GnomeVFSDrive *) object;
 	GnomeVFSDrivePrivate *priv;
+	GList *current_vol;
 
 	priv = drive->priv;
 
-	if (priv->volume) {
-		_gnome_vfs_volume_unset_drive (priv->volume,
+	for (current_vol = priv->volumes; current_vol != NULL; current_vol = current_vol->next) {
+		GnomeVFSVolume *vol;
+		vol = GNOME_VFS_VOLUME (current_vol->data);
+
+		_gnome_vfs_volume_unset_drive (vol,
 					       drive);
-		gnome_vfs_volume_unref (priv->volume);
+		gnome_vfs_volume_unref (vol);
 	}
+
+	g_list_free (priv->volumes);
 	g_free (priv->device_path);
 	g_free (priv->activation_uri);
 	g_free (priv->display_name);
@@ -195,12 +201,48 @@ GnomeVFSVolume *
 gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 {
 	GnomeVFSVolume *vol;
-	
+	GList *first_vol;
+
 	G_LOCK (drives);
-	vol = gnome_vfs_volume_ref (drive->priv->volume);
+	first_vol = g_list_first (drive->priv->volumes);
+
+	if (first_vol != NULL) {
+		vol = gnome_vfs_volume_ref (GNOME_VFS_VOLUME (first_vol->data));
+	} else {
+		vol = NULL;
+	}
+
 	G_UNLOCK (drives);
 
 	return vol;
+}
+
+void
+gnome_vfs_drive_volume_list_free (GList *volumes)
+{
+	if (volumes != NULL) {
+		g_list_foreach (volumes, 
+				(GFunc)gnome_vfs_volume_unref,
+				NULL);
+
+		g_list_free (volumes);
+	}
+}
+
+GList *
+gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
+{
+	GList *return_list;
+	
+	G_LOCK (drives);
+	return_list = g_list_copy (drive->priv->volumes);
+	g_list_foreach (return_list, 
+			(GFunc)gnome_vfs_volume_ref,
+			NULL);
+
+	G_UNLOCK (drives);
+
+	return return_list;
 }
 
 gboolean
@@ -209,32 +251,38 @@ gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
 	gboolean res;
 	
 	G_LOCK (drives);
-	res = drive->priv->volume != NULL;
+	res = drive->priv->volumes != NULL;
 	G_UNLOCK (drives);
 	
 	return res;
 }
 
-
 void
-_gnome_vfs_drive_unset_volume (GnomeVFSDrive      *drive,
+_gnome_vfs_drive_remove_volume (GnomeVFSDrive      *drive,
 			       GnomeVFSVolume     *volume)
 {
 	G_LOCK (drives);
-	g_assert (drive->priv->volume == volume);
-	drive->priv->volume = NULL;
+	g_assert ((g_list_find (drive->priv->volumes,
+				 volume)) != NULL);
+
+	drive->priv->volumes = g_list_remove (drive->priv->volumes,
+                                              volume);
 	G_UNLOCK (drives);
 	gnome_vfs_volume_unref (volume);
 }
 
 void
-_gnome_vfs_drive_set_mounted_volume  (GnomeVFSDrive      *drive,
+_gnome_vfs_drive_add_mounted_volume  (GnomeVFSDrive      *drive,
 				      GnomeVFSVolume     *volume)
 {
 	G_LOCK (drives);
-	g_assert (drive->priv->volume == NULL);
-	
-	drive->priv->volume = gnome_vfs_volume_ref (volume);
+
+	g_assert ((g_list_find (drive->priv->volumes,
+				 volume)) == NULL);
+
+	drive->priv->volumes = g_list_append (drive->priv->volumes, 
+					      gnome_vfs_volume_ref (volume));
+
 	G_UNLOCK (drives);
 }
 
@@ -329,17 +377,38 @@ void
 gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
 			  GNOME_VFS_Drive *corba_drive)
 {
-	GnomeVFSVolume *volume;
+	CORBA_sequence_CORBA_long corba_volumes;
 
 	corba_drive->id = drive->priv->id;
 	corba_drive->device_type = drive->priv->device_type;
-	volume = gnome_vfs_drive_get_mounted_volume (drive);
-	if (volume != NULL) {
-		corba_drive->volume = volume->priv->id;
-		gnome_vfs_volume_unref (volume);
+
+	if (drive->priv->volumes != NULL) {
+		guint i;
+		guint length;
+		GList *current_vol;
+
+		length = g_list_length (drive->priv->volumes);
+		current_vol = drive->priv->volumes;
+
+		corba_volumes._maximum = length;
+		corba_volumes._length = length;
+		corba_volumes._buffer = CORBA_sequence_CORBA_long_allocbuf (length);
+		CORBA_sequence_set_release (&corba_volumes, TRUE);
+
+		for (i = 0; i < length; i++) {
+			GnomeVFSVolume *volume;
+
+			volume = GNOME_VFS_VOLUME(current_vol->data);
+			corba_volumes._buffer[i] = volume->priv->id; 
+			current_vol = current_vol->next;
+		}
+
+		corba_drive->volumes = corba_volumes;
 	} else {
-		corba_drive->volume = 0;
+		corba_drive->volumes._maximum = 0;
+		corba_drive->volumes._length = 0;
 	}
+
 	corba_drive->device_path = corba_string_or_null_dup (drive->priv->device_path);
 	corba_drive->activation_uri = corba_string_or_null_dup (drive->priv->activation_uri);
 	corba_drive->display_name = corba_string_or_null_dup (drive->priv->display_name);
@@ -361,11 +430,16 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 	drive->priv->id = corba_drive->id;
 	drive->priv->device_type = corba_drive->device_type;
 
-	if (corba_drive->volume != 0) {
-		drive->priv->volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
-										 corba_drive->volume);
-		if (drive->priv->volume != NULL) {
-			_gnome_vfs_volume_set_drive (drive->priv->volume, drive);
+	if (corba_drive->volumes._length != 0) {
+		int i;
+
+		for (i = 0; i < corba_drive->volumes._length; i++) {
+			GnomeVFSVolume *volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
+										 corba_drive->volumes._buffer[i]);
+			if (volume != NULL) {
+				_gnome_vfs_drive_add_mounted_volume (drive, volume);
+				_gnome_vfs_volume_set_drive (volume, drive);
+			}
 		}
 	}
 								  

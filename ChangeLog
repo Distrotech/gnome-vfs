@@ -1,3 +1,29 @@
+2004-07-15  Alexander Larsson  <alexl@redhat.com>
+
+	Patch from John Palmieri.
+	
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/gnome-vfs-drive.c: (gnome_vfs_drive_finalize),
+	(gnome_vfs_drive_get_mounted_volume),
+	(gnome_vfs_drive_volume_list_free),
+	(gnome_vfs_drive_get_mounted_volumes),
+	(gnome_vfs_drive_is_mounted), (_gnome_vfs_drive_remove_volume),
+	(_gnome_vfs_drive_add_mounted_volume), (gnome_vfs_drive_to_corba),
+	(_gnome_vfs_drive_from_corba):
+	* libgnomevfs/gnome-vfs-drive.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	(create_drive_from_mount_point), (create_vol_from_mount):
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	(_gnome_vfs_volume_monitor_unmounted),
+	(_gnome_vfs_volume_monitor_disconnected):
+	* libgnomevfs/gnome-vfs-volume-ops.c: (gnome_vfs_drive_unmount),
+	(gnome_vfs_drive_eject):
+	* libgnomevfs/gnome-vfs-volume.c: (_gnome_vfs_volume_from_corba):
+	* modules/computer-method.c: (get_data_for_drive):
+	Allow several volumes per drive. Deprecate gnome_vfs_drive_get_mounted_volume
+	for gnome_vfs_drive_get_mounted_volumes.
+	
 2004-07-15  Christian Kellner  <gicmo@gnome-de.org>
 
 	* acconfig.h: obsoleted by the new AC_DEFINE statements. Removed.

@@ -567,28 +567,21 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 			 GnomeVFSVolumeOpCallback  callback,
 			 gpointer                   user_data)
 {
-	char *mount_path, *device_path, *uri;
-	GnomeVFSVolume *volume;
+	GList *vol_list;
+	GList *current_vol;
 
+	vol_list = gnome_vfs_drive_get_mounted_volumes (drive);
 
-	volume = gnome_vfs_drive_get_mounted_volume (drive);
+	for (current_vol = vol_list; current_vol != NULL; current_vol = current_vol->next) {
+		GnomeVFSVolume *vol;
+		vol = GNOME_VFS_VOLUME (current_vol->data);
 
-	if (volume != NULL) {
-		emit_pre_unmount (volume);
+		gnome_vfs_volume_unmount (vol,
+					  callback,
+					  user_data);
 	}
 
-	uri = gnome_vfs_drive_get_activation_uri (drive);
-	mount_path = gnome_vfs_get_local_path_from_uri (uri);
-	g_free (uri);
-	device_path = gnome_vfs_drive_get_device_path (drive);
-	mount_unmount_operation (mount_path,
-				 device_path,
-				 (volume == NULL) ? GNOME_VFS_DEVICE_TYPE_UNKNOWN:gnome_vfs_volume_get_device_type (volume),
-				 FALSE, FALSE,
-				 callback, user_data);
-	g_free (mount_path);
-	g_free (device_path);
-	gnome_vfs_volume_unref (volume);
+	gnome_vfs_drive_volume_list_free (vol_list);
 }
 
 void
@@ -596,28 +589,31 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 		       GnomeVFSVolumeOpCallback  callback,
 		       gpointer                   user_data)
 {
-	char *mount_path, *device_path, *uri;
-	GnomeVFSVolume *volume;
+	GList *vol_list;
+	GList * current_vol;
 
+	vol_list = gnome_vfs_drive_get_mounted_volumes (drive);
 
-	volume = gnome_vfs_drive_get_mounted_volume (drive);
+	for (current_vol = vol_list; current_vol != NULL; current_vol = current_vol->next) {
+		GnomeVFSVolume *vol;
+		vol = GNOME_VFS_VOLUME (current_vol->data);
 
-	if (volume != NULL) {
-		emit_pre_unmount (volume);
+		/* Check to see if this is the last volume */
+		/* If not simply unmount it */
+		/* If so the eject the media along with the unmount */
+		if (current_vol != NULL) { 
+			gnome_vfs_volume_unmount (vol,
+						  callback,
+						  user_data);
+		} else { 
+			gnome_vfs_volume_eject (vol,
+						callback,
+						user_data);
+		}
+
 	}
 
-	uri = gnome_vfs_drive_get_activation_uri (drive);
-	mount_path = gnome_vfs_get_local_path_from_uri (uri);
-	g_free (uri);
-	device_path = gnome_vfs_drive_get_device_path (drive);
-	mount_unmount_operation (mount_path,
-				 device_path,
-				 (volume == NULL) ? GNOME_VFS_DEVICE_TYPE_UNKNOWN:gnome_vfs_volume_get_device_type (volume),
-				 FALSE, TRUE,
-				 callback, user_data);
-	g_free (mount_path);
-	g_free (device_path);
-	gnome_vfs_volume_unref (volume);
+	gnome_vfs_drive_volume_list_free (vol_list);
 }
 
 

@@ -387,7 +387,7 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 		volume->priv->drive = gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor,
 										corba_volume->drive);
 		if (volume->priv->drive != NULL) {
-			_gnome_vfs_drive_set_mounted_volume (volume->priv->drive, volume);
+			_gnome_vfs_drive_add_mounted_volume (volume->priv->drive, volume);
 			/* The drive reference is weak */
 			gnome_vfs_drive_unref (volume->priv->drive);
 		}

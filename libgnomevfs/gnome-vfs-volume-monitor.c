@@ -522,7 +522,7 @@ _gnome_vfs_volume_monitor_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
 	drive = volume->priv->drive;
 	if (drive != NULL) {
 		_gnome_vfs_volume_unset_drive (volume, drive);
-		_gnome_vfs_drive_unset_volume (drive, volume);
+		_gnome_vfs_drive_remove_volume (drive, volume);
 	}
 	
 	gnome_vfs_volume_unref (volume);
@@ -548,21 +548,28 @@ void
 _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 					GnomeVFSDrive         *drive)
 {
-	GnomeVFSVolume *volume;
+	GList *vol_list;
+	GList *current_vol;
 	
 	g_mutex_lock (volume_monitor->priv->mutex);
 	volume_monitor->priv->fstab_drives = g_list_remove (volume_monitor->priv->fstab_drives, drive);
 	drive->priv->is_connected = 0;
 	g_mutex_unlock (volume_monitor->priv->mutex);
 
-	volume = drive->priv->volume;
-	if (volume != NULL) {
+	vol_list = gnome_vfs_drive_get_mounted_volumes (drive);	
+
+	for (current_vol = vol_list; current_vol != NULL; current_vol = current_vol->next) {  
+		GnomeVFSVolume *volume;
+		volume = GNOME_VFS_VOLUME (vol_list->data);
+
 		_gnome_vfs_volume_unset_drive (volume, drive);
-		_gnome_vfs_drive_unset_volume (drive, volume);
+		_gnome_vfs_drive_remove_volume (drive, volume);
 	}
-	
+
+	g_list_free (vol_list);
+
 	g_signal_emit (volume_monitor, volume_monitor_signals[DRIVE_DISCONNECTED], 0, drive);
-	
+
 	gnome_vfs_drive_unref (drive);
 }
 
