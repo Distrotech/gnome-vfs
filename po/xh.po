@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2005-02-03 14:10+0200\n"
+"POT-Creation-Date: 2005-01-14 04:23+0100\n"
+"PO-Revision-Date: 2005-02-17 09:44+0200\n"
 "Last-Translator: Canonical Ltd <translations@canonical.com>\n"
 "Language-Team: Xhosa <xh-translate@ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,21 +17,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
-# Ayikhange ikwazi
 #: daemon/gnome-vfs-daemon.c:596
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "khange ikwazi ukuqalisa ulwabiwo-maxesha eenkcukacha ze-Bonobo"
+msgstr "Ayikhange ikwazi ukuqalisa ulwabiwo-maxesha eenkcukacha ze-Bonobo"
 
-# Ayikhange ikwazi
 #: daemon/gnome-vfs-daemon.c:603
-#, fuzzy
 msgid "Could not initialize gnome vfs"
-msgstr "khange ikwazi ukuqalisa ulwabiwo-maxesha eenkcukacha ze-gnome vfs"
+msgstr "Ayikhange ikwazi ukuqalisa ulwabiwo-maxesha eenkcukacha ze-gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
-msgstr "i-ISO 9660 ubukhulu"
+msgstr "i-ISO 9660 Ubukhulu"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -86,7 +82,7 @@ msgstr "i-CD enemivo enesandi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Isixhobo seSandi se-Hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -151,11 +147,9 @@ msgstr "Ubukhulu bothungelwano"
 msgid "ReiserFS Linux Volume"
 msgstr "Ubukhulu be-ReiserFS Linux"
 
-# Windows refers to the operating system - should not be translated
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
-#, fuzzy
 msgid "Windows Shared Volume"
-msgstr "Ubukhulu ekwabelwene ngabo kwifestile"
+msgstr "Ubukhulu ekwaBelwene ngabo be-Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
@@ -185,11 +179,9 @@ msgstr "Ubukhulu be-Sun SAM-QFS"
 msgid "Enhanced DOS Volume"
 msgstr "Ubukhulu be-DOS eyandisiweyo"
 
-# Windows refers to the operating system - should not be translated
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
-#, fuzzy
 msgid "Windows VFAT Volume"
-msgstr "Ubukhulu befestile ye-VFAT"
+msgstr "Ubukhulu be-Windows ye-VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
@@ -203,78 +195,69 @@ msgstr "Ubukhulu be-XFS Linux"
 msgid "XIAFS Volume"
 msgstr "Ubukhulu be-XIAFS"
 
-# Engaziwayo
 #: libgnomevfs/gnome-vfs-filesystem-type.c:104
-#, fuzzy
 msgid "Unknown"
-msgstr "engaziwayo"
+msgstr "Engaziwayo"
 
-# Uhlobo 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "uhlobo lokusebenza olungaziwayo %u"
+msgstr "Uhlobo lokusebenza olungaziwayo %u"
 
-# How about upayipi wesiqhagamshelanisi?
-#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
-#, fuzzy, c-format
+#: libgnomevfs/gnome-vfs-job.c:1024
+#: libgnomevfs/gnome-vfs-job.c:1169
+#, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Ayinakwenza iphayiphi yesiqhagamshelanisi esivulekileyo se-GIO: %s"
+msgstr "Ayinakwenza ipayipi yesiqhagamshelanisi esivulekileyo se-GIO: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Uhlobo lomsebenzi olungaziwayo %u"
 
-# Ukusebenza
 #: libgnomevfs/gnome-vfs-job.c:1720
-#, fuzzy
 msgid "Operation stopped"
-msgstr "ukusebenza kuyekisiwe"
+msgstr "Ukusebenza kuyekisiwe"
 
-# Ulungiso 
-# alusaxhaswa instead of akuxhaswa
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:255
-#: libgnomevfs/gnome-vfs-mime-handlers.c:306
-#: libgnomevfs/gnome-vfs-mime-handlers.c:600
-#: libgnomevfs/gnome-vfs-mime-handlers.c:619
-#: libgnomevfs/gnome-vfs-mime-handlers.c:637
-#: libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: libgnomevfs/gnome-vfs-mime-handlers.c:675
-#: libgnomevfs/gnome-vfs-mime-handlers.c:816
-#: libgnomevfs/gnome-vfs-mime-handlers.c:838
-#: libgnomevfs/gnome-vfs-mime-handlers.c:857
-#: libgnomevfs/gnome-vfs-mime-handlers.c:876
-#: libgnomevfs/gnome-vfs-mime-handlers.c:929
-#: libgnomevfs/gnome-vfs-mime-handlers.c:946
-#: libgnomevfs/gnome-vfs-mime-handlers.c:963
-#: libgnomevfs/gnome-vfs-mime-handlers.c:981
-#: libgnomevfs/gnome-vfs-mime-handlers.c:999
-#: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
-#: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
-#: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
-#: libgnomevfs/gnome-vfs-mime-info.c:697 libgnomevfs/gnome-vfs-mime-info.c:704
-#: libgnomevfs/gnome-vfs-mime-info.c:711 libgnomevfs/gnome-vfs-mime-info.c:719
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
+#: libgnomevfs/gnome-vfs-mime-info.c:643
+#: libgnomevfs/gnome-vfs-mime-info.c:650
+#: libgnomevfs/gnome-vfs-mime-info.c:658
+#: libgnomevfs/gnome-vfs-mime-info.c:665
+#: libgnomevfs/gnome-vfs-mime-info.c:673
+#: libgnomevfs/gnome-vfs-mime-info.c:690
+#: libgnomevfs/gnome-vfs-mime-info.c:697
+#: libgnomevfs/gnome-vfs-mime-info.c:704
+#: libgnomevfs/gnome-vfs-mime-info.c:711
+#: libgnomevfs/gnome-vfs-mime-info.c:719
 #: libgnomevfs/gnome-vfs-mime-info.c:726
-#, fuzzy
-msgid ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
-msgstr ""
-"Umsebenzi owaliwayo.  ulungiso lomsebenzisi kwi-database ye-MIME akusaxhaswa."
+msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
+msgstr "Umsebenzi owaliwayo.  ulungiso lomsebenzisi kwi-database ye-MIME alusaxhaswa."
 
-# Akukwazeki ukwahlulwa ngokwezijungqe
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse: %s"
-msgstr "Awunokwahlula ngokwezijungqu: %s"
+msgstr "Akukwazeki ukwahlulwa ngokwezijungqe: %s"
 
-# ngokwezijungqe
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
-#, fuzzy
 msgid "More parsing errors will be ignored."
-msgstr "Iimpazamo ezingaphaya zokwahlulwa ngokwezijungqu mazinganakwa."
+msgstr "Iimpazamo ezingaphaya zokwahlulwa ngokwezijungqe mazinganakwa."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -321,19 +304,15 @@ msgstr "Idata yonakalisiwe"
 msgid "Format not valid"
 msgstr "Ulungiselelo alusebenzi"
 
-# Isikhombisi-fayili?
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
-#, fuzzy
 msgid "Bad file handle"
-msgstr "Isikhombisi fayili esibi"
+msgstr "Isikhombisi -fayili esibi"
 
-# I-Fayili
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
-#, fuzzy
 msgid "File too big"
-msgstr "iFayili inkulu kakhulu"
+msgstr "I-Fayili inkulu kakhulu"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -420,11 +399,10 @@ msgstr "Akukho vimba wolwazi woneleyo"
 msgid "Host not found"
 msgstr "Ayifunyanwanga"
 
-# Igama
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "igama lomququzeleli alisebenzi"
+msgstr "Igama lomququzeleli alisebenzi"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -501,7 +479,6 @@ msgstr "Akukho senzo sokumiselweyo sinxulunyaniswayo"
 msgid "No handler for URL scheme"
 msgstr "Akukho sikhombisi sesikim se-URL"
 
-# ngokwezijungqe
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
@@ -513,7 +490,8 @@ msgid "Error launching command"
 msgstr "Impazamo yomyalelo wokundulula"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Kufikelelwe ekupheleni kwexesha"
 
@@ -529,7 +507,6 @@ msgstr "Uvimba utshixiwe"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
-#, fuzzy
 msgid "Function call deprecated"
 msgstr "Unxulumano lomsebenzi olwaliwayo"
 
@@ -541,8 +518,8 @@ msgstr "Impazamo engaziwayo"
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "i-%u byte"
+msgstr[1] "ii-%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -559,7 +536,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1131
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (i-Unicode ayisebenzi)"
@@ -646,11 +623,9 @@ msgstr "i-CD-RW/DVD-R"
 msgid "CD-RW/DVD-RW"
 msgstr "i-CD-RW/DVD-RW"
 
-# I-Disk
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
-#, fuzzy
 msgid "Disk"
-msgstr "idiski"
+msgstr "I-Diski"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "USB Drive"
@@ -668,12 +643,10 @@ msgstr "i-CF"
 msgid "SD/MMC"
 msgstr "i-SD/MMC"
 
-# This doesn't seem right to me
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
-#, fuzzy
 msgid "Memory Stick"
-msgstr "i-camera"
+msgstr "i-Memory Stick"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "Smart Media"
@@ -710,38 +683,21 @@ msgstr "Iseva yothungelwano"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Ayikwazi ukufaka kwisakhelo i-floppy drive.  Kusenokwenzeka ukuba ayikho i-"
-"floppy kwi-drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Ayikwazi ukufaka kwisakhelo i-floppy drive. Kusenokwenzeka ukuba ayikho i-floppy kwi-drive."
 
-# Kusenokwenzeka 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
-#, fuzzy
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
-"Ayikwazi ukufaka kwisakhelo ubukhulu. kusenokwenzeka ukuba akukho sixhobo "
-"siphathekayo sokugcina ulwazi"
+msgstr "Ayikwazi ukufaka kwisakhelo ubukhulu. Kusenokwenzeka ukuba akukho sixhobo siphathekayo sokugcina ulwazi."
 
-# kwisakhelo instead of akwisakhelo
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
-#, fuzzy
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Ayikwazi ukufaka akwisakhelo i-floppy drive. I-floppy kusenokwenzeka ukuba "
-"ingendlela engenakufakwa kwisakhelo."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+msgstr "Ayikwazi ukufaka kwisakhelo i-floppy drive. I-floppy kusenokwenzeka ukuba ingendlela engenakufakwa kwisakhelo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Ayikwazi ukufaka kwisakhelo ubukhule obukhethiweyo. Ubukhulu kusenokwenzeka "
-"ukuba bungendlela engenakufakeka kwisakhelo."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+msgstr "Ayikwazi ukufaka kwisakhelo ubukhule obukhethiweyo. Ubukhulu kusenokwenzeka ukuba bungendlela engenakufakeka kwisakhelo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -755,12 +711,10 @@ msgstr "Ayikwazi ukufaka kwisakhelo ubukhulu obukhethiweyo."
 msgid "Unable to unmount the selected volume."
 msgstr "Ayikwazi ukungafaki kwisakhelo ubukhulu obukhethiweyo."
 
-# How abou Ayiphumelelanga instead of isilele?
 #: libgnomevfs/gnome-vfs-volume-ops.c:257
 #: libgnomevfs/gnome-vfs-volume-ops.c:313
-#, fuzzy
 msgid "Failed to start command"
-msgstr "Isilelele ukuqala umyalelo"
+msgstr "Ayiphumelelanga ukuqala umyalelo"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
@@ -787,39 +741,29 @@ msgstr "Umxokelwano weefayili"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "i-GnomeVFSSeekPosition %d engaziwayo"
 
-# Uthungelwano
 #: modules/network-method.c:1396
-#, fuzzy
 msgid "Windows Network"
-msgstr "uthungelwano lwe-Windows"
+msgstr "Uthungelwano lwe-Windows"
 
 #: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Isazisi sekhompyutha ekwenye indawo (%s) asaziwa."
 
-# Isazisi
-# siyi %s instead of sizii %s
-# Ukuba instead of ukuba
 #: modules/sftp-method.c:1339
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 msgstr ""
 "Oku kwenzeka xa ungena okokuqala kwikhomyutha.\n"
 "\n"
-"isazisi esithunyelwa yikhompyutha ekwenye indawo sizii %s. ukuba ufuna "
-"ukuqiniseka ngokupheleleyo ukuba kukhuselekile na ukuba uqhubeke, "
-"qhagamshelana nomlawuli wenkqubo."
+"isazisi esithunyelwa yikhompyutha ekwenye indawo siyi %s. Ukuba ufuna ukuqiniseka ngokupheleleyo ukuba kukhuselekile na ukuba uqhubeke, qhagamshelana nomlawuli wenkqubo."
 
-# kukaNjani na?
 #: modules/sftp-method.c:1347
-#, fuzzy
 msgid "Log In Anyway"
-msgstr "Ngena nokuba kukanjani na"
+msgstr "Ngena nokuba kukaNjani na"
 
 #: modules/sftp-method.c:1348
 msgid "Cancel Login"
@@ -831,12 +775,10 @@ msgstr "Rhoxisa ukungena"
 msgid "Didn't find a valid settings file at %s\n"
 msgstr "Awufumananga fayili yemimiselo esebenzayo ku-%s\n"
 
-# elungelene instead of okulungelene
 #: modules/test-method.c:592
-#, fuzzy, c-format
+#, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Sebenzisa i-%s okulungelene nemeko eguqukayo ukuchaza indawo eyahlukileyo.\n"
+msgstr "Sebenzisa i-%s elungelene nemeko eguqukayo ukuchaza indawo eyahlukileyo.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -846,14 +788,11 @@ msgstr "i-Standard Moniker factory"
 msgid "file MonikerExtender"
 msgstr "i-MonikerExtender yefayili"
 
-# No translation for generic?
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-#, fuzzy
 msgid "generic Gnome VFS moniker"
 msgstr "i-generic Gnome VFS moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
 msgstr "i-generic file moniker"
 
@@ -861,143 +800,82 @@ msgstr "i-generic file moniker"
 msgid "Default component viewer application"
 msgstr "Isixhobo esimiselweyo esibonakalisayo senkqubo yekhompyutha"
 
-# Inkqubo
 #: schemas/desktop_default_applications.schemas.in.h:2
-#, fuzzy
 msgid "Default terminal application"
-msgstr "inkqubo yekhompyutha ene-terminal emiselweyo"
+msgstr "Inkqubo yekhompyutha ene-terminal emiselweyo"
 
-# Looks untranslated
 #: schemas/desktop_default_applications.schemas.in.h:3
-#, fuzzy
 msgid "Exec argument for default terminal"
-msgstr "i-Exec argument for default terminal"
+msgstr "i-Exec argument ye-Terminal emiselweyo"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"Inkqubo yekhompyutha omawuyisebenzise ukujonga iifayili ezifuna isixhobo "
-"ukuzijonga. Ixabiso lento ejikajikayo %s kuyakubakhona endaweni yalo "
-"iifayili ze-URIs, ixabiso lento ejikayo %c kuyakubakhona endaweni "
-"yaloisixhobo se-IID."
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "Inkqubo yekhompyutha omawuyisebenzise ukujonga iifayili ezifuna isixhobo ukuzijonga. Ixabiso lento ejikajikayo %s kuyakubakhona endaweni yalo iifayili ze-URIs, ixabiso lento ejikayo %c kuyakubakhona endaweni yaloisixhobo se-IID."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
-msgstr ""
-"Inkqubo yekhompyutha ene-terminal emiselweyo ukuba isetyenziswe kwiinkqubo "
-"zekhompyutha ezifuna i-terminal."
+msgid "The default terminal application to use for applications that require a terminal."
+msgstr "Inkqubo yekhompyutha ene-terminal emiselweyo ukuba isetyenziswe kwiinkqubo zekhompyutha ezifuna i-terminal."
 
-# Isiphumezi-miyalelo
-# Remove - in  between kwi-nkqubo 
 #: schemas/desktop_default_applications.schemas.in.h:7
-#, fuzzy
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
-"Isiphumezi miyalelo se-exec argument sokusetyenziswa kwi-nkqubo yekhompyutha "
-"ye-terminal emiselweyo."
+msgstr "Isiphumezi- miyalelo se-exec argument sokusetyenziswa kwinkqubo yekhompyutha ye-terminal emiselweyo."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
 msgstr "Qhuba umyalelo kwi-terminal"
 
-# How about osetyenziswayo  or osetyenziselwa? This will be the case in all the strings following this one.
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-#, fuzzy
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa \"aim\" URLs, ukuba wenziwe ukuba asebenze."
+msgstr "Umyalelo osetyenziswayo ukukhombisa \"aim\" URLs, ukuba wenziwe ukuba asebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-#, fuzzy
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u- \"callto\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziswayo ukukhombisa u- \"callto\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u- \"ghelp\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u- \"ghelp\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u- \"h323\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u- \"h323\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u-\"http\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u-\"http\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u \"https\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u \"https\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u- \"info\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u- \"info\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u-\"mailto\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u-\"mailto\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziselwa
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u- \"man\" URLs, ukuba wenziwe ukuba "
-"usebenze."
+msgstr "Umyalelo osetyenziselwa ukukhombisa u- \"man\" URLs, ukuba wenziwe ukuba usebenze."
 
-# osetyenziswayo or osetyenziselwa 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
-"Umyalelo osetyenziswa ukukhombisa u-\"trash\" URLs, ukuba wenziwe ukuba "
-"usebenze"
+msgstr "Umyalelo osetyenziselwa ukukhombisa u-\"trash\" URLs, ukuba wenziwe ukuba usebenze."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Isikhombisi se- \"aim\" URLs"
+msgstr "Isikhombisi se-\"aim\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
 msgstr "Isikhombisi se-\"callto\" URLs"
 
-# Insert -  as follows  Isikhombisi se-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Isikhombisi se\"ghelp\" URLs"
+msgstr "Isikhombisi se-\"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
@@ -1017,7 +895,7 @@ msgstr "Isikhombisi se-\"info\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Isikhombisi se- \"mailto\" URLs"
+msgstr "Isikhombisi se-\"mailto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
@@ -1025,173 +903,99 @@ msgstr "Iisikhombisi se-\"man\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Isikhombisi se\"trash\" URLs"
+msgstr "Isikhombisi se-\"trash\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo  kwiqhosha \"command\" kufuneka ukhombise "
-"i- \"aim\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise i-\"aim\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u-\"callto\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"callto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"ghelp\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"ghelp\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid ""
-"True if the command specified in the \"command\" key should handle \"h323\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"h323\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"h323\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid ""
-"True if the command specified in the \"command\" key should handle \"http\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"http\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"http\" URLs."
 
-# Yinyani
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"https\" "
-"URLs."
-msgstr ""
-"yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"https\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"https\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"info\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"info\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"mailto\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"mailto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
-msgstr ""
-"Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u- \"man\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"man\" URLs."
 
-# Yinyani
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"Yyinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise "
-"u-\"trash\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgstr "Yinyani ukuba umyalelo obaluliweyo kwiqhosha \"command\" kufuneka ukhombise u-\"trash\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
-msgstr ""
-"Yinyani ukuba umyalelo osetyenzisiweyo ukukhombisa olu hlobo lwe- URL "
-"kufuneka uqhutywe kwi-terminal."
+msgid "True if the command used to handle this type of URL should be run in a terminal."
+msgstr "Yinyani ukuba umyalelo osetyenzisiweyo ukukhombisa olu hlobo lwe- URL kufuneka uqhutywe kwi-terminal."
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i-\"aim\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"aim\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i-\"callto\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"callto\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i-\"ghelp\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"ghelp\" URLs"
 
-#  Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i- \"h323\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"h323\" URLs"
 
-#  Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i- \"http\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"http\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Nokuba umyalaelo obaluliweyo kufuneka ukhombise i-\"https\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"https\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i- \"info\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"info\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufunekla ukhombise i- \"mailto\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufunekla ukhombise i-\"mailto\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i- \"man\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"man\" URLs"
 
-# Nokuba ngaba
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Nokuba umyalelo obaluliweyo kufuneka ukhombise i- \"trash\" URLs"
+msgstr "Nokuba ngaba umyalelo obaluliweyo kufuneka ukhombise i-\"trash\" URLs"
 
 #: schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
-msgstr ""
-"Uluhlu olwahlulwe ngekoma lwemimandla ye-dns-sd ekufuneka lubonakale "
-"kwindawo yothungelwano."
+msgid "Comma separated list of dns-sd domains that should be visible in the network location."
+msgstr "Uluhlu olwahlulwe ngekoma lwemimandla ye-dns-sd ekufuneka lubonakale kwindawo yothungelwano."
 
-# Imimandla eyongezelelekileyo
 #: schemas/system_dns_sd.schemas.in.h:2
-#, fuzzy
 msgid "Extra domains to look for dns-sd services in"
-msgstr "Ummandla owongezelelekileyo ukukhangela iinkonzo ze- dns-sd kwi"
+msgstr "Imimandla eyongezelelekileyo ukukhangela iinkonzo ze- dns-sd kwi"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1199,8 +1003,7 @@ msgstr "Uyibonisa njani inkonzo efikeleleka ngqo ye-DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
-"Amaxabiso anokubakhona ngala \"merged\", \"separate\" kunye \"disabled\"."
+msgstr "Amaxabiso anokubakhona ngala \"merged\", \"separate\" kunye \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1208,15 +1011,11 @@ msgstr "Qinisekisa unxulumano lweseva elawula kwi-intanethi"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
-"Ukumiselwa kwenkqubo yekhompyutha ezenzekelayo ye-URL kwikhompyutha esebenza "
-"njengemqobo"
+msgstr "Ukumiselwa kwenkqubo yekhompyutha ezenzekelayo ye-URL kwikhompyutha esebenza njengemqobo"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"Yenza ukuba imimiselo yekhompyutha esebenza njengomqobo xa usebenza nge-HTTP "
-"kwi-intanethi."
+msgstr "Yenza ukuba imimiselo yekhompyutha esebenza njengomqobo xa usebenza nge-HTTP kwi-intanethi."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1243,16 +1042,8 @@ msgid "HTTP proxy username"
 msgstr "Igama lomsebenzisi wekhompyutha esebenza njengomqobo ye-HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Ukuba yinyani, ke ngoko unxulumano oluya kwi- proxy server lufuna "
-"uqinisekiso. Igama lomsebenzisi/i-password combo ichazwa yi \"/system/"
-"http_proxy/authentication_user\" kunye ne \"/system/http_proxy/"
-"authentication_password\"."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "Ukuba yinyani, ke ngoko unxulumano oluya kwi- proxy server lufuna uqinisekiso. Igama lomsebenzisi/i-password combo ichazwa yi \"/system/http_proxy/authentication_user\" kunye ne \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1260,9 +1051,7 @@ msgstr "Abaququzeleli bekhompyutha engasebenzi njengomqobo"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
-"i-Password yokudlula njengoqinisekiso xa usebenzisa ikhompyutha esebenza "
-"njengomqobo kwi-HTTP."
+msgstr "i-Password yokudlula njengoqinisekiso xa usebenzisa ikhompyutha esebenza njengomqobo kwi-HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1278,23 +1067,15 @@ msgstr "Isiqhagamsheli sekhompyutha esebenza njengomqobo se-SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
-"Igama lomququzeleli wekhompyutha esebenza njengomqobo ekhuselekileyo ye-HTTP"
+msgstr "Igama lomququzeleli wekhompyutha esebenza njengomqobo ekhuselekileyo ye-HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
-"Isiqhagamsheli sekhompyutha esebenza njengomqobo se-HTTP ekhuselekileyo"
+msgstr "Isiqhagamsheli sekhompyutha esebenza njengomqobo se-HTTP ekhuselekileyo"
 
-# axhaswayo
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"Khetha inkqubo emiselweyo yekhompyutha esebenza njengomqobo. Amaxabiso "
-"axhasayo ngala \"none\", \"manual\", \"auto\"."
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgstr "Khetha inkqubo emiselweyo yekhompyutha esebenza njengomqobo. Amaxabiso axhaswayo ngala \"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1306,68 +1087,35 @@ msgstr "Igama lomatshini lokusebenza njengekhompyutha engumqobo kwi-HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
-"Igama lomatshini lokusebenza njengekhompyutha engumqobo kwi-HTTP "
-"ekhuselekileyo."
+msgstr "Igama lomatshini lokusebenza njengekhompyutha engumqobo kwi-HTTP ekhuselekileyo."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "Igama lomatshini kwikhompyutha esebenza njengomqobo ongasebenza kuyo."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
-msgstr ""
-"Isiqhagamsheli ematshinini esichazwa nge- \"/system/http_proxy/host\" "
-"oqhagamshela kuso."
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgstr "Isiqhagamsheli ematshinini esichazwa nge- \"/system/http_proxy/host\" oqhagamshela kuso."
 
-# yi-
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
-msgstr ""
-"Isiqhagamsheli ematshinini esichazwa yi \"/system/proxy/ftp_host\" osebenza "
-"kuyo njengekhompyutha esebenza njengomqobo."
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgstr "Isiqhagamsheli ematshinini esichazwa yi -\"/system/proxy/ftp_host\" osebenza kuyo njengekhompyutha esebenza njengomqobo."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr ""
-"Isiqhagamsheli esisematshinini esichazwa yi- \"/system/proxy/secure_host\" "
-"kwikhompyutha osebenza kuyo esebenza njengomqobo."
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgstr "Isiqhagamsheli esisematshinini esichazwa yi- \"/system/proxy/secure_host\" kwikhompyutha osebenza kuyo esebenza njengomqobo."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
-msgstr ""
-"Isiqhagamsheli esisematshinini esichazwa yi- \"/systrem/proxy/socks_host\" "
-"kwikhompyutha osebenza kuyo esebenza njengomqobo."
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgstr "Isiqhagamsheli esisematshinini esichazwa yi- \"/systrem/proxy/socks_host\" kwikhompyutha osebenza kuyo esebenza njengomqobo."
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"Eli qhosha liqulethe uluhlu lwabaququzeleli abaqhagamshelwe kuvimba "
-"weefayili, kunokuba badlule kwikhompyutha esebenza njengomqobo (ukuba "
-"iyasebenza). Amaxabiso anokuba ngamagama abaququzeleli, imimandla "
-"(usebenzisa i-wildcard njenge *.foo.com), idilesi  ze-IP zabaququzeleli "
-"(zombini i-IPv4 ne-IPv6) kunye needilesi zothungelwano ene-netmask (into "
-"efana ne-192.168.0.0/24)."
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "Eli qhosha liqulethe uluhlu lwabaququzeleli abaqhagamshelwe kuvimba weefayili, kunokuba badlule kwikhompyutha esebenza njengomqobo (ukuba iyasebenza). Amaxabiso anokuba ngamagama abaququzeleli, imimandla (usebenzisa i-wildcard njenge *.foo.com), idilesi ze-IP zabaququzeleli (zombini i-IPv4 ne-IPv6) kunye needilesi zothungelwano ene-netmask (into efana ne-192.168.0.0/24)."
 
-# How about Ukuba instead of Nokuba?
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr ""
-"i-URL enika amaxabiso okumiselwa kwenkqubo yekhompyutha esebenza njengomqobo."
+msgstr "i-URL enika amaxabiso okumiselwa kwenkqubo yekhompyutha esebenza njengomqobo."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1375,16 +1123,13 @@ msgstr "Sebenzisa isiqhagamsheli se-HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Igama lomsebenzisi ukudlula njengoqinisekiso xa usebenzisa ikhompyutha "
-"esebenza njengomqobo ye-HTTP."
+msgstr "Igama lomsebenzisi ukudlula njengoqinisekiso xa usebenzisa ikhompyutha esebenza njengomqobo ye-HTTP."
 
-# Iqela
 #: schemas/system_smb.schemas.in.h:1
-#, fuzzy
 msgid "SMB workgroup"
-msgstr "iqela lomsebenzi we-SMB"
+msgstr "Iqela lomsebenzi we-SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Iqela lomsebenzi wefestile umsebenzisi ayinxenye yalo"
+
