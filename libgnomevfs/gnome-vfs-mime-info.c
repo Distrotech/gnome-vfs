@@ -89,6 +89,10 @@ static GHashTable *generic_types;
  */
 static GHashTable *registered_types;
 
+/* Prototypes */
+static void write_mime_data (GHashTable *hash);
+
+
 static GnomeMimeContext *
 context_new (GString *str)
 {
@@ -420,7 +424,19 @@ load_mime_type_info_from (char *filename)
 	fclose (mime_file);
 }
 
-
+/*
+ *  load_mime_list_info_from
+ *
+ *  Why this special function when a similar one is already in the code?
+ *  Because we need to handle the case where ':' is used to delimit
+ *  the start of a key in a .mime file instead of '=' as is used in
+ *  the .key file.  Why is this done?  Why are there two mime database 
+ *  files with differing standards?  We may never know.  
+ *  Until we have a better solution, this will suffice.	
+ *  
+ *  Both ':' and '=' are used to delimit the start of a key.
+ */
+ 
 static void
 load_mime_list_info_from (char *filename)
 {
@@ -499,10 +515,6 @@ load_mime_list_info_from (char *filename)
 			/* fall down */
 			
 		case STATE_ON_MIME_TYPE:
-			/*if (c == ':'){
-				in_comment = TRUE;
-				break;
-			}*/
 			g_string_append_c (line, c);
 			break;
 
@@ -528,17 +540,17 @@ load_mime_list_info_from (char *filename)
 				c = getc (mime_file);
 				if (c == EOF)
 					break;
-			}
-			if (c == '=' || c == ':'){
-				key = g_strdup (line->str);
-				g_string_assign (line, "");
+			}			
+			if (c == '=' || c == ':'){				
+				key = g_strdup (line->str);				
+				g_string_assign (line, "");				
 				state = STATE_ON_VALUE;
 				break;
 			}
 			g_string_append_c (line, c);
 			break;
 
-		case STATE_ON_VALUE:
+		case STATE_ON_VALUE:			
 			g_string_append_c (line, c);
 			break;
 			
@@ -699,7 +711,6 @@ load_mime_type_info (void)
 {
 	mime_info_load (&gnome_mime_dir);
 	mime_info_load (&user_mime_dir);
-
 	mime_list_load (&gnome_mime_dir);
 }
 
@@ -972,6 +983,68 @@ gnome_vfs_mime_description (const char *mime_type)
 }
 
 /**
+ * gnome_vfs_mime_extensions:
+ * @mime_type: the mime type
+ *
+ * Returns the description for this mime-type
+ */
+GList *
+gnome_vfs_mime_get_extensions (const char *mime_type)
+{
+	GList *list;
+	const char *extensions;
+	gchar **elements;
+	int index;
+	GnomeMimeContext *context;
+
+	list = NULL;
+	
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+
+	maybe_reload ();
+	
+	context = g_hash_table_lookup (registered_types, mime_type);
+	if (context) {
+		extensions = g_hash_table_lookup (context->keys, "ext");		
+	}
+
+	if (extensions != NULL) {
+		/* Parse the extensions and add to list */
+		elements = g_strsplit (extensions, " ", 0);	
+		if (elements != NULL) {
+			index = 0;
+			
+			while (elements[index] != NULL) {
+				list = g_list_append (list, g_strdup (elements[index]));
+				index++;
+			}			
+			g_strfreev (elements);
+		}		
+	}		
+	return list;
+}
+
+/**
+ * gnome_vfs_mime_extension_list_free:
+ * @list: the extensions list
+ *
+ * Call this function on the list returned by gnome_vfs_mime_extensions
+ * to free the list and all of its elements.
+ */
+void
+gnome_vfs_mime_extension_list_free (GList *list)
+{
+	g_list_foreach (list, (GFunc) g_free, NULL);
+	g_list_free (list);
+}
+
+/**
  * gnome_vfs_mime_test:
  * @mime_type: the mime type
  *
@@ -1112,3 +1185,103 @@ gnome_vfs_get_registered_mime_types (void)
 
 	return type_list;
 }
+
+/**
+ * gnome_vfs_mime_commit_registered_types:
+ *
+ * This function commits the mime info in the registered type
+ * hash table to disk.
+ */
+
+void
+gnome_vfs_mime_commit_registered_types (void)
+{
+	write_mime_data (registered_types);
+}
+
+/**
+ * gnome_vfs_mime_registered_mime_type_list_free:
+ * @list: the extensions list
+ *
+ * Call this function on the list returned by gnome_vfs_get_registered_mime_types
+ * to free the list and all of its elements.
+ */
+void
+gnome_vfs_mime_registered_mime_type_list_free (GList *list)
+{
+	g_list_foreach (list, (GFunc) g_free, NULL);
+	g_list_free (list);
+}
+
+/**
+ * gnome_vfs_mime_set_registered_type_key:
+ * @mime_type: 	Mime type to set key for
+ * @key: 	The key to set
+ * @data: 	The data to set for the key
+ * 
+ * This functions sets the key data for the registered mime
+ * type's hash table.
+ */
+void
+gnome_vfs_mime_set_registered_type_key (const char *mime_type, gpointer key, gpointer data)
+{
+	GnomeMimeContext *context;
+	
+	context = g_hash_table_lookup (registered_types, mime_type);
+	if (context != NULL) {
+		g_hash_table_insert (context->keys, key, data);
+	}
+}
+
+#if 0
+static void
+write_mime_data_foreach (gpointer hash, gpointer value, gpointer data)
+{
+	GnomeMimeContext *context;
+	GHashTable *table;
+
+	context = value;
+	table = hash;
+
+	fwrite (context->mime_type, 1, strlen (context->mime_type), (FILE *) data);
+	fwrite ("\n", 1, 1, (FILE *) data);
+}
+#endif
+
+static void
+write_mime_data (GHashTable *hash)
+{
+#if 0
+	DIR *dir;
+	FILE *file;
+	char *filename;
+	
+	if (stat (gnome_mime_dir.dirname, &gnome_mime_dir.s) != -1)
+		gnome_mime_dir.valid = TRUE;
+	else
+		gnome_mime_dir.valid = FALSE;
+	
+	dir = opendir (gnome_mime_dir.dirname);
+	if (!dir){
+		gnome_mime_dir.valid = FALSE;
+		return;
+	}
+	
+	if (gnome_mime_dir.system_dir){
+		filename = g_concat_dir_and_file (gnome_mime_dir.dirname, "gnome-vfs.mime");
+
+        	remove (filename);
+		file = fopen (filename, "w");
+		if (file == NULL) {
+			return;
+		}
+
+		g_hash_table_foreach (hash, write_mime_data_foreach, file);
+		fclose (file);
+		
+		g_free (filename);
+	}
+#endif
+}
+
+

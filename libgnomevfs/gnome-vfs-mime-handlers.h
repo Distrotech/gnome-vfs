@@ -85,6 +85,9 @@ void                     gnome_vfs_mime_add_component_to_short_list        (cons
 									    const char              *iid);
 void                     gnome_vfs_mime_remove_component_from_short_list   (const char              *uri,
 									    const char              *iid);
+void			 gnome_vfs_mime_add_extension_to_mime_type 	   (const char 		    *mime_type,
+					   				    const char 		    *extension);
+
 
 /* No way to override system list; can only add. */
 void                     gnome_vfs_mime_extend_all_applications            (const char              *mime_type,

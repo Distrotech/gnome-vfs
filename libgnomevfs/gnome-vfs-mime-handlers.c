@@ -1203,6 +1203,67 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 	gnome_vfs_mime_component_list_free (old_list);
 }						   
 
+/**
+ * gnome_vfs_mime_add_extension_to_mime_type:
+ * 
+ * Add an extension mapping to specified mime type.
+ * 
+ * @mime_type: The mime type to add the mapping to.
+ *
+ * @extension: The extension to add.
+ * 
+ * Return value: None
+ */
+ 
+void
+gnome_vfs_mime_add_extension_to_mime_type (const char *mime_type,
+					   const char *extension)
+{
+	GList *list, *element;
+	gchar *extensions, *old_extensions;
+
+	extensions = NULL;
+	old_extensions = NULL;
+
+	list = gnome_vfs_mime_get_extensions (mime_type);	
+	if (list == NULL) {
+		return;
+	}
+
+	/* Check for duplicates */
+	for (element = list; element != NULL; element = element->next) {
+		if (strcmp (extension, (char *)element->data) == 0) {					
+			gnome_vfs_mime_extension_list_free (list);
+			return;
+		}
+	}
+
+	/* Add new extension to list */
+	for (element = list; element != NULL; element = element->next) {		
+		if (extensions != NULL) {
+			old_extensions = extensions;
+			extensions = g_strdup_printf ("%s %s", old_extensions, (char *)element->data);
+			g_free (old_extensions);
+		} else {
+			extensions = g_strdup_printf ("%s ", (char *)element->data);
+		}
+	}
+	
+	if (extensions != NULL) {
+		old_extensions = extensions;
+		extensions = g_strdup_printf ("%s %s", old_extensions, extension);
+		g_free (old_extensions);
+
+		/* Add extensions to hash table */
+		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
+
+		/* Flush table into file */
+		gnome_vfs_mime_commit_registered_types ();
+	}
+	
+	gnome_vfs_mime_extension_list_free (list);
+}						   
+
 
 void
 gnome_vfs_mime_extend_all_applications (const char *mime_type,

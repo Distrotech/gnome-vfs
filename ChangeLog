@@ -1,3 +1,57 @@
+2000-06-19  Gene Z. Ragan  <gzr@eazel.com>
+
+	* mime-type-capplet/mime-data.c:
+	* mime-type-capplet/mime-data.h:
+	Removed obsolete files.
+	
+	* mime-type-capplet/Makefile.am:
+	Removed above files from Makefile.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	(gnome_vfs_mime_add_extension_to_mime_type):
+	New function.  Add extension mapping to named mime type
+	and save to .mime file.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	(load_mime_list_info_from),
+	(load_mime_type_info), (gnome_vfs_mime_get_extensions),
+	
+	(gnome_vfs_mime_extension_list_free):
+	New function to deep free the list returned
+	by gnome_vfs_mime_get_extensions()
+	
+	(gnome_vfs_mime_registered_mime_type_list_free),
+	New function to deep free the list returned
+	by gnome_vfs_mime_get_extensions()
+
+	(gnome_vfs_mime_commit_registered_types):
+	Public function to commit internal hash table
+	of mime data to disk.
+	
+	(gnome_vfs_mime_set_registered_type_key):
+	This functions sets the key data for the registered mime
+ 	type's hash table.
+ 
+	(write_mime_data_foreach), (write_mime_data):
+	New functions to write out mime data from hash table.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window),
+	(nautilus_mime_type_capplet_show_new_extension_window):
+	Clean up work on dialogs.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c: 
+	(ok_callback),
+	(populate_extension_list),
+	(nautilus_mime_type_capplet_add_extension),
+	(remove_extension_clicked), (init_mime_capplet),
+	(delete_mime_clicked), (create_mime_list_and_scroller),
+	(get_selected_item_mime_type):
+	Clean up work on main capplet view.
+	
+
 2000-06-17  Gene Z. Ragan  <gzr@eazel.com>
 
 	File Types and Programs capplet work in progress.
