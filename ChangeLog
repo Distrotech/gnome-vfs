@@ -1,3 +1,20 @@
+2000-09-28  Mike Fleming  <mfleming@eazel.com>
+
+	Fixed file_info refcounting issues associated with _clear and
+	_copy.  (_clear retains the refcount; _copy leaves the refcount of
+	the destination alone).
+
+	Changed _init, _ref, and _unref to clarify that ref-counting a 
+	file_info that was allocated on the stack is illegal.
+	
+	Added _dup function.
+
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_init),
+	(gnome_vfs_file_info_clear), (gnome_vfs_file_info_ref),
+	(gnome_vfs_file_info_unref), (gnome_vfs_file_info_copy),
+	(gnome_vfs_file_info_dup):
+	* libgnomevfs/gnome-vfs-file-info.h:
+
 2000-09-28  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c:

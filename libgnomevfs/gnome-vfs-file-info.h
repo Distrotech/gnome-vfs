@@ -78,6 +78,10 @@ const gchar	*gnome_vfs_file_info_get_mime_type
 void		 gnome_vfs_file_info_copy 	(GnomeVFSFileInfo *dest,
 						 const GnomeVFSFileInfo *src);
 
+GnomeVFSFileInfo *
+		 gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig);
+
+
 gboolean	 gnome_vfs_file_info_matches	(const GnomeVFSFileInfo *a,
 						 const GnomeVFSFileInfo *b);
 

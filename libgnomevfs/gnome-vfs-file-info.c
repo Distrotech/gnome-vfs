@@ -30,6 +30,9 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
+/* Special refcount used on stack-allocated file_info's */
+#define FILE_INFO_REFCOUNT_STACK ((guint)(-1))
+
 /**
  * gnome_vfs_file_info_new:
  * 
@@ -70,7 +73,7 @@ gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
            the members to be set to zero).  */
 	memset (info, 0, sizeof (*info));
 
-	info->refcount = 1;
+	info->refcount = FILE_INFO_REFCOUNT_STACK;
 }
 
 /**
@@ -85,15 +88,18 @@ gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
 void
 gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 {
+	guint old_refcount;
+	
 	g_return_if_fail (info != NULL);
 
 	g_free (info->name);
 	g_free (info->symlink_name);
 	g_free (info->mime_type);
 
+	old_refcount = info->refcount;
 	memset (info, 0, sizeof (*info));
 
-	info->refcount = 1;
+	info->refcount = old_refcount;
 }
 
 
@@ -107,6 +113,7 @@ void
 gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
 {
 	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
 	g_return_if_fail (info->refcount > 0);
 
 	info->refcount += 1;
@@ -122,6 +129,7 @@ void
 gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
 {
 	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
 	g_return_if_fail (info->refcount > 0);
 
 	info->refcount -= 1;
@@ -162,8 +170,12 @@ void
 gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 			  const GnomeVFSFileInfo *src)
 {
+	guint old_refcount;
+
 	g_return_if_fail (dest != NULL);
 	g_return_if_fail (src != NULL);
+
+	old_refcount = dest->refcount;
 
 	/* Copy basic information all at once; we will fix pointers later.  */
 
@@ -175,7 +187,32 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 	dest->symlink_name = g_strdup (src->symlink_name);
 	dest->mime_type = g_strdup (src->mime_type);
 
+	dest->refcount = old_refcount;
+
+
 }
+
+/**
+ * gnome_vfs_file_info_dup:
+ * @orig: Pointer to a file information structure to duplicate
+ * 
+ * Returns a new file information struct that duplicates the information in @orig.
+ **/
+
+GnomeVFSFileInfo *
+gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig)
+{
+	GnomeVFSFileInfo * ret;
+
+	g_return_val_if_fail (orig != NULL, NULL);
+
+	ret = gnome_vfs_file_info_new();
+
+	gnome_vfs_file_info_copy (ret, orig);
+
+	return ret;
+}
+
 
 /**
  * gnome_vfs_file_info_matches:
