@@ -1,5 +1,11 @@
 2001-07-27  Michael Meeks  <michael@ximian.com>
 
+	* Move into gnome-vfs.
+
+	Reviewed by: Seth <snickell@stanford.edu>
+
+2001-07-27  Michael Meeks  <michael@ximian.com>
+	
 	* gnome-moniker-std.c: fix the factory name so it is what it
 	says it is.
 
