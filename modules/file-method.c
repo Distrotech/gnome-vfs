@@ -789,7 +789,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	file_info->name = gnome_vfs_uri_extract_short_name (uri);
 
-	result = get_stat_info (file_info, full_name, options, NULL);
+	result = get_stat_info (file_info, full_name, options, &statbuf);
 	if (result != GNOME_VFS_OK)
 		return result;
 

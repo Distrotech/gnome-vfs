@@ -1,3 +1,10 @@
+2000-04-11  John Sullivan <sullivan@eazel.com>
+
+	* modules/file-method.c:
+	(do_get_file_info): statbuf was passed to set_mime_type
+	uninitialized. Fixed by passing &statbuf to get_stat_info,
+	which was obviously the original intention.
+
 2000-04-11  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_async_create_uri):
