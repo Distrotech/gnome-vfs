@@ -604,7 +604,7 @@ _xdg_mime_magic_insert_match (XdgMimeMagic      *mime_magic,
       return;
     }
 
-  if (match->priority < mime_magic->match_list->priority)
+  if (match->priority > mime_magic->match_list->priority)
     {
       match->next = mime_magic->match_list;
       mime_magic->match_list = match;
@@ -614,7 +614,7 @@ _xdg_mime_magic_insert_match (XdgMimeMagic      *mime_magic,
   list = mime_magic->match_list;
   while (list->next != NULL)
     {
-      if (list->next->priority > match->priority)
+      if (list->next->priority < match->priority)
 	{
 	  match->next = list->next;
 	  list->next = match;
