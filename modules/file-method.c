@@ -2027,14 +2027,14 @@ fam_callback (GIOChannel *source,
 	      GIOCondition condition,
 	      gpointer data)
 {
-	gboolean cancelled;
-	FileMonitorHandle *handle;
-	GnomeVFSMonitorEventType event_type = GNOME_VFS_MONITOR_EVENT_CHANGED;
-
 	G_LOCK (fam_connection);
 
 	while (FAMPending(fam_connection)) {
 		FAMEvent ev;
+		FileMonitorHandle *handle;
+		gboolean cancelled;
+		GnomeVFSMonitorEventType event_type;
+
 		if (FAMNextEvent(fam_connection, &ev) != 1) {
 			FAMClose(fam_connection);
 			g_free(fam_connection);
@@ -2044,8 +2044,9 @@ fam_callback (GIOChannel *source,
 		}
 
 		handle = (FileMonitorHandle *)ev.userdata;
-
 		cancelled = handle->cancelled;
+		event_type = -1;
+
 		switch (ev.code) {
 			case FAMChanged:
 				event_type = GNOME_VFS_MONITOR_EVENT_CHANGED;
@@ -2054,40 +2055,46 @@ fam_callback (GIOChannel *source,
 				event_type = GNOME_VFS_MONITOR_EVENT_DELETED;
 				break;
 			case FAMStartExecuting:
-				event_type = 
-					GNOME_VFS_MONITOR_EVENT_STARTEXECUTING;
+				event_type = GNOME_VFS_MONITOR_EVENT_STARTEXECUTING;
 				break;
 			case FAMStopExecuting:
-				event_type = 
-					GNOME_VFS_MONITOR_EVENT_STOPEXECUTING;
+				event_type = GNOME_VFS_MONITOR_EVENT_STOPEXECUTING;
 				break;
 			case FAMCreated:
 				event_type = GNOME_VFS_MONITOR_EVENT_CREATED;
 				break;
 			case FAMAcknowledge:
-				/* I am not clear on the exact sematics of the Acknowledge
-				 * do we get this for all changes or just cancel ?
-				 * Be defensive for now.
-				 */
 				if (handle->cancelled) {
 					gnome_vfs_uri_unref (handle->uri);
 					g_free (handle);
 				}
-				/*fall through, and ignore */
-
+				break;
 			case FAMExists:
 			case FAMEndExist:
 			case FAMMoved:
-				event_type = -1;
+				/* Not supported */
 				break;
 		}
 
 		if (event_type != -1 && !cancelled) {
-			GnomeVFSURI *info_uri = gnome_vfs_uri_append_file_name (
-				handle->uri, ev.filename);
-			gnome_vfs_monitor_callback (
-					(GnomeVFSMethodHandle *)handle,
-					info_uri, event_type);
+			GnomeVFSURI *info_uri;
+			gchar *info_str;
+
+			/* 
+			 * FAM can send events with either a absolute or
+			 * relative (from the monitored URI) path, so check if
+			 * the filename starts with '/'.  
+			 */
+			if (ev.filename[0] == '/') {
+				info_str = gnome_vfs_get_uri_from_local_path (ev.filename);
+				info_uri = gnome_vfs_uri_new (info_str);
+				g_free (info_str);
+			} else
+				info_uri = gnome_vfs_uri_append_file_name (handle->uri, ev.filename);
+
+			gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
+						    info_uri, 
+						    event_type);
 			gnome_vfs_uri_unref (info_uri);
 		}
 	}

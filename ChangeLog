@@ -1,3 +1,12 @@
+2002-05-22  Alex Graveley  <alex@ximian.com>
+
+	* configure.in (FAM_MISSING_WARNING): Print a warning if FAM is
+	not found.
+
+	* modules/file-method.c (fam_callback): Handle FAMEvent pathnames
+	that can be either relative or absolute.  Clean up the code a
+	little as well.
+
 2002-05-20  Laszlo Peter  <laca@sun.com>
 
 	* modules/vfolder-desktop-method.c: (VFOLDER_URI_PARSE): remove
