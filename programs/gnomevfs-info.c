@@ -145,5 +145,7 @@ main (int argc, char **argv)
 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
 	show_file_info (info);
 
+	gnome_vfs_file_info_unref (info);
+
 	return 0;
 }
