@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2004-01-30 04:09+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -559,15 +559,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "선택한 볼륨을 마운트 해제할 수 없습니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "명령어를 시작하는 데 실패했습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "미디어를 꺼낼 수 없습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "연결한 서버에서 마운트를 해제할 수 없습니다"
 

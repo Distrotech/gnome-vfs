@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-01 15:44+0100\n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2004-02-05 18:35+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
@@ -524,7 +524,8 @@ msgstr "Şəbəkə vericisi"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdə disket yoxdur."
 
 #. All others
@@ -545,8 +546,8 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Seçili sürücü bağlana bilmədi. Deyəsən sürücünün şəkilləndirməsi "
-"bağlamaq üçün uyğun deyil."
+"Seçili sürücü bağlana bilmədi. Deyəsən sürücünün şəkilləndirməsi bağlamaq "
+"üçün uyğun deyil."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -561,15 +562,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "Seçili sürücü ayırıla bilmədi."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Əmr başladıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Mediya çıxardıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Bağlı verici ayırıla bilmədi"
 
@@ -753,40 +754,57 @@ msgid "Run program in terminal"
 msgstr "Proqramı terminalda işə sal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle man URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -895,8 +913,7 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Vəkil quraşdırma modu. Dəstəklənən qiymətlər: \"none\", \"manual"
-"\", \"auto\"."
+"Vəkil quraşdırma modu. Dəstəklənən qiymətlər: \"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -981,4 +998,3 @@ msgstr "SMB iş qrupu"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "İstifadəçinin üzvü olduğu windows iş qrupu"
-

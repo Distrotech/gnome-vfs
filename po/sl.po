@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -563,15 +563,15 @@ msgid "Unable to unmount the selected volume."
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr ""
 

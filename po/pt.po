@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
-"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"POT-Creation-Date: 2004-02-01 16:26+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2004-02-01 16:30+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
@@ -549,8 +549,8 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Incapaz de montar a unidade seleccionada. Provavelmente a unidade encontra-se "
-"num formato que não pode ser montado."
+"Incapaz de montar a unidade seleccionada. Provavelmente a unidade encontra-"
+"se num formato que não pode ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -565,15 +565,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "Incapaz de desmontar a unidade seleccionada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Falha ao iniciar comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Incapaz de ejectar media"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Incapaz de desmontar servidor ligado"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2003-12-29 09:36+0000\n"
 "Last-Translator: Sinan İmamoğlu <sinan@myrealbox.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -620,15 +620,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "Seçilen sistem ayrılamadı."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Komut başlatılamadı"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Disk/CD çıkartılamadı"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Bağlı olan sunucudan ayrılma işlemi gerçekleştirilemedi"
 

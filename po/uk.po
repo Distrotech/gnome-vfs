@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
+"POT-Creation-Date: 2004-02-11 09:55+0100\n"
 "PO-Revision-Date: 2004-02-09 19:16+0200\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -527,8 +527,7 @@ msgstr "Мережний сервер"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Не вдається підключити дискету. Можливо, у дисководі відсутня дискета."
+msgstr "Не вдається підключити дискету. Можливо, у дисководі відсутня дискета."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -540,16 +539,16 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Не вдається підключити дискету. Можливо, дискета має формат, що вона не може бути "
-"підключена."
+"Не вдається підключити дискету. Можливо, дискета має формат, що вона не може "
+"бути підключена."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Не вдається підключити вибраний том. Можливо, том має формат, що він не може бути "
-"підключений."
+"Не вдається підключити вибраний том. Можливо, том має формат, що він не може "
+"бути підключений."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -564,15 +563,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "Не вдається відключити вибраний том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Не вдається запустити команду"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Не вдається витягнути носій"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Не вдається відключитись від файлової системи сервера"
 
@@ -652,7 +651,8 @@ msgstr "Не знайдено правильний файл параметрів
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Використовуйте змінну середовища %s для вказування іншого розміщення.\n"
+msgstr ""
+"Використовуйте змінну середовища %s для вказування іншого розміщення.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -689,15 +689,17 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Програма, що використовується для перегляду файлів, для перегляду яких потрібен компонент. "
-"Параметр %s буде замінений адресою (URI) файлу, параметр %c - ідентифікатором (IID) компоненту."
+"Програма, що використовується для перегляду файлів, для перегляду яких "
+"потрібен компонент. Параметр %s буде замінений адресою (URI) файлу, параметр "
+"%c - ідентифікатором (IID) компоненту."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Типова програма терміналу, що використовується з програмами, якім потрібен термінал."
+"Типова програма терміналу, що використовується з програмами, якім потрібен "
+"термінал."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -820,7 +822,8 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
-"Якщо ввімкнено, тоді програма, вказана для обробки посилань (URL) запускатиметься у терміналі."
+"Якщо ввімкнено, тоді програма, вказана для обробки посилань (URL) "
+"запускатиметься у терміналі."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -888,9 +891,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Якщо ввімкнено, з'єднання з проксі-сервером вимагатимуть аутентифікації. Пара "
-"параметрів ім'я/пароль визначається ключами \"/system/http_proxy/authentication_user"
-"\" та \"/system/http_proxy/authentication_password\"."
+"Якщо ввімкнено, з'єднання з проксі-сервером вимагатимуть аутентифікації. "
+"Пара параметрів ім'я/пароль визначається ключами \"/system/http_proxy/"
+"authentication_user\" та \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -925,8 +928,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Виберіть режим налаштовування проксі-служби. Можливі значення \"none\", (немає) \"manual"
-"\", (вручну) \"auto\" (автоматично)."
+"Виберіть режим налаштовування проксі-служби. Можливі значення \"none\", "
+"(немає) \"manual\", (вручну) \"auto\" (автоматично)."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -949,28 +952,32 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Порт на вузлі проксі-сервера, що визначений ключем \"/system/http_proxy/host\"."
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/http_proxy/host"
+"\"."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/ftp_host\"."
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/ftp_host"
+"\"."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/secure_host\"."
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/"
+"secure_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/socks_host\"."
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/socks_host"
+"\"."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -979,14 +986,17 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Цей ключ містить перелік вузлів, з'єднання з якими встановлюється безпосередньо, "
-"обминаючи проксі-службу (якщо вона активна). Значення можуть бути іменами вузлів, "
-"доменами (з використанням шаблонів подібних до *.foo.com), IP адресами вузлів (як "
-"IPv4, так і IPv6) та адресами мереж з використанням маски (щось схоже не, 192.168.0.0/24)."
+"Цей ключ містить перелік вузлів, з'єднання з якими встановлюється "
+"безпосередньо, обминаючи проксі-службу (якщо вона активна). Значення можуть "
+"бути іменами вузлів, доменами (з використанням шаблонів подібних до *.foo."
+"com), IP адресами вузлів (як IPv4, так і IPv6) та адресами мереж з "
+"використанням маски (щось схоже не, 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "Посилання (URL), що забезпечує значення для автоматичного налаштовування проксі-служби."
+msgstr ""
+"Посилання (URL), що забезпечує значення для автоматичного налаштовування "
+"проксі-служби."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -994,7 +1004,9 @@ msgstr "Використовувати HTTP проксі"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Ім'я користувача, що використовується при автентифікацій проксі-службою протоколу HTTP."
+msgstr ""
+"Ім'я користувача, що використовується при автентифікацій проксі-службою "
+"протоколу HTTP."
 
 #: modules/network-method.c:257
 msgid "Windows Network"
