@@ -32,7 +32,6 @@
 	  <Not>
 	    <Keyword>System</Keyword>
 	  </Not>
-	  <Keyword>Fake</Keyword>
 	</And>
       </Query>
       <DontShowIfEmpty/>
@@ -51,7 +50,7 @@
 
     <!-- Development Tools -->
     <Folder>
-      <Name>Development Tools</Name>
+      <Name>Programming</Name>
       <Desktop>Development.directory</Desktop>
       <Query>
         <And>
@@ -135,7 +134,7 @@
 
     <!-- Settings -->
     <Folder>
-      <Name>Desktop Preferences</Name>
+      <Name>Preferences</Name>
       <Desktop>Settings.directory</Desktop>
       <Query>
 	<And>
@@ -185,35 +184,18 @@
       </Folder>
     </Folder>
 
-    <!-- Tools -->
+    <!-- System Tools-->
     <Folder>
-      <Name>Tools</Name>
-      <Desktop>Tools.directory</Desktop>
+      <Name>System</Name>
+      <Desktop>System.directory</Desktop>
       <Query>
-        <And>
-          <Keyword>Application</Keyword>
-	  <Keyword>Utility</Keyword>
-	  <!-- <Keyword>System</Keyword> -->
-        </And>
+	<And>
+	  <Keyword>Application</Keyword>
+	  <Keyword>System</Keyword>
+	</And>
       </Query>
       <DontShowIfEmpty/>
-
-      <!-- System -->
-      <Folder>
-	<Name>System</Name>
-	<Desktop>System.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Application</Keyword>
-	    <Keyword>System</Keyword>
-	    <Not>
-	      <Keyword>Utility</Keyword>
-	    </Not>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
-
     </Folder>
+    
   </Folder>
 </VFolderInfo>
