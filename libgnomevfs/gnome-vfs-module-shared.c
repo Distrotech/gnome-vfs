@@ -88,6 +88,8 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 		file_info->type = GNOME_VFS_FILE_TYPE_SOCKET;
 	else if (S_ISREG (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	else if (S_ISLNK (statptr->st_mode))
+		file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
 	else
 		file_info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
 

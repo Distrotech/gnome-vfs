@@ -1168,7 +1168,7 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 				} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 					result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
 				} else {
-					g_assert (!"unimplemented");
+					g_assert_not_reached ();
 				}
 
 				gnome_vfs_uri_unref (dest_uri);
@@ -1271,7 +1271,8 @@ copy_items (const GList *source_uri_list,
                                 } else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 					result = gnome_vfs_create_symbolic_link (target_uri, info.symlink_name);
                                 } else {
-					g_assert (!"unimplemented");
+					g_message ("type: %d", info.type);
+					g_assert_not_reached ();
 				}
 
 				if (result != GNOME_VFS_ERROR_FILE_EXISTS) {

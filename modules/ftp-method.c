@@ -228,8 +228,8 @@ get_response (FtpConnection *conn)
 			if (conn->response_message) g_free (conn->response_message);
 			conn->response_message = g_strdup (line+4);
 
-			ftp_debug (conn,g_strdup_printf ("got response %d (%s)", 
-							 conn->response_code, conn->response_message));
+			//ftp_debug (conn,g_strdup_printf ("got response %d (%s)", 
+			//				 conn->response_code, conn->response_message));
 
 			g_free (line);
 
@@ -253,7 +253,7 @@ static GnomeVFSResult do_control_write (FtpConnection *conn,
 	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
 	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
 						       actual_command, bytes, &bytes_written);
-	ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
+	//ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
 	gnome_vfs_iobuf_flush (conn->iobuf);
 
 	if(result != GNOME_VFS_OK) {
@@ -626,7 +626,7 @@ ftp_connection_aquire (GnomeVFSURI *uri,
 	if (possible_connections) {
 		/* spare connection(s) found */
 		conn = (FtpConnection *) possible_connections->data;
-		ftp_debug (conn, strdup ("found a connection"));
+		//ftp_debug (conn, strdup ("found a connection"));
 		possible_connections = g_list_remove (possible_connections, conn);
 
 		if(!g_hash_table_lookup (spare_connections, uri)) {
@@ -671,8 +671,8 @@ ftp_connection_release (FtpConnection *conn)
 
 	possible_connections = g_hash_table_lookup (spare_connections, 
 						    conn->uri);
-	ftp_debug (conn, g_strdup_printf ("releasing [len = %d]", 
-					 g_list_length (possible_connections)));
+	//ftp_debug (conn, g_strdup_printf ("releasing [len = %d]", 
+	//				 g_list_length (possible_connections)));
 	possible_connections = g_list_append (possible_connections, conn);
 
 	if (g_hash_table_lookup (spare_connections, conn->uri)) {
@@ -800,8 +800,6 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info)
 	struct stat s;
 	gchar *filename = NULL, *linkname = NULL;
 	const char *mime_type;
-
-	// g_print (ls);
 
 	gnome_vfs_parse_ls_lga (ls, &s, &filename, &linkname);
 
@@ -961,10 +959,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 				gnome_vfs_file_info_clear (file_info);
 			}
-
-
 		}
-
 	}
 
 	return GNOME_VFS_ERROR_NOT_FOUND;

@@ -1,3 +1,19 @@
+2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed a bug where transferring symbolic links from an ftp
+	site would crash nautilus.  Links are now properly identified.
+	
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_stat_to_file_info):
+	Handle symbolic links.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory), (copy_items):
+	Replace some plain asserts with assert_unreachable
+	
+	* modules/ftp-method.c: (get_response), (do_control_write),
+	(ftp_connection_aquire), (ftp_connection_release),
+	(ls_to_file_info), (do_get_file_info):
+	
 2000-09-20  Darin Adler  <darin@eazel.com>
 
 	* data/mime/gnome-vfs.applications: Both EOG and The Gimp had
@@ -19,7 +35,7 @@
 
 2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
 
-	Renabled and cleaned up read only volume check now.
+	Renabled and cleaned up read only volume check.
 	
 	* libgnomevfs/gnome-vfs-xfer.c: 
 	(gnome_vfs_xfer_uri_internal):
