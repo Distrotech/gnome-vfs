@@ -20,8 +20,7 @@
 
    Author: Ettore Perazzoli <ettore@gnu.org>
 
-   `split_toplevel_uri()' derived from Midnight Commander code by Norbert
-   Warmuth, Miguel de Icaza, Janne Kukonlehto, Dugan Porter, Jakub Jelinek.  */
+*/
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -51,19 +50,101 @@
         } while (0)
 
 
-/* Extract the hostname and username from the path of length `path_len' pointed
-   by `path'.  The path is in the form: [user@]hostname:port/remote-dir, e.g.:
+/* 
+   split_toplevel_uri
 
+   Extract hostname and username from "path" with length "path_len"
+
+   examples:
        sunsite.unc.edu/pub/linux
        miguel@sphinx.nuclecu.unam.mx/c/nc
        tsx-11.mit.edu:8192/
        joe@foo.edu:11321/private
        joe:password@foo.se
 
-*/
+   This function implements the following regexp: (whitespace for clarity)
+
+   ( ( ([^:@]*) (:[^@]*)? @ )? ([^/:]+) (:([0-9]*)?) )?  (/.*)?
+   ( ( ( user ) (  pw  )?   )?   (host)    (port)?   )? (path <return value>)?
+
+  It returns NULL if neither <host> nor <path> could be matched.
+
+  port is checked to ensure that it does not exceed 0xffff.
+
+  return value is <path> or is "/" if the path portion is not present
+  All other arguments are set to 0 or NULL if their portions are not present
+
+  pedantic: this function ends up doing an unbounded lookahead, making it 
+  potentially O(n^2) instead of O(n).  This could be avoided.  Realistically, though,
+  its just the password field.
+
+  Differences between the old and the new implemention:
+
+                     Old                     New
+  localhost:8080     host="localhost:8080"   host="localhost" port=8080
+  /Users/mikef       host=""                 host=NULL
+
+*/ 
+
+/* This debugging code should be removed for the next release-- mfleming 8/5/00 */
+#define NO_MKF_DEBUG		
+#ifndef NO_MKF_DEBUG
 
 static gchar *
+split_toplevel_uri_new (const gchar *path, guint path_len,
+		    gchar **host_return, gchar **user_return,
+		    guint *port_return, gchar **password_return);
+
+static gchar *
+split_toplevel_uri_old (const gchar *path, guint path_len,
+		    gchar **host_return, gchar **user_return,
+		    guint *port_return, gchar **password_return);
+
+#define SAME(x) (((x##_old == NULL) && (x##_new == NULL)) \
+	|| (((x##_old != NULL) && (x##_new != NULL)) && 0 == strcmp (x##_new, x##_old)))
+#define CHECK_NULL(x)  ( NULL == x ? "<NULL>" : (x))
+static gchar *
 split_toplevel_uri (const gchar *path, guint path_len,
+		    gchar **host_return, gchar **user_return,
+		    guint *port_return, gchar **password_return)
+{
+	char *host_old, *user_old, *password_old, *ret_old;
+	char *host_new, *user_new, *password_new, *ret_new;
+	guint port_old, port_new;
+
+	ret_old = split_toplevel_uri_old (path, path_len, &host_old, &user_old, &port_old, &password_old);
+
+	ret_new = split_toplevel_uri_new (path, path_len, &host_new, &user_new, &port_new, &password_new);
+
+	
+	if ( ! ( SAME(ret) && SAME(host) && SAME (user) && SAME (password) && port_old == port_new)) {
+		char * tmp;
+		if ( NULL != path && 0 < path_len ) {
+			tmp = g_strndup (path, path_len); 
+		} else {
+			tmp = g_strdup("");
+		}
+		g_warning ("split different for '%s': \nret: '%s' '%s'\n"
+			   "host: '%s' '%s'\n" "user: '%s' '%s'\n" "pw: '%s' '%s'\n" "port: %u %u",
+			   tmp,
+			   CHECK_NULL (ret_old), CHECK_NULL (ret_new),
+			   CHECK_NULL (host_old), CHECK_NULL (host_new),
+			   CHECK_NULL (user_old), CHECK_NULL (user_new),
+			   CHECK_NULL (password_old), CHECK_NULL (password_new),
+			   port_old, port_new
+		);			   
+	}
+
+	*host_return = host_new;
+	*user_return = user_new;
+	*password_return = password_new;
+	*port_return = port_new;
+
+	return ret_new;
+}
+
+static gchar *
+split_toplevel_uri_old (const gchar *path, guint path_len,
 		    gchar **host_return, gchar **user_return,
 		    guint *port_return, gchar **password_return)
 {
@@ -153,6 +234,233 @@ split_toplevel_uri (const gchar *path, guint path_len,
  done:
 	return retval;
 }
+
+#endif
+
+
+#define URI_MOVE_PAST_DELIMITER \
+	do {							\
+		cur_tok_start = (++cur);			\
+		if (path_end == cur) {				\
+			success = FALSE;			\
+			goto done;				\
+		}						\
+	} while (0);
+
+
+#define uri_strlen_to(from, to)  ( (to) - (from) )
+#define uri_strdup_to(from, to)  g_strndup ((from), uri_strlen_to((from), (to)))
+
+typedef struct {
+	const char *chrs;
+	gboolean primed;
+	char bv[32];
+} UriStrspnSet; 
+
+UriStrspnSet uri_strspn_sets[] = {
+	{":@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
+	{"@", FALSE, ""},
+	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""},
+};
+
+#define URI_DELIMITER_ALL_SET (uri_strspn_sets + 0)
+#define URI_DELIMITER_USER_SET (uri_strspn_sets + 1)
+#define URI_DELIMITER_HOST_SET (uri_strspn_sets + 2)
+
+#define BV_SET(bv, idx) (bv)[((guchar)(idx))>>3] |= (1 << ( (idx) & 7) )
+#define BV_IS_SET(bv, idx) ((bv)[(idx)>>3] & (1 << ( (idx) & 7)))
+
+static const char *
+uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)
+{
+	const char *cur;
+	const char *cur_chr;
+
+	if ( ! set->primed ) {
+		memset (set->bv, 0, sizeof(set->bv));
+	
+		for ( cur_chr = set->chrs; '\0' != *cur_chr; cur_chr++) {
+			BV_SET (set->bv, *cur_chr);
+		}
+
+		BV_SET (set->bv, '\0');
+		set->primed = TRUE;
+	}
+	
+	for ( cur = str; cur < path_end && ! BV_IS_SET (set->bv, *cur); cur++ ) ;
+
+	if ( cur >= path_end || '\0' == *cur ) {
+		return NULL;
+	} else {
+		return cur;
+	}
+}
+
+
+#ifndef NO_MKF_DEBUG
+static gchar *
+split_toplevel_uri_new (const gchar *path, guint path_len,
+		    gchar **host_return, gchar **user_return,
+		    guint *port_return, gchar **password_return)
+#else
+static gchar *
+split_toplevel_uri (const gchar *path, guint path_len,
+		    gchar **host_return, gchar **user_return,
+		    guint *port_return, gchar **password_return)
+#endif
+{
+	const char *path_end;
+	const char *cur_tok_start;
+	const char *cur;
+	char *ret;
+	gboolean success;
+
+	g_assert ( NULL != host_return );
+	g_assert ( NULL != user_return );
+	g_assert ( NULL != port_return );
+	g_assert ( NULL != password_return );
+
+	*host_return = NULL;
+	*user_return = NULL;
+	*port_return = 0;
+	*password_return = NULL;
+	ret = NULL;
+
+	success = FALSE;
+
+	if (NULL == path || 0 == path_len) {
+		return NULL;
+	}
+	
+	path_end = path + path_len;
+
+	cur_tok_start = path;
+	cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_ALL_SET, path_end);
+
+	if (NULL != cur 
+		&& ('@' == *cur
+		    || NULL != uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end)
+		)
+	) {
+		/* *cur == ':' or '@' and string contains @ */
+
+		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+			*user_return = uri_strdup_to (cur_tok_start,cur);
+		}
+
+		if ( ':' == *cur ) {
+			URI_MOVE_PAST_DELIMITER;
+
+			cur = uri_strspn_to(cur_tok_start, URI_DELIMITER_USER_SET, path_end);
+
+			if ( NULL == cur || '@' != *cur ) {
+				success = FALSE;
+				goto done;
+			} else /* '@' == *cur */ {
+				if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+					*password_return = uri_strdup_to (cur_tok_start,cur);
+				}
+			}
+		}
+
+		if ('/' != *cur) {
+			URI_MOVE_PAST_DELIMITER;
+			cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_HOST_SET, path_end);
+		} else {
+			cur_tok_start = cur;
+		}
+	}
+
+	if (NULL == cur) {
+		/* [^:/]+$ */
+		if( 0 < uri_strlen_to (cur_tok_start, path_end)) {
+			*host_return = uri_strdup_to (cur_tok_start, path_end);
+			ret = g_strdup (GNOME_VFS_URI_PATH_STR);
+			success = TRUE;
+		} else { /* No host, no path */
+			success = FALSE;
+		}
+
+		goto done;
+
+	} else if ( ':' == *cur ) {
+		guint port;
+		/* [^:/]*:.* */
+
+		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+			*host_return = uri_strdup_to (cur_tok_start, cur);
+		} else {
+			success = FALSE;
+			goto done;	/*No host but a port?*/
+		}
+
+		URI_MOVE_PAST_DELIMITER;
+
+		port = 0;
+
+		for ( ; cur < path_end && '\0' != *cur && isdigit (*cur); cur++) {
+			port *= 10;
+			port += *cur - '0'; 
+		}
+
+		/* We let :(/.*)$ be treated gracefully */
+		if ( ! ( '\0' == *cur || GNOME_VFS_URI_PATH_CHR == *cur ) ) {
+			success = FALSE;
+			goto done;	/* ...but this would be an error */
+		} 
+
+		if ( 0xffff < port ) {
+			success = FALSE;
+			goto done;
+		}
+
+		*port_return = port;
+
+		cur_tok_start = cur;
+		
+	} else /* GNOME_VFS_URI_PATH_CHR == *cur */ {
+		/* ^[^:@/]+/.*$ */
+
+		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+			*host_return = uri_strdup_to (cur_tok_start, cur);
+		} else if ( NULL != *user_return || NULL != *password_return ) {
+			/* If we got a user / password but no host, that's an error */
+			success = FALSE;
+			goto done;	
+		}
+
+		cur_tok_start = cur;
+	}
+
+	if( '\0' != *cur_tok_start && 0 < uri_strlen_to (cur_tok_start, path_end)) {
+		ret = uri_strdup_to(cur, path_end);
+	} else {
+		/* Either host or path...*/
+		if ( NULL != host_return ) {
+			ret = g_strdup (GNOME_VFS_URI_PATH_STR);
+		}
+	}
+
+	success = TRUE;
+done:
+
+	/* If we didn't complete our mission, discard all the partials */
+	if ( ! success ) {
+		g_free (*host_return);
+		g_free (*user_return);
+		g_free (*password_return);
+		g_free (ret);
+
+		*host_return = NULL;
+		*user_return = NULL;
+		*port_return = 0;
+		*password_return = NULL;
+		ret = NULL;
+	}
+
+	return ret;
+}
+
 
 
 static void

@@ -1,3 +1,24 @@
+2000-08-05  Michael K. Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri),
+	(split_toplevel_uri_old), (uri_strspn_to), (split_toplevel_uri):
+	* test/test-uri.c: (test_uri_part), (test_uri_host_port), (main):
+
+	Re-implemented split_toplevel_uri to fix some parsing bugs in the old one.
+	(Most signficantly, 'http://localhost:80' would be parsed as 
+	hostname 'localhost:80' rather than hostname 'localhost' port '80')
+
+	****Note that the new code is necessarally not bug-for-bug compatible with
+	the original implementation, and therefore may expose bugs in existing
+	applications!****
+
+	Added new test cases for URI parsing.
+
+	The old split_toplevel_uri code is ifdef'd out.  If you disable 
+	NO_MKF_DEBUG, you can get warnings when a differences between the old
+	version and the new version is encountered.  Of course, the code in this
+	block should be removed before the next release.
+
 2000-08-04  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic: changed text/rtf to

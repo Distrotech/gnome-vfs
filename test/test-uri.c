@@ -123,6 +123,66 @@ test_uri_parent (const char *input,
 	g_free (output);
 }
 
+/*
+ * Ensure that gnome_vfs_uri_{get_host_name,get_scheme,get_user_name,get_password} 
+ * return expected results
+ */  
+static void
+test_uri_part (const char *input, 
+	       const char *expected_output,
+	       const char *(*func_gnome_vfs_uri)(const GnomeVFSURI *)
+	       )
+{
+	GnomeVFSURI *uri;
+	const char *output;
+
+	uri = gnome_vfs_uri_new (input);
+	if (NULL == uri) {
+		output = "URI NULL";
+	} else {
+		output = func_gnome_vfs_uri(uri);
+		if ( NULL == output ) {
+			output = "NULL";
+		}
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("gnome_vfs_uri_{?} (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+
+	if ( NULL != uri ) {
+		gnome_vfs_uri_unref (uri);
+	}
+
+}
+
+/*
+ * Ensure that gnome_vfs_uri_get_host_port
+ * return expected results
+ */  
+static void
+test_uri_host_port (const char *input, 
+	       guint expected_port
+	       )
+{
+	GnomeVFSURI *uri;
+	gboolean success = FALSE;
+	guint port;
+
+	uri = gnome_vfs_uri_new (input);
+	if (NULL != uri && expected_port == ( port = gnome_vfs_uri_get_host_port(uri) ) ) {
+		success = TRUE;
+		gnome_vfs_uri_unref (uri);
+	}
+
+	if ( ! success) {
+		test_failed ("gnome_vfs_uri_get_host_port (%s) resulted in %u instead of %u",
+			     input, port, expected_port);
+	}
+}
+
+
 int
 main (int argc, char **argv)
 {
@@ -143,6 +203,39 @@ main (int argc, char **argv)
 
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
 	test_uri_to_string ("FILE://", "file://", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_to_string ("file:///Users/mikef", "file:///Users/mikef", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_to_string ("http://www.eazel.com:80", "http://www.eazel.com:80/", GNOME_VFS_URI_HIDE_NONE);
+
+	/* test URI parts */
+	test_uri_part ("http://www.eazel.com:80/", "http", gnome_vfs_uri_get_scheme);
+	test_uri_part ("http://www.eazel.com:80/", "www.eazel.com", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://www.eazel.com:80/", "NULL", gnome_vfs_uri_get_user_name);
+	test_uri_part ("http://www.eazel.com:80/", "NULL", gnome_vfs_uri_get_password);
+
+	test_uri_host_port ("http://www.eazel.com/", 0);
+	test_uri_host_port ("http://www.eazel.com:80/", 80);
+
+	/* Now--same thing w/o trailing / */
+	test_uri_part ("http://www.eazel.com:80", "http", gnome_vfs_uri_get_scheme);
+	test_uri_part ("http://www.eazel.com:80", "www.eazel.com", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://www.eazel.com:80", "NULL", gnome_vfs_uri_get_user_name);
+	test_uri_part ("http://www.eazel.com:80", "NULL", gnome_vfs_uri_get_password);
+
+	test_uri_part ("http://www.eazel.com:80", "/", gnome_vfs_uri_get_path);
+
+	test_uri_host_port ("http://www.eazel.com", 0);
+	test_uri_host_port ("http://www.eazel.com:80", 80);
+
+	/* now same thing with all the parts */
+	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "http", gnome_vfs_uri_get_scheme );
+	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "www.eazel.com", gnome_vfs_uri_get_host_name );
+	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "yakk", gnome_vfs_uri_get_user_name );
+	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "womble", gnome_vfs_uri_get_password );
+	test_uri_host_port ("http://yakk:womble@www.eazel.com:42/blah/", 42);
+	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "/blah/", gnome_vfs_uri_get_path );
+
 
 	test_uri_parent ("", "URI NULL");
 	test_uri_parent ("http://www.eazel.com", "NULL");
