@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2000-05-03 23:24+0200\n"
+"Project-Id-Version: gnome-vfs 0.2.0\n"
+"POT-Creation-Date: 2000-07-16 18:35+0200\n"
 "PO-Revision-Date: 2000-03-04 20:03+01:00\n"
 "Last-Translator: Softcatala <linux@softcatala.org>\n"
 "Language-Team: \n"
@@ -28,26 +28,26 @@ msgstr "%s:%d no conté cap nom de mètode."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d no conté cap nom de mòdul."
 
-#: libgnomevfs/gnome-vfs-configuration.c:285
+#: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:483
+#: libgnomevfs/gnome-vfs-file-info.c:479
 #, fuzzy, c-format
 msgid "Unknown sort rule %d"
 msgstr "Treball desconegut amb ID %d"
 
-#: libgnomevfs/gnome-vfs-init.c:55
+#: libgnomevfs/gnome-vfs-init.c:71
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS ja està inicialitzat."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:653
 #, c-format
 msgid "Could not parse: %s"
 msgstr "No s'ha pogut analitzar: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:655
 msgid "More parsing errors will be ignored."
 msgstr "Els següent errors d'anàlisi seran ignorats"
 
@@ -56,7 +56,7 @@ msgstr "Els següent errors d'anàlisi seran ignorats"
 msgid "No error"
 msgstr "Cap error"
 
-#. GNOME_VFS_ERROR_NOTFOUND
+#. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
 msgstr "Fitxer no trobat"
@@ -71,12 +71,12 @@ msgstr "Error genèric"
 msgid "Internal error"
 msgstr "Error intern"
 
-#. GNOME_VFS_ERROR_BADPARAMS
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr "Paràmetres no vàlids"
 
-#. GNOME_VFS_ERROR_NOTSUPPORTED
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
 msgstr "Operació no suportada"
@@ -86,57 +86,57 @@ msgstr "Operació no suportada"
 msgid "I/O error"
 msgstr "Error E/S"
 
-#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
 msgstr "Dades corruptes"
 
-#. GNOME_VFS_ERROR_WRONGFORMAT
+#. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
 msgstr "Format no vàlid"
 
-#. GNOME_VFS_ERROR_BADFILE
+#. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr "Fitxer associat incorrecte"
 
-#. GNOME_VFS_ERROR_TOOBIG
+#. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr "Fitxer massa gran"
 
-#. GNOME_VFS_ERROR_NOSPACE
+#. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
 msgstr "No hi ha prou espai en el dispositiu"
 
-#. GNOME_VFS_ERROR_READONLY
+#. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr "Sistema de fitxers de només lectura"
 
-#. GNOME_VFS_ERROR_INVALIDURI
+#. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr "URI no vàlid"
 
-#. GNOME_VFS_ERROR_NOTOPEN
+#. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
 msgstr "Fitxer no obert"
 
-#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
 msgstr "Mode d'obertura no vàlid"
 
-#. GNOME_VFS_ERROR_ACCESSDENIED
+#. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr "Accés denegat"
 
-#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr "Massa fitxers oberts"
@@ -146,12 +146,12 @@ msgstr "Massa fitxers oberts"
 msgid "End of file"
 msgstr "Fi del fitxer"
 
-#. GNOME_VFS_ERROR_NOTADIRECTORY
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr "No és un directori"
 
-#. GNOME_VFS_ERROR_INPROGRESS
+#. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr "Operació en progrés"
@@ -161,7 +161,7 @@ msgstr "Operació en progrés"
 msgid "Operation interrupted"
 msgstr "Operació interrompuda"
 
-#. GNOME_VFS_ERROR_FILEEXISTS
+#. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
 msgstr "Fitxer ja existent"
@@ -171,37 +171,37 @@ msgstr "Fitxer ja existent"
 msgid "Looping links encountered"
 msgstr "Enllaços amb bucles trobats"
 
-#. GNOME_VFS_ERROR_NOTPERMITTED
+#. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
 msgstr "Operació no permesa"
 
-#. GNOME_VFS_ERROR_ISDIRECTORY
+#. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
 msgstr "És un directori"
 
-#. GNOME_VFS_ERROR_NOMEM
+#. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
 msgstr "No hi ha prou memòria"
 
-#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
 msgstr "Servidor no trobat"
 
-#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
 msgstr "Nom de servidor no vàlid"
 
-#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
 msgstr "Servidor sense adreça"
 
-#. GNOME_VFS_ERROR_LOGINFAILED
+#. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
 msgstr "Entrada fallida"
@@ -211,32 +211,32 @@ msgstr "Entrada fallida"
 msgid "Operation cancelled"
 msgstr "Operació cancel·lada"
 
-#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
 msgstr "Directori ocupat"
 
-#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
 msgstr "Directori no buit"
 
-#. GNOME_VFS_ERROR_TOOMANYLINKS
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
 msgstr "Massa enllaços"
 
-#. GNOME_VFS_ERROR_READONLYFS
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
 msgstr "Sistema de fitxers de només lectura"
 
-#. GNOME_VFS_ERROR_NOTSAMEFS
+#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "No és del mateix sistema de fitxers"
 
-#. GNOME_VFS_ERROR_NAMETOOLONG
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
 msgstr "Nom massa llarg"
@@ -245,110 +245,110 @@ msgstr "Nom massa llarg"
 msgid "Unknown error"
 msgstr "Error desconegut"
 
-#: libgnomevfs/gnome-vfs-utils.c:40
+#: libgnomevfs/gnome-vfs-utils.c:41
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:42
+#: libgnomevfs/gnome-vfs-utils.c:43
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:49
+#: libgnomevfs/gnome-vfs-utils.c:50
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:53
+#: libgnomevfs/gnome-vfs-utils.c:54
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:57
+#: libgnomevfs/gnome-vfs-utils.c:58
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:340
+#: libgnomevfs-corba/gnome-vfs-slave.c:338
 msgid "Dying."
 msgstr "Morint."
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:505
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:503
 #, c-format
 msgid "Error reading: %s"
 msgstr "Error llegint: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:527
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:525
 #, c-format
 msgid "Error writing: %s"
 msgstr "Error escrivint: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:576
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:574
 #, c-format
 msgid "Cannot write: %s"
 msgstr "No es pot escriure: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:604
+#: libgnomevfs-corba/gnome-vfs-slave.c:602
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "No es pot crear el fitxer temporal de nom `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#: libgnomevfs-corba/gnome-vfs-slave.c:616
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "No es pot crear l'enllaç: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:636
+#: libgnomevfs-corba/gnome-vfs-slave.c:634
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "No es pot vincular `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:643
+#: libgnomevfs-corba/gnome-vfs-slave.c:641
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "No es pot atendre a `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:665
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "No es poden acceptar connexions en `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1402
+#: libgnomevfs-corba/gnome-vfs-slave.c:1397
 msgid "Cannot initialize CORBA."
 msgstr "No es pot inicialitzar CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1409
+#: libgnomevfs-corba/gnome-vfs-slave.c:1404
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "No es pot reoldre la referència inicial al RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1416
+#: libgnomevfs-corba/gnome-vfs-slave.c:1411
 msgid "Cannot activate POA manager."
 msgstr "No es pot activar el gestor POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1441
+#: libgnomevfs-corba/gnome-vfs-slave.c:1436
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Utilització: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1447
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "No es pot obrir el descriptor de fitxers %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "No s'ha trobat la interfície de notificació per a `%s'."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1485
+#: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
 msgstr "No es pot configurar l'objecte demanat."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1492
+#: libgnomevfs-corba/gnome-vfs-slave.c:1487
 msgid "Cannot extract IOR."
 msgstr "No es pot extreure l'IOR."
 
@@ -367,200 +367,324 @@ msgstr "No es pot obtenir l'objecte per a `%s'"
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr "No es pot matar GNOME::VFS::Esclau::Notifica -- excepció %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "No es pot connectar l'enllaç `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "No es pot inicialitzar GNOME::VFS:Esclau::Notifica"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 msgstr "No es pot reinicialitzar GNOME::VFS::Esclau %s -- excepció %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
 "No es pot reinicialitzar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 msgstr "No es pot matar GNOME::VFS::Esclau %s -- excepció %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "No es pot matar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:129
+#: libgnomevfs-pthread/gnome-vfs-job.c:161
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Error en escriure en el canal d'avís GnomeVFSJob"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:445
-#: libgnomevfs-pthread/gnome-vfs-job.c:1275
+#: libgnomevfs-pthread/gnome-vfs-job.c:568
+#: libgnomevfs-pthread/gnome-vfs-job.c:1523
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Treball desconegut amb ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:795
-#: libgnomevfs-pthread/gnome-vfs-job.c:890
+#: libgnomevfs-pthread/gnome-vfs-job.c:972
+#: libgnomevfs-pthread/gnome-vfs-job.c:1093
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1293
+#: libgnomevfs-pthread/gnome-vfs-job.c:1556
 msgid "Operation stopped"
 msgstr "Operació aturada"
 
-#: modules/file-method.c:334
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
+msgid "Edit Applications List"
+msgstr ""
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
+msgid "Add Application..."
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
+msgid "Edit Application..."
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+msgid "Delete Application"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
+msgid "Edit Components List"
+msgstr ""
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
+msgid "Add Mime Type"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+msgid "Mime Type:"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+msgid "Type in a description for this mime-type."
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
+msgid "Description:"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
+msgid "Add New Extension"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
+msgid "Extension:"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
+msgid "New Application"
+msgstr ""
+
+#. Application Name label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+msgid "Application Name:"
+msgstr ""
+
+#. Application Command label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
+msgid "Application Command:"
+msgstr ""
+
+#. Open Behavior frame
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
+msgid "Open Behavior"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
+#, fuzzy
+msgid "Can open multiple files"
+msgstr "Massa fitxers oberts"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+msgid "Can open from URI"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+msgid "Change Icon"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:374
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
+msgid "Mime Type"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+msgid "Add new Mime type..."
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:403
+msgid "Delete this Mime type..."
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:418
+msgid "Use Viewer"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:424
+msgid "Open With Application"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:436
+msgid "Edit List"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:465
+msgid "Add"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:468
+msgid "Remove"
+msgstr ""
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:646
+#: mime-type-capplet/nautilus-mime-type-capplet.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet.c:993
+msgid "None"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
+msgid "Description"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
+msgid "Extension"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
+msgid "Action"
+msgstr ""
+
+#: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Desconeguda GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:357
-msgid "ftpfs: Invalid host name."
-msgstr "ftpfs: Nom de servidor no vàlid."
-
-#: modules/ftp-method.c:380
-msgid "ftpfs: Invalid host address."
-msgstr "ftpfs: Adreça de servidor no vàlida."
-
-#: modules/ftp-method.c:400
-#, c-format
-msgid "ftpfs: making connection to %s"
-msgstr "ftpfs: connectant-se a %s"
-
-#: modules/ftp-method.c:406
-msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: connexió interrompuda per l'usuari"
-
-#: modules/ftp-method.c:408
-#, c-format
-msgid "ftpfs: connection to server failed: %s"
-msgstr "ftpfs: connexió al servidor fallida: %s"
-
-#: modules/ftp-method.c:484
-#, c-format
-msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr "Esperant per reintentar-ho... %d (Control-C per cancel·lar-ho)"
-
-#: modules/ftp-method.c:755
-msgid " FTP: Password required for "
-msgstr " FTP: Contrasenya requerida per "
-
-#: modules/ftp-method.c:794
-msgid "ftpfs: sending login name"
-msgstr "ftpfs: enviant el nom d'entrada"
-
-#: modules/ftp-method.c:800
-msgid "ftpfs: sending user password"
-msgstr "ftpfs: enviant la contrasenya de l'usuari"
-
-#: modules/ftp-method.c:806
-msgid "ftpfs: logged in"
-msgstr "ftpfs: connectat"
-
-#: modules/ftp-method.c:818
-#, c-format
-msgid "ftpfs: Login incorrect for user %s "
-msgstr "ftpfs: Entrada incorrecta per a l'usuari %s "
-
-#: modules/ftp-method.c:831
-msgid "ftpfs: aborting transfer."
-msgstr "ftpfs: avortant la transferència."
-
-#: modules/ftp-method.c:833
-#, c-format
-msgid "ftpfs: abort error: %s"
-msgstr "ftpfs: error en avortar: %s"
-
-#: modules/ftp-method.c:838
-msgid "ftpfs: abort failed"
-msgstr "ftpfs: avortament fallit"
-
-#: modules/ftp-method.c:915
-msgid "ftpfs: could not setup passive mode"
-msgstr "ftpfs: no s'ha pogut configurar el mode passiu"
-
-#: modules/ftp-method.c:1092
-#, c-format
-msgid "ftpfs: storing file %d (%d)"
-msgstr "ftpfs: emmagatzemant el fitxer %d (%d)"
-
-#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
-msgid "ftpfs: CWD failed."
-msgstr "ftpfs: CWD fallit."
-
-#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
-msgid "ftpfs: couldn't resolve symlink"
-msgstr "ftpfs: No s'ha pogut resoldre l'enllaç simbòlic"
-
-#: modules/ftp-method.c:1382
-msgid "Resolving symlink..."
-msgstr "Resolent l'enllaç simbòlic..."
-
-#: modules/ftp-method.c:1506
-#, c-format
-msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
-"ftpfs: Llegint el directori FTP %s... (no utilitzeu les opcions ls de UNIX)"
-
-#: modules/ftp-method.c:1510
-#, c-format
-msgid "ftpfs: Reading FTP directory %s..."
-msgstr "ftpfs: Llegint el directori FTP %s..."
-
-#: modules/ftp-method.c:1576
-msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr "ftpfs: lectura del directori FTP interrompuda per l'usuari"
-
-#: modules/ftp-method.c:1600
-msgid "ftpfs: got listing"
-msgstr "ftpfs: llistat rebut"
-
-#: modules/ftp-method.c:1652
-msgid "ftpfs: failed; nowhere to fallback to"
-msgstr "ftpfs: fallit; enlloc per anar"
-
-#: modules/ftp-method.c:2045
-msgid "Starting linear transfer..."
-msgstr "Iniciant transferència lineal..."
-
-#: modules/ftp-method.c:2115
-msgid "Preparing reget..."
-msgstr "Preparant la recuperació..."
-
-#: modules/http-method.c:502
+#: modules/http-method.c:520
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Encapçalament no vàlid `%s'"
 
-#: modules/http-method.c:519
+#: modules/http-method.c:537
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s per recuperar"
 
-#: modules/http-method.c:655
+#: modules/http-method.c:734
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Tancant la connexió a %s"
 
-#: modules/http-method.c:809
+#: modules/http-method.c:878
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s llegit"
 
-#: modules/http-method.c:812
+#: modules/http-method.c:881
 #, c-format
 msgid "%s read"
 msgstr "%s llegit"
 
 #. Multi-Status
-#: modules/http-method.c:974
+#: modules/http-method.c:1060
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr ""
+
+#~ msgid "ftpfs: Invalid host name."
+#~ msgstr "ftpfs: Nom de servidor no vàlid."
+
+#~ msgid "ftpfs: Invalid host address."
+#~ msgstr "ftpfs: Adreça de servidor no vàlida."
+
+#~ msgid "ftpfs: making connection to %s"
+#~ msgstr "ftpfs: connectant-se a %s"
+
+#~ msgid "ftpfs: connection interrupted by user"
+#~ msgstr "ftpfs: connexió interrompuda per l'usuari"
+
+#~ msgid "ftpfs: connection to server failed: %s"
+#~ msgstr "ftpfs: connexió al servidor fallida: %s"
+
+#~ msgid "Waiting to retry... %d (Control-C to cancel)"
+#~ msgstr "Esperant per reintentar-ho... %d (Control-C per cancel·lar-ho)"
+
+#~ msgid " FTP: Password required for "
+#~ msgstr " FTP: Contrasenya requerida per "
+
+#~ msgid "ftpfs: sending login name"
+#~ msgstr "ftpfs: enviant el nom d'entrada"
+
+#~ msgid "ftpfs: sending user password"
+#~ msgstr "ftpfs: enviant la contrasenya de l'usuari"
+
+#~ msgid "ftpfs: logged in"
+#~ msgstr "ftpfs: connectat"
+
+#~ msgid "ftpfs: Login incorrect for user %s "
+#~ msgstr "ftpfs: Entrada incorrecta per a l'usuari %s "
+
+#~ msgid "ftpfs: aborting transfer."
+#~ msgstr "ftpfs: avortant la transferència."
+
+#~ msgid "ftpfs: abort error: %s"
+#~ msgstr "ftpfs: error en avortar: %s"
+
+#~ msgid "ftpfs: abort failed"
+#~ msgstr "ftpfs: avortament fallit"
+
+#~ msgid "ftpfs: could not setup passive mode"
+#~ msgstr "ftpfs: no s'ha pogut configurar el mode passiu"
+
+#~ msgid "ftpfs: storing file %d (%d)"
+#~ msgstr "ftpfs: emmagatzemant el fitxer %d (%d)"
+
+#~ msgid "ftpfs: CWD failed."
+#~ msgstr "ftpfs: CWD fallit."
+
+#~ msgid "ftpfs: couldn't resolve symlink"
+#~ msgstr "ftpfs: No s'ha pogut resoldre l'enllaç simbòlic"
+
+#~ msgid "Resolving symlink..."
+#~ msgstr "Resolent l'enllaç simbòlic..."
+
+#~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+#~ msgstr ""
+#~ "ftpfs: Llegint el directori FTP %s... (no utilitzeu les opcions ls de UNIX)"
+
+#~ msgid "ftpfs: Reading FTP directory %s..."
+#~ msgstr "ftpfs: Llegint el directori FTP %s..."
+
+#~ msgid "ftpfs: reading FTP directory interrupt by user"
+#~ msgstr "ftpfs: lectura del directori FTP interrompuda per l'usuari"
+
+#~ msgid "ftpfs: got listing"
+#~ msgstr "ftpfs: llistat rebut"
+
+#~ msgid "ftpfs: failed; nowhere to fallback to"
+#~ msgstr "ftpfs: fallit; enlloc per anar"
+
+#~ msgid "Starting linear transfer..."
+#~ msgstr "Iniciant transferència lineal..."
+
+#~ msgid "Preparing reget..."
+#~ msgstr "Preparant la recuperació..."
