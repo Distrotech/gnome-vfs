@@ -19,7 +19,6 @@
 #include <dirent.h>
 #include <errno.h>
 
-#include <libgnome/gnome-util.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <bonobo/bonobo-storage.h>
 

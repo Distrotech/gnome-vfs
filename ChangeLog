@@ -1,5 +1,15 @@
 2001-07-29  Seth Nickell  <snickell@stanford.edu>
 
+	* bonobo-storage-fs.c:
+	* bonobo-storage-vfs.c:
+	* bonobo-stream-fs.c:
+	* bonobo-stream-vfs.c:
+
+	Make it actually compile ;-) Still had includes to parts
+	of libgnome.
+
+2001-07-29  Seth Nickell  <snickell@stanford.edu>
+
 	* libgnomevfs/Makefile.am:
 
 	Remove link and include variables that were no longer in use.

@@ -18,7 +18,6 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <libgnome/gnome-util.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 
 struct _BonoboStreamFSPrivate {
