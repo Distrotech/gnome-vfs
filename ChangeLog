@@ -1,5 +1,13 @@
 2000-05-16  Ettore Perazzoli  <ettore@helixcode.com>
 
+	* test/gnome-file-selection/gnome-file-selection.c: #include
+	"libgnomevfs/gnome-vfs.h", not "gnome-vfs.h".
+
+	* test/gnome-file-selection/Makefile.am (INCLUDES): Replace
+	`-I$(top_srcdir)/libgnomevfs' with `-I$(top_srcdir)'.
+
+2000-05-16  Ettore Perazzoli  <ettore@helixcode.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c (language_level): Correctly
 	cast the `void *' pointer before passing to `strcmp()'.  Also,
 	made const-safe and re-indented a bit.

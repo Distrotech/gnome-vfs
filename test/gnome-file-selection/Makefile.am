@@ -11,7 +11,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	$(GNOME_INCLUDEDIR)			\
-	-I$(top_srcdir)/libgnomevfs		\
+	-I$(top_srcdir)				\
 	-DICONDIR=\"$(datadir)/pixmaps/mc\"
 
 common_sources =				\

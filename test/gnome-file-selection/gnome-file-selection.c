@@ -22,7 +22,7 @@
 
 #include "gicon.h"
 
-#include "gnome-vfs.h"
+#include "libgnomevfs/gnome-vfs.h"
 
 #include "gnome-file-selection.h"
 #include "gnome-file-selection-history.h"
