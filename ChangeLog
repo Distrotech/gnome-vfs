@@ -1,3 +1,14 @@
+2004-08-12  Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/gnome-vfs-private-utils.c: (_gnome_vfs_have_ipv6):
+	* libgnomevfs/gnome-vfs-ssl.c: (_gnome_vfs_ssl_init),
+	(gnome_vfs_ssl_enabled):
+	* modules/computer-method.c: (get_data_for_network),
+	(get_data_for_home), (get_data_for_root):
+	* modules/extfs-method.c: (getdelim):
+	* modules/fstype.c: (filesystem_type), (filesystem_type_uncached),
+	(xatoi): don't use old K&R function prototypes, use ANSI prototypes.
+
 2004-08-10  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/sftp-method.c: add missing comma to fix compilation

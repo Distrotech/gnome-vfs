@@ -50,7 +50,7 @@
 
 /* Check whether the node is IPv6 enabled.*/
 gboolean
-_gnome_vfs_have_ipv6 ()
+_gnome_vfs_have_ipv6 (void)
 {
 #ifdef ENABLE_IPV6
 	int s;
