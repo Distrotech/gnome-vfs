@@ -1,0 +1,5 @@
+libgnomevfs/gnome-vfs-result.c
+libgnomevfs/gnome-vfs-init.c
+libgnomevfs-corba/gnome-vfs-slave.c
+libgnomevfs-corba/gnome-vfs-async-ops.c
+libgnomevfs-pthread/gnome-vfs-job.c

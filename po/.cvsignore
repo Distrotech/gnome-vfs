@@ -1,0 +1,13 @@
+*.gmo
+*.la
+*.lo
+*.mo
+.deps
+.libs
+Makefile
+Makefile.in
+POTFILES
+cat-id-tbl.c
+cat-id-tbl.c
+gnome-vfs.pot
+stamp-cat-id

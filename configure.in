@@ -1,0 +1,79 @@
+AC_INIT(libgnomevfs/gnome-vfs.h)
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(gnome-vfs, 0.0.0)
+AM_ACLOCAL_INCLUDE(macros)
+
+AM_MAINTAINER_MODE
+
+GNOME_INIT
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_LIBTOOL
+
+AM_PATH_GLIB(1.2.0,,
+  AC_MSG_ERROR([
+*** GLIB 1.2.0 or better is required. The latest version of GLIB
+*** is always available from ftp://ftp.gtk.org/.]),
+    gmodule gthread)
+
+GNOME_COMPILE_WARNINGS
+GNOME_SUPPORT_CHECKS
+GNOME_PTHREAD_CHECK
+
+ALL_LINGUAS="it"
+AM_GNOME_GETTEXT
+
+AC_FUNC_ALLOCA
+AC_CHECK_FUNCS(getdtablesize)
+
+AC_CHECK_HEADERS(sys/resource.h)
+
+dnl Paths for `gnome-config'.
+
+dnl CORBA backend.
+VFSCORBA_LIBDIR='-L${libdir}'
+VFSCORBA_INCLUDEDIR='-I${includedir}'
+VFSCORBA_INCLUDEDIR="$VFSCORBA_INCLUDEDIR `gnome-config --cflags gnome`"
+VFSCORBA_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnorba`"
+AC_SUBST(VFSCORBA_LIBDIR)
+AC_SUBST(VFSCORBA_INCLUDEDIR)
+AC_SUBST(VFSCORBA_LIBS)
+
+dnl Pthread backend.
+VFSPTHREAD_LIBDIR='-L${libdir}'
+VFSPTHREAD_INCLUDEDIR='-I${includedir}'
+VFSPTHREAD_INCLUDEDIR="$VFSPTHREAD_INCLUDEDIR `gnome-config --cflags gnome`"
+VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread `gnome-config --libs gnome` `glib-config --libs gthread`"
+AC_SUBST(VFSPTHREAD_LIBDIR)
+AC_SUBST(VFSPTHREAD_INCLUDEDIR)
+AC_SUBST(VFSPTHREAD_LIBS)
+
+dnl Default backend (CORBA for now).
+VFS_INCLUDEDIR="$VFSCORBA_INCLUDEDIR"
+VFS_LIBDIR="$VFSCORBA_LIBDIR"
+VFS_LIBS="$VFSCORBA_LIBS"
+AC_SUBST(VFS_LIBDIR)
+AC_SUBST(VFS_INCLUDEDIR)
+AC_SUBST(VFS_LIBS)
+
+dnl Final touch
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+
+dnl Output files
+
+AC_OUTPUT([
+Makefile
+idl/Makefile
+intl/Makefile
+libgnomevfs/Makefile
+libgnomevfs-pthread/Makefile
+libgnomevfs-corba/Makefile
+modules/Makefile
+po/Makefile.in
+test/Makefile
+test/gnome-file-selection/Makefile
+])
