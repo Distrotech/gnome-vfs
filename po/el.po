@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.2\n"
-"POT-Creation-Date: 2003-01-07 17:51+0200\n"
+"POT-Creation-Date: 2003-01-06 10:28+0100\n"
 "PO-Revision-Date: 2003-01-07 17:57+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -326,7 +326,9 @@ msgstr "Δεν βρέθηκε αρχείο έγκυρων ρυθμίσεων σ�
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Χρήση της μεταβλητής περιβάλλοντος %s  για τον καθορισμό μιας διαφορετικής τοποθεσίας.\n"
+msgstr ""
+"Χρήση της μεταβλητής περιβάλλοντος %s  για τον καθορισμό μιας διαφορετικής "
+"τοποθεσίας.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -1460,4 +1462,3 @@ msgstr "γενικό αρχείο moniker"
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
-

@@ -1,3 +1,10 @@
+gnome-vfs 2.1.91
+
+	* Bugs fixed:
+	       + gzip header creation time
+	       + gnome_vfs_uri_extract_dirname crash
+	       + gnome_vfs_socket_buffer_peekc corrected
+
 gnome-vfs 2.1.6
 
 	* Bugs fixed:

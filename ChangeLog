@@ -1,3 +1,9 @@
+2003-01-13  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.1.91
+
 2003-01-07  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/gzip-method.c (write_gzip_header):
