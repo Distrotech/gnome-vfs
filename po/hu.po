@@ -205,7 +205,7 @@ msgstr "A név túl hosszú"
 
 #: libgnomevfs/gnome-vfs-result.c:133
 msgid "Unknown error"
-msgstr "Nem ismert hiba"
+msgstr "Ismeretlen hiba"
 
 #: libgnomevfs/gnome-vfs-utils.c:41
 msgid "1 byte"
