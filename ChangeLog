@@ -1,3 +1,11 @@
+2004-01-19  Alex Duggan  <aldug@astrolinux.com>
+
+	* daemon/GNOME_VFS_Daemon.server: Removed from cvs
+	
+	* deamon/GNOME_VFS_Daemon.server.in: Added to cvs
+	* daemon/Makefile.am:
+	Rename to gnome-vfs-daemon and move to libexec
+
 2004-01-16  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/GNOME_VFS_Daemon.idl:

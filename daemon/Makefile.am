@@ -1,4 +1,4 @@
-bin_PROGRAMS=vfs-daemon
+libexec_PROGRAMS=gnome-vfs-daemon
 
 INCLUDES= \
 	$(LIBGNOMEVFS_CFLAGS)			\
@@ -22,9 +22,9 @@ INCLUDES= \
 	-I$(top_srcdir)/libgnomevfs             \
 	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
-vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la
+gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
-vfs_daemon_SOURCES = \
+gnome_vfs_daemon_SOURCES = \
 	gnome-vfs-daemon.c \
 	gnome-vfs-daemon.h \
 	gnome-vfs-async-daemon.c \
@@ -47,7 +47,11 @@ idl_flags = -I $(BONOBO_ACTIVATION_IDL_DIR)
 $(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
 	$(ORBIT_IDL) $(idl_flags) $(idls)
 
+serverfile = GNOME_VFS_Daemon.server.in
 serverdir = $(libdir)/bonobo/servers
-server_DATA = GNOME_VFS_Daemon.server
+install-data-hook :
+	$(mkinstalldirs) $(serverdir)
+	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $(srcdir)/$(serverfile) > $(serverdir)/$(serverfile:.in=)
 
-EXTRA_DIST = $(server_DATA)
+
+EXTRA_DIST = $(serverfile)
