@@ -1,5 +1,9 @@
 2000-07-05  Jeffrey Stedfast  <fejj@helixcode.com>
 
+	* libgnomevfs/gnome-vfs-types.h: Changed 
+	'#include <gnome-vfs-file-size.h>' to 
+	'#include <libgnomevfs/gnome-vfs-file-size.h>'
+
 	* libgnomevfs/Makefile.am: Added gnome-vfs-file-size.h to
 	libgnomevfsinclude_HEADERS
 
