@@ -1,3 +1,7 @@
+2002-11-04  Josh Lucas  <josh@stonecottage.com>
+
+	* test/test-shell.c: display more info, fixes #42800 
+	
 2002-11-03  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 
 	* configure.in: Added Belarusian to ALL_LINGUAS
