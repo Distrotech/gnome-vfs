@@ -1766,6 +1766,27 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 	}
 }
 
+/* The problem here: Eazel Vault returns "https:" URI's which GnomeVFS doesn't recognize
+ * So, if it's an https: uri scheme, just change it to "http" and we'll all be happy
+ */
+static GnomeVFSURI *
+propfind_href_to_vfs_uri (const gchar *propfind_href_uri)
+{
+	size_t https_len = strlen("https:");
+	GnomeVFSURI *ret;
+
+	if ( 0 == strncmp (propfind_href_uri, "https:", https_len)) {
+		gchar *new_uri;
+		new_uri = g_strconcat ("http:", https_len + propfind_href_uri);
+		ret = gnome_vfs_uri_new (new_uri);
+		g_free (new_uri);
+	} else {
+		ret = gnome_vfs_uri_new(propfind_href_uri);
+	}
+
+	return ret;
+}
+
 static GnomeVFSFileInfo *
 process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 {
@@ -1781,7 +1802,7 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 			xmlFree(nc);
 			if(nodecontent && *nodecontent) {
 				gint len;
-				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
+				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent);
 
 				if( !strcmp(base_uri->text, uri->text) ||
 				    !strcmp(second_base->text, uri->text)) {

@@ -1,3 +1,10 @@
+2000-10-10  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (propfind_href_to_vfs_uri),
+	(process_propfind_response):
+	ugly hack: Eazel Vault returns "https" URI's in propfind requests, 
+	which was causing DAV to choke.
+
 2000-10-09  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (PrependOneURIToList),
