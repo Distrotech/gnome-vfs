@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
+"POT-Creation-Date: 2002-01-29 12:57-0800\n"
 "PO-Revision-Date: 2001-09-08 23:00-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
@@ -33,6 +33,25 @@ msgstr "%s:%d não possui nome de módulo."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Arquivo de configuração `%s' não foi achado: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:714
+#, c-format
+msgid "Unknown op type %u"
+msgstr "Tipo de operação desconhecida %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Não é possível criar pipe para abrir GIOChannel: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1596
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "Tipo de trabalho desconhecido %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1632
+msgid "Operation stopped"
+msgstr "Operação paralizada"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -276,29 +295,38 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-job.c:714
-#, c-format
-msgid "Unknown op type %u"
-msgstr "Tipo de operação desconhecida %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#, c-format
-msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Não é possível criar pipe para abrir GIOChannel: %s"
-
-#: libgnomevfs/gnome-vfs-job.c:1596
-#, c-format
-msgid "Unknown job kind %u"
-msgstr "Tipo de trabalho desconhecido %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1632
-msgid "Operation stopped"
-msgstr "Operação paralizada"
-
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition desconhecido %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr ""
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+#, fuzzy
+msgid "generic file moniker"
+msgstr "Erro genérico"
 
 #~ msgid "3D Studio image"
 #~ msgstr "imagem do 3D Studio"

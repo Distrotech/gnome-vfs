@@ -1,4 +1,34 @@
 ===================================
+gnome-vfs 1.9.5
+---------------
+
+vfolder-desktop-method:
+* add all-programs scheme (George)
+* renname categories to match HIG (Seth)
+* make it work right(er) (George, Seth)
+* Allow unused folders to be hidden (George)
+* Use applications: rather than programs: (Seth)
+* Have preferences: be a vfolder (Seth)
+* Add monitoring (George, Seth)
+* Fix vfolders to work with the control center nicely (Seth)
+* Huge pile of code, now the longest module (George)
+* give George a hug (Seth)
+
+Other:
+* Port NNTP module to GnomeVFS2 (Seth)
+* Fix crash in NNTP module (Alvaro Lopez Ortega)
+* Use gconf_client instead of gconf_engine (Michael)
+* Fix RPM spec (Ross Golder)
+* Add Portuguese, Malay locales (Duarte Loreto, Husbullah Bin Pit)
+* Update count when moving & linking (Darin)
+* Preload the GConfClient cache (Havoc)
+* Fix OpenSSL lib stuff (Owen)
+* Fix general monitoring bugs (George, Seth, Alex)
+* Clean out MIME includes (Darin)
+* Move man page to gnome-mime-data (Jacob)
+* Fix deletion count with subdirs (Anders)
+
+===================================
 gnome-vfs 1.9.4
 ---------------
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
+"POT-Creation-Date: 2002-01-29 12:57-0800\n"
 "PO-Revision-Date: 2000-07-18 21:23+0200\n"
 "Last-Translator: Mendel Mobach <mendel@mobach.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -32,6 +32,25 @@ msgstr "%s:%d bevat geen modulenaam"
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Configuratiebestand '%s' is niet gevonden: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:714
+#, c-format
+msgid "Unknown op type %u"
+msgstr "Onbekend oper-type %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Kan geen pijp creëren voor GIOChannel: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1596
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "Onbekend taaktype %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1632
+msgid "Operation stopped"
+msgstr "Operatie gestopt"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -275,27 +294,35 @@ msgstr "%.1fMb"
 msgid "%.1f GB"
 msgstr "%.1fGb"
 
-#: libgnomevfs/gnome-vfs-job.c:714
-#, c-format
-msgid "Unknown op type %u"
-msgstr "Onbekend oper-type %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#, c-format
-msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan geen pijp creëren voor GIOChannel: %s"
-
-#: libgnomevfs/gnome-vfs-job.c:1596
-#, c-format
-msgid "Unknown job kind %u"
-msgstr "Onbekend taaktype %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1632
-msgid "Operation stopped"
-msgstr "Operatie gestopt"
-
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
 
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr ""
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+#, fuzzy
+msgid "generic file moniker"
+msgstr "Algemene fout"

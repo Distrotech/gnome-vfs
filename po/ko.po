@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-1\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
+"POT-Creation-Date: 2002-01-29 12:57-0800\n"
 "PO-Revision-Date: 2001-04-25 04:38+0900\n"
 "Last-Translator: Young-Ho, Cha <ganadist@chollian.net>\n"
 "Language-Team: korean <ko@li.org>\n"
@@ -32,6 +32,25 @@ msgstr "%s:%d 가 모듈이름을 포함하지 않습니다."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "설정 파일 `%s' 가 없습니다: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:714
+#, c-format
+msgid "Unknown op type %u"
+msgstr "알수없는 op 형식 %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "GIOChannel을 열기위한 파이프 생성 실패: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1596
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "알수없는 작업 종류 %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1632
+msgid "Operation stopped"
+msgstr "작동 중지"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -276,29 +295,38 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-job.c:714
-#, c-format
-msgid "Unknown op type %u"
-msgstr "알수없는 op 형식 %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#, c-format
-msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "GIOChannel을 열기위한 파이프 생성 실패: %s"
-
-#: libgnomevfs/gnome-vfs-job.c:1596
-#, c-format
-msgid "Unknown job kind %u"
-msgstr "알수없는 작업 종류 %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1632
-msgid "Operation stopped"
-msgstr "작동 중지"
-
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알수없는 GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr ""
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+#, fuzzy
+msgid "generic file moniker"
+msgstr "일반 오류"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio 이미지"

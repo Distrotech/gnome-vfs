@@ -1,3 +1,13 @@
+2002-01-30  Seth Nickell  <snickell@stanford.edu>
+
+	* NEWS:
+
+	Update news.
+	
+	* configure.in:
+
+	Bump version number to 1.9.5
+	
 2002-01-29  Seth Nickell  <snickell@stanford.edu>
 
 	* libgnomevfs/gnome-vfs-monitor.c: (gnome_vfs_monitor_do_add):
