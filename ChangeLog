@@ -1,3 +1,11 @@
+2000-08-03  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Added a couple of description-less
+	types that people had run into (image/x-xfig and application/x-compress).
+	Also removed one of the two different descriptions for image/x-xpixmap.
+	Also alphabetized the entries again -- someone changed some MIME
+	type names without re-alphabetizing.
+
 2000-08-03  Mathieu Lacage  <set EMAIL_ADDRESS environment variable>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_init): 

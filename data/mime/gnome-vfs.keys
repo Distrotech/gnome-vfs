@@ -102,6 +102,9 @@ application/x-bzip-compressed-tar
 application/x-cgi
 	description=CGI program
 
+application/x-compress
+	description=archive
+
 application/x-class-file
 	description=class code
 
@@ -489,9 +492,11 @@ image/x-xcf
 	short_list_application_ids_for_hacker_user_level=gimp
 	system_all_application_ids=gimp
 
+image/x-xfig
+	description=xfig image
+
 image/x-xpixmap
 	description=X pixmap
-	description=portable pixmap
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -554,49 +559,17 @@ multipart/report
 multipart/signed
 	description=signed message
 
-x-special/device-block
-	description=block device
-
-x-special/device-char
-	description=character device
-
-x-special/directory
-	description=directory
+text/*
 	default_action_type=component
-	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
-	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
-	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
-
-x-special/virtual-directory
-	description=search results virtual directory
-	default_action_type=component
-	default_component_iid=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
-	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
-	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
-
-x-special/fifo
-	description=named pipe
-
-x-special/socket
-	description=socket
-
-x-special/symlink
-	description=link
-
-x-special/webdav-directory
-	description=web directory
-	default_action_type=component
-	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
-	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	default_application_id=netscape
-	short_list_application_ids_for_novice_user_level=netscape,lynx
-	short_list_application_ids_for_intermediate_user_level=netscape,lynx
-	short_list_application_ids_for_hacker_user_level=netscape,lynx
-	system_all_application_ids=netscape,lynx
+	default_application_id=emacs
+	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_novice_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_intermediate_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_application_ids_for_novice_user_level=emacs,nedit
+	short_list_application_ids_for_intermediate_user_level=emacs,nedit
+	short_list_application_ids_for_hacker_user_level=emacs,nedit
+	system_all_application_ids=emacs,nedit
 
 text/calendar
 	description=calendar information
@@ -782,14 +755,47 @@ video/x-msvideo
 video/x-sgi-movie
 	description=SGI movie
 
-text/*
+x-special/device-block
+	description=block device
+
+x-special/device-char
+	description=character device
+
+x-special/directory
+	description=directory
 	default_action_type=component
-	default_application_id=emacs
-	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_component_iids_for_novice_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_component_iids_for_intermediate_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_application_ids_for_novice_user_level=emacs,nedit
-	short_list_application_ids_for_intermediate_user_level=emacs,nedit
-	short_list_application_ids_for_hacker_user_level=emacs,nedit
-	system_all_application_ids=emacs,nedit
+	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+
+x-special/virtual-directory
+	description=search results virtual directory
+	default_action_type=component
+	default_component_iid=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
+
+x-special/fifo
+	description=named pipe
+
+x-special/socket
+	description=socket
+
+x-special/symlink
+	description=link
+
+x-special/webdav-directory
+	description=web directory
+	default_action_type=component
+	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	default_application_id=netscape
+	short_list_application_ids_for_novice_user_level=netscape,lynx
+	short_list_application_ids_for_intermediate_user_level=netscape,lynx
+	short_list_application_ids_for_hacker_user_level=netscape,lynx
+	system_all_application_ids=netscape,lynx
+
