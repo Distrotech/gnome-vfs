@@ -603,7 +603,7 @@ msgid "StarOffice spreadsheet"
 msgstr "StarOffice-regneark"
 
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun µ-law audio"
+msgid "Sun mu-law audio"
 msgstr "Sun µ-law-lydfil"
 
 #: data/mime/gnome-vfs.keys.in.h:147

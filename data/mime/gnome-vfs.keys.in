@@ -697,7 +697,7 @@ audio/x-stm
 	_description=Scream Tracker audio
 
 audio/x-ulaw
-	_description=Sun µ-law audio
+	_description=Sun mu-law audio
 	icon_filename=gnome-audio-ulaw.png
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=grecord

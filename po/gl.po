@@ -599,7 +599,7 @@ msgid "StarOffice spreadsheet"
 msgstr "Folla de cálculo do StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun µ-law audio"
+msgid "Sun mu-law audio"
 msgstr "Audio lei-µ de Sun"
 
 #: data/mime/gnome-vfs.keys.in.h:147

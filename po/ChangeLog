@@ -1,3 +1,37 @@
+2001-05-23  Robin * Slomkowski  <rslomkow@rslomkow.org>
+
+	* az.po:
+	* ca.po:
+	* da.po:
+	* de.po:
+	* el.po:
+	* es.po:
+	* fi.po:
+	* fr.po:
+	* ga.po:
+	* gl.po:
+	* hu.po:
+	* it.po:
+	* ja.po:
+	* ko.po:
+	* lt.po:
+	* nl.po:
+	* nn.po:
+	* no.po:
+	* pl.po:
+	* pt_BR.po:
+	* ro.po:
+	* ru.po:
+	* sk.po:
+	* sl.po:
+	* sv.po:
+	* tr.po:
+	* uk.po:
+	* wa.po:
+		removed all refrences to the non-ascii mu in the
+		description and replaced it with ascii mu to make
+		gettext happy
+
 2001-04-28  Ole Laursen  <olau@hardworking.dk>
 
 	* da.po: Major overhaul.

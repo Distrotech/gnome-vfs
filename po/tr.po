@@ -604,7 +604,7 @@ msgid "StarOffice spreadsheet"
 msgstr "StarOffice hesap tablosu"
 
 #: data/mime/gnome-vfs.keys.in.h:145
-msgid "Sun µ-law audio"
+msgid "Sun mu-law audio"
 msgstr "Sun µ-law sesi"
 
 #: data/mime/gnome-vfs.keys.in.h:146

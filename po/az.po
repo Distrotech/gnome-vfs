@@ -595,7 +595,7 @@ msgstr "StarOffice hesab cədvəli"
 
 # The sources use a hardcoded latin1 char for mu :-(
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun �-law audio"
+msgid "Sun mu-law audio"
 msgstr "Sun µ-law audio"
 
 #: data/mime/gnome-vfs.keys.in.h:147

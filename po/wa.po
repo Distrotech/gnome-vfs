@@ -602,7 +602,7 @@ msgid "StarOffice spreadsheet"
 msgstr "Documint StarOffice Writer"
 
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun µ-law audio"
+msgid "Sun mu-law audio"
 msgstr "Son µ-law di SUN"
 
 #: data/mime/gnome-vfs.keys.in.h:147
