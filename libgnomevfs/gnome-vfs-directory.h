@@ -69,7 +69,7 @@ GnomeVFSResult	gnome_vfs_directory_close
 
 
 GnomeVFSResult  gnome_vfs_directory_visit
-					(const gchar *uri,
+					(const gchar *text_uri,
 					 GnomeVFSFileInfoOptions info_options,
 					 GnomeVFSDirectoryVisitOptions visit_options,
 					 GnomeVFSDirectoryVisitFunc callback,
