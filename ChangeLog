@@ -1,3 +1,9 @@
+2001-07-09  Ramiro Estrugo  <ramiro@fateware.com>
+
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Include some needed dependencies to fix breakage caused by the
+	last bunch of checkins.
+	
 2001-07-07  Seth Nickell  <snickell@stanford.edu>
 
 	* libgnomevfs/gnome-vfs-method.h:

@@ -29,7 +29,8 @@
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
-
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <sys/stat.h>
 
 /* File flags.  */
 typedef enum {
