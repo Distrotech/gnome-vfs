@@ -1,3 +1,20 @@
+2001-03-07  Pavel Cisler  <pavel@eazel.com>
+
+	Merge from HEAD:
+
+	2001-03-07  Pavel Cisler  <pavel@eazel.com>
+	
+	reviewed by: Darin Adler  <darin@eazel.com> (reluctantly)
+
+	Fixed 7495 (Need to test condition after pthread_cond_wait)
+	
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	(gnome_vfs_thread_pool_wait_for_work), (thread_entry):
+	Work around what is described as a spurious wakeup of
+	condition variables in the Pthread standard.
+	Added a while loop around pthread_cond_wait checking if
+	an entry_point is lined up.
+
 2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>
