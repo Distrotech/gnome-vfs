@@ -1,3 +1,66 @@
+2002-07-22  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Use
+	g_build_filename().
+
+2002-07-22  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_create): Uniquely timestamp
+	filename if there is a writedir, otherwise use the folder's
+	extended URI, otherwise give up.  Ensure destination directory
+	before creating.
+	(do_get_file_info): Set permissions to read-only for ReadOnly
+	folders.
+
+	* modules/vfolder/vfolder-info.c: Add some keywords so ximian
+	menus get organized nicely.
+	(create_entries_from_itemdir): Allow stripping of timestamp at
+	beginning of file if we are reading from the WriteDir.
+	(vfolder_info_read_info): Pass TRUE for user_private so folders
+	are persisted correctly.
+	(vfolder_info_read_info): Strip timestamps from filenames for
+	WriteDir and not from ItemDir.
+	(vfolder_info_write_user): Make directory and parents before
+	saving file.
+	(vfolder_info_init): Allow overwriting of WriteDir and directory
+	containing .vfolder-info files from environment variables.
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private):
+	Ensure write directory is created before xferring file.  Uniqueify
+	filename, to avoid naming conflicts.  Fail if there is no
+	filename.  Exclude the old displayname, and include the new
+	timestamped one.  Take the parent folder as an arg so we can
+	manage the Includes/Excludes.
+	(entry_set_filename): Free entry->uri on change.
+	(read_extended_entries): Check include/exclude against full uri
+	and filename.
+
+	* modules/vfolder/test-vfolder.c: New, loads and performs
+	operations on the test-vfolder:/// uri.  Still needs a few more
+	tests implemented to be complete.
+
+	* modules/vfolder/test-vfolder.vfolder-info.in: New, .vfolder-info
+	file used by test-vfolder.
+
+	* modules/vfolder/test-vfolder-parent.vfolder-info.in: New,
+	.vfolder-info file used by test-vfolder.
+
+	* modules/vfolder/test-vfolder-modules.conf: Created, vfs module
+	description used by test-vfolder.
+
+	* modules/vfolder/applications.vfolder-info.in: Merge in ximian
+	menus, as they add some sanity.  On the root folder, Exclude gmc,
+	nautilus-help, and gnome-help, Include evolution & galeon.  Remove
+	silly rule on root folder causing root entries from GNOME1 to not
+	be shown.  Remove silly rule about hiding "System" entries from
+	the Accessories menu.
+
+	* modules/vfolder/TODO: Update.
+
+	* modules/vfolder/Makefile.am (test_vfolder_SOURCES): Build
+	test-vfolder, and generate test-vfolder-parent.vfolder-info &
+	test-vfolder.vfolder-info.
+
 2002-07-18  Damon Chaplin  <damon@ximian.com>
 
 	* modules/vfolder/vfolder-common.c (folder_emit_changed): for the

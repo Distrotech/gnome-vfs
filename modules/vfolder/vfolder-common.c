@@ -532,15 +532,7 @@ read_extended_entries (Folder *folder)
 		GnomeVFSFileInfo *file_info = iter->data;
 		gchar *file_uri;
 
-		if (extend_uri [strlen (extend_uri) - 1] == '/')
-			file_uri = g_strconcat (extend_uri, 
-						file_info->name, 
-						NULL);
-		else
-			file_uri = g_strconcat (extend_uri, 
-						"/", 
-						file_info->name, 
-						NULL);
+		file_uri = g_build_filename (extend_uri, file_info->name, NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			Folder *sub;
@@ -577,7 +569,7 @@ read_extended_entries (Folder *folder)
 				continue;
 			}
 
-			// FIXME: uniqueify file_info.name
+			// FIXME: uniqueify file_info.name?
 
 			entry = entry_new (folder->info, 
 					   file_uri,
@@ -633,7 +625,10 @@ read_info_entry_pool (Folder *folder)
 			continue;
 		}
 
-		/* Only include if matches query, or is explicitly included */
+		/* 
+		 * Only include if matches a mandatory query, or is explicitly
+		 * included.
+		 */
 		if (include == 1 || 
 		    (query && query_try_match (query, folder, entry))) {
 			D (g_print ("ADDING POOL ENTRY: %s, %s, #%d!!!!\n",
