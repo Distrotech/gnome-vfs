@@ -1,3 +1,12 @@
+2000-11-16  Mathieu Lacage  <mathieu@eazel.com>
+
+	fix bug 4769
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window): tweak to
+	look slightly better. fix a potential segfault too.
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (revert_real_cb),
+	(revert_mime_clicked), (add_mime_clicked): add dialog hook.
+
 2000-11-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 4528, http method does not listen for
