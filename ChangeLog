@@ -1,3 +1,8 @@
+2001-06-20  Peter Williams  <peterw@ximian.com>
+
+	* configure.in (autodetected_gnome_2): Fix a syntax error in the test
+	expression.
+
 2001-06-19  Peter Williams  <peterw@ximian.com>
 
 	* gnome-vfs-2.0.pc.in (prefix): Fix totally

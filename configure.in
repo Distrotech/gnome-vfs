@@ -25,7 +25,7 @@ dnl ==========================================================================
 GNOME_REQUIRE_PKGCONFIG
 echo "Trying to autodetect GNOME Platform; give configure the --enable-platform-gnome-2 or --disable-platform-gnome-2 argument to override."
 $PKG_CONFIG --exists oaf-2.0 > /dev/null 2>&1
-if test $? == 0 ; then
+if test x"$?" = x0 ; then
   autodetected_gnome_2=yes
   echo "Autodetected GNOME 2.0 Platform."
 else
