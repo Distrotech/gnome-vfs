@@ -59,6 +59,7 @@ gboolean vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri);
 		(_vuri)->path = NULL;                                       \
 	}                                                                   \
 	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
+        D (g_print (__PRETTY_FUNCTION__ "(): %s\n", (_vuri)->path));        \
 }
 
 

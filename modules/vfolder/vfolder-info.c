@@ -2084,6 +2084,14 @@ vfolder_info_remove_entry (VFolderInfo *info, Entry *entry)
 			     entry_get_displayname (entry));
 }
 
+#define DEBUG_CHANGE_EMIT(_change_uri, _handle_uri)                         \
+	g_print ("EMITTING CHANGE: %s for %s, %s%s%s\n",                    \
+		 _change_uri,                                               \
+		 _handle_uri,                                               \
+		 event_type==GNOME_VFS_MONITOR_EVENT_CREATED?"CREATED":"",  \
+		 event_type==GNOME_VFS_MONITOR_EVENT_DELETED?"DELETED":"",  \
+		 event_type==GNOME_VFS_MONITOR_EVENT_CHANGED?"CHANGED":"")
+
 void 
 vfolder_info_emit_change (VFolderInfo              *info,
 			  const char               *path,
@@ -2091,28 +2099,24 @@ vfolder_info_emit_change (VFolderInfo              *info,
 {
 	GSList *iter;
 	GnomeVFSURI *uri;
-	gchar *uristr;
+	gchar *escpath, *uristr;
 
 	if (info->loading) 
 		return;
 
-	uristr = g_strconcat (info->scheme, "://", path, NULL);
+	escpath = gnome_vfs_escape_path_string (path);
+	uristr = g_strconcat (info->scheme, "://", escpath, NULL);
 	uri = gnome_vfs_uri_new (uristr);
-	g_free (uristr);
 
 	for (iter = info->requested_monitors; iter; iter = iter->next) {
 		MonitorHandle *handle = iter->data;
 
 		if (gnome_vfs_uri_equal (uri, handle->uri) ||
 		    (handle->type == GNOME_VFS_MONITOR_DIRECTORY &&
-		     gnome_vfs_uri_is_parent (handle->uri, uri, FALSE))) {
-			g_print ("EMITTING CHANGE: %s://%s for %s, %s%s%s\n",
-				 info->scheme, 
-				 path,
-				 handle->uri->text,
-				 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
-				 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
-				 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
+		     gnome_vfs_uri_is_parent (handle->uri, 
+					      uri, 
+					      FALSE))) {
+			DEBUG_CHANGE_EMIT (uristr, handle->uri->text);
 
 			gnome_vfs_monitor_callback (
 				(GnomeVFSMethodHandle *) handle,
@@ -2122,6 +2126,8 @@ vfolder_info_emit_change (VFolderInfo              *info,
 	}
 
 	gnome_vfs_uri_unref (uri);
+	g_free (escpath);
+	g_free (uristr);
 }
 
 void

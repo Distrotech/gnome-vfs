@@ -1,5 +1,17 @@
 2002-08-23  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/vfolder-info.c (vfolder_info_emit_change): Call
+	gnome_vfs_escape_path_string() on the path arg.  This fixes some
+	strange behavior in nautilus when editing .desktop files with
+	emacs, since emacs' temporary #files were being parsed as URI
+	fragment identifiers.
+
+	* modules/vfolder/vfolder-util.h (VFOLDER_URI_PARSE): Add debug
+	printf with function name being called.  This allows us to trace
+	the vfs method calls.
+
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-common.c (folder_extend_monitor_cb):
 	Fix segfault where we accidentally used child.entry instead of
 	entry.  Remove local entry var, and use child.entry throughout.
