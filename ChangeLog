@@ -1,3 +1,10 @@
+2000-08-10  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-gen-mimedb.c: (main):
+	* modules/file-method.c: (do_find_directory): Fixed backwards use
+	of access. Access's result has the opposite sense of
+	g_file_exists.
+
 2000-08-10  Ali Abdin <aliabdin@aucegypt.edu>
 
         * libgnomevfs/gnome-vfs-gen-mimedb.c:

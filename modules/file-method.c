@@ -1334,10 +1334,10 @@ do_find_directory (GnomeVFSMethod *method,
 	if (target_directory == NULL)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
-	if (create_if_needed && !access (target_directory,F_OK))
+	if (create_if_needed && access (target_directory, F_OK) != 0)
 		mkdir (target_directory, permissions);
 
-	if (!access (target_directory,F_OK)) {
+	if (access (target_directory, F_OK) != 0) {
 		g_free (target_directory);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
