@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
+"Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-07-05 10:18+0200\n"
+"POT-Creation-Date: 2004-07-08 10:06+0200\n"
+"PO-Revision-Date: 2004-07-08 10:07+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -451,7 +451,12 @@ msgstr "Gabim gjatë zbatimit të rreshtit të komandës"
 msgid "Error launching command"
 msgstr "Gabim gjatë lëshimit të komandës"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "U tejkalua koha e pritjes"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Gabim i panjohur"
 
@@ -527,8 +532,7 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -643,7 +647,7 @@ msgstr "Shtëpia"
 msgid "Filesystem"
 msgstr "File i sistemit"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d i panjohur"
@@ -800,22 +804,19 @@ msgid "Run program in terminal"
 msgstr "Ekzekuto programin në terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë HTTPS."
@@ -827,29 +828,25 @@ msgstr ""
 "trajton URLtë aim."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton thirrjet e URLve."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë mailto."
@@ -861,8 +858,7 @@ msgstr ""
 "trajton URLtë man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë trash."
@@ -1075,8 +1071,7 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1085,3 +1080,4 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
+
