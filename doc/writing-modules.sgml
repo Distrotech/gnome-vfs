@@ -1,4 +1,4 @@
-<!doctype article PUBLIC "-//Davenport//DTD DocBook V3.0//EN" [
+<!doctype article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN" [
 ]>
 
 <article id="index">
@@ -47,14 +47,16 @@
         machine.  In order to access this file, you would need to:</para>
 
       <orderedlist>
-        <listitem>
-          <para>Connect to the FTP site.</para>
-          <para>Fetch the <filename>tar.gz</filename> file.</para>
-          <para>Decompress the <filename>tar.gz</filename> file using
-            GZIP.</para>
-          <para>Extract <filename>hello.c</filename> from the resulting
-            uncompressed <filename>tar</filename> file.</para>
-        </listitem>
+        <listitem><para>Connect to the FTP site.</para></listitem>
+        
+        <listitem><para>Fetch the <filename>tar.gz</filename>
+        file.</para></listitem>
+        
+        <listitem><para>Decompress the <filename>tar.gz</filename> file using
+          GZIP.</para></listitem>
+
+        <listitem><para>Extract <filename>hello.c</filename> from the resulting
+          uncompressed <filename>tar</filename> file.</para></listitem>
       </orderedlist>
 
       <para>The GNOME Virtual File System lets you express this by
