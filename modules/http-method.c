@@ -736,7 +736,7 @@ http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 			msg = g_strdup_printf(_("Closing connection to %s"),
 								handle->uri_string);
 
-			gnome_vfs_context_emit_message (context, msg);
+			if(context) gnome_vfs_context_emit_message (context, msg);
 
 			g_free (msg);
 		}
@@ -882,7 +882,7 @@ do_read (GnomeVFSMethod *method,
 		else
 			msg = g_strdup_printf(_("%s read"), read_str);
 
-		gnome_vfs_context_emit_message(context, msg);
+		if (context) gnome_vfs_context_emit_message(context, msg);
 
 		g_free(msg);
 		g_free(read_str);
