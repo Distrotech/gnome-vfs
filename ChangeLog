@@ -1,4 +1,8 @@
 2005-02-09  Christian Kellner  <gicmo@gnome.org>
+	* libgnomevfs/gnome-vfs-cdrom.c (_gnome_vfs_get_cdrom_type):
+	return CDS_NO_INFO on OS X to fix broken build.
+
+2005-02-09  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/sftp-method.c (sftp_connect): Increased timeout and
 	return GNOME_VFS_ERROR_TIMEOUT instead if ERROR_IO.

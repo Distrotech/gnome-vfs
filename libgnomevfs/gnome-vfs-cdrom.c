@@ -87,7 +87,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	}
 
 	return type;
-#elif defined(HAVE_SYS_MNTCTL_H)
+#elif defined(HAVE_SYS_MNTCTL_H) || defined(__APPLE__)
 	return CDS_NO_INFO;
 #elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
 	struct ioc_toc_header header;
