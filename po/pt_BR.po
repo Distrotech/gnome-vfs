@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.0\n"
-"POT-Creation-Date: 2000-10-19 16:32-0200\n"
+"POT-Creation-Date: 2000-10-26 18:39-0200\n"
 "PO-Revision-Date: 2000-08-20 15:12-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
@@ -594,27 +594,27 @@ msgstr "Não é possível localizar um hbox, usando uma seleção normal de arquivo"
 msgid "Preview"
 msgstr "Visualizar"
 
-#: modules/efs-method.c:493 modules/file-method.c:367
+#: modules/efs-method.c:493 modules/file-method.c:368
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition desconhecido %d"
 
-#: modules/http-method.c:1144
+#: modules/http-method.c:1151
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s para recuperar"
 
-#: modules/http-method.c:1508
+#: modules/http-method.c:1515
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Fechando conexão à %s"
 
-#: modules/http-method.c:1700
+#: modules/http-method.c:1723
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s lidos"
 
-#: modules/http-method.c:1703
+#: modules/http-method.c:1726
 #, c-format
 msgid "%s read"
 msgstr "%s lidos"
@@ -683,8 +683,8 @@ msgstr "Exibir:"
 msgid "Show dotfiles"
 msgstr "Exibir arquivos escondidos"
 
-msgid "Invalid header `%s'"
-msgstr "Cabeçalho inválido `%s'"
+#~ msgid "Invalid header `%s'"
+#~ msgstr "Cabeçalho inválido `%s'"
 
-msgid "HTTP server returned an invalid PROPFIND response"
-msgstr "O servidor HTTP retornou uma resposta de PROPFIND inválido"
+#~ msgid "HTTP server returned an invalid PROPFIND response"
+#~ msgstr "O servidor HTTP retornou uma resposta de PROPFIND inválido"
