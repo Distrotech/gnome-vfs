@@ -1,3 +1,9 @@
+Mon Jan 12 10:14:29 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c
+	(_gnome_vfs_get_mime_type_internal): special case application/zip
+	as well as application/x-gzip.
+
 2004-01-12  Alexander Larsson  <alexl@redhat.com>
 
 	* Makefile.am (EXTRA_DIST): 
