@@ -922,6 +922,10 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 			new_uri = gnome_vfs_uri_dup (uri);
 			g_free (new_uri->text);
 			new_uri->text = new_uri_text;
+
+			/* The parent doesn't have the child's fragment */
+			g_free (new_uri->fragment_id);
+			new_uri->fragment_id = NULL;
 			
 			return new_uri;
 		}

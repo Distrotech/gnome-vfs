@@ -337,6 +337,15 @@ test_uri_host_port (const char *input,
 }
 
 
+#define VERIFY_STRING_RESULT(function, expected) \
+	G_STMT_START {											\
+		char *result = function; 								\
+		if (!((result == NULL && expected == NULL)						\
+		      || (result != NULL && expected != NULL && strcmp (result, expected) == 0))) {	\
+			test_failed ("%s: returned '%s' expected '%s'", #function, result, expected);	\
+		}											\
+	} G_STMT_END
+
 int
 main (int argc, char **argv)
 {
@@ -444,6 +453,7 @@ main (int argc, char **argv)
 	test_uri_parent ("FILE://", "NULL");
 	test_uri_parent ("man:as", "NULL");
 	test_uri_parent ("pipe:gnome-info2html2 as", "NULL");
+	test_uri_parent ("file:///my/document.html#fragment", "file:///my");
 
 	test_uri_has_parent ("", "URI NULL");
 	test_uri_has_parent ("http://www.eazel.com", "FALSE");
@@ -578,6 +588,17 @@ main (int argc, char **argv)
 			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml",
 			    GNOME_VFS_URI_HIDE_NONE);
 
+
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html#fragment"), "/my/document.html");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html"), "/my/document.html");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("http://my/document.html"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/my/document.html"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/#"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri (""), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:/path"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path"), "/my/docu ment#/path");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path/foo.html.gz#gunzip:///#fragment"), "/my/docu ment#/path/foo.html.gz");
+	
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
 }

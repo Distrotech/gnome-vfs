@@ -156,7 +156,7 @@ typedef struct GnomeVFSURI {
 	/* Text for the element: eg. some/path/name.  */
 	gchar *text;
 
-	/* Text for the element: eg. some/path/name.  */
+	/* Text for uri fragment: eg, #anchor  */
 	gchar *fragment_id;
 	
 	/* Method string: eg. `gzip', `tar', `http'.  This is necessary as

@@ -1,3 +1,41 @@
+2001-02-16  Michael K. Fleming  <mfleming@eazel.com>
+ 
+ 	reviewed by: <darin@eazel.com>
+ 
+ 	* libgnomevfs/gnome-vfs-types.h:
+ 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_get_parent):
+ 	* libgnomevfs/gnome-vfs-utils.c:
+ 	(gnome_vfs_get_local_path_from_uri):
+ 	* test/test-uri.c: (main):
+ 
+ 	Part of 2057: URI's with fragments behave oddly
+ 
+ 	gnome_vfs_uri_get_parent no longer copies the child's fragment
+ 	onto the parent (which certainly makes no sense to do)
+ 
+ 	Added a warning for gnome_vfs_unescape_string_for_display, since
+ 	it can cause bug 6694
+ 
+ 	gnome_vfs_get_local_path_from_uri now strips fragments from the 
+ 	string it resturns.
+ 
+ 	Added test cases for new behaviour
+ 
+ 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+ 	(gnome_vfs_mime_sniff_buffer_new_from_existing_data):
+ 	* libgnomevfs/gnome-vfs-types.h:
+ 
+ 	Fixed crasher in mime sniff buffer that can happen when
+ 	gnome_vfs_mime_sniff_buffer_new_from_existing_data is used
+ 	with a buffer too small for some of the magic number patterns.
+ 	By setting "read_whole_file" to TRUE, no further attempts will be
+	made to read from the buffer (which doesn't have a read function
+	defined)
+
+	* modules/Makefile.am:
+
+	Bug 6666, removed nfs module from build for nautilus v1
+
 2001-02-20  Gene Z. Ragan  <gzr@eazel.com>
 	
 	Fix bug 6384, Nautilus program chooser uses
@@ -101,7 +139,6 @@
 	(add_mime_clicked):
 	Check for '\0' instead of ' ' to avoid empty strings
 	
->>>>>>> 1.944.2.19
 2001-02-16  Rebecca Schulman  <rebecka@eazel.com>
 	Fixed bugzilla.eazel.com 6220, that incorrect
 	file counts messed up the progress bar during FTP
@@ -221,6 +258,7 @@
 	(column_clicked):
 	Remove some debugging cruft.
 	
+>>>>>>> 1.944.2.24
 2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6570, Initial tab order in "Add application"

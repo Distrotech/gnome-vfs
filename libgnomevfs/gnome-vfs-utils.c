@@ -428,6 +428,11 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
  * 
  * Return value: A pointer to a g_malloc'd string with all characters
  *               replacing their escaped hex values
+ *
+ * WARNING: You should never use this function on a whole URI!  It
+ * unescapes reserved characters, and can result in a mangled URI
+ * that can not be re-entered.  For example, it unescapes "#" "&" and "?",
+ * which have special meanings in URI strings.
  **/
 gchar *
 gnome_vfs_unescape_string_for_display (const gchar *escaped)
@@ -647,26 +652,41 @@ istr_has_prefix (const char *haystack, const char *needle)
  * 
  * Return a local path for a file:/// URI.
  *
- * Return value: the local path or NULL on error.
+ * Return value: the local path 
+ * NULL is returned on error of if the uri isn't a file: URI
+ *
+ * Any fragment identifier or chained URI's will be stripped
  **/
 char *
 gnome_vfs_get_local_path_from_uri (const char *uri)
 {
-	char *result, *unescaped_uri;
+	char *result, *unescaped_uri, *fragment, *uri_minus_fragment;
 
 	if (uri == NULL) {
 		return NULL;
 	}
 
-	unescaped_uri = gnome_vfs_unescape_string (uri, "/");
+	/*
+	 * Remove fragments and gnome-vfs compound URIs from the URI
+	 */
+
+	fragment = strchr (uri, '#');
+	
+	if (fragment != NULL) {
+		uri_minus_fragment = g_strndup (uri, fragment - uri);
+		unescaped_uri = gnome_vfs_unescape_string (uri_minus_fragment, "/");
+		g_free (uri_minus_fragment);
+		uri_minus_fragment = NULL;
+	} else {
+		unescaped_uri = gnome_vfs_unescape_string (uri, "/");	
+	}
+
 	if (unescaped_uri == NULL) {
 		return NULL;
 	}
 
 	if (istr_has_prefix (unescaped_uri, "file:///")) {
 		result = g_strdup (unescaped_uri + 7);
-	} else if (unescaped_uri[0] == '/') {
-		result = g_strdup (unescaped_uri);
 	} else {
 		result = NULL;
 	}
