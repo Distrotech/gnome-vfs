@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-19 23:12+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -19,41 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # initialiseren?
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Kan bonobo niet starten"
 
 # initialiseren?
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Bestandssysteem"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Opslaan favorieten mislukt (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Kon geen informatie over bestand '%s' verkrijgen: %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Kon bestand '%s' niet openen: %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Kon afbeelding '%s' niet laden: reden onbekend, waarschijnlijk een corrupt "
-"bestand"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -510,7 +483,7 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (ongeldige Unicode)"
@@ -597,16 +570,16 @@ msgstr "Kan het geselecteerde volume niet aankoppelen."
 msgid "Unable to unmount the selected volume."
 msgstr "Kan het geselecteerde volume niet ontkoppelen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Kan opdracht niet starten"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Kan media niet uitwerpen"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Kan aangekoppelde server niet ontkoppelen"
 
@@ -669,7 +642,11 @@ msgstr "Netwerk"
 msgid "Home"
 msgstr "Thuis"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Bestandssysteem"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
@@ -1049,6 +1026,21 @@ msgstr "SMB werkgroep"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "De window werkgroep waar de gebruiker deel van uitmaakt"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Opslaan favorieten mislukt (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Kon geen informatie over bestand '%s' verkrijgen: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Kon bestand '%s' niet openen: %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Kon afbeelding '%s' niet laden: reden onbekend, waarschijnlijk een "
+#~ "corrupt bestand"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Hoe http URL's af te handelen"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 23:44+0900\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-24 23:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -14,38 +14,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "보노보를 초기화할 수 없습니다"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "그놈 VFS를 초기화할 수 없습니다"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "파일시스템"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "책갈피 저장이 실패했습니다 (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "'%s' 파일의 정보를 알아낼 수 없습니다: %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "'%s' 파일을 여는 데 실패했습니다: %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr "'%s' 그림을 읽어들이는 데 실패했습니다: 이유를 알 수 없습니다. 이미지 파일이 손상되었을 것입니다."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -500,7 +475,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (잘못된 유니코드)"
@@ -584,16 +559,16 @@ msgstr "선택한 볼륨을 마운트할 수 없습니다."
 msgid "Unable to unmount the selected volume."
 msgstr "선택한 볼륨을 마운트 해제할 수 없습니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "명령어를 시작하는 데 실패했습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "미디어를 꺼낼 수 없습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "연결한 서버에서 마운트를 해제할 수 없습니다"
 
@@ -655,7 +630,11 @@ msgstr "네트워크"
 msgid "Home"
 msgstr "홈"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "파일시스템"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알 수 없는 GnomeVFSSeekPosition %d"
@@ -1004,3 +983,18 @@ msgstr "SMB 워크그룹"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "사용자가 속해 있는 Windows 워크그룹"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "책갈피 저장이 실패했습니다 (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "'%s' 파일의 정보를 알아낼 수 없습니다: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "'%s' 파일을 여는 데 실패했습니다: %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "'%s' 그림을 읽어들이는 데 실패했습니다: 이유를 알 수 없습니다. 이미지 파일"
+#~ "이 손상되었을 것입니다."

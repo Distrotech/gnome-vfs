@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-17 11:14+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -16,40 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Impossibile inizializzare Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Impossibile inizializzare gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "File system"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Salvataggio segnalibro fallito (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Impossibile ottenere informazioni per il file «%s»: %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Apertura del file «%s» fallita: %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Caricamento dell'immagine «%s» fallito: motivo sconosciuto, forse è un file "
-"di immagine corrotto"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -506,7 +479,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valido)"
@@ -593,16 +566,16 @@ msgstr "Impossibile montare il volume selezionato."
 msgid "Unable to unmount the selected volume."
 msgstr "Impossibile smontare il volume selezionato."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Avvio del comando fallito"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Impossibile espellere il supporto"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Impossibile smontare il server connesso"
 
@@ -664,7 +637,11 @@ msgstr "Rete"
 msgid "Home"
 msgstr "Home"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "File system"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d sconosciuta"
@@ -1045,3 +1022,18 @@ msgstr "Workgroup SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Il workgroup tipo Windows di cui fa parte l'utente"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Salvataggio segnalibro fallito (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Impossibile ottenere informazioni per il file «%s»: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Apertura del file «%s» fallita: %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Caricamento dell'immagine «%s» fallito: motivo sconosciuto, forse è un "
+#~ "file di immagine corrotto"

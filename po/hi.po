@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2003-08-07 17:36+0530\n"
 "Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
 "Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
@@ -19,40 +19,13 @@ msgstr ""
 "X-Generator: KBabel 1.0\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "मास्टर ब्राउसर को नही ढूंढ पाए"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr ""
-
-# libgnomevfs/gnome-vfs-result.c:57
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-#, fuzzy
-msgid "Filesystem"
-msgstr "फाइलें"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr ""
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr ""
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr ""
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
@@ -570,7 +543,7 @@ msgstr "%.1f मेगाबाइट्स"
 msgid "%.1f GB"
 msgstr "%.1f गीगाबाइट्स"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr "(अवैध यूनिकोड)"
@@ -651,16 +624,16 @@ msgstr ""
 msgid "Unable to unmount the selected volume."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr ""
 
@@ -723,8 +696,14 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+# libgnomevfs/gnome-vfs-result.c:57
+#: modules/computer-method.c:561
+#, fuzzy
+msgid "Filesystem"
+msgstr "फाइलें"
+
 # modules/file-method.c:381
-#: modules/file-method.c:384
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "अज्ञात गनोम VFSSeek स्थिति %d"

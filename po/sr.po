@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-12 00:53+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -20,43 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Не могу да покренем Бонобо"
 
 # Гномов Виртуелни Систем Датотека — ВСД? Или Гномово „опонашање система датотека“ — ОСД?
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Не могу да покренем Гномов VFS"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Систем датотека"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Неуспешно чување обележивача (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Не могу да сазнам податке о датотеци „%s“: %s"
-
-# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Неуспешно отварање датотеке „%s“: %s"
-
-# bug: as above [inconsistent wording]
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Неуспешно учитавање слике „%s“: разлог непознат, вероватно оштећена датотека "
-"слике"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -516,7 +487,7 @@ msgstr "%.1f МБ"
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (неисправан Уникод)"
@@ -600,16 +571,16 @@ msgstr "Не могу да прикључим изабрани диск."
 msgid "Unable to unmount the selected volume."
 msgstr "Не могу да искључим изабрани диск."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Неуспешно покретање наредбе"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Не могу да избацим медиј"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Не могу да искључим везу са сервером"
 
@@ -671,7 +642,11 @@ msgstr "Мрежа"
 msgid "Home"
 msgstr "Лични"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Систем датотека"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Непознато GnomeVFSSeekPosition %d"
@@ -1034,6 +1009,23 @@ msgstr "СМБ радна група"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Виндоуз радна група које је корисник члан"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Неуспешно чување обележивача (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Не могу да сазнам податке о датотеци „%s“: %s"
+
+# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Неуспешно отварање датотеке „%s“: %s"
+
+# bug: as above [inconsistent wording]
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Неуспешно учитавање слике „%s“: разлог непознат, вероватно оштећена "
+#~ "датотека слике"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Како баратати http адресама"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-12 15:39+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -19,40 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Nemohu inicializovat Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Systém souborů"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Ukládání záložek selhalo (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Nemohu získat informace o souboru '%s': %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Nemohu otevřít soubor '%s': %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Nemohu načíst obrázek '%s': důvod není znám, pravděpodobně poškozený soubor "
-"s obrázkem"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -509,7 +482,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
@@ -593,16 +566,16 @@ msgstr "Nemohu připojit vybraný svazek."
 msgid "Unable to unmount the selected volume."
 msgstr "Nemohu odpojit vybraný svazek."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Nemohu spustit příkaz"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Nemohu vysunout médium"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Nemohu odpojit připojený server"
 
@@ -665,7 +638,11 @@ msgstr "Síť"
 msgid "Home"
 msgstr "Doma"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Systém souborů"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
@@ -1031,3 +1008,18 @@ msgstr "Pracovní skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Ukládání záložek selhalo (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Nemohu získat informace o souboru '%s': %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Nemohu otevřít soubor '%s': %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Nemohu načíst obrázek '%s': důvod není znám, pravděpodobně poškozený "
+#~ "soubor s obrázkem"

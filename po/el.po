@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 14:53+0200\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-23 14:58+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -30,37 +30,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Αδυαμία αρχικοποίησης gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Σύστημα αρχείων"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Η αποθήκευση του σελιδοδείκτη απέτυχε (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Αδυναμία λήψης πληροφοριών για αρχείο '%s': %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Αποτυχία ανοίγματος αρχείου '%s': %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid "Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr "Αποτυχία φόρτωσης εικόνας '%s': ο λόγος δεν είναι γνωστός, πιθανόν να είναι κατεστραμμένο το αρχείο εικόνας"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -516,7 +492,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GΒ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (μή έγκυρο Unicode)"
@@ -562,7 +538,8 @@ msgstr "Εξυπηρετητής δικτύου"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα "
 "στον οδηγό."
@@ -570,7 +547,8 @@ msgstr ""
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
+msgstr ""
+"Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
@@ -600,16 +578,16 @@ msgstr "Αδυναμία προσάρτησης του επιλεγμένου τ
 msgid "Unable to unmount the selected volume."
 msgstr "Αδυναμία αποπροσάρτησης του επιλεγμένου τόμου."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Αποτυχία έναρξης εντολής"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Αδυναμία αποβολής μέσου"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Αδυναμία αποπροσάρτησης συνδεδεμένου εξυπηρετητή"
 
@@ -671,7 +649,11 @@ msgstr "Δίκτυο"
 msgid "Home"
 msgstr "Αρχή"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Σύστημα αρχείων"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Άγνωστη GnomeVFSSeekPosition %d"
@@ -797,43 +779,50 @@ msgid "Run program in terminal"
 msgstr "Εκτέλεση προγράμματος σε τερματικό"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό h323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό callto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό mailto URLs"
@@ -845,7 +834,8 @@ msgstr ""
 "τον χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
 "τον χειρισμό trash URLs"
@@ -890,7 +880,8 @@ msgstr "Αυτόματη ρύθμιση URL ρύθμισης διαμεσολα�
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
+msgstr ""
+"Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -973,7 +964,8 @@ msgstr "Το όνομα συστήματος μέσω του οποίου γίν
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
+msgstr ""
+"Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
@@ -1043,6 +1035,21 @@ msgstr "Ομάδα εργασίας SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Η ομάδα εργασίας παραθύρου όπου ο χρήστης είναι μέρος"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Η αποθήκευση του σελιδοδείκτη απέτυχε (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Αδυναμία λήψης πληροφοριών για αρχείο '%s': %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Αποτυχία ανοίγματος αρχείου '%s': %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Αποτυχία φόρτωσης εικόνας '%s': ο λόγος δεν είναι γνωστός, πιθανόν να "
+#~ "είναι κατεστραμμένο το αρχείο εικόνας"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Τρόπος χειρισμού http URLs"
@@ -2202,4 +2209,3 @@ msgstr "Η ομάδα εργασίας παραθύρου όπου ο χρήστ
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
-

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 01:19+0000\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-23 19:51+0000\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -20,39 +20,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Methwyd ymgychwyn Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Methwyd ymgychwyn gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "System Ffeil"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Methodd cadw llyfrnod (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Methwyd cyrchu gwybodaeth ar gyfer ffeil '%s': %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Methwyd agor ffeil '%s': %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Methwyd llwytho delwedd '%s': rheswm anhysbys, hwyrach ffeil delwedd annilys"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -508,7 +482,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (Unicode annilys)"
@@ -592,16 +566,16 @@ msgstr "Methu gosod y gyfrol ddewisiwyd."
 msgid "Unable to unmount the selected volume."
 msgstr "Methu dadosod y gyfrol ddewisiwyd."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Methwyd a chychwyn y gorchymyn"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Methu allfwrw'r disg neu'r modd"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Methu dadosod y gweinydd sy'n gysylltiedig"
 
@@ -663,7 +637,11 @@ msgstr "Rhwydwaith"
 msgid "Home"
 msgstr "Cartref"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "System Ffeil"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition anhysbys %d"
@@ -1040,6 +1018,21 @@ msgstr "Grŵp SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Methodd cadw llyfrnod (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Methwyd cyrchu gwybodaeth ar gyfer ffeil '%s': %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Methwyd agor ffeil '%s': %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Methwyd llwytho delwedd '%s': rheswm anhysbys, hwyrach ffeil delwedd "
+#~ "annilys"
 
 #~ msgid ""
 #~ "Set to true to have the command specified in \"command\" handle mailto "

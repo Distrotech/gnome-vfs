@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-07 15:05+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-03-08 00:18+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -477,7 +477,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (无效的 Unicode)"
@@ -525,8 +525,7 @@ msgstr "网络服务器"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"无法挂载软盘驱动器。可能驱动器中没有软盘。"
+msgstr "无法挂载软盘驱动器。可能驱动器中没有软盘。"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -537,15 +536,13 @@ msgstr "无法挂载卷。可能设备中没有介质。"
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"无法挂载软盘驱动器。可能软盘的格式无法挂载。"
+msgstr "无法挂载软盘驱动器。可能软盘的格式无法挂载。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"无法挂载选中卷。可能卷的格式无法挂载。"
+msgstr "无法挂载选中卷。可能卷的格式无法挂载。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -968,4 +965,3 @@ msgstr "SMB 工作组"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "用户所属的 Windwos 工作组"
-

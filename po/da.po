@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-02-18 00:15+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -23,40 +23,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "Kunne ikke klargøre Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "Kunne ikke klargøre Gnome-VFS"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Filsystem"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Bogmærkegemning mislykkedes (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "Kunne ikke skaffe oplysninger om fil '%s': %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Kunne ikke åbne fil '%s': %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid ""
-"Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Kunne ikke indlæse billede '%s': begrundelse ikke kendt, formodentlig en "
-"ødelagt billedfil"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -512,7 +485,7 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
@@ -597,16 +570,16 @@ msgstr "Kan ikke montere det valgte arkiv."
 msgid "Unable to unmount the selected volume."
 msgstr "Kan ikke afmontere det valgte arkiv."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Det mislykkedes at starte kommando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "Kan ikke skubbe medium ud"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "Kan ikke afmontere tilsluttet server"
 
@@ -668,7 +641,11 @@ msgstr "Netværk"
 msgid "Home"
 msgstr "Hjem"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Filsystem"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
@@ -1043,3 +1020,18 @@ msgstr "SMB-arbejdsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Den Windows-arbejdsgruppe som brugeren er en del af"
+
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Bogmærkegemning mislykkedes (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "Kunne ikke skaffe oplysninger om fil '%s': %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Kunne ikke åbne fil '%s': %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Kunne ikke indlæse billede '%s': begrundelse ikke kendt, formodentlig en "
+#~ "ødelagt billedfil"

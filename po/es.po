@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-03-06 19:24+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -27,39 +27,13 @@ msgstr ""
 "X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n == 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:588
+#: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
 msgstr "No se pudo inicializar Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:594
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
-
-#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Sistema de archivos"
-
-#: gtk/gtkfilesystemgnomevfs.c:1461
-#, c-format
-msgid "Bookmark saving failed (%s)"
-msgstr "Se ha producido un fallo al guardar el marcador (%s)"
-
-#: gtk/testfilechooser.c:176
-#, c-format
-msgid "Could not get information for file '%s': %s"
-msgstr "No se puede obtener información para el archivo «%s»: %s"
-
-#: gtk/testfilechooser.c:189
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Fallo al abrir el archivo «%s»: %s"
-
-#: gtk/testfilechooser.c:228
-#, c-format
-msgid "Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr ""
-"Fallo al cargar la imagen «%s»: razón no conocida, probablemente un archivo "
-"de imagen corrupto"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -515,7 +489,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -561,7 +535,8 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -578,8 +553,8 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Imposible montar la unidad de disquetes. El disquete probablemente está en un formato que "
-"no puede ser montado."
+"Imposible montar la unidad de disquetes. El disquete probablemente está en "
+"un formato que no puede ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
@@ -601,16 +576,16 @@ msgstr "Imposible montar el volumen seleccionado."
 msgid "Unable to unmount the selected volume."
 msgstr "Imposible desmontar el volumen seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:255
+#: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
 msgstr "Falló al iniciar el comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
 msgstr "No se pudo expulsar el soporte"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
 msgstr "No se pudo desmontar el servidor conectado"
 
@@ -672,7 +647,11 @@ msgstr "Red"
 msgid "Home"
 msgstr "Directorio inicial"
 
-#: modules/file-method.c:384
+#: modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Sistema de archivos"
+
+#: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconocida"
@@ -690,7 +669,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -741,7 +721,8 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -796,43 +777,50 @@ msgid "Run program in terminal"
 msgstr "Ejecutar programa en terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs mailto."
@@ -844,7 +832,8 @@ msgstr ""
 "manipular las URLs man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» que "
 "manipule las URLs trash."
@@ -1043,6 +1032,21 @@ msgstr "Grupo de trabajo SMB"
 msgid "The window workgroup the user is part of"
 msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
+#~ msgid "Bookmark saving failed (%s)"
+#~ msgstr "Se ha producido un fallo al guardar el marcador (%s)"
+
+#~ msgid "Could not get information for file '%s': %s"
+#~ msgstr "No se puede obtener información para el archivo «%s»: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Fallo al abrir el archivo «%s»: %s"
+
+#~ msgid ""
+#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
+#~ msgstr ""
+#~ "Fallo al cargar la imagen «%s»: razón no conocida, probablemente un "
+#~ "archivo de imagen corrupto"
+
 #~ msgid "How to handle http URLs"
 #~ msgstr "Cómo manipular las URLs http"
 
@@ -1117,4 +1121,3 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-
