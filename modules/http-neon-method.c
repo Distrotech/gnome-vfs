@@ -82,7 +82,6 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
-#define DEBUG_HTTP_ENABLE 1
 #ifdef DEBUG_HTTP_ENABLE
 
 void http_debug_printf(char *func, char *fmt, ...) G_GNUC_PRINTF (2,3);
@@ -117,8 +116,13 @@ http_debug_printf (char *func, char *fmt, ...)
 	g_free (out);
 	va_end (args);
 }
-#endif /* DEBUG_HTTP_ENABLE */
-
+#else /* DEBUG_HTTP_ENABLE */
+#define DEBUG_HTTP_3(fmt, ...)	
+#define DEBUG_HTTP_2(fmt, ...)
+#define DEBUG_HTTP(fmt, ...)
+#define DEBUG_HTTP_CONTEXT(c)
+#define DEBUG_HTTP_FUNC(_enter)
+#endif
 
 /* ************************************************************************** */
 /* Http status responses and result mapping */
@@ -497,8 +501,9 @@ http_auth_cache_info_check (gpointer key, gpointer value, gpointer data)
 static gboolean
 http_auth_cache_cleanup (gpointer *data)
 {
-	DEBUG_HTTP ("[AuthCache] Cleanup!");
 	gboolean restart_timeout;
+
+	DEBUG_HTTP ("[AuthCache] Cleanup!");
 
 	restart_timeout = FALSE;
 
@@ -1324,11 +1329,12 @@ neon_session_pool_check (gpointer key, gpointer value, gpointer data)
 static gboolean
 neon_session_pool_cleanup (gpointer *data)
 {
-	DEBUG_HTTP ("[Session Pool] Cleanup!");
 	gboolean restart_timeout;
 
 	restart_timeout = FALSE;
 
+	DEBUG_HTTP ("[Session Pool] Cleanup!");
+	
 	G_LOCK (nst_lock);
 	g_hash_table_foreach_remove (neon_session_table, 
 				     neon_session_pool_check,
@@ -2363,8 +2369,9 @@ do_close (GnomeVFSMethod 	*method,
 		data = handle->transfer.write->data;
 		len = handle->transfer.write->len;
 		   
-		DEBUG_HTTP ("[PUT] Filesize: %d", len),
-			ne_set_request_body_buffer (req, data, len);
+		DEBUG_HTTP ("[PUT] Filesize: %d", len);
+		
+		ne_set_request_body_buffer (req, data, len);
 		res = ne_request_dispatch (req);
 
 		result = resolve_result (res, req);

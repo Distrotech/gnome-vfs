@@ -1,3 +1,9 @@
+2004-07-22  Christian Kellner <gicmo@gnome-de.org>
+
+	* modules/http-neon-method.c: Reordered some debugging
+	statements and set debugging to be off as default.
+	Fixed small typo.
+	
 2004-07-22  Dave Camp  <dave@novell.com>
 
 	* configure.in: post-release version bump
