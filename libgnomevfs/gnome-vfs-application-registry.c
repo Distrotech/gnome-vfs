@@ -1465,8 +1465,9 @@ gnome_vfs_application_registry_unset_key (const char *app_id,
 static void
 cb_application_collect (gpointer key, gpointer value, gpointer user_data)
 {
-	GList **list = user_data;
-	*list = g_list_prepend (*list, value);
+	Application  *application = value;
+	GList       **list = user_data;
+	*list = g_list_prepend (*list, application->app_id);
 }
 
 /**

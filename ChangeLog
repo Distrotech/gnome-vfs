@@ -1,3 +1,8 @@
+2002-04-25  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-application-registry.c
+	(cb_application_collect) : fix.
+
 2002-04-24  Iain <iain@ximian.com>
 
 	* modules/preferences.vfolder-info.in: Allow the CDDB capplet in the
