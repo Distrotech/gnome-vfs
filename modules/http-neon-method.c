@@ -293,13 +293,13 @@ typedef struct {
 	   
 } MethodSchemes;
 
-MethodSchemes supported_schemes[] = {
+static MethodSchemes supported_schemes[] = {
 
 	{"http",  FALSE, "http",  FALSE},
 	{"dav",   FALSE, "http",  TRUE},
 	{"https", TRUE,  "https", FALSE},
 	{"davs",  TRUE,  "https", TRUE},
-	{NULL,    FALSE,          FALSE}	   
+	{NULL,    FALSE,          NULL}	   
 };
 
 static char *
@@ -1316,7 +1316,7 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 
 G_LOCK_DEFINE (nst_lock);
 static GHashTable *neon_session_table;
-guint nst_tid;
+static guint nst_tid;
 
 typedef struct {
 	
@@ -1879,8 +1879,11 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	if (res == NE_REDIRECT) {
 		result = http_follow_redirect (context);
 		
-		if (result == GNOME_VFS_OK)
+		if (result == GNOME_VFS_OK) {
+			ne_request_destroy (req);
+			req = NULL;
 			goto head_start;
+		}
 	}
 
 
@@ -1989,6 +1992,7 @@ http_options (HttpContext *hctx)
 	}
 
 	result = resolve_result (res, req);
+	ne_request_destroy (req);
 	
 	if (result == GNOME_VFS_OK) {
 		
@@ -2421,6 +2425,7 @@ do_create (GnomeVFSMethod	 *method,
 		
 		if (result != GNOME_VFS_ERROR_NOT_FOUND) {
 			http_file_handle_destroy (handle);
+			ne_request_destroy (req);
 			return GNOME_VFS_ERROR_FILE_EXISTS;
 		}
 	}
@@ -2429,6 +2434,7 @@ do_create (GnomeVFSMethod	 *method,
 	
 	res = ne_request_dispatch (req);
 	result 	= resolve_result (res, req);
+	ne_request_destroy (req);
 	
 	if (result == GNOME_VFS_OK && mode != GNOME_VFS_OPEN_NONE) {
 
@@ -2490,6 +2496,7 @@ do_close (GnomeVFSMethod 	*method,
 		DEBUG_HTTP ("[PUT] returned: %d, %d (%s)", res, 
 				ne_get_status (req)->code, 
 				gnome_vfs_result_to_string (result));
+		ne_request_destroy (req);
 	}
 	
 	
@@ -2942,6 +2949,8 @@ do_make_directory (GnomeVFSMethod  *method,
 		result = http_follow_redirect (hctx);
 		
 		if (result == GNOME_VFS_OK)
+			ne_request_destroy (req);
+			req = NULL;
 			goto mkcol_start;
 	} else if (res == NE_OK) {
 		const ne_status *status = ne_get_status (req);
@@ -3073,13 +3082,16 @@ do_move (GnomeVFSMethod  *method,
 	if (res == NE_REDIRECT) {
 		result = http_follow_redirect (hctx);
 
-		/* TODO: Do we leak req here? */
-		if (result == GNOME_VFS_OK)
+		if (result == GNOME_VFS_OK) {
+			ne_request_destroy (req);
+			req = NULL;
 			goto head_start;
+		}
 	} else {
 		result = resolve_result (res, req);
 	}
 
+	ne_request_destroy (req);
 	http_context_free (hctx);
 	
 	DEBUG_HTTP_FUNC (0);
