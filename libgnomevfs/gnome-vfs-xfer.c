@@ -1578,7 +1578,7 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 		target_uri = gnome_vfs_uri_append_file_name
 			(target_dir_uri, 
 			 progress->progress_info->duplicate_name);
-		gnome_vfs_unref (target_dir_uri);
+		gnome_vfs_uri_unref (target_dir_uri);
 		result = create_directory (target_uri, 
 					   &dest_directory_handle,
 					   GNOME_VFS_XFER_USE_UNIQUE_NAMES,
