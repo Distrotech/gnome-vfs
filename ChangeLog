@@ -1,3 +1,15 @@
+2001-03-02  Eric Fischer  <eric@eazel.com>
+
+	reviewed by: Gregory Leblanc <gleblanc@cu-portland.edu>
+
+	* configure.in:
+	Add version-checking macros from nautilus's configure.in
+	Add check for control-center version number
+	Parameterize checks for glib, oaf, gconf
+
+	* gnome-vfs.spec.in:
+	Substitute prerequisite version numbers from configure script
+
 2001-03-01  Don Melton  <don@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>

@@ -17,10 +17,10 @@ Group: System Environment/Libraries
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
 URL: http://www.gnome.org/
 BuildRoot: /var/tmp/%{name}-root
-Requires: glib >= 1.2.4
-Requires: GConf >= 0.9
-Requires: oaf >= 0.3.0
-Requires: control-center >= 1.2.3
+Requires: glib >= @GLIB_REQUIRED@
+Requires: GConf >= @GCONF_REQUIRED@
+Requires: oaf >= @OAF_REQUIRED@
+Requires: control-center >= @CONTROL_CENTER_REQUIRED@
 Docdir: %{prefix}/doc
 Summary:  GNOME VFS is the GNOME virtual file system.  It is used extensively by Nautilus.
 
