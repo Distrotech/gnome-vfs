@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* test-mime.c - Test for the mime handler detection features of the GNOME
    Virtual File System Library
 
@@ -70,6 +71,37 @@ print_action (GnomeVFSMimeAction *action)
 }
 
 
+static void 
+print_component_list (GList *components)
+{
+       GList *p;
+       if (components == NULL) {
+	 puts ("(none)");
+       } else {
+	 for (p = components; p != NULL; p = p->next) {
+	   print_component (p->data);
+	   puts ("------");
+	 }
+	 
+       }
+}
+
+static void 
+print_application_list (GList *applications)
+{
+       GList *p;
+       if (applications == NULL) {
+	 puts ("(none)");
+       } else {
+	 for (p = applications; p != NULL; p = p->next) {
+	   print_application (p->data);
+	   puts ("------");
+	 }
+	 
+       }
+}
+
+
 int
 main (int argc, char **argv)
 {
@@ -77,6 +109,8 @@ main (int argc, char **argv)
 	GnomeVFSMimeApplication *default_application;
 	OAF_ServerInfo *default_component;
 	GnomeVFSMimeAction *default_action;
+	GList *all_components;
+	GList *all_applications;
 
 	oaf_init (argc, argv);
 	gnome_vfs_init ();
@@ -102,7 +136,17 @@ main (int argc, char **argv)
 	puts("Default Component");
 	print_component (default_component);
 	puts ("");
-	
+
+	all_applications = gnome_vfs_mime_get_all_applications (type); 
+	puts("All Applications");
+	print_application_list (all_applications);
+	puts ("");
+
+	all_components = gnome_vfs_mime_get_all_components (type); 
+	puts("All Components");
+	print_component_list (all_components);
+	puts ("");
+
 	return 0;
 }
 

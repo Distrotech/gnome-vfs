@@ -180,6 +180,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
+	/* FIXME: should probably check for the right interfaces
+           too. Also slightly semantically different from nautilus in
+           other tiny ways. */
+
 	query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
 			     "\', \'", supertype,
 			     "\', \'*\'])", NULL);
@@ -209,12 +213,14 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	
 	if (ev._major == CORBA_NO_EXCEPTION  && info_list != NULL && info_list->_length > 0) {
 		server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
+		/* FIXME: free info_list */
 	} else {
 		server = NULL;
 	}
 
 	g_free (supertype);
 	g_free (query);
+	g_free (sort[0]);
 	g_free (sort[1]);
 	g_free (sort[2]);
 	g_free (sort[3]);
@@ -227,26 +233,208 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 GList *
 gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 {
+	/* determine user level */
+	/* get short list app info for that user level */
+
+	/* get user short list delta (add list and remove list which store app names only (BOGUS!)) */
+
+	/* compute list modified by delta */
+
+	/* return it */
+
 	return NULL;
 }
 
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
+	/* determine user level */
+	/* get short list IIDs for that user level */
+	/* get user short list delta (add list and remove list) */
+
+	/* compute list modified by delta */
+
+	/* Do usual query but requiring that IIDs be one of the ones
+           in the short list IID list. */
+
 	return NULL;
 }
+
+
+static GList *
+parse_app_lists (const char *name_list, 
+		 const char *command_list,
+		 const char *can_open_multiple_files_list,
+		 const char *can_open_uris_list) 
+{
+	char **name_strv;
+	char **command_strv;
+	char **comf_strv;
+	char **cou_strv;
+	GList *retval;
+	int i;
+	
+	if (name_list == NULL || command_list == NULL || 
+	    can_open_multiple_files_list == NULL || 
+	    can_open_uris_list == NULL) {
+		return NULL;
+	}
+
+	name_strv = g_strsplit (name_list, ",", 0);
+	command_strv = g_strsplit (command_list, ",", 0);
+	comf_strv = g_strsplit (can_open_multiple_files_list, ",", 0);
+	cou_strv = g_strsplit (can_open_uris_list, ",", 0);
+	
+	retval = NULL;
+	for (i = 0; name_strv[i] != NULL && command_strv[i] != NULL && 
+		     comf_strv[i] != NULL && cou_strv[i] != NULL; i++) {
+		GnomeVFSMimeApplication *application;
+
+		application = g_new0 (GnomeVFSMimeApplication, 1);
+		application->name = g_strdup (name_strv[i]);
+		application->command = g_strdup (command_strv[i]);
+		application->can_open_multiple_files = strcasecmp (comf_strv[i], "true") || 
+			strcasecmp (comf_strv[i], "yes");
+		application->can_open_uris = strcasecmp (cou_strv[i], "true") || 
+			strcasecmp (cou_strv[i], "yes");
+
+		retval = g_list_prepend (retval, application);
+	}
+
+	retval = g_list_reverse (retval);
+
+	return retval;
+}
+	
+
 
 GList *
 gnome_vfs_mime_get_all_applications (const char *mime_type)
 {
-	return NULL;
+ 	const char *system_application_name_list;
+ 	const char *system_application_command_list;
+ 	const char *system_application_can_open_multiple_files_list;
+ 	const char *system_application_can_open_uris_list;
+ 	const char *user_application_name_list;
+ 	const char *user_application_command_list;
+ 	const char *user_application_can_open_multiple_files_list;
+ 	const char *user_application_can_open_uris_list;
+	GList *system_apps;
+	GList *user_apps;
+	GList *retval;
+
+	/* FIXME: no way for apps to modify at install time */
+
+	/* get app list */
+ 	system_application_name_list = gnome_vfs_mime_get_value 
+		(mime_type, "system_all_applications_names");
+	
+ 	system_application_command_list = gnome_vfs_mime_get_value 
+		(mime_type, "system_all_applications_commands");
+
+ 	system_application_can_open_multiple_files_list = gnome_vfs_mime_get_value 
+		(mime_type, "system_all_applications_can_open_multiple_files");
+	
+ 	system_application_can_open_uris_list = gnome_vfs_mime_get_value 
+		(mime_type, "system_all_applications_can_open_uris");
+	
+
+	system_apps = parse_app_lists (system_application_name_list, system_application_command_list,
+				       system_application_can_open_multiple_files_list,
+				       system_application_can_open_uris_list);
+	
+	/* get user app list extension */
+
+ 	user_application_name_list = gnome_vfs_mime_get_value 
+		(mime_type, "all_applications_names");
+	
+ 	user_application_command_list = gnome_vfs_mime_get_value 
+		(mime_type, "all_applications_commands");
+
+ 	user_application_can_open_multiple_files_list = gnome_vfs_mime_get_value 
+		(mime_type, "all_applications_can_open_multiple_files");
+	
+ 	user_application_can_open_uris_list = gnome_vfs_mime_get_value 
+		(mime_type, "all_applications_can_open_uris");
+	
+	user_apps = parse_app_lists (user_application_name_list, user_application_command_list,
+				     user_application_can_open_multiple_files_list,
+				     user_application_can_open_uris_list);
+	
+
+	/* merge the two */
+
+	retval = g_list_concat (system_apps, user_apps);
+
+	return retval;
+}
+
+static GList *
+OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
+{
+	GList *retval;
+	int i;
+	
+	retval = NULL;
+	if (info_list != NULL && info_list->_length > 0) {
+		for (i = 0; i < info_list->_length; i++) {
+			retval = g_list_prepend (retval, OAF_ServerInfo__copy (&info_list->_buffer[i]));
+		}
+		retval = g_list_reverse (retval);
+	}
+
+	return retval;
 }
 
 GList *
 gnome_vfs_mime_get_all_components (const char *mime_type)
 {
-	return NULL;
+	OAF_ServerInfoList *info_list;
+	GList *retval;
+	CORBA_Environment ev;
+	char *supertype;
+	char *query;
+	char *sort[2];
+
+	CORBA_exception_init (&ev);
+
+	supertype = mime_type_get_supertype (mime_type);
+
+	/* Find a component that supports either the exact mime type,
+           the supertype, or all mime types. */
+
+	/* FIXME: should probably check for the right interfaces
+           too. Also slightly semantically different from nautilus in
+           other tiny ways. */
+
+	query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
+			     "\', \'", supertype,
+			     "\', \'*\'])", NULL);
+	
+	/* Alphebetize by name, for the sake of consistency */
+	sort[0] = g_strdup ("name");
+	sort[1] = NULL;
+
+	info_list = oaf_query (query, sort, &ev);
+	
+	if (ev._major == CORBA_NO_EXCEPTION) {
+		retval = (OAF_ServerInfoList_to_ServerInfo_g_list (info_list));
+		/* FIXME: free info_list */
+	} else {
+		retval = NULL;
+	}
+
+	g_free (supertype);
+	g_free (query);
+	g_free (sort[0]);
+
+	CORBA_exception_free (&ev);
+
+	return retval;
 }
+
+
+
 
 
 GnomeVFSMimeAction *

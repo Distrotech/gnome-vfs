@@ -1,7 +1,22 @@
 2000-05-30  Maciej Stachowiak  <mjs@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_all_applications,
+	gnome_vfs_mime_get_all_components): Implemented
+
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components), 
+
+	(parse_app_lists, OAF_ServerInfoList_to_ServerInfo_g_list): New
+	helper functions.
+
+	* test/test-mime-handlers.c: Expanded to test the all_applications
+	and all_components calls.
+
 	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init): Fix oaf
 	initialization to use a better dummy argv.
+
+	* data/mime/gnome-vfs.keys: Added more test data.
 
 2000-05-30  Pavel Cisler  <pavel@eazel.com>
 

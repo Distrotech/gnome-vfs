@@ -391,6 +391,12 @@ text/html
 	default_application_command=netscape
 	default_application_name=Netscape
 	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	system_all_applications_commands=netscape,xterm -e lynx
+	system_all_applications_names=Netscape,Lynx
+	system_all_applications_can_open_multiple_files=true,false
+	system_all_applications_can_open_uris=true,true
+
+
 
 text/plain
 	description=plain text
