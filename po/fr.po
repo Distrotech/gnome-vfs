@@ -5,8 +5,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.9\n"
-"POT-Creation-Date: 2001-03-09 12:46+0100\n"
+"Project-Id-Version: gnome-vfs 0.9.1\n"
+"POT-Creation-Date: 2001-03-11 17:21+0100\n"
 "PO-Revision-Date: 2001-03-09 12:59+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -128,7 +128,7 @@ msgstr "Graphique vectoriel DXF"
 
 #: data/mime/gnome-vfs.keys.in.h:29
 msgid "Debian package"
-msgstr "Paquetage Debian"
+msgstr "Paquet Debian"
 
 #: data/mime/gnome-vfs.keys.in.h:30
 msgid "Dia diagram"
@@ -860,7 +860,7 @@ msgstr "Message dans différents formats"
 
 #: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
-msgstr "Message multi-part"
+msgstr "Message multi-partie"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
@@ -880,7 +880,7 @@ msgstr "Message de courrier électronique partiel"
 
 #: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
-msgstr "Document plein texte"
+msgstr "Document texte brut"
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
