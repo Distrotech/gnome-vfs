@@ -1,3 +1,9 @@
+2004-07-16  Ray Strode  <rstrode@redhat.com
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial working 
+	version of gnome_vfs_mime_get_all_desktop_entries (still needs
+	work tho)
+
 2004-07-16  Dave Camp  <dave@novell.com>
 
 	* configure.in: Require libxml 2.6.0
@@ -15,6 +21,7 @@
 	get mime type descriptions.  Doesn't notice changes yet.
 
 2004-07-16  Ray Strode  <rstrode@redhat.com
+
 	* libgnomevfs/egg*: update to latest version
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: new (broken) files
 	* libgnomevfs/Makefile.am: add new files

@@ -28,6 +28,8 @@ G_BEGIN_DECLS
 GList              *gnome_vfs_mime_get_all_desktop_entries (const char *mime_type);
 gchar              *gnome_vfs_mime_get_default_desktop_entry (const char *mime_type);
 
+void                gnome_vfs_mime_info_cache_flush (void);
+
 G_END_DECLS
 
 #endif
