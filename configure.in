@@ -31,6 +31,7 @@ AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64)
+AC_REPLACE_FUNCS(getdelim)
 
 AC_CHECK_HEADERS(sys/resource.h)
 

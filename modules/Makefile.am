@@ -7,6 +7,7 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\
+	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DPREFIX=\"$(prefix)\"
@@ -77,10 +78,7 @@ libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h				\
 	module-shared.c				\
-	module-shared.h				\
-	parse.c					\
-	parse.h
-
+	module-shared.h
 
 ### `gconf' method
 

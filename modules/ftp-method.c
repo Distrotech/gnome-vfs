@@ -1327,7 +1327,7 @@ resolve_symlink_with_ls_options(ftpfs_connection_t *conn, ftpfs_dir_t *dir)
 				fputs (buffer, logfile);
 				fflush (logfile);
 			}
-			if (vfs_parse_ls_lga (buffer, &s, &filename, NULL)) {
+			if (gnome_vfs_parse_ls_lga (buffer, &s, &filename, NULL)) {
 				int r = strcmp(fe->name, filename);
 				g_free(filename);
 				if (r == 0) {

@@ -7,6 +7,7 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\
+	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-DPREFIX=\"$(prefix)\"			\
 	-DG_LOG_DOMAIN=\"GnomeVFS-pthread\"

@@ -1,3 +1,55 @@
+1999-10-19  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/Makefile.am (CPPFLAGS): #define `_GNU_SOURCE'.
+	* libgnomevfs-pthread/Makefile.am (CPPFLAGS): Likewise.
+	* libgnomevfs-corba/Makefile.am (CPPFLAGS): Likewise.
+	* libgnomevfs/Makefile.am (CPPFLAGS): Likewise.
+
+	* modules/extfs-method.c: Implemented directory reading.
+
+	* modules/extfs-method.c (get_script_path): New helper function.
+	(do_open): Use it.
+	(ERROR_IF_NOT_LOCAL): New macro.
+	(do_open): Use it.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_hequal): New function.
+	(gnome_vfs_uri_hash): New function.
+	* libgnomevfs/gnome-vfs-uri.h (gnome_vfs_uri_hash): Prototypes here.
+
+	* modules/ftp-method.c (resolve_symlink_with_ls_options): Use
+	`gnome_vfs_parse_ls_lga()' instead of `vfs_parse_ls_lga()', which
+	does not exist anymore.
+
+	* modules/parse.c: Removed.
+	* modules/parse.h: Removed.
+
+	* libgnomevfs/gnome-vfs-parse-ls.c: Removed global variables
+	`columns', `column_ptr'.
+	(vfs_split_text): New parameters `columns', `column_ptr'.
+	(gnome_vfs_vfs_parse_ls_lga): Updated accordingly.
+	(is_num): Get a string as the single parameter.
+	(gnome_vfs_vfs_parse_ls_lga): Updated accordingly.
+	(vfs_parse_filedate): New parameter `columns'.
+	(gnome_vfs_vfs_parse_ls_lga): Updated accordingly.
+
+	* configure.in: Check for `getdelim' and use our version if 
+	not available.
+
+	* libgnomevfs/Makefile.am: Added `getdelim' to `EXTRA_DIST'.
+
+	* libgnomevfs/gnome-vfs-private.h [! HAVE_GETDELIM]: Declare
+	prototype for `getdelim()'.
+
+	* libgnomevfs/getdelim.c: New file, implementing `getdelim()' for
+	non-GNU systems.
+
+1999-10-18  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-parse-ls.c: New file, derived from former
+	`modules/parse.c'.  Reindented; made all the helper functions
+	static; glibified a bit.
+	* libgnomevfs/gnome-vfs-parse-ls.h: Corresponding header file.
+
 1999-10-17  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/extfs-method.c (do_open): If the return value from the

@@ -37,6 +37,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-list-sort.h"
 #include "gnome-vfs-method.h"
+#include "gnome-vfs-parse-ls.h"
 #include "gnome-vfs-private-ops.h"
 #include "gnome-vfs-regexp-filter.h"
 #include "gnome-vfs-seekable.h"
@@ -56,6 +57,12 @@ char *alloca ();
 #   endif
 #  endif
 # endif
+#endif
+
+#ifndef HAVE_GETDELIM
+#include <stdio.h>
+#include <unistd.h> /* ssize_t */
+ssize_t getdelim (char **lineptr, size_t n, int terminator, FILE *stream);
 #endif
 
 END_GNOME_DECLS

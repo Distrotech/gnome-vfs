@@ -12,6 +12,10 @@ Things to complete
 
 * Names containing the `#' character are likely to cause disasters.
 
+* Make sure that only one module is initialized at a given time
+  (i.e. add a lock that must be obtained before calling the
+  `vfs_module_init()' function).
+
 
 API issues
 ----------

@@ -4,12 +4,16 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\
+	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DPREFIX=\"$(prefix)\"			\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"
 
 lib_LTLIBRARIES = libgnomevfs.la
+
+EXTRA_DIST =					\
+	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
 	$(GLIB_LIBS)
@@ -38,6 +42,7 @@ noinst_HEADERS =				\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-module.h			\
+	gnome-vfs-parse-ls.h			\
 	gnome-vfs-private-ops.h			\
 	gnome-vfs-private-types.h		\
 	gnome-vfs-private.h			\
@@ -60,6 +65,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-method.c			\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\
+	gnome-vfs-parse-ls.c			\
 	gnome-vfs-private-ops.c			\
 	gnome-vfs-process.c			\
 	gnome-vfs-result.c			\
@@ -69,3 +75,4 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	fnmatch.c
+

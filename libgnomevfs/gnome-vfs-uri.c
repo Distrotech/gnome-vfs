@@ -986,3 +986,57 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 	return g_strdup (p);
 }
 
+
+/* The following functions are useful for creating URI hash tables.  */
+
+gint
+gnome_vfs_uri_hequal (gconstpointer a,
+		      gconstpointer b)
+{
+	const GnomeVFSURI *uri_a;
+	const GnomeVFSURI *uri_b;
+
+	uri_a = (const GnomeVFSURI *) a;
+	uri_b = (const GnomeVFSURI *) b;
+
+	return gnome_vfs_uri_equal (a, b);
+}
+
+guint
+gnome_vfs_uri_hash (gconstpointer p)
+{
+	const GnomeVFSURI *uri;
+	const GnomeVFSURI *uri_p;
+	guint hash_value;
+
+#define HASH_STRING(value, string)		\
+	if ((string) != NULL)			\
+		(value) ^= g_str_hash (string);
+
+#define HASH_NUMBER(value, number)		\
+	(value) ^= number;
+
+	uri = (const GnomeVFSURI *) p;
+	hash_value = 0;
+
+	for (uri_p = uri; uri_p != NULL; uri_p = uri_p->parent) {
+		HASH_STRING (hash_value, uri_p->text);
+		HASH_STRING (hash_value, uri_p->method_string);
+
+		if (uri_p->parent != NULL) {
+			const GnomeVFSToplevelURI *toplevel;
+
+			toplevel = (const GnomeVFSToplevelURI *) uri_p;
+
+			HASH_STRING (hash_value, toplevel->host_name);
+			HASH_NUMBER (hash_value, toplevel->host_port);
+			HASH_STRING (hash_value, toplevel->user_name);
+			HASH_STRING (hash_value, toplevel->password);
+		}
+	}
+
+	return hash_value;
+
+#undef HASH_STRING
+#undef HASH_NUMBER
+}
