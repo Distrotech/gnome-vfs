@@ -3,6 +3,7 @@
 	* modules/smb-method.c (lookup_user_cache): Fix crash when user 
 	name specified in smb URI. See bug #167075. 
 	Thanks Narayana Pattipati <narayana.pattipati@wipro.com>
+	* modules/smb-method.c: Fix server cache access for IPC$ shares.
 	
 2005-02-11  Christian Kellner  <gicmo@gnome.org>
 

@@ -648,17 +648,26 @@ try_init (void)
 
 /* Authentication ----------------------------------------------------------- */
 
+static const gchar*
+get_auth_display_share (SmbAuthContext *actx)
+{
+        return string_compare (actx->for_share, "IPC$") ? 
+                        NULL : actx->for_share;
+}
+
 static char*
 get_auth_display_uri (SmbAuthContext *actx, gboolean machine)
 {
         if (actx->uri != NULL && !machine)
                 return gnome_vfs_uri_to_string (actx->uri, 0);
-         else
+        else {
+                const gchar *share = get_auth_display_share (actx);
                 return g_strdup_printf ("smb://%s%s%s%s", 
                                         actx->for_server ? actx->for_server : "", 
                                         actx->for_server ? "/" : "",
-                                        actx->for_share && !machine ? actx->for_share : "",
-                                        actx->for_share && !machine ? "/" : "");
+                                        share && !machine ? share : "",
+                                        share && !machine ? "/" : "");
+        }
 }
 
 static void
@@ -794,7 +803,7 @@ prefill_authentication (SmbAuthContext *actx)
 	in_args.uri = get_auth_display_uri (actx, FALSE);
 	in_args.protocol = "smb";
 	in_args.server = (char*)actx->for_server;
-	in_args.object = (char*)actx->for_share;
+	in_args.object = (char*)get_auth_display_share (actx);
 	in_args.username = (char*)actx->use_user;
 	in_args.domain = (char*)actx->use_domain;
 	in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
@@ -878,7 +887,7 @@ prompt_authentication (SmbAuthContext *actx)
 	in_args.uri = get_auth_display_uri (actx, FALSE);
 	in_args.protocol = "smb";
 	in_args.server = (char*)actx->for_server;
-	in_args.object = (char*)actx->for_share;
+	in_args.object = (char*)get_auth_display_share (actx);
 	in_args.username = (char*)actx->use_user;
 	in_args.domain = (char*)actx->use_domain;
 	in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
@@ -970,7 +979,7 @@ save_authentication (SmbAuthContext *actx)
         in_args.keyring = (char*)actx->keyring;
         in_args.protocol = "smb";
         in_args.server = (char*)actx->for_server;
-        in_args.object = (char*)actx->for_share;
+        in_args.object = (char*)get_auth_display_share (actx);
         in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
         in_args.authtype = NULL;
         in_args.username = (char*)actx->use_user;
@@ -1186,8 +1195,7 @@ auth_callback (const char *server_name, const char *share_name,
 	g_free (actx->for_server);
 	actx->for_server = string_dup_nzero (server_name);
 	g_free (actx->for_share);
-	actx->for_share = !share_name || strcmp (share_name,"IPC$") == 0 
-				? NULL : string_dup_nzero (share_name);
+	actx->for_share = string_dup_nzero (share_name);
 
 	/* The first pass, try the cache, fill in anything we know */
 	if (actx->passes == 1)
