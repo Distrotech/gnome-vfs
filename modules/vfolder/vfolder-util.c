@@ -1,3 +1,28 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* 
+ * vfolder-util.c - Utility functions for wrapping monitors and 
+ *                  filename/uri parsing.
+ *
+ * Copyright (C) 2002 Ximian, Inc.
+ *
+ * The Gnome Library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * The Gnome Library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Author: Alex Graveley <alex@ximian.com>
+ *         Based on original code by George Lebl <jirka@5z.com>.
+ */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -79,12 +104,19 @@ monitor_callback_internal (GnomeVFSMonitorHandle *handle,
 			   GnomeVFSMonitorEventType event_type,
 			   gpointer user_data)
 {
-	VFolderMonitor *monitor = (VFolderMonitor *) handle;
-
-	g_print ("monitor_callback_internal: %s\n", monitor_uri);
+	VFolderMonitor *monitor = (VFolderMonitor *) user_data;
 
 	if (monitor->frozen)
 		return;
+
+#if 0
+	g_print ("RECEIVED MONITOR: %s, %s, %s%s%s\n", 
+		 monitor_uri, 
+		 info_uri + strlen (monitor_uri),
+		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
+		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
+		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
+#endif
 
 	(*monitor->callback) (handle,
 			      monitor_uri,
@@ -100,7 +132,7 @@ G_LOCK_DEFINE_STATIC (stat_monitors);
 static guint stat_timeout_tag = 0;
 
 static time_t
-ctime_for_uri (gchar *uri)
+ctime_for_uri (const gchar *uri)
 {
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult result;
@@ -170,7 +202,7 @@ monitor_timeout_cb (gpointer user_data)
 
 static VFolderMonitor *
 monitor_start_internal (GnomeVFSMonitorType      type,
-			gchar                   *uri,
+			const gchar             *uri,
 			GnomeVFSMonitorCallback  callback,
 			gpointer                 user_data)
 {
@@ -191,6 +223,7 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 	monitor = g_new0 (VFolderMonitor, 1);
 	monitor->callback = callback;
 	monitor->user_data = user_data;
+	monitor->uri = g_strdup (uri);
 
 	result = gnome_vfs_monitor_add (&monitor->vfs_handle, 
 					uri,
@@ -198,7 +231,6 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 					monitor_callback_internal,
 					monitor);
 	if (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
-		monitor->uri = g_strdup (uri);
 		monitor->ctime = ctime_for_uri (uri);
 
 		G_LOCK (stat_monitors);
@@ -217,7 +249,7 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 }
 
 VFolderMonitor *
-vfolder_monitor_dir_new (gchar                   *uri,
+vfolder_monitor_dir_new (const gchar             *uri,
 			 GnomeVFSMonitorCallback  callback,
 			 gpointer                 user_data)
 {
@@ -228,7 +260,7 @@ vfolder_monitor_dir_new (gchar                   *uri,
 }
 
 VFolderMonitor *
-vfolder_monitor_file_new (gchar                   *uri,
+vfolder_monitor_file_new (const gchar             *uri,
 			  GnomeVFSMonitorCallback  callback,
 			  gpointer                 user_data)
 {
@@ -242,12 +274,27 @@ void
 vfolder_monitor_freeze (VFolderMonitor *monitor)
 {
 	monitor->frozen = TRUE;
+
+	if (monitor->vfs_handle) {
+		gnome_vfs_monitor_cancel (monitor->vfs_handle);
+		monitor->vfs_handle = NULL;
+	}
 }
 
 void 
 vfolder_monitor_thaw (VFolderMonitor *monitor)
 {
+	if (!monitor->frozen)
+		return;
+
 	monitor->frozen = FALSE;
+
+	if (gnome_vfs_monitor_add (&monitor->vfs_handle, 
+				   monitor->uri,
+				   monitor->type,
+				   monitor_callback_internal,
+				   monitor) != GNOME_VFS_OK)
+		monitor->vfs_handle = NULL;
 }
 
 void 
@@ -310,9 +357,9 @@ make_directory_and_parents_from_uri (GnomeVFSURI *uri, guint permissions)
 }
 
 GnomeVFSResult
-vfolder_make_directory_and_parents (gchar    *uri, 
-				    gboolean  skip_filename,
-				    guint     permissions)
+vfolder_make_directory_and_parents (const gchar *uri, 
+				    gboolean     skip_filename,
+				    guint        permissions)
 {
 	GnomeVFSURI *file_uri, *parent_uri;
 	GnomeVFSResult result;
@@ -333,7 +380,7 @@ vfolder_make_directory_and_parents (gchar    *uri,
 
 
 gchar *
-vfolder_timestamp_file_name (gchar *file)
+vfolder_timestamp_file_name (const gchar *file)
 {
 	struct timeval tv;
 	gchar *ret;
@@ -348,7 +395,7 @@ vfolder_timestamp_file_name (gchar *file)
 }
 
 gchar *
-vfolder_untimestamp_file_name (gchar *file)
+vfolder_untimestamp_file_name (const gchar *file)
 {
 	int n = 0;
 
@@ -371,7 +418,7 @@ vfolder_check_extension (const char *name, const char *ext_check)
 }
 
 gchar *
-vfolder_escape_home (gchar *file)
+vfolder_escape_home (const gchar *file)
 {
 	if (file[0] == '~')
 		return g_strconcat (g_get_home_dir (), &file[1], NULL);

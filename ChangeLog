@@ -1,7 +1,116 @@
+2002-08-06  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_monitor_freeze): Use
+	gnome_vfs_monitor_cancel instead of setting a freeze flag, because
+	the events can arrive after the flag has been reset, causing
+	unneccessary .vfolder-info reads.
+	(vfolder_monitor_thaw): Use gnome_vfs_monitor_add() to add the
+	monitor back.
+
+	* modules/vfolder/vfolder-method.c (do_create): Create entry with
+	highest weight (1000).
+	(dir_handle_new): Read lock info on DirHandle creation.  Use new
+	folder_list_children().
+	(dir_handle_free): Read unlock info.
+	(do_move): Only delete directory if source and destination folders
+	are different.
+	(do_create_symbolic_link): Impl.  Support creation of symbolic
+	links to direcctories by creating a new directory with a
+	<ParentLink> tag.
+	(do_monitor_add): Use a read lock instead of write lock because we
+	don't want to write out changes after creating a new monitor.
+	(do_monitor_cancel): Ditto.
+
+	* modules/vfolder/vfolder-info.c (folder_read): Escape <Parent>
+	directories beginning with '~'.  Unref the child folder after
+	adding it as a subfolder.
+	(read_vfolder_from_file): Ditto, but for ItemDir, MergeDir,
+	WriteDir, and DesktopDir.
+	(itemdir_new): Take weight and untimestamp_files parameters.  The
+	first is the weight which will be assigned to entries created from
+	this folder, the second is for WriteDirs, so filenames are
+	displayed without the timestamp.  Add ourselves to the info's
+	item_dirs list.
+	(itemdir_free): Free the list of monitors on subdirs of this
+	ItemDir.
+	(create_itemdir_entry): Refactor entry creation for <ItemDir>
+	dirs.  Add a monitor to the ItemDir struct if the child is a dir,
+	so that we are informed of changes in subfolders.
+	(create_mergedir_entry): Use create_itemdir_entry() to create the
+	entries for <MergeDir> dirs, and add keywords by splitting up the
+	relative path and matching against the known list of dir names.
+	(create_entry_directory_visit_cb): directory_visit callback which
+	creates entries based on the type of ItemDir.
+	(vfolder_info_read_info): After reading .vfolder-info, foreach
+	ItemDir call gnome_vfs_directory_visit() so we can create all the
+	entries.
+	(vfolder_info_write_user): Write XML to temporary file then use
+	gnome_vfs_move to move to the config filename, in order to
+	minimize listeners getting libxml parse errors from empty
+	.vfolder-info files.
+	(find_replacement_for_delete): Impl. Look for a like-named
+	replacement for a file which has been deleted.
+	(integrate_entry): Impl. Conditionally traverse and replace all
+	entries with the same name and a lower weight, after rechecking
+	that the new entry matches the folder's query.
+	(itemdir_monitor_handle): Impl. Handling monitor events on
+	ItemDirs by either updating or replacing existing entires, then
+	integrate with all folders using integrate_entry().
+	(vfolder_info_find_filenames): Complexify the .vfolder-info
+	filename finding code by first checking the standard user
+	location, and then if it doesn't exist copying a system default
+	file to the standard location.  This allows for overrides and
+	additions of things in the -all-users.vfolder-info file, such as
+	preferences:// and favorites:///.
+
+	(filename_monitor_cb): Correctly handle .vfolder-info filename
+	events by looking at the requested monitors, and if they monitor a
+	directory, constructing a list of that directory's children. Then
+	free all the folder/entry resources and reread the .vfolder-info
+	configuration file.  Then trave trhough the list we created and
+	check if the folders and their children still exist (if not,
+	then send a DELETED event to the monitor), and then send CREATED
+	events for any new children. 
+
+	* modules/vfolder/vfolder-common.h: Clean out specific monitors
+	from VFolderInfo, as they are all handled as ItemDirs now.
+
+	* modules/vfolder/vfolder-common.c (entry_new): Accept a weight,
+	which can be used to tell if a given Entry is more important than
+	another based on load order.
+	(entry_reload_if_needed): Copy implicit keywords lists when
+	reloading so we don't lose the MergeDir keywords.
+	(entry_get_weight): Return weight.
+	(entry_add_implicit_keyword): Add Quark to implicit_keywords as
+	well as keywords.
+	(folder_new): Take user_private as a parameter.
+	(folder_extend_monitor_cb): Handle monitor events from our
+	extend_uri correctly by refreshing, deleting, or creating child
+	entries.
+	(create_dot_directory_entry): Move code to create a ".directory"
+	entry here from vfolder-info.c
+	(read_includes): Create entries with highest weight (1000).
+	(read_one_extended_entry): Pass 900 as weight for created entries.
+	Create folders as non-user-private.
+	(folder_reload_if_needed): Start monitoring the extend_uri here,
+	to cut down on unneeded events
+	(folder_emit_changed): Take a child argument, which emits the
+	given event with the uri of the named folder child.
+	(folder_set_extend_uri): Cancel the extend_monitor here.
+	(folder_set_desktop_file): Don't set the folder dirty.
+	(folder_list_children): Impl.  Copies all the folder children's
+	names into a list, moved from vfolder-method.c.
+	(folder_get_subfolder): Don't ref the returned folder.
+	(folder_remove_subfolder): Don't modify includes/excludes here,
+	but let the caller do it.  Don't set the parent folder to dirty.
+	(folder_add_subfolder): Don't emit monitor changes here, let our
+	caller do it.
+
 Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 
 	* modules/cdemenu-desktop-method.c (expand_env_vars): get LC_CTYPE
-	from setlocale when no LC_CTYPE environment variable is set. Fixes #86462
+	from setlocale when no LC_CTYPE environment variable is set. Fixes
+	#86462
 
 	* modules/cdemenu-desktop-method.c (get_icon_for_action): use
 	/usr/dt/appconfig/icons/C for fallback to avoid returning

@@ -1,4 +1,28 @@
-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* 
+ * vfolder-common.h - Abstract Folder, Entry, Query, and VFolderInfo 
+ *                    interfaces.
+ *
+ * Copyright (C) 2002 Ximian, Inc.
+ *
+ * The Gnome Library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * The Gnome Library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Author: Alex Graveley <alex@ximian.com>
+ *         Based on original code by George Lebl <jirka@5z.com>.
+ */
 
 #ifndef VFOLDER_COMMON_H
 #define VFOLDER_COMMON_H
@@ -25,8 +49,19 @@ typedef struct _Folder Folder;
  * Entry API
  */
 typedef struct {
-	gint            refcnt;
-	gint            allocs;
+	gushort         refcnt;
+	gushort         allocs;
+
+	/* 
+	 * Weight lets us determine if a monitor's file created (or changed) 
+	 * event should replace an existing visible entry.  Higher weights 
+	 * are more valuable:
+	 * 	1000 - WriteDir entries
+	 *  	 900 - folder parent entries
+	 * 	 800 - GNOME2_PATH entries in order
+	 * 	 700 - MergeDir/ItemDir entries in order
+	 */
+	gushort         weight;  
 
 	VFolderInfo    *info;
 
@@ -36,15 +71,18 @@ typedef struct {
 
 	GnomeVFSURI    *uri;
 
-	gboolean        dirty;
-	gboolean        user_private;
-	GSList         *keywords;       /* GQuark */
+	GSList         *keywords;          /* GQuark */
+	GSList         *implicit_keywords; /* GQuark */	
+
+	guint           dirty : 1;
+	guint           user_private : 1;
 } Entry;
 
 Entry        *entry_new                  (VFolderInfo *info,
-					  gchar       *filename,
-					  gchar       *displayname,
-					  gboolean     user_private);
+					  const gchar *filename,
+					  const gchar *displayname,
+					  gboolean     user_private,
+					  gushort      weight);
 
 void          entry_ref                  (Entry *entry);
 void          entry_unref                (Entry *entry);
@@ -56,24 +94,26 @@ gboolean      entry_is_allocated         (Entry *entry);
 gboolean      entry_make_user_private    (Entry *entry, Folder *folder);
 gboolean      entry_is_user_private      (Entry *entry);
 
+gushort       entry_get_weight           (Entry *entry);
+
 void          entry_set_dirty            (Entry *entry);
 
-void          entry_set_filename         (Entry *entry, gchar *name);
-gchar        *entry_get_filename         (Entry *entry);
+void          entry_set_filename         (Entry *entry, const gchar *name);
+const gchar  *entry_get_filename         (Entry *entry);
 
-void          entry_set_displayname      (Entry *entry, gchar *name);
-gchar        *entry_get_displayname      (Entry *entry);
+void          entry_set_displayname      (Entry *entry, const gchar *name);
+const gchar  *entry_get_displayname      (Entry *entry);
 
 GnomeVFSURI  *entry_get_real_uri         (Entry *entry);
 
-GSList       *entry_get_keywords         (Entry *entry);
+const GSList *entry_get_keywords         (Entry *entry);
 void          entry_add_implicit_keyword (Entry *entry, GQuark keyword);
 
-void          entry_quick_read_keys      (Entry  *entry,
-					  gchar  *key1,
-					  gchar **value1,
-					  gchar  *key2,
-					  gchar **value2);
+void          entry_quick_read_keys      (Entry        *entry,
+					  const gchar  *key1,
+					  gchar       **value1,
+					  const gchar  *key2,
+					  gchar       **value2);
 
 void          entry_dump                 (Entry *entry, int indent);
 
@@ -89,7 +129,7 @@ struct _Folder {
 	char              *name;
 
 	gchar             *extend_uri;
-	VFolderMonitor    *entend_monitor;
+	VFolderMonitor    *extend_monitor;
 
 	Folder            *parent;
 
@@ -135,43 +175,47 @@ typedef struct {
 	GnomeVFSURI *uri;
 } FolderChild;
 
-Folder       *folder_new               (VFolderInfo *info, gchar *name);
+Folder       *folder_new               (VFolderInfo *info, 
+					const gchar *name,
+					gboolean     user_private);
 
 void          folder_ref               (Folder *folder);
 void          folder_unref             (Folder *folder);
 
 gboolean      folder_make_user_private (Folder *folder);
+gboolean      folder_is_user_private   (Folder *folder);
 
 void          folder_set_dirty         (Folder *folder);
 
-void          folder_set_name          (Folder *folder, gchar *name);
-gchar        *folder_get_name          (Folder *folder);
+void          folder_set_name          (Folder *folder, const gchar *name);
+const gchar  *folder_get_name          (Folder *folder);
 
 void          folder_set_query         (Folder *folder, Query *query);
 Query        *folder_get_query         (Folder *folder);
 
-void          folder_set_extend_uri    (Folder *folder, gchar *uri);
-gchar        *folder_get_extend_uri    (Folder *folder);
+void          folder_set_extend_uri    (Folder *folder, const gchar *uri);
+const gchar  *folder_get_extend_uri    (Folder *folder);
 
-void          folder_set_desktop_file  (Folder *folder, gchar *filename);
-gchar        *folder_get_desktop_file  (Folder *folder);
+void          folder_set_desktop_file  (Folder *folder, const gchar *filename);
+const gchar  *folder_get_desktop_file  (Folder *folder);
 
 gboolean      folder_get_child         (Folder      *folder, 
-					gchar       *name,
+					const gchar *name,
 					FolderChild *child);
+GSList       *folder_list_children     (Folder      *folder);
 
-Entry        *folder_get_entry         (Folder *folder, gchar *filename);
+Entry        *folder_get_entry         (Folder *folder, const gchar *filename);
 const GSList *folder_list_entries      (Folder *folder);
 void          folder_remove_entry      (Folder *folder, Entry *entry);
 void          folder_add_entry         (Folder *folder, Entry *entry);
 
-void          folder_add_include       (Folder *folder, gchar *file);
-void          folder_remove_include    (Folder *folder, gchar *file);
+void          folder_add_include       (Folder *folder, const gchar *file);
+void          folder_remove_include    (Folder *folder, const gchar *file);
 
-void          folder_add_exclude       (Folder *folder, gchar *file);
-void          folder_remove_exclude    (Folder *folder, gchar *file);
+void          folder_add_exclude       (Folder *folder, const gchar *file);
+void          folder_remove_exclude    (Folder *folder, const gchar *file);
 
-Folder       *folder_get_subfolder     (Folder *folder, gchar *name);
+Folder       *folder_get_subfolder     (Folder *folder, const gchar *name);
 const GSList *folder_list_subfolders   (Folder *folder);
 void          folder_remove_subfolder  (Folder *folder, Folder *sub);
 void          folder_add_subfolder     (Folder *folder, Folder *sub);
@@ -179,6 +223,8 @@ void          folder_add_subfolder     (Folder *folder, Folder *sub);
 gboolean      folder_is_hidden         (Folder *folder);
 
 void          folder_dump_tree         (Folder *folder, int indent);
+
+void          folder_start_monitor     (Folder *folder);
 
 
 /* 
@@ -197,7 +243,7 @@ struct _Query {
 		GQuark    keyword;
 		gchar    *filename;
 	} val;
-	gboolean not;
+	guint not : 1;
 };
 
 Query    *query_new (int type);
@@ -211,15 +257,11 @@ gboolean  query_try_match (Query  *query,
 /* 
  * VFolderInfo API
  */
+/* NOTE: Exposed only so do_monitor_cancel can lock the VFolderInfo */
 typedef struct {
-	gchar          *uri;
-	VFolderMonitor *monitor;
-	gboolean        is_mergedir;
-} ItemDir;
-
-typedef struct {
-	gchar          *path;
-	VFolderInfo    *info;
+	GnomeVFSURI         *uri;
+	GnomeVFSMonitorType  type;
+	VFolderInfo         *info;
 } MonitorHandle;
 
 struct _VFolderInfo {
@@ -230,13 +272,11 @@ struct _VFolderInfo {
 	char           *filename;
 	VFolderMonitor *filename_monitor;
 
-	/* deprecated */
-	char           *desktop_dir; /* directory with .directorys */
-	VFolderMonitor *desktop_dir_monitor;
-
 	/* dir where user changes to items are stored */
 	char           *write_dir; 
-	VFolderMonitor *write_dir_monitor;
+
+	/* deprecated */
+	char           *desktop_dir; /* directory with .directorys */
 
 	/* Consider item dirs and mergedirs writeable?? */
 	/* Monitoring on mergedirs?? */
@@ -277,21 +317,26 @@ VFolderInfo  *vfolder_info_locate           (const gchar *scheme);
 void          vfolder_info_set_dirty        (VFolderInfo *info);
 void          vfolder_info_write_user       (VFolderInfo *info);
 
-Folder       *vfolder_info_get_folder       (VFolderInfo *info, gchar *path);
-Folder       *vfolder_info_get_parent       (VFolderInfo *info, gchar *path);
-Entry        *vfolder_info_get_entry        (VFolderInfo *info, gchar *path);
+Folder       *vfolder_info_get_folder       (VFolderInfo *info, 
+					     const gchar *path);
+Folder       *vfolder_info_get_parent       (VFolderInfo *info, 
+					     const gchar *path);
+Entry        *vfolder_info_get_entry        (VFolderInfo *info, 
+					     const gchar *path);
 
-GSList       *vfolder_info_list_all_entries (VFolderInfo *info);
-Entry        *vfolder_info_lookup_entry     (VFolderInfo *info, gchar *name);
+const GSList *vfolder_info_list_all_entries (VFolderInfo *info);
+Entry        *vfolder_info_lookup_entry     (VFolderInfo *info, 
+					     const gchar *name);
 void          vfolder_info_add_entry        (VFolderInfo *info, Entry *entry);
 void          vfolder_info_remove_entry     (VFolderInfo *info, Entry *entry);
 
 void          vfolder_info_emit_change      (VFolderInfo              *info,
-					     char                     *path,
+					     const char               *path,
 					     GnomeVFSMonitorEventType  event_type);
 
 void          vfolder_info_add_monitor      (VFolderInfo           *info,
-					     gchar                 *path,
+					     GnomeVFSMonitorType    type,
+					     GnomeVFSURI           *path,
 					     GnomeVFSMethodHandle **handle);
 void          vfolder_info_cancel_monitor   (GnomeVFSMethodHandle  *handle);
 
