@@ -1,3 +1,25 @@
+2000-09-12  Seth Nickell  <seth@eazel.com>
+
+	* modules/Makefile.am:
+	add building of foobar-method.c
+	
+	* modules/default-modules.conf:
+	register foobar-method.c to handle "foobar:"
+	
+	* modules/foobar-method.c: (translate_uri),
+	(get_operation_configuration), (parse_results_text),
+	(load_config_file), (do_open), (do_create), (do_close), (do_read),
+	(do_write), (do_seek), (do_tell), (do_open_directory),
+	(do_close_directory), (do_read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_is_local), (do_make_directory),
+	(do_remove_directory), (do_move), (do_unlink), (do_check_same_fs),
+	(do_set_file_info), (do_truncate), (do_truncate_handle),
+	(do_find_directory), (do_create_symbolic_link), (vfs_module_init),
+	(vfs_module_shutdown):
+	Foobar is a gnome-vfs debug module that allows you to redirect
+	calls to another underlying method, and intercept and manipulate
+	the calls, adding delays or returning errors to the client.
+
 2000-09-11  Mathieu Lacage  <mathieu@eazel.com>
 
 	* test/test-uri.c: (main): remove the tests from compilation folowing
