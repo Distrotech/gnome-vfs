@@ -179,7 +179,7 @@ msgstr "GIMP sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:42
 msgid "GMC link"
-msgstr "GMC baºý"
+msgstr "GMC baðý"
 
 #: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNOME application details"
@@ -195,7 +195,7 @@ msgstr "GNU elektronik mæktub ismarýcý"
 
 #: data/mime/gnome-vfs.keys.in.h:46
 msgid "GTK configuration"
-msgstr "GTK qurºularý"
+msgstr "GTK qurðularý"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
@@ -327,7 +327,7 @@ msgstr "MP3 audio"
 
 #: data/mime/gnome-vfs.keys.in.h:79
 msgid "MP3 audio playlist"
-msgstr "MP3 audio çalºý siyahýsý"
+msgstr "MP3 audio çalðý siyahýsý"
 
 #: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
@@ -379,7 +379,7 @@ msgstr "Microsoft video"
 
 #: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
-msgstr "Nautilus baºý"
+msgstr "Nautilus baðý"
 
 #: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
@@ -748,7 +748,7 @@ msgstr "binar proqramý"
 
 #: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
-msgstr "blok avadanlýºý"
+msgstr "blok avadanlýðý"
 
 #: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
@@ -764,7 +764,7 @@ msgstr "tæqvim væ ya hadisæ sænædi"
 
 #: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
-msgstr "hærf avadanlýºý"
+msgstr "hærf avadanlýðý"
 
 #: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
@@ -936,7 +936,7 @@ msgstr "proqram lisenziya terminlæri"
 
 #: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
-msgstr "qaynaq kodu yamaºý"
+msgstr "qaynaq kodu yamaðý"
 
 #: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
@@ -944,7 +944,7 @@ msgstr "tærz sæhifæsi"
 
 #: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
-msgstr "yumþaq baº"
+msgstr "yumþaq bað"
 
 #: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
@@ -996,7 +996,7 @@ msgstr "wave audio"
 
 #: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
-msgstr "web qovluºu"
+msgstr "web qovluðu"
 
 #: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
@@ -1632,7 +1632,7 @@ msgstr "Nöqtæ ilæ baþlayan gizli fayllarý göstær"
 #~ msgstr "Bu MIME növünü sil ..."
 
 #~ msgid "Revert to System Defaults"
-#~ msgstr "Sistemin Æsas Qurºularýna Çevir"
+#~ msgstr "Sistemin Æsas Qurðularýna Çevir"
 
 #~ msgid "No Description"
 #~ msgstr "Ýzahatsýz"
@@ -1646,10 +1646,10 @@ msgstr "Nöqtæ ilæ baþlayan gizli fayllarý göstær"
 #~ "Mime configuration.\n"
 #~ "Revert to System Settings ?\n"
 #~ msgstr ""
-#~ "Sistemin æsas qurºularýna dæyiþiklik\n"
-#~ "sizin þæxsi MIME qurºularýnýn itirilmæsinæ\n"
+#~ "Sistemin æsas qurðularýna dæyiþiklik\n"
+#~ "sizin þæxsi MIME qurðularýnýn itirilmæsinæ\n"
 #~ "sæbæb olacaqdýr.\n"
-#~ "Sistem Qurºularýna Keçim mi?\n"
+#~ "Sistem Qurðularýna Keçim mi?\n"
 
 #~ msgid "none"
 #~ msgstr "yoxdur"
