@@ -24,8 +24,7 @@
 #ifndef GNOME_VFS_PRIVATE_TYPES_H
 #define GNOME_VFS_PRIVATE_TYPES_H
 
-#include <glib.h>
-
+#include "gnome-vfs-types.h"
 
 typedef struct GnomeVFSProgressCallbackState {
 

@@ -201,13 +201,6 @@ AC_SUBST(OAF_CFLAGS)
 
 GNOME_GTKDOC_CHECK
 
-AC_ARG_ENABLE(libefs,
-              [  --disable-libefs={yes|no}       Disable libefs access backend],
-              libefs_disabled="yes")
-AC_ARG_WITH(default-backend,
-	      [  --with-default-backend=(corba|pthread)		    ],
-	      default_backend="$withval")
-
 cflags_set=yes
 GNOME_COMPILE_WARNINGS
 VFS_CFLAGS="$warnCFLAGS $complCFLAGS"
@@ -322,15 +315,6 @@ dnl
 GNOME_VFS_DIR=`(cd $srcdir; pwd)`
 AC_SUBST(GNOME_VFS_DIR)
 
-dnl CORBA backend.
-VFSCORBA_LIBDIR='-L${libdir}'
-VFSCORBA_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
-VFSCORBA_INCLUDEDIR="$VFSCORBA_INCLUDEDIR $VFS_GNOMEUI_CFLAGS `orbit-config --cflags server`"
-VFSCORBA_LIBS="-lgnomevfs -lgnomevfs-corba $VFS_GNOMEUI_LIBS `orbit-config --libs server`"
-AC_SUBST(VFSCORBA_LIBDIR)
-AC_SUBST(VFSCORBA_INCLUDEDIR)
-AC_SUBST(VFSCORBA_LIBS)
-
 dnl Pthread backend.
 VFSPTHREAD_LIBDIR='-L${libdir}'
 VFSPTHREAD_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
@@ -339,12 +323,6 @@ VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread $VFS_GNOME_LIBS `$VFS_GLIB_CONFIG
 AC_SUBST(VFSPTHREAD_LIBDIR)
 AC_SUBST(VFSPTHREAD_INCLUDEDIR)
 AC_SUBST(VFSPTHREAD_LIBS)
-
-dnl Default backend (CORBA for now).
-if test -z "$default_backend"; then
-	default_backend="pthread"
-fi
-AC_DEFINE_UNQUOTED(GNOME_VFS_DEFAULT_BACKEND, "$default_backend")
 
 VFS_LIBS="-lgnomevfs `$VFS_GLIB_CONFIG --libs gthread gmodule`"
 VFS_LIBDIR='-L${libdir}'

@@ -7,7 +7,6 @@ endif
 SUBDIRS =					\
 	libgnomevfs				\
 	libgnomevfs-pthread			\
-	libgnomevfs-corba			\
 	idl					\
 	modules					\
 	data					\
@@ -23,7 +22,6 @@ EXTRA_DIST =					\
 	autogen.sh				\
 	gnome-vfs.spec				\
 	vfsConf.sh.in				\
-	vfscorbaConf.sh.in			\
 	vfspthreadConf.sh.in			\
 	gnome-vfs-2.0.pc.in			\
 	xml-i18n-extract.in			\
@@ -36,12 +34,11 @@ bin_SCRIPTS = $(top_builddir)/gnome-vfs-config
 confexecdir=$(libdir)
 confexec_DATA =					\
 	vfsConf.sh				\
-	vfscorbaConf.sh				\
 	vfspthreadConf.sh
 
 ## [The following is shamelessly copied from gnome-print.]
 
-## We create `vfsConf.sh', `vfscorbaConf.sh' and `vfspthreadConf.sh' here and
+## We create `vfsConf.sh', and `vfspthreadConf.sh' here and
 ## not from configure because we want to get the paths expanded correctly.
 ## Macros like srcdir are given the value NONE in configure if the user doesn't
 ## specify them (this is an autoconf feature, not a bug).
@@ -53,14 +50,6 @@ vfsConf.sh: vfsConf.sh.in Makefile
 	    -e 's?\@VFS_LIBS\@?$(VFS_LIBS)?g' \
 	      < $(srcdir)/vfsConf.sh.in > vfsConf.tmp \
 	  && mv vfsConf.tmp vfsConf.sh
-
-vfscorbaConf.sh: vfscorbaConf.sh.in Makefile
-	sed -e 's?\@VFSCORBA_LIBDIR\@?$(VFSCORBA_LIBDIR)?g' \
-	    -e 's?\@VFSCORBA_INCLUDEDIR\@?$(VFSCORBA_INCLUDEDIR)?g' \
-	    -e 's?\@VERSION\@?$(VERSION)?g' \
-	    -e 's?\@VFSCORBA_LIBS\@?$(VFSCORBA_LIBS)?g' \
-	      < $(srcdir)/vfscorbaConf.sh.in > vfscorbaConf.tmp \
-	  && mv vfscorbaConf.tmp vfscorbaConf.sh
 
 vfspthreadConf.sh: vfspthreadConf.sh.in Makefile
 	sed -e 's?\@VFSPTHREAD_LIBDIR\@?$(VFSPTHREAD_LIBDIR)?g' \

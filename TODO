@@ -1,7 +1,7 @@
 Things to complete
 ------------------
 
-Tasks and TODO items are being tracked at bugzilla@eazel.com.
+Tasks and TODO items are being tracked at bugzilla.eazel.com.
 
 
 
@@ -9,7 +9,7 @@ Tasks and TODO items are being tracked at bugzilla@eazel.com.
 
 
 -------------------------------------------------------------------
-old TODO items (some of them no longer rellevant):
+old TODO items (many of them no longer relevant):
 
 * take a look at avfs (http://www.inf.bme.hu/~mszeredi/avfs/), it is
 project similar to mc's vfs, and it is pretty well written.

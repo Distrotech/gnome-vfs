@@ -65,7 +65,7 @@ gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 
 	backend = getenv ("GNOME_VFS_BACKEND");
 	if (backend == NULL) {
-		backend = GNOME_VFS_DEFAULT_BACKEND;
+		backend = "pthread";
 	}
 
 	strcpy (backend_lower, backend);

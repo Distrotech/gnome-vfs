@@ -29,6 +29,10 @@
 #include <config.h>
 #endif
 
+#include "gnome-vfs-process.h"
+
+#include "gnome-vfs-private.h"
+#include "gnome-vfs.h"
 #include <errno.h>
 #include <glib.h>
 #include <signal.h>
@@ -36,9 +40,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 
 
 /* A launched process.  */

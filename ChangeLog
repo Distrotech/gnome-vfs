@@ -1,3 +1,119 @@
+2001-04-13  Darin Adler  <darin@eazel.com>
+
+	* acconfig.h:
+	* configure.in:
+	Eliminate --disable-libefs, --with-default-backend, and
+	GNOME_VFS_DEFAULT_BACKEND.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (init_progress): Initialize the
+	file index to 0, since we now increment before each item.
+	(at_end): Helper function.
+	(call_progress_often_internal): Shared code for the two "often"
+	versions of the call_progress function. The only change is to
+	always send out progress once at the end.
+	(call_progress_often),	(call_progress_with_uris_often): Use new
+	function to share most of the code.
+	(remove_file): Bump the file index before dealing with the file.
+	(remove_directory): Bump the file index before dealing with the
+	directory.
+	(copy_file): Don't bump the file index, because that's now the
+	caller's responsibility.
+	(copy_directory): Don't bump the file index for the directory
+	itself, because that's now the caller's responsibility, but do
+	bump the file index before calling copy_file, copy_directory,
+	or copy_symlink.
+	(copy_items): Bump the file index before calling copy_file,
+	copy_directory, or copy_symlink.
+	(gnome_vfs_xfer_uri_internal): Reset the file index to 0, since we
+	now increment before each item.
+	
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-mime.c: Removed gnome_uri functions that
+	were in here without gnome_vfs-prefixed names. No one was using
+	these versions.
+	
+	* Makefile.am:
+	* libgnomevfs-corba/.cvsignore:
+	* libgnomevfs-corba/Makefile.am:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	* libgnomevfs-corba/gnome-vfs-corba.c:
+	* libgnomevfs-corba/gnome-vfs-corba.h:
+	* libgnomevfs-corba/gnome-vfs-slave-launch.c:
+	* libgnomevfs-corba/gnome-vfs-slave-launch.h:
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c:
+	* libgnomevfs-corba/gnome-vfs-slave-notify.h:
+	* libgnomevfs-corba/gnome-vfs-slave-process.c:
+	* libgnomevfs-corba/gnome-vfs-slave-process.h:
+	* libgnomevfs-corba/gnome-vfs-slave.c:
+	Remove CORBA back end.
+	
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_loadinit):
+	Hard-code "pthread" instead of using GNOME_VFS_DEFAULT_BACKEND.
+	Soon we might get rid of the separate backend completely.
+	
+	* test/.cvsignore:
+	* test/Makefile.am:
+	Remove special cases for tests that used to run on both back ends,
+	and make them build in a normal simple way instead.
+	
+	* mime-type-capplet/.cvsignore:
+	* mime-type-capplet/Makefile.am:
+	* mime-type-capplet/file-types-capplet.desktop.in:
+	* mime-type-capplet/libuuid/.cvsignore:
+	* mime-type-capplet/libuuid/Makefile.am:
+	* mime-type-capplet/libuuid/clear.c:
+	* mime-type-capplet/libuuid/compare.c:
+	* mime-type-capplet/libuuid/copy.c:
+	* mime-type-capplet/libuuid/gen_uuid.c:
+	* mime-type-capplet/libuuid/gen_uuid_nt.c:
+	* mime-type-capplet/libuuid/isnull.c:
+	* mime-type-capplet/libuuid/pack.c:
+	* mime-type-capplet/libuuid/parse.c:
+	* mime-type-capplet/libuuid/tst_uuid.c:
+	* mime-type-capplet/libuuid/unpack.c:
+	* mime-type-capplet/libuuid/unparse.c:
+	* mime-type-capplet/libuuid/uuid.h:
+	* mime-type-capplet/libuuid/uuidP.h:
+	* mime-type-capplet/libuuid/uuid_time.c:
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.h:
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	* mime-type-capplet/nautilus-mime-type-icon-entry.h:
+	Remove this code. It's already been moved to the control center
+	and we don't need to keep two copies of it.
+	
+	* test/gnome-file-selection/.cvsignore:
+	* test/gnome-file-selection/Makefile.am:
+	* test/gnome-file-selection/dir-close.xpm:
+	* test/gnome-file-selection/dir-open.xpm:
+	* test/gnome-file-selection/gicon.c:
+	* test/gnome-file-selection/gicon.h:
+	* test/gnome-file-selection/gnome-file-selection-history.c:
+	* test/gnome-file-selection/gnome-file-selection-history.h:
+	* test/gnome-file-selection/gnome-file-selection.c:
+	* test/gnome-file-selection/gnome-file-selection.h:
+	* test/gnome-file-selection/listing-iconic.xpm:
+	* test/gnome-file-selection/main.c:
+	Remove the file selector (which was not compiled). This is now
+	being developed elsewhere.
+
+	* po/POTFILES.in:
+	Remove file names from CORBA back end and file selector.
+	
+	* libgnomevfs/gnome-vfs-private-types.h: Fix includes.
+	* libgnomevfs/gnome-vfs-private-utils.c: Fix includes.
+	* libgnomevfs/gnome-vfs-private-utils.h: Fix includes.
+	* libgnomevfs/gnome-vfs-process.c: Fix includes.
+	
+	* NEWS: Remove long-obsolete news.
+	
+	* README: Update.
+	* TODO: Tweak words a bit.
+	
+	* libgnomevfs/Makefile.am: Tweaks.
+	
 2001-04-12  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
