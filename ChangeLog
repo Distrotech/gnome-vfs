@@ -1,3 +1,7 @@
+2002-09-13  Ghee Teo <ghee.teo@sun.com>
+	* Fixes #92132 in modules/http-method.c which leaks file descriptor
+	  on a bad page, error 405.
+
 2002-09-09  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_destroy_notify_result) :
