@@ -1,1 +1,5 @@
+gob/examples/gtk-button-count.gob
+gob/examples/my-person.gob
+gob/src/parse.y
+gob/src/test.gob
 modules/efs-method.c
