@@ -1,6 +1,12 @@
 2003-05-21  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* Makefile.am
+	* configure.in: removed the 'programs' subdir from the build 
+	  since it's not needed in this branch
+
+2003-05-21  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* Makefile.am
 	* daemon/Makefile.am
 	* libgnomevfs/Makefile.am
 	* modules/ftp-method.c

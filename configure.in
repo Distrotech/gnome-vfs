@@ -659,7 +659,6 @@ schemas/Makefile
 devel-docs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in
-programs/Makefile
 test/Makefile
 test/vfs-run
 doc/Makefile
