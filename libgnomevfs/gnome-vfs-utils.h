@@ -32,4 +32,17 @@
 
 gchar*          gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes);
 
+
+typedef enum _GnomeVFSURIEncoding {
+ GNOME_VFS_URI_ENCODING_XALPHAS  = 0x1,  /* Escape all unsafe characters   */
+ GNOME_VFS_URI_ENCODING_XPALPHAS = 0x2,  /* As URL_XALPHAS but allows '+'  */
+ GNOME_VFS_URI_ENCODING_PATH     = 0x4,  /* As URL_XALPHAS but allows '/'  */
+ GNOME_VFS_URI_ENCODING_DOSFILE  = 0x8   /* As URL_URLPATH but allows  ':' */
+} GnomeVFSHTURIEncoding;
+
+gchar  *gnome_vfs_escape_string        (const gchar *str, 
+					GnomeVFSHTURIEncoding encoding);
+gchar  *gnome_vfs_unescape_string      (gchar       *str);
+
+
 #endif /* _GNOME_VFS_UTILS_H */

@@ -59,3 +59,150 @@ gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes)
 		}
 	}
 }
+
+/*  Below modified from libwww HTEscape.c */
+
+#define HEX_ESCAPE '%'
+#define ACCEPTABLE(a) ( a>=32 && a<128 && ((gnome_vfs_is_acceptable[a-32]) & mask))
+
+/* Macros for converting characters. */
+
+#ifndef TOASCII
+ #define TOASCII(c) (c)
+ #define FROMASCII(c) (c)
+#endif
+
+
+/*
+ *  Not BOTH static AND const at the same time in gcc :-(, Henrik 18/03-94
+ *  code gen error in gcc when making random access to static const table(!!)
+ */
+
+/*
+ * Bit 0  xalpha  -- see HTFile.h
+ * Bit 1  xpalpha  -- as xalpha but with plus.
+ * Bit 2 ... path  -- as xpalpha but with /
+ */
+
+guchar gnome_vfs_is_acceptable[96] =
+{/* 0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xA 0xB 0xC 0xD 0xE 0xF */
+    0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xF,0xE,0x0,0xF,0xF,0xC, /* 2x !"#$%&'()*+,-./   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x8,0x0,0x0,0x0,0x0,0x0, /* 3x 0123456789:;<=>?   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 4x @ABCDEFGHIJKLMNO   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0x0,0xF, /* 5X PQRSTUVWXYZ[\]^_   */
+    0x0,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 6x `abcdefghijklmno   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0x0,0x0  /* 7X pqrstuvwxyz{\}~DEL */
+};
+
+gchar *hex = "0123456789ABCDEF";
+
+/* ------------------------------------------------------------------------- */
+
+/*  Escape undesirable characters using %
+ *  -------------------------------------
+ *
+ * This function takes a pointer to a string in which
+ * some characters may be unacceptable unescaped.
+ * It returns a string which has these characters
+ * represented by a '%' character followed by two hex digits.
+ *
+ * In the tradition of being conservative in what you do and liberal
+ * in what you accept, we encode some characters which in fact are
+ * allowed in URLs unencoded -- so DON'T use the table below for
+ * parsing!
+ *
+ * Unlike gnome_vfs_ht_escape(), this routine returns a g_malloced string.
+ *
+ */
+
+gchar *
+gnome_vfs_escape_string (const gchar *str, 
+			 GnomeVFSHTURIEncoding mask)
+{
+    const gchar * p;
+    gchar * q;
+    gchar * result;
+    gint unacceptable = 0;
+
+    if (!str)
+     return NULL;
+
+    for (p=str; *p; p++)
+	    if (!ACCEPTABLE ((unsigned char) TOASCII (*p)))
+		    unacceptable++;
+
+    if ((result = (char  *) g_malloc (p-str + unacceptable+ unacceptable +1)) == NULL)
+	    g_assert (result == NULL);
+
+    for (q=result, p=str; *p; p++){
+	    unsigned char a = TOASCII (*p);
+
+	    if (!ACCEPTABLE (a)) {
+		    *q++ = HEX_ESCAPE; /* Means hex commming */
+		    *q++ = hex[a >> 4];
+		    *q++ = hex[a & 15];
+	    }
+	    else *q++ = *p;
+    }
+
+    *q++ = 0;   /* Terminate */
+    
+    return result;
+}
+
+
+static gchar 
+gnome_vfs_ht_ascii_hex_to_char (gchar c)
+{
+    return  c >= '0' && c <= '9' ?  c - '0'
+	    : c >= 'A' && c <= 'F'? c - 'A' + 10
+	    : c - 'a' + 10; /* accept small letters just in case */
+}
+
+/*  Decode %xx escaped characters
+**  -----------------------------
+**
+** This function takes a pointer to a string in which some
+** characters may have been encoded in %xy form, where xy is
+** the acsii hex code for character 16x+y.
+** The string is converted in place, as it will never grow.
+*/
+
+gchar *
+gnome_vfs_unescape_string (gchar * str)
+{
+	gchar * p = str;
+	gchar * q = str;
+	
+	if (!str) {           /* Just for safety ;-) */
+		g_warning ("gnome_vfs_unescape_string (): Called with NULL argument'.");
+		return NULL;
+	}
+	
+	while(*p) {
+		if (*p == HEX_ESCAPE) {
+			p++;
+			
+			if (*p)
+				*q = gnome_vfs_ht_ascii_hex_to_char(*p++) * 16;
+#if 1
+			/* Suggestion from Markku Savela */
+			if (*p)
+				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p)), ++p;
+			
+			*q++;
+#else
+			if (*p)
+				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p));
+			
+			*p++, q++;
+#endif
+		} else {
+			*q++ = *p++;
+		}
+	}
+	
+	*q++ = 0;
+	return str;
+}
+
