@@ -1,3 +1,13 @@
+1999-12-16  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c,
+	libgnomevfs-corba/gnome-vfs-slave-process.c : Avoid leaving around
+	gnome-vfs-slave processes.
+
+	* libgnomevfs/gnome-vfs-method.c (gnome_vfs_method_get): Avoid
+	reinitializing the method table (nautilus was causing this to
+	happen).
+	
 1999-12-16  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs-corba/gnome-vfs-slave-notify.c

@@ -82,10 +82,11 @@ gnome_vfs_slave_process_new (void)
 		gnome_vfs_slave_process_destroy (new);
 		return NULL;
 	}
-
-	/* We don't use this for now.  */
-	gnome_vfs_process_free (process);
-
+	
+	/* We don't free process or keep a reference, but this is _not_
+	   a memory leak, it will get gnome_vfs_process_free()d when
+	   the associated child process dies. */
+	
 	return new;
 }
 
@@ -162,7 +163,7 @@ gnome_vfs_slave_process_destroy (GnomeVFSSlaveProcess *slave)
 
 			CORBA_exception_free (&ev);
 			CORBA_free (ior);
-		}
+		} 
 	}
 }
 

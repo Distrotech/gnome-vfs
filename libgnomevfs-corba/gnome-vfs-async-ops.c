@@ -562,7 +562,20 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 GnomeVFSResult
 gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
+	GnomeVFSSlaveProcess *slave;
+
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	slave = (GnomeVFSSlaveProcess *) handle;
+
+	if (slave->ev._major != CORBA_NO_EXCEPTION)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
+
+	gnome_vfs_slave_process_destroy (slave);
+	
+	// return GNOME_VFS_OK;
 
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }

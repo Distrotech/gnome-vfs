@@ -42,6 +42,9 @@ struct _MethodElement {
 };
 typedef struct _MethodElement MethodElement;
 
+static gboolean method_already_initialized = FALSE;
+G_LOCK_DEFINE_STATIC (method_already_initialized);
+
 static GHashTable *method_hash = NULL;
 G_LOCK_DEFINE_STATIC (method_hash);
 
@@ -131,10 +134,20 @@ init_path_list (void)
 gboolean
 gnome_vfs_method_init (void)
 {
+	G_LOCK (method_already_initialized);
+
+	if (method_already_initialized) {
+		G_UNLOCK (method_already_initialized);
+		return TRUE;
+	}
+
 	if (! init_hash_table ())
 		return FALSE;
 	if (! init_path_list ())
 		return FALSE;
+
+	method_already_initialized = TRUE;
+	G_UNLOCK (method_already_initialized);
 
 	return TRUE;
 }
