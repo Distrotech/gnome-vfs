@@ -1,3 +1,14 @@
+2001-02-20  Gene Z. Ragan  <gzr@eazel.com>
+	
+	Fix bug 6384, Nautilus program chooser uses
+	"nautilus-mime-type-capplet" to launch capplet
+
+	* mime-type-capplet/Makefile.am:
+	* mime-type-capplet/files-types-capplet.desktop:
+	* mime-type-capplet/nautilus-mime-type.desktop:
+	Rename the capplet binary and change the name and
+	contents of the .desktop file to reflect the new name.
+
 2001-02-19  Don Melton  <don@eazel.com>
 
 	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
