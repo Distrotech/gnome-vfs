@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-23 15:08+0200\n"
-"PO-Revision-Date: 2004-07-23 19:32+0200\n"
+"POT-Creation-Date: 2004-07-25 04:11+0200\n"
+"PO-Revision-Date: 2004-07-25 15:18+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,8 @@ msgstr "Nemohu číst ze souboru '%s': %s"
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "položky desktop obsahují řádek '%s', což není položka, skupina ani poznámka"
+msgstr ""
+"položky desktop obsahují řádek '%s', což není položka, skupina ani poznámka"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
@@ -82,13 +83,16 @@ msgstr "položky desktop nemají klíč '%s'"
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze interpretovat."
+msgstr ""
+"položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze "
+"interpretovat."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
+msgstr ""
+"položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
@@ -430,7 +434,8 @@ msgstr "Operace zastavena"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Zastaralá funkce. Změny databáze MIME uživatelem již nejsou podporovány."
+msgstr ""
+"Zastaralá funkce. Změny databáze MIME uživatelem již nejsou podporovány."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -980,149 +985,192 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Argument exec, který používat pro implicitní aplikaci terminálu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "Obsluha HRL H323"
+msgid "Run the command in a terminal"
+msgstr "Spustit příkaz v terminálu"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "Obsluha URL HTTP"
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"aim\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "Obsluha URL HTTPS"
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"callto\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Obsluhovat URL H323"
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Obsluhovat URL HTTP"
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"info\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Obsluhovat URL HTTPS"
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"mailto\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle aim URLs"
-msgstr "Obsluhovat URL aim"
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"man\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Obsluhovat URL callto"
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"trash\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Obsluhovat URL ghelp"
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL H323, je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Obsluhovat URL info"
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL HTTP, je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Obsluhovat URL mailto"
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL HTTPS, je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
-msgstr "Obsluhovat URL man"
+msgid "The handler for \"aim\" URLs"
+msgstr "Obsluha pro URL \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Obsluhovat URL trash"
+msgid "The handler for \"callto\" URLs"
+msgstr "Obsluha pro URL \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr "Spustit program v terminálu"
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Obsluha pro URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL H323."
+msgid "The handler for \"info\" URLs"
+msgstr "Obsluha pro URL \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL HTTP."
+msgid "The handler for \"mailto\" URLs"
+msgstr "Obsluha pro URL \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL HTTPS."
+msgid "The handler for \"man\" URLs"
+msgstr "Obsluha pro URL \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL aim."
+msgid "The handler for \"trash\" URLs"
+msgstr "Obsluha pro URL \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL callto."
+msgid "The handler for H323 URLs"
+msgstr "Obsluha pro URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL ghelp."
+msgid "The handler for HTTP URLs"
+msgstr "Obsluha pro URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL info."
+msgid "The handler for HTTPS URLs"
+msgstr "Obsluha pro URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL mailto."
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL man."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"Nastavte na true, aby program určený v \"command\" obsluhoval URL trash."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
-"True, pokud by měl být program pro obsluhu tohoto URL spouštěn v terminálu."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "aim URL handler"
-msgstr "obsluha URL aim"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "obsluha URL callto"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "obsluha URL ghelp"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "obsluha URL info"
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "obsluha URL mailto"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "obsluha URL man"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "obsluha URL trash"
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr "True, pokud by měl být program používaný pro obsluhu tohoto typu URL spouštěn v terminálu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"aim\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"callto\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"info\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"mailto\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+msgid "Whether the specified command should handle H323 URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
