@@ -1,3 +1,9 @@
+2002-03-08  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+
+	Update applications vfolder for capplet movement too.
+	
 2002-03-05  jacob berkman  <jacob@ximian.com>
 
 	* modules/preferences.vfolder-info.in: the capplets apparently

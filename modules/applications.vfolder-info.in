@@ -4,7 +4,7 @@
   <MergeDir>@datadir@/gnome/apps/</MergeDir>
 
   <!-- Control Center Merge Directories -->
-  <MergeDir>@datadir@/control-center-2/capplets/</MergeDir>
+  <MergeDir>@datadir@/control-center-2.0/capplets/</MergeDir>
   <MergeDir>@datadir@/gnome/capplets/</MergeDir>
 
   <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
