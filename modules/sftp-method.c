@@ -2566,9 +2566,9 @@ do_read_directory (GnomeVFSMethod       *method,
 			while (handle->info_write_ptr + count > handle->info_alloc) {
 				handle->info_alloc *= 2;
 				handle->info = g_renew (GnomeVFSFileInfo, handle->info, handle->info_alloc);
-				bzero (&(handle->info[handle->info_write_ptr]),
-				       sizeof (GnomeVFSFileInfo) *
-				       (handle->info_alloc - handle->info_write_ptr));
+				memset (&(handle->info[handle->info_write_ptr]), 0,
+					sizeof (GnomeVFSFileInfo) *
+					(handle->info_alloc - handle->info_write_ptr));
 			}
 		}
 
@@ -2646,7 +2646,7 @@ do_make_directory (GnomeVFSMethod  *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	iobuf_send_string_request_with_file_info (conn->out_fd, id, SSH2_FXP_MKDIR,
 						  path, strlen (path), &info,
 						  GNOME_VFS_SET_FILE_INFO_NONE);

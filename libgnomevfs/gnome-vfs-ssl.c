@@ -413,7 +413,7 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    GnomeVFSFileSize *bytes_read,
 		    GnomeVFSCancellation *cancellation)
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	int ret, error;
 	GnomeVFSResult res;
 	
@@ -490,7 +490,7 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     GnomeVFSFileSize *bytes_written,
 		     GnomeVFSCancellation *cancellation)
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	int ret, error;
 	GnomeVFSResult res;
 	
@@ -553,7 +553,7 @@ void
 gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 		       GnomeVFSCancellation *cancellation) 
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	int ret, error;
 	GnomeVFSResult res;
 
@@ -613,7 +613,7 @@ gnome_vfs_ssl_set_timeout (GnomeVFSSSL *ssl,
 			   GTimeVal *timeout,
 			   GnomeVFSCancellation *cancellation)
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	/* reset a timeout */
 	if (timeout == NULL) {
 		if (ssl->private->timeout != NULL) {

@@ -1,3 +1,9 @@
+2004-08-04  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-ssl.c: Changed #if to #ifdef. This should
+	fix bug #149205.
+	* modules/sftp-method.c: Use memset instead of bzero, fixes #149206.
+	
 2004-08-04  Malcolm Tredinnick <malcolm@commsecure.com.au>
 
 	* libgnomevfs/gnome-vfs-dns-sd.h: Remove a trailing comma from
