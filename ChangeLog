@@ -1,3 +1,9 @@
+2004-12-15  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/sftp-method.c (do_read):
+	Don't break if we get an eof and there are outstanding
+	requests.
+
 2004-12-14  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c: fix build when HAL is

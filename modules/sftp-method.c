@@ -1991,6 +1991,8 @@ do_read (GnomeVFSMethod       *method,
 	guchar *curr_ptr;
 	gboolean out_of_order;
 	GnomeVFSResult result;
+	gboolean got_eof;
+	guint outstanding;
 
 	struct ReadRequest 
 	{
@@ -2003,6 +2005,8 @@ do_read (GnomeVFSMethod       *method,
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
 
+	got_eof = FALSE;
+	
 	handle = SFTP_OPEN_HANDLE (method_handle);
 	*bytes_read = 0;
 	num_req = 0;
@@ -2010,6 +2014,7 @@ do_read (GnomeVFSMethod       *method,
 	req_svc_ptr = 0;
 	curr_ptr = buffer_in;
 	buffer = buffer_in;
+	outstanding = 0;
 
 	read_req = g_new0 (struct ReadRequest, max_req);
 
@@ -2017,7 +2022,8 @@ do_read (GnomeVFSMethod       *method,
 
 	sftp_connection_lock (handle->connection);
 
-	while (*bytes_read < num_bytes) {
+	while ((*bytes_read < num_bytes) ||
+	       (outstanding > 0)) {
 		while (num_req < max_req && curr_ptr < buffer + num_bytes) {
 			read_req[req_ptr].id = sftp_connection_get_id (handle->connection);
 			read_req[req_ptr].req_len =
@@ -2029,6 +2035,7 @@ do_read (GnomeVFSMethod       *method,
 				      __FUNCTION__, req_ptr, read_req[req_ptr].id,
 				      read_req[req_ptr].req_len, read_req[req_ptr].ptr));
 
+			outstanding++;
 			iobuf_send_read_request (handle->connection->out_fd,
 						 read_req[req_ptr].id,
 						 handle->offset + (read_req[req_ptr].ptr - buffer),
@@ -2044,6 +2051,7 @@ do_read (GnomeVFSMethod       *method,
 
 		buffer_clear (&msg);
 		result = buffer_recv (&msg, handle->connection->in_fd);
+		outstanding--;
 
 		if (result != GNOME_VFS_OK) {
 			sftp_connection_unlock (handle->connection);
@@ -2082,15 +2090,20 @@ do_read (GnomeVFSMethod       *method,
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: req_svc = %d, req_ptr = %d",
 				      __FUNCTION__, req_svc, req_ptr));
 
-			if (status != SSH2_FX_EOF || read_req[req_svc].ptr == buffer) {
+			if (status != SSH2_FX_EOF) {
+				DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: status return %d",
+					      __FUNCTION__, sftp_status_to_vfs_result (status)));
 				buffer_free (&msg);
 				g_free (read_req);
 				sftp_connection_unlock (handle->connection);
 				return sftp_status_to_vfs_result (status);
 			}
 
+			if (read_req[req_svc].ptr == buffer)
+				got_eof = TRUE;
+			
 			/* We hit an EOF, so make sure we don't try any more reads after this */
-			num_bytes = read_req[req_svc].ptr - buffer;
+			num_bytes = MIN (num_bytes, read_req[req_svc].ptr - buffer);
 
 			/* Kill this request */
 			read_req[req_svc].id = 0;
@@ -2109,6 +2122,7 @@ do_read (GnomeVFSMethod       *method,
 				read_req[req_svc].req_len -= len;
 				read_req[req_svc].ptr += len;
 
+				outstanding++;
 				iobuf_send_read_request
 					(handle->connection->out_fd,
 					 read_req[req_svc].id,
@@ -2140,6 +2154,9 @@ do_read (GnomeVFSMethod       *method,
 
 	sftp_connection_unlock (handle->connection);
 
+	if (got_eof)
+		return GNOME_VFS_ERROR_EOF;
+	
 	return GNOME_VFS_OK;
 }
 
