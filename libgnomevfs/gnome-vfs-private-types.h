@@ -27,9 +27,11 @@
 
 /* Opaque types.  */
 
+typedef struct _GnomeVFSContext GnomeVFSContext;
 typedef struct _GnomeVFSCancellation GnomeVFSCancellation;
 typedef struct _GnomeVFSIOBuf GnomeVFSIOBuf;
 typedef struct _GnomeVFSInetConnection GnomeVFSInetConnection;
+typedef struct _GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
 typedef gpointer GnomeVFSMethodHandle;
 
 
@@ -40,7 +42,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodOpenFunc)
 			       	 	**method_handle_return,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCreateFunc)
 					(GnomeVFSMethodHandle
@@ -49,31 +51,31 @@ typedef GnomeVFSResult (* GnomeVFSMethodCreateFunc)
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCloseFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodReadFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read_return,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodWriteFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_written_return,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodSeekFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition  whence,
 					 GnomeVFSFileOffset    offset,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					(GnomeVFSMethodHandle *method_handle,
@@ -82,7 +84,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileSize where,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					(GnomeVFSMethodHandle **method_handle,
@@ -90,30 +92,30 @@ typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
 					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCloseDirectoryFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodReadDirectoryFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFunc)
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 					(const GnomeVFSURI *uri);
@@ -121,33 +123,33 @@ typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 typedef GnomeVFSResult (* GnomeVFSMethodMakeDirectoryFunc)
 					(GnomeVFSURI *uri,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodRemoveDirectoryFunc)
 					(GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodMoveFunc)
 					(GnomeVFSURI *old_uri,
 					 GnomeVFSURI *new_uri,
 					 gboolean force_replace,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodUnlinkFunc)
                                         (GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCheckSameFSFunc)
 					(GnomeVFSURI *a,
 					 GnomeVFSURI *b,
 					 gboolean *same_fs_return,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodSetFileInfo)
 					(GnomeVFSURI *a,
 					 const GnomeVFSFileInfo *info,
 					 GnomeVFSSetFileInfoMask mask,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 
 /* Structure defining an access method.	 This is also defined as an

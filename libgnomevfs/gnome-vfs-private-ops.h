@@ -28,7 +28,7 @@ GnomeVFSResult gnome_vfs_open_uri_cancellable
 					(GnomeVFSHandle **handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode open_mode,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_create_uri_cancellable
 					(GnomeVFSHandle **handle,
@@ -36,76 +36,76 @@ GnomeVFSResult gnome_vfs_create_uri_cancellable
 					 GnomeVFSOpenMode open_mode,
 					 gboolean exclusive,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_close_cancellable
 					(GnomeVFSHandle *handle,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_read_cancellable
 					(GnomeVFSHandle *handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize bytes,
 					 GnomeVFSFileSize *bytes_written,
-					 GnomeVFSCancellation *cancellable);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_write_cancellable
 					(GnomeVFSHandle *handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize bytes,
 					 GnomeVFSFileSize *bytes_written,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_seek_cancellable
 					(GnomeVFSHandle *handle,
 					 GnomeVFSSeekPosition whence,
 					 GnomeVFSFileOffset offset,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_get_file_info_uri_cancellable
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *info,
 					 GnomeVFSFileInfoOptions options,
 					 gchar *meta_keys[],
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_get_file_info_from_handle_cancellable
 					(GnomeVFSHandle *handle,
 					 GnomeVFSFileInfo *info,
 					 GnomeVFSFileInfoOptions options,
 					 gchar *meta_keys[],
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 
 GnomeVFSResult gnome_vfs_make_directory_for_uri_cancellable
 					(GnomeVFSURI *uri,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_remove_directory_from_uri_cancellable
 					(GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_unlink_from_uri_cancellable
 					(GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_move_uri_cancellable
 					(GnomeVFSURI *old,
 					 GnomeVFSURI *new,
 					 gboolean force_replace,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_check_same_fs_uris_cancellable
 					 (GnomeVFSURI *a,
 					  GnomeVFSURI *b,
 					  gboolean *same_fs_return,
-					  GnomeVFSCancellation *cancellation);
+					  GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_set_file_info_cancellable
 					 (GnomeVFSURI *a,
 					  const GnomeVFSFileInfo *info,
 					  GnomeVFSSetFileInfoMask mask,
-					  GnomeVFSCancellation *cancellation);
+					  GnomeVFSContext *context);
 
 #endif /* _GNOME_VFS_PRIVATE_OPS_H */

@@ -574,3 +574,32 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 
 	return GNOME_VFS_OK;
 }
+
+guint
+gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
+				     GnomeVFSStatusCallback callback,
+				     gpointer user_data)
+{
+	GnomeVFSJob *job;
+
+	g_return_val_if_fail (handle != NULL, 0);
+	g_return_val_if_fail (callback != NULL, 0);
+
+	job = (GnomeVFSJob *) handle;
+
+	return gnome_vfs_message_callbacks_add(gnome_vfs_context_get_message_callbacks(job->context), callback, user_data);
+}
+
+void
+gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
+					guint callback_id)
+{
+	GnomeVFSJob *job;
+
+	g_return_if_fail (handle != NULL);
+	g_return_if_fail (callback_id > 0);
+
+	job = (GnomeVFSJob *) handle;
+
+	gnome_vfs_message_callbacks_remove(gnome_vfs_context_get_message_callbacks(job->context), callback_id);
+}

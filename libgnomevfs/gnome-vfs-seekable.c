@@ -37,34 +37,34 @@
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_written,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
 					 GnomeVFSFileOffset offset,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileSize where,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 /* Our method_handle */
 typedef struct  {
@@ -235,7 +235,7 @@ static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	g_warning ("FIXME: Unhandled re-open");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -247,7 +247,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
 	   guint perm,
-	   GnomeVFSCancellation *cancellation)
+	   GnomeVFSContext *context)
 {
 	g_warning ("FIXME: Unhandled re-create");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -255,7 +255,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 do_close (GnomeVFSMethodHandle *method_handle,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
@@ -292,7 +292,7 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -305,7 +305,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -317,7 +317,7 @@ static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset offset,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -338,7 +338,7 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
 	     GnomeVFSFileSize where,
-	     GnomeVFSCancellation *cancellation)
+	     GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);

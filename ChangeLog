@@ -1,3 +1,97 @@
+1999-12-07  Havoc Pennington  <hp@pobox.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_read): handle
+	cancellation during the read, and then check for it before we
+	write, and after each write.
+
+	* libgnomevfs/gnome-vfs-iobuf.c (gnome_vfs_iobuf_read): Return
+	immediately if the number of bytes to read is 0.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_read):
+	Rewrite this to use nonblocking writes; allows us to 
+	keep reading while the main thread is blocked.
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_size_to_string): fix
+	operator precedence problem
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_write): Take
+	a context argument, and then use gnome_vfs_write_cancellable() so
+	status messages can trickle up. The messages are coming from the
+	slave thread; so the status message callback setup is supposed to
+	be thread safe. The one in Explorer is indeed.
+	(serve_channel_read): Parallel change, add the context object.
+
+1999-12-06  Havoc Pennington  <hp@pobox.com>
+
+	* libgnomevfs-corba/gnome-vfs-slave-process.c
+	(gnome_vfs_slave_process_new): Creates a context object.
+
+	* libgnomevfs/gnome-vfs-async-ops.h
+	(gnome_vfs_async_remove_status_callback): declare status callback
+	add/remove functions.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_add_status_callback): implement status callback ops
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(gnome_vfs_async_remove_status_callback): implement status
+	callback ops
+
+	* libgnomevfs/gnome-vfs-messages.c: Add ID numbers for callback
+	removal
+
+	* modules/http-method.c (create_handle): Emit message about # of
+	bytes to retrieve.
+	(do_close): emit message saying "closing"
+	(do_read): emit message about bytes read.
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_size_to_string): New
+	function, returns a string representing a size in bytes
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: replace cancellation with context
+
+	* modules/gzip-method.c: replace cancellation with context
+	
+	* modules/bzip2-method.c: replace cancellation with context
+	
+	* modules/ftp-method.c: replace cancellation with context
+
+	* modules/http-method.c: replace cancellation with context 
+
+	* modules/file-method.c: replace cancellation with context 
+
+	* modules/extfs-method.c: replace cancellation with context
+
+1999-12-03  Havoc Pennington  <hp@pobox.com>
+
+	* libgnomevfs/gnome-vfs-private-ops.h: replace cancellation with
+	context
+
+	* libgnomevfs/gnome-vfs-handle.h: replace cancellation with
+	context
+
+	* libgnomevfs/gnome-vfs-private-ops.c: replace cancellation with
+	context
+
+	* libgnomevfs/gnome-vfs-seekable.c: replace cancellation with
+	context
+
+	* libgnomevfs/gnome-vfs-directory.c: Replace cancellation with
+	context
+
+	* libgnomevfs/gnome-vfs-private.h: add gnome-vfs-context.h,
+	include <config.h> too
+
+	* libgnomevfs/gnome-vfs.h: add gnome-vfs-messages.h
+
+	* libgnomevfs/gnome-vfs-private-types.h: typedef the
+	GnomeVFSContext type; change GnomeVFSCancellation to
+	GnomeVFSContext for all functions in the GnomeVFSMethod vtable
+
+	* libgnomevfs/gnome-vfs-context.c,
+	libgnomevfs/gnome-vfs-context.h: Proposed API for a context object
+	to be passed to VFS module functions.
+
 1999-12-04  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c

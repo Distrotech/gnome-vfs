@@ -431,7 +431,7 @@ create_handle (HttpFileHandle **handle_return,
 	       GnomeVFSURI *uri,
 	       GnomeVFSInetConnection *connection,
 	       GnomeVFSIOBuf *iobuf,
-	       GnomeVFSCancellation *cancellation)
+	       GnomeVFSContext *context)
 {
 	GString *header_string;
 	GnomeVFSResult result;
@@ -476,6 +476,21 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 
 	g_string_free (header_string, TRUE);
+
+	if ((*handle_return)->size_is_known) {
+		gchar* msg;
+		gchar* sz;
+
+		sz = gnome_vfs_size_to_string ((*handle_return)->size);
+
+		msg = g_strdup_printf(_("%s to retrieve"), sz);
+
+		gnome_vfs_context_emit_message(context, msg);
+		
+		g_free(sz);
+		g_free(msg);
+	}
+	
 	return GNOME_VFS_OK;
 
  error:
@@ -489,7 +504,7 @@ static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
 	      const gchar *method,
-	      GnomeVFSCancellation *cancellation)
+	      GnomeVFSContext *context)
 {
 	GnomeVFSInetConnection *connection;
 	GnomeVFSIOBuf *iobuf;
@@ -511,7 +526,7 @@ make_request (HttpFileHandle **handle_return,
 	result = gnome_vfs_inet_connection_create (&connection,
 						   toplevel_uri->host_name,
 						   host_port,
-						   cancellation);
+						   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -552,7 +567,7 @@ make_request (HttpFileHandle **handle_return,
 
 	/* Read the headers and create our internal HTTP file handle.  */
 	result = create_handle (handle_return, uri, connection, iobuf,
-				cancellation);
+				context);
 
 	if (result != GNOME_VFS_OK)
 		goto error;
@@ -568,12 +583,24 @@ make_request (HttpFileHandle **handle_return,
 
 static void
 http_handle_close (HttpFileHandle *handle,
-		   GnomeVFSCancellation *cancellation)
+		   GnomeVFSContext *context)
 {
 	gnome_vfs_iobuf_flush (handle->iobuf);
 	gnome_vfs_iobuf_destroy (handle->iobuf);
-	gnome_vfs_inet_connection_destroy (handle->connection, cancellation);
+	gnome_vfs_inet_connection_destroy (handle->connection,
+					   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
+	if (handle->uri_string) {
+		gchar* msg;
+
+		msg = g_strdup_printf(_("Closing connection to %s"),
+				      handle->uri_string);
+
+		gnome_vfs_context_emit_message(context, msg);
+
+		g_free(msg);
+	}
+	
 	http_file_handle_destroy (handle);
 }
 
@@ -582,7 +609,7 @@ static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
@@ -591,7 +618,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	g_return_val_if_fail (mode == GNOME_VFS_OPEN_READ,
 			      GNOME_VFS_ERROR_INVALIDOPENMODE);
 
-	result = make_request (&handle, uri, "GET", cancellation);
+	result = make_request (&handle, uri, "GET",
+			       context);
 
 	if (result == GNOME_VFS_OK)
 		*method_handle = (GnomeVFSMethodHandle *) handle;
@@ -601,12 +629,12 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 do_close (GnomeVFSMethodHandle *method_handle,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 
 	handle = (HttpFileHandle *) method_handle;
-	http_handle_close (handle, cancellation);
+	http_handle_close (handle, context);
 
 	return GNOME_VFS_OK;
 }
@@ -616,7 +644,7 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
@@ -635,6 +663,31 @@ do_read (GnomeVFSMethodHandle *method_handle,
 
 	handle->bytes_read += *bytes_read;
 
+	{
+		gchar *msg;
+		gchar *read_str = NULL;
+		gchar *total_str = NULL;
+
+		read_str = gnome_vfs_size_to_string(handle->bytes_read);
+
+		if (handle->size_is_known) {
+			total_str = gnome_vfs_size_to_string(handle->size);
+		}
+
+		if (total_str)
+			msg = g_strdup_printf(_("%s of %s read"),
+					      read_str, total_str);
+		else
+			msg = g_strdup_printf(_("%s read"), read_str);
+
+		gnome_vfs_context_emit_message(context, msg);
+
+		g_free(msg);
+		g_free(read_str);
+		if (total_str)
+			g_free(total_str);
+	}
+	
 	return result;
 }
 
@@ -677,17 +730,18 @@ do_get_file_info (GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
-		  GnomeVFSCancellation *cancellation)
+		  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	result = make_request (&handle, uri, "HEAD", cancellation);
+	result = make_request (&handle, uri, "HEAD",
+			       context);
 	if (result != GNOME_VFS_OK)
 		return result;
 
 	result = get_file_info_from_http_handle (handle, file_info, options);
-	http_handle_close (handle, cancellation);
+	http_handle_close (handle, context);
 
 	return result;
 }
@@ -697,7 +751,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys,
-			      GnomeVFSCancellation *cancellation)
+			      GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 

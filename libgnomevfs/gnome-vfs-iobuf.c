@@ -121,6 +121,14 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	/* Quote from UNIX 98:
+	   "If nbyte is 0, read() will return 0 and have no other results."
+	*/
+	if (bytes == 0) {
+		*bytes_read = 0;
+		return GNOME_VFS_OK;
+	}
+		
 	input_buffer = &iobuf->input_buffer;
 
 	result = GNOME_VFS_OK;

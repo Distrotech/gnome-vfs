@@ -233,8 +233,8 @@ struct _GnomeVFSJob {
 	/* Extra parameter to pass to the callback for this job.  */
 	gpointer callback_data;
 
-	/* Cancellation handler.  */
-	GnomeVFSCancellation *cancellation;
+	/* Context.  */
+	GnomeVFSContext *context;
 
 	/* Job-specific information.  */
 	union {

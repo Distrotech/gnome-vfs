@@ -39,10 +39,12 @@ libgnomevfsinclude_HEADERS =			\
 noinst_HEADERS =				\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
+	gnome-vfs-context.h			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-iobuf.h			\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-list-sort.h			\
+	gnome-vfs-messages.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-module.h			\
 	gnome-vfs-parse-ls.h			\
@@ -58,6 +60,7 @@ noinst_HEADERS =				\
 libgnomevfs_la_SOURCES =			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
+	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
 	gnome-vfs-directory-filter.c		\
 	gnome-vfs-directory-list.c		\
@@ -67,6 +70,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-iobuf.c			\
 	gnome-vfs-list-sort.c			\
+	gnome-vfs-messages.c			\
 	gnome-vfs-method.c			\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\

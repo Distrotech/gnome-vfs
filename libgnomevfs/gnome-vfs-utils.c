@@ -470,3 +470,23 @@ gnome_vfs_atotm (const gchar *time_string,
 	/* Failure.  */
 	return FALSE;
 }
+
+gchar*
+gnome_vfs_size_to_string   (guint bytes)
+{
+	/* Bytes */
+	if (bytes < 1024)   /* less than 1K */
+		return g_strdup_printf(_("%ub"), bytes);
+	/* K */
+	else if (bytes < 1024*1024) /* less than 1 meg */
+		return g_strdup_printf(_("%.1fK"),
+				       ((double)bytes)/1024.0);
+	/* Megs */
+	else if (bytes < 1024*1024*256) /* less than 1/4 gigabyte */
+		return g_strdup_printf(_("%.1fM"),
+				       ((double)bytes)/(1024.0*1024.0));
+	/* Gigs */
+	else
+		return g_strdup_printf(_("%.2fG"),
+				       ((double)bytes)/(1024.0*1024.0*1024.0));
+}

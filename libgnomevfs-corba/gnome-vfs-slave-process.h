@@ -89,6 +89,8 @@ struct _GnomeVFSSlaveProcess {
 	gpointer callback_data;
 
 	CORBA_Environment ev;
+
+	GnomeVFSContext *context;
 };
 
 

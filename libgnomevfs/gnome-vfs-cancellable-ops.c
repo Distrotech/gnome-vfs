@@ -36,7 +36,7 @@ GnomeVFSResult
 gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 				GnomeVFSURI *uri,
 				GnomeVFSOpenMode open_mode,
-				GnomeVFSCancellation *cancellation)
+				GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -46,14 +46,14 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	result = uri->method->open (&method_handle, uri, open_mode,
-				    cancellation);
+				    context);
 
 	/* FIXME */
 	if ((open_mode & GNOME_VFS_OPEN_RANDOM)
 	    && result == GNOME_VFS_ERROR_NOTSUPPORTED)
 		result = uri->method->open (&method_handle, uri,
 					    open_mode & ~GNOME_VFS_OPEN_RANDOM,
-					    cancellation);
+					    context);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -69,7 +69,7 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 				  GnomeVFSOpenMode open_mode,
 				  gboolean exclusive,
 				  guint perm,
-				  GnomeVFSCancellation *cancellation)
+				  GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -78,7 +78,7 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	result = uri->method->create (&method_handle, uri, open_mode,
-				      exclusive, perm, cancellation);
+				      exclusive, perm, context);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -89,11 +89,11 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 
 GnomeVFSResult
 gnome_vfs_close_cancellable (GnomeVFSHandle *handle,
-			     GnomeVFSCancellation *cancellation)
+			     GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_close (handle, cancellation);
+	return gnome_vfs_handle_do_close (handle, context);
 }
 
 GnomeVFSResult
@@ -101,12 +101,12 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 			    gpointer buffer,
 			    GnomeVFSFileSize bytes,
 			    GnomeVFSFileSize *bytes_written,
-			    GnomeVFSCancellation *cancellation)
+			    GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	return gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_written,
-					 cancellation);
+					 context);
 }
 
 GnomeVFSResult
@@ -114,23 +114,23 @@ gnome_vfs_write_cancellable (GnomeVFSHandle *handle,
 			     gconstpointer buffer,
 			     GnomeVFSFileSize bytes,
 			     GnomeVFSFileSize *bytes_written,
-			     GnomeVFSCancellation *cancellation)
+			     GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	return gnome_vfs_handle_do_write (handle, buffer, bytes,
-					  bytes_written, cancellation);
+					  bytes_written, context);
 }
 
 GnomeVFSResult
 gnome_vfs_seek_cancellable (GnomeVFSHandle *handle,
 			    GnomeVFSSeekPosition whence,
 			    GnomeVFSFileOffset offset,
-			    GnomeVFSCancellation *cancellation)
+			    GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_seek (handle, whence, offset, cancellation);
+	return gnome_vfs_handle_do_seek (handle, whence, offset, context);
 }
 
 GnomeVFSResult
@@ -138,7 +138,7 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *info,
 					 GnomeVFSFileInfoOptions options,
 					 gchar *meta_keys[],
-					 GnomeVFSCancellation *cancellation)
+					 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	GList *meta_list;
@@ -146,7 +146,7 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result = uri->method->get_file_info (uri, info, options, meta_list,
-					     cancellation);
+					     context);
 
 	gnome_vfs_free_string_list (meta_list);
 	return result;
@@ -157,7 +157,7 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions options,
 						 gchar *meta_keys[],
-						 GnomeVFSCancellation *cancellation)
+						 GnomeVFSContext *context)
 
 {
 	GnomeVFSResult result;
@@ -169,7 +169,7 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 
 	result =  gnome_vfs_handle_do_get_file_info (handle, info,
 						     options, meta_list,
-						     cancellation);
+						     context);
 
 	gnome_vfs_free_string_list (meta_list);
 
@@ -179,7 +179,7 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 GnomeVFSResult
 gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 					      guint perm,
-					      GnomeVFSCancellation *cancellation)
+					      GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 
@@ -188,13 +188,13 @@ gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->make_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->make_directory (uri, perm, cancellation);
+	result = uri->method->make_directory (uri, perm, context);
 	return result;
 }
 
 GnomeVFSResult
 gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
-						 GnomeVFSCancellation *cancellation)
+						 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 
@@ -203,20 +203,20 @@ gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->remove_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->remove_directory (uri, cancellation);
+	result = uri->method->remove_directory (uri, context);
 	return result;
 }
 
 GnomeVFSResult
 gnome_vfs_unlink_from_uri_cancellable (GnomeVFSURI *uri,
-				       GnomeVFSCancellation *cancellation)
+				       GnomeVFSContext *context)
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	if (uri->method->unlink == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	return uri->method->unlink (uri, cancellation);
+	return uri->method->unlink (uri, context);
 }
 
 static gboolean
@@ -235,7 +235,7 @@ GnomeVFSResult
 gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
 				GnomeVFSURI *new,
 				gboolean force_replace,
-				GnomeVFSCancellation *cancellation)
+				GnomeVFSContext *context)
 {
 	g_return_val_if_fail (old != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (new != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -246,14 +246,14 @@ gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
 	if (old->method->move == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	return old->method->move (old, new, force_replace, cancellation);
+	return old->method->move (old, new, force_replace, context);
 }
 
 GnomeVFSResult
 gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
 					  GnomeVFSURI *b,
 					  gboolean *same_fs_return,
-					  GnomeVFSCancellation *cancellation)
+					  GnomeVFSContext *context)
 {
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -269,17 +269,17 @@ gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
 		return GNOME_VFS_OK;
 	}
 
-	return a->method->check_same_fs (a, b, same_fs_return, cancellation);
+	return a->method->check_same_fs (a, b, same_fs_return, context);
 }
 
 GnomeVFSResult
 gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 				     const GnomeVFSFileInfo *info,
 				     GnomeVFSSetFileInfoMask mask,
-				     GnomeVFSCancellation *cancellation)
+				     GnomeVFSContext *context)
 {
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return a->method->set_file_info (a, info, mask, cancellation);
+	return a->method->set_file_info (a, info, mask, context);
 }

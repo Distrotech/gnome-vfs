@@ -67,6 +67,8 @@ gnome_vfs_slave_process_new (void)
 	new->callback = NULL;
 	new->callback_data = NULL;
 
+	new->context = gnome_vfs_context_new();
+	
 	CORBA_exception_init (&new->ev);
 
 	if (! gnome_vfs_slave_notify_create (new)) {

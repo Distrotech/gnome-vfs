@@ -47,4 +47,6 @@ GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
 gboolean	gnome_vfs_atotm		(const gchar *time_string,
 					 time_t *value_return);
 
+gchar*          gnome_vfs_size_to_string   (guint bytes);
+
 #endif /* _GNOME_VFS_UTILS_H */

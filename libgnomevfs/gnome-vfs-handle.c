@@ -122,11 +122,11 @@ gnome_vfs_handle_get_open_mode (GnomeVFSHandle *handle)
 
 GnomeVFSResult
 gnome_vfs_handle_do_close (GnomeVFSHandle *handle,
-			   GnomeVFSCancellation *cancellation)
+			   GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 
-	INVOKE (result, handle, close, (handle->method_handle, cancellation));
+	INVOKE (result, handle, close, (handle->method_handle, context));
 
 	/* Even if close has failed, we shut down the handle.  FIXME?  */
 	gnome_vfs_handle_destroy (handle);
@@ -139,11 +139,11 @@ gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 			  gpointer buffer,
 			  GnomeVFSFileSize num_bytes,
 			  GnomeVFSFileSize *bytes_read,
-			  GnomeVFSCancellation *cancellation)
+			  GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, read, (handle->method_handle,
 					  buffer, num_bytes, bytes_read,
-					  cancellation));
+					  context));
 }
 
 GnomeVFSResult
@@ -151,11 +151,11 @@ gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 			   gconstpointer buffer,
 			   GnomeVFSFileSize num_bytes,
 			   GnomeVFSFileSize *bytes_written,
-			   GnomeVFSCancellation *cancellation)
+			   GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, write, (handle->method_handle,
 					   buffer, num_bytes, bytes_written,
-					   cancellation));
+					   context));
 }
 
 
@@ -163,10 +163,10 @@ GnomeVFSResult
 gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 			  GnomeVFSSeekPosition whence,
 			  GnomeVFSFileSize offset,
-			  GnomeVFSCancellation *cancellation)
+			  GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, seek, (handle->method_handle,
-					  whence, offset, cancellation));
+					  whence, offset, context));
 }
 
 GnomeVFSResult
@@ -183,9 +183,9 @@ gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
 				   GnomeVFSFileInfo *info,
 				   GnomeVFSFileInfoOptions options,
 				   const GList *meta_keys,
-				   GnomeVFSCancellation *cancellation)
+				   GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, get_file_info_from_handle,
 			   (handle->method_handle, info, options, meta_keys,
-			    cancellation));
+			    context));
 }

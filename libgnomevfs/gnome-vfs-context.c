@@ -25,59 +25,101 @@
 #include "gnome-vfs-messages.h"
 
 struct _GnomeVFSContext {
-  GnomeVFSCancellation *cancellation;
-  GnomeVFSMessageCallbacks *callbacks;
-  gchar* redirect_uri;
-
+        GnomeVFSCancellation *cancellation;
+        GnomeVFSMessageCallbacks *callbacks;
+        gchar* redirect_uri;
+        guint refcount;
 };
 
 GnomeVFSContext*
 gnome_vfs_context_new (void)
 {
+        GnomeVFSContext *ctx;
 
+        ctx = g_new0(GnomeVFSContext, 1);
 
+        ctx->cancellation = gnome_vfs_cancellation_new();
+        ctx->callbacks = gnome_vfs_message_callbacks_new();
+        ctx->redirect_uri = NULL;
+        ctx->refcount = 1;
+  
+        return ctx;
 }
 
 void
 gnome_vfs_context_ref (GnomeVFSContext *ctx)
 {
-
-
+        g_return_if_fail(ctx != NULL);
+  
+        ctx->refcount += 1;
 }
 
 void
 gnome_vfs_context_unref (GnomeVFSContext *ctx)
 {
-
-
+        g_return_if_fail(ctx != NULL);
+        g_return_if_fail(ctx->refcount > 0);
+  
+        if (ctx->refcount == 1) {
+                gnome_vfs_cancellation_destroy(ctx->cancellation);
+                gnome_vfs_message_callbacks_destroy(ctx->callbacks);
+                if (ctx->redirect_uri)
+                        g_free(ctx->redirect_uri);
+          
+                g_free(ctx);
+        } else {
+                ctx->refcount -= 1;
+        }
 }
 
 
 GnomeVFSMessageCallbacks*
 gnome_vfs_context_get_message_callbacks (GnomeVFSContext *ctx)
 {
-
+        g_return_val_if_fail(ctx != NULL, NULL);
+        return ctx->callbacks;
 }
 
 GnomeVFSCancellation*
 gnome_vfs_context_get_cancellation (GnomeVFSContext *ctx)
 {
-
-
+        g_return_val_if_fail(ctx != NULL, NULL);
+        return ctx->cancellation;
 }
 
 
-gchar*
+const gchar*
 gnome_vfs_context_get_redirect_uri      (GnomeVFSContext *ctx)
 {
-  
-
+        g_return_val_if_fail(ctx != NULL, NULL);
+        return ctx->redirect_uri;
 }
 
 void
 gnome_vfs_context_set_redirect_uri      (GnomeVFSContext *ctx,
                                          const gchar     *uri)
 {
+        g_return_if_fail(ctx != NULL);
+        
+        if (ctx->redirect_uri)
+                g_free(ctx->redirect_uri);
+        
+        ctx->redirect_uri = uri ? g_strdup(uri) : NULL;
+}
 
-
+void
+gnome_vfs_context_emit_message           (GnomeVFSContext *ctx,
+                                          const gchar* message)
+{
+        GnomeVFSMessageCallbacks *callbacks;
+        
+        if (ctx == NULL) {
+                printf("Debug: NULL context so not reporting status: %s\n", message);
+                return;
+        }
+        
+        callbacks = ctx->callbacks;
+        
+        if (callbacks)
+                gnome_vfs_message_callbacks_emit (callbacks, message);
 }

@@ -67,29 +67,29 @@ typedef struct _GZipMethodHandle GZipMethodHandle;
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 static GnomeVFSResult	do_create	(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
 					 guint perm,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_written,
-					 GnomeVFSCancellation *cancellation);
+					 GnomeVFSContext *context);
 
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
@@ -452,7 +452,7 @@ static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode open_mode,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	GnomeVFSHandle *parent_handle;
 	GnomeVFSURI *parent_uri;
@@ -523,7 +523,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
 	   guint perm,
-	   GnomeVFSCancellation *cancellation)
+	   GnomeVFSContext *context)
 {
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
@@ -536,7 +536,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 do_close (GnomeVFSMethodHandle *method_handle,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	GZipMethodHandle *gzip_handle;
 	GnomeVFSResult result;
@@ -598,7 +598,7 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	GZipMethodHandle *gzip_handle;
 	GnomeVFSResult result;
@@ -677,7 +677,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	GZipMethodHandle *gzip_handle;
 	GnomeVFSResult result;

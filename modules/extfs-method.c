@@ -285,7 +285,7 @@ static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	GnomeVFSProcessResult process_result;
@@ -337,7 +337,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	
 	/* FIXME args */
 	process_result = gnome_vfs_process_run_cancellable
-		(script_path, args, GNOME_VFS_PROCESS_CLOSEFDS, cancellation,
+		(script_path, args, GNOME_VFS_PROCESS_CLOSEFDS,
+		 context ? gnome_vfs_context_get_cancellation(context) : NULL,
 		 &process_exit_value);
 
 	switch (process_result) {
@@ -392,14 +393,14 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
 	   guint perm,
-	   GnomeVFSCancellation *cancellation)
+	   GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_READONLYFS;
 }
 
 static GnomeVFSResult
 do_close (GnomeVFSMethodHandle *method_handle,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	ExtfsHandle *extfs_handle;
 	GnomeVFSResult result;
@@ -421,11 +422,11 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	return gnome_vfs_read_cancellable (VFS_HANDLE (method_handle),
 					   buffer, num_bytes, bytes_read,
-					   cancellation);
+					   context);
 }
 
 static GnomeVFSResult
@@ -433,7 +434,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
-	  GnomeVFSCancellation *cancellation)
+	  GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_READONLYFS;
 }
@@ -442,10 +443,11 @@ static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset offset,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	return gnome_vfs_seek_cancellable (VFS_HANDLE (method_handle),
-					   whence, offset, cancellation);
+					   whence, offset,
+					   context);
 }
 
 static GnomeVFSResult
@@ -458,7 +460,7 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
 	     GnomeVFSFileSize where,
-	     GnomeVFSCancellation *cancellation)
+	     GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -469,7 +471,7 @@ static GnomeVFSResult
 read_directory_list (FILE *p,
 		     GList **list_return,
 		     GnomeVFSFileInfoOptions info_options,
-		     GnomeVFSCancellation *cancellation)
+		     GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	GList *list;
@@ -489,7 +491,7 @@ read_directory_list (FILE *p,
 		gchar *name;
 		gchar *symlink_name;
 
-		if (gnome_vfs_cancellation_check (cancellation)) {
+		if (gnome_vfs_context_check_cancellation(context)) {
 			result = GNOME_VFS_ERROR_CANCELLED;
 			break;
 		}
@@ -540,7 +542,7 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSFileInfoOptions info_options,
 		   const GList *meta_keys,
 		   const GnomeVFSDirectoryFilter *filter,
-		   GnomeVFSCancellation *cancellation)
+		   GnomeVFSContext *context)
 {
 	ExtfsDirectoryHandle *handle;
 	ExtfsDirectory *directory;
@@ -577,7 +579,7 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 			return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 		result = read_directory_list (pipe, &list, info_options,
-					      cancellation);
+					      context);
 
 		if (pclose (pipe) == 0 && result == GNOME_VFS_OK) {
 			directory = extfs_directory_new (uri->parent, list);
@@ -613,7 +615,7 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 do_close_directory (GnomeVFSMethodHandle *method_handle,
-		    GnomeVFSCancellation *cancellation)
+		    GnomeVFSContext *context)
 {
 	ExtfsDirectoryHandle *handle;
 
@@ -692,7 +694,7 @@ find_next (ExtfsDirectoryHandle *handle)
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethodHandle *method_handle,
 		   GnomeVFSFileInfo *file_info,
-		   GnomeVFSCancellation *cancellation)
+		   GnomeVFSContext *context)
 {
 	ExtfsDirectoryHandle *handle;
 	ExtfsDirectoryEntry *next;
@@ -713,7 +715,7 @@ do_get_file_info (GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
-		  GnomeVFSCancellation *cancellation)
+		  GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -723,7 +725,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys,
-			      GnomeVFSCancellation *cancellation)
+			      GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -737,14 +739,14 @@ do_is_local (const GnomeVFSURI *uri)
 static GnomeVFSResult
 do_make_directory (GnomeVFSURI *uri,
 		   guint perm,
-		   GnomeVFSCancellation *cancellation)
+		   GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
 static GnomeVFSResult
 do_remove_directory (GnomeVFSURI *uri,
-		     GnomeVFSCancellation *cancellation)
+		     GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -753,7 +755,7 @@ static GnomeVFSResult
 do_move (GnomeVFSURI *old_uri,
 	 GnomeVFSURI *new_uri,
 	 gboolean force_replace,
-	 GnomeVFSCancellation *cancellation)
+	 GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -761,7 +763,7 @@ do_move (GnomeVFSURI *old_uri,
 
 static GnomeVFSResult
 do_unlink (GnomeVFSURI *uri,
-	   GnomeVFSCancellation *cancellation)
+	   GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
@@ -770,7 +772,7 @@ static GnomeVFSResult
 do_check_same_fs (GnomeVFSURI *a,
 		  GnomeVFSURI *b,
 		  gboolean *same_fs_return,
-		  GnomeVFSCancellation *cancellation)
+		  GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }

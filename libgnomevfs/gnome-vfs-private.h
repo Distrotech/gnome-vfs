@@ -24,6 +24,7 @@
 #ifndef _GNOME_VFS_PRIVATE_H
 #define _GNOME_VFS_PRIVATE_H
 
+#include <config.h>
 #include <glib.h>
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
@@ -34,10 +35,12 @@ BEGIN_GNOME_DECLS
 
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-configuration.h"
+#include "gnome-vfs-context.h"
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-inet-connection.h"
 #include "gnome-vfs-iobuf.h"
 #include "gnome-vfs-list-sort.h"
+#include "gnome-vfs-messages.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-parse-ls.h"
 #include "gnome-vfs-private-ops.h"
@@ -70,3 +73,6 @@ ssize_t getdelim (char **lineptr, size_t n, int terminator, FILE *stream);
 END_GNOME_DECLS
 
 #endif /* _GNOME_VFS_PRIVATE_H */
+
+
+

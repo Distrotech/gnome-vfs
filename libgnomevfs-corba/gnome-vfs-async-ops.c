@@ -535,3 +535,35 @@ gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
+
+guint
+gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
+				     GnomeVFSStatusCallback callback,
+				     gpointer user_data)
+{
+	GnomeVFSSlaveProcess *slave;
+	
+	g_return_val_if_fail (handle != NULL, 0);
+	g_return_val_if_fail (callback != NULL, 0);
+
+	slave = (GnomeVFSSlaveProcess *) handle;
+
+	printf("Adding, %s\n", __FUNCTION__);
+	
+	return gnome_vfs_message_callbacks_add(gnome_vfs_context_get_message_callbacks(slave->context), callback, user_data);
+}
+
+void
+gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
+					guint callback_id)
+{
+	GnomeVFSSlaveProcess *slave;
+	
+	g_return_if_fail (handle != NULL);
+	g_return_if_fail (callback_id > 0);
+
+	slave = (GnomeVFSSlaveProcess *) handle;
+	
+	gnome_vfs_message_callbacks_remove(gnome_vfs_context_get_message_callbacks(slave->context), callback_id);
+}
+

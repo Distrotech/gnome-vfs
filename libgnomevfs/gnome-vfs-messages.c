@@ -23,12 +23,25 @@
 
 #include "gnome-vfs-messages.h"
 
+#ifdef G_THREADS_ENABLED
+#define MUTEX_LOCK(a)	if ((a) != NULL) g_mutex_lock (a)
+#define MUTEX_UNLOCK(a)	if ((a) != NULL) g_mutex_unlock (a)
+#else
+#define MUTEX_LOCK(a)
+#define MUTEX_UNLOCK(a)
+#endif
+
+static guint next_id = 1;
+
+G_LOCK_DEFINE_STATIC (next_id);
+
 typedef struct _Callback Callback;
 
 struct _Callback {
         GnomeVFSStatusCallback callback_func;
         gpointer user_data;
         GDestroyNotify notify_func;
+	guint id;
 };
 
 static Callback*
@@ -44,6 +57,13 @@ callback_new (GnomeVFSStatusCallback callback_func,
         cb->user_data = user_data;
         cb->notify_func = notify_func;
 
+	G_LOCK(next_id);
+	cb->id = next_id;
+	++next_id;
+	G_UNLOCK(next_id);
+
+	printf("new message callback %u\n", cb->id);
+	
         return cb;
 }
 
@@ -54,12 +74,15 @@ callback_destroy (Callback *cb)
                 (* cb->notify_func) (cb->user_data);
         }
 
+	printf("destroyed message callback %u\n", cb->id);
+	
         g_free(cb);
 }
 
 static void
 callback_invoke (Callback *cb, const gchar* message)
 {
+	printf("Invoking message callback %u\n", cb->id);
         if (cb->callback_func) {
                 (* cb->callback_func) (message, cb->user_data);
         }
@@ -67,7 +90,9 @@ callback_invoke (Callback *cb, const gchar* message)
 
 struct _GnomeVFSMessageCallbacks {
         GSList *list;
-
+#ifdef G_THREADS_ENABLED
+	GMutex *list_mutex;
+#endif
 };
 
 GnomeVFSMessageCallbacks*
@@ -77,6 +102,13 @@ gnome_vfs_message_callbacks_new (void)
 
         cbs = g_new0(GnomeVFSMessageCallbacks, 1);
 
+#ifdef G_THREADS_ENABLED
+	if (g_thread_supported ())
+		cbs->list_mutex = g_mutex_new ();
+	else
+		cbs->list_mutex = NULL;
+#endif
+	
         return cbs;
 }
 
@@ -85,6 +117,8 @@ gnome_vfs_message_callbacks_destroy (GnomeVFSMessageCallbacks *cbs)
 {
         GSList *tmp;
 
+	MUTEX_LOCK(cbs->list_mutex);
+	
         tmp = cbs->list;
 
         while (tmp != NULL) {
@@ -98,18 +132,27 @@ gnome_vfs_message_callbacks_destroy (GnomeVFSMessageCallbacks *cbs)
         }
         
         g_slist_free (cbs->list);
+
+	MUTEX_UNLOCK(cbs->list_mutex);
+	
+#ifdef G_THREADS_ENABLED
+	if (cbs->list_mutex != NULL)
+		g_mutex_free (cbs->list_mutex);
+#endif
+	
         g_free(cbs);
 }
 
-void
+guint
 gnome_vfs_message_callbacks_add (GnomeVFSMessageCallbacks *cbs,
                                  GnomeVFSStatusCallback    callback,
                                  gpointer                  user_data)
 {
-        gnome_vfs_message_callbacks_add_full (cbs, callback, user_data, NULL);
+	printf("adding status callback\n");
+        return gnome_vfs_message_callbacks_add_full (cbs, callback, user_data, NULL);
 }
 
-void
+guint
 gnome_vfs_message_callbacks_add_full (GnomeVFSMessageCallbacks *cbs,
                                       GnomeVFSStatusCallback    callback,
                                       gpointer                  user_data,
@@ -118,8 +161,14 @@ gnome_vfs_message_callbacks_add_full (GnomeVFSMessageCallbacks *cbs,
         Callback *cb;
 
         cb = callback_new (callback, user_data, notify);
-        
+
+	MUTEX_LOCK(cbs->list_mutex);
+	
         cbs->list = g_slist_prepend (cbs->list, cb);
+
+	MUTEX_UNLOCK(cbs->list_mutex);
+	
+	return cb->id;
 }
 
 typedef gboolean (* MyGSListFilterFunc) (gpointer list_element, gpointer user_data);
@@ -183,31 +232,67 @@ all_equal_predicate (gpointer callback, gpointer func_and_data)
         return !(cb->callback_func == fd->func && cb->user_data == fd->data);
 }
 
+void gnome_vfs_message_callbacks_remove (GnomeVFSMessageCallbacks *cbs,
+					 guint num)
+{
+        GSList *iter;
+
+	MUTEX_LOCK(cbs->list_mutex);
+	
+        iter = cbs->list;
+
+        while (iter != NULL) {
+                Callback *cb;
+
+                cb = iter->data;
+
+		if (cb->id == num)
+			break;
+			
+                iter = g_slist_next (iter);
+        }
+
+	if (iter)
+		cbs->list = g_slist_remove(cbs->list, iter->data);
+	else
+		g_warning("status callback %u not found to remove", num);
+
+	MUTEX_UNLOCK(cbs->list_mutex);
+}
+
 void
 gnome_vfs_message_callbacks_remove_by_func (GnomeVFSMessageCallbacks *cbs,
                                             GnomeVFSStatusCallback    callback)
 {
+	MUTEX_LOCK(cbs->list_mutex);
         cbs->list = my_g_slist_filter (cbs->list, callback_equal_predicate, callback);
+	MUTEX_UNLOCK(cbs->list_mutex);
 }
 
 void
 gnome_vfs_message_callbacks_remove_by_data (GnomeVFSMessageCallbacks *cbs,
                                             gpointer                  user_data)
 {
+	MUTEX_LOCK(cbs->list_mutex);
         cbs->list = my_g_slist_filter (cbs->list, data_equal_predicate, user_data);
+	MUTEX_UNLOCK(cbs->list_mutex);
 }
 
 void
-gnome_vfs_message_callbacks_remove (GnomeVFSMessageCallbacks *cbs,
-                                    GnomeVFSStatusCallback    callback,
+gnome_vfs_message_callbacks_remove_by_func_and_data (GnomeVFSMessageCallbacks *cbs,
+						     GnomeVFSStatusCallback    callback,
                                     gpointer                  user_data)
 {
         struct func_and_data fd;
 
+	MUTEX_LOCK(cbs->list_mutex);
+	
         fd.func = callback;
         fd.data = user_data;
         
         cbs->list = my_g_slist_filter (cbs->list, all_equal_predicate, &fd);
+
+	MUTEX_UNLOCK(cbs->list_mutex);
 }
 
 void
@@ -216,6 +301,8 @@ gnome_vfs_message_callbacks_emit (GnomeVFSMessageCallbacks *cbs,
 {
         GSList *iter;
 
+	MUTEX_LOCK(cbs->list_mutex);
+	
         iter = cbs->list;
 
         while (iter != NULL) {
@@ -227,5 +314,10 @@ gnome_vfs_message_callbacks_emit (GnomeVFSMessageCallbacks *cbs,
                 
                 iter = g_slist_next (iter);
         }
+
+	MUTEX_UNLOCK(cbs->list_mutex);
+	
+	printf("debug message: %s\n", message);
 }
+
 

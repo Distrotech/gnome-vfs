@@ -581,4 +581,9 @@ typedef gint    (* GnomeVFSAsyncXferProgressCallback)
 						 gpointer data);
 
 
+
+/* Used to report user-friendly status messages you might want to display. */
+typedef void    (* GnomeVFSStatusCallback)      (const gchar *message,
+						 gpointer     callback_data);
+
 #endif /* _GNOME_VFS_TYPES_H */

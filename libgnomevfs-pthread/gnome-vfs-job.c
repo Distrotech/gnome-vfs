@@ -31,6 +31,9 @@
 
 #include <unistd.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -49,6 +52,44 @@ G_STMT_START{					\
 #else
 #define JOB_DEBUG(x)
 #endif
+
+
+/* Stevens functions */
+static void
+set_fl(int fd, int flags)
+{
+	int val;
+
+	if ( (val = fcntl(fd, F_GETFL, 0)) < 0 ) {
+		g_warning("fcntl() F_GETFL failed: %s", strerror(errno));
+		return;
+	}
+
+	val |= flags;
+	
+	if ( (val = fcntl(fd, F_SETFL, val)) < 0 ) {
+		g_warning("fcntl() F_SETFL failed: %s", strerror(errno));
+		return;
+	}		
+}
+
+static void
+clr_fl(int fd, int flags)
+{
+	int val;
+
+	if ( (val = fcntl(fd, F_GETFL, 0)) < 0 ) {
+		g_warning("fcntl() F_GETFL failed: %s", strerror(errno));
+		return;
+	}
+
+	val &= ~flags;
+	
+	if ( (val = fcntl(fd, F_SETFL, val)) < 0 ) {
+		g_warning("fcntl() F_SETFL failed: %s", strerror(errno));
+		return;
+	}		
+}
 
 
 /* This is used by the master thread to notify the slave thread that it got the
@@ -337,7 +378,7 @@ dispatch_job_callback (GIOChannel *source,
 
 	/* First check if we are being cancelled.  If so, we have to kill the
            job (i.e. return FALSE) and we are done.  */
-	if (gnome_vfs_cancellation_check (job->cancellation)) {
+	if (gnome_vfs_cancellation_check (gnome_vfs_context_get_cancellation(job->context))) {
 		job_ack_notify (job);
 		return FALSE;
 	}
@@ -410,7 +451,7 @@ gnome_vfs_job_new (void)
 	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new->wakeup_channel_lock = g_mutex_new ();
 
-	new->cancellation = gnome_vfs_cancellation_new ();
+	new->context = gnome_vfs_context_new ();
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
 			     dispatch_job_callback, new, NULL);
@@ -463,7 +504,7 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 
 	g_mutex_free (job->wakeup_channel_lock);
 
-	gnome_vfs_cancellation_destroy (job->cancellation);
+	gnome_vfs_context_unref (job->context);
 
 	g_free (job);
 
@@ -492,48 +533,125 @@ static void
 serve_channel_read (GnomeVFSHandle *handle,
 		    GIOChannel *channel_in,
 		    GIOChannel *channel_out,
-		    gulong advised_block_size)
+		    gulong advised_block_size,
+		    GnomeVFSContext *context)
 {
 	gpointer buffer;
-
+	guint filled_bytes_in_buffer;
+	guint written_bytes_in_buffer;
+	guint current_buffer_size;
+	
 	if (advised_block_size == 0)
 		advised_block_size = DEFAULT_BUFFER_SIZE;
 
-	buffer = alloca (advised_block_size);
+	current_buffer_size = advised_block_size;
+	buffer = g_malloc(current_buffer_size);
+	filled_bytes_in_buffer = 0;
+	written_bytes_in_buffer = 0;
 
 	while (1) {
 		GnomeVFSResult result;
 		GIOError io_result;
 		GnomeVFSFileSize bytes_read;
-		GnomeVFSFileSize bytes_to_write;
-		guint bytes_written;
-		gchar *p;
+		
+	restart_toplevel_loop:
+		
+		g_assert(filled_bytes_in_buffer <= current_buffer_size);
+		g_assert(written_bytes_in_buffer == 0);
+		
+		result = gnome_vfs_read_cancellable (handle,
+						     buffer + filled_bytes_in_buffer,
+						     MIN(advised_block_size, (current_buffer_size - filled_bytes_in_buffer)),
+						     &bytes_read, context);
 
-		result = gnome_vfs_read (handle, buffer, advised_block_size,
-					 &bytes_read);
-		if (result == GNOME_VFS_ERROR_INTERRUPTED)
+		if (result == GNOME_VFS_ERROR_CANCELLED)
+			goto end;
+		else if (result == GNOME_VFS_ERROR_INTERRUPTED)
 			continue;
-		if (result != GNOME_VFS_OK || bytes_read == 0)
+		else if (result != GNOME_VFS_OK)
+			goto end;
+		
+		filled_bytes_in_buffer += bytes_read;
+		
+		if (filled_bytes_in_buffer == 0)
 			goto end;
 
-		bytes_to_write = bytes_read;
-		p = buffer;
+		g_assert(written_bytes_in_buffer <= filled_bytes_in_buffer);
 
-		while (bytes_to_write > 0) {
-			io_result = g_io_channel_write (channel_out, p,
-							bytes_to_write,
+		if (gnome_vfs_context_check_cancellation(context))
+			goto end;
+		
+		while (written_bytes_in_buffer < filled_bytes_in_buffer) {
+			guint bytes_written;
+			
+			/* channel_out is nonblocking; if we get
+			   EAGAIN (G_IO_ERROR_AGAIN) then we tried to
+			   write but the pipe was full. In this case, we
+			   want to enlarge our buffer and go back to
+			   reading for one iteration, so we can keep
+			   collecting data while the main thread is
+			   busy. */
+			
+			io_result = g_io_channel_write (channel_out,
+							buffer + written_bytes_in_buffer,
+							filled_bytes_in_buffer - written_bytes_in_buffer,							
 							&bytes_written);
-			if (io_result == G_IO_ERROR_AGAIN)
-				continue;
-			if (io_result != G_IO_ERROR_NONE || bytes_written == 0)
-				goto end;
 
-			p += bytes_written;
-			bytes_to_write -= bytes_written;
+			if (gnome_vfs_context_check_cancellation(context))
+				goto end;
+			
+			if (io_result == G_IO_ERROR_AGAIN) {
+				/* if bytes_read == 0 then we reached
+				   EOF so there's no point reading
+				   again. So turn off nonblocking and
+				   do a blocking write next time through. */
+				if (bytes_read == 0) {
+					int fd;
+
+					fd = g_io_channel_unix_get_fd(channel_out);
+					
+					clr_fl(fd, O_NONBLOCK);
+				} else {
+					if (written_bytes_in_buffer > 0) {
+						/* Need to shift the unwritten bytes
+						   to the start of the buffer */
+						g_memmove(buffer,
+							  buffer + written_bytes_in_buffer,
+							  filled_bytes_in_buffer - written_bytes_in_buffer);
+						filled_bytes_in_buffer =
+							filled_bytes_in_buffer - written_bytes_in_buffer;
+						
+						written_bytes_in_buffer = 0;
+					}
+					
+ 				        /* If the buffer is more than half
+					   full, double its size */
+					if (filled_bytes_in_buffer*2 > current_buffer_size) {
+						current_buffer_size *= 2;
+						buffer = g_realloc(buffer, current_buffer_size);
+					}
+
+					/* Leave this loop, start reading again */
+					goto restart_toplevel_loop;
+
+				} /* end of else (bytes_read != 0) */
+				
+			} else if (io_result != G_IO_ERROR_NONE || bytes_written == 0) {
+				goto end;
+			}
+
+			written_bytes_in_buffer += bytes_written;
 		}
+
+		g_assert(written_bytes_in_buffer == filled_bytes_in_buffer);
+		
+		/* Reset, we wrote everything */
+		written_bytes_in_buffer = 0;
+		filled_bytes_in_buffer = 0;
 	}
 
  end:
+	g_free(buffer);
 	g_io_channel_close (channel_out);
 	g_io_channel_unref (channel_out);
 	g_io_channel_unref (channel_in);
@@ -542,7 +660,8 @@ serve_channel_read (GnomeVFSHandle *handle,
 static void
 serve_channel_write (GnomeVFSHandle *handle,
 		     GIOChannel *channel_in,
-		     GIOChannel *channel_out)
+		     GIOChannel *channel_out,
+		     GnomeVFSContext *context)
 {
 	gpointer buffer;
 	guint buffer_size;
@@ -568,10 +687,11 @@ serve_channel_write (GnomeVFSHandle *handle,
 		p = buffer;
 		bytes_to_write = bytes_read;
 		while (bytes_to_write > 0) {
-			result = gnome_vfs_write (handle,
-						  p,
-						  bytes_to_write,
-						  &bytes_written);
+			result = gnome_vfs_write_cancellable (handle,
+							      p,
+							      bytes_to_write,
+							      &bytes_written,
+							      context);
 			if (result == GNOME_VFS_ERROR_INTERRUPTED)
 				continue;
 			if (result != GNOME_VFS_OK || bytes_written == 0)
@@ -603,7 +723,7 @@ execute_open (GnomeVFSJob *job)
 
 	result = gnome_vfs_open_uri_cancellable (&handle, open_job->request.uri,
 						 open_job->request.open_mode,
-						 job->cancellation);
+						 job->context);
 
 	job->handle = handle;
 	open_job->notify.result = result;
@@ -632,7 +752,7 @@ execute_open_as_channel (GnomeVFSJob *job)
 		(&handle,
 		 open_as_channel_job->request.uri,
 		 open_as_channel_job->request.open_mode,
-		 job->cancellation);
+		 job->context);
 
 	if (result != GNOME_VFS_OK) {
 		open_as_channel_job->notify.channel = NULL;
@@ -650,6 +770,11 @@ execute_open_as_channel (GnomeVFSJob *job)
 		return FALSE;
 	}
 
+	/* Set up the pipe for nonblocking writes, so if the main
+           thread is blocking for some reason the slave can keep
+           reading data. */
+	set_fl(pipefd[1], O_NONBLOCK);
+	
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);
 
@@ -667,9 +792,11 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	if (open_mode & GNOME_VFS_OPEN_READ)
 		serve_channel_read (handle, channel_in, channel_out,
-				    open_as_channel_job->request.advised_block_size);
+				    open_as_channel_job->request.advised_block_size,
+				    job->context);
 	else
-		serve_channel_write (handle, channel_in, channel_out);
+		serve_channel_write (handle, channel_in, channel_out,
+				     job->context);
 
 	job_close (job);
 
@@ -692,7 +819,7 @@ execute_create (GnomeVFSJob *job)
 						 create_job->request.open_mode,
 						 create_job->request.exclusive,
 						 create_job->request.perm,
-						 job->cancellation);
+						 job->context);
 
 	job->handle = handle;
 	create_job->notify.result = result;
@@ -720,7 +847,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 		(&handle,
 		 create_as_channel_job->request.uri,
 		 create_as_channel_job->request.open_mode,
-		 job->cancellation);
+		 job->context);
 
 	if (result != GNOME_VFS_OK) {
 		create_as_channel_job->notify.channel = NULL;
@@ -738,6 +865,8 @@ execute_create_as_channel (GnomeVFSJob *job)
 		return FALSE;
 	}
 
+	
+	
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);
 
@@ -747,7 +876,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 	if (! job_notify (job))
 		return FALSE;
 
-	serve_channel_write (handle, channel_in, channel_out);
+	serve_channel_write (handle, channel_in, channel_out, job->context);
 
 	job_close (job);
 
@@ -762,7 +891,7 @@ execute_close (GnomeVFSJob *job)
 	close_job = &job->info.close;
 
 	close_job->notify.result
-		= gnome_vfs_close_cancellable (job->handle, job->cancellation);
+		= gnome_vfs_close_cancellable (job->handle, job->context);
 
 	job_notify_and_close (job);
 
@@ -781,7 +910,7 @@ execute_read (GnomeVFSJob *job)
 					      read_job->request.buffer,
 					      read_job->request.num_bytes,
 					      &read_job->notify.bytes_read,
-					      job->cancellation);
+					      job->context);
 
 	return job_oneway_notify_and_close (job);
 }
@@ -798,7 +927,7 @@ execute_write (GnomeVFSJob *job)
 					       write_job->request.buffer,
 					       write_job->request.num_bytes,
 					       &write_job->notify.bytes_written,
-					       job->cancellation);
+					       job->context);
 
 	return job_oneway_notify_and_close (job);
 }
@@ -1086,9 +1215,16 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 GnomeVFSResult
 gnome_vfs_job_cancel (GnomeVFSJob *job)
 {
+	GnomeVFSCancellation *cancellation;
+	
 	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	gnome_vfs_cancellation_cancel (job->cancellation);
+	cancellation = gnome_vfs_context_get_cancellation(job->context);
 
+	if (cancellation)
+		gnome_vfs_cancellation_cancel (cancellation);
+
+	gnome_vfs_context_emit_message (job->context, _("Operation stopped"));
+	
 	return GNOME_VFS_OK;
 }

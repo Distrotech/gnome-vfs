@@ -96,7 +96,7 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 	       GnomeVFSFileInfoOptions options,
 	       gchar *meta_keys[],
 	       const GnomeVFSDirectoryFilter *filter,
-	       GnomeVFSCancellation *cancellation)
+	       GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -109,7 +109,7 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 
 	result = uri->method->open_directory (&method_handle, uri,
 					      options, meta_list, filter,
-					      cancellation);
+					      context);
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_free_string_list (meta_list);
 		return result;
@@ -130,7 +130,7 @@ open (GnomeVFSDirectoryHandle **handle,
       GnomeVFSFileInfoOptions options,
       gchar *meta_keys[],
       const GnomeVFSDirectoryFilter *filter,
-      GnomeVFSCancellation *cancellation)
+      GnomeVFSContext *context)
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
@@ -143,7 +143,7 @@ open (GnomeVFSDirectoryHandle **handle,
 		return GNOME_VFS_ERROR_INVALIDURI;
 
 	result = open_from_uri (handle, uri, options, meta_keys, filter,
-				cancellation);
+				context);
 
 	gnome_vfs_uri_unref (uri);
 

@@ -1856,7 +1856,7 @@ static GnomeVFSResult
 ftpfs_open (GnomeVFSMethodHandle **method_handle,
 	    GnomeVFSURI *uri,
 	    GnomeVFSOpenMode mode,
-	    GnomeVFSCancellation *cancellation)
+	    GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fh;
 	ftpfs_direntry_t *fe;
@@ -1920,7 +1920,7 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 	      GnomeVFSOpenMode mode,
 	      gboolean exclusive,
 	      guint perm,
-	      GnomeVFSCancellation *cancellation)
+	      GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fh;
 	ftpfs_direntry_t *fe;
@@ -1983,7 +1983,7 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 ftpfs_close (GnomeVFSMethodHandle *method_handle,
-	     GnomeVFSCancellation *cancellation)
+	     GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fp;
 	GnomeVFSResult result = GNOME_VFS_OK;
@@ -2014,7 +2014,7 @@ ftpfs_read (GnomeVFSMethodHandle *method_handle,
 	    gpointer buffer,
 	    GnomeVFSFileSize count,
 	    GnomeVFSFileSize *bytes_read,
-	    GnomeVFSCancellation *cancellation)
+	    GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fp;
 	int n;
@@ -2051,7 +2051,7 @@ ftpfs_write (GnomeVFSMethodHandle *method_handle,
 	     gconstpointer buffer,
 	     GnomeVFSFileSize num_bytes,
 	     GnomeVFSFileSize *bytes_written,
-	     GnomeVFSCancellation *cancellation)
+	     GnomeVFSContext *context)
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
 	ftpfs_file_handle_t *fp;
@@ -2079,7 +2079,7 @@ static GnomeVFSResult
 ftpfs_seek (GnomeVFSMethodHandle *method_handle,
 	    GnomeVFSSeekPosition whence,
 	    GnomeVFSFileOffset offset,
-	    GnomeVFSCancellation *cancellation)
+	    GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fp;
 
@@ -2119,7 +2119,7 @@ ftpfs_tell (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 ftpfs_truncate (GnomeVFSMethodHandle *method_handle,
 		GnomeVFSFileSize where,
-		GnomeVFSCancellation *cancellation)
+		GnomeVFSContext *context)
 {
 	g_error ("unimplemented routine reached (truncate)");
 	return GNOME_VFS_ERROR_WRONGFORMAT;
@@ -2131,7 +2131,7 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 		      GnomeVFSFileInfoOptions options,
 		      const GList *meta_keys,
 		      const GnomeVFSDirectoryFilter *filter,
-		      GnomeVFSCancellation *cancellation)
+		      GnomeVFSContext *context)
 {
 	GnomeVFSResult ret;
 	ftpfs_dirent_t *dent;
@@ -2161,7 +2161,7 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 ftpfs_close_directory (GnomeVFSMethodHandle *method_handle,
-		       GnomeVFSCancellation *cancellation)
+		       GnomeVFSContext *context)
 {
 	ftpfs_dirent_t *dent = (ftpfs_dirent_t *) method_handle;
 
@@ -2290,7 +2290,7 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 		      GnomeVFSFileInfo *file_info,
-		      GnomeVFSCancellation *cancellation)
+		      GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	gboolean skip;
@@ -2356,7 +2356,7 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 		     GnomeVFSFileInfo *file_info,
 		     GnomeVFSFileInfoOptions options,
 		     const GList *meta_keys,
-		     GnomeVFSCancellation *cancellation)
+		     GnomeVFSContext *context)
 {
 	GnomeVFSResult ret;
 	ftpfs_uri_t *ftpfs_uri;
@@ -2416,7 +2416,7 @@ ftpfs_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 				 GnomeVFSFileInfo *file_info,
 				 GnomeVFSFileInfoOptions options,
 				 const GList *meta_keys,
-				 GnomeVFSCancellation *cancellation)
+				 GnomeVFSContext *context)
 {
 	ftpfs_file_handle_t *fh;
 
@@ -2440,14 +2440,14 @@ ftpfs_is_local (const GnomeVFSURI *uri)
 static GnomeVFSResult
 ftpfs_make_directory (GnomeVFSURI *uri,
 		      guint perm,
-		      GnomeVFSCancellation *cancellation)
+		      GnomeVFSContext *context)
 {
 	return send_ftp_command (uri, "MKD %s", OPT_FLUSH);
 }
 
 static GnomeVFSResult
 ftpfs_remove_directory (GnomeVFSURI *uri,
-			GnomeVFSCancellation *cancellation)
+			GnomeVFSContext *context)
 {
 	return send_ftp_command (uri, "RMD %s", OPT_FLUSH);
 

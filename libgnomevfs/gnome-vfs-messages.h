@@ -38,10 +38,10 @@
    GnomeVFSMessageCallbacks, there's no static data) - can multiple
    threads be using the same file handle? */
 
-typedef void    (* GnomeVFSStatusCallback)      (const gchar *message,
-						 gpointer     callback_data);
+#include <glib.h>
 
-typedef struct _GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
+#include "gnome-vfs.h"
+#include "gnome-vfs-private-types.h"
 
 GnomeVFSMessageCallbacks*
      gnome_vfs_message_callbacks_new  (void);
@@ -49,16 +49,20 @@ GnomeVFSMessageCallbacks*
 void gnome_vfs_message_callbacks_destroy
                                       (GnomeVFSMessageCallbacks *cbs);
 
-void gnome_vfs_message_callbacks_add  (GnomeVFSMessageCallbacks *cbs,
+guint gnome_vfs_message_callbacks_add  (GnomeVFSMessageCallbacks *cbs,
                                        GnomeVFSStatusCallback    callback,
                                        gpointer                  user_data);
 
-void gnome_vfs_message_callbacks_add_full
+guint gnome_vfs_message_callbacks_add_full
                                       (GnomeVFSMessageCallbacks *cbs,
                                        GnomeVFSStatusCallback    callback,
                                        gpointer                  user_data,
                                        GDestroyNotify            notify);
 
+void gnome_vfs_message_callbacks_remove
+                                      (GnomeVFSMessageCallbacks *cbs,
+				       guint num);
+				       
 void gnome_vfs_message_callbacks_remove_by_func
                                       (GnomeVFSMessageCallbacks *cbs,
                                        GnomeVFSStatusCallback    callback);
@@ -67,7 +71,7 @@ void gnome_vfs_message_callbacks_remove_by_data
                                       (GnomeVFSMessageCallbacks *cbs,
                                        gpointer                  user_data);
 
-void gnome_vfs_message_callbacks_remove
+void gnome_vfs_message_callbacks_remove_by_func_and_data
                                       (GnomeVFSMessageCallbacks *cbs,
                                        GnomeVFSStatusCallback    callback,
                                        gpointer                  user_data);
