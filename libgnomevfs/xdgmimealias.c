@@ -25,6 +25,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "xdgmimealias.h"
 #include "xdgmimeint.h"
 #include <stdlib.h>
@@ -98,13 +102,16 @@ _xdg_mime_alias_list_lookup (XdgAliasList *list,
   XdgAlias *entry;
   XdgAlias key;
 
-  key.alias = (char *)alias;
-  key.mime_type = 0;
+  if (list->n_aliases > 0)
+    {
+      key.alias = (char *)alias;
+      key.mime_type = 0;
 
-  entry = bsearch (&key, list->aliases, list->n_aliases,
-		   sizeof (XdgAlias), alias_entry_cmp);
-  if (entry)
-    return entry->mime_type;
+      entry = bsearch (&key, list->aliases, list->n_aliases,
+		       sizeof (XdgAlias), alias_entry_cmp);
+      if (entry)
+        return entry->mime_type;
+    }
 
   return NULL;
 }
@@ -124,8 +131,8 @@ _xdg_mime_alias_read_from_file (XdgAliasList *list,
 
   /* FIXME: Not UTF-8 safe.  Doesn't work if lines are greater than 255 chars.
    * Blah */
-  alloc = 16;
-  list->aliases = malloc (alloc * sizeof (XdgAlias));
+  alloc = list->n_aliases + 16;
+  list->aliases = realloc (list->aliases, alloc * sizeof (XdgAlias));
   while (fgets (line, 255, file) != NULL)
     {
       char *sep;
@@ -152,8 +159,9 @@ _xdg_mime_alias_read_from_file (XdgAliasList *list,
 
   fclose (file);  
   
-  qsort (list->aliases, list->n_aliases, 
-	 sizeof (XdgAlias), alias_entry_cmp);
+  if (list->n_aliases > 1)
+    qsort (list->aliases, list->n_aliases, 
+           sizeof (XdgAlias), alias_entry_cmp);
 }
 
 

@@ -1,3 +1,20 @@
+2004-12-09  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/xdgmime.c: (xdg_mime_unalias_mime_type),
+	(xdg_mime_mime_type_equal), (xdg_mime_mime_type_subclass),
+	(xdg_mime_get_mime_parents):
+	* libgnomevfs/xdgmime.h:
+	* libgnomevfs/xdgmimealias.c: (_xdg_mime_alias_list_lookup),
+	(_xdg_mime_alias_read_from_file):
+	* libgnomevfs/xdgmimeglob.c:
+	(_xdg_glob_hash_node_lookup_file_name):
+	* libgnomevfs/xdgmimeglob.h:
+	* libgnomevfs/xdgmimeint.c: (_xdg_ucs4_to_lower):
+	* libgnomevfs/xdgmimeint.h:
+	* libgnomevfs/xdgmimemagic.c: (_xdg_mime_magic_read_from_file):
+	* libgnomevfs/xdgmimeparent.c: (_xdg_mime_parent_list_lookup),
+	(_xdg_mime_parent_read_from_file): sync with xdgmime from freedesktop
+
 2004-12-09  Dwayne Bailey  <dwayne@translate.org.za>
 
 	* configure.in: Added "zu" to ALL_LINGUAS.
