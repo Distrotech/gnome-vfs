@@ -1,5 +1,12 @@
 2004-06-23  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-cdrom.c: (_gnome_vfs_get_cdrom_type):
+	Support for DragonFly.
+
+	Patch from hmp96@yahoo.co.uk (Hiten Pandya).
+
+2004-06-23  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-dns-sd.c (gnome_vfs_get_default_browse_domains):
 	Add new helper function.
 
