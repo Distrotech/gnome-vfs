@@ -1,5 +1,11 @@
 2000-06-05  John Sullivan  <sullivan@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_set_default_application):
+	Tiny reformatting.
+
+2000-06-05  John Sullivan  <sullivan@eazel.com>
+
 	Refactored and made some helper functions public so 
 	clients that modify the program lists don't need to 
 	replicate a bunch of code.

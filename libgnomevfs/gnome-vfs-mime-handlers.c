@@ -506,7 +506,8 @@ gnome_vfs_mime_set_default_action_type (const char *mime_type,
 	g_free (user_mime_file);
 }
 
-void gnome_vfs_mime_set_default_application (const char *mime_type,
+void 
+gnome_vfs_mime_set_default_application (const char *mime_type,
 				             const char *application_id)
 {
 	char *user_mime_file;
