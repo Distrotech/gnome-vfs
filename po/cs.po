@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-16 04:26+0200\n"
-"PO-Revision-Date: 2004-07-16 17:39+0200\n"
+"POT-Creation-Date: 2004-07-21 04:07+0200\n"
+"PO-Revision-Date: 2004-07-21 14:51+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -174,26 +174,30 @@ msgid "Pcfs Solaris Volume"
 msgstr "Svazek Solarisu Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Sun SAM-QFS Volume"
+msgstr "Svazek Sun SAM-QFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Rozšířený svazek DOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Svazek Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Svazek Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "Svazek Linuxu XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "Svazek XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -573,7 +577,7 @@ msgstr "Čas vypršel"
 msgid "Nameserver error"
 msgstr "Chyba serveru jmen"
 
-#: libgnomevfs/gnome-vfs-result.c:196
+#: libgnomevfs/gnome-vfs-result.c:200
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -1023,8 +1027,8 @@ msgid "How to display local DNS-SD service"
 msgstr "Jak zobrazit místní službu DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr "Možné hodnoty jsou \"merged\", \"separate\" a \"disabled\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "Možné hodnoty jsou \"merged\", \"separate\" a \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
