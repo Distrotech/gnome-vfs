@@ -103,14 +103,14 @@ Constants
 @data: 
 @Returns: 
 
-<!-- ##### SECTION ./tmpl/seekable.sgml:Short_Description ##### -->
-
-
-
 <!-- ##### MACRO FNM_PATHNAME ##### -->
 <para>
 
 </para>
+
+
+<!-- ##### SECTION ./tmpl/seekable.sgml:Short_Description ##### -->
+
 
 
 <!-- ##### FUNCTION gnome_vfs_app_context_push_override_takesref ##### -->
@@ -269,14 +269,14 @@ Constants
 @p_dispatch_on_job_thread: 
 @Returns: 
 
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
+File Matching
+
+
 <!-- ##### MACRO FNM_LEADING_DIR ##### -->
 <para>
 
 </para>
-
-
-<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
-File Matching
 
 
 <!-- ##### SECTION ./tmpl/seekable.sgml:See_Also ##### -->
@@ -436,16 +436,16 @@ seekable
 
 
 
+<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
+module-api
+
+
 <!-- ##### FUNCTION gnome_vfs_app_context_unref ##### -->
 <para>
 
 </para>
 
 @app_context: 
-
-<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
-module-api
-
 
 <!-- ##### FUNCTION gnome_vfs_seek_emulate ##### -->
 <para>

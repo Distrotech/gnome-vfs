@@ -1,3 +1,9 @@
+2001-09-28  Darin Adler  <darin@bentspoon.com>
+
+	* modules/file-method.c: (do_read_directory):
+	Add back MIME type code that we accidentally removed when
+	we removed directory filtering.
+
 2001-09-26  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* configure.in, NEWS: updated for 1.9.1
@@ -497,10 +503,11 @@ Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 2001-08-21  Maciej Stachowiak  <mjs@noisehavoc.org>
 
-	* OUTSTANDING_API_ISSUES: Removed teh filtering item, added one
+	* OUTSTANDING_API_ISSUES: Removed the filtering item, added one
 	for renaming gnome-vfs-method.
 
-	All changes below: removed the non-working and undesirably directory filtering feature.
+	All changes below: removed the non-working and undesirable
+	directory filtering feature.
 	
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
 	(async_load_directory), (pthread_gnome_vfs_async_load_directory),
