@@ -1,3 +1,7 @@
+2003-10-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: bump version number to 2.5.0
+
 2003-10-12  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c: applied patch by
