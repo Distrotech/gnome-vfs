@@ -2277,6 +2277,20 @@ do_get_file_info (GnomeVFSMethod *method,
 					}
 				}
 
+				/* Lame buggy servers (eg: www.mozilla.org, www.corel.com)) return
+				 * an HTTP error for a HEAD where a GET would succeed. In these cases
+				 * lets try to do a GET.
+				 */
+
+				if (result != GNOME_VFS_OK) {
+					g_assert (handle == NULL); /* Make sure we're not leaking some old one */
+					result = make_request (&handle, uri, "GET", NULL, NULL, context);
+					if (result == GNOME_VFS_OK) {
+						gnome_vfs_file_info_copy (file_info, handle->file_info);
+						http_handle_close (handle, context);
+					}
+				}
+
 				DEBUG_HTTP (("-Get_File_Info"));
 				return result;
 			}

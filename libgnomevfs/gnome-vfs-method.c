@@ -169,7 +169,9 @@ load_module (const gchar *module_name, const char *method_name, const char *args
 
 	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
 	if (module == NULL) {
-		g_warning ("Cannot load module `%s'", module_name);
+		gchar *error = g_module_error ();
+		g_warning ("Cannot load module `%s' (%s)", module_name, error);
+		g_free (error);
 		return;
 	}
 

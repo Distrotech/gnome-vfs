@@ -1,3 +1,12 @@
+2000-11-01  Ian McKellar,,,  <set EMAIL_ADDRESS environment variable>
+
+	* libgnomevfs/gnome-vfs-method.c: (load_module):
+	Provide more verbose information when a module fails to load.
+
+	* modules/http-method.c: (do_get_file_info):
+	Fall back to using GET when PROPFIND and HEAD fail to return useful
+	file info. See bug 4310.
+
 2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	Made copying work.  There is still an issue with more
