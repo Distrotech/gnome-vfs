@@ -1,3 +1,8 @@
+2001-08-06  jacob berkman  <jacob@ximian.com>
+
+	* modules/ftp-method.c (do_open_directory): do a CWD command so we
+	can correctly return an error code when trying to open a file.
+
 2001-03-12  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* configure.in: upped to version 1.0
