@@ -1,9 +1,15 @@
 #ifndef _FTP_METHOD_H
 #define _FTP_METHOD_H
 
+#include <glib.h>
+
 #include "gnome-vfs.h"
 
 typedef struct {
+#ifdef G_THREADS_ENABLED
+	GMutex *access_mutex;
+#endif
+
 	int  ref_count;
 	char *hostname;
 	char *username;

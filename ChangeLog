@@ -1,3 +1,27 @@
+1999-09-29  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/ftp-method.c (MUTEX_LOCK): New macro to lock a mutex.
+	Defined to empty if `G_THREADS_ENABLED' is not defined.
+	(MUTEX_UNLOCK): New macro to unlock a mutex.  Defined to empty if
+	`G_THREADS_ENABLED' is not defined.
+	(ftpfs_connection_new) [G_THREADS_ENABLED]: Initialize
+	`access_mutex'.
+	(ftpfs_connection_unref): Perform locking.  Free the lock if
+	refcounting is zero.
+
+	* modules/ftp-method.h [G_THREADS_ENABLED]: New member
+	`access_lock' in `ftpfs_connection_t'.
+
+	* modules/ftp-method.c: Define a static lock for
+	`connections_hash'.
+	(ftpfs_connection_destroy): Removed.
+	(ftpfs_connection_unref): Perform locking on `connections_hash'.
+	(lookup_conn): Likewise.
+	(ftpfs_connection_new): Likewise.
+
+	* modules/ftp-method.c (ftpfs_open_directory): Use the raw URI
+	path, without using `g_dirname()'.
+
 1999-09-28  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/bzip2-method.c: Re-indented in GNOME style.

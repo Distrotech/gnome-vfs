@@ -54,6 +54,14 @@
 #define DEFAULT_PORT 21
 #define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))
 
+#ifdef G_THREADS_ENABLED
+#define MUTEX_LOCK(a)	if ((a) != NULL) g_mutex_lock (a)
+#define MUTEX_UNLOCK(a)	if ((a) != NULL) g_mutex_unlock (a)
+#else
+#define MUTEX_LOCK(a)
+#define MUTEX_UNLOCK(a)
+#endif
+
 #define logfile stdout		/* FIXME tmp */
 
 /* Seconds until directory contents are considered invalid */
@@ -62,7 +70,8 @@ int   ftpfs_first_cd_then_ls  = 1;
 int   ftpfs_retry_seconds     = 0;
 char *ftpfs_anonymous_passwd  = "nothing@";
 
-static GHashTable *connections_hash;
+static GHashTable *connections_hash = NULL;
+G_LOCK_DEFINE_STATIC (connections_hash);
 
 /* FIXME ugly kludgy smelly globals.  Should be removed.  */
 /* static int code; FIXME this was evil, I hope I removed it correctly */
@@ -107,9 +116,23 @@ remove_entry (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-ftpfs_connection_destroy (ftpfs_connection_t *conn)
+ftpfs_connection_unref (ftpfs_connection_t *conn)
 {
-	
+	MUTEX_LOCK (conn->access_mutex);
+
+	conn->ref_count--;
+	if (conn->ref_count != 0) {
+		MUTEX_UNLOCK (conn->access_mutex);
+		return;
+	}
+
+	MUTEX_UNLOCK (conn->access_mutex);
+
+#ifdef G_THREADS_ENABLED
+	if (conn->access_mutex != NULL)
+		g_mutex_free (conn->access_mutex);
+#endif
+
 	g_free (conn->hostname);
 	g_free (conn->username);
 	g_free (conn->password);
@@ -119,19 +142,11 @@ ftpfs_connection_destroy (ftpfs_connection_t *conn)
 	g_hash_table_foreach_remove (conn->dcache, remove_entry, NULL);
 	g_hash_table_destroy (conn->dcache);
 
+	G_LOCK (connections_hash);
 	g_hash_table_remove (connections_hash, conn);
+	G_UNLOCK (connections_hash);
+
 	g_free (conn);
-}
-
-static void
-ftpfs_connection_unref (ftpfs_connection_t *conn)
-{
-	conn->ref_count--;
-
-	if (conn->ref_count != 0)
-		return;
-
-	ftpfs_connection_destroy (conn);
 }
 
 static void
@@ -294,9 +309,13 @@ static ftpfs_connection_t *
 lookup_conn (char *host, char *user, char *pass, int port)
 {
 	ftpfs_connection_t key;
+	ftpfs_connection_t *retval;
+
+	G_LOCK (connections_hash);
 
 	if (connections_hash == NULL){
 		init_connections_hash ();
+		G_UNLOCK (connections_hash);
 		return NULL;
 	}
 	
@@ -305,7 +324,11 @@ lookup_conn (char *host, char *user, char *pass, int port)
 	key.password = pass;
 	key.port = (port == 0 ? DEFAULT_PORT : port);
 
-	return g_hash_table_lookup (connections_hash, &key);
+	retval = g_hash_table_lookup (connections_hash, &key);
+
+	G_UNLOCK (connections_hash);
+
+	return retval;
 }
 
 static GnomeVFSResult
@@ -482,6 +505,14 @@ ftpfs_connection_new (const gchar *hostname,
 	ftpfs_connection_t *conn;
 			    
 	conn = g_new0 (ftpfs_connection_t, 1);
+
+#ifdef G_THREADS_ENABLED
+	if (g_thread_supported ())
+		conn->access_mutex = g_mutex_new ();
+	else
+		conn->access_mutex = NULL;
+#endif
+	
 	conn->ref_count = 1;
 
 	conn->hostname = g_strdup (hostname);
@@ -495,16 +526,20 @@ ftpfs_connection_new (const gchar *hostname,
 	conn->strict_rfc959_list_cmd = 0;
 	conn->dcache = g_hash_table_new (g_str_hash, g_str_equal);
 
-	if (!connections_hash)
-		init_connections_hash ();
-
 	*result_return = ftpfs_connection_connect (conn);
+
+	G_LOCK (connections_hash);
+
+	if (connections_hash == NULL)
+		init_connections_hash ();
 
 	if (*result_return == GNOME_VFS_OK) {
 		g_hash_table_insert (connections_hash, conn, conn);
+		G_UNLOCK (connections_hash);
 		return conn;
 	} else {
 		ftpfs_connection_unref (conn);
+		G_UNLOCK (connections_hash);
 		return NULL;
 	}
 }
@@ -2098,7 +2133,7 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 		return GNOME_VFS_ERROR_INVALIDURI;
 	}
 
-	dent->dir = retrieve_dir (dent->uri->conn, g_dirname (dent->uri->path), TRUE);
+	dent->dir = retrieve_dir (dent->uri->conn, dent->uri->path, TRUE);
 	ftpfs_dir_ref (dent->dir);
 	dent->pos = NULL;
 	dent->options = options;
