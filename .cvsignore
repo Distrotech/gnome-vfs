@@ -30,6 +30,7 @@ stamp-h.in
 vfsConf.sh
 gnome-vfs-config
 gnome-vfs-2.0.pc
+gnome-vfs-module-2.0.pc
 intltool-extract
 intltool-extract.in
 intltool-merge
