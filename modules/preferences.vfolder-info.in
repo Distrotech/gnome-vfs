@@ -19,6 +19,7 @@
 	    <Keyword>AdvancedSettings</Keyword>
 	    <Keyword>Sawfish</Keyword>
 	    <Keyword>System</Keyword>
+	    <Keyword>Accessibility</Keyword>
 	  </Or>
         </Not>
       </And>
@@ -50,6 +51,17 @@
 	<DontShowIfEmpty/>
       </Folder>
     </Folder>
+    <Folder>
+      <Name>Accessibility</Name>
+      <Desktop>Accessibility.directory</Desktop>
+      <Query>
+	<And>
+	  <Keyword>Settings</Keyword>
+	  <Keyword>Accessibility</Keyword>
+        </And>
+      </Query>
+    </Folder>
+
     <Folder>
       <Name>System</Name>
       <Desktop>System.directory</Desktop>

@@ -1,3 +1,7 @@
+2002-03-18  Jody Goldberg <jody@gnome.org>
+
+	* modules/preferences.vfolder-info.in : add an Accessibility category.
+
 Fri Mar 22 11:13:30 2002  Owen Taylor  <otaylor@redhat.com>
 
 	* test/test-async.c (main): Fix includes and 
