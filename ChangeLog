@@ -1,5 +1,8 @@
 1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
 
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c: #define `SUN_LEN()'
+	if not already #defined.
+
 	* libgnomevfs-corba/gnome-vfs-slave.c (setup_and_serve_channel):
 	Change `socklen_t' into `int'.
 	(setup_and_serve_channel): Use `[AP]F_UNIX' instead of

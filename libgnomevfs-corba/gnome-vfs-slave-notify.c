@@ -45,6 +45,13 @@
 #include "gnome-vfs-slave-notify.h"
 
 
+#if ! defined (SUN_LEN)
+/* This system is not POSIX.1g.  */
+#define SUN_LEN(ptr) ((size_t) (((struct sockaddr_un *) 0)->sun_path)  \
+                      + strlen ((ptr)->sun_path))
+#endif
+
+
 struct _GnomeVFSSlaveNotifyServant {
 	POA_GNOME_VFS_Slave_Notify servant;
 	GnomeVFSSlaveProcess *slave;
