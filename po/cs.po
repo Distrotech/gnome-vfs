@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-19 11:35+0200\n"
+"POT-Creation-Date: 2004-10-28 16:22+0200\n"
 "PO-Revision-Date: 2004-10-19 15:14+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -53,13 +53,9 @@ msgid ""
 msgstr ""
 "položky desktop obsahují řádek '%s', což není položka, skupina ani poznámka"
 
-#: libgnomevfs/eggdesktopentries.c:645
+#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
 msgid "desktop entries file does not start with legal start group"
 msgstr "soubor položek desktop nezačíná platnou počáteční skupinou"
-
-#: libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entry does not start with legal start group"
-msgstr "položka desktop nezačíná platnou počáteční skupinou"
 
 #: libgnomevfs/eggdesktopentries.c:711
 #, c-format
@@ -1475,6 +1471,9 @@ msgstr "Pracovní skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
+
+#~ msgid "desktop entry does not start with legal start group"
+#~ msgstr "položka desktop nezačíná platnou počáteční skupinou"
 
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Ukládání záložek selhalo (%s)"

@@ -1,5 +1,10 @@
 2004-10-28  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update for release
+
+2004-10-28  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-utils.c: (filename_charset_cache_free),
 	(vfs_get_filename_charset),
 	(gnome_vfs_format_uri_for_display_internal),

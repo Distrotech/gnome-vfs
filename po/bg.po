@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-19 11:35+0200\n"
+"POT-Creation-Date: 2004-10-28 16:22+0200\n"
 "PO-Revision-Date: 2004-10-19 19:44+0300\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -51,12 +51,8 @@ msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:645
+#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entry does not start with legal start group"
 msgstr ""
 
 #: libgnomevfs/eggdesktopentries.c:711
@@ -705,9 +701,11 @@ msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
+#, fuzzy, c-format
 msgid "%u byte"
-msgstr "%u B"
+msgid_plural "%u bytes"
+msgstr[0] "%u B"
+msgstr[1] "%u B"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -880,7 +878,8 @@ msgstr ""
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Не можеше да бъде монтирано устройството. Вероятно няма източник в него."
+msgstr ""
+"Не можеше да бъде монтирано устройството. Вероятно няма източник в него."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
@@ -1091,43 +1090,63 @@ msgstr "Пускане на програмата в терминал"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"aim\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"aim\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"callto\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"callto\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"ghelp\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"ghelp\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"h323\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"h323\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"http\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"http\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"https\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"https\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"info\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"info\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"mailto\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"mailto\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"man\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"man\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Програмата използвана за обработване на URL-та от тип \"trash\", ако е включена."
+msgstr ""
+"Програмата използвана за обработване на URL-та от тип \"trash\", ако е "
+"включена."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1174,68 +1193,80 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"aim\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"callto\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"ghelp\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"h323\"."
+msgstr ""
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"http\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"https\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"info\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"mailto\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"man\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"man\"."
+
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип \"trash\"."
+"Включено, ако програмата в ключа \"програма\" ще изпълнява URL-та от тип "
+"\"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1290,8 +1321,8 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
-"Списък от домейни тип dns-sd, разделени със запетаи, които трябва да са видими в "
-"мрежата."
+"Списък от домейни тип dns-sd, разделени със запетаи, които трябва да са "
+"видими в мрежата."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1354,7 +1385,8 @@ msgstr "Сървъри, които да не минават през сървъ�
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Парола, която да се подава като идентификация на сървъра-посредник за HTTP."
+msgstr ""
+"Парола, която да се подава като идентификация на сървъра-посредник за HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1381,8 +1413,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Изберете режим на настройка на сървър-посредник. Поддържани стойности са \"няма\", "
-"\"ръчен\", \"автоматичен\""
+"Изберете режим на настройка на сървър-посредник. Поддържани стойности са "
+"\"няма\", \"ръчен\", \"автоматичен\""
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1432,9 +1464,9 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Този ключ съдържа списък с хостове, които за свързани директно, вместо през "
-"сървър-посредник (ако е активно). Стойностите могат да са хостове, домейни (*.foo.com), "
-"IP адреси на хостове(и IPv4, и IPv6) и мрежови адреси с мрежова маска "
-"(192.168.0.0/24)."
+"сървър-посредник (ако е активно). Стойностите могат да са хостове, домейни "
+"(*.foo.com), IP адреси на хостове(и IPv4, и IPv6) и мрежови адреси с мрежова "
+"маска (192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."

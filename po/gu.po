@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-26 12:37+0200\n"
+"POT-Creation-Date: 2004-10-28 16:22+0200\n"
 "PO-Revision-Date: 2004-10-26 19:34+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -55,7 +56,8 @@ msgstr "ફાઈલ '%s' માંથી વાંચવામાં નિષ�
 
 #: libgnomevfs/eggdesktopentries.c:572
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે પ્રવેશ, જૂથ, અથવા ટિપ્પળી નથી"
 
 #: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
@@ -86,12 +88,14 @@ msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ �
 #: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
 #: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr "ડેસ્કટોપ પ્રવેશ કી '%s' ધરાવે છે કે જેની કિંમત સમજી શકાતી નથી."
 
 #: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr "ડેસ્કટોપ પ્રવેશો કી '%s' માટે લોકેલ '%s' સાથે કોઈ ભાષાંતરિત કિંમતો ધરાવતું નથી."
 
 #: libgnomevfs/eggdesktopentries.c:2235
@@ -936,7 +940,8 @@ msgstr "નેટવર્ક સર્વર"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
@@ -949,8 +954,8 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી શકાય "
-"નહિ."
+"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી "
+"શકાય નહિ."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
@@ -1468,15 +1473,17 @@ msgstr ""
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો છો."
+msgstr ""
+"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો "
+"છો."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/સુરક્ષિત_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો "
-"છો."
+"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/સુરક્ષિત_યજમાન\" કે જેની તમે સીધી પ્રોક્સી "
+"કરો છો."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -1519,4 +1526,3 @@ msgstr "SMB કામ કરતુ જૂથ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "વિન્ડોનુ કામ કરતુ જૂથ કે વપરાશર્ક્તા જેનો ભાગ છે"
-

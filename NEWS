@@ -1,3 +1,16 @@
+gnome-vfs 2.8.3
+
+    * Bugs fixed:
+	+ Fix ftp upload corruptor
+	+ Handle several changes in mtab/fstab in the same second
+	+ Never set uri->text to NULL
+	+ Fix dvd+/-rw name unicode encoding
+	+ Some updates to desktop parser
+	+ Make duplication of symlinks work
+	+ Handle defaults.list files that have lists of desktop files
+	+ Handle new forms of filename encoding definitions
+	+ build fixes
+
 gnome-vfs 2.8.2
 
     * Bugs fixed:

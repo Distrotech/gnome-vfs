@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-11 15:35+0200\n"
+"POT-Creation-Date: 2004-10-28 16:22+0200\n"
 "PO-Revision-Date: 2004-07-18 14:16+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -57,59 +57,59 @@ msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:645
+#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
 msgid "desktop entries file does not start with legal start group"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:702
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:725
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:915 libgnomevfs/eggdesktopentries.c:1027
-#: libgnomevfs/eggdesktopentries.c:1212
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1039
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1095 libgnomevfs/eggdesktopentries.c:1268
-#: libgnomevfs/eggdesktopentries.c:1410 libgnomevfs/eggdesktopentries.c:1535
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1293
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2226
+#: libgnomevfs/eggdesktopentries.c:2235
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2243
+#: libgnomevfs/eggdesktopentries.c:2252
 msgid "desktop entries contain escape character at end of line"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2268
+#: libgnomevfs/eggdesktopentries.c:2277
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2295
+#: libgnomevfs/eggdesktopentries.c:2304
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -452,12 +452,12 @@ msgstr "ऑपरेशन रोका गया"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1020
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1038
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1056
-#: libgnomevfs/gnome-vfs-mime-info.c:649 libgnomevfs/gnome-vfs-mime-info.c:656
-#: libgnomevfs/gnome-vfs-mime-info.c:664 libgnomevfs/gnome-vfs-mime-info.c:671
-#: libgnomevfs/gnome-vfs-mime-info.c:679 libgnomevfs/gnome-vfs-mime-info.c:696
-#: libgnomevfs/gnome-vfs-mime-info.c:703 libgnomevfs/gnome-vfs-mime-info.c:710
-#: libgnomevfs/gnome-vfs-mime-info.c:717 libgnomevfs/gnome-vfs-mime-info.c:725
-#: libgnomevfs/gnome-vfs-mime-info.c:732
+#: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
+#: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
+#: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
+#: libgnomevfs/gnome-vfs-mime-info.c:702 libgnomevfs/gnome-vfs-mime-info.c:709
+#: libgnomevfs/gnome-vfs-mime-info.c:716 libgnomevfs/gnome-vfs-mime-info.c:724
+#: libgnomevfs/gnome-vfs-mime-info.c:731
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
