@@ -872,12 +872,28 @@ gnome_vfs_uri_set_password (GnomeVFSURI *uri,
 }
 
 
+static gint
+my_streq (const gchar *a,
+	  const gchar *b)
+{
+	if (a == NULL) {
+		if (b == NULL)
+			return TRUE;
+		else
+			return FALSE;
+	} else if (b == NULL) {
+		return FALSE;
+	}
+
+	return strcmp (a, b) == 0;
+}
+
 static gboolean
 compare_elements (const GnomeVFSURI *a,
 		  const GnomeVFSURI *b)
 {
-	if (strcmp (a->text, b->text) != 0
-	    || strcmp (a->method_string, b->method_string) != 0)
+	if (! my_streq (a->text, b->text)
+	    || ! my_streq (a->method_string, b->method_string))
 		return FALSE;
 
 	/* The following should not happen, but we make sure anyway.  */
@@ -924,9 +940,9 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 	/* Finally, compare the extra toplevel members.  */
 
 	if (toplevel_a->host_port != toplevel_b->host_port
-	    || strcmp (toplevel_a->host_name, toplevel_b->host_name) != 0
-	    || strcmp (toplevel_a->user_name, toplevel_b->user_name) != 0
-	    || strcmp (toplevel_a->password, toplevel_b->password) != 0)
+	    || ! my_streq (toplevel_a->host_name, toplevel_b->host_name)
+	    || ! my_streq (toplevel_a->user_name, toplevel_b->user_name)
+	    || ! my_streq (toplevel_a->password, toplevel_b->password))
 		return FALSE;
 
 	return TRUE;

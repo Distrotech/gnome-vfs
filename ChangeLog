@@ -1,3 +1,10 @@
+1999-09-30  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs/gnome-vfs-uri.c (my_streq): New function.
+	(compare_elements): Use it instead of `strcmp' so that it works
+	even with NULL fields.
+	(gnome_vfs_uri_equal): Likewise.
+
 1999-09-29  Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
 
 	* configure.in: add pt_BR to ALL_LINGUAS
