@@ -367,6 +367,9 @@ print "Reading gnome-vfs.applications.\n";
 # could put in fancier handling later
 my %in_applications = ( "text/*" => 1 );
 
+my $previous_application = "";
+my $application;
+
 open MIME, "data/mime/gnome-vfs.applications" or die;
 while (<MIME>)
   {
@@ -403,8 +406,14 @@ while (<MIME>)
         complain "space after = on line $.";
       }
 
-    if (/^\S/)
+    if (/^(\S.*)/)
       {
+	$previous_application = $application if $application;
+	$application = $1;
+	if (lc $application le lc $previous_application)
+	  {
+	    complain "$application is after $previous_application in gnome-vfs.applications";
+	  }
         %seen_keys = ();
       }
     elsif (/^\s*([_a-z]+)\s*=\s*(.*)/)
