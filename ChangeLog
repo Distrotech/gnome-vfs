@@ -1,3 +1,16 @@
+2001-02-22  Seth Nickell  <seth@eazel.com>
+
+	reviewed by: Pavel Císler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	(strip_trailing_whitespace):
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window):
+
+	Add casts to is* functions as necessary when chars are
+	used to fix Solaris warnings.
+	
 2001-02-21  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: <delete if not using a buddy>

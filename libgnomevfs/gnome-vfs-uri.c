@@ -235,7 +235,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 		port = 0;
 
-		for ( ; cur < path_end && '\0' != *cur && isdigit (*cur); cur++) {
+		for ( ; cur < path_end && '\0' != *cur && isdigit ((guchar) *cur); cur++) {
 			port *= 10;
 			port += *cur - '0'; 
 		}

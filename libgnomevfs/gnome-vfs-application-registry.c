@@ -668,7 +668,7 @@ strip_trailing_whitespace (GString *string)
 	int i;
 
 	for (i = string->len - 1; i >= 0; i--) {
-		if (!isspace (string->str[i]))
+		if (!isspace ((guchar) string->str[i]))
 			break;
 	}
 
