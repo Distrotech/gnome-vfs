@@ -1,5 +1,10 @@
 2000-05-09  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-gen-mimedb: Removed from CVS. 
+	Oops, checked this in by accident.
+
+2000-05-09  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs-pthread/gnome-vfs-job.c:
 	(execute_xfer):
 	Add a missing job_close that was triggering an assert for
