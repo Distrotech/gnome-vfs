@@ -45,17 +45,12 @@ test_files=		\
 	test.cmds	\
 	test.output
 
-if HAVE_LIBEFS
-auto_tests=auto-test
-else
-auto_tests=
-endif
-
 # Set up the environment so the tests can find the modules
 TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
 		GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules \
-		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml
-TESTS = test-async-cancel test-escape test-uri test-queue $(auto_tests)
+		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml \
+		SRCDIR=$(srcdir)
+TESTS = test-async-cancel test-escape test-uri test-queue $(srcdir)/auto-test
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\

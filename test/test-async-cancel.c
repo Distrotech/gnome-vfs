@@ -44,7 +44,7 @@ static GnomeVFSAsyncHandle *test_handle;
 static gpointer test_callback_data;
 static gboolean test_done;
 
-#define MAX_THREAD_WAIT 100
+#define MAX_THREAD_WAIT 1000
 
 static void
 stop_after_log (const char *domain, GLogLevelFlags level, 

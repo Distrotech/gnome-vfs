@@ -1,3 +1,13 @@
+2002-07-17  Michael Meeks  <michael@ximian.com>
+
+	* test/auto-test: re-write.
+
+	* test/Makefile.am: connect auto-test, upd env.
+
+	* test/test-async-cancel.c
+	(MAX_THREAD_WAIT): bump the thread wait for my poor
+	old machine.
+
 2002-06-28  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-info.c (reload_if_needed) : no need to
