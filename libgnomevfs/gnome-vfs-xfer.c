@@ -466,6 +466,83 @@ empty_directory (GnomeVFSURI *uri,
 	return result;
 }
 
+typedef struct {
+	const GnomeVFSURI *base_uri;
+	GList *uri_list;
+} PrependOneURIParams;
+
+static gboolean
+PrependOneURIToList (const gchar *rel_path, GnomeVFSFileInfo *info,
+	gboolean recursing_will_loop, gpointer cast_to_params, gboolean *recurse)
+{
+	PrependOneURIParams *params;
+
+	params = (PrependOneURIParams *)cast_to_params;
+	params->uri_list = g_list_prepend (params->uri_list, gnome_vfs_uri_append_path (
+		params->base_uri, rel_path));
+
+	if (recursing_will_loop) {
+		return FALSE;
+	}
+	*recurse = TRUE;
+	return TRUE;
+}
+
+static GnomeVFSResult
+non_recursive_empty_directory (GnomeVFSURI *directory_uri,
+			       GnomeVFSProgressCallbackState *progress,
+			       GnomeVFSXferOptions xfer_options,
+			       GnomeVFSXferErrorMode *error_mode,
+			       gboolean *skip)
+{
+	/* Used as a fallback when we run out of file descriptors during 
+	 * a deep recursive deletion. 
+	 * We instead compile a flat list of URIs, doing a recursion that does not
+	 * keep directories open.
+	 */
+
+	GList *uri_list;
+	GList *p;
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+	GnomeVFSFileInfo info;
+	PrependOneURIParams visit_params;
+
+	/* Build up the list so that deep items appear before their parents
+	 * so that we can delete directories, children first.
+	 */
+	visit_params.base_uri = directory_uri;
+	visit_params.uri_list = NULL;
+	result = gnome_vfs_directory_visit_uri (directory_uri, GNOME_VFS_FILE_INFO_DEFAULT, 
+		NULL, GNOME_VFS_DIRECTORY_VISIT_SAMEFS | GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK,
+		PrependOneURIToList, &visit_params);
+
+	uri_list = visit_params.uri_list;
+
+	if (result == GNOME_VFS_OK) {
+		for (p = uri_list; p != NULL; p = p->next) {
+
+			uri = (GnomeVFSURI *)p->data;
+			gnome_vfs_file_info_init (&info);
+			result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+			if (result == GNOME_VFS_OK) {
+				if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+					result = remove_directory (uri, FALSE, 
+						progress, xfer_options, error_mode, skip);
+				} else {
+					result = remove_file (uri, progress, 
+						xfer_options, error_mode, skip);
+				}
+			}
+			gnome_vfs_file_info_clear (&info);
+		}
+	}
+
+	gnome_vfs_uri_list_free (uri_list);
+
+	return result;
+}
+
 static GnomeVFSResult
 remove_directory (GnomeVFSURI *uri,
 		  gboolean recursive,
@@ -480,8 +557,11 @@ remove_directory (GnomeVFSURI *uri,
 	result = GNOME_VFS_OK;
 
 	if (recursive) {
-		result = empty_directory (uri, progress, xfer_options, 
-					  error_mode, skip);
+		result = empty_directory (uri, progress, xfer_options, error_mode, skip);
+		if (result == GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES) {
+			result = non_recursive_empty_directory (uri, progress, xfer_options,
+				error_mode, skip);
+		}
 	}
 
 	if (result == GNOME_VFS_ERROR_EOF)
@@ -1562,6 +1642,11 @@ gnome_vfs_xfer_empty_trash (const GList *trash_dir_uris,
 		result = directory_add_items_and_size (p->data,
 			GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
 			progress);
+		if (result == GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES) {
+			/* out of file descriptors -- we will deal with that */
+			result = GNOME_VFS_OK;
+			break;
+		}
 		if (result != GNOME_VFS_OK)
 			break;
 		/* set up a fake total size to represent the bulk of the operation
@@ -1573,11 +1658,17 @@ gnome_vfs_xfer_empty_trash (const GList *trash_dir_uris,
 	if (result == GNOME_VFS_OK) {
 		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 		for (p = trash_dir_uris;  p != NULL; p = p->next) {
-			result = empty_directory (p->data, progress, 
+			result = empty_directory ((GnomeVFSURI *)p->data, progress, 
 				GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
 				&error_mode, &skip);
-			if (result != GNOME_VFS_OK)
+			if (result == GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES) {
+				result = non_recursive_empty_directory ((GnomeVFSURI *)p->data, 
+					progress, GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
+					&error_mode, &skip);
+			}
+			if (result != GNOME_VFS_OK) {
 				break;
+			}
 		}
 	}
 

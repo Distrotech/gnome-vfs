@@ -1,3 +1,12 @@
+2000-10-09  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (PrependOneURIToList),
+	(non_recursive_empty_directory), (remove_directory),
+	(gnome_vfs_xfer_empty_trash):
+	work on 825 - Inability to empty Trash after trashing a deeply
+	nested directory. Added a fallback call that builds a uri list
+	first without keeping directory file descriptors opened.
+
 2000-10-09  Glynn Foster  <glynn.foster@sun.com>
 
 	* configure.in:
