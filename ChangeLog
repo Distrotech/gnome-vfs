@@ -1,3 +1,7 @@
+2001-08-27  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in: Added zh_TW (traditional Chinese) to ALL_LINGUAS.
+
 2001-08-23  Anders Carlsson  <andersca@gnu.org>
 
 	* libgnomevfs-pthread/gnome-vfs-pthread.c:
