@@ -1,5 +1,10 @@
 2003-12-05  Mark McLoughlin  <mark@skynet.ie>
 
+	* schemas/desktop_gnome_url_handlers.schemas.in:
+	Use gnomemeeting -c to handle callto: and h323:
+
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
 	* schemas/desktop_gnome_url_handlers.schemas.in: Add
 	a h323: handler using gnomemeeting too.
 

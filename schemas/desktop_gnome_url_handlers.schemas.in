@@ -256,7 +256,7 @@
      <applyto>/desktop/gnome/url-handlers/callto/command</applyto>
      <owner>gnome</owner>
      <type>string</type>
-     <default>gnomemeeting %s</default>
+     <default>gnomemeeting -c %s</default>
      <locale name="C">
        <short>URL handler for callto uris</short>
        <long>URL handler for callto uris</long>
@@ -290,7 +290,7 @@
      <applyto>/desktop/gnome/url-handlers/h323/command</applyto>
      <owner>gnome</owner>
      <type>string</type>
-     <default>gnomemeeting %s</default>
+     <default>gnomemeeting -c %s</default>
      <locale name="C">
        <short>URL handler for h323 uris</short>
        <long>URL handler for h323 uris</long>
