@@ -4,7 +4,7 @@ gnome-vfs 2.0.2
 		+ gcc 3.1 build (Frederic Crozat)
 		+ don't leak async pipes (Frederic)
 		+ kill 5 second bug (Jody Goldberg, Michael Meeks)
-		+ major locking re-hash (Jacob Berkman, Michael)
+		+ major locking re-hash (Michael, Jacob Berkman)
 		+ cancellation efficiency (Michael)
 		+ init threads earlier (Michael)
 		+ URI canonicalization (Frederic)
