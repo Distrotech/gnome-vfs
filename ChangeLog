@@ -1,5 +1,10 @@
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-result.c (gnome_vfs_result_from_errno_code):
+	Added ECONNREFUSED and ENETUNREACH error codes.
+
+2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
+
 	* modules/Makefile.am
 	* configure.in: cleanups and ability to switch between
 	neon and the old module.
