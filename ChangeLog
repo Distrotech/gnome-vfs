@@ -1,3 +1,13 @@
+2000-01-04  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome-vfs-uri-new):
+	Removed g_return_val_if_fail() for empty string case,
+	since rest of routine handles empty string identically
+	to any other bogus string.
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_get_file_info):
+	Avoid calling gnome_vfs_uri_unref on NULL uri, to avoid
+	g_return_if_fail.
+	
 2000-01-02  Tomasz K³oczko  <kloczek@pld.org.pl>
         * configure.in, po/pl.po: added Polish translation
         (based on GNOME PL translation resources).

@@ -198,7 +198,9 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	gchar *method_string;
 
 	g_return_val_if_fail (text_uri != NULL, NULL);
-	g_return_val_if_fail (text_uri[0] != 0, NULL);
+
+	if (text_uri[0] == 0)
+		return NULL;
 
 	/* FIXME: Correct to look for alpha only?  */
 	for (p = text_uri; isalpha (*p); p++)

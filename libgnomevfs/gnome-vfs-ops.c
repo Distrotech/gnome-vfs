@@ -275,7 +275,11 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 
 	uri = gnome_vfs_uri_new (text_uri);
 
-	if (!uri || uri->method->get_file_info == NULL) {
+	if (uri == NULL) {
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+	}
+	
+	if (uri->method->get_file_info == NULL) {
 		gnome_vfs_uri_unref (uri);
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 	}
