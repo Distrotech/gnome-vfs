@@ -17,7 +17,10 @@ INCLUDES= \
 	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
+	-I$(top_srcdir)				\
+	-I$(top_builddir)			\
 	-I$(top_srcdir)/libgnomevfs             \
+	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
 vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
@@ -30,10 +33,10 @@ vfs_daemon_SOURCES = \
 	gnome-vfs-daemon-dir-handle.c \
 	gnome-vfs-daemon-handle.h \
 	gnome-vfs-daemon-handle.c \
-	$(top_srcdir)/libgnomevfs/GNOME_VFS_Daemon.h		\
-	$(top_srcdir)/libgnomevfs/GNOME_VFS_Daemon-common.c	\
-	$(top_srcdir)/libgnomevfs/GNOME_VFS_Daemon-stubs.c	\
-	$(top_srcdir)/libgnomevfs/GNOME_VFS_Daemon-skels.c
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon.h		\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-common.c	\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-stubs.c	\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-skels.c
 
 # Hack for now
 BONOBO_ACTIVATION_IDL_DIR=`pkg-config --variable=idldir bonobo-activation-2.0`

@@ -3,6 +3,7 @@ NULL =
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
+	-I$(top_builddir)/libgnomevfs           \
 	$(TEST_CFLAGS)				\
 	$(VFS_CFLAGS)				\
 	-DG_DISABLE_DEPRECATED			\

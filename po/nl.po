@@ -3,14 +3,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-19 20:02+0200\n"
+"POT-Creation-Date: 2003-10-20 15:52+0200\n"
 "PO-Revision-Date: 2003-10-17 18:25+0200\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: daemon/gnome-vfs-daemon.c:320
 msgid "Could not initialize Bonobo"
@@ -24,9 +24,6 @@ msgstr "Kan gnome vfs niet starten"
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d bevat NULL-tekens."
-
-msgid "%s:%d contains NULL characters."
 msgstr "%s:%d bevat NULL-tekens."
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
@@ -54,22 +51,22 @@ msgstr "%s:%d bevat geen modulenaam."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Configuratiebestand '%s' is niet gevonden: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:760
+#: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Onbekend oper-type %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1050 libgnomevfs/gnome-vfs-job.c:1195
+#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan geen pijp creëren voor GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1686
+#: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Onbekend taaktype %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1719
+#: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
 msgstr "Operatie gestopt"
 
@@ -608,3 +605,6 @@ msgstr "HTTP proxy wachtwoord"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr "HTTP proxy gebruikersnaam"
+
+#~ msgid "%s:%d contains NULL characters."
+#~ msgstr "%s:%d bevat NULL-tekens."

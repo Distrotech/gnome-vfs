@@ -2,7 +2,7 @@
 #define _GNOME_VFS_DAEMON_HANDLE_H_
 
 #include <bonobo/bonobo-object.h>
-#include <GNOME_VFS_Daemon.h>
+#include "GNOME_VFS_Daemon.h"
 #include "gnome-vfs-handle.h"
 
 G_BEGIN_DECLS

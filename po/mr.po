@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.x\n"
-"POT-Creation-Date: 2003-01-26 19:49+0100\n"
+"POT-Creation-Date: 2003-10-20 15:52+0200\n"
 "PO-Revision-Date: 2003-01-11 16:38+0530\n"
 "Last-Translator: Jitendra Shah <jitendras@vsnl.com>\n"
 "Language-Team: Marathi <www.indictrans.org>\n"
@@ -14,50 +14,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# libgnomevfs/gnome-vfs-parse-ls.c:652
+#: daemon/gnome-vfs-daemon.c:320
+#, fuzzy
+msgid "Could not initialize Bonobo"
+msgstr "मास्टर ब्राउसर शोधू शकत नाही"
+
+#: daemon/gnome-vfs-daemon.c:326
+msgid "Could not initialize gnome vfs"
+msgstr ""
+
 # libgnomevfs/gnome-vfs-configuration.c:223
-#: libgnomevfs/gnome-vfs-configuration.c:223
+#: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s : %d मध्ये NUL अक्षरे आहेत"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
-#: libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s : %d मध्ये कोणत्याही पद्धतीचे नाव नाही"
 
+# libgnomevfs/gnome-vfs-configuration.c:240
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, fuzzy, c-format
+msgid "%s:%d has no options endmarker."
+msgstr "%s : %d मध्ये कोणत्याही पद्धतीचे नाव नाही"
+
+#: libgnomevfs/gnome-vfs-configuration.c:295
+#, c-format
+msgid "%s:%d has unknown options %s."
+msgstr ""
+
 # libgnomevfs/gnome-vfs-configuration.c:269
-#: libgnomevfs/gnome-vfs-configuration.c:269
+#: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s : %d मध्ये कोणत्याही माड्यूलचे नाव नाही"
 
 # libgnomevfs/gnome-vfs-configuration.c:322
-#: libgnomevfs/gnome-vfs-configuration.c:322
+#: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "कानफिगरेशन फाइल '%s' नाही मिळाली : %s"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: libgnomevfs/gnome-vfs-job.c:707
+#: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
 msgstr "अज्ञात कारक प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
+#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुल्या GIO चैनलसाठी पाइप निर्मित नाही करू  शकत : %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: libgnomevfs/gnome-vfs-job.c:1601
+#: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: libgnomevfs/gnome-vfs-job.c:1634
+#: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
 msgstr "प्रक्रिया थांबवीली आहे"
 
@@ -319,39 +340,121 @@ msgstr "निरपेक्ष डाटा ची मागणी "
 msgid "Protocol error"
 msgstr "प्रोटोकाॅल त्रुटि"
 
+# libgnomevfs/gnome-vfs-parse-ls.c:652
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Could not find master browser"
+msgstr "मास्टर ब्राउसर शोधू शकत नाही"
+
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "No default action associated"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "No handler for URL scheme"
+msgstr ""
+
+#. GNOME_VFS_ERROR_PARSE
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Error parsing command line"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: libgnomevfs/gnome-vfs-result.c:80
+msgid "Error launching command"
+msgstr ""
+
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-result.c:137
+#: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
 # libgnomevfs/gnome-vfs-utils.c:65
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
 msgstr "1 बाइट"
 
 # libgnomevfs/gnome-vfs-utils.c:67
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
 msgstr "%u बाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:74
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f किलोबाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:78
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f मेगाबाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:82
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f गीगाबाइट्स"
+
+#: libgnomevfs/gnome-vfs-utils.c:1085
+msgid " (invalid Unicode)"
+msgstr "(अवैध यूनिकोड)"
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:175
+msgid "Applications"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:178
+msgid "Cards"
+msgstr ""
+
+# libgnomevfs/gnome-vfs-result.c:57
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:181
+#, fuzzy
+msgid "Files"
+msgstr "फाइल उपलब्ध आहे"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:184
+msgid "Folders"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:187
+msgid "Help"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Hosts"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:193
+msgid "Links"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:196
+msgid "Mail"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:199
+msgid "Tools"
+msgstr ""
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:202
+msgid "Windows"
+msgstr ""
 
 # modules/file-method.c:381
 #: modules/file-method.c:382
@@ -370,8 +473,7 @@ msgstr "%s वर कोणतीही वैध समायोजन फा�
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"अन्य विशिष्ठ जागा दखविण्यासाठी इनवाॅयरमेन्ट परिवर्तनांक %s चा प्रयोग करा \n"
+msgstr "अन्य विशिष्ठ जागा दखविण्यासाठी इनवाॅयरमेन्ट परिवर्तनांक %s चा प्रयोग करा \n"
 
 # monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
@@ -393,9 +495,169 @@ msgstr "सामान्य जीनोम VFS माॅनीकर "
 msgid "generic file moniker"
 msgstr "सामान्य फाइल माॅनीकर"
 
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#~ msgid "Could not find master browser"
-#~ msgstr "मास्टर ब्राउसर शोधू शकत नाही"
+#: schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr ""
 
-#~ msgid " (invalid Unicode)"
-#~ msgstr "(अवैध यूनिकोड)"
+#: schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate connections to the proxy server"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing http over the internet."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:9
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:11
+msgid "Proxy configuration mode"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "The machine name to proxy FTP through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy socks through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:29
+msgid "http proxy password"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:30
+msgid "http proxy username"
+msgstr ""

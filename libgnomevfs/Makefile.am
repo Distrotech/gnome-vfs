@@ -199,7 +199,10 @@ idls = GNOME_VFS_Daemon.idl
 idl_flags = -I $(BONOBO_ACTIVATION_IDL_DIR)
 
 $(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
-	$(ORBIT_IDL) $(idl_flags) $(idls)
+	$(ORBIT_IDL) $(idl_flags) $(srcdir)/$(idls)
 
 # TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl $(idls) (CORBA_SOURCE)
+EXTRA_DIST = check-headers.pl $(idls)
+
+BUILT_SOURCES = $(CORBA_SOURCE)
+CLEANFILES = $(BUILT_SOURCES)

@@ -1,5 +1,18 @@
 2003-10-20  Alexander Larsson  <alexl@redhat.com>
 
+	* Makefile.am:
+	* configure.in:
+	* doc/Makefile.am:
+	Use gtk-doc.make
+	
+	* daemon/Makefile.am:
+	* daemon/gnome-vfs-daemon-handle.h:
+	* libgnomevfs/Makefile.am:
+	* test/Makefile.am:
+	Fix distcheck
+
+2003-10-20  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Require orbit 2.9.0
 

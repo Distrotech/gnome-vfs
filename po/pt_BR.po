@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4.0\n"
-"POT-Creation-Date: 2003-09-30 11:16-0400\n"
+"POT-Creation-Date: 2003-10-20 15:52+0200\n"
 "PO-Revision-Date: 2003-09-30 11:14-0400\n"
 "Last-Translator: David Barzilay <barzilay@redhat.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -16,42 +16,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Report-Msgid-Bugs-To: \n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:219
+#: daemon/gnome-vfs-daemon.c:320
+#, fuzzy
+msgid "Could not initialize Bonobo"
+msgstr "Não foi possível encontrar o servidor de domínio"
+
+#: daemon/gnome-vfs-daemon.c:326
+msgid "Could not initialize gnome vfs"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d possui caracteres NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:236
+#: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d não possui nome de método."
 
-#: libgnomevfs/gnome-vfs-configuration.c:265
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, fuzzy, c-format
+msgid "%s:%d has no options endmarker."
+msgstr "%s:%d não possui nome de método."
+
+#: libgnomevfs/gnome-vfs-configuration.c:295
+#, c-format
+msgid "%s:%d has unknown options %s."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d não possui nome de módulo."
 
-#: libgnomevfs/gnome-vfs-configuration.c:318
+#: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Arquivo de configuração `%s' não foi achado: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:758
+#: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipo de operação desconhecida %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Não é possível criar pipe para abrir GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1684
+#: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabalho desconhecido %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1717
+#: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
 msgstr "Operação paralizada"
 

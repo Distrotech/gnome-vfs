@@ -26,3 +26,4 @@ EXTRA_DIST =					\
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-vfs-2.0.pc gnome-vfs-module-2.0.pc
 
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
