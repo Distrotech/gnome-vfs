@@ -1,3 +1,15 @@
+2002-06-04  Kristian Rietveld  <kris@gtk.org>
+
+	* libgnomevfs/gnome-vfs-standard-callbacks.h: add
+	http:send-additional-headers and http:received-headers hooks.
+
+	* modules/http-method.c (create_handle): invoke headers received
+	callback after receiving full header,
+	(make_request): invoke send additional headers callback and add
+	extra headers if needed,
+	(invoke_callback_headers_received): new function,
+	(invoke_callback_send_additional_headers): new function
+
 2002-06-03  Ian McKellar  <yakk@yakk.net>
 
 	* modules/ssh-method.c: Big improvement to the ssh method from

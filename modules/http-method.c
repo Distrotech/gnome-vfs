@@ -209,18 +209,21 @@ typedef struct {
 	guint server_status;
 } HttpFileHandle;
 
-static GnomeVFSResult resolve_409 		(GnomeVFSMethod *method,
-						 GnomeVFSURI *uri,
-						 GnomeVFSContext *context);
-static void 	proxy_set_authn			(const char *username,
-						 const char *password);
-static void	proxy_unset_authn 		(void);
-static gboolean invoke_callback_basic_authn	(HttpFileHandle *handle, 
-			     			 enum AuthnHeaderType authn_which,
-			     			 gboolean previous_attempt_failed);
-static gboolean check_authn_retry_request 	(HttpFileHandle * http_handle,
-			   			 enum AuthnHeaderType authn_which,
-			   			 const char *prev_authn_header);
+static GnomeVFSResult resolve_409 		 (GnomeVFSMethod *method,
+						  GnomeVFSURI *uri,
+						  GnomeVFSContext *context);
+static void 	proxy_set_authn			 (const char *username,
+						  const char *password);
+static void	proxy_unset_authn 		 (void);
+static gboolean invoke_callback_send_additional_headers (GnomeVFSURI *uri,
+							 GList **list);
+static gboolean invoke_callback_headers_received (HttpFileHandle *handle);
+static gboolean invoke_callback_basic_authn	 (HttpFileHandle *handle, 
+			     			  enum AuthnHeaderType authn_which,
+			     			  gboolean previous_attempt_failed);
+static gboolean check_authn_retry_request 	 (HttpFileHandle * http_handle,
+			   			  enum AuthnHeaderType authn_which,
+			   			  const char *prev_authn_header);
 
 
 static GnomeVFSFileInfo *
@@ -667,6 +670,8 @@ create_handle (GnomeVFSURI *uri,
 		 */
 		parse_header (*p_handle, header_string->str);
 	}
+
+	invoke_callback_headers_received (*p_handle);
 
 	ANALYZE_HTTP ("==> -create_handle: fetching headers");
 
@@ -1302,6 +1307,8 @@ make_request (HttpFileHandle **handle_return,
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
 	for (;;) {
+		GList *list;
+
 		g_free (authn_header_request);
 		g_free (authn_header_proxy);
 
@@ -1337,6 +1344,21 @@ make_request (HttpFileHandle **handle_return,
 		/* Extra headers. */
 		if (extra_headers != NULL) {
 			g_string_append (request, extra_headers);
+		}
+
+		/* Extra headers from user */
+		list = NULL;
+
+		if (invoke_callback_send_additional_headers (uri, &list)) {
+			GList *i;
+
+			for (i = list; i; i = i->next) {
+				g_string_append (request, i->data);
+				g_free (i->data);
+				i->data = NULL;
+			}
+
+			g_list_free (list);
 		}
 
 		/* Empty line ends header section.  */
@@ -2685,6 +2707,58 @@ resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 	ANALYZE_HTTP ("==> -resolving 409");
 
 	return result;
+}
+
+static gboolean
+invoke_callback_headers_received (HttpFileHandle *handle)
+{
+	GnomeVFSModuleCallbackReceivedHeadersIn in_args;
+	GnomeVFSModuleCallbackReceivedHeadersOut out_args;
+	gboolean ret = FALSE;
+
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.uri = handle->uri;
+	in_args.headers = handle->response_headers;
+
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_HTTP_RECEIVED_HEADERS,
+						&in_args, sizeof (in_args),
+						&out_args, sizeof (out_args));
+
+	return ret;
+}
+
+static gboolean
+invoke_callback_send_additional_headers (GnomeVFSURI  *uri,
+					 GList       **headers)
+{
+	GnomeVFSModuleCallbackAdditionalHeadersIn in_args;
+	GnomeVFSModuleCallbackAdditionalHeadersOut out_args;
+	gboolean ret = FALSE;
+
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.uri = uri;
+
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_HTTP_SEND_ADDITIONAL_HEADERS,
+						&in_args, sizeof (in_args),
+						&out_args, sizeof (out_args));
+
+	if (ret) {
+		*headers = out_args.headers;
+		return TRUE;
+	}
+
+	if (out_args.headers) {
+		g_list_foreach (out_args.headers, (GFunc)g_free, NULL);
+		g_list_free (out_args.headers);
+	}
+
+	*headers = NULL;
+
+	return FALSE;
 }
 
 static gboolean

@@ -25,6 +25,7 @@
 #define GNOME_VFS_STANDARD_CALLBACKS_H
 
 #include <glib/gtypes.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 G_BEGIN_DECLS
 
@@ -78,6 +79,43 @@ typedef struct {
 				 */
 	char *password;		/* will be freed by g_free */
 } GnomeVFSModuleCallbackAuthenticationOut;
+
+/*
+ * hook name: "http:send-additional-headers"
+ * In arg: GnomeVFSModuleCallbackAdditionalHeadersIn *
+ * Out arg: GnomeVFSModuleCallbackAdditionalHeadersOut *
+ *
+ * Called before sending headers to an HTTP server.
+ */
+
+#define GNOME_VFS_MODULE_CALLBACK_HTTP_SEND_ADDITIONAL_HEADERS "http:send-additional-headers"
+
+typedef struct {
+	GnomeVFSURI *uri;		/* URI of operation */
+} GnomeVFSModuleCallbackAdditionalHeadersIn;
+
+typedef struct {
+	GList *headers;			/* list of headers, will be freeed */
+} GnomeVFSModuleCallbackAdditionalHeadersOut;
+
+/*
+ * hook name: "http:received-headers"
+ * In arg: GnomeVFSModuleCallbackReceivedHeadersIn *
+ * Out arg: GnomeVFSModuleCallbackReceivedHeadersOut *
+ *
+ * Called after receiving the HTTP headers from the server.
+ */
+
+#define GNOME_VFS_MODULE_CALLBACK_HTTP_RECEIVED_HEADERS "http:received-headers"
+
+typedef struct {
+	GnomeVFSURI *uri;		/* URI of operation */
+	GList *headers;			/* list of headers */
+} GnomeVFSModuleCallbackReceivedHeadersIn;
+
+typedef struct {
+	int dummy;
+} GnomeVFSModuleCallbackReceivedHeadersOut;
 
 /*
  * hook name: "status-message"
