@@ -82,7 +82,7 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
-/* #define DEBUG_HTTP_ENABLE 1 */
+/* #define DEBUG_HTTP_ENABLE */
 #undef DEBUG_HTTP_ENABLE
 #ifdef DEBUG_HTTP_ENABLE
 
@@ -274,6 +274,15 @@ resolve_result (int result, ne_request *request)
 /* ************************************************************************** */
 /* Utility functions */
 
+typedef enum {
+	
+	DAV_CLASS_NOT_SET = -1,
+	NO_DAV            =  0,
+	DAV_CLASS_1       =  1,
+	DAV_CLASS_2       =  2
+
+} DavClass;
+
 typedef struct {
 	
 	char      *scheme;
@@ -281,7 +290,6 @@ typedef struct {
 	char      *alias;
 	   
 } MethodSchemes;
-
 
 MethodSchemes supported_schemes[] = {
 
@@ -963,10 +971,10 @@ static void
 set_dav_class (void *userdata, const char *value)
 {
 	char *tokens = ne_strdup(value), *pnt = tokens;
-	gint *dav_class = userdata;
+        DavClass *dav_class = userdata;
     
 	DEBUG_HTTP_3 ("parsing dav: %s", tokens); 
-	
+
 	do {
 		char *tok = ne_qtoken (&pnt, ',',  "\"'");
 		if (!tok) break;
@@ -1515,7 +1523,7 @@ typedef struct {
 	const char *scheme;
 	gboolean ssl;
 	
-	guint dav_class;
+	DavClass dav_class;
 	HttpMethods methods;
 	
 	ne_session *session;
@@ -1661,7 +1669,9 @@ http_context_set_uri (HttpContext *context, GnomeVFSURI *uri)
 		uri_string = g_strdup ("/");
 	}
 	
-	context->path = uri_string;
+	context->path      = uri_string;
+	context->methods   = 0;
+	context->dav_class = DAV_CLASS_NOT_SET;
 	
 }
 
@@ -1755,7 +1765,7 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 	DEBUG_HTTP_CONTEXT (context);
 	
 	/* no dav server */
-	if (context->dav_class == -1) 
+	if (context->dav_class == NO_DAV) 
 		goto head_start;
  	
 	_etag = NULL;
@@ -1864,6 +1874,17 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 	return result;
 }
 
+static void assure_trailing_slash (HttpContext *context)
+{
+	char *tofree;
+
+	if (! ne_path_has_trailing_slash (context->path)) {
+		tofree = context->path;
+		context->path = g_strconcat (tofree, "/", NULL);
+		g_free (tofree);
+	}
+}
+
 static GnomeVFSResult
 http_list_directory (HttpContext *context, PropfindContext *pfctx)
 {
@@ -1871,31 +1892,18 @@ http_list_directory (HttpContext *context, PropfindContext *pfctx)
 	ne_propfind_handler *pfh;
 	ne_request *req;
 	int res;
-	char *tofree;
 
 	DEBUG_HTTP_CONTEXT (context);
 	
-	tofree = NULL;
 	propfind_context_init (pfctx);
+	pfctx->path = context->path;
 	
  propfind_start:	
-	if (ne_path_has_trailing_slash (context->path)) {
-		pfctx->path = context->path;
-	} else {
-		tofree = g_strconcat (context->path, "/", NULL);
-		pfctx->path = tofree;
-	}
-	
 	pfctx->include_target = TRUE;
-
+	
 	pfh = ne_propfind_create (context->session, context->path, 1);
 	res = ne_propfind_named (pfh, file_info_props, propfind_result, pfctx);
 	
-	if (tofree != NULL) {
-		g_free (tofree);
-		tofree = NULL;
-	}
-
 	if (res == NE_REDIRECT) {
 		
 		ne_propfind_destroy (pfh);
@@ -1919,16 +1927,16 @@ http_list_directory (HttpContext *context, PropfindContext *pfctx)
 
 
 static GnomeVFSResult
-http_options (HttpContext *hctx, gint *dav_class)
+http_options (HttpContext *hctx)
 {
 	GnomeVFSResult  result;
 	ne_request     *req;
-	gint 		klass;
+	DavClass 	klass;
 	HttpMethods	methods;
 	int		res;
 	
  options_start:	
-	klass = -1;
+	klass = DAV_CLASS_NOT_SET;
 	methods = 0;
 	req = ne_request_create (hctx->session, "OPTIONS", hctx->path);
 	ne_add_response_header_handler (req, "DAV", set_dav_class, &klass);
@@ -1945,9 +1953,7 @@ http_options (HttpContext *hctx, gint *dav_class)
 	result = resolve_result (res, req);
 	
 	if (result == GNOME_VFS_OK) {
-		if (dav_class)
-			*dav_class = klass;
-	
+		
 		hctx->dav_class = klass;
 		hctx->methods = methods;
 	}
@@ -2309,7 +2315,7 @@ do_open (GnomeVFSMethod 	*method,
 	hctx = handle->context;
 
 	if (mode & GNOME_VFS_OPEN_WRITE) {
-		if ((result = http_options (hctx, NULL)) != GNOME_VFS_OK) {
+		if ((result = http_options (hctx)) != GNOME_VFS_OK) {
 			http_file_handle_destroy (handle);
 			return result;
 		}
@@ -2720,10 +2726,11 @@ do_open_directory (GnomeVFSMethod 	    *method,
 	
 	if (result != GNOME_VFS_OK)
 		return result;
-	
-	result = http_options (hctx, NULL);
 
-	if (result != GNOME_VFS_OK || hctx->dav_class == -1) {
+	assure_trailing_slash (hctx);
+	result = http_options (hctx);
+
+	if (result != GNOME_VFS_OK || hctx->dav_class == NO_DAV) {
 		http_context_free (hctx);
 		
 		if (result != GNOME_VFS_OK)
@@ -2888,9 +2895,9 @@ do_make_directory (GnomeVFSMethod  *method,
 	if (result != GNOME_VFS_OK)
 		return result;
 	
-	result = http_options (hctx, NULL);
+	result = http_options (hctx);
 	
-	if (result != GNOME_VFS_OK || (hctx->dav_class == -1)) {
+	if (result != GNOME_VFS_OK || (hctx->dav_class == NO_DAV)) {
 
 		if (result == GNOME_VFS_OK)
 			result = GNOME_VFS_ERROR_NOT_SUPPORTED;
@@ -2944,6 +2951,8 @@ do_remove_directory (GnomeVFSMethod  *method,
 	
 	if (result != GNOME_VFS_OK)
 		return result;
+
+	assure_trailing_slash (hctx);
 	
 	propfind_context_init (&pfctx);
 	result = http_list_directory (hctx, &pfctx);

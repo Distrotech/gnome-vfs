@@ -1,3 +1,8 @@
+2005-01-28  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: Beautify some code and always add
+	a trailing slash on do_open_directory ().
+
 2005-01-28  Sebastien Bacher  <seb128@debian.org>
 
 	reviewed by: Christophe Fergeau <teuf@gnome.org>
