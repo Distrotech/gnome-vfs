@@ -548,6 +548,12 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
+
+	/* TODO: We really should handle aliases here.
+	   For now, special case dirs */
+	if (strcmp (mime_type, "x-directory/normal") == 0)
+	  mime_type = "inode/directory";
+	  
 	
 	entry = get_entry (mime_type);
 
