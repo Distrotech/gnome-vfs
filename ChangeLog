@@ -25,7 +25,13 @@
 
 	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Ignore SIGPIPE.
 
-1999-09-25  Cody Russell  <bratsche@dfw.net>
+1999-09-26  Dave Camp  <campd@oit.edu>
+
+	* modules/gconf-method.c (do_get_file_info_from_handle): New method.
+	(vfs_module_init): Don't pass the "application" parameter to
+	g_conf_init().
+
+11999-09-25  Cody Russell  <bratsche@dfw.net>
 
 	* modules/bzip2-method.c: Removed MAKE_ABSOLUTE().
 
