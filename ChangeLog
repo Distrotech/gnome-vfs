@@ -1,3 +1,12 @@
+2005-01-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cdrom.c:
+	(_gnome_vfs_get_iso9660_volume_name):
+	Use the iso volume if the first 16 characters are the same
+	as the joiliet one. (Since then the joliet label is just a
+	truncated version of it.)
+	Patch from leon breedt <bitserf@gmail.com>
+
 2005-01-11  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread),
