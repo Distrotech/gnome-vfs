@@ -1,3 +1,8 @@
+Thu Aug 23 11:33:48 2001  George Lebl <jirka@5z.com>
+
+	* test/test-channel.c (io_channel_callback):  Another s/guint/gsize/
+	  64bit fix
+
 Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 	* libgnomevfs/gnome-vfs-process.c (wake_up), 

@@ -41,15 +41,15 @@ io_channel_callback (GIOChannel *source,
 		     gpointer data)
 {
 	gchar buffer[BUFFER_SIZE + 1];
-	guint bytes_read;
+	gsize bytes_read;
 
 	printf ("\n\n************ IO Channel callback!\n");
 
 	if (condition & G_IO_IN) {
 		g_io_channel_read_chars (source, buffer, sizeof (buffer) - 1, &bytes_read, NULL);
 		buffer[bytes_read] = 0;
-		printf ("---> Read %d byte(s):\n%s\n\n(***END***)\n",
-			bytes_read, buffer);
+		printf ("---> Read %lu byte(s):\n%s\n\n(***END***)\n",
+			(gulong)bytes_read, buffer);
 		fflush (stdout);
 	}
 
