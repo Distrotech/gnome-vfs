@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2001-03-14 17:58+0300\n"
-"PO-Revision-Date: 2001-03-14 18:44+03:00\n"
+"PO-Revision-Date: 2001-03-15 21:37+03:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Метрика шрифта Adobe"
 
 #: data/mime/gnome-vfs.keys.in.h:9
 msgid "Andrew Toolkit inset"
-msgstr ""
+msgstr "Andrew Toolkit inset"
 
 #: data/mime/gnome-vfs.keys.in.h:10
 msgid "ApplixWare Graphics image"
@@ -802,7 +802,7 @@ msgstr "зашифрованное сообщение"
 
 #: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
-msgstr ""
+msgstr "документ в формате enriched text"
 
 #: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
@@ -850,7 +850,7 @@ msgstr "дамп памяти"
 
 #: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
-msgstr ""
+msgstr "дайджест сообщения"
 
 #: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
@@ -858,7 +858,7 @@ msgstr "сообщение в нескольких форматах"
 
 #: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
-msgstr ""
+msgstr "составное сообщение"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
@@ -894,7 +894,7 @@ msgstr "файл отброшенной заплатки"
 
 #: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
-msgstr ""
+msgstr "документ в формате rich text"
 
 #: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
@@ -970,15 +970,15 @@ msgstr "документ troff"
 
 #: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
-msgstr ""
+msgstr "входной документ troff me"
 
 #: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
-msgstr ""
+msgstr "входной документ troff mm"
 
 #: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
-msgstr ""
+msgstr "входной документ troff ms"
 
 #: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
