@@ -107,18 +107,18 @@ http_debug_printf (char *fmt, ...)
 #define DEFAULT_HTTP_PROXY_PORT 8080
 
 /* GConf paths and keys */
-#define PATH_GCONF_GNOME_VFS "/system/gnome-vfs"
-#define ITEM_GCONF_HTTP_PROXY_PORT "http-proxy-port"
-#define ITEM_GCONF_HTTP_PROXY_HOST "http-proxy-host"
+#define PATH_GCONF_GNOME_VFS "/system/http_proxy"
+#define ITEM_GCONF_HTTP_PROXY_PORT "port"
+#define ITEM_GCONF_HTTP_PROXY_HOST "host"
 #define KEY_GCONF_HTTP_PROXY_PORT (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY_PORT)
 #define KEY_GCONF_HTTP_PROXY_HOST (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY_HOST)
 
-#define ITEM_GCONF_USE_HTTP_PROXY "use-http-proxy"
+#define ITEM_GCONF_USE_HTTP_PROXY "use_http_proxy"
 #define KEY_GCONF_USE_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_USE_HTTP_PROXY)
 
-#define KEY_GCONF_HTTP_AUTH_USER (PATH_GCONF_GNOME_VFS "/" "http-proxy-authorization-user")
-#define KEY_GCONF_HTTP_AUTH_PW (PATH_GCONF_GNOME_VFS "/" "http-proxy-authorization-password")
-#define KEY_GCONF_HTTP_USE_AUTH (PATH_GCONF_GNOME_VFS "/" "use-http-proxy-authorization")
+#define KEY_GCONF_HTTP_AUTH_USER (PATH_GCONF_GNOME_VFS "/" "authentication_user")
+#define KEY_GCONF_HTTP_AUTH_PW (PATH_GCONF_GNOME_VFS "/" "authentication_password")
+#define KEY_GCONF_HTTP_USE_AUTH (PATH_GCONF_GNOME_VFS "/" "use_authentication")
 
 
 /* Some status code validation macros.  */

@@ -1,3 +1,14 @@
+Wed May  8 15:04:05 2002  Jonathan Blandford  <jrb@redhat.com>
+
+	* Makefile.am: new supdir
+	* configure.in: Add GConf testing
+	* modules/cdda-method.c: Fix http proxy keys
+	* modules/http-method.c: ditto
+	* modules/ftp-method.c: ditto, though they seem to be effectively unused
+	* schemas/.cvsignore: shut up, cvs
+	* schemas/Makefile.am: Install new proxy schemas
+	* schemas/system_http_proxy.schemas: new proxy schemas
+
 2002-05-07  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:

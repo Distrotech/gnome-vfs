@@ -90,6 +90,17 @@ AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs)
 AC_REPLACE_FUNCS(getdelim)
 
+dnl Specify the gconf configuration source, 
+dnl default to xml::$(sysconfdir)/gconf/gconf.xml.defaults
+
+AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+
+if test x"$GCONFTOOL" = xno; then
+  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+fi
+
+AM_GCONF_SOURCE_2
+
 dnl
 dnl This is so that we find the 64bit type
 dnl
@@ -509,6 +520,7 @@ modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
 monikers/Makefile
+schemas/Makefile
 devel-docs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in

@@ -56,9 +56,6 @@
 #include <stdlib.h> /* for atoi */
 #include <string.h>
 
-/* Standard FTP proxy port */
-#define DEFAULT_FTP_PROXY_PORT 8080
-
 /* maximum size of response we're expecting to get */
 #define MAX_RESPONSE_SIZE 4096 
 
@@ -94,8 +91,7 @@ typedef struct {
 	GnomeVFSFileInfoOptions file_info_options;
 } FtpConnection;
 
-static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
-static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
+static const char USE_PROXY_KEY[] = "/system/http_proxy/use_http_proxy";
 
 
 static GnomeVFSResult do_open	         (GnomeVFSMethod               *method,

@@ -102,9 +102,9 @@ static int 		write_wav_header 	(gpointer 			buffer,
 						 long 				bytes);
 
 
-static const char PROXY_HOST_KEY[] = "/apps/nautilus/preferences/http-proxy-host";
-static const char PROXY_PORT_KEY[] = "/apps/nautilus/preferenceshttp-proxy-port";
-static const char USE_PROXY_KEY[] = "/apps/nautilus/preferencesuse-http-proxy";
+static const char PROXY_HOST_KEY[] = "/system/http_proxy/host";
+static const char PROXY_PORT_KEY[] = "/system/http_proxy/port";
+static const char USE_PROXY_KEY[] = "/system/http_proxy/use_http_proxy";
 
 static CDDAContext *
 cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
