@@ -24,8 +24,10 @@
 #include <config.h>
 #include "gnome-vfs-mime-handlers.h"
 
+#include "eggdesktopentries.h"
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-mime-info.h"
+#include "gnome-vfs-mime-info-cache.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-private-utils.h"
@@ -166,35 +168,35 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
-	const char *default_application_id;
+	char *default_application_id;
 	GnomeVFSMimeApplication *default_application;
-	GList *short_list;
+	GList *list;
 
 	default_application = NULL;
 
 	/* First, try the default for the mime type */
-	default_application_id = gnome_vfs_mime_get_value
-		(mime_type, "default_application_id");
+	default_application_id = gnome_vfs_mime_get_default_desktop_entry (mime_type);
 
 	if (default_application_id != NULL
-	    && default_application_id[0] != '\0'
-	    && !application_known_to_be_nonexistent (default_application_id)) {
+	    && default_application_id[0] != '\0') {
 		default_application =
-			gnome_vfs_application_registry_get_mime_application (default_application_id);
+			gnome_vfs_mime_application_new_from_id (default_application_id);
+		g_free (default_application_id);
 	}
 
 	if (default_application == NULL) {
-		/* Failing that, try something from the short list */
+		/* Failing that, try something from the complete list */
 
-		short_list = gnome_vfs_mime_get_short_list_applications (mime_type);
+		list = gnome_vfs_mime_get_all_desktop_entries (mime_type);
 
-		if (short_list != NULL) {
-			default_application = gnome_vfs_mime_application_copy
-				((GnomeVFSMimeApplication *) (short_list->data));
-			gnome_vfs_mime_application_list_free (short_list);
+		if (list != NULL) {
+			default_application = 
+				gnome_vfs_mime_application_new_from_id ((char *) list->data);
+
+			g_list_foreach (list, (GFunc) g_free, NULL);
+			g_list_free (list);
 		}
 	}
-
 
 	return default_application;
 }
@@ -457,14 +459,7 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 
 	g_return_val_if_fail (mime_type != NULL, NULL);
 
-	applications = gnome_vfs_application_registry_get_applications (mime_type);
-
-	/* We get back a list of const char *, but the prune function
-	 * wants a list of strings that we own.
-	 */
-	for (node = applications; node != NULL; node = node->next) {
-		node->data = g_strdup (node->data);
-	}
+	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
 
 	/* Remove application ids representing nonexistent (not in path) applications */
 	applications = prune_ids_for_nonexistent_applications (applications);
@@ -474,7 +469,7 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 		next = node->next;
 
 		application_id = node->data;
-		application = gnome_vfs_application_registry_get_mime_application (application_id);
+		application = gnome_vfs_mime_application_new_from_id (application_id);
 
 		/* Replace the application ID with the application */
 		if (application == NULL) {
@@ -1085,7 +1080,93 @@ gnome_vfs_mime_component_list_free (GList *list)
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
-	return gnome_vfs_application_registry_get_mime_application (id);
+	EggDesktopEntries *entries;
+	GError *entries_error;
+	GnomeVFSMimeApplication *application;
+	char *filename;
+
+	application = NULL;
+	entries_error = NULL;
+
+	filename = g_build_filename ("applications", id, NULL);
+
+	entries =
+		egg_desktop_entries_new_from_file (NULL,
+				EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
+				EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS |
+				EGG_DESKTOP_ENTRIES_DISCARD_TRANSLATIONS,
+				filename,
+				NULL);
+	g_free (filename);
+	
+	if (entries == NULL)
+		return NULL;
+
+
+	application = g_new0 (GnomeVFSMimeApplication, 1);
+
+	application->id = g_strdup (id);
+	application->name = egg_desktop_entries_get_string (entries,
+			                                    egg_desktop_entries_get_start_group (entries),
+							    "Name", NULL);
+	if (application->name == NULL) 
+		goto error;
+
+	application->command = egg_desktop_entries_get_string (entries,
+			                                       egg_desktop_entries_get_start_group (entries),
+							       "Exec", NULL);
+
+	if (application->command == NULL) 
+		goto error;
+
+	application->requires_terminal = egg_desktop_entries_get_boolean (entries,
+			                                       egg_desktop_entries_get_start_group (entries),
+							       "NeedsTerminal", &entries_error);
+
+	if (entries_error != NULL) {
+		g_error_free (entries_error);
+		goto error;
+	}
+
+	egg_desktop_entries_free (entries);
+	entries = NULL;
+
+	/* Guess on these last fields based on parameters passed to Exec line
+	 */
+	if (strstr (application->command, "%f") != NULL
+	    || strstr (application->command, "%n") != NULL) {
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
+		application->supported_uri_schemes = NULL;
+	} else if (strstr (application->command, "%F") != NULL
+		   ||strstr (application->command, "%N") != NULL) {
+		application->can_open_multiple_files = TRUE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS; 
+		application->supported_uri_schemes = NULL;
+	} else if (strstr (application->command, "%u") != NULL) {
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
+		application->supported_uri_schemes = NULL;
+	} else if (strstr (application->command, "%U") != NULL) {
+		application->can_open_multiple_files = TRUE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
+		application->supported_uri_schemes = NULL;
+	} else if (strstr (application->command, "%k") != NULL) {
+		application->can_open_multiple_files = FALSE;
+		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
+		application->supported_uri_schemes = NULL;
+	}
+
+	return application;
+
+error:
+	if (entries) 
+		egg_desktop_entries_free (entries);
+
+	if (application) 
+		gnome_vfs_mime_application_free (application);
+
+	return NULL;
 }
 
 /**

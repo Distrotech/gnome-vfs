@@ -128,6 +128,7 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	}
 
 	g_strfreev (mime_types);
+	egg_desktop_entries_free (entries);
 }
 
 static void
@@ -214,6 +215,7 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	}
 
 	g_strfreev (mime_types);
+	egg_desktop_entries_free (entries);
 }
 
 

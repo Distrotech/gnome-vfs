@@ -1,5 +1,18 @@
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_application),
+	(gnome_vfs_mime_get_all_applications),
+	(gnome_vfs_mime_application_new_from_id):
+	initial pass at using the new mime cache API
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_dir_load),
+	(gnome_vfs_mime_info_cache_dir_load_defaults_list):
+	free entries objects when done with them.
+
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/egg*.[ch]: sync up from libegg
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
 	More clean ups, function renaming, etc.
