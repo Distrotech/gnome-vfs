@@ -978,7 +978,7 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
  * 
  * Return value: A pointer to the base file name in @uri.  Notice that the
  * pointer points to the name store in @uri, so the name returned must not
- * be modified nor free.
+ * be modified nor freed.
  **/
 const gchar *
 gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
@@ -995,7 +995,7 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 	if (*p == '\0')
 		return NULL;
 
-	return g_strdup (p);
+	return p;
 }
 
 /**
