@@ -1,3 +1,9 @@
+2001-08-06  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_gzip):
+	Fix detection of Koffice files (ie seen as gzipped files)
+
 2001-08-03  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/gnome-vfs.h: Remove extern "C" guards.

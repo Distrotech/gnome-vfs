@@ -931,7 +931,14 @@ gnome_vfs_sniff_buffer_looks_like_gzip (GnomeVFSMimeSniffBuffer *sniff_buffer,
 	
 	if (gnome_vfs_istr_has_suffix (file_name, ".gnumeric")
 		|| gnome_vfs_istr_has_suffix (file_name, ".abw")
+		|| gnome_vfs_istr_has_suffix (file_name, ".chrt")
 		|| gnome_vfs_istr_has_suffix (file_name, ".dia")
+		|| gnome_vfs_istr_has_suffix (file_name, ".kfo")
+		|| gnome_vfs_istr_has_suffix (file_name, ".kil")
+		|| gnome_vfs_istr_has_suffix (file_name, ".kivio")
+		|| gnome_vfs_istr_has_suffix (file_name, ".kpr")
+		|| gnome_vfs_istr_has_suffix (file_name, ".ksp")
+		|| gnome_vfs_istr_has_suffix (file_name, ".kwd")
 		|| gnome_vfs_istr_has_suffix (file_name, ".pdf")) {
 		/* Have the suffix matching deal with figuring out the actual
 		 * MIME type.
