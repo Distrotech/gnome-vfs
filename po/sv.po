@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-18 13:07+0200\n"
-"PO-Revision-Date: 2004-02-12 10:59+0100\n"
+"POT-Creation-Date: 2004-07-03 23:10+0200\n"
+"PO-Revision-Date: 2004-07-03 23:10+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
 msgstr "Kunde inte initiera Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
 msgstr "Kunde inte initiera gnome-vfs"
 
@@ -486,17 +486,17 @@ msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
 msgid "Floppy"
 msgstr "Diskett"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
 msgid "CD-ROM"
 msgstr "Cd-rom"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
 msgid "Zip Drive"
 msgstr "Zipenhet"
 
@@ -508,19 +508,23 @@ msgstr "Minnespinne"
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+msgid "DVD"
+msgstr "Dvd"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
 msgstr "Rotvolym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
 msgid "Audio CD"
 msgstr "Ljud-cd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
 msgid "Unknown volume"
 msgstr "Okänd volym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
 msgid "Network server"
 msgstr "Nätverksserver"
 
@@ -650,6 +654,32 @@ msgstr "Okänd GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows-nätverk"
 
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr "Identiteten på fjärrdatorn (%s) är okänd."
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+"Detta händer när du loggar in på en dator för första gången.\n"
+"\n"
+"Identiteten som skickats av fjärrdatorn är %s. Om du vill vara absolut säker "
+"på att det är säkert att fortsätta bör du kontakta systemadministratören."
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr "Logga in ändå"
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr "Avbryt inloggning"
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
@@ -736,123 +766,156 @@ msgid "Handle HTTPS URLs"
 msgstr "Hantera HTTPS-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "Handle aim URLs"
+msgstr "Hantera aim-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
 msgstr "Hantera callto-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle ghelp URLs"
 msgstr "Hantera ghelp-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle info URLs"
 msgstr "Hantera info-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle mailto URLs"
 msgstr "Hantera mailto-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle man URLs"
 msgstr "Hantera man-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Handle trash URLs"
 msgstr "Hantera trash-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Run program in terminal"
 msgstr "Kör program i terminalfönster"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera H323-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera HTTP-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera HTTPS-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgstr ""
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera aim-URL:er."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera callto-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera ghelp-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera info-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera mailto-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera man-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Sätt detta till sant för att ett program som är angivet i \"command\" ska "
 "hantera trash-URL:er."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
 "Sant om programmet för att hantera denna URL ska köras i ett terminalfönster."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "aim URL handler"
+msgstr "Hanterare för aim-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
 msgstr "Hanterare för callto-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "ghelp URL handler"
 msgstr "Hanterare för ghelp-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "info URL handler"
 msgstr "Hanterare för info-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid "mailto URL handler"
 msgstr "Hanterare för mailto-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid "man URL handler"
 msgstr "Hanterare för man-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "Hanterare för trash-URL:er"
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+"Kommaseparerad lista med dns-sd-domäner som ska synas på nätverksplatsen."
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr "Extra domäner som dnd-sd-tjänster ska sökas i"
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr "Hur den lokala DNS-SD-tjänsten ska visas"
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1019,11 +1082,87 @@ msgstr "SMB-arbetsgrupp"
 msgid "The window workgroup the user is part of"
 msgstr "Fönsterarbetsgruppen som användaren är del av"
 
+#~ msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+#~ msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\"."
+
+#, fuzzy
+#~ msgid "Could not write to file: %s"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not inflate data"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not initialize zlib"
+#~ msgstr "Kunde inte initiera Bonobo"
+
+#, fuzzy
+#~ msgid "[invalid date]"
+#~ msgstr "Ogiltiga parametrar"
+
+#, fuzzy
+#~ msgid "Could not parse redirect location."
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not determine file length: %s"
+#~ msgstr "Kunde inte få tag i information om filen \"%s\": %s"
+
+#, fuzzy
+#~ msgid "Could not read chunk size"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not parse chunk size"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not read response body"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not read status line"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not parse response status line."
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not read interim response headers"
+#~ msgstr "Kunde inte hitta huvudbläddrare"
+
+#, fuzzy
+#~ msgid "Could not send request"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not send request body"
+#~ msgstr "Kunde inte hitta huvudbläddrare"
+
+#, fuzzy
+#~ msgid "Could not resolve hostname `%s': %s"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not create socket"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not connect to server"
+#~ msgstr "Kan inte avmontera ansluten server"
+
+#, fuzzy
+#~ msgid "Could not connect to proxy server"
+#~ msgstr "Kunde inte hitta huvudbläddrare"
+
+#, fuzzy
+#~ msgid "Line too long"
+#~ msgstr "Namnet är för långt"
+
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Sparande av bokmärke misslyckades (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Kunde inte få tag i information om filen \"%s\": %s"
 
 #~ msgid "Failed to open file '%s': %s"
 #~ msgstr "Misslyckades med att öppna filen \"%s\": %s"

@@ -1,5 +1,10 @@
 2004-07-03  Christian Rose  <menthos@menthos.com>
 
+	* .cvsignore: Cleaned up a bit and added "missing".
+	* sv.po: Updated Swedish translation.
+
+2004-07-03  Christian Rose  <menthos@menthos.com>
+
 	* POTFILES.in: Added some of the missing files.
 
 2004-07-03  Laurent Dhima  <laurenti@alblinux.net>
