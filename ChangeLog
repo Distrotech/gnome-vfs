@@ -1,3 +1,8 @@
+2000-09-15  Gene Z. Ragan  <gzr@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Replaced EOG image component with the NautilusImageView
+	
 2000-09-15  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_shutdown):

@@ -440,10 +440,10 @@ audio/x-xm
 image/bmp
 	description=Windows bitmap image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -456,13 +456,15 @@ image/cgm
 image/g3fax
 	description=G3 fax image
 
+OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+
 image/gif
 	description=GIF image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -476,10 +478,10 @@ image/ief
 image/jpeg
 	description=JPEG image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -490,10 +492,10 @@ image/jpeg
 image/png
 	description=PNG image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -506,10 +508,10 @@ image/svg
 image/tiff
 	description=TIFF image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -532,10 +534,10 @@ image/x-applix-graphic
 image/x-bmp
 	description=Windows bitmap image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -567,10 +569,10 @@ image/x-lws
 image/x-png
 	description=PNG image	
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -580,10 +582,10 @@ image/x-png
 image/x-portable-anymap
 	description=PNM image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -592,10 +594,10 @@ image/x-portable-anymap
 image/x-portable-bitmap
 	description=PBM image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -605,10 +607,10 @@ image/x-portable-bitmap
 image/x-portable-graymap
 	description=PGM image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -617,10 +619,10 @@ image/x-portable-graymap
 image/x-portable-pixmap
 	description=PPM image
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
@@ -669,10 +671,10 @@ image/x-xfig
 image/x-xpixmap
 	description=XPM image	
 	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
