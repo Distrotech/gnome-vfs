@@ -218,14 +218,14 @@ application/zip
 audio/basic
 	ext: snd
 
-audio/midi:
-	ext: midi mid
-
 audio/x-aiff
 	ext: aif aifc aiff
 
 audio/x-it
         ext: it IT
+
+audio/x-midi:
+	ext: midi mid
 
 audio/x-mod
 	ext: mod MOD

@@ -134,6 +134,27 @@ application/x-dvi
 application/x-e-theme
 	description=Enlightenment theme
 
+application/x-font-afm
+	description=Adobe font metrics
+
+application/x-font-linux-psf
+	description=Linux psf console font
+
+application/x-font-ttf
+	description=TrueType font
+
+application/x-font-type1
+	description=PostScript Type 1 font
+
+application/x-font-bdf
+	description=BDF font
+
+application/x-font-pcf
+	description=PCF font
+
+application/x-font-speedo
+	description=Speedo font
+
 application/x-gtar
 	description=gtar archive
 	icon-filename=gnome-package.png
@@ -253,11 +274,11 @@ application/zip
 audio/basic
 	description=basic audio
 
-audio/midi
-	description=MIDI audio
-
 audio/x-aiff
 	description=AIF audio
+
+audio/x-midi
+	description=MIDI audio
 
 audio/x-mp3
 	description=MP3 audio
@@ -274,27 +295,6 @@ audio/x-voc
 
 audio/x-wav
 	description=Wave audio
-
-font/afm
-	description=Adobe font metrics
-
-font/linux-psf
-	description=Linux psf console font
-
-font/ttf
-	description=TrueType font
-
-font/type1
-	description=PostScript Type 1 font
-
-font/x-bdf
-	description=BDF font
-
-font/x-pcf
-	description=PCF font
-
-font/x-speedo
-	description=Speedo font
 
 image/bmp
 	description=Windows bitmap
