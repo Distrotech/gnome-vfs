@@ -1,3 +1,8 @@
+2005-01-09  Vincent Untz  <vincent@vuntz.net>
+
+	* modules/default-modules.conf: remove vfolder methods
+	Fix bug #160523
+
 2005-01-08  Anders Carlsson  <andersca@localhost.localdomain>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c 
