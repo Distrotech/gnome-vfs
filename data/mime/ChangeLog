@@ -1,5 +1,12 @@
 2001-01-18  Kenneth Christiansen  <kenneth@gnu.org>
 
+	* gnome-vfs.keys.in: Removed some more
+	translations. DON'T TRANSLATE THIS FILE ANYMORE
+	Get cvs xml-i18n-tools instead and translate
+	the pot file localed in po/.
+
+2001-01-18  Kenneth Christiansen  <kenneth@gnu.org>
+
 	* Makefile.am: Added support for xml-i18n-tools to
 	manage the keys.in file.
 	* gnome-vfs.keys: Removed.

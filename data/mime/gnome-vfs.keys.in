@@ -1334,34 +1334,14 @@ text/calendar
 text/css
 	_description=style sheet
 
-	[fi]description=tyylisivu
-	[fr]description=Feuille de style
-	[no]description=stilmal
-	[sv]description=stilmall
-
 text/directory
 	_description=directory information
-
-	[fi]description=hakemistotiedot
-	[fr]description=Information de répertoire
-	[no]description=kataloginformasjon
-	[sv]description=kataloginformation
 
 text/enriched
 	_description=enriched text
 
-	[fi]description=enriched-teksti
-	[fr]description=Text enrichi
-	[no]description=rik tekst
-	[sv]description=enriched text
-
 text/html
 	_description=HTML document
-
-	[fi]description=HTML-asiakirja
-	[fr]description=Document HTML
-	[no]description=HTML-dokument
-	[sv]description=HTML-dokument
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -1375,29 +1355,15 @@ text/html
 
 text/htmlh
 	_description=Help page
-
-	[fi]description=Ohjesivu
-	[no]description=Hjelpside
-	[sv]description=Hjälpsida
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
 text/mathml
 	_description=MathML document
 
-	[fi]description=MathML-asiakirja
-	[fr]description=Document MathML
-	[no]description=MathML-dokument
-	[sv]description=MathML-dokument
-
 text/plain
 	can_be_executable=TRUE
 	_description=plain text
-
-	[fi]description=pelkkä teksti
-	[fr]description=Texte plein
-	[no]description=vanlig tekst
-	[sv]description=vanlig text
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -1412,34 +1378,14 @@ text/plain
 text/rfc822-headers
 	_description=email headers
 
-	[fi]description=sähköpostin otsakkeet
-	[fr]description=En-tête de courrier électronique
-	[no]description=e-posthode
-	[sv]description=e-posthuvuden
-
 text/richtext
 	_description=rich text
-
-	[fi]description=rich-teksti
-	[fr]description=Texte riche
-	[no]description=rik tekst
-	[sv]description=rik text
 
 text/sgml
 	_description=SGML document
 
-	[fi]description=SGML-asiakirja
-	[fr]description=Document SGML
-	[no]description=SGML-dokument
-	[sv]description=SGML-dokument
-
 text/tab-separated-values
 	_description=tab-separated text
-
-	[fi]description=sarkaimilla eroteltu teksti
-	[fr]description=Texte séparé par des tabulations
-	[no]description=tabulatorseparert tekst
-	[sv]description=tabbseparerad text
 
 # Note that text/tex should be text/x-tex, but a user reported
 # a complaint about text/tex in Nautilus, so some non-gnome-vfs
@@ -1447,60 +1393,25 @@ text/tab-separated-values
 text/tex
 	_description=TeX document
 
-	[fi]description=TeX-asiakirja
-	[fr]description=Document TeX
-	[no]description=TeX-dokument
-	[sv]description=TeX-dokument
-
 text/x-authors
 	_description=authors list
 
-	[fi]description=tekijäluettelo
-	[fr]description=Liste d'auteurs
-	[no]description=forfatterliste
-	[sv]description=författarlista
-
 text/x-c
 	_description=C source code
-
-	[fi]description=C-lähdekoodi
-	[fr]description=Code source C
-	[no]description=C-kildekode
-	[sv]description=C-källkod
 	icon_filename=i-regular
 
 text/x-c++
 	_description=C++ source code
 
-	[fi]description=C++-lähdekoodi
-	[fr]description=Code source C++
-	[no]description=C++-kildekode
-	[sv]description=C++-källkod
-
 text/x-comma-separated-values
 	_description=comma-separated text
 
-	[fi]description=pilkuilla eroteltu teksti
-	[fr]description=Texte séparé par des virgules
-	[no]description=kommaseparert tekst
-	[sv]description=kommaseparerad text
-
 text/x-copying
 	_description=GNU license
-
-	[fi]description=GNU-lisenssi
-	[fr]description=Licence GNU
-	[no]description=GNU-lisens
-	[sv]description=GNU-licens
 	icon_filename=i-regular
 
 text/x-credits
 	_description=author credits
-
-	[fi]description=tunnustus tekijöille
-	[fr]description=Crédits d'auteur
-	[no]description=forfatterliste
-	[sv]description=författarlista
 	icon_filename=i-regular
 
 # also application/x-csh
@@ -1508,260 +1419,106 @@ text/x-csh
 	can_be_executable=TRUE
 	_description=C-Shell script
 
-	[fi]description=C-Shell-skripti
-	[fr]description=Script C-Shell
-	[no]description=C-skall skript
-	[sv]description=C-skalskript
-
 text/x-dcl
 	_description=DCL script
-
-	[fi]description=DCL-skripti
-	[fr]description=Script DCL
-	[no]description=DCL-skript
-	[sv]description=DCL-skript
 
 text/x-dsl
 	_description=DSSSL document
 
-	[fi]description=DSSSL-asiakirja
-	[fr]description=Document DSSSL
-	[no]description=DSSSL-dokument
-	[sv]description=DSSSL-dokument
-
 text/x-dtd
 	_description=document type definition
-
-	[fi]description=asiakirjatyypin määritelmä
-	[fr]description=Définition de type de document
-	[no]description=dokumenttypdefinisjon
-	[sv]description=dokumenttypdefinition
 
 text/x-emacs-lisp
 	_description=Emacs Lisp source code
 
-	[fi]description=Emacs Lisp -lähdekoodi
-	[fr]description=Code source Emacs Lisp
-	[no]description=Emacs Lisp-kildekode
-	[sv]description=Emacs Lisp-källkod
-
 text/x-fortran
 	_description=Fortran source code
-
-	[fi]description=Fortran-lähdekoodi
-	[fr]description=Code source Fortran
-	[no]description=Fortran-kildekode
-	[sv]description=Fortran-källkod
 
 text/x-gtkrc
 	_description=GTK configuration
 
-	[fi]description=GTK-asetukset
-	[fr]description=Configuration GTK
-	[no]description=GTK-konfigurasjon
-	[sv]description=GTK-konfiguration
-
 text/x-idl
 	_description=IDL document
-
-	[fi]description=IDL-asiakirja
-	[fr]description=Document IDL
-	[no]description=IDL-dokument
-	[sv]description=IDL-dokument
 
 text/x-install
 	_description=installation instructions
 
-	[fi]description=asennusohje
-	[fr]description=Instructions d'installation
-	[no]description=installationsinstruksjoner
-	[sv]description=installationsinstruktioner
-
 text/x-java
 	_description=Java source code
-
-	[fi]description=Java-lähdekoodi
-	[fr]description=Code source Java
-	[no]description=Java-kildekode
-	[sv]description=Java-källkod
 	icon_filename=i-regular
 
 text/x-ksh
 	can_be_executable=TRUE
 	_description=Korn shell script
 
-	[fi]description=Korn shell -skripti
-	[fr]description=Script Korn Shell
-	[no]description=Korn-skall skript
-	[sv]description=Korn-skalskript
-
 text/x-makefile
 	_description=Makefile
 
-	[fi]description=Makefile
-	[fr]description=Makefile
-	[no]description=Makefil
-	[sv]description=Makefil
-
 text/x-patch
 	_description=source code patch
-
-	[fi]description=patch-tiedosto
-	[fr]description=Code source patch
-	[no]description=kildekodepatch
-	[sv]description=källkodspatch
 	icon_filename=i-regular
 
 # also application/x-perl
 text/x-perl
 	can_be_executable=TRUE
 	_description=Perl script
-
-	[fi]description=Perl-skripti
-	[fr]description=Script Perl
-	[no]description=Perl skript
-	[sv]description=Perlskript
 	icon_filename=i-regular
 
 text/x-python
 	_description=Python script
-
-	[fi]description=Python-skripti
-	[fr]description=Script Python
-	[no]description=Python skript
-	[sv]description=Pythonskript
 	icon_filename=i-regular
 
 text/x-readme
 	_description=README file
-
-	[fi]description=LUEMINUT-tiedosto
-	[fr]description=Fichier README
-	[no]description=README-fil
-	[sv]description=README-fil
 	icon_filename=i-regular
 
 text/x-scheme
 	_description=Scheme source code
-	[fi]description=Scheme-lähdekoodi
-	[fr]description=Code source Scheme
-	[no]description=Scheme-kildekode
-	[sv]description=Scheme-källkod
 
 text/x-setext
 	_description=Setext document
 
-	[fi]description=Setext-asiakirja
-	[fr]description=Document Setext
-	[no]description=Setext-dokument
-	[sv]description=Setext-dokument
-
 text/x-sh
 	_description=shell script
-
-	[fi]description=shelliskripti
-	[fr]description=Script shell
-	[no]description=skallskript
-	[sv]description=skalskript
 	icon_filename=i-regular
 
 text/x-speech
 	_description=Speech document
 
-	[fi]description=Puheasiakirja
-	[fr]description=Document Speech
-	[no]description=Speech-dokument
-	[sv]description=Speech-dokument
-
 text/x-sql
 	_description=SQL source code
 
-	[fi]description=SQL-lähdekoodia
-	[fr]description=Code source SQL
-	[no]description=SQL-kildekode
-	[sv]description=SQL-källkod
-
 text/x-tcl
 	_description=Tcl script
-
-	[fi]description=Tcl-skripti
-	[fr]description=Script Tcl
-	[no]description=Tcl-skript
-	[sv]description=Tcl-skript
 
 # also text/tex
 text/x-tex
 	_description=TeX document
 
-	[fi]description=TeX-asiakirja
-	[fr]description=Document TeX
-	[no]description=TeX-dokument
-	[sv]description=TeX-dokument
-
 text/x-texinfo
 	_description=TeXInfo document
-
-	[fi]description=TeXInfo-asiakirja
-	[fr]description=Document TeXInfo
-	[no]description=TeXInfo-dokument
-	[sv]description=TeXInfo-dokument
 
 text/x-troff
 	_description=Troff document
 
-	[fi]description=Troff-asiakirja
-	[fr]description=Document Trof
-	[no]description=Troff-dokument
-	[sv]description=Troff-dokument
-
 text/x-troff-man
 	_description=manual page
-
-	[fi]description=manuaalisivu
-	[fr]description=Page de manuel
-	[no]description=manualside
-	[sv]description=manualsida
 	icon_filename=gnome-manpage.png
 
 text/x-troff-me
 	_description=Troff ME-macros document
 
-	[fi]description=Troff ME-makroasiakirja
-	[fr]description=Document ME-macros Troff
-	[no]description=Troff ME-makrodokument
-	[sv]description=Troff ME-makrodokument
-
 text/x-troff-ms
 	_description=Troff MS-macros document
-
-	[fi]description=Troff MS-makroasiakirja
-	[fr]description=Document MS-macros Troff
-	[no]description=Troff MS-makrodokument
-	[sv]description=Troff MS-makrodokument
 
 text/x-vcalendar
 	_description=calendar or event information
 
-	[fi]description=kalenteri- tai tapahtumatiedot
-	[fr]description=Information de calendrier ou d'événement
-	[no]description=kalender eller hendelsesinformasjon
-	[sv]description=kalender eller evenemangsinformation
-
 text/x-vcard
 	_description=address card
 
-	[fi]description=osoitekortti
-	[fr]description=Carte d'adresse
-	[no]description=adressekort
-	[sv]description=adresskort
-
 text/xml
 	_description=XML document
-
-	[fi]description=XML-asiakirja
-	[fr]description=Document XML
-	[no]description=XML-dokument
-	[sv]description=XML-dokument
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -1776,18 +1533,8 @@ text/xml
 video/isivideo
 	_description=ISI video
 
-	[fi]description=ISI-video
-	[fr]description=Vidéo ISI
-	[no]description=ISI-film
-	[sv]description=ISI-video
-
 video/mpeg
 	_description=MPEG movie
-
-	[fi]description=MPEG-video
-	[fr]description=Vidéo MPEG
-	[no]description=MPEG-film
-	[sv]description=MPEG-film
 	default_action_type=application
 	default_application_id=mtvp
 	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
@@ -1796,11 +1543,6 @@ video/mpeg
        
 video/msvideo
 	_description=MS video
-
-	[fi]description=MS-video
-	[fr]description=Vidéo MS
-	[no]description=MS-film
-	[sv]description=MS-video
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
@@ -1808,11 +1550,6 @@ video/msvideo
 
 video/quicktime
 	_description=QuickTime movie
-
-	[fi]description=QuickTime-video
-	[fr]description=Vidéo QuickTime
-	[no]description=QuickTime-film
-	[sv]description=QuickTime-film
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1822,26 +1559,11 @@ video/quicktime
 video/vivo
 	_description=Vivo video
 
-	[fi]description=Vivo-video
-	[fr]description=Vidéo Vivo
-	[no]description=Vivo-film
-	[sv]description=Vivo-video
-
 video/wavelet
 	_description=Wavelet video
 
-	[fi]description=Wavelet-video
-	[fr]description=Vidéo Wavelet
-	[no]description=Wavelet-film
-	[sv]description=Wavelet-video
-
 video/x-anim
 	_description=animation
-
-	[fi]description=animaatio
-	[fr]description=Animation
-	[no]description=animasjon
-	[sv]description=animation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1850,8 +1572,6 @@ video/x-anim
 
 video/x-avi
 	_description=Audio-Video Interleave
-	[fi]description=AVI-video
-	[no]description=Audio-Video interleave
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1860,11 +1580,6 @@ video/x-avi
 
 video/x-flc
 	_description=FLC video animation
-
-	[fi]description=FLC-animaatio
-	[fr]description=Vidéo d'animation FLC
-	[no]description=FLC-animasjon
-	[sv]description=FLC-videoanimation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
