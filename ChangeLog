@@ -1,3 +1,21 @@
+2004-07-20  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_init),
+	(gnome_vfs_mime_info_cache_dir_out_of_date),
+	(gnome_vfs_mime_info_cache_dir_defaults_list_out_of_date),
+	(gnome_vfs_mime_info_cache_dir_init),:
+	(gnome_vfs_mime_info_cache_dir_init_defaults_list),
+	(gnome_vfs_mime_info_cache_dir_changed),
+	(gnome_vfs_mime_info_cache_init_dir_lists),
+	(gnome_vfs_mime_info_cache_update_dir_lists),
+	(gnome_vfs_mime_info_cache_init),
+	(gnome_vfs_mime_get_all_desktop_entries),
+	(gnome_vfs_mime_get_default_desktop_entry):
+	Refactor cache monitoring code to match discussed
+	implementation plan, and add support for fam
+	in addition to polling the files every 5 seconds.
+
 Wed Jul 21 15:07:33 2004  Jonathan Blandford  <jrb@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-utils.h: move the comparison
