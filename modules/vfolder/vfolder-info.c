@@ -1044,7 +1044,7 @@ filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 {
 	VFolderInfo *info =  user_data;
 
-	// FIXME
+	g_print ("Filename monitor called!\n");
 
 	vfolder_info_reset (info);
 	vfolder_info_read_info (info, NULL, NULL);
@@ -1059,7 +1059,7 @@ write_dir_monitor_cb (GnomeVFSMonitorHandle *handle,
 {
 	VFolderInfo *info =  user_data;
 
-	// FIXME
+	g_print ("Writedir monitor called!\n");
 
 	vfolder_info_reset (info);
 	vfolder_info_read_info (info, NULL, NULL);
@@ -1315,6 +1315,9 @@ get_folder_for_path_list_n (Folder    *parent,
 {
 	Folder *child;
 	gchar *subname, *subsubname;
+
+	if (!parent || folder_is_hidden (parent))
+		return NULL;
 
 	subname = paths [path_index];
 	if (!subname)

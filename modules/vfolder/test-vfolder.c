@@ -140,7 +140,7 @@ test_vfolder_ops (void)
 	/* Simple directory create */
 	uri = "test-vfolder:///MyTestFolder1";
 	g_print ("Creating new directory...");
-	result = gnome_vfs_make_directory (uri, 0700);
+	result = gnome_vfs_make_directory (uri, GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
 		     "ERROR CREATING DIR");
 
@@ -161,7 +161,7 @@ test_vfolder_ops (void)
 	/* Simple Create 2 */
 	uri = "test-vfolder:///MyTestFolder2/";
 	g_print ("Creating new directory...");
-	result = gnome_vfs_make_directory (uri, 0700);
+	result = gnome_vfs_make_directory (uri, GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
 		     "ERROR CREATING DIR");
 
@@ -213,7 +213,8 @@ test_vfolder_ops (void)
 	uri = "test-vfolder:///EmptyFolder";
 	if (check_dir_exists (uri)) {
 		g_print ("Creating existing empty directory...");
-		result = gnome_vfs_make_directory (uri, 0700);
+		result = gnome_vfs_make_directory (uri, 
+						   GNOME_VFS_PERM_USER_ALL);
 		TEST_RESULT (result != GNOME_VFS_ERROR_FILE_EXISTS,
 			     "ABLE TO CREATE EXISTING DIR");
 
@@ -231,6 +232,12 @@ test_vfolder_ops (void)
 	 * existing hidden directory, create a file in now non-hidden dir,
 	 * delete created file and check dir is still visible, delete dir.
 	 */
+	/* First, see if its hidden */
+	uri = "test-vfolder:///EmptyHiddenFolder";
+	g_print ("Checking if hidden directory is visible ...");
+	TEST_RESULT (check_dir_exists (uri),
+		     "ABLE TO SEE HIDDEN DIR");
+
 	/* Try to delete existing empty hidden dir (should fail) */
 	uri = "test-vfolder:///EmptyHiddenFolder";
 	g_print ("Deleting existing empty hidden directory...");
@@ -243,7 +250,7 @@ test_vfolder_ops (void)
 	g_print ("Creating file in existing empty hidden directory...");
 	result = gnome_vfs_create (&handle, 
 				   uri, 
-				   GNOME_VFS_OPEN_READ, 
+				   GNOME_VFS_OPEN_WRITE, 
 				   FALSE,
 				   GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result == GNOME_VFS_OK || check_dir_exists (uri),
@@ -252,7 +259,7 @@ test_vfolder_ops (void)
 	/* Try to create existing empty hidden dir */
 	uri = "test-vfolder:///EmptyHiddenFolder";
 	g_print ("Deleting existing empty hidden directory...");
-	result = gnome_vfs_make_directory (uri, 0700);
+	result = gnome_vfs_make_directory (uri, GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
 		     "ERROR OVERRIDING HIDDEN DIR");
 
@@ -261,7 +268,7 @@ test_vfolder_ops (void)
 	g_print ("Creating file in existing empty hidden directory...");
 	result = gnome_vfs_create (&handle, 
 				   uri, 
-				   GNOME_VFS_OPEN_READ, 
+				   GNOME_VFS_OPEN_WRITE, 
 				   FALSE,
 				   GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK || !check_file_exists (uri),
@@ -270,6 +277,20 @@ test_vfolder_ops (void)
 	/* Try to delete existing empty hidden dir */
 	uri = "test-vfolder:///EmptyHiddenFolder";
 	g_print ("Deleting existing empty hidden directory...");
+	result = gnome_vfs_remove_directory (uri);
+	TEST_RESULT (result == GNOME_VFS_OK || !check_dir_exists (uri),
+		     "ABLE TO DELETE NON-EMPTY FOLDER");
+
+	/* Try to delete the file we created */
+	uri = "test-vfolder:///EmptyHiddenFolder/a_fake_file.desktop";
+	g_print ("Deleting created file...");
+	result = gnome_vfs_unlink (uri);
+	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri),
+		     "ERROR DELETING FILE");
+
+	/* Try to delete the directory */
+	uri = "test-vfolder:///EmptyHiddenFolder";
+	g_print ("Deleting overridden directory...");
 	result = gnome_vfs_remove_directory (uri);
 	TEST_RESULT (result != GNOME_VFS_OK || check_dir_exists (uri),
 		     "ERROR DELETING DIR");
@@ -283,34 +304,41 @@ test_vfolder_ops (void)
 	 */
 	/* Create file with keywords, check visibility */
 	realuri = g_build_filename (getenv ("GNOME_VFS_VFOLDER_WRITEDIR"),
-				    "test-vfolder-tmp",
 				    "test-vfolder",
 				    "my_keyworded_file.desktop",
 				    NULL);
 	g_print ("Creating file in writedir to check keyword inclusion...");
 	result = gnome_vfs_create (&handle, 
 				   realuri, 
-				   GNOME_VFS_OPEN_READ, 
+				   GNOME_VFS_OPEN_WRITE, 
 				   FALSE,
 				   GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK, "ERROR CREATING FILE IN WRITEDIR");
 
 	content = "Categories=FakeCategory1;FakeCategory2;FakeCategory3\n\n";
+	g_print ("Writing content...");
 	result = gnome_vfs_write (handle,
 				  content,
 				  strlen (content),
 				  &writelen);
 	TEST_RESULT (result != GNOME_VFS_OK, "ERROR WRITING FILE IN WRITEDIR");
 
+	g_print ("Closing file...");
+	result = gnome_vfs_close (handle);
+	TEST_RESULT (result != GNOME_VFS_OK, "ERROR CLOSING FILE");
+
 	uri = "test-vfolder:///KeywordFolder/my_keyworded_file.desktop";
+	g_print ("Checking file presence in /KeywordFolder/...");
 	TEST_RESULT (!check_file_content (uri, content),
 		     "KEYWORDED FILE NOT PRESENT");
 
 	uri = "test-vfolder:///EmptyHiddenFolder";
+	g_print ("Checking /EmptyHiddenFolder/ is now visible...");
 	TEST_RESULT (!check_dir_exists (uri),
 		     "HIDDEN DIRECTORY NOT VISIBLE");
 
 	uri = "test-vfolder:///EmptyHiddenFolder/my_keyworded_file.desktop";
+	g_print ("Checking file presence in /EmptyHiddenFolder/...");
 	TEST_RESULT (!check_file_content  (uri, content),
 		     "KEYWORDED FILE NOT PRESENT IN HIDDEN DIRECTORY");
 
@@ -320,10 +348,12 @@ test_vfolder_ops (void)
 		     "ERROR DELETING FILE");
 
 	uri = "test-vfolder:///KeywordFolder/my_keyworded_file.desktop";
+	g_print ("Checking file is missing from /KeywordFolder/...");
 	TEST_RESULT (check_file_exists (uri),
 		     "KEYWORDED FILE STILL PRESENT");
 
 	uri = "test-vfolder:///EmptyHiddenFolder";
+	g_print ("Checking /EmptyHiddenFolder/ is hidden again...");
 	TEST_RESULT (check_dir_exists (uri),
 		     "HIDDEN DIRECTORY STILL VISIBLE");
 
@@ -334,11 +364,89 @@ test_vfolder_ops (void)
 	 * TEST 6:
 	 * Create file and move to a different directory.
 	 */
+	uri = "test-vfolder:///MyTestFolder1";
+	g_print ("Creating src directory...");
+	result = gnome_vfs_make_directory (uri, GNOME_VFS_PERM_USER_ALL);
+	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
+		     "ERROR CREATING DIR");
+
+	uri = "test-vfolder:///MyTestFolder1/a_fake_file.desktop";
+	g_print ("Creating src file...");
+	result = gnome_vfs_create (&handle, 
+				   uri, 
+				   GNOME_VFS_OPEN_WRITE, 
+				   FALSE,
+				   GNOME_VFS_PERM_USER_ALL);
+	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri), 
+		     "ERROR CREATING FILE");
+
+	uri = "test-vfolder:///MyTestFolder2";
+	g_print ("Creating dest directory...");
+	result = gnome_vfs_make_directory (uri, GNOME_VFS_PERM_USER_ALL);
+	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
+		     "ERROR CREATING DIR");
+	
+	g_print ("Moving file...");
+	result = gnome_vfs_move (uri,
+				 "test-vfolder:///MyTestFolder2",
+				 TRUE);
+	TEST_RESULT (result != GNOME_VFS_OK || 
+		     !check_file_exists ("test-vfolder:///MyTestFolder2") ||
+		     check_file_exists (uri),
+		     "ERROR MOVING FILE");
+
+	uri = "test-vfolder:///MyTestFolder2/a_fake_file.desktop";
+	g_print ("Deleting dest file...");
+	result = gnome_vfs_unlink (uri);
+	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri),
+		     "ERROR DELETING FILE");
+
+	/* Leave these around for future tests */
+	/*
+	uri = "test-vfolder:///MyTestFolder1";
+	g_print ("Deleting src directory...");
+	result = gnome_vfs_remove_directory (uri);
+	TEST_RESULT (result != GNOME_VFS_OK || check_dir_exists (uri),
+		     "ERROR DELETING DIR");
+
+	uri = "test-vfolder:///MyTestFolder2";
+	g_print ("Deleting dest directory...");
+	result = gnome_vfs_remove_directory (uri);
+	TEST_RESULT (result != GNOME_VFS_OK || check_dir_exists (uri),
+		     "ERROR DELETING DIR");
+	*/
 
 	/* 
 	 * TEST 7:
 	 * Create file and rename.
 	 */
+	uri = "test-vfolder:///MyTestFolder1/a_file_to_rename.desktop";
+	g_print ("Creating file...");
+	result = gnome_vfs_create (&handle, 
+				   uri, 
+				   GNOME_VFS_OPEN_WRITE, 
+				   FALSE,
+				   GNOME_VFS_PERM_USER_ALL);
+	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri), 
+		     "ERROR CREATING FILE");
+
+	{
+		GnomeVFSFileInfo info;
+		gchar *desturi;
+
+		info.name = "a_renamed_file.desktop";
+
+		g_print ("Renaming file...");
+		result = gnome_vfs_set_file_info (uri,
+						  &info,
+						  GNOME_VFS_SET_FILE_INFO_NAME);
+		desturi = 
+			"test-vfolder:///MyTestFolder1/a_renamed_file.desktop";
+		TEST_RESULT (result != GNOME_VFS_OK || 
+			     check_file_exists (uri) || 
+			     !check_file_exists (desturi),
+			     "ERROR RENAMING FILE");
+	}
 
 	/* 
 	 * TEST 8:

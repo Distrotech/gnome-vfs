@@ -60,7 +60,7 @@
       <DontShowIfEmpty/>
     </Folder>
 
-    <!-- Applications -->
+    <!-- Other, catch-all unmatched folder -->
     <Folder>
       <Name>Other</Name>
       <Desktop>Applications.directory</Desktop>

@@ -1048,12 +1048,19 @@ folder_is_hidden (Folder *folder)
 		return FALSE;
 
 	if (folder->only_unallocated) {
+		Query *query = folder_get_query (folder);
+
 		iter = vfolder_info_list_all_entries (folder->info);
 		for (; iter; iter = iter->next) {
 			Entry *entry = iter->data;
 
-			if (!entry_is_allocated (entry))
-				return FALSE;
+			if (entry_is_allocated (entry))
+				continue;
+
+			if (query && !query_try_match (query, folder, entry))
+				continue;
+
+			return FALSE;
 		}
 	}
 

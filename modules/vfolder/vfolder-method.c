@@ -533,16 +533,21 @@ dir_handle_new (VFolderInfo             *info,
 	}
 
 	if (folder->only_unallocated) {
+		Query *query = folder_get_query (folder);
+
 		iter = vfolder_info_list_all_entries (info);
 		for (; iter; iter = iter->next) {
 			Entry *entry = iter->data;
 
-			if (!entry_is_allocated (entry)) {
-				g_hash_table_insert (
-					name_hash, 
-					entry_get_displayname (entry),
-					NULL);
-			}
+			if (entry_is_allocated (entry))
+				continue;
+
+			if (query && !query_try_match (query, folder, entry))
+				continue;
+
+			g_hash_table_insert (name_hash, 
+					     entry_get_displayname (entry),
+					     NULL);
 		}
 	}		
 
@@ -917,19 +922,30 @@ do_make_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 
-	if (folder_get_subfolder (parent, vuri.file) || 
-	    folder_get_entry (parent, vuri.file)) {
+	if (folder_get_entry (parent, vuri.file)) {
 		VFOLDER_INFO_WRITE_UNLOCK (info);
 		return GNOME_VFS_ERROR_FILE_EXISTS;
 	}
 
-	if (!folder_make_user_private (parent)) {
+	folder = folder_get_subfolder (parent, vuri.file);
+	if (folder) {
+		folder->dont_show_if_empty = FALSE;
+
+		/* 
+		 * HACK: Force .vfolder-info write if the folder is already
+		 * user-private.
+		 */
+		if (folder_is_user_private (parent) && 
+		    folder_is_user_private (folder))
+			vfolder_info_set_dirty (info);
+	} else 
+		folder = folder_new (info, vuri.file);
+
+	if (!folder_make_user_private (parent) || 
+	    !folder_make_user_private (folder)) {
 		VFOLDER_INFO_WRITE_UNLOCK (info);
 		return GNOME_VFS_ERROR_READ_ONLY;
 	}
-
-	folder = folder_new (info, vuri.file);
-	folder_make_user_private (folder);
 
 	folder_add_subfolder (parent, folder);
 

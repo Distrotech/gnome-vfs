@@ -1,3 +1,20 @@
+2002-07-24  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (dir_handle_new): Match with
+	folder query for OnlyUnallocated folders when listing contents.
+	(do_make_directory): Handle existing but hidden folder by removing
+	DontShowIfEmpty.
+
+	* modules/vfolder/vfolder-common.c (folder_is_hidden): Match with
+	folder query for OnlyUnallocated folders, which clears out the
+	Other menu somewhat.
+
+	* modules/vfolder/vfolder-info.c (get_folder_for_path_list_n):
+	return NULL if parent folder is hidden.
+
+	* modules/vfolder/test-vfolder.c (test_vfolder_ops): Fix some bad
+	args to gnome-vfs, implement test #6 and #7.
+
 2002-07-23  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-util.c (vfolder_build_uri): Rip off of

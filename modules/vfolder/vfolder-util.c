@@ -81,6 +81,8 @@ monitor_callback_internal (GnomeVFSMonitorHandle *handle,
 {
 	VFolderMonitor *monitor = (VFolderMonitor *) handle;
 
+	g_print ("monitor_callback_internal!!!!\n");
+
 	if (monitor->frozen)
 		return;
 
@@ -311,8 +313,6 @@ vfolder_timestamp_file_name (gchar *file)
 	ret = g_strdup_printf ("%d-%s", 
 			       (int) (tv.tv_sec ^ tv.tv_usec), 
 			       file);
-
-	D (g_print ("ADDING TIMESTAMP FROM %s TO %s\n", file, ret));
 	
 	return ret;
 }
@@ -326,8 +326,6 @@ vfolder_untimestamp_file_name (gchar *file)
 	cnt = strspn (file, "0123456789-");
 	if (cnt)
 		dash = file + cnt;
-
-	D (g_print ("STRIPPING TIMESTAMP FROM %s TO %s\n", file, dash));
 
 	return g_strdup (dash);
 }
