@@ -101,3 +101,10 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-utils.c			\
 	fnmatch.c
 
+## [The following is copied from gnome-libs.]
+
+bin_PROGRAMS = gnome-vfs-gen-mimedb
+gnome_vfs_gen_mimedb_SOURCES = gnome-vfs-gen-mimedb.c
+gnome_vfs_gen_mimedb_LDADD = libgnomevfs.la
+
+

@@ -4,6 +4,7 @@ SUBDIRS =					\
 	libgnomevfs-pthread			\
 	idl					\
 	modules					\
+	data					\
 	test					\
 	po
 
@@ -21,7 +22,6 @@ confexec_DATA =					\
 	vfsConf.sh				\
 	vfscorbaConf.sh				\
 	vfspthreadConf.sh
-
 
 ## [The following is shamelessly copied from gnome-print.]
 

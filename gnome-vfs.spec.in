@@ -75,6 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/vfs/extfs/*
 %{prefix}/lib/vfs/modules/lib*.so.*
 %{prefix}/bin/*
+%{prefix}/share/mime-info/gnome-vfs.mime
+%{prefix}/share/mime-info/gnome-vfs.keys
 %config %{sysconfdir}/*
 
 %files devel

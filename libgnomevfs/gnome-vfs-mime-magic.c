@@ -360,7 +360,7 @@ gnome_vfs_mime_magic_db_load(void)
   GnomeMagicEntry *retval;
   struct stat sbuf;
 
-  filename = gnome_config_file("mime-magic.dat");
+  filename = gnome_config_file("gnome-vfs-mime-magic.dat");
 
   if(!filename) return NULL;
   fd = open(filename, O_RDONLY);
@@ -419,7 +419,7 @@ gnome_vfs_mime_type_from_magic(const gchar *filename)
 
   if(!ents) ents = gnome_vfs_mime_magic_db_load();
   if(!ents) {
-    char *fn = gnome_config_file("mime-magic");
+    char *fn = gnome_config_file("gnome-vfs-mime-magic");
     if(fn)
       ents = gnome_vfs_mime_magic_parse(fn, NULL);
     g_free(fn);

@@ -228,7 +228,7 @@ mime_load (mime_dir_source_t *source)
 	}
 
 	if (source->system_dir){
-		filename = g_concat_dir_and_file (source->dirname, "gnome.mime");
+		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.mime");
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
@@ -242,8 +242,16 @@ mime_load (mime_dir_source_t *source)
 		if (strcmp (dent->d_name + len - extlen, ".mime"))
 			continue;
 
-		if (source->system_dir && !strcmp (dent->d_name, "gnome.mime"))
+		if (source->system_dir && !strcmp (dent->d_name, "gnome-vfs.mime"))
 			continue;
+
+		if (source->system_dir && !strcmp (dent->d_name, "gnome.mime")) {
+			/* Ignore the obsolete "official" one so it doesn't override
+			 * the new official one.
+			 */
+			continue;
+		}
+
 		if (!source->system_dir && !strcmp (dent->d_name, "user.mime"))
 			continue;
 

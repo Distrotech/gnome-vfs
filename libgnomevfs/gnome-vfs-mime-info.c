@@ -402,7 +402,7 @@ mime_info_load (mime_dir_source_t *source)
 		return;
 	}
 	if (source->system_dir){
-		filename = g_concat_dir_and_file (source->dirname, "gnome.keys");
+		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.keys");
 		load_mime_type_info_from (filename);
 		g_free (filename);
 	}
@@ -415,8 +415,16 @@ mime_info_load (mime_dir_source_t *source)
 			continue;
 		if (strcmp (dent->d_name + len - extlen, ".keys"))
 			continue;
-		if (source->system_dir && !strcmp (dent->d_name, "gnome.keys"))
+		if (source->system_dir && !strcmp (dent->d_name, "gnome-vfs.keys"))
 			continue;
+
+		if (source->system_dir && !strcmp (dent->d_name, "gnome.keys")) {
+			/* Ignore the obsolete "official" one so it doesn't override
+			 * the new official one.
+			 */
+			continue;
+		}
+			
 		if (!source->system_dir && !strcmp (dent->d_name, "user.keys"))
 			continue;
 

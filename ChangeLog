@@ -1,3 +1,45 @@
+2000-05-02  John Sullivan  <sullivan@eazel.com>
+
+	Another step towards getting all the MIME handling code
+	into gnome-vfs and out of gnome-libs. This step gets the
+	data files and mime-magic stuff into gnome-vfs.
+
+	* data/mime/gnome-vfs-mime-magic,
+	* data/mime/gnome-vfs.mime,
+	* data/mime/gnome-vfs.keys:
+	New data files, cloned from "mime-magic", "gnome.mime",
+	and "nautilus.keys", which these ones obviate.
+
+	* Makefile.am,
+	* configure.in,
+	* data/.cvsignore:,
+	* data/Makefile.am,
+	* data/mime/.cvsignore,
+	* data/mime/Makefile.am: New files -- build system fu to 
+	get the new data files installed in the right places
+	
+	* gnome-vfs.spec.in: Added new data files to RPM. Not sure
+	I got this part right, will ask Ramiro about it.
+	
+	* libgnomevfs/gnome-vfs-gen-mimedb,
+	* libgnomevfs/gnome-vfs-gen-mimedb.c: New files, copied
+	over from gnome-libs. These are used so a tool can be
+	called to compile the mime-magic data into a database form.
+	* libgnomevfs/Makefile.am: Build system fu to handle
+	gnome-vfs-gen-mimedb.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c (mime_info_load): Use
+	gnome-vfs.keys and skip gnome.keys if found.
+	
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_magic_db_load): Use gnome-vfs-mime-magic.dat
+	instead of mime-magic.dat.
+	(gnome_vfs_mime_type_from_magic): Use gnome-vfs-mime-magic
+	instead of mime-magic.
+	
+	* libgnomevfs/gnome-vfs-mime.c (mime_load): Use gnome-vfs.mime
+	and skip gnome.mime if found.
+
 2000-05-01  John Sullivan  <sullivan@eazel.com>
 
 	First steps at the grand move-MIME-handling-code-to-
