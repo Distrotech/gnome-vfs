@@ -1,5 +1,13 @@
 2001-01-12  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug 3229, Clean up appearance of File Types and Programs capplet
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet):
+	Adjust positions of widgets for better look and feel.
+
+2001-01-12  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fix bug 4797, user can choose an icon anywhere on his filesystem
 	to associate it to a given mime type but the icon will not be used.
 	
