@@ -103,7 +103,7 @@ main (int argc, char **argv)
 
 		if (uri == NULL) {
 		  printf ("%s is not a valid uri or file name\n", *argv);
-		  exit 1;
+		  return 1;
 		}
 
 		if (magic_only) {
