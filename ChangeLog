@@ -1,3 +1,26 @@
+2001-02-26  Rebecca Schulman  <rebecka@eazel.com>
+	Fixed bugzilla.eazel.com bug 7010, that the
+	file types capplet should use .desktop.in
+	xml-i18-tools stuff.
+
+	reviewed by: Maciej Stachowiak <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	* libgnomevfs/gnome-vfs-mime.h:
+	Add a FIXME and a comment about functions
+	in this file; no code changes
+	
+	* mime-type-capplet/.cvsignore:
+	Add file-types-capplet.desktop
+	* mime-type-capplet/file-types-capplet.desktop.in:
+	Add this with new nifty xml-18n technology
+	* mime-type-capplet/file-types-capplet.desktop:
+	Remove the old file
+	
+	* mime-type-capplet/Makefile.am:
+	Fix the build to build and install the new desktop file
+	instead of the old one
+	
 2001-02-26  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: Rebecca Schulman <rebecka@eazel.com>

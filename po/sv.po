@@ -1807,3 +1807,31 @@ msgstr "Visa punktfiler"
 
 #~ msgid "HTTP server returned an invalid PROPFIND response"
 #~ msgstr "HTTP-servern returnerade ett ogiltigt PROPFIND-svar"
+
+#: data/mime/gnome-vfs.keys.in:171
+msgid "tar archive (bzip2-compressed)"
+msgstr "tar-arkiv (bzip2-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in:205
+msgid "tar archive (gzip-compressed)"
+msgstr "tar-arkiv (gzip-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in:220
+msgid "CPIO archive (gzip-compressed)"
+msgstr "CPIO arkiv (gzip-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in:544
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "SV4 CPIO-arkiv (med CRC)"
+
+#: data/mime/gnome-vfs.keys.in:570
+msgid "manual page (compressed)"
+msgstr "manualsida (komprimerad)"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:3
+msgid "File Types and Programs"
+msgstr "Filtyper och program"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:4
+msgid "Specify which programs are used to open or view each file type"
+msgstr "Ange de program som används för att öppna eller visa varje filtyp"

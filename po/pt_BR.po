@@ -1662,3 +1662,31 @@ msgstr "Exibir:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Exibir arquivos escondidos"
+
+#: data/mime/gnome-vfs.keys.in:171
+msgid "tar archive (bzip2-compressed)"
+msgstr "arquivo tar (comprimido com bzip2)"
+
+#: data/mime/gnome-vfs.keys.in:205
+msgid "tar archive (gzip-compressed)"
+msgstr "arquivo tar (comprimido com gzip)"
+
+#: data/mime/gnome-vfs.keys.in:220
+msgid "CPIO archive (gzip-compressed)"
+msgstr "arquivo CPIO (comprimido com gzip)"
+
+#: data/mime/gnome-vfs.keys.in:544
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "arquivo SV4 CPIP (com CRC)"
+
+#: data/mime/gnome-vfs.keys.in:570
+msgid "manual page (compressed)"
+msgstr "página de manual (comprimida)"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:3
+msgid "File Types and Programs"
+msgstr "Tipos de Arquivos e Programas"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:4
+msgid "Specify which programs are used to open or view each file type"
+msgstr "Precisamos de uma boa explicação aqui."

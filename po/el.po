@@ -1695,3 +1695,23 @@ msgstr "Εμφάνιση κρυφών αρχείων"
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
+
+#: data/mime/gnome-vfs.keys.in:171
+msgid "tar archive (bzip2-compressed)"
+msgstr "αρχείο tar (συμπίεσης bzip2)"
+
+#: data/mime/gnome-vfs.keys.in:205
+msgid "tar archive (gzip-compressed)"
+msgstr "αρχείο tar (συμπίεσης gzip)"
+
+#: data/mime/gnome-vfs.keys.in:220
+msgid "CPIO archive (gzip-compressed)"
+msgstr "Αρχείο CPIO (gzip-συμπιεσμένο)"
+
+#: data/mime/gnome-vfs.keys.in:544
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "Αρχείο SV4 CPIP (με Κυκλικό Έλεγχο Αθροίσματος)"
+
+#: data/mime/gnome-vfs.keys.in:570
+msgid "manual page (compressed)"
+msgstr "σελίδα τεκμηρίωσης (συμπιεσμένη)"

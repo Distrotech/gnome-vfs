@@ -1807,3 +1807,27 @@ msgstr "Vis dotfiler"
 
 #~ msgid "OGG Audio"
 #~ msgstr "OGG-lyd"
+
+#: data/mime/gnome-vfs.keys.in:171
+msgid "tar archive (bzip2-compressed)"
+msgstr "ar-arkiv (bzip2-komprimeret)"
+
+#: data/mime/gnome-vfs.keys.in:205
+msgid "tar archive (gzip-compressed)"
+msgstr "tar arkiv (gzip-komprimeret)"
+
+#: data/mime/gnome-vfs.keys.in:544
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "SV4 CPIP-arkiv (med CRC)"
+
+#: data/mime/gnome-vfs.keys.in:570
+msgid "manual page (compressed)"
+msgstr "manualside (komprimeret)"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:3
+msgid "File Types and Programs"
+msgstr "Filtyper og programmer"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:4
+msgid "Specify which programs are used to open or view each file type"
+msgstr "Vi har brug for en god forklaring her."

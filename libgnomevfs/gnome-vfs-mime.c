@@ -582,6 +582,9 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
  * on returning a type based on the extension.
  *
  * Returns the mime-type for this uri.
+ * FIXME: This function will not necessarily return the same mime type as doing a
+ * get file info on the text uri.
+ * 
  */
 const char *
 gnome_vfs_get_mime_type (GnomeVFSURI *uri)

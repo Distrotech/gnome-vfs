@@ -1658,3 +1658,7 @@ msgstr "Näytä:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Näytä  pisteellä alkavat tiedostot"
+
+#: mime-type-capplet/file-types-capplet.desktop.in:3
+msgid "File Types and Programs"
+msgstr "Tiedostotyypit ja ohjelmat"
