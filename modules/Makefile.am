@@ -11,7 +11,7 @@ INCLUDES =					\
 	$(XML_CFLAGS)	 			\
 	$(LIBEFS_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(VFS_CFLAGS) $(WERROR)			\
+	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\

@@ -28,6 +28,7 @@
 
 module GnomeVFS {
 
+	/* Don't use this typedef as a workaround for an ORBit2 bug. */
 	typedef string URI;
 
 	typedef sequence<string> FileNameList;
@@ -73,7 +74,7 @@ module GnomeVFS {
 				     
 		/* calls to keep metadata in sync with file operations */
 		void copy	      (in string  source_file_name,
-				       in URI     destination_directory_uri,
+				       in string /* URI */    destination_directory_uri,
 				       in string  destination_file_name);
 		void remove	      (in string  file_name);
 		void rename	      (in string  old_file_name,
@@ -87,7 +88,7 @@ module GnomeVFS {
 
 	/* Components use the MetafileFactory to get a Metafile for a directory. */
 	interface MetafileFactory : ::Bonobo::Unknown {
-		Metafile open (in URI directory);
+		Metafile open (in string /* URI */ directory);
 	};
 };
 

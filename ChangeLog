@@ -1,3 +1,38 @@
+2001-07-27  Darin Adler  <darin@bentspoon.com>
+
+	Get things compiling again.
+
+	* idl/gnome-vfs-metafile-server.idl: Don't use a typedef for URI,
+	just use "string" directly. The IDL compiler doesn't handle the
+	typedef case properly.
+	
+	* libgnomevfs/.cvsignore: Ignore the new generated files.
+	
+	* libgnomevfs/eel-cut-n-paste.c: Add missing <string.h> include.
+	
+	* libgnomevfs/gnome-vfs-metafile-backend.h: Change xml includes to
+	use <libxml/*>, not <gnome-xml/*>.
+
+	* libgnomevfs/gnome-vfs-metafile-backend.c: Add missing <string.h>
+	include. Change xml includes to use <libxml/*>, not <gnome-xml/*>.
+	(destroy), (gnome_vfs_metafile_get), (corba_get_list),
+	(corba_copy), (metadata_value_new_list), (metadata_value_destroy),
+	(metadata_value_equal), (get_metadata_list_from_table),
+	(can_use_public_metafile),
+	(metafile_read_check_for_directory_callback),
+	(metafile_read_restart), (metafile_read_start),
+	(directory_request_write_metafile):
+	Put code that's not ready yet inside "#ifdef METAFILE_CODE_READY".
+	
+	* configure.in: Turn -Werror back on and get rid of lame old
+	$(WERROR) hack.
+	
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	* test/Makefile.am:
+	Get rid of the lame old $(WERROR) hack.
+
 2001-07-26  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:

@@ -28,7 +28,7 @@
 #include <gtk/gtk.h>
 #include <bonobo/bonobo-object.h>
 #include <bonobo/bonobo-xobject.h>
-#include <gnome-xml/tree.h>
+#include <libxml/tree.h>
 
 #define GNOME_VFS_TYPE_METAFILE	          (gnome_vfs_metafile_get_type ())
 #define GNOME_VFS_METAFILE(obj)	          (GTK_CHECK_CAST ((obj), GNOME_VFS_TYPE_METAFILE, GnomeVFSMetafile))

@@ -27,15 +27,18 @@
 	    Seth Nickell <snickell@stanford.edu>
 */
 
-#include <glib.h>
-#include "gnome-vfs-helpers.h"
+#include <config.h>
 #include "eel-cut-n-paste.h"
-#include <libxml/parser.h>
-#include <libxml/xmlmemory.h>
-#include <stdlib.h>
+
+#include "gnome-vfs-helpers.h"
 #include <ctype.h>
 #include <errno.h>
+#include <glib.h>
+#include <libxml/parser.h>
+#include <libxml/xmlmemory.h>
 #include <locale.h>
+#include <stdlib.h>
+#include <string.h>
 
 int
 stolen_strcasecmp (const char *string_a, const char *string_b)

@@ -16,7 +16,7 @@ INCLUDES =					\
 	$(OAF_CFLAGS)				\
         $(OPENSSL_CFLAGS)                       \
 	$(ORBIT_CFLAGS)				\
-	$(VFS_CFLAGS) $(WERROR)			\
+	$(VFS_CFLAGS)				\
 	$(XML_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\

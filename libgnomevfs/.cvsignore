@@ -1,8 +1,11 @@
+*.la
+*.lo
 .deps
 .libs
 Makefile
 Makefile.in
-*.lo
-*.la
-gnome-vfs-gen-mimedb
 gnome-vfs-file-size.h
+gnome-vfs-metafile-server-common.c
+gnome-vfs-metafile-server-skels.c
+gnome-vfs-metafile-server-stubs.c
+gnome-vfs-metafile-server.h

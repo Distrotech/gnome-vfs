@@ -282,13 +282,11 @@ else
 fi
 ])
 
-WERROR=""
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	echo "enable compile warnings = $set_more_warnings"
-	VFS_CFLAGS="-Wall \
+	VFS_CFLAGS="-Wall -Werror \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
 	-Wnested-externs -Wpointer-arith"
-	WERROR=""
 
 	for option in -Wsign-promo -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -307,7 +305,6 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	done
 	unset option
 fi
-AC_SUBST(WERROR)
 AC_SUBST(VFS_CFLAGS)
 
 dnl

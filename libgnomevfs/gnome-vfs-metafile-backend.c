@@ -23,18 +23,19 @@
 
 #include <config.h>
 #include "gnome-vfs-metafile-backend.h"
+
 #include "eel-cut-n-paste.h"
-#include <gnome-xml/parser.h>
-#include <gnome-xml/xmlmemory.h>
 #include <gtk/gtkmain.h>
-#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-helpers.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-types.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-helpers.h>
-
+#include <libxml/parser.h>
+#include <libxml/xmlmemory.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define METAFILE_XML_VERSION "1.0"
 
@@ -83,7 +84,7 @@ static void corba_set_list (PortableServer_Servant       servant,
 					       
 static void corba_copy             (PortableServer_Servant   servant,
 				    const CORBA_char        *source_file_name,
-				    const GnomeVFS_URI       destination_directory_uri,
+				    const CORBA_char        *destination_directory_uri,
 				    const CORBA_char        *destination_file_name,
 				    CORBA_Environment       *ev);
 static void corba_remove           (PortableServer_Servant  servant,
@@ -241,8 +242,9 @@ destroy (GtkObject *object)
 
 	g_free (metafile->details);
 
-	/*FIXME: renable this properly
-	  EEL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object)); */
+#ifdef METAFILE_CODE_READY
+	EEL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+#endif
 }
 
 static GnomeVFSURI *
@@ -349,6 +351,7 @@ gnome_vfs_metafile_make_uri_canonical (const char *uri)
 	
 	return canonical;
 }
+
 GnomeVFSMetafile *
 gnome_vfs_metafile_get (const char *directory_uri)
 {
@@ -358,8 +361,10 @@ gnome_vfs_metafile_get (const char *directory_uri)
 	g_return_val_if_fail (directory_uri != NULL, NULL);
 	
 	if (metafiles == NULL) {
-		metafiles = eel_g_hash_table_new_free_at_exit
+#ifdef METAFILE_CODE_READY
+		metafiles = stolen_g_hash_table_new_free_at_exit
 			(g_str_hash, g_str_equal, __FILE__ ": metafiles");
+#endif
 	}
 	
 	canonical_uri = gnome_vfs_metafile_make_uri_canonical (directory_uri);
@@ -536,7 +541,7 @@ corba_get_list (PortableServer_Servant  servant,
 		++buf_pos;
 	}
 
-	eel_g_list_free_deep (metadata_list);
+	gnome_vfs_list_deep_free (metadata_list);
 
 	return result;
 }
@@ -596,7 +601,7 @@ corba_set_list (PortableServer_Servant      servant,
 static void
 corba_copy (PortableServer_Servant   servant,
 	    const CORBA_char        *source_file_name,
-	    const GnomeVFS_URI       destination_directory_uri,
+	    const CORBA_char        *destination_directory_uri,
 	    const CORBA_char        *destination_file_name,
 	    CORBA_Environment       *ev)
 {
@@ -1033,7 +1038,9 @@ metadata_value_new_list (GList *metadata)
 	value = g_new0 (MetadataValue, 1);
 
 	value->is_list = TRUE;
-	value->value.string_list = eel_g_str_list_copy (metadata);
+#ifdef METAFILE_CODE_READY
+	value->value.string_list = stolen_g_str_list_copy (metadata);
+#endif
 
 	return value;
 }
@@ -1048,7 +1055,7 @@ metadata_value_destroy (MetadataValue *value)
 	if (!value->is_list) {
 		g_free (value->value.string);
 	} else {
-		eel_g_list_free_deep (value->value.string_list);
+		gnome_vfs_list_deep_free (value->value.string_list);
 	}
 	g_free (value->default_value);
 	g_free (value);
@@ -1071,9 +1078,13 @@ metadata_value_equal (const MetadataValue *value_a,
 		g_assert (value_a->default_value == NULL);
 		g_assert (value_b->default_value == NULL);
 
-		return eel_g_str_list_equal
+#ifdef METAFILE_CODE_READY
+		return stolen_g_str_list_equal
 			(value_a->value.string_list,
 			 value_b->value.string_list);
+#else
+		return FALSE;
+#endif
 	}
 }
 
@@ -1155,7 +1166,11 @@ get_metadata_list_from_table (GnomeVFSMetafile *metafile,
 
 	/* Copy the list and return it. */
 	g_assert (value->is_list);
-	return eel_g_str_list_copy (value->value.string_list);
+#ifdef METAFILE_CODE_READY
+	return stolen_g_str_list_copy (value->value.string_list);
+#else
+	return NULL;
+#endif
 }
 
 static guint
@@ -1647,7 +1662,7 @@ metafile_read_cancel (GnomeVFSMetafile *metafile)
 static gboolean
 can_use_public_metafile (GnomeVFSMetafile *metafile)
 {
-	/* FIXME: renable this stuff...how?
+#ifdef METAFILE_CODE_READY
 	NautilusSpeedTradeoffValue preference_value;
 	
 	g_return_val_if_fail (GNOME_VFS_IS_METAFILE (metafile), FALSE);
@@ -1656,7 +1671,7 @@ can_use_public_metafile (GnomeVFSMetafile *metafile)
 		return FALSE;
 	}
 
-	preference_value = eel_preferences_get_integer (GNOME_VFS_PREFERENCES_USE_PUBLIC_METADATA);
+	preference_value = stolen_preferences_get_integer (GNOME_VFS_PREFERENCES_USE_PUBLIC_METADATA);
 
 	if (preference_value == NAUTILUS_SPEED_TRADEOFF_ALWAYS) {
 		return TRUE;
@@ -1669,8 +1684,10 @@ can_use_public_metafile (GnomeVFSMetafile *metafile)
 	g_assert (preference_value == NAUTILUS_SPEED_TRADEOFF_LOCAL_ONLY);
 
 	return metafile->details->directory_vfs_uri == NULL ||
-	gnome_vfs_uri_is_local (metafile->details->directory_vfs_uri); */
+		gnome_vfs_uri_is_local (metafile->details->directory_vfs_uri);
+#else
 	return TRUE;
+#endif
 }
 
 static void
@@ -1714,7 +1731,9 @@ metafile_read_check_for_directory_callback (GnomeVFSAsyncHandle *handle,
 	metafile = GNOME_VFS_METAFILE (callback_data);
 
 	g_assert (metafile->details->read_state->get_file_info_handle == handle);
-	g_assert (eel_g_list_exactly_one_item (results));
+#ifdef METAFILE_CODE_READY
+	g_assert (stolen_g_list_exactly_one_item (results));
+#endif
 
 	metafile->details->read_state->get_file_info_handle = NULL;
 
@@ -1849,8 +1868,12 @@ metafile_read_restart (GnomeVFSMetafile *metafile)
 		 : metafile->details->private_vfs_uri,
 		 GNOME_VFS_URI_HIDE_NONE);
 
-	metafile->details->read_state->handle = eel_read_entire_file_async
+#ifdef METAFILE_CODE_READY
+	metafile->details->read_state->handle = stolen_read_entire_file_async
 		(text_uri, metafile_read_done_callback, metafile);
+#else
+	metafile_read_done_callback (0, 0, 0, 0); /* quiet compiler */
+#endif
 
 	g_free (text_uri);
 }
@@ -1868,14 +1891,17 @@ metafile_read_start (GnomeVFSMetafile *metafile)
 	metafile->details->read_state = g_new0 (MetafileReadState, 1);
 	metafile_read_restart (metafile);
 
+#ifdef METAFILE_CODE_READY
 	/* FIXME: we need a new mechanism for knowing if we allow metafiles
 	          perhaps it should be in the module?
+	*/
 	if (!allow_metafile (metafile)) {
-	metafile_read_mark_done (metafile);
+		metafile_read_mark_done (metafile);
 	} else {
-	metafile->details->read_state = g_new0 (MetafileReadState, 1);
-	metafile_read_restart (metafile);
-	}*/
+		metafile->details->read_state = g_new0 (MetafileReadState, 1);
+		metafile_read_restart (metafile);
+	}
+#endif
 }
 
 static void
@@ -2063,9 +2089,11 @@ directory_request_write_metafile (GnomeVFSMetafile *metafile)
 {
 	g_assert (GNOME_VFS_IS_METAFILE (metafile));
 
-	/*FIXME: if (!allow_metafile (metafile)) {
+#ifdef METAFILE_CODE_READY
+	if (!allow_metafile (metafile)) {
 		return;
-		}*/
+	}
+#endif
 
 	/* Set up an idle task that will write the metafile. */
 	if (metafile->details->write_idle_id == 0) {

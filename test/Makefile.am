@@ -7,7 +7,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
 	$(VFS_GNOMEUI_CFLAGS)			\
-	$(VFS_CFLAGS) $(WERROR)			\
+	$(VFS_CFLAGS)				\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
 noinst_PROGRAMS =				\
