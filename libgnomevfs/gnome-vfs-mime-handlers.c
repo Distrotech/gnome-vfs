@@ -239,9 +239,9 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	}
 
 	for (i = 0; short_list_addition_strv[i] != NULL; i++) {
-		if (! strv_contains_str (short_list_removal_strv, short_list_strv[i]) &&
-		    ! strv_contains_str (short_list_strv, short_list_strv[i])) {
-			id_list = g_list_prepend (id_list, g_strdup (short_list_strv[i]));
+		if ((! strv_contains_str (short_list_removal_strv, short_list_addition_strv[i])) &&
+		    (! strv_contains_str (short_list_strv, short_list_addition_strv[i]))) {
+			id_list = g_list_prepend (id_list, g_strdup (short_list_addition_strv[i]));
 		}
 	}
 
@@ -316,9 +316,9 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	}
 
 	for (i = 0; short_list_addition_strv[i] != NULL; i++) {
-		if (! strv_contains_str (short_list_removal_strv, short_list_strv[i]) &&
-		    ! strv_contains_str (short_list_strv, short_list_strv[i])) {
-			iid_list = g_list_prepend (iid_list, g_strdup (short_list_strv[i]));
+		if ((! strv_contains_str (short_list_removal_strv, short_list_addition_strv[i])) &&
+		    (! strv_contains_str (short_list_strv, short_list_addition_strv[i]))) {
+			iid_list = g_list_prepend (iid_list, g_strdup (short_list_addition_strv[i]));
 		}
 	}
 
@@ -631,28 +631,161 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	g_free (user_mime_file);
 }
 
+/* FIXME: The next set of helper functions are all replicated in nautilus-mime-actions.c.
+ * Need to refactor so they can share code.
+ */
+static gint
+gnome_vfs_mime_application_has_id (GnomeVFSMimeApplication *application, const char *id)
+{
+	return strcmp (application->id, id);
+}
+
+static gint
+gnome_vfs_mime_id_matches_application (const char *id, GnomeVFSMimeApplication *application)
+{
+	return gnome_vfs_mime_application_has_id (application, id);
+}
+
+static gint
+gnome_vfs_mime_id_matches_component (const char *iid, OAF_ServerInfo *component)
+{
+	return strcmp (component->iid, iid);
+}
+
+static gint 
+gnome_vfs_mime_application_matches_id (GnomeVFSMimeApplication *application, const char *id)
+{
+	return gnome_vfs_mime_id_matches_application (id, application);
+}
+
+static gint 
+gnome_vfs_mime_component_matches_id (OAF_ServerInfo *component, const char *iid)
+{
+	return gnome_vfs_mime_id_matches_component (iid, component);
+}
+static gboolean
+gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
+{
+	return g_list_find_custom (applications, (gpointer) id, (GCompareFunc) gnome_vfs_mime_application_matches_id) != NULL;
+}
+
+static gboolean
+gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
+{
+	return g_list_find_custom (components, (gpointer) iid, (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
+}
+
+static GList *
+id_list_from_application_list (GList *applications)
+{
+	GList *result;
+	GList *node;
+
+	result = NULL;
+	
+	for (node = applications; node != NULL; node = node->next) {
+		result = g_list_append 
+			(result, g_strdup (((GnomeVFSMimeApplication *)node->data)->id));
+	}
+
+	return result;
+}
+
+static GList *
+id_list_from_component_list (GList *components)
+{
+	GList *result;
+	GList *node;
+
+	result = NULL;
+	
+	for (node = components; node != NULL; node = node->next) {
+		result = g_list_append 
+			(result, g_strdup (((OAF_ServerInfo *)node->data)->iid));
+	}
+
+	return result;
+}
+
+static void
+g_list_free_deep (GList *list)
+{
+	g_list_foreach (list, (GFunc) g_free, NULL);
+	g_list_free (list);
+}
+
 void gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 						   const char *application_id)
 {
-	g_message ("called gnome_vfs_mime_add_application_to_short_list");
+	GList *old_list, *new_list;
+
+	old_list = gnome_vfs_mime_get_short_list_applications (mime_type);
+
+	if (!gnome_vfs_mime_id_in_application_list (application_id, old_list)) {
+		new_list = g_list_append (id_list_from_application_list (old_list), 
+					  g_strdup (application_id));
+		gnome_vfs_mime_set_short_list_applications (mime_type, new_list);
+		g_list_free_deep (new_list);
+	}
+
+	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
 void gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
 						   	const char *application_id)
 {
-	g_message ("called gnome_vfs_mime_remove_application_from_short_list");
+	GList *old_list, *matching_node, *new_list;
+
+	old_list = gnome_vfs_mime_get_short_list_applications (mime_type);
+
+	matching_node = g_list_find_custom 
+		(old_list, (gpointer)application_id, (GCompareFunc) gnome_vfs_mime_application_matches_id);
+	if (matching_node != NULL) {
+		old_list = g_list_remove_link (old_list, matching_node);
+		gnome_vfs_mime_application_list_free (matching_node);
+		new_list = id_list_from_application_list (old_list);
+		gnome_vfs_mime_set_short_list_applications (mime_type, new_list);
+		g_list_free_deep (new_list);
+	}
+
+	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
 void gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 						 const char *iid)
 {
-	g_message ("called gnome_vfs_mime_add_component_to_short_list");
+	GList *old_list, *new_list;
+
+	old_list = gnome_vfs_mime_get_short_list_components (mime_type);
+
+	if (!gnome_vfs_mime_id_in_component_list (iid, old_list)) {
+		new_list = g_list_append (id_list_from_component_list (old_list), 
+					  g_strdup (iid));
+		gnome_vfs_mime_set_short_list_components (mime_type, new_list);
+		g_list_free_deep (new_list);
+	}
+
+	gnome_vfs_mime_component_list_free (old_list);
 }						   
 
 void gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 						      const char *iid)
 {
-	g_message ("called gnome_vfs_mime_remove_component_from_short_list");
+	GList *old_list, *matching_node, *new_list;
+
+	old_list = gnome_vfs_mime_get_short_list_components (mime_type);
+
+	matching_node = g_list_find_custom 
+		(old_list, (gpointer) iid, (GCompareFunc) gnome_vfs_mime_component_matches_id);
+	if (matching_node != NULL) {
+		old_list = g_list_remove_link (old_list, matching_node);
+		gnome_vfs_mime_component_list_free (matching_node);
+		new_list = id_list_from_component_list (old_list);
+		gnome_vfs_mime_set_short_list_components (mime_type, new_list);
+		g_list_free_deep (new_list);
+	}
+
+	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
 

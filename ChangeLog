@@ -1,3 +1,32 @@
+2000-06-02  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_add_application_to_short_list),
+	(gnome_vfs_mime_remove_application_from_short_list),
+	(gnome_vfs_mime_add_component_to_short_list),
+	(gnome_vfs_mime_remove_component_from_short_list):
+	Added implementations for these formerly empty functions.
+
+	(gnome_vfs_mime_application_has_id),
+	(gnome_vfs_mime_id_matches_application),
+	(gnome_vfs_mime_id_matches_component),
+	(gnome_vfs_mime_application_matches_id),
+	(gnome_vfs_mime_component_matches_id),
+	(gnome_vfs_mime_id_in_application_list),
+	(gnome_vfs_mime_id_in_component_list),
+	(id_list_from_application_list), (id_list_from_component_list),
+	(g_list_free_deep): New helper functions used in the
+	implementations of the add/remove functions. Most of these
+	are replicated in nautilus_mime_action.c. I will make another
+	pass to share code later.
+
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components): Fixed mistakes
+	where the wrong list items were compared against, and added
+	clarifying parentheses. There is still a bug that I couldn't
+	find where these routines do not correctly include user additions
+	to the lists. I'm writing this up.
+
 2000-06-02  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
