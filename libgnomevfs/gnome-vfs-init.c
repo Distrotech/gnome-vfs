@@ -183,7 +183,6 @@ gnome_vfs_shutdown (void)
 	gnome_vfs_mime_shutdown ();
 	_gnome_vfs_volume_monitor_shutdown ();
 	_gnome_vfs_client_shutdown ();
-	bonobo_activation_debug_shutdown ();
 	bonobo_debug_shutdown ();
 }
 

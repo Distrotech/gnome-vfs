@@ -83,8 +83,8 @@ gnome_vfs_volume_monitor_client_class_init (GnomeVFSVolumeMonitorClientClass *cl
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_daemon (client);
 
-	GNOME_VFS_Daemon_registerVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
 	CORBA_exception_init (&ev);
+	GNOME_VFS_Daemon_registerVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
 
         if (BONOBO_EX (&ev)) {
                 CORBA_exception_free (&ev);

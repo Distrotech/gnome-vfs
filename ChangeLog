@@ -1,3 +1,13 @@
+2003-10-31  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c
+	(gnome_vfs_volume_monitor_client_class_init): initialize
+	the exception environment before using it.
+
+	* libgnomevfs/gnome-vfs-init.c
+	(gnome_vfs_shutdown): don't do a b-a-s shutdown before
+	a bonobo shutdown, this causes problems.
+
 2003-10-27  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-async-daemon.c:
