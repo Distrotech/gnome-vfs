@@ -1,3 +1,19 @@
+2000-07-17  Seth Nickell  <seth@eazel.com>
+
+	* modules/search-method.c: (search_directory_handle_new),
+	(search_directory_handle_destroy), (parse_search_uri), (do_open),
+	(do_create), (do_close), (do_read), (do_write), (do_write),
+	(do_seek), (do_tell), (do_truncate_handle), (do_open_directory),
+	(do_close_directory), (do_read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_is_local), (do_make_directory),
+	(do_remove_directory), (do_move), (do_unlink), (do_check_same_fs),
+	(do_set_file_info), (do_truncate), (do_find_directory),
+	(do_create_symbolic_link):
+	* modules/search-method.h:
+
+	Create module for interfacing Gnome-VFS and the medusa search service.
+	Write skeletons, draft basic functionality.
+	
 2000-07-17  Jonathan Blandford  <jrb@redhat.com>
 
 	* modules/bzip2-method.c: #include <string.h>
