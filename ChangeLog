@@ -1,3 +1,8 @@
+2001-04-23  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys.in: Added can_be_executable
+	flag to text/x-python so they will work as Nautilus scripts.
+
 2001-04-20  Seth Nickell  <snickell@stanford.edu>
 
 	* data/mime/gnome-vfs.keys.in:

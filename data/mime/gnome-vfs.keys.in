@@ -1180,6 +1180,7 @@ text/x-perl
 	_description=Perl script
 
 text/x-python
+	can_be_executable=TRUE
 	_description=Python source code
 
 # translate and capitalize README as appropriate
