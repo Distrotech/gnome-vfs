@@ -1,3 +1,16 @@
+2000-04-11  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c.c:
+	(gnome_vfs_xfer_uri), (gnome_vfs_xfer_uri_internal),
+	(handle_name_conflicts):
+	Fixed problems with using "Skip" during a move/copy conflict.
+	The first problem was that a skip flag wasn't being checked properly.
+	The second, bigger problem, was that the handle_name_conflicts
+	had no good way of telling the rest of the copy engine that
+	a given file was skipped. Now it gets a copy of the source/
+	targe item lists and optionally removes the items the user 
+	chose to skip.
+
 2000-04-11  John Sullivan <sullivan@eazel.com>
 
 	* modules/file-method.c:
