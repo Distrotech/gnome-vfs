@@ -19,11 +19,7 @@ INCLUDES =					\
 
 EXTRA_DIST =					\
 	default-modules.conf			\
-	cdda-module.conf			\
-	efs-method.c                            \
-	efs-method.h
-
-
+	cdda-module.conf
 
 ###  Module setup
 
@@ -49,56 +45,39 @@ modules_LTLIBRARIES =				\
 	libvfs-translate.la			\
 	$(NULL)
 
-
 # Not currently supported
 #	libnfs.la				\
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 if HAVE_CDDA
-CDDA_CONF += cdda-module.conf
+CDDA_CONF = cdda-module.conf
 endif
-
 modulesconf_DATA = default-modules.conf $(CDDA_CONF)
 
 ###  `cdda' method
 
-if HAVE_CDDA
-CDDASOURCES = 					\
+libcdda_la_SOURCES = \
 	cdda-method.c 				\
 	cdda-method.h				\
 	cdda-cddb.c 				\
 	cdda-cddb.h				\
 	cdda-cdrom-extensions.h
-
-CDDALDFLAGS = $(module_flags)
-CDDALIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
-else
-CDDASOURCES =
-CDDALDFLAGS =
-CDDALIBADD =
-endif
-
-libcdda_la_SOURCES = $(CDDASOURCES)
-libcdda_la_LDFLAGS = $(CDDALDFLAGS)
-libcdda_la_LIBADD = $(CDDALIBADD)
+libcdda_la_LDFLAGS = $(module_flags)
+libcdda_la_LIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
 
 ###  `extfs' method
 
 libextfs_la_SOURCES = 				\
 	extfs-method.c 				\
 	extfs-method.h
-
 libextfs_la_LDFLAGS = $(module_flags)
-
 
 ###  `file' method
 
 libfile_la_SOURCES = 				\
 	file-method.c 				\
 	file-method.h
-
 libfile_la_LDFLAGS = $(module_flags)
-
 
 ###  `test' method
 
@@ -114,7 +93,6 @@ libgzip_la_SOURCES = 				\
 libgzip_la_LDFLAGS = $(module_flags)
 libgzip_la_LIBADD = -lz
 
-
 ### `bzip2' method
 
 libbzip2_la_SOURCES =				\
@@ -122,7 +100,6 @@ libbzip2_la_SOURCES =				\
 	bzip2-method.h
 libbzip2_la_LDFLAGS = $(module_flags)
 libbzip2_la_LIBADD = -lbz2
-
 
 ### `ftp' method
 
@@ -139,10 +116,10 @@ libgconf_la_SOURCES =                           \
 	gconf-method.c                          \
         gconf-method.h
 libgconf_la_LIBADD = $(GCONF_LIBS) $(GLIB_LIBS)
-
 libgconf_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
+
 #libnfs_la_SOURCES = 				\
 #	nfs-method.c				\
 #	nfs-method.h				\
@@ -150,7 +127,6 @@ libgconf_la_LDFLAGS = $(module_flags)
 #	nfs-method_nfs_prot_xdr.c		\
 #	nfs-method_mount.h			\
 #	nfs-method_nfs_prot.h
-
 #libnfs_la_LDFLAGS = $(module_flags)
 
 ### `http' method

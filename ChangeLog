@@ -1,5 +1,15 @@
 2001-05-07  Darin Adler  <darin@eazel.com>
 
+	reviewed by: Ramiro Estrugo <ramiro@eazel.com>
+
+	* modules/Makefile.am:
+	* po/POTFILES.in:
+	Removed some dead code and fixed build so that CDDA module source
+	files are included in the tarball even if it's made on a system
+	without CDDA installed.
+
+2001-05-07  Darin Adler  <darin@eazel.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: (write_back_mime_user_file):
 	Remove message that threatens users with death.
 
