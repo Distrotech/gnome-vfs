@@ -82,7 +82,7 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 		if (size == 1)
 			return g_strdup (_("1 byte"));
 		else
-			return g_strdup_printf (_("%u size"),
+			return g_strdup_printf (_("%u bytes"),
 						       (guint) size);
 	} else {
 		gdouble displayed_size;
