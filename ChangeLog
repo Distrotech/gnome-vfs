@@ -1,3 +1,9 @@
+2005-02-11  Christian Kellner  <gicmo@gnome.org>
+
+	* test/test-uri.c: Replaced old obsolete uri
+	tests with new ones. Should make check work
+	again.
+
 2005-02-10  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
