@@ -953,6 +953,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 #ifndef USE_PTY
 	args[last_arg++] = g_strdup ("-oBatchMode yes");
 #endif
+	args[last_arg++] = g_strdup ("-oNoHostAuthenticationForLocalhost yes");
 
 	/* Disable login prompt for now */
 	/* args[last_arg++] = g_strdup ("-oBatchMode yes"); */
