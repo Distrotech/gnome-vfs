@@ -678,7 +678,7 @@ audio/x-mp3
 	[sv]description=MP3-ljud
 	icon-filename=i-music
 	default_action_type=application
-	default_application=mpg123
+	default_application=xmms
 	short_list_application_ids_for_novice_user_level=mpg123,xmms
 	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
 	short_list_application_ids_for_hacker_user_level=mpg123,xmms
@@ -695,7 +695,7 @@ audio/x-mpeg
         [sv]description=MP3-ljud
         icon-filename=i-music 
 	default_action_type=application
-	default_application=mpg123
+	default_application=xmms
 	short_list_application_ids_for_novice_user_level=mpg123,xmms
 	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
 	short_list_application_ids_for_hacker_user_level=mpg123,xmms
@@ -745,6 +745,11 @@ audio/x-riff
 	[fr]description=Audio RIFF
 	[sv]description=RIFF-ljud
 	icon-filename=i-music
+        default_action=application
+        default_application_id=xmms
+	short_list_application_ids_for_novice_user_level=xmms
+	short_list_application_ids_for_intermediate_user_level=xmms
+	short_list_application_ids_for_hacker_user_level=xmms
 
 audio/x-s3m
 	description=Scream Tracker 3 audio
@@ -772,6 +777,11 @@ audio/x-wav
 	[fr]description=Audio Wave
 	[sv]description=Wave-ljud
 	icon-filename=gnome-audio-x-wav.png
+        default_action=application
+        default_application_id=xmms
+	short_list_application_ids_for_novice_user_level=xmms
+	short_list_application_ids_for_intermediate_user_level=xmms
+	short_list_application_ids_for_hacker_user_level=xmms
 
 audio/x-xi
 	description=Scream Tracker instrument
@@ -793,7 +803,7 @@ image/bmp
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -818,7 +828,7 @@ image/gif
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -838,7 +848,7 @@ image/jpeg
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -854,7 +864,7 @@ image/png
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -874,7 +884,7 @@ image/tiff
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -910,7 +920,7 @@ image/x-bmp
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -961,7 +971,7 @@ image/x-png
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -976,7 +986,7 @@ image/x-portable-anymap
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -990,7 +1000,7 @@ image/x-portable-bitmap
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -1005,7 +1015,7 @@ image/x-portable-graymap
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -1019,7 +1029,7 @@ image/x-portable-pixmap
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -1084,7 +1094,7 @@ image/x-xpixmap
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	default_application_id=eog
+	#default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
@@ -1180,7 +1190,7 @@ text/*
 	short_list_component_iids_for_novice_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_intermediate_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	default_application_id=gedit
+	#default_application_id=gedit
 	short_list_application_ids_for_novice_user_level=gedit,xfte
 	short_list_application_ids_for_intermediate_user_level=emacs,xemacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=vi,gvim,emacs,xemacs,nedit,gedit,xfte
@@ -1229,7 +1239,7 @@ text/html
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	default_application_id=mozilla
+	#default_application_id=mozilla
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
@@ -1249,13 +1259,13 @@ text/plain
 	description=plain text
 	[fr]description=Texte plein
 	[sv]description=vanlig text
-	default_action_type=application
-	default_application_id=gedit
+	default_action_type=component
 	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_novice_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_intermediate_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_application_ids_for_novice_user_level=gedit,xfte
+	#default_application_id=gedit
+	short_list_application_ids_for_novice_user_level=gedit
 	short_list_application_ids_for_intermediate_user_level=emacs,xemacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=vi,gvim,emacs,xemacs,nedit,gedit,xfte
 
@@ -1480,7 +1490,7 @@ text/xml
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	default_application_id=mozilla
+	#default_application_id=mozilla
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_hacker_user_level=mozilla
@@ -1616,7 +1626,7 @@ x-directory/webdav
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	default_application_id=mozilla
+	#default_application_id=mozilla
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
