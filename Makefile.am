@@ -3,7 +3,6 @@ SUBDIRS_GNOME=monikers doc
 SUBDIRS =					\
 	libgnomevfs				\
 	modules					\
-	man					\
 	devel-docs				\
 	doc					\
 	test					\
