@@ -348,7 +348,7 @@ if test "x${with_openssl_includes}" != "xno"; then
 	
 	if test "x{$openssl_includes}" != "xno" -a "x{$openssl_includes}" != "x"; then
 		have_openssl_includes="yes"
-		if "{$openssl_includes}" != "/usr/include" ; then
+		if test "${with_openssl_includes}" != "/usr/include" ; then
 			OPENSSL_CFLAGS="-I$with_openssl_includes"
 		else
 			OPENSSL_CFLAGS=""
