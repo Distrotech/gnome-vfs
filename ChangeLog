@@ -1,5 +1,11 @@
 2002-05-02  Bastien Nocera  <hadess@hadess.net>
 
+	* test/test-monitor.c: (timeout_cb), (callback), (main):
+	make the test be automatic, by exiting after 2 events,
+	add in an timeout function 1 file create and 1 file deletion
+
+2002-05-02  Bastien Nocera  <hadess@hadess.net>
+
 	* test/test-mime-info.c: (main): fixup for current gnome2
 	removed test for default_component_iid, change test for
 	gnome_vfs_mime_set_registered_type_key as the behaviour
