@@ -1,5 +1,11 @@
 2004-10-07  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-monitor.c (send_uri_changes_now):
+	Don't touch send_at of already sent events.
+	Patch from Martin Wehner <martin.wehner@epost.de>
+
+2004-10-07  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/network-method.c: (notify_gconf_value_changed),
 	(vfs_module_init):
 	* modules/smb-method.c: (smb_uri_type), (do_open_directory):
