@@ -1,3 +1,36 @@
+2001-02-15  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	Fixed bug 6660 (list of all apps for text/xml
+	doesn't include text/* handlers)
+
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-mime.c: 
+	(gnome_vfs_mime_type_is_supertype): New public function.
+	(extract_prefix_add_suffix): Utility function used
+	by _get_supertype_from_mime_type, moved from another file.
+	(gnome_vfs_get_supertype_from_mime_type): New public
+	function (formerly private in mime-handlers.c under
+	the name "mime_type_from_supertype".
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component),
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components),
+	(gnome_vfs_mime_get_all_components),
+	(gnome_vfs_mime_component_list_free):
+	Update for renaming; remove mime_type_from_supertype.
+
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	(gnome_vfs_application_registry_get_applications):
+	Use new functions to fix completely broken code to 
+	get supertype's	list of apps.
+	
+	(add_application_to_mime_type_table),
+	(remove_application_from_mime_type_table): Use
+	new is_supertype function instead of using strstr.
+
 2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6629, Default action icon disappears when switching

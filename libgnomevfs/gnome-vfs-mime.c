@@ -754,6 +754,56 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 	return result;
 }
 
+gboolean
+gnome_vfs_mime_type_is_supertype (const char *mime_type)
+{
+	int length;
+
+	if (mime_type == NULL) {
+		return FALSE;
+	}
+
+	length = strlen (mime_type);
+
+	return length > 2
+	       && mime_type[length-2] == '/' 
+	       && mime_type[length-1] == '*';
+}
+
+static char *
+extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix)
+{
+        const char *separator_position;
+        int prefix_length;
+        char *result;
+
+        separator_position = strstr (string, separator);
+        prefix_length = separator_position == NULL
+                ? strlen (string)
+                : separator_position - string;
+
+        result = g_malloc (prefix_length + strlen(suffix) + 1);
+        
+        strncpy (result, string, prefix_length);
+        result[prefix_length] = '\0';
+
+        strcat (result, suffix);
+
+        return result;
+}
+
+/* Returns the supertype for a mime type. Note that if called
+ * on a supertype it will return a copy of the supertype.
+ */
+char *
+gnome_vfs_get_supertype_from_mime_type (const char *mime_type)
+{
+	if (mime_type == NULL) {
+		return NULL;
+	}
+        return extract_prefix_add_suffix (mime_type, "/", "/*");
+}
+
 /**
  * gnome_uri_list_extract_uris:
  * @uri_list: an uri-list in the standard format.

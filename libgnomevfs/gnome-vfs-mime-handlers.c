@@ -26,6 +26,7 @@
 
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-mime-info.h"
+#include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-utils.h"
 #include <gconf/gconf.h>
@@ -37,7 +38,6 @@
 static GConfEngine *gconf_engine = NULL;
 
 static char *         get_user_level                          (void);
-static char *         mime_type_get_supertype                 (const char         *mime_type);
 static GList *        OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 static GList *        copy_str_list                           (GList *string_list);
 static GList *        comma_separated_str_to_str_list         (const char         *str);
@@ -219,7 +219,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 	CORBA_exception_init (&ev);
 
-	supertype = mime_type_get_supertype (mime_type);
+	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
 
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
@@ -447,7 +447,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	   This code has no effect */
 	/* Only include the supertype in the short list if we came up empty with
 	   the specific types */
-	supertype = mime_type_get_supertype (mime_type);
+	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
 
 	if ((strcmp (supertype, mime_type) != 0) && (system_short_list == NULL)) {
 		supertype_short_list = comma_separated_str_to_str_list 
@@ -578,7 +578,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 								"short_list_component_user_removals"));
 
 
-	supertype = mime_type_get_supertype (mime_type);
+	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
 	
 	if (strcmp (supertype, mime_type) != 0) {
 		supertype_short_list = comma_separated_str_to_str_list 
@@ -723,7 +723,7 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
            the right interfaces too. Also slightly semantically
            different from nautilus in other tiny ways.
 	*/
-	supertype = mime_type_get_supertype (mime_type);
+	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
 			     "', '*'])", NULL);
@@ -1506,37 +1506,6 @@ gnome_vfs_mime_component_list_free (GList *list)
 {
 	g_list_foreach (list, (GFunc) CORBA_free, NULL);
 	g_list_free (list);
-}
-
-static char *
-extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix)
-{
-        const char *separator_position;
-        int prefix_length;
-        char *result;
-
-        separator_position = strstr (string, separator);
-        prefix_length = separator_position == NULL
-                ? strlen (string)
-                : separator_position - string;
-
-        result = g_malloc (prefix_length + strlen(suffix) + 1);
-        
-        strncpy (result, string, prefix_length);
-        result[prefix_length] = '\0';
-
-        strcat (result, suffix);
-
-        return result;
-}
-
-static char *
-mime_type_get_supertype (const char *mime_type)
-{
-	if (mime_type == NULL) {
-		return NULL;
-	}
-        return extract_prefix_add_suffix (mime_type, "/", "/*");
 }
 
 

@@ -49,6 +49,10 @@ const char  *gnome_vfs_get_mime_type_for_data			(gconstpointer data,
 const char  *gnome_vfs_get_file_mime_type 			(const char *path, 
 								 const struct stat *optional_stat_info,
 								 gboolean suffix_only);
+
+gboolean    gnome_vfs_mime_type_is_supertype			(const char *mime_type);
+char	    *gnome_vfs_get_supertype_from_mime_type		(const char *mime_type);							 
+
 /* functions for working with uri lists */
 GList       *gnome_uri_list_extract_filenames			(const gchar* uri_list);
 GList       *gnome_uri_list_extract_uris			(const gchar* uri_list);

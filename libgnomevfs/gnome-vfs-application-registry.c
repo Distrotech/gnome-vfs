@@ -45,6 +45,7 @@
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-mime-handlers.h"
+#include "gnome-vfs-mime.h"
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-private.h"
 
@@ -339,7 +340,7 @@ add_application_to_mime_type_table (Application *application,
 	GHashTable *table;
 	char *old_key;
 
-	if (strstr (mime_type, "/*") != NULL)
+	if (gnome_vfs_mime_type_is_supertype (mime_type))
 		table = generic_mime_types;
 	else
 		table = specific_mime_types;
@@ -419,7 +420,7 @@ remove_application_from_mime_type_table (Application *application,
 	char *old_key;
 	GList *application_list, *entry;
 
-	if (strstr (mime_type, "/*") != NULL)
+	if (gnome_vfs_mime_type_is_supertype (mime_type))
 		table = generic_mime_types;
 	else
 		table = specific_mime_types;
@@ -1252,24 +1253,24 @@ GList *
 gnome_vfs_application_registry_get_applications (const char *mime_type)
 {
 	GList *app_list, *app_list2, *retval, *li;
+	char *supertype;
 
 	g_return_val_if_fail (mime_type != NULL, NULL);
 
 	maybe_reload ();
 
-	if (strstr (mime_type, "/*") != NULL) {
-		app_list = g_hash_table_lookup (generic_mime_types, mime_type);
-		app_list2 = NULL;
-	} else {
-		char buf[256] = "";
+	app_list2 = NULL;
 
+	if (gnome_vfs_mime_type_is_supertype (mime_type)) {
+		app_list = g_hash_table_lookup (generic_mime_types, mime_type);
+	} else {
 		app_list = g_hash_table_lookup (specific_mime_types, mime_type);
 
-		/* yes this is safe, the 253 is 255 - strlen("/<star>") */
-		sscanf (mime_type, "%253s/", buf);
-		strcat (buf, "/*");
-
-		app_list2 = g_hash_table_lookup (generic_mime_types, mime_type);
+		supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
+		if (supertype != NULL) {
+			app_list2 = g_hash_table_lookup (generic_mime_types, supertype);
+			g_free (supertype);
+		}
 	}
 
 	retval = NULL;
