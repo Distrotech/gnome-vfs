@@ -1,4 +1,30 @@
+1999-10-14  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri): Report
+	progress for the operation of deleting the source directories.
+	Free progress info at each iteration.
+
+	* libgnomevfs/gnome-vfs-types.h: New GnomeVFSXferPhase value
+	`GNOME_VFS_XFER_PHASE_DELETESOURCE'.
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri): Report
+	`GNOME_VFS_XFER_PHASE_FILECOMPLETED' for the last file too.
+	(remove_directory): New helper function.
+	(gnome_vfs_xfer_uri): Use it.
+
+	* libgnomevfs/gnome-vfs-xfer.c (fast_move): New function,
+	implementing fast moving through `gnome_vfs_move()'.
+	(gnome_vfs_xfer_uri): Use it if we are transferring files between
+	two directories on the same file system and we are requested to
+	remove the sources.
+
 1999-10-13  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c (init_progress): New helper
+	function.
+	(gnome_vfs_xfer_uri): Use it.  Leak fix: free progress info if the
+	progress callback returns `FALSE' in the `READYTOGO' or `XFERRING'
+	phases.
 
 	* modules/Makefile.am: Add `modules.conf' to `EXTRA_DIST'.
 

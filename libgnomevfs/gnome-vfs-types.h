@@ -448,6 +448,8 @@ enum _GnomeVFSXferPhase {
 	GNOME_VFS_XFER_PHASE_CLOSESOURCE,
 	/* Closing target file */
 	GNOME_VFS_XFER_PHASE_CLOSETARGET,
+	/* Deletin source file */
+	GNOME_VFS_XFER_PHASE_DELETESOURCE,
 	/* Setting attributes on target file */
 	GNOME_VFS_XFER_PHASE_SETATTRIBUTES,
 	/* Go to the next file (*) */
