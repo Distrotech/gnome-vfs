@@ -1,15 +1,15 @@
-# gnome-vfs fr.po
+# French translation of gnome-vfs.
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@ldsol.com>, 1999-2000.
-# maintainer: Christophe Merlet (RedFox) <christophe@merlet.net>, 2000-2002.
+# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2002.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.0.0\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
-"PO-Revision-Date: 2002-07-28 10:38+0200\n"
-"Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
+"Project-Id-Version: gnome-vfs 2.1.4\n"
+"POT-Creation-Date: 2002-12-15 16:48+0100\n"
+"PO-Revision-Date: 2002-12-15 16:46+0100\n"
+"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,7 +268,12 @@ msgstr "Données de demande de service obsolètes"
 msgid "Protocol error"
 msgstr "Erreur de protocole"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Could not find master browser"
+msgstr "Impossible de trouver le navigateur maître"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
@@ -298,7 +303,7 @@ msgstr "%.1f Go"
 
 #: libgnomevfs/gnome-vfs-utils.c:1087
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (Unicode non valide)"
 
 #: modules/file-method.c:382
 #, c-format
