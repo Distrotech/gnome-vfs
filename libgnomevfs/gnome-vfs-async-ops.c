@@ -474,6 +474,7 @@ gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 		 * close for both threads and two closes would get executed
 		 */
 		gnome_vfs_async_job_map_unlock ();
+		g_warning ("USleeping!");
 		usleep (100);
 	}
 }

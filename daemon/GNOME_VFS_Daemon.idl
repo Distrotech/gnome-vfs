@@ -1,0 +1,19 @@
+#include <Bonobo_Unknown.idl>
+
+module GNOME {
+	module VFS {
+		interface Client : Bonobo::Unknown {
+			void doSomething (in string aStr);
+		};
+
+		interface Daemon : Bonobo::Unknown {
+			/* Central Password storage */
+			void   setPassword (in string key, in string passwd);
+			string getPassword (in string key);
+
+			/* Lifecycle slaved to 'client' lifecycle */
+			void registerClient   (in Client client);
+			void deRegisterClient (in Client client);
+		};
+	};
+};

@@ -523,6 +523,7 @@ Makefile
 gnome-vfs.spec
 libgnomevfs/gnome-vfs-file-size.h
 libgnomevfs/Makefile
+daemon/Makefile
 modules/Makefile
 modules/extfs/Makefile
 modules/extfs/ar
