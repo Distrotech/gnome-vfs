@@ -1004,7 +1004,7 @@ text/x-speech
 	_description=Speech document
 
 text/x-sql
-	_description=SQL source code
+	_description=SQL code
 
 text/x-tcl
 	_description=Tcl script

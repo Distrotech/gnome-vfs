@@ -1,5 +1,9 @@
 2001-01-22  Darin Adler  <darin@eazel.com>
 
+	* gnome-vfs.keys.in: Rolled in one more change.
+
+2001-01-22  Darin Adler  <darin@eazel.com>
+
 	* gnome-vfs.keys.in: Re-apply many changes that were lost
 	when Kenneth created this file. Apparently he made it from
 	and old version of gnome-vfs.keys.
