@@ -1,3 +1,11 @@
+2000-06-27  Michael Meeks  <michael@helixcode.com>
+	
+	* modules/efs-method.c (gnome_vfs_file_system_*): Create in-file
+	file system code.
+	Totaly re-write internals to use the new in-file filing system code.
+
+	* test/test.cmds: Expand regression tests to do new things.
+
 2000-07-03  Ian McKellar  <yakk@yakk.net.au>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (call_progress_often),
