@@ -3,6 +3,7 @@
   <!-- Merge dirs optional -->
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
   <MergeDir>@datadir@/control-center-2/capplets/Advanced</MergeDir>
+  <MergeDir>@datadir@/control-center-2/capplets/System</MergeDir>
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
