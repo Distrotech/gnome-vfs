@@ -974,7 +974,7 @@ ftp_kerberos_login (FtpConnection *conn,
 
 	send_tok.value = g_strdup_printf ("host@%s", saved_ip);
 	send_tok.length = strlen (send_tok.value) + 1;
-	maj_stat = gss_import_name (&min_stat, &send_tok, gss_nt_service_name,
+	maj_stat = gss_import_name (&min_stat, &send_tok, GSS_C_NT_HOSTBASED_SERVICE,
 				    &target_name);
 	g_free (send_tok.value);
 	if (maj_stat != GSS_S_COMPLETE) {
@@ -1408,18 +1408,18 @@ ftp_connection_destroy (FtpConnection *conn,
 	        gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, TRUE, cancellation);
 
 #ifdef HAVE_GSSAPI
-	if (conn->gcontext != NULL) {
+	if (conn->gcontext != GSS_C_NO_CONTEXT) {
 		gss_qop_t maj_stat, min_stat;
 		gss_buffer_desc output_tok;
 		
 		maj_stat = gss_delete_sec_context (&min_stat,
-						   conn->gcontext,
+						   &conn->gcontext,
 						   &output_tok);
 		
 		if (maj_stat == GSS_S_COMPLETE) {
 			gss_release_buffer (&min_stat, &output_tok);
 		}
-		conn->gcontext = NULL;
+		conn->gcontext = GSS_C_NO_CONTEXT;
 	}
 #endif
 	
