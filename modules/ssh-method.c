@@ -150,57 +150,43 @@ static GnomeVFSResult
 ssh_connect (SshHandle **handle_return,
 	     GnomeVFSURI *uri, const char *command)
 {
-	int in[2];
-	int out[2];
-	pid_t pid;
+	char ** argv;
 	SshHandle *handle;
+	char *command_line;
+	int argc;
+	GError *gerror = NULL;
 
-	if ( pipe (in) == -1 || 
-	     pipe (out) == -1 ) {
-		/* bugger */
-		return gnome_vfs_result_from_errno ();
+	
+	command_line  = g_strconcat ("ssh -oBatchmode=yes -x -l ", 
+				     gnome_vfs_uri_get_user_name (uri),
+				     " ", gnome_vfs_uri_get_host_name (uri),
+				     " ", command,
+				     NULL);
+
+
+	g_shell_parse_argv (command_line, &argc, &argv, &gerror);
+	g_free (command_line);
+	if (gerror) {
+		g_warning (gerror->message);
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
 	}
 
-	pid = fork ();
 
-	if (pid == 0) {
-		/* child */
-
-		if ( dup2 (in[0], 0) == -1 ||
-		     dup2 (out[1], 1) == -1 ) {
-			/* bugger */
-			_exit (errno); /* can we get the error back to the parent? */
-		}
-
-		/* fixme: handle other ports */
-		execlp ("ssh", "ssh", "-oBatchmode yes", "-x", "-l", 
-				gnome_vfs_uri_get_user_name (uri),
-				gnome_vfs_uri_get_host_name (uri),
-				command, NULL);
-
-		/* we shouldn't get here */
-
-		_exit (errno); /* can we get the error back to the parent? */
-	} else if (pid == -1) {
-		/* bugger */
-		return gnome_vfs_result_from_errno ();
-	} else {
-		/* parent */
-		/*
-		waitpid (pid, &status, 0);
-		status = WEXITSTATUS (status);
-
-		if (status != 0) {
-			return gnome_vfs_result_from_errno ();
-		} */
-
-	}
-
+	/* fixme: handle other ports */
 	handle = g_new0 (SshHandle, 1);
 	handle->uri = uri;
-	handle->read_fd = out[0];
-	handle->write_fd = in[1];
-	handle->pid = pid;
+
+	g_spawn_async_with_pipes (NULL, argv, NULL, 
+				  G_SPAWN_SEARCH_PATH | G_SPAWN_STDERR_TO_DEV_NULL,
+				  NULL, NULL,
+				  &handle->pid, &handle->write_fd, &handle->read_fd,
+				  NULL, &gerror);
+	g_strfreev (argv);
+
+	if (gerror) {
+		g_warning (gerror->message);
+		g_free (handle);
+	}
 
 	gnome_vfs_uri_ref (handle->uri);
 
