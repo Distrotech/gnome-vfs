@@ -1,3 +1,7 @@
+2000-09-01  Christopher James Lahey  <clahey@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Removed #ifdef USING_OAF.
+
 2000-09-01  Ian McKellar  <yakk@yakk.net.au>
 
 	* test/.cvsignore:

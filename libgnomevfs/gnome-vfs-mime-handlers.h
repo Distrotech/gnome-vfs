@@ -26,9 +26,7 @@
 #define GNOME_VFS_MIME_HANDLERS_H
 
 #include <glib.h>
-#ifdef USING_OAF
 #include <liboaf/liboaf.h>
-#endif
 #include <libgnomevfs/gnome-vfs-types.h> /* for GnomeVFSResult */
 
 typedef enum {
@@ -49,11 +47,7 @@ typedef struct {
 typedef struct {
 	GnomeVFSMimeActionType action_type;
 	union {
-#ifdef USING_OAF
 		OAF_ServerInfo *component;
-#else
-		void *dummy_component;
-#endif
 		GnomeVFSMimeApplication *application;
 	} action;
 } GnomeVFSMimeAction;
@@ -63,9 +57,7 @@ GnomeVFSMimeActionType   gnome_vfs_mime_get_default_action_type            (cons
 GnomeVFSMimeAction *     gnome_vfs_mime_get_default_action                 (const char              *mime_type);
 GnomeVFSMimeAction *     gnome_vfs_mime_get_default_action_without_fallback(const char              *mime_type);
 GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application            (const char              *mime_type);
-#ifdef USING_OAF
 OAF_ServerInfo *         gnome_vfs_mime_get_default_component              (const char              *mime_type);
-#endif
 GList *                  gnome_vfs_mime_get_short_list_applications        (const char              *mime_type);
 GList *                  gnome_vfs_mime_get_short_list_components          (const char              *mime_type);
 GList *                  gnome_vfs_mime_get_all_applications               (const char              *mime_type);
