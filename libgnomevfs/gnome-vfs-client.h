@@ -34,7 +34,8 @@ GNOME_VFS_Daemon      _gnome_vfs_client_get_daemon             (GnomeVFSClient  
 GNOME_VFS_AsyncDaemon _gnome_vfs_client_get_async_daemon       (GnomeVFSClient       *client);
 GnomeVFSClient *      _gnome_vfs_get_client                    (void);
 void                  _gnome_vfs_client_shutdown               (void);
-
+ORBitPolicy *         _gnome_vfs_get_client_policy             (void);
+PortableServer_POA    _gnome_vfs_get_client_poa                (void);
 
 
 G_END_DECLS

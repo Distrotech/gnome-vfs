@@ -2,6 +2,7 @@
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-generic-factory.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include "gnome-vfs-client.h"
 #include "gnome-vfs-client-call.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-cancellation-private.h"
@@ -86,19 +87,13 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 {
 	GnomeVFSClientCall *client_call;
 	GnomeVFSCancellation *cancellation;
-        PortableServer_POA poa;
 
 	client_call = g_static_private_get (&client_call_private);
 
 	if (client_call == NULL) {
-		/* DAEMON-TODO: Verify that this poa thread hint is
-		 * correct and working.
-		 */
-		poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_OBJECT);
 		client_call = g_object_new (GNOME_TYPE_VFS_CLIENT_CALL,
-					    "poa", poa,
+					    "poa", _gnome_vfs_get_client_poa (),
 					    NULL);
-		CORBA_Object_release ((CORBA_Object)poa, NULL);
 		g_static_private_set (&client_call_private,
 				      client_call, (GDestroyNotify)bonobo_object_unref);
 	}

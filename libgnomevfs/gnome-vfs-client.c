@@ -21,6 +21,8 @@ static void activate_daemon (GnomeVFSClient *client);
 
 static GnomeVFSClient *the_client = NULL;
 G_LOCK_DEFINE_STATIC (the_client);
+static ORBitPolicy *client_policy = NULL;
+PortableServer_POA client_poa;
 
 static void
 gnome_vfs_client_finalize (GObject *object)
@@ -94,8 +96,12 @@ activate_daemon (GnomeVFSClient *client)
 	client->priv->daemon = bonobo_activation_activate_from_id ("OAFIID:GNOME_VFS_Daemon",
 								   0, NULL, &ev);
 	CORBA_exception_free (&ev);
-	
+
 	if (client->priv->daemon != CORBA_OBJECT_NIL) {
+		/* Don't allow reentrancy on object */
+		ORBit_object_set_policy  ((CORBA_Object) client->priv->daemon,
+					  client_policy);
+
 		CORBA_exception_init (&ev);
 		GNOME_VFS_Daemon_registerClient (client->priv->daemon, BONOBO_OBJREF (client), &ev);
 		/* If the registration fails for some reason we release the
@@ -173,6 +179,10 @@ _gnome_vfs_client_get_async_daemon (GnomeVFSClient *client)
 				CORBA_exception_free (&ev);
 				g_warning ("Failed to get async daemon interface");
 			}
+			/* Don't allow reentrancy on object */
+			ORBit_object_set_policy  ((CORBA_Object) client->priv->async_daemon,
+						  client_policy);
+			
 		}
 	}
 	
@@ -185,14 +195,47 @@ _gnome_vfs_client_get_async_daemon (GnomeVFSClient *client)
 	return async_daemon;
 }
 
+ORBitPolicy *
+_gnome_vfs_get_client_policy (void)
+{
+	return client_policy;
+}
+
+PortableServer_POA
+_gnome_vfs_get_client_poa (void)
+{
+	return client_poa;
+}
 
 /* Returns local singleton object */
 GnomeVFSClient *
 _gnome_vfs_get_client (void)
 {
+	CORBA_PolicyList    policies;
+	CORBA_Environment   ev[1];
+
+	/* DAEMON-TODO: Policies and "allow" isn't actually implemented in ORBit2 yet */
+	
 	G_LOCK (the_client);
-	if (the_client == NULL) 
+	if (the_client == NULL) {
+		policies._length = 0;
+		policies._buffer = NULL;
+		
+		CORBA_exception_init (ev);
+		client_poa = bonobo_poa_new_from (bonobo_poa (),
+						  "GnomeVFSClientPOA", &policies, ev);
+		if (ev->_major != CORBA_NO_EXCEPTION) {
+			g_error ("Can't allocate gnome-vfs client POA");
+			G_UNLOCK (the_client);
+			return NULL;
+		}
+		
+		client_policy = ORBit_policy_new (ORBIT_TYPE_POLICY_EX,
+						  "allow", client_poa,
+						  NULL);
+		
 		the_client = g_object_new (GNOME_TYPE_VFS_CLIENT, NULL);
+	}
 	G_UNLOCK (the_client);
 	
 	return the_client;
@@ -216,5 +259,11 @@ _gnome_vfs_client_shutdown (void)
 	
 	if (client != NULL) {
 		bonobo_object_unref (client);
+		
+		ORBit_policy_unref (client_policy);
+		client_policy = NULL;
+		
+		CORBA_Object_release ((CORBA_Object) client_poa, NULL);
+		client_poa = CORBA_OBJECT_NIL;
 	}
 }

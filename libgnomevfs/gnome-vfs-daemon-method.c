@@ -54,6 +54,7 @@ do_open (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
+	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_Open (daemon,
 					  &handle,
 					  uri_str,
@@ -61,6 +62,13 @@ do_open (GnomeVFSMethod *method,
 					  BONOBO_OBJREF (client_call),
 					  BONOBO_OBJREF (client),
 					  &ev);
+
+	if (handle != CORBA_OBJECT_NIL) {
+		/* Don't allow reentrancy on handle method
+		 * calls (except auth callbacks) */
+		ORBit_object_set_policy  ((CORBA_Object) handle,
+					  _gnome_vfs_get_client_policy());
+	}
 
 	_gnome_vfs_client_call_finished (client_call, context);
 	
