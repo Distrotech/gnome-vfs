@@ -1,3 +1,9 @@
+2003-09-02  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	Add a small delay to the mime db changed signal emission
+	to avoid sending multiple events for one change.
+
 2003-09-01  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "ne" to ALL_LINGUAS.
