@@ -1,3 +1,10 @@
+2004-07-29  Christian Kellner  <gicmo@gnome-de.org>
+
+	* modules/http-authn.c:
+	* test/test-uri.c:
+	Changed the VERIFY_STRING_RESULT macro to use strcmp_allow_nulls to
+	avoid gcc warnings.
+
 2004-07-27  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-resolve.h: 

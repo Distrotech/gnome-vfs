@@ -409,11 +409,22 @@ test_uri_is_parent_shallow (const char *parent, const char *item, gboolean expec
 	test_uri_is_parent_common (parent, item, FALSE, expected_result);
 }
 
+static int
+strcmp_allow_nulls (const char *s1, const char *s2)
+{
+        const char *t1, *t2;
+
+        t1 = (s1 == NULL ? "" : s1);
+        t2 = (s2 == NULL ? "" : s2);
+
+	return strcmp (t1, t2);
+}
+
 #define VERIFY_STRING_RESULT(function, expected) \
 	G_STMT_START {											\
 		char *result = function; 								\
 		if (!((result == NULL && expected == NULL)						\
-		      || (result != NULL && expected != NULL && strcmp (result, (char *)expected) == 0))) {	\
+		      || (strcmp_allow_nulls (result, (char *)expected) == 0))) {			\
 			test_failed ("%s: returned '%s' expected '%s'", #function, result, expected);	\
 		}											\
                 g_free (result);                                                                      \
