@@ -1,3 +1,10 @@
+Tue Nov 27 20:06:00 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: add the Unallocated query.
+	  that is a special query which can only be used once in a
+	  vfolder-info file which matches all the elsewhere unallocated
+	  items.
+
 2001-11-27  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/vfolder-desktop-method.c: (readitem_entry):
