@@ -1,3 +1,8 @@
+2000-08-08  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* mime-type-capplet/Makefile.am: added 
+	nautilus-mime-type-icon-entry.h as it was forgotten
+
 2000-08-09  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (make_propfind_request):
