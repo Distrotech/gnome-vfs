@@ -1405,6 +1405,17 @@ do_get_file_info (GnomeVFSMethod *method,
 		} else {
 			file_info->mime_type = g_strdup ("x-directory/normal");
 		}
+		/* Make sure you can't write to smb:// or smb://foo. For smb://server/share we
+		 * leave this empty, since accessing the data for real can cause authentication
+		 * while e.g. browsing smb://server
+		 */
+		if (type != SMB_URI_SHARE) {
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+			file_info->permissions =
+				GNOME_VFS_PERM_USER_READ |
+				GNOME_VFS_PERM_OTHER_READ |
+				GNOME_VFS_PERM_GROUP_READ;
+		}
 		return GNOME_VFS_OK;
 	}
 
@@ -1413,9 +1424,14 @@ do_get_file_info (GnomeVFSMethod *method,
 		file_info->name = get_base_from_uri (uri);
 		file_info->valid_fields = file_info->valid_fields
 			| GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
-			| GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+			| GNOME_VFS_FILE_INFO_FIELDS_TYPE
+			| GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 		file_info->mime_type = g_strdup ("application/x-desktop");
+		file_info->permissions =
+			GNOME_VFS_PERM_USER_READ |
+			GNOME_VFS_PERM_OTHER_READ |
+			GNOME_VFS_PERM_GROUP_READ;
 		return GNOME_VFS_OK;
 	}
 

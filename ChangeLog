@@ -1,3 +1,8 @@
+2004-03-19  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c (do_get_file_info):
+	Make sure the toplevel smb directories aren't writeable.
+
 2004-03-22  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
