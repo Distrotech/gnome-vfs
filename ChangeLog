@@ -1,3 +1,9 @@
+1999-08-26  Miguel de Icaza  <miguel@nuclecu.unam.mx>
+
+	* test/gnome-file-selection/gnome-file-selection.c
+	(setup_directory_clist): Also push the colormap and pop the
+	colormap. 
+
 1999-08-27  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* test/gnome-file-selection/gicon.c: Do not #define `ICONDIR'

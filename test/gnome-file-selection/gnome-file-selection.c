@@ -1,3 +1,9 @@
+/*
+ * gnome-file-selection widget
+ *
+ * Author:
+ *   Ettore Perazzoli <ettore@comm2000.it>
+ */
 #include <glib.h>
 
 #include <libgnome/gnome-defs.h>
@@ -740,6 +746,7 @@ setup_directory_clist (GnomeFileSelection *fs)
 	GtkWidget *scrolled_window;
 
 	gtk_widget_push_visual (gdk_imlib_get_visual ());
+	gtk_widget_push_colormap (gdk_imlib_get_colormap ());
 
 	fs->directory_clist = gtk_clist_new (2);
 	gtk_clist_column_titles_hide (GTK_CLIST (fs->directory_clist));
@@ -756,6 +763,7 @@ setup_directory_clist (GnomeFileSelection *fs)
 
 	gtk_widget_show (fs->directory_clist);
 
+	gtk_widget_pop_colormap ();
 	gtk_widget_pop_visual ();
 }
 
