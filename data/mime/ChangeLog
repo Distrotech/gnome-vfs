@@ -1,3 +1,10 @@
+2001-01-19  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys.in:
+	Marked text/x-sh as can_be_executable. This was
+	an oversight from my earlier first pass at marking
+	the executable MIME types. It was driving poor Seth crazy.
+
 2001-01-19  Darin Adler  <darin@eazel.com>
 
 	* Makefile.am: Oops. Missed one.
