@@ -524,6 +524,29 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 {
 	GnomeVFSAsyncHandle *handle;
 	guint num_entries;
+	
+	
+	gnome_vfs_async_load_directory (&handle,
+					"file:///etc",
+					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
+		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
+					NULL,
+					FALSE,
+					GNOME_VFS_DIRECTORY_FILTER_NONE,
+					0,
+					NULL,
+					chunk_count,
+					directory_load_callback,
+					&num_entries);
+	
+	usleep (delay_till_cancel * 100);
+	
+	directory_load_flag = FALSE;
+	gnome_vfs_async_cancel (handle);
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
+
 	gnome_vfs_async_load_directory (&handle,
 					"file:///etc",
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
@@ -542,8 +565,8 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 2: thread never went away"));
+	TEST_ASSERT (!directory_load_flag, ("load directory cancel 2: load callback was called"));
 }
 
 static void
@@ -569,6 +592,74 @@ test_load_directory_fail (void)
 		
 	TEST_ASSERT (wait_for_boolean (&directory_load_failed_flag), ("load directory cancel 1: load callback was not called"));
 	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+}
+
+static gboolean find_directory_flag;
+
+static void
+test_find_directory_callback (GnomeVFSAsyncHandle *handle,
+			      GList *results,
+			      gpointer callback_data)
+{
+	GList *element;
+
+	find_directory_flag = TRUE;
+
+	for (element = results; element != NULL; element = element->next) {
+		GnomeVFSFindDirectoryResult *result_item = (GnomeVFSFindDirectoryResult *)element->data;
+		
+		if (result_item->result == GNOME_VFS_OK) {
+			gnome_vfs_uri_ref (result_item->uri);
+			gnome_vfs_uri_unref (result_item->uri);
+		}
+	}
+	
+	g_assert (callback_data == &find_directory_flag);
+}
+
+static void
+test_find_directory (int delay_till_cancel)
+{
+	GnomeVFSAsyncHandle *handle;
+	GList *vfs_uri_as_list;
+
+
+	vfs_uri_as_list = g_list_append (NULL, gnome_vfs_uri_new ("file://~"));
+	vfs_uri_as_list = g_list_append (vfs_uri_as_list, gnome_vfs_uri_new ("file:///ace_of_spades"));
+	
+	find_directory_flag = FALSE;
+	
+	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		test_find_directory_callback, &find_directory_flag);
+		
+	TEST_ASSERT (wait_for_boolean (&find_directory_flag), ("find directory cancel 1: callback was not called"));
+	
+	find_directory_flag = FALSE;
+	
+	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		test_find_directory_callback, &find_directory_flag);
+	
+	usleep (delay_till_cancel * 100);
+	
+	gnome_vfs_async_cancel (handle);
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 2: thread never went away"));
+	TEST_ASSERT (!find_directory_flag, ("find directory cancel 2: callback was called"));
+
+	
+	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		test_find_directory_callback, &find_directory_flag);
+	
+	my_yield (delay_till_cancel);
+	
+	find_directory_flag = FALSE;
+	gnome_vfs_async_cancel (handle);
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 3: thread never went away"));
+	TEST_ASSERT (!find_directory_flag, ("find directory cancel 3: callback was called"));
+
+	gnome_vfs_uri_list_free (vfs_uri_as_list);
 }
 
 int
@@ -615,12 +706,29 @@ main (int argc, char **argv)
 	test_load_directory_cancel (1, 1);
 	test_load_directory_cancel (10, 1);
 	test_load_directory_cancel (100, 1);
+	test_load_directory_cancel (0, 1);
+	test_load_directory_cancel (1, 1);
+	test_load_directory_cancel (10, 1);
+	test_load_directory_cancel (100, 1);
 
 	test_load_directory_cancel (0, 32);
 	test_load_directory_cancel (1, 32);
 	test_load_directory_cancel (10, 32);
 	test_load_directory_cancel (100, 32);
+	test_load_directory_cancel (0, 32);
+	test_load_directory_cancel (1, 32);
+	test_load_directory_cancel (10, 32);
+	test_load_directory_cancel (100, 32);
 
+	test_find_directory (0);
+	test_find_directory (0);
+	test_find_directory (1);
+	test_find_directory (1);
+	test_find_directory (10);
+	test_find_directory (10);
+	test_find_directory (100);
+	test_find_directory (100);
+		
 	gnome_vfs_shutdown ();
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

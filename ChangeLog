@@ -1,5 +1,11 @@
 2001-01-17  Pavel Cisler  <pavel@eazel.com>
 
+	* test/test-async-cancel.c: (test_load_directory_cancel),
+	(test_find_directory_callback), (test_find_directory), (main):
+	Add more async tests.
+	
+2001-01-17  Pavel Cisler  <pavel@eazel.com>
+
 	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
 
 	Fix 5732 (Cancelling a File Copy dialog crashes Nautilus)
