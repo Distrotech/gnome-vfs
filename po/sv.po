@@ -1,35 +1,35 @@
-# Swedish translation of gnome-vfs.
-# Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
-# Martin Norb‰ck <d95mback@dtek.chalmers.se>, 2000, 2001.
-# Christian Rose <menthos@menthos.com>, 2000, 2001.
+# Swedish messages for gnome-vfs.
+# Copyright (C) 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+# Martin Norb√§ck <d95mback@dtek.chalmers.se>, 2000, 2001.
+# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002.
 #
 # $Id$
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
-"PO-Revision-Date: 2001-10-29 00:32+0100\n"
+"POT-Creation-Date: 2002-01-27 05:14+0100\n"
+"PO-Revision-Date: 2002-01-27 05:15+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d innehÂller NUL-tecken."
+msgstr "%s:%d inneh√•ller NUL-tecken."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d innehÂller inget metodnamn."
+msgstr "%s:%d inneh√•ller inget metodnamn."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d innehÂller inget modulnamn."
+msgstr "%s:%d inneh√•ller inget modulnamn."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
@@ -58,7 +58,7 @@ msgstr "Filen kunde inte hittas"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Allm‰nt fel"
+msgstr "Allm√§nt fel"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -73,7 +73,7 @@ msgstr "Ogiltiga parametrar"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Operationen stˆds inte"
+msgstr "Operationen st√∂ds inte"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -98,17 +98,17 @@ msgstr "Felaktigt filhandtag"
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Filen ‰r fˆr stor"
+msgstr "Filen √§r f√∂r stor"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Ingen plats kvar pÂ enheten"
+msgstr "Ingen plats kvar p√• enheten"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Filsystemet ‰r skrivskyddat"
+msgstr "Filsystemet √§r skrivskyddat"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -118,27 +118,27 @@ msgstr "Ogiltig URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Filen ‰r inte ˆppen"
+msgstr "Filen √§r inte √∂ppen"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Felaktigt ˆppningsl‰ge"
+msgstr "Felaktigt √∂ppningsl√§ge"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "≈tkomst nekas"
+msgstr "√Ötkomst nekas"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Fˆr mÂnga ˆppna filer"
+msgstr "F√∂r m√•nga √∂ppna filer"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Slut pÂ filen"
+msgstr "Slut p√• filen"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -148,7 +148,7 @@ msgstr "Inte en katalog"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operationen pÂgÂr"
+msgstr "Operationen p√•g√•r"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
@@ -163,37 +163,37 @@ msgstr "Filen finns"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Loop i l‰nkar uppt‰ckt"
+msgstr "Loop i l√§nkar uppt√§ckt"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Operationen ‰r inte tillÂten"
+msgstr "Operationen √§r inte till√•ten"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "ƒr en katalog"
+msgstr "√Ñr en katalog"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Inte tillr‰ckligt med minne"
+msgstr "Inte tillr√§ckligt med minne"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "V‰rddatorn kunde inte hittas"
+msgstr "V√§rddatorn kunde inte hittas"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "V‰rddatornamnet ‰r inte giltigt"
+msgstr "V√§rddatornamnet √§r inte giltigt"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "V‰rddatorn har ingen adress"
+msgstr "V√§rddatorn har ingen adress"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -203,22 +203,22 @@ msgstr "Inloggning misslyckades"
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Operationen avbrˆts"
+msgstr "Operationen avbr√∂ts"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Katalogen ‰r upptagen"
+msgstr "Katalogen √§r upptagen"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Katalogen ‰r inte tom"
+msgstr "Katalogen √§r inte tom"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Fˆr mÂnga l‰nkar"
+msgstr "F√∂r m√•nga l√§nkar"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -228,22 +228,22 @@ msgstr "Skrivskyddat filsystem"
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Inte pÂ samma filsystem"
+msgstr "Inte p√• samma filsystem"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Namnet ‰r fˆr lÂngt"
+msgstr "Namnet √§r f√∂r l√•ngt"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Tj‰nsten ‰r inte tillg‰nglig"
+msgstr "Tj√§nsten √§r inte tillg√§nglig"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Beg‰ran fˆrÂldrar tj‰nstens data"
+msgstr "Beg√§ran f√∂r√•ldrar tj√§nstens data"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -252,7 +252,7 @@ msgstr "Protokollfel"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
-msgstr "Ok‰nt fel"
+msgstr "Ok√§nt fel"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
@@ -281,17 +281,17 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Ok‰nd operandtyp %u"
+msgstr "Ok√§nd operandtyp %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan inte skapa rˆr till ˆppen GIOChannel: %s"
+msgstr "Kan inte skapa r√∂r till √∂ppen GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Ok‰nd jobbtyp %u"
+msgstr "Ok√§nd jobbtyp %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
@@ -300,7 +300,7 @@ msgstr "Operationen stoppad"
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Ok‰nd GnomeVFSSeekPosition %d"
+msgstr "Ok√§nd GnomeVFSSeekPosition %d"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio-bild"
@@ -351,13 +351,13 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "skalskript (csh)"
 
 #~ msgid "C source code"
-#~ msgstr "C-k‰llkod"
+#~ msgstr "C-k√§llkod"
 
 #~ msgid "C source code header"
-#~ msgstr "C-k‰llkodshuvud"
+#~ msgstr "C-k√§llkodshuvud"
 
 #~ msgid "C++ source code"
-#~ msgstr "C++-k‰llkod"
+#~ msgstr "C++-k√§llkod"
 
 #~ msgid "CGI program"
 #~ msgstr "CGI-program"
@@ -399,7 +399,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Dolby Digital-ljud"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs Lisp-k‰llkod"
+#~ msgstr "Emacs Lisp-k√§llkod"
 
 #~ msgid "Enlightenment theme"
 #~ msgstr "Enlightenment-tema"
@@ -414,7 +414,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "FastTracker II-ljud"
 
 #~ msgid "Fortran source code"
-#~ msgstr "Fortran-k‰llkod"
+#~ msgstr "Fortran-k√§llkod"
 
 #~ msgid "FrameMaker interchange document"
 #~ msgstr "FrameMaker-utbytesdokument"
@@ -429,7 +429,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "GIMP-dokument"
 
 #~ msgid "GMC link"
-#~ msgstr "GMC-l‰nk"
+#~ msgstr "GMC-l√§nk"
 
 #~ msgid "GNOME application details"
 #~ msgstr "GNOME-programinformation"
@@ -486,7 +486,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Java-bytekod"
 
 #~ msgid "Java source code"
-#~ msgstr "Java-k‰llkod"
+#~ msgstr "Java-k√§llkod"
 
 #~ msgid "KDE application details"
 #~ msgstr "KDE-programinformation"
@@ -579,7 +579,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Microsoft-video"
 
 #~ msgid "Nautilus link"
-#~ msgstr "Nautilusl‰nk"
+#~ msgstr "Nautilusl√§nk"
 
 #~ msgid "ODA document"
 #~ msgstr "ODA-dokument"
@@ -645,7 +645,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "PostScript-dokument"
 
 #~ msgid "Python source code"
-#~ msgstr "Python-k‰llkod"
+#~ msgstr "Python-k√§llkod"
 
 #~ msgid "QuickTime movie"
 #~ msgstr "QuickTime-film"
@@ -654,7 +654,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Quicken-dokument"
 
 #~ msgid "Quicken for Windows document"
-#~ msgstr "Quicken fˆr Windows-dokument"
+#~ msgstr "Quicken f√∂r Windows-dokument"
 
 #~ msgid "RAR archive"
 #~ msgstr "RAR-arkiv"
@@ -705,7 +705,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "SVG-konst"
 
 #~ msgid "Scheme source code"
-#~ msgstr "Scheme-k‰llkod"
+#~ msgstr "Scheme-k√§llkod"
 
 #~ msgid "Scream Tracker 3 audio"
 #~ msgstr "Scream Tracker 3-ljud"
@@ -741,7 +741,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "StarOffice-kalkylblad"
 
 #~ msgid "Sun mu-law audio"
-#~ msgstr "Sun µ-law-ljud"
+#~ msgstr "Sun ¬µ-law-ljud"
 
 #~ msgid "SunOS News font"
 #~ msgstr "SunOS News-typsnitt"
@@ -795,7 +795,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Vivo-video"
 
 #~ msgid "WAIS source code"
-#~ msgstr "WAIS-k‰llkod"
+#~ msgstr "WAIS-k√§llkod"
 
 #~ msgid "Wavelet video"
 #~ msgstr "Wavelet-video"
@@ -816,7 +816,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "X-bitmappbild"
 
 #~ msgid "X window image"
-#~ msgstr "X-fˆnsterbild"
+#~ msgstr "X-f√∂nsterbild"
 
 #~ msgid "XML document"
 #~ msgstr "XML-dokument"
@@ -840,7 +840,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "ARJ-arkiv"
 
 #~ msgid "authors list"
-#~ msgstr "fˆrfattarlista"
+#~ msgstr "f√∂rfattarlista"
 
 #~ msgid "backup file"
 #~ msgstr "backupfil"
@@ -852,7 +852,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "bibliografipost"
 
 #~ msgid "binary program"
-#~ msgstr "bin‰rprogram"
+#~ msgstr "bin√§rprogram"
 
 #~ msgid "block device"
 #~ msgstr "blockenhet"
@@ -864,7 +864,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "kalenderfil"
 
 #~ msgid "calendar or event document"
-#~ msgstr "kalender- eller h‰ndelsedokument"
+#~ msgstr "kalender- eller h√§ndelsedokument"
 
 #~ msgid "character device"
 #~ msgstr "teckenenhet"
@@ -909,7 +909,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "gzip-komprimerad fil"
 
 #~ msgid "help page"
-#~ msgstr "hj‰lpsida"
+#~ msgstr "hj√§lpsida"
 
 #~ msgid "mail delivery report"
 #~ msgstr "e-postleveransrapport"
@@ -942,7 +942,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "meddelande i flera delar"
 
 #~ msgid "named pipe"
-#~ msgstr "namngivet rˆr"
+#~ msgstr "namngivet r√∂r"
 
 #~ msgid "object code"
 #~ msgstr "objektkod"
@@ -969,7 +969,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "rikt textdokument"
 
 #~ msgid "search results"
-#~ msgstr "sˆkresultat"
+#~ msgstr "s√∂kresultat"
 
 #~ msgid "shared library"
 #~ msgstr "delat bibliotek"
@@ -987,7 +987,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "uttag"
 
 #~ msgid "software author credits"
-#~ msgstr "fˆrfattarlista"
+#~ msgstr "f√∂rfattarlista"
 
 #~ msgid "software installation instructions"
 #~ msgstr "installationsinstruktioner"
@@ -996,13 +996,13 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "licensavtal"
 
 #~ msgid "source code patch"
-#~ msgstr "k‰llkodspatch"
+#~ msgstr "k√§llkodspatch"
 
 #~ msgid "style sheet"
 #~ msgstr "stilmall"
 
 #~ msgid "symbolic link"
-#~ msgstr "symbolisk l‰nk"
+#~ msgstr "symbolisk l√§nk"
 
 #~ msgid "tab-separated text document"
 #~ msgstr "tabbseparerat textdokument"
@@ -1032,7 +1032,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "troff ms-dokument"
 
 #~ msgid "unknown type"
-#~ msgstr "ok‰nd typ"
+#~ msgstr "ok√§nd typ"
 
 #~ msgid "ustar archive"
 #~ msgstr "ustar-arkiv"
@@ -1056,10 +1056,10 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "GNOME-VFS har redan initierats."
 
 #~ msgid "Dying."
-#~ msgstr "Dˆr."
+#~ msgstr "D√∂r."
 
 #~ msgid "Error reading: %s"
-#~ msgstr "Fel vid l‰sning: %s"
+#~ msgstr "Fel vid l√§sning: %s"
 
 #~ msgid "Error writing: %s"
 #~ msgstr "Fel vid skrivning: %s"
@@ -1068,7 +1068,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Kan inte skriva: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Kan inte skapa det tempor‰ra filnamnet \"%s\""
+#~ msgstr "Kan inte skapa det tempor√§ra filnamnet \"%s\""
 
 #~ msgid "Cannot create socket: %s"
 #~ msgstr "Kan inte skapa uttag (socket): %s"
@@ -1077,28 +1077,28 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Kan inte binda till \"%s\": %s"
 
 #~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Kan inte lyssna pÂ \"%s\": %s"
+#~ msgstr "Kan inte lyssna p√• \"%s\": %s"
 
 #~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Kan inte ta emot anslutningar pÂ \"%s\": %s"
+#~ msgstr "Kan inte ta emot anslutningar p√• \"%s\": %s"
 
 #~ msgid "Cannot initialize CORBA."
 #~ msgstr "Kan inte initiera CORBA."
 
 #~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Kan inte slÂ upp fˆrsta referensen till RootPOA."
+#~ msgstr "Kan inte sl√• upp f√∂rsta referensen till RootPOA."
 
 #~ msgid "Cannot activate POA manager."
 #~ msgstr "Kan inte aktivera POA-hanteraren."
 
 #~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Anv‰ndning: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Anv√§ndning: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Kan inte ˆppna fildeskriptor %d."
+#~ msgstr "Kan inte √∂ppna fildeskriptor %d."
 
 #~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Meddelandegr‰nssnitt fˆr \"%s\" kunde inte hittas."
+#~ msgstr "Meddelandegr√§nssnitt f√∂r \"%s\" kunde inte hittas."
 
 #~ msgid "Cannot setup Request object."
 #~ msgstr "Kan inte skapa ett Request-objekt."
@@ -1107,13 +1107,13 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Kan inte extrahera IOR."
 
 #~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Fick en konstig str‰ng frÂn slavprocessen: \"%s\""
+#~ msgstr "Fick en konstig str√§ng fr√•n slavprocessen: \"%s\""
 
 #~ msgid "Cannot get object for `%s'"
-#~ msgstr "Kan inte fÂ objektet fˆr \"%s\""
+#~ msgstr "Kan inte f√• objektet f√∂r \"%s\""
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Kan inte dˆda GNOME::VFS:Slave::Notify -- undantag %s"
+#~ msgstr "Kan inte d√∂da GNOME::VFS:Slave::Notify -- undantag %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
 #~ msgstr "Kan inte ansluta uttag (socket): \"%s\": %s"
@@ -1122,52 +1122,52 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Kan inte initiera GNOME::VFS:Slave:Notify"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Kan inte Âterst‰lla GNOME::VFS::Slave %s -- undantag %s"
+#~ msgstr "Kan inte √•terst√§lla GNOME::VFS::Slave %s -- undantag %s"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Kan inte Âterst‰lla GNOME::VFS::Slave (IOR ok‰nt) -- undantag %s"
+#~ msgstr "Kan inte √•terst√§lla GNOME::VFS::Slave (IOR ok√§nt) -- undantag %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Kan inte dˆda GNOME::VFS::Slave %s -- undantag %s"
+#~ msgstr "Kan inte d√∂da GNOME::VFS::Slave %s -- undantag %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "Kan inte dˆda GNOME::VFS::Slave (IOR ok‰nt) -- undantag %s"
+#~ msgstr "Kan inte d√∂da GNOME::VFS::Slave (IOR ok√§nt) -- undantag %s"
 
 #~ msgid "File Types and Programs"
 #~ msgstr "Filtyper och program"
 
 #~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr "Ange de program som anv‰nds fˆr att ˆppna eller visa varje filtyp"
+#~ msgstr "Ange de program som anv√§nds f√∂r att √∂ppna eller visa varje filtyp"
 
 #~ msgid "MIME Type"
 #~ msgstr "MIME-typ"
 
 #~ msgid "Change Icon"
-#~ msgstr "ƒndra ikon"
+#~ msgstr "√Ñndra ikon"
 
 #~ msgid "Change File Extensions"
-#~ msgstr "ƒndra fil‰ndelser"
+#~ msgstr "√Ñndra fil√§ndelser"
 
 #~ msgid "Default Action:"
-#~ msgstr "StandardÂtg‰rd:"
+#~ msgstr "Standard√•tg√§rd:"
 
 #~ msgid "Use Viewer"
-#~ msgstr "Anv‰nd visare"
+#~ msgstr "Anv√§nd visare"
 
 #~ msgid "Open With Application"
-#~ msgstr "÷ppna med program"
+#~ msgstr "√ñppna med program"
 
 #~ msgid "Edit List"
 #~ msgstr "Redigera lista"
 
 #~ msgid "Add New MIME Type..."
-#~ msgstr "L‰gg till ny MIME-typ..."
+#~ msgstr "L√§gg till ny MIME-typ..."
 
 #~ msgid "Delete This MIME Type"
 #~ msgstr "Ta bort denna MIME-typ"
 
 #~ msgid "Revert to System Defaults"
-#~ msgstr "≈tergÂ till systemets standardinst‰llningar"
+#~ msgstr "√Öterg√• till systemets standardinst√§llningar"
 
 #~ msgid "None"
 #~ msgstr "Inget"
@@ -1177,10 +1177,10 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ "you have ever made to File Types and Programs.\n"
 #~ "Revert anyway?"
 #~ msgstr ""
-#~ "Att ÂtergÂ till systemets inst‰llningar kommer att\n"
-#~ "gˆra att alla de inst‰llningar du nÂgonsin gjort i\n"
-#~ "fliken Filtyper och program gÂr fˆrlorade.\n"
-#~ "≈terst‰ll ‰ndÂ?"
+#~ "Att √•terg√• till systemets inst√§llningar kommer att\n"
+#~ "g√∂ra att alla de inst√§llningar du n√•gonsin gjort i\n"
+#~ "fliken Filtyper och program g√•r f√∂rlorade.\n"
+#~ "√Öterst√§ll √§nd√•?"
 
 #~ msgid "none"
 #~ msgstr "inget"
@@ -1192,19 +1192,19 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Beskrivning"
 
 #~ msgid "Extension"
-#~ msgstr "Fil‰ndelse"
+#~ msgstr "Fil√§ndelse"
 
 #~ msgid "Default Action"
-#~ msgstr "StandardÂtg‰rd"
+#~ msgstr "Standard√•tg√§rd"
 
 #~ msgid "Edit Applications List"
 #~ msgstr "Redigera programlista"
 
 #~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "V‰lj program som ska finnas i menyn fˆr MIME-typen \"%s\""
+#~ msgstr "V√§lj program som ska finnas i menyn f√∂r MIME-typen \"%s\""
 
 #~ msgid "Add Application..."
-#~ msgstr "L‰gg till program..."
+#~ msgstr "L√§gg till program..."
 
 #~ msgid "Edit Application..."
 #~ msgstr "Redigera program..."
@@ -1216,20 +1216,20 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Redigera komponentlista"
 
 #~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "V‰lj vyer som ska finnas i menyn fˆr MIME-typen \"%s\""
+#~ msgstr "V√§lj vyer som ska finnas i menyn f√∂r MIME-typen \"%s\""
 
 #~ msgid ""
 #~ "The MIME type entered contained upper case characters. Upper case "
 #~ "characters were changed to lower case for you."
 #~ msgstr ""
-#~ "MIME-typen som angivits innehÂller stora bokst‰ver. De stora bokst‰verna "
-#~ "‰ndrades till smÂ Ât dig."
+#~ "MIME-typen som angivits inneh√•ller stora bokst√§ver. De stora bokst√§verna "
+#~ "√§ndrades till sm√• √•t dig."
 
 #~ msgid "Add New MIME Type"
-#~ msgstr "L‰gg till ny MIME-typ"
+#~ msgstr "L√§gg till ny MIME-typ"
 
 #~ msgid "Add MIME Type"
-#~ msgstr "L‰gg till MIME-typ"
+#~ msgstr "L√§gg till MIME-typ"
 
 #~ msgid "New MIME type (e.g. image/x-thumper):"
 #~ msgstr "Ny MIME-typ (t.ex. image/x-thumper):"
@@ -1238,51 +1238,51 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Beskrivning (t.ex. Thumper-bild):"
 
 #~ msgid "File Extensions "
-#~ msgstr "Fil‰ndelser"
+#~ msgstr "Fil√§ndelser"
 
 #~ msgid "Add..."
-#~ msgstr "L‰gg till..."
+#~ msgstr "L√§gg till..."
 
 #~ msgid "    Remove    "
 #~ msgstr "    Ta bort   "
 
 #~ msgid "Add New Extension"
-#~ msgstr "L‰gg till ny fil‰ndelse"
+#~ msgstr "L√§gg till ny fil√§ndelse"
 
 #~ msgid ""
 #~ "Type in the extensions for this mime-type (without dot).\n"
 #~ "You can enter several extensions seperated by a space,\n"
 #~ "for example: html htm"
 #~ msgstr ""
-#~ "Ange fil‰ndelserna fˆr denna mime-typ (utan punkt).\n"
-#~ "Du kan ange flera ‰ndelser med mellanslag mellan,\n"
+#~ "Ange fil√§ndelserna f√∂r denna mime-typ (utan punkt).\n"
+#~ "Du kan ange flera √§ndelser med mellanslag mellan,\n"
 #~ "till exempel: html htm"
 
 #~ msgid "Extension:"
-#~ msgstr "Fil‰ndelse:"
+#~ msgstr "Fil√§ndelse:"
 
 #~ msgid "You must enter a name."
-#~ msgstr "Du mÂste ange ett namn."
+#~ msgstr "Du m√•ste ange ett namn."
 
 #~ msgid "You must enter a command."
-#~ msgstr "Du mÂste ange ett kommando."
+#~ msgstr "Du m√•ste ange ett kommando."
 
 #~ msgid ""
 #~ "\"%s\" does not exist or is not executable.\n"
 #~ "Check your spelling and make sure you have\n"
 #~ "the right permissions to execute this file."
 #~ msgstr ""
-#~ "\"%s\" finns inte eller ‰r inte kˆrbar.\n"
-#~ "Kontrollera din stavning och fˆrs‰kra dig\n"
-#~ "om att du har nˆdv‰ndiga r‰ttigheter fˆr\n"
-#~ "att kˆra denna fil."
+#~ "\"%s\" finns inte eller √§r inte k√∂rbar.\n"
+#~ "Kontrollera din stavning och f√∂rs√§kra dig\n"
+#~ "om att du har n√∂dv√§ndiga r√§ttigheter f√∂r\n"
+#~ "att k√∂ra denna fil."
 
 #~ msgid ""
 #~ "The command \"%s\" cannot be found.\n"
 #~ "You must use a command that can work from any command line."
 #~ msgstr ""
 #~ "Kommandot \"%s\" kan inte hittas.\n"
-#~ "Du mÂste anv‰nda ett kommando som kan anv‰ndas frÂn komandoraden."
+#~ "Du m√•ste anv√§nda ett kommando som kan anv√§ndas fr√•n komandoraden."
 
 #~ msgid "Bad Application Name"
 #~ msgstr "Felaktigt programnamn"
@@ -1291,7 +1291,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Felaktigt programkommando"
 
 #~ msgid "Add Application"
-#~ msgstr "L‰gg till program"
+#~ msgstr "L√§gg till program"
 
 #~ msgid "Edit Application"
 #~ msgstr "Redigera program"
@@ -1303,64 +1303,64 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Programkommando:"
 
 #~ msgid "Open Behavior"
-#~ msgstr "÷ppningsbeteende"
+#~ msgstr "√ñppningsbeteende"
 
 #~ msgid "Can open multiple files"
-#~ msgstr "Kan ˆppna flera filer"
+#~ msgstr "Kan √∂ppna flera filer"
 
 #~ msgid "Can open from URI"
-#~ msgstr "Kan ˆppna frÂn URI"
+#~ msgstr "Kan √∂ppna fr√•n URI"
 
 #~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Kan inte hitta en hbox, anv‰nder normalt filval"
+#~ msgstr "Kan inte hitta en hbox, anv√§nder normalt filval"
 
 #~ msgid "Preview"
-#~ msgstr "Fˆrhandsgranska"
+#~ msgstr "F√∂rhandsgranska"
 
 #~ msgid "Select an icon"
-#~ msgstr "V‰lj en ikon"
+#~ msgstr "V√§lj en ikon"
 
 #~ msgid "%s to retrieve"
 #~ msgstr "%s att motta"
 
 #~ msgid "Closing connection to %s"
-#~ msgstr "St‰nger anslutning till %s"
+#~ msgstr "St√§nger anslutning till %s"
 
 #~ msgid "%s of %s read"
-#~ msgstr "%s av %s l‰st"
+#~ msgstr "%s av %s l√§st"
 
 #~ msgid "%s read"
-#~ msgstr "%s l‰st"
+#~ msgstr "%s l√§st"
 
 #~ msgid "Back"
-#~ msgstr "FˆregÂende"
+#~ msgstr "F√∂reg√•ende"
 
 #~ msgid "Go to the previously visited directory"
-#~ msgstr "GÂ till den katalog som besˆktes innan"
+#~ msgstr "G√• till den katalog som bes√∂ktes innan"
 
 #~ msgid "Up"
 #~ msgstr "Upp"
 
 #~ msgid "Go to the parent directory"
-#~ msgstr "GÂ till fˆr‰lderkatalogen"
+#~ msgstr "G√• till f√∂r√§lderkatalogen"
 
 #~ msgid "Forward"
-#~ msgstr "N‰sta"
+#~ msgstr "N√§sta"
 
 #~ msgid "Go to the next visited directory"
-#~ msgstr "GÂ till n‰sta besˆkta katalog"
+#~ msgstr "G√• till n√§sta bes√∂kta katalog"
 
 #~ msgid "Rescan"
-#~ msgstr "L‰s om"
+#~ msgstr "L√§s om"
 
 #~ msgid "Rescan the current directory"
-#~ msgstr "L‰s om den aktuella katalogen"
+#~ msgstr "L√§s om den aktuella katalogen"
 
 #~ msgid "Home"
 #~ msgstr "Hem"
 
 #~ msgid "Go to the home directory"
-#~ msgstr "GÂ till hemkatalogen"
+#~ msgstr "G√• till hemkatalogen"
 
 #~ msgid "Name"
 #~ msgstr "Namn"
@@ -1384,35 +1384,35 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Nytt program"
 
 #~ msgid "Expects URIs as arguments"
-#~ msgstr "Fˆrv‰ntar sig URI:er som argument"
+#~ msgstr "F√∂rv√§ntar sig URI:er som argument"
 
 #~ msgid ""
 #~ "Add a new MIME Type\n"
 #~ "For example:  image/tiff; text/x-scheme"
 #~ msgstr ""
-#~ "L‰gg till en ny MIME-typ\n"
+#~ "L√§gg till en ny MIME-typ\n"
 #~ "Till exempel:  image/tiff; text/x-schema"
 
 #~ msgid "MIME Type:"
 #~ msgstr "MIME-typ:"
 
 #~ msgid "Type a description for this MIME type."
-#~ msgstr "Ange en beskrivning fˆr denna mime-typ."
+#~ msgstr "Ange en beskrivning f√∂r denna mime-typ."
 
 #~ msgid "Description:"
 #~ msgstr "Beskrivning:"
 
 #~ msgid "Add new MIME type..."
-#~ msgstr "L‰gg till MIME-typ..."
+#~ msgstr "L√§gg till MIME-typ..."
 
 #~ msgid "No Description"
 #~ msgstr "Ingen beskrivning"
 
 #~ msgid "Unknown sort rule %d"
-#~ msgstr "Ok‰nd sorteringsregel %d"
+#~ msgstr "Ok√§nd sorteringsregel %d"
 
 #~ msgid "Add Mime Type"
-#~ msgstr "L‰gg till Mime-typ"
+#~ msgstr "L√§gg till Mime-typ"
 
 #~ msgid "Mime Type"
 #~ msgstr "Mime-typ"
@@ -1478,7 +1478,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "VRML-data"
 
 #~ msgid "backup document"
-#~ msgstr "s‰kerhetskopia"
+#~ msgstr "s√§kerhetskopia"
 
 #~ msgid "bzip archive"
 #~ msgstr "bzip-arkiv"
@@ -1499,7 +1499,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "gzip-arkiv"
 
 #~ msgid "link"
-#~ msgstr "l‰nk"
+#~ msgstr "l√§nk"
 
 #~ msgid "ogg file"
 #~ msgstr "ogg-fil"
@@ -1508,7 +1508,7 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "vanlig text"
 
 #~ msgid "pointer to remote data"
-#~ msgstr "pekare till fj‰rrdata"
+#~ msgstr "pekare till fj√§rrdata"
 
 #~ msgid "rich text"
 #~ msgstr "rik text"
@@ -1520,10 +1520,10 @@ msgstr "Ok‰nd GnomeVFSSeekPosition %d"
 #~ msgstr "Fel vid skrivning till GnomeVFSJob-kanalen."
 
 #~ msgid "Action"
-#~ msgstr "≈tg‰rd"
+#~ msgstr "√Ötg√§rd"
 
 #~ msgid "Extensions:"
-#~ msgstr "Fil‰ndelser:"
+#~ msgstr "Fil√§ndelser:"
 
 #~ msgid "Invalid header `%s'"
 #~ msgstr "Ogiltigt huvud \"%s\""
