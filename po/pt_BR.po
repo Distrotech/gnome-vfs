@@ -1,19 +1,22 @@
+# translation of gnome-vfs.HEAD.pt_BR.po to Portuguese
 # GNOME vfs translation for Brazilian Portuguese.
-# Copyright (C) 1999-2001 Free Software Foundation, Inc.
+# Copyright (C) 1999-2001,2003 Free Software Foundation, Inc.
 # Alexandre Hautequest <hquest@fesppr.br>, 1999.
 # Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
+# David Barzilay <barzilay@redhat.com>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2003-05-19 13:19+0200\n"
-"PO-Revision-Date: 2003-01-25 01:47-0200\n"
-"Last-Translator: Gustavo Noronha Silva <kov@debian.org>\n"
-"Language-Team: Debian-BR <debian-l10n-portuguese@lists.debian.org>, "
-"Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
+"Project-Id-Version: gnome-vfs.HEAD.pt_BR\n"
+"POT-Creation-Date: 2003-05-28 12:16-0300\n"
+"PO-Revision-Date: 2003-05-28 15:29+1000\n"
+"Last-Translator: David Barzilay <barzilay@redhat.com>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
+"X-Generator: KBabel 1.0\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -276,22 +279,22 @@ msgstr "Não foi possível encontrar o servidor de domínio"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Nenhuma ação default associada"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Não há ferramenta de gerenciamento para o esquema de URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Erro ao analisar a linha de comando"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Erro ao iniciar o comando"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -344,56 +347,53 @@ msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
-#, fuzzy
 msgid "Applications"
-msgstr "detalhes de aplicativo KDE"
+msgstr "Aplicações"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
-msgstr ""
+msgstr "Placas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:169
-#, fuzzy
 msgid "Files"
-msgstr "Arquivo existe"
+msgstr "Arquivos"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:172
-#, fuzzy
 msgid "Folders"
-msgstr "pasta"
+msgstr "Pastas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Hosts"
-msgstr ""
+msgstr "Máquinas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "Ligações"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Mail"
-msgstr ""
+msgstr "Correspondência"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
-msgstr ""
+msgstr "Ferramentas"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Windows"
-msgstr ""
+msgstr "Janelas"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
