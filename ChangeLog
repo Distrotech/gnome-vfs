@@ -1,3 +1,7 @@
+2004-07-22  Christophe Fergeau <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-utils.c: always use lower case URI schemes
+	  when looking for the handler for a given scheme.
 
 2004-07-20  Josselin Mouette <joss@debian.org>
 
