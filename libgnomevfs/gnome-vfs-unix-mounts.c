@@ -24,8 +24,9 @@
 #include <config.h>
 
 #include <sys/types.h>
-#include <stdio.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
 #include <errno.h>
@@ -80,6 +81,7 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 	fd_set read_fds;
 	struct timeval tv;
 	int res;
+	int status;
 
 	if (pipe (pipes) == -1) {
 		return 0;
@@ -96,13 +98,35 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 	if (pid == 0) {
 		/* Child */
 		close (pipes[0]);
-		
-		if (stat (mount->mount_path, &statbuf) == 0) {
-			write (pipes[1], (char *)&statbuf.st_dev, sizeof (dev_t));
+
+		pid = fork ();
+
+		/* Fork an intermediate child that immediately exits so
+		 * we can waitpid it. This means the final process will get
+		 * owned by init and not go zombie
+		 */
+		if (pid == 0) {
+			/* Grandchild */
+			if (stat (mount->mount_path, &statbuf) == 0) {
+				write (pipes[1], (char *)&statbuf.st_dev, sizeof (dev_t));
+			}
+		} else {
+			close (pipes[0]);
+			close (pipes[1]);
 		}
 
 		_exit (0);
 	} else {
+        wait_again:
+		if (waitpid (pid, &status, 0) < 0) {
+			if (errno == EINTR)
+				goto wait_again;
+			else if (errno == ECHILD)
+				; /* do nothing, child already reaped */
+			else
+				g_warning ("waitpid() should not fail in gnome_vfs_unix_mount_get_unix_device");
+		}
+		
 		/* Parent */
 		close (pipes[1]);
 
@@ -123,8 +147,6 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 		}
 
 		close (pipes[0]);
-
-		kill (pid, SIGKILL);
 	}
 	
 	return unix_device;
