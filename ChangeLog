@@ -1,3 +1,12 @@
+2001-03-22  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	* modules/file-method.c: (get_stat_info):
+	Fix a bug that caused symlink_name to never be read.
+	Add support for retrieving the symlink_name for a multi-level
+	symlink.
+
 2001-03-17  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/Makefile.am:

@@ -595,7 +595,9 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	GnomeVFSResult result;
 	struct stat statbuf;
 	gboolean followed_symlink;
+	gboolean is_symlink;
 	gboolean recursive;
+	char *link_file_path;
 
 	result = GNOME_VFS_OK;
 	followed_symlink = FALSE;
@@ -612,7 +614,9 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		return gnome_vfs_result_from_errno ();
 	}
 
-	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && S_ISLNK (statptr->st_mode)) {
+	is_symlink = S_ISLNK (statptr->st_mode);
+
+	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && is_symlink) {
 		if (stat (full_name, statptr) != 0) {
 			if (errno == ELOOP) {
 				recursive = TRUE;
@@ -633,16 +637,37 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);
 
-	if (result == GNOME_VFS_OK && S_ISLNK (statptr->st_mode)) {
-		/* FIXME: call read_link in a loop unless recursive is TRUE.
-		 * Currently for more than one-level symlinks the symlink_name
-		 * field will be wrong when follow links is specified
-		 */
-		file_info->symlink_name = read_link (full_name);
-		if (file_info->symlink_name == NULL) {
-			return gnome_vfs_result_from_errno ();
-		}
+	if (result == GNOME_VFS_OK && is_symlink) {
+		link_file_path = g_strdup (full_name);
+		
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+			/* We will either successfully read the link name or return
+			 * NULL if read_link fails -- flag it as a valid field either
+			 * way.
+			 */
+		while (TRUE) {			
+			/* Deal with multiple-level symlinks by following them as
+			 * far as we can.
+			 */
+
+			file_info->symlink_name = read_link (link_file_path);
+			if (file_info->symlink_name == NULL) {
+				g_free (link_file_path);
+				return gnome_vfs_result_from_errno ();
+			}
+			
+			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
+					/* we don't care to follow links */
+				|| lstat (file_info->symlink_name, statptr) != 0
+					/* we can't make out where this points to */
+				|| !S_ISLNK (statptr->st_mode)) {
+					/* the next level is not a link */
+				break;
+			}
+			g_free (link_file_path);
+			link_file_path = g_strdup (file_info->symlink_name);
+		}
+		g_free (link_file_path);
 	}
 
 	return result;
