@@ -1151,15 +1151,17 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
  * See also: gnome_vfs_uri_extract_short_path_name.
  * 
  * Return value: A pointer to the newly allocated string representing the
- * short form of the name.
+ * unescaped short form of the name.
  **/
 gchar *
 gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 {
-	gchar *short_path_name;
+	gchar *escaped_short_path_name, *short_path_name;
 	const gchar *host_name;
 
-	short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
+	escaped_short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
+	short_path_name = gnome_vfs_unescape_for_display (escaped_short_path_name);
+	g_free (escaped_short_path_name);
 
 	host_name = NULL;
 	if (short_path_name != NULL
@@ -1189,7 +1191,7 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
  * See also: gnome_vfs_uri_extract_short_name.
  * 
  * Return value: A pointer to the newly allocated string representing the
- * short form of the name.
+ * escaped short form of the name.
  **/
 gchar *
 gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)

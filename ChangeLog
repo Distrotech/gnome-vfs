@@ -1,3 +1,20 @@
+2000-06-05  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name):
+	Modified to call gnome_vfs_unescape_string on the "short_name"
+	before returning.
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_unescape_string):
+	Added a g_assert to make sure length of returned string is correct
+	(gnome_vfs_unescape_for_display):
+	* libgnomevfs/gnome-vfs-utils.h:
+	New function similar to unescape_string except that it returns
+	the string formatted better for display - i.e. with "invalid" 
+	escape sequences and ASCII 0 still escaped
+	* test/test-escape.c: (test_unescape), (test_unescape_display),
+	(main):
+	Added more test cases for escape code, improve output, added
+	test code for gnome_vfs_unescape_for_display
+
 2000-06-05  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-slave.c: (serve_channel_read),

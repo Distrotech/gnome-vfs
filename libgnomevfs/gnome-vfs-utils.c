@@ -73,7 +73,7 @@ gnome_vfs_file_size_to_string (GnomeVFSFileSize bytes)
  * It returns a string which has these characters
  * represented by a '%' character followed by two hex digits.
  *
- * Unlike gnome_vfs_unescape(), this routine returns a g_malloced string.
+ * This routine returns a g_malloced string.
  */
 
 static const guchar acceptable[96] =
@@ -193,10 +193,81 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
 	}
 	
 	*out = '\0';
-	
+	g_assert (out - result <= strlen (escaped));
 	return result;
 	
  error:
 	g_free (result);
 	return NULL;
+}
+
+/**
+ * gnome_vfs_unescape_for_display:
+ * @escaped: The string encoded with escaped sequences
+ * 
+ * Similar to gnome_vfs_unescape_string, but it returns something
+ * semi-intelligable to a user even upon receiving traumatic input
+ * such as %00 or URIs in bad form.
+ * 
+ * See also: gnome_vfs_unescape_string.
+ * 
+ * Return value: A pointer to a g_malloc'd string with all characters
+ *               replacing their escaped hex values
+ **/
+gchar *
+gnome_vfs_unescape_for_display (const gchar *escaped)
+{
+	const gchar *in, *start_escape;
+	gchar *out, *result;
+	gint i,j;
+	gchar c;
+	gint invalid_escape;
+
+	g_return_val_if_fail (escaped != NULL, NULL);
+
+	result = g_malloc (strlen (escaped) + 1);
+	
+	out = result;
+	for (in = escaped; *in != '\0'; ) {
+		start_escape = in;
+		c = *in++;
+		invalid_escape = 0;
+		
+		if (c == HEX_ESCAPE) {
+			/* Get the first hex digit. */
+			i = hex_to_int (*in++);
+			if (i < 0) {
+				invalid_escape = 1;
+				in--;
+			}
+			c = i << 4;
+			
+			if (invalid_escape == 0) {
+				/* Get the second hex digit. */
+				i = hex_to_int (*in++);
+				if (i < 0) {
+					invalid_escape = 2;
+					in--;
+				}
+				c |= i;
+			}
+			if (invalid_escape == 0) {
+				/* Check for an illegal character. */
+				if (c == '\0') {
+					invalid_escape = 3;
+				}
+			}
+		}
+		if (invalid_escape != 0) {
+			for (j = 0; j < invalid_escape; j++) {
+				*out++ = *start_escape++;
+			}
+		} else {
+			*out++ = c;
+		}
+	}
+	
+	*out = '\0';
+	g_assert (out - result <= strlen (escaped));
+	return result;
 }

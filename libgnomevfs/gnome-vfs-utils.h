@@ -55,4 +55,9 @@ gchar *gnome_vfs_escape_string       (const gchar                   *string,
 gchar *gnome_vfs_unescape_string     (const gchar                   *string,
 				      const gchar                   *illegal_characters);
 
+/* Prepare an escaped string for display - thus this function
+ * does not unescape invalid escape sequences and ASCII 0
+ */
+gchar *gnome_vfs_unescape_for_display (const gchar *escaped);
+
 #endif /* GNOME_VFS_UTILS_H */
