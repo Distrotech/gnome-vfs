@@ -1,28 +1,28 @@
 # gnome-vfs ja.po
-# Copyright (C) 2000 Free Software Foundation, Inc.
+# Copyright (C) 2000,2003 Free Software Foundation, Inc.
 # Akira TAGOH <at@ff.iij4u.or.jp>, 2000.
 # Takeshi AIHANA <aihana@gnome.gr.jp>, 2003.
+# KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
-"PO-Revision-Date: 2003-08-25 11:58+0900\n"
-"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-28 00:33+0900\n"
+"PO-Revision-Date: 2003-10-28 00:45+0900\n"
+"Last-Translator: KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: daemon/gnome-vfs-daemon.c:320
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "マスター・ブラウザが見つかりませんでした"
+msgstr "Bonobo を初期化できませんでした"
 
 #: daemon/gnome-vfs-daemon.c:326
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "gnome vfs を初期化できませんでした"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -35,14 +35,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d メソッド名がありません。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d メソッド名がありません。"
+msgstr "%s:%d オプション・エンドマーカがありません。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d 不明なオプション %s があります。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -428,15 +428,15 @@ msgstr "汎用ファイル・モニカ"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "デフォルトのコンポーネンー・ビューア・アプリケーション"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "デフォルトのターミナル・アプリケーション"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "デフォルトのターミナルの実行時引数"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -445,125 +445,132 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"閲覧するためにコンポーネントが必要なファイルを表示するために使用するアプリ"
+"ケーションです。%s はファイルの URI で、パラメータ %c はコポーネントの IID で"
+"置換されます。"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"ターミナルを必要とするアプリケーションが使用するデフォルトのターミナル・アプ"
+"リケーションです。"
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "デフォルトのターミナル・アプケーションが使用する実行時引数です。"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
-msgstr ""
+msgstr "プロキシ・サーバへの認証接続"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "自動プロキシ設定の URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing http over the internet."
-msgstr ""
+msgstr "インターネットへ http アクセスするときにプロキシの設定を有効にします。"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "Hosts are not contacted via the proxy"
-msgstr ""
+msgstr "ホストへはプロキシ経由でアクセスしない"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by /system/http_proxy/authentication_user "
 "and /system/http_proxy/authentication_password."
-msgstr ""
+msgstr "true の場合、プロキシ・サーバへの接続で認証が要求されます。ユーザ名/パスワードの組み合わせは /system/http_proxy/authentication_user と /system/http_proxy/authentication_password で定義されます。"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
-msgstr ""
+msgstr "http プロキシを利用するときに認証のために渡すパスワード"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "プロキシ設定モード"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Secure http proxy host name"
-msgstr ""
+msgstr "https プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Secure http proxy port"
-msgstr ""
+msgstr "https プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
 msgstr ""
+"プロキシ設定モードを選択します。\"none\", \"manual\", \"auto\" の値をサポート"
+"します"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
-msgstr ""
+msgstr "Sock プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Socks proxy port"
-msgstr ""
+msgstr "Socks プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "FTP プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid "The machine name to proxy http through."
-msgstr ""
+msgstr "http プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy secure http through."
-msgstr ""
+msgstr "https プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "socks プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid ""
 "The port on the machine defined by /system/http_proxy/host that you proxy "
 "through"
-msgstr ""
+msgstr "あなたがプロキシに使用する、/system/http_proxy/host で定義されたマシンのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid ""
 "The port on the machine defined by /system/proxy/ftp_host that you proxy "
 "through"
-msgstr ""
+msgstr "あなたがプロキシに使用する、/system/proxy/ftp_host で定義されたマシンのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr ""
+msgstr "あなたがプロキシに使用する、/system/proxy/secure_host で定義されたマシンのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
-msgstr ""
+msgstr "あなたがプロキシに使用する、/system/proxy/socks_host で定義されたマシンのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -571,24 +578,24 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
+msgstr "このキーには、(アクティブな場合は) プロキシ経由ではなく直接接続される多くのホストが含まれています。ホスト名、ドメイン (*.foo.com のように先頭にワイルド・カードが使われます)、IP ホスト・アドレス (IPv4 と IPv6 の両方)、ネット・マスクが併記されたネットワーク・アドレス (192.168.0.0/24のような値) といった値になります。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
-msgstr ""
+msgstr "プロキシの設定値を提供する URL"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid "Use proxy settings when accessing http"
-msgstr ""
+msgstr "http アクセス時にプロキシの設定を使用する"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "User name to pass as authentication when doing http proxying"
-msgstr ""
+msgstr "http プロキシの認証時に渡すユーザ名"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "http proxy password"
-msgstr ""
+msgstr "http プロキシのパスワード"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
-msgstr ""
+msgstr "http プロキシのユーザ名"
