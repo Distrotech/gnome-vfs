@@ -760,6 +760,7 @@ allocate_info_list (gulong size, gulong max_metadata)
 			= CORBA_sequence_CORBA_octet_allocbuf (info_size);
 		CORBA_sequence_set_release (&p->data, TRUE);
 
+		p->name = NULL;
 		p->symlink_name = NULL;
 		p->mime_type = NULL;
 
@@ -829,6 +830,7 @@ copy_file_info (GNOME_VFS_Slave_FileInfo *dest,
 {
 	memcpy (dest->data._buffer, src, dest->data._length);
 
+	set_corba_string (&dest->name, src->name);
 	set_corba_string (&dest->symlink_name, src->symlink_name);
 	set_corba_string (&dest->mime_type, src->mime_type);
 

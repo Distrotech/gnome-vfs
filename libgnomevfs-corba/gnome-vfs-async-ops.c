@@ -743,6 +743,11 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 		memcpy (info, (GnomeVFSFileInfo *) slave_info->data._buffer,
 			slave_info->data._length);
 
+		if (slave_info->name[0] == 0)
+			info->name = NULL;
+		else
+			info->name = g_strdup (slave_info->name);
+
 		if (slave_info->mime_type[0] == 0)
 			info->mime_type = NULL;
 		else

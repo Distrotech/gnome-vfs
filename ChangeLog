@@ -1,3 +1,29 @@
+1999-08-28  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(impl_Notify_load_directory): Copy `name' and allocate it
+	dynamically.
+
+	* libgnomevfs-corba/gnome-vfs-slave.c (allocate_info_list):
+	Initialize `name' to NULL.
+	(copy_file_info): Copy `name' into the CORBA `FileInfo' struct
+	using `set_corba_string'.
+
+	* idl/gnome-vfs-slave.idl: Added member `name' to `FileInfo'.
+
+	* modules/file-method.c (read_directory): Allocate the name in the
+	`GnomeVFSFileInfo' struct dynamically.
+	(do_get_file_info): Set `name' in the info using `g_basename'.
+
+	* libgnomevfs/gnome-vfs-file-info.c (gnome_vfs_file_info_clear):
+	Free `name'.
+	(gnome_vfs_file_info_copy): Realloc `name' in the destination
+	`GnomeVFSFileInfo'.
+
+	* libgnomevfs/gnome-vfs-types.h: Removed #definition of
+	`GNOME_VFS_FILE_NAME_LEN'.  Member `name' of `GnomeVFSFileInfo'
+	changed from `char []' to `char *'.
+
 1999-08-27  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 
 	* modules/util-url.c, modules/ftp-method.c: New files for the

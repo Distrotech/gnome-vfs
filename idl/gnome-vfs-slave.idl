@@ -18,7 +18,8 @@ module Slave {
            depends on binary compatibility.  */
 	struct FileInfo {
 		Buffer data;
-	
+
+		string name;
 		string symlink_name;
 		string mime_type;
 

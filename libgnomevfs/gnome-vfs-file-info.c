@@ -113,6 +113,7 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 {
 	g_return_if_fail (info != NULL);
 
+	g_free (info->name);
 	g_free (info->symlink_name);
 	g_free (info->mime_type);
 
@@ -237,6 +238,7 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 
 	/* Duplicate dynamically allocated strings.  */
 
+	dest->name = g_strdup (src->name);
 	dest->symlink_name = g_strdup (src->symlink_name);
 	dest->mime_type = g_strdup (src->mime_type);
 

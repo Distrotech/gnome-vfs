@@ -150,12 +150,9 @@ struct _GnomeVFSFileMetadata {
 };
 typedef struct _GnomeVFSFileMetadata GnomeVFSFileMetadata;
 
-/* FIXME */
-#define GNOME_VFS_FILE_NAME_LEN	512
-
 struct _GnomeVFSFileInfo {
 	/* Base name of the file (no path).  */
-	gchar name[GNOME_VFS_FILE_NAME_LEN];
+	gchar *name;
 
 	/* File type (i.e. regular, directory, block device...).  */
 	GnomeVFSFileType type;

@@ -759,7 +759,7 @@ read_directory (DirectoryHandle *handle,
 	if (result == NULL)
 		return GNOME_VFS_ERROR_EOF;
 
-	strcpy (info->name, result->d_name);
+	info->name = g_strdup (result->d_name);
 
 	if (filter != NULL
 	    && ! filter_called
@@ -855,6 +855,8 @@ do_get_file_info (GnomeVFSURI *uri,
 	struct stat statbuf;
 
 	full_name = uri->text;
+
+	file_info->name = g_strdup (g_basename (full_name));
 
 	result = get_stat_info (file_info, full_name, options, &statbuf);
 	if (result != GNOME_VFS_OK)
