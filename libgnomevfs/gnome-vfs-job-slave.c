@@ -46,14 +46,8 @@ static void *
 thread_routine (void *data)
 {
 	GnomeVFSJob *job;
-	guint bytes_written;
 
 	job = (GnomeVFSJob *) data;
-
-	/* Let the main thread know we are alive.  */
-	JOB_DEBUG (("thread routine sending wakeup %p", job));
-	g_io_channel_write (job->wakeup_channel_out, "A",
-			    1, &bytes_written);
  
 	while (gnome_vfs_job_execute (job))
 		;
@@ -68,7 +62,6 @@ thread_routine (void *data)
 	return NULL;
 }
 
-
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
@@ -176,11 +169,12 @@ gnome_vfs_thread_backend_shutdown (void)
 	}
 }
 
+#include "stdio.h"
 int
 gnome_vfs_debug_get_thread_count (void)
 {
 	int result;
-	
+
 	if (gnome_vfs_thread_count_mutex == NULL) {
 		/* must have never used a single async call */
 		return 0;

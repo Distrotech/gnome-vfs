@@ -1,3 +1,17 @@
+2000-09-25  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_job_callback), (gnome_vfs_job_new):
+	Remove some unnecessary thread startup synchronization to speed up
+	job creation.
+	
+	* libgnomevfs/gnome-vfs-mime-magic.c: (try_one_pattern_on_buffer):
+	Tweak a routine that gets called a lot to gain a bit of performance.
+	
+	* test/test-async-directory.c: (directory_load_callback), (main):
+	Some small tweaks.
+
 2000-09-23  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/translate-method.c: (tr_uri_translate):

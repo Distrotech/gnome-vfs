@@ -459,7 +459,8 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 {
 	gboolean using_cloned_pattern;
 	char pattern_clone [48];
-	int index;
+	int index, count;
+	const char *pattern;
 
 	using_cloned_pattern = FALSE;
 	if (magic_entry->type >= FIRST_ENDIAN_DEPENDENT_TYPE && magic_entry->type <= LAST_ENDIAN_DEPENDENT_TYPE) { 
@@ -477,7 +478,7 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 		using_cloned_pattern = TRUE;
 	}
 
-	if (magic_entry->use_mask ) {
+	if (magic_entry->use_mask) {
 		/* Apply mask to the examined data. At this point the data in
 		 * sniffed_stream is in the same endianness as the mask.
 		 */ 
@@ -493,7 +494,13 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 		}
 	}
 
-	return memcmp (magic_entry->pattern, sniffed_stream, magic_entry->pattern_length) == 0;
+	for (count = magic_entry->pattern_length, pattern = magic_entry->pattern;
+		count > 0; count--) {
+		if (*pattern++ != *sniffed_stream++) {
+			return FALSE;
+		}
+	}
+	return TRUE;
 }
 
 

@@ -165,11 +165,13 @@ wakeup (GnomeVFSJob *job)
 	return retval;
 }
 
+
 /* This notifies the master thread asynchronously, without waiting for an
    acknowledgment.  */
 static gboolean
 job_oneway_notify (GnomeVFSJob *job)
 {
+
 	JOB_DEBUG (("lock channel %p", job));
 	g_mutex_lock (job->wakeup_channel_lock);
 
@@ -182,6 +184,7 @@ job_oneway_notify (GnomeVFSJob *job)
 
 	return wakeup (job);
 }
+
 
 /* This notifies the master threads, waiting until it acknowledges the
    notification.  */
@@ -618,9 +621,6 @@ gnome_vfs_job_new (void)
 {
 	GnomeVFSJob *new_job;
 	gint pipefd[2];
-	gchar c;
-	guint bytes_read;
-	GIOError error;
 	
 	if (pipe (pipefd) != 0) {
 		g_warning ("Cannot create pipe for the new GnomeVFSJob: %s",
@@ -641,7 +641,7 @@ gnome_vfs_job_new (void)
 	new_job->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new_job->wakeup_channel_lock = g_mutex_new ();
 	
-	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_DEFAULT, G_IO_IN,
+	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_HIGH, G_IO_IN,
 			     dispatch_job_callback, new_job, NULL);
 	
 	if (!gnome_vfs_job_create_slave (new_job)) {
@@ -652,21 +652,6 @@ gnome_vfs_job_new (void)
 	
 	JOB_DEBUG (("new job %p", new_job));
 	
-	/* Wait for the thread to come up. 
-	 *
-	 * Keep reading until we get the synch character from the slave thread --
-	 * When the thread receives a signal, the read will return with 
-	 * nothing the first time but will succeed if we retry.
-	 */
-	for (;;) {
-		error = g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
-		JOB_DEBUG (("new job ready to rip %p, %c, %d, %d", 
-			    new_job, c, bytes_read, error));
-		JOB_DEBUG_ONLY(if (error !=  G_IO_ERROR_NONE) perror("system error:"));
-		if (bytes_read > 0)
-			break;
-	}
-
 	return new_job;
 }
 
