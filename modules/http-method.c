@@ -93,7 +93,8 @@ my_debug_printf(char *fmt, ...)
 
 #define DEBUG_HTTP(x) my_debug_printf x
 
-#define ANALYZE_HTTP(x) my_debug_printf (x)
+/* #define ANALYZE_HTTP(x) my_debug_printf (x) */
+#define ANALYZE_HTTP(x) 
 
 #else
 static int nothing;
@@ -160,6 +161,8 @@ static void			cache_invalidate_uri (GnomeVFSURI *uri);
 static void			cache_invalidate_entry_and_children (const gchar * uri_string);
 static void			cache_invalidate_uri_and_children (GnomeVFSURI *uri);
 static void			cache_invalidate_uri_parent (GnomeVFSURI *uri);
+
+GnomeVFSResult			resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context);
 
 
 static utime_t
@@ -1671,6 +1674,19 @@ do_create (GnomeVFSMethod *method,
 
 	if (result != GNOME_VFS_OK) {
 		/* the PUT failed */
+
+		/* FIXME bugzilla.eazel.com 5131
+		 * If you PUT a file with an invalid name to Xythos, it 
+		 * returns a 403 Forbidden, which is different from the behaviour
+		 * in MKCOL or MOVE.  Unfortunately, it is not possible to discern whether 
+		 * that 403 Forbidden is being returned because of invalid characters in the name
+		 * or because of permissions problems
+		 */  
+
+		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+			result = resolve_409 (method, uri, context);
+		}
+
 		return result;
 	}
 
@@ -2497,7 +2513,7 @@ do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
 	GnomeVFSResult result;
 
 	DEBUG_HTTP (("+Make_Directory URI: '%s'", gnome_vfs_uri_to_string (uri, 0)));
-	ANALYZE_HTTP ("==> +do_get_file_info");
+	ANALYZE_HTTP ("==> +do_make_directory");
 
 	/*
 	 * MKCOL returns a 405 if you try to MKCOL on something that
@@ -2505,6 +2521,7 @@ do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
 	 * the server doesn't support DAV or the collection already exists.
 	 * So we do a PROPFIND first to find out
 	 */
+	/* FIXME check cache here */
 	result = make_propfind_request(&handle, uri, 0, context);
 
 	if (result == GNOME_VFS_OK) {
@@ -2522,7 +2539,11 @@ do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
 	}
 	http_handle_close (handle, context);
 
-	ANALYZE_HTTP ("==> -do_get_file_info");
+	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+		result = resolve_409 (method, uri, context);
+	}
+
+	ANALYZE_HTTP ("==> -do_make_directory");
 	DEBUG_HTTP (("-Make_Directory (%d)", result));
 
 	return result;
@@ -2598,6 +2619,11 @@ do_move (GnomeVFSMethod *method,
 
 	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
 	http_handle_close (handle, context);
+	handle = NULL;
+
+	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+		result = resolve_409 (method, new_uri, context);
+	}
 
 #ifndef DAV_NO_CACHE
 	cache_invalidate_uri_parent (old_uri);
@@ -2778,4 +2804,56 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 	}
 #endif
 	gl_client = NULL;
+}
+
+
+/* A "409 Conflict" currently maps to GNOME_VFS_ERROR_NOT_FOUND because it can be returned
+ * when the parent collection/directory does not exist.  Unfortunately, Xythos also returns
+ * this code when the destination filename of a PUT, MKCOL, or MOVE contains illegal characters, 
+ * eg "my*file:name".
+ * 
+ * The only way to resolve this is to ask...
+ */
+
+GnomeVFSResult
+resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
+{
+	GnomeVFSFileInfo *file_info;
+	GnomeVFSURI *parent_dest_uri;
+	GnomeVFSResult result;
+
+
+	ANALYZE_HTTP ("==> +resolving 409");
+
+	file_info = gnome_vfs_file_info_new ();
+	parent_dest_uri = gnome_vfs_uri_get_parent (uri);
+
+	result = do_get_file_info (method,
+			parent_dest_uri,
+			file_info,
+			GNOME_VFS_FILE_INFO_DEFAULT,
+			context);
+
+	gnome_vfs_file_info_unref (file_info);
+	file_info = NULL;
+
+	gnome_vfs_uri_unref (parent_dest_uri);
+	parent_dest_uri = NULL;
+
+
+	if (result == GNOME_VFS_OK) {
+		/* The destination filename contains characters that are not allowed
+		 * by the server.  This is a bummer mapping, but EINVAL is what
+		 * the Linux FAT filesystems return on bad filenames, so at least
+		 * its not without precedent...
+		 */ 
+		result = GNOME_VFS_ERROR_BAD_PARAMETERS;
+	} else {
+		/* The destination's parent path does not exist */
+		result = GNOME_VFS_ERROR_NOT_FOUND;
+	}
+
+	ANALYZE_HTTP ("==> -resolving 409");
+
+	return result;
 }

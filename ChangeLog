@@ -1,3 +1,17 @@
+2000-12-11  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-types.h:
+	* modules/http-method.c: (do_make_directory), (do_move):
+
+	bugzilla.eazel.com 3942 -- renaming file to illegal name produces
+	confusing response.
+
+	do_move now returns GNOME_VFS_ERROR_BAD_PARAMETERS when the destination
+	filename contains invalid characters.  This is really an unfortunate
+	mapping, but it mirrors what Linux's FAT drivers seem to do (they return
+	EINVAL).
+
 2000-12-11  Darin Adler  <darin@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>
