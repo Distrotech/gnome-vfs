@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-05 22:05+0200\n"
-"PO-Revision-Date: 2004-02-05 23:43+0200\n"
+"POT-Creation-Date: 2004-02-10 22:49+0200\n"
+"PO-Revision-Date: 2004-02-07 18:16+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Bonobon käynnistys epäonnistui"
 
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
-msgstr "Gnome-vfs:n käynnistys epäonnistui"
+msgstr "Gnome-vfs:n alustus epäonnistui"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -57,7 +57,7 @@ msgstr "%s:%d ei sisällä moduulin nimeä."
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Asetustiedostoa '%s' ei löytynyt: %s"
+msgstr "Asetustiedostoa \"%s\" ei löytynyt: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -148,7 +148,7 @@ msgstr "ReiserFS-Linux-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr "Windows-jaettu taltio"
+msgstr "Jaettu Windows-taltio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
@@ -216,11 +216,11 @@ msgstr "Toiminta pysäytetty"
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ei voitu tulkita: %s"
+msgstr "Ei voitu jäsentää: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Mahdolliset seuraavat tulkkausvirheet jäävät huomiotta."
+msgstr "Mahdolliset seuraavat jäsennysvirheet jäävät huomiotta."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -340,7 +340,7 @@ msgstr "Tiedosto on olemassa"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "Silmukkamaisia linkkejä havaittu"
+msgstr "Linkkien silmukka havaittu"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -385,7 +385,7 @@ msgstr "Toiminto peruttu"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
-msgstr "Hakemistossa toimintaa"
+msgstr "Hakemisto varattu"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:71
@@ -563,15 +563,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "Valitun taltion irrottaminen ei onnistu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Komennon käynnistäminen epäonnistui"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Levyn poistaminen asemasta ei onnistu"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Yhdistetyn palvelimen irrottaminen ei onnistu"
 
@@ -646,12 +646,12 @@ msgstr "Tuntematon GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Ei löytänyt kelvollista asetustiedostoa paikasta %s\n"
+msgstr "%s ei ole kelvollinen asetustiedosto\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Käytä ympäristömuuttujaa %s määrittääksesi toisen paikan.\n"
+msgstr "Määrittele toinen sijainti käyttämällä ympäristömuuttujaa %s.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -688,18 +688,18 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Sovellus, jolla katsellaan tiedostoja, jotka vaativat siihen komponentin. "
-"Parametri %s korvautuu tiedoston URI:lla, parametri %c komponentin IID:llä."
+"Katseluun komponentin vaativien tiedostojen katselusovellus. Parametri %s "
+"korvautuu tiedoston URI:lla, parametri %c komponentin IID:llä."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Oletusarvoinen päätesovelma päätteen vaativille sovelluksille."
+msgstr "Oletusarvoinen päätesovellus päätteen vaativille sovelluksille."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Päätesovelman valitsin, joka määrittää mitä suoritetaan."
+msgstr "Päätesovelluksen valitsin, joka määrittää mitä suoritetaan."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -893,7 +893,7 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "Välityspalvelinta käyttämättömät isäntäkoneet"
+msgstr "Välipalvelinta käyttämättömät isäntäkoneet"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
