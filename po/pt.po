@@ -5,33 +5,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-04-22 08:19-0400\n"
+"POT-Creation-Date: 2002-05-05 00:23+0100\n"
 "PO-Revision-Date: 2002-02-08 00:50+GMT\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: None <none@none.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d contÈm caracteres NULOS."
+msgstr "%s:%d cont√©m caracteres NULOS."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d n„o contÈm nome de mÈtodo."
+msgstr "%s:%d n√£o cont√©m nome de m√©todo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d n„o contÈm nome de mÛdulo."
+msgstr "%s:%d n√£o cont√©m nome de m√≥dulo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Ficheiro de configuraÁ„o `%s' n„o foi encontrado: %s"
+msgstr "Ficheiro de configura√ß√£o `%s' n√£o foi encontrado: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
@@ -41,7 +41,7 @@ msgstr "Tipo op %u desconhecido"
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "N„o È possÌvel abrir pipe para GIOChannel aberto: %s"
+msgstr "N√£o √© poss√≠vel abrir pipe para GIOChannel aberto: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
@@ -50,16 +50,16 @@ msgstr "Tipo de trabalho %u desconhecido"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
-msgstr "OperaÁ„o parada"
+msgstr "Opera√ß√£o parada"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "N„o foi possÌvel parsear: %s"
+msgstr "N√£o foi poss√≠vel parsear: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Restantes erros de parseamento ser„o ignorados."
+msgstr "Restantes erros de parseamento ser√£o ignorados."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -69,12 +69,12 @@ msgstr "Nenhum erro"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Ficheiro n„o encontrado"
+msgstr "Ficheiro n√£o encontrado"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Erro genÈrico"
+msgstr "Erro gen√©rico"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -84,12 +84,12 @@ msgstr "Erro interno"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Par‚metros inv·lidos"
+msgstr "Par√¢metros inv√°lidos"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "OperaÁ„o n„o suportada"
+msgstr "Opera√ß√£o n√£o suportada"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -104,12 +104,12 @@ msgstr "Dados corrompidos"
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Formato inv·lido"
+msgstr "Formato inv√°lido"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Ponteiro para ficheiro inv·lido"
+msgstr "Ponteiro para ficheiro inv√°lido"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -119,7 +119,7 @@ msgstr "Ficheiro demasiado grande"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Dispositivo sem espaÁo livre"
+msgstr "Dispositivo sem espa√ßo livre"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -129,17 +129,17 @@ msgstr "Sistema de ficheiros apenas de leitura"
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "URI inv·lido"
+msgstr "URI inv√°lido"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Ficheiro n„o aberto"
+msgstr "Ficheiro n√£o aberto"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Modo de abertura inv·lido"
+msgstr "Modo de abertura inv√°lido"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -159,17 +159,17 @@ msgstr "Fim de ficheiro"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "N„o È um directÛrio"
+msgstr "N√£o √© um direct√≥rio"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "OperaÁ„o em execuÁ„o"
+msgstr "Opera√ß√£o em execu√ß√£o"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "OperaÁ„o interrompida"
+msgstr "Opera√ß√£o interrompida"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
@@ -184,32 +184,32 @@ msgstr "Links em loop encontrados"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "OperaÁ„o n„o permitida"
+msgstr "Opera√ß√£o n√£o permitida"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "… um directÛrio"
+msgstr "√â um direct√≥rio"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "MemÛria n„o È suficiente"
+msgstr "Mem√≥ria n√£o √© suficiente"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Servidor n„o encontrado"
+msgstr "Servidor n√£o encontrado"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Nome de servidor inv·lido"
+msgstr "Nome de servidor inv√°lido"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Servidor n„o tem endereÁo"
+msgstr "Servidor n√£o tem endere√ßo"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -219,17 +219,17 @@ msgstr "Registo falhou"
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "OperaÁ„o cancelada"
+msgstr "Opera√ß√£o cancelada"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "DirectÛrio ocupado"
+msgstr "Direct√≥rio ocupado"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "DirectÛrio n„o vazio"
+msgstr "Direct√≥rio n√£o vazio"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -244,7 +244,7 @@ msgstr "Sistema de ficheiros apenas de leitura"
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "N„o est· no mesmo sistema de ficheiros"
+msgstr "N√£o est√° no mesmo sistema de ficheiros"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -254,12 +254,12 @@ msgstr "Nome demasiado longo"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "ServiÁo indisponÌvel"
+msgstr "Servi√ßo indispon√≠vel"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Pedido de dados a serviÁo obsoleto"
+msgstr "Pedido de dados a servi√ßo obsoleto"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -303,18 +303,18 @@ msgstr "GnomeVFSSeekPosition %d desconhecida"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Ficheiro de configuraÁ„o v·lido n„o encontrado em %s\n"
+msgstr "Ficheiro de configura√ß√£o v√°lido n√£o encontrado em %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
-"Utilize a vari·vel de ambiente %s para especificar uma localizaÁ„o "
+"Utilize a vari√°vel de ambiente %s para especificar uma localiza√ß√£o "
 "diferente.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "F·brica de Moniker Standard"
+msgstr "F√°brica de Moniker Standard"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -322,11 +322,11 @@ msgstr "ficheiro MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "moniker Gnome VFS genÈrico"
+msgstr "moniker Gnome VFS gen√©rico"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "ficheiro moniker genÈrico"
+msgstr "ficheiro moniker gen√©rico"
 
 #~ msgid "3D Studio image"
 #~ msgstr "Imagem 3D Studio"
@@ -338,10 +338,10 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Audio AIFF"
 
 #~ msgid "ANIM animation"
-#~ msgstr "AnimaÁ„o ANIM"
+#~ msgstr "Anima√ß√£o ANIM"
 
 #~ msgid "AVI video"
-#~ msgstr "VÌdeo AVI"
+#~ msgstr "V√≠deo AVI"
 
 #~ msgid "AbiWord document"
 #~ msgstr "Documento AbiWord"
@@ -350,7 +350,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Fonte AdobeFrameMaker"
 
 #~ msgid "Adobe font metrics"
-#~ msgstr "MÈtrica de Fontes Adobe"
+#~ msgstr "M√©trica de Fontes Adobe"
 
 #~ msgid "Andrew Toolkit inset"
 #~ msgstr "Inset do Andrew Toolkit"
@@ -362,7 +362,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento do ApplixWare Words"
 
 #~ msgid "Applixware spreadsheet"
-#~ msgstr "Folha de c·lculo ApplixWare"
+#~ msgstr "Folha de c√°lculo ApplixWare"
 
 #~ msgid "AutoCAD image"
 #~ msgstr "Imagem AutoCAD"
@@ -377,16 +377,16 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Script de Consola C"
 
 #~ msgid "C source code"
-#~ msgstr "CÛdigo Fonte C"
+#~ msgstr "C√≥digo Fonte C"
 
 #~ msgid "C source code header"
-#~ msgstr "Header de cÛdigo fonte C"
+#~ msgstr "Header de c√≥digo fonte C"
 
 #~ msgid "C++ source code"
-#~ msgstr "CÛdigo Fonte C++"
+#~ msgstr "C√≥digo Fonte C++"
 
 #~ msgid "CGI program"
-#~ msgstr "AplicaÁ„o CGI"
+#~ msgstr "Aplica√ß√£o CGI"
 
 #~ msgid "CGM image"
 #~ msgstr "Imagem CGM"
@@ -407,13 +407,13 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Fonte DOS"
 
 #~ msgid "DOS/Windows program"
-#~ msgstr "AplicaÁ„o DOS/Windows"
+#~ msgstr "Aplica√ß√£o DOS/Windows"
 
 #~ msgid "DSSSL document"
 #~ msgstr "Documento DSSSL"
 
 #~ msgid "DXF vector graphic"
-#~ msgstr "Gr·fico de vectores DXF"
+#~ msgstr "Gr√°fico de vectores DXF"
 
 #~ msgid "Debian package"
 #~ msgstr "Pacote Debian"
@@ -425,22 +425,22 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Audio Dolby Digital"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "CÛdigo Fonte Emacs Lisp"
+#~ msgstr "C√≥digo Fonte Emacs Lisp"
 
 #~ msgid "Enlightenment theme"
 #~ msgstr "Tema para o Enlightenment"
 
 #~ msgid "FLC animation"
-#~ msgstr "AnimaÁ„o FLC"
+#~ msgstr "Anima√ß√£o FLC"
 
 #~ msgid "FLI animation"
-#~ msgstr "AnimaÁ„o FLI"
+#~ msgstr "Anima√ß√£o FLI"
 
 #~ msgid "FastTracker II audio"
 #~ msgstr "Audio FastTracker II"
 
 #~ msgid "Fortran source code"
-#~ msgstr "CÛdigo Fonte Fortran"
+#~ msgstr "C√≥digo Fonte Fortran"
 
 #~ msgid "FrameMaker interchange document"
 #~ msgstr "Documento de partilha FrameMaker"
@@ -458,16 +458,16 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Link GMC"
 
 #~ msgid "GNOME application details"
-#~ msgstr "Detalhes de AplicaÁ„o GNOME"
+#~ msgstr "Detalhes de Aplica√ß√£o GNOME"
 
 #~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "Folha de C·lculo GNU Oleo"
+#~ msgstr "Folha de C√°lculo GNU Oleo"
 
 #~ msgid "GNU mail message"
 #~ msgstr "Mensagem de mail GNU"
 
 #~ msgid "GTK configuration"
-#~ msgstr "ConfiguraÁ„o GTK"
+#~ msgstr "Configura√ß√£o GTK"
 
 #~ msgid "Glade project"
 #~ msgstr "Projecto Glade"
@@ -476,13 +476,13 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Livro de Registo GnuCash"
 
 #~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Folha de c·lculo Gnumeric"
+#~ msgstr "Folha de c√°lculo Gnumeric"
 
 #~ msgid "HDF document"
 #~ msgstr "Documento HDF"
 
 #~ msgid "HTML page"
-#~ msgstr "P·gina HTML"
+#~ msgstr "P√°gina HTML"
 
 #~ msgid "IDL document"
 #~ msgstr "Documento IDL"
@@ -497,7 +497,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Imagem ILBM"
 
 #~ msgid "ISI video"
-#~ msgstr "VÌdeo ISI"
+#~ msgstr "V√≠deo ISI"
 
 #~ msgid "Impulse Tracker audio"
 #~ msgstr "Audio Impulse Tracker"
@@ -512,19 +512,19 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Byte-code de Java"
 
 #~ msgid "Java source code"
-#~ msgstr "CÛdigo Fonte Java"
+#~ msgstr "C√≥digo Fonte Java"
 
 #~ msgid "KDE application details"
-#~ msgstr "Detalhes de AplicaÁ„o KDE"
+#~ msgstr "Detalhes de Aplica√ß√£o KDE"
 
 #~ msgid "KIllustrator document"
 #~ msgstr "Documento de KIllustrator"
 
 #~ msgid "KPresenter presentation"
-#~ msgstr "ApresentaÁ„o KPresenter"
+#~ msgstr "Apresenta√ß√£o KPresenter"
 
 #~ msgid "KSpread spreadsheet"
-#~ msgstr "Folha de C·lculo KSpread"
+#~ msgstr "Folha de C√°lculo KSpread"
 
 #~ msgid "KWord document"
 #~ msgstr "Documento KWord"
@@ -545,16 +545,16 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Objecto LightWave"
 
 #~ msgid "LightWave scene"
-#~ msgstr "Cen·rio LightWave"
+#~ msgstr "Cen√°rio LightWave"
 
 #~ msgid "Linux PSF console font"
 #~ msgstr "Fonte PSF de consola Linux"
 
 #~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Folha de c·lculo Lotus 1-2-3"
+#~ msgstr "Folha de c√°lculo Lotus 1-2-3"
 
 #~ msgid "M3 audio URL"
-#~ msgstr "EndereÁo de Audio M3"
+#~ msgstr "Endere√ßo de Audio M3"
 
 #~ msgid "MIDI audio"
 #~ msgstr "Audio MIDI"
@@ -569,13 +569,13 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Lista de ficheiros audio MP3"
 
 #~ msgid "MPEG video"
-#~ msgstr "VÌdeo MPEG"
+#~ msgstr "V√≠deo MPEG"
 
 #~ msgid "MS ASF video"
-#~ msgstr "VÌdeo MS ASF"
+#~ msgstr "V√≠deo MS ASF"
 
 #~ msgid "MS video"
-#~ msgstr "VÌdeo MS"
+#~ msgstr "V√≠deo MS"
 
 #~ msgid "Macintosh AppleDouble-encoded file"
 #~ msgstr "Ficheiro AppleDouble-enconded Macintosh"
@@ -593,7 +593,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento MathML"
 
 #~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Folha de C·lculo Microsoft Excel"
+#~ msgstr "Folha de C√°lculo Microsoft Excel"
 
 #~ msgid "Microsoft PowerPoint document"
 #~ msgstr "Documento Microsoft PowerPoint"
@@ -602,7 +602,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento Miscrosoft Word"
 
 #~ msgid "Microsoft video"
-#~ msgstr "VÌdeo Microsoft"
+#~ msgstr "V√≠deo Microsoft"
 
 #~ msgid "Nautilus link"
 #~ msgstr "Link Nautilus"
@@ -620,13 +620,13 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento PDF"
 
 #~ msgid "PEF program"
-#~ msgstr "AplicaÁ„o PEF"
+#~ msgstr "Aplica√ß√£o PEF"
 
 #~ msgid "PGM image"
 #~ msgstr "Imagem PGM"
 
 #~ msgid "PGN chess game"
-#~ msgstr "Jogo de XadrÍs PGN"
+#~ msgstr "Jogo de Xadr√™s PGN"
 
 #~ msgid "PGP keys"
 #~ msgstr "Chaves PGP"
@@ -671,7 +671,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento PostScript"
 
 #~ msgid "Python source code"
-#~ msgstr "CÛdigo Fonte Python"
+#~ msgstr "C√≥digo Fonte Python"
 
 #~ msgid "QuickTime movie"
 #~ msgstr "Filme QuickTime"
@@ -701,7 +701,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento RealAudio/Video"
 
 #~ msgid "RealVideo video"
-#~ msgstr "VÌdeo RealVideo"
+#~ msgstr "V√≠deo RealVideo"
 
 #~ msgid "S/MIME file"
 #~ msgstr "Ficheiro S/MIME"
@@ -710,7 +710,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Assinatura S/MIME"
 
 #~ msgid "SGI video"
-#~ msgstr "VÌdeo SGI"
+#~ msgstr "V√≠deo SGI"
 
 #~ msgid "SGML document"
 #~ msgstr "Documento SGML"
@@ -719,7 +719,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Script SMIL"
 
 #~ msgid "SQL code"
-#~ msgstr "CÛdigo SQL"
+#~ msgstr "C√≥digo SQL"
 
 #~ msgid "SV4 CPIO archive"
 #~ msgstr "Ficheiro SV4 CPIO"
@@ -731,7 +731,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Arte SVG"
 
 #~ msgid "Scheme source code"
-#~ msgstr "CÛdigo Fonte Scheme"
+#~ msgstr "C√≥digo Fonte Scheme"
 
 #~ msgid "Scream Tracker 3 audio"
 #~ msgstr "Audio Scream Tracker 3"
@@ -752,7 +752,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Fonte Speedo"
 
 #~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Documento de Folha de C·lculo GenÈrica"
+#~ msgstr "Documento de Folha de C√°lculo Gen√©rica"
 
 #~ msgid "Stampede package"
 #~ msgstr "Pacote Stampede"
@@ -761,10 +761,10 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento StarOffice Writer"
 
 #~ msgid "StarOffice presentation"
-#~ msgstr "ApresentaÁ„o StarOffice"
+#~ msgstr "Apresenta√ß√£o StarOffice"
 
 #~ msgid "StarOffice spreadsheet"
-#~ msgstr "Folha de C·lculo StarOffice"
+#~ msgstr "Folha de C√°lculo StarOffice"
 
 #~ msgid "Sun mu-law audio"
 #~ msgstr "Audio Sun mu-law"
@@ -791,7 +791,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Fonte TeX"
 
 #~ msgid "TeX font metrics"
-#~ msgstr "MÈtricas de Fonte TeX"
+#~ msgstr "M√©tricas de Fonte TeX"
 
 #~ msgid "TeXInfo document"
 #~ msgstr "Documento TeXInfo"
@@ -818,22 +818,22 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Documento VRML"
 
 #~ msgid "Vivo video"
-#~ msgstr "VÌdeo Vivo"
+#~ msgstr "V√≠deo Vivo"
 
 #~ msgid "WAIS source code"
-#~ msgstr "CÛdigo Fonte WAIS"
+#~ msgstr "C√≥digo Fonte WAIS"
 
 #~ msgid "Wavelet video"
-#~ msgstr "VÌdeo Wavelet"
+#~ msgstr "V√≠deo Wavelet"
 
 #~ msgid "Windows bitmap image"
 #~ msgstr "Imagem Bitmap Windows"
 
 #~ msgid "Windows icon image"
-#~ msgstr "Imagem de Ìcon Windows"
+#~ msgstr "Imagem de √≠con Windows"
 
 #~ msgid "Windows metafile graphics"
-#~ msgstr "Gr·fico Metafile Windows"
+#~ msgstr "Gr√°fico Metafile Windows"
 
 #~ msgid "WordPerfect document"
 #~ msgstr "Documento WordPerfect"
@@ -854,10 +854,10 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "Base de Dados XBase"
 
 #~ msgid "active server page"
-#~ msgstr "p·gina ASP"
+#~ msgstr "p√°gina ASP"
 
 #~ msgid "address card"
-#~ msgstr "cart„o de endereÁo"
+#~ msgstr "cart√£o de endere√ßo"
 
 #~ msgid "ar archive"
 #~ msgstr "ficheiro ar"
@@ -878,7 +878,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "registo de bibliografia"
 
 #~ msgid "binary program"
-#~ msgstr "aplicaÁ„o bin·ria"
+#~ msgstr "aplica√ß√£o bin√°ria"
 
 #~ msgid "block device"
 #~ msgstr "dispositivo de armazenamento"
@@ -887,16 +887,16 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "ficheiro comprimido bzip"
 
 #~ msgid "calendar file"
-#~ msgstr "ficheiro de calend·rio"
+#~ msgstr "ficheiro de calend√°rio"
 
 #~ msgid "calendar or event document"
-#~ msgstr "documento de calend·rio ou evento"
+#~ msgstr "documento de calend√°rio ou evento"
 
 #~ msgid "character device"
 #~ msgstr "dispositivo de escrita"
 
 #~ msgid "comma-separated text document"
-#~ msgstr "documento separado por vÌrgulas (csv)"
+#~ msgstr "documento separado por v√≠rgulas (csv)"
 
 #~ msgid "compound document"
 #~ msgstr "documento composto"
@@ -908,13 +908,13 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "documento GIMP comprimido"
 
 #~ msgid "directory information file"
-#~ msgstr "ficheiro de informaÁ„o de directÛrio"
+#~ msgstr "ficheiro de informa√ß√£o de direct√≥rio"
 
 #~ msgid "document type definition"
-#~ msgstr "definiÁ„o de tipo de documento"
+#~ msgstr "defini√ß√£o de tipo de documento"
 
 #~ msgid "email headers"
-#~ msgstr "cabeÁalho de E-Mail"
+#~ msgstr "cabe√ßalho de E-Mail"
 
 #~ msgid "email message"
 #~ msgstr "mensagem de E-Mail"
@@ -935,34 +935,34 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "ficheiro comprimido gzip"
 
 #~ msgid "help page"
-#~ msgstr "p·gina de ajuda"
+#~ msgstr "p√°gina de ajuda"
 
 #~ msgid "mail delivery report"
-#~ msgstr "relatÛrio de entrega de e-mail"
+#~ msgstr "relat√≥rio de entrega de e-mail"
 
 #~ msgid "mail disposition report"
-#~ msgstr "relatÛrio de disposiÁ„o de e-mail"
+#~ msgstr "relat√≥rio de disposi√ß√£o de e-mail"
 
 #~ msgid "mail system report"
-#~ msgstr "relatÛrio de sistema de e-mail"
+#~ msgstr "relat√≥rio de sistema de e-mail"
 
 #~ msgid "makefile"
 #~ msgstr "makefile"
 
 #~ msgid "manual page"
-#~ msgstr "p·gina de manual"
+#~ msgstr "p√°gina de manual"
 
 #~ msgid "manual page (compressed)"
-#~ msgstr "p·gina de manual (comprimida)"
+#~ msgstr "p√°gina de manual (comprimida)"
 
 #~ msgid "memory dump"
-#~ msgstr "dump de memÛria"
+#~ msgstr "dump de mem√≥ria"
 
 #~ msgid "message digest"
 #~ msgstr "conjunto de mensagens"
 
 #~ msgid "message in several formats"
-#~ msgstr "mensagem em v·rios formatos"
+#~ msgstr "mensagem em v√°rios formatos"
 
 #~ msgid "multi-part message"
 #~ msgstr "mensagem repartida"
@@ -971,7 +971,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "pipe com nome"
 
 #~ msgid "object code"
-#~ msgstr "cÛdigo de objecto"
+#~ msgstr "c√≥digo de objecto"
 
 #~ msgid "ogg audio"
 #~ msgstr "audio ogg"
@@ -986,7 +986,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "resultados do profiler"
 
 #~ msgid "reference to remote file"
-#~ msgstr "referÍncia a ficheiro remoto"
+#~ msgstr "refer√™ncia a ficheiro remoto"
 
 #~ msgid "rejected patch file"
 #~ msgstr "ficheiro patch rejeitado"
@@ -1013,22 +1013,22 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "socket"
 
 #~ msgid "software author credits"
-#~ msgstr "crÈditos de autor de aplicaÁ„o"
+#~ msgstr "cr√©ditos de autor de aplica√ß√£o"
 
 #~ msgid "software installation instructions"
-#~ msgstr "instruÁıes de instalaÁ„o de aplicaÁ„o"
+#~ msgstr "instru√ß√µes de instala√ß√£o de aplica√ß√£o"
 
 #~ msgid "software license terms"
-#~ msgstr "termos de licenÁa de aplicaÁ„o"
+#~ msgstr "termos de licen√ßa de aplica√ß√£o"
 
 #~ msgid "source code patch"
-#~ msgstr "patch de cÛdigo fonte"
+#~ msgstr "patch de c√≥digo fonte"
 
 #~ msgid "style sheet"
 #~ msgstr "folha de estilo"
 
 #~ msgid "symbolic link"
-#~ msgstr "link simbÛlico"
+#~ msgstr "link simb√≥lico"
 
 #~ msgid "tab-separated text document"
 #~ msgstr "documento separado por tabs"
@@ -1070,7 +1070,7 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "pasta web"
 
 #~ msgid "xfig vector graphic"
-#~ msgstr "gr·fico de vector xfig"
+#~ msgstr "gr√°fico de vector xfig"
 
 #~ msgid "zip archive"
 #~ msgstr "ficheiro zip"
@@ -1079,4 +1079,4 @@ msgstr "ficheiro moniker genÈrico"
 #~ msgstr "ficheiro zoo"
 
 #~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS j· inicializado."
+#~ msgstr "GNOME VFS j√° inicializado."
