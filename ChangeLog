@@ -1,3 +1,15 @@
+2004-09-22  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.[ch]:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	Try to reuse children when getting dev_t by stating.
+	Fixes bug 151026. Patch from Morten Welinder.
+
+	* configure.in:
+	Post release version bump.
+	
+=== gnome-vfs 2.8.1 ===
+
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
 	* NEWS:
