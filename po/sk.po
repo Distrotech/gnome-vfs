@@ -1,1018 +1,20 @@
+# translation of sk.po to Slovak
 # gnome-vfs sk.po
-# Copyright (C) 2000-2001 Free Software Foundation, Inc.
+# Copyright (C) 2000-2001,2002 Free Software Foundation, Inc.
 # Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000-2001.
+# Stanislav Vi¹òovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.6.2.0\n"
-"POT-Creation-Date: 2001-11-09 06:14-0500\n"
-"PO-Revision-Date: 2001-11-11 12:40CET\n"
-"Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
+"Project-Id-Version: sk\n"
+"POT-Creation-Date: 2002-05-22 12:51+0200\n"
+"PO-Revision-Date: 2002-05-22 12:52+0200\n"
+"Last-Translator: Stanislav Vi¹òovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
-
-#: data/mime/gnome-vfs.keys.in.h:1
-msgid "3D Studio image"
-msgstr "obrázok 3D Studio"
-
-#: data/mime/gnome-vfs.keys.in.h:2
-msgid "AIFC audio"
-msgstr "zvuk AIFC"
-
-#: data/mime/gnome-vfs.keys.in.h:3
-msgid "AIFF audio"
-msgstr "zvuk AIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:4
-msgid "ANIM animation"
-msgstr "animácia ANIM"
-
-#: data/mime/gnome-vfs.keys.in.h:5
-msgid "AVI video"
-msgstr "video AVI"
-
-#: data/mime/gnome-vfs.keys.in.h:6
-msgid "AbiWord document"
-msgstr "dokument AbiWord"
-
-#: data/mime/gnome-vfs.keys.in.h:7
-msgid "Adobe FrameMaker font"
-msgstr "písmo Adobe FrameMaker"
-
-#: data/mime/gnome-vfs.keys.in.h:8
-msgid "Adobe font metrics"
-msgstr "metrika písma Adobe"
-
-#: data/mime/gnome-vfs.keys.in.h:9
-msgid "Andrew Toolkit inset"
-msgstr "Andrew Toolkit inset"
-
-#: data/mime/gnome-vfs.keys.in.h:10
-msgid "ApplixWare Graphics image"
-msgstr "obrázok ApplixWare Graphics"
-
-#: data/mime/gnome-vfs.keys.in.h:11
-msgid "Applixware Words document"
-msgstr "dokument Applixware Words"
-
-#: data/mime/gnome-vfs.keys.in.h:12
-msgid "Applixware spreadsheet"
-msgstr "tabuµka Applixware"
-
-#: data/mime/gnome-vfs.keys.in.h:13
-msgid "AutoCAD image"
-msgstr "obrázok AutoCAD"
-
-#: data/mime/gnome-vfs.keys.in.h:14
-msgid "BCPIO document"
-msgstr "dokument BCPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:15
-msgid "BDF font"
-msgstr "písmo BDF"
-
-#: data/mime/gnome-vfs.keys.in.h:16
-msgid "C shell script"
-msgstr "skript C shellu"
-
-#: data/mime/gnome-vfs.keys.in.h:17
-msgid "C source code"
-msgstr "zdrojový kód C"
-
-#: data/mime/gnome-vfs.keys.in.h:18
-msgid "C source code header"
-msgstr "hlavièkový zdrojový kód C"
-
-#: data/mime/gnome-vfs.keys.in.h:19
-msgid "C++ source code"
-msgstr "zdrojový kód C++"
-
-#: data/mime/gnome-vfs.keys.in.h:20
-msgid "CGI program"
-msgstr "program CGI"
-
-#: data/mime/gnome-vfs.keys.in.h:21
-msgid "CGM image"
-msgstr "obrázok CGM"
-
-#: data/mime/gnome-vfs.keys.in.h:22
-msgid "CMU raster image"
-msgstr "rastrový obrázok CMU"
-
-#: data/mime/gnome-vfs.keys.in.h:23
-msgid "CPIO archive"
-msgstr "archív CPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:24
-msgid "CPIO archive (gzip-compressed)"
-msgstr "archív CPIO (komprimovaný gzip)"
-
-#: data/mime/gnome-vfs.keys.in.h:25
-msgid "DCL script"
-msgstr "skript DCL"
-
-#: data/mime/gnome-vfs.keys.in.h:26
-msgid "DOS font"
-msgstr "písmo pre DOS"
-
-#: data/mime/gnome-vfs.keys.in.h:27
-msgid "DOS/Windows program"
-msgstr "program pre DOS/Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:28
-msgid "DSSSL document"
-msgstr "dokument DSSSL"
-
-#: data/mime/gnome-vfs.keys.in.h:29
-msgid "DXF vector graphic"
-msgstr "vektorová grafika DXF"
-
-#: data/mime/gnome-vfs.keys.in.h:30
-msgid "Debian package"
-msgstr "balík Debian"
-
-#: data/mime/gnome-vfs.keys.in.h:31
-msgid "Dia diagram"
-msgstr "diagram Dia"
-
-#: data/mime/gnome-vfs.keys.in.h:32
-msgid "Dolby Digital audio"
-msgstr "zvuk Dolby Digital"
-
-#: data/mime/gnome-vfs.keys.in.h:33
-msgid "Emacs Lisp source code"
-msgstr "zdrojový kód Emacs Lisp"
-
-#: data/mime/gnome-vfs.keys.in.h:34
-msgid "Enlightenment theme"
-msgstr "téma pre Enlightenment"
-
-#: data/mime/gnome-vfs.keys.in.h:35
-msgid "FLC animation"
-msgstr "animácia FLC"
-
-#: data/mime/gnome-vfs.keys.in.h:36
-msgid "FLI animation"
-msgstr "animácia FLI"
-
-#: data/mime/gnome-vfs.keys.in.h:37
-msgid "FastTracker II audio"
-msgstr "zvuk FastTracker II"
-
-#: data/mime/gnome-vfs.keys.in.h:38
-msgid "Fortran source code"
-msgstr "zdrojový kód Fortran"
-
-#: data/mime/gnome-vfs.keys.in.h:39
-msgid "FrameMaker interchange document"
-msgstr "výmenný dokument FrameMaker"
-
-#: data/mime/gnome-vfs.keys.in.h:40
-msgid "G3 fax image"
-msgstr "obrázok G3 fax"
-
-#: data/mime/gnome-vfs.keys.in.h:41
-msgid "GIF image"
-msgstr "obrázok GIF"
-
-#: data/mime/gnome-vfs.keys.in.h:42
-msgid "GIMP document"
-msgstr "dokument GIMP"
-
-#: data/mime/gnome-vfs.keys.in.h:43
-msgid "GMC link"
-msgstr "odkaz GMC"
-
-#: data/mime/gnome-vfs.keys.in.h:44
-msgid "GNOME application details"
-msgstr "detaily aplikácie GNOME"
-
-#: data/mime/gnome-vfs.keys.in.h:45
-msgid "GNU Oleo Spreadsheet"
-msgstr "tabuµka GNU Oleo"
-
-#: data/mime/gnome-vfs.keys.in.h:46
-msgid "GNU mail message"
-msgstr "e-mailová správa GNU"
-
-#: data/mime/gnome-vfs.keys.in.h:47
-msgid "GTK configuration"
-msgstr "nastavenie GTK"
-
-#: data/mime/gnome-vfs.keys.in.h:48
-msgid "Glade project"
-msgstr "projekt Glade"
-
-#: data/mime/gnome-vfs.keys.in.h:49
-msgid "GnuCash Workbook"
-msgstr "zo¹it GnuCash"
-
-#: data/mime/gnome-vfs.keys.in.h:50
-msgid "Gnumeric spreadsheet"
-msgstr "tabuµka Gnumeric"
-
-#: data/mime/gnome-vfs.keys.in.h:51
-msgid "HDF document"
-msgstr "dokument HDF"
-
-#: data/mime/gnome-vfs.keys.in.h:52
-msgid "HTML page"
-msgstr "stránka HTML"
-
-#: data/mime/gnome-vfs.keys.in.h:53
-msgid "IDL document"
-msgstr "dokument IDL"
-
-#: data/mime/gnome-vfs.keys.in.h:54
-msgid "IEF image"
-msgstr "obrázok IEF"
-
-#: data/mime/gnome-vfs.keys.in.h:55
-msgid "IFF image"
-msgstr "obrázok IFF"
-
-#: data/mime/gnome-vfs.keys.in.h:56
-msgid "ILBM image"
-msgstr "obrázok ILMB"
-
-#: data/mime/gnome-vfs.keys.in.h:57
-msgid "ISI video"
-msgstr "video ISI"
-
-#: data/mime/gnome-vfs.keys.in.h:58
-msgid "Impulse Tracker audio"
-msgstr "zvuk Impulse Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:59
-msgid "JBuilder Project"
-msgstr "projekt JBuilder"
-
-#: data/mime/gnome-vfs.keys.in.h:60
-msgid "JPEG image"
-msgstr "obrázok JPEG"
-
-#: data/mime/gnome-vfs.keys.in.h:61
-msgid "Java byte code"
-msgstr "Java bajtkód"
-
-#: data/mime/gnome-vfs.keys.in.h:62
-msgid "Java source code"
-msgstr "zdrojový kód Java"
-
-#: data/mime/gnome-vfs.keys.in.h:63
-msgid "KDE application details"
-msgstr "detaily aplikácie KDE"
-
-#: data/mime/gnome-vfs.keys.in.h:64
-msgid "KIllustrator document"
-msgstr "dokument KIllustrator"
-
-#: data/mime/gnome-vfs.keys.in.h:65
-msgid "KPresenter presentation"
-msgstr "prezentácia KPresenter"
-
-#: data/mime/gnome-vfs.keys.in.h:66
-msgid "KSpread spreadsheet"
-msgstr "tabuµka KSpread"
-
-#: data/mime/gnome-vfs.keys.in.h:67
-msgid "KWord document"
-msgstr "dokument KWord"
-
-#: data/mime/gnome-vfs.keys.in.h:68
-msgid "Korn shell script"
-msgstr "skript Korn shellu"
-
-#: data/mime/gnome-vfs.keys.in.h:69
-msgid "LHA archive"
-msgstr "archív LHA"
-
-#: data/mime/gnome-vfs.keys.in.h:70
-msgid "LHARC archive"
-msgstr "archív LHARC"
-
-#: data/mime/gnome-vfs.keys.in.h:71
-msgid "LIBGRX font"
-msgstr "písmo LIBGRX"
-
-#: data/mime/gnome-vfs.keys.in.h:72
-msgid "LightWave object"
-msgstr "objekt LightWave"
-
-#: data/mime/gnome-vfs.keys.in.h:73
-msgid "LightWave scene"
-msgstr "scéna LightWave"
-
-#: data/mime/gnome-vfs.keys.in.h:74
-msgid "Linux PSF console font"
-msgstr "konzolové písmo Linuxu PSF"
-
-#: data/mime/gnome-vfs.keys.in.h:75
-msgid "Lotus 1-2-3 spreadsheet"
-msgstr "tabuµka Lotus 1-2-3"
-
-#: data/mime/gnome-vfs.keys.in.h:76
-msgid "M3 audio URL"
-msgstr "M3 zvukové URL"
-
-#: data/mime/gnome-vfs.keys.in.h:77
-msgid "MIDI audio"
-msgstr "zvuk MIDI"
-
-#: data/mime/gnome-vfs.keys.in.h:78
-msgid "MOD audio"
-msgstr "zvuk MOD"
-
-#: data/mime/gnome-vfs.keys.in.h:79
-msgid "MP3 audio"
-msgstr "zvuk MP3"
-
-#: data/mime/gnome-vfs.keys.in.h:80
-msgid "MP3 audio playlist"
-msgstr "zvukový playlist MP3"
-
-#: data/mime/gnome-vfs.keys.in.h:81
-msgid "MPEG video"
-msgstr "video MPEG"
-
-#: data/mime/gnome-vfs.keys.in.h:82
-msgid "MS ASF video"
-msgstr "video MS ASF"
-
-#: data/mime/gnome-vfs.keys.in.h:83
-msgid "MS video"
-msgstr "video MS"
-
-#: data/mime/gnome-vfs.keys.in.h:84
-msgid "Macintosh AppleDouble-encoded file"
-msgstr "súbor kódovaný Macintosh AppleDouble"
-
-#: data/mime/gnome-vfs.keys.in.h:85
-msgid "Macintosh BinHex-encoded file"
-msgstr "súbor kódovaný Macintosh BinHex"
-
-#: data/mime/gnome-vfs.keys.in.h:86
-msgid "Macintosh StuffIt archive"
-msgstr "Macintosh StuffIt archív"
-
-#: data/mime/gnome-vfs.keys.in.h:87
-msgid "Macromedia Flash file"
-msgstr "súbor Macromedia Flash"
-
-#: data/mime/gnome-vfs.keys.in.h:88
-msgid "MathML document"
-msgstr "dokument MathML"
-
-#: data/mime/gnome-vfs.keys.in.h:89
-msgid "Microsoft Excel spreadsheet"
-msgstr "tabuµka Microsoft Excel"
-
-#: data/mime/gnome-vfs.keys.in.h:90
-msgid "Microsoft PowerPoint document"
-msgstr "dokument Microsoft PowerPoint"
-
-#: data/mime/gnome-vfs.keys.in.h:91
-msgid "Microsoft Word document"
-msgstr "dokument Microsoft Word"
-
-#: data/mime/gnome-vfs.keys.in.h:92
-msgid "Microsoft video"
-msgstr "video Microsoft"
-
-#: data/mime/gnome-vfs.keys.in.h:93
-msgid "Nautilus link"
-msgstr "odkaz Nautilus"
-
-#: data/mime/gnome-vfs.keys.in.h:94
-msgid "ODA document"
-msgstr "dokument ODA"
-
-#: data/mime/gnome-vfs.keys.in.h:95
-msgid "PBM image"
-msgstr "obrázok PBM"
-
-#: data/mime/gnome-vfs.keys.in.h:96
-msgid "PCF font"
-msgstr "písmo PCF"
-
-#: data/mime/gnome-vfs.keys.in.h:97
-msgid "PDF document"
-msgstr "dokument PDF"
-
-#: data/mime/gnome-vfs.keys.in.h:98
-msgid "PEF program"
-msgstr "program PEF"
-
-#: data/mime/gnome-vfs.keys.in.h:99
-msgid "PGM image"
-msgstr "obrázok PGM"
-
-#: data/mime/gnome-vfs.keys.in.h:100
-msgid "PGN chess game"
-msgstr "¹achová hra PGN"
-
-#: data/mime/gnome-vfs.keys.in.h:101
-msgid "PGP keys"
-msgstr "PGP kµúèe"
-
-#: data/mime/gnome-vfs.keys.in.h:102
-msgid "PGP message"
-msgstr "PGP správa"
-
-#: data/mime/gnome-vfs.keys.in.h:103
-msgid "PGP signature"
-msgstr "PGP podpis"
-
-#: data/mime/gnome-vfs.keys.in.h:104
-msgid "PGP-encrypted file"
-msgstr "PGP-¹ifrovaný súbor"
-
-#: data/mime/gnome-vfs.keys.in.h:105
-msgid "PHP script"
-msgstr "skript PHP"
-
-#: data/mime/gnome-vfs.keys.in.h:106
-msgid "PN RealAudio document"
-msgstr "dokument PN RealAudio"
-
-#: data/mime/gnome-vfs.keys.in.h:107
-msgid "PNG image"
-msgstr "obrázok PNG"
-
-#: data/mime/gnome-vfs.keys.in.h:108
-msgid "PNM image"
-msgstr "obrázok PNM"
-
-#: data/mime/gnome-vfs.keys.in.h:109
-msgid "PPM image"
-msgstr "obrázok PPM"
-
-#: data/mime/gnome-vfs.keys.in.h:110
-msgid "Palm OS database"
-msgstr "databáza Palm OS"
-
-#: data/mime/gnome-vfs.keys.in.h:111
-msgid "Perl script"
-msgstr "skript Perl"
-
-#: data/mime/gnome-vfs.keys.in.h:112
-msgid "Photoshop document"
-msgstr "dokument Photoshop"
-
-#: data/mime/gnome-vfs.keys.in.h:113
-msgid "PostScript Type 1 font"
-msgstr "písmo PostScript Typ 1"
-
-#: data/mime/gnome-vfs.keys.in.h:114
-msgid "PostScript document"
-msgstr "dokument PostScript"
-
-#: data/mime/gnome-vfs.keys.in.h:115
-msgid "Python source code"
-msgstr "zdrojový kód Python"
-
-#: data/mime/gnome-vfs.keys.in.h:116
-msgid "QuickTime movie"
-msgstr "video QuickTime"
-
-#: data/mime/gnome-vfs.keys.in.h:117
-msgid "Quicken document"
-msgstr "dokument Quicken"
-
-#: data/mime/gnome-vfs.keys.in.h:118
-msgid "Quicken for Windows document"
-msgstr "dokument Quicken pre Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:119
-msgid "RAR archive"
-msgstr "archív RAR"
-
-#: data/mime/gnome-vfs.keys.in.h:120
-msgid "README document"
-msgstr "dokument README"
-
-#: data/mime/gnome-vfs.keys.in.h:121
-msgid "RGB image"
-msgstr "obrázok RGB"
-
-#: data/mime/gnome-vfs.keys.in.h:122
-msgid "RIFF audio"
-msgstr "zvuk RIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:123
-msgid "RPM package"
-msgstr "balík RPM"
-
-#: data/mime/gnome-vfs.keys.in.h:124
-msgid "RealAudio/Video document"
-msgstr "dokument RealAudio/Video"
-
-#: data/mime/gnome-vfs.keys.in.h:125
-msgid "RealVideo video"
-msgstr "video RealVideo"
-
-#: data/mime/gnome-vfs.keys.in.h:126
-msgid "S/MIME file"
-msgstr "súbor S/MIME"
-
-#: data/mime/gnome-vfs.keys.in.h:127
-msgid "S/MIME signature"
-msgstr "podpis S/MIME"
-
-#: data/mime/gnome-vfs.keys.in.h:128
-msgid "SGI video"
-msgstr "video SGI"
-
-#: data/mime/gnome-vfs.keys.in.h:129
-msgid "SGML document"
-msgstr "dokument SGML"
-
-#: data/mime/gnome-vfs.keys.in.h:130
-msgid "SMIL script"
-msgstr "skript SMIL"
-
-#: data/mime/gnome-vfs.keys.in.h:131
-msgid "SQL code"
-msgstr "kód SQL"
-
-#: data/mime/gnome-vfs.keys.in.h:132
-msgid "SV4 CPIO archive"
-msgstr "archív SV4 CPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:133
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "archív SV4 CPIP (s CRC)"
-
-#: data/mime/gnome-vfs.keys.in.h:134
-msgid "SVG art"
-msgstr "dielo SVG"
-
-#: data/mime/gnome-vfs.keys.in.h:135
-msgid "Scheme source code"
-msgstr "zdrojový kód Scheme"
-
-#: data/mime/gnome-vfs.keys.in.h:136
-msgid "Scream Tracker 3 audio"
-msgstr "zvuk Scream Tracker 3"
-
-#: data/mime/gnome-vfs.keys.in.h:137
-msgid "Scream Tracker audio"
-msgstr "zvuk Scream Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:138
-msgid "Scream Tracker instrument"
-msgstr "nástroj Scream Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:139
-msgid "Setext document"
-msgstr "dokument setext"
-
-#: data/mime/gnome-vfs.keys.in.h:140
-msgid "Speech document"
-msgstr "dokument Speech"
-
-#: data/mime/gnome-vfs.keys.in.h:141
-msgid "Speedo font"
-msgstr "písmo Speedo"
-
-#: data/mime/gnome-vfs.keys.in.h:142
-msgid "Spreadsheet Interchange document"
-msgstr "výmenný tabuµkový dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:143
-msgid "Stampede package"
-msgstr "balík Stampede"
-
-#: data/mime/gnome-vfs.keys.in.h:144
-msgid "StarOffice Writer document"
-msgstr "dokument StarOffice Writer"
-
-#: data/mime/gnome-vfs.keys.in.h:145
-msgid "StarOffice presentation"
-msgstr "prezentácia StarOffice"
-
-#: data/mime/gnome-vfs.keys.in.h:146
-msgid "StarOffice spreadsheet"
-msgstr "tabuµka StarOffice"
-
-#: data/mime/gnome-vfs.keys.in.h:147
-msgid "Sun mu-law audio"
-msgstr "zvuk Sun µ-law"
-
-#: data/mime/gnome-vfs.keys.in.h:148
-msgid "SunOS News font"
-msgstr "Písmo SunOS News"
-
-#: data/mime/gnome-vfs.keys.in.h:149
-msgid "TIFF image"
-msgstr "obrázok TIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:150
-msgid "TarGA image"
-msgstr "obrázok TarGA"
-
-#: data/mime/gnome-vfs.keys.in.h:151
-msgid "Tcl script"
-msgstr "skript Tcl"
-
-#: data/mime/gnome-vfs.keys.in.h:152
-msgid "TeX document"
-msgstr "dokument TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:153
-msgid "TeX dvi document"
-msgstr "dokument TeX dvi"
-
-#: data/mime/gnome-vfs.keys.in.h:154
-msgid "TeX font"
-msgstr "písmo TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:155
-msgid "TeX font metrics"
-msgstr "metrika písma TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:156
-msgid "TeXInfo document"
-msgstr "dokument TeXInfo"
-
-#: data/mime/gnome-vfs.keys.in.h:157
-msgid "ToutDoux document"
-msgstr "dokument ToutDoux"
-
-#: data/mime/gnome-vfs.keys.in.h:158
-msgid "TrueType font"
-msgstr "písmo TrueType"
-
-#: data/mime/gnome-vfs.keys.in.h:159
-msgid "USENET news message"
-msgstr "príspevok diskusnej skupiny USENET"
-
-#: data/mime/gnome-vfs.keys.in.h:160
-msgid "Unidata netCDF document"
-msgstr "dokument Unidata netCDF"
-
-#: data/mime/gnome-vfs.keys.in.h:161
-msgid "V font"
-msgstr "písmo V"
-
-#: data/mime/gnome-vfs.keys.in.h:162
-msgid "VOC audio"
-msgstr "zvuk VOC"
-
-#: data/mime/gnome-vfs.keys.in.h:163
-msgid "VRML document"
-msgstr "dokument VRML"
-
-#: data/mime/gnome-vfs.keys.in.h:164
-msgid "Vivo video"
-msgstr "video Vivo"
-
-#: data/mime/gnome-vfs.keys.in.h:165
-msgid "WAIS source code"
-msgstr "zdrojový kód WAIS"
-
-#: data/mime/gnome-vfs.keys.in.h:166
-msgid "Wavelet video"
-msgstr "video Wavelet"
-
-#: data/mime/gnome-vfs.keys.in.h:167
-msgid "Windows bitmap image"
-msgstr "bitmapový obrázok Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:168
-msgid "Windows icon image"
-msgstr "ikona Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:169
-msgid "Windows metafile graphics"
-msgstr "grafika Windows metafile"
-
-#: data/mime/gnome-vfs.keys.in.h:170
-msgid "WordPerfect document"
-msgstr "dokument WordPerfect"
-
-#: data/mime/gnome-vfs.keys.in.h:171
-msgid "X bitmap image"
-msgstr "bitmapový obrázok X"
-
-#: data/mime/gnome-vfs.keys.in.h:172
-msgid "X window image"
-msgstr "obrázok X window"
-
-#: data/mime/gnome-vfs.keys.in.h:173
-msgid "XML document"
-msgstr "dokument XML"
-
-#: data/mime/gnome-vfs.keys.in.h:174
-msgid "XPM image"
-msgstr "obrázok XPM"
-
-#: data/mime/gnome-vfs.keys.in.h:175
-msgid "Xbase database"
-msgstr "databáza Xbase"
-
-#: data/mime/gnome-vfs.keys.in.h:176
-msgid "active server page"
-msgstr "active server page"
-
-#: data/mime/gnome-vfs.keys.in.h:177
-msgid "address card"
-msgstr "karta adresára"
-
-#: data/mime/gnome-vfs.keys.in.h:178
-msgid "ar archive"
-msgstr "archív ar"
-
-#: data/mime/gnome-vfs.keys.in.h:179
-msgid "arj archive"
-msgstr "archív arj"
-
-#: data/mime/gnome-vfs.keys.in.h:180
-msgid "authors list"
-msgstr "zoznam autorov"
-
-#: data/mime/gnome-vfs.keys.in.h:181
-msgid "backup file"
-msgstr "zálo¾ný súbor"
-
-#: data/mime/gnome-vfs.keys.in.h:182
-msgid "basic audio"
-msgstr "základné audio"
-
-#: data/mime/gnome-vfs.keys.in.h:183
-msgid "bibliography record"
-msgstr "záznam bibliografie"
-
-#: data/mime/gnome-vfs.keys.in.h:184
-msgid "binary program"
-msgstr "spustiteµný program"
-
-#: data/mime/gnome-vfs.keys.in.h:185
-msgid "block device"
-msgstr "blokové zariadenie"
-
-#: data/mime/gnome-vfs.keys.in.h:186
-msgid "bzip-compressed file"
-msgstr "súbor komprimovaný bzip"
-
-#: data/mime/gnome-vfs.keys.in.h:187
-msgid "calendar file"
-msgstr "kalendárový súbor"
-
-#: data/mime/gnome-vfs.keys.in.h:188
-msgid "calendar or event document"
-msgstr "dokument kalendár alebo udalos»"
-
-#: data/mime/gnome-vfs.keys.in.h:189
-msgid "character device"
-msgstr "znakové zariadenie"
-
-#: data/mime/gnome-vfs.keys.in.h:190
-msgid "comma-separated text document"
-msgstr "textový dokument oddeµovaný èiarkami"
-
-#: data/mime/gnome-vfs.keys.in.h:191
-msgid "compound document"
-msgstr "zlo¾ený dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:192
-msgid "compress-compressed file"
-msgstr "komprimovaný súbor compress"
-
-#: data/mime/gnome-vfs.keys.in.h:193
-msgid "compressed GIMP document"
-msgstr "komprimovaný dokument GIMP"
-
-#: data/mime/gnome-vfs.keys.in.h:194
-msgid "directory information file"
-msgstr "súbor s popisom prieèinku"
-
-#: data/mime/gnome-vfs.keys.in.h:195
-msgid "document type definition"
-msgstr "definícia typu dokumentu"
-
-#: data/mime/gnome-vfs.keys.in.h:196
-msgid "email headers"
-msgstr "e-mailové hlavièky"
-
-#: data/mime/gnome-vfs.keys.in.h:197
-msgid "email message"
-msgstr "e-mailová správa"
-
-#: data/mime/gnome-vfs.keys.in.h:198
-msgid "encrypted message"
-msgstr "za¹ifrovaná správa"
-
-#: data/mime/gnome-vfs.keys.in.h:199
-msgid "enriched text document"
-msgstr "roz¹írený textový dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:200
-msgid "folder"
-msgstr "prieèinok"
-
-#: data/mime/gnome-vfs.keys.in.h:201
-msgid "gtar archive"
-msgstr "archív gtar"
-
-#: data/mime/gnome-vfs.keys.in.h:202
-msgid "gzip-compressed file"
-msgstr "súbor komprimovaný gzip"
-
-#: data/mime/gnome-vfs.keys.in.h:203
-msgid "help page"
-msgstr "stránka Pomocníka"
-
-#: data/mime/gnome-vfs.keys.in.h:204
-msgid "mail delivery report"
-msgstr "správa o doruèení po¹ty"
-
-#: data/mime/gnome-vfs.keys.in.h:205
-msgid "mail disposition report"
-msgstr "správa o predaní po¹ty"
-
-#: data/mime/gnome-vfs.keys.in.h:206
-msgid "mail system report"
-msgstr "správa po¹tového systému"
-
-#: data/mime/gnome-vfs.keys.in.h:207
-msgid "makefile"
-msgstr "makefile"
-
-#: data/mime/gnome-vfs.keys.in.h:208
-msgid "manual page"
-msgstr "manuálová stránka"
-
-#: data/mime/gnome-vfs.keys.in.h:209
-msgid "manual page (compressed)"
-msgstr "manuálová stránka (komprimovaná)"
-
-#: data/mime/gnome-vfs.keys.in.h:210
-msgid "memory dump"
-msgstr "výpis pamäti"
-
-#: data/mime/gnome-vfs.keys.in.h:211
-msgid "message digest"
-msgstr "súhrn po¹ty"
-
-#: data/mime/gnome-vfs.keys.in.h:212
-msgid "message in several formats"
-msgstr "správa vo viacerých formátoch"
-
-#: data/mime/gnome-vfs.keys.in.h:213
-msgid "multi-part message"
-msgstr "správa s viacerými èas»ami"
-
-#: data/mime/gnome-vfs.keys.in.h:214
-msgid "named pipe"
-msgstr "pomenovaná rúra"
-
-#: data/mime/gnome-vfs.keys.in.h:215
-msgid "object code"
-msgstr "objektový kód"
-
-#: data/mime/gnome-vfs.keys.in.h:216
-msgid "ogg audio"
-msgstr "zvuk ogg"
-
-#: data/mime/gnome-vfs.keys.in.h:217
-msgid "partial email message"
-msgstr "èiastoèná e-mailová správa"
-
-#: data/mime/gnome-vfs.keys.in.h:218
-msgid "plain text document"
-msgstr "textový dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:219
-msgid "profiler results"
-msgstr "výsledky profilera"
-
-#: data/mime/gnome-vfs.keys.in.h:220
-msgid "reference to remote file"
-msgstr "referencia na vzdialený súbor"
-
-#: data/mime/gnome-vfs.keys.in.h:221
-msgid "rejected patch file"
-msgstr "odmietnutý súbor patch"
-
-#: data/mime/gnome-vfs.keys.in.h:222
-msgid "rich text document"
-msgstr "bohatý textový dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:223
-msgid "search results"
-msgstr "výsledky hµadania"
-
-#: data/mime/gnome-vfs.keys.in.h:224
-msgid "shared library"
-msgstr "zdieµaná kni¾nica"
-
-#: data/mime/gnome-vfs.keys.in.h:225
-msgid "shell archive"
-msgstr "archív shell"
-
-#: data/mime/gnome-vfs.keys.in.h:226
-msgid "shell script"
-msgstr "skript shellu"
-
-#: data/mime/gnome-vfs.keys.in.h:227
-msgid "signed message"
-msgstr "podpísaná správa"
-
-#: data/mime/gnome-vfs.keys.in.h:228
-msgid "socket"
-msgstr "soket"
-
-#: data/mime/gnome-vfs.keys.in.h:229
-msgid "software author credits"
-msgstr "informácie o autorovi softvéru"
-
-#: data/mime/gnome-vfs.keys.in.h:230
-msgid "software installation instructions"
-msgstr "in¹talaèný návod softvéru"
-
-#: data/mime/gnome-vfs.keys.in.h:231
-msgid "software license terms"
-msgstr "softvérová licencia"
-
-#: data/mime/gnome-vfs.keys.in.h:232
-msgid "source code patch"
-msgstr "patch zdrojového kódu"
-
-#: data/mime/gnome-vfs.keys.in.h:233
-msgid "style sheet"
-msgstr "style sheet"
-
-#: data/mime/gnome-vfs.keys.in.h:234
-msgid "symbolic link"
-msgstr "symbolický odkaz"
-
-#: data/mime/gnome-vfs.keys.in.h:235
-msgid "tab-separated text document"
-msgstr "textový dokument oddeµovaný tabulátormi"
-
-#: data/mime/gnome-vfs.keys.in.h:236
-msgid "tar archive"
-msgstr "archív tar"
-
-#: data/mime/gnome-vfs.keys.in.h:237
-msgid "tar archive (bzip2-compressed)"
-msgstr "archív tar (komprimovaný bzip2)"
-
-#: data/mime/gnome-vfs.keys.in.h:238
-msgid "tar archive (gzip-compressed)"
-msgstr "archív tar (komprimovaný gzip)"
-
-#: data/mime/gnome-vfs.keys.in.h:239
-msgid "theme"
-msgstr "téma"
-
-#: data/mime/gnome-vfs.keys.in.h:240
-msgid "troff document"
-msgstr "dokument troff"
-
-#: data/mime/gnome-vfs.keys.in.h:241
-msgid "troff me input document"
-msgstr "me vstupný dokument troff"
-
-#: data/mime/gnome-vfs.keys.in.h:242
-msgid "troff mm input document"
-msgstr "mm vstupný dokument troff"
-
-#: data/mime/gnome-vfs.keys.in.h:243
-msgid "troff ms input document"
-msgstr "ms vstupný dokument troff"
-
-#: data/mime/gnome-vfs.keys.in.h:244
-msgid "unknown type"
-msgstr "neznámy typ"
-
-#: data/mime/gnome-vfs.keys.in.h:245
-msgid "ustar archive"
-msgstr "archív ustar"
-
-#: data/mime/gnome-vfs.keys.in.h:246
-msgid "wave audio"
-msgstr "zvuk wave"
-
-#: data/mime/gnome-vfs.keys.in.h:247
-msgid "web folder"
-msgstr "WWW prieèinok"
-
-#: data/mime/gnome-vfs.keys.in.h:248
-msgid "xfig vector graphic"
-msgstr "vektorová grafika xfig"
-
-#: data/mime/gnome-vfs.keys.in.h:249
-msgid "zip archive"
-msgstr "archív zip"
-
-#: data/mime/gnome-vfs.keys.in.h:250
-msgid "zoo archive"
-msgstr "archív zoo"
+"X-Generator: KBabel 1.0beta2\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:217
 #, c-format
@@ -1037,6 +39,19 @@ msgstr "Konfiguraèný súbor '%s' nebol nájdený: %s"
 #: libgnomevfs/gnome-vfs-init.c:79
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS u¾ bolo inicializované."
+
+#: libgnomevfs/gnome-vfs-mime-info.c:315
+msgid "Invalid byte sequence in conversion input"
+msgstr "Neplatná sekvencia bajtov vo vstupe prevodu"
+
+#: libgnomevfs/gnome-vfs-mime-info.c:319
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Chyba poèas prevodu: %s"
+
+#: libgnomevfs/gnome-vfs-mime-info.c:333
+msgid "Partial character sequence at end of input"
+msgstr "Èiastoèná sekvencia znakov na konci vstupu"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:650
 #, c-format
@@ -1300,8 +315,758 @@ msgstr "Neznáme typ úlohy %u"
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:369
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznáma GnomeVFSSeekPosition %d"
+
+#~ msgid "3D Studio image"
+#~ msgstr "obrázok 3D Studio"
+
+#~ msgid "AIFC audio"
+#~ msgstr "zvuk AIFC"
+
+#~ msgid "AIFF audio"
+#~ msgstr "zvuk AIFF"
+
+#~ msgid "ANIM animation"
+#~ msgstr "animácia ANIM"
+
+#~ msgid "AVI video"
+#~ msgstr "video AVI"
+
+#~ msgid "AbiWord document"
+#~ msgstr "dokument AbiWord"
+
+#~ msgid "Adobe FrameMaker font"
+#~ msgstr "písmo Adobe FrameMaker"
+
+#~ msgid "Adobe font metrics"
+#~ msgstr "metrika písma Adobe"
+
+#~ msgid "Andrew Toolkit inset"
+#~ msgstr "Andrew Toolkit inset"
+
+#~ msgid "ApplixWare Graphics image"
+#~ msgstr "obrázok ApplixWare Graphics"
+
+#~ msgid "Applixware Words document"
+#~ msgstr "dokument Applixware Words"
+
+#~ msgid "Applixware spreadsheet"
+#~ msgstr "tabuµka Applixware"
+
+#~ msgid "AutoCAD image"
+#~ msgstr "obrázok AutoCAD"
+
+#~ msgid "BCPIO document"
+#~ msgstr "dokument BCPIO"
+
+#~ msgid "BDF font"
+#~ msgstr "písmo BDF"
+
+#~ msgid "C shell script"
+#~ msgstr "skript C shellu"
+
+#~ msgid "C source code"
+#~ msgstr "zdrojový kód C"
+
+#~ msgid "C source code header"
+#~ msgstr "hlavièkový zdrojový kód C"
+
+#~ msgid "C++ source code"
+#~ msgstr "zdrojový kód C++"
+
+#~ msgid "CGI program"
+#~ msgstr "program CGI"
+
+#~ msgid "CGM image"
+#~ msgstr "obrázok CGM"
+
+#~ msgid "CMU raster image"
+#~ msgstr "rastrový obrázok CMU"
+
+#~ msgid "CPIO archive"
+#~ msgstr "archív CPIO"
+
+#~ msgid "CPIO archive (gzip-compressed)"
+#~ msgstr "archív CPIO (komprimovaný gzip)"
+
+#~ msgid "DCL script"
+#~ msgstr "skript DCL"
+
+#~ msgid "DOS font"
+#~ msgstr "písmo pre DOS"
+
+#~ msgid "DOS/Windows program"
+#~ msgstr "program pre DOS/Windows"
+
+#~ msgid "DSSSL document"
+#~ msgstr "dokument DSSSL"
+
+#~ msgid "DXF vector graphic"
+#~ msgstr "vektorová grafika DXF"
+
+#~ msgid "Debian package"
+#~ msgstr "balík Debian"
+
+#~ msgid "Dia diagram"
+#~ msgstr "diagram Dia"
+
+#~ msgid "Dolby Digital audio"
+#~ msgstr "zvuk Dolby Digital"
+
+#~ msgid "Emacs Lisp source code"
+#~ msgstr "zdrojový kód Emacs Lisp"
+
+#~ msgid "Enlightenment theme"
+#~ msgstr "téma pre Enlightenment"
+
+#~ msgid "FLC animation"
+#~ msgstr "animácia FLC"
+
+#~ msgid "FLI animation"
+#~ msgstr "animácia FLI"
+
+#~ msgid "FastTracker II audio"
+#~ msgstr "zvuk FastTracker II"
+
+#~ msgid "Fortran source code"
+#~ msgstr "zdrojový kód Fortran"
+
+#~ msgid "FrameMaker interchange document"
+#~ msgstr "výmenný dokument FrameMaker"
+
+#~ msgid "G3 fax image"
+#~ msgstr "obrázok G3 fax"
+
+#~ msgid "GIF image"
+#~ msgstr "obrázok GIF"
+
+#~ msgid "GIMP document"
+#~ msgstr "dokument GIMP"
+
+#~ msgid "GMC link"
+#~ msgstr "odkaz GMC"
+
+#~ msgid "GNOME application details"
+#~ msgstr "detaily aplikácie GNOME"
+
+#~ msgid "GNU Oleo Spreadsheet"
+#~ msgstr "tabuµka GNU Oleo"
+
+#~ msgid "GNU mail message"
+#~ msgstr "e-mailová správa GNU"
+
+#~ msgid "GTK configuration"
+#~ msgstr "nastavenie GTK"
+
+#~ msgid "Glade project"
+#~ msgstr "projekt Glade"
+
+#~ msgid "GnuCash Workbook"
+#~ msgstr "zo¹it GnuCash"
+
+#~ msgid "Gnumeric spreadsheet"
+#~ msgstr "tabuµka Gnumeric"
+
+#~ msgid "HDF document"
+#~ msgstr "dokument HDF"
+
+#~ msgid "HTML page"
+#~ msgstr "stránka HTML"
+
+#~ msgid "IDL document"
+#~ msgstr "dokument IDL"
+
+#~ msgid "IEF image"
+#~ msgstr "obrázok IEF"
+
+#~ msgid "IFF image"
+#~ msgstr "obrázok IFF"
+
+#~ msgid "ILBM image"
+#~ msgstr "obrázok ILMB"
+
+#~ msgid "ISI video"
+#~ msgstr "video ISI"
+
+#~ msgid "Impulse Tracker audio"
+#~ msgstr "zvuk Impulse Tracker"
+
+#~ msgid "JBuilder Project"
+#~ msgstr "projekt JBuilder"
+
+#~ msgid "JPEG image"
+#~ msgstr "obrázok JPEG"
+
+#~ msgid "Java byte code"
+#~ msgstr "Java bajtkód"
+
+#~ msgid "Java source code"
+#~ msgstr "zdrojový kód Java"
+
+#~ msgid "KDE application details"
+#~ msgstr "detaily aplikácie KDE"
+
+#~ msgid "KIllustrator document"
+#~ msgstr "dokument KIllustrator"
+
+#~ msgid "KPresenter presentation"
+#~ msgstr "prezentácia KPresenter"
+
+#~ msgid "KSpread spreadsheet"
+#~ msgstr "tabuµka KSpread"
+
+#~ msgid "KWord document"
+#~ msgstr "dokument KWord"
+
+#~ msgid "Korn shell script"
+#~ msgstr "skript Korn shellu"
+
+#~ msgid "LHA archive"
+#~ msgstr "archív LHA"
+
+#~ msgid "LHARC archive"
+#~ msgstr "archív LHARC"
+
+#~ msgid "LIBGRX font"
+#~ msgstr "písmo LIBGRX"
+
+#~ msgid "LightWave object"
+#~ msgstr "objekt LightWave"
+
+#~ msgid "LightWave scene"
+#~ msgstr "scéna LightWave"
+
+#~ msgid "Linux PSF console font"
+#~ msgstr "konzolové písmo Linuxu PSF"
+
+#~ msgid "Lotus 1-2-3 spreadsheet"
+#~ msgstr "tabuµka Lotus 1-2-3"
+
+#~ msgid "M3 audio URL"
+#~ msgstr "M3 zvukové URL"
+
+#~ msgid "MIDI audio"
+#~ msgstr "zvuk MIDI"
+
+#~ msgid "MOD audio"
+#~ msgstr "zvuk MOD"
+
+#~ msgid "MP3 audio"
+#~ msgstr "zvuk MP3"
+
+#~ msgid "MP3 audio playlist"
+#~ msgstr "zvukový playlist MP3"
+
+#~ msgid "MPEG video"
+#~ msgstr "video MPEG"
+
+#~ msgid "MS ASF video"
+#~ msgstr "video MS ASF"
+
+#~ msgid "MS video"
+#~ msgstr "video MS"
+
+#~ msgid "Macintosh AppleDouble-encoded file"
+#~ msgstr "súbor kódovaný Macintosh AppleDouble"
+
+#~ msgid "Macintosh BinHex-encoded file"
+#~ msgstr "súbor kódovaný Macintosh BinHex"
+
+#~ msgid "Macintosh StuffIt archive"
+#~ msgstr "Macintosh StuffIt archív"
+
+#~ msgid "Macromedia Flash file"
+#~ msgstr "súbor Macromedia Flash"
+
+#~ msgid "MathML document"
+#~ msgstr "dokument MathML"
+
+#~ msgid "Microsoft Excel spreadsheet"
+#~ msgstr "tabuµka Microsoft Excel"
+
+#~ msgid "Microsoft PowerPoint document"
+#~ msgstr "dokument Microsoft PowerPoint"
+
+#~ msgid "Microsoft Word document"
+#~ msgstr "dokument Microsoft Word"
+
+#~ msgid "Microsoft video"
+#~ msgstr "video Microsoft"
+
+#~ msgid "Nautilus link"
+#~ msgstr "odkaz Nautilus"
+
+#~ msgid "ODA document"
+#~ msgstr "dokument ODA"
+
+#~ msgid "PBM image"
+#~ msgstr "obrázok PBM"
+
+#~ msgid "PCF font"
+#~ msgstr "písmo PCF"
+
+#~ msgid "PDF document"
+#~ msgstr "dokument PDF"
+
+#~ msgid "PEF program"
+#~ msgstr "program PEF"
+
+#~ msgid "PGM image"
+#~ msgstr "obrázok PGM"
+
+#~ msgid "PGN chess game"
+#~ msgstr "¹achová hra PGN"
+
+#~ msgid "PGP keys"
+#~ msgstr "PGP kµúèe"
+
+#~ msgid "PGP message"
+#~ msgstr "PGP správa"
+
+#~ msgid "PGP signature"
+#~ msgstr "PGP podpis"
+
+#~ msgid "PGP-encrypted file"
+#~ msgstr "PGP-¹ifrovaný súbor"
+
+#~ msgid "PHP script"
+#~ msgstr "skript PHP"
+
+#~ msgid "PN RealAudio document"
+#~ msgstr "dokument PN RealAudio"
+
+#~ msgid "PNG image"
+#~ msgstr "obrázok PNG"
+
+#~ msgid "PNM image"
+#~ msgstr "obrázok PNM"
+
+#~ msgid "PPM image"
+#~ msgstr "obrázok PPM"
+
+#~ msgid "Palm OS database"
+#~ msgstr "databáza Palm OS"
+
+#~ msgid "Perl script"
+#~ msgstr "skript Perl"
+
+#~ msgid "Photoshop document"
+#~ msgstr "dokument Photoshop"
+
+#~ msgid "PostScript Type 1 font"
+#~ msgstr "písmo PostScript Typ 1"
+
+#~ msgid "PostScript document"
+#~ msgstr "dokument PostScript"
+
+#~ msgid "Python source code"
+#~ msgstr "zdrojový kód Python"
+
+#~ msgid "QuickTime movie"
+#~ msgstr "video QuickTime"
+
+#~ msgid "Quicken document"
+#~ msgstr "dokument Quicken"
+
+#~ msgid "Quicken for Windows document"
+#~ msgstr "dokument Quicken pre Windows"
+
+#~ msgid "RAR archive"
+#~ msgstr "archív RAR"
+
+#~ msgid "README document"
+#~ msgstr "dokument README"
+
+#~ msgid "RGB image"
+#~ msgstr "obrázok RGB"
+
+#~ msgid "RIFF audio"
+#~ msgstr "zvuk RIFF"
+
+#~ msgid "RPM package"
+#~ msgstr "balík RPM"
+
+#~ msgid "RealAudio/Video document"
+#~ msgstr "dokument RealAudio/Video"
+
+#~ msgid "RealVideo video"
+#~ msgstr "video RealVideo"
+
+#~ msgid "S/MIME file"
+#~ msgstr "súbor S/MIME"
+
+#~ msgid "S/MIME signature"
+#~ msgstr "podpis S/MIME"
+
+#~ msgid "SGI video"
+#~ msgstr "video SGI"
+
+#~ msgid "SGML document"
+#~ msgstr "dokument SGML"
+
+#~ msgid "SMIL script"
+#~ msgstr "skript SMIL"
+
+#~ msgid "SQL code"
+#~ msgstr "kód SQL"
+
+#~ msgid "SV4 CPIO archive"
+#~ msgstr "archív SV4 CPIO"
+
+#~ msgid "SV4 CPIP archive (with CRC)"
+#~ msgstr "archív SV4 CPIP (s CRC)"
+
+#~ msgid "SVG art"
+#~ msgstr "dielo SVG"
+
+#~ msgid "Scheme source code"
+#~ msgstr "zdrojový kód Scheme"
+
+#~ msgid "Scream Tracker 3 audio"
+#~ msgstr "zvuk Scream Tracker 3"
+
+#~ msgid "Scream Tracker audio"
+#~ msgstr "zvuk Scream Tracker"
+
+#~ msgid "Scream Tracker instrument"
+#~ msgstr "nástroj Scream Tracker"
+
+#~ msgid "Setext document"
+#~ msgstr "dokument setext"
+
+#~ msgid "Speech document"
+#~ msgstr "dokument Speech"
+
+#~ msgid "Speedo font"
+#~ msgstr "písmo Speedo"
+
+#~ msgid "Spreadsheet Interchange document"
+#~ msgstr "výmenný tabuµkový dokument"
+
+#~ msgid "Stampede package"
+#~ msgstr "balík Stampede"
+
+#~ msgid "StarOffice Writer document"
+#~ msgstr "dokument StarOffice Writer"
+
+#~ msgid "StarOffice presentation"
+#~ msgstr "prezentácia StarOffice"
+
+#~ msgid "StarOffice spreadsheet"
+#~ msgstr "tabuµka StarOffice"
+
+#~ msgid "Sun mu-law audio"
+#~ msgstr "zvuk Sun µ-law"
+
+#~ msgid "SunOS News font"
+#~ msgstr "Písmo SunOS News"
+
+#~ msgid "TIFF image"
+#~ msgstr "obrázok TIFF"
+
+#~ msgid "TarGA image"
+#~ msgstr "obrázok TarGA"
+
+#~ msgid "Tcl script"
+#~ msgstr "skript Tcl"
+
+#~ msgid "TeX document"
+#~ msgstr "dokument TeX"
+
+#~ msgid "TeX dvi document"
+#~ msgstr "dokument TeX dvi"
+
+#~ msgid "TeX font"
+#~ msgstr "písmo TeX"
+
+#~ msgid "TeX font metrics"
+#~ msgstr "metrika písma TeX"
+
+#~ msgid "TeXInfo document"
+#~ msgstr "dokument TeXInfo"
+
+#~ msgid "ToutDoux document"
+#~ msgstr "dokument ToutDoux"
+
+#~ msgid "TrueType font"
+#~ msgstr "písmo TrueType"
+
+#~ msgid "USENET news message"
+#~ msgstr "príspevok diskusnej skupiny USENET"
+
+#~ msgid "Unidata netCDF document"
+#~ msgstr "dokument Unidata netCDF"
+
+#~ msgid "V font"
+#~ msgstr "písmo V"
+
+#~ msgid "VOC audio"
+#~ msgstr "zvuk VOC"
+
+#~ msgid "VRML document"
+#~ msgstr "dokument VRML"
+
+#~ msgid "Vivo video"
+#~ msgstr "video Vivo"
+
+#~ msgid "WAIS source code"
+#~ msgstr "zdrojový kód WAIS"
+
+#~ msgid "Wavelet video"
+#~ msgstr "video Wavelet"
+
+#~ msgid "Windows bitmap image"
+#~ msgstr "bitmapový obrázok Windows"
+
+#~ msgid "Windows icon image"
+#~ msgstr "ikona Windows"
+
+#~ msgid "Windows metafile graphics"
+#~ msgstr "grafika Windows metafile"
+
+#~ msgid "WordPerfect document"
+#~ msgstr "dokument WordPerfect"
+
+#~ msgid "X bitmap image"
+#~ msgstr "bitmapový obrázok X"
+
+#~ msgid "X window image"
+#~ msgstr "obrázok X window"
+
+#~ msgid "XML document"
+#~ msgstr "dokument XML"
+
+#~ msgid "XPM image"
+#~ msgstr "obrázok XPM"
+
+#~ msgid "Xbase database"
+#~ msgstr "databáza Xbase"
+
+#~ msgid "active server page"
+#~ msgstr "active server page"
+
+#~ msgid "address card"
+#~ msgstr "karta adresára"
+
+#~ msgid "ar archive"
+#~ msgstr "archív ar"
+
+#~ msgid "arj archive"
+#~ msgstr "archív arj"
+
+#~ msgid "authors list"
+#~ msgstr "zoznam autorov"
+
+#~ msgid "backup file"
+#~ msgstr "zálo¾ný súbor"
+
+#~ msgid "basic audio"
+#~ msgstr "základné audio"
+
+#~ msgid "bibliography record"
+#~ msgstr "záznam bibliografie"
+
+#~ msgid "binary program"
+#~ msgstr "spustiteµný program"
+
+#~ msgid "block device"
+#~ msgstr "blokové zariadenie"
+
+#~ msgid "bzip-compressed file"
+#~ msgstr "súbor komprimovaný bzip"
+
+#~ msgid "calendar file"
+#~ msgstr "kalendárový súbor"
+
+#~ msgid "calendar or event document"
+#~ msgstr "dokument kalendár alebo udalos»"
+
+#~ msgid "character device"
+#~ msgstr "znakové zariadenie"
+
+#~ msgid "comma-separated text document"
+#~ msgstr "textový dokument oddeµovaný èiarkami"
+
+#~ msgid "compound document"
+#~ msgstr "zlo¾ený dokument"
+
+#~ msgid "compress-compressed file"
+#~ msgstr "komprimovaný súbor compress"
+
+#~ msgid "compressed GIMP document"
+#~ msgstr "komprimovaný dokument GIMP"
+
+#~ msgid "directory information file"
+#~ msgstr "súbor s popisom prieèinku"
+
+#~ msgid "document type definition"
+#~ msgstr "definícia typu dokumentu"
+
+#~ msgid "email headers"
+#~ msgstr "e-mailové hlavièky"
+
+#~ msgid "email message"
+#~ msgstr "e-mailová správa"
+
+#~ msgid "encrypted message"
+#~ msgstr "za¹ifrovaná správa"
+
+#~ msgid "enriched text document"
+#~ msgstr "roz¹írený textový dokument"
+
+#~ msgid "folder"
+#~ msgstr "prieèinok"
+
+#~ msgid "gtar archive"
+#~ msgstr "archív gtar"
+
+#~ msgid "gzip-compressed file"
+#~ msgstr "súbor komprimovaný gzip"
+
+#~ msgid "help page"
+#~ msgstr "stránka Pomocníka"
+
+#~ msgid "mail delivery report"
+#~ msgstr "správa o doruèení po¹ty"
+
+#~ msgid "mail disposition report"
+#~ msgstr "správa o predaní po¹ty"
+
+#~ msgid "mail system report"
+#~ msgstr "správa po¹tového systému"
+
+#~ msgid "makefile"
+#~ msgstr "makefile"
+
+#~ msgid "manual page"
+#~ msgstr "manuálová stránka"
+
+#~ msgid "manual page (compressed)"
+#~ msgstr "manuálová stránka (komprimovaná)"
+
+#~ msgid "memory dump"
+#~ msgstr "výpis pamäti"
+
+#~ msgid "message digest"
+#~ msgstr "súhrn po¹ty"
+
+#~ msgid "message in several formats"
+#~ msgstr "správa vo viacerých formátoch"
+
+#~ msgid "multi-part message"
+#~ msgstr "správa s viacerými èas»ami"
+
+#~ msgid "named pipe"
+#~ msgstr "pomenovaná rúra"
+
+#~ msgid "object code"
+#~ msgstr "objektový kód"
+
+#~ msgid "ogg audio"
+#~ msgstr "zvuk ogg"
+
+#~ msgid "partial email message"
+#~ msgstr "èiastoèná e-mailová správa"
+
+#~ msgid "plain text document"
+#~ msgstr "textový dokument"
+
+#~ msgid "profiler results"
+#~ msgstr "výsledky profilera"
+
+#~ msgid "reference to remote file"
+#~ msgstr "referencia na vzdialený súbor"
+
+#~ msgid "rejected patch file"
+#~ msgstr "odmietnutý súbor patch"
+
+#~ msgid "rich text document"
+#~ msgstr "bohatý textový dokument"
+
+#~ msgid "search results"
+#~ msgstr "výsledky hµadania"
+
+#~ msgid "shared library"
+#~ msgstr "zdieµaná kni¾nica"
+
+#~ msgid "shell archive"
+#~ msgstr "archív shell"
+
+#~ msgid "shell script"
+#~ msgstr "skript shellu"
+
+#~ msgid "signed message"
+#~ msgstr "podpísaná správa"
+
+#~ msgid "socket"
+#~ msgstr "soket"
+
+#~ msgid "software author credits"
+#~ msgstr "informácie o autorovi softvéru"
+
+#~ msgid "software installation instructions"
+#~ msgstr "in¹talaèný návod softvéru"
+
+#~ msgid "software license terms"
+#~ msgstr "softvérová licencia"
+
+#~ msgid "source code patch"
+#~ msgstr "patch zdrojového kódu"
+
+#~ msgid "style sheet"
+#~ msgstr "style sheet"
+
+#~ msgid "symbolic link"
+#~ msgstr "symbolický odkaz"
+
+#~ msgid "tab-separated text document"
+#~ msgstr "textový dokument oddeµovaný tabulátormi"
+
+#~ msgid "tar archive"
+#~ msgstr "archív tar"
+
+#~ msgid "tar archive (bzip2-compressed)"
+#~ msgstr "archív tar (komprimovaný bzip2)"
+
+#~ msgid "tar archive (gzip-compressed)"
+#~ msgstr "archív tar (komprimovaný gzip)"
+
+#~ msgid "theme"
+#~ msgstr "téma"
+
+#~ msgid "troff document"
+#~ msgstr "dokument troff"
+
+#~ msgid "troff me input document"
+#~ msgstr "me vstupný dokument troff"
+
+#~ msgid "troff mm input document"
+#~ msgstr "mm vstupný dokument troff"
+
+#~ msgid "troff ms input document"
+#~ msgstr "ms vstupný dokument troff"
+
+#~ msgid "unknown type"
+#~ msgstr "neznámy typ"
+
+#~ msgid "ustar archive"
+#~ msgstr "archív ustar"
+
+#~ msgid "wave audio"
+#~ msgstr "zvuk wave"
+
+#~ msgid "web folder"
+#~ msgstr "WWW prieèinok"
+
+#~ msgid "xfig vector graphic"
+#~ msgstr "vektorová grafika xfig"
+
+#~ msgid "zip archive"
+#~ msgstr "archív zip"
+
+#~ msgid "zoo archive"
+#~ msgstr "archív zoo"
 
