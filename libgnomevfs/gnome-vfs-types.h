@@ -518,6 +518,8 @@ enum GnomeVFSXferPhase {
 	GNOME_VFS_XFER_PHASE_SETATTRIBUTES,
 	/* Go to the next file (*) */
 	GNOME_VFS_XFER_PHASE_FILECOMPLETED,
+	/* cleaning up after a move (removing source files, etc.) */
+	GNOME_VFS_XFER_PHASE_CLEANUP,
 	/* Operation finished (*) */
 	GNOME_VFS_XFER_PHASE_COMPLETED,
 	GNOME_VFS_XFER_NUM_PHASES

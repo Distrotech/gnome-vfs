@@ -1,3 +1,16 @@
+2000-07-04  Pavel  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file_data), (copy_file),
+	(gnome_vfs_xfer_delete_items_common),
+	(gnome_vfs_xfer_delete_items), (gnome_vfs_xfer_uri_internal):
+	Add support for removing source files during an inter-volume move.
+	Split up deletion code into a common routine for reuse.
+	Introduce a new progress phase to allow us to reset the progress
+	state when done copying and when starting remove source files.
+	Fixed bug 1215.
+
 2000-07-04  Gene Z. Ragan  <gzr@eazel.com>
 	More capplet work in progress.  Modifying applet and code
 	to support UI work done by Arlo.

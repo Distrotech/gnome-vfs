@@ -913,12 +913,11 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 	*skip = FALSE;
 
-	buffer = g_malloc (block_size);
-
 	if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING) == 0) {
-		g_free(buffer);
 		return GNOME_VFS_ERROR_INTERRUPTED;
 	}
+
+	buffer = g_malloc (block_size);
 
 	do {
 		GnomeVFSFileSize bytes_read;
@@ -1110,9 +1109,12 @@ copy_file (GnomeVFSFileInfo *info,
 
 		result = copy_file_data (target_handle, source_handle,
 					progress, xfer_options, error_mode,
-					/* use an arbitrary default block size of 4096 if one isn't available for this fs */
-					info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE?info->io_block_size:4096,
-					 skip);
+					/* use an arbitrary default block size of 4096 
+					 * if one isn't available for this file system 
+					 */
+					(info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE)
+						? info->io_block_size : 4096,
+					skip);
 	}
 
 	progress->progress_info->file_index++;
@@ -1500,17 +1502,56 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 }
 
 static GnomeVFSResult
-gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
-			     const GList *item_names,
-			     GnomeVFSXferErrorMode error_mode,
-			     GnomeVFSXferOptions xfer_options,
-			     GnomeVFSProgressCallbackState *progress)
+gnome_vfs_xfer_delete_items_common (GnomeVFSURI *source_directory,
+			            const GList *item_names,
+			            GnomeVFSXferErrorMode error_mode,
+			            GnomeVFSXferOptions xfer_options,
+			            GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSFileInfo info;
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 	const GList *p;
 	gboolean skip;
+
+	result = GNOME_VFS_OK;
+	
+	for (p = item_names;  p != NULL; p = p->next) {
+	
+		skip = FALSE;
+		/* get the URI and VFSFileInfo for each */
+		uri = gnome_vfs_uri_append_file_name (source_directory, p->data);
+
+		gnome_vfs_file_info_init (&info);
+		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+
+		if (result == GNOME_VFS_OK) {
+			if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				remove_directory (uri, TRUE, progress, xfer_options, 
+						  &error_mode, &skip);
+			} else {
+				remove_file (uri, progress, xfer_options, &error_mode,
+					     &skip);
+			}
+		}
+		gnome_vfs_uri_unref (uri);
+		if (result != GNOME_VFS_OK) {
+			break;
+		}
+	}
+
+	return result;
+}
+
+static GnomeVFSResult
+gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
+			     const GList *item_names,
+			     GnomeVFSXferErrorMode error_mode,
+			     GnomeVFSXferOptions xfer_options,
+			     GnomeVFSProgressCallbackState *progress)
+{
+	GnomeVFSResult result;
+	const GList *p;
 
 	result = GNOME_VFS_OK;
 	
@@ -1531,30 +1572,8 @@ gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
 	}
 
 	if (result == GNOME_VFS_OK) {
-		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
-		for (p = item_names;  p != NULL; p = p->next) {
-		
-			skip = FALSE;
-			/* get the URI and VFSFileInfo for each */
-			uri = gnome_vfs_uri_append_file_name (source_directory, p->data);
-
-			gnome_vfs_file_info_init (&info);
-			result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
-
-			if (result == GNOME_VFS_OK) {
-				if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					remove_directory (uri, TRUE, progress, xfer_options, 
-							  &error_mode, &skip);
-				} else {
-					remove_file (uri, progress, xfer_options, &error_mode,
-						     &skip);
-				}
-			}
-			gnome_vfs_uri_unref (uri);
-			if (result != GNOME_VFS_OK) {
-				break;
-			}
-		}
+		result = gnome_vfs_xfer_delete_items_common (source_directory, item_names,
+			error_mode, xfer_options, progress);
 	}
 
 	call_progress (progress, GNOME_VFS_XFER_PHASE_COMPLETED);
@@ -1715,10 +1734,10 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 				}
 				
 				if (result == GNOME_VFS_OK) {
-
-					if (!move && (xfer_options & GNOME_VFS_XFER_REMOVESOURCE)) {
-						/* FIXME bugzilla.eazel.com 1215:
-						 */
+					if (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) {
+						call_progress (progress, GNOME_VFS_XFER_PHASE_CLEANUP);
+						result = gnome_vfs_xfer_delete_items_common (source_dir_uri,
+							source_names, error_mode, xfer_options, progress);
 					}
 				}
 			}

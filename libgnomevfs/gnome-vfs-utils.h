@@ -59,4 +59,5 @@ gchar *gnome_vfs_unescape_string              (const gchar      *string,
  */
 gchar *gnome_vfs_unescape_string_for_display  (const gchar      *escaped);
 
+
 #endif /* GNOME_VFS_UTILS_H */
