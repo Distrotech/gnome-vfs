@@ -71,8 +71,9 @@ common_filter (const GnomeVFSDirectoryFilter *filter,
 	}
 
 	if (info->name[0] == '.') {
-	    if (options & GNOME_VFS_DIRECTORY_FILTER_NODOTFILES)
-		    return FALSE;
+		if (options & GNOME_VFS_DIRECTORY_FILTER_NODOTFILES) {
+			return FALSE;
+		}
 
 	    if ((options & GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR)
 		&& info->name[1] == 0)
@@ -83,6 +84,11 @@ common_filter (const GnomeVFSDirectoryFilter *filter,
 		    return FALSE;
 	}
 
+	if (info->name[strlen (info->name) - 1] == '~') {
+		if (options & GNOME_VFS_DIRECTORY_FILTER_NOBACKUPFILES) {
+			return FALSE;
+		}
+	}
 	return TRUE;
 }
 
