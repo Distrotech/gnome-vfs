@@ -1,3 +1,29 @@
+2001-01-20  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
+
+	Work on making Search cancellable.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel), (gnome_vfs_job_cancel):
+	Move the job cancellation outside the job->access_lock to avoid
+	having to have the load_directory call completely finish before
+	cancellation takes effect. Move the setting of the cancelled
+	flag outside gnome_vfs_job_cancel and into the access_lock so that
+	cancellation of the job and cancellation of the callbacks is atomic.
+	
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-directory.c:
+	(gnome_vfs_directory_open_from_uri_cancellable),
+	(gnome_vfs_directory_read_next_cancellable):
+	Add new cancellable versions of gnome_vfs_directory_open and
+	gnome_vfs_directory_read_next.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_load_directory_not_sorted), 
+	Use the new cancellable open and read_next calls in
+	execute_load_directory_not_sorted. Pass in the cancellation context.
+	
 2001-01-19  Darin Adler  <darin@eazel.com>
 
 	* check-mime.pl: Update so it works with the new keys.in file.

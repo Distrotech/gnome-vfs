@@ -165,6 +165,9 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 		/* have to cancel the callbacks because they still can be pending */
 		gnome_vfs_async_job_cancel_callbacks (handle);
 	} else {
+		/* Cancel the job in progress. OK to do outside of job->access_lock. */
+		gnome_vfs_job_cancel (job);
+
 		JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
 		g_mutex_lock (job->access_lock);
 	
@@ -172,10 +175,8 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 		 * get to execute anything or that any callbacks it schedules get cancelled
 		 */
 		gnome_vfs_async_job_cancel_callbacks (handle);
-		
-		/* cancel the job in progress */
-		gnome_vfs_job_cancel (job);
-		
+				
+		job->cancelled = TRUE;
 		JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
 		g_mutex_unlock (job->access_lock);
 	}

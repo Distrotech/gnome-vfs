@@ -1263,11 +1263,12 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 	if (load_directory_op->uri == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
 	} else {
-		result = gnome_vfs_directory_open_from_uri
+		result = gnome_vfs_directory_open_from_uri_cancellable
 			(&handle,
 			 load_directory_op->uri,
 			 load_directory_op->options,
-			 filter);
+			 filter,
+			 job->op->context);
 	}
 
 	if (result != GNOME_VFS_OK) {
@@ -1295,7 +1296,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		
 		info = gnome_vfs_file_info_new ();
 
-		result = gnome_vfs_directory_read_next (handle, info);
+		result = gnome_vfs_directory_read_next_cancellable (handle, info, job->op->context);
 
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_directory_list_append (directory_list->list, info);
@@ -1739,8 +1740,6 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 
 	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
 	
-	job->cancelled = TRUE;
-
 	cancellation = gnome_vfs_context_get_cancellation (job->op->context);
 	if (cancellation != NULL) {
 		JOB_DEBUG (("cancelling %u", GPOINTER_TO_UINT (job->job_handle)));
