@@ -572,8 +572,11 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	char *value, *generic_type, *p;
 	GnomeMimeContext *context;
 	
-	g_return_val_if_fail (mime_type != NULL, NULL);
 	g_return_val_if_fail (key != NULL, NULL);
+
+	if (mime_type == NULL) {
+		return NULL;
+	}
 
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
@@ -627,7 +630,9 @@ gnome_vfs_mime_get_keys (const char *mime_type)
 	GnomeMimeContext *context;
 	GList *list = NULL, *l;
 	
-	g_return_val_if_fail (mime_type != NULL, NULL);
+	if (mime_type == NULL) {
+		return NULL;
+	}
 
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();

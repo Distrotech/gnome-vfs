@@ -1,3 +1,10 @@
+2000-06-16  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_get_value),
+	(gnome_vfs_mime_get_keys): Change to support MIME types of NULL
+	which will make code simpler since NULL is commonly used to mean
+	"unknown MIME type".
+
 2000-06-15  Pavel Cisler  <pavel@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic:
