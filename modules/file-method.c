@@ -2301,11 +2301,15 @@ do_monitor_add (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
+	filename = get_path_from_uri (uri);
+	if (filename == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+	
 	handle = g_new0 (FileMonitorHandle, 1);
 	handle->uri = uri;
 	handle->cancelled = FALSE;
 	gnome_vfs_uri_ref (uri);
-	filename = get_path_from_uri (uri);
 
 	G_LOCK (fam_connection);
 	/* We need to queue up incoming messages to avoid blocking on write
