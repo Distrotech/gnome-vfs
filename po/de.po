@@ -1,14 +1,15 @@
-# gnome-vfs German translation.
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# German gnome-vfs translation.
+# Copyright (C) 1999-2003 Free Software Foundation, Inc.
 # Matthias Warkus <mawa@iname.com>, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2002.
+# Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.x\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
-"PO-Revision-Date: 2002-03-03 21:10+0100\n"
-"Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
+"POT-Creation-Date: 2003-01-04 13:23+0100\n"
+"PO-Revision-Date: 2003-01-04 13:24+0100\n"
+"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -269,41 +270,40 @@ msgstr "Protokollfehler"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Parsen war nicht möglich: %s"
+msgstr "Bevorzugter Browser konnte nicht gefunden werden"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "1 Byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr "%u Byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f kB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (ungültiger Unicode)"
 
 #: modules/file-method.c:382
 #, c-format
