@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-07-24 13:40+0100\n"
+"POT-Creation-Date: 2004-08-25 21:00+0100\n"
+"PO-Revision-Date: 2004-08-25 21:00+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -66,47 +66,47 @@ msgstr "desktop entries contain line '%s' which is not UTF-8"
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "desktop entries contain unknown encoding '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
-#: libgnomevfs/eggdesktopentries.c:1220
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "desktop entries do not have group '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1047
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "desktop entries do not have key '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
-#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 
-#: libgnomevfs/eggdesktopentries.c:1300
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2221
+#: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "desktop entries contain invalid escape sequence '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2238
+#: libgnomevfs/eggdesktopentries.c:2240
 msgid "desktop entries contain escape character at end of line"
 msgstr "desktop entries contain escape character at end of line"
 
-#: libgnomevfs/eggdesktopentries.c:2263
+#: libgnomevfs/eggdesktopentries.c:2265
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Value '%s' cannot be interpreted as a number."
 
-#: libgnomevfs/eggdesktopentries.c:2290
+#: libgnomevfs/eggdesktopentries.c:2292
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Value '%s' cannot be interpreted as a boolean."
@@ -285,119 +285,118 @@ msgstr "XIAFS Volume"
 msgid "Unknown"
 msgstr "Unknown"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-ROM Disc"
-msgstr "CD-R Disc"
+msgstr "CD-ROM Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+#: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
 msgstr "Blank CD-R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "CD-R Disc"
 msgstr "CD-R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+#: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
 msgstr "Blank CD-RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "CD-RW Disc"
 msgstr "CD-RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
 msgstr "Blank DVD-R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
 msgstr "DVD-R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
 msgstr "Blank DVD-RAM Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
 msgstr "Blank DVD-RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
 msgstr "DVD-RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+#: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
 msgstr "Blank DVD+RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+#: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
 msgstr "DVD+RW Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
 msgstr "Blank DVD+R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+#: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
 msgstr "DVD+R Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
 msgstr "Optical Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "Audio Disc"
 msgstr "Audio Disc"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+#: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
 msgstr "Compact Flash Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#: libgnomevfs/gnome-vfs-hal-mounts.c:662
 msgid "Memory Stick Media"
 msgstr "Memory Stick Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+#: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
 msgstr "Smart Media Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+#: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
 msgstr "SD/MMC Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
 msgstr "Floppy Disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
 msgstr "Mac OS disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
 msgstr "Mac OS X disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#: libgnomevfs/gnome-vfs-hal-mounts.c:691
 msgid "Windows Disk"
 msgstr "Windows Disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+#: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
 msgstr "Linux Disk"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Unknown op type %u"
+msgstr "Unknown operation type %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -1005,19 +1004,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "The command used to handle \"ghelp\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "The command used to handle H323 URLs, if enabled."
+msgstr "The command used to handle \"h323\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "The command used to handle \"http\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "The command used to handle \"trash\" URLs, if enabled."
+msgstr "The command used to handle \"https\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1048,19 +1044,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "The handler for \"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "The handler for H323 URLs"
+msgstr "The handler for \"h323\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "The handler for \"ghelp\" URLs"
+msgstr "The handler for \"http\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "The handler for \"ghelp\" URLs"
+msgstr "The handler for \"https\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1103,29 +1096,27 @@ msgstr ""
 "URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1181,19 +1172,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Whether the specified command should handle \"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Whether the specified command should handle H323 URLs"
+msgstr "Whether the specified command should handle \"h323\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "Whether the specified command should handle \"http\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Whether the specified command should handle \"trash\" URLs"
+msgstr "Whether the specified command should handle \"https\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
