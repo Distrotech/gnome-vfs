@@ -10,13 +10,15 @@
 #
 #   script -> program (såfremt det er muligt, hvad det hidtil har været)
 #   video -> film
+#   disc -> skive
+#   disk -> drev
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-01 21:54+0200\n"
-"PO-Revision-Date: 2004-07-28 21:35+0200\n"
+"POT-Creation-Date: 2004-08-03 13:19+0200\n"
+"PO-Revision-Date: 2004-08-03 13:19+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +37,7 @@ msgstr "Kunne ikke klargøre Gnome-VFS"
 #: libgnomevfs/eggdesktopentries.c:226
 #, c-format
 msgid "File could not be opened: %s"
-msgstr "Fil kunne ikke åbnes: %s"
+msgstr "Filen kunne ikke åbnes: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
@@ -44,7 +46,7 @@ msgstr "Kunne ikke åbne fil '%s': %s"
 
 #: libgnomevfs/eggdesktopentries.c:338
 msgid "File is empty"
-msgstr "Fil er tom"
+msgstr "Filen er tom"
 
 #: libgnomevfs/eggdesktopentries.c:360
 #, c-format
@@ -56,17 +58,17 @@ msgstr "Kunne ikke læse fra fil '%s': %s"
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
-"skrivebordselementer indeholder linje '%s' hvilket ikke er et element, en "
+"skrivebordselementer indeholder linjen '%s' hvilket ikke er et element, en "
 "gruppe eller en kommentar"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr "skrivebordselementer-fil starter ikke med en gyldig start-gruppe"
+msgstr "skrivebordselementer-filen starter ikke med en gyldig start-gruppe"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "skrivebordselementer indeholder linje '%s' hvilket ikke er UTF-8"
+msgstr "skrivebordselementer indeholder linjen '%s' hvilket ikke er UTF-8"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
@@ -77,7 +79,7 @@ msgstr "skrivebordselementer indeholder ukendt indkodning '%s'"
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr "skrivebordselementer har ikke en gruppe '%s'"
+msgstr "skrivebordselementer har ikke gruppen '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
@@ -108,7 +110,7 @@ msgstr "skrivebordselementer indeholder ugyldig undvigesekvens '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr "skrivebordselementer indeholder undvige-tegn for enden af linje"
+msgstr "skrivebordselementer indeholder undvige-tegn for enden af linjen"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
@@ -296,75 +298,75 @@ msgstr "Ukendt"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr "Cd-disk"
+msgstr "Cd-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr "Blank cd-r-disk"
+msgstr "Blank cd-r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
-msgstr "Cd-r-disk"
+msgstr "Cd-r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr "Blank cd-rw-disk"
+msgstr "Blank cd-rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
-msgstr "Cd-rw-disk"
+msgstr "Cd-rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
-msgstr "Dvd-rom-disk"
+msgstr "Dvd-rom-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr "Blank dvd-r-disk"
+msgstr "Blank dvd-r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr "Dvd-r-disk"
+msgstr "Dvd-r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr "Blank dvd-ram-disk"
+msgstr "Blank dvd-ram-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr "Dvd-ram-disk"
+msgstr "Dvd-ram-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr "Blank dvd-rw-disk"
+msgstr "Blank dvd-rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr "Dvd-rw-disk"
+msgstr "Dvd-rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr "Blank dvd+rw-disk"
+msgstr "Blank dvd+rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr "Dvd+rw-disk"
+msgstr "Dvd+rw-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr "Blank dvd+r-disk"
+msgstr "Blank dvd+r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr "Dvd+r-disk"
+msgstr "Dvd+r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr "Optisk-disk"
+msgstr "Optisk-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
-msgstr "Lyd-disk"
+msgstr "Lyd-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
@@ -372,7 +374,7 @@ msgstr "Compact Flash-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
-msgstr "Hukommelsespind-medie"
+msgstr "Memory Stick-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
@@ -388,19 +390,19 @@ msgstr "Diskette"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr "Mac OS-disk"
+msgstr "Mac OS-drev"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr "Mac OS X-disk"
+msgstr "Mac OS X-drev"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
-msgstr "Windows-disk"
+msgstr "Windows-drev"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr "Linux-disk"
+msgstr "Linux-drev"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -462,7 +464,7 @@ msgstr "Ingen fejl"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
-msgstr "Fil ikke fundet"
+msgstr "Filen ikke fundet"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -567,7 +569,7 @@ msgstr "Operation afbrudt"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
-msgstr "Fil eksisterer"
+msgstr "Filen eksisterer"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
@@ -677,7 +679,7 @@ msgstr "Ingen håndtering til URL-skema"
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr "Fejl ved fortolkning af kommandolinje"
+msgstr "Fejl ved fortolkning af kommandolinjen"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -692,7 +694,7 @@ msgstr "Tidsgrænse nået"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
 msgid "Nameserver error"
-msgstr "Navnetjener-fejl"
+msgstr "Navneserver-fejl"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
@@ -1416,7 +1418,7 @@ msgstr "Den Windows-arbejdsgruppe som brugeren er en del af"
 #~ msgstr "trash URL-håndtering"
 
 #~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Kunne ikke skaffe oplysninger om fil '%s': %s"
+#~ msgstr "Kunne ikke skaffe oplysninger om filen '%s': %s"
 
 #~ msgid ""
 #~ "Failed to load image '%s': reason not known, probably a corrupt image file"
