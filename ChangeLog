@@ -1,5 +1,12 @@
 2004-10-28  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Post release version dump
+
+=== gnome-vfs 2.8.3 ===
+
+2004-10-28  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS:
 	Update for release
 
