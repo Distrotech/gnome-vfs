@@ -2294,6 +2294,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		}
 
 		while (1) {
+			gnome_vfs_file_info_clear (file_info);
 			result = do_read_directory (method, method_handle, 
 						    file_info, context);
 			if (result != GNOME_VFS_OK) {
@@ -2509,7 +2510,7 @@ do_read_directory (GnomeVFSMethod *method,
 			GnomeVFSResult res;
 			int n_symlinks;
 
-			uri = gnome_vfs_uri_ref (handle->uri);
+			uri = gnome_vfs_uri_append_file_name (handle->uri, file_info->name);
 			symlink_info = gnome_vfs_file_info_dup (file_info);
 			n_symlinks = 0;
 			
@@ -2557,6 +2558,10 @@ do_read_directory (GnomeVFSMethod *method,
 				
 				gnome_vfs_file_info_clear (file_info);
 				gnome_vfs_file_info_copy (file_info, symlink_info);
+
+				GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+				file_info->symlink_name = gnome_vfs_unescape_string (uri->text, "/");
 				
 				g_free (file_info->name);
 				file_info->name = real_name;
