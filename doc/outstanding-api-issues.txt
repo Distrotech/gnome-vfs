@@ -17,4 +17,5 @@ separate pkgconfig targets
 * remove directory filter / regexp filter stuff
 * Buffered I/O API
 * kill gnome-vfs-seekable
- 
+* kill gnome-vfs-transform
+* GClosure-isze everything

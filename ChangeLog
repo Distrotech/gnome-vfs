@@ -1,5 +1,9 @@
 2001-07-29  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* doc/outstanding-api-issues.txt: Added a few more issues.
+
+2001-07-29  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* doc/outstanding-api-issues.txt: Add list of outstnading API
 	issues (perhaps not all of these are for GNOME 2).
 
