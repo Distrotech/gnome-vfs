@@ -403,6 +403,14 @@ remove_file (GnomeVFSURI *uri,
 		if (result != GNOME_VFS_OK)
 			retry = handle_error (&result, progress,
 					      error_mode, skip);
+
+		if (call_progress_with_uris_often (progress, uri, NULL, 
+						   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
+			== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+			result = GNOME_VFS_ERROR_INTERRUPTED;
+			break;
+		}
+
 	} while (retry);
 
 	return result;
@@ -457,11 +465,6 @@ remove_directory (GnomeVFSURI *uri,
 
 			gnome_vfs_uri_unref (item_uri);
 
-			if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_DELETESOURCE) 
-				== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
-				result = GNOME_VFS_ERROR_INTERRUPTED;
-			}
-
 			if (result != GNOME_VFS_OK)
 				break;
 		}
@@ -479,6 +482,14 @@ remove_directory (GnomeVFSURI *uri,
 			if (result != GNOME_VFS_OK)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
+
+			if (call_progress_with_uris_often (progress, uri, NULL, 
+							   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
+				== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+				result = GNOME_VFS_ERROR_INTERRUPTED;
+				break;
+			}
+
 		} while (retry);
 	}
 
@@ -1091,56 +1102,60 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 				   progress,
 				   skip);
 
-	progress->progress_info->file_index++;
-	progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
+	if (call_progress_with_uris_often (progress, 
+			       source_dir_uri, target_dir_uri, 
+			       GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
 
-	/* We do not deal with symlink loops here. 
-	 * That's OK because we don't follow symlinks.
-	 */
-	if (!*skip && result == GNOME_VFS_OK) {
-		for (;;) {
-			GnomeVFSURI *source_uri;
-			GnomeVFSURI *dest_uri;
-			GnomeVFSFileInfo info;
+		progress->progress_info->file_index++;
+		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
 
-			gnome_vfs_file_info_init (&info);
+		/* We do not deal with symlink loops here. 
+		 * That's OK because we don't follow symlinks.
+		 */
+		if (!*skip && result == GNOME_VFS_OK) {
+			for (;;) {
+				GnomeVFSURI *source_uri;
+				GnomeVFSURI *dest_uri;
+				GnomeVFSFileInfo info;
 
-			result = gnome_vfs_directory_read_next (source_directory_handle, &info);
-			if (result != GNOME_VFS_OK) {
-				break;
-			}
-			
-			/* Skip "." and "..".  */
-			if (strcmp (info.name, ".") == 0 
-			    || strcmp (info.name, "..") == 0) {
-				continue;
-			}
+				gnome_vfs_file_info_init (&info);
 
-			source_uri = gnome_vfs_uri_append_path (source_dir_uri, info.name);
-			dest_uri = gnome_vfs_uri_append_path (target_dir_uri, info.name);
-			
-			if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
-				result = copy_file (&info, source_uri, dest_uri, 
-						    xfer_options, error_mode, overwrite_mode, 
-						    progress, skip);
-			} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-				result = copy_directory (source_uri, dest_uri, 
-						    xfer_options, error_mode, overwrite_mode, 
-						    progress, skip);
-			} else {
-				/* FIXME */
-				g_assert (!"unimplemented");
-			}
+				result = gnome_vfs_directory_read_next (source_directory_handle, &info);
+				if (result != GNOME_VFS_OK) {
+					break;
+				}
+				
+				/* Skip "." and "..".  */
+				if (strcmp (info.name, ".") == 0 
+				    || strcmp (info.name, "..") == 0) {
+					continue;
+				}
 
-			gnome_vfs_uri_unref (dest_uri);
-			gnome_vfs_uri_unref (source_uri);
+				source_uri = gnome_vfs_uri_append_path (source_dir_uri, info.name);
+				dest_uri = gnome_vfs_uri_append_path (target_dir_uri, info.name);
+				
+				if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
+					result = copy_file (&info, source_uri, dest_uri, 
+							    xfer_options, error_mode, overwrite_mode, 
+							    progress, skip);
+				} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+					result = copy_directory (source_uri, dest_uri, 
+							    xfer_options, error_mode, overwrite_mode, 
+							    progress, skip);
+				} else {
+					/* FIXME */
+					g_assert (!"unimplemented");
+				}
 
-			if (result != GNOME_VFS_OK) {
-				result = GNOME_VFS_OK;
+				gnome_vfs_uri_unref (dest_uri);
+				gnome_vfs_uri_unref (source_uri);
+
+				if (result != GNOME_VFS_OK) {
+					result = GNOME_VFS_OK;
+				}
 			}
 		}
 	}
-
 	if (result == GNOME_VFS_ERROR_EOF)
 		/* all is well, we just finished iterating the directory */
 		result = GNOME_VFS_OK;

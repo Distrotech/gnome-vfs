@@ -387,6 +387,33 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 	}
 }
 
+/**
+ * gnome_vfs_file_info_matches:
+ *
+ * Compare the two file info structs, return TRUE if they match.
+ **/
+gboolean
+gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
+			     const GnomeVFSFileInfo *b)
+{
+	if (a->type != b->type
+	    || a->size != b->size
+	    || a->block_count != b->block_count
+	    || a->atime != b->atime
+	    || a->mtime != b->mtime
+	    || a->ctime != b->ctime
+	    || a->mime_type != b->mime_type
+	    || strcmp (a->name, b->name) != 0)
+		return FALSE;
+
+	if (a->mime_type == NULL) {
+		g_assert (b->mime_type == NULL);
+		return TRUE;
+	}
+
+	g_assert (a->mime_type != NULL && b->mime_type != NULL);
+	return strcasecmp (a->mime_type, b->mime_type) == 0;
+}
 
 gint
 gnome_vfs_file_info_compare_for_sort (const GnomeVFSFileInfo *a,
