@@ -68,6 +68,7 @@ typedef struct _Keyword Keyword;
 /* FIXME Maybe when chaining to file:, we should call the gnome-vfs wrapper
  * functions, instead of the file: methods directly.
  */
+/* FIXME: support cancellations */
 
 static GnomeVFSMethod *parent_method = NULL;
 
@@ -171,6 +172,8 @@ struct _VFolderInfo
 	Folder *root;
 
 	gboolean dirty;
+
+	int inhibit_write;
 };
 
 static Entry *	entry_ref	(Entry *entry);
@@ -1278,6 +1281,9 @@ vfolder_info_write_user (VFolderInfo *info)
 {
 	xmlDoc *doc;
 
+	if (info->inhibit_write > 0)
+		return;
+
 	if (info->user_filename == NULL)
 		return;
 
@@ -1285,13 +1291,11 @@ vfolder_info_write_user (VFolderInfo *info)
 	if (doc == NULL)
 		return;
 
-	g_print ("Save file: '%s'\n", info->user_filename);
-
 	/* FIXME: errors, anyone? */
 	ensure_dir (info->user_filename,
 		    TRUE /* ignore_basename */);
 
-	xmlSaveFile (info->user_filename, doc);
+	xmlSaveFormatFile (info->user_filename, doc, TRUE /* format */);
 
 	xmlFreeDoc(doc);
 
@@ -2816,6 +2820,8 @@ do_remove_directory (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+/* a fairly evil function that does the whole move bit by copy and
+ * remove */
 static GnomeVFSResult
 long_move (GnomeVFSMethod *method,
 	   GnomeVFSURI *old_uri,
@@ -2823,8 +2829,76 @@ long_move (GnomeVFSMethod *method,
 	   gboolean force_replace,
 	   GnomeVFSContext *context)
 {
-	/* FIXME */
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	GnomeVFSResult result;
+	GnomeVFSMethodHandle *handle;
+	GnomeVFSURI *file_uri;
+	const char *path;
+	int fd;
+	char buf[BUFSIZ];
+	int bytes;
+
+	file_uri = desktop_uri_to_file_uri (old_uri,
+					    NULL /* the_folder */,
+					    FALSE /* privatize */,
+					    &result);
+	if (file_uri == NULL)
+		return result;
+
+	path = gnome_vfs_uri_get_path (file_uri);
+	if (path == NULL) {
+		gnome_vfs_uri_unref (file_uri);
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+
+	fd = open (path, O_RDONLY);
+	if (fd < 0) {
+		gnome_vfs_uri_unref (file_uri);
+		return gnome_vfs_result_from_errno ();
+	}
+
+	gnome_vfs_uri_unref (file_uri);
+
+	result = method->create (method,
+				 &handle,
+				 new_uri,
+				 GNOME_VFS_OPEN_WRITE,
+				 force_replace /* exclusive */,
+				 0600 /* perm */,
+				 context);
+	if (result != GNOME_VFS_OK) {
+		close (fd);
+		return result;
+	}
+
+	while ((bytes = read (fd, buf, BUFSIZ)) > 0) {
+		GnomeVFSFileSize bytes_written = 0;
+		result = method->write (method,
+					handle,
+					buf,
+					bytes,
+					&bytes_written,
+					context);
+		if (result == GNOME_VFS_OK &&
+		    bytes_written != bytes)
+			result = GNOME_VFS_ERROR_NO_SPACE;
+		if (result != GNOME_VFS_OK) {
+			close (fd);
+			do_close (method, handle, context);
+			/* FIXME: is this completely correct ? */
+			method->unlink (method,
+					new_uri,
+					context);
+			return result;
+		}
+	}
+
+	close (fd);
+
+	result = method->close (method, handle, context);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	return method->unlink (method, old_uri, context);
 }
 
 static GnomeVFSResult
@@ -2845,13 +2919,60 @@ move_directory_file (VFolderInfo *info,
 	return GNOME_VFS_OK;
 }
 
+static gboolean
+is_sub (Folder *master, Folder *sub)
+{
+	GSList *li;
+
+	for (li = master->subfolders; li != NULL; li = li->next) {
+		Folder *subfolder = li->data;
+
+		if (subfolder == sub ||
+		    is_sub (subfolder, sub))
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
 static GnomeVFSResult
 move_folder (VFolderInfo *info,
 	     Folder *old_folder, Entry *old_entry,
 	     Folder *new_folder, Entry *new_entry)
 {
-	/* FIXME: */
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	Folder *source = (Folder *)old_entry;
+	Folder *target;
+
+	if (new_entry != NULL &&
+	    new_entry->type != ENTRY_FOLDER)
+		return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+	if (new_entry != NULL)
+		target = (Folder *)new_entry;
+	else
+		target = new_folder;
+
+	/* move to where we are, yay, we're done :) */
+	if (source->parent == target)
+		return GNOME_VFS_OK;
+
+	if (source == target ||
+	    is_sub (source, target))
+		return GNOME_VFS_ERROR_LOOP;
+
+	/* this will never happen, but we're paranoid */
+	if (source->parent == NULL)
+		return GNOME_VFS_ERROR_LOOP;
+
+	source->parent->subfolders = g_slist_remove (source->parent->subfolders,
+						     source);
+	target->subfolders = g_slist_append (source->parent->subfolders,
+					     source);
+
+	source->parent = target;
+
+	vfolder_info_write_user (info);
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -2898,6 +3019,9 @@ do_move (GnomeVFSMethod *method,
 		return result;
 
 	if (new_is_directory_file != old_is_directory_file) {
+		/* this will do another set of lookups
+		 * perhaps this can be done in a nicer way,
+		 * but is this the common case? I don't think so */
 		return long_move (method, old_uri, new_uri,
 				  force_replace, context);
 	}
@@ -2963,6 +3087,9 @@ do_move (GnomeVFSMethod *method,
 
 		if (strcmp (new_basename, old_basename) != 0)
 			/* not a simple move after all */
+			/* this will do another set of lookups
+			 * perhaps this can be done in a nicer way,
+			 * but is this the common case? I don't think so */
 			return long_move (method, old_uri, new_uri,
 					  force_replace, context);
 
@@ -2984,6 +3111,9 @@ do_move (GnomeVFSMethod *method,
 	}
 
 	/* complicated move */
+	/* this will do another set of lookups
+	 * perhaps this can be done in a nicer way,
+	 * but is this the common case? I don't think so */
 	return long_move (method, old_uri, new_uri,
 			  force_replace, context);
 }
