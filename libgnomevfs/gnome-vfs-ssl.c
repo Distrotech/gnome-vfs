@@ -360,7 +360,7 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    GnomeVFSFileSize bytes,
 		    GnomeVFSFileSize *bytes_read)
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	if (bytes == 0) {
 		*bytes_read = 0;
 		return GNOME_VFS_OK;
@@ -409,7 +409,7 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     GnomeVFSFileSize bytes,
 		     GnomeVFSFileSize *bytes_written)
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	if (bytes == 0) {
 		*bytes_written = 0;
 		return GNOME_VFS_OK;
@@ -449,7 +449,7 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 void
 gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) 
 {
-#if HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
 	SSL_shutdown (ssl->private->ssl);
 	SSL_CTX_free (ssl->private->ssl->ctx);
 	SSL_free (ssl->private->ssl);

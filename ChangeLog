@@ -1,3 +1,13 @@
+2004-08-10  Christophe Fergeau  <teuf@gnome.org>
+
+	Backport fixes from HEAD:
+	* modules/sftp-method.c: fix potential deadlock in sftp_get_connection
+	  (Ryan Lortie <desrt@desrt.ca>, fixes #149273)
+	* libgnomevfs/gnome-vfs-ssl.c: Changed #if to #ifdef. This should
+	  fix bug #149205. (Christian Kellner  <gicmo@gnome-de.org>)
+	* modules/sftp-method.c: Use memset instead of bzero, fixes #149206.
+	  (Christian Kellner  <gicmo@gnome-de.org>)
+	
 2004-08-09  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):

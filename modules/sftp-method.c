@@ -1174,7 +1174,10 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		user_name = g_get_user_name ();
 
 	if (host_name == NULL)
-		return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+	{
+		res = GNOME_VFS_ERROR_HOST_NOT_FOUND;
+		goto bail;
+	}
 
 	hash_name = g_strconcat (user_name, "@", host_name, NULL);
 
@@ -1190,7 +1193,11 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		res = sftp_connect (connection, uri);
 
 		if (res == GNOME_VFS_OK) {
-			g_return_val_if_fail (*connection != NULL, GNOME_VFS_ERROR_INTERNAL);
+			if (*connection == NULL)
+			{
+				res = GNOME_VFS_ERROR_INTERNAL;
+				goto bail;
+			}
 			g_mutex_lock ((*connection)->mutex);
 			(*connection)->hash_name = hash_name;
 			g_hash_table_insert (sftp_connection_table, hash_name, *connection);
@@ -1222,6 +1229,7 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		res = GNOME_VFS_OK;
 	}
 
+ bail:
 	G_UNLOCK (sftp_connection_table);
 
 	return res;
@@ -1492,7 +1500,7 @@ do_open (GnomeVFSMethod        *method,
 
 	buffer_write_gint32 (&msg, sftp_mode);
 
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	buffer_write_file_info (&msg, &info, GNOME_VFS_SET_FILE_INFO_NONE);
 
 	buffer_send (&msg, conn->out_fd);
@@ -1575,7 +1583,7 @@ do_create (GnomeVFSMethod        *method,
 
 	buffer_write_gint32 (&msg, ssh_mode);
 
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	info.permissions = perm;
 	buffer_write_file_info (&msg, &info, GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
 
@@ -2271,7 +2279,8 @@ do_read_directory (GnomeVFSMethod       *method,
 			while (handle->info_write_ptr + count > handle->info_alloc) {
 				handle->info_alloc *= 2;
 				handle->info = g_renew (GnomeVFSFileInfo, handle->info, handle->info_alloc);
-				bzero (&(handle->info[handle->info_write_ptr]),
+				memset (&(handle->info[handle->info_write_ptr]),
+					0
 				       sizeof (GnomeVFSFileInfo) *
 				       (handle->info_alloc - handle->info_write_ptr));
 			}
@@ -2351,7 +2360,7 @@ do_make_directory (GnomeVFSMethod  *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
-	bzero (&info, sizeof (GnomeVFSFileInfo));
+	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	iobuf_send_string_request_with_file_info (conn->out_fd, id, SSH2_FXP_MKDIR,
 						  path, strlen (path), &info,
 						  GNOME_VFS_SET_FILE_INFO_NONE);
