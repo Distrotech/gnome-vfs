@@ -1,5 +1,8 @@
 2004-11-29  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Require glib 2.5.5 (for e.g. gkeyfile)
+
 	* NEWS:
 	Update for release.
 
