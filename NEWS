@@ -1,3 +1,14 @@
+gnome-vfs 2.5.6
+	* Features
+		+ mime sniffing default method changed
+	* Bugs fixed:
+	        + Portability fixes
+		+ Force volume reload after mount/unmount
+		+ handle 32bit linux device numbers
+		+ fix various mime detection bugs
+		+ don't confuse user_xattr mount option with user
+		+ move vfs daemon to libexec
+				 
 gnome-vfs 2.5.5
 	* Features
 		+ Allow rename to case-different name 

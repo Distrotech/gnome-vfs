@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 04:08+0900\n"
+"POT-Creation-Date: 2004-01-30 12:13+0100\n"
 "PO-Revision-Date: 2004-01-30 04:09+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -683,7 +683,9 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "볼려면 컴포넌트가 필요한 파일을 볼 때 사용할 프로그램. 인자 %s은(는) 파일의 URI이고, 인자 %c은(는) 컴포넌트 IID입니다."
+msgstr ""
+"볼려면 컴포넌트가 필요한 파일을 볼 때 사용할 프로그램. 인자 %s은(는) 파일의 "
+"URI이고, 인자 %c은(는) 컴포넌트 IID입니다."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -922,7 +924,8 @@ msgstr "SOCKS 프록시로 쓸 기계의 이름."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "프록시에 사용할 포트 (\"/system/http_proxy/host\"에서 지정한 기계에서)."
+msgstr ""
+"프록시에 사용할 포트 (\"/system/http_proxy/host\"에서 지정한 기계에서)."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
@@ -934,13 +937,15 @@ msgstr "프록시에 사용할 포트 (\"/system/proxy/ftp_host\"에서 지정�
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "프록시에 사용할 포트 (\"/system/proxy/secure_host\"에서 지정한 기계에서)."
+msgstr ""
+"프록시에 사용할 포트 (\"/system/proxy/secure_host\"에서 지정한 기계에서)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "프록시에 사용할 포트 (\"/system/proxy/socks_host\"에서 지정한 기계에서)."
+msgstr ""
+"프록시에 사용할 포트 (\"/system/proxy/socks_host\"에서 지정한 기계에서)."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""

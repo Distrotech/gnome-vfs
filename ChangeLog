@@ -1,3 +1,9 @@
+2004-01-30  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.5.6
+
 2004-01-27  David Hawthorne  <david.hawthorne@sun.com>
 
 	* daemon/gnome-vfs-daemon.c
