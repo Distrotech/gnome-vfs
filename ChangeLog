@@ -1,6 +1,13 @@
 2004-11-29  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
+	Post release version bump
+
+=== gnome-vfs 2.9.1 ===
+
+2004-11-29  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
 	Require glib 2.5.5 (for e.g. gkeyfile)
 
 	* NEWS:
