@@ -78,7 +78,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-module.h			\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-parse-ls.h			\
-	gnome-vfs-private-ops.h			\
+	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-private-types.h		\
 	gnome-vfs-private.h			\
 	gnome-vfs-private-utils.h		\
@@ -113,7 +113,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\
 	gnome-vfs-parse-ls.c			\
-	gnome-vfs-private-ops.c			\
+	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-process.c			\
 	gnome-vfs-result.c			\
