@@ -1,3 +1,11 @@
+Tue Oct 16 00:30:27 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: not all systems have the
+	  d_type dirent thingie, so don't use it, implement unlink and
+	  move (mostly), though changes are not yet written to disk,
+	  add a bunch of fixmes and some more code to the writing functions.
+	  also remove some debugging output.
+
 2001-10-15  Laszlo Peter <laca@ireland.sun.com>
 
 	Patch for 48545 - add prioritized versions of all async calls
