@@ -1109,7 +1109,7 @@ create_handle (HttpFileHandle **handle_return,
 		result = http_status_to_vfs_result (server_status);
 		goto error;
 	}
-	
+
 	/* Header fetching loop.  */
 	while (1) {
 		result = get_header (iobuf, header_string);
@@ -1314,8 +1314,8 @@ static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
 	      const gchar *method,
-				GByteArray *data,
-				gchar *extra_headers,
+	      GByteArray *data,
+	      gchar *extra_headers,
 	      GnomeVFSContext *context)
 {
 	GnomeVFSInetConnection *connection;
@@ -1463,6 +1463,11 @@ make_request (HttpFileHandle **handle_return,
 	result = create_handle (handle_return, uri, connection, iobuf,
 				context);
 
+	/* Detect no more space puts */
+	if ((strcmp (method, "PUT") == 0) &&
+	    result == GNOME_VFS_ERROR_EOF) {
+		result = GNOME_VFS_ERROR_NO_SPACE;
+	}
 	if (result != GNOME_VFS_OK)
 		goto error;
 

@@ -1108,7 +1108,7 @@ copy_file (GnomeVFSFileInfo *info,
 	   GnomeVFSProgressCallbackState *progress,
 	   gboolean *skip)
 {
-	GnomeVFSResult result;
+	GnomeVFSResult close_result, result;
 	GnomeVFSHandle *source_handle, *target_handle;
 
 	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_OPENSOURCE;
@@ -1160,9 +1160,18 @@ copy_file (GnomeVFSFileInfo *info,
 		result = GNOME_VFS_ERROR_INTERRUPTED;
 	}
 
-	/* FIXME bugzilla.eazel.com 1208: Check errors here.  */
-	gnome_vfs_close (source_handle);
-	gnome_vfs_close (target_handle);
+	close_result = gnome_vfs_close (source_handle);
+	if (result == GNOME_VFS_OK &&
+	    close_result != GNOME_VFS_OK) {
+		handle_error (&close_result, progress, error_mode, skip);
+		return close_result;
+	}
+	close_result = gnome_vfs_close (target_handle);
+	if (result == GNOME_VFS_OK &&
+	    close_result != GNOME_VFS_OK) {
+		handle_error (&close_result, progress, error_mode, skip);
+		return close_result;
+	}
 
 	if (*skip) {
 		return GNOME_VFS_OK;

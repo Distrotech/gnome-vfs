@@ -1,3 +1,15 @@
+2000-11-02  Rebecca Schulman  <rebecka@eazel.com>
+	Fixed bug 4121, that the vault will
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
+	handle errors on closing, which is when the http module
+	actually does the write back to the server
+	* modules/http-method.c: (create_handle), (make_request):
+	Check for the case when a put fails with eof, and assume
+	it's because there was insufficient space; the xythos server
+	isn't correctly reporting 507 (http protocol insufficient space)
+	yet.
+
 So2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 4319, Edit and Delete actions in Application
