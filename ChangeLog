@@ -1,5 +1,11 @@
 2003-02-24  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
+	Turn crash into g_warning for smb: module callback bug. This needs
+	looking into. I'm not sure what is happening here.
+	
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c (do_read_directory):
 	Actually make the non-readdir_r case work.
 
