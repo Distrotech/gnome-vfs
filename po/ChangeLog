@@ -1,3 +1,7 @@
+2003-04-24  Abel Cheung  <maddog@linux.org.hk>
+
+	* zh_TW.po: Updated traditional Chinese translation.
+
 2003-04-17  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 
 	* POTFILES.in: Added cdemenu-desktop-method.c.
