@@ -1,5 +1,10 @@
 2001-09-28  Darin Adler  <darin@bentspoon.com>
 
+	* configure.in: Oops. My mistake. I confused gnome-vfs versions
+	with Nautilus versions. Back to 1.0.2.
+
+2001-09-28  Darin Adler  <darin@bentspoon.com>
+
 	* configure.in: Update version number to 1.0.5. The people doing
 	releases haven't been updating versions, it seems.
 
