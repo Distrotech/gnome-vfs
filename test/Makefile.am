@@ -41,6 +41,7 @@ noinst_PROGRAMS =				\
 	$(NULL)
 
 test_files=		\
+	auto-test	\
 	test.input	\
 	test.cmds	\
 	test.output
