@@ -514,10 +514,10 @@ do_info (void)
 static void
 do_cp (void)
 {
-	char *from;
-	char *to;
-	GnomeVFSHandle *from_handle;
-	GnomeVFSHandle *to_handle;
+	char *from = NULL;
+	char *to = NULL;
+	GnomeVFSHandle *from_handle = NULL;
+	GnomeVFSHandle *to_handle = NULL;
 	GnomeVFSResult  result;
 
 	from = get_fname ();
@@ -526,19 +526,19 @@ do_cp (void)
 		to = get_fname ();
 	else {
 		fprintf (stderr, "cp <from> <to>\n");
-		return;
+		goto out;
 	}
        
 	result = gnome_vfs_open (&from_handle, from, GNOME_VFS_OPEN_READ);
 	if (show_if_error (result, "open ", from))
-		return;
+		goto out;
 
 	result = gnome_vfs_open (&to_handle, to, GNOME_VFS_OPEN_WRITE);
 	if (result == GNOME_VFS_ERROR_NOT_FOUND)
 		result = gnome_vfs_create (&to_handle, to, GNOME_VFS_OPEN_WRITE, FALSE,
 					   GNOME_VFS_PERM_USER_ALL);
 	if (show_if_error (result, "open ", to))
-		return;
+		goto out;
 
 	while (1) {
 		GnomeVFSFileSize bytes_read;
@@ -547,26 +547,34 @@ do_cp (void)
 		
 		result = gnome_vfs_read (from_handle, data, 1024, &bytes_read);
 		if (show_if_error (result, "read ", from))
-			return;
+			goto out;
 
 		if (bytes_read == 0)
 			break;
 		
 		result = gnome_vfs_write (to_handle, data, bytes_read, &bytes_written);
 		if (show_if_error (result, "write ", to))
-			return;
+			goto out;
 
 		if (bytes_read != bytes_written)
 			fprintf (stderr, "Didn't write it all");
 	}
 
-	result = gnome_vfs_close (to_handle);
-	if (show_if_error (result, "close ", to))
-		return;
+ out:
+	g_free (from);
+	g_free (to);
 
-	result = gnome_vfs_close (from_handle);
-	if (show_if_error (result, "close ", from))
-		return;
+	if (to_handle) {
+		result = gnome_vfs_close (to_handle);
+		if (show_if_error (result, "close ", to))
+			/* Nothing */;
+	}
+
+	if (from_handle) {
+		result = gnome_vfs_close (from_handle);
+		if (show_if_error (result, "close ", from))
+			/* Nothing */;
+	}
 }
 
 static void
@@ -633,8 +641,11 @@ main (int argc, char **argv)
 
 	cur_dir = g_get_current_dir ();
 
-	if (cur_dir && cur_dir [strlen (cur_dir)] != '/')
-		cur_dir = g_strconcat (cur_dir, "/", NULL);
+	if (cur_dir && cur_dir [strlen (cur_dir)] != '/') {
+		char *new_dir = g_strconcat (cur_dir, "/", NULL);
+		g_free (cur_dir);
+		cur_dir = new_dir;
+	}
 
 	if (!gnome_vfs_init ()) {
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
@@ -708,8 +719,14 @@ main (int argc, char **argv)
 			 g_strcasecmp (ptr,"q")    == 0 ||
 			 g_strcasecmp (ptr,"bye") == 0)
 			exit = 1;
+
+		g_strfreev (arg_data);
+		arg_data = NULL;
 	}
 	while (!exit && interact);
+
+	g_free (buffer);
+	g_free (cur_dir);
 
 	return 0;
 }
