@@ -1,3 +1,21 @@
+2000-06-16  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_text),
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	Fix bug 1168 - add UTF-8 support to the text mime sniffer.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	(gnome_vfs_get_mime_type_for_buffer),
+	(gnome_vfs_sniff_buffer_looks_like_mp3):
+	Fix bug 960 - add algorithmic sniffer for detecting audi/x-mp3 files.
+ 
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_open_uri_cancellable):
+	Fix bug 1189 - removed retry code in open and made it respect the
+	RANDOM flag as set by the caller.
+
 2000-06-16  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

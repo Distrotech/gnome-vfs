@@ -539,6 +539,11 @@ gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
   		}
 	}
 
+	/* if no match, try the algorithmic sniffers */
+	if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
+		return "audio/x-mp3";
+	}
+
 	return NULL;
 }
 
@@ -608,22 +613,95 @@ gboolean
 gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
 	int index;
+	unsigned char ch;
+	
 	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
 		GNOME_VFS_TEXT_SNIFF_LENGTH) != GNOME_VFS_OK) {
 		return FALSE;
 	}
 
-	for (index = 0; index < sniff_buffer->buffer_length; index++) {
-		/* Do a simple detection of printable text.
-		 * 
-		 * FIXME bugzilla.eazel.com 1168:
-		 * Add UTF-8 support here.
-		 */ 
-		if (!isprint (sniff_buffer->buffer[index])
-			&& !isspace(sniff_buffer->buffer[index])) {
-			return FALSE;
+	for (index = 0; index < sniff_buffer->buffer_length - 3; index++) {
+		ch = sniff_buffer->buffer[index];
+		if (!isprint (ch) && !isspace(ch)) {
+			/* check if we are dealing with UTF-8 text
+			 * 
+			 *	 bytes | bits | representation
+			 *	     1 |    7 | 0vvvvvvv
+			 *	     2 |   11 | 110vvvvv 10vvvvvv
+			 *	     3 |   16 | 1110vvvv 10vvvvvv 10vvvvvv
+			 *	     4 |   21 | 11110vvv 10vvvvvv 10vvvvvv 10vvvvvv
+     			 */
+			if ((ch & 0xc0) != 0xc0) {
+				/* not a UTF-8 text */
+				return FALSE;
+			}
+
+			if ((ch & 0x20) == 0) {
+				/* check if this is a 2-byte UTF-8 letter */
+				++index;
+				if ((sniff_buffer->buffer[index] & 0xc0) != 0x80) {
+					return FALSE;
+				}
+			} else if ((ch & 0x30) == 0x20) {
+				/* check if this is a 3-byte UTF-8 letter */
+				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
+					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
+					return FALSE;
+				}
+			} else if ((ch & 0x38) == 0x30) {
+				/* check if this is a 4-byte UTF-8 letter */
+				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
+					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80
+					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
+					return FALSE;
+				}
+			}
 		}
 	}
 	
 	return TRUE;
+}
+
+gboolean
+gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
+{
+	int offset;
+	unsigned char ch;
+	
+	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 256) != GNOME_VFS_OK) {
+		return FALSE;
+	}
+
+	for (offset = 0; offset < 256; offset++) {
+		gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 3);
+
+		/* sync field */
+		if (sniff_buffer->buffer[offset] != 0xff) {
+			continue;
+		}
+
+		ch = sniff_buffer->buffer[offset + 1] & 0xf6;
+		/* layer 2 or layer 3 */
+		if (ch != 0xf2 && ch != 0xf4) {
+			continue;
+		}
+
+		ch = sniff_buffer->buffer[offset + 2];
+
+		/* bitrate */
+		if ((ch & 0xf0) == 0xf0)
+			continue;
+
+		/* sampling rate index */
+		if ((ch & 0x0c) == 0x0c)
+			continue;
+
+		/* emphasis */
+		if ((sniff_buffer->buffer[offset + 3] & 3) == 2)
+			continue;
+		
+		return TRUE;
+	}
+
+	return FALSE;
 }

@@ -67,5 +67,7 @@ const char  		*gnome_vfs_get_mime_type_for_buffer
 
 gboolean		 gnome_vfs_sniff_buffer_looks_like_text
 					 (GnomeVFSMimeSniffBuffer	*buffer);
+gboolean		 gnome_vfs_sniff_buffer_looks_like_mp3
+					 (GnomeVFSMimeSniffBuffer	*buffer);
 
 #endif
