@@ -1,3 +1,12 @@
+2002-05-16  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_edit_user_file_full): don't dup (leak)
+	key and value.
+
+	* modules/file-method.c (fam_callback): unref the
+	URI we create.
+
 2002-04-19  Mark McLoughlin  <mark@skynet.ie>
 
 	* modules/http-method.c: (construct_gl_http_proxy),

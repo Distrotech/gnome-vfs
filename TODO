@@ -113,6 +113,9 @@ everything easier to implement.
 
 * Make directory/xfer calls cancellable as well.
 
+* Specific issues
+	gnome_vfs_monitor_callback's info_uri should be const.
+
 Installation issues
 -------------------
 

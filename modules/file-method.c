@@ -2088,6 +2088,7 @@ fam_callback (GIOChannel *source,
 			gnome_vfs_monitor_callback (
 					(GnomeVFSMethodHandle *)handle,
 					info_uri, event_type);
+			gnome_vfs_uri_unref (info_uri);
 		}
 	}
 

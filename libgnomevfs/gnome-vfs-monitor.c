@@ -200,8 +200,8 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
 	g_assert (monitor_handle != NULL);
 	callback_data->monitor_handle = monitor_handle;
 	if (info_uri != NULL) {
-		callback_data->info_uri = gnome_vfs_uri_to_string(info_uri, 
-				GNOME_VFS_URI_HIDE_NONE);
+		callback_data->info_uri = gnome_vfs_uri_to_string
+			(info_uri, GNOME_VFS_URI_HIDE_NONE);
 	} else {
 		callback_data->info_uri = NULL;
 	}

@@ -881,7 +881,7 @@ gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *v
 		if (value == NULL) {
 			value = "";
 		}
-		gnome_vfs_mime_set_value (mime_type, g_strdup (key), g_strdup (value));
+		gnome_vfs_mime_set_value (mime_type, key, value);
 	}
 	gnome_vfs_mime_thaw ();
 
