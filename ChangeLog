@@ -1,3 +1,8 @@
+2005-02-06  Crispin Flowerday  <gnome@flowerday.cx>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	The new mime API is new in 2.10, not 2.8. Fixes bug #166478
+
 2005-02-03  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.h:

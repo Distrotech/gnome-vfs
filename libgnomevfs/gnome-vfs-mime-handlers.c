@@ -1015,7 +1015,7 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
  * 
  * Return value: %TRUE if @a and @b are equal, %FALSE otherwise.
  *
- * Since: 2.8
+ * Since: 2.10
  **/
 gboolean
 gnome_vfs_mime_application_equal (GnomeVFSMimeApplication *app_a,
@@ -1740,7 +1740,7 @@ guess_deprecated_fields_from_exec (GnomeVFSMimeApplication *application)
  *
  * Return value: a #GnomeVFSMimeApplication
  *
- * Since: 2.8
+ * Since: 2.10
  */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_desktop_id (const char *id)
@@ -1844,7 +1844,7 @@ exit:
  * 
  * Return value: A GnomeVFSMimeApplication representing the default handler
  *
- * Since: 2.8
+ * Since: 2.10
  */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application_for_uri (const char *uri,
@@ -1908,7 +1908,7 @@ gnome_vfs_mime_get_default_application_for_uri (const char *uri,
  * Return value: A GList * where the elements are GnomeVFSMimeApplication *
  * representing all possible handlers
  *
- * Since: 2.8
+ * Since: 2.10
  */
 GList *
 gnome_vfs_mime_get_all_applications_for_uri (const char *uri,
@@ -1959,7 +1959,7 @@ gnome_vfs_mime_get_all_applications_for_uri (const char *uri,
  *
  * Return value: the identifier of the desktop entry
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_desktop_id (GnomeVFSMimeApplication *app)
@@ -1984,7 +1984,7 @@ gnome_vfs_mime_application_get_desktop_id (GnomeVFSMimeApplication *app)
  *
  * Return value: the path of the .desktop file
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_desktop_file_path (GnomeVFSMimeApplication *app)
@@ -2007,7 +2007,7 @@ gnome_vfs_mime_application_get_desktop_file_path (GnomeVFSMimeApplication *app)
  *
  * Return value: the name of the application.
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_name (GnomeVFSMimeApplication *app)
@@ -2025,7 +2025,7 @@ gnome_vfs_mime_application_get_name (GnomeVFSMimeApplication *app)
  *
  * Return value: the generic name of the application.
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_generic_name (GnomeVFSMimeApplication *app)
@@ -2051,7 +2051,7 @@ gnome_vfs_mime_application_get_generic_name (GnomeVFSMimeApplication *app)
  * e.g. "gnome-pdf" if the icon is supposed to be image type agnostic between
  * icon themes. Icons are generic, and not theme specific.
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_icon (GnomeVFSMimeApplication *app)
@@ -2077,7 +2077,7 @@ gnome_vfs_mime_application_get_icon (GnomeVFSMimeApplication *app)
  *
  * Return value: the command line to execute
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_exec (GnomeVFSMimeApplication *app)
@@ -2107,7 +2107,7 @@ gnome_vfs_mime_application_get_exec (GnomeVFSMimeApplication *app)
  *
  * Return value: the application's binary name
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_binary_name (GnomeVFSMimeApplication *app)
@@ -2131,7 +2131,7 @@ gnome_vfs_mime_application_get_binary_name (GnomeVFSMimeApplication *app)
  *
  * Return value: %TRUE if the application can handle uris
  *
- * Since: 2.8
+ * Since: 2.10
  */
 gboolean
 gnome_vfs_mime_application_supports_uris (GnomeVFSMimeApplication *app)
@@ -2154,7 +2154,7 @@ gnome_vfs_mime_application_supports_uris (GnomeVFSMimeApplication *app)
  *
  * Return value: %TRUE if the application runs in a terminal
  *
- * Since: 2.8
+ * Since: 2.10
  */
 gboolean
 gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
@@ -2175,7 +2175,7 @@ gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
  *
  * Return value: %TRUE if the application supports startup notification
  *
- * Since: 2.8
+ * Since: 2.10
  */
 gboolean
 gnome_vfs_mime_application_supports_startup_notification (GnomeVFSMimeApplication *app)
@@ -2198,7 +2198,7 @@ gnome_vfs_mime_application_supports_startup_notification (GnomeVFSMimeApplicatio
  *
  * Return value: The WM class of the application's window
  *
- * Since: 2.8
+ * Since: 2.10
  */
 const char *
 gnome_vfs_mime_application_get_startup_wm_class (GnomeVFSMimeApplication *app)
