@@ -29,6 +29,7 @@
 
 BEGIN_GNOME_DECLS
 
+#include "gnome-vfs-constants.h"
 #include "gnome-vfs-types.h"
 
 #include "gnome-vfs-directory.h"

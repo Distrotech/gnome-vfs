@@ -24,13 +24,30 @@
 #ifndef _GNOME_VFS_URI_H
 #define _GNOME_VFS_URI_H
 
-GnomeVFSURI *gnome_vfs_uri_new         (const gchar *text_uri);
-GnomeVFSURI *gnome_vfs_uri_ref         (GnomeVFSURI *uri);
-void         gnome_vfs_uri_unref       (GnomeVFSURI *uri);
-void         gnome_vfs_uri_destroy     (GnomeVFSURI *uri);
-GnomeVFSURI *gnome_vfs_uri_append_text (const GnomeVFSURI *uri, ...);
-gchar       *gnome_vfs_uri_to_string   (const GnomeVFSURI *uri);
-GnomeVFSURI *gnome_vfs_uri_dup         (const GnomeVFSURI *uri);
-gboolean     gnome_vfs_uri_is_local    (const GnomeVFSURI *uri);
+GnomeVFSURI 	     *gnome_vfs_uri_new          (const gchar *text_uri);
+GnomeVFSURI 	     *gnome_vfs_uri_ref          (GnomeVFSURI *uri);
+void        	      gnome_vfs_uri_unref        (GnomeVFSURI *uri);
+void        	      gnome_vfs_uri_destroy      (GnomeVFSURI *uri);
+GnomeVFSURI 	     *gnome_vfs_uri_append_text  (const GnomeVFSURI *uri, ...);
+gchar       	     *gnome_vfs_uri_to_string    (const GnomeVFSURI *uri,
+						  GnomeVFSURIHideOptions hide_options);
+GnomeVFSURI 	     *gnome_vfs_uri_dup          (const GnomeVFSURI *uri);
+gboolean    	      gnome_vfs_uri_is_local     (const GnomeVFSURI *uri);
+
+GnomeVFSToplevelURI *gnome_vfs_uri_get_toplevel  (const GnomeVFSURI *uri);
+
+const gchar 	    *gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri);
+guint 	    	     gnome_vfs_uri_get_host_port (const GnomeVFSURI *uri);
+const gchar 	    *gnome_vfs_uri_get_user_name (const GnomeVFSURI *uri);
+const gchar	    *gnome_vfs_uri_get_password  (const GnomeVFSURI *uri);
+
+void		     gnome_vfs_uri_set_host_name (GnomeVFSURI *uri,
+						  const gchar *host_name);
+void 	    	     gnome_vfs_uri_set_host_port (GnomeVFSURI *uri,
+						  guint host_port);
+void		     gnome_vfs_uri_set_user_name (GnomeVFSURI *uri,
+						  const gchar *user_name);
+void		     gnome_vfs_uri_set_password  (GnomeVFSURI *uri,
+						  const gchar *password);
 
 #endif /* _GNOME_VFS_URI_H */

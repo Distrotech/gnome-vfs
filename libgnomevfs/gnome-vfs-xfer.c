@@ -695,8 +695,12 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 		}
 
 		progress_info.phase = GNOME_VFS_XFER_PHASE_XFERRING;
-		progress_info.source_name = gnome_vfs_uri_to_string (source_uri);
-		progress_info.target_name = gnome_vfs_uri_to_string (target_uri);
+		progress_info.source_name
+			= gnome_vfs_uri_to_string (source_uri,
+						   GNOME_VFS_URI_HIDE_PASSWORD);
+		progress_info.target_name
+			= gnome_vfs_uri_to_string (target_uri,
+						   GNOME_VFS_URI_HIDE_PASSWORD);
 		progress_info.file_size = source->info.size;
 		progress_info.bytes_copied = 0;
 

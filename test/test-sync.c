@@ -41,6 +41,7 @@ main (int argc, char **argv)
 	GnomeVFSHandle   *handle;
 	gchar             buffer[1024];
 	GnomeVFSFileSize  bytes_read;
+	GnomeVFSURI 	 *uri;
 	gchar            *text_uri;
 
 	if (argc != 2) {
@@ -48,14 +49,15 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	text_uri = argv[1];
-
 	if (! gnome_vfs_init ()) {
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
 
-	result = gnome_vfs_open (&handle, text_uri, GNOME_VFS_OPEN_READ);
+	uri = gnome_vfs_uri_new (argv[1]);
+	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+
+	result = gnome_vfs_open_from_uri (&handle, uri, GNOME_VFS_OPEN_READ);
 	show_result (result, "open", text_uri);
 
 	result = gnome_vfs_read (handle, buffer, sizeof buffer - 1,
@@ -67,6 +69,8 @@ main (int argc, char **argv)
 
 	result = gnome_vfs_close (handle);
 	show_result (result, "close", text_uri);
+
+	g_free (text_uri);
 
 	return 0;
 }

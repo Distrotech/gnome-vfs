@@ -1,3 +1,59 @@
+1999-09-10  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/ftp-method.c (resolve_symlink_without_ls_options): Use
+	`gnome_vfs_canonicalize_pathname()' instead of
+	`canonicalize_pathname' from `util-url.c'.
+
+	* test/test-sync.c (main): Do things through a GnomeVFSURI and use
+	`gnome_vfs_uri_to_string()', so that we can debug the new stuff.
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri): Hide password
+	when setting source/target URIs in the progress info.
+
+	* libgnomevfs/gnome-vfs-uri.c (set_uri_element): New helper
+	function.  It sets the URI element canonicalizing it as well.
+	(gnome_vfs_uri_new): Changed to use `set_uri_element' and allocate
+	the special toplevel URI element.
+	(gnome_vfs_uri_to_string): New parameter `hide_options'.  Add
+	host/user information to the string, hiding the information
+	specified in `hide_options'.
+
+	* libgnomevfs/gnome-vfs-types.h: New enum `GnomeVFSURIHideOptions'.
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_canonicalize_pathname):
+	New function, stolen from `util-url.c'.  Slightly changed so that
+	it does not remove trailing slashes anymore (we do want them!).
+
+	* libgnomevfs/gnome-vfs-uri.c: Use the constants defined in
+	`gnome-vfs-constants.h'.
+
+	* libgnomevfs/gnome-vfs.h: #include `gnome-vfs-constants.h'.
+
+	* libgnomevfs/gnome-vfs-constants.h: New file defining VFS
+	constants.
+
+1999-09-09  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): Allocate the
+	toplevel URI as a `GnomeVFSToplevelURI'.
+	(gnome_vfs_uri_get_toplevel): New function.
+	(gnome_vfs_uri_get_host_name): New function.
+	(gnome_vfs_uri_get_host_port): New function.
+	(gnome_vfs_uri_get_user_name): New function.
+	(gnome_vfs_uri_get_password): New function.
+	(gnome_vfs_uri_set_host_name): New function.
+	(gnome_vfs_uri_set_host_port): New function.
+	(gnome_vfs_uri_set_user_name): New function.
+	(gnome_vfs_uri_set_password): New function.
+	(destroy_element): If it's a toplevel URI, free its extra strings
+	as well.
+	(string_head): New helper function.
+	(split_toplevel_uri): New function, derived from the Midnight
+	Commander code in `util-url.c'.  Changed semantics and parameters,
+	optimized and prettified a little bit.
+
+	* libgnomevfs/gnome-vfs-types.h: New type `GnomeVFSToplevelURI'.
+
 1999-09-08  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open): Do not set

@@ -1,6 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-utils.h - Private utility functions for the GNOME Virtual
-   File System.
+/* gnome-vfs-constants.h - Constants used in the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -19,13 +18,16 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@comm2000.it>
+*/
 
-#ifndef _GNOME_VFS_UTILS_H
-#define _GNOME_VFS_UTILS_H
+#ifndef _GNOME_VFS_CONSTANTS_H
+#define _GNOME_VFS_CONSTANTS_H
 
-GList 	*gnome_vfs_string_list_from_string_array	(gchar *array[]);
-void	 gnome_vfs_free_string_list			(GList *list);
-gchar   *gnome_vfs_canonicalize_pathname                (gchar *path);
+#define GNOME_VFS_URI_MAGIC_CHR	'#'
+#define GNOME_VFS_URI_MAGIC_STR "#"
 
-#endif /* _GNOME_VFS_UTILS_H */
+#define GNOME_VFS_URI_PATH_CHR '/'
+#define GNOME_VFS_URI_PATH_STR "/"
+
+#endif /* _GNOME_VFS_CONSTANTS_H */

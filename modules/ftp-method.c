@@ -1141,7 +1141,7 @@ resolve_symlink_without_ls_options (ftpfs_connection_t *conn, ftpfs_dir_t *dir)
 		for ( ;; ) {
 			ftpfs_uri_t uri;
 
-			canonicalize_pathname (tmp);
+			gnome_vfs_canonicalize_pathname (tmp);
 			uri.path = tmp;
 			uri.conn = conn;
 			if (get_file_entry (&uri, 0, 0, 0, &fe) != GNOME_VFS_OK)

@@ -16,6 +16,7 @@ libgnomevfs_la_LIBADD =				\
 libgnomevfsincludedir = $(includedir)/libgnomevfs
 libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-async-ops.h			\
+	gnome-vfs-constants.h			\
 	gnome-vfs-directory.h			\
 	gnome-vfs-directory-filter.h		\
 	gnome-vfs-directory-list.h		\

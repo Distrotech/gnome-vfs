@@ -148,11 +148,38 @@ struct _GnomeVFSURI {
 	/* VFS method to access the element.  */
 	GnomeVFSMethod *method;
 
-	/* Pointer to the parent element, or NULL if this is a toplevel
-	   element.  */
+	/* Pointer to the parent element, or NULL for toplevel elements.  */
 	struct _GnomeVFSURI *parent;
 };
 typedef struct _GnomeVFSURI GnomeVFSURI;
+
+/* This is the toplevel URI element.  A toplevel method implementations should
+   cast the `GnomeVFSURI' argument to this type to get the additional host/auth
+   information.  If any of the elements is 0, it is unspecified.  */
+struct _GnomeVFSToplevelURI {
+	/* Base object.  */
+	GnomeVFSURI uri;
+
+	/* Server location information.  */
+	gchar *host_name;
+	guint host_port;
+
+	/* Authorization information.  */
+	gchar *user_name;
+	gchar *password;
+};
+typedef struct _GnomeVFSToplevelURI GnomeVFSToplevelURI;
+
+/* This is used for hiding information when transforming the GnomeVFSURI into a
+   string.  */
+enum _GnomeVFSURIHideOptions {
+	GNOME_VFS_URI_HIDE_NONE = 0,
+	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,
+	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,
+	GNOME_VFS_URI_HIDE_HOST_NAME = 1 << 2,
+	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3
+};
+typedef enum _GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 
 
 /* File information, a la stat(2).  */
