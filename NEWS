@@ -1,4 +1,13 @@
 ===================================
+gnome-vfs 1.9.6
+---------------
+
+* Re-arrange panel menus some more (Seth)
+* Correctly save DontShowIfEmpty (George)
+* Install cancellable-ops.h in module directory for Medusa (jsh)
+* Fix seperate include paths (jdub)
+
+===================================
 gnome-vfs 1.9.5
 ---------------
 

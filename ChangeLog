@@ -1,3 +1,10 @@
+2002-02-04  Seth Nickell  <snickell@stanford.edu>
+
+	* NEWS:
+	* configure.in:
+
+	Release 1.9.6
+
 2002-02-02  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/applications.vfolder-info.in:
