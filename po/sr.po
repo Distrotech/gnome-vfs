@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"POT-Creation-Date: 2003-08-04 08:41+0200\n"
-"PO-Revision-Date: 2003-07-22 12:40+0200\n"
+"POT-Creation-Date: 2003-08-14 00:55+0200\n"
+"PO-Revision-Date: 2003-08-14 00:54+0200\n"
 "Last-Translator: Dušan Živojnov <calvin@verat.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -300,30 +300,32 @@ msgstr "Грешка при покретању наредбе"
 msgid "Unknown error"
 msgstr "Непозната грешка"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u бајт"
-msgstr[1] "%u бајта"
-msgstr[2] "%u бајтова"
+# bug: plural-forms
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 бајт"
 
-#: libgnomevfs/gnome-vfs-utils.c:89
+#: libgnomevfs/gnome-vfs-utils.c:86
+#, c-format
+msgid "%u bytes"
+msgstr "%u бајтова"
+
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1081
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (неисправан Уникод)"
 
@@ -408,7 +410,3 @@ msgstr "обичан Гном ВФС moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "обичан moniker датотеке"
-
-# bug: plural-forms
-#~ msgid "1 byte"
-#~ msgstr "1 бајт"
