@@ -1,18 +1,21 @@
 # Turkish translation of GnomeVFS.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2004 Free Software Foundation, Inc.
 # Sinan Imamoglu <sinan_imam@yahoo.com>, 2002.
+# Baris Cicek <baris@teamforce.name.tr>, 2004.
+#
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2003-12-29 09:36+0000\n"
-"Last-Translator: Sinan İmamoğlu <sinan@myrealbox.com>\n"
+"Project-Id-Version: gnome-vfs\n"
+"Report-Msgid-Bugs-To: <i18n@gnome.org>\n"
+"POT-Creation-Date: 2004-03-20 19:13+0200\n"
+"PO-Revision-Date: 2004-03-20 19:38+0200\n"
+"Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
 #: daemon/gnome-vfs-daemon.c:590
@@ -21,7 +24,7 @@ msgstr "Bonobo başlatılamadı"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr "GNOME vfs başlatılamadı"
+msgstr "Gnome vfs başlatılamadı"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -31,7 +34,7 @@ msgstr "ISO 9660 Sistemi"
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d NUL harfleri içeriyor."
+msgstr "%s:%d NUL karakterler içeriyor."
 
 # libgnomevfs/gnome-vfs-configuration.c:241
 #: libgnomevfs/gnome-vfs-configuration.c:244
@@ -43,12 +46,12 @@ msgstr "%s:%d metod adı içermiyor."
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr ""
+msgstr "%s:%d seçenek sonlandrıcısı içermiyor."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d bilinmeyen seçeneklere sahip: %s"
 
 # libgnomevfs/gnome-vfs-configuration.c:270
 #: libgnomevfs/gnome-vfs-configuration.c:314
@@ -140,7 +143,7 @@ msgstr "Minix Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "NFS Ağ Biçimi "
+msgstr "NFS Ağ Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
@@ -210,7 +213,7 @@ msgstr "Bilinmeyen op türü %u"
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Açık GIOChannel %s için boru yaratılamıyor"
+msgstr "Açık GIOChannel için boru yaratılamıyor: %s"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1603
 #: libgnomevfs/gnome-vfs-job.c:1727
@@ -227,12 +230,12 @@ msgstr "İşlem durduruldu"
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
-msgstr "%s taranamadı"
+msgstr "Ayrıştırılamadı: %s"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:656
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Artık tarama hataları gözardı edilecek."
+msgstr "Artık ayrıştırma hataları gözardı edilecek."
 
 # libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_OK
@@ -256,7 +259,7 @@ msgstr "Genel hata"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
-msgstr "İç hata"
+msgstr "Dahili hata"
 
 # libgnomevfs/gnome-vfs-result.c:43
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
@@ -298,7 +301,7 @@ msgstr "Yanlış dosya tutacağı"
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
-msgstr "Dosya fazla büyük"
+msgstr "Dosya çok büyük"
 
 # libgnomevfs/gnome-vfs-result.c:50
 #. GNOME_VFS_ERROR_NO_SPACE
@@ -328,19 +331,19 @@ msgstr "Dosya açık değil"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "Açış kipi geçersiz"
+msgstr "Açma kipi geçersiz"
 
 # libgnomevfs/gnome-vfs-result.c:55
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
-msgstr "Erişim reddedildi"
+msgstr "Erişim engellendi"
 
 # libgnomevfs/gnome-vfs-result.c:56
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
-msgstr "Fazla dosya açık"
+msgstr "Çok fazla dosya açık"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #. GNOME_VFS_ERROR_EOF
@@ -376,7 +379,7 @@ msgstr "Dosya zaten var"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "İç içe bağlantılarla karşılaştım"
+msgstr "İç içe bağlantılarla karşılaşıldı"
 
 # libgnomevfs/gnome-vfs-result.c:63
 #. GNOME_VFS_ERROR_NOT_PERMITTED
@@ -400,19 +403,19 @@ msgstr "Yetersiz bellek"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "Sunucu bulunamadı"
+msgstr "Makine bulunamadı"
 
 # libgnomevfs/gnome-vfs-result.c:67
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "Sunucu adı geçersiz"
+msgstr "Makine adı geçersiz"
 
 # libgnomevfs/gnome-vfs-result.c:68
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
-msgstr "Sunucunun adresi yok"
+msgstr "Makinenin adresi yok"
 
 # libgnomevfs/gnome-vfs-result.c:69
 #. GNOME_VFS_ERROR_LOGIN_FAILED
@@ -460,13 +463,13 @@ msgstr "Aynı dosya sistemi üzerinde değiller"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "Ad fazla uzun"
+msgstr "Ad çok uzun"
 
 # libgnomevfs/gnome-vfs-result.c:77
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "Bu hizmet yok"
+msgstr "Servis mevcut değil"
 
 # libgnomevfs/gnome-vfs-result.c:78
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
@@ -484,22 +487,22 @@ msgstr "Protokol hatası"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "Ana gezgin bulunamadı"
+msgstr "Ana tarayıcı bulunamadı"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "Hiçbir öntanımlı işlem ilişkilendirilmemiş"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "URL şeması için tutacak yok"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Komut satırını ayrıştırırken hata"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -513,7 +516,7 @@ msgstr "Bilinmeyen hata"
 
 # libgnomevfs/gnome-vfs-utils.c:70
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u bayt"
@@ -540,7 +543,7 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr " (geçersiz Unicode)"
+msgstr " (geçersiz Unikod)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
@@ -559,11 +562,11 @@ msgstr "Zip Sürücü"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Memory Stick"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr "Kamera"
+msgstr "Fotoğraf makinesi"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
@@ -575,9 +578,8 @@ msgstr "Ses CD'si"
 
 # libgnomevfs/gnome-vfs-result.c:141
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Bilinmeyen hata"
+msgstr "Bilinmeyen sistem"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
@@ -585,8 +587,7 @@ msgstr "Ağ sunucusu"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Disket sürücü bağlanamadı. Sürücü içinde disket olmayabilir."
 
 #. All others
@@ -606,11 +607,11 @@ msgstr ""
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "Seçilen sistem bağlanamadı. Bu sistem muhtemelen bağlanamayacak bir biçimde."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Seçilen disket sürücüsü bağlanamadı."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
@@ -627,7 +628,7 @@ msgstr "Komut başlatılamadı"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
-msgstr "Disk/CD çıkartılamadı"
+msgstr "Aygıt çıkartılamadı"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
@@ -652,7 +653,7 @@ msgstr "Dosyalar"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr "Dizinler"
+msgstr "Klasörler"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
@@ -672,7 +673,7 @@ msgstr "Bağlantılar"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr "E-posta"
+msgstr "Posta"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
@@ -704,9 +705,8 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Bilinmeyen GnomeVFSSeekPosition %d"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Ağ"
+msgstr "Windows Ağı"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -721,7 +721,7 @@ msgstr "Başka bir konum belirtmek için %s çevre değişkenini kullanın.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Standart Moniker fabrikası"
+msgstr "Standart İsimlendirici Üreticisi"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -729,24 +729,24 @@ msgstr "dosya MonikerExtender'ı"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "Genel Gnome VFS moniker"
+msgstr "genel Gnome VFS ismi"
 
 # libgnomevfs/gnome-vfs-result.c:41
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "Genel dosya moniker"
+msgstr "genel dosya ismi"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Öntanımlı içerik görüntüleme uygulaması"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Öntanımlı uçbirim uygulaması"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Öntanımlı uçbirim için çalıştırma argümanı"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -755,142 +755,154 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Görüntülemek için kullanılan uygulama, görüntülemek için içerik gerektirir. "
+"%s parametresi doyaların URI 'si ile, %c parametresi ise içeriğin IID'si ile "
+"değiştirilecek. "
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "Uçbirim gerektiren uygulamalar için öntanımlı uçbirim uygulaması."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Öntanımlı uçbirim uygulamsı için çalıştırma argümanları."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "H323 URL tutacağı"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "HTTP URL tutcağı"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "HTTPS URL tutacağı"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "H324 URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr ""
+msgstr "HTTP URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "HTTPS URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr ""
+msgstr "Callto URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr ""
+msgstr "Ghelp URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle info URLs"
-msgstr ""
+msgstr "Info URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle mailto URLs"
-msgstr ""
+msgstr "Mailto URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle man URLs"
-msgstr ""
+msgstr "Man URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr ""
+msgstr "Trash URL'lerini işlet"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Programı uçbirimde çalıştır"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" de belirtilen programın H323 URL'lerini işletmek için "
+"ayarlanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın HTTP URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın HTTPS URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın callto URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın info URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın mailto URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini işletmesi için "
+"ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor demektir."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "callto URL işleticisi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "ghelp URL işleticisi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "info URL işleticisi"
 
 # libgnomevfs/gnome-vfs-result.c:48
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Yanlış dosya tutacağı"
+msgstr "mailto URL işleticisi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "man URL işleticisi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "trash URL işleticisi"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -902,11 +914,11 @@ msgstr "Otomatik vekil sunucu yapılandırma adresi"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "HTTP'ye İnternet üzerinden bağlanırken vekili etkin kılar."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "FTP vekil sunucu bilgisayar adı"
+msgstr "FTP vekil sunucu makine adı"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
@@ -914,7 +926,7 @@ msgstr "FTP vekil sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "HTTP vekil sunucu bilgisayar adı"
+msgstr "HTTP vekil sunucu makine adı"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
@@ -934,14 +946,17 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Eğer seçiliyse, vekil sunucusuna bağlantılar kimlik doğrulaması gerektirir. "
+"Kullanıcı / Şifre ikilisi \"/system/http_proxy/authentication_user\" ve  "
+"\"/system/http_proxy/authentication_password\" ile tanımlanır."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Vekil olmayan makineler"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP vekili kimlik doğrulaması için kullanılacak şifre."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -957,57 +972,65 @@ msgstr "SOCS vekil sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Güvenli HTTP vekil sunucu adı"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Güvenli HTTP sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
+msgstr "Vekil yapılandırma kipi seç. Geçerli değerler \"none\", \"manual\" ve \"auto\"dur."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "FTP için kullanılacak vekilin makine adı."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "HTTP için kullanılacak vekilin makine adı."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Güvenli HTTP için kullanılacak vekilin makine adı."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Socks için kullanılacak vekilin makine adı."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"\"/system/http_proxy/host\" ile tanımlanmış vekil olarak kullanacağınız "
+"makinenin portu."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"\"/system/proxy/ftp_host\" ile tanımlanmış vekil olarak kullanacağınız makinenin "
+"portu."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"\"/system/proxy/secure_host\" ile tanımlanmış vekil olarak kullanacağınız "
+"makinenin portu."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"\"/system/proxy/socks_host\" ile tanımlanmış vekil olarak kullanacağınız "
+"makinenin portu."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1016,27 +1039,28 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Bu anahtar vekil (eğer aktifse) aracılığından daha çok, direk bağlanmış "
+"sunucuların listesini içerir. Değerler, sunucu adları, alanları (enbaşta "
+"maske kullanarak, *.foo.com), IP sunucu adresleri (hem IPv4 hem IPv6) ve ağ "
+"maskeli ağ adresleri (192.168.0.0/24 benzeri) olabilir."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "Vekil ayar değerlerini sağlayan URL."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "HTTP vekili kullan"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP vekili kimlik doğrulamasında kullanacağı kullanıcı adı."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB çalışma gurubu"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Pencere çalışma gurubu, kullanıcı ise:"
 
-# libgnomevfs/gnome-vfs-utils.c:68
-#~ msgid "1 byte"
-#~ msgstr "1 bayt"
