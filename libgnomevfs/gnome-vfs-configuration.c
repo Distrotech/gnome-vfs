@@ -535,9 +535,8 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name, const char **
 
 	G_LOCK (configuration);
 
-	maybe_reload ();
-
 	if (configuration != NULL) {
+		maybe_reload ();
 		element = g_hash_table_lookup
 			(configuration->method_to_module_path, method_name);
 	} else {
@@ -545,13 +544,13 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name, const char **
 		g_warning ("Internal error: the configuration system was not initialized. Did you call gnome_vfs_configuration_init?");
 		element = NULL;
 	}
+
 	G_UNLOCK (configuration);
 
 	if (element == NULL)
 		return NULL;
-	else {
-		if(args)
-			*args = element->args;
-		return element->path;
-	}
+
+	if (args)
+		*args = element->args;
+	return element->path;
 }

@@ -32,7 +32,6 @@
 #include <config.h>
 #endif
 
-#include <ctype.h> /* for isspace */
 #include <stdlib.h> /* for atoi */
 #include <stdio.h> /* for sscanf */
 #include <string.h>
@@ -95,13 +94,13 @@ static GnomeVFSResult do_read_directory  (GnomeVFSMethod               *method,
 		                          GnomeVFSContext               *context);
 
 guint                 nntp_connection_uri_hash  (gconstpointer c);
-gint                  nntp_connection_uri_equal (gconstpointer c, gconstpointer d);
+int                   nntp_connection_uri_equal (gconstpointer c, gconstpointer d);
 static GnomeVFSResult nntp_connection_acquire   (GnomeVFSURI *uri, 
 		                                NNTPConnection **connection, 
 		                                GnomeVFSContext *context);
 static void           nntp_connection_release   (NNTPConnection *conn);
 
-static GList* assemble_files_from_overview (NNTPConnection *conn, gchar *command); 
+static GList* assemble_files_from_overview (NNTPConnection *conn, char *command); 
 
 static const char *anon_user = "anonymous";
 static const char *anon_pass = "nobody@gnome.org";
@@ -111,17 +110,17 @@ static const int   nntp_port = 119;
 /* A GHashTable of GLists of NNTPConnections */
 static GHashTable *spare_connections = NULL;
 G_LOCK_DEFINE_STATIC (spare_connections);
-static gint total_connections = 0;
-static gint allocated_connections = 0;
+static int total_connections = 0;
+static int allocated_connections = 0;
 
 /* single element cache of file objects for a given newsgroup */
-static gchar* current_newsgroup_name = NULL;
+static char* current_newsgroup_name = NULL;
 static GList* current_newsgroup_files = NULL;
 
 static GnomeVFSResult 
 nntp_response_to_vfs_result (NNTPConnection *conn) 
 {
-	gint response = conn->response_code;
+	int response = conn->response_code;
 
 	switch (response) {
 	case 421: 
@@ -158,10 +157,10 @@ nntp_response_to_vfs_result (NNTPConnection *conn)
 
 }
 
-static GnomeVFSResult read_response_line(NNTPConnection *conn, gchar **line) {
+static GnomeVFSResult read_response_line(NNTPConnection *conn, char **line) {
 	GnomeVFSFileSize bytes = MAX_RESPONSE_SIZE, bytes_read;
-	gchar *ptr, *buf = g_malloc (MAX_RESPONSE_SIZE+1);
-	gint line_length;
+	char *ptr, *buf = g_malloc (MAX_RESPONSE_SIZE+1);
+	int line_length;
 	GnomeVFSResult result = GNOME_VFS_OK;
 
 	while (!strstr (conn->response_buffer->str, "\r\n")) {
@@ -200,7 +199,7 @@ get_response (NNTPConnection *conn)
 	GnomeVFSResult result;
 
 	while (TRUE) {
-		gchar *line = NULL;
+		char *line = NULL;
 		result = read_response_line (conn, &line);
 
 		if (result != GNOME_VFS_OK) {
@@ -210,12 +209,14 @@ get_response (NNTPConnection *conn)
 		}
 		
 		/* response needs to be at least: "### x"  - I think*/
-		if (isdigit ((unsigned char) line[0]) &&
-		    isdigit ((unsigned char) line[1]) &&
-		    isdigit ((unsigned char) line[2]) &&
-		    isspace ((unsigned char) line[3])) {
+		if (g_ascii_isdigit (line[0]) &&
+		    g_ascii_isdigit (line[1]) &&
+		    g_ascii_isdigit (line[2]) &&
+		    g_ascii_isspace (line[3])) {
 
-			conn->response_code = (line[0] - '0') * 100 + (line[1] - '0') * 10 + (line[2] - '0');
+			conn->response_code = g_ascii_digit_value (line[0]) * 100
+			                      + g_ascii_digit_value (line[1]) * 10
+					      + g_ascii_digit_value (line[2]);
 
 			if (conn->response_message) g_free (conn->response_message);
 			conn->response_message = g_strdup (line+4);
@@ -235,9 +236,9 @@ get_response (NNTPConnection *conn)
 }
 
 static GnomeVFSResult do_control_write (NNTPConnection *conn, 
-					gchar *command) 
+					char *command) 
 {
-        gchar *actual_command = g_strdup_printf ("%s\r\n", command);
+        char *actual_command = g_strdup_printf ("%s\r\n", command);
 	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
 	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
 						       actual_command, bytes, &bytes_written);
@@ -255,7 +256,7 @@ nntp_connection_reset_buffer (NNTPConnection *conn)
 
 static GnomeVFSResult 
 do_basic_command (NNTPConnection *conn, 
-		  gchar *command) 
+		  char *command) 
 {
 	GnomeVFSResult result;
 
@@ -280,10 +281,10 @@ nntp_connection_create (NNTPConnection **connptr, GnomeVFSURI *uri, GnomeVFSCont
 {
 	NNTPConnection *conn = g_new (NNTPConnection, 1);
 	GnomeVFSResult result;
-	gchar *tmpstring;
-	gint port = nntp_port;
-	const gchar *user = anon_user;
-	const gchar *pass = anon_pass;
+	char *tmpstring;
+	int port = nntp_port;
+	const char *user = anon_user;
+	const char *pass = anon_pass;
 	
 	conn->uri = gnome_vfs_uri_dup (uri);
 	
@@ -410,15 +411,15 @@ nntp_connection_destroy (NNTPConnection *conn)
 /* hash routines for managing the pool of connections */
 /* g_str_hash and g_str_equal seem to fail with null arguments */
 
-static gint 
-my_str_hash (const gchar *c) 
+static int 
+my_str_hash (const char *c) 
 {
 	if (c) 
 	        return g_str_hash (c);
 	else return 0;
 }
 
-static gint 
+static int 
 my_str_equal (gconstpointer c, 
 	      gconstpointer d) 
 {
@@ -444,7 +445,7 @@ nntp_connection_uri_hash (gconstpointer c)
 /* test the equality of the bits of a GnomeVFSURI that distingush NNTP 
  * connections
  */
-gint 
+int 
 nntp_connection_uri_equal (gconstpointer c, 
 			  gconstpointer d) 
 {
@@ -546,16 +547,17 @@ nntp_connection_release (NNTPConnection *conn)
  * helper routines
  */
 static gboolean
-is_number_or_space(char test_char)
+is_number_or_space (char test_char)
 {
-	return isspace(test_char) || isdigit(test_char) || test_char == '_' || test_char == '-' || test_char == '/';
+	return g_ascii_isspace (test_char) || g_ascii_isdigit (test_char)
+	       || test_char == '_' || test_char == '-' || test_char == '/';
 }
 
 static gboolean
-all_numbers_or_spaces( gchar *left_ptr, gchar *right_ptr)
+all_numbers_or_spaces (char *left_ptr, char *right_ptr)
 {
-	gchar *current_char_ptr;
-	gchar current_char;
+	char *current_char_ptr;
+	char current_char;
 	
 	current_char_ptr = left_ptr;
 	while (current_char_ptr < right_ptr) {
@@ -622,14 +624,14 @@ remove_number_at_end (char *input_str)
 	}
 }
 
-static gchar*
+static char*
 trim_nonalpha_chars (char *input_str)
 {
 	char *left_ptr, *right_ptr;
 
 	/* first handle the end of the string */	
 	right_ptr = input_str + strlen(input_str) - 1;
-	while (!isalnum (*right_ptr) && right_ptr > input_str) {
+	while (!g_ascii_isalnum (*right_ptr) && right_ptr > input_str) {
 		right_ptr -= 1;
 	}
 	
@@ -638,7 +640,7 @@ trim_nonalpha_chars (char *input_str)
 
 	/* now handle the beginning */
 	left_ptr = input_str;
-	while (*left_ptr && !isalnum(*left_ptr)) {
+	while (*left_ptr && !g_ascii_isalnum(*left_ptr)) {
 		left_ptr++;
 	}
 	return left_ptr;
@@ -664,11 +666,11 @@ remove_of_expressions (char *input_str)
 		right_ptr = left_ptr + 2;
 		left_ptr = left_ptr - 1;
 		while (is_number_or_space(*left_ptr) && left_ptr >= input_str) {
-			found_number = found_number || isdigit(*left_ptr);
+			found_number = found_number || g_ascii_isdigit(*left_ptr);
 			left_ptr -= 1;
 		}
 		while (is_number_or_space(*right_ptr)) {
-			found_number = found_number || isdigit(*right_ptr);
+			found_number = found_number || g_ascii_isdigit(*right_ptr);
 			right_ptr += 1;
 		}
 		
@@ -687,7 +689,7 @@ remove_of_expressions (char *input_str)
 /* here is the main folder name filtering routine, which returns a new string containing the filtered
  * version of the passed-in folder name
  */
-static gchar *
+static char *
 filter_folder_name(char *folder_name)
 {
 	char *temp_str, *save_str, *result_str;
@@ -729,7 +731,7 @@ filter_folder_name(char *folder_name)
 	/* truncate if necessary */
 	if (strlen(temp_str) > 30) {
 		left_ptr = temp_str + 29;
-		while (isalpha(*left_ptr)) {
+		while (g_ascii_isalpha(*left_ptr)) {
 			left_ptr += 1;
 		}
 		
@@ -745,9 +747,9 @@ filter_folder_name(char *folder_name)
 /* parse dates by allowing gnome-vfs to do most of the work */
 
 static void
-remove_commas(gchar *source_str)
+remove_commas(char *source_str)
 {
-	gchar *ptr;
+	char *ptr;
 	
 	ptr = source_str;
 	while (*ptr != '\0') {
@@ -760,12 +762,12 @@ remove_commas(gchar *source_str)
 }
 
 static gboolean
-is_number(gchar *input_str) {
-	gchar *cur_char;
+is_number(char *input_str) {
+	char *cur_char;
 	
 	cur_char = input_str;
 	while (*cur_char) {
-		if (!isdigit(*cur_char)) {
+		if (!g_ascii_isdigit(*cur_char)) {
 			return FALSE;
 		}
 		cur_char += 1;
@@ -774,14 +776,14 @@ is_number(gchar *input_str) {
 }
 
 static void
-parse_date_string (const gchar* date_string, time_t *t)
+parse_date_string (const char* date_string, time_t *t)
 {
 	struct stat s;
-	gchar *filename, *linkname;
-	gchar *temp_str, *mapped_date;
+	char *filename, *linkname;
+	char *temp_str, *mapped_date;
 	gboolean result;
-	gchar **date_parts;
-	gint offset;
+	char **date_parts;
+	int offset;
 	
 	filename = NULL;
 	linkname = NULL;
@@ -826,7 +828,7 @@ parse_header(const char* header_str, char** filename, char** folder_name, char**
 	char* left_paren, *right_paren, *slash_pos;
  	int slash_bump;
 	
-	gchar **header_parts;
+	char **header_parts;
   	gboolean has_count;
 	
 	*part_number = -1;
@@ -940,10 +942,10 @@ nntp_fragment_destroy(nntp_fragment* fragment)
 /* utility routine to map slashes to dashes in the passed in string so we never return
  * a filename with slashes
  */
-static gchar *
-map_slashes(gchar *str)
+static char *
+map_slashes(char *str)
 {
-	gchar *current_ptr;
+	char *current_ptr;
 	
 	current_ptr = str;
 	while (*current_ptr != '\0') {
@@ -1058,7 +1060,7 @@ nntp_file_add_part (nntp_file *file, int fragment_number, char* fragment_id, int
 
 /* look up a file object in the file list from its name; avoid lookup if same as last time (soon) */
 static nntp_file*
-look_up_file (GList *file_list, gchar *filename, gboolean is_directory)
+look_up_file (GList *file_list, char *filename, gboolean is_directory)
 {
 	nntp_file* file;
 	GList* current_file = file_list;
@@ -1078,8 +1080,8 @@ static GnomeVFSResult
 start_loading_article (NNTPConnection *conn, nntp_fragment *fragment)
 {
 	GnomeVFSResult result;
-	gchar *command_str;
-	gchar *line = NULL;
+	char *command_str;
+	char *line = NULL;
 	
 	/* issue the command to fetch the article */
 	command_str = g_strdup_printf("BODY %s", fragment->fragment_id);
@@ -1218,8 +1220,8 @@ static GnomeVFSResult
 load_from_article (NNTPConnection *conn, nntp_fragment *fragment, gboolean first_line_flag)
 {
 	GnomeVFSResult result;
-	gchar *line = NULL;
-	gchar *dest_ptr;
+	char *line = NULL;
+	char *dest_ptr;
 	int buffer_offset;
 	int line_len;
 			
@@ -1253,7 +1255,7 @@ load_from_article (NNTPConnection *conn, nntp_fragment *fragment, gboolean first
 				g_message("Error! exceeded buffer! %d", buffer_offset + line_len);
 				line_len = conn->buffer_size - buffer_offset;
 			}
-			dest_ptr = (gchar*) conn->buffer + buffer_offset;
+			dest_ptr = (char*) conn->buffer + buffer_offset;
 			g_memmove(dest_ptr, line, line_len);
 			if (conn->uu_decode_mode) {
 				line_len = uu_decode_text(dest_ptr, line_len);
@@ -1406,7 +1408,7 @@ get_files_from_newsgroup (NNTPConnection *conn, const char* newsgroup_name, GLis
 	GnomeVFSResult result;
 	char *group_command;
 	int first_message, last_message, total_messages;
-	gchar *command_str;
+	char *command_str;
 	GList *file_list;
 	
 	/* see if we can load it from the cache */	
@@ -1478,7 +1480,7 @@ strip_slashes (char* source_string)
 static void
 extract_newsgroup_and_filename(GnomeVFSURI *uri, char** newsgroup, char **directory, char **filename)
 {
-	gchar *dirname, *slash_pos;
+	char *dirname, *slash_pos;
 	
 	*filename = gnome_vfs_unescape_string(gnome_vfs_uri_extract_short_name (uri), "");
 	*directory = NULL;
@@ -1768,10 +1770,10 @@ assemble_folders (GList *file_list)
  * fragments into a list of files
  */
 static GList* 
-assemble_files_from_overview (NNTPConnection *conn, gchar *command) 
+assemble_files_from_overview (NNTPConnection *conn, char *command) 
 {
 	GnomeVFSResult result;
-	gchar *line = NULL;
+	char *line = NULL;
 	int message_size;
 	int part_number, total_parts;
 	char* filename, *folder_name, *message_id;
@@ -1937,7 +1939,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		return GNOME_VFS_OK;
 	} else {
 		GnomeVFSMethodHandle *method_handle;
-		gchar *name;
+		char *name;
 		
 		result = do_open_directory (method, &method_handle, parent,
 					    options, context);
