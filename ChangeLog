@@ -1,4 +1,11 @@
 2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+	
+	* modules/vfolder/vfolder-info.c: properly ignore // which can
+	appear in <ItemDir> elements
+	* modules/vfolder/vfolder-util.h: fixes debug macro so that it compiles
+	with gcc 3.3
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
 
 	* test/test-mime-handlers.c: free all allocated memory before exiting
 	to make valgrind happy (and to identify the leaks which are truly
