@@ -1,6 +1,6 @@
 2001-01-30  John Sullivan  <sullivan@eazel.com>
 
-	reviewed by: <delete if not using a buddy>
+	reviewed by: Darin Adler <darin@eazel.com>
 
 	Fixed bug 5842 ("file://home" converted to "home")
 
