@@ -13,6 +13,11 @@
 
 2004-10-18  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-hal-mounts.c (_hal_get_drive_name):
+	Use utf8 +/- char, not latin1.
+
+2004-10-18  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c (handle_attribute):
 	Remove some debug spew.
 
