@@ -807,9 +807,9 @@ text/*
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_application_ids_for_novice_user_level=gedit,xfte
-	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
-	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	short_list_application_ids_for_novice_user_level=gedit,pico
+	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte,pico
+	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte,pico
 
 # also application/x-abiword
 text/abiword
@@ -861,9 +861,9 @@ text/plain
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_application_ids_for_novice_user_level=gedit
-	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
-	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	short_list_application_ids_for_novice_user_level=gedit,pico
+	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte,pico
+	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte,pico
 
 text/rfc822-headers
 	_description=email headers

@@ -294,3 +294,10 @@ xfig
 	requires_terminal=false
 	mime_types=image/x-xfig
 
+pico
+	command=jpico --help
+	name=jpico
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=true
+	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-perl
