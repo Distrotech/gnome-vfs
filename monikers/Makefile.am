@@ -1,11 +1,10 @@
 INCLUDES = \
-	-I..					\
-	-I$(srcdir)/..				\
-	$(WARN_CFLAGS)				\
+	-I$(topsrcdir)				\
+	-I$(topbuilddir)			\
+	$(VFS_CFLAGS)				\
 	$(BONOBO_CFLAGS)			\
-	-Wno-unused				\
 	-DVERSION=\""$(VERSION)"\"		\
-	-DG_LOG_DOMAIN=\"GnomeMonikers\"
+	-DG_LOG_DOMAIN=\"GnomeVFSMonikers\"
 
 EXTRA_DIST = \
 	GNOME_VFS_Moniker_std.oaf.in.in
@@ -13,9 +12,10 @@ EXTRA_DIST = \
 moniker_LTLIBRARIES = libmoniker_gnome_vfs_std.la
 monikerdir = $(libdir)/bonobo/monikers
 
-GNOME_VFS_Moniker_std.oaf.in : $(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in
+GNOME_VFS_Moniker_std.oaf.in: $(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in
 	sed -e "s|\@MONIKER_LIBDIR\@|$(monikerdir)|" \
-	 $(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in > GNOME_VFS_Moniker_std.oaf.in
+		$(srcdir)/GNOME_VFS_Moniker_std.oaf.in.in \
+		> GNOME_VFS_Moniker_std.oaf.in
 
 CLEANFILES+=GNOME_VFS_Moniker_std.oaf GNOME_VFS_Moniker_std.oaf.in
 
