@@ -1,3 +1,9 @@
+2004-01-23  Alexander Larsson  <alexl@redhat.com>
+        (backport from HEAD committed by Christophe Fergeau)
+	
+        * schemas/Makefile.am:
+        Dist .schemas files, only clean them on maintainer-clean.
+	
 2004-01-22  Christophe Fergeau  <teuf@gnome.org>
 
 	Portability patch from "The Written Word", fixes bug #131393

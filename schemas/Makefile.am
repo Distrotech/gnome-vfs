@@ -16,3 +16,5 @@ install-data-local:
 endif
 
 EXTRA_DIST = $(schema_DATA)
+
+MAINTAINERCLEANFILES = $(schema_DATA)
