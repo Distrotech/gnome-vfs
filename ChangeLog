@@ -1,3 +1,9 @@
+2003-10-31  Stanislav Brabec  <sbrabec@suse.cz>
+
+	* modules/vfolder/vfolder-info.c: Fixed special case for
+	 applications-all-users with paths specified in $GNOME2_PATH (bug
+	 #108665).
+
 2003-10-27  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-async-daemon.c:
