@@ -62,7 +62,6 @@ noinst_HEADERS =				\
 	gnome-vfs-private-utils.h		\
 	gnome-vfs-private.h			\
 	gnome-vfs-process.h			\
-	gnome-vfs-pthread.h			\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
 	$(NULL)
@@ -150,7 +149,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-private.c			\
 	gnome-vfs-process.c			\
-	gnome-vfs-pthread.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-socket.c			\

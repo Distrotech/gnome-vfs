@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-thread-pool.h"
 #include "gnome-vfs-job-queue.h"
-#include "gnome-vfs-pthread.h"
 #include <libgnomevfs/gnome-vfs-job-limit.h>
 #include <glib/glist.h>
 #include <glib/gmessages.h>
@@ -38,9 +37,9 @@
 #endif
 
 typedef struct {
-	pthread_t thread_id;
-	pthread_mutex_t waiting_for_work_lock;
-	pthread_cond_t waiting_for_work_lock_condition;
+	GThread *thread;
+	GMutex *waiting_for_work_lock;
+	GCond *waiting_for_work_lock_condition;
 	
 	void *(* entry_point) (void *);
 	void *entry_data;
@@ -48,7 +47,7 @@ typedef struct {
 	volatile gboolean exit_requested;
 } GnomeVFSThreadState;
 
-static pthread_mutex_t thread_list_lock;
+static GStaticMutex thread_list_lock = G_STATIC_MUTEX_INIT;
 
 static const int MAX_AVAILABLE_THREADS = 20; 
 static GList *available_threads;
@@ -60,33 +59,30 @@ static void destroy_thread_state (GnomeVFSThreadState *state);
 void 
 gnome_vfs_thread_pool_init (void)
 {
-	gnome_vfs_pthread_recursive_mutex_init (&thread_list_lock);
 }
 
 static GnomeVFSThreadState *
 new_thread_state (void)
 {
 	GnomeVFSThreadState *state;
-	int result;
-	pthread_attr_t thread_attributes;
+	GError *error;
 	
 	state = g_new0 (GnomeVFSThreadState, 1);
-	
-	pthread_mutex_init (&state->waiting_for_work_lock, NULL);	
-	pthread_cond_init (&state->waiting_for_work_lock_condition, NULL);
 
-	pthread_attr_init (&thread_attributes);
-	pthread_attr_setdetachstate (&thread_attributes, PTHREAD_CREATE_DETACHED);
+	state->waiting_for_work_lock = g_mutex_new ();
+	state->waiting_for_work_lock_condition = g_cond_new ();
+
+	error = NULL;
+
 	/* spawn a new thread, call the entry point immediately -- it will block
 	 * until it receives a new entry_point for the first job to execute
 	 */
-	result = pthread_create (&state->thread_id, &thread_attributes, thread_entry, state);
-	pthread_attr_destroy (&thread_attributes);
+	state->thread = g_thread_create (thread_entry, state, FALSE, &error);
 
-	DEBUG_PRINT (("new thread %x\n", (guint)state->thread_id));
+	DEBUG_PRINT (("new thread %p\n", state->thread));
 	
-	if (result != 0) {
-		destroy_thread_state (state);
+	if (error != NULL || !state->thread) {
+		g_error_free (error);
 		return NULL;
 	}
 	
@@ -96,8 +92,8 @@ new_thread_state (void)
 static void
 destroy_thread_state (GnomeVFSThreadState *state)
 {
-	pthread_mutex_destroy (&state->waiting_for_work_lock);
-	pthread_cond_destroy (&state->waiting_for_work_lock_condition);
+	g_mutex_free (state->waiting_for_work_lock);
+	g_cond_free (state->waiting_for_work_lock_condition);
 	g_free (state);
 }
 
@@ -108,12 +104,12 @@ make_thread_available (GnomeVFSThreadState *state)
 	gboolean delete_thread = TRUE;
 	int job_limit;
 
-	pthread_mutex_lock (&state->waiting_for_work_lock);
+	g_mutex_lock (state->waiting_for_work_lock);
 	/* we are done with the last task, clear it out */
 	state->entry_point = NULL;
-	pthread_mutex_unlock (&state->waiting_for_work_lock);
+	g_mutex_unlock (state->waiting_for_work_lock);
 
-	pthread_mutex_lock (&thread_list_lock);
+	g_static_mutex_lock (&thread_list_lock);
 
 	job_limit = gnome_vfs_async_get_job_limit();
 	if (thread_count < MIN(MAX_AVAILABLE_THREADS, job_limit)) {
@@ -123,11 +119,11 @@ make_thread_available (GnomeVFSThreadState *state)
 		available_threads = g_list_prepend (available_threads, state);
 		thread_count++;
 		delete_thread = FALSE;
-		DEBUG_PRINT (("adding thread %x the pool, %d threads\n",
-			      (guint)state->thread_id, thread_count));
+		DEBUG_PRINT (("adding thread %p the pool, %d threads\n",
+			      state->thread, thread_count));
 	}
 
-	pthread_mutex_unlock (&thread_list_lock);
+	g_static_mutex_unlock (&thread_list_lock);
 	
 	return !delete_thread;
 }
@@ -141,24 +137,24 @@ gnome_vfs_thread_pool_wait_for_work (GnomeVFSThreadState *state)
 	 */
 
 	/* Wait to get scheduled to do some work. */
-	DEBUG_PRINT (("thread %x getting ready to wait for work \n",
-		(guint)state->thread_id));
+	DEBUG_PRINT (("thread %p getting ready to wait for work \n",
+		      state->thread));
 
-	pthread_mutex_lock (&state->waiting_for_work_lock);
+	g_mutex_lock (state->waiting_for_work_lock);
 	if (state->entry_point != NULL) {
-		DEBUG_PRINT (("thread %x ready to work right away \n",
-			(guint)state->thread_id));
+		DEBUG_PRINT (("thread %p ready to work right away \n",
+			      state->thread));
 	} else {
 		while (state->entry_point == NULL) {
 			/* Don't have any work yet, wait till we get some. */
-			DEBUG_PRINT (("thread %x waiting for work \n", (guint)state->thread_id));
-			pthread_cond_wait (&state->waiting_for_work_lock_condition,
-				&state->waiting_for_work_lock);
+			DEBUG_PRINT (("thread %p waiting for work \n", state->thread));
+			g_cond_wait (state->waiting_for_work_lock_condition,
+				     state->waiting_for_work_lock);
 		}
 	}
 
-	pthread_mutex_unlock (&state->waiting_for_work_lock);
-	DEBUG_PRINT (("thread %x woken up\n", (guint)state->thread_id));
+	g_mutex_unlock (state->waiting_for_work_lock);
+	DEBUG_PRINT (("thread %p woken up\n", state->thread));
 }
 
 static void *
@@ -189,7 +185,7 @@ thread_entry (void *cast_to_state)
 		/* We're finished with this job so run the job queue scheduler 
 		 * to start a new job if the queue is not empty
 		 */
-		gnome_vfs_job_queue_run();
+		gnome_vfs_job_queue_run ();
 	}
 
 	destroy_thread_state (state);
@@ -197,12 +193,12 @@ thread_entry (void *cast_to_state)
 }
 
 int 
-gnome_vfs_thread_create (pthread_t *thread, void *(* thread_routine) (void *),
-	void *thread_arguments)
+gnome_vfs_thread_create (void *(* thread_routine) (void *),
+			 void *thread_arguments)
 {
 	GnomeVFSThreadState *available_thread;
 	
-	pthread_mutex_lock (&thread_list_lock);
+	g_static_mutex_lock (&thread_list_lock);
 	if (available_threads == NULL) {
 		/* Thread pool empty, create a new thread. */
 		available_thread = new_thread_state ();
@@ -211,10 +207,10 @@ gnome_vfs_thread_create (pthread_t *thread, void *(* thread_routine) (void *),
 		available_thread = (GnomeVFSThreadState *)available_threads->data;
 		available_threads = g_list_remove (available_threads, available_thread);
 		thread_count--;
-		DEBUG_PRINT (("got thread %x from the pool, %d threads left\n",
-			(guint)available_thread->thread_id, thread_count));
+		DEBUG_PRINT (("got thread %p from the pool, %d threads left\n",
+			      available_thread->thread, thread_count));
 	}
-	pthread_mutex_unlock (&thread_list_lock);
+	g_static_mutex_unlock (&thread_list_lock);
 	
 	if (available_thread == NULL) {
 		/* Failed to allocate a new thread. */
@@ -222,20 +218,17 @@ gnome_vfs_thread_create (pthread_t *thread, void *(* thread_routine) (void *),
 	}
 	
 	/* Lock it so we can condition-signal it next. */
-	pthread_mutex_lock (&available_thread->waiting_for_work_lock);
+	g_mutex_lock (available_thread->waiting_for_work_lock);
 
 	/* Prepare work for the thread. */
 	available_thread->entry_point = thread_routine;
 	available_thread->entry_data = thread_arguments;
-	
-	*thread = available_thread->thread_id;
-	
+
 	/* Unleash the thread. */
-	DEBUG_PRINT (("waking up thread %x\n", (guint)available_thread->thread_id));
-	pthread_cond_signal (&available_thread->waiting_for_work_lock_condition);
-	pthread_mutex_unlock (&available_thread->waiting_for_work_lock);
-	
-	
+	DEBUG_PRINT (("waking up thread %p\n", available_thread->thread));
+	g_cond_signal (available_thread->waiting_for_work_lock_condition);
+	g_mutex_unlock (available_thread->waiting_for_work_lock);
+
 	return 0;
 }
 
@@ -246,23 +239,23 @@ gnome_vfs_thread_pool_shutdown (void)
 	for (;;) {
 		thread_state = NULL;
 		
-		pthread_mutex_lock (&thread_list_lock);
+		g_static_mutex_lock (&thread_list_lock);
 		if (available_threads != NULL) {
 			/* Pick the next thread from the list. */
 			thread_state = (GnomeVFSThreadState *)available_threads->data;
 			available_threads = g_list_remove (available_threads, thread_state);
 		}
-		pthread_mutex_unlock (&thread_list_lock);
+		g_static_mutex_unlock (&thread_list_lock);
 		
 		if (thread_state == NULL) {
 			break;
 		}
 		
-		pthread_mutex_lock (&thread_state->waiting_for_work_lock);
+		g_mutex_lock (thread_state->waiting_for_work_lock);
 		/* Tell the thread to expire. */
 		thread_state->exit_requested = TRUE;
-		pthread_cond_signal (&thread_state->waiting_for_work_lock_condition);
-		pthread_mutex_unlock (&thread_state->waiting_for_work_lock);
+		g_cond_signal (thread_state->waiting_for_work_lock_condition);
+		g_mutex_unlock (thread_state->waiting_for_work_lock);
 	}
 }
 

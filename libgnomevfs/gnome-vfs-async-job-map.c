@@ -24,27 +24,24 @@
 #include "gnome-vfs-async-job-map.h"
 
 #include "gnome-vfs-job.h"
-#include "gnome-vfs-pthread.h"
 #include <glib/ghash.h>
 #include <glib/gmessages.h>
 
 static GHashTable *async_job_map;
 static guint async_job_map_next_id;
-static pthread_mutex_t async_job_map_lock;
-gboolean async_job_map_locked;
+static GStaticRecMutex async_job_map_lock = G_STATIC_REC_MUTEX_INIT;
+static gboolean async_job_map_locked;
 volatile static gboolean async_job_map_shutting_down;
 
 static GHashTable *async_job_callback_map;
 static guint async_job_callback_map_next_id;
-pthread_mutex_t async_job_callback_map_lock;
+static GStaticMutex async_job_callback_map_lock = G_STATIC_MUTEX_INIT;
 
 void async_job_callback_map_destroy (void);
 
 void 
 gnome_vfs_async_job_map_init (void)
 {
-	gnome_vfs_pthread_recursive_mutex_init (&async_job_map_lock);
-	pthread_mutex_init (&async_job_callback_map_lock, NULL);
 }
 
 GnomeVFSJob *
@@ -154,7 +151,7 @@ gnome_vfs_async_job_map_shutdown (void)
 void 
 gnome_vfs_async_job_map_lock (void)
 {
-	pthread_mutex_lock (&async_job_map_lock);
+	g_static_rec_mutex_lock (&async_job_map_lock);
 	async_job_map_locked = TRUE;
 }
 
@@ -162,7 +159,7 @@ void
 gnome_vfs_async_job_map_unlock (void)
 {
 	async_job_map_locked = FALSE;
-	pthread_mutex_unlock (&async_job_map_lock);
+	g_static_rec_mutex_unlock (&async_job_map_lock);
 }
 
 void 
@@ -183,7 +180,7 @@ gnome_vfs_async_job_callback_valid (guint callback_id, gboolean *valid,
 		*cancelled = FALSE;
 	}
 
-	pthread_mutex_lock (&async_job_callback_map_lock);
+	g_static_mutex_lock (&async_job_callback_map_lock);
 
 	notify_result = (GnomeVFSNotifyResult *) g_hash_table_lookup
 		(async_job_callback_map, GUINT_TO_POINTER (callback_id));
@@ -191,7 +188,7 @@ gnome_vfs_async_job_callback_valid (guint callback_id, gboolean *valid,
 	*valid = notify_result != NULL;
 	*cancelled = notify_result != NULL && notify_result->cancelled;
 
-	pthread_mutex_unlock (&async_job_callback_map_lock);
+	g_static_mutex_unlock (&async_job_callback_map_lock);
 }
 
 gboolean 
@@ -207,7 +204,7 @@ gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify
 
 	JOB_DEBUG (("adding callback %d ", notify_result->callback_id));
 
-	pthread_mutex_lock (&async_job_callback_map_lock);
+	g_static_mutex_lock (&async_job_callback_map_lock);
 	
 	if (async_job_callback_map == NULL) {
 		/* First job, allocate a new hash table. */
@@ -223,7 +220,7 @@ gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify
 		g_hash_table_insert (async_job_callback_map, GUINT_TO_POINTER (notify_result->callback_id),
 			notify_result);
 	}
-	pthread_mutex_unlock (&async_job_callback_map_lock);
+	g_static_mutex_unlock (&async_job_callback_map_lock);
 	
 	return !cancelled;
 }
@@ -234,9 +231,9 @@ gnome_vfs_async_job_remove_callback (guint callback_id)
 	g_assert (async_job_callback_map != NULL);
 
 	JOB_DEBUG (("removing callback %d ", callback_id));
-	pthread_mutex_lock (&async_job_callback_map_lock);
+	g_static_mutex_lock (&async_job_callback_map_lock);
 	g_hash_table_remove (async_job_callback_map, GUINT_TO_POINTER (callback_id));
-	pthread_mutex_unlock (&async_job_callback_map_lock);
+	g_static_mutex_unlock (&async_job_callback_map_lock);
 }
 
 static void
@@ -257,7 +254,7 @@ callback_map_cancel_one (gpointer key, gpointer value, gpointer user_data)
 void
 gnome_vfs_async_job_cancel_job_and_callbacks (GnomeVFSAsyncHandle *job_handle, GnomeVFSJob *job)
 {
-	pthread_mutex_lock (&async_job_callback_map_lock);
+	g_static_mutex_lock (&async_job_callback_map_lock);
 	
 	if (job != NULL) {
 		job->cancelled = TRUE;
@@ -271,7 +268,7 @@ gnome_vfs_async_job_cancel_job_and_callbacks (GnomeVFSAsyncHandle *job_handle, G
 				      callback_map_cancel_one, job_handle);
 	}
 
-	pthread_mutex_unlock (&async_job_callback_map_lock);
+	g_static_mutex_unlock (&async_job_callback_map_lock);
 }
 
 void
@@ -279,8 +276,8 @@ async_job_callback_map_destroy (void)
 {
 	g_assert (async_job_callback_map != NULL);
 
-	pthread_mutex_lock (&async_job_callback_map_lock);
+	g_static_mutex_lock (&async_job_callback_map_lock);
 	g_hash_table_destroy (async_job_callback_map);
 	async_job_callback_map = NULL;
-	pthread_mutex_unlock (&async_job_callback_map_lock);
+	g_static_mutex_unlock (&async_job_callback_map_lock);
 }
