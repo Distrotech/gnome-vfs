@@ -1,3 +1,7 @@
+2004-02-03  Federico Mena Quintero  <federico@ximian.com>
+
+	* gtk/: New directory for GtkFilesystemGnomeVFS.
+
 2004-01-30  Tomasz K³oczko <kloczek@pld.org.pl>
 
 	* daemon/Makefile.am: fixes for "make install DESTDIR=</install/prefix>".
