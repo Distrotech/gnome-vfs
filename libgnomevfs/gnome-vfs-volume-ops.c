@@ -24,6 +24,7 @@
 #include <config.h>
 
 #include <string.h>
+#include <stdlib.h>
 #include <pthread.h>
 #include <libbonobo.h>
 #include <gconf/gconf-client.h>
@@ -355,40 +356,75 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 	}
 }
 
-static gboolean
-unmount_connected_server (GnomeVFSVolume *volume)
+static void
+unmount_connected_server (GnomeVFSVolume *volume,
+			  GnomeVFSVolumeOpCallback  callback,
+			  gpointer                   user_data)
 {
 	GConfClient *client;
 	gboolean res;
 	char *key;
+	gboolean success;
+	char *detailed_error;
+	GError *error;
+
+	success = TRUE;
+	detailed_error = NULL;
 	
 	client = gconf_client_get_default ();
-	
+
 	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
 			   volume->priv->gconf_id,
 			   "/uri", NULL);
-	res = gconf_client_unset (client, key, NULL);
+	error = NULL;
+	res = gconf_client_unset (client, key, &error);
 	g_free (key);
+	if (!res) {
+		if (success) {
+			detailed_error = g_strdup (error->message);
+		}
+		success = FALSE;
+		g_error_free (error);
+	}
 	
 	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
 			   volume->priv->gconf_id,
 			   "/icon", NULL);
-	res = res  && gconf_client_unset (client, key, NULL);
+	res = gconf_client_unset (client, key, &error);
 	g_free (key);
+	if (!res) {
+		if (success) {
+			detailed_error = g_strdup (error->message);
+		}
+		success = FALSE;
+		g_error_free (error);
+	}
 	
 	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
 			   volume->priv->gconf_id,
 			   "/display_name", NULL);
-	res = res && gconf_client_unset (client, key, NULL);
+	res = gconf_client_unset (client, key, &error);
 	g_free (key);
-
-	g_object_unref (client);
+	if (!res) {
+		if (success) {
+			detailed_error = g_strdup (error->message);
+		}
+		success = FALSE;
+		g_error_free (error);
+	}
 	
-	return res;
+	g_object_unref (client);
+
+	if (success) {
+		(*callback) (success, NULL, NULL, user_data);
+	} else {
+		(*callback) (success, _("Unable to unmount connected server"), detailed_error, user_data);
+	}
+	g_free (detailed_error);
 }
 
 
-gboolean
+void
 gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 			  GnomeVFSVolumeOpCallback  callback,
 			  gpointer                   user_data)
@@ -413,12 +449,11 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 		g_free (mount_path);
 		g_free (device_path);
 	} else {
-		return unmount_connected_server (volume);
+		unmount_connected_server (volume, callback, user_data);
 	}
-	return TRUE;
 }
 
-gboolean
+void
 gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 			GnomeVFSVolumeOpCallback  callback,
 			gpointer                   user_data)
@@ -443,12 +478,11 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 		g_free (mount_path);
 		g_free (device_path);
 	} else {
-		return unmount_connected_server (volume);
+		unmount_connected_server (volume, callback, user_data);
 	}
-	return TRUE;
 }
 
-gboolean
+void
 gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 		       GnomeVFSVolumeOpCallback  callback,
 		       gpointer                   user_data)
@@ -466,10 +500,9 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 				 callback, user_data);
 	g_free (mount_path);
 	g_free (device_path);
-	return TRUE;
 }
 
-gboolean
+void
 gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 			 GnomeVFSVolumeOpCallback  callback,
 			 gpointer                   user_data)
@@ -496,11 +529,9 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 	g_free (mount_path);
 	g_free (device_path);
 	gnome_vfs_volume_unref (volume);
-	
-	return TRUE;
 }
 
-gboolean
+void
 gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 		       GnomeVFSVolumeOpCallback  callback,
 		       gpointer                   user_data)
@@ -527,7 +558,61 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 	g_free (mount_path);
 	g_free (device_path);
 	gnome_vfs_volume_unref (volume);
-	
-	return TRUE;
 }
 
+
+void
+gnome_vfs_connect_to_server (char                     *uri,
+			     char                     *display_name,
+			     char                     *icon)
+{
+	GConfClient *client;
+	GSList *dirs, *l;
+	char *dir, *dir_id;
+	int max_id, gconf_id;
+	char *key;
+	char *id;
+
+	client = gconf_client_get_default ();
+
+	max_id = 0;
+	dirs = gconf_client_all_dirs (client,
+				      CONNECTED_SERVERS_DIR, NULL);
+	for (l = dirs; l != NULL; l = l->next) {
+		dir = l->data;
+
+		dir_id = strrchr (dir, '/');
+		if (dir_id != NULL) {
+			dir_id++;
+			gconf_id = strtol (dir_id, NULL, 10);
+			max_id = MAX (max_id, gconf_id);
+		}
+		
+		g_free (dir);
+	}
+	g_slist_free (dirs);
+
+	id = g_strdup_printf ("%d", max_id + 1);
+	
+	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
+			   id,
+			   "/icon", NULL);
+	gconf_client_set_string (client, key, icon, NULL);
+	g_free (key);
+	
+	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
+			   id,
+			   "/display_name", NULL);
+	gconf_client_set_string (client, key, display_name, NULL);
+	g_free (key);
+
+	/* Uri key creation triggers creation, do this last */
+	key = g_strconcat (CONNECTED_SERVERS_DIR "/",
+			   id,
+			   "/uri", NULL);
+	gconf_client_set_string (client, key, uri, NULL);
+	g_free (key);
+	
+	g_free (id);
+	g_object_unref (client);
+}

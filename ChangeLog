@@ -1,3 +1,17 @@
+2003-11-06  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-drive.[ch]:
+	Add new function gnome_vfs_drive_is_mounted
+	
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* libgnomevfs/gnome-vfs-volume.h:
+	Fix up server unmount
+	slight api change for volume ops
+	new function gnome_vfs_connect_to_server
+	
+	* modules/computer-method.c: (fill_root):
+	No home in computer
+
 2003-11-05  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

@@ -332,9 +332,12 @@ fill_root (ComputerDir *dir)
 	
 	monitor = gnome_vfs_get_volume_monitor ();
 
+#if 0
+	/* Don't want home in computer:// */
 	file = computer_file_new (COMPUTER_HOME_LINK);
 	file->file_name = g_strdup ("Home.desktop");
 	computer_file_add (dir, file);
+#endif
 	
 	file = computer_file_new (COMPUTER_ROOT_LINK);
 	file->file_name = g_strdup ("Filesystem.desktop");

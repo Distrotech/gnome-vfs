@@ -202,6 +202,19 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 	return vol;
 }
 
+gboolean
+gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
+{
+	gboolean res;
+	
+	G_LOCK (drives);
+	res = drive->priv->volume != NULL;
+	G_UNLOCK (drives);
+	
+	return res;
+}
+
+
 void
 _gnome_vfs_drive_unset_volume (GnomeVFSDrive      *drive,
 			       GnomeVFSVolume     *volume)

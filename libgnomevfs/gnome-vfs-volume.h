@@ -110,12 +110,15 @@ gint               gnome_vfs_volume_compare             (GnomeVFSVolume *a,
 							 GnomeVFSVolume *b);
 
 
-gboolean gnome_vfs_volume_unmount (GnomeVFSVolume            *volume,
-				   GnomeVFSVolumeOpCallback   callback,
-				   gpointer                   user_data);
-gboolean gnome_vfs_volume_eject   (GnomeVFSVolume            *volume,
-				   GnomeVFSVolumeOpCallback   callback,
-				   gpointer                   user_data);
+void gnome_vfs_volume_unmount    (GnomeVFSVolume           *volume,
+				  GnomeVFSVolumeOpCallback  callback,
+				  gpointer                  user_data);
+void gnome_vfs_volume_eject      (GnomeVFSVolume           *volume,
+				  GnomeVFSVolumeOpCallback  callback,
+				  gpointer                  user_data);
+void gnome_vfs_connect_to_server (char                     *uri,
+				  char                     *display_name,
+				  char                     *icon);
 
 G_END_DECLS
 
