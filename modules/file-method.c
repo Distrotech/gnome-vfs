@@ -254,7 +254,9 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 	do
 		fd = OPEN (file_name, unix_mode);
-	while (fd == -1 && errno == EINTR);
+	while (fd == -1
+	       && errno == EINTR
+	       && ! gnome_vfs_cancellation_check (cancellation));
 
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
@@ -307,7 +309,9 @@ do_create (GnomeVFSMethodHandle **method_handle,
 
 	do
 		fd = OPEN (uri->text, unix_mode, perm);
-	while (fd == -1 && errno == EINTR);
+	while (fd == -1
+	       && errno == EINTR
+	       && ! gnome_vfs_cancellation_check (cancellation));
 
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
@@ -332,7 +336,9 @@ do_close (GnomeVFSMethodHandle *method_handle,
 
 	do
 		close_retval = close (file_handle->fd);
-	while (close_retval != 0 && errno == EINTR);
+	while (close_retval != 0
+	       && errno == EINTR
+	       && ! gnome_vfs_cancellation_check (cancellation));
 
 	/* FIXME: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
@@ -359,7 +365,9 @@ do_read (GnomeVFSMethodHandle *method_handle,
 
 	do
 		read_val = read (file_handle->fd, buffer, num_bytes);
-	while (read_val == -1 && errno == EINTR);
+	while (read_val == -1
+	       && errno == EINTR
+	       && ! gnome_vfs_cancellation_check (cancellation));
 
 	if (read_val == -1) {
 		*bytes_read = 0;
@@ -386,7 +394,9 @@ do_write (GnomeVFSMethodHandle *method_handle,
 
 	do
 		write_val = write (file_handle->fd, buffer, num_bytes);
-	while (write_val == -1 && errno == EINTR);
+	while (write_val == -1
+	       && errno == EINTR
+	       && ! gnome_vfs_cancellation_check (cancellation));
 
 	if (write_val == -1) {
 		*bytes_written = 0;

@@ -1,5 +1,14 @@
 1999-10-12  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/file-method.c (do_open): When getting `EINTR', do not
+	restart the operation if a cancellation is pending.
+	(do_create): Likewise.
+	(do_close): Likewise.
+	(do_read): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (dispatch_job_callback):
+	Slightly made cleaner.
+
 	* TODO: Updated.
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open): Use

@@ -288,69 +288,203 @@ void vfs_module_shutdown (GnomeVFSMethod *method);</programlisting>
 
 GnomeVFSResult (* open)              (GnomeVFSMethodHandle **method_handle_return,
                                       GnomeVFSURI *uri,
-                                      GnomeVFSOpenMode mode);
+                                      GnomeVFSOpenMode mode
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* create)            (GnomeVFSMethodHandle **method_handle_return,
                                       GnomeVFSURI *uri,
                                       GnomeVFSOpenMode mode,
                                       gboolean exclusive,
-                                      guint perm);
+                                      guint perm
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* close)             (GnomeVFSMethodHandle *method_handle);
+GnomeVFSResult (* close)             (GnomeVFSMethodHandle *method_handle
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* read)              (GnomeVFSMethodHandle *method_handle,
                                       gpointer buffer,
                                       GnomeVFSFileSize num_bytes,
-                                      GnomeVFSFileSize *bytes_read_return);
+                                      GnomeVFSFileSize *bytes_read_return
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* write)             (GnomeVFSMethodHandle *method_handle,
                                       gconstpointer buffer,
                                       GnomeVFSFileSize num_bytes,
-                                      GnomeVFSFileSize *bytes_written_return);
+                                      GnomeVFSFileSize *bytes_written_return
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* seek)              (GnomeVFSMethodHandle *method_handle,
                                       GnomeVFSSeekPosition  whence,
-                                      GnomeVFSFileOffset    offset);
+                                      GnomeVFSFileOffset    offset
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* tell)              (GnomeVFSMethodHandle *method_handle,
                                       GnomeVFSFileOffset *offset_return);
 
 GnomeVFSResult (* truncate)          (GnomeVFSMethodHandle *method_handle,
-                                      GnomeVFSFileSize where);
+                                      GnomeVFSFileSize where
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* open_directory)    (GnomeVFSMethodHandle **method_handle,
                                       GnomeVFSURI *uri,
                                       GnomeVFSFileInfoOptions options,
                                       const GList *meta_keys,
-                                      const GnomeVFSDirectoryFilter *filter);
+                                      const GnomeVFSDirectoryFilter *filter
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* close_directory)   (GnomeVFSMethodHandle *method_handle);
+GnomeVFSResult (* close_directory)   (GnomeVFSMethodHandle *method_handle
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* read_directory)    (GnomeVFSMethodHandle *method_handle,
-                                      GnomeVFSFileInfo *file_info);
+                                      GnomeVFSFileInfo *file_info
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* get_file_info)     (GnomeVFSURI *uri,
                                       GnomeVFSFileInfo *file_info,
                                       GnomeVFSFileInfoOptions options,
-                                      const GList *meta_keys);
+                                      const GList *meta_keys
+                                      GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult (* get_file_info_from_handle)
-				     (GnomeVFSMethodHandle *method_handle,
+                                     (GnomeVFSMethodHandle *method_handle,
                                       GnomeVFSFileInfo *file_info,
                                       GnomeVFSFileInfoOptions options,
-                                      const GList *meta_keys);
+                                      const GList *meta_keys
+                                      GnomeVFSCancellation *cancellation);
 
-gboolean       (* is_local)          (const GnomeVFSURI *uri);
+gboolean       (* is_local)          (const GnomeVFSURI *uri
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* rename)            (GnomeVFSURI *uri, const gchar *new_name);
+GnomeVFSResult (* rename)            (GnomeVFSURI *uri, const gchar *new_name
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* make_directory)    (GnomeVFSURI *uri, guint perm);
+GnomeVFSResult (* make_directory)    (GnomeVFSURI *uri, guint perm
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* remove_directory)  (GnomeVFSURI *uri);
+GnomeVFSResult (* remove_directory)  (GnomeVFSURI *uri
+                                      GnomeVFSCancellation *cancellation);
 
-GnomeVFSResult (* unlink)            (GnomeVFSURI *uri);
+GnomeVFSResult (* unlink)            (GnomeVFSURI *uri
+                                      GnomeVFSCancellation *cancellation);
 </programlisting>
 
+    </sect2>
+
+  </sect1>
+
+  <sect1>
+    <title>Handling cancellation</title>
+
+    <para>As VFS operations might be very long, especially in the case
+    of transient errors (such as a network server that has gone down),
+    the GNOME Virtual File System Library provides a standard way for
+    handling cancellation of VFS operations.</para>
+
+    <sect2>
+      <title>The <structname>GnomeVFSCancellation</structname> object</title>
+    
+      <para>The object that encapsulates this functionality is
+      <structname>GnomeVFSCancellation</structname>.  Most
+      implementation functions get a pointer to such an object, and are
+      expected to use this object to recognize when an operation should
+      be interrupted.</para>
+  
+      <para>The most simple way to check for a cancellation request is
+      to poll the object with
+      <function>gnome_vfs_cancellation_check()</function>:</para>
+  
+      <programlisting role="c">
+  
+gboolean gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation);</programlisting>
+  
+      <para>This function will return a nonzero value if the current
+      operation should be cancelled.</para>
+  
+      <para>Notice that cancellation is an asynchronous operation that
+      might happen outside your function, in parallel with the code that
+      you are writing.  For example, in the case of threads, the request
+      will be set in the master thread; in the case of slave
+      CORBA-driven processes, the request will be activated by a Unix
+      signal.  So you can expect a cancellation request to happen (and
+      consequently be signalled in
+      <structname>GnomeVFSCancellation</structname>) at any time.</para>
+
+      <para>For this reason, you should be calling this function
+      periodically, whenever you are going to perform several
+      iterations of the same task, or execute a single expensive task.
+      When the function returns a nonzero value, the correct way to
+      react is:</para>
+
+      <orderedlist>
+        <listitem><para>Clean things up so that the result of the
+        operations that have been performed are all
+        cancelled.</para></listitem>
+
+        <listitem<para>>Return the
+        <symbol>GNOME_VFS_ERROR_CANCELLED</symbol> error
+        code.</para></listitem>
+      </orderedlist>
+
+      <para>But there are some other situations in which you want to
+      be able to interrupt a I/O operation when a cancellation request
+      is performed.  In such cases, polling is not a viable option.</para>
+
+      <para>For this reason,
+      <structname>GnomeVFSCancellation</structname> provides an
+      alternative way of sending notifications, using a file
+      descriptor.  To use this feature, you should use the following
+      function:</para>
+
+      <programlisting>
+
+gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </programlisting>
+
+      <para>When this function is called, it will return an open file
+      descriptor, which is the read-side of a pipe.  The pipe will be
+      given a character from the write side as soon as a cancellation
+      request is sent.  For this reason, you can check for a
+      cancellation by using the <function>select()</function> system
+      call: as soon as <function>select</function> reports that some
+      data is available on the file descriptor, you know that a
+      cancellation is being requested.</para>
+
+      <para>For example, if you are reading from a file descriptor and
+      you want to check for a pending cancellation at the same time,
+      you can set up <function>select</function>for checking if data
+      is available on both the cancellation file descriptor and the
+      file descriptor you are reading from.</para>
+    </sect2>
+
+    <sect2>
+      <title>Dealing with <symbol>EINTR</symbol></title>
+
+      <para>In order to maximize the chance of cancelling an operation
+      immediately, the GNOME Virtual File System can sends a signal to
+      the asynchronous thread or process.  This does not happen on all
+      the systems and setups, though.</para>
+
+      <para>The result of this is that, if a process is in the middle
+      of a Unix system call while receiving this signal, the system
+      call might be interrupted and return a <symbol>EINTR</symbol>
+      error.</para>
+
+      <para>For this reason, when you receive <symbol>EINTR</symbol>
+      you should check if a cancellation request is pending, using
+      <function>gnome_vfs_cancellation_check()</function> on the
+      <structname>GnomeVFSCancellation</structname> object that the
+      implementation function received:</para>
+
+      <itemizedlist>
+        <listitem><para>If a cancellation is indeed pending
+        (<function>gnome_vfs_cancellation_check()</function> returns a
+        nonzero value), you should cancel the operation, cleaning up
+        all the effects, and return
+        <symbol>GNOME_VFS_ERROR_INTERRUPTED</symbol> or
+        <symbol>GNOME_VFS_ERROR_CANCELLED</symbol></para></listitem>
+
+        <listitem><para>Otherwise, retry the system call as you would
+        normally do.</para></listitem>
+      </itemizedlist>
     </sect2>
 
   </sect1>
@@ -369,6 +503,13 @@ GnomeVFSResult (* unlink)            (GnomeVFSURI *uri);
       will happen.  As debugging these problems can be very hard, it's
       important to write the code with threads in mind right from the
       start.</para></listitem>
+
+      <listitem><para>Use the special
+      <function>gnome_vfs_*_cancellable()</function> VFS functions
+      instead of the standard non-cancellable ones, passing them the
+      same <structname>GnomeVFSCancellation</structname> object you
+      are given, so that the operation can always be interrrupted at
+      any time.</para></listitem>
 
       <listitem><para>The code should respect the basic GNOME
       guidelines for source code indentation and

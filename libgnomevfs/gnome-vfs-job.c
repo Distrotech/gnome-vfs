@@ -335,48 +335,48 @@ dispatch_job_callback (GIOChannel *source,
 
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
 
+	/* First check if we are being cancelled.  If so, we have to kill the
+           job (i.e. return FALSE) and we are done.  */
 	if (gnome_vfs_cancellation_check (job->cancellation)) {
-		retval = FALSE;
-	} else {
-		retval = TRUE;
+		job_ack_notify (job);
+		return FALSE;
+	}
 
-		switch (job->type) {
-		case GNOME_VFS_JOB_OPEN:
-			dispatch_open_callback (job);
-			break;
-		case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
-			dispatch_open_as_channel_callback (job);
-			break;
-		case GNOME_VFS_JOB_CREATE:
-			dispatch_create_callback (job);
-			break;
-		case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
-			dispatch_create_as_channel_callback (job);
-			break;
-		case GNOME_VFS_JOB_CLOSE:
-			dispatch_close_callback (job);
-			break;
-		case GNOME_VFS_JOB_READ:
-			dispatch_read_callback (job);
-			break;
-		case GNOME_VFS_JOB_WRITE:
-			dispatch_write_callback (job);
-			break;
-		case GNOME_VFS_JOB_LOAD_DIRECTORY:
-			dispatch_load_directory_callback (job);
-			break;
-		case GNOME_VFS_JOB_XFER:
-			dispatch_xfer_callback (job);
-			break;
-		default:
-			g_warning (_("Unknown job ID %d"), job->type);
-			retval = FALSE;
-		}
+	switch (job->type) {
+	case GNOME_VFS_JOB_OPEN:
+		dispatch_open_callback (job);
+		break;
+	case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
+		dispatch_open_as_channel_callback (job);
+		break;
+	case GNOME_VFS_JOB_CREATE:
+		dispatch_create_callback (job);
+		break;
+	case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
+		dispatch_create_as_channel_callback (job);
+		break;
+	case GNOME_VFS_JOB_CLOSE:
+		dispatch_close_callback (job);
+		break;
+	case GNOME_VFS_JOB_READ:
+		dispatch_read_callback (job);
+		break;
+	case GNOME_VFS_JOB_WRITE:
+		dispatch_write_callback (job);
+		break;
+	case GNOME_VFS_JOB_LOAD_DIRECTORY:
+		dispatch_load_directory_callback (job);
+		break;
+	case GNOME_VFS_JOB_XFER:
+		dispatch_xfer_callback (job);
+		break;
+	default:
+		g_warning (_("Unknown job ID %d"), job->type);
+		retval = FALSE;
 	}
 
 	job_ack_notify (job);
-
-	return retval;
+	return TRUE;
 }
 
 
