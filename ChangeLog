@@ -1,3 +1,17 @@
+2002-05-17  Michael Meeks  <michael@ximian.com>
+
+	* test/test-mime.c (main): do a debug_shutdown.
+
+	* test/mime-test-files/small-file: add as regression test,
+	causes the crash below.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c
+	(gnome_vfs_mime_try_one_magic_pattern): check vs. the
+	range_end + pattern_length, not the range_start + pattern_length,
+	otherwise for small files eg. 66 bytes and GnomeMagicEntry of
+	nautilus_link ( range_end == 256, pattern_length == 13), we
+	fairly soon segv in try_one_pattern_on_buffer.
+
 2002-05-17  Anders Carlsson  <andersca@gnu.org>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

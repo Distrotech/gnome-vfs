@@ -521,7 +521,7 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 	int offset;
 
 	if (sniff_buffer->read_whole_file &&
-	    sniff_buffer->buffer_length < magic_entry->range_start + magic_entry->pattern_length) {
+	    sniff_buffer->buffer_length < magic_entry->range_end + magic_entry->pattern_length) {
 		/* There's no place this pattern could actually match */
 		return FALSE;
 	}
@@ -540,8 +540,7 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 								     offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
 					return FALSE;
 				}
-			}
-			else {
+			} else {
 				/* We have the entire file and the pattern won't fit. Return FALSE */
 				return FALSE;
 			}

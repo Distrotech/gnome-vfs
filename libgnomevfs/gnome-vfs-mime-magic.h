@@ -33,11 +33,12 @@ typedef struct _GnomeMagicEntry {
 	char mimetype[48];
 } GnomeMagicEntry;
 
-GnomeMagicEntry *gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents);
+GnomeMagicEntry *gnome_vfs_mime_magic_parse          (const gchar *filename,
+						      gint        *nents);
 
 /* testing calls */
-GnomeMagicEntry *gnome_vfs_mime_test_get_magic_table (const char *table_path);
-void gnome_vfs_mime_dump_magic_table (void);
+GnomeMagicEntry *gnome_vfs_mime_test_get_magic_table (const char  *table_path);
+void             gnome_vfs_mime_dump_magic_table     (void);
 
 G_END_DECLS
 
