@@ -1,24 +1,24 @@
-# Danish translation of gnome-vfs
-# Copyright (C) 1999 Free Software Foundation, Inc.
+# Danish translation of gnome-vfs.
+# Copyright (C) 1999, 2000, 01, 02 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
-# Keld Simonsen <Keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001.
+# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02.
 #
 # Konventioner:
 #
-#   script -> program (såfremt det er muligt, hvad det hidtil har været)
+#   script -> program (sÃ¥fremt det er muligt, hvad det hidtil har vÃ¦ret)
 #   video -> film
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2002-01-29 12:57-0800\n"
-"PO-Revision-Date: 2001-10-28 19:46+02:00\n"
-"Last-Translator: Keld SImonsen <keld@dkuug.dk>\n"
-"Language-Team: Dansk/Danish <dansk@klid.dk>\n"
+"POT-Creation-Date: 2002-01-30 23:54+0100\n"
+"PO-Revision-Date: 2002-01-30 23:50+0100\n"
+"Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
+"Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
@@ -49,7 +49,7 @@ msgstr "Ukendt operationstype %u"
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke oprette ledning til åben GIOChannel: %s"
+msgstr "Kan ikke oprette datakanal til Ã¥ben GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
@@ -63,7 +63,7 @@ msgstr "Operation stoppet"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Kan ikke tolke: %s"
+msgstr "Kan ikke fortolke: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
@@ -97,7 +97,7 @@ msgstr "Ugyldige parametre"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Ikke-understøttet operation"
+msgstr "Ikke-understÃ¸ttet operation"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -107,7 +107,7 @@ msgstr "I/O-fejl"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Ødelagt data"
+msgstr "Ã˜delagte data"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
@@ -117,7 +117,7 @@ msgstr "Ugyldigt format"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Ugyldigt filhåndtag"
+msgstr "Ugyldigt filhÃ¥ndtag"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -127,7 +127,7 @@ msgstr "For stor fil"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Ikke mere plads på enhed"
+msgstr "Ikke mere plads pÃ¥ enhed"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -142,12 +142,12 @@ msgstr "Ugyldig URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Uåbnet fil"
+msgstr "UÃ¥bnet fil"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Ugyldig åbningstilstand"
+msgstr "Ugyldig Ã¥bningstilstand"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -157,17 +157,17 @@ msgstr "Adgang forbudt"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "For mange åbne filer"
+msgstr "For mange Ã¥bne filer"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Slutning på fil"
+msgstr "Slutning pÃ¥ fil"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Ikke et katalog"
+msgstr "Ikke en mappe"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -197,27 +197,27 @@ msgstr "Operation ikke tilladt"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Er et katalog"
+msgstr "Er en mappe"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Ikke nok hukommelse"
+msgstr "Ikke tilstrÃ¦kkelig hukommelse"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Vært ikke fundet"
+msgstr "VÃ¦rt ikke fundet"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Ugyldigt værtsnavn"
+msgstr "Ugyldigt vÃ¦rtsnavn"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Vært har ingen adresse"
+msgstr "VÃ¦rt har ingen adresse"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -232,12 +232,12 @@ msgstr "Operation annulleret"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Kataloget er optaget"
+msgstr "Mappen er optaget"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Kataloget er ikke tomt"
+msgstr "Mappen er ikke tomt"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -252,7 +252,7 @@ msgstr "Skrivebeskyttet filsystem"
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Ikke på det samme filsystem"
+msgstr "Ikke pÃ¥ det samme filsystem"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -262,12 +262,12 @@ msgstr "Navnet er for langt"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Tjeneste ikke tilgængelig"
+msgstr "Tjeneste ikke tilgÃ¦ngelig"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Forespørgsel overflødiggør tjenestens data"
+msgstr "ForespÃ¸rgsel overflÃ¸diggÃ¸r tjenestens data"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -311,29 +311,28 @@ msgstr "Ukendt GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Fandt ikke en gyldig opsÃ¦tningsfil ved %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Brug miljÃ¸variablen %s til at angive en anden placering.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Fabrik for standardprotokolhÃ¥ndtering"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "fil-MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "generel Gnome VFS-protokolhÃ¥ndtering"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Generel fejl"
+msgstr "generel filprotokolhÃ¥ndtering"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio-billede"
@@ -360,7 +359,7 @@ msgstr "Generel fejl"
 #~ msgstr "Adobe skrifttypefil"
 
 #~ msgid "Andrew Toolkit inset"
-#~ msgstr "Andrew værktøjssæt indsæt"
+#~ msgstr "Andrew vÃ¦rktÃ¸jssÃ¦t indsÃ¦t"
 
 #~ msgid "ApplixWare Graphics image"
 #~ msgstr "ApplixWare billede"
@@ -528,7 +527,7 @@ msgstr "Generel fejl"
 #~ msgstr "KIllustrator-dokument"
 
 #~ msgid "KPresenter presentation"
-#~ msgstr "KPresenter-præsentation"
+#~ msgstr "KPresenter-prÃ¦sentation"
 
 #~ msgid "KSpread spreadsheet"
 #~ msgstr "KSpread-regneark"
@@ -636,7 +635,7 @@ msgstr "Generel fejl"
 #~ msgstr "PGN-skakspil"
 
 #~ msgid "PGP keys"
-#~ msgstr "PGP-nøgler "
+#~ msgstr "PGP-nÃ¸gler "
 
 #~ msgid "PGP message"
 #~ msgstr "PGP-meddelelse"
@@ -734,7 +733,7 @@ msgstr "Generel fejl"
 #~ msgid "SV4 CPIP archive (with CRC)"
 #~ msgstr "SV4 CPIP-arkiv (med CRC)"
 
-# billede bedre end kunst i denne sammenhæng
+# billede bedre end kunst i denne sammenhÃ¦ng
 #~ msgid "SVG art"
 #~ msgstr "SVG-billede"
 
@@ -769,13 +768,13 @@ msgstr "Generel fejl"
 #~ msgstr "StarOffice Writer-dokument"
 
 #~ msgid "StarOffice presentation"
-#~ msgstr "StarOffice-præsentation"
+#~ msgstr "StarOffice-prÃ¦sentation"
 
 #~ msgid "StarOffice spreadsheet"
 #~ msgstr "StarOffice-regneark"
 
 #~ msgid "Sun mu-law audio"
-#~ msgstr "Sun µ-law-lydfil"
+#~ msgstr "Sun Âµ-law-lydfil"
 
 #~ msgid "SunOS News font"
 #~ msgstr "SunOS News-skrifttype"
@@ -883,10 +882,10 @@ msgstr "Generel fejl"
 #~ msgstr "simpel lydfil"
 
 #~ msgid "bibliography record"
-#~ msgstr "bibliografisk opføring"
+#~ msgstr "bibliografisk opfÃ¸ring"
 
 #~ msgid "binary program"
-#~ msgstr "binært program"
+#~ msgstr "binÃ¦rt program"
 
 #~ msgid "block device"
 #~ msgstr "blokenhed"
@@ -943,7 +942,7 @@ msgstr "Generel fejl"
 #~ msgstr "gzip-komprimeret fil"
 
 #~ msgid "help page"
-#~ msgstr "hjælpeside"
+#~ msgstr "hjÃ¦lpeside"
 
 #~ msgid "mail delivery report"
 #~ msgstr "leverancerapport for epost"
@@ -1003,7 +1002,7 @@ msgstr "Generel fejl"
 #~ msgstr "rig tekst-dokument"
 
 #~ msgid "search results"
-#~ msgstr "søgeresultat"
+#~ msgstr "sÃ¸geresultat"
 
 #~ msgid "shared library"
 #~ msgstr "delt bibliotek"
