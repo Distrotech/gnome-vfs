@@ -1,3 +1,7 @@
+2001-03-09  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: upped to version 1.0
+
 2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Robin Slomkowski  <rslomkow@eazel.com>
