@@ -1,3 +1,12 @@
+2000-07-24  Fatih Demir	<kabalak@gmx.net>
+
+	* tr.po: Corrected some wrong translations. (->QA).
+
+	* update.pl: I don't think that we're building a nautilus
+		translation in the gnome-vfs module ;)
+
+	* .cvsignore: Added the "messages" file to the ignored ones.	
+
 2000-07-24  Szabolcs BAN <shooby@gnome.hu>
 
 	* hu.po: Updated Hungarian translations.

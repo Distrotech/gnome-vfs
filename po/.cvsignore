@@ -4,6 +4,7 @@
 *.mo
 .deps
 .libs
+messages
 Makefile
 Makefile.in
 POTFILES

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2000-07-12 18:21+0200\n"
-"PO-Revision-Date: 2000-07-12 18:22+0200\n"
+"POT-Creation-Date: 2000-07-24 12:40+0200\n"
+"PO-Revision-Date: 2000-07-24 12:41+0200\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "%s : %d modül ismini içermiyor ."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ayarlama dosyasý `%s' bulunamadý : %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:479
+#: libgnomevfs/gnome-vfs-file-info.c:269
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Tanýnmayan sýralama kuralý %d"
@@ -317,38 +317,38 @@ msgstr "%s : `%s''yi dinleyemedim "
 msgid "Cannot accept connections on `%s': %s"
 msgstr "%s : `%s''ye baðlantýlarý kabul edemiyorum"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1397
+#: libgnomevfs-corba/gnome-vfs-slave.c:1281
 msgid "Cannot initialize CORBA."
 msgstr "CORBA'yý iþletemedim ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1404
+#: libgnomevfs-corba/gnome-vfs-slave.c:1288
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "RootPOA için ana referansý çözemedim ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1411
+#: libgnomevfs-corba/gnome-vfs-slave.c:1295
 msgid "Cannot activate POA manager."
 msgstr "POA yöneticisini iþletemiyorum ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1436
+#: libgnomevfs-corba/gnome-vfs-slave.c:1320
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Kullaným : %s <ior> [ <ior_fd> ] \n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1447
+#: libgnomevfs-corba/gnome-vfs-slave.c:1331
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Dosya çevircisini ( %d ) açamadým ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1470
+#: libgnomevfs-corba/gnome-vfs-slave.c:1354
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "`%S' için haber etme \"yolu\" bulunamadý ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1480
+#: libgnomevfs-corba/gnome-vfs-slave.c:1364
 msgid "Cannot setup Request object."
 msgstr "Istek objesini kuramadým ."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1487
+#: libgnomevfs-corba/gnome-vfs-slave.c:1371
 msgid "Cannot extract IOR."
 msgstr "IOR'u ayýramadým "
 
@@ -372,7 +372,7 @@ msgstr "GNOME::VFS::Slave::Notify'i öldüremiyorum -- hata %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "%s : \"socket\"'ine baðlanamadým : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "GNOME::VFS::Slave::Notify'i baþlatamýyorum"
 
@@ -402,7 +402,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "GnomeVFSJob kanalýný uyandýrmak için yazým yapamadým ."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:568
-#: libgnomevfs-pthread/gnome-vfs-job.c:1524
+#: libgnomevfs-pthread/gnome-vfs-job.c:1516
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Tanýnmayan iþlem numarasý %d"
@@ -413,7 +413,7 @@ msgstr "Tanýnmayan iþlem numarasý %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmak için bir boruç yaratamadým "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1557
+#: libgnomevfs-pthread/gnome-vfs-job.c:1549
 msgid "Operation stopped"
 msgstr "Iþlem durduruldu"
 
@@ -515,66 +515,66 @@ msgstr "Açma heybeti"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
 msgid "Can open multiple files"
-msgstr "Çok fazla açýk dosya açamýyorum"
+msgstr "Çoðu dosyayý ayný anda açamýyorum"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Can open from URI"
 msgstr "URI'den açamadým"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:356
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
 msgid "Change Icon"
 msgstr "Simgeyi deðiþtir"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:368
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1061
+#: mime-type-capplet/nautilus-mime-type-capplet.c:374
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
 msgid "Mime Type"
 msgstr "MIME türü"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
 msgid "Add new Mime type..."
 msgstr "Yeni bir MIME türü ekle ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+#: mime-type-capplet/nautilus-mime-type-capplet.c:403
 msgid "Delete this Mime type..."
 msgstr "Bu MIME türünü sil ..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+#: mime-type-capplet/nautilus-mime-type-capplet.c:418
 msgid "Use Viewer"
 msgstr "Göstericiyi kullan"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet.c:424
 msgid "Open With Application"
 msgstr "Uygulamayla aç"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+#: mime-type-capplet/nautilus-mime-type-capplet.c:436
 msgid "Edit List"
 msgstr "Listeyi deðiþtir"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:458
+#: mime-type-capplet/nautilus-mime-type-capplet.c:465
 msgid "Add"
 msgstr "Ekle"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:461
+#: mime-type-capplet/nautilus-mime-type-capplet.c:468
 msgid "Remove"
 msgstr "Sil"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:640
-#: mime-type-capplet/nautilus-mime-type-capplet.c:782
-#: mime-type-capplet/nautilus-mime-type-capplet.c:987
+#: mime-type-capplet/nautilus-mime-type-capplet.c:646
+#: mime-type-capplet/nautilus-mime-type-capplet.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet.c:993
 msgid "None"
 msgstr "Yok"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1060
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
 msgid "Description"
 msgstr "Anlatým"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1062
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
 msgid "Extension"
 msgstr "Sonek"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1063
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
 msgid "Action"
 msgstr "Eylem"
 
