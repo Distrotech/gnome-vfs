@@ -1,3 +1,13 @@
+2000-10-25  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(gnome_vfs_mime_sniff_buffer_get): More fixes to this function.
+	Made it no longer do the "no op" seeks. Got rid of the problem
+	where it would only read one chunk if the buffer's seek pointer
+	was NULL. Make the check at the end of the function be based on
+	the actual size requested, rather than on the amount of data
+	we decided to read (which could be more than the request).
+
 2000-10-25  Mathieu Lacage  <mathieu@eazel.com>
 
 	* configure.in:

@@ -126,63 +126,52 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 				 ssize_t size)
 {
 	GnomeVFSResult result;
-	GnomeVFSFileSize bytes_read;
+	GnomeVFSFileSize bytes_to_read, bytes_read;
 
+	/* check to see if we already have enough data */
 	if (buffer->buffer_length >= size) {
-		/* we already have enough data read */
 		return GNOME_VFS_OK;
 	}
 
-	if (!buffer->seek) {
-		return GNOME_VFS_ERROR_EOF;
-	}
-
-	/* If we've read the whole file, don't try to read any more. */
+	/* if we've read the whole file, don't try to read any more */
 	if (buffer->read_whole_file) {
 		return GNOME_VFS_ERROR_EOF;
 	}
 
-	if (size < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
-		/* don't bother to read less than this */
-		size = GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;
-	}
+	/* figure out how much to read */
+	bytes_to_read = size - buffer->buffer_length;
 
-	if (size - buffer->buffer_length < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
-		/* don't bother to add less than this */
-		size = buffer->buffer_length + GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;
+	/* don't bother to read less than this */
+	if (bytes_to_read < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
+		bytes_to_read = GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;
 	}
 
 	/* make room in buffer for new data */
-	buffer->buffer = g_realloc (buffer->buffer, size);
-
-	/* seek to the spot we last took off */
-	result = (* buffer->seek) (buffer->context, 
-				   GNOME_VFS_SEEK_START,
-				   buffer->buffer_length);
-	
-	if (result == GNOME_VFS_ERROR_EOF) {
-		buffer->read_whole_file = TRUE;
-		return result;
-	}
-	if (result != GNOME_VFS_OK) {
-		return result;
-	}
+	buffer->buffer = g_realloc (buffer->buffer,
+				    buffer->buffer_length + bytes_to_read);
 
 	/* read in more data */
 	result = (* buffer->read) (buffer->context, 
 				   buffer->buffer + buffer->buffer_length,
-				   size - buffer->buffer_length,
+				   bytes_to_read,
 				   &bytes_read);
+	if (result == GNOME_VFS_ERROR_EOF) {
+		/* only happens with 0-byte files, due to other logic */
+		buffer->read_whole_file = TRUE;
+	}
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
+	if (bytes_read < bytes_to_read) {
+		buffer->read_whole_file = TRUE;
+	}
 	buffer->buffer_length += bytes_read;
 
-	/* check to be sure we got enough data */
-	if (size > buffer->buffer_length) {
-	        buffer->read_whole_file = TRUE;
-		result = GNOME_VFS_ERROR_EOF;
+	/* check to see if we have enough data */
+	if (buffer->buffer_length >= size) {
+		return GNOME_VFS_OK;
 	}
 
-	return result;
+	/* not enough data */
+	return GNOME_VFS_ERROR_EOF;
 }
