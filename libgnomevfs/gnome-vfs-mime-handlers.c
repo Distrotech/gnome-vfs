@@ -534,6 +534,13 @@ gnome_vfs_mime_set_default_application (const char *mime_type,
 
 	g_free (user_mime_file);
 	gnome_vfs_mime_info_reload ();
+
+
+	/* If there's no default action type, set it to match this. */
+	if (application_id != NULL && 
+	    gnome_vfs_mime_get_default_action_type (mime_type) == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
+		gnome_vfs_mime_set_default_action_type (mime_type, GNOME_VFS_MIME_ACTION_TYPE_APPLICATION);
+	}
 }
 
 void
@@ -559,6 +566,12 @@ gnome_vfs_mime_set_default_component (const char *mime_type,
 
 	g_free (user_mime_file);
 	gnome_vfs_mime_info_reload ();
+
+	/* If there's no default action type, set it to match this. */
+	if (component_iid != NULL && 
+	    gnome_vfs_mime_get_default_action_type (mime_type) == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
+		gnome_vfs_mime_set_default_action_type (mime_type, GNOME_VFS_MIME_ACTION_TYPE_COMPONENT);
+	}
 }
 
 void
