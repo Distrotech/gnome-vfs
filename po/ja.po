@@ -1,5 +1,5 @@
 # gnome-vfs ja.po
-# Copyright (C) 2000,2003 Free Software Foundation, Inc.
+# Copyright (C) 2000-2003 Free Software Foundation, Inc.
 # Akira TAGOH <at@ff.iij4u.or.jp>, 2000.
 # Takeshi AIHANA <aihana@gnome.gr.jp>, 2003.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
-"PO-Revision-Date: 2003-12-14 23:59+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-29 01:08+0900\n"
+"PO-Revision-Date: 2003-12-29 01:07+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
@@ -463,9 +463,9 @@ msgstr[0] "%u バイト"
 msgstr[1] "%u バイト"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f Kバイト"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -521,7 +521,6 @@ msgstr "不明なボリューム"
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -529,7 +528,6 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。おそらくフロッピーがドライブに挿入"
 "されていないようです。"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -708,58 +706,49 @@ msgstr "デフォルトのターミナル・アプケーションが使用する
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "H323 URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "HTTP URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "HTTPS URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "'h323 URL' の扱い方"
+msgstr "H323 の URL の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "'man URL' の扱い方"
+msgstr "HTTP の URL の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "Handle HTTPS URLs"
-msgstr "'man URL' の扱い方"
+msgstr "HTTPS の URL の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
 msgstr "'callto URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
 msgstr "'ghelp URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
 msgstr "'info URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
 msgstr "'mailto URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
 msgstr "'man URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
 msgstr "'trash URL' の扱い方"
 
@@ -768,110 +757,97 @@ msgid "Run program in terminal"
 msgstr "端末でプログラムを実行するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"'h323 URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'H323 URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"'h323 URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'HTTP URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"'h323 URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'HTTPS URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "'callto URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"'http URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'ghelp URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"'mailto URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'info URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "'mailto URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"'mailto URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'man URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "'trash URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr "この URL を扱うプログラムを端末内で実行する場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "callto URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "ghelp URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "info URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "おかしなファイル・ハンドルです"
+msgstr "mailto URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "man URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "trash URL ハンドラ"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-#, fuzzy
 msgid "Authenticate proxy server connections"
-msgstr "プロキシ・サーバへの認証接続"
+msgstr "認証プロキシ・サーバへの接続"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
 msgstr "自動プロキシ設定の URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-#, fuzzy
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "インターネットへ http アクセスするときにプロキシの設定を有効にします。"
+msgstr "インターネットへ HTTP アクセスするときにプロキシの設定を有効にします。"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -886,126 +862,110 @@ msgid "HTTP proxy host name"
 msgstr "HTTP プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-#, fuzzy
 msgid "HTTP proxy password"
-msgstr "HTTP プロキシのポート番号"
+msgstr "HTTP プロキシのパスワード"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "HTTP プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-#, fuzzy
 msgid "HTTP proxy username"
-msgstr "HTTP プロキシのホスト名"
+msgstr "HTTP プロキシのユーザ名"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"true の場合、プロキシ・サーバへの接続で認証が要求されます。ユーザ名/パスワー"
-"ドの組み合わせは /system/http_proxy/authentication_user と /system/"
-"http_proxy/authentication_password で定義されます。"
+"TRUE の場合、プロキシ・サーバへの接続で認証が要求されます。ユーザ名/パスワー"
+"ドの組み合わせは \"/system/http_proxy/authentication_user\" と \"/system/"
+"http_proxy/authentication_password\" で定義されます。"
 
 #: schemas/system_http_proxy.schemas.in.h:11
-#, fuzzy
 msgid "Non-proxy hosts"
-msgstr "Sock プロキシのホスト名"
+msgstr "プロキシではないホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "http プロキシを利用するときに認証のために渡すパスワード"
+msgstr "HTTP プロキシを利用するときに認証として引き渡すパスワードです。"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "プロキシ設定モード"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
-msgstr "Sock プロキシのホスト名"
+msgstr "SOCKS プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-#, fuzzy
 msgid "SOCKS proxy port"
-msgstr "Socks プロキシのポート番号"
+msgstr "SOCKS プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
-msgstr "https プロキシのホスト名"
+msgstr "セキュア HTTP プロキシのホスト名"
 
 #: schemas/system_http_proxy.schemas.in.h:17
-#, fuzzy
 msgid "Secure HTTP proxy port"
-msgstr "https プロキシのポート番号"
+msgstr "セキュア HTTP プロキシのポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"プロキシ設定モードを選択します。\"none\", \"manual\", \"auto\" の値をサポート"
-"します"
+"プロキシ設定モードを選択します (利用可能な値: \"none\", \"manual\", \"auto"
+"\")。"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "FTP プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "FTP プロキシとして利用するマシンの名前です。"
+msgstr "HTTP のプロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
-msgstr "https プロキシとして利用するマシンの名前です。"
+msgstr "セキュア HTTP のプロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "socks プロキシとして利用するマシンの名前です。"
+msgstr "SOCKS プロキシとして利用するマシンの名前です。"
 
 #: schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"あなたがプロキシに使用する、/system/http_proxy/host で定義されたマシンのポー"
-"ト番号"
+"プロキシとして利用する、\"/system/http_proxy/host\" で定義されたマシンのポー"
+"ト番号です。"
 
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"あなたがプロキシに使用する、/system/proxy/ftp_host で定義されたマシンのポート"
-"番号"
+"プロキシとして利用する、\"/system/proxy/ftp_host\" で定義されたマシンのポート"
+"番号です。"
 
 #: schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"あなたがプロキシに使用する、/system/proxy/secure_host で定義されたマシンの"
-"ポート番号"
+"プロキシとして利用する、\"/system/proxy/secure_host\" で定義されたマシンの"
+"ポート番号です。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"あなたがプロキシに使用する、/system/proxy/socks_host で定義されたマシンのポー"
-"ト番号"
+"プロキシとして利用する、\"/system/proxy/socks_host\" で定義されたマシンのポー"
+"ト番号です。"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1021,84 +981,13 @@ msgstr ""
 "なります。"
 
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "プロキシの設定値を提供する URL"
+msgstr "プロキシの設定値を提供する URL です。"
 
 #: schemas/system_http_proxy.schemas.in.h:29
-#, fuzzy
 msgid "Use HTTP proxy"
-msgstr "HTTP プロキシのポート番号"
+msgstr "HTTP プロキシの使用"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "http プロキシの認証時に渡すユーザ名"
-
-#~ msgid "How to handle http URLs"
-#~ msgstr "'http URL' の扱い方"
-
-#~ msgid "How to handle https URLs"
-#~ msgstr "https URL の扱い方"
-
-#~ msgid "Set to true to have a program specified in command handle https URLs"
-#~ msgstr ""
-#~ "'https URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
-#~ "URLs"
-#~ msgstr ""
-#~ "'ghelp URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/info handle info URLs"
-#~ msgstr ""
-#~ "'info URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/man handle man URLs"
-#~ msgstr ""
-#~ "'man URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
-
-#~ msgid "URL handler for callto uris"
-#~ msgstr "'callto URL' のハンドラ"
-
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "'ghelp URL' のハンドラ"
-
-#~ msgid "URL handler for h323 uris"
-#~ msgstr "'h323 URL' のハンドラ"
-
-#~ msgid "URL handler for http uris"
-#~ msgstr "'http URL' のハンドラ"
-
-#~ msgid "URL handler for https uris"
-#~ msgstr "'https URL' のハンドラ"
-
-#~ msgid "URL handler for info pages"
-#~ msgstr "'info URL' のハンドラ"
-
-#~ msgid "URL handler for mailto uris"
-#~ msgstr "'mailto URL' のハンドラ"
-
-#~ msgid "URL handler for man pages"
-#~ msgstr "'man URL' のハンドラ"
-
-#~ msgid "URL handler for trash pages"
-#~ msgstr "'trash URL' のハンドラ"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "ホストへはプロキシ経由でアクセスしない"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "http プロキシとして利用するマシンの名前です。"
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr "http アクセス時にプロキシの設定を使用する"
-
-#~ msgid "http proxy password"
-#~ msgstr "http プロキシのパスワード"
-
-#~ msgid "http proxy username"
-#~ msgstr "http プロキシのユーザ名"
+msgstr "HTTP プロキシを利用するときに認証として引き渡すユーザ名です。"
