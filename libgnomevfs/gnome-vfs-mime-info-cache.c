@@ -257,21 +257,26 @@ gnome_vfs_mime_info_cache_get_search_path (void)
 {
 	char **args = NULL;
 	char **data_dirs;
+	char *user_data_dir;
 	int i, length;
 
 	data_dirs = egg_get_secondary_data_dirs ();
 
 	for (length = 0; data_dirs[length] != NULL; length++);
 
-	args = g_new (char *, length + 1);
+	args = g_new (char *, length + 2);
 
+	user_data_dir = egg_get_user_data_dir ();
+	args[length] = g_build_filename (user_data_dir, "applications", NULL);
+	g_free (user_data_dir);
+	
 	i = length - 1;
 	while (i >= 0) {
 		args[length - i - 1] = g_build_filename (data_dirs[i],
 							 "applications", NULL);
 		i--;
 	}
-	args[length] = NULL;
+	args[length + 1] = NULL;
 
 	g_strfreev (data_dirs);
 
