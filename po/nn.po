@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-08-10 21:45+0200\n"
+"POT-Creation-Date: 2004-09-06 21:34+0000\n"
+"PO-Revision-Date: 2004-09-06 21:37+0000\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -46,71 +46,68 @@ msgstr "Fila er tom"
 msgid "Failed to read from file '%s': %s"
 msgstr "Klarte ikkje å lesa frå fila «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:578
+#: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei "
 "gruppe eller ein merknad"
 
-#: libgnomevfs/eggdesktopentries.c:654
+#: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
 msgstr "skrivebordsoppføringsfila startar ikkje med lovleg startgruppe"
 
-#: libgnomevfs/eggdesktopentries.c:711
+#: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "skrivebordsoppføringane inneheld linja «%s» som ikkje er koda i UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:734
+#: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "skrivebordsoppføringane inneheld ukjend teiknkoding «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
+#: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
+#: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "skrivebordsoppføringane har ikkje gruppa «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1048
+#: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "skrivebordsoppføringane har ikkje nøkkelen «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
+#: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 "skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som ikkje "
 "kan tolkast."
 
-#: libgnomevfs/eggdesktopentries.c:1302
+#: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%s» "
 "med lokalet «%s»."
 
-#: libgnomevfs/eggdesktopentries.c:2223
+#: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "skrivebordsoppføringane inneheld ugyldig escape-sekvens «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:2240
+#: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
 msgstr "skrivebordsoppføringane inneheld escape-teikn på slutten av ei linje"
 
-#: libgnomevfs/eggdesktopentries.c:2265
+#: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Verdien «%s» kan ikkje tolkast som eit tal."
 
-#: libgnomevfs/eggdesktopentries.c:2292
+#: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Verdien «%s» kan ikkje tolkast som ein boolsk verdi."
@@ -290,9 +287,8 @@ msgid "Unknown"
 msgstr "Ukjend"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R-plate"
+msgstr "CD-ROM-plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
@@ -400,9 +396,9 @@ msgstr "Linux-disk"
 
 # TRN: Hø?
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Ukjend op-type %u"
+msgstr "Ukjend operasjonstype %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -421,20 +417,20 @@ msgstr "Operasjonen vart stoppa"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -444,8 +440,7 @@ msgstr "Operasjonen vart stoppa"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
-"Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
+msgstr "Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -734,57 +729,153 @@ msgid "%.1f GB"
 msgstr "%.1f GiB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Diskett"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "Zip-stasjon"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disk"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "USB-stasjon"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "IEEE1394-stasjon"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Minnepinne"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Zip-stasjon"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Rotvolum"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "Lyd-CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Ukjent volum"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Nettverkstenar"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Kan ikkje montera disketten. Det er truleg ikkje nokon diskett i "
 "diskettstasjonen."
@@ -987,8 +1078,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"Standard terminalemulator som skal brukast til program som krev ein terminal."
+msgstr "Standard terminalemulator som skal brukast til program som krev ein terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1011,19 +1101,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «ghelp»-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Kommandoen som tek hand om H323-adresser, dersom slått på."
+msgstr "Kommandoen som tek hand om «h323»-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Kommandoen som tek hand om «ghelp»-adresser, dersom slått på."
+msgstr "Kommandoen som tek hand om «http»-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Kommandoen som tek hand om «trash»-adresser, dersom slått på."
+msgstr "Kommandoen som tek hand om «https»-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1054,19 +1141,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Handsamar av «ghelp»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Handsamar av «H323»-adresser"
+msgstr "Handsamar av «h323»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Handsamar av «ghelp»-adresser"
+msgstr "Handsamar av «http»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Handsamar av «ghelp»-adresser"
+msgstr "Handsamar av «https»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1109,31 +1193,22 @@ msgstr ""
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"Sett til sann for å la programmet i nøkkelen «command» handsama H323-"
-"adresser."
+msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «h323»-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-"
-"adresser."
+msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «http»-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-"
-"adresser."
+msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «https»-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1188,19 +1263,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «ghelp»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama H323-adresser"
+msgstr "Om den oppgjevne kommandoen skal handsama «h323»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama «ghelp»-adresser"
+msgstr "Om den oppgjevne kommandoen skal handsama «http»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama «trash»-adresser"
+msgstr "Om den oppgjevne kommandoen skal handsama «https»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
@@ -1408,37 +1480,3 @@ msgstr "SMB-arbeidsgruppe"
 msgid "The window workgroup the user is part of"
 msgstr "Windows-arbeidsgruppa brukaren er med i"
 
-#~ msgid "CD Disc"
-#~ msgstr "CD-plate"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Kommandoen som tek hand om HTTP-adresser, dersom slått på."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Kommandoen som tek hand om HTTPS-adresser, dersom slått på."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Handsamar av HTTP-adresser"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Handsamar av HTTPS-adresser"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Sett til sann for å la programmet i nøkkelen «command» handsama HTTP-"
-#~ "adresser."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Sett til sann for å la programmet i nøkkelen «command» handsama HTTPS-"
-#~ "adresser."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Om den oppgjevne kommandoen skal handsama HTTP-adresser"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Om den oppgjevne kommandoen skal handsama HTTPS-adresser"
