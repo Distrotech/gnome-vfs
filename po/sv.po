@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-12-08 10:44+0100\n"
-"PO-Revision-Date: 2003-10-18 11:49+0200\n"
+"POT-Creation-Date: 2003-12-13 14:22+0100\n"
+"PO-Revision-Date: 2003-12-13 15:08+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,9 @@ msgstr "Kunde inte initiera Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Kunde inte initiera gnome-vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:178
+#: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO 9660-volym"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -61,139 +61,138 @@ msgstr "Konfigurationsfilen \"%s\" hittades inte: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS-nätverksvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Automatiskt upptäckt volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Cd-romenhet"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "Digitalt cd-ljud"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Hårdvaruenhetsvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2-Linuxvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3-Linuxvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MSDOS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Cd-romvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs-cdromvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Windows NT-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Systemvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Minnesvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Minixvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS-nätverksvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Netware-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS-Linuxvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Delad Windowsvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "SuperMount-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Solaris/BSD-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs-Solarisvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Pcfs-Solarisvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Förbättrad DOS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Windows VFAT-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Xenixvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS-Linuxvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS-volym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Okänt fel"
+msgstr "Okänd"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -487,90 +486,95 @@ msgstr " (ogiltig Unicode)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "Diskett"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "Cd-rom"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
 msgid "Zip Drive"
-msgstr ""
+msgstr "Zipenhet"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
-msgstr ""
+msgstr "Minnespinne"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "Rotvolym"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "Ljud-cd"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Okänt fel"
+msgstr "Okänd volym"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "Nätverksserver"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Kan inte montera diskettenheten. Det finns troligtvis ingen diskett i "
+"enheten."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Kan inte montera volymen. Det finns troligtvis inget medium i enheten."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Kan inte montera diskettenheten. Disketten är troligtvis i ett format som "
+"inte kan monteras."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Kan inte montera den valda volymen. Volymen är troligtvis i ett format som "
+"inte kan monteras."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Kan inte montera den valda diskettenheten."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Kan inte montera den valda volymen."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Kan inte avmontera den valda volymen."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "Misslyckades med att starta kommando"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Kan inte mata ut medium"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Kan inte avmontera ansluten server"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -625,16 +629,15 @@ msgstr "Fönster"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Nätverk"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Filer"
+msgstr "Filsystem"
 
 #: modules/file-method.c:382
 #, c-format
@@ -736,13 +739,12 @@ msgid "How to handle man URLs"
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "How to handle trash URLs"
-msgstr "Ingen hanterare för URL-schema"
+msgstr "Hur papperskorgs-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Kör program i terminalfönster"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Set to true to have a program specified in command handle callto URLs"
@@ -778,7 +780,7 @@ msgstr ""
 msgid "Set to true to have a program specified in programs/man handle man URLs"
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid ""
 "Set to true to have a program specified in trash/command handle trash URLs"
 msgstr ""
@@ -789,41 +791,39 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "URL handler for callto uris"
-msgstr ""
+msgstr "URL-hanterare för callto-URI:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid "URL handler for ghelp pages"
-msgstr "Ingen hanterare för URL-schema"
+msgstr "Ingen hanterare för ghelp-sidor"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "URL handler for h323 uris"
-msgstr ""
+msgstr "URL-hanterare för h323-URI:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "URL handler for http uris"
-msgstr ""
+msgstr "URL-hanterare för http-URI:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "URL handler for https uris"
-msgstr ""
+msgstr "URL-hanterare för https-URI:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "URL handler for info pages"
-msgstr ""
+msgstr "URL-hanterare för infosidor"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "URL handler for mailto uris"
-msgstr ""
+msgstr "URL-hanterare för mailto-URI:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "URL handler for man pages"
-msgstr ""
+msgstr "URL-hanterare för manualsidor"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid "URL handler for trash pages"
-msgstr "Ingen hanterare för URL-schema"
+msgstr "URL-hanterare för papperskorgssidor"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
