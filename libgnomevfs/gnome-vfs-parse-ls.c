@@ -552,7 +552,7 @@ gnome_vfs_parse_ls_lga (const char *p,
 
 	/* This is device */
 	if (S_ISCHR (s->st_mode) || S_ISBLK (s->st_mode)) {
-		int maj, min;
+		guint32 maj, min;
 	
 		if (!is_num (columns[idx2])
 		    || sscanf (columns [idx2], " %d,", &maj) != 1)
@@ -563,7 +563,14 @@ gnome_vfs_parse_ls_lga (const char *p,
 			goto error;
 	
 #ifdef HAVE_ST_RDEV
-		s->st_rdev = ((maj & 0xff) << 8) | (min & 0xffff00ff);
+		/* Starting from linux 2.6, minor number is split between bits 
+		 * 0-7 and 20-31 of dev_t. This calculation is also valid
+		 * on older kernel with 8 bit minor and major numbers 
+		 * http://lwn.net/Articles/49966/ has a pretty good explanation
+		 * of the format of dev_t
+		 */
+		min = (min & 0xff) | ((min & 0xfff00) << 12);
+		s->st_rdev = ((maj & 0xfff) << 8) | (min & 0xfff000ff);
 #endif
 		s->st_size = 0;
 	
