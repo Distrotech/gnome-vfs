@@ -1758,7 +1758,7 @@ get_user_level (void)
 	/* If value is invalid, assume "novice". */
 	if (strcmp (user_level, "novice") != 0 &&
 	    strcmp (user_level, "intermediate") != 0 &&
-	    strcmp (user_level, "hacker") != 0) {
+	    strcmp (user_level, "advanced") != 0) {
 		g_free (user_level);
 		user_level = g_strdup ("novice");
 	}

@@ -283,10 +283,10 @@ Possible keys include the following:
 
 6.  short_list_component_iids_for_novice_user_level,
     short_list_component_iids_for_intermediate_user_level,
-    short_list_component_iids_for_hacker_user_level,
+    short_list_component_iids_for_advanced_user_level,
     short_list_application_ids_for_novice_user_level,
     short_list_application_ids_for_intermediate_user_level,
-    short_list_application_ids_for_hacker_user_level -
+    short_list_application_ids_for_advanced_user_level -
 
     These values are used to expand on the default_action_type
     variable explained in (4).  If "component" is specified as the

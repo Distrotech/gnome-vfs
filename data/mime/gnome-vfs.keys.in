@@ -24,14 +24,14 @@ application/mspowerpoint
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice
 	short_list_application_ids_for_intermediate_user_level=staroffice
-	short_list_application_ids_for_hacker_user_level=staroffice
+	short_list_application_ids_for_advanced_user_level=staroffice
 
 application/msword
 	_description=Microsoft Word document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice,applix,abiword
 	short_list_application_ids_for_intermediate_user_level=staroffice,applix,abiword
-	short_list_application_ids_for_hacker_user_level=staroffice,applix,abiword
+	short_list_application_ids_for_advanced_user_level=staroffice,applix,abiword
 
 application/octet-stream
 	can_be_executable=TRUE
@@ -45,10 +45,10 @@ application/pdf
 	default_action_type=application
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
-	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
+	short_list_component_iids_for_advanced_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_application_ids_for_novice_user_level=acroread,xpdf,ggv,gv
 	short_list_application_ids_for_intermediate_user_level=acroread,xpdf,ggv,gv
-	short_list_application_ids_for_hacker_user_level=acroread,xpdf,ggv,gv
+	short_list_application_ids_for_advanced_user_level=acroread,xpdf,ggv,gv
 
 application/pgp
 	_description=PGP message
@@ -73,21 +73,21 @@ application/postscript
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=ggv,gv,ghostview
 	short_list_application_ids_for_intermediate_user_level=ggv,gv,ghostview
-	short_list_application_ids_for_hacker_user_level=ggv,gv,ghostview
+	short_list_application_ids_for_advanced_user_level=ggv,gv,ghostview
 
 application/rtf
 	_description=rich text document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=abiword,staroffice,applix
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice,applix
-	short_list_application_ids_for_hacker_user_level=abiword,staroffice,applix
+	short_list_application_ids_for_advanced_user_level=abiword,staroffice,applix
 
 application/vnd.ms-excel
 	_description=Microsoft Excel document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
-	short_list_application_ids_for_hacker_user_level=staroffice,applix,gnumeric
+	short_list_application_ids_for_advanced_user_level=staroffice,applix,gnumeric
 
 # also audio/x-pn-realaudio, audio/x-real-audio
 application/vnd.rn-realmedia
@@ -96,7 +96,7 @@ application/vnd.rn-realmedia
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=realplayer
 	short_list_application_ids_for_intermediate_user_level=realplayer
-	short_list_application_ids_for_hacker_user_level=realplayer
+	short_list_application_ids_for_advanced_user_level=realplayer
 
 # also text/abiword
 application/x-abiword
@@ -104,7 +104,7 @@ application/x-abiword
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=abiword,staroffice
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice
-	short_list_application_ids_for_hacker_user_level=abiword,staroffice
+	short_list_application_ids_for_advanced_user_level=abiword,staroffice
 
 application/x-applix-spreadsheet
 	_description=Applixware spreadsheet
@@ -112,14 +112,14 @@ application/x-applix-spreadsheet
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=applix
 	short_list_application_ids_for_intermediate_user_level=applix
-	short_list_application_ids_for_hacker_user_level=applix
+	short_list_application_ids_for_advanced_user_level=applix
 
 application/x-applix-word
 	_description=Applixware Words document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=applix
 	short_list_application_ids_for_intermediate_user_level=applix
-	short_list_application_ids_for_hacker_user_level=applix
+	short_list_application_ids_for_advanced_user_level=applix
 
 application/x-arj
 	_description=arj archive
@@ -247,7 +247,7 @@ application/x-gnumeric
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
-	short_list_application_ids_for_hacker_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
 	icon_filename=i-spreadsheet
 
 application/x-gtar
@@ -296,7 +296,7 @@ application/x-ogg
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=ogg123,xmms
 	short_list_application_ids_for_intermediate_user_level=ogg123,xmms
-	short_list_application_ids_for_hacker_user_level=ogg123,xmms
+	short_list_application_ids_for_advanced_user_level=ogg123,xmms
 
 application/x-palm-database
 	_description=Palm OS database
@@ -327,7 +327,7 @@ application/x-rpm
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 
 application/x-shar
 	_description=shell archive
@@ -348,7 +348,7 @@ application/x-staroffice-presentation
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice
 	short_list_application_ids_for_intermediate_user_level=staroffice
-	short_list_application_ids_for_hacker_user_level=staroffice
+	short_list_application_ids_for_advanced_user_level=staroffice
 
 application/x-staroffice-spreadsheet
 	_description=StarOffice spreadsheet
@@ -356,14 +356,14 @@ application/x-staroffice-spreadsheet
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice
 	short_list_application_ids_for_intermediate_user_level=staroffice
-	short_list_application_ids_for_hacker_user_level=staroffice
+	short_list_application_ids_for_advanced_user_level=staroffice
 
 application/x-staroffice-words
 	_description=StarOffice Writer document
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=staroffice
 	short_list_application_ids_for_intermediate_user_level=staroffice
-	short_list_application_ids_for_hacker_user_level=staroffice
+	short_list_application_ids_for_advanced_user_level=staroffice
 
 application/x-stuffit
 	_description=Macintosh StuffIt archive
@@ -432,7 +432,7 @@ audio/x-mod
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=soundtracker
 	short_list_application_ids_for_intermediate_user_level=soundtracker
-	short_list_application_ids_for_hacker_user_level=soundtracker
+	short_list_application_ids_for_advanced_user_level=soundtracker
 
 # also audio/x-mpeg
 audio/x-mp3
@@ -441,7 +441,7 @@ audio/x-mp3
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
 	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
-	short_list_application_ids_for_hacker_user_level=xmms,mpg123
+	short_list_application_ids_for_advanced_user_level=xmms,mpg123
 
 audio/x-mp3-playlist
 	_description=MP3 audio playlist
@@ -453,14 +453,14 @@ audio/x-mpeg
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
 	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
-	short_list_application_ids_for_hacker_user_level=xmms,mpg123
+	short_list_application_ids_for_advanced_user_level=xmms,mpg123
 
 audio/x-mpegurl
 	_description=M3 audio URL
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
-	short_list_application_ids_for_hacker_user_level=xmms
+	short_list_application_ids_for_advanced_user_level=xmms
 
 # also application/vnd.rn-realmedia, audio/x-real-audio
 audio/x-pn-realaudio
@@ -469,7 +469,7 @@ audio/x-pn-realaudio
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=realplayer
 	short_list_application_ids_for_intermediate_user_level=realplayer
-	short_list_application_ids_for_hacker_user_level=realplayer
+	short_list_application_ids_for_advanced_user_level=realplayer
 
 # also audio/x-pn-realaudio, application/vnd.rn-realmedia
 audio/x-real-audio
@@ -478,7 +478,7 @@ audio/x-real-audio
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=realplayer
 	short_list_application_ids_for_intermediate_user_level=realplayer
-	short_list_application_ids_for_hacker_user_level=realplayer
+	short_list_application_ids_for_advanced_user_level=realplayer
 
 audio/x-riff
 	_description=RIFF audio
@@ -486,7 +486,7 @@ audio/x-riff
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
-	short_list_application_ids_for_hacker_user_level=xmms
+	short_list_application_ids_for_advanced_user_level=xmms
 
 audio/x-s3m
 	_description=Scream Tracker 3 audio
@@ -507,7 +507,7 @@ audio/x-wav
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
-	short_list_application_ids_for_hacker_user_level=xmms
+	short_list_application_ids_for_advanced_user_level=xmms
 
 audio/x-xi
 	_description=Scream Tracker instrument
@@ -521,10 +521,10 @@ image/bmp
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-bmp.png
 
 image/cgm
@@ -538,10 +538,10 @@ image/gif
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-gif.png
 
 image/ief
@@ -553,10 +553,10 @@ image/jpeg
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-jpeg.png
 
 # also image/x-png
@@ -565,10 +565,10 @@ image/png
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-png.png
 
 image/svg
@@ -579,10 +579,10 @@ image/tiff
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-tiff.png
 
 image/vnd.dwg
@@ -599,7 +599,7 @@ image/x-applix-graphic
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=applix
 	short_list_application_ids_for_intermediate_user_level=applix
-	short_list_application_ids_for_hacker_user_level=applix
+	short_list_application_ids_for_advanced_user_level=applix
 
 # also image/bmp
 image/x-bmp
@@ -607,10 +607,10 @@ image/x-bmp
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-bmp.png
 
 image/x-cmu-raster
@@ -640,10 +640,10 @@ image/x-png
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-png.png
 
 image/x-portable-anymap
@@ -651,20 +651,20 @@ image/x-portable-anymap
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 
 image/x-portable-bitmap
 	_description=PBM image
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-pbm.png
 
 image/x-portable-graymap
@@ -672,20 +672,20 @@ image/x-portable-graymap
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 
 image/x-portable-pixmap
 	_description=PPM image
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 	icon_filename=gnome-image-ppm.png
 
 image/x-psd
@@ -693,7 +693,7 @@ image/x-psd
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=eog,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,gimp
-	short_list_application_ids_for_hacker_user_level=eog,gimp
+	short_list_application_ids_for_advanced_user_level=eog,gimp
 	icon_filename=gnome-image-psd.png
 
 image/x-rgb
@@ -709,7 +709,7 @@ image/x-xbitmap
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=eog,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,gimp
-	short_list_application_ids_for_hacker_user_level=eog,gimp
+	short_list_application_ids_for_advanced_user_level=eog,gimp
 	icon_filename=gnome-image-xbm.png
 
 image/x-xcf
@@ -717,7 +717,7 @@ image/x-xcf
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
-	short_list_application_ids_for_hacker_user_level=gimp
+	short_list_application_ids_for_advanced_user_level=gimp
 	icon_filename=gnome-image-xcf.png
 
 image/x-xfig
@@ -725,7 +725,7 @@ image/x-xfig
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xfig
 	short_list_application_ids_for_intermediate_user_level=xfig
-	short_list_application_ids_for_hacker_user_level=xfig
+	short_list_application_ids_for_advanced_user_level=xfig
 	icon_filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
@@ -733,10 +733,10 @@ image/x-xpixmap
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_application_ids_for_novice_user_level=eog,electric_eyes,gimp
 	short_list_application_ids_for_intermediate_user_level=eog,electric_eyes,gimp
-	short_list_application_ids_for_hacker_user_level=eog,electric_eyes,gimp
+	short_list_application_ids_for_advanced_user_level=eog,electric_eyes,gimp
 
 image/x-xwindowdump
 	_description=X window image
@@ -794,10 +794,10 @@ text/*
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=gedit,xfte
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
-	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
 
 # also application/x-abiword
 text/abiword
@@ -805,7 +805,7 @@ text/abiword
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=abiword,staroffice
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice
-	short_list_application_ids_for_hacker_user_level=abiword,staroffice
+	short_list_application_ids_for_advanced_user_level=abiword,staroffice
 
 text/bib
 	_description=bibliography record
@@ -827,17 +827,17 @@ text/html
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,galeon
-	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
+	short_list_application_ids_for_advanced_user_level=mozilla,netscape,lynx,galeon
 
 text/htmlh
 	_description=help page
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
 text/mathml
 	_description=MathML document
@@ -848,10 +848,10 @@ text/plain
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=gedit
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
-	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	short_list_application_ids_for_advanced_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
 
 text/rfc822-headers
 	_description=email headers
@@ -997,10 +997,10 @@ text/xml
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
-	short_list_application_ids_for_hacker_user_level=mozilla
+	short_list_application_ids_for_advanced_user_level=mozilla
 
 video/isivideo
 	_description=ISI video
@@ -1010,20 +1010,20 @@ video/mpeg
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
 	short_list_application_ids_for_intermediate_user_level=mtvp,mtv,mpeg_play
-	short_list_application_ids_for_hacker_user_level=mtvp,mtv,mpeg_play
+	short_list_application_ids_for_advanced_user_level=mtvp,mtv,mpeg_play
 
 video/msvideo
 	_description=MS video
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/quicktime
 	_description=QuickTime movie
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/vivo
 	_description=Vivo video
@@ -1036,72 +1036,72 @@ video/x-anim
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/x-avi
 	_description=AVI video
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/x-flc
 	_description=FLC animation
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/x-fli
 	_description=FLI animation
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/x-msvideo
 	_description=Microsoft video
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 video/x-real-video
 	_description=RealVideo video
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=realplayer
 	short_list_application_ids_for_intermediate_user_level=realplayer
-	short_list_application_ids_for_hacker_user_level=realplayer
+	short_list_application_ids_for_advanced_user_level=realplayer
 
 video/x-sgi-movie
 	_description=SGI video
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_hacker_user_level=xanim
+	short_list_application_ids_for_advanced_user_level=xanim
 
 x-directory/normal
 	_description=folder
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 
 x-directory/search
 	_description=search results
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 
 x-directory/webdav
 	_description=web folder
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
-	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
+	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
-	short_list_application_ids_for_hacker_user_level=mozilla
+	short_list_application_ids_for_advanced_user_level=mozilla
 
 
 x-special/device-block

@@ -1,3 +1,14 @@
+2001-02-01  Ramiro Estrugo  <ramiro@eazel.com>
+
+	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/gnome-vfs.keys.in:
+	* doc/mime-data-specification.txt:
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):
+	* test/test-mime-info.c: (main):
+	Change 'hacker' to 'advanced' for the advanced user level so that
+	the names used for storage match those used for display.
+	
 2001-02-01  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: Eskil Olsen <eskil@eazel.com>
