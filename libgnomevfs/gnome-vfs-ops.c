@@ -267,7 +267,7 @@ GnomeVFSResult
 gnome_vfs_get_file_info (const gchar *text_uri,
 			 GnomeVFSFileInfo *info,
 			 GnomeVFSFileInfoOptions options,
-			 const gchar *meta_keys[])
+			 const char *meta_keys[])
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
@@ -308,7 +308,7 @@ GnomeVFSResult
 gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
 			     GnomeVFSFileInfo *info,
 			     GnomeVFSFileInfoOptions options,
-			     const gchar *meta_keys[])
+			     const char *meta_keys[])
 {
 	return gnome_vfs_get_file_info_uri_cancellable (uri, info, options,
 							meta_keys, NULL);
@@ -332,8 +332,7 @@ GnomeVFSResult
 gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
 				     GnomeVFSFileInfo *info,
 				     GnomeVFSFileInfoOptions options,
-				     const gchar *meta_keys[])
-
+				     const char *meta_keys[])
 {
 	return gnome_vfs_get_file_info_from_handle_cancellable (handle, info,
 								options,

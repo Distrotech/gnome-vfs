@@ -105,7 +105,7 @@ gnome_vfs_slave_process_reset (GnomeVFSSlaveProcess *slave,
 	slave->callback_data = callback_data;
 
 	if (slave->request_objref != CORBA_OBJECT_NIL) {
-		g_warning ("Resetting slave");
+		g_message ("Resetting slave");
 		GNOME_VFS_Slave_Request_reset (slave->request_objref,
 					       &slave->ev);
 		if (slave->ev._major != CORBA_NO_EXCEPTION) {
@@ -133,7 +133,7 @@ gnome_vfs_slave_process_reset (GnomeVFSSlaveProcess *slave,
 void
 gnome_vfs_slave_process_destroy (GnomeVFSSlaveProcess *slave)
 {
-	g_warning (_("Destroying slave."));
+	g_message (_("Destroying slave."));
 
 	g_return_if_fail (slave != NULL);
 
@@ -142,7 +142,7 @@ gnome_vfs_slave_process_destroy (GnomeVFSSlaveProcess *slave)
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
 
 	if (slave->request_objref != CORBA_OBJECT_NIL) {
-		g_warning ("Killing slave");
+		g_message ("Killing slave");
 		GNOME_VFS_Slave_Request_die (slave->request_objref,
 					     &slave->ev);
 		if (slave->ev._major != CORBA_NO_EXCEPTION) {
