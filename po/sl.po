@@ -907,11 +907,11 @@ msgstr "deljena kni¾njica"
 
 #: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
-msgstr "arhiv ¹koljke"
+msgstr "arhiv lupine"
 
 #: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
-msgstr "skripta ¹koljke"
+msgstr "skripta lupine"
 
 #: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
