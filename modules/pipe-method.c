@@ -37,6 +37,18 @@ file_handle_destroy (FileHandle *handle)
   g_free (handle);
 }
 
+static void
+set_default_file_info (GnomeVFSFileInfo *file_info, GnomeVFSURI *uri)
+{
+        file_info->name = g_strdup (uri->text);
+	file_info->flags = GNOME_VFS_FILE_FLAGS_NONE;
+	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	file_info->permissions = GNOME_VFS_PERM_USER_READ|GNOME_VFS_PERM_GROUP_READ|GNOME_VFS_PERM_OTHER_READ;
+
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_FLAGS | GNOME_VFS_FILE_INFO_FIELDS_TYPE 
+	  | GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+}
+
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -153,12 +165,9 @@ do_get_file_info (GnomeVFSMethod *method,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	file_info->name = g_strdup (uri->text);
-	file_info->flags = GNOME_VFS_FILE_FLAGS_NONE;
-	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->permissions = GNOME_VFS_PERM_USER_READ|GNOME_VFS_PERM_GROUP_READ|GNOME_VFS_PERM_OTHER_READ;
+        set_default_file_info (file_info, uri);
 
-	return GNOME_VFS_OK;
+        return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -169,10 +178,11 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
-	file_info->name = NULL;
-	file_info->flags = GNOME_VFS_FILE_FLAGS_NONE;
-	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->permissions = GNOME_VFS_PERM_USER_READ|GNOME_VFS_PERM_GROUP_READ|GNOME_VFS_PERM_OTHER_READ;
+        FileHandle *handle;
+
+	handle = (FileHandle *) method_handle;
+
+        set_default_file_info (file_info, handle->uri);
 
 	return GNOME_VFS_OK;
 }

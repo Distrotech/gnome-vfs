@@ -221,9 +221,38 @@ enum _GnomeVFSFileFlags {
 };
 typedef enum _GnomeVFSFileFlags GnomeVFSFileFlags;
 
+/* Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
+
+   Name is always assumed valid (how else would you have gotten a
+   FileInfo struct otherwise?) and metadata_list is ignored, since
+   it shouldn't be accessed directly anyway.
+ */
+
+enum _GnomeVFSFileInfoFields {
+	GNOME_VFS_FILE_INFO_FIELDS_NONE = 0,
+	GNOME_VFS_FILE_INFO_FIELDS_TYPE = 1 << 0,
+	GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS = 1 << 1,
+	GNOME_VFS_FILE_INFO_FIELDS_FLAGS = 1 << 2,
+	GNOME_VFS_FILE_INFO_FIELDS_DEVICE = 1 << 3,
+	GNOME_VFS_FILE_INFO_FIELDS_INODE = 1 << 4,
+	GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT = 1 << 5,
+	GNOME_VFS_FILE_INFO_FIELDS_SIZE = 1 << 6,
+	GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT = 1 << 7,
+	GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE = 1 << 8,
+	GNOME_VFS_FILE_INFO_FIELDS_ATIME = 1 << 9,
+	GNOME_VFS_FILE_INFO_FIELDS_MTIME = 1 << 10,
+	GNOME_VFS_FILE_INFO_FIELDS_CTIME = 1 << 11,
+	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
+	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13
+};
+typedef enum _GnomeVFSFileInfoFields GnomeVFSFileInfoFields;
+
 struct _GnomeVFSFileInfo {
 	/* Base name of the file (no path).  */
 	gchar *name;
+
+	/* Fields which are actually valid in this strcture. */
+	GnomeVFSFileInfoFields valid_fields;
 
 	/* File type (i.e. regular, directory, block device...).  */
 	GnomeVFSFileType type;

@@ -540,7 +540,7 @@ ftpfs_connection_new (const gchar *hostname,
 		init_connections_hash ();
 
 	if (*result_return == GNOME_VFS_OK) {
-		g_hash_table_insert (connections_hash, conn, conn);
+	        g_hash_table_insert (connections_hash, conn, conn);
 		G_UNLOCK (connections_hash);
 		return conn;
 	} else {
@@ -2205,6 +2205,7 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 	dentry = (ftpfs_direntry_t *) dent->pos->data;
 	dent->pos = dent->pos->next;
 
+	info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 	info->name = g_strdup (dentry->name);
 
 	if ((filter == NULL) &&
@@ -2231,6 +2232,8 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 		
 		if (dent->options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
 			s = dentry->s;
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+		
 	} 
 	gnome_vfs_stat_to_file_info (info, &s);
 	GNOME_VFS_FILE_INFO_SET_LOCAL (info, FALSE);
@@ -2265,6 +2268,8 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
+		info->mime_type = mime_type;
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	}
 
 	if (filter != NULL
@@ -2322,6 +2327,8 @@ fill_file_info (const char *filename,
 {
 	struct stat s;
 
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
 	/*
 	 * Stat
 	 */
@@ -2329,6 +2336,7 @@ fill_file_info (const char *filename,
 	if (dentry->l_stat){
 		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		file_info->symlink_name = g_strdup (dentry->linkname);
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;		
 	} 
 	gnome_vfs_stat_to_file_info (file_info, &s);
 	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, FALSE);
@@ -2355,6 +2363,7 @@ fill_file_info (const char *filename,
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
 
 		file_info->mime_type = g_strdup(mime_type);
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	}
 	gnome_vfs_set_meta_for_list (file_info, file_info->name, meta_keys);
 }

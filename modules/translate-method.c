@@ -22,6 +22,16 @@ typedef struct {
   GnomeVFSMethod *real_method;
 } TranslateMethod;
 
+static void
+tr_apply_default_mime_type(TranslateMethod *tm, GnomeVFSFileInfo *file_info)
+{
+  if(!file_info->mime_type && tm->pa.default_mime_type) {
+    file_info->mime_type = g_strdup(tm->pa.default_mime_type);
+    file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+  }
+}
+
+
 static GnomeVFSURI *
 tr_uri_translate(TranslateMethod *tm, const GnomeVFSURI *uri)
 {
@@ -178,8 +188,8 @@ tr_do_read_directory(GnomeVFSMethod *method,
   GnomeVFSResult retval;
 
   retval = tm->real_method->read_directory(tm->real_method, method_handle, file_info, context);
-  if(!file_info->mime_type && tm->pa.default_mime_type)
-    file_info->mime_type = g_strdup(tm->pa.default_mime_type);
+
+  tr_apply_default_mime_type (method, file_info);
 
   return retval;
 }
@@ -202,8 +212,7 @@ tr_do_get_file_info(GnomeVFSMethod *method,
 
   gnome_vfs_uri_unref(real_uri);
 
-  if(!file_info->mime_type && tm->pa.default_mime_type)
-    file_info->mime_type = g_strdup(tm->pa.default_mime_type);
+  tr_apply_default_mime_type (method, file_info);
 
   return retval;
 }
@@ -221,8 +230,7 @@ tr_do_get_file_info_from_handle(GnomeVFSMethod *method,
 
   retval = tm->real_method->get_file_info_from_handle(tm->real_method, method_handle, file_info, options, meta_keys, context);
 
-  if(!file_info->mime_type && tm->pa.default_mime_type)
-    file_info->mime_type = g_strdup(tm->pa.default_mime_type);
+  tr_apply_default_mime_type (method, file_info);
 
   return retval;
 }

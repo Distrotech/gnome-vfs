@@ -525,6 +525,7 @@ set_mime_type (GnomeVFSFileInfo *info,
 	}
 
 	info->mime_type = g_strdup (mime_type);
+	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 }
 
 
@@ -569,6 +570,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	} else {
 		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		file_info->symlink_name = read_link (full_name);
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 
 		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
 			if (stat (full_name, statptr) != 0)
@@ -781,6 +783,8 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	MAKE_ABSOLUTE (full_name, uri->text);
 
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
 	file_info->name = g_strdup (g_basename (full_name));
 
 	result = get_stat_info (file_info, full_name, options, NULL);
@@ -811,6 +815,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	file_handle = (FileHandle *) method_handle;
 
 	MAKE_ABSOLUTE (full_name, file_handle->uri->text);
+
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
 	file_info->name = g_strdup (g_basename (full_name));
 
 	result = get_stat_info_from_handle (file_info, file_handle,

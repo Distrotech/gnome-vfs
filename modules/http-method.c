@@ -60,9 +60,6 @@
 /* Standard HTTP port.  */
 #define DEFAULT_HTTP_PORT 	80
 
-/* Value for I/O block size returned by the `get_file_info()' op.  Sort of
-   bogus, yes.  */
-#define IO_BLOCK_SIZE		4096
 
 
 /* Some status code validation macros.  */
@@ -715,16 +712,9 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 		file_info->name = g_strdup ("");
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	file_info->permissions = 0444;
-	file_info->link_count = 0;
-	file_info->uid = getuid ();
-	file_info->gid = getgid ();
 	file_info->size = handle->size;
-	file_info->block_count = (file_info->size / 512) + 1;
-	file_info->io_block_size = IO_BLOCK_SIZE;
 	file_info->atime = handle->access_time;
 	file_info->mtime = handle->last_modified;
-	file_info->ctime = file_info->mtime;
-	file_info->symlink_name = NULL;
 	file_info->mime_type = g_strdup (handle->mime_type);
 	file_info->metadata_list = NULL;
 
@@ -732,6 +722,15 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 	GNOME_VFS_FILE_INFO_SET_SUID (file_info, FALSE);
 	GNOME_VFS_FILE_INFO_SET_SGID (file_info, FALSE);
 	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
+
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
+		GNOME_VFS_FILE_INFO_FIELDS_FLAGS |
+		GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS |
+		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+		GNOME_VFS_FILE_INFO_FIELDS_ATIME |
+		GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+		GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 	return GNOME_VFS_OK;
 }

@@ -527,6 +527,8 @@ read_directory_list (FILE *p,
 			continue;
 
 		info = gnome_vfs_file_info_new ();
+
+		info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 		gnome_vfs_stat_to_file_info (info, &statbuf);
 
 		GNOME_VFS_FILE_INFO_SET_LOCAL (info, FALSE);
@@ -535,9 +537,11 @@ read_directory_list (FILE *p,
 
 		/* Notice that we always do stupid, fast MIME type checking.
                    Real checking based on contents would be too expensive.  */
-		if (info_options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+		if (info_options & GNOME_VFS_FILE_INFO_GETMIMETYPE) {
 			info->mime_type = g_strdup (gnome_mime_type
 						    (info->name));
+			info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		}
 
 		entry = g_new (ExtfsDirectoryEntry, 1);
 		entry->info = info;
