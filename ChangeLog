@@ -1,3 +1,9 @@
+2004-09-16  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/xdgmimeglob.c:
+	* libgnomevfs/xdgmimemagic.c: fix memleaks (sync with upstream),
+	  fixes #152768 and #152771
+
 2004-09-16  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c:
