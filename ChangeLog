@@ -1,5 +1,11 @@
 2000-08-08  Maciej Stachowiak  <mjs@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c: Move include of
+	sys/types.h above include of regex.h to fix building on
+	FreeBSD. Fix from Bill Huey <billh@gnuppy.monkey.org>.
+
+2000-08-08  Maciej Stachowiak  <mjs@eazel.com>
+
 	* acconfig.h:
 	* configure.in:
 	* modules/bzip2-method.c
@@ -8,13 +14,15 @@
 	(do_write):
 
 	Handle both bzip2 1.0, which adds BZ2_ to the front of all
-	function names, and the older version.
+	function names, and the older version. Problem reported by Bill
+	Huey <billh@gnuppy.monkey.org>.
 	
 2000-08-08  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-parse-ls.c (gnome_vfs_parse_ls_lga): Avoid
 	a warning and potential bug on systems (such as FreeBSD) where the
-	st_nlink field of struct stat is unsigned.
+	st_nlink field of struct stat is unsigned. Problem reported by Bill
+	Huey <billh@gnuppy.monkey.org>.
 
 2000-08-08  Robin * Slomkowski  <rslomkow@eazel.com>
 
