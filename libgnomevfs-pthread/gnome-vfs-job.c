@@ -1,6 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-job.c - Jobs for asynchronous operation of the GNOME
-   Virtual File System (version for POSIX threads).
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */ /*
+gnome-vfs-job.c - Jobs for asynchronous operation of the GNOME Virtual File
+System (version for POSIX threads).
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -1109,14 +1109,11 @@ static gboolean
 execute_get_file_info (GnomeVFSJob *job)
 {
 	GnomeVFSGetFileInfoJob *gijob;
-	GnomeVFSResult notify_result;
 	GList *p;
 	GnomeVFSGetFileInfoResult *result_item;
-	gboolean any_failure;
 
 	gijob = &job->info.get_file_info;
 
-	any_failure = FALSE;
 	gijob->notify.result_list = NULL;
 	for (p = gijob->request.uris; p != NULL; p = p->next) {
 		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
@@ -1131,10 +1128,6 @@ execute_get_file_info (GnomeVFSJob *job)
 			 (const char **)gijob->request.meta_keys,
 			 job->context);
 
-		if (result_item->result != GNOME_VFS_OK) {
-			any_failure = TRUE;
-		}
-
 		gijob->notify.result_list = g_list_prepend
 			(gijob->notify.result_list, result_item);
 	}
@@ -1142,8 +1135,8 @@ execute_get_file_info (GnomeVFSJob *job)
 
 	g_strfreev (gijob->request.meta_keys);
 
-	notify_result = job_oneway_notify_and_close (job);
-	return !any_failure && notify_result;
+	job_oneway_notify_and_close (job);
+	return FALSE;
 }
 
 static gboolean
