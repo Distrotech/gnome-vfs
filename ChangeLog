@@ -1,5 +1,10 @@
 2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* doc/Makefile.am: Ignore new private headers in libgnomevfs
+	directory.
+
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* Makefile.am:
 	* configure.in:
 	* doc/tmpl/gnome-vfs-unused.sgml:
@@ -57,7 +62,6 @@
 	Apparently gtk-doc had some changes it wanted
 	to make, don't look at me ;-)
 	
->>>>>>> 1.1145
 2001-10-30  Laszlo Peter  <laca@ireland.sun.com>
 	* libgnomevfs/gnome-vfs.h: remove duplicated include line
 

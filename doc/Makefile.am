@@ -1,3 +1,4 @@
+NULL = 
 ## Process this file with automake to create Makefile.in.
 
 # The name of the module.
@@ -24,15 +25,19 @@ CFILE_GLOB=$(top_srcdir)/libgnomevfs/*.c
 
 # Headers to ignore
 IGNORE_HFILES=					\
-	gnome-vfs-ssl-private.h			\
-	gnome-vfs-private.h			\
-	gnome-vfs-private-utils.h		\
-	gnome-vfs-private-types.h		\
-	gnome-vfs-backend.h			\
-	gnome-vfs-i18n.h			\
-	gnome-vfs-module-callback-private.h	\
-	gnome-vfs-mime-private.h		\
-	gnome-vfs-mime-sniff-buffer-private.h
+	gnome-vfs-async-job-map.h               \
+	gnome-vfs-backend.h                     \
+        gnome-vfs-i18n.h                        \
+	gnome-vfs-job-queue.h                   \
+        gnome-vfs-job-slave.h                   \
+	gnome-vfs-job.h                         \
+	gnome-vfs-mime-private.h                \
+	gnome-vfs-mime-sniff-buffer-private.h   \
+	gnome-vfs-module-callback-private.h     \
+	gnome-vfs-process.h                     \
+	gnome-vfs-pthread.h                     \
+	gnome-vfs-thread-pool.h                 \
+	$(NULL)
 
 # Extra files to add when scanning
 EXTRA_HFILES=
