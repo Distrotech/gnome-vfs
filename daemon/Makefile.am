@@ -2,6 +2,7 @@ libexec_PROGRAMS=gnome-vfs-daemon
 
 INCLUDES= \
 	$(LIBGNOMEVFS_CFLAGS)			\
+	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
 	$(MONIKERS_CFLAGS)                      \
 	-D_FILE_OFFSET_BITS=64			\
@@ -22,7 +23,7 @@ INCLUDES= \
 	-I$(top_srcdir)/libgnomevfs             \
 	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
-gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
+gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(LIBGNOMEVFSDAEMON_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
 gnome_vfs_daemon_SOURCES = \
 	gnome-vfs-daemon.c \
