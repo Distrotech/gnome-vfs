@@ -987,7 +987,7 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	p = strrchr (uri->text, G_DIR_SEPARATOR);
+	p = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
 	if (p == NULL)
 		return NULL;
 
@@ -1004,7 +1004,7 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
  * 
  * Extract the name of the directory in which the file pointed to by @uri is
  * stored as a newly allocated string.  The string will end with a
- * `G_DIR_SEPARATOR'.
+ * GNOME_VFS_URI_PATH_CHR.
  * 
  * Return value: A pointer to the newly allocated string representing the
  * parent directory.
@@ -1018,9 +1018,61 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
 
 	base = gnome_vfs_uri_get_basename (uri);
 	if (base == NULL || base == uri->text)
-		return g_strdup (G_DIR_SEPARATOR_S);
+		return g_strdup (GNOME_VFS_URI_PATH_STR);
 
 	return g_strndup (uri->text, base - uri->text);
+}
+
+/**
+ * gnome_vfs_uri_extract_short_name:
+ * @uri: A GnomeVFSURI
+ * 
+ * Retrieve base file name for @uri, ignoring any trailing path separators.
+ * This matches the XPG definition of basename, but not g_basename. This is
+ * often useful when you want the name of something that's pointed to by a
+ * uri, and don't care whether the uri has a directory or file form.
+ * If @uri points to the root, returns GNOME_VFS_URI_PATH_STR.
+ * 
+ * Return value: A pointer to the newly allocated string representing the
+ * short form of the name.
+ **/
+gchar *
+gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
+{
+	const gchar *p, *short_name_start, *short_name_end;
+
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (uri->text == NULL, NULL);
+	g_return_val_if_fail (uri->text[0] == '\0', NULL);
+
+	/* Search for the last run of non-'/' characters. */
+	p = uri->text;
+	short_name_start = NULL;
+	short_name_end = p;
+	do {
+		if (*p == '\0' || *p == GNOME_VFS_URI_PATH_CHR) {
+			/* While we are in a run of non-separators, short_name_end is NULL. */
+			if (short_name_end == NULL)
+				short_name_end = p;
+		} else {
+			/* While we are in a run of separators, short_name_end is not NULL. */
+			if (short_name_end != NULL) {
+				short_name_start = p;
+				short_name_end = NULL;
+			}
+		}
+	} while (*p++ != '\0');
+	g_assert (short_name_end != NULL);
+	
+	/* If we never found a short name, that means that the string is all
+	   directory separators. Since it can't be an empty string, that means
+	   it points to the root, so "/" is a good result.
+	*/
+	if (short_name_start == NULL)
+		return g_strdup (GNOME_VFS_URI_PATH_STR);
+
+	/* Return a copy of the short name. */
+	return g_strndup (short_name_start, short_name_end - short_name_start);
 }
 
 
@@ -1030,12 +1082,6 @@ gint
 gnome_vfs_uri_hequal (gconstpointer a,
 		      gconstpointer b)
 {
-	const GnomeVFSURI *uri_a;
-	const GnomeVFSURI *uri_b;
-
-	uri_a = (const GnomeVFSURI *) a;
-	uri_b = (const GnomeVFSURI *) b;
-
 	return gnome_vfs_uri_equal (a, b);
 }
 
