@@ -3,6 +3,7 @@
 /* test-mime.c - Test program for the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000, 2001 Eazel, Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -517,6 +518,9 @@ main (int argc, char **argv)
 	test_make_canonical ("http://www.eazel.com/query?email=email@eazel.com", "http://www.eazel.com/query?email=email@eazel.com");
 
 	/* test proper case-sensitivity handling */
+	test_make_canonical ("HTTP://WWW.ZOO.COM", "http://www.zoo.com");
+	test_make_canonical ("HTTP://WWW.ZOO.COM/", "http://www.zoo.com/");
+	test_make_canonical ("HTTP://WWW.ZOO.COM/ED", "http://www.zoo.com/ED");
 	test_uri_match ("http://www.zoo.com/ed", "HTTP://WWW.ZOO.COM/ed", TRUE);
 	test_uri_match ("http://www.zoo.com/ed", "http://www.zoo.com/ED", FALSE);
 

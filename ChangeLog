@@ -1,3 +1,13 @@
+2001-02-21  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri): Move code
+	to lower-case the host name down so it's always run, even in
+	cases that exit via "goto done".
+	* test/test-uri.c: (main): Fix test cases that were broken by
+	the above bug.
+
 2001-02-21  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
