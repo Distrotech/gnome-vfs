@@ -1,263 +1,263 @@
-# Slovenian translation for gnome-vfs.
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
+# -------------------------------------------------------
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Vasif Ismailoglu MD <azerb_linux@hotmail.com>, 2001 .
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.1\n"
+"Project-Id-Version: gnome-vfs 0.3.1.0\n"
 "POT-Creation-Date: 2001-02-26 18:39+0100\n"
-"PO-Revision-Date: 2000-07-07 02:53+0200\n"
-"Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
-"Language-Team: Slovenian <sl@li.org>\n"
+"PO-Revision-Date: 2000-02-26 22:59+0200\n"
+"Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
+"Language-Team:Azerbaijani Turkish \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8599-2\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d vsebuje NI�ELNE znake."
+msgstr "%s : %d NUL hərfləini daxil edir."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d ne vsebuje imena metode."
+msgstr "%s : %d metod adını daxil etmir ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d ne vsebuje imea modula."
+msgstr "%s : %d modul adını daxil etmir ."
 
 #: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
+msgstr "Quraşdırma dosyesi `%s' tapıla bilmədi : %s"
 
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS je �e inicializiran."
+msgstr "Gnome VFS çoxdan başladıldı ."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ne morem raz�leniti: %s"
+msgstr "%syi daraya bilmədim "
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:656
 msgid "More parsing errors will be ignored."
-msgstr "Nadalnje napake pri raz�lenitvi bodo ignorirane."
+msgstr "İndidən sonra ortaya çıxacaq xətalar diqqətə alınmayacaq."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
-msgstr "Brez napak"
+msgstr "Xəta yoxdur"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr "Datoteke ni mogo�e najti"
+msgstr "Dosye tapıla bilmədi"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
-msgstr "Generi�na napaka"
+msgstr "Ümumi bir xəta meydana gəldi"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Internal error"
-msgstr "Interna napaka"
+msgstr "Daxili xəta"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
-msgstr "Neveljavni parametri"
+msgstr "Hökmsüz seçənəklər"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
-msgstr "Nepodprta operacija"
+msgstr "Dəstəklənməyən gedişat"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
-msgstr "V/I napaka"
+msgstr "I/O xətası"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr "Podatki so pokvarjeni"
+msgstr "Bu mə'lumat xəsərlidir"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr "Format ni veljaven"
+msgstr "Hazırkı şəkilləndirmə hökmsüzdür"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr "Neveljavna datote�na ro�ica"
+msgstr "Xəsərli dosye idarəsi"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr "Datoteka je prevelika"
+msgstr "Dosye çox böyükdür"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
-msgstr "Na napravi ni ve� prostora"
+msgstr "İstifadə ediləcək yer yoxdur (disk,dolu disk ..)"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Datote�ni sistem je le berljiv"
+msgstr "Sırf oxunan dosye idarə sistemi"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr "Neveljaven URI"
+msgstr "Hökmsüz URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "Datoteka ni odprta"
+msgstr "Dosye açıq deyildir (?)"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr "Neveljaven na�in odpiranja"
+msgstr "Açma şəkli hökmlü deyildir"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
-msgstr "Dostop zavrnjen"
+msgstr "İcazə yoxdur"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr "Preve� odprtih datotek"
+msgstr "Çox çox açıq dosye vardır"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr "Konec datoteke"
+msgstr "Dosye sonu"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
-msgstr "Ni imenik"
+msgstr "Qovluq deyildir"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr "Operacija poteka"
+msgstr "Əməliyyat Gedir"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
-msgstr "Operacija je bila prekinjena"
+msgstr "Əməliyyat dayandırıldı"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr "Datoteka obstaja"
+msgstr "Dosye onsuz da vardır"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr "Najdene so bile kro�ne povezave"
+msgstr "Döngəli bağlar tapıldı"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
-msgstr "Nedovoljena operacija"
+msgstr "Əməliyyat üçün icazən yoxdur"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
-msgstr "Je imenik"
+msgstr "Qovluqdur"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr "Ni dovolj pomnilnika"
+msgstr "Kifayət qədər yaddaş yoxdur"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr "Gostitelj ni bil najden"
+msgstr "Yuva tapıla bilmədi"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr "Gostitlejevo ime ni veljavno"
+msgstr "Hökmsüz yuva"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr "Gostitelj nima naslova"
+msgstr "Bu yuvanın ünvanı yoxdur"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
-msgstr "Prijava ni uspela"
+msgstr "Giriş bacarılmadı "
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Operation cancelled"
-msgstr "Operacija preklicana"
+msgstr "Əməliyyat ləğv edildi"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
-msgstr "Imenik je zaseden"
+msgstr "Qovluq məşğuldur"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
-msgstr "Imenik ni prazen"
+msgstr "Qovluq boş deyildir"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr "Preve� povezav"
+msgstr "Çox bağ var"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr "Datote�ni sistem je le berljiv"
+msgstr "Sırf oxunan dosye idarə sistemi"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr "Ni na istem datote�nem sistemu"
+msgstr "Eyni dosye idarə sistemində deyildir"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
-msgstr "Ime je predolgo"
+msgstr "Ad çox uzundur"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Service not available"
-msgstr "Storitev ni na voljo"
+msgstr "Xidmət yoxdur"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr "Zahtevek zastara podatke servisa"
+msgstr "Dəqiq verici datasını istə"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
-msgstr "Neznana napaka"
+msgstr "Namə'lum xəta"
 
 #: libgnomevfs/gnome-vfs-utils.c:68
 msgid "1 byte"
-msgstr "1 bajt"
+msgstr "1 bayt"
 
 #: libgnomevfs/gnome-vfs-utils.c:70
 #, c-format
 msgid "%u bytes"
-msgstr "%u bajtov"
+msgstr "%u bayt"
 
 #: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
@@ -276,198 +276,202 @@ msgstr "%.1f GB"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
-msgstr "Umira."
+msgstr "Ölürəm ..."
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
-msgstr "Napaka pri branju: %s"
+msgstr "%s yi oxurkən xəta meydana gəldi "
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
-msgstr "Napaka pri pisanju v: %s"
+msgstr "%s yi yaza bilmədim "
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
-msgstr "Ne morem zapisati v: %s"
+msgstr "%s yi yaza bilmədim "
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:601
 #, c-format
 msgid "Cannot create temporary file name `%s'"
-msgstr "Ne morem ustvariti za�asne datoteke `%s'"
+msgstr "Müvəqqəti `%s' dosyesini yarada bilmədim"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
 #: libgnomevfs-corba/gnome-vfs-slave.c:615
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr "Ne morem ustvariti vti�a %s"
+msgstr "%s : Socketi yarada bilmədim"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:633
 #, c-format
 msgid "Cannot bind `%s': %s"
-msgstr "Ne morem povezati `%s': %s"
+msgstr "%s : `%s'yi bağlaya bilmədim "
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:640
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr "Ne morem poslu�ati na `%s': %s"
+msgstr "%s : `%s'yi dinləyə bilmədim "
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
-msgstr "Ne morem sprejeti povezav na `%s': %s"
+msgstr "%s : `%s'yə bağlantıları qəbul edə bilmirəm"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1195
 msgid "Cannot initialize CORBA."
-msgstr "Ne morem inicializirati CORBA-e."
+msgstr "CORBA'yı işə sala bilmədim ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1202
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Ne morem razvozlati za�etne reference na RootPOA."
+msgstr "RootPOA üçün ana qaynaqları həll edə bilmədim ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1209
 msgid "Cannot activate POA manager."
-msgstr "Ne morem aktivirat upravljalca POA."
+msgstr "POA idarəcisini fəallaşdıra bilmirəm ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1234
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Uporaba: %s <ior> [<ior_fd>]\n"
+msgstr "İstifadə qaydası : %s <ior> [ <ior_fd> ] \n"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1245
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr "Ne morem odpreti datote�nega deskriptorja %d."
+msgstr "Dosye izahatçısını ( %d ) aça blmədim ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1268
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr "Vmesnik za obvestila za `%s' ni bil najden."
+msgstr "`%s' üçün xəbərçiyi \"yolu\" tapıla bilmədi ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot setup Request object."
-msgstr "Ne morem nastaviti predmeta za zahtevek."
+msgstr "İstək cismini qura bilmədim ."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot extract IOR."
-msgstr "Ne morem izlu��iti IORa."
+msgstr "IORu ayıra bilmədim "
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr "Dobil sem �udno sporo�ilo od su�enjskega procesa: `%s'"
+msgstr "Kölə əməliyyatdan axmaq bir mətn aldım : `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr "Ne morem dobiti predmeta za `%s'"
+msgstr "`%s' üçün bir cism ala bilmədim"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Ne morem ubiti GNOME::VFS::Slave::Notify -- izjema %s"
+msgstr "GNOME::VFS::Slave::Notifyi öldürə bilmirəm -- xəta %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "Ne morem povezati vti�a `%s': %s"
+msgstr "%s : \"socket\"'inə bağlana bilmədim : %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Ne morem inicializirati GNOME::VFS:Slave::Notify"
+msgstr "GNOME::VFS::Slave::Notifı başlada bilmirəm"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ne morem ponastaviti GNOME::VFS::Slave %s -- izjema %s"
+msgstr "GNOME::VFS::Slave %s yi təzədən başlada bilmədim -- xəta %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne morem ponastaviti GNOME::VFS::Slave (IOR neznan) -- izjema %s"
+msgstr ""
+"GNOME::VFS::Slave ( IOR bilinmir ) i təzədən başlada bilmədim --  xəta "
+"%s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ne morem ubiti GNOME::VFS::Slave %s -- izjema %s"
+msgstr "GNOME::VFS::Slave %syi öldürə bilmədim -- xəta %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne morem ubiti GNOME::VFS::Slave (neznan IOR) -- izjema %s"
+msgstr "GNOME::VFS::Slave ( IOR bilinmir ) i öldürə bilmədim -- xəta %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Neznan tip operacije %u"
+msgstr "Namə'lum gedişat nömrəsi %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:974
 #: libgnomevfs-pthread/gnome-vfs-job.c:1119
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Ne morem ustvariti cevi GIOChannel: %s"
+msgstr "%s: GIOChannel açmaq üçün bir boru yarada bilmədim "
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
 #, fuzzy, c-format
 msgid "Unknown job kind %u"
-msgstr "Neznan ID posla %u"
+msgstr "Namə'lum vəzifə IDsi %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
-msgstr "Operacija ustavljena"
+msgstr "Əməliyyat dayandırıldı"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:386
 msgid "Edit Applications List"
-msgstr "Uredi seznam programov"
+msgstr "Proqram siyahısını Düzəlt"
 
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:408
-#, c-format
+#, fuzzy, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Izberi programe, ki naj se ka�ejo v menuju tipov MIME \"%s\""
+msgstr "\"%s\" MIME növü üçün menyuda mövcud olacaq proqramları seç"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:432
 msgid "Add Application..."
-msgstr "Dodaj program..."
+msgstr "Proqram əlavə et ..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:439
 msgid "Edit Application..."
-msgstr "Uredi program..."
+msgstr "Proqramı Düzəlt..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:445
 msgid "Delete Application"
-msgstr "Zbri�i program"
+msgstr "Proqramı Sil ..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:479
 msgid "Edit Components List"
-msgstr "Uredi seznam komponent"
+msgstr "Parçalar Siyahısını Düzəlt"
 
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:499
-#, c-format
+#, fuzzy, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Izberi poglede, ki naj se ka�ejo v menuju tipov MIME \"%s\""
+msgstr ""
+"\"%s\" MIME növü üçün menyuda mövcud olacaq görünüşləri seç"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
 msgstr ""
-"Vpisan tip MIME je vseboval velike �rke. Samodejno so bile spremenjene v "
-"male."
+"Girilmiş MIME növü böyük hərf daxil edir. Bunlar kiçik hərflərə "
+"dəyişdiriləcəkdir."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
 msgid "Add New MIME Type"
-msgstr "Dodaj nov tip MIME"
+msgstr "Təzə MIME Növü Əlavə Et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:768
+#, fuzzy
 msgid "Add MIME Type"
-msgstr "Dodaj tip MIME"
+msgstr "Təzə MIME Növü Əlavə Et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:772
 msgid "New MIME type (e.g. image/x-thumper):"
@@ -479,33 +483,33 @@ msgstr ""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
 msgid "File Extensions "
-msgstr "Pripone datotek "
+msgstr "Fayl Uzantısı"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
 msgid "Add..."
-msgstr "Dodaj..."
+msgstr "Əlavə Et..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
 msgid "    Remove    "
-msgstr "    Odstrani  "
+msgstr "   Sil   "
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
 msgid "Add New Extension"
-msgstr "Dodaj novo pripono"
+msgstr "Təzə bir uzantı əlavə et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
+#, fuzzy
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
 "for example: html htm"
 msgstr ""
-"Vnesite pripone za ta tip mime (brez pike).\n"
-"Lahko vpi�ete ve� pripon lo�enih s presledki,\n"
-"Na primer: html htm"
+"Bu MIME növü üçün hökmlü olan uzantılar .\n"
+"Məsələn     :  .html .htm"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid "Extension:"
-msgstr "Pripona:"
+msgstr "Uzantı :"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
 msgid "You must enter a name."
@@ -533,1070 +537,968 @@ msgstr ""
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
 #, fuzzy
 msgid "Bad Application Name"
-msgstr "Ime programa:"
+msgstr "Proqram adı :"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1214
 #, fuzzy
 msgid "Bad Application Command"
-msgstr "Ukaz programa:"
+msgstr "Proqram Əmri :"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1246
 #, fuzzy
 msgid "Add Application"
-msgstr "Dodaj program..."
+msgstr "Proqram əlavə et ..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1247
 msgid "Edit Application"
-msgstr "Uredi program"
+msgstr "Proqramı Düzəlt"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
 msgid "Application Name:"
-msgstr "Ime programa:"
+msgstr "Proqram adı :"
 
 #. Application Command label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1270
 msgid "Application Command:"
-msgstr "Ukaz programa:"
+msgstr "Proqram Əmri :"
 
 #. Open Behavior frame
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
 msgid "Open Behavior"
-msgstr "Odpri obna�anje"
+msgstr "Açma Davranışı"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Can open multiple files"
-msgstr "Lahko odpre ve� datotek"
+msgstr "Bir çox dosyeyi eyni anda aça bilmirəm"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1295
 msgid "Can open from URI"
-msgstr "Lahko odpre iz URI-a"
+msgstr "URI'dən aça blmədim"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:735
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1877
+#, fuzzy
 msgid "MIME Type"
-msgstr "Tip MIME"
+msgstr "Təzə MIME Növü Əlavə Et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:742
 msgid "Change Icon"
-msgstr "Spremeni ikono"
+msgstr "Timsalı dəyişdir"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:749
 msgid "Change File Extensions"
-msgstr "Spremeni pripone datotek"
+msgstr "Fayl Uzantısını Dəyişdir"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:757
 msgid "Default Action:"
-msgstr "Privzeto dejanje:"
+msgstr "ƏSas Gediş:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:769
 msgid "Use Viewer"
-msgstr "Uporabi pregledovalnik"
+msgstr "Göstərici İstifadə Et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:775
 msgid "Open With Application"
-msgstr "Odpri s programom"
+msgstr "Proqramla aç"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:786
 msgid "Edit List"
-msgstr "Uredi seznam"
+msgstr "Siyahıyı Düzəlt"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:811
 #, fuzzy
 msgid "Add New MIME Type..."
-msgstr "Dodaj nov tip MIME"
+msgstr "Təzə MIME Növü Əlavə Et"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:817
 #, fuzzy
 msgid "Delete This MIME Type"
-msgstr "Zbri�i ta tip MIME..."
+msgstr "Bu MIME növünü sil ..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:828
 msgid "Revert to System Defaults"
-msgstr "Vrni na privzete sistemske nastavitve"
+msgstr "Sistemin Əsas Qurǧularına Çevir"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1069
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1213
 msgid "None"
-msgstr "Brez"
+msgstr "Yoxdur"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1318
+#, fuzzy
 msgid ""
 "Reverting to system settings will lose any changes\n"
 "you have ever made to File Types and Programs.\n"
 "Revert anyway?"
 msgstr ""
-"Vrnitev na privzete sistemske\n"
-"nastavitve bo povzro�ila izgubo vseh\n"
-"osebnih nastavitev v \"Tipi datotek in programi\".\n"
-"Vseeno povrni na sistemske nastavitve?"
+"Sistemin əsas qurǧularına dəyişiklik\n"
+"sizin şəxsi MIME qurǧularının itirilməsinə\n"
+"səbəb olacaqdır.\n"
+"Sistem Qurǧularına Keçim mi?\n"
 
 #. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1387
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1587
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1713
 msgid "none"
-msgstr "brez"
+msgstr "yoxdur"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1428
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1614
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1757
 #, c-format
 msgid "View as %s"
-msgstr "Poglej kot %s"
+msgstr "%s olaraq göstər"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1876
 msgid "Description"
-msgstr "Opis"
+msgstr "İzahat"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1878
 msgid "Extension"
-msgstr "Pripona"
+msgstr "Uzantı"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1879
 msgid "Default Action"
-msgstr "Privzeto Dejanje"
+msgstr "Əsas Gediş"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
 msgid "Can't find an hbox, using a normal file selection"
-msgstr "Ne najdem hbox, uporabljam obi�ajno izbiranje datotek"
+msgstr ""
+"hbox qutusunu tapa bilmədim, normal dosye seçim dialoqunu istifadə edirəm"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
 msgid "Preview"
-msgstr "Predogled"
+msgstr "Nümayiş"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-#, fuzzy
 msgid "Select an icon"
-msgstr "Izberi ikono..."
+msgstr ""
 
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Neznan GnomeVFSSeekPosition %d"
+msgstr "Namə'lum GnomeVFSSeekPosition %d"
 
 #: modules/http-method.c:1179
 #, c-format
 msgid "%s to retrieve"
-msgstr "%s za prenos sem"
+msgstr "%s alınacaqdır"
 
 #: modules/http-method.c:1584
 #, c-format
 msgid "Closing connection to %s"
-msgstr "Zapiram povezavo z %s"
+msgstr "`%s'yə olan bağlantıyı kəs ."
 
 #: modules/http-method.c:1850
 #, c-format
 msgid "%s of %s read"
-msgstr "%s od %s prebranih"
+msgstr "%s / %s oxundu"
 
 #: modules/http-method.c:1853
 #, c-format
 msgid "%s read"
-msgstr "%s prebran"
+msgstr "%s oxundu"
 
 #: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
-msgstr "Nazaj"
+msgstr "Geri"
 
 #: test/gnome-file-selection/gnome-file-selection.c:668
 msgid "Go to the previously visited directory"
-msgstr "Pojdi na prej obiskan imenik"
+msgstr "Əvvəlki gəzilən qovluğa keç"
 
 #: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
-msgstr "Gor"
+msgstr "Yuxarı"
 
 #: test/gnome-file-selection/gnome-file-selection.c:677
 msgid "Go to the parent directory"
-msgstr "Pojdi v star�evski imenik"
+msgstr "Üst qovluğa keç"
 
 #: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
-msgstr "Naprej"
+msgstr "İrəli"
 
 #: test/gnome-file-selection/gnome-file-selection.c:686
 msgid "Go to the next visited directory"
-msgstr "Pojdi na naslednji obiskan imenik"
+msgstr "Bir sonrakı gəzilən qovluğa get"
 
 #: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
-msgstr "Osve�i"
+msgstr "Təzədən dara"
 
 #: test/gnome-file-selection/gnome-file-selection.c:696
 msgid "Rescan the current directory"
-msgstr "Osve�i trenutni imenik"
+msgstr "Hazırkı qovluğu təzədən dara"
 
 #: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
-msgstr "Dom"
+msgstr "Ev"
 
 #: test/gnome-file-selection/gnome-file-selection.c:706
 msgid "Go to the home directory"
-msgstr "Pojdi v doma�i imenik"
+msgstr "Ev qovluğuna keç"
 
 #: test/gnome-file-selection/gnome-file-selection.c:802
 msgid "Name"
-msgstr "Ime"
+msgstr "Ad"
 
 #: test/gnome-file-selection/gnome-file-selection.c:803
 msgid "Size"
-msgstr "Velikost"
+msgstr "Böyüklük"
 
 #: test/gnome-file-selection/gnome-file-selection.c:804
 msgid "Date"
-msgstr "Datum"
+msgstr "Tarix"
 
 #: test/gnome-file-selection/gnome-file-selection.c:833
 msgid "Enter name:"
-msgstr "Vpi�ite ime:"
+msgstr "Adı tap:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:856
 msgid "Show:"
-msgstr "Ka�i:"
+msgstr "Göstər:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
-msgstr "Ka�i nastavitevene datoteke"
+msgstr "Nöqtə ilə başlayan gizli dosyeləri göstər"
 
 #~ msgid "3D Studio image"
-#~ msgstr "Slika 3D Studia"
+#~ msgstr "3D Studio Rəsmi"
 
 #~ msgid "AIFC audio"
-#~ msgstr "zvok AIFC"
+#~ msgstr "AIFC audio"
 
 #~ msgid "AIFF audio"
-#~ msgstr "zvok AIFF"
+#~ msgstr "AIFF audio"
 
 #~ msgid "ANIM animation"
-#~ msgstr "animacija ANIM"
+#~ msgstr "ANIM animasiya"
 
 #~ msgid "AVI video"
-#~ msgstr "video AVI"
+#~ msgstr "AVI video"
 
 #~ msgid "AbiWord document"
-#~ msgstr "dokument AbiWord-a"
+#~ msgstr "AbiWord sənədi"
 
 #~ msgid "Adobe FrameMaker font"
-#~ msgstr "pisava Adobe FrameMaker"
+#~ msgstr "Adobe FrameMaker yazı növü"
 
 #~ msgid "Adobe font metrics"
-#~ msgstr "metrika za pisavo Adobe"
+#~ msgstr "Adobe font metrics"
 
 #~ msgid "Andrew Toolkit inset"
-#~ msgstr "seznam Andrew Toolkit-a"
+#~ msgstr "Andrew Toolkit inset"
 
 #~ msgid "ApplixWare Graphics image"
-#~ msgstr "slika Applixware Graphics"
+#~ msgstr "ApplixWare Graphics rəsmi"
 
 #~ msgid "Applixware Words document"
-#~ msgstr "dokument Applixware Words"
+#~ msgstr "Applixware Words sənədi"
 
 #~ msgid "Applixware spreadsheet"
-#~ msgstr "preglednica Applixware-a"
+#~ msgstr "Applixware hesab cədvəlləri"
 
 #~ msgid "AutoCAD image"
-#~ msgstr "slika AutoCAD-a"
+#~ msgstr "AutoCAD rəsmi"
 
 #~ msgid "BCPIO document"
-#~ msgstr "dokument BCPIO"
+#~ msgstr "BCPIO sənədi"
 
 #~ msgid "BDF font"
-#~ msgstr "pisava BDF"
+#~ msgstr "BDF yazı növü"
 
 #~ msgid "C shell script"
-#~ msgstr "skripta za lupino C"
+#~ msgstr "C qabıq skripti"
 
 #~ msgid "C source code"
-#~ msgstr "izvorna koda C"
+#~ msgstr "C qaynaq kodu"
 
 #~ msgid "C++ source code"
-#~ msgstr "izvorna koda C++"
+#~ msgstr "C++ qaynaq kodu"
 
 #~ msgid "CGI program"
-#~ msgstr "program CGI"
+#~ msgstr "SGI proqramı"
 
 #~ msgid "CGM image"
-#~ msgstr "slika CGM"
+#~ msgstr "CGM rəsmi"
 
 #~ msgid "CMU raster image"
-#~ msgstr "rastrska slika CMU"
+#~ msgstr "CMU raster rəsmi"
 
 #~ msgid "CPIO archive"
-#~ msgstr "arhiv CPIO"
+#~ msgstr "CPIO arxivi"
 
 #~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "arhiv CPIO (komprimirana z gzip)"
+#~ msgstr "CPIO arxivi (gzip ilə sıxışdırılmış)"
 
 #~ msgid "DCL script"
-#~ msgstr "skripta DCL"
+#~ msgstr "DCL skripti"
 
 #~ msgid "DOS font"
-#~ msgstr "pisava DOS"
+#~ msgstr "DOS yazı növü"
 
 #~ msgid "DOS/Windows program"
-#~ msgstr "program za DOS/Okena"
+#~ msgstr "DOS/Windows proqramı"
 
 #~ msgid "DSSSL document"
-#~ msgstr "dokument DSSSL"
+#~ msgstr "DSSSL sənədi"
 
 #~ msgid "DXF vector graphic"
-#~ msgstr "vektorska grafika DXF"
+#~ msgstr "DXF vektor qrafikaları"
 
 #~ msgid "Debian package"
-#~ msgstr "Debianov paket"
+#~ msgstr "Debian paketi"
 
 #~ msgid "Dia diagram"
-#~ msgstr "diagram Dia"
+#~ msgstr "Dia diaqramı"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "izvorna koda Emacs Lisp"
+#~ msgstr "Emacs Lisp qaynaq kodu"
 
 #~ msgid "Enlightenment theme"
-#~ msgstr "tema Enlightment"
+#~ msgstr "Enlightment örtüsü"
 
 #~ msgid "FLC animation"
-#~ msgstr "animacija FLC"
+#~ msgstr "FLC animasiyası"
 
 #~ msgid "FLI animation"
-#~ msgstr "animacija FLI"
+#~ msgstr "FLI animasiyası"
 
 #~ msgid "FastTracker II audio"
-#~ msgstr "zvok FastTracker II"
+#~ msgstr "FastTracker II audio"
 
 #~ msgid "Fortran source code"
-#~ msgstr "izvorna koda Fortran"
+#~ msgstr "Fortran qaynaq kodu"
 
 #~ msgid "FrameMaker interchange document"
-#~ msgstr "izmenjalni dokument FrameMaker"
+#~ msgstr "FrameMaker mübadilə sənədi"
 
 #~ msgid "G3 fax image"
-#~ msgstr "fax slika G3"
+#~ msgstr "G3 faks rəsmi"
 
 #~ msgid "GIF image"
-#~ msgstr "slika GIF"
+#~ msgstr "GIF rəsmi"
 
 #~ msgid "GIMP document"
-#~ msgstr "dokument GIMP"
+#~ msgstr "GIMP sənədi"
 
 #~ msgid "GMC link"
-#~ msgstr "povezava GMC"
+#~ msgstr "GMC baǧı"
 
 #~ msgid "GNOME application details"
-#~ msgstr "podrobnosti GNOME programa"
+#~ msgstr "GNOME proqramları detalları"
 
 #~ msgid "GNU mail message"
-#~ msgstr "sporo�ilo GNU mail"
+#~ msgstr "GNU elektronik məktub ismarıcı"
 
 #~ msgid "GTK configuration"
-#~ msgstr "nastavitev GTK"
+#~ msgstr "GTK qurǧuları"
 
 #~ msgid "Gnumeric spreadsheet"
-#~ msgstr "preglednica Gnumeric"
+#~ msgstr "Gnomeric hesab cədvəli"
 
 #~ msgid "HDF document"
-#~ msgstr "dokument HDF"
+#~ msgstr "HDF sənədi"
 
 #~ msgid "HTML page"
-#~ msgstr "stran HTML"
+#~ msgstr "HTMl səhifəsi"
 
 #~ msgid "IDL document"
-#~ msgstr "dokument IDL"
+#~ msgstr "IDL sənədi"
 
 #~ msgid "IEF image"
-#~ msgstr "slika IEF"
+#~ msgstr "IEF rəsmi"
 
 #~ msgid "IFF image"
-#~ msgstr "slika IFF"
+#~ msgstr "IFF rəsmi"
 
 #~ msgid "ILBM image"
-#~ msgstr "slika ILBM"
+#~ msgstr "ILBM rəsmi"
 
 #~ msgid "ISI video"
-#~ msgstr "video ISI"
+#~ msgstr "ISI video"
 
 #~ msgid "Impulse Tracker audio"
-#~ msgstr "zvok Impulse trackerja"
+#~ msgstr "Impulse Tracker audio"
 
 #~ msgid "JPEG image"
-#~ msgstr "slika JPEG"
+#~ msgstr "JPEG rəsmi"
 
 #~ msgid "Java byte code"
-#~ msgstr "bajtna koda Java"
+#~ msgstr "Java bayt kodu"
 
 #~ msgid "Java source code"
-#~ msgstr "java izvorna koda"
+#~ msgstr "Java qaynaq kodu"
 
 #~ msgid "KDE application details"
-#~ msgstr "podrobnosti KDE programa"
+#~ msgstr "KDE proqramları detalları"
 
 #~ msgid "Korn shell script"
-#~ msgstr "lupinska �kolka Korn"
+#~ msgstr "Korn qabıq skripti"
 
 #~ msgid "LHA archive"
-#~ msgstr "arhiv LHA"
+#~ msgstr "LHA arxivi"
 
 #~ msgid "LHARC archive"
-#~ msgstr "arhiv LHARC"
+#~ msgstr "LHARC arxivi"
 
 #~ msgid "LIBGRX font"
-#~ msgstr "pisava LIBGRX"
+#~ msgstr "LIBGRX yazı növü"
 
 #~ msgid "LightWave object"
-#~ msgstr "predmet LightWavea"
+#~ msgstr "LightWave cismi"
 
 #~ msgid "LightWave scene"
-#~ msgstr "scena LighteWavea"
+#~ msgstr "LightWave səhnəsi"
 
 #~ msgid "Linux PSF console font"
-#~ msgstr "konzolska pisava Linux PSF"
+#~ msgstr "Linux RSF konsol yazı növləri"
 
 #~ msgid "M3 audio URL"
-#~ msgstr "URL zvoka oblike M3"
+#~ msgstr "M3 audio URL"
 
 #~ msgid "MIDI audio"
-#~ msgstr "zvok MIDI"
+#~ msgstr "MIDI audio"
 
 #~ msgid "MOD audio"
-#~ msgstr "zvok MOD"
+#~ msgstr "MOD audio"
 
 #~ msgid "MP3 audio"
-#~ msgstr "zvok MP3"
+#~ msgstr "MP3 audio"
 
 #~ msgid "MP3 audio playlist"
-#~ msgstr "seznam predvajanja MP3 zvoka"
+#~ msgstr "MP3 audio çalǧı siyahısı"
 
 #~ msgid "MPEG video"
-#~ msgstr "video MPEG"
+#~ msgstr "MPEG video"
 
 #~ msgid "MS video"
 #~ msgstr "MS video"
 
 #~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "datoteka kodirana z Macintosh AppleDouble"
+#~ msgstr "Macintosh AppleDouble-encoded faylı"
 
 #~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "datoteka kodirana z Macintosh BinHex"
+#~ msgstr "Macintosh BinHx-encoded faylı"
 
 #~ msgid "Macintosh StuffIt archive"
-#~ msgstr "arhiv Macintosh StuffIt"
+#~ msgstr "Macintosh Stufflt arxivi"
 
 #~ msgid "MathML document"
-#~ msgstr "dokument MathML"
+#~ msgstr "MathML sənədi"
 
 #~ msgid "Microsoft Excel document"
-#~ msgstr "dokument Microsoft Excel"
+#~ msgstr "Microsoft Excel sənədi"
 
 #~ msgid "Microsoft PowerPoint document"
-#~ msgstr "dokument Microsoft PowerPoint"
+#~ msgstr "Micrpspft PowerPoint sənədi"
 
 #~ msgid "Microsoft Word document"
-#~ msgstr "dokument Micrsofot Word"
+#~ msgstr "Microsoft Word sənədi"
 
 #~ msgid "Microsoft video"
-#~ msgstr "video Microsoft"
+#~ msgstr "Microsoft video"
 
 #~ msgid "Nautilus link"
-#~ msgstr "povezava Nautilusa"
+#~ msgstr "Nautilus baǧı"
 
 #~ msgid "ODA document"
-#~ msgstr "dokument ODA"
+#~ msgstr "ODA sənədi"
 
 #~ msgid "PBM image"
-#~ msgstr "slika PBM"
+#~ msgstr "PBM rəsmi"
 
 #~ msgid "PCF font"
-#~ msgstr "pisava PCF"
+#~ msgstr "PCF yazı növü"
 
 #~ msgid "PDF document"
-#~ msgstr "dokument PDF"
+#~ msgstr "PDF sənədi"
 
 #~ msgid "PEF program"
-#~ msgstr "program PEF"
+#~ msgstr "PEF proqramı"
 
 #~ msgid "PGM image"
-#~ msgstr "slika PGM"
+#~ msgstr "PGM rəsmi"
 
 #~ msgid "PGN chess game"
-#~ msgstr "igra �aha PGN"
+#~ msgstr "PGN şahmat oyunu"
 
 #~ msgid "PGP keys"
-#~ msgstr "klju�i PGP"
+#~ msgstr "PGP açarları"
 
 #~ msgid "PGP message"
-#~ msgstr "sporo�ilo PGP"
+#~ msgstr "PGP ismarıcı"
 
 #~ msgid "PGP signature"
-#~ msgstr "podpis PGP"
+#~ msgstr "PGP imzası"
 
 #~ msgid "PGP-encrypted file"
-#~ msgstr "datoteka za�ifrirana s PGP"
+#~ msgstr "PGP ile kodlanmış fayl"
 
 #~ msgid "PHP script"
-#~ msgstr "skripta PHP"
+#~ msgstr "PHP skripti"
 
 #~ msgid "PN RealAudio document"
-#~ msgstr "dokument PN RealAudio"
+#~ msgstr "PN RealAudio sənədi"
 
 #~ msgid "PNG image"
-#~ msgstr "slika PNG"
+#~ msgstr "PNG rəsmi"
 
 #~ msgid "PNM image"
-#~ msgstr "slika PNM"
+#~ msgstr "PNM rəsmi"
 
 #~ msgid "PPM image"
-#~ msgstr "slika PPM"
+#~ msgstr "PPM rəsmi"
 
 #~ msgid "Palm OS database"
-#~ msgstr "zbirka podatkov Palm OS"
+#~ msgstr "Palm OS databeyzi"
 
 #~ msgid "Perl script"
-#~ msgstr "skripta perl"
+#~ msgstr "Perl skripti"
 
 #~ msgid "Photoshop document"
-#~ msgstr "dokument Photoshopa"
+#~ msgstr "Photoshop sənədi"
 
 #~ msgid "PostScript Type 1 font"
-#~ msgstr "pisava PostScript Type 1"
+#~ msgstr "PostScript Type 1 yazı növü"
 
 #~ msgid "PostScript document"
-#~ msgstr "dokument PostScript"
+#~ msgstr "PostScript sənədi"
 
 #~ msgid "Python source code"
-#~ msgstr "izvorna koda Python"
+#~ msgstr "Phyton qaynaq kodu"
 
 #~ msgid "QuickTime movie"
-#~ msgstr "film QuickTime"
+#~ msgstr "QuickTime filmi"
 
 #~ msgid "RAR archive"
-#~ msgstr "arhiv RAR"
+#~ msgstr "RAR arxivi"
 
 #~ msgid "README document"
-#~ msgstr "dokument README"
+#~ msgstr "README sənədi"
 
 #~ msgid "RGB image"
-#~ msgstr "slika RGB"
+#~ msgstr "RGB rəsmi"
 
 #~ msgid "RIFF audio"
-#~ msgstr "zvok RIFF"
+#~ msgstr "RIFF audio"
 
 #~ msgid "RPM package"
-#~ msgstr "paket RPM"
+#~ msgstr "paketi"
 
 #~ msgid "RealAudio/Video document"
-#~ msgstr "dokument RealAudio/Video"
+#~ msgstr "RealAudio/Video sənədi"
 
 #~ msgid "RealVideo video"
-#~ msgstr "video RealVideo"
+#~ msgstr "RealVideo video"
 
 #~ msgid "S/MIME file"
-#~ msgstr "datoteka S/MIME"
+#~ msgstr "S/MIME faylı"
 
 #~ msgid "S/MIME signature"
-#~ msgstr "podpis S/MIME"
+#~ msgstr "S/MIME imzası"
 
 #~ msgid "SGI video"
-#~ msgstr "video SGI"
+#~ msgstr "SGI video"
 
 #~ msgid "SGML document"
-#~ msgstr "dokument SGML"
+#~ msgstr "SGML sənədi"
 
 #~ msgid "SMIL script"
-#~ msgstr "skripta SMIL"
+#~ msgstr "SMIL skripti"
 
 #~ msgid "SQL code"
-#~ msgstr "koda SQL"
+#~ msgstr "SQL kodu"
 
 #~ msgid "SV4 CPIO archive"
-#~ msgstr "arhiv SV4 CPIO"
+#~ msgstr "SV4 CPIO arxivi"
 
 #~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "arhiv SV4 CPIP (s CRCjem)"
+#~ msgstr "SV4 CPIP arxivi (CRC ilə bərabər)"
 
 #~ msgid "SVG art"
-#~ msgstr "delo SVG"
+#~ msgstr "SVG art"
 
 #~ msgid "Scheme source code"
-#~ msgstr "izvorna koda Scheme"
+#~ msgstr "Scheme qaynaq kodu"
 
 #~ msgid "Scream Tracker 3 audio"
-#~ msgstr "zvok Scream tracker 3"
+#~ msgstr "Scream Tracker 3 audio"
 
 #~ msgid "Scream Tracker audio"
-#~ msgstr "zvok Scream tracker"
+#~ msgstr "Scream Tracker audio"
 
 #~ msgid "Scream Tracker instrument"
-#~ msgstr "in�trument Scream tracker"
+#~ msgstr "Scream Tracker aləti"
 
 #~ msgid "Setext document"
-#~ msgstr "dokument Setext"
+#~ msgstr "Setext sənədi"
 
 #~ msgid "Speech document"
-#~ msgstr "dokument Speech"
+#~ msgstr "Speech sənədi"
 
 #~ msgid "Speedo font"
-#~ msgstr "pisava Speedo"
-
-#~ msgid "Stampede package"
-#~ msgstr "Stampedov paket"
+#~ msgstr "Speedo yazı növü"
 
 #~ msgid "StarOffice Writer document"
-#~ msgstr "dokument StarOffice Writer-ja"
+#~ msgstr "StarOffice Writer sənədi"
 
 #~ msgid "StarOffice presentation"
-#~ msgstr "predstavitev StarOffice"
+#~ msgstr "StarOffice nümayişi"
 
 #~ msgid "StarOffice spreadsheet"
-#~ msgstr "preglednica StarOffice"
+#~ msgstr "StarOffice hesab cədvəli"
 
+# The sources use a hardcoded latin1 char for mu :-(
 #~ msgid "Sun �-law audio"
-#~ msgstr "zvok v obliki Sun �-law"
+#~ msgstr "Sun µ-law audio"
 
 #~ msgid "SunOS News font"
-#~ msgstr "pisava SunOS News"
+#~ msgstr "SunOS News yazı növü"
 
 #~ msgid "TIFF image"
-#~ msgstr "slika TIFF"
+#~ msgstr "TIFF rəsmi"
 
 #~ msgid "TarGA image"
-#~ msgstr "slika TarGA"
+#~ msgstr "TarGA rəsmi"
 
 #~ msgid "Tcl script"
-#~ msgstr "skripta TCL"
+#~ msgstr "Tcl skripti"
 
 #~ msgid "TeX document"
-#~ msgstr "dokument TeX"
+#~ msgstr "TeX sənədi"
 
 #~ msgid "TeX dvi document"
-#~ msgstr "dokument TeX dvi"
+#~ msgstr "TeX dvi sənədi"
 
 #~ msgid "TeX font"
-#~ msgstr "pisava TeX"
+#~ msgstr "TeX yazı növü"
 
 #~ msgid "TeX font metrics"
-#~ msgstr "metrika za pisavo TeX"
+#~ msgstr "TeX yazı növü metrikləri"
 
 #~ msgid "TeXInfo document"
-#~ msgstr "dokument TeXInfo"
+#~ msgstr "Texnfo sənədi"
 
 #~ msgid "ToutDoux document"
-#~ msgstr "dokument ToutDoux"
+#~ msgstr "ToutDoux sənədi"
+
+#~ msgid "Troff document"
+#~ msgstr "Troff sənədi"
 
 #~ msgid "TrueType font"
-#~ msgstr "pisava TrueType"
+#~ msgstr "TrueType yazı növü"
 
 #~ msgid "USENET news message"
-#~ msgstr "sporo�ilo novi�arskih skupin USENET"
+#~ msgstr "USENET xəbər ismarıcı"
 
 #~ msgid "Unidata netCDF document"
-#~ msgstr "dokument Unidata netCDF"
+#~ msgstr "Unidata netCDF sənədi"
 
 #~ msgid "V font"
-#~ msgstr "pisava oblike V"
+#~ msgstr "V yazı növü"
 
 #~ msgid "VOC audio"
-#~ msgstr "zvok VOC"
+#~ msgstr "VOC audio"
 
 #~ msgid "VRML document"
-#~ msgstr "dokument VRML"
+#~ msgstr "VRML sənədi"
 
 #~ msgid "Vivo video"
-#~ msgstr "video Vivo"
+#~ msgstr "Vivo video"
 
 #~ msgid "WAIS source code"
-#~ msgstr "izvorna koda WAIS"
+#~ msgstr "WAIS qaynaq kodu"
 
 #~ msgid "Wavelet video"
-#~ msgstr "video Wavelet"
+#~ msgstr "Wavelet video"
 
 #~ msgid "Windows bitmap image"
-#~ msgstr "bitna okenska slika"
+#~ msgstr "Windows bitmap rəsmi"
 
 #~ msgid "Windows icon image"
-#~ msgstr "ikona za Okna"
+#~ msgstr "Windows timsal rəsmi"
 
 #~ msgid "WordPerfect document"
-#~ msgstr "dokument WordPerfect"
+#~ msgstr "WorldPerfect sənədi"
 
 #~ msgid "X bitmap image"
-#~ msgstr "bitna slika X"
+#~ msgstr "X bitmap rəsmi"
 
 #~ msgid "X window image"
-#~ msgstr "slika okna X"
+#~ msgstr "X window rəsmi"
 
 #~ msgid "XML document"
-#~ msgstr "dokument XML"
+#~ msgstr "XML sənədi"
 
 #~ msgid "XPM image"
-#~ msgstr "slika XPM"
+#~ msgstr "XPM rəsmi"
 
 #~ msgid "active server page"
-#~ msgstr "aktivna stre�ni�ka stran"
+#~ msgstr "fəal verici səhifələri"
 
 #~ msgid "address card"
-#~ msgstr "vizitka"
+#~ msgstr "ünvan kartı"
 
 #~ msgid "ar archive"
-#~ msgstr "arhiv ar"
+#~ msgstr "ar arxivi"
 
 #~ msgid "arj archive"
-#~ msgstr "arhiv arj"
+#~ msgstr "arj arxivi"
 
 #~ msgid "authors list"
-#~ msgstr "seznam avtorjev"
+#~ msgstr "müəlliflər siyahısı"
 
 #~ msgid "backup file"
-#~ msgstr "varnostna kopija"
+#~ msgstr "ehtiyat nüsxəsi faylı"
 
 #~ msgid "basic audio"
-#~ msgstr "osnovni zvok"
+#~ msgstr "əsas audio"
 
 #~ msgid "bibliography record"
-#~ msgstr "bibliografski zapis"
+#~ msgstr "biblioqrafik qeyd"
 
 #~ msgid "binary program"
-#~ msgstr "binarni program"
+#~ msgstr "binar proqramı"
 
 #~ msgid "block device"
-#~ msgstr "blokovna naprava"
+#~ msgstr "blok avadanlıǧı"
 
 #~ msgid "bzip-compressed file"
-#~ msgstr "datoteka komprimirana z bzip"
+#~ msgstr "bzip-sıxışdırılmış fayl"
 
 #~ msgid "calendar file"
-#~ msgstr "datoteka koledarja"
+#~ msgstr "təqvim faylı"
 
 #~ msgid "calendar or event document"
-#~ msgstr "dokument koledarja ali dogodka"
+#~ msgstr "təqvim və ya hadisə sənədi"
 
 #~ msgid "character device"
-#~ msgstr "znakovna naprava"
+#~ msgstr "hərf avadanlıǧı"
 
 #~ msgid "comma-separated text document"
-#~ msgstr "dokument besedila lo�enega z vejicami"
+#~ msgstr "vergüllə ayrılmış mətn sənədi"
 
 #~ msgid "compound document"
-#~ msgstr "zdru�en dokument"
+#~ msgstr "kipləşdirilmiş sənəd"
 
 #~ msgid "compress-compressed file"
-#~ msgstr "datoteka komprimirana s compress"
+#~ msgstr "sıxışdır-sıxışdırılmış fayl"
 
 #~ msgid "compressed GIMP document"
-#~ msgstr "komprimiran dokument GIMP"
+#~ msgstr "sıxışdırılmış GIMP sənədi"
 
 #~ msgid "directory information file"
-#~ msgstr "datoteka s podatki o imeniku"
+#~ msgstr "qovluq haqqında mə'lumat faylı"
 
 #~ msgid "document type definition"
-#~ msgstr "dolo�itev vrste dokumenta"
+#~ msgstr "sənəd növü izahı"
 
 #~ msgid "email headers"
-#~ msgstr "glave e-po�te"
+#~ msgstr "ePoçt başlıqları"
 
 #~ msgid "email message"
-#~ msgstr "sporo�ilo e-po�te"
+#~ msgstr "ePoçt ismarıcları"
 
 #~ msgid "encrypted message"
-#~ msgstr "�ifrirano sporo�ilo"
+#~ msgstr "kodlanmış ismarıcı"
 
 #~ msgid "enriched text document"
-#~ msgstr "dokument z obogatenim besedilom"
+#~ msgstr "zənginləşdirilmiş mətn sənədi"
 
 #~ msgid "folder"
-#~ msgstr "mapa"
+#~ msgstr "qovluq"
 
 #~ msgid "gtar archive"
-#~ msgstr "arhiv gtar"
+#~ msgstr "gtar arxivi"
 
 #~ msgid "gzip-compressed file"
-#~ msgstr "daoteka komprimirana z gzip"
+#~ msgstr "gzip-sıxışdırılmış fayl"
 
 #~ msgid "help page"
-#~ msgstr "stran pomo�i"
+#~ msgstr "kömək səhifəsi"
 
 #~ msgid "mail delivery report"
-#~ msgstr "poro�ilo o dostavi po�te"
+#~ msgstr "məktub göndərmə raportu"
 
 #~ msgid "mail disposition report"
-#~ msgstr "poro�ilo o stanju po�te"
+#~ msgstr "məktub dispozisiya raportu"
 
 #~ msgid "mail system report"
-#~ msgstr "poro�ilo o po�tnem sistemu"
+#~ msgstr "məktub sistem raportu"
 
 #~ msgid "makefile"
 #~ msgstr "makefile"
 
 #~ msgid "manual page"
-#~ msgstr "stran priro�nika"
+#~ msgstr "bələdçi səhifəsi"
 
 #~ msgid "manual page (compressed)"
-#~ msgstr "stran priro�nika (komprimirana)"
+#~ msgstr "bələdçi səhifəsi (sıxışdırılmış)"
 
 #~ msgid "memory dump"
-#~ msgstr "izpis pomnilnika"
+#~ msgstr "yaddaş raportu"
 
 #~ msgid "message digest"
-#~ msgstr "arhiv sporo�il"
+#~ msgstr "ismarıc gündəliyi"
 
 #~ msgid "message in several formats"
-#~ msgstr "sporo�ilo v ve� oblikah zapisa"
+#~ msgstr "müxtəlif şəkillərdə ismarıc"
 
 #~ msgid "multi-part message"
-#~ msgstr "ve� delno sporo�ilo"
+#~ msgstr "çoxlu hissəli ismarıc"
 
 #~ msgid "named pipe"
-#~ msgstr "poimenovana cev"
+#~ msgstr "adlandırılmış boru"
 
 #~ msgid "object code"
-#~ msgstr "koda predmeta"
+#~ msgstr "cism kodu"
 
 #~ msgid "ogg audio"
-#~ msgstr "zvok ogg"
+#~ msgstr "ogg audio"
 
 #~ msgid "partial email message"
-#~ msgstr "del e-po�tnega sporo�ila"
+#~ msgstr "qismi ePoçt ismarıcı"
 
 #~ msgid "plain text document"
-#~ msgstr "dokument �istega besedila"
+#~ msgstr "düz mətn sənədi"
 
 #~ msgid "profiler results"
-#~ msgstr "rezultati profiliranja"
+#~ msgstr "profayler nəticəsi"
 
 #~ msgid "reference to remote file"
-#~ msgstr "navezava na oddaljeno datoteko"
+#~ msgstr "uzaq fayla referens"
 
 #~ msgid "rejected patch file"
-#~ msgstr "datoteka z zavrnjenim popravkom"
+#~ msgstr "rədd edilmiş yamaq faylı"
 
 #~ msgid "rich text document"
-#~ msgstr "dokument bogatega besedila"
+#~ msgstr "zənginləşdirilmiş mətn sənədi"
 
 #~ msgid "search results"
-#~ msgstr "zadetki iskanja"
+#~ msgstr "axtarış nəticəsi"
 
 #~ msgid "shared library"
-#~ msgstr "deljena kni�njica"
+#~ msgstr "paylaşdırılmış kitabxana"
 
 #~ msgid "shell archive"
-#~ msgstr "arhiv �koljke"
+#~ msgstr "qabıq arxivi"
 
 #~ msgid "shell script"
-#~ msgstr "skripta �koljke"
+#~ msgstr "qabıq skripti"
 
 #~ msgid "signed message"
-#~ msgstr "podpisano sporo�ilo"
+#~ msgstr "imzalanmış ismarıc"
 
 #~ msgid "socket"
-#~ msgstr "vti�"
+#~ msgstr "soket"
 
 #~ msgid "software author credits"
-#~ msgstr "zahvle avtorjem programja"
+#~ msgstr "proqram müəllifləri haqqında"
 
 #~ msgid "software installation instructions"
-#~ msgstr "navodila za namestitev programja"
+#~ msgstr "proqram qurulma tövsiyyələri"
 
 #~ msgid "software license terms"
-#~ msgstr "pogoji licence programja"
+#~ msgstr "proqram lisenziya terminləri"
 
 #~ msgid "source code patch"
-#~ msgstr "popravek izvorne kode"
+#~ msgstr "qaynaq kodu yamaǧı"
 
 #~ msgid "style sheet"
-#~ msgstr "slogovne predloge"
+#~ msgstr "tərz səhifəsi"
 
 #~ msgid "symbolic link"
-#~ msgstr "simboli�na povezava"
+#~ msgstr "yumşaq baǧ"
 
 #~ msgid "tab-separated text document"
-#~ msgstr "datoteka z besedilom lo�enim s tabulatorji"
+#~ msgstr "tab ilə ayrılmış mətn sənədi"
 
 #~ msgid "tar archive"
-#~ msgstr "arhiv tar"
+#~ msgstr "tar arxivi"
 
 #~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "arhiv tar (komprimiran z bzip2)"
+#~ msgstr "tar arxivi (bzip2 ilə sıxışdırılmış)"
 
 #~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "arhiv tar (komprimiran z gzip)"
+#~ msgstr "tar arxivi (gzip ilə sıxışdırılmış)"
 
 #~ msgid "theme"
-#~ msgstr "tema"
-
-#~ msgid "troff document"
-#~ msgstr "dokument troff"
+#~ msgstr "örtü"
 
 #~ msgid "troff me input document"
-#~ msgstr "vhodni dokument troff me"
+#~ msgstr "troff me giriş sənədi"
 
 #~ msgid "troff mm input document"
-#~ msgstr "vhodni dokument troff mm"
+#~ msgstr "troff mm giriş sənədi"
 
 #~ msgid "troff ms input document"
-#~ msgstr "vhodni dokument troff ms"
+#~ msgstr "troff ms giriş sənədi"
 
 #~ msgid "unknown type"
-#~ msgstr "neznana vrsta"
+#~ msgstr "namə'lum növ"
 
 #~ msgid "ustar archive"
-#~ msgstr "arhiv ustar"
+#~ msgstr "ustar arxivi"
 
 #~ msgid "wave audio"
-#~ msgstr "zvok wave"
+#~ msgstr "wave audio"
 
 #~ msgid "web folder"
-#~ msgstr "spletna mapa"
+#~ msgstr "web qovluǧu"
 
 #~ msgid "xfig vector graphic"
-#~ msgstr "vektorska grafika xfig"
+#~ msgstr "sfig vektor qrafikaları"
 
 #~ msgid "zip archive"
-#~ msgstr "arhiv zip"
+#~ msgstr "zip arxivi"
 
 #~ msgid "zoo archive"
-#~ msgstr "arhiv zoo"
-
-#~ msgid ""
-#~ "Add a new MIME Type\n"
-#~ "For example:  image/tiff; text/x-scheme"
-#~ msgstr ""
-#~ "Dodaj nov tip MIME\n"
-#~ "Na primer:  image/tiff; text/x-scheme"
-
-#~ msgid "MIME Type:"
-#~ msgstr "Tip MIME:"
-
-#~ msgid "Type a description for this MIME type."
-#~ msgstr "Vnesite opis tega tipa MIME."
-
-#~ msgid "Description:"
-#~ msgstr "Opis:"
-
-#~ msgid "New Application"
-#~ msgstr "Nov program"
-
-#~ msgid "Expects URIs as arguments"
-#~ msgstr "Kot argumente pri�akuje URIje"
-
-#~ msgid "Add new MIME type..."
-#~ msgstr "Dodaj nov tip MIME..."
-
-#~ msgid "No Description"
-#~ msgstr "Ni opisa"
+#~ msgstr "zoo arxivi"
 
 #~ msgid "Add Mime Type"
-#~ msgstr "Dodaj tip Mime"
+#~ msgstr "MIME növü əlavə et"
+
+#~ msgid ""
+#~ "Add a new Mime Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Təzə bir MIMe tnövünü əlavə et \n"
+#~ "Məsələn:      image/tiff; text/x-scheme"
+
+#~ msgid "Mime Type:"
+#~ msgstr "MIME növü :"
+
+#~ msgid "Type in a description for this mime-type."
+#~ msgstr "Bu MIME növü üçün bir izahat ver ."
+
+#~ msgid "Description:"
+#~ msgstr "İzahat :"
+
+#~ msgid "New Application"
+#~ msgstr "Təzə proqram"
+
+#~ msgid "Expects URIs as arguments"
+#~ msgstr "URIləri arqument olaraq gözləyər"
 
 #~ msgid "Mime Type"
-#~ msgstr "Tip Mime"
+#~ msgstr "MIME növü"
+
+#~ msgid "Add new Mime type..."
+#~ msgstr "Təzə bir MIME növü əlavə et ..."
+
+#~ msgid "No Description"
+#~ msgstr "İzahatsız"
 
 #~ msgid "Unknown sort rule %d"
-#~ msgstr "Neznano pravilo urejanja %d"
+#~ msgstr "Namə'lum süzmə qaydası %d"
 
 #~ msgid "Error writing to the wakeup GnomeVFSJob channel."
-#~ msgstr "Napaka pri bujenju kanala GnomeVFSJob."
-
-#~ msgid "Add"
-#~ msgstr "Dodaj"
+#~ msgstr "GnomeVFSJob kanalını oynadırmaq üçün yaza bilmədim."
 
 #~ msgid "Action"
-#~ msgstr "Dejanje"
-
-#~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "HTTP stre�nik je vrnil napa�en PROPFIND odgovor"
-
-#~ msgid "Application ID:"
-#~ msgstr "ID Programa:"
-
-#~ msgid "Default Application:"
-#~ msgstr "Privzet Program:"
-
-#~ msgid "Default Viewer:"
-#~ msgstr "Privzet Prikazovalnik:"
-
-#~ msgid "No Default"
-#~ msgstr "Ni Privzeto"
-
-#~ msgid "Use Application"
-#~ msgstr "Uporabi Program"
-
-#~ msgid "Use None"
-#~ msgstr "Brez"
-
-#~ msgid "ftpfs: Invalid host name."
-#~ msgstr "ftpfs: Neveljavno ime gostitelja."
-
-#~ msgid "ftpfs: Invalid host address."
-#~ msgstr "ftpfs: Neveljaven naslov gostitelja."
-
-#~ msgid "ftpfs: making connection to %s"
-#~ msgstr "ftpfs: ustvarjam povezavo z %s"
-
-#~ msgid "ftpfs: connection interrupted by user"
-#~ msgstr "ftpfs: uporabnik je prekinil povezavo"
-
-#~ msgid "ftpfs: connection to server failed: %s"
-#~ msgstr "ftpfs: povezava do stre�nika ni bila uspe�na: %s"
-
-#~ msgid "Waiting to retry... %d (Control-C to cancel)"
-#~ msgstr "�akam na nov poizkus... %d (Control-C za preklic)"
-
-#~ msgid " FTP: Password required for "
-#~ msgstr " FTP: Potrebno je geslo za "
-
-#~ msgid "ftpfs: sending login name"
-#~ msgstr "ftpfs: po�iljam ime za prijavo"
-
-#~ msgid "ftpfs: sending user password"
-#~ msgstr "ftpfs: po�iljam uporabnikovo geslo"
-
-#~ msgid "ftpfs: logged in"
-#~ msgstr "ftpfs: prijavljen sem"
-
-#~ msgid "ftpfs: Login incorrect for user %s "
-#~ msgstr "ftpfs: Napa�na prijava za uporabnika %s "
-
-#~ msgid "ftpfs: aborting transfer."
-#~ msgstr "ftpfs: prekinjam prenos."
-
-#~ msgid "ftpfs: abort error: %s"
-#~ msgstr "ftpfs: prekinitvena napaka: %s"
-
-#~ msgid "ftpfs: abort failed"
-#~ msgstr "ftpfs: prekinitev ni uspela"
-
-#~ msgid "ftpfs: could not setup passive mode"
-#~ msgstr "ftpfs: ne morem nastaviti pasivnega na�ina"
-
-#~ msgid "ftpfs: storing file %d (%d)"
-#~ msgstr "ftpfs: shranjujem datoteko (%d) %D"
-
-#~ msgid "ftpfs: CWD failed."
-#~ msgstr "ftpfs: CWD (sprememba delovnega direktorija) ni uspela."
-
-#~ msgid "ftpfs: couldn't resolve symlink"
-#~ msgstr "ftpfs: ne morem razvozlati simbolne povezave"
-
-#~ msgid "Resolving symlink..."
-#~ msgstr "Razvozljujem simbolno povezavo..."
-
-#~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-#~ msgstr "ftpfs: Berem FTP imenik %s... (ne uporabljam UNIX ls opcij)"
-
-#~ msgid "ftpfs: Reading FTP directory %s..."
-#~ msgstr "ftpfs: Berem FTP imenik %s..."
-
-#~ msgid "ftpfs: reading FTP directory interrupt by user"
-#~ msgstr "ftpfs: branje FTP imenika je prekinil uporabnik"
-
-#~ msgid "ftpfs: got listing"
-#~ msgstr "ftpfs: seznam dobljen"
-
-#~ msgid "ftpfs: failed; nowhere to fallback to"
-#~ msgstr "ftpfs: spodletel; ni ve� mo�nih re�itev"
-
-#~ msgid "Starting linear transfer..."
-#~ msgstr "Za�enjam linearen prenos..."
-
-#~ msgid "Preparing reget..."
-#~ msgstr "Pripraljam ponvni prenos..."
+#~ msgstr "Əməliyyat"
