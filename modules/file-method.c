@@ -212,6 +212,12 @@ do_open (GnomeVFSMethod *method,
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
 
+#ifdef HAVE_POSIX_FADVISE
+	if (! (mode & GNOME_VFS_OPEN_RANDOM)) {
+		posix_fadvise (fd, 0, 0, POSIX_FADV_SEQUENTIAL);
+	}
+#endif
+	
 	if (fstat (fd, &statbuf) != 0)
 		return gnome_vfs_result_from_errno ();
 
@@ -306,6 +312,26 @@ do_close (GnomeVFSMethod *method,
 
 	return GNOME_VFS_OK;
 }
+
+static GnomeVFSResult
+do_forget_cache	(GnomeVFSMethod *method,
+		 GnomeVFSMethodHandle *method_handle,
+		 GnomeVFSFileOffset offset,
+		 GnomeVFSFileSize size)
+{
+	FileHandle *file_handle;
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	file_handle = (FileHandle *) method_handle;
+
+#ifdef HAVE_POSIX_FADVISE
+	posix_fadvise (file_handle->fd, offset, size, POSIX_FADV_DONTNEED);
+#endif
+	
+	return GNOME_VFS_OK;
+}
+
 
 static GnomeVFSResult
 do_read (GnomeVFSMethod *method,
@@ -2331,7 +2357,8 @@ static GnomeVFSMethod method = {
 	do_create_symbolic_link,
 	do_monitor_add,
 	do_monitor_cancel,
-	do_file_control
+	do_file_control,
+	do_forget_cache
 };
 
 GnomeVFSMethod *

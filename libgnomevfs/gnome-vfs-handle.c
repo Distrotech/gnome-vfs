@@ -135,6 +135,16 @@ _gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 }
 
 GnomeVFSResult
+_gnome_vfs_handle_forget_cache (GnomeVFSHandle *handle,
+				GnomeVFSFileOffset offset,
+				GnomeVFSFileSize size)
+{
+	INVOKE_AND_RETURN (handle, forget_cache, (handle->uri->method, handle->method_handle,
+						  offset, size));
+}
+
+
+GnomeVFSResult
 _gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 			   gconstpointer buffer,
 			   GnomeVFSFileSize num_bytes,

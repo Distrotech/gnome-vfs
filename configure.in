@@ -143,7 +143,7 @@ AC_SEARCH_LIBS(gethostent, nsl)
 AC_SEARCH_LIBS(setsockopt, socket)
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll posix_fadvise)
 
 dnl Volume monitor stuff			     
 AC_CHECK_FUNCS(setmntent endmntent hasmntopt getmntinfo)

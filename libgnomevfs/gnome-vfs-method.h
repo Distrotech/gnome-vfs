@@ -215,6 +215,11 @@ typedef GnomeVFSResult (* GnomeVFSMethodFileControlFunc)
 					 gpointer operation_data,
 					 GnomeVFSContext *context);
 
+typedef GnomeVFSResult (* GnomeVFSMethodForgetCacheFunc)
+     					(GnomeVFSMethod *method,
+      					 GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSFileOffset offset,
+					 GnomeVFSFileSize size);
 
 
 /* Use this macro to test whether a given function is implemented in
@@ -254,6 +259,7 @@ struct GnomeVFSMethod {
 	GnomeVFSMethodMonitorAddFunc monitor_add;
 	GnomeVFSMethodMonitorCancelFunc monitor_cancel;
 	GnomeVFSMethodFileControlFunc file_control;
+	GnomeVFSMethodForgetCacheFunc forget_cache;
 };
 
 gboolean	   gnome_vfs_method_init   (void);

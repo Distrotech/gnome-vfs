@@ -1,5 +1,25 @@
 2005-01-12  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Check for posix_fadvice
+	
+	* libgnomevfs/gnome-vfs-handle-private.h:
+	* libgnomevfs/gnome-vfs-handle.c: (_gnome_vfs_handle_forget_cache):
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_forget_cache):
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	Add _gnome_vfs_handle_forget_cache
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file_data),
+	(xfer_open_source):
+	Upe _gnome_vfs_handle_forget when copying large files
+	
+	* modules/file-method.c: (do_open), (do_forget_cache):
+	Implement forget_cache for local files using posix_fadvise
+	Set POSIX_FADV_SEQUENTIAL for non random opened files.
+
+2005-01-12  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-cdrom.c:
 	(_gnome_vfs_get_iso9660_volume_name):
 	Use the iso volume if the first 16 characters are the same

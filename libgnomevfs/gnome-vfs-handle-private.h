@@ -65,6 +65,9 @@ GnomeVFSResult   _gnome_vfs_handle_do_file_control    (GnomeVFSHandle          *
 						      const char              *operation,
 						      gpointer                 operation_data,
 						      GnomeVFSContext         *context);
+GnomeVFSResult   _gnome_vfs_handle_forget_cache       (GnomeVFSHandle         *handle,
+						       GnomeVFSFileOffset      offset,
+						       GnomeVFSFileSize        size);
 
 G_END_DECLS
 

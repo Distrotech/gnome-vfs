@@ -64,6 +64,12 @@ enum {
 	DEFAULT_SIZE_OVERHEAD = 1024
 };
 
+/* When the total copy size is over this limit, we try to
+ * forget the data cached for the files, in order to
+ * lower VM pressure
+ */
+#define DROP_CACHE_SIZE_LIMIT (20*1024*1024)
+
 /* in asynch mode the progress callback does a context switch every time
  * it gets called. We'll only call it every now and then to not loose a
  * lot of performance
@@ -1201,6 +1207,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 	gpointer buffer;
 	const char *write_buffer;
 	GnomeVFSFileSize total_bytes_read;
+	gboolean forget_cache;
 
 	*skip = FALSE;
 
@@ -1210,6 +1217,9 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 	buffer = g_malloc (block_size);
 	total_bytes_read = 0;
+
+	/* Enable streaming if the total size is large */
+	forget_cache = progress->progress_info->bytes_total >= DROP_CACHE_SIZE_LIMIT;
 	
 	do {
 		GnomeVFSFileSize bytes_read;
@@ -1227,6 +1237,10 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 			result = gnome_vfs_read (source_handle, buffer,
 						 block_size, &bytes_read);
+			if (forget_cache) {
+				gnome_vfs_forget_cache (source_handle,
+							total_bytes_read, bytes_read);
+			}
 			if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
@@ -1236,7 +1250,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 			break;
 		}
 
-		total_bytes_read += total_bytes_read;
+		total_bytes_read += bytes_read;
 		bytes_to_write = bytes_read;
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_WRITETARGET;
@@ -1256,6 +1270,11 @@ copy_file_data (GnomeVFSHandle *target_handle,
 			bytes_to_write -= bytes_written;
 			write_buffer += bytes_written;
 		} while ((result == GNOME_VFS_OK && bytes_to_write > 0) || retry);
+		
+		if (forget_cache && bytes_to_write == 0) {
+			gnome_vfs_forget_cache (target_handle,
+						total_bytes_read - bytes_read, bytes_read);
+		}
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COPYING;
 
@@ -1301,7 +1320,7 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 {
 	GnomeVFSResult result;
 	gboolean retry;
-
+	
 	*skip = FALSE;
 	do {
 		retry = FALSE;

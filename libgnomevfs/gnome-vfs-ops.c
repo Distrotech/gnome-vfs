@@ -26,6 +26,7 @@
 #include "gnome-vfs-monitor-private.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-handle-private.h"
+#include "gnome-vfs-private-utils.h"
 #include <glib/gmessages.h>
 
 /**
@@ -120,6 +121,17 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 
 	return result;
 }
+
+GnomeVFSResult
+gnome_vfs_forget_cache (GnomeVFSHandle *handle,
+			GnomeVFSFileOffset offset,
+			GnomeVFSFileSize size)
+{
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	return _gnome_vfs_handle_forget_cache (handle, offset, size);
+}
+
 
 /**
  * gnome_vfs_create_uri:
