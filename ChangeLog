@@ -1,3 +1,10 @@
+2000-09-10  Maciej Stachowiak  <mjs@eazel.com>
+
+	* gnome-vfs.spec.in: Revert kmaraas's last change, because it
+	breaks rpm building for me (and for tinderbox). I wonder why man
+	pages are apparently installed gzipped on Kjartan's system but not
+	mine.
+
 2000-09-09  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* gnome-vfs.spec.in: Fixed installation of man page.
