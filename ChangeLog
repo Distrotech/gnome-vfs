@@ -1,5 +1,13 @@
 2004-09-07  Christian Kellner  <gicmo@gnome-de.org>
 
+	* modules/http-neon-method.c: (http_transfer_start_read),
+	(do_read): Fix a bad cast and handle io errors during 
+	ne_read_response_block so we will not call ne_end_request
+	anymore because that will crash neon! This should
+	fix #150780.
+
+2004-09-07  Christian Kellner  <gicmo@gnome-de.org>
+
 	* imported/neon/ne_utils.c (ne_parse_statusline): Workaround
 	ShoutCast and IceCast servers not responding with "HTTP" but
 	"ICY". This should fix bug #151453.

@@ -2145,8 +2145,16 @@ get_start:
 	
 	if (IS_REDIRECT (status->code) || IS_AUTH_REQ (status->code)) {
 		/* send the body to /dev/null */				
-		while (ne_read_response_block (req, dropbuf, sizeof (dropbuf)))
+		while ((res = ne_read_response_block (req, dropbuf, sizeof (dropbuf))) > 0)
 			/* noop */;
+		
+		if (res < 0) {
+			handle->transfer_state = TRANSFER_ERROR;
+			result = GNOME_VFS_ERROR_IO;
+			handle->last_error = result;
+			ne_request_destroy (req);
+			return result;
+		}
 		
 		res = ne_end_request (req);
 		ne_request_destroy (req);
@@ -2390,8 +2398,7 @@ do_read (GnomeVFSMethod 	*method,
 {
 	GnomeVFSResult result;
 	HttpFileHandle *handle;
-	GnomeVFSFileSize n;
-	int res;
+	ssize_t n;
 	
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	
@@ -2414,30 +2421,37 @@ do_read (GnomeVFSMethod 	*method,
 	
 	n = ne_read_response_block (handle->transfer.read, buffer, num_bytes);
 
-	if (bytes_read != NULL)
-		*bytes_read = (n > 0 ? n : 0);
-	
 	if (n < 1) {
-		res  = ne_end_request (handle->transfer.read);
-		
+				
 		if (n == 0) {
+			ne_end_request (handle->transfer.read);
+			
 			result = GNOME_VFS_ERROR_EOF;
 			handle->transfer_state = TRANSFER_IDLE;
 		} else {
+			result = GNOME_VFS_ERROR_IO;
 			handle->transfer_state = TRANSFER_ERROR;
-			result = resolve_result (res, handle->transfer.read);
 		}
 		
 		ne_request_destroy (handle->transfer.read);
 		handle->transfer.read = NULL;
 		handle->last_error = result;
 		handle->offset = 0;
+		*bytes_read = 0;
+		
+		DEBUG_HTTP ("[read] error during read: %s", 
+				gnome_vfs_result_to_string (result));
+
 		return result;
 	}
 	
+		
+	/* cast is valid because n must be greater than 0 */
+	*bytes_read = n;
 
-	
-	handle->offset += num_bytes;
+	DEBUG_HTTP ("[read] bytes read %lld", *bytes_read);
+
+	handle->offset += *bytes_read;
 	return result;
 }
 
