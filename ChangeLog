@@ -1,3 +1,20 @@
+2000-11-17  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 2966, Fix cancellation support in FTP
+	
+	* modules/ftp-method.c: (do_path_command_completely),
+	(do_transfer_command), (do_path_transfer_command),
+	(host_port_from_string), 
+	(ftp_connection_create), (ftp_connection_acquire), (do_open),
+	(internal_get_file_info), (do_get_file_info), (do_open_directory),
+	(do_make_directory), (do_remove_directory), (do_move), (do_unlink),
+	(vfs_module_init):
+	Modified several functions to allow context to be passed in.
+	We can then check the context for cancellation.
+	
+	* modules/http-method.c: (make_request):
+	Code cleanup.
+
 2000-11-16  Rebecca Schulman  <rebecka@eazel.com>
 
 	* modules/ftp-method.c:

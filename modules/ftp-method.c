@@ -38,13 +38,16 @@
 #include <config.h>
 #endif
 
+#include <ctype.h> /* for isspace */
 #include <stdlib.h> /* for atoi */
 #include <stdio.h> /* for sscanf */
-#include <ctype.h> /* for isspace */
+#include <string.h>
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include <gtk/gtk.h>
-
-#include <string.h>
+#include <gconf/gconf-client.h>
 
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
@@ -52,16 +55,22 @@
 
 #include "ftp-method.h"
 
+/* Standard FTP proxy port */
+#define DEFAULT_FTP_PROXY_PORT 8080
+
 /* maximum size of response we're expecting to get */
 #define MAX_RESPONSE_SIZE 4096 
 
 /* macros for the checking of FTP response codes */
-
 #define IS_100(X) ((X) >= 100 && (X) < 200)
 #define IS_200(X) ((X) >= 200 && (X) < 300)
 #define IS_300(X) ((X) >= 300 && (X) < 400)
 #define IS_400(X) ((X) >= 400 && (X) < 500)
 #define IS_500(X) ((X) >= 500 && (X) < 600)
+
+static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
+static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
+
 
 static GnomeVFSResult do_open	         (GnomeVFSMethod                *method,
 					  GnomeVFSMethodHandle         **method_handle,
@@ -88,7 +97,7 @@ static GnomeVFSResult do_read_directory  (GnomeVFSMethod                *method,
 
 guint                 ftp_connection_uri_hash  (gconstpointer c);
 gint                  ftp_connection_uri_equal (gconstpointer c, gconstpointer d);
-static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri, FtpConnection **connection);
+static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri, FtpConnection **connection, GnomeVFSContext *context);
 static void           ftp_connection_release   (FtpConnection *conn);
 
 
@@ -348,13 +357,12 @@ do_path_command (FtpConnection *conn,
 }
 
 static GnomeVFSResult 
-do_path_command_completely (gchar *command,
-			    GnomeVFSURI *uri) 
+do_path_command_completely (gchar *command, GnomeVFSURI *uri, GnomeVFSContext *context) 
 {
 	FtpConnection *conn;
 	GnomeVFSResult result;
 
-	result = ftp_connection_acquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn, context);
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
@@ -366,8 +374,7 @@ do_path_command_completely (gchar *command,
 }
 
 static GnomeVFSResult
-do_transfer_command (FtpConnection *conn, 
-		     gchar *command) 
+do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *context) 
 {
 	char *host = NULL;
 	gint port;
@@ -401,9 +408,11 @@ do_transfer_command (FtpConnection *conn,
 	}
 
 	/* connect */
+	g_message ("Connect #2");
 	result = gnome_vfs_inet_connection_create (&conn->data_connection,
-						   host, port,
-						   NULL /* Where do I get a GnomeVFSCancellation? */);
+						   host, 
+						   port,
+						   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
 	if (host != NULL) {
 	        g_free (host);
@@ -439,9 +448,7 @@ do_transfer_command (FtpConnection *conn,
 }
 
 static GnomeVFSResult
-do_path_transfer_command (FtpConnection *conn, 
-			  gchar *command, 
-			  GnomeVFSURI *uri) 
+do_path_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSURI *uri, GnomeVFSContext *context) 
 {
 	const char *path;
 	char *actual_command;
@@ -458,7 +465,7 @@ do_path_transfer_command (FtpConnection *conn,
 
 	actual_command = g_strdup_printf ("%s %s", command, path);
 
-	result = do_transfer_command (conn, actual_command);
+	result = do_transfer_command (conn, actual_command, context);
 	g_free (actual_command);
 	return result;
 }
@@ -488,9 +495,93 @@ end_transfer (FtpConnection *conn)
 
 }
 
+/**
+ * host_port_from_string
+ * splits a <host>:<port> formatted string into its separate components
+ */
+static gboolean
+host_port_from_string (const gchar *ftp_proxy, gchar **proxy_host, guint *proxy_port)
+{
+	gchar *port_part;
+	
+	port_part = strchr (ftp_proxy, ':');
+
+	if (port_part && '\0' != ++port_part && proxy_port) {
+		*proxy_port = (guint) strtoul (port_part, NULL, 10);
+	} else if (proxy_port) {
+		*proxy_port = DEFAULT_FTP_PROXY_PORT;
+	}
+
+	if (proxy_host) {
+		if ( port_part != ftp_proxy ) {
+			*proxy_host = g_strndup (ftp_proxy, port_part - ftp_proxy - 1);
+		} else {
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+
+/**
+ * proxy_for_host_port
+ * Retrives an appropriate FTP proxy for a given host and port.
+ * Currently, only a single FTP proxy is implemented (there's no way for
+ * specifying non-proxy domain names's).  Returns FALSE if the connect should
+ * take place directly. Caller must free p_proxy_host
+ */
+static gboolean
+proxy_for_host_port (const gchar *host, guint host_port, gchar **proxy_host, guint *proxy_port)
+{
+	gboolean retval, use_proxy;
+	struct in_addr in, in_loop, in_mask;
+	GConfClient *gconf_client;
+	char *proxy_string, *port, *proxy;
+
+	retval = FALSE;
+	use_proxy = FALSE;
+	proxy_string = NULL;
+
+	gconf_client = gconf_client_get_default ();
+	if (gconf_client != NULL) {
+		/* Get system level proxy values from gconf */
+		use_proxy = gconf_client_get_bool (gconf_client, USE_PROXY_KEY, NULL);
+		proxy_string = gconf_client_get_string (gconf_client, PROXY_KEY, NULL);
+		if (proxy_string != NULL) {			
+			port = strchr (proxy_string, ':');
+			if (port != NULL) {
+				proxy = g_strdup (proxy_string);
+				proxy [port - proxy_string] = '\0';
+				port++;								
+			}
+			
+		}						
+		gtk_object_unref (GTK_OBJECT (gconf_client));
+	}
+
+	/* Don't force "localhost" or 127.x.x.x through the proxy */
+	/* This is a special case that we'd like to generalize into a gconf config */
+	inet_aton ("127.0.0.0", &in_loop); 
+	inet_aton ("255.0.0.0", &in_mask); 
+
+	if (host != NULL 
+		&& (strcmp (host, "localhost") == 0 || (inet_aton (host, &in) != 0
+			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+		retval = FALSE;
+	} else if (use_proxy && proxy_string != NULL) {
+		retval = host_port_from_string (proxy_string, proxy_host, proxy_port);
+	} else {
+		proxy_host = NULL;
+		proxy_port = NULL;
+		retval = FALSE;
+	}
+	
+	return retval;
+}
+
 static GnomeVFSResult 
-ftp_connection_create (FtpConnection **connptr,
-		       GnomeVFSURI *uri) 
+ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContext *context) 
 {
 	FtpConnection *conn = g_new (FtpConnection, 1);
 	GnomeVFSResult result;
@@ -498,7 +589,7 @@ ftp_connection_create (FtpConnection **connptr,
 	gint port = control_port;
 	const gchar *user = anon_user;
 	const gchar *pass = anon_pass;
-
+	
 	conn->uri = gnome_vfs_uri_dup (uri);
 	conn->cwd = NULL;
 	conn->data_connection = NULL;
@@ -520,12 +611,14 @@ ftp_connection_create (FtpConnection **connptr,
 	}
 
 	result = gnome_vfs_inet_connection_create (&conn->inet_connection, 
-						   gnome_vfs_uri_get_host_name (uri), port, 
-						   NULL /* Where do I get a GnomeVFSCancellation? */);
+						   gnome_vfs_uri_get_host_name (uri), 
+						   port, 
+						   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+	
 	if (result != GNOME_VFS_OK) {
 	        g_warning ("gnome_vfs_inet_connection_create (\"%s\", %d) = \"%s\"",
 			   gnome_vfs_uri_get_host_name (uri),
-			   gnome_vfs_uri_get_host_port (uri), 
+			   gnome_vfs_uri_get_host_port (uri),
 			   gnome_vfs_result_to_string (result));
 		g_string_free (conn->response_buffer, TRUE);
 		g_free (conn);
@@ -671,8 +764,7 @@ ftp_connection_uri_equal (gconstpointer c,
 }
 
 static GnomeVFSResult 
-ftp_connection_acquire (GnomeVFSURI *uri, 
-			FtpConnection **connection) 
+ftp_connection_acquire (GnomeVFSURI *uri, FtpConnection **connection, GnomeVFSContext *context) 
 {
 	GList *possible_connections;
 	FtpConnection *conn = NULL;
@@ -706,11 +798,11 @@ ftp_connection_acquire (GnomeVFSURI *uri,
 		result = do_basic_command(conn, "PWD");
 		if (result != GNOME_VFS_OK) {
 			ftp_connection_destroy (conn);
-			result = ftp_connection_create (&conn, uri);
+			result = ftp_connection_create (&conn, uri, context);
 		}
 
 	} else {
-		result = ftp_connection_create (&conn, uri);
+		result = ftp_connection_create (&conn, uri, context);
 	}
 
 	G_UNLOCK (spare_connections);
@@ -775,16 +867,16 @@ do_open (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	FtpConnection *conn;
 
-	result = ftp_connection_acquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn, context);
 	if (result != GNOME_VFS_OK) 
 		return result;
 
 	if (mode == GNOME_VFS_OPEN_READ) {
 		conn->operation = FTP_READ;
-		result = do_path_transfer_command (conn, "RETR", uri);
+		result = do_path_transfer_command (conn, "RETR", uri, context);
 	} else if (mode == GNOME_VFS_OPEN_WRITE) {
 		conn->operation = FTP_WRITE;
-		result = do_path_transfer_command (conn, "STOR", uri);
+		result = do_path_transfer_command (conn, "STOR", uri, context);
 	} else {
 		g_warning ("Unsupported open mode %d\n", mode);
 		ftp_connection_release (conn);
@@ -946,7 +1038,7 @@ internal_get_file_info (GnomeVFSMethod *method,
 	g_print ("do_get_file_info()\n");
 #endif
 
-	do_path_transfer_command (conn, "LIST -ld", uri);
+	do_path_transfer_command (conn, "LIST -ld", uri, context);
 
 	result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
 				       num_bytes, &bytes_read);
@@ -999,7 +1091,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		/* this is a request for info about the root directory */
 
 		/* is the host there? */
-		result = ftp_connection_acquire (uri, &conn);
+		result = ftp_connection_acquire (uri, &conn, context);
 		
 		if (result != GNOME_VFS_OK) {
 			/* doesn't look like it */
@@ -1079,7 +1171,7 @@ do_open_directory (GnomeVFSMethod *method,
 	gchar buffer[num_bytes+1];
 	GString *dirlist = g_string_new ("");
 
-	result = ftp_connection_acquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn, context);
 	if (result != GNOME_VFS_OK) {
 		g_string_free (dirlist, TRUE);
 		return result;
@@ -1087,7 +1179,7 @@ do_open_directory (GnomeVFSMethod *method,
 
 	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));
 
-	result = do_path_transfer_command (conn, "LIST", uri);
+	result = do_path_transfer_command (conn, "LIST", uri, context);
 
 	if (result != GNOME_VFS_OK) {
 		g_warning ("opendir failed because \"%s\"", 
@@ -1205,14 +1297,11 @@ do_check_same_fs (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
-do_make_directory (GnomeVFSMethod *method,
-		   GnomeVFSURI *uri,
-		   guint perm,
-		   GnomeVFSContext *context)
+do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri, guint perm, GnomeVFSContext *context)
 {
 	/* FIXME bugzilla.eazel.com 1136: We ignore the perm parameter here. */
 
-	return do_path_command_completely ("MKD", uri);
+	return do_path_command_completely ("MKD", uri, context);
 }
 
 
@@ -1221,7 +1310,7 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	return do_path_command_completely ("RMD", uri);
+	return do_path_command_completely ("RMD", uri, context);
 }
 
 
@@ -1238,7 +1327,7 @@ do_move (GnomeVFSMethod *method,
 		FtpConnection *conn;
 		GnomeVFSResult result;
 
-		result = ftp_connection_acquire (old_uri, &conn);
+		result = ftp_connection_acquire (old_uri, &conn, context);
 		if (result != GNOME_VFS_OK) {
 			return result;
 		}
@@ -1257,11 +1346,9 @@ do_move (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
-do_unlink (GnomeVFSMethod *method,
-	   GnomeVFSURI *uri,
-	   GnomeVFSContext *context)
+do_unlink (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 {
-	return do_path_command_completely ("DELE", uri);
+	return do_path_command_completely ("DELE", uri, context);
 }
 
 static GnomeVFSResult
@@ -1326,6 +1413,19 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
+	char *argv[] = {"vfs-ftp-method"};
+	int argc = 1;
+
+	/* Ensure GConf is initialized.  If more modules start to rely on
+	 * GConf, then this should probably be moved into a more 
+	 * central location
+	 */
+
+	if (!gconf_is_initialized ()) {
+		/* auto-initializes OAF if necessary */
+		gconf_init (argc, argv, NULL);
+	}
+	
 	return &method;
 }
 

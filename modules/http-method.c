@@ -1353,10 +1353,11 @@ make_request (HttpFileHandle **handle_return,
 	
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
-	if (toplevel_uri->host_port == 0)
+	if (toplevel_uri->host_port == 0) {
 		host_port = DEFAULT_HTTP_PORT;
-	else
+	} else {
 		host_port = toplevel_uri->host_port;
+	}
 
 	if (toplevel_uri->host_name == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
