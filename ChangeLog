@@ -1,5 +1,12 @@
 2004-07-20  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime.[ch]: 
+	(gnome_vfs_mime_info_cache_reload),
+	(gnome_vfs_mime_reload):
+	Add cache flushing functions to module headers.
+
+2004-07-20  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
 	(gnome_vfs_mime_info_cache_init),
 	(gnome_vfs_mime_info_cache_dir_out_of_date),

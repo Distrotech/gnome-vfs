@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <glib.h>
+#include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info-cache.h"
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-monitor.h"
@@ -664,8 +665,11 @@ gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache)
 }
 
 void
-gnome_vfs_mime_info_cache_flush (void)
+gnome_vfs_mime_info_cache_reload (const char *dir)
 {
+	/* FIXME: just reload the dir that needs reloading,
+	 * don't blow the whole cache
+	 */
 	if (mime_info_cache != NULL) {
 		G_LOCK (mime_info_cache);
 		gnome_vfs_mime_info_cache_free (mime_info_cache);

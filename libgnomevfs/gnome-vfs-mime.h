@@ -57,6 +57,8 @@ const char  *gnome_vfs_get_file_mime_type           (const char        *path,
 gboolean     gnome_vfs_mime_type_is_supertype       (const char        *mime_type);
 char	    *gnome_vfs_get_supertype_from_mime_type (const char        *mime_type);
 
+void         gnome_vfs_mime_info_cache_reload (const char *dir);
+void         gnome_vfs_mime_reload            (void);
 
 G_END_DECLS
 

@@ -897,3 +897,10 @@ _gnome_vfs_get_slow_mime_type (const char *text_uri)
 
 	return mime_type;
 }
+
+void
+gnome_vfs_mime_reload (void)
+{
+        gnome_vfs_mime_info_cache_reload (NULL);
+        gnome_vfs_mime_info_reload ();
+}
