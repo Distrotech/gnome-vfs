@@ -217,9 +217,6 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	if (S_ISDIR (statbuf.st_mode))
-		return GNOME_VFS_ERROR_ISDIRECTORY;
-
 	if (mode & GNOME_VFS_OPEN_READ) {
 		if (mode & GNOME_VFS_OPEN_WRITE)
 			unix_mode = O_RDWR;
@@ -270,7 +267,6 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	gint fd;
 	mode_t unix_mode;
 	gchar *file_name;
-	struct stat statbuf;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
@@ -287,14 +283,6 @@ do_create (GnomeVFSMethodHandle **method_handle,
 
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
-
-	if (fstat (fd, &statbuf) != 0)
-		return gnome_vfs_result_from_errno ();
-
-	if (S_ISDIR (statbuf.st_mode)) {
-		close (fd);
-		return GNOME_VFS_ERROR_ISDIRECTORY;
-	}
 
 	file_handle = file_handle_new (uri, fd);
 

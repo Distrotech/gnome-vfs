@@ -1,3 +1,8 @@
+1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/file-method.c (do_open): Removed wrong directory test.
+	(do_create): Removed stupid stat check.
+
 1999-09-05  Michael Meeks  <michael@imaginator.com>
 
 	* test/Makefile.am (noinst_PROGRAMS): Added test_seek.
