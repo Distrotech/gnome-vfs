@@ -1,3 +1,7 @@
+2002-07-13  Peteris Krisjanis <pecisk@inbox.lv>
+
+	* configure.in - (ALL_LINGUAS) Added support for Latvian (lv) language.
+
 2002-07-12  Dave Camp <dave@ximian.com>
 
 	* libgnomevfs/gnome-vfs-find-directory.c: Updated the documentation
