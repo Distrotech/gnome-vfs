@@ -39,7 +39,7 @@
 static GModule *gmod = NULL;
 static gboolean (* gnome_vfs_backend_module_init)(gboolean deps_init);
 
-static char backend_lower[128] = "";
+static char *backend_lower;
 
 const char *
 gnome_vfs_backend_name (void)
@@ -51,7 +51,7 @@ void
 gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 {
 	const char *backend;
-	char backend_filename[256];
+	char *short_name, *backend_filename, *init_func;
 
 	/* Decide which backend module to load, based on
 	   (a) environment variable
@@ -66,25 +66,27 @@ gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 		backend = "pthread";
 	}
 
-	strcpy (backend_lower, backend);
+	backend_lower = g_strdup (backend);
 	g_strdown (backend_lower);
 
-	g_snprintf (backend_filename, sizeof (backend_filename), 
-		"libgnomevfs-%s.so.0", backend_lower);
+	short_name = g_strdup_printf ("gnomevfs-%s", backend);
+	backend_filename = g_module_build_path (LIBDIR, short_name);
 
 	gmod = g_module_open (backend_filename, G_MODULE_BIND_LAZY);
 	if (gmod == NULL) {
 		g_error("Could not open %s: %s", backend_filename, g_module_error());
 	}
-	g_snprintf (backend_filename, sizeof (backend_filename), 
-		"gnome_vfs_%s_init", backend_lower);
+	g_free (backend_filename);
 
+	init_func = g_strdup_printf ("gnome_vfs_%s_init", backend_lower);
 	if (!g_module_symbol (gmod, backend_filename, 
 		(gpointer *)&gnome_vfs_backend_module_init)) {
 		g_module_close (gmod); 
 		gmod = NULL;
 		g_error("Could not locate module initialization function: %s", g_module_error());
 	}
+	g_free (init_func);
+
 }
 
 gboolean

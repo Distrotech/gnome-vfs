@@ -1,3 +1,20 @@
+2001-10-10  jacob berkman  <jacob@ximian.com>
+
+	* libgnomevfs-corba/Makefile.am (libgnomevfs_corba_la_LDFLAGS): 
+	* libgnomevfs-pthread/Makefile.am
+	(libgnomevfs_pthread_la_LDFLAGS): build with -module
+	-avoid-version
+
+	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_backend_loadinit):
+	fix a buffer overflow, and use g_module_build_path() so we work on
+	hp-ux
+
+	* libgnomevfs/Makefile.am: remove an extraneous space
+
+	* gnome-vfs.spec.in: include the module .so files in the main
+	package, and don't include their .la or .a files (since they can't
+	be used anyway)
+
 2001-10-07  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* configure.in: Fixed bug 41957 (gnome-vfs config does not reject

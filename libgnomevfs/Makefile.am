@@ -146,7 +146,7 @@ libgnomevfs_la_SOURCES =			\
 
 noinst_HEADERS =				\
 	gnome-vfs-backend-private.h
- 
+
 # Platform specific includes
 libgnomevfsplatofrmincludedir = $(libdir)/gnome-vfs-1.0/include
 libgnomevfsplatofrminclude_HEADERS =			\
