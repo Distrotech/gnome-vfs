@@ -1,3 +1,9 @@
+2004-07-20  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-xfer.c (copy_items):
+          Make sure to not lose skip if its ever set to true.
+          Fixes bug #145487
+
 2004-07-11  Sebastien Bacher  <seb128@debian.org>
 	
 	* libgnomevfs/gnome-vfs-uri.c: (make_full_uri_from_relative):
