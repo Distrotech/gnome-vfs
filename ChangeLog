@@ -1,3 +1,8 @@
+2004-07-16  William Jon McCann  <mccann@jhu.edu>
+
+	* modules/sftp-method.c (sftp_connect):
+	Initialize strings to prevent crash.  Fixes #147194.
+
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-resolve.h: 

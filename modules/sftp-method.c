@@ -1058,11 +1058,11 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	gboolean	save_password;
 	Buffer          msg;
 	gchar           type;
-	char *password;
-	char *keyring;
-	char *user;
-	char *object;
-	char *authtype;
+	char *password = NULL;
+	char *keyring  = NULL;
+	char *user     = NULL;
+	char *object   = NULL;
+	char *authtype = NULL;
 
 	GError         *error = NULL;
 
