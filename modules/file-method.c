@@ -1714,7 +1714,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 	}
 
-	retval = stat (full_name_near, &near_item_stat);
+	retval = lstat (full_name_near, &near_item_stat);
 	if (retval != 0) {
 		g_free (full_name_near);
 		return gnome_vfs_result_from_errno ();

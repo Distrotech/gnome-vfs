@@ -1,3 +1,13 @@
+2001-02-27  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/file-method.c: (do_find_directory):
+	Fix a bug where calling gnome_vfs_find_directory near
+	a cross-file system symlink would return Trash corresponding
+	to the link target not the link itself, causing an error when
+	trying to delete the link.
+
 2001-02-27  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>
