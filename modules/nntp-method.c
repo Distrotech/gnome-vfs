@@ -52,6 +52,8 @@
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-module-callback-module-api.h>
+#include <libgnomevfs/gnome-vfs-standard-callbacks.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -1396,6 +1398,30 @@ free_nntp_file_list (GList *file_list)
 	g_list_free (file_list);
 }
 
+/* utility to obtain authorization info from gnome-vfs */
+static void
+get_auth_info (NNTPConnection *conn, char** user, char** password)
+{
+	GnomeVFSResult res;
+	GnomeVFSModuleCallbackAuthenticationIn in_args;
+	GnomeVFSModuleCallbackAuthenticationOut out_args;
+	
+	*user = NULL;
+	*password = NULL;
+	
+	memset (&in_args, 0, sizeof (in_args));			
+	memset (&out_args, 0, sizeof (out_args));
+	
+	in_args.uri = gnome_vfs_uri_to_string(conn->uri, 0);			
+	res = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION,
+						&in_args, sizeof (in_args), 
+							&out_args, sizeof (out_args));	
+	g_free(in_args.uri);
+						
+	*user = out_args.username;
+	*password = out_args.password;
+}
+
 /* key routine to load the newsgroup overview and return a list of nntp_file objects.
  * It maintains a cache to avoid reloading.
  *
@@ -1406,10 +1432,11 @@ static GnomeVFSResult
 get_files_from_newsgroup (NNTPConnection *conn, const char* newsgroup_name, GList** result_file_list)
 {
 	GnomeVFSResult result;
-	char *group_command;
+	char *group_command, *tmpstring;
 	int first_message, last_message, total_messages;
 	char *command_str;
 	GList *file_list;
+	gchar *user, *pass;
 	
 	/* see if we can load it from the cache */	
 	if (current_newsgroup_name != NULL && g_ascii_strcasecmp (newsgroup_name, current_newsgroup_name) == 0) {
@@ -1427,12 +1454,40 @@ get_files_from_newsgroup (NNTPConnection *conn, const char* newsgroup_name, GLis
 	}
 		
 	group_command = g_strdup_printf ("GROUP %s", newsgroup_name);
+	
 	result = do_basic_command (conn, group_command);
 	g_free (group_command);
-	
+
 	if (result != GNOME_VFS_OK || conn->response_code != 211) {
-		g_message ("couldnt set group to %s, code %d", newsgroup_name, conn->response_code);
-			return GNOME_VFS_ERROR_NOT_FOUND; /* could differentiate error better */
+		/* if we're anonymous, prompt for a password and try that */
+		if (conn->anonymous) {
+			get_auth_info(conn, &user, &pass);
+			
+			if (user != NULL) {
+				conn->anonymous = FALSE;				
+				tmpstring = g_strdup_printf ("AUTHINFO user %s", user);
+				result = do_basic_command (conn, tmpstring);
+				g_free (tmpstring);
+
+				if (IS_300 (conn->response_code)) {
+					tmpstring = g_strdup_printf ("AUTHINFO pass %s", pass);
+					result = do_basic_command (conn, tmpstring);
+					g_free (tmpstring);
+			
+					group_command = g_strdup_printf ("GROUP %s", newsgroup_name);
+					result = do_basic_command (conn, group_command);
+					g_free (group_command);		
+
+				}
+			}
+			g_free (user);
+			g_free (pass);
+		}
+		
+		if (result != GNOME_VFS_OK || conn->response_code != 211) {
+			g_message ("couldnt set group to %s, code %d", newsgroup_name, conn->response_code);
+				return GNOME_VFS_ERROR_NOT_FOUND; /* could differentiate error better */
+		}
 	}
 	
 	sscanf (conn->response_message, "%d %d %d", &total_messages, &first_message, &last_message);
@@ -1617,7 +1672,6 @@ add_file_to_folder (GHashTable *folders, nntp_file *file)
 	} else {
 		folder_contents = g_list_append(NULL, file);
 		g_hash_table_insert (folders, g_strdup(file->folder_name), folder_contents);
-		/* g_message("new folder %s", file->folder_name); */
 	}
 }
 
@@ -1867,7 +1921,6 @@ do_open (GnomeVFSMethod *method,
 	/* make sure we have the file */
 	file = nntp_file_from_uri(conn, uri);
 	if (file == NULL) {		
-		g_message("couldnt find file %s", basename);
 		nntp_connection_release (conn);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	} else {
@@ -1921,6 +1974,9 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 
 	host_name = gnome_vfs_uri_get_host_name(uri);
+	if (host_name == NULL) {
+		return GNOME_VFS_ERROR_INVALID_HOST_NAME;
+	}
 
 	/* if it's the top level newsgroup, treat it like a directory */	
 	temp_str = gnome_vfs_uri_get_path(uri);
@@ -2004,10 +2060,15 @@ do_open_directory (GnomeVFSMethod *method,
 	newsgroup_name = gnome_vfs_uri_extract_dirname (uri);
 	directory_name = g_strdup (gnome_vfs_uri_extract_short_name (uri));
 	
-	if (strcmp (newsgroup_name, "/") == 0) {
+	if (strcmp (newsgroup_name, "/") == 0 || strlen(newsgroup_name) == 0) {
 		g_free (newsgroup_name);
 		newsgroup_name = directory_name;
 		directory_name = NULL;
+	}
+
+	if (newsgroup_name == NULL) {
+		g_free(directory_name);
+		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 
 	newsgroup_name = strip_slashes (newsgroup_name);

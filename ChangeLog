@@ -1,3 +1,16 @@
+2002-02-23  Andy Hertzfeld  <andy@differnet.com>
+
+	* modules/nntp-method.c: (do_basic_command), (get_auth_info),
+	(get_files_from_newsgroup), (add_file_to_folder),
+	(do_get_file_info), (do_open_directory):
+	added password interrogation when necessary, using the standard
+	gnome-vfs facilities.  Also, added some checks to avoid crashing
+	with badly formed urls.
+	
+	* modules/default-modules.conf:
+	removed the "news" protocol variant since it's supposed to get the
+	servername from preferences; I'll put it back when that's implemented
+
 2002-02-20  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/applications.vfolder-info.in:
