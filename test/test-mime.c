@@ -34,6 +34,31 @@
 
 #include <sys/stat.h>
 
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
+
+static gboolean
+is_good_scheme_char (char c)
+{
+	return g_ascii_isalnum (c) || c == '+' || c == '-' || c == '.';
+}
+
+static gboolean
+is_uri (const char *str)
+{
+	const char *p;
+
+	if (! g_ascii_isalpha (*str)) {
+		return FALSE;
+	}
+
+	p = str + 1;
+	while (is_good_scheme_char (*p)) {
+		p++;
+	}
+	return *p == ':' && strchr (p, '/') != NULL;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -44,6 +69,8 @@ main (int argc, char **argv)
 	const char *result;
 	const char *table_path;
 	char *uri_string;
+	char *curdir;
+	char *path;
 	struct stat tmp;
 
 	table_path = NULL;
@@ -97,16 +124,28 @@ main (int argc, char **argv)
 	}
 
 	for (; *argv != NULL; argv++) {
-	        uri_string = *argv;
-		uri = gnome_vfs_uri_new (*argv);
-		if (uri == NULL) {
-		  uri_string = gnome_vfs_get_uri_from_local_path (*argv);
-		  uri = gnome_vfs_uri_new (uri_string);
+	        uri_string = g_strdup (*argv);
+		if (is_uri (uri_string)) {
+			uri = gnome_vfs_uri_new (*argv);
+		} else {
+			uri = NULL;
 		}
-
 		if (uri == NULL) {
-		  printf ("%s is not a valid uri or file name\n", *argv);
-		  return 1;
+			if (uri_string[0] == '/') {
+				path = uri_string;
+			} else {
+				curdir = g_get_current_dir ();
+				path = g_strconcat (curdir, "/", uri_string, NULL);
+				g_free (curdir);
+			}
+			g_free (uri_string);
+			uri_string = gnome_vfs_get_uri_from_local_path (path);
+			g_free (path);
+			uri = gnome_vfs_uri_new (uri_string);
+		}
+		if (uri == NULL) {
+			printf ("%s is neither a full URI nor an absolute filename\n", *argv);
+			continue;
 		}
 
 		if (magic_only) {
