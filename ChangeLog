@@ -1,3 +1,14 @@
+2000-07-07  Seth Nickell  <set EMAIL_ADDRESS environment variable>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory), (copy_items):
+	Add proper copy support for symlinks.
+	
+	* modules/file-method.c: (get_stat_info):
+	Fix get_stat_info to return symbolic type correctly.
+	
+	* test/test-symlinks.c: (deal_with_result):
+	Add more tests.
+
 2000-07-07  Robin * Slomkowski <rslomkow@eazel.com>
 
 	* gnome-vfs.spec.in: moved *.so* out of devel section

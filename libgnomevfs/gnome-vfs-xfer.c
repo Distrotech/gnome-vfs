@@ -1210,8 +1210,9 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 					result = copy_directory (source_uri, dest_uri, 
 							    xfer_options, error_mode, overwrite_mode, 
 							    progress, skip);
+				} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+					result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
 				} else {
-					/* need to implement symbolic links*/
 					g_assert (!"unimplemented");
 				}
 
@@ -1304,8 +1305,9 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 							    xfer_options, error_mode,
 							    &overwrite_mode_abort,
 							    progress, &skip);
-				} else {
-					/* need to implement symbolic links*/
+                                } else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+					result = gnome_vfs_create_symbolic_link (target_uri, info.symlink_name);
+                                } else {
 					g_assert (!"unimplemented");
 				}
 

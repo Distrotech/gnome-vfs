@@ -598,6 +598,9 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		return gnome_vfs_result_from_errno ();
 	}
 
+	gnome_vfs_stat_to_file_info (file_info, statptr);
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
+
 	if (S_ISLNK (statptr->st_mode)) {
 		/* we are dealing with a symlink and the follow flag is off */
 
@@ -610,9 +613,6 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		}
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 	}
-
-	gnome_vfs_stat_to_file_info (file_info, statptr);
-	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
 	return GNOME_VFS_OK;
 }

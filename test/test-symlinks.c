@@ -97,6 +97,7 @@ deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result,
 	const gchar *result_string;
 	GnomeVFSResult error;	
 	GnomeVFSURI *real_uri, *real_uri_target;
+	GnomeVFSFileInfo *info;
 
 	real_uri = gnome_vfs_uri_new (uri);
 	real_uri_target = gnome_vfs_uri_new (target_uri);
@@ -107,39 +108,46 @@ deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result,
 			result_string, gnome_vfs_result_to_string (expected_result));
 		return_value = 0;
 	} else if (result == GNOME_VFS_OK) { 
-		/* our link seems to have been created correctly - lets see if its real */
-		error = gnome_vfs_open_uri (&handle, real_uri_target, GNOME_VFS_OPEN_WRITE);
-		if (error == GNOME_VFS_ERROR_NOT_FOUND) 
-			error = gnome_vfs_create_uri (&handle, real_uri_target, GNOME_VFS_OPEN_WRITE, 0, GNOME_VFS_PERM_USER_ALL);
-		if (error == GNOME_VFS_OK) {
-			/* write stuff to our link location */
-			error = gnome_vfs_write (handle, write_buffer, strlen (write_buffer) + 1, &bytes_written);
-			error = gnome_vfs_close (handle);
-			error = gnome_vfs_open_uri (&handle, real_uri, GNOME_VFS_OPEN_READ);
+		info = gnome_vfs_file_info_new();
+		error = gnome_vfs_get_file_info_uri (real_uri, info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		if ((error != GNOME_VFS_OK) || (info->type != GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
+			printf ("Symlink problem: gnome_vfs_file_info returns wrong for link %s\n", uri);
+		} else {
+			/* our link seems to have been created correctly - lets see if its real */
+			error = gnome_vfs_open_uri (&handle, real_uri_target, GNOME_VFS_OPEN_WRITE);
+			if (error == GNOME_VFS_ERROR_NOT_FOUND) 
+				error = gnome_vfs_create_uri (&handle, real_uri_target, GNOME_VFS_OPEN_WRITE, 0, GNOME_VFS_PERM_USER_ALL);
 			if (error == GNOME_VFS_OK) {
-				error = gnome_vfs_read (handle, read_buffer, bytes_written, &temp);
-				read_buffer[temp] = 0;
+				/* write stuff to our link location */
+				error = gnome_vfs_write (handle, write_buffer, strlen (write_buffer) + 1, &bytes_written);
 				error = gnome_vfs_close (handle);
-				if (strcmp (read_buffer, write_buffer) != 0) {
-					printf ("Symlink problem: value written is not the same as the value read!\n");
-					printf ("Written to %s: #%s# \nRead from link %s: #%s#\n", 
-						target_uri, write_buffer, uri, read_buffer);
-					return_value = 0;
+				error = gnome_vfs_open_uri (&handle, real_uri, GNOME_VFS_OPEN_READ);
+				if (error == GNOME_VFS_OK) {
+					error = gnome_vfs_read (handle, read_buffer, bytes_written, &temp);
+					read_buffer[temp] = 0;
+					error = gnome_vfs_close (handle);
+					if (strcmp (read_buffer, write_buffer) != 0) {
+						printf ("Symlink problem: value written is not the same as the value read!\n");
+						printf ("Written to %s: #%s# \nRead from link %s: #%s#\n", 
+							target_uri, write_buffer, uri, read_buffer);
+						return_value = 0;
+					}
 				}
 			}
+			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
+			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
+			if (info_uri.inode != info_target.inode) {
+				printf ("Symlink problem: link following is not working\n");
+				printf ("File: %s   Link: %s\n", target_uri, uri);
+			}
+			gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+			gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+			if (info_uri.inode == info_target.inode) {
+				printf ("Symlink problem: link following is happening when it shouldn't be.\n");
+				printf ("File: %s   Link: %s\n", target_uri, uri);
+			}
 		}
-		gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
-		gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_FOLLOW_LINKS, NULL);
-		if (info_uri.inode != info_target.inode) {
-			printf ("Symlink problem: link following is not working\n");
-			printf ("File: %s   Link: %s\n", target_uri, uri);
-		}
-		gnome_vfs_get_file_info_uri (real_uri, &info_uri, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
-		gnome_vfs_get_file_info_uri (real_uri_target, &info_target, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
-		if (info_uri.inode == info_target.inode) {
-			printf ("Symlink problem: link following is happening when it shouldn't be.\n");
-			printf ("File: %s   Link: %s\n", target_uri, uri);
-		}
+		gnome_vfs_file_info_unref (info);
 		if (unlink) {
 			gnome_vfs_unlink_from_uri (real_uri_target);
 			error = gnome_vfs_unlink_from_uri (real_uri);
