@@ -610,7 +610,6 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 		context = gnome_vfs_context_new ();
 		(* trans->transform) (trans, p, &new_uri_string, context);
-		g_print ("new_uri_string: %s\n", new_uri_string);
 		gnome_vfs_context_unref (context);
 		if (new_uri_string != NULL) {
 			toplevel->urn = g_strdup (text_uri);

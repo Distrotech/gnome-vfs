@@ -303,6 +303,11 @@ main (int argc, char **argv)
 	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the "//" in this case? */
 	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
 
+	/* FIXME bugzilla.eazel.com 2840: What should these results be? */
+	test_uri_to_string ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs#file:", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs");
+	/* Add more test caes for these URIs with # in them. */
+
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
 }
