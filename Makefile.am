@@ -11,6 +11,7 @@ EXTRA_DIST =					\
 	HACKING					\
 	TODO					\
 	autogen.sh				\
+	gnome-vfs.spec				\
 	vfsConf.sh.in				\
 	vfscorbaConf.sh.in			\
 	vfspthreadConf.sh.in

@@ -182,6 +182,7 @@ dnl Output files
 
 AC_OUTPUT([
 Makefile
+gnome-vfs.spec
 idl/Makefile
 intl/Makefile
 libgnomevfs-corba/Makefile

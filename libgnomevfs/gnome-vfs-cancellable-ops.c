@@ -143,6 +143,9 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 	GList *meta_list;
 
+	if (uri->method->get_file_info == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result = uri->method->get_file_info (uri->method, uri, info, options, meta_list,
@@ -182,6 +185,7 @@ gnome_vfs_truncate_uri_cancellable (GnomeVFSURI *uri,
 				    GnomeVFSContext *context)
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
 	if(uri->method->truncate == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 

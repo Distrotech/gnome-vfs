@@ -1,3 +1,16 @@
+2000-03-06  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-private-ops.c
+	(gnome_vfs_get_file_info_uri_cancellable): If the `get_file_info'
+	method is not implemented, return `GNOME_VFS_ERROR_NOTSUPPORTED'
+	instead of crashing.
+
+	* configure.in: Generate `gnome-vfs.spec' from
+	`gnome-vfs.spec.in'.
+
+	* gnome-vfs.spec.in: New file.  From Ross Golder
+	<rossigee@bigfoot.com>.
+
 2000-03-03  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c, libgnomevfs/gnome-vfs-utils.h

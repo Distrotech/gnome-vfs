@@ -1,0 +1,88 @@
+# Note that this is NOT a relocatable package
+%define name     @PACKAGE@
+%define ver      @VERSION@
+%define  RELEASE 1
+%define  rel     %{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
+%define  prefix  /usr
+%define  sysconfdir /etc
+
+Summary: The GNOME virtual file-system libraries
+Name: %name
+Version: %ver
+Release: %rel
+Copyright: LGPL
+Group: System Environment/Libraries
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
+URL: http://www.gnome.org/
+BuildRoot: /var/tmp/%{name}-root
+Requires: gtk+ >= 1.2.4
+Docdir: %{prefix}/doc
+
+%description
+GNOME VFS Description here
+
+%package devel
+Summary: Libraries and include files for developing GNOME VFS applications.
+Group: Development/Libraries
+Requires: %name = %{PACKAGE_VERSION}
+
+%description devel
+GNOME VFS development descirptionn here
+
+%changelog
+* Tue Feb 22 2000 Ross Golder <rossigee@bigfoot.com>
+- Integrate into source tree
+
+%prep
+%setup -q
+
+%build
+%ifarch alpha
+MYARCH_FLAGS="--host=alpha-redhat-linux"
+%endif
+# Needed for snapshot releases.
+
+MYCFLAGS="$RPM_OPT_FLAGS"
+
+if [ ! -f configure ]; then
+  CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
+else
+  CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
+fi
+
+if [ "$SMP" != "" ]; then
+  make -j$SMP "MAKE=make -j$SMP"
+else
+  make
+fi
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make sysconfdir=$RPM_BUILD_ROOT%{sysconfdir} prefix=$RPM_BUILD_ROOT%{prefix} install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-, root, root)
+
+%doc AUTHORS COPYING ChangeLog NEWS README
+%{prefix}/lib/lib*.so.*
+%{prefix}/lib/vfs/extfs/*
+%{prefix}/lib/vfs/modules/lib*.so.*
+%{prefix}/bin/*
+%config %{sysconfdir}/*
+
+%files devel
+%defattr(-, root, root)
+%{prefix}/lib/lib*.so
+%{prefix}/lib/*.a
+%{prefix}/lib/*.sh
+%{prefix}/lib/vfs/modules/lib*.so
+%{prefix}/lib/vfs/modules/*.a
+%{prefix}/include/libgnomevfs/*
+
