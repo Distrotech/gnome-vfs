@@ -595,7 +595,7 @@ remove_numbers_between_dashes(char *input_str)
 		} else {
 			right_ptr = input_str + strlen(input_str) - 1;
 			if (all_numbers_or_spaces(left_ptr, right_ptr)) {
-				left_ptr = '\0';	
+				*left_ptr = '\0';	
 			}
 			break;
 		}

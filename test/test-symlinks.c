@@ -90,8 +90,8 @@ deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result,
 	const char *write_buffer = "this is test data...we should read the same thing";
 	GnomeVFSHandle *handle;
 	GnomeVFSFileSize bytes_written, temp;
-	GnomeVFSFileInfo info_uri = {0,};
-	GnomeVFSFileInfo info_target = {0,};
+	GnomeVFSFileInfo info_uri = {NULL};
+	GnomeVFSFileInfo info_target = {NULL};
 	int return_value = 1;
 	const gchar *result_string;
 	GnomeVFSResult error;	

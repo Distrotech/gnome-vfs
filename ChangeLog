@@ -1,3 +1,13 @@
+2004-08-25  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init): 0 vs NULL
+	* modules/nntp-method.c: (remove_numbers_between_dashes):
+	Fix a warning from sparse.
+	* modules/smb-method.c: (server_cache_reap_cb),
+	(schedule_server_cache_reap), (auth_failed): ANSIfication
+	and add a cast to the source func.
+	* test/test-symlinks.c: (deal_with_result): 0 vs. NULL
+
 2004-08-25  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/smb-method.c (auth_fn):

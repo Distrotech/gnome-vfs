@@ -124,7 +124,7 @@ gnome_vfs_init (void)
 		if (bonobo_activation_orb_get() == NULL) {
 			bonobo_activation_init (0, bogus_argv);
 		}
-		bonobo_init (0, bogus_argv);
+		bonobo_init (NULL, bogus_argv);
 
 
 		_gnome_vfs_ssl_init ();

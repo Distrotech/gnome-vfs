@@ -277,7 +277,7 @@ add_old_servers (gpointer key,
 
 
 static gboolean
-server_cache_reap_cb ()
+server_cache_reap_cb (void)
 {
      	int size;
 	GPtrArray *servers;
@@ -309,7 +309,7 @@ schedule_server_cache_reap (void)
 {
 	if (server_cache_reap_timeout == 0) {
 		server_cache_reap_timeout = g_timeout_add (SERVER_CACHE_REAP_TIMEOUT*1000,
-							   server_cache_reap_cb, NULL);
+							   (GSourceFunc)server_cache_reap_cb, NULL);
 	}
 }
 
@@ -838,7 +838,7 @@ init_auth (GnomeVFSURI *uri)
 }
 
 static gboolean
-auth_failed ()
+auth_failed (void)
 {
 	return cache_access_failed &&
 		(errno == EACCES || errno == EPERM) &&
