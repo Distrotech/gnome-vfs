@@ -546,20 +546,20 @@ g_deskop_entries_locale_is_interesting (EggDesktopEntries  *entries,
 
 static void
 egg_desktop_entries_parse_line (EggDesktopEntries  *entries,
-	                      const char       *line,
+	                      const gchar       *line,
 			      gsize             length,
 			      GError          **error)
 {
   GError *parse_error;
-  const gchar *line_start;
+  gchar *line_start;
 
   g_return_if_fail (entries != NULL);
   g_return_if_fail (line != NULL);
 
   parse_error = NULL;
 
-  line_start = line;
-  while (isspace (*line_start))
+  line_start = (gchar *) line;
+  while (g_ascii_isspace (*line_start))
     line_start++;
 
   if (line_is_comment (line_start))
@@ -666,10 +666,10 @@ egg_desktop_entries_parse_entry (EggDesktopEntries  *entries,
 			       gsize             length,
 			       GError          **error)
 {
-  char *key, *value, *key_end, *value_start, *locale;
+  gchar *key, *value, *key_end, *value_start, *locale;
   gsize key_len, value_len;
 
-  key_end = value_start = index (line, '=');
+  key_end = value_start = strchr (line, '=');
 
   g_assert (key_end != NULL);
 
@@ -678,7 +678,7 @@ egg_desktop_entries_parse_entry (EggDesktopEntries  *entries,
 
   /* Pull the key name from the line (chomping trailing whitespace)
    */
-  while (isspace (*key_end))
+  while (g_ascii_isspace (*key_end))
     key_end--;
 
   key_len = key_end - line + 2;
@@ -691,7 +691,7 @@ egg_desktop_entries_parse_entry (EggDesktopEntries  *entries,
 
   /* Pull the value from the line (chugging leading whitespace)
    */
-  while (isspace (*value_start))
+  while (g_ascii_isspace (*value_start))
     value_start++;
 
   value_len = line + length - value_start + 1; 
