@@ -141,6 +141,7 @@ typedef struct {
 } GnomeVFSCreateAsChannelOpResult;
 
 typedef struct {
+	char dummy; /* ANSI C does not allow empty structs */
 } GnomeVFSCloseOp;
 
 typedef struct {

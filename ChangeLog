@@ -1,3 +1,8 @@
+2001-05-09  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: Added dummy member to
+	avoid having an empty struct.
+
 2001-05-08  Ian McKellar  <ian@eazel.com>
 
 	* devel-docs/gnome-vfs/Makefile.am:
