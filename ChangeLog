@@ -1,5 +1,12 @@
 2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_mime_list):
+	Fixed a couple of leaks and instances where 
+	gdk_pixbuf_new_from_file was being passed a NULL char *.
+	
+2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 2839, setting icons for mime type is not remembered
 	
 	* mime-type-capplet/nautilus-mime-type-capplet.c: (main),
