@@ -1,3 +1,8 @@
+2004-05-17  Christophe Fergeau  <teuf@gnome.org>
+
+        * modules/ftp-method.c: reset connection offset in
+          ftp_connection_acquire (should fix #140583)
+
 2004-05-16  Georges Karabin  <gkarabin@pobox.com>
 
 	* doc/writing-modules.sgml: fixed prototypes of the module virtual 
