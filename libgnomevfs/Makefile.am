@@ -39,6 +39,7 @@ noinst_HEADERS =				\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-handle.h			\
+	gnome-vfs-iobuf.h			\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-module.h			\
@@ -61,6 +62,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-handle.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-init.c			\
+	gnome-vfs-iobuf.c			\
 	gnome-vfs-list-sort.c			\
 	gnome-vfs-method.c			\
 	gnome-vfs-xfer.c			\

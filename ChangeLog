@@ -1,3 +1,17 @@
+1999-10-21  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-private-types.h: New opaque
+	`GnomeVFSIOBuf' typedef for the struct defined in
+	`gnome-vfs-iobuf.c'.
+
+	* libgnomevfs/gnome-vfs-private.h: #include "gnome-vfs-iobuf.h".
+
+	* libgnomevfs/gnome-vfs-iobuf.h: New header file for
+	`gnome-vfs-iobuf.c'.
+
+	* libgnomevfs/gnome-vfs-iobuf.c: New file implementing buffered
+	I/O on top of low-level Unix file descriptors.
+
 1999-10-20  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/extfs-method.c (match): Apply filter.

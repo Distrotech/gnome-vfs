@@ -25,8 +25,11 @@
 #define _GNOME_VFS_PRIVATE_TYPES_H
 
 
+/* Opaque types.  */
+
 typedef struct _GnomeVFSCancellation GnomeVFSCancellation;
 typedef gpointer GnomeVFSMethodHandle;
+typedef struct _GnomeVFSIOBuf GnomeVFSIOBuf;
 
 
 /* VFS methods.  */

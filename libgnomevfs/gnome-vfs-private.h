@@ -35,6 +35,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-configuration.h"
 #include "gnome-vfs-handle.h"
+#include "gnome-vfs-iobuf.h"
 #include "gnome-vfs-list-sort.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-parse-ls.h"
