@@ -164,7 +164,7 @@ destroy_monitor_handle (GnomeVFSMonitorHandle *handle)
 	if (!res) {
 		g_warning ("gnome-vfs-monitor.c: A monitor handle was destroyed "
 			   "before it was added to the method hash table. This "
-			   "is a bug in the application and can cause crashed. "
+			   "is a bug in the application and can cause crashes. "
 			   "It is probably a race-condition.");
 	}
 
