@@ -1,839 +1,851 @@
-# gnome-vfs Hungarian translations
-# Copyright (C) 2000-2001 Free Software Foundation, Inc.
-# Szabolcs BAN <shooby@gnome.hu>, 2000-2001.
-# Gergely Nagy <greg@gnome.hu>, 2001
-# Andras Timar <timar@gnome.hu>, 2001
+# gnome-vfs
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# Marius Andreiana <mandreiana@yahoo.com>, 2001.
+#
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs gnome-vfs-1 branch\n"
+"Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2001-09-11 00:28-0700\n"
-"PO-Revision-Date: 2001-09-04 10:06+0200\n"
-"Last-Translator: Andras Timar <timar@gnome.hu>\n"
-"Language-Team: Hungarian <hu@gnome.hu>\n"
+"PO-Revision-Date: 2001-02-24 11:22+0200\n"
+"Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
+"Language-Team: Românã <ro@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/mime/gnome-vfs.keys.in.h:1
 msgid "3D Studio image"
-msgstr "3D Studio kép"
+msgstr "Imagine 3D Studio"
 
 #: data/mime/gnome-vfs.keys.in.h:2
 msgid "AIFC audio"
-msgstr "AIFC hang"
+msgstr "Audio AIFC"
 
 #: data/mime/gnome-vfs.keys.in.h:3
 msgid "AIFF audio"
-msgstr "AIFF hang"
+msgstr "Audio AIFF"
 
 #: data/mime/gnome-vfs.keys.in.h:4
 msgid "ANIM animation"
-msgstr "ANIM animáció"
+msgstr "Animaþie ANIM"
 
 #: data/mime/gnome-vfs.keys.in.h:5
 msgid "AVI video"
-msgstr "AVI video"
+msgstr "Video AVI"
 
 #: data/mime/gnome-vfs.keys.in.h:6
 msgid "AbiWord document"
-msgstr "AbiWord dokumentum"
+msgstr "Document AbiWord"
 
 #: data/mime/gnome-vfs.keys.in.h:7
 msgid "Adobe FrameMaker font"
-msgstr "Adobe FrameMaker betûkészlet"
+msgstr "Font Adobe FrameMaker"
 
 #: data/mime/gnome-vfs.keys.in.h:8
 msgid "Adobe font metrics"
-msgstr "Adobe betûmetrika"
+msgstr "Dimensiuni font Adobe"
 
 #: data/mime/gnome-vfs.keys.in.h:9
 msgid "Andrew Toolkit inset"
-msgstr "Andrew Toolkit inset"
+msgstr "Set Andrew Toolkit"
 
 #: data/mime/gnome-vfs.keys.in.h:10
 msgid "ApplixWare Graphics image"
-msgstr "ApplixWare Graphics kép"
+msgstr "Imagine ApplixWare Graphics"
 
 #: data/mime/gnome-vfs.keys.in.h:11
 msgid "Applixware Words document"
-msgstr "Applixware Words dokumentum"
+msgstr "Document Applixware Words"
 
 #: data/mime/gnome-vfs.keys.in.h:12
 msgid "Applixware spreadsheet"
-msgstr "Applixware munkafüzet"
+msgstr "Spreadsheet Applixware"
 
 #: data/mime/gnome-vfs.keys.in.h:13
 msgid "AutoCAD image"
-msgstr "AutoCAD kép"
+msgstr "Imagine AutoCAD"
 
 #: data/mime/gnome-vfs.keys.in.h:14
 msgid "BCPIO document"
-msgstr "BCPIO dokumentum"
+msgstr "Document BCPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:15
 msgid "BDF font"
-msgstr "BDF betûkészlet"
+msgstr "Font BDF"
 
 #: data/mime/gnome-vfs.keys.in.h:16
 msgid "C shell script"
-msgstr "C shell parancsfájl"
+msgstr "Script shell C"
 
 #: data/mime/gnome-vfs.keys.in.h:17
 msgid "C source code"
-msgstr "C forráskód"
+msgstr "Cod sursã C"
 
 #: data/mime/gnome-vfs.keys.in.h:18
 msgid "C++ source code"
-msgstr "C++ forráskód"
+msgstr "Cod sursã C++"
 
 #: data/mime/gnome-vfs.keys.in.h:19
 msgid "CGI program"
-msgstr "CGI program"
+msgstr "Program CGI"
 
 #: data/mime/gnome-vfs.keys.in.h:20
 msgid "CGM image"
-msgstr "CGM kép"
+msgstr "Imagine CGM"
 
 #: data/mime/gnome-vfs.keys.in.h:21
 msgid "CMU raster image"
-msgstr "CMU raszterkép"
+msgstr "Imagine raster CMU"
 
 #: data/mime/gnome-vfs.keys.in.h:22
 msgid "CPIO archive"
-msgstr "CPIO archívum"
+msgstr "Arhivã CPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:23
 msgid "CPIO archive (gzip-compressed)"
-msgstr "CPIO archívum (gzip-pel tömörítve)"
+msgstr "Arhivã CPIO (compresatã cu gzip)"
 
 #: data/mime/gnome-vfs.keys.in.h:24
 msgid "DCL script"
-msgstr "DCL parancsfájl"
+msgstr "Script DCL"
 
 #: data/mime/gnome-vfs.keys.in.h:25
 msgid "DOS font"
-msgstr "DOS betûkészlet"
+msgstr "Font DOS"
 
 #: data/mime/gnome-vfs.keys.in.h:26
 msgid "DOS/Windows program"
-msgstr "DOS/Windows program"
+msgstr "Program DOS/Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:27
 msgid "DSSSL document"
-msgstr "DSSSL dokumentum"
+msgstr "Document DSSSL"
 
 #: data/mime/gnome-vfs.keys.in.h:28
 msgid "DXF vector graphic"
-msgstr "DXF vektorgrafika"
+msgstr "Graficã vectorialã DXF"
 
 #: data/mime/gnome-vfs.keys.in.h:29
 msgid "Debian package"
-msgstr "Debian csomag"
+msgstr "Pachet Debian"
 
 #: data/mime/gnome-vfs.keys.in.h:30
 msgid "Dia diagram"
-msgstr "Dia diagram"
+msgstr "Diagramã Dia"
 
 #: data/mime/gnome-vfs.keys.in.h:31
 msgid "Dolby Digital audio"
-msgstr "Dolby Digital hang"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:32
 msgid "Emacs Lisp source code"
-msgstr "Emacs Lisp forráskód"
+msgstr "Cod sursã Emacs Lisp"
 
 #: data/mime/gnome-vfs.keys.in.h:33
 msgid "Enlightenment theme"
-msgstr "Enlightenment téma"
+msgstr "Temã Enlightenment"
 
 #: data/mime/gnome-vfs.keys.in.h:34
 msgid "FLC animation"
-msgstr "FLC animáció"
+msgstr "Animaþie FLC"
 
 #: data/mime/gnome-vfs.keys.in.h:35
 msgid "FLI animation"
-msgstr "FLI animáció"
+msgstr "Animaþie FLI"
 
 #: data/mime/gnome-vfs.keys.in.h:36
 msgid "FastTracker II audio"
-msgstr "FastTracker II hang"
+msgstr "Audio FastTracker II"
 
 #: data/mime/gnome-vfs.keys.in.h:37
 msgid "Fortran source code"
-msgstr "Fortran forráskód"
+msgstr "Cod sursã Fortran"
 
 #: data/mime/gnome-vfs.keys.in.h:38
 msgid "FrameMaker interchange document"
-msgstr "FrameMaker cserélhetõ dokumentum"
+msgstr "Document FrameMaker interchange"
 
 #: data/mime/gnome-vfs.keys.in.h:39
 msgid "G3 fax image"
-msgstr "G3 faxkép"
+msgstr "Imagine fax G3"
 
 #: data/mime/gnome-vfs.keys.in.h:40
 msgid "GIF image"
-msgstr "GIF kép"
+msgstr "Imagine GIF"
 
 #: data/mime/gnome-vfs.keys.in.h:41
 msgid "GIMP document"
-msgstr "GIMP dokumentum"
+msgstr "Document GIMP"
 
 #: data/mime/gnome-vfs.keys.in.h:42
 msgid "GMC link"
-msgstr "GMC link"
+msgstr "Legãturã GMC"
 
 #: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNOME application details"
-msgstr "GNOME alkalmazás részletei"
+msgstr "Detalii aplicaþie GNOME"
 
 #: data/mime/gnome-vfs.keys.in.h:44
+#, fuzzy
 msgid "GNU Oleo Spreadsheet"
-msgstr "GNU Oleo munkafüzet"
+msgstr "Spreadsheet Gnumeric"
 
 #: data/mime/gnome-vfs.keys.in.h:45
 msgid "GNU mail message"
-msgstr "GNU elektronikus levél"
+msgstr "Mesaj poºtã GNU"
 
 #: data/mime/gnome-vfs.keys.in.h:46
 msgid "GTK configuration"
-msgstr "GTK beállítások"
+msgstr "Configuraþie GTK"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
-msgstr "Glade projekt"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:48
 msgid "GnuCash Workbook"
-msgstr "GnuCash munkafüzet"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:49
 msgid "Gnumeric spreadsheet"
-msgstr "Gnumeric munkafüzet"
+msgstr "Spreadsheet Gnumeric"
 
 #: data/mime/gnome-vfs.keys.in.h:50
 msgid "HDF document"
-msgstr "HDF dokumentum"
+msgstr "Document HDF"
 
 #: data/mime/gnome-vfs.keys.in.h:51
 msgid "HTML page"
-msgstr "HTML oldal"
+msgstr "Paginã HTML"
 
 #: data/mime/gnome-vfs.keys.in.h:52
 msgid "IDL document"
-msgstr "IDL dokumentum"
+msgstr "Document IDL"
 
 #: data/mime/gnome-vfs.keys.in.h:53
 msgid "IEF image"
-msgstr "IEF kép"
+msgstr "Imagine IEF"
 
 #: data/mime/gnome-vfs.keys.in.h:54
 msgid "IFF image"
-msgstr "IFF kép"
+msgstr "Imagine IFF"
 
 #: data/mime/gnome-vfs.keys.in.h:55
 msgid "ILBM image"
-msgstr "ILBM kép"
+msgstr "Imagine ILBM"
 
 #: data/mime/gnome-vfs.keys.in.h:56
 msgid "ISI video"
-msgstr "ISI video"
+msgstr "Video ISI"
 
 #: data/mime/gnome-vfs.keys.in.h:57
 msgid "Impulse Tracker audio"
-msgstr "Impulse Tracker hang"
+msgstr "Audio Impulse Tracker"
 
 #: data/mime/gnome-vfs.keys.in.h:58
 msgid "JBuilder Project"
-msgstr "JBuilder projekt"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:59
 msgid "JPEG image"
-msgstr "JPEG kép"
+msgstr "Imagine JPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:60
 msgid "Java byte code"
-msgstr "Java bájtkód"
+msgstr "Cod Java"
 
 #: data/mime/gnome-vfs.keys.in.h:61
 msgid "Java source code"
-msgstr "Java forráskód"
+msgstr "Cod sursã Java"
 
 #: data/mime/gnome-vfs.keys.in.h:62
 msgid "KDE application details"
-msgstr "KDE alkalmazás részletei"
+msgstr "Detalii aplicaþie KDE"
 
 #: data/mime/gnome-vfs.keys.in.h:63
+#, fuzzy
 msgid "KIllustrator document"
-msgstr "KIllustrator dokumentum"
+msgstr "Document PostScript"
 
 #: data/mime/gnome-vfs.keys.in.h:64
+#, fuzzy
 msgid "KPresenter presentation"
-msgstr "KPresenter prezentáció"
+msgstr "Prezentare StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:65
+#, fuzzy
 msgid "KSpread spreadsheet"
-msgstr "KSpread munkafüzet"
+msgstr "Spreadsheet Applixware"
 
 #: data/mime/gnome-vfs.keys.in.h:66
+#, fuzzy
 msgid "KWord document"
-msgstr "KWord dokumentum"
+msgstr "Document AbiWord"
 
 #: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
-msgstr "Korn shell parancsfájl"
+msgstr "Script shell Korn"
 
 #: data/mime/gnome-vfs.keys.in.h:68
 msgid "LHA archive"
-msgstr "LHA archívum"
+msgstr "Arhivã LHA"
 
 #: data/mime/gnome-vfs.keys.in.h:69
 msgid "LHARC archive"
-msgstr "LHARC archívum"
+msgstr "Arhivã LHARC"
 
 #: data/mime/gnome-vfs.keys.in.h:70
 msgid "LIBGRX font"
-msgstr "LIBGRX betûkészlet"
+msgstr "Font LIBGRX"
 
 #: data/mime/gnome-vfs.keys.in.h:71
 msgid "LightWave object"
-msgstr "LightWave objektum"
+msgstr "Obiect LightWave"
 
 #: data/mime/gnome-vfs.keys.in.h:72
 msgid "LightWave scene"
-msgstr "LightWave scene"
+msgstr "Scenã LightWave"
 
 #: data/mime/gnome-vfs.keys.in.h:73
 msgid "Linux PSF console font"
-msgstr "Linux PSF konzolos betûkészlet"
+msgstr "Font consolã Linux PSF"
 
 #: data/mime/gnome-vfs.keys.in.h:74
+#, fuzzy
 msgid "Lotus 1-2-3 spreadsheet"
-msgstr "Lotus 1-2-3 munkafüzet"
+msgstr "Spreadsheet Gnumeric"
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
-msgstr "M3 hang URL"
+msgstr "URL audio MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:76
 msgid "MIDI audio"
-msgstr "MIDI hang"
+msgstr "Audio MIDI"
 
 #: data/mime/gnome-vfs.keys.in.h:77
 msgid "MOD audio"
-msgstr "MOD hang"
+msgstr "Audio MOD"
 
 #: data/mime/gnome-vfs.keys.in.h:78
 msgid "MP3 audio"
-msgstr "MP3 hang"
+msgstr "Audio MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:79
 msgid "MP3 audio playlist"
-msgstr "MP3 lejátszandó lista"
+msgstr "Listã audio MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
-msgstr "MPEG video"
+msgstr "Video MPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:81
+#, fuzzy
 msgid "MS ASF video"
-msgstr "MS ASF video"
+msgstr "Video MS"
 
 #: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
-msgstr "MS video"
+msgstr "Video MS"
 
 #: data/mime/gnome-vfs.keys.in.h:83
 msgid "Macintosh AppleDouble-encoded file"
-msgstr "Macintosh AppleDouble kódolású fájl"
+msgstr "Fiºier codat Macintosh AppleDouble"
 
 #: data/mime/gnome-vfs.keys.in.h:84
 msgid "Macintosh BinHex-encoded file"
-msgstr "Macintosh BinHex kódolású fájl"
+msgstr "Fiºier codat Macintosh BinHex"
 
 #: data/mime/gnome-vfs.keys.in.h:85
 msgid "Macintosh StuffIt archive"
-msgstr "Macintosh StuffIt archívum"
+msgstr "Arhivã Macintosh StuffIt"
 
 #: data/mime/gnome-vfs.keys.in.h:86
 msgid "Macromedia Flash file"
-msgstr "Macromedia Flash fájl"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
-msgstr "MathML dokumentum"
+msgstr "Document MathML"
 
 #: data/mime/gnome-vfs.keys.in.h:88
+#, fuzzy
 msgid "Microsoft Excel spreadsheet"
-msgstr "Microsoft Excel munkafüzet"
+msgstr "Document Microsoft Excel"
 
 #: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
-msgstr "Microsoft PowerPoint dokumentum"
+msgstr "Document Microsoft PowerPoint"
 
 #: data/mime/gnome-vfs.keys.in.h:90
 msgid "Microsoft Word document"
-msgstr "Microsoft Word dokumentum"
+msgstr "Document Microsoft Word"
 
 #: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
-msgstr "Microsoft video"
+msgstr "Video Microsoft"
 
 #: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
-msgstr "Nautilus link"
+msgstr "Legãturã Nautilus"
 
 #: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
-msgstr "ODA dokumentum"
+msgstr "Document ODA"
 
 #: data/mime/gnome-vfs.keys.in.h:94
 msgid "PBM image"
-msgstr "PBM kép"
+msgstr "Imagine PBM"
 
 #: data/mime/gnome-vfs.keys.in.h:95
 msgid "PCF font"
-msgstr "PCF betûkészlet"
+msgstr "Font PCF"
 
 #: data/mime/gnome-vfs.keys.in.h:96
 msgid "PDF document"
-msgstr "PDF dokumentum"
+msgstr "Document PDF"
 
 #: data/mime/gnome-vfs.keys.in.h:97
 msgid "PEF program"
-msgstr "PEF program"
+msgstr "Program PEF"
 
 #: data/mime/gnome-vfs.keys.in.h:98
 msgid "PGM image"
-msgstr "PGM kép"
+msgstr "Imagine PGM"
 
 #: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
-msgstr "PGN sakkjátszma"
+msgstr "Joc ºah PGN"
 
 #: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
-msgstr "PGP kulcs"
+msgstr "Chei PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:101
 msgid "PGP message"
-msgstr "PGP üzenet"
+msgstr "Mesaj PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:102
 msgid "PGP signature"
-msgstr "PGP aláírás"
+msgstr "Semnãturã PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
-msgstr "PGP-vel titkosított fájl"
+msgstr "Fiºier criptat PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
-msgstr "PHP szkript"
+msgstr "Script PHP"
 
 #: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
-msgstr "PN RealAudio dokumentum"
+msgstr "Document PN RealAudio "
 
 #: data/mime/gnome-vfs.keys.in.h:106
 msgid "PNG image"
-msgstr "PNG kép"
+msgstr "Imagine PNG"
 
 #: data/mime/gnome-vfs.keys.in.h:107
 msgid "PNM image"
-msgstr "PNM kép"
+msgstr "Imagine PNM"
 
 #: data/mime/gnome-vfs.keys.in.h:108
 msgid "PPM image"
-msgstr "PPM kép"
+msgstr "Imagine PPM"
 
 #: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
-msgstr "Palm OS adatbázis"
+msgstr "Bazã de date Palm OS"
 
 #: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
-msgstr "Perl szkript"
+msgstr "Script Perl"
 
 #: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
-msgstr "Photoshop dokumentum"
+msgstr "Document Photoshop"
 
 #: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
-msgstr "PostScript Type 1 betûkészlet"
+msgstr "Font PostScript Type 1"
 
 #: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
-msgstr "PostScript dokumentum"
+msgstr "Document PostScript"
 
 #: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
-msgstr "Python forráskód"
+msgstr "Cod sursã Python"
 
 #: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
-msgstr "QuickTime film"
+msgstr "Film QuickTIme"
 
 #: data/mime/gnome-vfs.keys.in.h:116
+#, fuzzy
 msgid "Quicken document"
-msgstr "Quicken dokumentum"
+msgstr "Document TeX"
 
 #: data/mime/gnome-vfs.keys.in.h:117
+#, fuzzy
 msgid "Quicken for Windows document"
-msgstr "Quicken for Windows dokumentum"
+msgstr "document calendar sau eveniment"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
-msgstr "RAR archívum"
+msgstr "Arhivã RAR"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
-msgstr "README dokumentum"
+msgstr "Document README"
 
 #: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
-msgstr "RGB kép"
+msgstr "Imagine RGB"
 
 #: data/mime/gnome-vfs.keys.in.h:121
 msgid "RIFF audio"
-msgstr "RIFF kép"
+msgstr "Audio RIFF"
 
 #: data/mime/gnome-vfs.keys.in.h:122
 msgid "RPM package"
-msgstr "RPM csomag"
+msgstr "Pachet RPM"
 
 #: data/mime/gnome-vfs.keys.in.h:123
 msgid "RealAudio/Video document"
-msgstr "RealAudio/Video dokumentum"
+msgstr "Document RealAudio/Video"
 
 #: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
-msgstr "RealVideo video"
+msgstr "Video RealVideo"
 
 #: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
-msgstr "S/MIME fájl"
+msgstr "Fiºier S/MIME"
 
 #: data/mime/gnome-vfs.keys.in.h:126
 msgid "S/MIME signature"
-msgstr "S/MIME aláírás"
+msgstr "Semnãturã S/MIME"
 
 #: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
-msgstr "SGI video"
+msgstr "Video SGI"
 
 #: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
-msgstr "SGML dokumentum"
+msgstr "Document SGML"
 
 #: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
-msgstr "SMIL szkript"
+msgstr "Script SMIL"
 
 #: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
-msgstr "SQL kód"
+msgstr "Cod SQL"
 
 #: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
-msgstr "SV4 CPIO archívum"
+msgstr "Arhivã SV4 CPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
-msgstr "SV4 CPIP archívum (CRC-vel)"
+msgstr "Arhivã SV4 CPIO (cu CRC)"
 
 #: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
-msgstr "SVG rajz"
+msgstr "Artã SVG"
 
 #: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
-msgstr "Scheme forráskód"
+msgstr "Cod sursã Scheme"
 
 #: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
-msgstr "Scream Tracker 3 hang"
+msgstr "Audio Scream Tracker 3"
 
 #: data/mime/gnome-vfs.keys.in.h:136
 msgid "Scream Tracker audio"
-msgstr "Scream Tracker hang"
+msgstr "Audio Scream Tracker"
 
 #: data/mime/gnome-vfs.keys.in.h:137
 msgid "Scream Tracker instrument"
-msgstr "Scream Tracker hangszer"
+msgstr "Instrument Scream Tracker"
 
 #: data/mime/gnome-vfs.keys.in.h:138
 msgid "Setext document"
-msgstr "Setext dokumentum"
+msgstr "Document Setext"
 
 #: data/mime/gnome-vfs.keys.in.h:139
 msgid "Speech document"
-msgstr "Speech dokumentum"
+msgstr "Document vocal"
 
 #: data/mime/gnome-vfs.keys.in.h:140
 msgid "Speedo font"
-msgstr "Speedo betûkészlet"
+msgstr "Font Speedo"
 
 #: data/mime/gnome-vfs.keys.in.h:141
+#, fuzzy
 msgid "Spreadsheet Interchange document"
-msgstr "Spreadsheet Interchange dokumentum"
+msgstr "Document FrameMaker interchange"
 
 #: data/mime/gnome-vfs.keys.in.h:142
+#, fuzzy
 msgid "Stampede package"
-msgstr "Stampede csomag"
+msgstr "Pachet Debian"
 
 #: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
-msgstr "StarOffice Writer dokumentum"
+msgstr "Document StarOffice Writer"
 
 #: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
-msgstr "StarOffice prezentáció"
+msgstr "Prezentare StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:145
 msgid "StarOffice spreadsheet"
-msgstr "StarOffice munkafüzet"
+msgstr "Spreadsheet StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun mu-law audio"
-msgstr "Sun µ-law hang"
+msgstr "Audio Sun µ-law"
 
 #: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
-msgstr "SunOS News betûkészlet"
+msgstr "Font SunOS News"
 
 #: data/mime/gnome-vfs.keys.in.h:148
 msgid "TIFF image"
-msgstr "TIFF kép"
+msgstr "Imagine TIFF"
 
 #: data/mime/gnome-vfs.keys.in.h:149
 msgid "TarGA image"
-msgstr "TarGA kép"
+msgstr "Imagine TarGA"
 
 #: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
-msgstr "Tcl szkript"
+msgstr "Script Tcl"
 
 #: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
-msgstr "TeX dokumentum"
+msgstr "Document TeX"
 
 #: data/mime/gnome-vfs.keys.in.h:152
 msgid "TeX dvi document"
-msgstr "TeX dvi dokumentum"
+msgstr "Document TeX dvi"
 
 #: data/mime/gnome-vfs.keys.in.h:153
 msgid "TeX font"
-msgstr "TeX betûkészlet"
+msgstr "Font TeX"
 
 #: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
-msgstr "TeX betûmetrika"
+msgstr "Dimensiuni font TeX"
 
 #: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
-msgstr "TeXInfo dokumentum"
+msgstr "Document TexInfo"
 
 #: data/mime/gnome-vfs.keys.in.h:156
 msgid "ToutDoux document"
-msgstr "ToutDoux dokumentum"
+msgstr "Document ToutDoux"
 
 #: data/mime/gnome-vfs.keys.in.h:157
 msgid "TrueType font"
-msgstr "TrueType betûkészlet"
+msgstr "Font TrueType"
 
 #: data/mime/gnome-vfs.keys.in.h:158
 msgid "USENET news message"
-msgstr "USENET hírcsoportbeli üzenet"
+msgstr "MEsaj ºtiri USENET"
 
 #: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
-msgstr "Unidata netCDF dokumentum"
+msgstr "Document Unidata netCDF"
 
 #: data/mime/gnome-vfs.keys.in.h:160
 msgid "V font"
-msgstr "V betûkészlet"
+msgstr "Font V"
 
 #: data/mime/gnome-vfs.keys.in.h:161
 msgid "VOC audio"
-msgstr "VOC hang"
+msgstr "Audio VOC"
 
 #: data/mime/gnome-vfs.keys.in.h:162
 msgid "VRML document"
-msgstr "VRML dokumentum"
+msgstr "Document VRML"
 
 #: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
-msgstr "Vivo video"
+msgstr "Video Vivo"
 
 #: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
-msgstr "WAIS forráskód"
+msgstr "Cod sursã WAIS"
 
 #: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
-msgstr "Wavelet video"
+msgstr "Video Wavelet"
 
 #: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
-msgstr "Windows bitmap kép"
+msgstr "Imagine bitmap Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
-msgstr "Windows ikon"
+msgstr "Imagine icon Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
-msgstr "Windows metafile grafika"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
-msgstr "WordPerfect dokumentum"
+msgstr "Document WordPerfect"
 
 #: data/mime/gnome-vfs.keys.in.h:170
 msgid "X bitmap image"
-msgstr "X bitmap kép"
+msgstr "Imagine bitmap X"
 
 #: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
-msgstr "X window kép"
+msgstr "Imagine X window"
 
 #: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
-msgstr "XML dokumentum"
+msgstr "Document XML"
 
 #: data/mime/gnome-vfs.keys.in.h:173
 msgid "XPM image"
-msgstr "XPM kép"
+msgstr "Imagine XPM"
 
 #: data/mime/gnome-vfs.keys.in.h:174
+#, fuzzy
 msgid "Xbase database"
-msgstr "Xbase adatbázis"
+msgstr "Bazã de date Palm OS"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
-msgstr "active server page"
+msgstr "paginã active server"
 
 #: data/mime/gnome-vfs.keys.in.h:176
 msgid "address card"
-msgstr "címjegyzékkártya"
+msgstr "carte adresã"
 
 #: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
-msgstr "ar archívum"
+msgstr "Arhivã ar"
 
 #: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
-msgstr "arj archívum"
+msgstr "Arhivã arj"
 
 #: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
-msgstr "szerzõk listája"
+msgstr "listã autori"
 
 #: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
-msgstr "biztonsági mentés"
+msgstr "fiºier backup"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
-msgstr "egyszerû hang"
+msgstr "audio standard"
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
-msgstr "bibliográfiabejegyés"
+msgstr "înregistare bibliograficã"
 
 #: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
-msgstr "bináris program"
+msgstr "program binar"
 
 #: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
-msgstr "blokkos eszköz"
+msgstr "dispozitiv de tip block"
 
 #: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
-msgstr "bzip-pel tömörített fájl"
+msgstr "fiºier compresat bzip"
 
 #: data/mime/gnome-vfs.keys.in.h:186
 msgid "calendar file"
-msgstr "naptárfájl"
+msgstr "fiºier calendar"
 
 #: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
-msgstr "naptár vagy esemény típusú dokumentum"
+msgstr "document calendar sau eveniment"
 
 #: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
-msgstr "karakteres eszköz"
+msgstr "dispozitiv de tip caracter"
 
 #: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
-msgstr "vesszõkkel elválasztott szöveg"
+msgstr "document text virgulã-separat"
 
 #: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
-msgstr "összetett dokumentum"
+msgstr "document compus"
 
 #: data/mime/gnome-vfs.keys.in.h:191
 msgid "compress-compressed file"
-msgstr "compress-szel tömörített fájl"
+msgstr "Fiºier compresat compress"
 
 #: data/mime/gnome-vfs.keys.in.h:192
 msgid "compressed GIMP document"
-msgstr "tömörített GIMP dokumentum"
+msgstr "document compresat GIMP"
 
 #: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
-msgstr "könyvtár-információs fájl"
+msgstr "fiºier informaþie director"
 
 #: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
-msgstr "dokumentumtípus definíciója"
+msgstr "definiþie tip document"
 
 #: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
-msgstr "levélfejléc"
+msgstr "headere email"
 
 #: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
-msgstr "elektronikus levél"
+msgstr "mesaj email"
 
 #: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
-msgstr "titkosított üzenet"
+msgstr "mesaj criptat"
 
 #: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
-msgstr "enriched text dokumentum"
+msgstr "document text îmbogãþit"
 
 #: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
-msgstr "mappa"
+msgstr "dosar"
 
 #: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
-msgstr "gtar archívum"
+msgstr "arhivã gtar"
 
 #: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
-msgstr "gzip-pel tömörített fájl"
+msgstr "fiºier compresat gzip"
 
 #: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
-msgstr "súgó"
+msgstr "paginã help"
 
 #: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
-msgstr "jelentés levélkézbesítésrõl"
+msgstr "report livrare mail"
 
 #: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
-msgstr "jelentés levélkidobásról"
+msgstr "report dispoziþie mail"
 
 #: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
-msgstr "levelezõrendszer jelentése"
+msgstr "report sistem mail"
 
 #: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
@@ -841,426 +853,428 @@ msgstr "makefile"
 
 #: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
-msgstr "kézikönyvoldal"
+msgstr "paginã manual"
 
 #: data/mime/gnome-vfs.keys.in.h:208
 msgid "manual page (compressed)"
-msgstr "kézikönyvoldal (tömörített)"
+msgstr "paginã manual (compresatã)"
 
 #: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
-msgstr "memóriatartalom"
+msgstr "dump memorie"
 
 #: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
-msgstr "ömlesztett üzenet"
+msgstr "digest mesaj"
 
 #: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
-msgstr "többféle formátumú üzenet"
+msgstr "mesaj în câteva formate"
 
 #: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
-msgstr "többrészes üzenet"
+msgstr "mesaj multi-parte"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
-msgstr "névvel rendelkezõ csõvezeték"
+msgstr "conector pipe cu nume"
 
 #: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
-msgstr "tárgykód"
+msgstr "cod obiect"
 
 #: data/mime/gnome-vfs.keys.in.h:215
 msgid "ogg audio"
-msgstr "ogg hang"
+msgstr "audio ogg"
 
 #: data/mime/gnome-vfs.keys.in.h:216
 msgid "partial email message"
-msgstr "részleges elektronikus levél"
+msgstr "mesaj email parþial"
 
 #: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
-msgstr "egyszerû szöveg"
+msgstr "document text simplu"
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
-msgstr "profiler eredmények"
+msgstr "rezultate profiler"
 
 #: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
-msgstr "hivatkozás távoli fájlra"
+msgstr "referinþã la fiºier la distanþã"
 
 #: data/mime/gnome-vfs.keys.in.h:220
 msgid "rejected patch file"
-msgstr "visszautasított patch fájl"
+msgstr "fiºier patch respins"
 
 #: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
-msgstr "rich text dokumentum"
+msgstr "document rich text"
 
 #: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
-msgstr "keresési eredmények"
+msgstr "rezultate cãutare"
 
 #: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
-msgstr "osztott programkönyvtár"
+msgstr "bibliotecã comunã"
 
 #: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
-msgstr "shell archívum"
+msgstr "arhivã shell"
 
 #: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
-msgstr "parancsfájl"
+msgstr "script shell"
 
 #: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
-msgstr "aláírt üzenet"
+msgstr "mesaj semnat"
 
 #: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
-msgstr "illesztõpont"
+msgstr "socket"
 
 #: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
-msgstr "szoftver szerzõinek felsorolása"
+msgstr "credite autor software"
 
 #: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
-msgstr "szoftvertelepítési leírás"
+msgstr "intrucþiuni instalare software"
 
 #: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
-msgstr "szoftver felhasználási szerzõdése"
+msgstr "termeni licenþiere software"
 
 #: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
-msgstr "forráskód patch"
+msgstr "patch cod sursã"
 
 #: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
-msgstr "stíluslap"
+msgstr "style sheet"
 
 #: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
-msgstr "szimbolikus link"
+msgstr "legãturã simbolicã"
 
 #: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
-msgstr "tabulátorokkal elválasztott szöveg"
+msgstr "document text tab-separat"
 
 #: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
-msgstr "tar archívum"
+msgstr "arhivã tar"
 
 #: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
-msgstr "tar archívum (bzip2-vel tömörített)"
+msgstr "arhivã tar (compresatã bzip2)"
 
 #: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
-msgstr "tar archívum (gzip-pel tömörített)"
+msgstr "arhivã tar (compresatã bzip2)"
 
 #: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
-msgstr "téma"
+msgstr "temã"
 
 #: data/mime/gnome-vfs.keys.in.h:239
+#, fuzzy
 msgid "troff document"
-msgstr "troff dokumentum"
+msgstr "Document Troff"
 
 #: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
-msgstr "troff me input dokumentum"
+msgstr "document intrare troff me"
 
 #: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
-msgstr "troff mm input dokumentum"
+msgstr "document intrare troff mm"
 
 #: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
-msgstr "troff ms input dokumentum"
+msgstr "document intrare troff ms"
 
 #: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
-msgstr "ismeretlen típus"
+msgstr "tip necunoscut"
 
 #: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
-msgstr "ustar archívum"
+msgstr "arhivã ustar"
 
 #: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
-msgstr "wave hang"
+msgstr "audio wave"
 
 #: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
-msgstr "webmappa"
+msgstr "dosar web"
 
 #: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
-msgstr "xfig vektorgrafika"
+msgstr "graficã vectorialã xfig"
 
 #: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
-msgstr "zip archívum"
+msgstr "arhivã zip"
 
 #: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
-msgstr "zoo archívum"
+msgstr "arhivã zoo"
 
 #: libgnomevfs/gnome-vfs-configuration.c:217
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d NUL karaktereket tartalmaz."
+msgstr "%s:%d conþine caractere NUL"
 
 #: libgnomevfs/gnome-vfs-configuration.c:234
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d nem tartalmaz metódus nevet."
+msgstr "%s:%d nu conþine nici un nume de metodã."
 
 #: libgnomevfs/gnome-vfs-configuration.c:263
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d nem tartalmaz modulnevet."
+msgstr "%s:%d nu conþine nici un nume de modul."
 
 #: libgnomevfs/gnome-vfs-configuration.c:316
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "'%s' konfigurációs fájlt nem találtam: %s"
+msgstr "Fiºierul configurare `%s' nu a fost gãsit: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:79
 msgid "GNOME VFS already initialized."
-msgstr "A GNOME VFS már el van indítva."
+msgstr "GNOME VFS a fost deja iniþializat."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:650
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Nem tudom értelmezni: %s"
+msgstr "N-am putut procesa: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 msgid "More parsing errors will be ignored."
-msgstr "A többi értelmezési hiba felett elnézek."
+msgstr "Mai multe erori de procesare vor fi ignorate."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
-msgstr "Nincs hiba"
+msgstr "Nici o eroare"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
-msgstr "Nem taléltam a fájlt"
+msgstr "Fiºierul nu a fost gãsit"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
-msgstr "Alap hiba"
+msgstr "Eroare genericã"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
-msgstr "Belsõ hiba"
+msgstr "Eroare internã"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "Rossz paraméterek"
+msgstr "Parametrii invalid"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
-msgstr "Nem támogatott mûvelet"
+msgstr "Operaþiune nesuportatã"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
-msgstr "I/O hiba"
+msgstr "Eroare I/O"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
-msgstr "Adat sérült"
+msgstr "Date corupte"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "Nem jó formátum"
+msgstr "Formatul nu este valid"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "Rossz féjl handle"
+msgstr "Descriptor fiºier prost"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
-msgstr "A fájl túl nagy"
+msgstr "Fiºierul prea mare"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "Nincs hely az eszközön"
+msgstr "Nu mai este spaþiu pe dispozitiv"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "Csak olvasható fájlrendszer"
+msgstr "Sistem fiºiere doar-citire"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "Rossz URI"
+msgstr "URI invalid"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
-msgstr "Nincs nyitva a fájl"
+msgstr "Fiºierul nu este deschis"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "A nyitás módja nem helyes"
+msgstr "Modul deschidere nu este valid"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
-msgstr "Hozzáférés letiltva"
+msgstr "Acces respins"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
-msgstr "Túl sok nyitott fájl"
+msgstr "Prea multe fiºiere deschise"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
-msgstr "Fájl vége"
+msgstr "Sfârºit fiºier"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
-msgstr "Nem könyvtár"
+msgstr "Nu este un director"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
-msgstr "A mûvelet folyamatban"
+msgstr "Operaþia în progres"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
-msgstr "A mûvelet megszakadt"
+msgstr "Operaþia întreruptã"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
-msgstr "A fájl létezik"
+msgstr "Fiºierul existã "
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "Ciklikus linket találtam"
+msgstr "Am înâlnit legãturi care cicleazã"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
-msgstr "A mûvelet nem engedett"
+msgstr "Operaþia nu este permisã"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
-msgstr "Könyvtár"
+msgstr "Este un director"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
-msgstr "Nincs elég memória"
+msgstr "Memorie insuficientã"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "Nem találtam a gépet"
+msgstr "Gazda nu a fost gãsitã"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "A gépnév nem valós"
+msgstr "Numele gazdei este invalid"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
-msgstr "A gépnek nincs címe"
+msgstr "Gazda nu are adresã"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
-msgstr "A belépés nem sikerült"
+msgstr "Login eºuat"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
-msgstr "A mûvelet leállítva"
+msgstr "S-a renunþat la operaþie"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
-msgstr "A könyvtár foglalt"
+msgstr "Directorul este ocupat"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
-msgstr "A könyvtár nem üres"
+msgstr "Directorul nu este gol"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
-msgstr "Túl sok link"
+msgstr "Prea multe legãturi"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "Csak olvasható fájlrendszer"
+msgstr "Sistem fiºier doar-citire"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
-msgstr "Nem ugyan azon a fájlrendszeren van"
+msgstr "Nu se aflã pe acelaºi sistem de fiºiere"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "A név túl hosszú"
+msgstr "Numele este prea lung"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "A szolgáltatás nem elérhetõ"
+msgstr "Serviciul nu este disponibil"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "A kérés elavulttá teszi a szolgáltatás adatait"
+msgstr "Cerere pentru date servicii ieºite din uz"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
+#, fuzzy
 msgid "Protocol error"
-msgstr "Protokollhiba"
+msgstr "Nici o eroare"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
-msgstr "Ismeretlen hiba"
+msgstr "Eroare necunoscutã"
 
 #: libgnomevfs/gnome-vfs-utils.c:66
 msgid "1 byte"
-msgstr "1 bájt"
+msgstr "1 octet"
 
 #: libgnomevfs/gnome-vfs-utils.c:68
 #, c-format
 msgid "%u bytes"
-msgstr "%u bájt"
+msgstr "%u octet"
 
 #: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
@@ -1280,403 +1294,328 @@ msgstr "%.1f GB"
 #: libgnomevfs-pthread/gnome-vfs-job.c:713
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Ismeretlen op típus: %u"
+msgstr "Tip op necunoscut %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1003
 #: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Nem tudok csõvezetéket létrehozni a GIOChannel megnyitásához: %s"
+msgstr "Nu pot crea conectorul pipe pentru deschiderea GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1604
-#, c-format
+#, fuzzy, c-format
 msgid "Unknown job kind %u"
-msgstr "Ismeretlen munkattípus: %u"
+msgstr "ID activitate necunoscut %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1640
 msgid "Operation stopped"
-msgstr "A mûvelet leállítva"
+msgstr "Operaþia opritã"
 
 #: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Ismeretlen GnomeVFSSeekPosition %d"
+msgstr "GnomeVFSSeekPosition %d necunoscut"
 
 #~ msgid "Dying."
-#~ msgstr "Meghalok."
+#~ msgstr "Mor."
 
 #~ msgid "Error reading: %s"
-#~ msgstr "Olvasási hiba: %s"
+#~ msgstr "Eroare citire: %s"
 
 #~ msgid "Error writing: %s"
-#~ msgstr "Írási hiba: %s"
+#~ msgstr "Eroare scriere: %s"
 
 #~ msgid "Cannot write: %s"
-#~ msgstr "Nem tudom írni: %s"
+#~ msgstr "Nu pot scrie: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Nem tudok ideiglenes fájlt lértrehozni '%s' néven"
+#~ msgstr "Nu pot crea fiºierul temporar `%s' "
 
 #~ msgid "Cannot create socket: %s"
-#~ msgstr "Nem tudok socket-et csinálni: %s"
+#~ msgstr "Nu pot crea socketul: %s"
 
 #~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Nem tudom bind-olni '%s'-t: %s"
+#~ msgstr "Nu pot lega `%s': %s"
 
 #~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Nem tudok '%s'-en figyelni: %s"
+#~ msgstr "Nu pot asculta pe `%s': %s"
 
 #~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Nem tudok kapcsolatokat fogadni '%s'-n: %s"
+#~ msgstr "Nu pot accepta conexiuni pe `%s': %s"
 
 #~ msgid "Cannot initialize CORBA."
-#~ msgstr "Nem tudom a CORBA-t beindítani."
+#~ msgstr "Nu pot iniþializa CORBA"
 
 #~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Nem tudom a RootPOA-nak a kezdeti referenciáját megkapni."
+#~ msgstr "Nu pot rezolva referinþa iniþialã la RootPOA"
 
 #~ msgid "Cannot activate POA manager."
-#~ msgstr "Nem tudom a POA kezelõt aktiválni."
+#~ msgstr "Nu pot activa managerul POA"
 
 #~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Használat: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Folosire: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Nem tudom megnyitni a %d fájlleírót."
+#~ msgstr "Nu pot deschide descriptorul fiºier %d."
 
 #~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Nincs értesítõ felület a '%s'-hez"
+#~ msgstr "Interfaþa notificare pentru `%s' nu a fost gãsitã."
 
 #~ msgid "Cannot setup Request object."
-#~ msgstr "Nem tudom beállítani a Request objektumot."
+#~ msgstr "Nu pot seta obiectul Cerere."
 
 #~ msgid "Cannot extract IOR."
-#~ msgstr "Nem tudom kivenni az IOR-t."
+#~ msgstr "Nu pot extrage IOR."
 
-# libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Szokatlan szöveget kaptam az alárendelt folyamattól: '%s'"
+#~ msgstr "Am obþinut ºir ciudat de la procesul dependent: `%s'"
 
-# libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #~ msgid "Cannot get object for `%s'"
-#~ msgstr "Nem kapok objektumot a '%s'-nek"
+#~ msgstr "Nu pot obþine obiectul pentru `%s'"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Nem tudom kilõni a GNOME::VFS::Slave::Notify-t -- hiba: %s"
+#~ msgstr "Nu pot omorî GNOME::VFS::Slave::Notify -- excepþie %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Nem tudok a '%s' socket-ra kapcsolódni: %s"
+#~ msgstr "Nu pot conecta socketul `%s': %s"
 
 #~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t elindítani"
+#~ msgstr "Nu pot iniþializa GNOME::VFS:Slave::Notify"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et rezetelni -- hiba: %s"
+#~ msgstr "Nu pot reseta GNOME::VFS:Slave %s - excepþie %s"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Nem tudom rezetelni a GNOME::VFS::Slave-et (ismeretlen IOR) -- hiba: %s"
+#~ msgstr "Nu pot reseta GNOME::VFS::Slave (IOR necunoscut) -- excepþie %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et leállítani -- hiba: %s"
+#~ msgstr "Nu pot omorî GNOME::VFS::Slave %s -- excepþie %s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Nem tudom a GNOME::VFS::Slave-et leállítani (ismeretlen IOR) -- hiba: %s"
+#~ msgstr "Nu pot omorî GNOME::VFS::Slave (IOR necunoscut) -- excepþie %s"
 
-#~ msgid "File Types and Programs"
-#~ msgstr "Fájtípusok és programok"
+#~ msgid "%s to retrieve"
+#~ msgstr "%s pentru a fi primit"
 
-#~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr ""
-#~ "Add meg, hogy melyik programmal nyitod meg vagy nézed meg az egyes "
-#~ "fájltípusokat."
+#~ msgid "Closing connection to %s"
+#~ msgstr "Închid conexiunea la %s"
 
-#~ msgid "MIME Type"
-#~ msgstr "MIME-típus"
+#~ msgid "%s of %s read"
+#~ msgstr "Am citit %s din %s"
 
-#~ msgid "Change Icon"
-#~ msgstr "Ikon csere"
+#~ msgid "%s read"
+#~ msgstr "Am citit %s"
 
-#~ msgid "Change File Extensions"
-#~ msgstr "Fájlkiterjesztés megváltoztatása"
+#~ msgid "Back"
+#~ msgstr "Înapoi"
 
-#~ msgid "Default Action:"
-#~ msgstr "Alapértelmezett mûvelet"
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Mergi la directorul precedent vizitat"
 
-#~ msgid "Use Viewer"
-#~ msgstr "Nézegetõ használata"
+#~ msgid "Up"
+#~ msgstr "Sus"
 
-#~ msgid "Open With Application"
-#~ msgstr "Megnyitás alkalmazással"
+#~ msgid "Go to the parent directory"
+#~ msgstr "Mergi la directorul pãrinte"
 
-#~ msgid "Edit List"
-#~ msgstr "Lista szerkesztése"
+#~ msgid "Forward"
+#~ msgstr "Înainte"
 
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Új MIME-típus hozzáadása..."
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Mergi la directorul urmãtor visitat"
 
-#~ msgid "Delete This MIME Type"
-#~ msgstr "A MIME-típus törlése"
+#~ msgid "Rescan"
+#~ msgstr "Rescaneazã"
 
-#~ msgid "Revert to System Defaults"
-#~ msgstr "Visszaállítás a rendszer alapértékeire"
+#~ msgid "Rescan the current directory"
+#~ msgstr "Rescaneazã directorul curent"
 
-#~ msgid "None"
-#~ msgstr "Semmi"
+#~ msgid "Home"
+#~ msgstr "Acasã"
 
-#~ msgid ""
-#~ "Reverting to system settings will lose any changes\n"
-#~ "you have ever made to File Types and Programs.\n"
-#~ "Revert anyway?"
-#~ msgstr ""
-#~ "A rendszerbeállítások visszaállítása minden saját\n"
-#~ "fájltípus- és programvátoztatást töröl.\n"
-#~ "Biztos, vagy a visszállításban?"
+#~ msgid "Go to the home directory"
+#~ msgstr "Mergi la directorul acasã"
 
-#~ msgid "none"
-#~ msgstr "semmi"
+#~ msgid "Name"
+#~ msgstr "Nume"
 
-#~ msgid "View as %s"
-#~ msgstr "Megjelenítés, mint %s"
+#~ msgid "Size"
+#~ msgstr "Mãrime"
 
-#~ msgid "Description"
-#~ msgstr "Leírás"
+#~ msgid "Date"
+#~ msgstr "Data"
 
-#~ msgid "Extension"
-#~ msgstr "Kiterjesztés"
+#~ msgid "Enter name:"
+#~ msgstr "Introduceþi numele:"
 
-#~ msgid "Default Action"
-#~ msgstr "Alapértelmezett mûvelet"
+#~ msgid "Show:"
+#~ msgstr "Aratã:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Aratã fiºierele care încep cu ."
 
 #~ msgid "Edit Applications List"
-#~ msgstr "Alkalmazás lista szerkesztése"
+#~ msgstr "Editeazã lista aplicaþiilor"
 
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "A '%s' MIME-típusokhoz elõbukkanó menükben megjelenõ alkalmazások"
+#~ msgid "Select applications to appear in menu for mime type \"%s\""
+#~ msgstr ""
+#~ "Selecteazã aplicaþiile pentru a apãrea în meniu pentru tipul mine \"%s\""
 
 #~ msgid "Add Application..."
-#~ msgstr "Alkalmazást hozzáad..."
+#~ msgstr "Adaugã aplicaþie..."
 
 #~ msgid "Edit Application..."
-#~ msgstr "Alkalmazást szerkeszt..."
+#~ msgstr "Editeazã aplicaþie..."
 
 #~ msgid "Delete Application"
-#~ msgstr "Alkalmazást töröl"
+#~ msgstr "ªterge aplicaþie"
 
 #~ msgid "Edit Components List"
-#~ msgstr "Komponens lista szerkesztése"
+#~ msgstr "Editeazã lista componentelor"
 
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "A '%s' MIME-típushoz tartozó, menüben megjelenõ nézetek"
+#~ msgid "Select views to appear in menu for mime type \"%s\""
+#~ msgstr ""
+#~ "Selecteazã vizualizãrile pentru a apare în meniu pentru tipul mime \"%s\""
 
 #~ msgid ""
 #~ "The MIME type entered contained upper case characters. Upper case "
 #~ "characters were changed to lower case for you."
 #~ msgstr ""
-#~ "A megadott MIME-típus nagybetûket is tartalmazott. A nagybetûk kisbetûkre "
-#~ "lettek cserélve."
+#~ "Tipul MIME introdus conþine litere mari. Ele au fost schimbate în litere "
+#~ "mici pentru dvs."
 
 #~ msgid "Add New MIME Type"
-#~ msgstr "Új MIME-típus hozzáadása"
-
-#~ msgid "Add MIME Type"
-#~ msgstr "MIME-típus hozzáadása"
-
-#~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "Új MIME típus (pl. image/x-thumper):"
-
-#~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "Leírás (pl. Thumper image):"
-
-#~ msgid "File Extensions "
-#~ msgstr "Fájlkiterjesztések"
-
-#~ msgid "Add..."
-#~ msgstr "Hozzáadás..."
-
-#~ msgid "    Remove    "
-#~ msgstr " Eltávolítás "
-
-#~ msgid "Add New Extension"
-#~ msgstr "Új kiterjesztés hozzáadása"
-
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Írd be a MIME-típus kiterjesztéseit (pont nélkül).\n"
-#~ "Több szóközzel elválasztott kiterjesztést is megadhatsz,\n"
-#~ "pl: html htm"
-
-#~ msgid "Extension:"
-#~ msgstr "Kiterjesztés:"
-
-#~ msgid "You must enter a name."
-#~ msgstr "Meg kell adnod egy nevet."
-
-#~ msgid "You must enter a command."
-#~ msgstr "Meg kell adnod egy parancsot."
-
-#~ msgid ""
-#~ "\"%s\" does not exist or is not executable.\n"
-#~ "Check your spelling and make sure you have\n"
-#~ "the right permissions to execute this file."
-#~ msgstr ""
-#~ "\"%s\" nem létezik vagy nem futtatható.\n"
-#~ "Ellenõrizd, hogy nem gépelted-e el, valamint\n"
-#~ "azt is, hogy rendelkezel-e a megfelelõ\n"
-#~ "jogosultságokkal."
-
-#~ msgid ""
-#~ "The command \"%s\" cannot be found.\n"
-#~ "You must use a command that can work from any command line."
-#~ msgstr ""
-#~ "A következõ parancs nem található: \"%s\".\n"
-#~ "Olyan parancsot kell megadnod, ami bármilyen parancssorból futtatható."
-
-#~ msgid "Bad Application Name"
-#~ msgstr "Rossz alkalmazásnév"
-
-#~ msgid "Bad Application Command"
-#~ msgstr "Rossz alkalmazásparancs"
-
-#~ msgid "Add Application"
-#~ msgstr "Alkalmazás hozzáadása..."
-
-#~ msgid "Edit Application"
-#~ msgstr "Alkalmazás szerkesztése"
-
-#~ msgid "Application Name:"
-#~ msgstr "Alkalmazás neve:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Alkalmazásparancs:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Megnyitási viselkedés"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Több fájlt megnyithat"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Megnyithat URI-t"
-
-#~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "hbox nem található, szokványos fájlkiválasztó használata."
-
-#~ msgid "Preview"
-#~ msgstr "Elõnézet"
-
-#~ msgid "Select an icon"
-#~ msgstr "Válassz egy ikont"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "letöltendõ %s"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Kapcsolat bontása: %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s/%s olvasva"
-
-#~ msgid "%s read"
-#~ msgstr "%s olvasva"
-
-#~ msgid "Back"
-#~ msgstr "Vissza"
-
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Visszaugrás az elõzõleg használt könyvtárba"
-
-#~ msgid "Up"
-#~ msgstr "Fel"
-
-#~ msgid "Go to the parent directory"
-#~ msgstr "Ugrás a szülõkönyvtárba"
-
-#~ msgid "Forward"
-#~ msgstr "Elõre"
-
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Ugrás az ez után használt könyvtárba"
-
-#~ msgid "Rescan"
-#~ msgstr "Újraolvasás"
-
-#~ msgid "Rescan the current directory"
-#~ msgstr "Az aktuális könyvtár újraolvasása"
-
-#~ msgid "Home"
-#~ msgstr "Saját könyvtár"
-
-#~ msgid "Go to the home directory"
-#~ msgstr "Ugrás a saját könyvtárba"
-
-#~ msgid "Name"
-#~ msgstr "Név"
-
-#~ msgid "Size"
-#~ msgstr "Méret"
-
-#~ msgid "Date"
-#~ msgstr "Dátum"
-
-#~ msgid "Enter name:"
-#~ msgstr "Név megadása:"
-
-#~ msgid "Show:"
-#~ msgstr "Megjelenítés:"
-
-#~ msgid "Show dotfiles"
-#~ msgstr "Rejtett fájlok megjelenítése"
-
-#~ msgid "New Application"
-#~ msgstr "Új alkalmazás"
-
-#~ msgid "Expects URIs as arguments"
-#~ msgstr "A várt argumentum URI"
-
-#~ msgid ""
-#~ "Add a new MIME Type\n"
-#~ "For example:  image/tiff; text/x-scheme"
-#~ msgstr ""
-#~ "Új MIME-típus hozzáadása.\n"
-#~ "Pl:  image/tiff; text/x-scheme"
-
-#~ msgid "MIME Type:"
-#~ msgstr "MIME-típus:"
-
-#~ msgid "Type in a description for this mime-type."
-#~ msgstr "Írd be a MIME-típus leírását."
-
-#~ msgid "Description:"
-#~ msgstr "Leírás:"
-
-#~ msgid "Add new MIME type..."
-#~ msgstr "Új MIME-típus hozzáadása..."
-
-#~ msgid "No Description"
-#~ msgstr "Nincs leírás"
+#~ msgstr "Adaugã tip MIME nou"
 
 #~ msgid "Add Mime Type"
-#~ msgstr "MIME típus hozzáadása"
+#~ msgstr "Adaugã tip MIME"
+
+#~ msgid ""
+#~ "Add a new Mime Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Adaugã un nou tip Mime Type\n"
+#~ "De examplu:  image/tiff; text/x-scheme"
+
+#~ msgid "Mime Type:"
+#~ msgstr "Tip mime:"
+
+#~ msgid "Type in a description for this mime-type."
+#~ msgstr "Introduceþi o descriere pentru acest tip mime."
+
+#~ msgid "Description:"
+#~ msgstr "Descriere:"
+
+#~ msgid "File Extensions "
+#~ msgstr "Extensii fiºier "
+
+#~ msgid "Add..."
+#~ msgstr "Adaugã..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Elimina    "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Adaugã extensie nouã"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type.\n"
+#~ "For example:  .html, .htm"
+#~ msgstr ""
+#~ "Introduceþi extensiile pentru acest tip mime.\n"
+#~ "De examplu:  .html, .htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Extensia:"
+
+#~ msgid "New Application"
+#~ msgstr "Aplicaþie nouã"
+
+#~ msgid "Application Name:"
+#~ msgstr "Numele aplicaþiei:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Comandã aplicaþie:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Purtare la deschidere"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Nu pot deschide fiºiere multiple"
+
+#~ msgid "Expects URIs as arguments"
+#~ msgstr "Aºteaptã URIuri ca argumente"
+
+#~ msgid "Edit Application"
+#~ msgstr "Editeazã aplicaþie"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Nu pot deschide de la URI"
 
 #~ msgid "Mime Type"
-#~ msgstr "MIME típus"
+#~ msgstr "Tip mime"
 
-#~ msgid "Unknown sort rule %d"
-#~ msgstr "Ismeretlen rendezési mód: %d"
+#~ msgid "Change Icon"
+#~ msgstr "Schimbã iconul"
 
-#~ msgid "Error writing to the wakeup GnomeVFSJob channel."
-#~ msgstr "Nem sikerült a GnomeVFSJob wakeup csatornájába írni."
+#~ msgid "Change File Extensions"
+#~ msgstr "Schimbã extensiile fiºier"
 
-#~ msgid "Remove"
-#~ msgstr "Törlés"
+#~ msgid "Default Action:"
+#~ msgstr "Acþiunea implicitã:"
 
-#~ msgid "Action"
-#~ msgstr "Mûvelet"
+#~ msgid "Use Viewer"
+#~ msgstr "Foloseºte vizualizator"
 
-#~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "A HTTP kiszolgáló rossz PROPFIND válasszal tért vissza"
+#~ msgid "Open With Application"
+#~ msgstr "Deschide cu aplicaþie"
+
+#~ msgid "Edit List"
+#~ msgstr "Editeazã lista"
+
+#~ msgid "Add new Mime type..."
+#~ msgstr "Adaugã tip mime nou..."
+
+#~ msgid "Delete this Mime type..."
+#~ msgstr "ªterge acest tip mime..."
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Restaureazã setãrile implicite"
+
+#~ msgid "No Description"
+#~ msgstr "Fãrã descriere"
+
+#~ msgid "None"
+#~ msgstr "Nimic"
+
+#~ msgid ""
+#~ "Reverting to system settings\n"
+#~ "will lose all your personal \n"
+#~ "Mime configuration.\n"
+#~ "Revert to System Settings ?\n"
+#~ msgstr ""
+#~ "Restaurarea la setãrile implicite\n"
+#~ "va pierde toate configuraþiile MIME\n"
+#~ "personale.\n"
+#~ "Restaureazã setãrile implicite ?\n"
+
+#~ msgid "none"
+#~ msgstr "nimic"
+
+#~ msgid "View as %s"
+#~ msgstr "Vizualizeazã ca %s"
+
+#~ msgid "Description"
+#~ msgstr "Descriere"
+
+#~ msgid "Extension"
+#~ msgstr "Extensie"
+
+#~ msgid "Default Action"
+#~ msgstr "Acþiune implicitã"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Nu gãsesc hbox, folosesc un selector fiºiere normal"
+
+#~ msgid "Preview"
+#~ msgstr "Previzualizare"

@@ -1,3 +1,13 @@
+==== gnome-vfs 1.0.2 ====
+
+2001-09-11  Ian McKellar  <yakk@yakk.net>
+
+	* HACKING:
+	* configure.in:
+	* po/*.po:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	Updated for release.
+
 2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* NEWS: updated again

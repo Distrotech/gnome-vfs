@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.0.1\n"
-"POT-Creation-Date: 2001-09-07 09:36+0900\n"
+"POT-Creation-Date: 2001-09-11 00:28-0700\n"
 "PO-Revision-Date: 2001-09-07 00:37+0900\n"
 "Last-Translator: Nam SungHyun <namsh@kldp.org>\n"
 "Language-Team: korean <ko@li.org>\n"
@@ -1009,22 +1009,22 @@ msgstr "zip 압축파일"
 msgid "zoo archive"
 msgstr "zoo 압축파일"
 
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:217
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d 가 NUL 문자를 포함합니다."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:234
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d 가 메서드 이름을 포함하지 않습니다."
 
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:263
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d 가 모듈이름을 포함하지 않습니다."
 
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:316
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "설정 파일 `%s' 가 없습니다: %s"
