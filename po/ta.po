@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome VFS 2.4\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2003-09-10 19:27+0600\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinix@yahoogroups.com>\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "முதன்மை மேலோடி கண்டுபிடிக்க முடியவில்லை"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr ""
 

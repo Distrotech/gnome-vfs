@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2002-05-27 20:20GMT+1\n"
 "Last-Translator: Samir Marić <samir@lugbih.org>\n"
 "Language-Team: Bosnian <prijevodi@linux.org.ba>\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "Ne mogu preraditi: %s"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr ""
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2002-01-10 01:27+0800\n"
 "Last-Translator: Mohamad Afifi Omar (App) <mr_mohd_afifi@yahoo.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.8\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "Tak menjumpai pelungsur induk"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr ""
 

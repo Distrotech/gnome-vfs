@@ -1,5 +1,10 @@
 2003-11-10  Alexander Larsson  <alexl@redhat.com>
 
+	* test/test-volumes.c:
+	Fix up build
+	
+2003-11-10  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in: 
 	* NEWS:
 	2.5.1

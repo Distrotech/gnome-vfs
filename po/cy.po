@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2003-08-14 12:07+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "Methu canfod y meistr-borwr"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr ""
 

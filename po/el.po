@@ -17,21 +17,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-02 18:30+0200\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2003-11-03 00:00+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
 msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr "Αδυαμία αρχικοποίησης gnome vfs"
 
@@ -458,9 +458,9 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Η εφαρμογή για την προβολή αρχείων που απαιτούν ένα συστατικό για την προβολή τους. "
-"Η παράμετρος %s θα αντικαταστηθεί από το  URIs αρχείου και η παράμετρος %c "
-"θα αντικατασταθεί από το IID συστατικού."
+"Η εφαρμογή για την προβολή αρχείων που απαιτούν ένα συστατικό για την "
+"προβολή τους. Η παράμετρος %s θα αντικαταστηθεί από το  URIs αρχείου και η "
+"παράμετρος %c θα αντικατασταθεί από το IID συστατικού."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -484,7 +484,8 @@ msgstr "Αυτόματη ρύθμιση URL ρύθμισης διαμεσολα�
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing http over the internet."
-msgstr "Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
+msgstr ""
+"Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -512,9 +513,9 @@ msgid ""
 "username/password combo defined by /system/http_proxy/authentication_user "
 "and /system/http_proxy/authentication_password."
 msgstr ""
-"Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί πιστοποίηση. "
-"Το όνομα χρήστη/κωδικός καθορίζονται από το  /system/http_proxy/authentication_user "
-"και το  /system/http_proxy/authentication_password."
+"Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί "
+"πιστοποίηση. Το όνομα χρήστη/κωδικός καθορίζονται από το  /system/http_proxy/"
+"authentication_user και το  /system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
@@ -537,8 +538,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
 msgstr ""
-"Επιλογή λειτουργίας ρύθμισης διαμεσολαβητή. Υποστηριζόμενες τιμές είναι \"καμμία\", "
-"\"χειροκίνητη\", \"αυτόματη\""
+"Επιλογή λειτουργίας ρύθμισης διαμεσολαβητή. Υποστηριζόμενες τιμές είναι "
+"\"καμμία\", \"χειροκίνητη\", \"αυτόματη\""
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
@@ -558,7 +559,8 @@ msgstr "Το όνομα συστήματος μέσω του οποίου γίν
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy secure http through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
+msgstr ""
+"Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
@@ -569,32 +571,32 @@ msgid ""
 "The port on the machine defined by /system/http_proxy/host that you proxy "
 "through"
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  /system/http_proxy/host "
-"μέσω του οποίου γίνεται διαμεσολάβηση"
+"Η θύρα στο σύστημα που καθορίζεται από το  /system/http_proxy/host μέσω του "
+"οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid ""
 "The port on the machine defined by /system/proxy/ftp_host that you proxy "
 "through"
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/ftp_host "
-"μέσω του οποίου γίνεται διαμεσολάβηση"
+"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/ftp_host μέσω του "
+"οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/secure_host"
-"μέσω του οποίου γίνεται διαμεσολάβηση"
+"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/secure_hostμέσω του "
+"οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  /system/proxy/socks_host"
-"μέσω του οποίου γίνεται διαμεσολάβηση"
+"Η θύρα στο σύστημα που καθορίζεται από το  /system/proxy/socks_hostμέσω του "
+"οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -604,10 +606,10 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Αυτό το κλειδί περιέχει μια λίστα από συστήματα στα οποία γίνεται απευθείας "
-"σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί "
-"να είναι ονόματα συστήματος, τομείς (με την χρήση μιας αρχικής wildcard όπως "
-"*.foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με "
-" netmask (κάτι σαν 192.168.0.0/24)."
+"σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να "
+"είναι ονόματα συστήματος, τομείς (με την χρήση μιας αρχικής wildcard όπως *."
+"foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  "
+"netmask (κάτι σαν 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
@@ -1730,4 +1732,3 @@ msgstr "όνομα χρήστη http"
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
-

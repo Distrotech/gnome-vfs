@@ -7,20 +7,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-28 00:33+0900\n"
+"POT-Creation-Date: 2003-11-10 09:03+0100\n"
 "PO-Revision-Date: 2003-10-28 00:45+0900\n"
 "Last-Translator: KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
 msgstr "Bonobo を初期化できませんでした"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
 msgstr "gnome vfs を初期化できませんでした"
 
@@ -498,7 +498,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by /system/http_proxy/authentication_user "
 "and /system/http_proxy/authentication_password."
-msgstr "true の場合、プロキシ・サーバへの接続で認証が要求されます。ユーザ名/パスワードの組み合わせは /system/http_proxy/authentication_user と /system/http_proxy/authentication_password で定義されます。"
+msgstr ""
+"true の場合、プロキシ・サーバへの接続で認証が要求されます。ユーザ名/パスワー"
+"ドの組み合わせは /system/http_proxy/authentication_user と /system/"
+"http_proxy/authentication_password で定義されます。"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
@@ -552,25 +555,33 @@ msgstr "socks プロキシとして利用するマシンの名前です。"
 msgid ""
 "The port on the machine defined by /system/http_proxy/host that you proxy "
 "through"
-msgstr "あなたがプロキシに使用する、/system/http_proxy/host で定義されたマシンのポート番号"
+msgstr ""
+"あなたがプロキシに使用する、/system/http_proxy/host で定義されたマシンのポー"
+"ト番号"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid ""
 "The port on the machine defined by /system/proxy/ftp_host that you proxy "
 "through"
-msgstr "あなたがプロキシに使用する、/system/proxy/ftp_host で定義されたマシンのポート番号"
+msgstr ""
+"あなたがプロキシに使用する、/system/proxy/ftp_host で定義されたマシンのポート"
+"番号"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr "あなたがプロキシに使用する、/system/proxy/secure_host で定義されたマシンのポート番号"
+msgstr ""
+"あなたがプロキシに使用する、/system/proxy/secure_host で定義されたマシンの"
+"ポート番号"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
-msgstr "あなたがプロキシに使用する、/system/proxy/socks_host で定義されたマシンのポート番号"
+msgstr ""
+"あなたがプロキシに使用する、/system/proxy/socks_host で定義されたマシンのポー"
+"ト番号"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -578,7 +589,12 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "このキーには、(アクティブな場合は) プロキシ経由ではなく直接接続される多くのホストが含まれています。ホスト名、ドメイン (*.foo.com のように先頭にワイルド・カードが使われます)、IP ホスト・アドレス (IPv4 と IPv6 の両方)、ネット・マスクが併記されたネットワーク・アドレス (192.168.0.0/24のような値) といった値になります。"
+msgstr ""
+"このキーには、(アクティブな場合は) プロキシ経由ではなく直接接続される多くのホ"
+"ストが含まれています。ホスト名、ドメイン (*.foo.com のように先頭にワイルド・"
+"カードが使われます)、IP ホスト・アドレス (IPv4 と IPv6 の両方)、ネット・マス"
+"クが併記されたネットワーク・アドレス (192.168.0.0/24のような値) といった値に"
+"なります。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
