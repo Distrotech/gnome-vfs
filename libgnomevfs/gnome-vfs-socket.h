@@ -52,10 +52,15 @@ typedef GnomeVFSResult (*GnomeVFSSocketWriteFunc) (gpointer connection,
 typedef void           (*GnomeVFSSocketCloseFunc) (gpointer connection,
 						   GnomeVFSCancellation *cancellation);
 
+typedef GnomeVFSResult (*GnomeVFSSocketSetTimeoutFunc) (gpointer connection,
+							GTimeVal *timeout,
+							GnomeVFSCancellation *cancellation);
+
 typedef struct {
   GnomeVFSSocketReadFunc read;
   GnomeVFSSocketWriteFunc write;
   GnomeVFSSocketCloseFunc close;
+  GnomeVFSSocketSetTimeoutFunc set_timeout;
 } GnomeVFSSocketImpl;
 
 
@@ -72,6 +77,10 @@ GnomeVFSResult  gnome_vfs_socket_read    (GnomeVFSSocket     *socket,
 					  gpointer            buffer, 
 					  GnomeVFSFileSize    bytes, 
 					  GnomeVFSFileSize   *bytes_read,
+					  GnomeVFSCancellation *cancellation);
+GnomeVFSResult  gnome_vfs_socket_set_timeout
+					 (GnomeVFSSocket *socket,
+					  GTimeVal *timeout,
 					  GnomeVFSCancellation *cancellation);
 
 G_END_DECLS

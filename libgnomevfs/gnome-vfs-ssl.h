@@ -53,6 +53,9 @@ GnomeVFSResult  gnome_vfs_ssl_write          (GnomeVFSSSL *ssl,
 					      GnomeVFSCancellation *cancellation);
 void            gnome_vfs_ssl_destroy        (GnomeVFSSSL *ssl,
 					      GnomeVFSCancellation *cancellation);
+GnomeVFSResult  gnome_vfs_ssl_set_timeout    (GnomeVFSSSL *ssl,
+					      GTimeVal *timeout,
+					      GnomeVFSCancellation *cancellation);
 GnomeVFSSocket *gnome_vfs_ssl_to_socket      (GnomeVFSSSL *ssl);
 
 G_END_DECLS

@@ -67,6 +67,7 @@ typedef struct {
 #ifdef HAVE_OPENSSL
 	int sockfd;
 	SSL *ssl;
+	struct timeval *timeout;
 #elif defined HAVE_GNUTLS
 	int sockfd;
 	gnutls_session tlsstate;
@@ -112,7 +113,7 @@ gnome_vfs_ssl_enabled ()
 
 #ifdef HAVE_OPENSSL
 static GnomeVFSResult
-handle_ssl_read_write (int fd, int error,
+handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 		       GnomeVFSCancellation *cancellation)
 {
 	fd_set   read_fds;
@@ -120,6 +121,7 @@ handle_ssl_read_write (int fd, int error,
 	int res;
 	int max_fd;
 	int cancel_fd;
+	struct timeval tout;
 
 	cancel_fd = -1;
 	
@@ -140,13 +142,22 @@ handle_ssl_read_write (int fd, int error,
 	if (error == SSL_ERROR_WANT_WRITE) {
 		FD_SET (fd, &write_fds);
 	}
+	
+	if (timeout != NULL) {
+		tout.tv_sec  = timeout->tv_sec;
+		tout.tv_usec = timeout->tv_usec;
+	}
 
-	res = select (max_fd + 1, &read_fds, &write_fds, NULL, NULL);
+	res = select (max_fd + 1, &read_fds, &write_fds, NULL, 
+			timeout ? &tout : NULL);
+	
 	if (res == -1 && errno == EINTR) {
 		goto retry;
 	}
 	
-	if (res > 0) {
+	if (res == 0) {
+		return GNOME_VFS_ERROR_TIMEOUT;
+	} else if (res > 0) {
 		if (cancel_fd != -1 && FD_ISSET (cancel_fd, &read_fds)) {
 			return GNOME_VFS_ERROR_CANCELLED;
 		}
@@ -161,8 +172,9 @@ handle_ssl_read_write (int fd, int error,
  * gnome_vfs_ssl_create:
  * @handle_return: pointer to a GnmoeVFSSSL struct, which will
  * contain an allocated GnomeVFSSSL object on return.
- * @host: string indicating the host to establish an SSL connection with
- * @port: the port number to connect to
+ * @host: string indicating the host to establish an SSL connection with.
+ * @port: the port number to connect to.
+ * @cancellation: handle allowing cancellation of the operation.
  *
  * Creates an SSL socket connection at @handle_return to @host using
  * port @port.
@@ -290,7 +302,9 @@ static const int mac_priority[] =
  * gnome_vfs_ssl_create_from_fd:
  * @handle_return: pointer to a GnmoeVFSSSL struct, which will
  * contain an allocated GnomeVFSSSL object on return.
- * @fd: file descriptior to try and establish an SSL connection over
+ * @fd: file descriptior to try and establish an SSL connection over.
+ * @cancellation: handle allowing cancellation of the operation.
+
  *
  * Try to establish an SSL connection over the file descriptor @fd.
  *
@@ -335,7 +349,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 		res = GNOME_VFS_ERROR_IO;
 		if (error == SSL_ERROR_WANT_READ ||
 		    error == SSL_ERROR_WANT_WRITE) {
-			res = handle_ssl_read_write (fd, error, cancellation);
+			res = handle_ssl_read_write (fd, error, NULL, cancellation);
 			if (res == GNOME_VFS_OK) {
 				goto retry;
 			} 
@@ -422,10 +436,11 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 /**
  * gnome_vfs_ssl_read:
  * @ssl: SSL socket to read data from
- * @buffer: allocated buffer of at least @bytes bytes to be read into
- * @bytes: number of bytes to read from @ssl into @buffer
+ * @buffer: allocated buffer of at least @bytes bytes to be read into.
+ * @bytes: number of bytes to read from @ssl into @buffer.
  * @bytes_read: pointer to a GnomeVFSFileSize, will contain
  * the number of bytes actually read from the socket on return.
+ * @cancellation: handle allowing cancellation of the operation.
  *
  * Read @bytes bytes of data from the SSL socket @ssl into @buffer.
  *
@@ -455,7 +470,9 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		if (error == SSL_ERROR_WANT_READ ||
 		    error == SSL_ERROR_WANT_WRITE) {
 			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
-						     error, cancellation);
+						     error,
+						     ssl->private->timeout,
+						     cancellation);
 			if (res == GNOME_VFS_OK) {
 				goto retry;
 			}
@@ -499,7 +516,8 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
  * @buffer: data to write to the socket
  * @bytes: number of bytes from @buffer to write to @ssl
  * @bytes_written: pointer to a GnomeVFSFileSize, will contain
- * the number of bytes actually written to the socket on return.
+ * the number of bytes actually written to the socket on return
+ * @cancellation: handle allowing cancellation of the operation
  *
  * Write @bytes bytes of data from @buffer to @ssl.
  *
@@ -531,7 +549,9 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		if (error == SSL_ERROR_WANT_READ ||
 		    error == SSL_ERROR_WANT_WRITE) {
 			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
-						     error, cancellation);
+						     error,
+						     ssl->private->timeout,
+						     cancellation);
 			if (res == GNOME_VFS_OK) {
 				goto retry;
 			}
@@ -565,6 +585,7 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 /**
  * gnome_vfs_ssl_destroy:
  * @ssl: SSL socket to be closed and destroyed
+ * @cancellation: handle allowing cancellation of the operation
  *
  * Free resources used by @ssl and close the connection.
  */
@@ -583,7 +604,9 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 		if (error == SSL_ERROR_WANT_READ ||
 		    error == SSL_ERROR_WANT_WRITE) {
 			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
-						     error, cancellation);
+						     error,
+						     ssl->private->timeout,
+						     cancellation);
 			if (res == GNOME_VFS_OK) {
 				goto retry;
 			}
@@ -593,6 +616,8 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 	SSL_CTX_free (ssl->private->ssl->ctx);
 	SSL_free (ssl->private->ssl);
 	close (ssl->private->sockfd);
+	if (ssl->private->timeout)
+		g_free (ssl->private->timeout);
 #elif defined HAVE_GNUTLS
 	gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
 	gnutls_certificate_free_credentials (ssl->private->xcred);
@@ -604,10 +629,56 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 	g_free (ssl);
 }
 
+/**
+ * gnome_vfs_ssl_set_timeout:
+ * @ssl: SSL socket to set the timeout of
+ * @timeout: the timeout
+ * @cancellation: optional cancellation object
+ *
+ * Set a timeout of @timeout. If @timeout is NULL following operations
+ * will block indefinitely).
+ *
+ * Note if you set @timeout to 0 (means tv_sec and tv_usec are both 0)
+ * every following operation will return immediately. (This can be used
+ * for polling.)
+ *
+ * Return value: GnomeVFSResult indicating the success of the operation
+ *
+ * Since: 2.8
+ **/
+
+
+GnomeVFSResult
+gnome_vfs_ssl_set_timeout (GnomeVFSSSL *ssl,
+			   GTimeVal *timeout,
+			   GnomeVFSCancellation *cancellation)
+{
+#if HAVE_OPENSSL
+	/* reset a timeout */
+	if (timeout == NULL) {
+		if (ssl->private->timeout != NULL) {
+			g_free (ssl->private->timeout);
+			ssl->private->timeout = NULL;
+		}
+	} else {
+		if (ssl->private->timeout == NULL)
+			ssl->private->timeout = g_new0 (struct timeval, 1);
+
+		ssl->private->timeout->tv_sec  = timeout->tv_sec;
+		ssl->private->timeout->tv_usec = timeout->tv_usec;
+	}
+	
+	return GNOME_VFS_OK;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+}
+
 static GnomeVFSSocketImpl ssl_socket_impl = {
 	(GnomeVFSSocketReadFunc)gnome_vfs_ssl_read,
 	(GnomeVFSSocketWriteFunc)gnome_vfs_ssl_write,
-	(GnomeVFSSocketCloseFunc)gnome_vfs_ssl_destroy
+	(GnomeVFSSocketCloseFunc)gnome_vfs_ssl_destroy,
+	(GnomeVFSSocketSetTimeoutFunc)gnome_vfs_ssl_set_timeout,
 };
 
 /**

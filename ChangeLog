@@ -1,3 +1,11 @@
+2004-07-06  Christian Kellner <gicmo@gnome-de.org>
+	* libgnomevfs/gnome-vfs-inet-connection.[ch]: 
+	* libgnomevfs/gnome-vfs-socket.[ch]:
+	* libgnomevfs/gnome-vfs-ssl.[ch]: fixed some gtk-doc comments and
+	added gnome_vfs_inet_connection_set_timeout fuctions
+	* libgnomevfs/gnome-vfs-result.[ch]: added a GNOME_VFS_ERROR_TIMEOUT
+	result
+
 2004-07-06  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:

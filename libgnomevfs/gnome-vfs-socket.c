@@ -128,3 +128,31 @@ gnome_vfs_socket_read  (GnomeVFSSocket *socket,
 				   buffer, bytes, bytes_read,
 				   cancellation);
 }
+
+/**
+ * gnome_vfs_socket_set_timeout:
+ * @socket: socket to set the timeout of
+ * @timeout: the timeout
+ * @cancellation: optional cancellation object
+ *
+ * Set a timeout of @timeout. If @timeout is NULL following operations
+ * will block indefinitely).
+ *
+ * Note if you set @timeout to 0 (means tv_sec and tv_usec are both 0)
+ * every following operation will return immediately. (This can be used
+ * for polling.)
+ *
+ * Return value: GnomeVFSResult indicating the success of the operation
+ *
+ * Since: 2.8
+ **/
+
+GnomeVFSResult
+gnome_vfs_socket_set_timeout (GnomeVFSSocket *socket,
+			      GTimeVal *timeout,
+			      GnomeVFSCancellation *cancellation)
+{
+	return socket->impl->set_timeout (socket->connection,
+					  timeout,
+					  cancellation);
+}
