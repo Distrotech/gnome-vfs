@@ -224,7 +224,7 @@ audio/x-aiff
 audio/x-it
         ext: it IT
 
-audio/x-midi:
+audio/x-midi
 	ext: midi mid
 
 audio/x-mod
@@ -248,7 +248,7 @@ audio/x-ulaw
 audio/x-voc
 	ext: voc
 
-audio/x-wav:
+audio/x-wav
 	ext: wav
 
 audio/x-xi
