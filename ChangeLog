@@ -1,3 +1,8 @@
+2000-10-20  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new):
+	Fix a memory trasher Mathieu found.
+
 2000-10-20  Michael Engber  <engber@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory):

@@ -442,7 +442,6 @@ gnome_vfs_uri_new (const gchar *text_uri)
 			method_scanner = get_method_string (new_uri_string, &method_string);
 		}
 	}
-	g_free (new_uri_string);
 	
 	method = gnome_vfs_method_get (method_string);
 	/* The toplevel URI element is special, as it also contains host/user
@@ -453,6 +452,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	uri->text = NULL;
 	uri->fragment_id = NULL;
 	if (method == NULL) {
+		g_free (new_uri_string);
 		gnome_vfs_uri_unref (uri);
 		return NULL;
 	}
@@ -460,6 +460,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	extension_scanner = strchr (method_scanner, GNOME_VFS_URI_MAGIC_CHR);
 	if (extension_scanner == NULL) {
 		set_uri_element (uri, method_scanner, strlen (method_scanner));
+		g_free (new_uri_string);
 		return uri;
 	}
 
@@ -469,11 +470,14 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	if (strchr (extension_scanner, ':') == NULL) {
 		/* extension is a fragment identifier */
 		uri->fragment_id = g_strdup (extension_scanner + 1);
+		g_free (new_uri_string);
 		return uri;
 	}
 
 	/* extension is a uri chain */
 	child_uri = parse_uri_substring (extension_scanner + 1, uri);
+
+	g_free (new_uri_string);
 
 	if (child_uri != NULL) {
 		return child_uri;
