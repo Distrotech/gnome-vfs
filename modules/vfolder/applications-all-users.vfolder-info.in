@@ -51,10 +51,9 @@
 	<And>
 	  <Keyword>Application</Keyword>
 	  <Keyword>Utility</Keyword>
-	  <!-- FIXME: Seth, where else should System apps go? -->
-	  <!--<Not>
+	  <Not>
 	    <Keyword>System</Keyword>
-	  </Not>-->
+	  </Not>
 	</And>
       </Query>
       <DontShowIfEmpty/>
@@ -174,7 +173,22 @@
     <Folder>
       <Name>Preferences</Name>
       <Parent>preferences-all-users:///</Parent>
-      <ReadOnly/>
+    </Folder>
+
+    <!-- System Tools-->
+    <Folder>
+      <Name>System</Name>
+      <Desktop>System.directory</Desktop>
+      <Query>
+        <And>
+          <Keyword>Application</Keyword>
+          <Not>
+            <Keyword>Settings</Keyword>
+          </Not>
+          <Keyword>System</Keyword>
+        </And>
+      </Query>
+      <DontShowIfEmpty/>
     </Folder>
     
   </Folder>
