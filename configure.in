@@ -152,7 +152,8 @@ if test $platform_gnome_2 = yes ; then
   VFS_GNOME_LIBS="$GLIB_LIBS"
   VFS_GNOMEUI_LIBS="GLIB_LIBS"
   VFS_CAPPLET_LIBS=
-  VFS_GLIB_CONFIG="glib-config-2.0"
+  VFS_GLIB_CFLAGS="$GLIB_CFLAGS"
+  VFS_GLIB_LIBS="$GMODULE_LIBS $GTHREAD_LIBS $GLIB_LIBS"
 
   AC_DEFINE(GNOME_PLATFORM_VERSION, 1095000)
 else
@@ -187,8 +188,8 @@ else
   VFS_GNOMEUI_LIBS="`gnome-config --libs gnome gnomeui`"
   VFS_GNOMEGNORBA_LIBS="`gnome-config --libs gnome gnomeui gnorba`"
   VFS_CAPPLET_LIBS="`gnome-config --libs gnome gnomeui capplet`"
-  VFS_GLIB_CONFIG="glib-config"
-
+  VFS_GLIB_CFLAGS="`glib-config --cflags gthread gmodule`"
+  VFS_GLIB_LIBS="`glib-config --libs gthread gmodule`"
   AC_DEFINE(GNOME_PLATFORM_VERSION, 1002000)
 fi
 AC_SUBST(VFS_GNOME_CFLAGS)
@@ -199,6 +200,8 @@ AC_SUBST(VFS_GNOME_LIBS)
 AC_SUBST(VFS_GNOMEUI_LIBS)
 AC_SUBST(VFS_CAPPLET_LIBS)
 AC_SUBST(VFS_GNOMEGNORBA_LIBS)
+AC_SUBST(VFS_GLIB_CFLAGS)
+AC_SUBST(VFS_GLIB_LIBS)
 
 AC_SUBST(GLIB_LIBS)
 AC_SUBST(GLIB_CFLAGS)
@@ -339,14 +342,14 @@ dnl Pthread backend.
 VFSPTHREAD_LIBDIR='-L${libdir}'
 VFSPTHREAD_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
 VFSPTHREAD_INCLUDEDIR="$VFSPTHREAD_INCLUDEDIR $VFS_GNOME_CFLAGS"
-VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread $VFS_GNOME_LIBS `$VFS_GLIB_CONFIG --libs gthread`"
+VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread $VFS_GNOME_LIBS $VFS_GLIB_LIBS"
 AC_SUBST(VFSPTHREAD_LIBDIR)
 AC_SUBST(VFSPTHREAD_INCLUDEDIR)
 AC_SUBST(VFSPTHREAD_LIBS)
 
-VFS_LIBS="-lgnomevfs `$VFS_GLIB_CONFIG --libs gthread gmodule`"
+VFS_LIBS="-lgnomevfs $VFS_GLIB_LIBS"
 VFS_LIBDIR='-L${libdir}'
-VFS_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'" `$VFS_GLIB_CONFIG --cflags gthread gmodule`"
+VFS_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'" $VFS_GLIB_CFLAGS"
 AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)

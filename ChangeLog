@@ -1,3 +1,11 @@
+2001-07-04  Ramiro Estrugo  <ramiro@fateware.com>
+
+	* configure.in:
+	Dont use 'glib-config-2.0' when building in the GNOME2 platform.
+	There is no such config script anymore because these are history
+	in the GNOME2 platform.  Use pkgconfig technology instead.
+	Continue to use 'glib-config' for the GNOME1 platform.
+	
 2001-07-02  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:
