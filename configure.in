@@ -12,6 +12,29 @@ AC_PROG_CC
 AC_PROG_AWK
 AM_PROG_LIBTOOL
 
+dnl
+dnl documentation support, ripped off from gnome-libs mostly
+dnl
+AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
+AM_CONDITIONAL(HAVE_GTK_DOC, $GTKDOC)
+AC_SUBST(HAVE_GTK_DOC)
+
+dnl Let people disable the gtk-doc stuff.
+AC_ARG_ENABLE(gtk-doc, [  --enable-gtk-doc  Use gtk-doc to build documentation [default=auto]], enable_gtk_doc="$enableval", enable_gtk_doc=auto)
+
+if test x$enable_gtk_doc = xauto ; then
+  if test x$GTKDOC = xtrue ; then
+    enable_gtk_doc=yes
+  else
+    enable_gtk_doc=no
+  fi
+fi
+
+dnl NOTE: We need to use a separate automake conditional for this
+dnl       to make this work with the tarballs.
+AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
+dnl end documentation support
+
 AC_ARG_ENABLE(gconf,
               [  --enable-gconf          Enable GConf access backend],
               gconf_enabled="yes")
@@ -82,6 +105,13 @@ if test "x$enable_oaf" = "xyes"; then
 	AC_DEFINE(USING_OAF)
 fi
 
+dnl
+dnl gnome vfs Documentation
+dnl 
+GNOME_VFS_DIR=`(cd $srcdir; pwd)`
+AC_SUBST(GNOME_VFS_DIR)
+
+AM_CONDITIONAL(INSIDE_GNOME_DOCU, false)
 
 dnl Paths for `gnome-config'.
 
@@ -271,6 +301,11 @@ modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
 mime-type-capplet/Makefile
+man/Makefile
+man/gnome-vfs-mime.5
+devel-docs/gnome-vfs/Makefile
+devel-docs/Makefile
+devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile

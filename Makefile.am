@@ -6,6 +6,8 @@ SUBDIRS =					\
 	modules					\
 	mime-type-capplet			\
 	data					\
+	man					\
+	devel-docs				\
 	test					\
 	po
 

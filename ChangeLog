@@ -1,5 +1,12 @@
 2000-05-31  Ramiro Estrugo  <ramiro@eazel.com>
 
+	* Makefile.am:
+	* configure.in:
+
+	Now hook up the documentation generation up.
+	
+2000-05-31  Ramiro Estrugo  <ramiro@eazel.com>
+
 	* devel-docs/.cvsignore:
 	* devel-docs/Makefile.am:
 	* devel-docs/gnome-vfs-mime-type-handling.txt:
