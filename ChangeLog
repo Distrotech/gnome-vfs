@@ -1,3 +1,15 @@
+2001-11-05  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* libgnomevfs/Makefile.am:
+
+	Make gnome-vfs-mime-monitor.h a public header.
+	
+	Make gnome-vfs-mime.h a public header, maybe only
+	temporarily but a number of the functions declared
+	here should be public. For now just make sure we
+	aren't breaking Nautilus needlessly.
+	
 2001-11-05  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* test/test-shell.c: Add a header now needed due to the below

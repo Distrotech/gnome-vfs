@@ -38,9 +38,7 @@ libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime-info.h			\
 	gnome-vfs-mime-magic.h			\
-	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-mime-sniff-buffer.h		\
-	gnome-vfs-mime.h			\
 	gnome-vfs-module-callback-module-api.h	\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-module.h			\
@@ -65,7 +63,9 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-helpers.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
+	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
+	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-module-callback.h		\
 	gnome-vfs-monitor.h			\
 	gnome-vfs-ops.h				\
