@@ -1,3 +1,15 @@
+2000-08-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 1836, Description list item icon wrong.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_mime_list), (gdk_font_get_bold),
+	Set up proper and scaled description column icon.
+	
+	(capplet_gdk_pixbuf_scale_to_fit):
+	New function that scales an gdk-pixbuf to the requested
+	width and height.  Copied from libnautilus.
+
 2000-08-01  Darin Adler  <darin@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
