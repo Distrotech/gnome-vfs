@@ -21,8 +21,9 @@
    Boston, MA 02111-1307, USA.
 */
 
-/* URI scheme for reading the "programs:" vfolder.  Lots of code stolen
- * from the original desktop reading URI scheme.
+/* URI scheme for reading the "applications:" vfolder and other
+ * vfolder schemes.  Lots of code stolen from the original desktop
+ * reading URI scheme.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -72,7 +73,9 @@ typedef struct _StatLoc StatLoc;
 /* TODO before 2.0: */
 /* FIXME: also check/monitor desktop_dirs like we do the vfolder
  * file and the item dirs */
-/* FIXME: use thread locks, we are NOT currently thread safe */
+/* FIXME: check if thread locks are not completely on crack which
+ * is likely given my experience with threads, in fact I know it
+ * is wrong, we need to reduce it all to one lock */
 /* FIXME: use filename locking, currently we are full of races if
  * multiple processes write to this filesystem */
 /* FIXME: implement monitors */
@@ -89,6 +92,11 @@ static GnomeVFSMethod *parent_method = NULL;
 
 static GHashTable *infos = NULL;
 
+/* Note: I have no clue about how to write thread safe code and this
+ * is my first attempt, so it's probably wrong
+ * -George */
+G_LOCK_DEFINE_STATIC (vfolder_lock);
+
 /* Note: all keywords are quarks */
 /* Note: basenames are unique */
 
@@ -96,9 +104,7 @@ static GHashTable *infos = NULL;
 				 GNOME_VFS_FILE_INFO_FIELDS_DEVICE | \
 				 GNOME_VFS_FILE_INFO_FIELDS_INODE | \
 				 GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT | \
-				 GNOME_VFS_FILE_INFO_FIELDS_ATIME | \
-				 GNOME_VFS_FILE_INFO_FIELDS_MTIME | \
-				 GNOME_VFS_FILE_INFO_FIELDS_CTIME)
+				 GNOME_VFS_FILE_INFO_FIELDS_ATIME)
 
 
 enum {
@@ -245,6 +251,11 @@ struct _VFolderInfo {
 	/* stat locations (in case we aren't monitoring) */
 	StatLoc *filename_statloc;
 	StatLoc *user_filename_statloc;
+
+	/* ctime for folders */
+	time_t modification_time;
+
+	guint reread_queue;
 };
 
 struct _FolderMonitor {
@@ -266,26 +277,34 @@ struct _FileMonitor {
 
 #define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
 
-static Entry *	entry_ref	(Entry *entry);
-static Entry *	entry_ref_alloc	(Entry *entry);
-static void	entry_unref	(Entry *entry);
-static void	entry_unref_dealloc (Entry *entry);
-static void	query_destroy	(Query *query);
-static void	ensure_folder	(VFolderInfo *info,
-				 Folder *folder,
-				 gboolean subfolders,
-				 Folder *except,
-				 gboolean ignore_unallocated);
+static Entry *	entry_ref			(Entry *entry);
+static Entry *	entry_ref_alloc			(Entry *entry);
+static void	entry_unref			(Entry *entry);
+static void	entry_unref_dealloc		(Entry *entry);
+static void	query_destroy			(Query *query);
+static void	ensure_folder			(VFolderInfo *info,
+						 Folder *folder,
+						 gboolean subfolders,
+						 Folder *except,
+						 gboolean ignore_unallocated);
+static void	ensure_folder_unlocked		(VFolderInfo *info,
+						 Folder *folder,
+						 gboolean subfolders,
+						 Folder *except,
+						 gboolean ignore_unallocated);
 /* An EVIL function for quick reading of .desktop files,
  * only reads in one or two keys, but that's ALL we need */
-static void	readitem_entry	(const char *filename,
-				 const char *key1,
-				 char **result1,
-				 const char *key2,
-				 char **result2);
-static gboolean vfolder_info_reload (VFolderInfo *info,
-				     GnomeVFSResult *result,
-				     GnomeVFSContext *context);
+static void	readitem_entry			(const char *filename,
+						 const char *key1,
+						 char **result1,
+						 const char *key2,
+						 char **result2);
+static gboolean vfolder_info_reload 		(VFolderInfo *info,
+						 GnomeVFSResult *result,
+						 GnomeVFSContext *context);
+static gboolean vfolder_info_reload_unlocked	(VFolderInfo *info,
+						 GnomeVFSResult *result,
+						 GnomeVFSContext *context);
 
 static gboolean
 check_ext (const char *name, const char *ext_check)
@@ -507,6 +526,7 @@ entry_ref_alloc (Entry *entry)
 
 	return entry;
 }
+
 static void
 entry_unref (Entry *entry)
 {
@@ -524,6 +544,7 @@ entry_unref (Entry *entry)
 			destroy_folder ((Folder *)entry);
 	}
 }
+
 static void
 entry_unref_dealloc (Entry *entry)
 {
@@ -532,7 +553,6 @@ entry_unref_dealloc (Entry *entry)
 		entry_unref (entry);
 	}
 }
-
 
 /* Handles ONLY files, not dirs */
 /* Also allocates the entries as well as refs them */
@@ -645,12 +665,12 @@ append_query (VFolderInfo *info, Folder *folder)
 		/* ensure all other folders, so that
 		 * after this we know which ones are
 		 * unallocated */
-		ensure_folder (info,
-			       info->root,
-			       TRUE /* subfolders */,
-			       folder /* except */,
-			       /* avoid infinite loops */
-			       TRUE /* ignore_unallocated */);
+		ensure_folder_unlocked (info,
+					info->root,
+					TRUE /* subfolders */,
+					folder /* except */,
+					/* avoid infinite loops */
+					TRUE /* ignore_unallocated */);
 	}
 
 	for (li = info->entries; li != NULL; li = li->next) {
@@ -678,17 +698,17 @@ append_query (VFolderInfo *info, Folder *folder)
 /* get entries in folder */
 /* FIXME: support cancellation here */
 static void
-ensure_folder (VFolderInfo *info,
-	       Folder *folder,
-	       gboolean subfolders,
-	       Folder *except,
-	       gboolean ignore_unallocated)
+ensure_folder_unlocked (VFolderInfo *info,
+			Folder *folder,
+			gboolean subfolders,
+			Folder *except,
+			gboolean ignore_unallocated)
 {
 	if (subfolders) {
 		GSList *li;
 		for (li = folder->subfolders; li != NULL; li = li->next)
-			ensure_folder (info, li->data, subfolders,
-				       except, ignore_unallocated);
+			ensure_folder_unlocked (info, li->data, subfolders,
+						except, ignore_unallocated);
 	}
 
 	if (except == folder)
@@ -749,13 +769,25 @@ ensure_folder (VFolderInfo *info,
 	folder->sorted = FALSE;
 }
 
+static void
+ensure_folder (VFolderInfo *info,
+	       Folder *folder,
+	       gboolean subfolders,
+	       Folder *except,
+	       gboolean ignore_unallocated)
+{
+	G_LOCK (vfolder_lock);
+	ensure_folder_unlocked (info, folder, subfolders, except, ignore_unallocated);
+	G_UNLOCK (vfolder_lock);
+}
+
 static char *
-get_directory_file (VFolderInfo *info, Folder *folder)
+get_directory_file_unlocked (VFolderInfo *info, Folder *folder)
 {
 	char *filename;
 
 	/* FIXME: cache dir_files */
-
+	
 	if (folder->desktop_file == NULL)
 		return NULL;
 
@@ -767,20 +799,32 @@ get_directory_file (VFolderInfo *info, Folder *folder)
 		filename = g_build_filename (info->user_desktop_dir,
 					     folder->desktop_file,
 					     NULL);
-		if (access (filename, F_OK) == 0)
+		if (access (filename, F_OK) == 0) {
 			return filename;
+		}
 
 		g_free (filename);
 	}
 
-	filename = g_build_filename (info->desktop_dir,
-				     folder->desktop_file,
-				     NULL);
-	if (access (filename, F_OK) == 0)
+	filename = g_build_filename (info->desktop_dir, folder->desktop_file, NULL);
+	if (access (filename, F_OK) == 0) {
 		return filename;
+	}
 	g_free (filename);
 
 	return NULL;
+}
+
+static char *
+get_directory_file (VFolderInfo *info, Folder *folder)
+{
+	char *ret;
+
+	G_LOCK (vfolder_lock);
+	ret = get_directory_file_unlocked (info, folder);
+	G_UNLOCK (vfolder_lock);
+
+	return ret;
 }
 
 static GSList *
@@ -792,7 +836,7 @@ get_sort_order (VFolderInfo *info, Folder *folder)
 	int i;
 	char *filename;
 
-	filename = get_directory_file (info, folder);
+	filename = get_directory_file_unlocked (info, folder);
 	if (filename == NULL)
 		return NULL;
 
@@ -844,9 +888,12 @@ ensure_folder_sort (VFolderInfo *info, Folder *folder)
 	if (folder->sorted)
 		return;
 
+	G_LOCK (vfolder_lock);
+
 	sort_order = get_sort_order (info, folder);
 	if (sort_order == NULL) {
 		folder->sorted = TRUE;
+		G_UNLOCK (vfolder_lock);
 		return;
 	}
 
@@ -895,6 +942,8 @@ ensure_folder_sort (VFolderInfo *info, Folder *folder)
 	g_slist_free (sort_order);
 
 	folder->sorted = TRUE;
+
+	G_UNLOCK (vfolder_lock);
 }
 
 static EntryFile *
@@ -963,13 +1012,34 @@ invalidate_folder (Folder *folder)
 {
 	GSList *li;
 
+	G_LOCK (vfolder_lock);
 	folder->up_to_date = FALSE;
+	G_UNLOCK (vfolder_lock);
 
 	for (li = folder->subfolders; li != NULL; li = li->next) {
 		Folder *subfolder = li->data;
 
 		invalidate_folder (subfolder);
 	}
+}
+
+/* FIXME: this is UGLY!, we need to figure out when the file
+ * got finished changing! */
+static gboolean
+reread_timeout (gpointer data)
+{
+	vfolder_info_reload (data, NULL, NULL);
+	return FALSE;
+}
+
+static void
+queue_reread_in (VFolderInfo *info, int msec)
+{
+	G_LOCK (vfolder_lock);
+	if (info->reread_queue != 0)
+		g_source_remove (info->reread_queue);
+	info->reread_queue = g_timeout_add (msec, reread_timeout, info);
+	G_UNLOCK (vfolder_lock);
 }
 
 static void
@@ -984,7 +1054,7 @@ vfolder_filename_monitor (GnomeVFSMonitorHandle *handle,
 	if ((event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
 	     event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) &&
 	    ! info->user_file_active) {
-		vfolder_info_reload (info, NULL, NULL);
+		queue_reread_in (info, 200);
 	} else if (event_type == GNOME_VFS_MONITOR_EVENT_DELETED &&
 		   ! info->user_file_active) {
 		/* FIXME: is this correct?  I mean now
@@ -1017,11 +1087,11 @@ vfolder_user_filename_monitor (GnomeVFSMonitorHandle *handle,
 		    info->user_filename_last_write == s.st_ctime)
 			return;
 
-		vfolder_info_reload (info, NULL, NULL);
+		queue_reread_in (info, 200);
 	} else if ((event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
 		    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) &&
 		    ! info->user_file_active) {
-		vfolder_info_reload (info, NULL, NULL);
+		queue_reread_in (info, 200);
 	} else if (event_type == GNOME_VFS_MONITOR_EVENT_DELETED &&
 		   info->user_file_active) {
 		vfolder_info_reload (info, NULL, NULL);
@@ -1240,14 +1310,16 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 	info->entries_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
 	info->root = folder_new ("Root");
+
+	info->modification_time = time (NULL);
 }
 
 static void
-vfolder_info_free_internals (VFolderInfo *info)
+vfolder_info_free_internals_unlocked (VFolderInfo *info)
 {
 	if (info == NULL)
 		return;
-
+	
 	if (info->filename_monitor != NULL) {
 		gnome_vfs_monitor_cancel (info->filename_monitor);
 		info->filename_monitor = NULL;
@@ -1315,6 +1387,18 @@ vfolder_info_free_internals (VFolderInfo *info)
 
 	g_free (info->user_filename_statloc);
 	info->user_filename_statloc = NULL;
+
+	if (info->reread_queue != 0)
+		g_source_remove (info->reread_queue);
+	info->reread_queue = 0;
+}
+
+static void
+vfolder_info_free_internals (VFolderInfo *info)
+{
+	G_LOCK (vfolder_lock);
+	vfolder_info_free_internals_unlocked (info);
+	G_UNLOCK (vfolder_lock);
 }
 
 static void
@@ -1922,6 +2006,8 @@ vfolder_info_write_user (VFolderInfo *info)
 
 	info->user_file_active = TRUE;
 	info->dirty = FALSE;
+
+	info->modification_time = time (NULL);
 }
 
 /* An EVIL function for quick reading of .desktop files,
@@ -2323,9 +2409,9 @@ vfolder_info_item_dirs_same (VFolderInfo *info1, VFolderInfo *info2)
 }
 
 static gboolean
-vfolder_info_reload (VFolderInfo *info,
-		     GnomeVFSResult *result,
-		     GnomeVFSContext *context)
+vfolder_info_reload_unlocked (VFolderInfo *info,
+			      GnomeVFSResult *result,
+			      GnomeVFSContext *context)
 {
 	VFolderInfo *newinfo;
 	gboolean setup_filenames;
@@ -2420,11 +2506,26 @@ vfolder_info_reload (VFolderInfo *info,
 
 	/* FIXME: make sure if this was enough, I think it was */
 
-	vfolder_info_free_internals (info);
+	vfolder_info_free_internals_unlocked (info);
 	memcpy (info, newinfo, sizeof (VFolderInfo));
 	g_free (newinfo);
 
 	return TRUE;
+}
+
+static gboolean
+vfolder_info_reload (VFolderInfo *info,
+		     GnomeVFSResult *result,
+		     GnomeVFSContext *context)
+{
+	G_LOCK (vfolder_lock);
+	if (vfolder_info_reload_unlocked (info, result, context)) {
+		G_UNLOCK (vfolder_lock);
+		return TRUE;
+	} else {
+		G_UNLOCK (vfolder_lock);
+		return FALSE;
+	}
 }
 
 static gboolean
@@ -2438,7 +2539,7 @@ vfolder_info_recheck (VFolderInfo *info,
 
 	if (info->filename_statloc != NULL &&
 	     ! check_statloc (info->filename_statloc, curtime)) {
-		if ( ! vfolder_info_reload (info, result, context)) {
+		if ( ! vfolder_info_reload_unlocked (info, result, context)) {
 			/* we have failed, make sure we fail
 			 * next time too */
 			info->filename_statloc->trigger_next = TRUE;
@@ -2449,7 +2550,7 @@ vfolder_info_recheck (VFolderInfo *info,
 	if ( ! reread &&
 	    info->user_filename_statloc != NULL &&
 	     ! check_statloc (info->user_filename_statloc, curtime)) {
-		if ( ! vfolder_info_reload (info, result, context)) {
+		if ( ! vfolder_info_reload_unlocked (info, result, context)) {
 			/* we have failed, make sure we fail
 			 * next time too */
 			info->user_filename_statloc->trigger_next = TRUE;
@@ -2471,9 +2572,9 @@ vfolder_info_recheck (VFolderInfo *info,
 }
 
 static VFolderInfo *
-get_vfolder_info (const char *scheme,
-		  GnomeVFSResult *result,
-		  GnomeVFSContext *context)
+get_vfolder_info_unlocked (const char *scheme,
+			   GnomeVFSResult *result,
+			   GnomeVFSContext *context)
 {
 	VFolderInfo *info;
 
@@ -2551,6 +2652,19 @@ get_vfolder_info (const char *scheme,
 
 	return info;
 }
+
+static VFolderInfo *
+get_vfolder_info (const char *scheme,
+		  GnomeVFSResult *result,
+		  GnomeVFSContext *context)
+{
+	VFolderInfo *info;
+	G_LOCK (vfolder_lock);
+	info = get_vfolder_info_unlocked (scheme, result, context);
+	G_UNLOCK (vfolder_lock);
+	return info;
+}
+
 
 static char *
 keywords_to_string (GSList *keywords)
@@ -2891,10 +3005,10 @@ resolve_path (VFolderInfo *info,
 	}
 
 	/* Make sure we have the entries here */
-	ensure_folder (info, folder,
-		       FALSE /* subfolders */,
-		       NULL /* except */,
-		       FALSE /* ignore_unallocated */);
+	ensure_folder_unlocked (info, folder,
+				FALSE /* subfolders */,
+				NULL /* except */,
+				FALSE /* ignore_unallocated */);
 
 	entry = find_entry (folder->entries, basename);
 
@@ -2905,9 +3019,9 @@ resolve_path (VFolderInfo *info,
 }
 
 static VFolderInfo *
-vfolder_info_from_uri (GnomeVFSURI *uri,
-		       GnomeVFSResult *result,
-		       GnomeVFSContext *context)
+vfolder_info_from_uri_unlocked (GnomeVFSURI *uri,
+				GnomeVFSResult *result,
+				GnomeVFSContext *context)
 {
 	const char *scheme;
 
@@ -2919,15 +3033,27 @@ vfolder_info_from_uri (GnomeVFSURI *uri,
 		return NULL;
 	}
 
-	return get_vfolder_info (scheme, result, context);
+	return get_vfolder_info_unlocked (scheme, result, context);
+}
+
+static VFolderInfo *
+vfolder_info_from_uri (GnomeVFSURI *uri,
+		       GnomeVFSResult *result,
+		       GnomeVFSContext *context)
+{
+	VFolderInfo *info;
+	G_LOCK (vfolder_lock);
+	info = vfolder_info_from_uri_unlocked (uri, result, context);
+	G_UNLOCK (vfolder_lock);
+	return info;
 }
 
 static Entry *
-get_entry (GnomeVFSURI *uri,
-	   Folder **parent,
-	   gboolean *is_directory_file,
-	   GnomeVFSResult *result,
-	   GnomeVFSContext *context)
+get_entry_unlocked (GnomeVFSURI *uri,
+		    Folder **parent,
+		    gboolean *is_directory_file,
+		    GnomeVFSResult *result,
+		    GnomeVFSContext *context)
 {
 	const char *path;
 	char *basename;
@@ -2953,7 +3079,7 @@ get_entry (GnomeVFSURI *uri,
 		return NULL;
 	}
 
-	info = get_vfolder_info (scheme, result, context);
+	info = get_vfolder_info_unlocked (scheme, result, context);
 	if (info == NULL) {
 		g_free (basename);
 		return NULL;
@@ -3018,9 +3144,25 @@ get_entry (GnomeVFSURI *uri,
 	}
 }
 
+static Entry *
+get_entry (GnomeVFSURI *uri,
+	   Folder **parent,
+	   gboolean *is_directory_file,
+	   GnomeVFSResult *result,
+	   GnomeVFSContext *context)
+{
+	Entry *entry;
+	G_LOCK (vfolder_lock);
+	entry = get_entry_unlocked (uri, parent, is_directory_file, result, context);
+	G_UNLOCK (vfolder_lock);
+	return entry;
+}
+
 /* only works for files and only those that exist */
+/* unlocked function */
 static GnomeVFSURI *
-desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
+desktop_uri_to_file_uri (VFolderInfo *info,
+			 GnomeVFSURI *desktop_uri,
 			 Entry **the_entry,
 			 gboolean *the_is_directory_file,
 			 Folder **the_folder,
@@ -3033,11 +3175,11 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 	Folder *folder = NULL;
 	Entry *entry;
 
-	entry = get_entry (desktop_uri,
-			   &folder,
-			   &is_directory_file,
-			   result,
-			   context);
+	entry = get_entry_unlocked (desktop_uri,
+				    &folder,
+				    &is_directory_file,
+				    result,
+				    context);
 	if (entry == NULL)
 		return NULL;
 
@@ -3057,7 +3199,6 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 	if (is_directory_file &&
 	    entry->type == ENTRY_FOLDER) {
 		char *desktop_file;
-		VFolderInfo *info;
 
 		folder = (Folder *)entry;
 
@@ -3068,11 +3209,6 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		if (folder->read_only &&
 		    privatize) {
 			*result = GNOME_VFS_ERROR_READ_ONLY;
-			return NULL;
-		}
-
-		info = vfolder_info_from_uri (desktop_uri, result, context);
-		if (info == NULL) {
 			return NULL;
 		}
 
@@ -3096,7 +3232,7 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 			return ret_uri;
 		}
 
-		desktop_file = get_directory_file (info, folder);
+		desktop_file = get_directory_file_unlocked (info, folder);
 		if (desktop_file != NULL) {
 			char *s = gnome_vfs_get_uri_from_local_path
 				(desktop_file);
@@ -3113,12 +3249,7 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		}
 	} else if (entry->type == ENTRY_FILE) {
 		EntryFile *efile = (EntryFile *)entry;
-		VFolderInfo *info;
 		char *s;
-
-		info = vfolder_info_from_uri (desktop_uri, result, context);
-		if (info == NULL)
-			return NULL;
 
 		/* we'll be doing something write like */
 		if (folder != NULL &&
@@ -3308,7 +3439,10 @@ do_open (GnomeVFSMethod *method,
 	if ( ! open_check (method, uri, method_handle, mode, &result))
 		return result;
 
-	file_uri = desktop_uri_to_file_uri (uri,
+	G_LOCK (vfolder_lock);
+
+	file_uri = desktop_uri_to_file_uri (info,
+					    uri,
 					    &entry,
 					    &is_directory_file,
 					    NULL /* the_folder */,
@@ -3316,8 +3450,10 @@ do_open (GnomeVFSMethod *method,
 					    &result,
 					    context);
 
-	if (file_uri == NULL)
+	if (file_uri == NULL) {
+		G_UNLOCK (vfolder_lock);
 		return result;
+	}
 
 	result = (* parent_method->open) (parent_method,
 					  &file_handle,
@@ -3326,6 +3462,7 @@ do_open (GnomeVFSMethod *method,
 					  context);
 
 	if (result == GNOME_VFS_ERROR_CANCELLED) {
+		G_UNLOCK (vfolder_lock);
 		gnome_vfs_uri_unref (file_uri);
 		return result;
 	}
@@ -3339,8 +3476,11 @@ do_open (GnomeVFSMethod *method,
 
 	gnome_vfs_uri_unref (file_uri);
 
-	if (info->dirty)
+	if (info->dirty) {
 		vfolder_info_write_user (info);
+	}
+
+	G_UNLOCK (vfolder_lock);
 
 	return result;
 }
@@ -3431,17 +3571,23 @@ do_create (GnomeVFSMethod *method,
 
 	if (strcmp (basename, ".directory") == 0) {
 		char *fname;
+
+		G_LOCK (vfolder_lock);
+
 		if (exclusive) {
 			char *desktop_file;
-			desktop_file = get_directory_file (info, parent);
+			desktop_file = get_directory_file_unlocked (info, parent);
 			if (desktop_file != NULL) {
 				g_free (desktop_file);
+				G_UNLOCK (vfolder_lock);
 				return GNOME_VFS_ERROR_FILE_EXISTS;
 			}
 		}
 
-		if ( ! make_dirfile_private (info, parent))
+		if ( ! make_dirfile_private (info, parent)) {
+			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
+		}
 		fname = g_build_filename (g_get_home_dir (),
 					  parent->desktop_file,
 					  NULL);
@@ -3450,8 +3596,10 @@ do_create (GnomeVFSMethod *method,
 		g_free (fname);
 		g_free (s);
 
-		if (file_uri == NULL)
+		if (file_uri == NULL) {
+			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
+		}
 
 		result = (* parent_method->create) (parent_method,
 						    &file_handle,
@@ -3471,6 +3619,8 @@ do_create (GnomeVFSMethod *method,
 
 		if (info->dirty)
 			vfolder_info_write_user (info);
+
+		G_UNLOCK (vfolder_lock);
 
 		return result;
 	}
@@ -3492,7 +3642,9 @@ do_create (GnomeVFSMethod *method,
 		if (exclusive)
 			return GNOME_VFS_ERROR_FILE_EXISTS;
 
+		G_LOCK (vfolder_lock);
 		if ( ! make_file_private (info, efile)) {
+			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
 
@@ -3500,8 +3652,10 @@ do_create (GnomeVFSMethod *method,
 		file_uri = gnome_vfs_uri_new (s);
 		g_free (s);
 
-		if (file_uri == NULL)
+		if (file_uri == NULL) {
+			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
+		}
 
 		result = (* parent_method->create) (parent_method,
 						    &file_handle,
@@ -3519,23 +3673,33 @@ do_create (GnomeVFSMethod *method,
 			     FALSE /* is_directory_file */,
 			     TRUE /* write */);
 
+		G_UNLOCK (vfolder_lock);
+
 		return result;
 	}
+
+	G_LOCK (vfolder_lock);
 	
 	li = g_hash_table_lookup (info->entries_ht, basename);
 
-	if (exclusive && li != NULL)
+	if (exclusive && li != NULL) {
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_FILE_EXISTS;
+	}
 
 	if (li == NULL) {
 		efile = file_new (basename);
 		vfolder_info_insert_entry (info, efile);
 		entry_unref ((Entry *)efile);
+	} else {
+		efile = li->data;
 	}
 
 	/* this will make a private name for this */
-	if ( ! make_file_private (info, efile))
+	if ( ! make_file_private (info, efile)) {
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_GENERIC;
+	}
 
 	add_file (parent, basename);
 	parent->sorted = FALSE;
@@ -3569,6 +3733,7 @@ do_create (GnomeVFSMethod *method,
 		     TRUE /* write */);
 
 	vfolder_info_write_user (info);
+	G_UNLOCK (vfolder_lock);
 
 	return result;
 }
@@ -3583,6 +3748,8 @@ do_close (GnomeVFSMethod *method,
 
 	if (method_handle == (GnomeVFSMethodHandle *)method)
 		return GNOME_VFS_OK;
+
+	G_LOCK (vfolder_lock);
 	
 	result = (* parent_method->close) (parent_method,
 					   handle->handle,
@@ -3612,6 +3779,8 @@ do_close (GnomeVFSMethod *method,
 	}
 
 	whack_handle (handle);
+
+	G_UNLOCK (vfolder_lock);
 
 	return result;
 }
@@ -3770,13 +3939,18 @@ do_truncate (GnomeVFSMethod *method,
 	if (info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
-	file_uri = desktop_uri_to_file_uri (uri,
+	G_LOCK (vfolder_lock);
+
+	file_uri = desktop_uri_to_file_uri (info,
+					    uri,
 					    &entry,
 					    NULL /* the_is_directory_file */,
 					    NULL /* the_folder */,
 					    TRUE /* privatize */,
 					    &result,
 					    context);
+	G_UNLOCK (vfolder_lock);
+
 	if (file_uri == NULL)
 		return result;
 
@@ -3787,13 +3961,18 @@ do_truncate (GnomeVFSMethod *method,
 
 	gnome_vfs_uri_unref (file_uri);
 
-	if (info->dirty)
+	if (info->dirty) {
+		G_LOCK (vfolder_lock);
 		vfolder_info_write_user (info);
+		G_UNLOCK (vfolder_lock);
+	}
 
 	if (entry->type == ENTRY_FILE) {
 		EntryFile *efile = (EntryFile *)entry;
+		G_LOCK (vfolder_lock);
 		g_slist_free (efile->keywords);
 		efile->keywords = NULL;
+		G_UNLOCK (vfolder_lock);
 	}
 
 	/* Perhaps a bit drastic, but oh well */
@@ -3848,9 +4027,11 @@ do_open_directory (GnomeVFSMethod *method,
 		dh->info = info;
 		dh->options = options;
 		dh->folder = NULL;
+		G_LOCK (vfolder_lock);
 		dh->list = g_slist_copy (info->entries);
 		g_slist_foreach (dh->list, (GFunc)entry_ref, NULL);
 		dh->current = dh->list;
+		G_UNLOCK (vfolder_lock);
 		*method_handle = (GnomeVFSMethodHandle*) dh;
 		return GNOME_VFS_OK;
 	}
@@ -3867,9 +4048,11 @@ do_open_directory (GnomeVFSMethod *method,
 	dh = g_new0 (DirHandle, 1);
 	dh->info = info;
 	dh->options = options;
+	G_LOCK (vfolder_lock);
 	dh->folder = (Folder *)entry_ref ((Entry *)folder);
 	dh->list = g_slist_copy (folder->entries);
 	g_slist_foreach (folder->entries, (GFunc)entry_ref, NULL);
+	G_UNLOCK (vfolder_lock);
 
 	desktop_file = get_directory_file (info, folder);
 	if (desktop_file != NULL) {
@@ -3894,6 +4077,8 @@ do_close_directory (GnomeVFSMethod *method,
 
 	dh = (DirHandle*) method_handle;
 
+	G_LOCK (vfolder_lock);
+
 	g_slist_foreach (dh->list, (GFunc)entry_unref, NULL);
 	g_slist_free (dh->list);
 	dh->list = NULL;
@@ -3907,6 +4092,8 @@ do_close_directory (GnomeVFSMethod *method,
 	dh->info = NULL;
 
 	g_free (dh);
+
+	G_UNLOCK (vfolder_lock);
 
 	return GNOME_VFS_OK;
 }
@@ -3977,6 +4164,8 @@ read_directory_again:
 		/* FIXME: there should be a mime-type for these */
 		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+		/* FIXME: get some ctime/mtime */
 	} else /* ENTRY_FOLDER */ {
 		Folder *folder = (Folder *)entry;
 
@@ -4006,6 +4195,11 @@ read_directory_again:
 
 		file_info->mime_type = g_strdup ("x-directory/normal");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+		file_info->ctime = dh->info->modification_time;
+		file_info->mtime = dh->info->modification_time;
+		file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
+					    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
 	}
 
 	return GNOME_VFS_OK;
@@ -4021,14 +4215,25 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSURI *file_uri;
 	GnomeVFSResult result = GNOME_VFS_OK;
 	Folder *folder;
+	VFolderInfo *info;
 
-	file_uri = desktop_uri_to_file_uri (uri,
+	info = vfolder_info_from_uri (uri, &result, context);
+	if (info == NULL)
+		return result;
+
+	G_LOCK (vfolder_lock);
+
+	file_uri = desktop_uri_to_file_uri (info,
+					    uri,
 					    NULL /* the_entry */,
 					    NULL /* the_is_directory_file */,
 					    &folder,
 					    FALSE /* privatize */,
 					    &result,
 					    context);
+
+	G_UNLOCK (vfolder_lock);
+
 	if (file_uri == NULL &&
 	    result != GNOME_VFS_ERROR_IS_DIRECTORY)
 		return result;
@@ -4066,6 +4271,11 @@ do_get_file_info (GnomeVFSMethod *method,
 
 		file_info->mime_type = g_strdup ("x-directory/normal");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+		file_info->ctime = info->modification_time;
+		file_info->mtime = info->modification_time;
+		file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
+					    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
 
 		return GNOME_VFS_OK;
 	} else {
@@ -4161,10 +4371,13 @@ do_make_directory (GnomeVFSMethod *method,
 
 	basename = get_basename (uri);
 
+	G_LOCK (vfolder_lock);
+
 	folder = (Folder *)find_entry (parent->subfolders,
 				       basename);
 	if (folder != NULL) {
 		g_free (basename);
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_FILE_EXISTS;
 	}
 
@@ -4173,6 +4386,7 @@ do_make_directory (GnomeVFSMethod *method,
 	parent->up_to_date = FALSE;
 
 	vfolder_info_write_user (info);
+	G_UNLOCK (vfolder_lock);
 
 	g_free (basename);
 
@@ -4207,30 +4421,38 @@ do_remove_directory (GnomeVFSMethod *method,
 	    info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
+	G_LOCK (vfolder_lock);
+
 	folder = resolve_folder (info, path,
 				 FALSE /* ignore_basename */,
 				 &result, context);
-	if (folder == NULL)
+	if (folder == NULL) {
+		G_UNLOCK (vfolder_lock);
 		return result;
+	}
 
 	if (folder->read_only ||
 	    (folder->parent != NULL &&
-	     folder->parent->read_only))
+	     folder->parent->read_only)) {
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_READ_ONLY;
+	}
 
 	/* don't make removing directories easy */
 	if (folder->desktop_file != NULL) {
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
 	}
 
 	/* Make sure we have the entries */
-	ensure_folder (info, folder,
-		       FALSE /* subfolders */,
-		       NULL /* except */,
-		       FALSE /* ignore_unallocated */);
+	ensure_folder_unlocked (info, folder,
+				FALSE /* subfolders */,
+				NULL /* except */,
+				FALSE /* ignore_unallocated */);
 
 	/* don't make removing directories easy */
 	if (folder->entries != NULL) {
+		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
 	}
 
@@ -4263,6 +4485,8 @@ do_remove_directory (GnomeVFSMethod *method,
 
 	vfolder_info_write_user (info);
 
+	G_UNLOCK (vfolder_lock);
+
 	return GNOME_VFS_OK;
 }
 
@@ -4288,13 +4512,18 @@ long_move (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
-	file_uri = desktop_uri_to_file_uri (old_uri,
+	G_LOCK (vfolder_lock);
+
+	file_uri = desktop_uri_to_file_uri (info,
+					    old_uri,
 					    NULL /* the_entry */,
 					    NULL /* the_is_directory_file */,
 					    NULL /* the_folder */,
 					    FALSE /* privatize */,
 					    &result,
 					    context);
+	G_UNLOCK (vfolder_lock);
+
 	if (file_uri == NULL)
 		return result;
 
@@ -4345,8 +4574,10 @@ long_move (GnomeVFSMethod *method,
 			method->unlink (method,
 					new_uri,
 					context);
+			G_LOCK (vfolder_lock);
 			info->inhibit_write--;
 			vfolder_info_write_user (info);
+			G_UNLOCK (vfolder_lock);
 			return result;
 		}
 	}
@@ -4355,15 +4586,19 @@ long_move (GnomeVFSMethod *method,
 
 	result = method->close (method, handle, context);
 	if (result != GNOME_VFS_OK) {
+		G_LOCK (vfolder_lock);
 		info->inhibit_write--;
 		vfolder_info_write_user (info);
+		G_UNLOCK (vfolder_lock);
 		return result;
 	}
 
 	result = method->unlink (method, old_uri, context);
 
+	G_LOCK (vfolder_lock);
 	info->inhibit_write--;
 	vfolder_info_write_user (info);
+	G_UNLOCK (vfolder_lock);
 
 	return result;
 }
@@ -4413,10 +4648,12 @@ move_folder (VFolderInfo *info,
 	if (new_entry != NULL &&
 	    new_entry->type != ENTRY_FOLDER)
 		return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
-	if (new_entry != NULL)
+	
+	if (new_entry != NULL) {
 		target = (Folder *)new_entry;
-	else
+	} else {
 		target = new_folder;
+	}
 
 	/* move to where we are, yay, we're done :) */
 	if (source->parent == target)
@@ -4510,15 +4747,21 @@ do_move (GnomeVFSMethod *method,
 	if (new_is_directory_file) {
 		g_assert (old_entry != NULL);
 		g_assert (new_entry != NULL);
-		return move_directory_file (info,
-					    (Folder *)old_entry,
-					    (Folder *)new_entry);
+		G_LOCK (vfolder_lock);
+		result = move_directory_file (info,
+					      (Folder *)old_entry,
+					      (Folder *)new_entry);
+		G_UNLOCK (vfolder_lock);
+		return result;
 	}
 
 	if (old_entry->type == ENTRY_FOLDER) {
-		return move_folder (info,
-				    old_folder, old_entry,
-				    new_folder, new_entry);
+		G_LOCK (vfolder_lock);
+		result = move_folder (info,
+				      old_folder, old_entry,
+				      new_folder, new_entry);
+		G_UNLOCK (vfolder_lock);
+		return result;
 	}
 
 	/* move into self, just whack the old one */
@@ -4536,6 +4779,8 @@ do_move (GnomeVFSMethod *method,
 		if (old_basename == NULL)
 			return GNOME_VFS_ERROR_INVALID_URI;
 
+		G_LOCK (vfolder_lock);
+
 		remove_file (old_folder, old_basename);
 
 		old_folder->entries = g_slist_remove
@@ -4545,6 +4790,8 @@ do_move (GnomeVFSMethod *method,
 		g_free (old_basename);
 
 		vfolder_info_write_user (info);
+
+		G_UNLOCK (vfolder_lock);
 
 		return GNOME_VFS_OK;
 	}
@@ -4574,6 +4821,8 @@ do_move (GnomeVFSMethod *method,
 		if (new_folder == old_folder)
 			return GNOME_VFS_OK;
 
+		G_LOCK (vfolder_lock);
+
 		remove_file (old_folder, old_entry->name);
 		add_file (new_folder, old_entry->name);
 
@@ -4587,6 +4836,8 @@ do_move (GnomeVFSMethod *method,
 		entry_unref (old_entry);
 
 		vfolder_info_write_user (info);
+
+		G_UNLOCK (vfolder_lock);
 
 		return GNOME_VFS_OK;
 	}
@@ -4648,10 +4899,15 @@ do_unlink (GnomeVFSMethod *method,
 
 		if (folder->desktop_file == NULL)
 			return GNOME_VFS_ERROR_NOT_FOUND;
+
+		G_LOCK (vfolder_lock);
+
 		g_free (folder->desktop_file);
 		folder->desktop_file = NULL;
 
 		vfolder_info_write_user (info);
+
+		G_UNLOCK (vfolder_lock);
 
 		return GNOME_VFS_OK;
 	} else if (entry->type == ENTRY_FOLDER) {
@@ -4659,6 +4915,8 @@ do_unlink (GnomeVFSMethod *method,
 	} else if (the_folder == NULL) {
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
+
+	G_LOCK (vfolder_lock);
 
 	the_folder->entries = g_slist_remove (the_folder->entries,
 					      entry);
@@ -4679,10 +4937,10 @@ do_unlink (GnomeVFSMethod *method,
 		 * an unallocated folder clears all other unallocated
 		 * folders in it's wake.  I'm not sure it's worth
 		 * optimizing however */
-		ensure_folder (info, folder,
-			       FALSE /* subfolders */,
-			       NULL /* except */,
-			       FALSE /* ignore_unallocated */);
+		ensure_folder_unlocked (info, folder,
+					FALSE /* subfolders */,
+					NULL /* except */,
+					FALSE /* ignore_unallocated */);
 		l = g_slist_find (folder->entries, entry);
 		if (l == NULL)
 			remove_file (folder, basename);
@@ -4692,6 +4950,8 @@ do_unlink (GnomeVFSMethod *method,
 	 * reference to it, unlink it. */
 
 	vfolder_info_write_user (info);
+
+	G_UNLOCK (vfolder_lock);
 
 	return GNOME_VFS_OK;
 }
@@ -4734,8 +4994,10 @@ do_set_file_info (GnomeVFSMethod *method,
 		char *dirname = gnome_vfs_uri_extract_dirname (uri);
 		GnomeVFSURI *new_uri = gnome_vfs_uri_dup (uri);
 
+		G_LOCK (vfolder_lock);
 		g_free (new_uri->text);
 		new_uri->text = g_build_path ("/", dirname, info->name, NULL);
+		G_UNLOCK (vfolder_lock);
 
 		result = do_move (method,
 				  uri,

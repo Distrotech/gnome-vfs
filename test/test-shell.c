@@ -862,12 +862,39 @@ do_close (void)
  * ---------------------------------------------------------------------
  */
 
+GMainLoop *main_loop = NULL;
+
 int interactive = 0;
 const struct poptOption options [] = {
 	{ "interactive", 'i', POPT_ARG_NONE, &interactive, 0,
 	  "Allow interactive input", NULL  },
 	{ NULL, '\0', 0, NULL, 0 }
 };
+
+static gboolean
+callback (GIOChannel *source,
+	  GIOCondition condition,
+	  gpointer data)
+{
+	char *buffer = data;
+	char buf[1024];
+	int len;
+
+	len = read (0, buf, sizeof (buf) - 1);
+
+	if (len + strlen (buffer) + 1 > 1024)
+		len = 1024 - strlen (buffer) - 1;
+
+	buf[len] = '\0';
+	strcat (buffer, buf);
+
+	if (strchr (buf, '\n') != NULL &&
+	    main_loop != NULL) {
+		g_main_loop_quit (main_loop);
+	}
+
+	return TRUE;
+}
 
 int
 main (int argc, const char **argv)
@@ -877,6 +904,9 @@ main (int argc, const char **argv)
 	char *buffer = g_new (char, 1024) ;
 	const char **args;
 	FILE *instream;
+
+	/* default to interactive on a terminal */
+	interactive = isatty (0);
 
 	files = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -912,10 +942,34 @@ main (int argc, const char **argv)
 		char *ptr;
 
 		if (interactive) {
-			fprintf (stdout,"\n%s > ", cur_dir);
-			fflush (stdout);
+			GIOChannel *ioc;
+			guint watch_id;
+			strcpy (buffer, "");
+
+			main_loop = g_main_loop_new (NULL, TRUE);
+
+			ioc = g_io_channel_unix_new (0 /* stdin */);
+			watch_id = g_io_add_watch (ioc,
+						   G_IO_IN | G_IO_HUP | G_IO_ERR,
+						   callback, buffer);
+			g_io_channel_unref (ioc);
+
+			if (interactive) {
+				fprintf (stdout,"\n%s > ", cur_dir);
+				fflush (stdout);
+			}
+
+			g_main_loop_run (main_loop);
+
+			g_source_remove (watch_id);
+
+			g_main_loop_unref (main_loop);
+			main_loop = NULL;
+		} else {
+			/* In non-interactive mode we just do this evil
+			 * thingie */
+			fgets (buffer, 1023, stdin);
 		}
-		fgets (buffer, 1023, stdin);
 
 		if (!buffer || buffer [0] == '#')
 			continue;

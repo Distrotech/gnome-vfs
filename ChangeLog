@@ -1,3 +1,14 @@
+Tue Jan 08 23:28:27 2002  George Lebl <jirka@5z.com>
+
+	* test/test-shell.c: make things run in a main loop so that we can
+	  test things that require it (such as the vfolder monitoring)
+
+	* modules/vfolder-desktop-method.c: make threadsafe (hopefully),
+	  add ctime/mtime for most entries (somewhat fake for directories,
+	  but good enough for noticing changes).  When we notice a change
+	  there is a hack so that we read in stuff about 200ms later (this
+	  is a HACK! but it makes it work for now).  Fix moving files.
+
 2002-01-04  Havoc Pennington  <hp@pobox.com>
 
 	* modules/http-method.c (vfs_module_init): preload the GConfClient
