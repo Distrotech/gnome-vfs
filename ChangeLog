@@ -1,3 +1,8 @@
+2000-01-18  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-directory-list.c: (compare_for_sort):
+	Made sorting by mime type handle NULL mime types (e.g. directories).
+
 2000-01-18  Federico Mena Quintero  <federico@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_destroy): Removed.

@@ -120,9 +120,19 @@ compare_for_sort (const GnomeVFSFileInfo *a,
 				return (a->ctime < b->ctime) ? -1 : +1;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYMIMETYPE:
-			retval = g_strcasecmp (a->mime_type, b->mime_type);
-			if (retval != 0)
-				return retval;
+			/* Directories (e.g.) don't have mime types, so
+			 * we have to check the NULL case.
+			 */
+			if (a->mime_type != b->mime_type)
+			{
+				if (a->mime_type == NULL)
+					return -1;
+				if (b->mime_type == NULL)
+					return +1;
+				retval = g_strcasecmp (a->mime_type, b->mime_type);
+				if (retval != 0)
+					return retval;
+			}
 			break;
 		default:
 			g_warning (_("Unknown sort rule %d"), sort_rules[i]);
