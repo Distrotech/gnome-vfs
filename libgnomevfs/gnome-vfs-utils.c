@@ -631,15 +631,24 @@ gnome_vfs_list_deep_free (GList *list)
 char *
 gnome_vfs_get_local_path_from_uri (const char *uri)
 {
-	if (!gnome_vfs_istr_has_prefix (uri, "file:///")) {
+	const char *path_part;
+
+	if (!gnome_vfs_istr_has_prefix (uri, "file:/")) {
 		return NULL;
 	}
 	
-	if (strchr (uri, '#') != NULL) {
+	path_part = uri + strlen ("file:");
+	if (strchr (path_part, '#') != NULL) {
 		return NULL;
 	}
 	
-	return gnome_vfs_unescape_string (uri + 7, "/");
+	if (gnome_vfs_istr_has_prefix (path_part, "///")) {
+		path_part += 2;
+	} else if (gnome_vfs_istr_has_prefix (path_part, "//")) {
+		return NULL;
+	}
+
+	return gnome_vfs_unescape_string (path_part, "/");
 }
 
 /**

@@ -666,7 +666,10 @@ main (int argc, char **argv)
 
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri (""), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/#"), NULL);
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:/path"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:/path"), "/path");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file://path"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///path"), "/path");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:////path"), "//path");
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html"), "/my/document.html");
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html#fragment"), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path"), "/my/docu ment#/path");
