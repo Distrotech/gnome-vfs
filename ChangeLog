@@ -1,3 +1,13 @@
+2002-07-11  Michael Meeks  <michael@ximian.com>
+ 
+	* libgnomevfs/gnome-vfs-mime-info.c
+	(load_type_info_from): use g_string_truncate
+	for a 20% speedup.
+	(APPEND_CHAR): inline more for another 20%.
+
+	* test/test-mime.c (main): add --speedTest
+	for mime info reloading.
+
 2002-07-07  Seth Nickell  <snickell@stanford.edu>
 
 	* libgnomevfs/gnome-vfs-method.gob:
@@ -6,6 +16,7 @@
 	Replacing decent clean files.
 	
 2002-07-05  Stephen Browne  <stephen.browne@sun.com>
+
 	* modules/cdemenu-desktop-method.c
 	Patch from rohit.raveendran@wipro.com
 	modified the code so that the function create_cde_icon_name_cache
