@@ -1,5 +1,5 @@
 # Serbian translation of gnome-vfs
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
 #
 # This file is distributed under the same license as the gnome-vfs package.
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-09-03 15:59+0200\n"
+"POT-Creation-Date: 2005-02-11 13:56+0100\n"
+"PO-Revision-Date: 2005-02-11 13:56+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -936,8 +936,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
-"„aim“ adrese."
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „aim“ "
+"adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
@@ -1000,8 +1000,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
-"„man“ adrese."
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „man“ "
+"adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
@@ -1116,7 +1116,6 @@ msgid "HTTP proxy username"
 msgstr "Korisnik HTTP posrednika"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"

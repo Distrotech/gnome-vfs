@@ -1,5 +1,5 @@
 # Serbian translation of gnome-vfs
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
 #
 # This file is distributed under the same license as the gnome-vfs package.
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-09-03 15:59+0200\n"
+"POT-Creation-Date: 2005-02-11 13:56+0100\n"
+"PO-Revision-Date: 2005-02-11 13:56+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -1116,7 +1116,6 @@ msgid "HTTP proxy username"
 msgstr "Корисник HTTP посредника"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
