@@ -1,5 +1,12 @@
 1999-09-12  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_close): Notify with
+	ack and return `FALSE' so that the thread is killed.
+	(execute_load_directory_not_sorted): Always return FALSE.
+	(execute_load_directory_sorted): Likewise.
+	(gnome_vfs_job_new): Start the slave only when the `GnomeVFSJob'
+	structure has all the members filled.
+
 	* libgnomevfs-corba/gnome-vfs-slave.c: Do not #define
 	`SLAVE_DEBUG'.
 	(DPRINTF): Flush stdout.

@@ -387,21 +387,10 @@ gnome_vfs_job_new (void)
 
 	new = g_new (GnomeVFSJob, 1);
 
-	slave = gnome_vfs_job_slave_new (new);
-	if (slave == NULL) {
-		g_warning ("Cannot create job slave.");
-		g_free (new);
-		return NULL;
-	}
-
-	new->slave = slave;
-
 	new->handle = NULL;
 
 	new->access_lock = g_mutex_new ();
-
 	new->execution_condition = g_cond_new ();
-
 	new->notify_ack_condition = g_cond_new ();
 	new->notify_ack_lock = g_mutex_new ();
 
@@ -413,6 +402,15 @@ gnome_vfs_job_new (void)
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
 			     dispatch_job_callback, new, NULL);
+
+	slave = gnome_vfs_job_slave_new (new);
+	if (slave == NULL) {
+		g_warning ("Cannot create job slave.");
+		g_free (new);
+		return NULL;
+	}
+
+	new->slave = slave;
 
 	/* Wait for the thread to come up.  */
 	g_io_channel_read (new->wakeup_channel_in, &c, 1, &bytes_read);
@@ -750,7 +748,9 @@ execute_close (GnomeVFSJob *job)
 
 	close_job->notify.result = gnome_vfs_close (job->handle);
 
-	return job_oneway_notify_and_close (job);
+	job_notify_and_close (job);
+
+	return FALSE;
 }
 
 static gboolean
@@ -808,7 +808,8 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		load_directory_job->notify.result = result;
 		load_directory_job->notify.list = NULL;
 		load_directory_job->notify.entries_read = 0;
-		return job_notify_and_close (job);
+		job_notify_and_close (job);
+		return FALSE;
 	}
 
 	directory_list = gnome_vfs_directory_list_new ();
@@ -853,7 +854,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	job_close (job);
 
-	return TRUE;
+	return FALSE;
 }
 
 static gboolean
@@ -911,7 +912,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		}
 	}
 
-	return TRUE;
+	return FALSE;
 }
 
 static gboolean
