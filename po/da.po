@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2000-12-09 19:03+01:00\n"
+"PO-Revision-Date: 2001-01-03 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -257,29 +257,29 @@ msgstr "Forespørgsel overflødiggør tjenestens data"
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:64
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:66
 #, c-format
 msgid "%u bytes"
 msgstr "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:73
 #, c-format
-msgid "%.1fK"
-msgstr "%.1fK"
+msgid "%.1f K"
+msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
-msgid "%.1fM"
-msgstr "%.1fM"
+msgid "%.1f MB"
+msgstr "%.1f Mb"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
-msgid "%.1fG"
-msgstr "%.1fG"
+msgid "%.1f GB"
+msgstr "%.1f Gb"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -656,17 +656,17 @@ msgstr "Ukendt GnomeVFSSeekPosition %d"
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1574
+#: modules/http-method.c:1577
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1818
+#: modules/http-method.c:1821
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1821
+#: modules/http-method.c:1824
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
