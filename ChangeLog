@@ -1,3 +1,19 @@
+2004-02-28  Bryan Forbes  <mxpxfifws@yahoo.com>
+
+	* libgnomevfs/gnome-vfs-drive.h: changed GnomeVFSDriveClass to follow
+	conventions used in Gtk+ to work with C++ bindings.
+	* libgnomevfs/gnome-vfs-volume.h: moved the inclusion of gnome-vfs-drive.h
+	lower; took out forward declaration of GnomeVFSDeviceType and declared it
+	before including gnome-vfs-drive.h; moved forward declarations of
+	GnomeVFSDrive, GnomeVFSVolume, and GnomeVFSVolumeOpCallback to right before
+	inclusion of gnome-vfs-drive.h changed GnomeVFSVolumeClass to follow
+	conventions used in Gtk+ to work with C++ bindings.
+	* libgnomevfs/gnome-vfs.h: added gnome-vfs-drive.h, gnome-vfs-volume.h, and
+	gnome-vfs-volume-monitor.h to the list of included headers.
+	* libgnomevfs/Makefile.am: added gnome-vfs-drive.h, gnome-vfs-volume.h, and
+	gnome-vfs-volume-monitor.h to the list of headers to generated gtypes from.
+	* Closes bug #135554.
+
 2004-03-01  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/sftp-method.c (sftp_connect):

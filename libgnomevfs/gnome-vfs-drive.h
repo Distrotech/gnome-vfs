@@ -43,7 +43,9 @@ struct _GnomeVFSDrive {
         GnomeVFSDrivePrivate *priv;
 };
 
-typedef struct {
+typedef struct _GnomeVFSDriveClass GnomeVFSDriveClass;
+
+struct _GnomeVFSDriveClass {
 	GObjectClass parent_class;
 
 	void (* volume_mounted)	  	(GnomeVFSDrive *drive,
@@ -52,7 +54,7 @@ typedef struct {
 				   	 GnomeVFSVolume	*volume);
 	void (* volume_unmounted)	(GnomeVFSDrive *drive,
 				   	 GnomeVFSVolume	*volume);
-} GnomeVFSDriveClass;
+};
 
 GType gnome_vfs_drive_get_type (void) G_GNUC_CONST;
 

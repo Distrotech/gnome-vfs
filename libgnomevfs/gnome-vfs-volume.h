@@ -29,17 +29,6 @@
 #include <unistd.h>
 #include <glib-object.h>
 
-/* Need to define these here due to cross use in gnome-vfs-drive.h */
-typedef struct _GnomeVFSVolume GnomeVFSVolume;
-typedef struct _GnomeVFSDrive GnomeVFSDrive;
-typedef enum _GnomeVFSDeviceType GnomeVFSDeviceType;
-typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
-					  char *error,
-					  char *detailed_error,
-					  gpointer data);
-
-#include <libgnomevfs/gnome-vfs-drive.h>
-
 G_BEGIN_DECLS
 
 #define GNOME_VFS_TYPE_VOLUME        (gnome_vfs_volume_get_type ())
@@ -50,7 +39,7 @@ G_BEGIN_DECLS
 
 typedef struct _GnomeVFSVolumePrivate GnomeVFSVolumePrivate;
 
-enum _GnomeVFSDeviceType {
+typedef enum {
 	GNOME_VFS_DEVICE_TYPE_UNKNOWN,
 	GNOME_VFS_DEVICE_TYPE_AUDIO_CD,
 	GNOME_VFS_DEVICE_TYPE_VIDEO_DVD,
@@ -69,7 +58,7 @@ enum _GnomeVFSDeviceType {
 	GNOME_VFS_DEVICE_TYPE_WINDOWS, 
 	GNOME_VFS_DEVICE_TYPE_LOOPBACK, 
 	GNOME_VFS_DEVICE_TYPE_NETWORK 
-};
+} GnomeVFSDeviceType;
 
 typedef enum {
 	GNOME_VFS_VOLUME_TYPE_MOUNTPOINT,
@@ -77,15 +66,30 @@ typedef enum {
 	GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER
 } GnomeVFSVolumeType;
 
+typedef struct _GnomeVFSVolume GnomeVFSVolume;
+
 struct _GnomeVFSVolume {
 	GObject parent;
 
         GnomeVFSVolumePrivate *priv;
 };
 
-typedef struct {
+typedef struct _GnomeVFSVolumeClass GnomeVFSVolumeClass;
+
+struct _GnomeVFSVolumeClass {
 	GObjectClass parent_class;
-} GnomeVFSVolumeClass;
+};
+
+typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
+					  char *error,
+					  char *detailed_error,
+					  gpointer data);
+
+
+/* Need to declare this here due to cross use in gnome-vfs-drive.h */
+typedef struct _GnomeVFSDrive GnomeVFSDrive;
+
+#include <libgnomevfs/gnome-vfs-drive.h>
 
 GType gnome_vfs_volume_get_type (void) G_GNUC_CONST;
 

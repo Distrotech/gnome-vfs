@@ -28,6 +28,7 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory.h			\
+	gnome-vfs-drive.h					\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
@@ -44,6 +45,8 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-types.h			\
 	gnome-vfs-utils.h			\
+	gnome-vfs-volume.h		\
+	gnome-vfs-volume-monitor.h	\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
