@@ -1,6 +1,6 @@
 2001-01-16  Pavel Cisler  <pavel@eazel.com>
 
-	reviewed by: <delete if not using a buddy>
+	reviewed by: Darin Adler <darin@eazel.com>
 	
 	Fix 5399: Callbacks need a better way to find out if they are still needed.
 	Fix 5401: Decouple async jobs and callbacks.
