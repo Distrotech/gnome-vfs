@@ -63,6 +63,14 @@ G_BEGIN_DECLS
  **/
 #define GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL "requires_terminal"
 #define GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS "uses_gnomevfs"
+
+/**
+ * GNOME_VFS_APPLICATION_REGISTRY_STARTUP_NOTIFY:
+ *
+ * Application registry key for determining if an application
+ * supports freedesktop.org-style startup notification.
+ **/
+#define GNOME_VFS_APPLICATION_REGISTRY_STARTUP_NOTIFY "startup_notify"
 	
 /*
  * Existance check

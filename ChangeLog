@@ -1,3 +1,10 @@
+2003-06-11  Jon Svendsen  <jon-sven@frisurf.no>
+
+	* libgnomevfs/gnome-vfs-application-registry.h
+	(GNOME_VFS_APPLICATION_REGISTRY_STARTUP_NOTIFY): Add a macro 
+	describing a new application registry key to determine if an
+	application supports startup notification.
+
 2003-06-11  Leena Gunda  <leena.gunda@wipro.com>
 
 	* modules/cdemenu-desktop-method.c (do_open): 
