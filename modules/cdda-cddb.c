@@ -45,21 +45,28 @@
 #include "cdda-cdrom-extensions.h"
 #include "cdda-cddb.h"
 
+/* This is here to work around a broken header file.
+ * cdda_interface.h has a statically defined array of
+ * chars that is unused. This will break our build
+ * due to our strict error checking.
+ */
+char **broken_header_fix2 = strerror_tr;
+
 static int 	CDDBSum(int val);
 static int 	CDDBConnect(CDDBServer *server);
-static void CDDBDisconnect(int sock);
-static void CDDBSkipHTTP(int sock);
+static void 	CDDBDisconnect(int sock);
+static void 	CDDBSkipHTTP(int sock);
 static int 	CDDBReadLine(int sock,char *inbuffer,int len);
-static void CDDBMakeHello(CDDBHello *hello,char *hellobuf);
-static void CDDBMakeRequest(CDDBServer *server, CDDBHello *hello, char *cmd,char *outbuf,int outlen);
-static void CDDBProcessLine(char *inbuffer,DiscData *data, int numtracks);
-//static void CDDBWriteLine(char *header,int num,char *data,FILE *outfile);
-
+static void 	CDDBMakeHello(CDDBHello *hello,char *hellobuf);
+static void 	CDDBMakeRequest(CDDBServer *server, CDDBHello *hello, char *cmd,char *outbuf,int outlen);
+static void 	CDDBProcessLine(char *inbuffer,DiscData *data, int numtracks);
+#if 0
+static void CDDBWriteLine(char *header,int num,char *data,FILE *outfile);
+#endif
 
 static char *cddb_genres[] = {"unknown","blues","classical","country",
-			    			  "data","folk","jazz","misc","newage",
-			    			  "reggae","rock","soundtrack"};
-
+			      "data","folk","jazz","misc","newage",
+			      "reggae","rock","soundtrack"};
 
 /* CDDB sum function */
 static int 

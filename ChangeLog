@@ -1,5 +1,12 @@
 2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
 
+	* modules/cdda-cddb.c:
+	Added a workaround for the strangely defined, but unused,
+	static arrays of chars in cdparanoia headers that causes
+	a compiler error due to our strict error checking.
+	
+2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
+
 	* modules/cdda-module.conf:
 	Add new cdda configuration file to build.
 
