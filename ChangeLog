@@ -1,6 +1,6 @@
 2000-10-31  Darin Adler  <darin@eazel.com>
 
-	* gnome-vfs.spec.in:
+	* gnome-vfs.spec.in: Add vendor.
 
 2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
 
