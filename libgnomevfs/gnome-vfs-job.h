@@ -217,8 +217,6 @@ typedef struct {
 typedef struct {
 	GnomeVFSURI *uri;
 	GnomeVFSFileInfoOptions options;
-	GnomeVFSDirectorySortRule *sort_rules;
-	gboolean reverse_order;
 	GnomeVFSDirectoryFilterType filter_type;
 	GnomeVFSDirectoryFilterOptions filter_options;
 	gchar *filter_pattern;
@@ -226,15 +224,10 @@ typedef struct {
 } GnomeVFSLoadDirectoryOp;
 
 typedef struct {
-	GnomeVFSDirectoryList *list;
-	int ref_count;
-} GnomeVFSSharedDirectoryList;
-
-typedef struct {
 	GnomeVFSAsyncDirectoryLoadCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
-	GnomeVFSSharedDirectoryList *list;
+	GList *list;
 	guint entries_read;
 } GnomeVFSLoadDirectoryOpResult;
 

@@ -55,7 +55,6 @@ GStaticMutex debug_mutex = { NULL, { { } } };
 static int job_count = 0;
 
 static void 	gnome_vfs_op_destroy 			(GnomeVFSOp 			*op);
-static void 	gnome_vfs_shared_directory_list_unref 	(GnomeVFSSharedDirectoryList 	*list);
 static gboolean dispatch_job_callback 			(gpointer 			 data);
 static gboolean dispatch_sync_job_callback 		(gpointer 			 data);
 
@@ -252,8 +251,7 @@ dispatch_load_directory_callback (GnomeVFSNotifyResult *notify_result)
 {
 	(* notify_result->specifics.load_directory.callback) (notify_result->job_handle,
 							      notify_result->specifics.load_directory.result,
-							      notify_result->specifics.load_directory.list != NULL
-							      ?  notify_result->specifics.load_directory.list->list : NULL,
+							      notify_result->specifics.load_directory.list,
 							      notify_result->specifics.load_directory.entries_read,
 							      notify_result->specifics.load_directory.callback_data);
 }
@@ -386,7 +384,7 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 		break;
 		
 	case GNOME_VFS_OP_LOAD_DIRECTORY:
-		gnome_vfs_shared_directory_list_unref (notify_result->specifics.load_directory.list);
+		gnome_vfs_file_info_list_free (notify_result->specifics.load_directory.list);
 		g_free (notify_result);
 		break;
 
@@ -662,7 +660,6 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		if (op->specifics.load_directory.uri != NULL) {
 			gnome_vfs_uri_unref (op->specifics.load_directory.uri);
 		}
-		g_free (op->specifics.load_directory.sort_rules);
 		g_free (op->specifics.load_directory.filter_pattern);
 		break;
 	case GNOME_VFS_OP_OPEN:
@@ -1208,240 +1205,6 @@ execute_write (GnomeVFSJob *job)
 	job_oneway_notify (job, notify_result);
 }
 
-static GnomeVFSSharedDirectoryList *
-gnome_vfs_shared_directory_list_new (void)
-{
-	GnomeVFSSharedDirectoryList *result;
-	
-	result = g_new (GnomeVFSSharedDirectoryList, 1);
-	result->list = gnome_vfs_directory_list_new ();
-	result->ref_count = 1;
-	
-	return result;
-}
-
-static GnomeVFSSharedDirectoryList *
-gnome_vfs_shared_directory_list_ref (GnomeVFSSharedDirectoryList *list)
-{
-	g_assert (list != NULL);
-	g_assert (list->ref_count > 0);
-	
-	++list->ref_count;
-	return list;
-}
-
-static void
-gnome_vfs_shared_directory_list_unref (GnomeVFSSharedDirectoryList *list)
-{
-	if (list == NULL) {
-		return;
-	}
-	
-	g_assert (list->ref_count > 0);
-
-	if (--list->ref_count == 0) {
-		gnome_vfs_directory_list_destroy (list->list);
-		g_free (list);
-	}
-}
-
-static void
-execute_load_directory_not_sorted (GnomeVFSJob *job,
-				   GnomeVFSDirectoryFilter *filter)
-{
-	GnomeVFSLoadDirectoryOp *load_directory_op;
-	GnomeVFSDirectoryHandle *handle;
-	GnomeVFSSharedDirectoryList *directory_list;
-	GnomeVFSFileInfo *info;
-	GnomeVFSResult result;
-	guint count;
-	GnomeVFSNotifyResult *notify_result;
-
-	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
-	load_directory_op = &job->op->specifics.load_directory;
-	
-	if (load_directory_op->uri == NULL) {
-		result = GNOME_VFS_ERROR_INVALID_URI;
-	} else {
-		result = gnome_vfs_directory_open_from_uri_cancellable
-			(&handle,
-			 load_directory_op->uri,
-			 load_directory_op->options,
-			 filter,
-			 job->op->context);
-	}
-
-	if (result != GNOME_VFS_OK) {
-		notify_result = g_new0 (GnomeVFSNotifyResult, 1);
-		notify_result->job_handle = job->job_handle;
-		notify_result->type = job->op->type;
-		notify_result->specifics.load_directory.result = result;
-		notify_result->specifics.load_directory.callback =
-			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
-		notify_result->specifics.load_directory.callback_data = job->op->callback_data;
-		job_oneway_notify (job, notify_result);
-		
-		return;
-	}
-
-	directory_list = gnome_vfs_shared_directory_list_new ();
-
-	count = 0;
-	while (1) {
-		if (gnome_vfs_context_check_cancellation (job->op->context)) {
-			JOB_DEBUG (("cancelled, bailing %u", GPOINTER_TO_UINT (job->job_handle)));
-			result = GNOME_VFS_ERROR_CANCELLED;
-			break;
-		}
-		
-		info = gnome_vfs_file_info_new ();
-
-		result = gnome_vfs_directory_read_next_cancellable (handle, info, job->op->context);
-
-		if (result == GNOME_VFS_OK) {
-			gnome_vfs_directory_list_append (directory_list->list, info);
-			count++;
-		} else {
-			gnome_vfs_file_info_unref (info);
-		}
-
-		if (count == load_directory_op->items_per_notification
-			|| result != GNOME_VFS_OK) {
-
-			notify_result = g_new0 (GnomeVFSNotifyResult, 1);
-			notify_result->job_handle = job->job_handle;
-			notify_result->type = job->op->type;
-			notify_result->specifics.load_directory.result = result;
-			notify_result->specifics.load_directory.entries_read = count;
-			notify_result->specifics.load_directory.list =
-				gnome_vfs_shared_directory_list_ref (directory_list);
-			notify_result->specifics.load_directory.callback =
-				(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
-			notify_result->specifics.load_directory.callback_data =
-				job->op->callback_data;
-
-			/* If we have not set a position yet, it means this is
-                           the first iteration, so we must position on the
-                           first element.  Otherwise, the last time we got here
-                           we positioned on the last element with
-                           `gnome_vfs_directory_list_last()', so we have to go
-                           to the next one.  */
-			if (gnome_vfs_directory_list_get_position (directory_list->list) == NULL) {
-				gnome_vfs_directory_list_first (directory_list->list);
-			} else {
-				gnome_vfs_directory_list_next (directory_list->list);
-			}
-
-			job_oneway_notify (job, notify_result);
-
-			if (result != GNOME_VFS_OK) {
-				break;
-			}
-
-			count = 0;
-			gnome_vfs_directory_list_last (directory_list->list);
-		}
-	}
-
-	gnome_vfs_shared_directory_list_unref (directory_list);
-	gnome_vfs_directory_close (handle);
-}
-
-static void
-execute_load_directory_sorted (GnomeVFSJob *job,
-			       GnomeVFSDirectoryFilter *filter)
-{
-	GnomeVFSLoadDirectoryOp *load_directory_op;
-	GnomeVFSSharedDirectoryList *directory_list;
-	GnomeVFSDirectoryListPosition previous_p, p;
-	GnomeVFSResult result;
-	guint count;
-	GnomeVFSNotifyResult *notify_result;
-
-	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
-	load_directory_op = &job->op->specifics.load_directory;
-	
-	directory_list = gnome_vfs_shared_directory_list_new ();
-	if (load_directory_op->uri == NULL) {
-		result = GNOME_VFS_ERROR_INVALID_URI;
-	} else {
-		result = gnome_vfs_directory_list_load_from_uri
-			(&directory_list->list,
-			 load_directory_op->uri,
-			 load_directory_op->options,
-			 filter);
-	}
-
-
-	if (result != GNOME_VFS_OK) {
-		notify_result = g_new0 (GnomeVFSNotifyResult, 1);
-		notify_result->job_handle = job->job_handle;
-		notify_result->type = job->op->type;
-		notify_result->specifics.load_directory.result = result;
-		notify_result->specifics.load_directory.callback =
-			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
-		notify_result->specifics.load_directory.callback_data =
-			job->op->callback_data;
-		job_oneway_notify (job, notify_result);
-		gnome_vfs_shared_directory_list_unref (directory_list);
-		return;
-	}
-
-	gnome_vfs_directory_list_sort
-		(directory_list->list,
-		 load_directory_op->reverse_order,
-		 load_directory_op->sort_rules);
-
-	p = gnome_vfs_directory_list_get_first_position (directory_list->list);
-
-	if (p == NULL) {
-		notify_result = g_new0 (GnomeVFSNotifyResult, 1);
-		notify_result->job_handle = job->job_handle;
-		notify_result->type = job->op->type;
-		notify_result->specifics.load_directory.result = GNOME_VFS_ERROR_EOF;
-		notify_result->specifics.load_directory.callback =
-			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
-		notify_result->specifics.load_directory.callback_data =
-			job->op->callback_data;
-		job_oneway_notify (job, notify_result);
-		gnome_vfs_shared_directory_list_unref (directory_list);
-		return;
-	}
-
-	count = 0;
-	previous_p = p;
-	while (p != NULL) {
-		count++;
-		p = gnome_vfs_directory_list_position_next (p);
-		if (p == NULL || count == load_directory_op->items_per_notification) {
-			gnome_vfs_directory_list_set_position (directory_list->list,
-							       previous_p);
-
-			notify_result = g_new0 (GnomeVFSNotifyResult, 1);
-			notify_result->job_handle = job->job_handle;
-			notify_result->type = job->op->type;
-			notify_result->specifics.load_directory.entries_read = count;
-			notify_result->specifics.load_directory.list =
-				gnome_vfs_shared_directory_list_ref (directory_list);
-			notify_result->specifics.load_directory.callback =
-				(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
-			notify_result->specifics.load_directory.callback_data =
-				job->op->callback_data;
-
-			if (p == NULL) {
-				notify_result->specifics.load_directory.result = GNOME_VFS_ERROR_EOF;
-			} else {
-				notify_result->specifics.load_directory.result = GNOME_VFS_OK;
-			}
-			job_oneway_notify (job, notify_result);
-
-			count = 0;
-			previous_p = p;
-		}
-	}
-	gnome_vfs_shared_directory_list_unref (directory_list);
-}
-
 static void
 execute_get_file_info (GnomeVFSJob *job)
 {
@@ -1578,10 +1341,101 @@ execute_find_directory (GnomeVFSJob *job)
 }
 
 static void
+load_directory_details (GnomeVFSJob *job,
+			GnomeVFSDirectoryFilter *filter)
+{
+	GnomeVFSLoadDirectoryOp *load_directory_op;
+	GnomeVFSDirectoryHandle *handle;
+	GList *directory_list;
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult result;
+	guint count;
+	GnomeVFSNotifyResult *notify_result;
+
+	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
+	load_directory_op = &job->op->specifics.load_directory;
+	
+	if (load_directory_op->uri == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		result = gnome_vfs_directory_open_from_uri_cancellable
+			(&handle,
+			 load_directory_op->uri,
+			 load_directory_op->options,
+			 filter,
+			 job->op->context);
+	}
+
+	if (result != GNOME_VFS_OK) {
+		notify_result = g_new0 (GnomeVFSNotifyResult, 1);
+		notify_result->job_handle = job->job_handle;
+		notify_result->type = job->op->type;
+		notify_result->specifics.load_directory.result = result;
+		notify_result->specifics.load_directory.callback =
+			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
+		notify_result->specifics.load_directory.callback_data = job->op->callback_data;
+		job_oneway_notify (job, notify_result);
+		
+		return;
+	}
+
+	directory_list = NULL;
+
+	count = 0;
+	while (1) {
+		if (gnome_vfs_context_check_cancellation (job->op->context)) {
+			JOB_DEBUG (("cancelled, bailing %u", GPOINTER_TO_UINT (job->job_handle)));
+			gnome_vfs_file_info_list_free (directory_list);
+			directory_list = NULL;
+			result = GNOME_VFS_ERROR_CANCELLED;
+			break;
+		}
+		
+		info = gnome_vfs_file_info_new ();
+
+		result = gnome_vfs_directory_read_next_cancellable (handle, info, job->op->context);
+
+		if (result == GNOME_VFS_OK) {
+			directory_list = g_list_prepend (directory_list, info);
+			count++;
+		} else {
+			gnome_vfs_file_info_unref (info);
+		}
+
+		if (count == load_directory_op->items_per_notification
+			|| result != GNOME_VFS_OK) {
+
+			notify_result = g_new0 (GnomeVFSNotifyResult, 1);
+			notify_result->job_handle = job->job_handle;
+			notify_result->type = job->op->type;
+			notify_result->specifics.load_directory.result = result;
+			notify_result->specifics.load_directory.entries_read = count;
+			notify_result->specifics.load_directory.list = 
+				g_list_reverse (directory_list);
+			notify_result->specifics.load_directory.callback =
+				(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
+			notify_result->specifics.load_directory.callback_data =
+				job->op->callback_data;
+
+			job_oneway_notify (job, notify_result);
+
+			count = 0;
+			directory_list = NULL;
+
+			if (result != GNOME_VFS_OK) {
+				break;
+			}
+		}
+	}
+
+	g_assert (directory_list == NULL);
+	gnome_vfs_directory_close (handle);
+}
+
+static void
 execute_load_directory (GnomeVFSJob *job)
 {
 	GnomeVFSLoadDirectoryOp *load_directory_op;
-	GnomeVFSDirectorySortRule *sort_rules;
 	GnomeVFSDirectoryFilter *filter;
 
 	load_directory_op = &job->op->specifics.load_directory;
@@ -1591,11 +1445,7 @@ execute_load_directory (GnomeVFSJob *job)
 		 load_directory_op->filter_options,
 		 load_directory_op->filter_pattern);
 
-	sort_rules = load_directory_op->sort_rules;
-	if (sort_rules == NULL || sort_rules[0] == GNOME_VFS_DIRECTORY_SORT_NONE)
-		execute_load_directory_not_sorted (job, filter);
-	else
-		execute_load_directory_sorted (job, filter);
+	load_directory_details (job, filter);
 
 	gnome_vfs_directory_filter_destroy (filter);
 }

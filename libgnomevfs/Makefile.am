@@ -48,7 +48,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-constants.h			\
 	gnome-vfs-directory.h			\
 	gnome-vfs-directory-filter.h		\
-	gnome-vfs-directory-list.h		\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
@@ -98,7 +97,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
 	gnome-vfs-directory-filter.c		\
-	gnome-vfs-directory-list.c		\
 	gnome-vfs-handle.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\

@@ -108,8 +108,6 @@ void           pthread_gnome_vfs_async_set_file_info          (GnomeVFSAsyncHand
 void           pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *text_uri,
 							       GnomeVFSFileInfoOptions              options,
-							       GnomeVFSDirectorySortRule            sort_rules[],
-							       gboolean                             reverse_order,
 							       GnomeVFSDirectoryFilterType          filter_type,
 							       GnomeVFSDirectoryFilterOptions       filter_options,
 							       const gchar                         *filter_pattern,
@@ -119,8 +117,6 @@ void           pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHand
 void           pthread_gnome_vfs_async_load_directory_uri     (GnomeVFSAsyncHandle                **handle_return,
 							       GnomeVFSURI                         *uri,
 							       GnomeVFSFileInfoOptions              options,
-							       GnomeVFSDirectorySortRule            sort_rules[],
-							       gboolean                             reverse_order,
 							       GnomeVFSDirectoryFilterType          filter_type,
 							       GnomeVFSDirectoryFilterOptions       filter_options,
 							       const gchar                         *filter_pattern,
@@ -600,36 +596,9 @@ pthread_gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_go (job);
 }
 
-static GnomeVFSDirectorySortRule *
-copy_sort_rules (GnomeVFSDirectorySortRule *rules)
-{
-	GnomeVFSDirectorySortRule *result;
-	guint count, i;
-
-	if (rules == NULL) {
-		return NULL;
-	}
-
-	for (count = 0; rules[count] != GNOME_VFS_DIRECTORY_SORT_NONE; count++) {
-		;
-	}
-
-	result = g_new (GnomeVFSDirectorySortRule, count + 1);
-
-	for (i = 0; i < count; i++) {
-		result[i] = rules[i];
-	}
-
-	result[i] = GNOME_VFS_DIRECTORY_SORT_NONE;
-
-	return result;
-}
-
 static GnomeVFSAsyncHandle *
 async_load_directory (GnomeVFSURI *uri,
 		      GnomeVFSFileInfoOptions options,
-		      GnomeVFSDirectorySortRule sort_rules[],
-		      gboolean reverse_order,
 		      GnomeVFSDirectoryFilterType filter_type,
 		      GnomeVFSDirectoryFilterOptions filter_options,
 		      const gchar *filter_pattern,
@@ -646,8 +615,6 @@ async_load_directory (GnomeVFSURI *uri,
 	load_directory_op = &job->op->specifics.load_directory;
 	load_directory_op->uri = uri == NULL ? NULL : gnome_vfs_uri_ref (uri);
 	load_directory_op->options = options;
-	load_directory_op->sort_rules = copy_sort_rules (sort_rules);
-	load_directory_op->reverse_order = reverse_order;
 	load_directory_op->filter_type = filter_type;
 	load_directory_op->filter_options = filter_options;
 	load_directory_op->filter_pattern = g_strdup (filter_pattern);
@@ -664,8 +631,6 @@ void
 pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 					const gchar *text_uri,
 					GnomeVFSFileInfoOptions options,
-					GnomeVFSDirectorySortRule sort_rules[],
-					gboolean reverse_order,
 					GnomeVFSDirectoryFilterType filter_type,
 					GnomeVFSDirectoryFilterOptions filter_options,
 					const gchar *filter_pattern,
@@ -681,7 +646,6 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_load_directory (uri, options,
-				               sort_rules, reverse_order,
 				               filter_type, filter_options, filter_pattern,
 				               items_per_notification,
 				               callback, callback_data);
@@ -694,8 +658,6 @@ void
 pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					    GnomeVFSURI *uri,
 					    GnomeVFSFileInfoOptions options,
-					    GnomeVFSDirectorySortRule sort_rules[],
-					    gboolean reverse_order,
 					    GnomeVFSDirectoryFilterType filter_type,
 					    GnomeVFSDirectoryFilterOptions filter_options,
 					    const gchar *filter_pattern,
@@ -708,7 +670,6 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (callback != NULL);
 
 	*handle_return = async_load_directory (uri, options,
-					       sort_rules, reverse_order,
 					       filter_type, filter_options, filter_pattern,
 					       items_per_notification,
 					       callback, callback_data);

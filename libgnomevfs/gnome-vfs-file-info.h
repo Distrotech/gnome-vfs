@@ -85,16 +85,6 @@ GnomeVFSFileInfo *
 gboolean	 gnome_vfs_file_info_matches	(const GnomeVFSFileInfo *a,
 						 const GnomeVFSFileInfo *b);
 
-gint		 gnome_vfs_file_info_compare_for_sort
-						(const GnomeVFSFileInfo *a,
-						 const GnomeVFSFileInfo *b,
-						 const GnomeVFSDirectoryFilterType *sort_rules);
-
-gint		 gnome_vfs_file_info_compare_for_sort_reversed
-						(const GnomeVFSFileInfo *a,
-						 const GnomeVFSFileInfo *b,
-						 const GnomeVFSDirectoryFilterType *sort_rules);
-
 GList           *gnome_vfs_file_info_list_ref   (GList *list);
 GList           *gnome_vfs_file_info_list_unref (GList *list);
 GList           *gnome_vfs_file_info_list_copy  (GList *list);

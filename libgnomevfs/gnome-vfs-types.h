@@ -310,25 +310,6 @@ typedef enum {
 	GNOME_VFS_DIRECTORY_KIND_TRASH = 1001
 } GnomeVFSFindDirectoryKind;
 
-typedef struct GnomeVFSDirectoryList GnomeVFSDirectoryList;
-
-typedef gpointer GnomeVFSDirectoryListPosition;
-
-#define GNOME_VFS_DIRECTORY_LIST_POSITION_NONE NULL
-
-typedef enum {
-	GNOME_VFS_DIRECTORY_SORT_NONE,
-	GNOME_VFS_DIRECTORY_SORT_DIRECTORYFIRST,
-	GNOME_VFS_DIRECTORY_SORT_BYNAME,
-	GNOME_VFS_DIRECTORY_SORT_BYNAME_IGNORECASE,
-	GNOME_VFS_DIRECTORY_SORT_BYSIZE,
-	GNOME_VFS_DIRECTORY_SORT_BYBLOCKCOUNT,
-	GNOME_VFS_DIRECTORY_SORT_BYATIME,
-	GNOME_VFS_DIRECTORY_SORT_BYMTIME,
-	GNOME_VFS_DIRECTORY_SORT_BYCTIME,
-	GNOME_VFS_DIRECTORY_SORT_BYMIMETYPE
-} GnomeVFSDirectorySortRule;
-
 typedef enum {
 	GNOME_VFS_DIRECTORY_FILTER_NONE,
 	GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN,
@@ -364,9 +345,6 @@ typedef enum {
 typedef struct GnomeVFSDirectoryFilter GnomeVFSDirectoryFilter;
 
 typedef gboolean (* GnomeVFSDirectoryFilterFunc) (const GnomeVFSFileInfo *info,
-						  gpointer data);
-typedef gint     (* GnomeVFSDirectorySortFunc)   (const GnomeVFSFileInfo *a,
-						  const GnomeVFSFileInfo *b,
 						  gpointer data);
 typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 						  GnomeVFSFileInfo *info,
@@ -615,7 +593,7 @@ typedef void	(* GnomeVFSAsyncSetFileInfoCallback)
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
 						(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
-						 GnomeVFSDirectoryList *list,
+						 GList *list,
 						 guint entries_read,
 						 gpointer callback_data);
 

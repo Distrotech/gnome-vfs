@@ -609,3 +609,66 @@ gnome_vfs_directory_visit_files (const gchar *text_uri,
 
 	return result;
 }
+
+static GnomeVFSResult
+load_from_handle (GList **list,
+		  GnomeVFSDirectoryHandle *handle)
+{
+	GnomeVFSResult result;
+	GnomeVFSFileInfo *info;
+
+	*list = NULL;
+
+	for (;;) {
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_directory_read_next (handle, info);
+		if (result != GNOME_VFS_OK)
+			break;
+		*list = g_list_prepend (*list, info);
+	}
+
+	*list = g_list_reverse (*list);
+	
+	gnome_vfs_file_info_unref (info);
+
+	if (result != GNOME_VFS_ERROR_EOF) {
+		gnome_vfs_file_info_list_free (*list);
+		*list = NULL;
+	}
+
+	return GNOME_VFS_OK;
+}
+
+/**
+ * gnome_vfs_directory_list_load:
+ * @list: An address of a pointer to a list
+ * @text_uri: A text URI
+ * @options: Options for loading the directory 
+ * @filter: Filter to be applied to the files being read
+ * 
+ * Load a directory from @text_uri with the specified @options
+ * into a list.  Directory entries are filtered through
+ * @filter.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
+GnomeVFSResult 
+gnome_vfs_directory_list_load (GList **list,
+			       const gchar *text_uri,
+			       GnomeVFSFileInfoOptions options,
+			       const GnomeVFSDirectoryFilter *filter)
+{
+	GnomeVFSDirectoryHandle *handle;
+	GnomeVFSResult result;
+
+	result = gnome_vfs_directory_open (&handle, text_uri, options, filter);
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+
+	result = load_from_handle (list, handle);
+
+	gnome_vfs_directory_close (handle);
+	return result;
+}
+

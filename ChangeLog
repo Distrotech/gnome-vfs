@@ -1,3 +1,57 @@
+2001-01-29  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan <gzr@eazel.com>
+
+	Fixed 5781 (results of load_directory must be passed in chunks
+		instead of the entire list)
+	Fixed 1438 (use plain GList instead of GnomeVFSDirectoryList)
+	
+	* libgnomevfs/Makefile.am:
+	Got rid of gnome-vfs-directory-list.c and gnome-vfs-directory-list.h
+	
+	* idl/gnome-vfs-slave.idl:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	(corba_gnome_vfs_async_load_directory),
+	(corba_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c:
+	(impl_Notify_load_directory):
+	* libgnomevfs-corba/gnome-vfs-slave-process.h:
+	* libgnomevfs-corba/gnome-vfs-slave.c: (load_directory),
+	(impl_Request_load_directory):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(async_load_directory), (pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_load_directory_callback),
+	(gnome_vfs_job_destroy_notify_result), (gnome_vfs_op_destroy),
+	(load_directory_details), (execute_load_directory):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_async_load_directory_uri),
+	(gnome_vfs_async_load_directory):
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	* libgnomevfs/gnome-vfs-directory-list.h:
+	* libgnomevfs/gnome-vfs-directory.c: (load_from_handle),
+	(gnome_vfs_directory_list_load):
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs.h:
+	* test/gnome-file-selection/gnome-file-selection.c:
+	(populate_callback), (start_populating):
+	* test/test-async-cancel.c: (directory_load_callback),
+	(directory_load_failed_callback), (test_load_directory_cancel),
+	(test_load_directory_fail):
+	* test/test-async-directory.c: (directory_load_callback), (main):
+	* test/test-directory.c: (print_list), (main):
+	* test/test-shell.c: (do_ls), (validate_path), (get_regexp_name):
+	Switched all the users of GnomeVFSDirectoryList to use a GList
+	instead. Got rid of gnome_vfs_load_directory_sorted. Got rif of
+	sorting rules. Move gnome_vfs_directory_list_load to gnome-vfs-directory.c
+	and change it to use a GList.
+	
 2001-01-29  Rebecca Schulman  <rebecka@eazel.com>
 	Change the value of the "expects_uris" attribute
 	of applications to have 3 possible values:
@@ -72,7 +126,6 @@
 
 	* configure.in: upped version to 0.5.0
 
->>>>>>> 1.918
 2001-01-27  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* Makefile.am: added xml-i18n files to EXTRA_DISTS

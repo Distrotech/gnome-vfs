@@ -36,7 +36,6 @@ extern "C" {
 #include "gnome-vfs-async-ops.h"
 #include "gnome-vfs-directory.h"
 #include "gnome-vfs-directory-filter.h"
-#include "gnome-vfs-directory-list.h"
 #include "gnome-vfs-file-info.h"
 #include "gnome-vfs-find-directory.h"
 #include "gnome-vfs-init.h"
