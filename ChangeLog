@@ -1,3 +1,26 @@
+2000-05-31  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* devel-docs/.cvsignore:
+	* devel-docs/Makefile.am:
+	* devel-docs/gnome-vfs-mime-type-handling.txt:
+	* devel-docs/gnome-vfs-tutorial/.cvsignore:
+	* devel-docs/gnome-vfs-tutorial/Makefile.am:
+	* devel-docs/gnome-vfs-tutorial/gnome-vfs-tutorial.sgml:
+	* devel-docs/gnome-vfs/.cvsignore:
+	* devel-docs/gnome-vfs/Makefile.am:
+	* devel-docs/gnome-vfs/gnome-vfs-decl.txt:
+	* devel-docs/gnome-vfs/gnome-vfs-docs.sgml:
+	* devel-docs/gnome-vfs/gnome-vfs-sections.txt:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime-info.sgml:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime.sgml:
+	* devel-docs/gnome-vfs/tmpl/libgnome-vfs.sgml:
+	* man/.cvsignore:
+	* man/Makefile.am:
+	* man/gnome-vfs-mime.5.in:
+
+	Import gnome mime documentation from gnome-libs so that it can be
+	properly updated over here in gnome-vfs.
+	
 2000-05-31  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/Makefile.am: Conditionally compile in oaf-based
