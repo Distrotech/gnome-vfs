@@ -35,7 +35,6 @@
 /* Written by David MacKenzie <djm@gnu.ai.mit.edu>. */
 
 #include <config.h>
-#include <glib.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -45,14 +44,14 @@
 #else
 extern int errno;
 #endif
+#include <string.h>
+#include <glib.h>
 
 #if __STDC__
 # define P_(s) s
 #else
 # define P_(s) ()
 #endif
-
-char *strstr ();
 
 static char const *filesystem_type_uncached P_((char *path, char *relpath, struct stat *statp));
 static int xatoi P_((char *cp));
