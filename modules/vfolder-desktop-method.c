@@ -4323,7 +4323,7 @@ read_directory_again:
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
-		file_info->mime_type = g_strdup ("x-directory/normal");
+		file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 		file_info->ctime = dh->info->modification_time;
@@ -4399,7 +4399,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
-		file_info->mime_type = g_strdup ("x-directory/normal");
+		file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 		file_info->ctime = info->modification_time;

@@ -1,3 +1,8 @@
+Thu May 30 10:03:03 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: the directories are of type
+	  x-directory/vfolder-desktop
+
 2002-05-28  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-application-registry.c
