@@ -1,3 +1,9 @@
+2002-07-22  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* configure.in:
+	don't set OPENSSL_CFLAGS if it is "/usr/include",
+	otherwise gcc >= 3.1 issues a warning.
+
 2002-07-19  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* modules/ssh-method.c: (ssh_connect):
