@@ -36,7 +36,7 @@ So2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
 	(nautilus_mime_type_capplet_get_selected_item_mime_type):
 	
-2000-11-01  Aaron Brick <aaron@eazel.com>
+2000-11-01  Aaron Brick  <aaron@eazel.com>
 
 	* data/mime/gnome-vfs.[ak]*:
 	added support for applixware
