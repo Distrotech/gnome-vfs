@@ -18,7 +18,7 @@ typedef struct {
 	GList *outstanding_handles;
 	GList *outstanding_dir_handles;
 	GList *outstanding_contexts;
-  /* DAEMON-TODO: outstanding_monitors + dir_handles */
+  /* DAEMON-TODO: outstanding_monitors */
 } ClientInfo;
 
 BONOBO_CLASS_BOILERPLATE_FULL(
