@@ -5,11 +5,16 @@
 # Keld Simonsen <Keld@dkuug.dk>, 2000.
 # Ole Laursen <olau@hardworking.dk>, 2001.
 #
+# Konventioner:
+#
+#   script -> program (såfremt det er muligt, hvad det hidtil har været)
+#   video -> film
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2001-03-06 23:31+0100\n"
-"PO-Revision-Date: 2001-04-27 20:19+02:00\n"
+"POT-Creation-Date: 2001-04-28 14:52+0200\n"
+"PO-Revision-Date: 2001-04-28 14:51+02:00\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk> \n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +175,7 @@ msgstr "FrameMaker-udbytningsdokument"
 
 #: data/mime/gnome-vfs.keys.in.h:39
 msgid "G3 fax image"
-msgstr "G#-faxbillede"
+msgstr "G3-faxbillede"
 
 #: data/mime/gnome-vfs.keys.in.h:40
 msgid "GIF image"
@@ -182,7 +187,7 @@ msgstr "GIMP-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:42
 msgid "GMC link"
-msgstr "GMC-lænke"
+msgstr "GMC-henvisning"
 
 #: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNOME application details"
@@ -214,7 +219,7 @@ msgstr "Gnumeric-regneark"
 
 #: data/mime/gnome-vfs.keys.in.h:50
 msgid "HDF document"
-msgstr "PDF-dokument"
+msgstr "HDF-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:51
 msgid "HTML page"
@@ -282,7 +287,7 @@ msgstr "KWord-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
-msgstr "Korn-skalskript"
+msgstr "Korn-skalprogram"
 
 #: data/mime/gnome-vfs.keys.in.h:68
 msgid "LHA archive"
@@ -330,7 +335,7 @@ msgstr "MP3-lydfil"
 
 #: data/mime/gnome-vfs.keys.in.h:79
 msgid "MP3 audio playlist"
-msgstr "MP3-spilleliste"
+msgstr "MP3-afspilningsliste"
 
 #: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
@@ -338,11 +343,11 @@ msgstr "MPEG-film"
 
 #: data/mime/gnome-vfs.keys.in.h:81
 msgid "MS ASF video"
-msgstr "Microsoft ASF Video-film"
+msgstr "Microsoft ASF-film"
 
 #: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
-msgstr "Microsoft Video-film"
+msgstr "Microsoft-film"
 
 #: data/mime/gnome-vfs.keys.in.h:83
 msgid "Macintosh AppleDouble-encoded file"
@@ -378,11 +383,11 @@ msgstr "Microsoft Word-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
-msgstr "Microsoft Video-film"
+msgstr "Microsoft-film"
 
 #: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
-msgstr "Nautilus-lænke"
+msgstr "Nautilus-henvisning"
 
 #: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
@@ -410,7 +415,7 @@ msgstr "CGM-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
-msgstr "PGP-meddelelse"
+msgstr "PGN-skakspil"
 
 #: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
@@ -426,11 +431,11 @@ msgstr "PGP-signatur"
 
 #: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
-msgstr "Data krypteret med PGP"
+msgstr "PGP-krypteret fil"
 
 #: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
-msgstr "PHP-skript"
+msgstr "PHP-program"
 
 #: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
@@ -454,7 +459,7 @@ msgstr "Palm OS-database"
 
 #: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
-msgstr "Perlskript"
+msgstr "Perl-program"
 
 #: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
@@ -490,7 +495,7 @@ msgstr "RAR-arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
-msgstr "README-dokument (læs først)"
+msgstr "README-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
@@ -530,7 +535,7 @@ msgstr "SGML-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
-msgstr "SMIL-skript"
+msgstr "SMIL-program"
 
 #: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
@@ -544,13 +549,14 @@ msgstr "SV4 CPIO-arkiv"
 msgid "SV4 CPIP archive (with CRC)"
 msgstr "SV4 CPIP-arkiv (med CRC)"
 
+# billede bedre end kunst i denne sammenhæng
 #: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
-msgstr "SVG-kunst"
+msgstr "SVG-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
-msgstr "SQL-kildekode"
+msgstr "Scheme-kildekode"
 
 #: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
@@ -614,7 +620,7 @@ msgstr "TarGA-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
-msgstr "Tcl-skript"
+msgstr "Tcl-program"
 
 #: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
@@ -630,7 +636,7 @@ msgstr "TeX-skrifttype"
 
 #: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
-msgstr "TeX-skriftmatricer"
+msgstr "TeX-skrifttypeinformation"
 
 #: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
@@ -678,7 +684,7 @@ msgstr "Wavelet-film"
 
 #: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
-msgstr "Windows-bitkortbillede"
+msgstr "Windows-bitmapbillede"
 
 #: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
@@ -686,7 +692,7 @@ msgstr "Windows-ikonbillede"
 
 #: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
-msgstr "Windows Metafil"
+msgstr "Windows metafil-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
@@ -698,7 +704,7 @@ msgstr "X-bitkortbillede"
 
 #: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
-msgstr "X-vinduebillede"
+msgstr "X-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
@@ -738,11 +744,11 @@ msgstr "sikkerhedskopi"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
-msgstr "grundlæggende lydfil"
+msgstr "simpel lydfil"
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
-msgstr "bibliografish opfølgning"
+msgstr "bibliografisk opføring"
 
 #: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
@@ -762,7 +768,7 @@ msgstr "kalenderfil"
 
 #: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
-msgstr "kalender eller begivenhedsdokument"
+msgstr "kalender- eller begivenhedsdokument"
 
 #: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
@@ -826,11 +832,11 @@ msgstr "hjælpeside"
 
 #: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
-msgstr "leverancerapport over epost"
+msgstr "leverancerapport for epost"
 
 #: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
-msgstr "disponeringsrapport over epost"
+msgstr "disponeringsrapport for epost"
 
 #: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
@@ -838,7 +844,7 @@ msgstr "epost-systemrapport"
 
 #: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
-msgstr "makefil"
+msgstr "bygningsfil"
 
 #: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
@@ -866,7 +872,7 @@ msgstr "meddelelse i flere dele"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
-msgstr "navngivet rør"
+msgstr "navngivet ledning"
 
 #: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
@@ -882,11 +888,11 @@ msgstr "del af elektronisk brev"
 
 #: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
-msgstr "ren tekstdokument"
+msgstr "ren tekst-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
-msgstr "profilererresultat"
+msgstr "profileringsresultat"
 
 #: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
@@ -898,7 +904,7 @@ msgstr "afvist kildekodelap"
 
 #: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
-msgstr "rig tekstdokument"
+msgstr "rig tekst-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
@@ -914,7 +920,7 @@ msgstr "skalarkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
-msgstr "skalskript"
+msgstr "skalprogram"
 
 #: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
@@ -926,7 +932,7 @@ msgstr "sokkel"
 
 #: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
-msgstr "forfatterliste"
+msgstr "forfattertak"
 
 #: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
@@ -934,7 +940,7 @@ msgstr "installationsinstruktioner"
 
 #: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
-msgstr "licens"
+msgstr "programlicens"
 
 #: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
@@ -946,7 +952,7 @@ msgstr "stilark"
 
 #: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
-msgstr "symbolsk lænke"
+msgstr "symbolsk henvisning"
 
 #: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
@@ -974,15 +980,15 @@ msgstr "troff-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
-msgstr "'troff me input'-dokument"
+msgstr "troff me inddata-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
-msgstr "'troff mm input'-dokument"
+msgstr "troff mm inddata-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
-msgstr "'troff ms input'-dokument"
+msgstr "troff ms inddata-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
@@ -998,7 +1004,7 @@ msgstr "wave-lydfil"
 
 #: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
-msgstr "webmappe"
+msgstr "internetmappe"
 
 #: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
@@ -1011,133 +1017,6 @@ msgstr "zip-arkiv"
 #: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
 msgstr "zoo-arkiv"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Døende."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Fejl ved læsning af: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Fejl ved skrivning til: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Kan ikke skrive: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Kan ikke oprette sokkel: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Kan ikke binde '%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Kan ikke lytte på '%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Kan ikke modtage forbindelser på '%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Kan ikke initialisere CORBA"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Kan ikke læse første reference til RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Kan ikke aktivere POA-håndtering"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Brug: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Kan ikke åbne filbeskriver %d"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Kan ikke opsætte forespørgselsobjekt."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Kan ikke få IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Modtog mærkelig streng fra slaveproces: '%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Kan ikke finde objekt for '%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- undtagelse %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Kan ikke forbinde sokkel: '%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Kan ikke initialisere GNOME::VFS:Slave::Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke genstarte GNOME::VFS::Slave %s -- undtagelse %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke genstarte GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
@@ -1157,11 +1036,11 @@ msgstr "%s:%d indeholder intet modulnavn."
 #: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
+msgstr "Konfigurationsfilen '%s' kunne ikke findes: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS er allerede initialiseret."
+msgstr "GNOME VFS er allerede klargjort."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
@@ -1185,7 +1064,7 @@ msgstr "Fil ikke fundet"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
-msgstr "Overordnet fejl"
+msgstr "Generel fejl"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:42
@@ -1205,7 +1084,7 @@ msgstr "Ikke-understøttet operation"
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
-msgstr "I/O fejl"
+msgstr "I/O-fejl"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
@@ -1220,7 +1099,7 @@ msgstr "Ugyldigt format"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr "Dårlig filhåndterer"
+msgstr "Ugyldigt filhåndtag"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -1275,7 +1154,7 @@ msgstr "Ikke et katalog"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr "Operation pågår"
+msgstr "Operation er i gang"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -1290,7 +1169,7 @@ msgstr "Fil eksisterer"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr "Fandt lænker der peger i ring"
+msgstr "Fandt henvisninger der peger i ring"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -1325,7 +1204,7 @@ msgstr "Vært har ingen adresse"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
-msgstr "Logind fejlede"
+msgstr "Logind mislykkedes"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -1345,7 +1224,7 @@ msgstr "Kataloget er ikke tomt"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr "For mange lænker"
+msgstr "For mange henvisninger"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
@@ -1388,7 +1267,7 @@ msgstr "%u byte"
 #: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
 msgid "%.1f K"
-msgstr "%.1f K"
+msgstr "%.1f k"
 
 #: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
@@ -1400,372 +1279,362 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:690
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Ukendt op-type %u"
+msgstr "Ukendt operationstype %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:978
+#: libgnomevfs-pthread/gnome-vfs-job.c:1123
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
+msgstr "Kan ikke oprette ledning til åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1574
+#: libgnomevfs-pthread/gnome-vfs-job.c:1578
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ukendt jobtype %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1609
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Filtyper og programmer"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Vi har brug for en god forklaring her."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Ændr ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Ændr fil-endelser"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Standard handling:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Brug visningsprogram"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Åbn med applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Redigér liste"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Tilføj ny MIME-type..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Slet denne Mime-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Gå tilbage til system-standard"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Tilbagegang til system-opsætninger vil\n"
-"fjerne alt i din personlige Mime-opsætning.\n"
-"Skal vi gå tilbage til system-opsætninger?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Vis som %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Standard handling"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Redigér applikationslisten"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Vælg applikationer som skal være i menuen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Tilføj applikation..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Redigér applikation..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Slet applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Redigér komponentliste"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Vælg visninger som skal være i menuen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"MIME-typen der blev indtastet indeholdt store bogstaver. Store bogstaver "
-"blev ændret til små bogstaver for dig."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Tilføj ny MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Tilføj MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Ny MIME-type (ex. image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Beskrivelse (ex. Thumper-billede):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Fil-endelser "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Tilføj..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Fjern     "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Tilføj ny filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Indtast endelserne for denne MIME-type (uden punktum).\n"
-"Flere endelser adskilles af et mellemrum, fx: html htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Filtype:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Du skal indtaste et navn"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Du skal indtaste en kommando"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"\"%s\" eksisterer ikke eller kan ikke køres.\n"
-"Tjek stavningen og kørselsrettighederne på filen."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Kommandoen \"%s\" kan ikke findes.\n"
-"Du skal bruge en kommando der kan virke\n"
-"ved enhver kommandolinje."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Ugyldigt applikationsnavn"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Ugyldig applikationskommando"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Tilføj applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Redigér applikation"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Applikationsnavn:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Applikationskommando:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Opførsel ved åbning"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Kan åbne flere filer"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Kan åbne fra URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Smugkig"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Vælg et ikon"
-
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/efs-method.c:493 modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1179
+#: modules/http-method.c:1191
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1584
+#: modules/http-method.c:1684
 #, c-format
 msgid "Closing connection to %s"
-msgstr "Lukker forbindelse til %s"
+msgstr "Lukker forbindelsen til %s"
 
-#: modules/http-method.c:1850
+#: modules/http-method.c:1950
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1853
+#: modules/http-method.c:1953
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Tilbage"
+#~ msgid "Dying."
+#~ msgstr "Døende."
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Gå til forrige besøgte katalog"
+#~ msgid "Error reading: %s"
+#~ msgstr "Fejl ved læsning af: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Op"
+#~ msgid "Error writing: %s"
+#~ msgstr "Fejl ved skrivning til: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Gå til forælderkataloget"
+#~ msgid "Cannot write: %s"
+#~ msgstr "Kan ikke skrive: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "Frem"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Gå til næste besøgte katalog"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "Kan ikke oprette sokkel: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Læs igen"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "Kan ikke binde '%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Læs dette katalog igen"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "Kan ikke lytte på '%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Hjem"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "Kan ikke modtage forbindelser på '%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Gå til hjemmekataloget"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "Kan ikke klargøre CORBA"
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Navn"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "Kan ikke læse første reference til RootPOA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Størrelse"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "Kan ikke aktivere POA-håndtering"
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Dato"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Brug: %s <ior> [<ior_fd>]\n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Indtast navn:"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Kan ikke åbne fildescriptor %d"
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Vis:"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "Underrettelsesgrænseflade for '%s' ikke fundet."
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Vis punktumfiler"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "Kan ikke opsætte forespørgselsobjekt."
 
-#~ msgid "New Application"
-#~ msgstr "Ny applikation"
+#~ msgid "Cannot extract IOR."
+#~ msgstr "Kan ikke få fat i IOR."
+
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Modtog mærkelig streng fra slaveprocessen: '%s'"
+
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "Kan ikke finde objekt for '%s'"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- undtagelse %s"
+
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "Kan ikke forbinde sokklen '%s': %s"
+
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "Kan ikke klargøre GNOME::VFS:Slave::Notify"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan ikke genstarte GNOME::VFS::Slave %s -- undtagelse %s"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan ikke genstarte GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Filtyper og programmer"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr ""
+#~ "Indstil hvilke programmer der bruges til at åbne/vise forskellige filtyper"
+
+#~ msgid "MIME Type"
+#~ msgstr "MIME-type"
+
+#~ msgid "Change Icon"
+#~ msgstr "Skift ikon"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Ændr fil-endelser"
+
+#~ msgid "Default Action:"
+#~ msgstr "Standardhandling:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Brug fremviser"
+
+#~ msgid "Open With Application"
+#~ msgstr "Åbn med program"
+
+#~ msgid "Edit List"
+#~ msgstr "Redigér liste"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Tilføj ny MIME-type..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Slet denne Mime-type"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Gå tilbage til systemets standard"
+
+#~ msgid "None"
+#~ msgstr "Ingen"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "At gå tilbage til systemets indstillinger vil miste\n"
+#~ "alle ændringer der er foretaget under filtyper og\n"
+#~ "programmer. Forkast ændringerne alligevel?"
+
+#~ msgid "none"
+#~ msgstr "ingen"
+
+#~ msgid "View as %s"
+#~ msgstr "Vis som %s"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivelse"
+
+#~ msgid "Extension"
+#~ msgstr "Endelse"
+
+#~ msgid "Default Action"
+#~ msgstr "Standardhandling"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Redigér programlisten"
+
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Vælg programmer som skal være i menuen for MIME-typen '%s'"
+
+#~ msgid "Add Application..."
+#~ msgstr "Tilføj program..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Redigér program..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Slet program"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Redigér komponentlisten"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr "Vælg fremvisere som skal være i menuen for MIME-typen '%s'"
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "Den indtastede MIME-type indeholdt store bogstaver. Disse bliver ændret til "
+#~ "små bogstaver for dig."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Tilføj ny MIME-type"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Tilføj MIME-type"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Ny MIME-type (f.eks. image/x-thumper):"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Beskrivelse (f.eks. Thumper-billede):"
+
+#~ msgid "File Extensions "
+#~ msgstr "Filendelser "
+
+#~ msgid "Add..."
+#~ msgstr "Tilføj..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Fjern     "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Tilføj ny filtype"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Indtast endelserne for denne MIME-type uden punktum.\n"
+#~ "Der kan indtastes flere endelser adskillt med et mellemrum,\n"
+#~ "f.eks.: html htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Endelse:"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Du skal indtaste et navn."
+
+#~ msgid "You must enter a command."
+#~ msgstr "Du skal indtaste en kommando."
+
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "\"%s\" eksisterer ikke eller kan ikke køres.\n"
+#~ "Tjek stavningen og kørselsrettighederne på filen."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "Kommandoen \"%s\" kan ikke findes.\n"
+#~ "Du skal bruge en kommando virker ved enhver kommandolinje."
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Ugyldigt programnavn"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Ugyldig programkommando"
+
+#~ msgid "Add Application"
+#~ msgstr "Tilføj program"
+
+#~ msgid "Edit Application"
+#~ msgstr "Redigér program"
+
+#~ msgid "Application Name:"
+#~ msgstr "Programnavn:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Programskommando:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Åbningsopførsel"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Kan åbne flere filer"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Kan åbne fra URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Kan ikke finde en hbox ved brug af den normale filvælger"
+
+#~ msgid "Preview"
+#~ msgstr "Smugkig"
+
+#~ msgid "Select an icon"
+#~ msgstr "Vælg et ikon"
+
+#~ msgid "Back"
+#~ msgstr "Tilbage"
+
+# visited er overflødigt
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Gå til den forrige mappe"
+
+#~ msgid "Up"
+#~ msgstr "Op"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Gå til mappen en tak højere oppe"
+
+#~ msgid "Forward"
+#~ msgstr "Frem"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Gå til næste mappe"
+
+#~ msgid "Rescan"
+#~ msgstr "Læs igen"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Læs denne mappe igen"
+
+#~ msgid "Home"
+#~ msgstr "Hjem"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Gå til hjemmemappen"
+
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#~ msgid "Size"
+#~ msgstr "Størrelse"
+
+#~ msgid "Date"
+#~ msgstr "Dato"
+
+#~ msgid "Enter name:"
+#~ msgstr "Indtast navn:"
+
+#~ msgid "Show:"
+#~ msgstr "Vis:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Vis punktumfiler"
 
 #~ msgid "Expects URIs as arguments"
 #~ msgstr "Forventer URI-er som argumenter"
@@ -1801,9 +1670,6 @@ msgstr "Vis punktumfiler"
 #~ msgid "No Description"
 #~ msgstr "Ingen beskrivelse"
 
-#~ msgid "C-Shell script"
-#~ msgstr "C-skalsskript"
-
 #~ msgid "FLC video animation"
 #~ msgstr "FLC-animation"
 
@@ -1824,15 +1690,6 @@ msgstr "Vis punktumfiler"
 
 #~ msgid "PEF document"
 #~ msgstr "PEF-dokument"
-
-#~ msgid "PNG image\t"
-#~ msgstr "PNG-billede"
-
-#~ msgid "Python script"
-#~ msgstr "Pythonskript"
-
-#~ msgid "README file"
-#~ msgstr "README-fil (læs mig)"
 
 #~ msgid "S/MIME data"
 #~ msgstr "S/MIME-data"
@@ -1867,14 +1724,8 @@ msgstr "Vis punktumfiler"
 #~ msgid "class code"
 #~ msgstr "Klassekode"
 
-#~ msgid "enriched text"
-#~ msgstr "beriget tekst"
-
 #~ msgid "gzip archive"
 #~ msgstr "gzip-arkiv"
-
-#~ msgid "link"
-#~ msgstr "lænke"
 
 #~ msgid "ogg file"
 #~ msgstr "OGG-lydfil"
