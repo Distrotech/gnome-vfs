@@ -1,3 +1,9 @@
+2001-07-11  Darin Adler  <darin@bentspoon.com>
+
+	* gnome-vfs.applications: Roll out Seth's change to not pass
+	URIs to the Gimp at all, and make it use paths for file: URIs
+	and still work for http URIs.
+
 2001-06-26  Darin Adler  <darin@bentspoon.com>
 
 	* gnome-vfs.keys.in: Remove ntl_web_browser entries.
