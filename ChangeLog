@@ -1,3 +1,8 @@
+Thu May 30 17:04:48 2002  George Lebl <jirka@5z.com>
+
+	* modules/applications.vfolder-info.in: don't put sawfish capplets
+	  in the advanced dir fixes #77772
+
 Thu May 30 10:03:03 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: the directories are of type

@@ -181,6 +181,9 @@
 	  <And>
 	    <Keyword>Settings</Keyword>
 	    <Keyword>AdvancedSettings</Keyword>
+	    <Not>
+	      <Keyword>Sawfish</Keyword>
+	    </Not>
 	  </And>
 	</Query>
 	<DontShowIfEmpty/>
