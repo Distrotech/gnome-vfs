@@ -114,7 +114,7 @@ free_progress (GnomeVFSXferProgressInfo *progress_info)
 	g_free (progress_info->target_name);
 	progress_info->target_name = NULL;
 	g_free (progress_info->duplicate_name);
-	progress_info->duplicate_name = NULL);
+	progress_info->duplicate_name = NULL;
 }
 
 static void

@@ -1,3 +1,8 @@
+Sun Oct 19 09:30:05 2003  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c (free_progress): fix typo that
+	prevented free_progress from compiling.
+
 2003-10-19  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/ssh-method.c: removed debugging g_print
