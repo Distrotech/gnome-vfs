@@ -1,3 +1,15 @@
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+	
+Backport patches from HEAD:
+	* test/test-shell.c (main):
+	* test/test-async-directory.c (main): 
+	  Process options before getting leftover arguments. 
+	  (patch by William Jon McCann <mccann@jhu.edu>)
+
+	* modules/vfolder/Makefile.am (CLEANFILES):
+   	  Remove generated vfolder files on make clean.
+	  Fixes #121741, patch by Steve Chaplin.
+
 2003-10-06  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "mr" to ALL_LINGUAS.
