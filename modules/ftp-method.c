@@ -585,7 +585,8 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		g_warning ("ftp server (%s:%d) said `%d %s'", 
 			   gnome_vfs_uri_get_host_name (uri),
 			   gnome_vfs_uri_get_host_port (uri), 
-			   conn->response_code, conn->response_message);
+			   conn->response_code,
+			   conn->response_message == NULL ? "" : conn->response_message);
 		gnome_vfs_uri_unref (conn->uri);
 		g_string_free (conn->response_buffer, TRUE);
 		g_free (conn);

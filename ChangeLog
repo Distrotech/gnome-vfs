@@ -1,3 +1,9 @@
+2004-09-08  Archana Shah  <archana.shah@wipro.com>
+
+	* modules/ftp-method.c:
+	ftp_connection_create(): Check whether response_message string
+	is empty. Fixes bugzilla bug 143715
+
 2004-08-16  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/extfs-method.c: (getdelim): fix prototype
