@@ -1,5 +1,10 @@
 2004-08-27  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime.c (_gnome_vfs_get_mime_type_internal):
+	Prefer suffix to sniffing for xml files.
+
+2004-08-27  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	* libgnomevfs/gnome-vfs-mime-private.h:
 	Add private (for now) function

@@ -199,6 +199,7 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 
 		if (result != NULL && result != XDG_MIME_TYPE_UNKNOWN) {
 			if ((strcmp (result, "application/x-ole-storage") == 0) ||
+			    (strcmp (result, "text/xml") == 0) ||
 			    (strcmp (result, "application/x-bzip") == 0) ||
 			    (strcmp (result, "application/x-gzip") == 0) ||
 			    (strcmp (result, "application/zip") == 0)) {
