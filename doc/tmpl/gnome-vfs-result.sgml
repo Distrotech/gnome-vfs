@@ -4,7 +4,7 @@ GnomeVFSResult
 
 <!-- ##### SECTION Short_Description ##### -->
 
-result of I/O operations, the equivalent of errno
+Result of I/O operations, the equivalent of errno
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -18,7 +18,7 @@ result of I/O operations, the equivalent of errno
 
 <!-- ##### ENUM GnomeVFSResult ##### -->
 <para>
-
+ 
 </para>
 
 @GNOME_VFS_OK: 

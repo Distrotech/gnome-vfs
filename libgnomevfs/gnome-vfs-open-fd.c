@@ -389,6 +389,20 @@ get_open_mode (gint filedes)
 	return GNOME_VFS_OPEN_READ; /* bogus */
 }
 
+/**
+ * gnome_vfs_open_fs:
+ * @handle: A pointer to a pointer to a GnomeVFSHandle object
+ * @filedes: a UNIX file descriptor
+ * 
+ * Converts an open unix file descript into a GnomeVFSHandle that 
+ * can be used with the normal GnomeVFS file operations. When the
+ * handle is closed the file descriptor will also be closed.
+ *
+ * Return Value: %GNOME_VFS_OK if the open was ok, a suitable error otherwise.
+ *
+ * Since 2.2
+ **/
+
 GnomeVFSResult
 gnome_vfs_open_fd (GnomeVFSHandle **handle, int filedes)
 {

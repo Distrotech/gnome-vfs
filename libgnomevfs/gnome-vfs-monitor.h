@@ -26,10 +26,30 @@
 
 #include <glib.h>
 
+/**
+ * GnomeVFSMonitorType:
+ * @GNOME_VFS_MONITOR_FILE: 
+ * @GNOME_VFS_MONITOR_DIRECTORY: 
+ *
+ * Type of resources that can be monitored.
+ **/
+
 typedef enum {
   GNOME_VFS_MONITOR_FILE,
   GNOME_VFS_MONITOR_DIRECTORY
 } GnomeVFSMonitorType;
+
+/**
+ * GnomeVFSMonitorEventType:
+ * @GNOME_VFS_MONITOR_EVENT_CHANGED: file data changed
+ * @GNOME_VFS_MONITOR_EVENT_DELETED: file deleted event
+ * @GNOME_VFS_MONITOR_EVENT_STARTEXECUTING:  
+ * @GNOME_VFS_MONITOR_EVENT_STOPEXECUTING: 
+ * @GNOME_VFS_MONITOR_EVENT_CREATED: file created event
+ * @GNOME_VFS_MONITOR_EVENT_METADATA_CHANGED: file metadata changed
+ * 
+ * Types of events that can be monitored.
+ **/
 
 typedef enum {
   GNOME_VFS_MONITOR_EVENT_CHANGED,

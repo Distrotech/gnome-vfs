@@ -8,7 +8,25 @@ POSIX-style file operations that run outside your main loop
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
+  When executing an asynchornous operation on a file the program does not 
+  block waiting for the operation to finish, instead it keeps on running, 
+  which means that the process and the I/O operation can be both running
+  concurrently. Once the I/O operation has been completed the process is
+  notified using a callback.
+</para>
 
+<para>
+  Asynchronous operations are particularly good when long I/O operations 
+  are expected, in this case the program can continue normaly, the I/O
+  will be performed in the background. On the other hand when operations
+  are expected to be short (creating a file, writing/reading small amounts
+  of data, etc.) synchronous operations are prefered.
+</para>
+
+<para>
+  Within a graphical desktop asynchornous I/O operations can be used to
+  avoid blocking the UI (User Interface) during a long operation, and 
+  to be able to provide some kind of feedback to the user.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -377,5 +395,18 @@ POSIX-style file operations that run outside your main loop
 @priority: 
 @callback: 
 @user_data: 
+
+
+<!-- ##### FUNCTION gnome_vfs_async_file_control ##### -->
+<para>
+
+</para>
+
+@handle: 
+@operation: 
+@operation_data: 
+@operation_data_destroy_func: 
+@callback: 
+@callback_data: 
 
 

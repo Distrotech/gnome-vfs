@@ -35,6 +35,13 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GnomeVFSInodeNumber:
+ *
+ * Represents the i-node of a file, this is a low level data structure
+ * that the operating system uses to hold information about a file.
+ **/
+
 typedef GnomeVFSFileSize GnomeVFSInodeNumber;
 
 /**
@@ -49,7 +56,7 @@ typedef GnomeVFSFileSize GnomeVFSInodeNumber;
 typedef enum {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
 	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
-	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
+	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1
 } GnomeVFSFileFlags;
 
 /**
@@ -63,10 +70,10 @@ typedef enum {
  * @GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
  * @GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
  *
- * Enumeration identify the kind of file represented
- * by a #GnomeVFSFileInfo struct. (note, use of MIME types
- * is preferred as this field may eventually disappear)
+ * Identifies the kind of file represented by a #GnomeVFSFileInfo struct. (note,
+ * use of MIME types is preferred as this field may eventually disappear)
  **/
+
 typedef enum {
 	GNOME_VFS_FILE_TYPE_UNKNOWN,
 	GNOME_VFS_FILE_TYPE_REGULAR,
@@ -95,7 +102,7 @@ typedef enum {
  * @GNOME_VFS_FILE_INFO_FIELDS_CTIME: Creating time field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME: Symlink name field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
- * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: the access bits of the permissions
+ * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: Access bits of the permissions
  * bitfield are valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
@@ -120,11 +127,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
 	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13,
 	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14
-
 } GnomeVFSFileInfoFields;
 
-/* File permissions.  These are the same as the Unix ones, but we wrap them
-   into a nicer VFS-like enum.  */
 /* FIXME: It's silly to use the symbolic constants for POSIX here.
  * This is supposed to be a virtual file system, so it makes no
  * sense to use the values of the POSIX-required constants on the
@@ -133,6 +137,31 @@ typedef enum {
  * be careful in making such a change, since some existing code might
  * wrongly assume these equivalencies.
  */
+
+/**
+ * GnomeVFSFilePermissions:
+ * @GNOME_VFS_PERM_SUID: UID bit
+ * @GNOME_VFS_PERM_SGID: GID bit
+ * @GNOME_VFS_PERM_STICKY: Sticky bit.
+ * @GNOME_VFS_PERM_USER_READ: Owner has read permission
+ * @GNOME_VFS_PERM_USER_WRITE: Owner has write permission
+ * @GNOME_VFS_PERM_USER_EXEC: Owner has execution permission
+ * @GNOME_VFS_PERM_USER_ALL: Owner has all permissions
+ * @GNOME_VFS_PERM_GROUP_READ: Group has read permission
+ * @GNOME_VFS_PERM_GROUP_WRITE: Group has write permission
+ * @GNOME_VFS_PERM_GROUP_EXEC: Group has execution permission
+ * @GNOME_VFS_PERM_GROUP_ALL: Group has all permissions
+ * @GNOME_VFS_PERM_OTHER_READ: Others have read permission
+ * @GNOME_VFS_PERM_OTHER_WRITE: Others have write permission
+ * @GNOME_VFS_PERM_OTHER_EXEC: Others have execution permission
+ * @GNOME_VFS_PERM_OTHER_ALL: Others have all permissions
+ * @GNOME_VFS_PERM_ACCESS_READABLE:
+ * @GNOME_VFS_PERM_ACCESS_WRITABLE:
+ * @GNOME_VFS_PERM_ACCESS_EXECUTABLE:
+ *
+ * File permissions. These are the same as the Unix ones, but we wrap them
+ * into a nicer VFS-like enum.  
+ **/
 typedef enum {
 	GNOME_VFS_PERM_SUID = S_ISUID,
 	GNOME_VFS_PERM_SGID = S_ISGID,	
@@ -155,6 +184,11 @@ typedef enum {
 } GnomeVFSFilePermissions;
 
 
+/**
+ * GnomeVFSFileInfo:
+ * 
+ * The GnomeVFSFileInfo structure contains information about a file.
+ **/
 typedef struct {
 	/* Base name of the file (no path).  */
 	char *name;
@@ -212,27 +246,29 @@ typedef struct {
 	void *reserved3;
 	void *reserved4;
 	void *reserved5;
-
 } GnomeVFSFileInfo;
 
 /**
  * GnomeVFSFileInfoOptions:
  * @GNOME_VFS_FILE_INFO_DEFAULT: default flags
  * @GNOME_VFS_FILE_INFO_GET_MIME_TYPE: detect the MIME type
- * @GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE: only use fast MIME type detection (extensions)
- * @GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE: force slow MIME type detection where available
- * (sniffing, algorithmic detection, etc)
- * @GNOME_VFS_FILE_INFO_FOLLOW_LINKS: automatically follow symbolic links and retrieve the
- * properties of their target (recommended)
- * @GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS: tries to get data similar to what
- * would return access(2) on a local file system (ie is the file readable,
- * writable and/or executable). Can be really slow on remote file systems
+ * @GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE: only use fast MIME type 
+ * detection (extensions)
+ * @GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE: force slow MIME type 
+ * detection where available (sniffing, algorithmic detection, etc)
+ * @GNOME_VFS_FILE_INFO_FOLLOW_LINKS: automatically follow symbolic 
+ * links and retrieve the properties of their target (recommended)
+ * @GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS: tries to get data similar 
+ * to what would return access(2) on a local file system (ie is the 
+ * file readable, writable and/or executable). Can be really slow on 
+ * remote file systems
  *
  * Packed boolean bitfield representing options that can
  * be passed into a gnome_vfs_get_file_info() call (or other
  * related calls that return file info) and affect the operation
  * of get_file_info.
  **/
+
 typedef enum {
 	GNOME_VFS_FILE_INFO_DEFAULT = 0,
 	GNOME_VFS_FILE_INFO_GET_MIME_TYPE = 1 << 0,
@@ -253,6 +289,7 @@ typedef enum {
  * Packed boolean bitfield representing the aspects of the file
  * to be changed in a gnome_vfs_set_file_info() call.
  **/
+
 typedef enum {
 	GNOME_VFS_SET_FILE_INFO_NONE = 0,
 	GNOME_VFS_SET_FILE_INFO_NAME = 1 << 0,
@@ -367,6 +404,7 @@ typedef struct {
 	(value ? ((info)->permissions |= GNOME_VFS_PERM_STICKY)		\
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))
 
+
 
 GnomeVFSFileInfo *gnome_vfs_file_info_new           (void);
 void              gnome_vfs_file_info_unref         (GnomeVFSFileInfo       *info);

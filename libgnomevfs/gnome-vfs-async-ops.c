@@ -887,9 +887,11 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
  * @source_uri_list: #GList of #GnomeVFSURI representing the files to be transferred
  * @target_uri_list: #GList of #GnomeVFSURI, the target locations for the elements
  * in @source_uri_list
- * @xfer_options: various options controlling the details of the transfer. Use %GNOME_VFS_XFER_REMOUVESOURCE to make the operation a move rather than a copy.
+ * @xfer_options: various options controlling the details of the transfer. 
+ * Use %GNOME_VFS_XFER_REMOUVESOURCE to make the operation a move rather than a copy.
  * @error_mode: report errors to the @progress_sync_callback, or simply abort
- * @overwrite_mode: controls whether the xfer engine will overwrite automatically, skip the file, abort the operation, or query @progress_sync_callback
+ * @overwrite_mode: controls whether the xfer engine will overwrite automatically, 
+ * skip the file, abort the operation, or query @progress_sync_callback
  * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
  * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
  * in allocating threads from the thread pool.
@@ -967,6 +969,8 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
  *
  * When the operation is complete, @callback will be called with the
  * result of the operation, @operation_data and @callback_data.
+ *
+ * Since: 2.2
  **/
 void
 gnome_vfs_async_file_control (GnomeVFSAsyncHandle *handle,

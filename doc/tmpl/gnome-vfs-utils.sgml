@@ -177,6 +177,25 @@ gnome-vfs-utils
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_get_uri_scheme ##### -->
+<para>
+
+</para>
+
+@uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_uris_match ##### -->
+<para>
+
+</para>
+
+@uri_1: 
+@uri_2: 
+@Returns: 
+
+
 <!-- ##### MACRO GNOME_VFS_ASSERT_PRIMARY_THREAD ##### -->
 <para>
 

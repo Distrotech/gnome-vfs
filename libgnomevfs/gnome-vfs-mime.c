@@ -372,6 +372,12 @@ mime_init (void)
 	module_inited = TRUE;
 }
 
+/**
+ * gnome_vfs_mime_shutdown:
+ *
+ * Unload the MIME database from memory.
+ **/
+
 void
 gnome_vfs_mime_shutdown (void)
 {

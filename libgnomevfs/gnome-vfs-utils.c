@@ -64,28 +64,39 @@
 #define MAX_SYMLINKS_FOLLOWED 32
 
 
+/**
+ * gnome_vfs_format_file_size_for_display:
+ * @size:
+ * 
+ * Formats the file size passed in @bytes in a way that is easy for
+ * the user to read. Gives the size in bytes, kilobytes, megabytes or
+ * gigabytes, choosing whatever is appropriate.
+ * 
+ * Returns: a newly allocated string with the size ready to be shown.
+ **/
+
 gchar*
-gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
+gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 {
-	if (bytes < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
-		if (bytes == 1)
+	if (size < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
+		if (size == 1)
 			return g_strdup (_("1 byte"));
 		else
-			return g_strdup_printf (_("%u bytes"),
-						       (guint) bytes);
+			return g_strdup_printf (_("%u size"),
+						       (guint) size);
 	} else {
 		gdouble displayed_size;
 
-		if (bytes < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
-			displayed_size = (gdouble) bytes / KILOBYTE_FACTOR;
+		if (size < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
+			displayed_size = (gdouble) size / KILOBYTE_FACTOR;
 			return g_strdup_printf (_("%.1f K"),
 						       displayed_size);
-		} else if (bytes < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
-			displayed_size = (gdouble) bytes / MEGABYTE_FACTOR;
+		} else if (size < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
+			displayed_size = (gdouble) size / MEGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1f MB"),
 						       displayed_size);
 		} else {
-			displayed_size = (gdouble) bytes / GIGABYTE_FACTOR;
+			displayed_size = (gdouble) size / GIGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1f GB"),
 						       displayed_size);
 		}
@@ -639,13 +650,12 @@ gnome_vfs_make_uri_canonical_old (const char *original_uri_text)
 	return result;
 }
 
-
 /**
- * gnome_vfs_make_canonical_pathname:
+ * gnome_vfs_make_path_name_canonical:
  * @path: a file path, relative or absolute
  * 
- * Calls gnome_vfs_canonicalize_pathname, allocating storage for the result and
- * providing for a cleaner memory management.
+ * Calls gnome_vfs_canonicalize_pathname, allocating storage for the 
+ * result and providing for a cleaner memory management.
  * 
  * Return value: a canonical version of @path
  **/
@@ -745,14 +755,19 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 	return result;
 }
 
-/* gnome_vfs_get_volume_free_space
+/**
+ * gnome_vfs_get_volume_free_space:
+ * @vfs_uri:
+ * @size:
  * 
- * Return total amount of free space on a volume.
- * This only works for local file systems with
- * the file: scheme.
+ * Stores in @size the amount of free space on a volume.
+ * This only works for local file systems with the file: scheme.
+ *
+ * Returns: GNOME_VFS_OK on success, otherwise an error code
  */
 GnomeVFSResult
-gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
+gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, 
+				 GnomeVFSFileSize  *size)
 {	
 	GnomeVFSFileSize free_blocks, block_size;
        	int statfs_result;
@@ -826,7 +841,6 @@ hack_file_exists (const char *filename)
 	return stat (filename, &s) == 0;
 }
 
-
 char *
 gnome_vfs_icon_path_from_filename (const char *relative_filename)
 {
@@ -860,7 +874,6 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	return NULL;
 }
 
-
 static char *
 strdup_to (const char *string, const char *end)
 {
@@ -892,7 +905,6 @@ is_executable_file (const char *path)
 
 	return TRUE;
 }
-
 
 static gboolean
 executable_in_path (const char *executable_name)
@@ -941,8 +953,15 @@ get_executable_name_from_command_string (const char *command_string)
 	return g_strstrip (strdup_to (command_string, strchr (command_string, ' ')));
 }
 
-/* Returns TRUE if commmand_string starts with the full path for an executable
- * file, or starts with a command for an executable in $PATH.
+/**
+ * gnome_vfs_is_executable_command_string:
+ * @command_string:
+ * 
+ * Checks if @command_string starts with the full path of an executable file
+ * or an executable in $PATH.
+ *
+ * Returns: TRUE if command_string started with and executable file, 
+ * FALSE otherwise.
  */
 gboolean
 gnome_vfs_is_executable_command_string (const char *command_string)
@@ -986,16 +1005,17 @@ gnome_vfs_is_executable_command_string (const char *command_string)
 /**
  * gnome_vfs_read_entire_file:
  * @uri: URI of the file to read
- * @file_size: after reading the file, contains the size of the 
- * file read
- * @file_contents: contains the file_size bytes, the contents 
- * of the file at uri.
+ * @file_size: after reading the file, contains the size of the file read
+ * @file_contents: contains the file_size bytes, the contents of the file at @uri.
  * 
  * Reads an entire file into memory for convenience. Beware accidentally
  * loading large files into memory with this function.
  *
  * Return value: An integer representing the result of the operation
+ *
+ * Since: 2.2
  */
+
 GnomeVFSResult
 gnome_vfs_read_entire_file (const char *uri,
 			    int *file_size,
@@ -1134,7 +1154,7 @@ gnome_vfs_format_uri_for_display_internal (const char *uri, gboolean filenames_a
  *
  * Filter, modify, unescape and change URIs to make them appropriate
  * to display to users. The conversion is done such that the roundtrip
- * to UTf8 is reversible.
+ * to UTF-8 is reversible.
  * 
  * Rules:
  * 	file: URI's without fragments should appear as local paths
@@ -1143,8 +1163,11 @@ gnome_vfs_format_uri_for_display_internal (const char *uri, gboolean filenames_a
  *
  * @uri: a URI
  *
- * returns a g_malloc'd UTF8 string
+ * Returns: a newly allocated UTF-8 string
+ *
+ * Since: 2.2
  **/
+
 char *
 gnome_vfs_format_uri_for_display (const char *uri) 
 {
@@ -1303,22 +1326,19 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 	
 }
 
-
-
 /**
  * gnome_vfs_make_uri_from_input:
- *
- * Takes a user input path/URI and makes a valid URI
- * out of it
- *
  * @location: a possibly mangled "uri", in UTF8
  *
- * returns a newly allocated uri.
+ * Takes a user input path/URI and makes a valid URI out of it.
  *
  * This function is the reverse of gnome_vfs_format_uri_for_display
  * but it also handles the fact that the user could have typed
  * arbitrary UTF8 in the entry showing the string.
  *
+ * Returns: a newly allocated uri.
+ *
+ * Since: 2.2
  **/
 char *
 gnome_vfs_make_uri_from_input (const char *location)
@@ -1329,6 +1349,18 @@ gnome_vfs_make_uri_from_input (const char *location)
 
 	return gnome_vfs_make_uri_from_input_internal (location, broken_filenames, TRUE);
 }
+
+/**
+ * gnome_vfs_make_uri_canonical_strip_fragment:
+ * @uri:
+ *
+ * If the @uri passed contains a fragment (anything after a '#') strips if,
+ * then makes the URI canonical.
+ *
+ * Returns: a newly allocated string containing a canonical URI.
+ *
+ * Since: 2.2
+ **/
 
 char *
 gnome_vfs_make_uri_canonical_strip_fragment (const char *uri)
@@ -1346,7 +1378,6 @@ gnome_vfs_make_uri_canonical_strip_fragment (const char *uri)
 	g_free (without_fragment);
 	return canonical;
 }
-
 
 static gboolean
 uris_match (const char *uri_1, const char *uri_2, gboolean ignore_fragments)
@@ -1369,6 +1400,18 @@ uris_match (const char *uri_1, const char *uri_2, gboolean ignore_fragments)
 	
 	return result;
 }
+
+/**
+ * gnome_vfs_uris_match:
+ * @uri_1: stringified URI to compare with @uri_2.
+ * @uri_2: stringified URI to compare with @uri_1.
+ * 
+ * Compare two URIs.
+ *
+ * Return value: TRUE if they are the same, FALSE otherwise.
+ *
+ * Since: 2.2
+ **/
 
 gboolean
 gnome_vfs_uris_match (const char *uri_1, const char *uri_2)
@@ -1484,7 +1527,18 @@ gnome_vfs_handle_trailing_slashes (const char *uri)
 	return uri_copy;
 }
 
-
+/**
+ * gnome_vfs_make_uri_canonical:
+ * @uri: and absolute or relative URI, it might have scheme.
+ *
+ * Standarizes the format of the uri being passed, so that it can be used
+ * later in other functions that expect a canonical URI.
+ *
+ * Returns: a newly allocated string that contains the canonical 
+ * representation of @uri.
+ *
+ * Since: 2.2
+ **/
 
 char *
 gnome_vfs_make_uri_canonical (const char *uri)
@@ -1571,6 +1625,17 @@ gnome_vfs_make_uri_canonical (const char *uri)
 	return canonical_uri;
 }
 
+/**
+ * gnome_vfs_get_uri_scheme:
+ * @uri: a stringified URI
+ *
+ * Retrieve the scheme used in @uri 
+ *
+ * Return value: A string containing the scheme
+ *
+ * Since: 2.2
+ **/
+
 char *
 gnome_vfs_get_uri_scheme (const char *uri)
 {
@@ -1617,6 +1682,7 @@ file_uri_from_local_relative_path (const char *location)
 
 /**
  * gnome_vfs_make_uri_from_shell_arg:
+ * @location: a possibly mangled "uri"
  *
  * Similar to gnome_vfs_make_uri_from_input, except that:
  * 
@@ -1624,11 +1690,11 @@ file_uri_from_local_relative_path (const char *location)
  * 2) doesn't bother stripping leading/trailing white space
  * 3) doesn't bother with ~ expansion--that's done by the shell
  *
- * @location: a possibly mangled "uri"
+ * Returns: a newly allocated uri
  *
- * returns a newly allocated uri
- *
+ * Since: 2.2
  **/
+
 char *
 gnome_vfs_make_uri_from_shell_arg (const char *location)
 {
@@ -1750,8 +1816,6 @@ remove_internal_relative_components (char *uri_current)
 	}	
 }
 
-
-
 /**
  * gnome_vfs_make_uri_full_from_relative:
  * 
@@ -1760,10 +1824,7 @@ remove_internal_relative_components (char *uri_current)
  *
  * Return value: the URI (NULL for some bad errors).
  *
- * FIXME: This code has been copied from gnome_vfs-mozilla-content-view
- * because gnome_vfs-mozilla-content-view cannot link with libgnome_vfs-extensions
- * due to lame license issues.  Really, this belongs in gnome-vfs, but was added
- * after the Gnome 1.4 gnome-vfs API freeze
+ * Since: 2.2
  **/
 
 char *

@@ -210,10 +210,11 @@ typedef void	(* GnomeVFSAsyncSetFileInfoCallback)
 /**
  * GnomeVFSAsyncDirectoryLoadCallback:
  * @handle: handle of the operation generating the callback
- * @result: %GNOME_VFS_OK if the operation was sucessful, %GNOME_VFS_ERROR_EOF if
- * the last file in the directory has been read, otherwise a #GnomeVFSResult error code
- * @list: a #GList of #GnomeVFSFileInfo structs representing information about
- * the files just loaded
+ * @result: %GNOME_VFS_OK if the operation was sucessful, 
+ * %GNOME_VFS_ERROR_EOF if the last file in the directory 
+ * has been read, otherwise a #GnomeVFSResult error code
+ * @list: a #GList of #GnomeVFSFileInfo structs representing 
+ * information about the files just loaded
  * @entries_read: number of entries read from @handle for this instance of
  * the callback.
  * @callback_data: user data defined when the callback was established

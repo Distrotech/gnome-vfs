@@ -73,6 +73,11 @@ G_STMT_START{					\
 
 #endif
 
+/* GNOME_VFS_OP_MODULE_CALLBABK: is not a real OpType; 
+ * its intended to mark GnomeVFSAsyncModuleCallback's in the 
+ * job_callback queue
+ */
+
 enum GnomeVFSOpType {
 	GNOME_VFS_OP_OPEN,
 	GNOME_VFS_OP_OPEN_AS_CHANNEL,
@@ -88,9 +93,6 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_XFER,
 	GNOME_VFS_OP_GET_FILE_INFO,
 	GNOME_VFS_OP_SET_FILE_INFO,
-	/* This is not a real OpType; its intended to mark
-	 * GnomeVFSAsyncModuleCallback's in the job_callback queue
-	 */
 	GNOME_VFS_OP_MODULE_CALLBACK,
 	GNOME_VFS_OP_FILE_CONTROL
 };

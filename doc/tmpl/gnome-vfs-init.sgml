@@ -4,11 +4,12 @@ Initialization/Shutdown
 
 <!-- ##### SECTION Short_Description ##### -->
 
-starting GnomeVFS up and shutting it down
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+Starting GnomeVFS up and shutting it down. Usually when using the whole
+GNOME framework this library is initialized and shutdown automatically 
+when calling gnome_init.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
