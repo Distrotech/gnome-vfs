@@ -149,7 +149,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
-	char *sort[5];
+	char *sort[6];
+        GList *short_list;
+	GList *p;
+	char *prev;
 
 	if (mime_type == NULL) {
 		return NULL;
@@ -195,21 +198,39 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 		sort[0] = g_strdup ("true");
 	}
 
-	/* FIXME bugzilla.eazel.com 1145: 
-	   We should then fall back to preferring one of the
-	   components on the current short list. */
-	
+	short_list = gnome_vfs_mime_get_short_list_components (mime_type);
+
+	if (p != NULL) {
+		sort[1] = g_strdup ("has (['");
+
+		for (p = short_list; p != NULL; p = p->next) {
+			prev = sort[1];
+			
+			if (p->next != NULL) {
+				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
+								    "','", NULL);
+			} else {
+				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
+								    "'], iid)", NULL);
+			}
+			g_free (prev);
+		}
+	} else {
+		sort[1] = g_strdup ("true");
+	}
+
+
 	/* Prefer something that matches the exact type to something
            that matches the supertype */
-	sort[1] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
+	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
 
 	/* Prefer something that matches the supertype to something that matches `*' */
 	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
 
 	/* At lowest priority, alphebetize by name, for the sake of consistency */
-	sort[3] = g_strdup ("name");
+	sort[4] = g_strdup ("name");
 
-	sort[4] = NULL;
+	sort[5] = NULL;
 
 	info_list = oaf_query (query, sort, &ev);
 	
@@ -227,6 +248,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	g_free (sort[1]);
 	g_free (sort[2]);
 	g_free (sort[3]);
+	g_free (sort[4]);
 
 	CORBA_exception_free (&ev);
 
@@ -507,7 +529,8 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		*/
 		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 				     "', '", supertype,
-				     "', '*'])", NULL);
+				     "', '*'])",
+				     " AND has(['", iids_delimited, "'], iid)", NULL);
 		
 		/* Alphebetize by name, for the sake of consistency */
 		sort[0] = g_strdup ("name");
