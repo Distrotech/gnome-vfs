@@ -10,7 +10,6 @@ INCLUDES =					\
 	-DXDG_PREFIX=_gnome_vfs_xdg		\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
-	-D_GNU_SOURCE				\
 	-D_LARGEFILE64_SOURCE                   \
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-D_REENTRANT				\

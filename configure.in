@@ -49,6 +49,9 @@ AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL([0.29])
 
+dnl Globally define_GNU_SOURCE and therefore enable the GNU extensions
+AC_DEFINE(_GNU_SOURCE, 1, [Enable GNU Extensions])
+
 dnl Versions shared with the .spec file.
 BONOBO_ACTIVATION_REQUIRED=1.0.0
 BONOBO_REQUIRED=2.0.0

@@ -1,3 +1,12 @@
+2005-01-09  Christian Kellner <gicmo@gnome.org>
+
+	* configure.in:
+	Define _GNU_SOURCE globally. This should fix bug #160052.
+	* daemon/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	Remove -D_GNU_SOURCE that is now defined in config.h.
+
 2005-01-09  Vincent Untz  <vincent@vuntz.net>
 
 	* modules/default-modules.conf: remove vfolder methods
