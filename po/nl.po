@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2003-05-30 04:29+0200\n"
+"POT-Creation-Date: 2003-06-04 08:59+0200\n"
 "PO-Revision-Date: 2003-05-30 16:18+0100\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -379,6 +379,7 @@ msgid "Mail"
 msgstr "E-mail"
 
 #  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
 msgstr "Gereedschap"

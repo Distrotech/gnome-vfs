@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-04-27 20:02+0200\n"
+"POT-Creation-Date: 2003-06-04 08:59+0200\n"
 "PO-Revision-Date: 2003-04-29 13:46+0200\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -38,22 +38,22 @@ msgstr "%s:%d لا يحوي اسم الملحق."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "ملف اﻹعدادات `%s' لم يتم العثور عليه: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "نوع عمليّة مجهول %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "تعذّر إنشاء أنبوب ل GIOChannelالمفتوح : %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "نوع عمليّة مجهول %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "اوقفت العمليّة"
 
@@ -276,35 +276,55 @@ msgstr "خطا في البروتوكول"
 msgid "Could not find master browser"
 msgstr "تعذّر إيجاد المتصفح الرئيسي"
 
-#: libgnomevfs/gnome-vfs-result.c:170
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "No default action associated"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "No handler for URL scheme"
+msgstr ""
+
+#. GNOME_VFS_ERROR_PARSE
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Error parsing command line"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: libgnomevfs/gnome-vfs-result.c:80
+msgid "Error launching command"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "خطأ مجهول"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
 msgstr "1 بايت"
 
-#: libgnomevfs/gnome-vfs-utils.c:85
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
 msgstr "%u بايت"
 
-#: libgnomevfs/gnome-vfs-utils.c:92
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f ك"
 
-#: libgnomevfs/gnome-vfs-utils.c:96
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f ميغابايت"
 
-#: libgnomevfs/gnome-vfs-utils.c:100
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f جيغابايت"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (يونوكود غير سليم)"
 
@@ -324,6 +344,57 @@ msgstr "لم أعثر على ملفّ إعدادات سليم عند %s\n"
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "استخدم المتغيّر البيئي %s لتحديد موقع مختلف.\n"
 
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:163
+msgid "Applications"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:166
+msgid "Cards"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:169
+#, fuzzy
+msgid "Files"
+msgstr "الملف موجود"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:172
+msgid "Folders"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:175
+msgid "Help"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:178
+msgid "Hosts"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:181
+msgid "Links"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:184
+msgid "Mail"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:187
+msgid "Tools"
+msgstr ""
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Windows"
+msgstr ""
+
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "معاين مونيكر القياسي"
@@ -339,4 +410,3 @@ msgstr "مونيكر VFS عام لجنوم"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "مونيكر ملفّ عام"
-
