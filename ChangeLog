@@ -1,3 +1,13 @@
+2001-02-03  Michael K. Fleming  <mfleming@eazel.com>
+
+	reviewed by: <pavel@eazel.com>
+
+	Bug 6299: gnome_vfs_get_volume_free_space has never worked=
+
+	But it works now, as cheesy as it is.
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+
 2001-02-03  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: <delete if not using a buddy>

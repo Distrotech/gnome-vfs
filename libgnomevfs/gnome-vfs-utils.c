@@ -709,7 +709,7 @@ gnome_vfs_get_uri_from_local_path (const char *local_path)
 GnomeVFSResult
 gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
 {	
-	size_t total_blocks, block_size;
+	GnomeVFSFileSize free_blocks, block_size;
        	int statfs_result;
 	const char *path, *scheme;
 #if HAVE_STATVFS
@@ -734,16 +734,16 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	}
 
 #if HAVE_STATVFS
-	statfs_result = statvfs ("/", &statfs_buffer);
+	statfs_result = statvfs (path, &statfs_buffer);
 #else
-	statfs_result = statfs ("/", &statfs_buffer);   
+	statfs_result = statfs (path, &statfs_buffer);   
 #endif  
 
 	g_return_val_if_fail (statfs_result == 0, FALSE);
 	block_size = statfs_buffer.f_bsize; 
-	total_blocks = statfs_buffer.f_blocks;
+	free_blocks = statfs_buffer.f_bavail;
 
-	*size = block_size * total_blocks;
+	*size = block_size * free_blocks;
 
 	return GNOME_VFS_OK;
 }
