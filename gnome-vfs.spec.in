@@ -10,9 +10,8 @@ Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/%name/%name-%{version}.tar
 URL:		http://www.gnome.org/
 BuildRoot:	/var/tmp/%{name}-root
 Requires:	control-center
-Requires:       glib >= @GLIB_REQUIRED@
-Requires:	GConf >= @GCONF_REQUIRED@
-Requires:       oaf >= @OAF_REQUIRED@
+Requires:       glib2 >= @GLIB_REQUIRED@
+Requires:	GConf2 >= @GCONF_REQUIRED@
 BuildRequires:	gnome-libs-devel, control-center-devel
 BuildRequires:	bonobo-activation-devel >= @BONOBO_ACTIVATION_REQUIRED@
 BuildRequires:	bonobo-devel >= @BONOBO_REQUIRED@
@@ -80,7 +79,7 @@ make -k sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbinn/ldconfig
+%post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
