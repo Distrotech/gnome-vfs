@@ -1,3 +1,10 @@
+2000-10-29  Dan Winship  <danw@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c
+	(gnome_vfs_mime_sniff_buffer_new_from_memory): Set read_whole_file
+	to TRUE so it doesn't try to call the (non-existent) read
+	callback.
+
 2000-10-30  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c:

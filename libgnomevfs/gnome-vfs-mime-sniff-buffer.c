@@ -90,6 +90,7 @@ gnome_vfs_mime_sniff_buffer_new_from_memory (const guchar *buffer,
 	result->buffer = g_malloc (buffer_length);
 	result->buffer_length = buffer_length;
 	memcpy (result->buffer, buffer, buffer_length);
+	result->read_whole_file = TRUE;
 
 	return result;
 }
