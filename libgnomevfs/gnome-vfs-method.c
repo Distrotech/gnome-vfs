@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -114,6 +114,7 @@ gnome_vfs_method_get (const gchar *name)
 {
 	GnomeVFSMethod *method;
 	MethodElement *method_element;
+	const gchar *base_module_name;
 	gchar *module_name;
 
 	g_return_val_if_fail (name != NULL, NULL);
@@ -125,11 +126,22 @@ gnome_vfs_method_get (const gchar *name)
 	if (method_element != NULL)
 		return method_element->method;
 
-	module_name = g_strconcat (PREFIX "/lib/vfs/modules/lib", name, ".so",
-				   NULL);
-	if (! (method = module_get_sane_handle (module_name)))
-	    return NULL;
+	base_module_name = gnome_vfs_configuration_get_module_path (name);
+	if (base_module_name == NULL)
+		return NULL;
+
+	if (g_path_is_absolute (base_module_name)) {
+		module_name = g_strdup (base_module_name);
+	} else {
+		module_name = g_strconcat (GNOME_VFS_MODULE_DIR,
+					   "/", base_module_name, NULL);
+	}
+
+	method = module_get_sane_handle (module_name);
 	g_free (module_name);
+
+	if (method == NULL)
+		return NULL;
 
 	method_element = g_new (MethodElement, 1);
 	method_element->name = g_strdup (name);

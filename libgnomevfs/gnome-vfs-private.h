@@ -32,6 +32,7 @@ BEGIN_GNOME_DECLS
 
 #include "gnome-vfs-private-types.h"
 
+#include "gnome-vfs-configuration.h"
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-list-sort.h"
 #include "gnome-vfs-method.h"

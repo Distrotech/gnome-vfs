@@ -32,6 +32,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs.h
 
 noinst_HEADERS =				\
+	gnome-vfs-configuration.h		\
 	gnome-vfs-handle.h			\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
@@ -45,6 +46,7 @@ noinst_HEADERS =				\
 	fnmatch.h
 
 libgnomevfs_la_SOURCES =			\
+	gnome-vfs-configuration.c		\
 	gnome-vfs-directory.c			\
 	gnome-vfs-directory-filter.c		\
 	gnome-vfs-directory-list.c		\

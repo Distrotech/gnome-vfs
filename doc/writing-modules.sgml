@@ -3,18 +3,20 @@
 
 <article id="index">
  <artheader>
-   <author>
-     <firstname>Ettore</firstname>
-     <surname>Perazzoli</surname>
-     <affiliation>
-     <address>
-      <email>ettore@gnu.org</email>
-     </address>
-     </affiliation>
-   </author>
+   <authorgroup>
+     <author>
+       <firstname>Ettore</firstname>
+       <surname>Perazzoli</surname>
+       <affiliation>
+       <address>
+        <email>ettore@gnu.org</email>
+       </address>
+       </affiliation>
+     </author>
+   </authorgroup>
    <copyright>
      <year>1999</year>
-     <holder>Free Software Foundation</holder>
+     <holder>the Free Software Foundation</holder>
    </copyright>
 
   <title>Writing modules for the GNOME Virtual File System</title>
@@ -25,7 +27,7 @@
     </para>
   </abstract>
  </artheader>
- 
+
   <sect1 id="Introduction">
     <title>Introduction</title>
 
@@ -62,9 +64,9 @@
       <para>The GNOME Virtual File System lets you express this by
         combining the three access methods (i.e. tar, GZIP and FTP)
         into a single URI.  Access methods are combined in the URI by
-        using the # character, followed by the name for the access
+        using the `#' character, followed by the name for the access
         method and the subpath for that specific access method.  The
-        subpath can be omitted for that storage methods that do not
+        subpath can be omitted for those storage methods that do not
         need a path to retrieve the file.  (For example, a GZIP file
         always contains a single uncompressed file, so no path is
         needed to locate the uncompressed file within the GZIP file.
@@ -79,47 +81,53 @@
 
         ftp://username:password@host.net/path/to/file.tar.gz#gzip#tar/path/to/hello.c</programlisting>
 
-      <para>Each method/subpath couple is called a ``URI element''.
-      When URI elements are combined like this, each URI element uses
-      the previous one to access a base resource into which it will
-      look up a file, using the subpath information.  For this reason,
-      we will say that each element is the ``parent'' element for the
-      following one.</para>
+      <para>Each method/subpath couple is called a <firstterm>URI
+      element</firstterm>.  When URI elements are combined like this,
+      each URI element uses the previous one to access a base resource
+      into which it will look up a file, using the subpath
+      information.  For this reason, we will say that each element is
+      the <firstterm>parent</firstterm> element for the following one.</para>
 
       <para>The first URI element, the one which has no parent, is
-      called the ``toplevel'' element.  It does not use the `#'
-      character; instead, it uses the standard
-      <filename>method://user:password@host/path</filename> common
-      for WWW URIs.  This way, normal WWW URIs can be used with the
-      GNOME Virtual File System.</para>
+      called the <firstterm>toplevel element</firstterm>.  It does not
+      use the `#' character; instead, it uses the standard syntax of
+      WWW URIs: </para>
 
-      <para>``toplevel'' elements are also special, because they let
-        users specify user names, passwords and host names.</para>
+      <programlisting>
+
+        method://user:password@host/path/to/file</programlisting>
+
+      <para>This way, normal WWW URIs can be used with the GNOME Virtual
+      File System.</para>
+
+      <para>Toplevel elements are also special because they let users
+        specify user names, passwords and host names, while
+        non-toplevel elements don't.</para>
     </sect2>
 
     <sect2>
-      <title>The <classname>GnomeVFSURI</classname> type</title>
+      <title>The <structname>GnomeVFSURI</structname> type</title>
 
       <para>Within the GNOME Virtual File System library, URI elements
       are represented by a special type,
-      <classname>GnomeVFSURI</classname>, which is meant to represent
-      user-provided URIs in an optimized way.  </para>
+      <structname>GnomeVFSURI</structname>, which is meant to represent
+      user-provided URIs in a machine-optimized way.  </para>
 
-      <para>Every <classname>GnomeVFSURI</classname> contains the
+      <para>Every <structname>GnomeVFSURI</structname> contains the
       following information:</para>
 
       <itemizedlist>
         <listitem><para>A reference counter</para></listitem>
       
         <listitem><para>A pointer to the parent
-        <classname>GnomeVFSURI</classname> URI element.</para></listitem>
+        <structname>GnomeVFSURI</structname> URI element.</para></listitem>
       
         <listitem><para>The subpath.</para></listitem>
       
         <listitem><para>The name of the access method.</para></listitem>
       
         <listitem><para>A pointer to a
-        <classname>GnomeVFSMethod</classname> object, describing the
+        <structname>GnomeVFSMethod</structname> object, describing the
         access method (see below).</para></listitem>
       </itemizedlist>
 
@@ -139,11 +147,11 @@
     initializes it.</para>
 
     <para>After initialization, the module returns a special
-    <classname>GnomeVFSMethod</classname> object that contains
+    <structname>GnomeVFSMethod</structname> object that contains
     pointers to the various implementation functions for that specific
     method.  By storing a pointer to this object into the
-    <classname>GnomeVFSURI</classname> type, the VFS library is then
-    able to use these functions during for file access.</para>
+    <structname>GnomeVFSURI</structname> type, the VFS library is then
+    able to use these functions for file access.</para>
 
     <sect2>
       <title>How file access is performed</title>
@@ -161,12 +169,12 @@
         level URI element.</para></listitem>
 
         <listitem><para>It retrieves a pointer to the
-        <classname>GnomeVFSMethod</classname> object that corresponds
+        <structname>GnomeVFSMethod</structname> object that corresponds
         to the access method for that URI element.</para></listitem>
         
         <listitem><para>It retrieves a pointer to the implementation
         function for that operation from the
-        <classname>GnomeVFSMethod</classname>object.</para></listitem>
+        <structname>GnomeVFSMethod</structname>object.</para></listitem>
 
         <listitem><para>It invokes that implementation function
         passing the pointer to the lowmost level URI
@@ -178,7 +186,7 @@
       method implementation.  If the method implementation needs to do
       some file operation on the the parent URI element, it can do so
       by simply invoking the corresponding VFS function in, by using
-      the parent pointer in the <classname>GnomeVFSURI</classname>
+      the parent pointer in the <structname>GnomeVFSURI</structname>
       object. </para>
 
       <para>For example, suppose you have to read a simple URI like
@@ -190,7 +198,7 @@
         file:/home/ettore/file.gz#gzip</programlisting>
 
       <para>In this case, the GZIP method will be invoked with a
-      pointer to the <classname>GnomeVFSURI</classname> describing the
+      pointer to the <structname>GnomeVFSURI</structname> describing the
       `gzip' part; then the GZIP method will be able to read
       <filename>file.gz</filename> by just invoking the corresponding
       GNOME VFS library function on its parent, and decompress it on
@@ -242,7 +250,7 @@ void vfs_module_shutdown (GnomeVFSMethod *method);</programlisting>
 
       <para><function>vfs_module_init()</function> is called
       as soon as the module is loaded in memory.  It will have to
-      return a pointer to a <classname>GnomeVFSMethod</classname>
+      return a pointer to a <structname>GnomeVFSMethod</structname>
       object that will contain the pointers to the method's
       implementation functions.  We will describe this later. </para>
 
@@ -271,7 +279,7 @@ void vfs_module_shutdown (GnomeVFSMethod *method);</programlisting>
     </sect2>
 
     <sect2>
-      <title>The <classname>GnomeVFSMethod</classname> object</title>
+      <title>The <structname>GnomeVFSMethod</structname> object</title>
 
       <para>This object is contains pointers to the module
       implementation functions.</para>
@@ -408,8 +416,7 @@ GnomeVFSResult (* unlink)            (GnomeVFSURI *uri);
 #define MUTEX_FREE(a)
 #define MUTEX_LOCK(a)
 #define MUTEX_UNLOCK(a)
-#endif
-      </programlisting>
+#endif</programlisting>
 
       <para><function>G_LOCK_DEFINE_STATIC</function>,
       <function>G_LOCK</function> and <function>G_UNLOCK</function> in

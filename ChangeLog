@@ -1,3 +1,30 @@
+1999-10-11  Ettore Perazzoli  <ettore@gnu.org>
+
+	* test/test-sync.c (main): Abort reporting an error if
+	`gnome_vfs_uri_new()' returns NULL.
+
+	* modules/modules.conf: New file: configuration for the current VFS
+	modules.
+	* modules/Makefile.am: Install it in the `modulesdir'.
+
+	* libgnomevfs/gnome-vfs-method.c (gnome_vfs_method_get): Use
+	`gnome_vfs_configuration_get_module_path()' to retrieve the module
+	name.  This also fixes a memory leak introduced by Michael's
+	commit of 1999-08-31.
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Initialize the
+	configuration system by calling `gnome_vfs_configuration_init()'.
+
+	* libgnomevfs/gnome-vfs-constants.h: New constant
+	`GNOME_VFS_MODULE_CFGFILE', `GNOME_VFS_MODULE_DIR'.
+
+	* libgnomevfs/gnome-vfs-private.h: #include
+	"gnome-vfs-configuration.h".
+
+	* libgnomevfs/gnome-vfs-configuration.c: New file.
+
+	* libgnomevfs/gnome-vfs-configuration.h: New file.
+
 1999-10-10  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-file-info.c: Doc'ed.
@@ -7,6 +34,8 @@
 	* libgnomevfs/gnome-vfs-directory-list.c: Doc'ed.
 
 	* libgnomevfs/gnome-vfs-directory-filter.c: Doc'ed.
+
+	* doc/writing-modules.sgml: New file.
 
 1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
 

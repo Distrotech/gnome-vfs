@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #include "gnome-vfs.h"
 
@@ -55,6 +55,11 @@ main (int argc, char **argv)
 	}
 
 	uri = gnome_vfs_uri_new (argv[1]);
+	if (uri == NULL) {
+		fprintf (stderr, "URI not valid.\n");
+		return 1;
+	}
+
 	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);

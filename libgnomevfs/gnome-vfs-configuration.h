@@ -1,5 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-constants.h - Constants used in the GNOME Virtual File System.
+/* gnome-vfs-configuration.h - Handling of the GNOME Virtual File System
+   configuration.
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -10,7 +11,7 @@
 
    The Gnome Library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
    Library General Public License for more details.
 
    You should have received a copy of the GNU Library General Public
@@ -18,32 +19,16 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
-*/
+   Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_CONSTANTS_H
-#define _GNOME_VFS_CONSTANTS_H
+#ifndef _GNOME_VFS_CONFIGURATION_H
+#define _GNOME_VFS_CONFIGURATION_H
 
-#include <glibconfig.h>
-#include "gnome-vfs-types.h"
-
-#define GNOME_VFS_URI_MAGIC_CHR	'#'
-#define GNOME_VFS_URI_MAGIC_STR "#"
-
-#define GNOME_VFS_URI_PATH_CHR '/'
-#define GNOME_VFS_URI_PATH_STR "/"
-
-#ifdef G_HAVE_GINT64
-#define GNOME_VFS_SIZE_FORMAT_STR "Lu"
-#define GNOME_VFS_OFFSET_FORMAT_STR "Ld"
-#else
-#define GNOME_VFS_SIZE_FORMAT_STR "lu"
-#define GNOME_VFS_OFFSET_FORMAT_STR "ld"
-#endif
+#include <glib.h>
 
 
-/* FIXME */
-#define GNOME_VFS_MODULE_DIR     PREFIX "/lib/vfs/modules"
-#define GNOME_VFS_MODULE_CFGFILE GNOME_VFS_MODULE_DIR "/modules.conf"
+gboolean     gnome_vfs_configuration_init            (void);
+void         gnome_vfs_configuration_uninit          (void);
+const gchar *gnome_vfs_configuration_get_module_path (const gchar *method_name);
 
-#endif /* _GNOME_VFS_CONSTANTS_H */
+#endif /* _GNOME_VFS_CONFIGURATION_H */

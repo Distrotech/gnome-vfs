@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -44,6 +44,8 @@ gnome_vfs_init (void)
 		retval = gnome_vfs_method_init ();
 		if (retval)
 			retval = gnome_vfs_process_init ();
+		if (retval)
+			retval = gnome_vfs_configuration_init ();
 		if (retval)
 			signal (SIGPIPE, SIG_IGN);
 	} else {

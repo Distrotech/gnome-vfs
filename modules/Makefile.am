@@ -17,6 +17,9 @@ modules_LTLIBRARIES =				\
 	libgzip.la				\
 	libftp.la
 
+modules_DATA =					\
+	modules.conf
+
 libfile_la_SOURCES = 				\
 	file-method.c 				\
 	file-method.h				\
