@@ -455,7 +455,7 @@ empty_directory (GnomeVFSURI *uri,
 			continue;
 		}
 
-		item_uri = gnome_vfs_uri_append_filename (uri, info.name);
+		item_uri = gnome_vfs_uri_append_file_name (uri, info.name);
 		
 		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = remove_directory (item_uri, TRUE, 
@@ -548,7 +548,7 @@ gnome_vfs_visit_list (const GnomeVFSURI *dir_uri,
 		GnomeVFSFileInfo info;
 		
 		/* get the URI and VFSFileInfo for each */
-		uri = gnome_vfs_uri_append_filename (dir_uri, p->data);
+		uri = gnome_vfs_uri_append_file_name (dir_uri, p->data);
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info_uri (uri, &info, info_options, NULL);
 		
@@ -729,7 +729,7 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 		GnomeVFSFileInfo info;
 
 		/* get the URI and VFSFileInfo for each */
-		uri = gnome_vfs_uri_append_filename (target_dir_uri, target_item->data);
+		uri = gnome_vfs_uri_append_file_name (target_dir_uri, target_item->data);
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
 		
@@ -761,7 +761,7 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 		skip = FALSE;
 
 		/* get the URI and VFSFileInfo for each */
-		uri = gnome_vfs_uri_append_filename (target_dir_uri, target_item->data);
+		uri = gnome_vfs_uri_append_file_name (target_dir_uri, target_item->data);
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
 		
@@ -1190,8 +1190,8 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 					continue;
 				}
 
-				source_uri = gnome_vfs_uri_append_filename (source_dir_uri, info.name);
-				dest_uri = gnome_vfs_uri_append_filename (target_dir_uri, info.name);
+				source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info.name);
+				dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info.name);
 				
 				if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
 					result = copy_file (&info, source_uri, dest_uri, 
@@ -1258,7 +1258,7 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 		target_uri = NULL;
 
 		/* get source URI and file info */
-		source_uri = gnome_vfs_uri_append_filename (source_dir_uri, source_name_item->data);
+		source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, source_name_item->data);
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info_uri (source_uri, &info, 
 						      GNOME_VFS_FILE_INFO_DEFAULT, NULL);
@@ -1270,8 +1270,9 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 			for (count = 1; ; count++) {
 				GnomeVFSXferOverwriteMode overwrite_mode_abort;
 
-				target_uri = gnome_vfs_uri_append_filename (target_dir_uri, 
-					progress->progress_info->duplicate_name);
+				target_uri = gnome_vfs_uri_append_file_name
+					(target_dir_uri, 
+					 progress->progress_info->duplicate_name);
 
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 				progress->progress_info->file_size = info.size;
@@ -1378,7 +1379,7 @@ move_items (const GnomeVFSURI *source_dir_uri,
 		int conflict_count;
 		int progress_result;
 
-		source_uri = gnome_vfs_uri_append_filename (source_dir_uri, source_name_item->data);
+		source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, source_name_item->data);
 
 		progress->progress_info->duplicate_name = g_strdup (dest_name_item->data);
 
@@ -1387,8 +1388,9 @@ move_items (const GnomeVFSURI *source_dir_uri,
 		conflict_count = 1;
 
 		do {
-			target_uri = gnome_vfs_uri_append_filename (target_dir_uri, 
-				progress->progress_info->duplicate_name);
+			target_uri = gnome_vfs_uri_append_file_name
+				(target_dir_uri, 
+				 progress->progress_info->duplicate_name);
 
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
@@ -1527,7 +1529,7 @@ gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
 		
 			skip = FALSE;
 			/* get the URI and VFSFileInfo for each */
-			uri = gnome_vfs_uri_append_filename (source_directory, p->data);
+			uri = gnome_vfs_uri_append_file_name (source_directory, p->data);
 
 			gnome_vfs_file_info_init (&info);
 			result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
@@ -1573,8 +1575,9 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 	for (conflict_count = 1; ; conflict_count++) {
 
 		target_uri = gnome_vfs_uri_new (target_dir);
-		target_uri = gnome_vfs_uri_append_filename (target_uri, 
-			progress->progress_info->duplicate_name);
+		target_uri = gnome_vfs_uri_append_file_name
+			(target_uri, 
+			 progress->progress_info->duplicate_name);
 		result = create_directory (target_uri, 
 					   &dest_directory_handle,
 					   GNOME_VFS_XFER_USE_UNIQUE_NAMES,

@@ -514,30 +514,30 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 
 	return new;
 }
-
+
 /**
- * gnome_vfs_uri_append_filename:
+ * gnome_vfs_uri_append_file_name:
  * @uri: A GnomeVFSURI.
- * @path: any "regular" filename (can include #, /, etc)
+ * @path: any "regular" file name (can include #, /, etc)
  * 
- * Create a new URI obtained by appending @filename to @uri.  This will take care
+ * Create a new URI obtained by appending @file_name to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
- * the start of @filename if necessary.
+ * the start of @file_name if necessary.
  * 
  * Return value: The new URI obtained by combining @uri and @path.
  **/
 GnomeVFSURI *
-gnome_vfs_uri_append_filename (const GnomeVFSURI *uri,
-			   const gchar *filename)
+gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
+				const gchar *file_name)
 {
 	gchar *escaped_string;
-	GnomeVFSURI *new;
-	escaped_string = gnome_vfs_escape_string(filename, GNOME_VFS_URI_ENCODING_XALPHAS);
-	new = gnome_vfs_uri_append_path (uri, escaped_string);
-	g_free(escaped_string);
-	return new;
+	GnomeVFSURI *new_uri;
+	
+	escaped_string = gnome_vfs_escape_string (file_name, GNOME_VFS_URI_ENCODING_XALPHAS);
+	new_uri = gnome_vfs_uri_append_path (uri, escaped_string);
+	g_free (escaped_string);
+	return new_uri;
 }
-
 
 
 /**

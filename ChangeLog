@@ -1,3 +1,19 @@
+2000-05-31  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-directory.c: (directory_visit_internal),
+	(gnome_vfs_directory_visit_files_at_uri):
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_append_file_name):
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory),
+	(gnome_vfs_visit_list), (handle_name_conflicts), (copy_directory),
+	(copy_items), (move_items), (gnome_vfs_xfer_delete_items),
+	(gnome_vfs_new_directory_with_unique_name):
+	A quick fix to Seth's check-in.	He also forgot a ChangeLog.
+	The change was to adda new append_file_name call that handles
+	escaping correctly for combining a file name with a URI.
+	
+	* test/.cvsignore: Ignore some new test programs.
+
 2000-05-31  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
