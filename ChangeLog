@@ -1,3 +1,21 @@
+2002-02-10  Darin Adler  <darin@bentspoon.com>
+
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	Define _FILE_OFFSET_BITS=64 and _LARGEFILE64_SOURCE,
+	so we get 64-bit file sizes.
+
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	* modules/file-method.c:
+	Removed _LARGEFILE64_SOURCE defines in individual files
+	that are now redundant.
+
+	* libgnomevfs/gnome-vfs-file-info.h: Change the inode
+	number field to be guint, so it doesn't change based on
+	the flags controlling types in the system headers. I chose
+	guint assuming that it will match the size of inode_t
+	compiled into existing gnome-vfs-using programs.
+
 2002-01-30  Seth Nickell  <snickell@stanford.edu>
 
 	* acconfig.h:

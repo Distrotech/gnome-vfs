@@ -24,6 +24,8 @@ INCLUDES =					\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
+	-D_LARGEFILE64_SOURCE			\
+	-D_FILE_OFFSET_BITS=64			\
 	$(NULL)
 
 lib_LTLIBRARIES = libgnomevfs.la

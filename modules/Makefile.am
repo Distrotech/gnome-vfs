@@ -17,7 +17,9 @@ INCLUDES =					\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
-	-DPREFIX=\"$(prefix)\"
+	-DPREFIX=\"$(prefix)\"			\
+	-D_LARGEFILE64_SOURCE                   \
+        -D_FILE_OFFSET_BITS=64
 
 EXTRA_DIST =					\
 	default-modules.conf			\
