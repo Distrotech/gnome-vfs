@@ -326,7 +326,8 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	p2 = p1 + 1;
 		
 	if (*p2 == 0) {
-		gnome_vfs_uri_unref (uri);
+		if (uri->ref_count > 0)
+			gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
 	}

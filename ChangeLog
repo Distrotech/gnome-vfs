@@ -1,3 +1,10 @@
+2000-04-04  Andy Hertzfeld <andy@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	fixed critical assertion that Nautilus was encountering using
+	non-filesystem uris by making sure the uri was reference before
+	calling unref.
+	
 2000-04-04  Ian McKellar <yakk@yakk.net>
 	* modules/http-method.c
 	Fixed WebDAV directory code to remove leading "/" from filenames.
