@@ -29,19 +29,21 @@
 
 BEGIN_GNOME_DECLS
 
-const char *gnome_vfs_mime_get_value     (const char *mime_type,
-					  const char *key);
-GList      *gnome_vfs_mime_get_keys      (const char *mime_type);
-const char *gnome_vfs_mime_program       (const char *mime_type);
-const char *gnome_vfs_mime_description   (const char *mime_type);
-const char *gnome_vfs_mime_test          (const char *mime_type);
-const char *gnome_vfs_mime_composetyped  (const char *mime_type);
-gboolean    gnome_vfs_mime_copiousoutput (const char *mime_type,
-					  char       *key);
-gboolean    gnome_vfs_mime_needsterminal (const char *mime_type,
-					  char       *key);
-gchar      *gnome_vfs_mime_program_name  (const char *program_name);
-void        gnome_vfs_mime_info_reload   (void);
+const char *gnome_vfs_mime_get_value     	(const char *mime_type,
+					  	const char *key);
+GList      *gnome_vfs_mime_get_keys      	(const char *mime_type);
+const char *gnome_vfs_mime_program       	(const char *mime_type);
+const char *gnome_vfs_mime_description   	(const char *mime_type);
+const char *gnome_vfs_mime_test          	(const char *mime_type);
+const char *gnome_vfs_mime_composetyped  	(const char *mime_type);
+gboolean    gnome_vfs_mime_copiousoutput 	(const char *mime_type,
+					  	char       *key);
+gboolean    gnome_vfs_mime_needsterminal 	(const char *mime_type,
+					  	char       *key);
+gchar      *gnome_vfs_mime_program_name  	(const char *program_name);
+void        gnome_vfs_mime_info_reload   	(void);
+GList 	   *gnome_vfs_get_registered_mime_types (void);
+
 
 END_GNOME_DECLS
 

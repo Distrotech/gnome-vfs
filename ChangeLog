@@ -1,3 +1,46 @@
+2000-06-17  Gene Z. Ragan  <gzr@eazel.com>
+
+	File Types and Programs capplet work in progress.
+	
+	* mime-type-capplet/mime-info.c:
+	* mime-type-capplet/mime-info.h:
+	Removed obsolete files from capplet.
+
+	* mime-type-capplet/Makefile.am:
+	Remove above files form makefile.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	(list_context_new), (context_destroy_and_unlink), 
+	(load_mime_type_info_from),
+	(load_mime_list_info_from), (mime_list_load),
+	(load_mime_type_info), (gnome_vfs_mime_init),
+	(gnome_vfs_mime_info_clear), (gnome_vfs_mime_info_shutdown),
+	(get_key_name), (gnome_vfs_get_registered_mime_types):
+	Various fixes and modifications.  Fixed a bug in the
+	mime key database parser that caused comments to be 
+	read in incorrectly.
+	
+	* mime-type-capplet/mime-data.c: 
+	(add_to_key), (add_mime_vals_to_clist), 
+	(add_new_mime_type), (add_new_mime_type),
+	(write_mime_foreach):
+	Capplet work in progress.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	Capplet work in progress.
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c: 
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	(main), (g_list_free_deep), (try_callback), (revert_callback),
+	(ok_callback), (cancel_callback), (populate_extension_list),
+	(mime_list_selected_row_callback), (init_mime_capplet),
+	(nautilus_mime_type_capplet_update_info), (delete_mime_clicked),
+	(edit_applications_clicked), (edit_components_clicked),
+	(insert_mime_vals_into_clist), (create_mime_list_and_scroller):
+	Capplet work in progress.
+
 2000-06-16  Pavel Cisler  <pavel@eazel.com>
 
 	* data/mime/gnome-vfs.mime:
