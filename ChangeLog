@@ -1,5 +1,10 @@
 2000-09-11  Mathieu Lacage  <mathieu@eazel.com>
 
+	* test/test-uri.c: (main): remove the tests from compilation folowing
+	pavel and Darin advices.
+
+2000-09-11  Mathieu Lacage  <mathieu@eazel.com>
+
 	* test/test-uri.c: (main): add 2 new tests which fail and should be
 	fixed somehow. I dunno how to fix them but they cause crashes in nautilus.
 	/tmp/#test# is not taken into account by gnome_vfs_uri_new.
