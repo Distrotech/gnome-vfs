@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-08-15 11:10+0800\n"
+"POT-Creation-Date: 2004-08-18 11:53+0200\n"
+"PO-Revision-Date: 2004-08-18 23:34+0800\n"
 "Last-Translator: LoneStar <lone@auvtech.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -282,9 +282,8 @@ msgid "Unknown"
 msgstr "未知"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R 碟片"
+msgstr "CD-ROM 碟片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -391,7 +390,7 @@ msgid "Linux Disk"
 msgstr "Linux 磁盘"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "未知的操作类型 %u"
 
@@ -1331,5 +1330,3 @@ msgstr "SMB 工作组"
 msgid "The window workgroup the user is part of"
 msgstr "此用户所属的 Windows 工作组"
 
-#~ msgid "CD Disc"
-#~ msgstr "CD 碟片"
