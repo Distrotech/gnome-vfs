@@ -53,8 +53,15 @@
 #endif
 #include <time.h>
 
-#ifdef HAVE_GSSAPI
+#ifdef HAVE_GSSAPI_H
+#include <gssapi.h>
+#endif
+
+#ifdef HAVE_GSSAPI_GSSAPI_H
 #include <gssapi/gssapi.h>
+#endif
+
+#ifdef HAVE_GSSAPI_GSSAPI_GENERIC_H
 #include <gssapi/gssapi_generic.h>
 #endif
 

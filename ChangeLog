@@ -1,3 +1,8 @@
+2004-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ftp-method.c:
+	Include the right gssapi headers.
+
 2004-09-16  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* modules/ftp-method.c: Fix debugging define
