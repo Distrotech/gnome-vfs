@@ -1,3 +1,7 @@
+2004-05-15  Morten Welinder  <mortenw@gnome.org>
+
+	* configure.in: fix ngettext detection on Solaris and AIX
+
 2004-05-15  Michael Wilson <Michael.Wilson@bull.net>
 
 	* libgnomevfs/xdgmimeglob.h: removed unnecessary comma at the end of
