@@ -1030,11 +1030,13 @@ gnome_vfs_is_executable_command_string (const char *command_string)
  * Reads an entire file into memory for convenience. Beware accidentally
  * loading large files into memory with this function.
  *
+ * Since version 2.10 the string stored in @file_contents will be nul-terminated,
+ * so for text files you can use result as a normal string.
+ *
  * Return value: An integer representing the result of the operation
  *
  * Since: 2.2
  */
-
 GnomeVFSResult
 gnome_vfs_read_entire_file (const char *uri,
 			    int *file_size,
@@ -1046,10 +1048,10 @@ gnome_vfs_read_entire_file (const char *uri,
 	GnomeVFSFileSize total_bytes_read;
 	GnomeVFSFileSize bytes_read;
 
-	g_assert (file_size != NULL);
 	g_assert (file_contents != NULL);
 
-	*file_size = 0;
+	if (file_size != NULL)
+		*file_size = 0;
 	*file_contents = NULL;
 
 	/* Open the file. */
@@ -1083,6 +1085,9 @@ gnome_vfs_read_entire_file (const char *uri,
 		total_bytes_read += bytes_read;
 	} while (result == GNOME_VFS_OK);
 
+	buffer = g_realloc (buffer, total_bytes_read + 1);
+	buffer[total_bytes_read] = '\0';
+
 	/* Close the file. */
 	result = gnome_vfs_close (handle);
 	if (result != GNOME_VFS_OK) {
@@ -1091,8 +1096,9 @@ gnome_vfs_read_entire_file (const char *uri,
 	}
 
 	/* Return the file. */
-	*file_size = total_bytes_read;
-	*file_contents = g_realloc (buffer, total_bytes_read);
+	if (file_size != NULL)
+		*file_size = total_bytes_read;
+	*file_contents = g_realloc (buffer, total_bytes_read + 1);
 	return GNOME_VFS_OK;
 }
 

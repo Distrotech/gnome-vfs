@@ -1,3 +1,9 @@
+2005-02-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_read_entire_file):
+	Make the string nul-terminated. Some apps were expecting this,
+	and it makes it work like g_file_get_contents.	
+
 2005-02-22  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:
