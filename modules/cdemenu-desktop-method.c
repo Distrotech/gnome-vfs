@@ -261,11 +261,10 @@ do_open (GnomeVFSMethod *method,
 					  * specifier, but that's OK, it will
 					  * work */
 					 "Name=%s\n"
-					 "Comment=%s\n"
+					 "Comment=\n"
 					 "Icon=%s\n"
 					 "Type=Directory\n",
 					 utf8_name, 
-					 utf8_name,
 					 get_icon_for_menu(tmp));
 				/* Title is found, dont look for secondary title*/
 
@@ -305,12 +304,12 @@ do_open (GnomeVFSMethod *method,
 						  * specifier, but that's
 						  * OK, it will work */
 						 "Name=%s\n"
-						 "Comment=%s\n"
+						 "Comment=\n"
 						 "Exec=%s\n"
 						 "Icon=%s\n"
 						 "Terminal=0\n"
 						 "Type=Application\n",
-						 utf8_name, utf8_name,
+						  utf8_name,
 						 exec, icon);
 					g_free (utf8_name);
 					g_free(icon);
@@ -341,12 +340,12 @@ do_open (GnomeVFSMethod *method,
 						  * specifier, but that's
 						  * OK, it will work */
 						 "Name=%s\n"
-						 "Comment=%s\n"
+						 "Comment=\n"
 						 "Exec=%s\n"
 						 "Icon=\n"
 						 "Terminal=0\n"
 						 "Type=Application\n",
-						 utf8_name, utf8_name, tmp);
+						  utf8_name, tmp);
 					g_free (utf8_name);
 				}
 			}
