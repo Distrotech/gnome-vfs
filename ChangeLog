@@ -1,3 +1,10 @@
+2003-12-19  Christian Neumair  <chris@gnome-de.org>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in:
+	* schemas/system_http_proxy.schemas.in:
+	Introduce some consistency/simplification both in terminology and
+	punctuation (#129492, #129493, #129497, #129498).
+
 2003-12-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_format_file_size_for_display):

@@ -8,9 +8,9 @@
       <type>bool</type>
       <default>false</default>
       <locale name="C">
-        <short>Use proxy settings when accessing http</short>
-        <long>Enables the proxy settings when accessing http over the
-        internet.</long>
+        <short>Use HTTP proxy</short>
+        <long>Enables the proxy settings when accessing HTTP over the
+        Internet.</long>
       </locale>
     </schema>
     <schema>
@@ -21,7 +21,7 @@
       <default></default>
       <locale name="C">
         <short>HTTP proxy host name</short>
-        <long>The machine name to proxy http through.</long>
+        <long>The machine name to proxy HTTP through.</long>
       </locale>
     </schema>
     <schema>
@@ -32,8 +32,8 @@
       <default>8080</default>
       <locale name="C">
         <short>HTTP proxy port</short>
-        <long>The port on the machine defined by /system/http_proxy/host
-        that you proxy through</long>
+        <long>The port on the machine defined by "/system/http_proxy/host"
+        that you proxy through.</long>
       </locale>
     </schema>
     <schema>
@@ -43,11 +43,11 @@
       <type>bool</type>
       <default>false</default>
       <locale name="C">
-        <short>Authenticate connections to the proxy server</short>
+        <short>Authenticate proxy server connections</short>
         <long>If true, then connections to the proxy server require
-        authentication.  The username/password combo defined by
-        /system/http_proxy/authentication_user and
-        /system/http_proxy/authentication_password.</long>
+        authentication. The username/password combo defined by
+        "/system/http_proxy/authentication_user" and
+        "/system/http_proxy/authentication_password".</long>
       </locale>
     </schema>
     <schema>
@@ -57,8 +57,8 @@
       <type>string</type>
       <default></default>
       <locale name="C">
-        <short>http proxy username</short>
-        <long>User name to pass as authentication when doing http proxying</long>
+        <short>HTTP proxy username</short>
+        <long>User name to pass as authentication when doing HTTP proxying.</long>
       </locale>
     </schema>
     <schema>
@@ -68,8 +68,8 @@
       <type>string</type>
       <default></default>
       <locale name="C">
-        <short>http proxy password</short>
-        <long>Password to pass as authentication when doing http proxying</long>
+        <short>HTTP proxy password</short>
+        <long>Password to pass as authentication when doing HTTP proxying.</long>
       </locale>
     </schema>
     <schema>
@@ -80,7 +80,7 @@
       <list_type>string</list_type>
       <default>[localhost,127.0.0.0/8]</default>
       <locale name="C">
-        <short>Hosts are not contacted via the proxy</short>
+        <short>Non-proxy host</short>
         <long>This key contains a list of hosts which are connected to
 	directly, rather than via the proxy (if it is active). The values can
 	be hostnames, domains (using an initial wildcard like *.foo.com), IP
@@ -97,7 +97,7 @@
       <locale name="C">
         <short>Proxy configuration mode</short>
         <long>Select the proxy configuration mode. Supported values are
-	"none", "manual", "auto"</long>
+	"none", "manual", "auto".</long>
       </locale>
     </schema>
     <schema>
@@ -107,8 +107,8 @@
       <type>string</type>
       <default></default>
       <locale name="C">
-        <short>Secure http proxy host name</short>
-        <long>The machine name to proxy secure http through.</long>
+        <short>Secure HTTP proxy host name</short>
+        <long>The machine name to proxy secure HTTP through.</long>
       </locale>
     </schema>
     <schema>
@@ -118,9 +118,9 @@
       <type>int</type>
       <default>0</default>
       <locale name="C">
-        <short>Secure http proxy port</short>
-        <long>The port on the machine defined by /system/proxy/secure_host
-        that you proxy through</long>
+        <short>Secure HTTP proxy port</short>
+        <long>The port on the machine defined by "/system/proxy/secure_host"
+        that you proxy through.</long>
       </locale>
     </schema>
     <schema>
@@ -142,8 +142,8 @@
       <default>0</default>
       <locale name="C">
         <short>FTP proxy port</short>
-        <long>The port on the machine defined by /system/proxy/ftp_host
-        that you proxy through</long>
+        <long>The port on the machine defined by "/system/proxy/ftp_host"
+        that you proxy through.</long>
       </locale>
     </schema>
     <schema>
@@ -153,7 +153,7 @@
       <type>string</type>
       <default></default>
       <locale name="C">
-        <short>Socks proxy host name</short>
+        <short>SOCKS proxy host name</short>
         <long>The machine name to proxy socks through.</long>
       </locale>
     </schema>
@@ -164,9 +164,9 @@
       <type>int</type>
       <default>0</default>
       <locale name="C">
-        <short>Socks proxy port</short>
-        <long>The port on the machine defined by /system/proxy/socks_host
-        that you proxy through</long>
+        <short>SOCKS proxy port</short>
+        <long>The port on the machine defined by "/system/proxy/socks_host"
+        that you proxy through.</long>
       </locale>
     </schema>
     <schema>
@@ -177,7 +177,7 @@
       <default></default>
       <locale name="C">
         <short>Automatic proxy configuration URL</short>
-        <long>URL that provides proxy configuration values</long>
+        <long>URL that provides proxy configuration values.</long>
       </locale>
     </schema>
   </schemalist>

@@ -9,8 +9,8 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-        <short>How to handle trash URLs</short>
-        <long>Set to true to have a program specified in trash/command handle trash URLs</long>
+        <short>Handle trash URLs</short>
+        <long>Set to true to have a program specified in "command" handle trash URLs.</long>
       </locale>
     </schema>
     <schema>
@@ -20,8 +20,8 @@
       <type>string</type>
       <default>nautilus "%s"</default>
       <locale name="C">
-        <short>URL handler for trash pages</short>
-        <long>URL handler for trash pages</long>
+        <short>trash URL handler</short>
+        <long></long>
       </locale>
     </schema>
     <schema>
@@ -32,7 +32,7 @@
       <default>false</default>
       <locale name="C">
         <short>Run program in terminal</short>
-        <long>True if the program to handle this URL should be run in a terminal</long>
+        <long>True if the program to handle this URL should be run in a terminal.</long>
       </locale>
     </schema>
     
@@ -43,8 +43,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle ghelp URLs</short>
-       <long>Set to true to have a program specified in programs/ghelp handle ghelp URLs</long>
+       <short>Handle ghelp URLs</short>
+       <long>Set to true to have a program specified in "command" handle ghelp URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -54,8 +54,8 @@
      <type>string</type>
      <default>gnome-help "%s"</default>
      <locale name="C">
-       <short>URL handler for ghelp pages</short>
-       <long>URL handler for ghelp pages</long>
+       <short>ghelp URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -66,7 +66,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
 
@@ -77,8 +77,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle info URLs</short>
-       <long>Set to true to have a program specified in programs/info handle info URLs</long>
+       <short>Handle info URLs</short>
+       <long>Set to true to have a program specified in "command" handle info URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -88,8 +88,8 @@
      <type>string</type>
      <default>gnome-help "%s"</default>
      <locale name="C">
-       <short>URL handler for info pages</short>
-       <long>URL handler for info pages</long>
+       <short>info URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -100,7 +100,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
 
@@ -111,8 +111,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle man URLs</short>
-       <long>Set to true to have a program specified in programs/man handle man URLs</long>
+       <short>Handle man URLs</short>
+       <long>Set to true to have a program specified in "command" handle man URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -122,8 +122,8 @@
      <type>string</type>
      <default>gnome-help "%s"</default>
      <locale name="C">
-       <short>URL handler for man pages</short>
-       <long>URL handler for man pages</long>
+       <short>man URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -134,7 +134,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
 
@@ -145,8 +145,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle http URLs</short>
-       <long>Set to true to have a program specified in command handle http URLs</long>
+       <short>Handle HTTP URLs</short>
+       <long>Set to true to have a program specified in "command" handle HTTP URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -156,8 +156,8 @@
      <type>string</type>
      <default>epiphany %s</default>
      <locale name="C">
-       <short>URL handler for http uris</short>
-       <long>URL handler for http uris</long>
+       <short>HTTP URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -168,7 +168,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
    
@@ -179,8 +179,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle https URLs</short>
-       <long>Set to true to have a program specified in command handle https URLs</long>
+       <short>Handle HTTPS URLs</short>
+       <long>Set to true to have a program specified in "command" handle HTTPS URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -190,8 +190,8 @@
      <type>string</type>
      <default>epiphany %s</default>
      <locale name="C">
-       <short>URL handler for https uris</short>
-       <long>URL handler for https uris</long>
+       <short>HTTPS URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -202,7 +202,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
 
@@ -213,8 +213,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle mailto URLs</short>
-       <long>Set to true to have a program specified in command handle mailto URLs</long>
+       <short>Handle mailto URLs</short>
+       <long>Set to true to have a program specified in "command" handle mailto URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -224,8 +224,8 @@
      <type>string</type>
      <default>evolution %s</default>
      <locale name="C">
-       <short>URL handler for mailto uris</short>
-       <long>URL handler for mailto uris</long>
+       <short>mailto URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -236,7 +236,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
    
@@ -247,8 +247,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle callto URLs</short>
-       <long>Set to true to have a program specified in command handle callto URLs</long>
+       <short>Handle callto URLs</short>
+       <long>Set to true to have a program specified in "command" handle callto URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -258,8 +258,8 @@
      <type>string</type>
      <default>gnomemeeting -c %s</default>
      <locale name="C">
-       <short>URL handler for callto uris</short>
-       <long>URL handler for callto uris</long>
+       <short>callto URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -270,7 +270,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
    
@@ -281,8 +281,8 @@
      <type>bool</type>
      <default>true</default>
      <locale name="C">
-       <short>How to handle h323 URLs</short>
-       <long>Set to true to have a program specified in command handle h323 URLs</long>
+       <short>Handle H323 URLs</short>
+       <long>Set to true to have a program specified in "command" handle H323 URLs.</long>
      </locale>
    </schema>
    <schema>
@@ -292,8 +292,8 @@
      <type>string</type>
      <default>gnomemeeting -c %s</default>
      <locale name="C">
-       <short>URL handler for h323 uris</short>
-       <long>URL handler for h323 uris</long>
+       <short>H323 URL handler</short>
+       <long></long>
      </locale>
    </schema>
    <schema>
@@ -304,7 +304,7 @@
      <default>false</default>
      <locale name="C">
        <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal</long>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
    
