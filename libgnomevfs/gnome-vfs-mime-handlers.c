@@ -39,10 +39,8 @@ static char *get_user_level (void);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
 static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
-#ifdef USING_OAF
 static char *join_str_list (const char *separator, GList *list);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
-#endif
 static GList *comma_separated_str_to_str_list (const char *str);
 static GList *str_list_difference (GList *a, GList *b);
 static char *str_list_to_comma_separated_str (GList *list);
@@ -116,16 +114,12 @@ gnome_vfs_mime_get_default_action_without_fallback (const char *mime_type)
 		}
 		break;
 	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
-#ifdef USING_OAF
 		action->action.component = 
 			gnome_vfs_mime_get_default_component (mime_type);
 		if (action->action.component == NULL) {
 			g_free (action);
 			action = NULL;
 		}
-#else
-		action= NULL;
-#endif
 		break;
 	case GNOME_VFS_MIME_ACTION_TYPE_NONE:
 		g_free (action);
@@ -173,6 +167,8 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 			default_application = gnome_vfs_mime_get_default_application (supertype);
 			g_free (supertype);
 			return default_application;
+		} else {
+			return NULL;
 		}
 	}
 
@@ -197,7 +193,6 @@ gnome_vfs_mime_set_icon (const char *mime_type, const char *filename)
 }
 
 
-#ifdef USING_OAF
 OAF_ServerInfo *
 gnome_vfs_mime_get_default_component (const char *mime_type)
 {
@@ -309,7 +304,6 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 	return default_component;
 }
-#endif
 
 static GList *
 gnome_vfs_mime_str_list_merge (GList *a, 
@@ -500,7 +494,6 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 }
 
 
-#ifdef USING_OAF
 static char *
 join_str_list (const char *separator, GList *list)
 {
@@ -526,12 +519,10 @@ join_str_list (const char *separator, GList *list)
 
 	return retval;
 }
-#endif
 
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
-#ifdef USING_OAF
 	GList *system_short_list;
 	GList *short_list_additions;
 	GList *short_list_removals;
@@ -649,9 +640,6 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	g_list_free (iid_list);
 
 	return preferred_components;
-#else
-	return NULL;
-#endif
 }
 
 
@@ -689,7 +677,6 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 GList *
 gnome_vfs_mime_get_all_components (const char *mime_type)
 {
-#ifdef USING_OAF
 	OAF_ServerInfoList *info_list;
 	GList *components_list;
 	CORBA_Environment ev;
@@ -735,9 +722,6 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	CORBA_exception_free (&ev);
 
 	return components_list;
-#else
-	return NULL;
-#endif
 }
 
 static GnomeVFSResult
@@ -1034,13 +1018,10 @@ gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
 gboolean
 gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
 {
-#ifdef USING_OAF
 	return g_list_find_custom
 		(components, (gpointer) iid,
 		 (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
-#else
 	return FALSE;
-#endif
 }
 
 /**
@@ -1087,15 +1068,12 @@ GList *
 gnome_vfs_mime_id_list_from_component_list (GList *components)
 {
 	GList *list = NULL;
-#ifdef USING_OAF
 	GList *node;
 
 	for (node = components; node != NULL; node = node->next) {
 		list = g_list_prepend 
 			(list, g_strdup (((OAF_ServerInfo *)node->data)->iid));
 	}
-#endif
-
 	return g_list_reverse (list);
 }
 
@@ -1232,7 +1210,6 @@ gnome_vfs_mime_remove_component_from_list (GList *components,
 					   const char *iid,
 					   gboolean *did_remove)
 {
-#ifdef USING_OAF
 	GList *matching_node;
 	
 	matching_node = g_list_find_custom 
@@ -1246,8 +1223,6 @@ gnome_vfs_mime_remove_component_from_list (GList *components,
 	if (did_remove != NULL) {
 		*did_remove = matching_node != NULL;
 	}
-#endif
-
 	return components;
 }
 
@@ -1472,9 +1447,7 @@ gnome_vfs_mime_action_free (GnomeVFSMimeAction *action)
 		gnome_vfs_mime_application_free (action->action.application);
 		break;
 	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
-#ifdef USING_OAF
 		CORBA_free (action->action.component);
-#endif
 		break;
 	default:
 		g_assert_not_reached ();
@@ -1493,9 +1466,7 @@ gnome_vfs_mime_application_list_free (GList *list)
 void
 gnome_vfs_mime_component_list_free (GList *list)
 {
-#ifdef USING_OAF
 	g_list_foreach (list, (GFunc) CORBA_free, NULL);
-#endif
 	g_list_free (list);
 }
 
@@ -1665,7 +1636,6 @@ prune_ids_for_nonexistent_applications (GList *list)
 	return list;
 }
 
-#ifdef USING_OAF
 static GList *
 OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 {
@@ -1682,7 +1652,6 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 
 	return retval;
 }
-#endif
 
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus

@@ -18,6 +18,7 @@ test-escape
 test-find-directory
 test-info
 test-mime
+test-mime-info
 test-mime-handlers
 test-mime-handlers-set
 test-seek
@@ -31,4 +32,3 @@ test-xfer
 test-dirop
 test-unlink
 vfs-run
-test-mime-info

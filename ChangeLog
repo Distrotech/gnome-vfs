@@ -1,3 +1,34 @@
+2000-09-01  Mathieu Lacage  <mathieu@eazel.com>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init):
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_without_fallback),
+	(gnome_vfs_mime_get_default_component), (join_str_list),
+	(gnome_vfs_mime_get_short_list_components),
+	(gnome_vfs_mime_get_all_components),
+	(gnome_vfs_mime_id_in_component_list),
+	(gnome_vfs_mime_id_list_from_component_list),
+	(gnome_vfs_mime_remove_component_from_list),
+	(gnome_vfs_mime_action_free), (gnome_vfs_mime_component_list_free),
+	(OAF_ServerInfoList_to_ServerInfo_g_list):
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* test/test-mime-handlers-set.c: (main): 
+	* test/test-mime-handlers.c: (print_component), (print_action),
+	(print_component_list), (main):
+	remove test on OAF compile.
+
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_application): fix bug: we were passing
+	a NULL to some subroutine.
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), (nautilus_mime_type_capplet_update_info),
+	(populate_mime_list), (create_mime_list_and_scroller):
+	fix misc warning at runtime. add debugging output. will remove soon.
+	
+	* test/.cvsignore: chuuut.
+
 2000-09-01  Christopher James Lahey  <clahey@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h: Removed #ifdef USING_OAF.

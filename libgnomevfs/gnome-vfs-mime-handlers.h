@@ -48,6 +48,7 @@ typedef struct {
 	GnomeVFSMimeActionType action_type;
 	union {
 		OAF_ServerInfo *component;
+		void *dummy_component;
 		GnomeVFSMimeApplication *application;
 	} action;
 } GnomeVFSMimeAction;

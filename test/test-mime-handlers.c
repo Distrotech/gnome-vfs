@@ -45,7 +45,6 @@ print_application (GnomeVFSMimeApplication *application)
 	}
 }
 
-#ifdef USING_OAF
 static void
 print_component (OAF_ServerInfo *component)
 {
@@ -55,7 +54,6 @@ print_component (OAF_ServerInfo *component)
 	        printf ("iid: %s\n", component->iid);
 	}
 }
-#endif
 
 static void
 print_action (GnomeVFSMimeAction *action)
@@ -68,9 +66,7 @@ print_action (GnomeVFSMimeAction *action)
 		print_application (action->action.application);
 	  } else {
   	        puts ("type: component");
-#ifdef USING_OAF
 		print_component (action->action.component);
-#endif
 	  }
 	}
 }
@@ -84,9 +80,7 @@ print_component_list (GList *components)
 	 puts ("(none)");
        } else {
 	 for (p = components; p != NULL; p = p->next) {
-#ifdef USING_OAF
 	   print_component (p->data);
-#endif
 	   puts ("------");
 	 }
 	 
@@ -114,18 +108,14 @@ main (int argc, char **argv)
 {
         const char *type;  
 	GnomeVFSMimeApplication *default_application;
-#ifdef USING_OAF
 	OAF_ServerInfo *default_component;
-#endif
 	GnomeVFSMimeAction *default_action;
 	GList *all_components;
 	GList *all_applications;
 	GList *short_list_components;
 	GList *short_list_applications;
 
-#ifdef USING_OAF
 	oaf_init (argc, argv);
-#endif
 	gnome_vfs_init ();
 
 	if (argc != 2) {
@@ -145,12 +135,10 @@ main (int argc, char **argv)
 	print_application (default_application);
 	puts ("");
 		
-#ifdef USING_OAF
 	default_component = gnome_vfs_mime_get_default_component (type);
 	puts("Default Component");
 	print_component (default_component);
 	puts ("");
-#endif
 
 	short_list_applications = gnome_vfs_mime_get_short_list_applications (type); 
 	puts("Short List Applications");
