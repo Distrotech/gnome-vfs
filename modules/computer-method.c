@@ -221,6 +221,10 @@ get_file (ComputerDir *dir, char *name)
 	GList *l;
 	ComputerFile *file;
 
+	if (!name) {
+		return NULL;
+	}
+
 	for (l = dir->files; l != NULL; l = l->next) {
 		file = l->data;
 		if (strcmp (file->file_name, name) == 0) {
@@ -228,6 +232,19 @@ get_file (ComputerDir *dir, char *name)
 		}
 	}
 	return NULL;
+}
+
+static char *
+build_file_name (char *name, char *extension)
+{
+	char *escaped;
+	char *ret;
+	
+	escaped = gnome_vfs_escape_string (name);
+	ret = g_strconcat (escaped, extension, NULL);
+	g_free (escaped);
+	
+	return ret;
 }
 
 static void
@@ -245,7 +262,7 @@ volume_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 		if (drive == NULL) {
 			file = computer_file_new (COMPUTER_VOLUME);
 			name = gnome_vfs_volume_get_display_name (volume);
-			file->file_name = g_strconcat (name, ".volume", NULL);
+			file->file_name = build_file_name (name, ".volume");
 			g_free (name);
 			file->volume = gnome_vfs_volume_ref (volume);
 			computer_file_add (dir, file);
@@ -297,7 +314,7 @@ drive_connected (GnomeVFSVolumeMonitor *volume_monitor,
 	if (gnome_vfs_drive_is_user_visible (drive)) {
 		file = computer_file_new (COMPUTER_DRIVE);
 		name = gnome_vfs_drive_get_display_name (drive);
-		file->file_name = g_strconcat (name, ".drive", NULL);
+		file->file_name = build_file_name (name, ".drive");
 		g_free (name);
 		file->drive = gnome_vfs_drive_ref (drive);
 		computer_file_add (dir, file);
@@ -355,7 +372,7 @@ fill_root (ComputerDir *dir)
 		if (gnome_vfs_drive_is_user_visible (drive)) {
 			file = computer_file_new (COMPUTER_DRIVE);
 			name = gnome_vfs_drive_get_display_name (drive);
-			file->file_name = g_strconcat (name, ".drive", NULL);
+			file->file_name = build_file_name (name, ".drive");
 			g_free (name);
 			file->drive = gnome_vfs_drive_ref (drive);
 			computer_file_add (dir, file);
@@ -369,7 +386,7 @@ fill_root (ComputerDir *dir)
 			if (drive == NULL) {
 				file = computer_file_new (COMPUTER_VOLUME);
 				name = gnome_vfs_volume_get_display_name (volume);
-				file->file_name = g_strconcat (name, ".volume", NULL);
+				file->file_name = build_file_name (name, ".volume");
 				g_free (name);
 				file->volume = gnome_vfs_volume_ref (volume);
 				computer_file_add (dir, file);
