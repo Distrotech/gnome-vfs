@@ -1,3 +1,14 @@
+2001-02-08  Michael K. Fleming  <mfleming@eazel.com>
+
+	Bug 6451: Copying file into folder with space in it fails with "out of space"
+	error.
+
+	gnome_vfs_get_volume_free_space was calling statfs() with escaped
+	paths and returning the wrong error code. 
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+
+
 2001-02-08  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: Robey Pointer  <robey@eazel.com>

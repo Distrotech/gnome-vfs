@@ -712,6 +712,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	GnomeVFSFileSize free_blocks, block_size;
        	int statfs_result;
 	const char *path, *scheme;
+	char *unescaped_path;
 #if HAVE_STATVFS
 	struct statvfs statfs_buffer;
 #else
@@ -726,6 +727,9 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	}
 
 	path = gnome_vfs_uri_get_path (vfs_uri);
+
+	unescaped_path = gnome_vfs_unescape_string (path, G_DIR_SEPARATOR_S);
+	
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
         /* We only handle the file scheme for now */
@@ -734,18 +738,26 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	}
 
 #if HAVE_STATVFS
-	statfs_result = statvfs (path, &statfs_buffer);
+	statfs_result = statvfs (unescaped_path, &statfs_buffer);
 #else
-	statfs_result = statfs (path, &statfs_buffer);   
+	statfs_result = statfs (unescaped_path, &statfs_buffer);   
 #endif  
 
+	if (statfs_result == 0) {
+		ret = GNOME_VFS_OK;
+	} else {
+		ret = gnome_vfs_result_from_errno ();
+	}
+	
 	g_return_val_if_fail (statfs_result == 0, FALSE);
 	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;
 
 	*size = block_size * free_blocks;
 
-	return GNOME_VFS_OK;
+	g_free (unescaped_path);
+	
+	return ret;
 }
 
 /**
