@@ -127,6 +127,9 @@ application/x-kde-app-info
 application/x-lha
 	ext: lha
 
+application/x-lhz
+	ext: lhz
+
 application/x-mif
 	ext: mif
 

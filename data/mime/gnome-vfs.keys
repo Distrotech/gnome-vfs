@@ -157,6 +157,12 @@ application/x-gnumeric
 application/x-kde-app-info
 	description=KDE application information
 
+application/x-lha
+	description=LHARC archive
+
+application/x-lhz
+	description=LHA archive
+
 application/x-ms-dos-executable
 	description=DOS/Windows program
 
