@@ -1,3 +1,9 @@
+2002-05-14  Jody Goldberg <jody@gnome.org>
+
+	From ali.akcaagac@stud.fh-wilhelmshaven.de (Ali Akcaagac) 
+        http://bugzilla.gnome.org/show_bug.cgi?id=80826
+	* configure.in : improve FAM test.
+
 Mon May 13 17:35:39 2002  Jonathan Blandford  <jrb@redhat.com>
 
 	* modules/tarpet.h (TARPET_TYPE_FIFO): Modify to make match tar
