@@ -41,4 +41,9 @@ GnomeVFSJobSlave *gnome_vfs_job_slave_new (GnomeVFSJob *job);
 void gnome_vfs_job_slave_cancel (GnomeVFSJobSlave *slave);
 void gnome_vfs_job_slave_destroy (GnomeVFSJobSlave *slave);
 
+/* call this before taking down the idle task in the master thread
+ * to give pending slave threads a chance to finish cleanly
+ */
+void gnome_vfs_thread_backend_shutdown (void);
+
 #endif /* _GNOME_VFS_JOB_SLAVE_PTHREAD_H */

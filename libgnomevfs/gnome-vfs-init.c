@@ -33,7 +33,7 @@
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 
-gboolean gnome_vfs_init(void)
+gboolean gnome_vfs_init (void)
 {
 	gboolean retval;
 
@@ -60,6 +60,13 @@ gboolean gnome_vfs_init(void)
 	G_UNLOCK (vfs_already_initialized);
 
 	return retval;
+}
+
+
+void
+gnome_vfs_shutdown (void)
+{
+	gnome_vfs_backend_shutdown ();
 }
 
 void

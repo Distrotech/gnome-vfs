@@ -1,3 +1,23 @@
+2000-05-11  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	Add debugging code to help me fix deadlocks caused by gnome vfs
+	not shutting down properly.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	Make the JOB_DEBUG debugging print atomic.
+
+	* libgnomevfs/gnome-vfs-backend.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	* libgnomevfs/gnome-vfs-init.h:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.h:
+	(gnome_vfs_thread_backend_shutdown),
+	(gnome_vfs_debug_get_thread_count):
+	Add a call that will allow apps to synchronize with the slave threads
+	that are finishing up.
+
 2000-05-10  Dan Winship  <danw@helixcode.com>
 
 	* data/mime/gnome-vfs.keys: Add message/* and multipart/* mime

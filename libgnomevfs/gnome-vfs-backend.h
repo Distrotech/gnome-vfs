@@ -6,5 +6,6 @@
 void        gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo);
 const char *gnome_vfs_backend_name     (void);
 gboolean    gnome_vfs_backend_init     (gboolean init_deps);
+void	    gnome_vfs_backend_shutdown (void);
 
 #endif

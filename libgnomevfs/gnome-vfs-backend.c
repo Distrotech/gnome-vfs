@@ -97,6 +97,22 @@ gnome_vfs_backend_init (gboolean deps_init)
 	return TRUE;
 }
 
+extern void gnome_vfs_thread_backend_shutdown (void);
+
+void
+gnome_vfs_backend_shutdown (void)
+{
+	/* find and call the backend shutdown function */
+	void (* thread_backend_shutdown_call) (void);
+	
+	g_assert (gmod);
+	if (g_module_symbol (gmod, "gnome_vfs_thread_backend_shutdown", 
+		(gpointer)&thread_backend_shutdown_call)) {
+		g_assert (thread_backend_shutdown_call);
+		(* thread_backend_shutdown_call) ();
+	}
+}
+
 typedef GnomeVFSResult (*GnomeVFSAsyncFunction) ();
 
 static GnomeVFSAsyncFunction
@@ -793,15 +809,21 @@ gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
 
 /* For testing only. */
 extern int gnome_vfs_debug_get_thread_count (void);
+
 int
 gnome_vfs_debug_get_thread_count (void)
 {
-	GnomeVFSAsyncFunction function;
 
-	function = func_lookup ("gnome_vfs_debug_get_thread_count");
-	if (function == NULL) {
-		return -1;
+	/* find and call the backend shutdown function */
+	int (* gnome_vfs_debug_get_thread_count) (void);
+	
+	g_assert (gmod);
+	if (g_module_symbol (gmod, "gnome_vfs_debug_get_thread_count", 
+		(gpointer)&gnome_vfs_debug_get_thread_count)) {
+		g_assert (gnome_vfs_debug_get_thread_count);
+		return (* gnome_vfs_debug_get_thread_count) ();
 	}
 
-	return (* function) ();
+	return -1;
 }
+
