@@ -2,6 +2,7 @@
 *.lo
 .deps
 .libs
+ABOUT-NLS
 Makefile
 Makefile.in
 aclocal.m4
@@ -26,8 +27,6 @@ mkinstalldirs
 stamp-h
 stamp-h.in
 vfsConf.sh
-vfscorbaConf.sh
-vfspthreadConf.sh
 gnome-vfs-config
 gnome-vfs-2.0.pc
 xml-i18n-extract

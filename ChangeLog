@@ -1,8 +1,20 @@
+2001-06-26  Darin Adler  <darin@bentspoon.com>
+
+	* .cvsignore: Ignore ABOUT-NLS, but not obsolete *Conf.sh files.
+	* Makefile.am: Eliminate vfspthreadConf.sh.
+	* vfscorbaConf.sh.in: Remove.
+	* vfspthreadConf.sh.in: Remove.
+	* devel-docs/.cvsignore: Remove since this is now an empty directory.
+	* devel-docs/gnome-vfs/.cvsignore: Remove since this is now an empty
+	directory.
+
+	* libgnomevfs/gnome-vfs-ops.h: Add include of gnome-vfs-types.h so
+	you can include this header on its own.
+
 2001-06-25  Sri Ramkrishna  <sri@aracnet.com>
 
 	* libgnomevfs/gnome-vfs-application-registry.c:
 	Added gtkdocs for gnome_vfs_application_registry_*
-
 
 2001-06-20  Peter Williams  <peterw@ximian.com>
 
@@ -364,17 +376,17 @@ Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
 2001-05-17  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* libgnomevfs/gnome-vfs-private.h: removed #include for
-		gnome-vfs-list-sort.h 
+	gnome-vfs-list-sort.h 
 
 2001-05-17  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* doc/Makefile.am:
-		(dist-hook): checked for the existence of dirs
-		before creating them.
-		(dist-hook-local): commented out this whole section
-		as it broke make dist as there are no TEXT dirs.
+	(dist-hook): checked for the existence of dirs
+	before creating them.
+	(dist-hook-local): commented out this whole section
+	as it broke make dist as there are no TEXT dirs.
 
-Thu May 17 18:52:41 2001  Jonathan Blandford  <jrb@redhat.com>
+2001-05-17  Jonathan Blandford  <jrb@redhat.com>
 
 	* configure.in:
 	* Makefile.am:

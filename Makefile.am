@@ -22,7 +22,6 @@ EXTRA_DIST =					\
 	autogen.sh				\
 	gnome-vfs.spec				\
 	vfsConf.sh.in				\
-	vfspthreadConf.sh.in			\
 	gnome-vfs-2.0.pc.in			\
 	xml-i18n-extract.in			\
 	xml-i18n-merge.in			\
@@ -33,12 +32,11 @@ bin_SCRIPTS = $(top_builddir)/gnome-vfs-config
 
 confexecdir=$(libdir)
 confexec_DATA =					\
-	vfsConf.sh				\
-	vfspthreadConf.sh
+	vfsConf.sh
 
 ## [The following is shamelessly copied from gnome-print.]
 
-## We create `vfsConf.sh', and `vfspthreadConf.sh' here and
+## We create `vfsConf.sh' and `gnome-vfs-config' here and
 ## not from configure because we want to get the paths expanded correctly.
 ## Macros like srcdir are given the value NONE in configure if the user doesn't
 ## specify them (this is an autoconf feature, not a bug).
@@ -50,14 +48,6 @@ vfsConf.sh: vfsConf.sh.in Makefile
 	    -e 's?\@VFS_LIBS\@?$(VFS_LIBS)?g' \
 	      < $(srcdir)/vfsConf.sh.in > vfsConf.tmp \
 	  && mv vfsConf.tmp vfsConf.sh
-
-vfspthreadConf.sh: vfspthreadConf.sh.in Makefile
-	sed -e 's?\@VFSPTHREAD_LIBDIR\@?$(VFSPTHREAD_LIBDIR)?g' \
-	    -e 's?\@VFSPTHREAD_INCLUDEDIR\@?$(VFSPTHREAD_INCLUDEDIR)?g' \
-	    -e 's?\@VERSION\@?$(VERSION)?g' \
-	    -e 's?\@VFSPTHREAD_LIBS\@?$(VFSPTHREAD_LIBS)?g' \
-	      < $(srcdir)/vfspthreadConf.sh.in > vfspthreadConf.tmp \
-	  && mv vfspthreadConf.tmp vfspthreadConf.sh
 
 gnome-vfs-config: gnome-vfs-config.in Makefile
 	sed -e 's?\@LIBDIR\@?$(libdir)?g' \
