@@ -1,4 +1,19 @@
 ===================================
+gnome-vfs 1.0.4
+---------------
+
+New features:
+
+* NNTP module (Andy)
+* Share MIME data with GnomeVFS2 using gnome-mime-data (Seth)
+
+Bug fixes:
+
+* Fix memory leak for nested symlinks, avoid infite loop (Havoc)
+* Detect OpenSSL libraries better (Frederic Crozat)
+* Don't include <regex.h> to remove namespace clashes (Darin)
+
+===================================
 gnome-vfs 1.0.3
 ---------------
 
