@@ -1,3 +1,12 @@
+2001-03-04  Dan Winship  <danw@ximian.com>
+
+	reviewed by: Maciej Stachowiak <mjs@eazel.com>
+	
+	* mime-type-capplet/libuuid/Makefile.am (NULL): Remove "SUBDIRS="
+	line, which causes automake (1.4 at least) to generate a Makefile
+	containing invalid sh script that bash (2.03.0(1) at least) won't
+	parse.
+
 2001-03-04  Ramiro Estrugo  <ramiro@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
