@@ -28,6 +28,7 @@
 #include "http-proxy.h"
 
 /* #define DEBUG_HTTP(x) (g_print x) */
+#define DEBUG_HTTP(x)
 
 /* Standard HTTP proxy port */
 #define DEFAULT_HTTP_PROXY_PORT 8080
