@@ -38,8 +38,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <libgnome/libgnome.h>
-
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"

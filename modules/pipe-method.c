@@ -3,8 +3,8 @@
 #endif
 
 #include <stdio.h>
+#include <string.h>
 
-#include <gnome.h>
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
