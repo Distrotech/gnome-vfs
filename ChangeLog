@@ -1,8 +1,9 @@
 2000-06-01  Darin Adler  <darin@eazel.com>
 
-	* data/mime/gnome-vfs.keys: Checked in a full version.
-	Also forgot to mention in my last check-in that I had changed the
-	name from componet to component for xpdf (which I also updated).
+	* data/mime/gnome-vfs.keys: Checked in a full version. I
+	accidentally truncated this with my last check-in.  Also forgot to
+	mention in my last check-in that I had changed the name from
+	componet to component for xpdf (which I also updated).
 	
 	* test/Makefile.am:
 	* test/.cvsignore:
