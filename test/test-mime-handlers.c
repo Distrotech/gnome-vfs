@@ -47,6 +47,8 @@ print_application_info (GnomeVFSMimeApplication *app)
 		 gnome_vfs_mime_application_get_startup_notify (app));
 	g_print ("Startup WM class %s\n",
 		 gnome_vfs_mime_application_get_startup_wm_class (app));
+	g_print ("Binary name %s\n",
+		 gnome_vfs_mime_application_get_binary_name (app));
 }
 
 int

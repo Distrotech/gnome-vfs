@@ -50,6 +50,7 @@ struct _GnomeVFSMimeApplicationPrivate
 	char *generic_name;
 	char *icon;
 	char *exec;
+	char *binary_name;
 	gboolean supports_uris;
 	gboolean startup_notify;
 	char *startup_wm_class;
@@ -1006,6 +1007,25 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 	return GNOME_VFS_ERROR_DEPRECATED_FUNCTION;
 }
 
+/**
+ * gnome_vfs_mime_application_equal:
+ * @application: a #GnomeVFSMimeApplication
+ * 
+ * Compare @app_a and @app_b.
+ * 
+ * Return value: %TRUE if @a and @b are equal, %FALSE otherwise.
+ *
+ * Since: 2.8
+ **/
+gboolean
+gnome_vfs_mime_application_equal (GnomeVFSMimeApplication *app_a,
+				  GnomeVFSMimeApplication *app_b)
+{
+	g_return_val_if_fail (app_a != NULL, FALSE);
+	g_return_val_if_fail (app_b != NULL, FALSE);
+
+	return (strcmp (app_a->id, app_b->id) == 0);
+}
 
 /**
  * gnome_vfs_mime_application_copy:
@@ -1038,6 +1058,7 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->priv->generic_name = g_strdup (application->priv->generic_name);
 	result->priv->icon = g_strdup (application->priv->icon);
 	result->priv->exec = g_strdup (application->priv->exec); 
+	result->priv->binary_name = g_strdup (application->priv->binary_name);
 	result->priv->supports_uris = application->priv->supports_uris;
 	result->priv->startup_notify = application->priv->startup_notify;
 	result->priv->startup_wm_class = g_strdup (application->priv->startup_wm_class);
@@ -1063,6 +1084,7 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 			g_free (priv->generic_name);
 			g_free (priv->icon);
 			g_free (priv->exec);
+			g_free (priv->binary_name);
 			g_free (priv->startup_wm_class);
 		}
 		g_free (priv);
@@ -1726,6 +1748,8 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	GError *err = NULL;
 	GKeyFile *key_file;
 	GnomeVFSMimeApplication *app;
+	char **argv;
+	int argc;
 	char *filename;
 
 	g_return_val_if_fail (id != NULL, NULL);
@@ -1760,6 +1784,12 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 		g_free (app->priv->exec);
 		app->priv->exec = exec;
 	}
+
+	if (!g_shell_parse_argv (app->priv->exec, &argc, &argv, NULL)) {
+		goto exit;
+	}
+	app->priv->binary_name = g_strdup (argv[0]);
+	g_strfreev (argv);
 
 	app->requires_terminal = g_key_file_get_boolean
 			(key_file, DESKTOP_ENTRY_GROUP, "Terminal", &err);
@@ -2060,6 +2090,36 @@ gnome_vfs_mime_application_get_exec (GnomeVFSMimeApplication *app)
 	}
 
 	return app->priv->exec;
+}
+
+/**
+ * gnome_vfs_mime_application_get_binary_name:
+ * @app: a #GnomeVFSMimeApplication
+ *
+ * Returns the binary name of the specified application.
+ * Useful to implement startup notification.
+ * Note that this only provide partial information about
+ * application execution, it misses arguments and macros.
+ * DO NOT USE it to launch the application.
+ * Use gnome_vfs_mime_application_launch or
+ * gnome_vfs_mime_application_get_exec if you really
+ * need to write a custom launcher.
+ *
+ * Return value: the application's binary name
+ *
+ * Since: 2.8
+ */
+const char *
+gnome_vfs_mime_application_get_binary_name (GnomeVFSMimeApplication *app)
+{
+	g_return_val_if_fail (app != NULL, NULL);
+	
+	if (app->priv == NULL) {
+		g_warning (MIXED_API_WARNING);
+		return NULL;
+	}
+
+	return app->priv->binary_name;
 }
 
 /**

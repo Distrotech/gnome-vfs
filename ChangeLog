@@ -1,6 +1,20 @@
 2004-11-25  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_equal),
+	(gnome_vfs_mime_application_copy),
+	(gnome_vfs_mime_application_free),
+	(gnome_vfs_mime_application_new_from_desktop_id),
+	(gnome_vfs_mime_application_get_exec),
+	(gnome_vfs_mime_application_get_binary_name):
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+
+	Add a way to get the binary name and to equal
+	applications.
+
+2004-11-25  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(expand_application_parameters),
 	(gnome_vfs_mime_application_new_from_desktop_id):
 

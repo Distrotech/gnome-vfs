@@ -86,11 +86,14 @@ const char		*gnome_vfs_mime_application_get_name              (GnomeVFSMimeAppli
 const char              *gnome_vfs_mime_application_get_generic_name      (GnomeVFSMimeApplication *app);
 const char              *gnome_vfs_mime_application_get_icon              (GnomeVFSMimeApplication *app);
 const char		*gnome_vfs_mime_application_get_exec		  (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_binary_name	  (GnomeVFSMimeApplication *app);
 gboolean		 gnome_vfs_mime_application_supports_uris	  (GnomeVFSMimeApplication *app);
 gboolean		 gnome_vfs_mime_application_requires_terminal     (GnomeVFSMimeApplication *app);
 gboolean		 gnome_vfs_mime_application_get_startup_notify    (GnomeVFSMimeApplication *app);
 const char		*gnome_vfs_mime_application_get_startup_wm_class  (GnomeVFSMimeApplication *app);
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                  (GnomeVFSMimeApplication *app);
+gboolean		 gnome_vfs_mime_application_equal		  (GnomeVFSMimeApplication *app_a,
+									   GnomeVFSMimeApplication *app_b);
 void                     gnome_vfs_mime_application_free                  (GnomeVFSMimeApplication *app);
 
 /* Lists */
