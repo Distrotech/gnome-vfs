@@ -1,3 +1,7 @@
+2005-03-30  Steve Murphy  <murf@e-tools.com>
+
+        * configure.in: Added "rw" to ALL_LINGUAS.
+
 2005-03-21  Mikael Hallendal  <micke@imendio.com>
 
 	* libgnomevfs/gnome-vfs-async-ops.c:
