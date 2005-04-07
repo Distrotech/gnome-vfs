@@ -1,3 +1,8 @@
+2005-04-06  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/smb-method.c: Patch from Narayana Pattipati 
+	which fixes caching problems with invalid logins. bug #171468
+	
 2005-04-03  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/Makefile.am: remove gnome-vfs-i18n.c

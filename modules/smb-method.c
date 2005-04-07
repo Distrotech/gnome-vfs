@@ -366,12 +366,13 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 }
 
 static SMBCSRV *
-get_cached_server (SMBCCTX * context,
-		   const char *server_name, const char *share_name,
-		   const char *domain, const char *username)
+find_cached_server (const char *server_name, const char *share_name,
+                    const char *domain, const char *username)
 {
 	SmbServerCacheEntry entry;
 	SmbServerCacheEntry *res;
+
+	DEBUG_SMB(("find_cached_server: server: %s, share: %s, domain: %s, user: %s\n", server_name, share_name, domain, username));
 
 	entry.server_name = (char *)server_name;
 	entry.share_name = (char *)share_name;
@@ -381,11 +382,26 @@ get_cached_server (SMBCCTX * context,
 	res = g_hash_table_lookup (server_cache, &entry);
 
 	if (res != NULL) {
-		DEBUG_SMB(("got cached server: server: %s, share: %s, domain: %s, user: %s\n",
-		   	  server_name, share_name, domain, username));
-		current_auth_context->cache_used = TRUE;
 		res->last_time = time (NULL);
 		return res->server;
+	} 
+
+	return NULL;
+}
+
+static SMBCSRV *
+get_cached_server (SMBCCTX * context,
+		   const char *server_name, const char *share_name,
+		   const char *domain, const char *username)
+{
+	SMBCSRV *srv;
+	
+	srv = find_cached_server (server_name, share_name, domain, username);
+	if (srv != NULL) {
+		DEBUG_SMB(("got cached server: server: %s, share: %s, domain: %s, user: %s\n",
+		   	  	  server_name, share_name, domain, username));
+		current_auth_context->cache_used = TRUE;
+		return srv;
 	}
 	return NULL;
 }
@@ -1193,6 +1209,7 @@ auth_callback (const char *server_name, const char *share_name,
 {
 	/* IMPORTANT: We are IN the global lock */
 	SmbAuthContext *actx;
+	SMBCSRV *server;
 	
 	DEBUG_SMB (("[auth] auth_callback called: server: %s share: %s\n",
 		    server_name, share_name));
@@ -1240,6 +1257,19 @@ auth_callback (const char *server_name, const char *share_name,
 	/* Put in the default workgroup if none specified */
 	if (domain_out[0] == 0 && smb_context->workgroup)
 		strncpy (domain_out, smb_context->workgroup, domainmaxlen);
+
+	/* 
+	 * If authentication is requested a second time on a server we've 
+	 * already cached, then obviously it was invalid. Remove it. Yes, 
+	 * this doesn't make much sense, but such is life with libsmbclient.
+	 */
+	if ((actx->state & SMB_AUTH_STATE_PROMPTED) && actx->res != GNOME_VFS_OK) {
+		server = find_cached_server (server_name, share_name, domain_out, username_out);
+		if (server) {
+			DEBUG_SMB (("[auth] auth_callback. Remove the wrong server entry from server_cache.\n"));
+			g_hash_table_foreach_remove (server_cache, remove_server, server);
+		}
+	}
 }
 
 static char *
