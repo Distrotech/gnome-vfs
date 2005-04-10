@@ -43,6 +43,7 @@
 #include <openssl/x509.h>
 #include <openssl/err.h>
 #elif defined HAVE_GNUTLS
+#include <gcrypt.h>
 #include <gnutls/gnutls.h>
 #endif
 #if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
@@ -85,11 +86,50 @@ struct GnomeVFSSSL {
 	GnomeVFSSSLPrivate *private;
 };
 
+#ifdef HAVE_GNUTLS
+static int gcry_gthread_mutex_init (void **priv)			      
+{									      
+	GMutex* lock = g_mutex_new();
+	g_print ("Init\n");
+	if (!lock)								      
+		return ENOMEM;							      
+	*priv = lock;							      
+	return 0;								      
+}									      
+
+static int gcry_gthread_mutex_destroy (void **lock)			      
+{ 
+	g_mutex_free (*lock);
+	return 0; 
+}
+
+static int gcry_gthread_mutex_lock (void **lock)			      
+{ 
+	g_mutex_lock(*lock);
+	return 0;
+}				      
+
+static int gcry_gthread_mutex_unlock (void **lock)			      
+{ 
+	g_mutex_unlock(*lock);
+	return 0;
+}				      
+
+static struct gcry_thread_cbs gcry_threads_gthread =			      
+{
+	GCRY_THREAD_OPTION_USER, NULL,					      
+	gcry_gthread_mutex_init, gcry_gthread_mutex_destroy,			      
+	gcry_gthread_mutex_lock, gcry_gthread_mutex_unlock 
+};
+
+#endif
+
 void 
 _gnome_vfs_ssl_init (void) {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #elif defined HAVE_GNUTLS
+	gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
 	gnutls_global_init();
 #endif
 }

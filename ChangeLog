@@ -1,3 +1,12 @@
+2005-04-10  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in: Add check for gcrypt.h
+	* libgnomevfs/gnome-vfs-ssl.c:
+	Initialize gnu crypto library/gnutls to use gthread locking.
+
+	Based on a patch from Vasily Tchekalkin <bacek@bacek.com>
+	Fixes bug #172813
+
 2005-04-06  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/smb-method.c: Patch from Narayana Pattipati 

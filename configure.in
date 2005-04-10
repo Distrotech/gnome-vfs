@@ -664,6 +664,7 @@ if test "x$enable_gnutls" = "xyes"; then
   if test "x${OPENSSL_LIBS}" != "x"; then
     AC_MSG_ERROR([*** Can't use both openssl and gnutls at the same time. Please pick one only. ***])
   else
+    AC_CHECK_HEADER(gcrypt.h,, AC_MSG_ERROR([*** Need gcrypt.h to compile with GnuTLS support ***]))
     AM_PATH_LIBGNUTLS(1.0.0, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
     			      AM_CONDITIONAL(HAVE_SSL, true)])
 
