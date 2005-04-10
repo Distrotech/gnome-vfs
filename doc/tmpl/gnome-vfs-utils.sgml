@@ -148,8 +148,10 @@ various utilities functions to manipulate uris
 
 </para>
 
-@uri: 
+@location: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_make_uri_from_input_with_dirs ##### -->
@@ -157,9 +159,11 @@ various utilities functions to manipulate uris
 
 </para>
 
-@uri: 
+@location: 
 @dirs: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_make_uri_from_shell_arg ##### -->

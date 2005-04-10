@@ -1469,7 +1469,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 
 /**
  * gnome_vfs_make_uri_from_input:
- * @uri: a possibly mangled "uri", in UTF8
+ * @location: a possibly mangled "uri", in UTF8
  *
  * Takes a user input path/URI and makes a valid URI out of it.
  *
@@ -1493,9 +1493,33 @@ gnome_vfs_make_uri_from_input (const char *location)
 }
 
 /**
+ * gnome_vfs_make_uri_from_input_with_trailing_ws:
+ * @location: a possibly mangled "uri", in UTF8
+ *
+ * Takes a user input path/URI and makes a valid URI out of it.
+ *
+ * This function is indentical to #gnome_vfs_make_uri_from_input except
+ * that this version won't strip any trailing slashes.
+ *
+ * Returns: a newly allocated uri.
+ *
+ * Since: 2.12
+ **/
+char *
+gnome_vfs_make_uri_from_input_with_trailing_ws (const char *location)
+{
+	gboolean utf8;
+	const char *charset;
+
+	utf8 = vfs_get_filename_charset (&charset);
+
+	return gnome_vfs_make_uri_from_input_internal (location, utf8, charset, FALSE);	
+}
+
+/**
  * gnome_vfs_make_uri_from_input_with_dirs:
- * @uri: a relative or absolute path
- * @dirs: directory to use as a base directory if @uri is a relative path.
+ * @location: a relative or absolute path
+ * @dirs: directory to use as a base directory if @location is a relative path.
  *
  * Determines a fully qualified URL from a relative or absolute input path.
  * Basically calls gnome_vfs_make_uri_from_input except it specifically
@@ -1507,19 +1531,19 @@ gnome_vfs_make_uri_from_input (const char *location)
  * Since: 2.4
  */
 char *
-gnome_vfs_make_uri_from_input_with_dirs (const char *in,
+gnome_vfs_make_uri_from_input_with_dirs (const char *location,
 					 GnomeVFSMakeURIDirs dirs)
 {
 	char *uri, *path, *dir;
 
-	switch (in[0]) {
+	switch (location[0]) {
 	case '\0':
 		uri = g_strdup ("");
 		break;
 		
 	case '~':
 	case '/':
-		uri = gnome_vfs_make_uri_from_input (in);
+		uri = gnome_vfs_make_uri_from_input (location);
 		break;
 		
 	default:
@@ -1529,7 +1553,7 @@ gnome_vfs_make_uri_from_input_with_dirs (const char *in,
 		uri = NULL;
 		if (dirs & GNOME_VFS_MAKE_URI_DIR_CURRENT) {
 			dir = g_get_current_dir ();
-			path = g_build_filename (dir, in, NULL);
+			path = g_build_filename (dir, location, NULL);
 			g_free (dir);
 			
 			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
@@ -1540,7 +1564,7 @@ gnome_vfs_make_uri_from_input_with_dirs (const char *in,
 
 		if (uri == NULL &&
 		    dirs & GNOME_VFS_MAKE_URI_DIR_HOMEDIR) {
-			path = g_build_filename (g_get_home_dir (), in, NULL);
+			path = g_build_filename (g_get_home_dir (), location, NULL);
 		
 			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
 				uri = gnome_vfs_make_uri_from_input (path);
@@ -1549,7 +1573,7 @@ gnome_vfs_make_uri_from_input_with_dirs (const char *in,
 		}
 
 		if (uri == NULL) {
-			uri = gnome_vfs_make_uri_from_input (in);
+			uri = gnome_vfs_make_uri_from_input (location);
 		}
 	}
 	
