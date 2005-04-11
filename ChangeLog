@@ -1,5 +1,11 @@
 2005-04-11  Christian Kellner  <gicmo@gnome.org>
 
+	* programs/gnomevfs-monitor.c: New file
+	* programs/.cvsignore: Added gnomevfs-monitor
+	* programs/Makefile.am: Added gnomevfs-monitor.c
+
+2005-04-11  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-drive.c: Fix some doc mistakes.
 	Fixes bug #171336. Patch from Bastien Nocera <hadess@hadess.net>
 	

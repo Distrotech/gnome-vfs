@@ -18,6 +18,7 @@ bin_PROGRAMS =						\
 	gnomevfs-copy					\
 	gnomevfs-info					\
 	gnomevfs-ls					\
+	gnomevfs-monitor				\
 	gnomevfs-mkdir					\
 	gnomevfs-mv					\
 	gnomevfs-rm					\
@@ -34,6 +35,9 @@ gnomevfs_info_LDADD = $(libraries)
 
 gnomevfs_ls_SOURCES = gnomevfs-ls.c
 gnomevfs_ls_LDADD = $(libraries)
+
+gnomevfs_monitor_SOURCES = gnomevfs-monitor.c
+gnomevfs_monitor_LDADD = $(libraries)
 
 gnomevfs_mkdir_SOURCES = gnomevfs-mkdir.c
 gnomevfs_mkdir_LDADD = $(libraries)
