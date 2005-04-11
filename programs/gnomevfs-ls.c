@@ -88,8 +88,7 @@ list (void)
 			GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 			| GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
 
-	if (result != GNOME_VFS_OK)
-	{
+	if (result != GNOME_VFS_OK) {
 		g_print("Error opening: %s\n", gnome_vfs_result_to_string
 				(result));
 		return;
@@ -106,6 +105,14 @@ list (void)
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}
+
+	result = gnome_vfs_directory_close (handle);
+
+	if ((result != GNOME_VFS_OK) && (result != GNOME_VFS_ERROR_EOF)) {
+		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
+		return;
+	}
+
 }
 
 int
