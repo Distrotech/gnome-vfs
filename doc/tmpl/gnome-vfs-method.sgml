@@ -14,6 +14,9 @@ gnome-vfs-method
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### USER_FUNCTION GnomeVFSMethodInitFunc ##### -->
 <para>
 

@@ -25,6 +25,9 @@ You can manually force all internally buffered data to get written with
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_socket_buffer_new ##### -->
 <para>
 

@@ -15,6 +15,9 @@ basic POSIX-style file operations
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### TYPEDEF GnomeVFSMethodHandle ##### -->
 <para>
 
