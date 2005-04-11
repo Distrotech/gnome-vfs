@@ -1,3 +1,20 @@
+2005-04-11  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/smb-method.c: (do_read): Remove a double semicolon.
+	Fixes bug #172414
+
+2005-04-10  Christian Kellner  <gicmo@gnome.org>
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	Added gnome_vfs_make_uri_from_input_with_trailing_ws ().
+	Also renamed the uri parameters of some functions that don't take
+	uris to location.
+	* doc/tmpl/gnome-vfs-utils.sgml:
+	Updated docs to reflect the changes above!
+	
+	Fixes bug #165753
+	
 2005-04-10  Christian Kellner  <gicmo@gnome.org>
 
 	* configure.in: Add check for gcrypt.h
