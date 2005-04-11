@@ -1,5 +1,10 @@
 2005-04-11  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-drive.c: Fix some doc mistakes.
+	Fixes bug #171336. Patch from Bastien Nocera <hadess@hadess.net>
+	
+2005-04-11  Christian Kellner  <gicmo@gnome.org>
+
 	* modules/smb-method.c: (do_read): Remove a double semicolon.
 	Fixes bug #172414
 

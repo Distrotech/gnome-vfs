@@ -244,6 +244,7 @@ gnome_vfs_drive_get_device_type (GnomeVFSDrive *drive)
  * Returns:
  *
  * Since: 2.6
+ * Deprecated: Use gnome_vfs_drive_get_mounted_volumes() instead
  */
 GnomeVFSVolume *
 gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
@@ -271,7 +272,7 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
  *
  *
  *
- * Since: 2.6
+ * Since: 2.8
  */
 void
 gnome_vfs_drive_volume_list_free (GList *volumes)
@@ -293,7 +294,7 @@ gnome_vfs_drive_volume_list_free (GList *volumes)
  *
  * Returns:
  *
- * Since: 2.6
+ * Since: 2.8
  */
 GList *
 gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
