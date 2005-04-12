@@ -1,3 +1,8 @@
+2005-04-12  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Use gmodule-no-export-2.0 instead of gmodule-2.0 to avoid using --export-dynamic.
+
 2005-04-12  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-copy.c: It is not an real error if
