@@ -1,4 +1,13 @@
 2005-04-12  Christian Kellner  <gicmo@gnome.org>
+	
+	* configure.in: Add -Wno-pointer-sign to keep gcc4 quiet for now.
+	* modules/http-proxy.c: (parse_ignore_host): Fix broken logic for 
+	netmask handling.
+	* modules/sftp-method.c: (sftp_connect): Initialize save_password. 
+	This is not really necessary here but it will keep gcc4 quiet.
+	Merged from HEAD.
+
+2005-04-12  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/smb-method.c: (do_read): Remove a double semicolon.
 	Merged from HEAD. Fixes #172414
