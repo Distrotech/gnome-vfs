@@ -1,5 +1,12 @@
 2005-04-12  Christian Kellner  <gicmo@gnome.org>
 
+	* programs/gnomevfs-copy.c: It is not an real error if
+	gnome_vfs_get_file_info () of the destination is 
+	GNOME_VFS_ERROR_NOT_FOUND.
+	This should fix bug #172658
+
+2005-04-12  Christian Kellner  <gicmo@gnome.org>
+
 	* programs/gnomevfs-ls.c: (list): close the directory handle
 	after iterating over the childs.
 

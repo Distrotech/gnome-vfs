@@ -68,7 +68,7 @@ main (int argc, char **argv)
 	result = gnome_vfs_get_file_info_uri (dest, info,
 					      GNOME_VFS_FILE_INFO_DEFAULT);
 
-	if (result != GNOME_VFS_OK) {
+	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_NOT_FOUND) {
 		gnome_vfs_file_info_unref (info);
 		goto out;
 	}
