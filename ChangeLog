@@ -1,5 +1,11 @@
 2005-04-12  Alexander Larsson  <alexl@redhat.com>
 
+	* gnome-vfs-2.0.pc.in (Requires): 
+	* gnome-vfs-module-2.0.pc.in (Requires):
+	Use gmodule-no-export-2.0 instead of gmodule-2.0 to avoid using --export-dynamic.
+
+2005-04-12  Alexander Larsson  <alexl@redhat.com>
+	
 	* configure.in:
 	Use gmodule-no-export-2.0 instead of gmodule-2.0 to avoid using --export-dynamic.
 
