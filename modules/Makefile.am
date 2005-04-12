@@ -62,8 +62,6 @@ modules_LTLIBRARIES =				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
-	libvfs-pipe.la				\
-	libvfs-translate.la			\
 	$(SMB_LTLIBS)	                        \
 	libsftp.la				\
 	libtar.la				\
@@ -215,14 +213,6 @@ libhttp_la_SOURCES =			\
 
 libhttp_la_LDFLAGS = $(module_flags)
 libhttp_la_LIBADD  = $(HTTP_LIBS)
-
-libvfs_pipe_la_SOURCES = pipe-method.c
-libvfs_pipe_la_LDFLAGS = $(module_flags)
-libvfs_pipe_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
-
-libvfs_translate_la_SOURCES = translate-method.c
-libvfs_translate_la_LDFLAGS = $(module_flags)
-libvfs_translate_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libtar_la_SOURCES = tar-method.c tarpet.h 
 libtar_la_LDFLAGS = $(module_flags)

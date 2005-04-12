@@ -38,6 +38,7 @@
 #include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <gmodule.h>
 
+#include <signal.h>
 /* List of modules that have self-test code */
 static const char *self_test_modules[] = {
 	"http",

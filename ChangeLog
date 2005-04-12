@@ -1,3 +1,31 @@
+2005-04-12  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-init.c: 
+	Removed gnome_vfs_process stuff. Add a few therefore missing
+	headers.
+	
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	Killed not used functions: gnome_vfs_forkexec () and 
+	gnome_vfs_process_run_cancellable ().
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-process.c:
+	* libgnomevfs/gnome-vfs-process.h:
+	Removed from cvs because it wasn't used by anything anymore.
+	
+	* modules/Makefile.am:
+	* modules/translate-method.c:
+	* modules/pipe-method.c:
+	* modules/default-modules.conf:
+	Killed the (unsafe) pipe and (not used) translate method!
+	
+	* test/test-module-selftest.c:
+	* test/test-uri.c:
+	Added signal.h previously included by gnome-vfs-process.h.
+
+	Fixes bug #153266
+
 2005-04-12  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

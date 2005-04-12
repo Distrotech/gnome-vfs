@@ -31,7 +31,6 @@
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-method.h"
-#include "gnome-vfs-process.h"
 #include "gnome-vfs-utils.h"
 
 #include "gnome-vfs-async-job-map.h"
@@ -44,9 +43,12 @@
 #include <bonobo/bonobo-main.h>
 #include <glib/gmessages.h>
 #include <glib/gfileutils.h>
+#include <glib/gtypes.h>
 #include <libgnomevfs/gnome-vfs-job-slave.h>
+
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <signal.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
@@ -132,9 +134,6 @@ gnome_vfs_init (void)
 		retval = gnome_vfs_method_init ();
 
 		if (retval) {
-			retval = _gnome_vfs_process_init ();
-		}
-		if (retval) {
 			retval = _gnome_vfs_configuration_init ();
 		}
 		if (retval) {
@@ -204,7 +203,6 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 	gnome_vfs_pthread_init ();
 
 	gnome_vfs_method_init ();
-	_gnome_vfs_process_init ();
 	_gnome_vfs_configuration_init ();
 
 	signal (SIGPIPE, SIG_IGN);

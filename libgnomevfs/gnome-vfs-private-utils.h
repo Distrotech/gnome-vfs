@@ -30,7 +30,6 @@
 
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-handle.h>
-#include <libgnomevfs/gnome-vfs-process.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
 G_BEGIN_DECLS
@@ -39,19 +38,6 @@ gboolean	 _gnome_vfs_have_ipv6			 (void);
 
 gchar   	*_gnome_vfs_canonicalize_pathname         (char *path);
 GnomeVFSResult   gnome_vfs_remove_optional_escapes 	 (char *escaped_uri);
-
-pid_t	 	 gnome_vfs_forkexec 	(const gchar *file_name,
-					 const gchar * const argv[],
-					 GnomeVFSProcessOptions options,
-					 GnomeVFSProcessInitFunc init_func,
-					 gpointer data);
-GnomeVFSProcessRunResult
-	 	gnome_vfs_process_run_cancellable
-					(const gchar *file_name,
-					 const gchar * const argv[],
-					 GnomeVFSProcessOptions options,
-					 GnomeVFSCancellation *cancellation,
-					 guint *exit_value);
 
 GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
 					 gchar **name_return,

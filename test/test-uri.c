@@ -34,6 +34,7 @@
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END
