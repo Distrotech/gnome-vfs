@@ -1446,7 +1446,7 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSContext *context)
 {
 	FileHandle *handle = (FileHandle *)method_handle;
-	GnomeVFSResult res = GNOME_VFS_OK;;
+	GnomeVFSResult res = GNOME_VFS_OK;
 	SmbAuthContext actx;
 	ssize_t n = 0;
 
