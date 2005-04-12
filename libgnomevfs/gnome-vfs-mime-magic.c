@@ -62,7 +62,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	_gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
 
 	if (sniff_buffer->buffer_length == 0) {
-		return FALSE;
+		return TRUE;
 	}
 	
 	if (g_utf8_validate (sniff_buffer->buffer, 
