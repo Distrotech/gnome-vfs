@@ -25,3 +25,14 @@ Advanced File Operations
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_forget_cache ##### -->
+<para>
+
+</para>
+
+@handle: 
+@offset: 
+@size: 
+@Returns: 
+
+

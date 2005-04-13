@@ -76,11 +76,6 @@ gboolean       _gnome_vfs_set_fd_flags                    (int           fd,
 gboolean       _gnome_vfs_clear_fd_flags                  (int           fd,
                                                            int           flags);
 
-/* This is private for the moment, due to API freeze */
-GnomeVFSResult gnome_vfs_forget_cache (GnomeVFSHandle *handle,
-				       GnomeVFSFileOffset offset,
-				       GnomeVFSFileSize size);
-
 G_END_DECLS
 
 #endif /* _GNOME_VFS_PRIVATE_UTILS_H */

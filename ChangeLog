@@ -1,3 +1,15 @@
+2005-04-13  Christian Kellner  <gicmo@gnome.org>
+	
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	Move gnome_vfs_forget_cache from private into public API
+	space.
+
+	* doc/gnome-vfs-2.0-sections.txt:
+	* doc/tmpl/gnome-vfs-file-advanced-ops.sgml:
+	Include gnome_vfs_forget_cache () in the devel docs.
+
 2005-04-12  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-init.c: 

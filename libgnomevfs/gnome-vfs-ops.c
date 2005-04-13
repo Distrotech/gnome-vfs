@@ -122,6 +122,24 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 	return result;
 }
 
+/**
+ * gnome_vfs_forget_cache:
+ * @handle: Handle of the file to affect  
+ * @offset: Start point of the region to be freed
+ * @size: Length of the region to be freed (or until the end of the
+ * file if 0 is specified)
+ * 
+ * With this call you can announce to gnome-vfs that you will no longer
+ * use the region of data starting at @offset with the size of @size. Any
+ * cached data for this region might then be freed.
+ * 
+ * This might be useful if you stream large files, for example.
+ * 
+ * Return value: An integer representing the result of the operation.
+ * 
+ * Since: 2.12
+ **/
+
 GnomeVFSResult
 gnome_vfs_forget_cache (GnomeVFSHandle *handle,
 			GnomeVFSFileOffset offset,
@@ -801,7 +819,7 @@ gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
 
 /**
  * gnome_vfs_file_control:
- * @handle: handle of the file to affect
+ * @handle: Handle of the file to affect
  * @operation: The operation to execute
  * @operation_data: The data needed to execute the operation
  *
