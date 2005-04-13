@@ -57,6 +57,7 @@ static const char *mount_known_locations [] = {
 };
 
 static const char *umount_known_locations [] = {
+	"/usr/bin/pumount", "/bin/pumount",
 	"/sbin/umount", "/bin/umount",
 	"/usr/sbin/umount", "/usr/bin/umount",
 	NULL
@@ -76,7 +77,7 @@ find_command (const char **known_locations)
 	int i;
 
 	for (i = 0; known_locations [i]; i++){
-		if (g_file_test (known_locations [i], G_FILE_TEST_EXISTS))
+		if (g_file_test (known_locations [i], G_FILE_TEST_IS_EXECUTABLE))
 			return known_locations [i];
 	}
 	return NULL;
