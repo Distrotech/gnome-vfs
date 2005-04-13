@@ -440,7 +440,7 @@ CDDBDoQuery (cdrom_drive *cd_desc, CDDBServer *server, CDDBHello *hello, CDDBQue
     query->query_match=MATCH_INEXACT;
     query->query_matches=0;
 
-    while(!CDDBReadLine(socket,inbuffer,256)) {
+    while(query->query_matches < MAX_INEXACT_MATCHES && !CDDBReadLine(socket,inbuffer,256)) {
       query->query_list[query->query_matches].list_genre=
 	CDDBGenreValue(ChopWhite(strtok(inbuffer," ")));
       
