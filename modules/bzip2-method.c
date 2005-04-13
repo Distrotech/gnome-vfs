@@ -173,7 +173,7 @@ bzip2_method_handle_init_for_decompress (Bzip2MethodHandle *handle)
 	g_free (handle->buffer);
 
 	handle->buffer = g_malloc (BZ_BUFSIZE);
-	handle->bzstream.next_in = handle->buffer;
+	handle->bzstream.next_in = (char *)handle->buffer;
 	handle->bzstream.avail_in = 0;
 
 	/* FIXME bugzilla.eazel.com 1177: Make small, and possibly verbosity, configurable! */
@@ -201,7 +201,7 @@ bzip2_method_handle_init_for_compress (Bzip2MethodHandle *handle)
 	g_free (handle->buffer);
 
 	handle->buffer = g_malloc (BZ_BUFSIZE);
-	handle->bzstream.next_out = handle->buffer;
+	handle->bzstream.next_out = (char *)handle->buffer;
 	handle->bzstream.avail_out = BZ_BUFSIZE;
 
 	/* FIXME bugzilla.eazel.com 1174: We want this to be user configurable.  */
@@ -269,7 +269,7 @@ flush_write (Bzip2MethodHandle *bzip2_handle)
 					  len, &bytes_written);
 		RETURN_IF_FAIL (result);
 
-		bzstream->next_out = bzip2_handle->buffer;
+		bzstream->next_out = (char *)bzip2_handle->buffer;
 		bzstream->avail_out = BZ_BUFSIZE;
 
 		if (done)
@@ -406,7 +406,7 @@ fill_buffer (Bzip2MethodHandle *bzip2_handle,
 			return result;
 		bzip2_handle->last_vfs_result = result;
 	} else {
-		bzstream->next_in = bzip2_handle->buffer;
+		bzstream->next_in = (char *)bzip2_handle->buffer;
 		bzstream->avail_in = count;
 	}
 
@@ -496,7 +496,7 @@ do_write (GnomeVFSMethod *method,
 		if (bzstream->avail_out == 0) {
 			GnomeVFSFileSize written;
 
-			bzstream->next_out = bzip2_handle->buffer;
+			bzstream->next_out = (char *)bzip2_handle->buffer;
 			result = gnome_vfs_write (bzip2_handle->parent_handle,
 						  bzip2_handle->buffer,
 						  BZ_BUFSIZE, &written);

@@ -1,3 +1,51 @@
+2005-04-13  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Remove -Wno-pointer-sign
+	* libgnomevfs/gnome-vfs-daemon-method.c: (do_write), (do_tell):
+	Fix GCC4 warnings about signed vs. unsigned.
+	* libgnomevfs/gnome-vfs-dns-sd.c: (decode_txt_record),
+	(split_service_instance), (parse_header), (parse_qs), (parse_rr):
+	Same here.
+	* libgnomevfs/gnome-vfs-method.h: Same
+	* libgnomevfs/gnome-vfs-mime-info.c: (handle_simple_string),
+	(handle_attribute), (handle_mime_info): Same
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(_gnome_vfs_sniff_buffer_looks_like_text): Same
+	* libgnomevfs/gnome-vfs-open-fd.c: (do_tell): Same
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_remove_optional_escapes), (gnome_vfs_escape_high_chars),
+	(gnome_vfs_make_uri_from_input_internal): Same
+	* libgnomevfs/xdgmimealias.c: (_xdg_mime_alias_list_lookup): 0 vs NULL
+	* libgnomevfs/xdgmimeint.c: More GCC4 warnings
+	* libgnomevfs/xdgmimeint.h: Same
+	* libgnomevfs/xdgmimemagic.c: (_xdg_mime_magic_read_to_newline): Same
+	* modules/bzip2-method.c:
+	(bzip2_method_handle_init_for_decompress),
+	(bzip2_method_handle_init_for_compress), (flush_write),
+	(fill_buffer), (do_write): Same
+	* modules/computer-method.c: (do_tell): Same
+	* modules/dns-sd-method.c: (do_tell): Same
+	* modules/file-method.c: (do_tell): Same
+	* modules/ftp-method.c: (get_response), (ftp_kerberos_login),
+	(do_tell): Same
+	* modules/http-neon-method.c: (do_close), (do_tell): Same
+	* modules/network-method.c: (do_tell): Same
+	* modules/sftp-method.c: (iobuf_read_handle), (do_open), (do_tell):
+	* modules/smb-method.c: (do_tell): Same again
+	* modules/tar-method.c: (do_tell): And again
+	* modules/test-method.c: (translate_uri), (load_settings),
+	(do_tell): And again
+	* modules/translate-method.c: (tr_do_tell): ...
+	* monikers/bonobo-stream-vfs.c: (vfs_seek): ...
+	* programs/gnomevfs-ls.c: Make var static.
+	* test/test-async-cancel.c: Same
+	* test/test-async-directory.c: Again
+	* test/test-directory.c: Again
+	* test/test-shell.c: Same
+	* test/test-symlinks.c: Same
+	* test/test-uri.c: More staticification
+	* test/test-xfer.c: And more
+
 2005-04-13  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: (find_command): 

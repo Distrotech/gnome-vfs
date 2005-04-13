@@ -52,7 +52,7 @@ static const unsigned char _xdg_utf8_skip_data[256] = {
   3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,6,6,1,1
 };
 
-const char * const _xdg_utf8_skip = _xdg_utf8_skip_data;
+const unsigned char * const _xdg_utf8_skip = _xdg_utf8_skip_data;
 
 
 

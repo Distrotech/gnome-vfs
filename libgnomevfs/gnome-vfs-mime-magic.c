@@ -65,7 +65,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 		return TRUE;
 	}
 	
-	if (g_utf8_validate (sniff_buffer->buffer, 
+	if (g_utf8_validate ((gchar *)sniff_buffer->buffer, 
 			     sniff_buffer->buffer_length, (const gchar**)&end))
 	{
 		return TRUE;
@@ -76,7 +76,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
      		 */
 		gint remaining_bytes = sniff_buffer->buffer_length;
 
-		remaining_bytes -= (end-((gchar*)sniff_buffer->buffer));
+		remaining_bytes -= (end-((gchar *)sniff_buffer->buffer));
 	
  		if (g_utf8_get_char_validated(end, remaining_bytes) == -2)
 			return TRUE;
@@ -84,7 +84,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 		else {
 			size_t wlen;
 			wchar_t wc;
-			gchar *src, *end;
+			guchar *src, *end;
 			mbstate_t state;
 
 			src = sniff_buffer->buffer;
@@ -96,7 +96,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 				if (*src == 0)
 					return FALSE;
 				
-				wlen = mbrtowc(&wc, src, end - src, &state);
+				wlen = mbrtowc(&wc, (gchar *)src, end - src, &state);
 
 				if (wlen == (size_t)(-1)) {
 					/* Illegal mb sequence */

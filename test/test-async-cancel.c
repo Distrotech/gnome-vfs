@@ -308,7 +308,7 @@ file_close_callback (GnomeVFSAsyncHandle *handle,
 }
 
 static gboolean file_read_flag;
-char read_buffer[1];
+static char read_buffer[1];
 
 static void
 file_read_callback (GnomeVFSAsyncHandle *handle,

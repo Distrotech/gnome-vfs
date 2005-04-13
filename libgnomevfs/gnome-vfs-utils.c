@@ -600,9 +600,9 @@ gnome_vfs_remove_optional_escapes (char *uri)
 	
 	length = strlen (uri);
 
-	for (scanner = uri; *scanner != '\0'; scanner++, length--) {
+	for (scanner = (guchar *)uri; *scanner != '\0'; scanner++, length--) {
 		if (*scanner == HEX_ESCAPE) {
-			character = unescape_character (scanner + 1);
+			character = unescape_character ((char *)scanner + 1);
 			if (character < 0) {
 				/* invalid hexadecimal character */
 				return GNOME_VFS_ERROR_INVALID_URI;
@@ -1336,14 +1336,14 @@ gnome_vfs_escape_high_chars (const guchar *string)
 	}
 	
 	if (escape_count == 0) {
-		return g_strdup (string);
+		return g_strdup ((char *)string);
 	}
 
 	/* allocate two extra characters for every character that
 	 * needs escaping and space for a trailing zero
 	 */
 	result = g_malloc (scanner - string + escape_count * 2 + 1);
-	for (scanner = string, result_scanner = result; *scanner != '\0'; scanner++) {
+	for (scanner = string, result_scanner = (guchar *)result; *scanner != '\0'; scanner++) {
 		if (!ACCEPTABLE(*scanner)) {
 			*result_scanner++ = '%';
 			*result_scanner++ = hex[*scanner >> 4];
@@ -1449,13 +1449,13 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
                 /* don't insert break here, read above comment */
 	default:
 		if (has_valid_scheme (stripped)) {
-			uri = gnome_vfs_escape_high_chars (stripped);
+			uri = gnome_vfs_escape_high_chars ((guchar *)stripped);
 		} else if (looks_like_http_uri (stripped)) {
-			escaped = gnome_vfs_escape_high_chars (stripped);
+			escaped = gnome_vfs_escape_high_chars ((guchar *)stripped);
 			uri = g_strconcat ("http://", escaped, NULL);
 			g_free (escaped);
 		} else {
-			escaped = gnome_vfs_escape_high_chars (stripped);
+			escaped = gnome_vfs_escape_high_chars ((guchar *)stripped);
 			uri = g_strconcat ("file://", escaped, NULL);
 			g_free (escaped);
 		}

@@ -33,7 +33,7 @@
 
 static int measure_speed = 0;
 
-struct poptOption options[] = {
+static struct poptOption options[] = {
 	{
 		"measure-speed",
 		'm',

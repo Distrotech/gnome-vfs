@@ -2489,7 +2489,7 @@ do_close (GnomeVFSMethod 	*method,
 		   
 		DEBUG_HTTP ("[PUT] Filesize: %d", len);
 		
-		ne_set_request_body_buffer (req, data, len);
+		ne_set_request_body_buffer (req, (char *)data, len);
 		res = ne_request_dispatch (req);
 
 		result = resolve_result (res, req);
@@ -2703,7 +2703,7 @@ do_seek (GnomeVFSMethod	      *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod       *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset   *offset_return)
+	 GnomeVFSFileSize   *offset_return)
 {
 	HttpFileHandle *handle;
 	

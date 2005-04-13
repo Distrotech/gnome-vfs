@@ -2149,7 +2149,7 @@ do_seek (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod *method,
 		GnomeVFSMethodHandle *method_handle,
-		GnomeVFSFileOffset *offset_return)
+		GnomeVFSFileSize *offset_return)
 {
 	FileHandle *handle = (FileHandle *)method_handle;
 	SmbAuthContext actx;

@@ -312,7 +312,7 @@ handle_simple_string (xmlTextReaderPtr reader)
 			if (text != NULL) {
 				g_free (text);
 			}
-			text = g_strdup (xmlTextReaderConstValue (reader));
+			text = g_strdup ((char *)xmlTextReaderConstValue (reader));
 		}
 
 		ret = read_next (reader);
@@ -327,9 +327,9 @@ handle_attribute (xmlTextReaderPtr  reader,
 	xmlChar *xml_text = NULL;
 	char *text = NULL;
 
-	xml_text = xmlTextReaderGetAttribute (reader, attribute);
+	xml_text = xmlTextReaderGetAttribute (reader, (guchar *)attribute);
 	if (xml_text != NULL) {
-		text = g_strdup (xml_text);
+		text = g_strdup ((char *)xml_text);
 		xmlFree (xml_text);
 	}
 	return text;
@@ -354,13 +354,13 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 		
 		if (type == XML_READER_TYPE_ELEMENT) {
 			const char *name;
-			name = xmlTextReaderConstName (reader);
+			name = (char *)xmlTextReaderConstName (reader);
 			
 			if (!strcmp (name, "comment")) {
 				const char *lang;
 				int lang_level;
 				
-				lang = xmlTextReaderConstXmlLang (reader);
+				lang = (char *)xmlTextReaderConstXmlLang (reader);
 				
 				lang_level = language_level (lang);
 				

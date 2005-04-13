@@ -42,7 +42,7 @@ static int measure_speed = 0;
 static int sort = 0;
 static int items_per_notification = 1;
 
-struct poptOption options[] = {
+static struct poptOption options[] = {
 	{
 		"chunk-size",
 		'c',

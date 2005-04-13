@@ -169,7 +169,7 @@ vfs_seek (PortableServer_Servant stream,
 		bonobo_object (stream));
 	GnomeVFSSeekPosition pos;
 	GnomeVFSResult       result;
-	GnomeVFSFileOffset   where;
+	GnomeVFSFileSize   where;
 	
 	switch (whence) {
 	case Bonobo_Stream_SeekCur:
