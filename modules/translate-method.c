@@ -605,7 +605,7 @@ tr_do_seek(GnomeVFSMethod * method,
 static GnomeVFSResult
 tr_do_tell(GnomeVFSMethod * method,
 	   GnomeVFSMethodHandle * method_handle,
-	   GnomeVFSFileOffset * offset_return)
+	   GnomeVFSFileSize * offset_return)
 {
 	TranslateMethod *tm = (TranslateMethod *) method;
 	return tm->real_method->tell(tm->real_method, method_handle,
