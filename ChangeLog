@@ -1,3 +1,8 @@
+2005-04-14  Sebastien Bacher  <seb128@debian.org>
+
+	* modules/cdda-cddb.c: (CDDBDoQuery): check the number of returned
+          matches agains the maximum size to avoid overflowing the buffer.
+	
 2005-04-13  Kjartan Maraas  <kmaraas@gnome.org>
 
 	Merge fixes from HEAD. No more warnings from GCC4 etc.
