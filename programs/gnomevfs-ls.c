@@ -23,7 +23,7 @@
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-char *directory;
+static char *directory;
 
 static void show_data (gpointer item, gpointer no_item);
 static void list (void);

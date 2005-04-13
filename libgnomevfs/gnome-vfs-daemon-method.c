@@ -360,7 +360,7 @@ do_write (GnomeVFSMethod *method,
 	
 	CORBA_exception_init (&ev);
 	buf._maximum = buf._length = num_bytes;
-	buf._buffer = (char *)buffer;
+	buf._buffer = (unsigned char *)buffer;
 	buf._release = 0;
 	
 	res = GNOME_VFS_DaemonHandle_Write ((GNOME_VFS_DaemonHandle) method_handle,
@@ -417,7 +417,7 @@ do_seek (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset *offset_return)
+	 GnomeVFSFileSize *offset_return)
 {
 	GnomeVFSResult res;
 	CORBA_Environment ev;

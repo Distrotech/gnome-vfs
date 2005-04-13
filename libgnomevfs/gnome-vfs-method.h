@@ -99,7 +99,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodSeekFunc)
 typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileOffset *offset_return);
+					 GnomeVFSFileSize *offset_return);
 
 typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					(GnomeVFSMethod *method,

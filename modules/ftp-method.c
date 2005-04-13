@@ -437,7 +437,7 @@ get_response (FtpConnection *conn, GnomeVFSCancellation *cancellation)
 			conf_state = (line[0] == '6' && line[1] == '3' &&  line[2] == '1');
 			
 			/* BASE64-decode the response */
-			decoded_response = radix_decode (line + 4, &decoded_response_len);
+			decoded_response = radix_decode ((guchar *)line + 4, &decoded_response_len);
 			g_free (line);
 			if (decoded_response == NULL) {
 				return GNOME_VFS_ERROR_GENERIC;
@@ -1023,7 +1023,7 @@ ftp_kerberos_login (FtpConnection *conn,
 				return GNOME_VFS_ERROR_LOGIN_FAILED;
 			}
 			
-			decoded_token = radix_decode (conn->response_message + 5,
+			decoded_token = radix_decode ((guchar *)conn->response_message + 5,
 						      &len);
 			if (decoded_token == NULL) {
 				gss_release_name (&min_stat, &target_name);
@@ -1920,7 +1920,7 @@ do_seek (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset *offset_return)
+	 GnomeVFSFileSize *offset_return)
 {
 	FtpConnection *conn = (FtpConnection * )method_handle;
 

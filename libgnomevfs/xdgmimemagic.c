@@ -156,11 +156,11 @@ _xdg_mime_magic_match_free (XdgMimeMagicMatch *mime_magic_match)
 /* Reads in a hunk of data until a newline character or a '\000' is hit.  The
  * returned string is null terminated, and doesn't include the newline.
  */
-static unsigned char *
+static char *
 _xdg_mime_magic_read_to_newline (FILE *magic_file,
 				 int  *end_of_file)
 {
-  unsigned char *retval;
+  char *retval;
   int c;
   int len, pos;
 

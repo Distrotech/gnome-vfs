@@ -101,14 +101,14 @@ gnome_vfs_dns_sd_service_status_get_type (void)
 }
 
 static GHashTable *
-decode_txt_record (unsigned char *raw_txt,
+decode_txt_record (char *raw_txt,
 		   int raw_txt_len)
 {
 	GHashTable *hash;
 	int i;
 	int len;
-	unsigned char *key, *value, *end;
-	unsigned char *key_dup, *value_dup;
+	char *key, *value, *end;
+	char *key_dup, *value_dup;
 
 	if (raw_txt == NULL)
 		return NULL;
@@ -174,10 +174,10 @@ decode_32 (unsigned char *p)
 }
 
 static void
-split_service_instance (unsigned char *name,
-			unsigned char *service,
-			unsigned char *type,
-			unsigned char *domain)
+split_service_instance (char *name,
+			char *service,
+			char *type,
+			char *domain)
 {
 	int i, n_dots;
 
@@ -237,7 +237,7 @@ is_valid_dns_sd_type (const char *type)
 }
 
 static int
-parse_header (char *reply, int reply_len,
+parse_header (unsigned char *reply, int reply_len,
 	      unsigned char *p,
 	      dns_message_header *header)
 {
@@ -256,7 +256,7 @@ parse_header (char *reply, int reply_len,
 
 
 static int
-parse_qs (char *reply, int reply_len,
+parse_qs (unsigned char *reply, int reply_len,
 	  unsigned char *p,
 	  char *name, int name_size,
 	  int *qtype, int *qclass)
@@ -285,7 +285,7 @@ parse_qs (char *reply, int reply_len,
 }
 
 static int
-parse_rr (char *reply, int reply_len,
+parse_rr (unsigned char *reply, int reply_len,
 	  unsigned char *p,
 	  dns_message_rr *rr)
 {

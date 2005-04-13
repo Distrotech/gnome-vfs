@@ -1,3 +1,50 @@
+2005-04-13  Kjartan Maraas  <kmaraas@gnome.org>
+
+	Merge fixes from HEAD. No more warnings from GCC4 etc.
+
+	* configure.in:
+	* libgnomevfs/gnome-vfs-daemon-method.c: (do_write), (do_tell):
+	* libgnomevfs/gnome-vfs-dns-sd.c: (decode_txt_record),
+	(split_service_instance), (parse_header), (parse_qs), (parse_rr):
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-mime-info.c: (handle_simple_string),
+	(handle_attribute), (handle_mime_info):
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(_gnome_vfs_sniff_buffer_looks_like_text):
+	* libgnomevfs/gnome-vfs-open-fd.c: (do_tell):
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_remove_optional_escapes), (gnome_vfs_escape_high_chars),
+	(gnome_vfs_make_uri_from_input_internal):
+	* libgnomevfs/xdgmimealias.c: (_xdg_mime_alias_list_lookup):
+	* libgnomevfs/xdgmimeint.c:
+	* libgnomevfs/xdgmimeint.h:
+	* libgnomevfs/xdgmimemagic.c: (_xdg_mime_magic_read_to_newline):
+	* modules/bzip2-method.c:
+	(bzip2_method_handle_init_for_decompress),
+	(bzip2_method_handle_init_for_compress), (flush_write),
+	(fill_buffer), (do_write):
+	* modules/computer-method.c: (do_tell):
+	* modules/dns-sd-method.c: (do_tell):
+	* modules/file-method.c: (do_tell):
+	* modules/ftp-method.c: (get_response), (ftp_kerberos_login),
+	(do_tell):
+	* modules/http-neon-method.c: (do_close), (do_tell):
+	* modules/network-method.c: (do_tell):
+	* modules/sftp-method.c: (iobuf_read_handle), (do_open), (do_tell):
+	* modules/smb-method.c: (do_tell):
+	* modules/tar-method.c: (do_tell):
+	* modules/test-method.c: (translate_uri), (load_settings),
+	(do_tell):
+	* monikers/bonobo-stream-vfs.c: (vfs_seek):
+	* programs/gnomevfs-ls.c:
+	* test/test-async-cancel.c:
+	* test/test-async-directory.c:
+	* test/test-directory.c:
+	* test/test-shell.c:
+	* test/test-symlinks.c:
+	* test/test-uri.c:
+	* test/test-xfer.c:
+
 2005-04-13  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: (find_command):

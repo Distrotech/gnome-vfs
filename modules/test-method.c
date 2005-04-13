@@ -65,7 +65,7 @@ typedef struct {
 
 static gboolean properly_initialized;
 
-static char *test_method_name;
+static guchar *test_method_name;
 static GList *settings_list;
 
 static const char * const
@@ -129,7 +129,7 @@ translate_uri (GnomeVFSURI *uri)
 	no_method = strchr (uri_text, ':');
 	
 	if (test_method_name != NULL) {
-	  translated_uri_text = g_strconcat (test_method_name, 
+	  translated_uri_text = g_strconcat ((char *)test_method_name, 
 					     no_method, NULL);
 	} else {
 	  translated_uri_text = NULL;
@@ -279,15 +279,15 @@ load_settings (const char *filename)
 	if (doc == NULL
 	    || doc->xmlRootNode == NULL
 	    || doc->xmlRootNode->name == NULL
-	    || g_ascii_strcasecmp (doc->xmlRootNode->name, "testmodule") != 0) {
+	    || g_ascii_strcasecmp ((char *)doc->xmlRootNode->name, "testmodule") != 0) {
 		xmlFreeDoc(doc);
 		return FALSE;
 	}
 
-	test_method_name = xmlGetProp (doc->xmlRootNode, "method");
+	test_method_name = xmlGetProp (doc->xmlRootNode, (guchar *)"method");
 	
 	for (node = doc->xmlRootNode->xmlChildrenNode; node != NULL; node = node->next) {
-		name = xmlGetProp (node, "name");
+		name = (char *)xmlGetProp (node, (guchar *)"name");
 		if (name == NULL) {
 			continue;
 		}
@@ -295,19 +295,19 @@ load_settings (const char *filename)
 		operation = g_new0 (OperationSettings, 1);
 		operation->operation_name = name;
 
-		str = xmlGetProp (node, "delay");
+		str = (char *)xmlGetProp (node, (guchar *)"delay");
 		if (str != NULL) {
 			sscanf (str, "%d", &operation->delay);
 		}
 		xmlFree (str);
 
-		str = xmlGetProp(node, "execute_operation");
+		str = (char *)xmlGetProp(node, (guchar *)"execute_operation");
 		if (str != NULL && g_ascii_strcasecmp (str, "FALSE") == 0) {
 			operation->skip = TRUE;
 		}
 		xmlFree (str);
 
-		str = xmlGetProp (node, "result");
+		str = (char *)xmlGetProp (node, (guchar *)"result");
 		if (str != NULL) {
 			operation->override_result = parse_result_text
 				(str, &operation->overridden_result_value);
@@ -385,7 +385,7 @@ do_seek (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset *offset_return)
+	 GnomeVFSFileSize *offset_return)
 {
 	PERFORM_OPERATION_NO_URI (tell, gnome_vfs_tell ((GnomeVFSHandle *) method_handle, offset_return));
 }

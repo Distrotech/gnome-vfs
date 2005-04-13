@@ -56,7 +56,7 @@ static char *cur_dir = NULL;
 
 static GHashTable *files = NULL;
 
-FILE *vfserr = NULL;
+static FILE *vfserr = NULL;
 
 
 static gboolean
@@ -930,10 +930,10 @@ do_handleinfo (void)
  * ---------------------------------------------------------------------
  */
 
-GMainLoop *main_loop = NULL;
+static GMainLoop *main_loop = NULL;
 
-int interactive = 0;
-const struct poptOption options [] = {
+static int interactive = 0;
+static const struct poptOption options [] = {
 	{ "interactive", 'i', POPT_ARG_NONE, &interactive, 0,
 	  "Allow interactive input", NULL  },
 	{ NULL, '\0', 0, NULL, 0 }

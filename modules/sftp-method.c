@@ -163,9 +163,9 @@ static gboolean sftp_connection_process_errors (GIOChannel *channel,
 
 typedef struct
 {
-	guchar  *base;
-	guchar  *read_ptr;
-	guchar  *write_ptr;
+	char  *base;
+	char  *read_ptr;
+	char  *write_ptr;
 	gint     alloc;
 } Buffer;
 
@@ -701,7 +701,7 @@ iobuf_read_handle (int fd, gchar **handle, guint expected_id, guint32 *len)
 		g_critical ("Expected SSH2_FXP_HANDLE(%u) packet, got %u",
 			    SSH2_FXP_HANDLE, type);
 
-	*handle = buffer_read_block (&msg, len);
+	*handle = buffer_read_block (&msg, (gint32 *)len);
 
 	buffer_free (&msg);
 
@@ -1787,7 +1787,7 @@ do_open (GnomeVFSMethod        *method,
 	buffer_send (&msg, conn->out_fd);
 	buffer_free (&msg);
 	
-	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
+	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, (guint32 *)&sftp_handle_len);
 
 	if (sftp_res == SSH2_FX_OK) {
 		handle = g_new0 (SftpOpenHandle, 1);
@@ -2281,7 +2281,7 @@ do_seek (GnomeVFSMethod       *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod       *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset   *offset_return)
+	 GnomeVFSFileSize   *offset_return)
 {
 	SftpOpenHandle *handle;
 

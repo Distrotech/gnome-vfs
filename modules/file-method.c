@@ -441,7 +441,7 @@ do_seek (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_tell (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset *offset_return)
+	 GnomeVFSFileSize *offset_return)
 {
 	FileHandle *file_handle;
 	OFF_T offset;

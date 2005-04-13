@@ -154,7 +154,7 @@ test_read_file_read_callback (GnomeVFSAsyncHandle *handle,
 	test_read_file_succeeded (handle);
 }
 
-char buffer[256];
+static char buffer[256];
 
 /* Start reading a chunk. */
 static void
@@ -202,7 +202,7 @@ typedef struct {
 	int num_entries_read;
 } CallbackData;
 
-volatile int async_task_counter; 
+static volatile int async_task_counter; 
 
 static void
 directory_load_callback (GnomeVFSAsyncHandle *handle,

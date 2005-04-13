@@ -35,7 +35,7 @@ static int remove_source = 0;
 static int follow_symlinks = 0;
 static int follow_symlinks_recursive = 0;
 
-const struct poptOption options[] = {
+static const struct poptOption options[] = {
 	POPT_AUTOHELP
 	{
 		"recursive",

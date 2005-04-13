@@ -92,7 +92,7 @@ test_make_canonical_path (const char *input,
 	g_free (output);
 }
 
-const char* test_uris[][2] = 
+static const char* test_uris[][2] = 
 {
 	{ "http://www.gnome.org/", "index.html" },
 	{ "http://www.gnome.org/", "/index.html"},
