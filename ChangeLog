@@ -1,3 +1,8 @@
+2005-04-13  Sebastien Bacher  <seb128@debian.org>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: (find_command): 
+	Add pumount to the known_locations and looks if the file is executable.
+
 2005-04-13  Christian Kellner  <gicmo@gnome.org>
 	
 	* libgnomevfs/gnome-vfs-ops.c:
