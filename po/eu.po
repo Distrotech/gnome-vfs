@@ -1,22 +1,23 @@
+# translation of eu.po to Basque
 # translation of gnome-vfs.po to Basque
 # translation of eu.po to Basque
 # translation of gnome-vfs.gnome-2-4.po to basque
-# Copyright (C) 2001, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2004, 2005 Free Software Foundation, Inc.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-04-14 13:04+0200\n"
-"PO-Revision-Date: 2004-08-23 12:35+0200\n"
+"PO-Revision-Date: 2005-04-14 13:00+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language-Team:  <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n == 1);\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
@@ -556,108 +557,94 @@ msgid "CD-ROM"
 msgstr "CDROMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
-#, fuzzy
 msgid "CD-R"
-msgstr "CDROMa"
+msgstr "CD-Ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
-#, fuzzy
 msgid "CD-RW"
-msgstr "CDROMa"
+msgstr "CD-RWa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "CDROMa"
+msgstr "DVD-ROMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
-#, fuzzy
 msgid "DVD-RAM"
-msgstr "DVD-RAM diskoa"
+msgstr "DVD-RAMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
-#, fuzzy
 msgid "DVD-R"
-msgstr "DVD"
+msgstr "DVD-Ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
-#, fuzzy
 msgid "DVD-RW"
-msgstr "DVD-RW diskoa"
+msgstr "DVD-RWa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "CDROMa"
+msgstr "CD-ROMa/DVD-ROMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "CDROMa"
+msgstr "CD-ROMa/DVD-RAMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "CDROMa"
+msgstr "CD-ROMa/DVD-Ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "CDROMa"
+msgstr "CD-ROMa/DVD-RWa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "CDROMa"
+msgstr "CD-Ra/DVD-ROMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-Ra/DVD-RAMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-Ra/DVD-Ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-Ra/DVD-RWa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "CDROMa"
+msgstr "CD-RWa/DVD-ROMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RWa/DVD-RAMa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RWa/DVD-Ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RWa/DVD-RWa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
-msgstr ""
+msgstr "Diskoa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
-#, fuzzy
 msgid "USB Drive"
-msgstr "ZIP gailua"
+msgstr "USB gailua"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "IEEE1394 gailua"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
-#, fuzzy
 msgid "SD/MMC"
 msgstr "SD/MMC euskarria"
 
@@ -667,9 +654,8 @@ msgid "Memory Stick"
 msgstr "Memoria arkatza"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "Smart Media"
-msgstr "Smart Media euskarria"
+msgstr "Smart euskarria"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
@@ -1128,7 +1114,6 @@ msgid "HTTP proxy username"
 msgstr "HTTP proxy-ko erabiltzaile-izena"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
@@ -1255,241 +1240,3 @@ msgstr "SMB lan-taldea"
 msgid "The window workgroup the user is part of"
 msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM diskoa"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "CD-R disko hutsa"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R diskoa"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "CD-RW disko hutsa"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW diskoa"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM diskoa"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "DVD-R disko hutsa"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R diskoa"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "DVD-RAM disko hutsa"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM diskoa"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "DVD-RW disko hutsa"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW diskoa"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "DVD+RW disko hutsa"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW diskoa"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "DVD+R disko hutsa"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R diskoa"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Disko optikoa"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Audio-diskoa"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Flash trinkoa euskarria"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Memoria arkatza euskarria"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Smart Media euskarria"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC euskarria"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Disketea"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS diskoa"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X diskoa"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows diskoa"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Linux diskoa"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Ezin izan da fitxategia ireki: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Huts eginu du '%s' fitxategia irekitzean: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Fitxategia hutsik dago"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Huts egin du '%s' fitxategia irakurtzean: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "Mahaigaineko sarrerak '%s' lerroa dauka, baina ez da sarrera, taldea edo "
-#~ "iruzkina"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr ""
-#~ "mahaigaineko sarrerako fitxategia ez da hasten hasierako talde legalarekin"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "mahaigaineko sarrerak '%s' lerroa dauka, baina ez da UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "mahaigaineko sarrerak '%s' kodeketa ezezaguna dauka"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "mahaigaineko sarrerak ez dauka '%s' talderik"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "mahaigaineko sarrerak ez dauka '%s' gakorik"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "mahaigaineko sarresak '%s' gakoa dauka, bere balioa ordea ezin da "
-#~ "interpretatu"
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "mahaigaineko sarrerak '%2$s' hizkuntzako '%1$s' gakoaren balioa itzuli "
-#~ "gabe dauka"
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "mahaigaineko sarrerak '%s' ihes-sekuentzia baliogabea dauka"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "mahaigaineko sarrerak ihes-karakterea dauka lerroaren amaieran"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "'%s' balioa ezin da zenbaki bezala interpretatu"
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "'%s' balioa ezin da balio boolear bezala interpretatu"
-
-#~ msgid "Applications"
-#~ msgstr "Aplikazioak"
-
-#~ msgid "Cards"
-#~ msgstr "Kartak"
-
-#~ msgid "Files"
-#~ msgstr "Fitxategiak"
-
-#~ msgid "Folders"
-#~ msgstr "Karpetak"
-
-#~ msgid "Help"
-#~ msgstr "Laguntza"
-
-#~ msgid "Hosts"
-#~ msgstr "Ostalariak"
-
-#~ msgid "Links"
-#~ msgstr "Estekak"
-
-#~ msgid "Mail"
-#~ msgstr "Posta"
-
-#~ msgid "Tools"
-#~ msgstr "Tresnak"
-
-#~ msgid "Windows"
-#~ msgstr "Leihoak"
-
-#~ msgid "CD Disc"
-#~ msgstr "CD diskoa"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "HTTP URLak kudeatzeko komandoa, gaituta egonez gero."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "HTTPS URLak kuedatzeko komandoa, gaituta egonez gero."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "HTTP URLen kudeatzailea"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "HTTPS URLen kudeatzailea"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTP "
-#~ "URLak kudeatuko baditu."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTPS "
-#~ "URLak kudeatuko baditu."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Hemen zehaztutako komandoak HTTP URLak kudeatuko ditu."
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Hemen zehaztutako komandoak HTTPS URLak kudeatuko ditu."
-
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 URL kudeatzailea"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP URL kudeatzailea"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS URL kudeatzailea"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man URL kudeatzailea"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto URL kudeatzailea"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp URL kudeatzailea"
-
-#~ msgid "info URL handler"
-#~ msgstr "info URL kudeatzailea"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto URL kudeatzailea"
-
-#~ msgid "man URL handler"
-#~ msgstr "man URL kudeatzailea"
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash URL kudeatzailea"
-
-#~ msgid "1 byte"
-#~ msgstr "byte 1"
