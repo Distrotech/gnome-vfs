@@ -38,23 +38,36 @@
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
 #include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
+#include <glib.h>
+#include <glib/gstdio.h>
+#ifndef G_OS_WIN32
 #include <dirent.h>
+#endif
 #include <errno.h>
 #include <fcntl.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gutils.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#ifndef G_OS_WIN32		/* We don't want the ftruncate() in mingw's unistd.h */
 #include <unistd.h>
+#endif
 #include <utime.h>
 #include <string.h>
 #ifdef HAVE_FAM
 #include <fam.h>
-#include <glib/giochannel.h>
+#endif
+
+#ifdef G_OS_WIN32
+#include <windows.h>
+#endif
+
+#ifdef G_OS_WIN32
+#define DIR_SEPARATORS "/\\"
+#else
+#define DIR_SEPARATORS "/"
 #endif
 
 #ifdef HAVE_FAM
@@ -97,7 +110,7 @@ GET_PATH_MAX (void)
 #ifdef HAVE_OPEN64
 #define OPEN open64
 #else
-#define OPEN open
+#define OPEN g_open
 #endif
 
 #if defined(HAVE_LSEEK64) && defined(HAVE_OFF64_T)
@@ -108,24 +121,61 @@ GET_PATH_MAX (void)
 #define OFF_T off_t
 #endif
 
+#ifdef G_OS_WIN32
+
+static int
+ftruncate (int     fd,
+	   guint64 size)
+{
+	/* FIXME: not threadsafe at all! */
+	LARGE_INTEGER origpos;
+	int retval = -1;
+
+	origpos.QuadPart = 0;
+	origpos.u.LowPart = SetFilePointer ((HANDLE) _get_osfhandle (fd), 0,
+					    &origpos.u.HighPart, FILE_CURRENT);
+	if (origpos.u.LowPart != INVALID_SET_FILE_POINTER) {
+		LARGE_INTEGER newpos;
+
+		newpos.QuadPart = size;
+		if (SetFilePointer ((HANDLE) _get_osfhandle (fd), newpos.u.LowPart,
+				    &newpos.u.HighPart, FILE_BEGIN) != INVALID_SET_FILE_POINTER &&
+		    SetEndOfFile ((HANDLE) _get_osfhandle (fd)) &&
+		    SetFilePointer ((HANDLE) _get_osfhandle (fd), origpos.u.LowPart,
+				    &origpos.u.HighPart, FILE_BEGIN) != INVALID_SET_FILE_POINTER)
+			retval = 0;
+	}
+
+	if (retval == -1)
+		errno = EIO;
+
+	return retval;
+}
+
+#endif
 
 static gchar *
 get_path_from_uri (GnomeVFSURI const *uri)
 {
 	gchar *path;
 
-	path = gnome_vfs_unescape_string (uri->text, 
-		G_DIR_SEPARATOR_S);
+	path = gnome_vfs_unescape_string (uri->text, DIR_SEPARATORS);
 		
 	if (path == NULL) {
 		return NULL;
 	}
 
-	if (path[0] != G_DIR_SEPARATOR) {
+	if (!g_path_is_absolute (path)) {
 		g_free (path);
 		return NULL;
 	}
-
+#ifdef G_OS_WIN32
+	if (g_ascii_isalpha (path[1]) && path[2] == ':') {
+		gchar *retval = g_strdup (path + 1);
+		g_free (path);
+		return retval;
+	}
+#endif
 	return path;
 }
 
@@ -135,7 +185,7 @@ get_base_from_uri (GnomeVFSURI const *uri)
 	gchar *escaped_base, *base;
 
 	escaped_base = gnome_vfs_uri_extract_short_path_name (uri);
-	base = gnome_vfs_unescape_string (escaped_base, G_DIR_SEPARATOR_S);
+	base = gnome_vfs_unescape_string (escaped_base, DIR_SEPARATORS);
 	g_free (escaped_base);
 	return base;
 }
@@ -202,7 +252,7 @@ do_open (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_INVALID_URI;
 
 	do
-		fd = OPEN (file_name, unix_mode);
+		fd = OPEN (file_name, unix_mode, 0);
 	while (fd == -1
 	       && errno == EINTR
 	       && ! gnome_vfs_context_check_cancellation (context));
@@ -494,6 +544,7 @@ do_truncate (GnomeVFSMethod *method,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {
+#ifndef G_OS_WIN32
 	gchar *path;
 
 	path = get_path_from_uri (uri);
@@ -515,22 +566,32 @@ do_truncate (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_GENERIC;
 		}
 	}
+#else
+	g_warning ("Not implemented: file::do_truncate()");
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 typedef struct {
 	GnomeVFSURI *uri;
-	DIR *dir;
 	GnomeVFSFileInfoOptions options;
-
+#ifndef G_OS_WIN32
+	DIR *dir;
 	struct dirent *current_entry;
-
+#else
+	GDir *dir;
+#endif
 	gchar *name_buffer;
 	gchar *name_ptr;
 } DirectoryHandle;
 
 static DirectoryHandle *
 directory_handle_new (GnomeVFSURI *uri,
+#ifndef G_OS_WIN32
 		      DIR *dir,
+#else
+		      GDir *dir,
+#endif
 		      GnomeVFSFileInfoOptions options)
 {
 	DirectoryHandle *result;
@@ -542,8 +603,10 @@ directory_handle_new (GnomeVFSURI *uri,
 	result->uri = gnome_vfs_uri_ref (uri);
 	result->dir = dir;
 
+#ifndef G_OS_WIN32
 	/* Reserve extra space for readdir_r, see man page */
 	result->current_entry = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
+#endif
 
 	full_name = get_path_from_uri (uri);
 	g_assert (full_name != NULL); /* already done by caller */
@@ -552,8 +615,8 @@ directory_handle_new (GnomeVFSURI *uri,
 	result->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
 	memcpy (result->name_buffer, full_name, full_name_len);
 	
-	if (full_name_len > 0 && full_name[full_name_len - 1] != '/')
-		result->name_buffer[full_name_len++] = '/';
+	if (full_name_len > 0 && !G_IS_DIR_SEPARATOR (full_name[full_name_len - 1]))
+		result->name_buffer[full_name_len++] = G_DIR_SEPARATOR;
 
 	result->name_ptr = result->name_buffer + full_name_len;
 
@@ -569,7 +632,9 @@ directory_handle_destroy (DirectoryHandle *directory_handle)
 {
 	gnome_vfs_uri_unref (directory_handle->uri);
 	g_free (directory_handle->name_buffer);
+#ifndef G_OS_WIN32
 	g_free (directory_handle->current_entry);
+#endif
 	g_free (directory_handle);
 }
 
@@ -607,6 +672,8 @@ get_mime_type (GnomeVFSFileInfo *info,
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 }
 
+#ifndef G_OS_WIN32
+
 static gchar *
 read_link (const gchar *full_name)
 {
@@ -633,10 +700,13 @@ read_link (const gchar *full_name)
 	}
 }
 
+#endif
+
 static void
 get_access_info (GnomeVFSFileInfo *file_info,
               const gchar *full_name)
 {
+#ifndef G_OS_WIN32
      /* FIXME: should check errno after calling access because we don't
       * want to set valid_fields if something bad happened during one
       * of the access calls
@@ -653,6 +723,7 @@ get_access_info (GnomeVFSFileInfo *file_info,
              file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
      }
      file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACCESS;
+#endif /* G_OS_WIN32 */
 }
 
 static GnomeVFSResult
@@ -663,12 +734,14 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 {
 	struct stat statbuf;
 	gboolean followed_symlink;
+#ifndef G_OS_WIN32
 	gboolean is_symlink;
-	gboolean recursive;
 	char *link_file_path;
 	char *symlink_name;
 	char *symlink_dir;
 	char *newpath;
+#endif
+	gboolean recursive;
 	
 	followed_symlink = FALSE;
 	
@@ -680,14 +753,16 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		statptr = &statbuf;
 	}
 
-	if (lstat (full_name, statptr) != 0) {
+	if (g_lstat (full_name, statptr) != 0) {
 		return gnome_vfs_result_from_errno ();
 	}
 
+
+#ifndef G_OS_WIN32
 	is_symlink = S_ISLNK (statptr->st_mode);
 
 	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && is_symlink) {
-		if (stat (full_name, statptr) != 0) {
+		if (g_stat (full_name, statptr) != 0) {
 			if (errno == ELOOP) {
 				recursive = TRUE;
 			}
@@ -695,16 +770,17 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			/* It's a broken symlink, revert to the lstat. This is sub-optimal but
 			 * acceptable because it's not a common case.
 			 */
-			if (lstat (full_name, statptr) != 0) {
+			if (g_lstat (full_name, statptr) != 0) {
 				return gnome_vfs_result_from_errno ();
 			}
 		}
 		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		followed_symlink = TRUE;
 	}
-
+#endif
 	gnome_vfs_stat_to_file_info (file_info, statptr);
 
+#ifndef G_OS_WIN32
 	if (is_symlink) {
 		symlink_name = NULL;
 		link_file_path = g_strdup (full_name);
@@ -741,7 +817,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			                /* if we had an earlier ELOOP, don't get in an infinite loop here */
 			        || recursive
 					/* we don't care to follow links */
-				|| lstat (symlink_name, statptr) != 0
+				|| g_lstat (symlink_name, statptr) != 0
 					/* we can't make out where this points to */
 				|| !S_ISLNK (statptr->st_mode)) {
 					/* the next level is not a link */
@@ -754,7 +830,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 
 		file_info->symlink_name = symlink_name;
 	}
-
+#endif
 	return GNOME_VFS_OK;
 }
 
@@ -789,13 +865,21 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSContext *context)
 {
 	gchar *directory_name;
+#ifndef G_OS_WIN32
 	DIR *dir;
+#else
+	GDir *dir;
+#endif
 
 	directory_name = get_path_from_uri (uri);
 	if (directory_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
+#ifndef G_OS_WIN32
 	dir = opendir (directory_name);
+#else
+	dir = g_dir_open (directory_name, 0, NULL);
+#endif
 	g_free (directory_name);
 	if (dir == NULL)
 		return gnome_vfs_result_from_errno ();
@@ -816,7 +900,11 @@ do_close_directory (GnomeVFSMethod *method,
 
 	directory_handle = (DirectoryHandle *) method_handle;
 
+#ifndef G_OS_WIN32
 	closedir (directory_handle->dir);
+#else
+	g_dir_close (directory_handle->dir);
+#endif
 
 	directory_handle_destroy (directory_handle);
 
@@ -833,7 +921,11 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
+#ifndef G_OS_WIN32
 	struct dirent *result;
+#else
+	const gchar *result;
+#endif
 	struct stat statbuf;
 	gchar *full_name;
 	DirectoryHandle *handle;
@@ -854,16 +946,22 @@ do_read_directory (GnomeVFSMethod *method,
 #else
 	G_LOCK (readdir);
 	errno = 0;
+#ifndef G_OS_WIN32
 	result = readdir (handle->dir);
+#else
+	result = g_dir_read_name (handle->dir);
+#endif
 
 	if (result == NULL && errno != 0) {
 		GnomeVFSResult ret = gnome_vfs_result_from_errno ();
 		G_UNLOCK (readdir);
 		return ret;
 	}
+#ifndef G_OS_WIN32
 	if (result != NULL) {
 		memcpy (handle->current_entry, result, sizeof (struct dirent));
 	}
+#endif
 	G_UNLOCK (readdir);
 #endif
 	
@@ -871,9 +969,13 @@ do_read_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_EOF;
 	}
 
+#ifndef G_OS_WIN32
 	file_info->name = g_strdup (result->d_name);
-
 	strcpy (handle->name_ptr, result->d_name);
+#else
+	file_info->name = g_strdup (result);
+	strcpy (handle->name_ptr, result);
+#endif
 	full_name = handle->name_buffer;
 
 	if (get_stat_info (file_info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
@@ -996,7 +1098,7 @@ do_is_local (GnomeVFSMethod *method,
 
 	if (local == NULL) {
 		struct stat statbuf;
-		if (stat (path, &statbuf) == 0) {
+		if (g_stat (path, &statbuf) == 0) {
 			char *type = filesystem_type (path, path, &statbuf);
 			gboolean is_local = ((strcmp (type, "nfs") != 0) && 
 					     (strcmp (type, "afs") != 0) &&
@@ -1025,7 +1127,7 @@ do_make_directory (GnomeVFSMethod *method,
 	if (full_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	retval = mkdir (full_name, perm);
+	retval = g_mkdir (full_name, perm);
 
 	g_free (full_name);
 
@@ -1082,14 +1184,14 @@ mkdir_recursive (const char *path, int permission_bits)
 			if (!*dir_separator_scanner) {
 				break;
 			}	
-			if (*dir_separator_scanner == G_DIR_SEPARATOR) {
+			if (G_IS_DIR_SEPARATOR (*dir_separator_scanner)) {
 				break;
 			}
 		}
 		if (dir_separator_scanner - path > 0) {
 			current_path = g_strndup (path, dir_separator_scanner - path);
-			mkdir (current_path, permission_bits);
-			if (stat (current_path, &stat_buffer) != 0) {
+			g_mkdir (current_path, permission_bits);
+			if (g_stat (current_path, &stat_buffer) != 0) {
 				/* we failed to create a directory and it wasn't there already;
 				 * bail
 				 */
@@ -1109,23 +1211,24 @@ mkdir_recursive (const char *path, int permission_bits)
 static char *
 append_to_path (const char *path, const char *name)
 {
-	return g_strconcat (path, G_DIR_SEPARATOR_S, name, NULL);
+	return g_build_filename (path, name, NULL);
 }
 
 static char *
 append_trash_path (const char *path)
 {	
-	/* When creating trash outside of /home/pavel, create it in the form:
-	 * .Trash-pavel to allow sharing the name space for several users.
-	 * Treat "/" specially to avoid creating non-canonical "//foo" path.
-	 */
-	if (strcmp (path, "/") == 0) {
-		return g_strconcat (path, TRASH_DIRECTORY_NAME_BASE,
-		"-", g_get_user_name (), NULL);
-	} else {
-		return g_strconcat (path, G_DIR_SEPARATOR_S, TRASH_DIRECTORY_NAME_BASE,
-			"-", g_get_user_name (), NULL);
-	}
+	char *per_user_part; 
+	char *retval;
+	
+	per_user_part = g_strconcat (TRASH_DIRECTORY_NAME_BASE "-", 
+			             g_get_user_name (), 
+				     NULL);
+
+	retval = g_build_filename (path, per_user_part, NULL);
+	
+	g_free (per_user_part);
+
+	return retval;
 }
 
 static char *
@@ -1139,7 +1242,7 @@ find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id, GnomeVFSCo
 
 	/* check if there is a trash in this directory */
 	trash_path = append_trash_path (start_dir);
-	if (lstat (trash_path, &stat_buffer) == 0 && S_ISDIR (stat_buffer.st_mode)) {
+	if (g_lstat (trash_path, &stat_buffer) == 0 && S_ISDIR (stat_buffer.st_mode)) {
 		/* found it, we are done */
 		g_assert (near_device_id == stat_buffer.st_dev);
 		return trash_path;
@@ -1221,7 +1324,7 @@ find_disk_top_directory (const char *item_on_disk,
 		}
 		
 		*last_slash = '\0';
-		if (stat (disk_top_directory, &stat_buffer) < 0
+		if (g_stat (disk_top_directory, &stat_buffer) < 0
 			|| stat_buffer.st_dev != near_device_id) {
 			/* we ran past the root of the disk we are exploring */
 			g_free (disk_top_directory);
@@ -1265,7 +1368,7 @@ save_trash_entry_cache (void)
 		return;
 	}
 
-	cache_file = open (cache_file_path, O_CREAT | O_TRUNC | O_RDWR, 0666);
+	cache_file = g_open (cache_file_path, O_CREAT | O_TRUNC | O_RDWR, 0666);
 	if (cache_file < 0) {
 		g_warning ("failed to create trash item cache file");
 		return;
@@ -1396,9 +1499,11 @@ read_saved_cached_trash_entries (void)
 	cached_trash_directories = NULL;
 
 	/* read in the entries from disk */
-	cache_file_path = g_strconcat (g_get_home_dir (), G_DIR_SEPARATOR_S,
-		TRASH_ENTRY_CACHE_PARENT, G_DIR_SEPARATOR_S, TRASH_ENTRY_CACHE_NAME, NULL);
-	cache_file = fopen (cache_file_path, "r");
+	cache_file_path = g_build_filename (g_get_home_dir (),
+					    TRASH_ENTRY_CACHE_PARENT,
+					    TRASH_ENTRY_CACHE_NAME,
+					    NULL);
+	cache_file = g_fopen (cache_file_path, "r");
 
 	if (cache_file != NULL) {
 		removed_item = FALSE;
@@ -1411,13 +1516,13 @@ read_saved_cached_trash_entries (void)
 			trash_path = NULL;
 			if (sscanf (buffer, "%s %s", escaped_mount_point, escaped_trash_path) == 2) {
 				/* the paths are saved in escaped form */
-				trash_path = gnome_vfs_unescape_string (escaped_trash_path, "/");
-				mount_point = gnome_vfs_unescape_string (escaped_mount_point, "/"); 
+				trash_path = gnome_vfs_unescape_string (escaped_trash_path, DIR_SEPARATORS);
+				mount_point = gnome_vfs_unescape_string (escaped_mount_point, DIR_SEPARATORS); 
 
 				if (trash_path != NULL 
 					&& mount_point != NULL
-					&& (strcmp (trash_path, NON_EXISTENT_TRASH_ENTRY) != 0 && lstat (trash_path, &stat_buffer) == 0)
-					&& stat (mount_point, &stat_buffer) == 0) {
+					&& (strcmp (trash_path, NON_EXISTENT_TRASH_ENTRY) != 0 && g_lstat (trash_path, &stat_buffer) == 0)
+					&& g_stat (mount_point, &stat_buffer) == 0) {
 					/* We know the trash exist and we checked that it's really
 					 * there - this is a good entry, copy it into the local cache.
 					 * We don't want to rely on old non-existing trash entries, as they
@@ -1459,7 +1564,7 @@ static gboolean
 cached_trash_entry_exists (const TrashDirectoryCachedItem *entry)
 {
 	struct stat stat_buffer;
-	return lstat (entry->path, &stat_buffer) == 0;
+	return g_lstat (entry->path, &stat_buffer) == 0;
 }
 
 /* Search through the local cache looking for an entry that matches a given
@@ -1673,7 +1778,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 	}
 
-	retval = lstat (full_name_near, &near_item_stat);
+	retval = g_lstat (full_name_near, &near_item_stat);
 	if (retval != 0) {
 		g_free (full_name_near);
 		return gnome_vfs_result_from_errno ();
@@ -1684,7 +1789,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 	}
 	
-	retval = stat (home_directory, &home_volume_stat);
+	retval = g_stat (home_directory, &home_volume_stat);
 	if (retval != 0) {
 		g_free (full_name_near);
 		return gnome_vfs_result_from_errno ();
@@ -1773,7 +1878,7 @@ rename_helper (const gchar *old_full_name,
 	GnomeVFSHandle *temp_handle;
 	GnomeVFSResult result;
 
-	retval = stat (new_full_name, &statbuf);
+	retval = g_stat (new_full_name, &statbuf);
 	if (retval == 0) {
 		/* Special case for files on case insensitive (vfat) filesystems:
 		 * If the old and the new name only differ by case,
@@ -1789,17 +1894,17 @@ rename_helper (const gchar *old_full_name,
 			if (result != GNOME_VFS_OK)
 				return result;
 			gnome_vfs_close (temp_handle);
-			unlink (temp_name);
+			g_unlink (temp_name);
 			
-			retval = rename (old_full_name, temp_name);
+			retval = g_rename (old_full_name, temp_name);
 			if (retval == 0) {
-				if (stat (new_full_name, &statbuf) != 0 
-				    && rename (temp_name, new_full_name) == 0) {
+				if (g_stat (new_full_name, &statbuf) != 0 
+				    && g_rename (temp_name, new_full_name) == 0) {
 					/* Success */
 					return GNOME_VFS_OK;
 				}
 				/* Revert the filename back to original */ 
-				retval = rename (temp_name, old_full_name);
+				retval = g_rename (temp_name, old_full_name);
 				if (retval == 0) {
 					return GNOME_VFS_ERROR_FILE_EXISTS;
 				}
@@ -1820,7 +1925,7 @@ rename_helper (const gchar *old_full_name,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	retval = rename (old_full_name, new_full_name);
+	retval = g_rename (old_full_name, new_full_name);
 
 	/* FIXME bugzilla.eazel.com 1186: The following assumes that,
 	 * if `new_uri' and `old_uri' are on different file systems,
@@ -1845,7 +1950,7 @@ rename_helper (const gchar *old_full_name,
 			if (gnome_vfs_context_check_cancellation (context))
 				return GNOME_VFS_ERROR_CANCELLED;
 
-			retval = rename (old_full_name, new_full_name);
+			retval = g_rename (old_full_name, new_full_name);
 		}
 	}
 
@@ -1899,7 +2004,7 @@ do_unlink (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
-	retval = unlink (full_name);
+	retval = g_unlink (full_name);
 
 	g_free (full_name);
 
@@ -1916,6 +2021,7 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 			 const char *target_reference,
 			 GnomeVFSContext *context)
 {
+#ifndef G_OS_WIN32
 	const char *link_scheme, *target_scheme;
 	char *link_full_name, *target_full_name;
 	GnomeVFSResult result;
@@ -1967,6 +2073,9 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	gnome_vfs_uri_unref (target_uri);
 
 	return result;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 /* When checking whether two locations are on the same file system, we are
@@ -1988,7 +2097,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 	gint retval;
 
 	full_name_source = get_path_from_uri (source_uri);
-	retval = lstat (full_name_source, &s_source);
+	retval = g_lstat (full_name_source, &s_source);
 	g_free (full_name_source);
 
 	if (retval != 0)
@@ -1998,7 +2107,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
  
 	full_name_target = get_path_from_uri (target_uri);
-	retval = stat (full_name_target, &s_target);
+	retval = g_stat (full_name_target, &s_target);
 	g_free (full_name_target);
 
 	if (retval != 0)
@@ -2028,7 +2137,7 @@ do_set_file_info (GnomeVFSMethod *method,
 		gchar *new_name;
 
 		encoded_dir = gnome_vfs_uri_extract_dirname (uri);
-		dir = gnome_vfs_unescape_string (encoded_dir, G_DIR_SEPARATOR_S);
+		dir = gnome_vfs_unescape_string (encoded_dir, DIR_SEPARATORS);
 		g_free (encoded_dir);
 		g_assert (dir != NULL);
 
@@ -2037,11 +2146,7 @@ do_set_file_info (GnomeVFSMethod *method,
 		 * them, instead of moving the file.
 		 */
 
-		if (dir[strlen(dir) - 1] != '/') {
-			new_name = g_strconcat (dir, "/", info->name, NULL);
-		} else {
-			new_name = g_strconcat (dir, info->name, NULL);
-		}
+		new_name = g_build_filename (dir, info->name, NULL);
 
 		result = rename_helper (full_name, new_name, FALSE, context);
 
@@ -2072,12 +2177,15 @@ do_set_file_info (GnomeVFSMethod *method,
 	}
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_OWNER) {
+#ifndef G_OS_WIN32
 		if (chown (full_name, info->uid, info->gid) != 0) {
 			g_free (full_name);
 			return gnome_vfs_result_from_errno ();
 		}
+#else
+		g_warning ("Not implemented: GNOME_VFS_SET_FILE_INFO_OWNER");
+#endif
 	}
-
 	if (gnome_vfs_context_check_cancellation (context)) {
 		g_free (full_name);
 		return GNOME_VFS_ERROR_CANCELLED;

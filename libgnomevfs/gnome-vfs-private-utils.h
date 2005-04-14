@@ -32,6 +32,31 @@
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
+#ifdef G_OS_WIN32
+#include <io.h>
+
+#undef GNOME_VFS_DATADIR
+extern char *_gnome_vfs_datadir;
+#define GNOME_VFS_DATADIR _gnome_vfs_datadir
+
+#undef GNOME_VFS_LIBDIR
+extern char *_gnome_vfs_libdir;
+#define GNOME_VFS_LIBDIR _gnome_vfs_libdir
+
+#undef GNOME_VFS_PREFIX
+extern char *_gnome_vfs_prefix;
+#define GNOME_VFS_PREFIX _gnome_vfs_prefix
+
+#undef GNOME_VFS_LOCALEDIR
+extern char *_gnome_vfs_localedir;
+#define GNOME_VFS_LOCALEDIR _gnome_vfs_localedir
+
+#undef GNOME_VFS_SYSCONFDIR
+extern char *_gnome_vfs_sysconfdir;
+#define GNOME_VFS_SYSCONFDIR _gnome_vfs_sysconfdir
+
+#endif
+
 G_BEGIN_DECLS
 
 gboolean	 _gnome_vfs_have_ipv6			 (void);
@@ -71,10 +96,30 @@ gboolean       _gnome_vfs_use_handler_for_scheme          (const char   *scheme)
 gboolean       _gnome_vfs_prepend_terminal_to_vector      (int          *argc,
 							   char       ***argv);
 
-gboolean       _gnome_vfs_set_fd_flags                    (int           fd,
-                                                           int           flags);
-gboolean       _gnome_vfs_clear_fd_flags                  (int           fd,
-                                                           int           flags);
+gboolean       _gnome_vfs_socket_set_blocking             (int       sock_fd,
+		                                           gboolean  blocking);
+
+int	       _gnome_vfs_pipe				  (int       *fds);
+gboolean       _gnome_vfs_pipe_set_blocking               (int        pipe_fd,
+							   gboolean   blocking);
+
+#ifdef G_OS_WIN32
+void	       _gnome_vfs_map_winsock_error_to_errno	  (void);
+const char    *_gnome_vfs_winsock_strerror		  (int		 error);
+
+#define _GNOME_VFS_SOCKET_IS_ERROR(s) ((s) == SOCKET_ERROR)
+#define _GNOME_VFS_SOCKET_CLOSE(s) closesocket(s)
+#define _GNOME_VFS_SOCKET_READ(s,b,n) recv(s,b,n,0)
+#define _GNOME_VFS_SOCKET_WRITE(s,b,n) send(s,b,n,0)
+
+#else
+
+#define _GNOME_VFS_SOCKET_IS_ERROR(s) ((s) < 0)
+#define _GNOME_VFS_SOCKET_CLOSE(s) close(s)
+#define _GNOME_VFS_SOCKET_READ(s,b,n) read(s,b,n)
+#define _GNOME_VFS_SOCKET_WRITE(s,b,n) write(s,b,n)
+
+#endif
 
 G_END_DECLS
 

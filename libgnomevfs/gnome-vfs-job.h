@@ -23,16 +23,18 @@
    Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
-#ifndef GNOME_VFS_JOB_PTHREAD_H
-#define GNOME_VFS_JOB_PTHREAD_H
+#ifndef GNOME_VFS_JOB_H
+#define GNOME_VFS_JOB_H
 
 /*
  * The following includes help Solaris copy with its own headers.  (With 64-
  * bit stuff enabled they like to #define open open64, etc.)
  * See http://bugzilla.gnome.org/show_bug.cgi?id=71184 for details.
  */
+#ifndef _WIN32
 #include <unistd.h>
 #include <fcntl.h>
+#endif
 
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
@@ -422,9 +424,9 @@ void         	 _gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
 				      		   gpointer        	 callback_data);
 void         	 _gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
 void     	 _gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
-void         	 _gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
+void         	 _gnome_vfs_job_module_cancel  	  (GnomeVFSJob	 	*job);
 int          	 gnome_vfs_job_get_count 	  (void);
 
-gboolean	 _gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
+gboolean	 _gnome_vfs_job_complete	  (GnomeVFSJob 		*job);
 
-#endif /* GNOME_VFS_JOB_PTHREAD_H */
+#endif /* GNOME_VFS_JOB_H */

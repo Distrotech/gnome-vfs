@@ -1,5 +1,3 @@
-libexec_PROGRAMS=gnome-vfs-daemon
-
 INCLUDES= \
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
@@ -11,17 +9,23 @@ INCLUDES= \
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-D_REENTRANT				\
 	-DG_DISABLE_DEPRECATED			\
-	-DDATADIR=\"$(datadir)\"		\
-	-DLIBDIR=\"$(libdir)\"			\
-	-DPREFIX=\"$(prefix)\"			\
+	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
+	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
+	-DGNOME_VFS_LIBDIR=\"$(libdir)\"	\
 	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
-	-DSYSCONFDIR=\"$(sysconfdir)\"		\
+	-DGNOME_VFS_SYSCONFDIR=\"$(sysconfdir)\"\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	-I$(top_srcdir)/libgnomevfs             \
 	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
+
+if OS_WIN32
+else
+libexec_PROGRAMS=gnome-vfs-daemon
+endif
+
 gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(LIBGNOMEVFSDAEMON_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
 gnome_vfs_daemon_SOURCES = \

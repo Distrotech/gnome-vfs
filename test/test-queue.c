@@ -67,7 +67,7 @@ my_yield (int count)
 		if (!g_main_context_iteration (NULL, FALSE)) {
 			break;
 		}
-		usleep (10);
+		g_usleep (10);
 	}
 }
 
@@ -81,7 +81,7 @@ wait_until_vfs_jobs_gone (void)
 	}
 
 	for (i = 0; i < 2000; i++) {
-		usleep (1000);
+		g_usleep (1000);
 		g_main_context_iteration (NULL, FALSE);
 		if (gnome_vfs_job_get_count () == 0) {
 			return TRUE;

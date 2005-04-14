@@ -412,7 +412,12 @@ get_method_string (const gchar *substring, gchar **method_string)
 	     p++)
 		;
 
-	if (*p == ':') {
+	if (*p == ':'
+#ifdef G_OS_WIN32
+	              &&
+	    !(p == substring + 1 && g_ascii_isalpha (*substring))
+#endif
+								 ) {
 		/* Found toplevel method specification.  */
 		method = g_strndup (substring, p - substring);
 		*method_string = g_ascii_strdown (method, -1);

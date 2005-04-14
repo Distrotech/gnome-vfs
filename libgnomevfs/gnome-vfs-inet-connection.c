@@ -32,14 +32,18 @@
 #include <string.h>
 /* Keep <sys/types.h> above the network includes for FreeBSD. */
 #include <sys/types.h>
+
+#ifndef G_OS_WIN32
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <sys/select.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#else
+#include <winsock2.h>
+#endif
 
 #include <sys/time.h>
 
@@ -90,7 +94,12 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 	while (gnome_vfs_resolve_next_address (rh, &address)) {
 		sock = socket (gnome_vfs_address_get_family_type (address),
 			       SOCK_STREAM, 0);
-
+#ifdef G_OS_WIN32
+		if (sock == SOCKET_ERROR) {
+			_gnome_vfs_map_winsock_error_to_errno ();
+			sock = -1;
+		}
+#endif
 		if (sock > -1) {
 			saddr = gnome_vfs_address_get_sockaddr (address,
 								host_port,
@@ -101,7 +110,7 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 			if (ret == 0)
 				break;
 
-			close (sock);
+			_GNOME_VFS_SOCKET_CLOSE (sock);
 			sock = -1;
 		}
 
@@ -118,7 +127,7 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 	new->address = address;
 	new->sock = sock;
 
-	_gnome_vfs_set_fd_flags (new->sock, O_NONBLOCK);
+	_gnome_vfs_socket_set_blocking (new->sock, FALSE);
 
 	*connection_return = new;
 	return GNOME_VFS_OK;
@@ -151,7 +160,12 @@ gnome_vfs_inet_connection_create_from_address (GnomeVFSInetConnection **connecti
 	
 	sock = socket (gnome_vfs_address_get_family_type (address),
 		       SOCK_STREAM, 0);
-
+#ifdef G_OS_WIN32
+	if (sock == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		sock = -1;
+	}
+#endif
 	if (sock < 0)
 		return gnome_vfs_result_from_errno ();
 	
@@ -163,7 +177,7 @@ gnome_vfs_inet_connection_create_from_address (GnomeVFSInetConnection **connecti
 	g_free (saddr);
 
 	if (ret < 0) {
-		close (sock);
+		_GNOME_VFS_SOCKET_CLOSE (sock);
 		return gnome_vfs_result_from_errno ();
 	}
 
@@ -172,7 +186,7 @@ gnome_vfs_inet_connection_create_from_address (GnomeVFSInetConnection **connecti
 	new->address = gnome_vfs_address_dup (address);
 	new->sock = sock;
 
-	_gnome_vfs_set_fd_flags (new->sock, O_NONBLOCK);
+	_gnome_vfs_socket_set_blocking (new->sock, FALSE);
 
 	*connection_return = new;
 	return GNOME_VFS_OK;
@@ -192,7 +206,7 @@ gnome_vfs_inet_connection_destroy (GnomeVFSInetConnection *connection,
 {
 	g_return_if_fail (connection != NULL);
 
-	close (connection->sock);
+	_GNOME_VFS_SOCKET_CLOSE (connection->sock);
 	
 	gnome_vfs_inet_connection_free (connection, cancellation);
 }
@@ -312,8 +326,13 @@ gnome_vfs_inet_connection_read (GnomeVFSInetConnection *connection,
 	cancel_fd = -1;
 	
 read_loop:
-	read_val = read (connection->sock, buffer, bytes);
-
+	read_val = _GNOME_VFS_SOCKET_READ (connection->sock, buffer, bytes);
+#ifdef G_OS_WIN32
+	if (read_val == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		read_val = -1;
+	}
+#endif
 	if (read_val == -1 && errno == EAGAIN) {
 
 		FD_ZERO (&read_fds);
@@ -334,7 +353,12 @@ read_loop:
 		
 		read_val = select (max_fd + 1, &read_fds, NULL, NULL,
 				   connection->timeout ? &timeout : NULL);
-		
+#ifdef G_OS_WIN32
+		if (read_val == SOCKET_ERROR) {
+			_gnome_vfs_map_winsock_error_to_errno ();
+			read_val = -1;
+		}
+#endif
 		if (read_val == 0) {
 			return GNOME_VFS_ERROR_TIMEOUT;
 		} else if (read_val != -1) { 	
@@ -400,8 +424,13 @@ gnome_vfs_inet_connection_write (GnomeVFSInetConnection *connection,
 	read_fds  = NULL;
 	
 write_loop:	
-	write_val = write (connection->sock, buffer, bytes);
-		
+	write_val = _GNOME_VFS_SOCKET_WRITE (connection->sock, buffer, bytes);
+#ifdef G_OS_WIN32
+	if (write_val == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		write_val = -1;
+	}
+#endif
 	if (write_val == -1 && errno == EAGAIN) {
 			
          	FD_ZERO (&write_fds);
@@ -425,7 +454,12 @@ write_loop:
 		
 		write_val = select (max_fd + 1, read_fds, &write_fds, NULL,
 					connection->timeout ? &timeout : NULL);
-				
+#ifdef G_OS_WIN32
+		if (write_val == SOCKET_ERROR) {
+			_gnome_vfs_map_winsock_error_to_errno ();
+			write_val = -1;
+		}
+#endif
 		if (write_val == 0) {
 			return GNOME_VFS_ERROR_TIMEOUT;
 		} else if (write_val != -1) {

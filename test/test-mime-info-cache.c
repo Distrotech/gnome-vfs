@@ -31,7 +31,7 @@ gpointer foo (const char *mime_type) {
                         g_print ("%s, %s\n", application->id, application->name);
                         tmp = tmp->next;
                 }
-                sleep (1);
+                g_usleep (1000000);
         }
 
         return NULL;

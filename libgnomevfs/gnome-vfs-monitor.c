@@ -22,6 +22,7 @@
 */
 
 #include <sys/time.h>
+#include <time.h>
 #include <string.h>
 #include <libgnomevfs/gnome-vfs-monitor.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
@@ -56,7 +57,7 @@ struct GnomeVFSMonitorCallbackData {
 	char *info_uri;
 	GnomeVFSMonitorEventType event_type;
 	CallbackState send_state;
-	guint32 send_at;
+	time_t send_at;
 };
 
 /* Number of seconds between consecutive events of the same type to the same file */
@@ -216,16 +217,14 @@ actually_dispatch_callback (gpointer data)
 	gchar *uri;
 	GList *l, *next;
 	GList *dispatch;
-	struct timeval tv;
-	guint32 now;
+	time_t now;
 
 	/* This function runs on the main loop, so it won't reenter,
 	 * although other threads may add stuff to the pending queue
 	 * while we don't have the lock
 	 */
 
-	gettimeofday (&tv, NULL);
-	now = tv.tv_sec;
+	time (&now);
 
 	G_LOCK (handle_hash);
 
@@ -343,7 +342,7 @@ send_uri_changes_now (GnomeVFSMonitorHandle *monitor_handle,
 static guint32
 get_min_delay  (GList *list, gint32 now)
 {
-	guint32 min_send_at;
+	time_t min_send_at;
 	GnomeVFSMonitorCallbackData *callback_data;
 
 	min_send_at = G_MAXINT;
@@ -375,8 +374,7 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
 	GnomeVFSMonitorCallbackData *callback_data, *other_data, *last_data;
 	GnomeVFSMonitorHandle *monitor_handle;
 	char *uri;
-	struct timeval tv;
-	guint32 now;
+	time_t now;
 	guint32 delay;
 	GList *l;
 	DispatchData *ddata;
@@ -401,8 +399,7 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
 		return;
 	}
 	
-	gettimeofday (&tv, NULL);
-	now = tv.tv_sec;
+	time (&now);
 
 	uri = gnome_vfs_uri_to_string (info_uri, GNOME_VFS_URI_HIDE_NONE);
 

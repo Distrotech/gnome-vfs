@@ -28,8 +28,7 @@
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs-volume-monitor.h>
 
-#define GNOME_VFS_MODULE_DIR     LIBDIR "/gnome-vfs-2.0/modules"
-#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/gnome-vfs-2.0/modules"
+#define GNOME_VFS_MODULE_SUBDIR  "gnome-vfs-2.0/modules"
 
 typedef void (*GnomeVFSDaemonForceProbeCallback) (GnomeVFSVolumeMonitor *volume_monitor);
 

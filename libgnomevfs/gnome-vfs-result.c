@@ -27,11 +27,15 @@
 #include "gnome-vfs-i18n.h"
 #include <glib/gtypes.h>
 #include <errno.h>
+#ifndef G_OS_WIN32
 #include <netdb.h>
+#endif
 
+#ifndef G_OS_WIN32
 /* AIX #defines h_errno */
 #ifndef h_errno
 extern int h_errno;
+#endif
 #endif
 
 static char *status_strings[] = {
@@ -106,7 +110,9 @@ gnome_vfs_result_from_errno_code (int errno_code)
 	case EACCES:	   return GNOME_VFS_ERROR_ACCESS_DENIED;
 	case EBUSY:	   return GNOME_VFS_ERROR_DIRECTORY_BUSY;
 	case EBADF:	   return GNOME_VFS_ERROR_BAD_FILE;
+#ifdef ECONNREFUSED
 	case ECONNREFUSED: return GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
+#endif
 	case EEXIST:	   return GNOME_VFS_ERROR_FILE_EXISTS;
 	case EFAULT:	   return GNOME_VFS_ERROR_INTERNAL;
 	case EFBIG:	   return GNOME_VFS_ERROR_TOO_BIG;
@@ -114,10 +120,14 @@ gnome_vfs_result_from_errno_code (int errno_code)
 	case EINVAL:	   return GNOME_VFS_ERROR_BAD_PARAMETERS;
 	case EIO:	   return GNOME_VFS_ERROR_IO;
 	case EISDIR:	   return GNOME_VFS_ERROR_IS_DIRECTORY;
+#ifdef ELOOP
 	case ELOOP:	   return GNOME_VFS_ERROR_LOOP;
+#endif
 	case EMFILE:	   return GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES;
 	case EMLINK:	   return GNOME_VFS_ERROR_TOO_MANY_LINKS;
+#ifdef ENETUNREACH
 	case ENETUNREACH:  return GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
+#endif
 	case ENFILE:	   return GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES;
 #if ENOTEMPTY != EEXIST
 	case ENOTEMPTY:    return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
@@ -128,7 +138,9 @@ gnome_vfs_result_from_errno_code (int errno_code)
 	case ENOTDIR:	   return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 	case EPERM:	   return GNOME_VFS_ERROR_NOT_PERMITTED;
 	case EROFS:	   return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
+#ifdef ETIMEDOUT
 	case ETIMEDOUT:    return GNOME_VFS_ERROR_TIMEOUT;
+#endif
 	case EXDEV:	   return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	
 		/* FIXME bugzilla.eazel.com 1191: To be completed.  */
@@ -150,6 +162,7 @@ gnome_vfs_result_from_errno (void)
 }
  
 
+#ifndef G_OS_WIN32
 /**
  * gnome_vfs_result_from_h_errno:
  * 
@@ -176,7 +189,7 @@ gnome_vfs_result_from_h_errno (void)
 GnomeVFSResult
 gnome_vfs_result_from_h_errno_val (int h_errno_code)
 {
-	switch (h_errno) {
+	switch (h_errno_code) {
 	case HOST_NOT_FOUND:	return GNOME_VFS_ERROR_HOST_NOT_FOUND;
 	case NO_ADDRESS:	return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
 	case TRY_AGAIN:		return GNOME_VFS_ERROR_NAMESERVER;
@@ -185,6 +198,7 @@ gnome_vfs_result_from_h_errno_val (int h_errno_code)
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 }
+#endif
 
 /**
  * gnome_vfs_result_to_string:

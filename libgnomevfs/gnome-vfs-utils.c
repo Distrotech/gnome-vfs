@@ -40,7 +40,9 @@
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
 #include <gconf/gconf-client.h>
+#ifndef G_OS_WIN32
 #include <pwd.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
 #include <sys/param.h>
@@ -387,6 +389,7 @@ gnome_vfs_escape_set (const char *string,
 char *
 gnome_vfs_expand_initial_tilde (const char *path)
 {
+#ifndef G_OS_WIN32
 	char *slash_after_user_name, *user_name;
 	struct passwd *passwd_file_entry;
 
@@ -417,6 +420,9 @@ gnome_vfs_expand_initial_tilde (const char *path)
 	return g_strconcat (passwd_file_entry->pw_dir,
 			    slash_after_user_name,
 			    NULL);
+#else
+	return g_strdup (path);
+#endif
 }
 
 static int
@@ -451,15 +457,15 @@ unescape_character (const char *scanner)
  * gnome_vfs_unescape_string:
  * @escaped_string: an escaped URI, path, or other string
  * @illegal_characters: a string containing a sequence of characters
- * considered "illegal", '\0' is automatically in this list.
+ * considered "illegal" to be escaped, '\0' is automatically in this list.
  *
  * Decodes escaped characters (i.e. PERCENTxx sequences) in @escaped_string.
  * Characters are encoded in PERCENTxy form, where xy is the ASCII hex code 
  * for character 16x+y.
  * 
- * Return value: a newly allocated string with the unescaped equivalents, 
- * or %NULL if @escaped_string contained one of the characters 
- * in @illegal_characters.
+ * Return value: a newly allocated string with the unescaped
+ * equivalents, or %NULL if @escaped_string contained an escaped
+ * encoding of one of the characters in @illegal_characters.
  **/
 char *
 gnome_vfs_unescape_string (const gchar *escaped_string, 
@@ -777,6 +783,7 @@ GnomeVFSResult
 gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, 
 				 GnomeVFSFileSize  *size)
 {	
+#ifndef G_OS_WIN32
 	GnomeVFSFileSize free_blocks, block_size;
        	int statfs_result;
 	const char *path, *scheme;
@@ -858,6 +865,10 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 	*size = block_size * free_blocks;
 	
 	return GNOME_VFS_OK;
+#else
+	g_warning ("Not implemented: gnome_vfs_get_volume_free_space()");
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 char *
@@ -874,7 +885,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	gnome_var = g_getenv ("GNOME_PATH");
 
 	if (gnome_var == NULL) {
-		gnome_var = PREFIX;
+		gnome_var = GNOME_VFS_PREFIX;
 	}
 
 	paths = g_strsplit (gnome_var, ":", 0); 

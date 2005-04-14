@@ -26,9 +26,15 @@
 #include "GNOME_VFS_Daemon.h"
 
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-client-call.h"
 #include <unistd.h>
+
+#ifdef G_OS_WIN32
+#include <fcntl.h>
+#include <io.h>
+#endif
 
 /* WARNING: this code is not general-purpose.  It is supposed to make the two
    sides of the VFS (i.e. the main process/thread and its asynchronous slave)
@@ -243,7 +249,7 @@ gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation)
 	if (cancellation->pipe_in <= 0) {
 		gint pipefd [2];
 
-		if (pipe (pipefd) == -1) {
+		if (_gnome_vfs_pipe (pipefd) == -1) {
 			G_UNLOCK (pipes);
 			return -1;
 		}

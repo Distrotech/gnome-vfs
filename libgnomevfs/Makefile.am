@@ -14,22 +14,22 @@ INCLUDES =					\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-D_REENTRANT				\
 	-DG_DISABLE_DEPRECATED			\
-	-DDATADIR=\"$(datadir)\"		\
-	-DLIBDIR=\"$(libdir)\"			\
-	-DPREFIX=\"$(prefix)\"			\
-	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
-	-DSYSCONFDIR=\"$(sysconfdir)\"		\
+	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
+	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
+	-DGNOME_VFS_LIBDIR=\"$(libdir)\"	\
+	-DGNOME_VFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
+	-DGNOME_VFS_SYSCONFDIR=\"$(sysconfdir)\"\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
 
-libgnomevfs_headers_to_scan_for_enums = 			\
+libgnomevfs_headers_to_scan_for_enums = 	\
 	gnome-vfs-address.h			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory.h			\
-	gnome-vfs-drive.h					\
+	gnome-vfs-drive.h			\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
@@ -50,14 +50,14 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-types.h			\
 	gnome-vfs-utils.h			\
-	gnome-vfs-volume.h		\
-	gnome-vfs-volume-monitor.h	\
+	gnome-vfs-volume.h			\
+	gnome-vfs-volume-monitor.h		\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
 
-libgnomevfs_headers = 			\
-	$(libgnomevfs_headers_to_scan_for_enums) \
+libgnomevfs_headers = 				\
+	$(libgnomevfs_headers_to_scan_for_enums)\
 	gnome-vfs-dns-sd.h			\
 	gnome-vfs-uri.h				\
 	$(NULL)
@@ -114,12 +114,19 @@ s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
 #	gnome-vfs-metadata.gob			\
 #	$(NULL)
 
+
 lib_LTLIBRARIES = libgnomevfs-2.la
 
+if OS_WIN32
+SOCKET_LIBS = -lws2_32
+else
 noinst_LTLIBRARIES = libgnomevfsdaemon-2.la
+endif
 
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
+	$(SOCKET_LIBS)				\
+	$(INTLLIBS)				\
 	$(NULL)
 
 libgnomevfs_2_la_LDFLAGS =			\
@@ -239,6 +246,22 @@ CORBA_SOURCE = \
 	GNOME_VFS_Daemon-stubs.c	\
 	GNOME_VFS_Daemon-skels.c
 
+libgnomevfs_win32_sources =			\
+	gnome-vfs-dllmain.c			\
+	$(NULL)
+
+libgnomevfs_unix_sources =			\
+	gnome-vfs-cdrom.c			\
+	gnome-vfs-dns-sd.c			\
+	gnome-vfs-parse-ls.c			\
+	$(NULL)
+
+if OS_WIN32
+libgnomevfs_platform_sources = $(libgnomevfs_win32_sources)
+else
+libgnomevfs_platform_sources = $(libgnomevfs_unix_sources)
+endif
+
 libgnomevfs_2_la_SOURCES =			\
 	$(CORBA_SOURCE)				\
 	gnome-vfs-application-registry.c	\
@@ -247,14 +270,12 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
-	gnome-vfs-cdrom.c			\
-	gnome-vfs-client-call.c			\
 	gnome-vfs-client.c			\
+	gnome-vfs-client-call.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-daemon-method.c		\
 	gnome-vfs-directory.c			\
-	gnome-vfs-dns-sd.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-filesystem-type.c		\
@@ -282,7 +303,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-monitor.c			\
 	gnome-vfs-open-fd.c			\
 	gnome-vfs-ops.c				\
-	gnome-vfs-parse-ls.c			\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-private.c			\
 	gnome-vfs-resolve.c			\
@@ -306,6 +326,7 @@ libgnomevfs_2_la_SOURCES =			\
 	xdgmimealias.c				\
 	xdgmimeparent.c				\
 	$(libgnomevfs_built_cfiles)		\
+	$(libgnomevfs_platform_sources)		\
 	$(NULL)
 
 #	$(GOB_SRCLIST)				\

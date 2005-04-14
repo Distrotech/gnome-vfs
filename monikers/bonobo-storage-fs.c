@@ -19,10 +19,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <dirent.h>
 #include <errno.h>
 #include <string.h>
 
+#include <glib.h>
+#include <glib/gstdio.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <bonobo/bonobo-storage.h>
 
@@ -36,8 +37,8 @@ concat_dir_and_file (const char *dir, const char *file)
 
         /* If the directory name doesn't have a / on the end, we need
 	   to add one so we get a proper path to the file */
-	if (dir[0] != '\0' && dir [strlen(dir) - 1] != '/')
-		return g_strconcat (dir, "/", file, NULL);
+	if (dir[0] != '\0' && !G_IS_DIR_SEPARATOR (dir [strlen(dir) - 1]))
+		return g_strconcat (dir, G_DIR_SEPARATOR_S, file, NULL);
 	else
 		return g_strconcat (dir, file, NULL);
 }
@@ -76,8 +77,8 @@ fs_get_info (PortableServer_Servant storage,
 	}
 
 	full = concat_dir_and_file (storage_fs->path, path);
-	if (stat (full, &st) == -1) {
-		if (lstat (full, &st) == -1)
+	if (g_stat (full, &st) == -1) {
+		if (g_lstat (full, &st) == -1)
 			goto get_info_except;
 		else
 			dangling = TRUE;
@@ -203,7 +204,7 @@ fs_rename (PortableServer_Servant storage,
 	full_old = concat_dir_and_file (storage_fs->path, path);
 	full_new = concat_dir_and_file (storage_fs->path, new_path);
 
-	if (rename (full_old, full_new) == -1) {
+	if (g_rename (full_old, full_new) == -1) {
 
 		if ((errno == EACCES) || (errno == EPERM) || (errno == EROFS)) 
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
@@ -253,9 +254,9 @@ fs_list_contents (PortableServer_Servant   storage,
 		bonobo_object (storage));
 	Bonobo_Storage_DirectoryList *list = NULL;
 	Bonobo_StorageInfo *buf;
-	struct dirent *de;
 	struct stat st;
-	DIR *dir = NULL;
+	GDir *dir = NULL;
+	const gchar *entry;
 	gint i, max, v, num_entries = 0;
 	gchar *full = NULL;
 	gchar *full_dir = NULL;
@@ -268,37 +269,37 @@ fs_list_contents (PortableServer_Servant   storage,
 	}
          
 	full_dir = concat_dir_and_file (storage_fs->path, path);
-	if (!(dir = opendir (full_dir)))
+	if (!(dir = g_dir_open (full_dir, 0, NULL)))
 	                {
 			g_free (full_dir);
 			goto list_contents_except;
 			}
 	
-	for (max = 0; readdir (dir); max++)
-		/* do nothing */;
+	for (max = 0; g_dir_read_name (dir); max++)
+		/* Do nothing */;
 
-	rewinddir (dir);
+	g_dir_rewind (dir);
 
 	buf = CORBA_sequence_Bonobo_StorageInfo_allocbuf (max);
 	list = Bonobo_Storage_DirectoryList__alloc();
 	list->_buffer = buf;
 	CORBA_sequence_set_release (list, TRUE); 
 	
-	for (i = 0; (de = readdir (dir)) && (i < max); i++) {
+	for (i = 0; (entry = g_dir_read_name (dir)) && (i < max); i++) {
 		
-		if ((de->d_name[0] == '.' && de->d_name[1] == '\0') ||
-		    (de->d_name[0] == '.' && de->d_name[1] == '.' 
-		     && de->d_name[2] == '\0')) {
+		if ((entry[0] == '.' && entry[1] == '\0') ||
+		    (entry[0] == '.' && entry[1] == '.' 
+		     && entry[2] == '\0')) {
 			i--;
 			continue; /* Ignore . and .. */
 		}
 
-		buf [i].name = CORBA_string_dup (de->d_name);
+		buf [i].name = CORBA_string_dup (entry);
 		buf [i].size = 0;
 		buf [i].content_type = NULL;
 
-		full = concat_dir_and_file (full_dir, de->d_name);
-		v = stat (full, &st);
+		full = concat_dir_and_file (full_dir, entry);
+		v = g_stat (full, &st);
 
 		if (v == -1) {
 			/*
@@ -307,8 +308,12 @@ fs_list_contents (PortableServer_Servant   storage,
 			 * and the iteration, and where the file is a dangling
 			 * symlink.
 			 */
-			if (errno == ENOENT || errno == ELOOP) {
-				v = lstat (full, &st);
+			if (errno == ENOENT
+#ifdef ELOOP
+					    || errno == ELOOP
+#endif
+							      ) {
+				v = g_lstat (full, &st);
 				if (v == 0) {
 					/* FIXME - x-symlink/dangling is odd */
 					buf [i].size = st.st_size;
@@ -351,7 +356,7 @@ fs_list_contents (PortableServer_Servant   storage,
 
 	list->_length = num_entries; 
 
-	closedir (dir);
+	g_dir_close (dir);
 	g_free (full_dir);
 	
 	return list; 
@@ -359,7 +364,7 @@ fs_list_contents (PortableServer_Servant   storage,
  list_contents_except:
 
 	if (dir)
-		closedir (dir);
+		g_dir_close (dir);
 
 	if (list) 
 		CORBA_free (list);
@@ -393,7 +398,7 @@ fs_erase (PortableServer_Servant storage,
 
 	full = concat_dir_and_file (storage_fs->path, path);
 
-	if (remove (full) == -1) {
+	if (g_remove (full) == -1) {
 
 		if (errno == ENOENT) 
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
@@ -473,7 +478,7 @@ bonobo_storage_fs_open (const char *path, gint flags,
 	mode = mode | 0111;
 
 	if ((flags & Bonobo_Storage_CREATE) &&
-	    (mkdir (path, mode) == -1) && (errno != EEXIST)) {
+	    (g_mkdir (path, mode) == -1) && (errno != EEXIST)) {
 
 		if (errno == EACCES) 
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 
@@ -485,7 +490,7 @@ bonobo_storage_fs_open (const char *path, gint flags,
 		return NULL;
 	}
 
-	if (stat (path, &st) == -1) {
+	if (g_stat (path, &st) == -1) {
 		
 		if (errno == ENOENT) 
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 

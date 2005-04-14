@@ -27,7 +27,9 @@
 #include <glib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifndef G_OS_WIN32
 #include <unistd.h>
+#endif
 
 G_BEGIN_DECLS
 

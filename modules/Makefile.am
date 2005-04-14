@@ -18,10 +18,10 @@ INCLUDES =					\
 	-D_REENTRANT				\
 	-DSSH_PROGRAM=\"$(SSH_PROGRAM)\"	\
 	-DG_DISABLE_DEPRECATED			\
-	-DDATADIR=\"$(datadir)\"		\
-	-DPREFIX=\"$(prefix)\"			\
-	-DLIBDIR=\"$(libdir)\"			\
-	-DSYSCONFDIR=\"$(sysconfdir)\"		\
+	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
+	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
+	-DGNOME_VFS_LIBDIR=\"$(libdir)\"	\
+	-DGNOME_VFS_SYSCONFDIR=\"$(sysconfdir)\"\
 	-DG_LOG_DOMAIN=\"gnome-vfs-modules\"	\
 	$(NULL)
 
@@ -34,7 +34,6 @@ EXTRA_DIST =					\
 	ssl-modules.conf
 
 ###  Module setup
-
 if HAVE_CDDA
 CDDA_LTLIBS = libcdda.la
 else
@@ -47,24 +46,25 @@ else
 SMB_LTLIBS = 
 endif
 
+if OS_WIN32
+PLATFROM_SPECIFIC_LTLIBS =
+else
+PLATFROM_SPECIFIC_LTLIBS = libdns-sd.la libnetwork.la libnntp.la libsftp.la $(HTTP_LTLIBS) libftp.la
+endif
+
 module_flags = -export_dynamic -avoid-version -module -no-undefined
 modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
 	libcomputer.la				\
-	libdns-sd.la				\
 	libfile.la				\
-	libnetwork.la				\
-	libnntp.la				\
 	libvfs-test.la				\
-	$(HTTP_LTLIBS)				\
 	libbzip2.la				\
 	libgzip.la				\
-	libftp.la				\
 	$(SMB_LTLIBS)	                        \
-	libsftp.la				\
 	libtar.la				\
+	$(PLATFROM_SPECIFIC_LTLIBS)		\
 	$(NULL)
 
 # Not currently supported

@@ -26,6 +26,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <time.h>
 #include <glib.h>
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info-cache.h"
@@ -607,13 +608,13 @@ _gnome_vfs_mime_info_cache_init (void)
 	if (mime_info_cache == NULL) {
 		gnome_vfs_mime_info_cache_init_dir_lists ();
 	} else {
-		struct timeval tv;
+		time_t now;
 
-		gettimeofday (&tv, NULL);
+		time (&now);
 
-		if (tv.tv_sec >= mime_info_cache->last_stat_time + 5) {
+		if (now >= mime_info_cache->last_stat_time + 5) {
 			gnome_vfs_mime_info_cache_update_dir_lists ();
-			mime_info_cache->last_stat_time = tv.tv_sec;
+			mime_info_cache->last_stat_time = now;
 		}
 	}
 

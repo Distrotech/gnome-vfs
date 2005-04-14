@@ -25,7 +25,10 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <glib.h>
+#ifndef G_OS_WIN32
 #include <pthread.h>
+#endif
 #include <libbonobo.h>
 #include <gconf/gconf-client.h>
 #include "gnome-vfs-i18n.h"
@@ -35,6 +38,8 @@
 #include "gnome-vfs-drive.h"
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-private.h"
+
+#ifndef G_OS_WIN32
 
 #ifdef USE_VOLRMMOUNT
 
@@ -325,6 +330,7 @@ mount_unmount_thread (void *arg)
 	return NULL;
 }
 
+#endif	/* !G_OS_WIN32 */
 
 static void
 mount_unmount_operation (const char *mount_point,
@@ -336,6 +342,7 @@ mount_unmount_operation (const char *mount_point,
 			 GnomeVFSVolumeOpCallback  callback,
 			 gpointer                  user_data)
 {
+#ifndef G_OS_WIN32
 	const char *command = NULL;
 	const char *argument = NULL;
 	MountThreadInfo *mount_info;
@@ -391,6 +398,9 @@ mount_unmount_operation (const char *mount_point,
 	mount_info->user_data = user_data;
 	
 	pthread_create (&mount_thread, NULL, mount_unmount_thread, mount_info);
+#else
+	g_warning ("Not implemented: mount_unmount_operation()\n");
+#endif
 }
 
 

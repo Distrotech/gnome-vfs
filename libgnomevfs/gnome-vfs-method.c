@@ -61,7 +61,6 @@ static GStaticRecMutex module_hash_lock = G_STATIC_REC_MUTEX_INIT;
 
 static GList *module_path_list = NULL;
 
-
 /* Pass some integration stuff here, so we can make the library not depend
    on the daemon-side code */
 void
@@ -152,7 +151,9 @@ init_path_list (void)
 	/* Default path.  It comes last so that users can override it.  */
 
 	module_path_list = g_list_append (module_path_list,
-					  g_strdup (GNOME_VFS_MODULE_DIR));
+					  g_build_filename (GNOME_VFS_LIBDIR,
+							    GNOME_VFS_MODULE_SUBDIR,
+							    NULL));
 
 	return TRUE;
 }
@@ -302,8 +303,12 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	GnomeVFSTransform *transform = NULL;
 	ModuleElement *module_element;
 	const char *module_name;
-	pid_t saved_uid;
+#if defined (HAVE_SETEUID) || defined (HAVE_SETRESUID)
+	uid_t saved_uid;
+#endif
+#if defined (HAVE_SETEGID) || defined (HAVE_SETRESGID)
 	gid_t saved_gid;
+#endif
 	const char *args;
 	gboolean run_in_daemon;
 
@@ -322,8 +327,12 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 		/* Set the effective UID/GID to the user UID/GID to prevent attacks to
 		   setuid/setgid executables.  */
 		
+#if defined (HAVE_SETEUID) || defined (HAVE_SETRESUID)
 		saved_uid = geteuid ();
+#endif
+#if defined (HAVE_SETEGID) || defined (HAVE_SETRESGID)
 		saved_gid = getegid ();
+#endif
 #if defined(HAVE_SETEUID)
 		seteuid (getuid ());
 #elif defined(HAVE_SETRESUID)

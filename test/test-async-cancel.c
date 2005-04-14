@@ -25,24 +25,33 @@
 #include <config.h>
 
 #include <fcntl.h>
-#include <glib/glist.h>
-#include <glib/gmain.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
+#include <glib/gstdio.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-job.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END
 
+#ifndef G_OS_WIN32
+#define DEV_NULL "/dev/null"
+#define DEV_NULL_URI "file://" DEV_NULL
+#else
+#define DEV_NULL "NUL:"
+#define DEV_NULL_URI "file:///" DEV_NULL
+#endif
+
 static GnomeVFSAsyncHandle *test_handle;
 static gpointer test_callback_data;
 static gboolean test_done;
+static char *temp_file_uri;
+static char *tmp_dir_uri;
 
 #define MAX_THREAD_WAIT 500
 #define MAX_FD_CHECK 128
@@ -77,7 +86,7 @@ get_free_file_descriptor_count (void)
 
 	list = NULL;
 	for (count = 0; fd < MAX_FD_CHECK; count++) {
-		fd = open ("/dev/null", O_RDONLY);
+		fd = open (DEV_NULL, O_RDONLY);
 		if (fd == -1) {
 			break;
 		}
@@ -215,7 +224,7 @@ first_get_file_info (void)
 	/* Start a get_file_info call. */
 	test_done = FALSE;
 	test_callback_data = g_malloc (1);
-	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new ("file:///dev/null"));
+	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new (DEV_NULL_URI));
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
@@ -241,7 +250,7 @@ test_get_file_info (void)
 	/* Start a get_file_info call. */
 	test_done = FALSE;
 	test_callback_data = g_malloc (1);
-	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new ("file:///dev/null"));
+	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new (DEV_NULL_URI));
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
@@ -260,7 +269,7 @@ test_get_file_info (void)
 	/* Cancel one right after starting it. */
 	test_done = FALSE;
 	test_callback_data = g_malloc (1);
-	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new ("file:///dev/null"));
+	uri_list = g_list_prepend (NULL, gnome_vfs_uri_new (DEV_NULL_URI));
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
@@ -371,7 +380,7 @@ test_open_read_close (void)
 {
 	file_open_flag = FALSE;
 	gnome_vfs_async_open (&test_handle,
-			      "file:///etc/passwd",
+			      temp_file_uri,
 			      GNOME_VFS_OPEN_READ,
 			      0,
 			      file_open_callback,
@@ -404,7 +413,7 @@ test_open_read_cancel_close (void)
 {
 	file_open_flag = FALSE;
 	gnome_vfs_async_open (&test_handle,
-			      "file:///etc/passwd",
+			      temp_file_uri,
 			      GNOME_VFS_OPEN_READ,
 			      0,
 			      file_open_callback,
@@ -438,7 +447,7 @@ test_open_close (void)
 {
 	file_open_flag = FALSE;
 	gnome_vfs_async_open (&test_handle,
-			      "file:///etc/passwd",
+			      temp_file_uri,
 			      GNOME_VFS_OPEN_READ,
 			      0,
 			      file_open_callback,
@@ -471,7 +480,7 @@ test_open_cancel (void)
 {
 	file_open_flag = FALSE;
 	gnome_vfs_async_open (&test_handle,
-			      "file:///etc/passwd",
+			      temp_file_uri,
 			      GNOME_VFS_OPEN_READ,
 			      0,
 			      file_open_callback,
@@ -486,7 +495,7 @@ test_open_cancel (void)
 
 	file_open_flag = FALSE;
 	gnome_vfs_async_open (&test_handle,
-			      "file:///etc/passwd",
+			      temp_file_uri,
 			      GNOME_VFS_OPEN_READ,
 			      0,
 			      file_open_callback,
@@ -536,7 +545,7 @@ static void
 my_yield (int count)
 {
 	for (; count > 0; count--) {
-		usleep (1);
+		g_usleep (1);
 		g_thread_yield ();
 		g_main_context_iteration (NULL, FALSE);
 	}
@@ -550,7 +559,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	
 	gnome_vfs_async_load_directory (&handle,
-					"file:///etc",
+					tmp_dir_uri,
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
@@ -559,7 +568,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 					directory_load_callback,
 					&num_entries);
 	
-	usleep (delay_till_cancel * 100);
+	g_usleep (delay_till_cancel * 100);
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
@@ -568,7 +577,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
 
 	gnome_vfs_async_load_directory (&handle,
-					"file:///etc",
+					tmp_dir_uri,
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
@@ -634,10 +643,17 @@ static void
 test_find_directory (int delay_till_cancel)
 {
 	GnomeVFSAsyncHandle *handle;
-	GList *vfs_uri_as_list;
+	GList *vfs_uri_as_list = NULL;
 
 
-	vfs_uri_as_list = g_list_append (NULL, gnome_vfs_uri_new ("file://~"));
+#ifndef G_OS_WIN32
+	vfs_uri_as_list = g_list_append (vfs_uri_as_list, gnome_vfs_uri_new ("file://~"));
+#else
+	vfs_uri_as_list = g_list_append (vfs_uri_as_list,
+					 gnome_vfs_uri_new (g_strconcat ("file://",
+									 g_get_home_dir (),
+									 NULL)));
+#endif
 	vfs_uri_as_list = g_list_append (vfs_uri_as_list, gnome_vfs_uri_new ("file:///ace_of_spades"));
 	
 	find_directory_flag = FALSE;
@@ -656,7 +672,7 @@ test_find_directory (int delay_till_cancel)
 		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777, 0,
 		test_find_directory_callback, &find_directory_flag);
 	
-	usleep (delay_till_cancel * 100);
+	g_usleep (delay_till_cancel * 100);
 	
 	gnome_vfs_async_cancel (handle);
 	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("find directory cancel 2: job never went away"));
@@ -680,6 +696,15 @@ test_find_directory (int delay_till_cancel)
 int
 main (int argc, char **argv)
 {
+	char *temp_file_name;
+	int fd = g_file_open_tmp (NULL, &temp_file_name, NULL);
+
+	temp_file_uri = g_strconcat ("file:///", temp_file_name, NULL);
+	write (fd, "Hello\n", strlen ("Hello\n"));
+	close (fd);
+	
+	tmp_dir_uri = g_strconcat ("file:///", g_get_tmp_dir (), NULL);
+
 	make_asserts_break("GnomeVFS");
 	gnome_vfs_init ();
 
@@ -762,6 +787,8 @@ main (int argc, char **argv)
 	if (!at_least_one_test_failed) {
 		fprintf (stderr, "All tests passed successfully.\n");
 	}
+
+	g_unlink (temp_file_name);
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

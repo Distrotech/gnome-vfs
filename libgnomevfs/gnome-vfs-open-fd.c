@@ -27,6 +27,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-method.h"
@@ -375,6 +376,7 @@ static GnomeVFSMethod method = {
 static GnomeVFSOpenMode
 get_open_mode (gint filedes)
 {
+#ifndef G_OS_WIN32
 	int flags;
 
 	flags = fcntl(filedes, F_GETFL);
@@ -385,6 +387,7 @@ get_open_mode (gint filedes)
 	} else if (flags & O_RDWR) {
 		return (GNOME_VFS_OPEN_READ | GNOME_VFS_OPEN_WRITE);
 	}
+#endif
 
 	return GNOME_VFS_OPEN_READ; /* bogus */
 }

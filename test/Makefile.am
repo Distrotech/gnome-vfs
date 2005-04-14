@@ -9,6 +9,12 @@ INCLUDES =					\
 	-DG_DISABLE_DEPRECATED			\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
+if OS_WIN32
+platform_only_programs =
+else
+platform_only_programs = test-dns-sd test-symlinks
+endif
+
 noinst_PROGRAMS =				\
 	test-async				\
 	test-async-cancel                       \
@@ -17,7 +23,6 @@ noinst_PROGRAMS =				\
 	test-directory				\
 	test-directory-visit			\
 	test-dirop				\
-	test-dns-sd				\
 	test-escape				\
 	test-find-directory			\
 	test-info				\
@@ -29,7 +34,6 @@ noinst_PROGRAMS =				\
 	test-performance			\
 	test-seek				\
 	test-shell				\
-	test-symlinks				\
 	test-ssl				\
 	test-sync				\
 	test-sync-create			\
@@ -41,6 +45,7 @@ noinst_PROGRAMS =				\
 	test-callback				\
 	test-module-selftest			\
 	test-queue				\
+	$(platform_only_programs)		\
 	$(NULL)
 
 test_files=		\

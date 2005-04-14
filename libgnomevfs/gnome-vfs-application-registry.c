@@ -46,6 +46,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <glib/gstdio.h>
+
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)
 #endif
@@ -955,14 +957,16 @@ gnome_vfs_application_registry_init (void)
 	 * Setup the descriptors for the information loading
 	 */
 
-	gnome_registry_dir.dirname = g_strdup (DATADIR "/application-registry");
+	gnome_registry_dir.dirname = g_build_filename (GNOME_VFS_DATADIR,
+						       "application-registry",
+						       NULL);
 	gnome_registry_dir.system_dir = TRUE;
 	
 	user_registry_dir.dirname = g_strconcat (g_get_home_dir(), "/.gnome/application-info", NULL);
 	user_registry_dir.system_dir = FALSE;
 
 	/* Make sure user directory exists */
-	if (mkdir (user_registry_dir.dirname, 0700) &&
+	if (g_mkdir (user_registry_dir.dirname, 0700) &&
 	    errno != EEXIST) {
 		g_warning("Could not create per-user Gnome application-registry directory: %s",
 			  user_registry_dir.dirname);

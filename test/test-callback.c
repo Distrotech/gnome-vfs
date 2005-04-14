@@ -303,7 +303,7 @@ main (int argc, char **argv)
 
 	for (i = 0 ; i<100 ; i++) {
 		g_main_context_iteration (NULL, FALSE);
-		usleep (10);
+		g_usleep (10);
 	}
 
 	g_assert (authentication_callback_called);

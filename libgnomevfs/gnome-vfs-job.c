@@ -847,7 +847,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 					fd = g_io_channel_unix_get_fd (channel_out);
 					
-					_gnome_vfs_clear_fd_flags (fd, O_NONBLOCK);
+					_gnome_vfs_pipe_set_blocking (fd, TRUE);
 				} else {
 					if (written_bytes_in_buffer > 0) {
 						/* Need to shift the unwritten bytes
@@ -1019,8 +1019,9 @@ execute_open_as_channel (GnomeVFSJob *job)
 		job_oneway_notify (job, notify_result);
 		return;
 	}
+	
 
-	if (pipe (pipefd) < 0) {
+	if (_gnome_vfs_pipe (pipefd) < 0) {
 		g_warning (_("Cannot create pipe for open GIOChannel: %s"),
 			   g_strerror (errno));
 		notify_result->specifics.open_as_channel.result = GNOME_VFS_ERROR_INTERNAL;
@@ -1034,11 +1035,15 @@ execute_open_as_channel (GnomeVFSJob *job)
 	 * thread is blocking for some reason the slave can keep
 	 * reading data.
 	 */
-	_gnome_vfs_set_fd_flags (pipefd[1], O_NONBLOCK);
+	_gnome_vfs_pipe_set_blocking (pipefd[1], FALSE);
 	
+#ifndef G_OS_WIN32
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);
-
+#else
+	channel_in = g_io_channel_win32_new_socket (pipefd[0]);
+	channel_out = g_io_channel_win32_new_socket (pipefd[1]);
+#endif
 	open_mode = open_as_channel_op->open_mode;
 	
 	if (open_mode & GNOME_VFS_OPEN_READ) {
@@ -1165,7 +1170,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 		return;
 	}
 
-	if (pipe (pipefd) < 0) {
+	if (_gnome_vfs_pipe (pipefd) < 0) {
 		g_warning (_("Cannot create pipe for open GIOChannel: %s"),
 			   g_strerror (errno));
 		notify_result->specifics.create_as_channel.result = GNOME_VFS_ERROR_INTERNAL;

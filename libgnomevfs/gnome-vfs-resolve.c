@@ -1,6 +1,6 @@
 /* gnome-vfs-resolve.c - Resolver API
 
-Copyright (C) 2004 Christian Kellner <gicmo@gnome-de.org>
+Copyright (C) 2004 Christian Kellner <gicmo@gnome.org>
 
 The Gnome Library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Library General Public License as
@@ -22,22 +22,22 @@ Boston, MA 02111-1307, USA.
 #include <config.h>
 
 #include <errno.h>
-#ifdef HAVE_STRING_H
 #include <string.h>
-#endif
-#ifdef HAVE_STRINGS_H
-#include <strings.h>
-#endif
+#include <glib.h>
+#ifndef G_OS_WIN32
 /* Keep <sys/types.h> above the network includes for FreeBSD. */
 #include <sys/types.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <sys/select.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <arpa/inet.h>
+#else
+#include <winsock2.h>
+#endif
+
+#include <unistd.h>
 #include <sys/time.h>
 
 #ifdef HAVE_RES_NINIT
@@ -47,20 +47,19 @@ Boston, MA 02111-1307, USA.
 #define RELOAD_TIMEVAL 2
 #endif
 
-#include <glib/gmem.h>
-#include <glib/gmessages.h>
-#include <glib/gthread.h>
 #include <glib-object.h>
 
 #include <libgnomevfs/gnome-vfs-resolve.h>
 
 #define INIT_BUFSIZE 8192 /* Unix Network Programming Chapter 11 Page 304 :) */
 
-#ifdef USE_GETHOSTBYNAME
+#if !HAVE_GETADDRINFO && !HAVE_GETHOSTBYNAME_R_GLIBC && !HAVE_GETHOSTBYNAME_R_SOLARIS && !HAVE_GETHOSTBYNAME_R_HPUX
 G_LOCK_DEFINE (dns_lock);
-#ifndef h_errno
+# ifndef G_OS_WIN32
+#  ifndef h_errno
 extern int h_errno;
-#endif
+#  endif /* h_errno */
+# endif /* G_OS_WIN32 */
 #endif
 
 struct GnomeVFSResolveHandle_ {
@@ -91,7 +90,7 @@ resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 	   switch (he->h_addrtype) {
 			 
 	   case AF_INET:
-			 bzero (&sin, sizeof (sin));
+			 memset (&sin, 0, sizeof (sin));
 			 sin.sin_family = AF_INET;
 			 aptr = &(sin.sin_addr);
 			 sa = (struct sockaddr *) &sin;
@@ -100,7 +99,7 @@ resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 			 
 #ifdef ENABLE_IPV6
 	   case AF_INET6:
-			 bzero (&sin6, sizeof (sin6));
+			 memset (&sin6, 0, sizeof (sin6));
 			 sin6.sin6_family = AF_INET6;
 			 aptr = &(sin6.sin6_addr);
 			 sa = (struct sockaddr *) &sin6;
@@ -134,10 +133,10 @@ resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 
 #endif
 
+#ifdef HAVE_RES_NINIT
 static gboolean
 restart_resolve (void)
 {
-#ifdef HAVE_RES_NINIT
 	   static GTimeVal last_reload = { 0, 0 };
 	   static GStaticMutex mutex = G_STATIC_MUTEX_INIT;
 	   GTimeVal now;
@@ -157,11 +156,10 @@ restart_resolve (void)
 	
 	   g_static_mutex_unlock (&mutex);
 	   return ret;
-#else
-	   return FALSE;
-#endif
 }
-
+#else
+#define restart_resolve() FALSE
+#endif
 
 
 #ifdef HAVE_GETADDRINFO
@@ -338,7 +336,7 @@ restart:
 	   }
 
 	   ret = resolvehandle_from_hostent (result, handle);
-#else
+#else /* !HAVE_GETHOSTBYNAME_R_GLIBC && !HAVE_GETHOSTBYNAME_R_SOLARIS && !HAVE_GETHOSTBYNAME_R_HPUX */
 	   res = 0;/* only set to avoid unused variable error */
 	   
 	   G_LOCK (dns_lock);
@@ -350,14 +348,30 @@ restart:
 				    retry = FALSE;
 				    goto restart;
 			 } else {
+#ifndef G_OS_WIN32
 				    ret = gnome_vfs_result_from_h_errno ();
+#else
+				    switch (WSAGetLastError ()) {
+				    case WSAHOST_NOT_FOUND:
+					    ret = GNOME_VFS_ERROR_HOST_NOT_FOUND;
+					    break;
+				    case WSANO_DATA:
+					    ret = GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
+					    break;
+				    case WSATRY_AGAIN:
+				    case WSANO_RECOVERY:
+					    ret = GNOME_VFS_ERROR_NAMESERVER;
+				    default:
+					    ret = GNOME_VFS_ERROR_GENERIC;
+				    }
+#endif
 			 }
 	   } else {
 			 ret = resolvehandle_from_hostent (result, handle);
 	   }
 
 	   G_UNLOCK (dns_lock);
-#endif /* GETHOSTBYNAME */
+#endif /* !HAVE_GETHOSTBYNAME_R_GLIBC && !HAVE_GETHOSTBYNAME_R_SOLARIS && !HAVE_GETHOSTBYNAME_R_HPUX */
 	   return ret;
 #endif /* HAVE_GETADDRINFO */
 }

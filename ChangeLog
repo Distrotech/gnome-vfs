@@ -1,3 +1,135 @@
+2005-04-14  Christian Kellner  <gicmo@gnome.org>
+
+	Integration of the Win32 integration patch. Mostly based
+	on the great work of Tor Lillqvist <tlillqvist@novell.com>!
+	
+	* configure.in: Check for Win32 platfrom. Use guint64 for 
+	VFS_SIZE and VFS_OFFSET. Also check for statfs and fchmod 
+	functions and the fnmatch header.
+	
+	* daemon/Makefile.am: Prefix DATADIR, LIBDIR, PREFIX and SYSCONFDIR
+	defines with GNOME_VFS_. Don't compile the daemon on Win32.
+	
+	* imported/neon/ne_gnomevfs.c:
+	* imported/neon/ne_request.h:
+	* imported/neon/ne_session.h:
+	* imported/neon/ne_utils.h:
+	format (printf, 2, 3) -> __format__ (__printf__, 2, 3)
+	
+	* libgnomevfs/Makefile.am: Also add the GNOME_VFS_ Prefix to the
+	direcotry defines. Add -lws2_32 on Win32. Don't compile 
+	gnome-vfs-cdrom.c, gnome-vfs-dns-sd.c and gnome-vfs-parse-ls.c on
+	Win32. 
+	
+	* libgnomevfs/gnome-vfs-address.c:
+	* libgnomevfs/gnome-vfs-address.h:
+	Small Win32 specific changes.
+
+	* libgnomevfs/gnome-vfs-application-registry.c: mkdir -> g_mkdir
+	* libgnomevfs/gnome-vfs-async-ops.c: usleep -> g_usleep
+	* libgnomevfs/gnome-vfs-cancellation.c: pipe -> _gnome_vfs_pipe
+	* libgnomevfs/gnome-vfs-configuration.c: fopen -> g_fopen, stat -> g_stat	
+	* libgnomevfs/gnome-vfs-directory.c: open -> do_open
+	* libgnomevfs/gnome-vfs-dns-sd.h: Remove sys/socket.h include.
+	* libgnomevfs/gnome-vfs-file-info.h: define missing S_I* on Win32
+	* libgnomevfs/gnome-vfs-file-size.h.in: Fix _FORMAT_STR macros to
+	match the confgiure.in VFS_* changes.
+
+	* libgnomevfs/gnome-vfs-inet-connection.c: 
+	_gnome_vfs_set_fd_flags -> _gnome_vfs_socket_set_blocking 
+	
+	* libgnomevfs/gnome-vfs-init.c: mkdir -> g_mkdir, 
+	gnome_vfs_pthread_init -> gnome_vfs_thread_init
+
+	* libgnomevfs/gnome-vfs-job-slave.c: usleep -> g_usleep
+	
+	* libgnomevfs/gnome-vfs-job.h: Don't include unistd.h and fcntl.h on Win32
+	* libgnomevfs/gnome-vfs-job.c: pipe -> _gnome_vfs_pipe
+	_gnome_vfs_clear_fd_flags -> _gnome_vfs_pipe_set_blocking
+	Use g_io_channel_win32_new_socket on Win32.
+	
+	* libgnomevfs/gnome-vfs-method.h: Don't include unistd.h on Win32
+	* libgnomevfs/gnome-vfs-method.c: Use g_build_filename, check for 
+	HAVE_SETEUID, HAVE_SETEGID, HAVE_SETRESUID and HAVE_SETRESGID before
+	using either one of them.
+	
+	* libgnomevfs/gnome-vfs-monitor.c: 
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: gettimeofday -> time
+	
+	* libgnomevfs/gnome-vfs-mime.c: Ensure S_ISSOCK exists before using
+	it. Remove unused RegexMimePair struct and regex.h include.
+
+	* libgnomevfs/gnome-vfs-module-shared.c: Ensure S_ISLNK and S_ISSOCK
+	exist befure using them.
+
+	* libgnomevfs/gnome-vfs-open-fd.c: (get_open_mode): Always return
+	GNOME_VFS_OPEN_READ for now.
+
+	* libgnomevfs/gnome-vfs-private-utils.h: Setup various data dirs on
+	Win32. Remove declarations for functions that don't exist anymore and
+	add ones for the new functions. Define platfrom independent macros for
+	socket operations: _GNOME_VFS_SOCKET_IS_ERROR, _GNOME_VFS_SOCKET_CLOSE,
+	_GNOME_VFS_SOCKET_READ and _GNOME_VFS_SOCKET_WRITE.
+
+	* libgnomevfs/gnome-vfs-private-utils.c: mkstemp -> g_mkstemp. Use
+	fchmod if available. Plug small memleak. Remove _gnome_vfs_set_fd_flags
+	and _gnome_vfs_clear_fd_flags. Implement _gnome_vfs_socket_set_blocking
+	and _gnome_vfs_pipe. The latter is used to create pipes platform
+	independent. Also implement _gnome_vfs_map_winsock_error_to_errno and
+	_gnome_vfs_winsock_strerror on Win32.
+	
+	* libgnomevfs/gnome-vfs-private.h: Fix declaration of
+	GNOME_VFS_MODULE_DIR for Win32.
+
+	* libgnomevfs/gnome-vfs-resolve.c: bzero -> memset. Use WSAGetLastError
+	on Win32 for error handling. 
+
+	* libgnomevfs/gnome-vfs-result.c: h_errno -> h_errno_code to not
+	conflict with extern h_errno.
+	Check the existanes of various EXXX erros before using them.
+
+	* libgnomevfs/gnome-vfs-ssl.c: 
+	_gnome_vfs_set_fd_flags -> _gnome_vfs_socket_set_blocking
+	
+	* libgnomevfs/gnome-vfs-thread-pool.h: Remove pthread.h include
+	
+	* libgnomevfs/gnome-vfs-unix-mounts.h: Don't include unistd.h on Win32
+	* libgnomevfs/gnome-vfs-uri.c: Be aware of dirve letters in Win32
+	* libgnomevfs/gnome-vfs-utils.c: No pwd.h on Win32. 
+	* libgnomevfs/gnome-vfs-volume-ops.c: No mount_unmount_operation on
+	Win32 yet.
+	* libgnomevfs/gnome-vfs-volume.h: Don't include unistd.h on Win32.
+	* libgnomevfs/gnome-vfs-xfer.c: gettimeofday -> g_get_current_time 
+	
+	* modules/Makefile.am: Also prefix the various datadirs with
+	GNOME_VFS_ here. Don't compile dns-sd, network, nntp, sftp, ftp and
+	http on Win32 for now.
+
+	* modules/file-method.c: G_DIR_SEPARATOR_S -> DIR_SEPARATORS,
+	open -> g_open, use GDir and g_dir_open on Win32, lstat -> g_lstat,
+	mkdir -> g_mkdir. Various dir seperator fixes related fixes. 
+
+	* modules/test-method.c: use g_usleep instead of some select magic 
+	
+	* monikers/bonobo-storage-fs.c: Dir seperator fixes. rename ->
+	g_rename, DIR -> GDir, opendir -> g_dir_open, readdir -> g_dir_read_name,
+	rewinddir -> g_dir_rewind. stat -> g_stat.
+	
+	* schemas/Makefile.am: Work around MSYS feature on Win32 
+	for install-data-local
+	
+	* test/Makefile.am: No test-dns-sd test-symlinks on Win32
+
+	* test/test-async-cancel.c:
+	* test/test-callback.c: 
+	* test/test-mime-info-cache.c: 
+	* test/test-queue.c:
+	* test/test-shell.c: 
+	Various Win32 fixes. I am getting tired to list them now :)
+
+	I am pretty sure I am not listening all changes here, it's just
+	too much ...
+
 2005-04-14  Sebastien Bacher  <seb128@debian.org>
 
 	* modules/cdda-cddb.c: (CDDBDoQuery): check the number of returned 

@@ -38,10 +38,14 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 		mime_type = "x-special/device-block";
 	else if (S_ISFIFO (mode))
 		mime_type = "x-special/fifo";
+#ifdef S_ISLNK
 	else if (S_ISLNK (mode))
 		mime_type = "x-special/symlink";
+#endif
+#ifdef S_ISSOCK
 	else if (S_ISSOCK (mode))
 		mime_type = "x-special/socket";
+#endif
 	else
 		mime_type = NULL;
 
@@ -104,8 +108,10 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 		file_info->type = GNOME_VFS_FILE_TYPE_BLOCK_DEVICE;
 	else if (S_ISFIFO (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_FIFO;
+#ifdef S_ISSOCK
 	else if (S_ISSOCK (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_SOCKET;
+#endif
 	else if (S_ISREG (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	else if (S_ISLNK (statptr->st_mode))
@@ -130,6 +136,7 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	file_info->gid = statptr->st_gid;
 
 	file_info->size = statptr->st_size;
+#ifndef G_OS_WIN32
 	file_info->block_count = statptr->st_blocks;
 	file_info->io_block_size = statptr->st_blksize;
 	if (file_info->io_block_size > 0 &&
@@ -138,6 +145,13 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 		   should probably be pagesize.. */
 		file_info->io_block_size = 4096;
 	}
+#else
+	file_info->io_block_size = 512;
+	file_info->block_count =
+	  (file_info->size + file_info->io_block_size - 1) /
+	  file_info->io_block_size;
+#endif
+	
 
 	file_info->atime = statptr->st_atime;
 	file_info->ctime = statptr->st_ctime;

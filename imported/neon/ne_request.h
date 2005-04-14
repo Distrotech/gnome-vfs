@@ -162,7 +162,7 @@ void ne_add_request_header(ne_request *req, const char *name,
  * format arguments for the value. */
 void ne_print_request_header(ne_request *req, const char *name,
 			     const char *format, ...) 
-    ne_attribute((format(printf, 3, 4)));
+    ne_attribute((__format__( __printf__, 3, 4)));
 
 /* ne_request_dispatch: Sends the given request, and reads the
  * response. Response-Status information can be retrieve with

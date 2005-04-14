@@ -177,13 +177,10 @@ start_operation (const char *name,
 		 GnomeVFSURI **saved_uri)
 {
 	const OperationSettings *settings;
-	struct timeval tv;
 
 	settings = get_operation_settings (name);
 
-	tv.tv_sec = settings->delay / 1000;
-	tv.tv_usec = 1000 * (settings->delay % 1000);
-	select (0, NULL, NULL, NULL, &tv);
+	g_usleep (settings->delay * 1000);
 	
 	if (uri != NULL) {
 		*saved_uri = *uri;
@@ -581,7 +578,7 @@ vfs_module_init (const char *method_name, const char *args)
 	conf_file = getenv (TEST_CONF_ENV_VARIABLE);
 
 	if (conf_file == NULL) {
-		conf_file = PREFIX "/etc/vfs/Test-conf.xml";
+		conf_file = GNOME_VFS_PREFIX "/etc/vfs/Test-conf.xml";
 	}
 
 	if (load_settings (conf_file) == FALSE) {

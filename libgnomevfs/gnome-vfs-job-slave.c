@@ -141,7 +141,7 @@ _gnome_vfs_thread_backend_shutdown (void)
 		 * are done.
 		 */
 		g_main_context_iteration (NULL, FALSE);
-		usleep (20000);
+		g_usleep (20000);
 	}
 
 	_gnome_vfs_thread_pool_shutdown ();

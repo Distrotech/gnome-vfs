@@ -32,6 +32,7 @@
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-private-utils.h"
 
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-thread-pool.h"
@@ -44,6 +45,7 @@
 #include <glib/gmessages.h>
 #include <glib/gfileutils.h>
 #include <glib/gtypes.h>
+#include <glib/gstdio.h>
 #include <libgnomevfs/gnome-vfs-job-slave.h>
 
 #include <sys/stat.h>
@@ -64,7 +66,7 @@ ensure_dot_gnome_exists (void)
 	dirname = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
 
 	if (!g_file_test (dirname, G_FILE_TEST_EXISTS)) {
-		if (mkdir (dirname, S_IRWXU) != 0) {
+		if (g_mkdir (dirname, S_IRWXU) != 0) {
 			g_warning ("Unable to create ~/.gnome2 directory: %s",
 				   g_strerror (errno));
 			retval = FALSE;
@@ -79,7 +81,7 @@ ensure_dot_gnome_exists (void)
 }
 
 static void
-gnome_vfs_pthread_init (void)
+gnome_vfs_thread_init (void)
 {
 	private_is_primary_thread = g_private_new (NULL);
 	g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
@@ -118,16 +120,15 @@ gnome_vfs_init (void)
 
 	if (!vfs_already_initialized) {
 #ifdef ENABLE_NLS
-		bindtextdomain (GETTEXT_PACKAGE, GNOMEVFS_LOCALEDIR);
+		bindtextdomain (GETTEXT_PACKAGE, GNOME_VFS_LOCALEDIR);
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 #endif   
-		gnome_vfs_pthread_init ();
+		gnome_vfs_thread_init ();
 
 		if (bonobo_activation_orb_get() == NULL) {
 			bonobo_activation_init (0, bogus_argv);
 		}
 		bonobo_init (NULL, bogus_argv);
-
 
 		_gnome_vfs_ssl_init ();
 
@@ -136,9 +137,12 @@ gnome_vfs_init (void)
 		if (retval) {
 			retval = _gnome_vfs_configuration_init ();
 		}
+		
+#ifdef SIGPIPE
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
 		}
+#endif		
 	} else {
 		retval = TRUE;	/* Who cares after all.  */
 	}
@@ -180,7 +184,9 @@ gnome_vfs_shutdown (void)
 {
 	_gnome_vfs_thread_backend_shutdown ();
 	gnome_vfs_mime_shutdown ();
+#ifndef G_OS_WIN32
 	_gnome_vfs_volume_monitor_shutdown ();
+#endif
 	_gnome_vfs_client_shutdown ();
 	bonobo_debug_shutdown ();
 }
@@ -200,12 +206,14 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 {
 	G_LOCK (vfs_already_initialized);
 
-	gnome_vfs_pthread_init ();
+	gnome_vfs_thread_init ();
 
 	gnome_vfs_method_init ();
 	_gnome_vfs_configuration_init ();
 
+#ifdef SIGPIPE
 	signal (SIGPIPE, SIG_IGN);
+#endif
 
 	vfs_already_initialized = TRUE;
 	G_UNLOCK (vfs_already_initialized);

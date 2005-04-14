@@ -27,11 +27,7 @@
 #include <config.h>
 
 #include <errno.h>
-#include <glib/ghash.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gstring.h>
-#include <glib/gmessages.h>
-#include <glib/gutils.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-directory.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
@@ -45,6 +41,12 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+
+#ifdef G_OS_WIN32
+#define DIR_SEPARATORS "/\\"
+#else
+#define DIR_SEPARATORS "/"
+#endif
 
 #define TEST_DEBUG 0
 
@@ -355,27 +357,28 @@ do_cd (void)
 		guint lp;
 		char **tmp;
 		GString *newp = g_string_new ("");
+		const char *ptr = g_path_skip_root (cur_dir);
 
-		tmp = g_strsplit (cur_dir, "/", -1);
+		g_string_append_len (newp, cur_dir, ptr - cur_dir);
+
+		tmp = g_strsplit_set (ptr, DIR_SEPARATORS, -1);
 		lp  = 0;
 		if (!tmp [lp])
 			return;
 
-		while (tmp [lp + 1]) {
-			g_string_append_printf (newp, "%s/", tmp [lp]);
+		while (tmp [lp + 1] && strlen (tmp [lp + 1]) > 0) {
+			g_string_append_printf (newp, "%s" G_DIR_SEPARATOR_S, tmp [lp]);
 			lp++;
 		}
-		g_free (cur_dir);
 		cur_dir = newp->str;
 		g_string_free (newp, FALSE);
 	} else if (!g_ascii_strcasecmp (p, ".")) {
 	} else {
 		char *newpath;
 
-		if (strchr (p, ':') ||
-		    p [0] == '/') {
-			if (p [strlen (p) - 1] != '/')
-				newpath = g_strconcat (p, "/", NULL);
+		if (g_path_is_absolute (p)) {
+			if (!G_IS_DIR_SEPARATOR (p [strlen (p) - 1]))
+				newpath = g_strconcat (p, G_DIR_SEPARATOR_S, NULL);
 			else
 				newpath = g_strdup (p);
 		} else {
@@ -387,11 +390,10 @@ do_cd (void)
 				return;
 			}
 
-			newpath = g_strconcat (cur_dir, ptr, "/", NULL);
+			newpath = g_strconcat (cur_dir, ptr, G_DIR_SEPARATOR_S, NULL);
 		}
 
 		if (validate_path (newpath)) {
-			g_free (cur_dir);
 			cur_dir = newpath;
 		} else
 			fprintf (vfserr, "Invalid path %s\n", newpath);
@@ -412,11 +414,10 @@ get_fname (void)
 	if (!fname)
 		fname = reg_name;
 	
-	if (strchr (fname, ':') ||
-	    fname [0] == '/')
+	if (g_path_is_absolute (fname))
 		f = g_strdup (fname);
 	else if (cur_dir)
-		f = g_strconcat (cur_dir, fname, NULL);
+		f = g_build_filename (cur_dir, fname, NULL);
 	else
 		f = g_strdup (fname);
 
@@ -933,9 +934,12 @@ do_handleinfo (void)
 static GMainLoop *main_loop = NULL;
 
 static int interactive = 0;
+static int noninteractive = 0;
 static const struct poptOption options [] = {
 	{ "interactive", 'i', POPT_ARG_NONE, &interactive, 0,
 	  "Allow interactive input", NULL  },
+	{ "noninteractive", 'n', POPT_ARG_NONE, &noninteractive, 0,
+ 	  "Disallow interactive input", NULL  },
 	{ NULL, '\0', 0, NULL, 0 }
 };
 
@@ -945,21 +949,21 @@ callback (GIOChannel *source,
 	  gpointer data)
 {
 	char *buffer = data;
-	char buf[1024];
-	int len;
+	char  c;
+	gsize len;
+	int   k;
 
-	len = read (0, buf, sizeof (buf) - 1);
+	if (g_io_channel_read_chars (source, &c, 1, &len, NULL) != G_IO_STATUS_NORMAL)
+		return TRUE;
 
-	if (len + strlen (buffer) + 1 > 1024)
-		len = 1024 - strlen (buffer) - 1;
-
-	buf[len] = '\0';
-	strcat (buffer, buf);
-
-	if (strchr (buf, '\n') != NULL &&
-	    main_loop != NULL) {
-		g_main_loop_quit (main_loop);
+	k = strlen (buffer);
+	if (k + 1 < 1024) {
+		buffer[k++] = c;
+		buffer[k++] = '\0';
 	}
+
+	if (c == '\n' && main_loop != NULL)
+		g_main_loop_quit (main_loop);
 
 	return TRUE;
 }
@@ -1007,7 +1011,8 @@ main (int argc, const char **argv)
 	int exit = 0;
 	char *buffer = g_new (char, 1024) ;
 	const char **args;
-	FILE *instream;
+	GIOChannel *ioc;
+	guint watch_id = 0;
 
 	/* default to interactive on a terminal */
 	interactive = isatty (0);
@@ -1019,6 +1024,9 @@ main (int argc, const char **argv)
 
 	while (poptGetNextOpt (popt_context) != -1)
 		;
+
+	if (noninteractive)
+		interactive = 0;
 
 	if (interactive)
 		vfserr = stderr;
@@ -1033,53 +1041,42 @@ main (int argc, const char **argv)
 		(GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION,
 		 authentication_callback, NULL, NULL);
 
-	instream = stdin;
 	args = poptGetArgs (popt_context);
 	if (!args)
 		cur_dir = g_get_current_dir ();
 	else
 		cur_dir = g_strdup (args [0]);
 
-	if (cur_dir && cur_dir [strlen (cur_dir)] != '/') {
-		char *new_dir = g_strconcat (cur_dir, "/", NULL);
-		g_free (cur_dir);
-		cur_dir = new_dir;
-	}
+	if (cur_dir && !G_IS_DIR_SEPARATOR (cur_dir [strlen (cur_dir) - 1]))
+		cur_dir = g_strconcat (cur_dir, G_DIR_SEPARATOR_S, NULL);
 		
 	poptFreeContext (popt_context);
+
+	if (interactive) {
+		main_loop = g_main_loop_new (NULL, TRUE);
+		ioc = g_io_channel_unix_new (0 /* stdin */);
+		g_io_channel_set_encoding (ioc, NULL, NULL);
+		g_io_channel_set_buffered (ioc, FALSE);
+		watch_id = g_io_add_watch (ioc,
+					   G_IO_IN | G_IO_HUP | G_IO_ERR,
+					   callback, buffer);
+		g_io_channel_unref (ioc);
+	}
 
 	while (!exit) {
 		char *ptr;
 
 		if (interactive) {
-			GIOChannel *ioc;
-			guint watch_id;
+			fprintf (stdout,"\n%s > ", cur_dir);
+			fflush (stdout);
+
 			strcpy (buffer, "");
-
-			main_loop = g_main_loop_new (NULL, TRUE);
-
-			ioc = g_io_channel_unix_new (0 /* stdin */);
-			watch_id = g_io_add_watch (ioc,
-						   G_IO_IN | G_IO_HUP | G_IO_ERR,
-						   callback, buffer);
-			g_io_channel_unref (ioc);
-
-			if (interactive) {
-				fprintf (stdout,"\n%s > ", cur_dir);
-				fflush (stdout);
-			}
-
 			g_main_loop_run (main_loop);
-
-			g_source_remove (watch_id);
-
-			g_main_loop_unref (main_loop);
-			main_loop = NULL;
 		} else {
 			/* In non-interactive mode we just do this evil
 			 * thingie */
 			buffer[0] = '\0';
-			fgets (buffer, 1023, instream);
+			fgets (buffer, 1023, stdin);
 			if (!buffer [0]) {
 				exit = 1;
 				continue;
@@ -1156,6 +1153,12 @@ main (int argc, const char **argv)
 
 		g_strfreev (arg_data);
 		arg_data = NULL;
+	}
+
+	if (interactive) {
+		g_source_remove (watch_id);
+		g_main_loop_unref (main_loop);
+		main_loop = NULL;
 	}
 
 	g_free (buffer);

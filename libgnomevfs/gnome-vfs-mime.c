@@ -37,17 +37,11 @@
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
 #include <dirent.h>
-#include <regex.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 
 #define DEFAULT_DATE_TRACKER_INTERVAL	5	/* in milliseconds */
-
-typedef struct {
-	char *mime_type;
-	regex_t regex;
-} RegexMimePair;
 
 typedef struct {
 	char *file_path;
@@ -363,8 +357,10 @@ gnome_vfs_get_file_mime_type_internal (const char *path, const struct stat *opti
 			return "x-special/device-block";
 		} else if (S_ISFIFO(optional_stat_info->st_mode)) {
 			return "x-special/fifo";
+#ifdef S_ISSOCK
 		} else if (S_ISSOCK(optional_stat_info->st_mode)) {
 			return "x-special/socket";
+#endif
 		} else {
 			/* unknown entry type, return generic file type */
 			return GNOME_VFS_MIME_TYPE_UNKNOWN;

@@ -79,9 +79,9 @@ enum {
 static gint64
 system_time (void)
 {
-	struct timeval time_of_day;
+	GTimeVal time_of_day;
 
-	gettimeofday (&time_of_day, NULL);
+	g_get_current_time (&time_of_day);
 	return (gint64) time_of_day.tv_usec + ((gint64) time_of_day.tv_sec) * 1000000;
 }
 

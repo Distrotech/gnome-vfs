@@ -297,8 +297,8 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 	if (sock < 0)
 		return gnome_vfs_result_from_errno ();
 
-	_gnome_vfs_set_fd_flags (sock, O_NONBLOCK);
-
+	_gnome_vfs_socket_set_blocking (sock, FALSE);
+	
 	gnome_vfs_address_free (address);
 	
 	return gnome_vfs_ssl_create_from_fd (handle_return, sock, cancellation);

@@ -29,11 +29,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/select.h>
 #include <sys/types.h>
 
+#ifndef G_OS_WIN32
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#else
+#include <winsock2.h>
+#endif
 
 struct _GnomeVFSAddress {
 

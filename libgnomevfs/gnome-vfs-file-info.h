@@ -35,6 +35,28 @@
 
 G_BEGIN_DECLS
 
+#ifdef G_OS_WIN32
+
+/* Note that Win32 file permissions (in NTFS) are based on an ACL and
+ * not at all on anything like POSIX rwxrwxrwx bits. Additionally, a
+ * file can have a READONLY attribute. The stat() in the Microsoft C
+ * library only looks at the (MS-DOSish) READONLY attribute, not at
+ * all at the ACL. It fakes a st_mode based on the READONLY attribute
+ * only. If the FIXME below for GnomeVFSFilePermissions is fixed,
+ * these defines will become unnecessary.
+ */
+
+#define S_ISUID 0
+#define S_ISGID 0
+#define S_IRGRP (S_IRUSR >> 3)
+#define S_IWGRP (S_IWUSR >> 3)
+#define S_IXGRP (S_IXUSR >> 3)
+#define S_IROTH (S_IRUSR >> 6)
+#define S_IWOTH (S_IWUSR >> 6)
+#define S_IXOTH (S_IXUSR >> 6)
+
+#endif
+
 /**
  * GnomeVFSInodeNumber:
  *

@@ -88,7 +88,7 @@ extern FILE *ne_debug_stream;
 
 /* Produce debug output if any of channels 'ch' is enabled for
  * debugging. */
-void ne_debug(int ch, const char *, ...) ne_attribute((format(printf, 2, 3)));
+void ne_debug(int ch, const char *, ...) ne_attribute((__format__ (__printf__, 2, 3)));
 
 /* Storing an HTTP status result */
 typedef struct {

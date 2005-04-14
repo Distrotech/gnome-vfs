@@ -39,11 +39,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+#ifndef G_OS_WIN32
+#include <sys/socket.h>
+#include <sys/wait.h>
+#else
+#include <winsock2.h>
+#endif
 
 #define GCONF_URL_HANDLER_PATH      	 "/desktop/gnome/url-handlers/"
 #define GCONF_DEFAULT_TERMINAL_EXEC_PATH "/desktop/gnome/applications/terminal/exec"
@@ -241,13 +246,15 @@ gnome_vfs_create_temp (const gchar *prefix,
 
 	while (1) {
 		name = g_strdup_printf("%sXXXXXX", prefix);
-		fd = mkstemp(name);
+		fd = g_mkstemp (name);
 
 		if (fd < 0)
 			return GNOME_VFS_ERROR_INTERNAL;
-
-		fchmod(fd, 0600);
-		close(fd);
+		
+#ifdef HAVE_FCHMOD
+		fchmod (fd, 0600);
+#endif
+		close (fd);
 
 		result = gnome_vfs_open
 			(&handle, name,
@@ -262,10 +269,13 @@ gnome_vfs_create_temp (const gchar *prefix,
 		if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 			*name_return = NULL;
 			*handle_return = NULL;
+			g_free (name);
 			return result;
 		}
 	}
 }
+
+#ifndef G_OS_WIN32
 
 /* The following comes from GNU Wget with minor changes by myself.
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.  */
@@ -310,6 +320,8 @@ check_end (const gchar *p)
 		return 0;
 }
 
+#endif /* G_OS_WIN32 */
+
 /* Convert TIME_STRING time to time_t.  TIME_STRING can be in any of
    the three formats RFC2068 allows the HTTP servers to emit --
    RFC1123-date, RFC850-date or asctime-date.  Timezones are ignored,
@@ -333,6 +345,7 @@ gboolean
 gnome_vfs_atotm (const gchar *time_string,
 		 time_t *value_return)
 {
+#ifndef G_OS_WIN32
 	struct tm t;
 
 	/* Roger Beeman says: "This function dynamically allocates struct tm
@@ -387,6 +400,10 @@ gnome_vfs_atotm (const gchar *time_string,
 
 	/* Failure.  */
 	return FALSE;
+#else 
+	g_error ("Not yet implemented: gnome_vfs_atotm()");
+	return FALSE;
+#endif /* G_OS_WIN32 */
 }
 
 /* _gnome_vfs_istr_has_prefix
@@ -621,6 +638,7 @@ gboolean
 _gnome_vfs_prepend_terminal_to_vector (int    *argc,
 				       char ***argv)
 {
+#ifndef G_OS_WIN32
         char **real_argv;
         int real_argc;
         int i, j;
@@ -727,10 +745,13 @@ _gnome_vfs_prepend_terminal_to_vector (int    *argc,
 	/* we use g_free here as we sucked all the inner strings
 	 * out from it into real_argv */
 	g_free (term_argv);
-
 	return TRUE;
+#else
+	return FALSE;
+#endif /* G_OS_WIN32 */
 }		  
 
+#ifndef G_OS_WIN32
 /**
  * _gnome_vfs_set_fd_flags:
  * @fd: a valid file descriptor
@@ -744,8 +765,8 @@ _gnome_vfs_prepend_terminal_to_vector (int    *argc,
  * Since: 2.7
  */
 
-gboolean
-_gnome_vfs_set_fd_flags (int fd, int flags)
+static gboolean
+_set_fd_flags (int fd, int flags)
 {
 	int val;
 
@@ -772,15 +793,15 @@ _gnome_vfs_set_fd_flags (int fd, int flags)
  * @flags: file status flags to clear
  *
  * Clear the flags sepcified by @flags of the file status flags part of the 
- * descriptor’s flags. 
+ * descriptor flags. 
  *
  * Return value: TRUE if successful, FALSE otherwise.
  *
  * Since: 2.7
  */
 
-gboolean
-_gnome_vfs_clear_fd_flags (int fd, int flags)
+static gboolean
+_clear_fd_flags (int fd, int flags)
 {
 	int val;
 
@@ -801,4 +822,258 @@ _gnome_vfs_clear_fd_flags (int fd, int flags)
 	return TRUE;
 
 }
+#endif /* G_OS_WIN32 */
+
+gboolean
+_gnome_vfs_socket_set_blocking (int sock_fd, gboolean blocking)
+{
+#ifndef G_OS_WIN32
+	gboolean result;
+	if (blocking) {
+		result = _clear_fd_flags (sock_fd, O_NONBLOCK);
+	} else {
+		result = _set_fd_flags (sock_fd, O_NONBLOCK);
+	}
+
+	return result;
+#else 
+	u_long val;
+	
+	val = blocking ? 0 : 1;
+ 
+	if (ioctlsocket (fd, FIONBIO, &val) == SOCKET_ERROR) {
+		g_warning ("ioctlsocket(FIONBIO) failed: %s",
+			   _gnome_vfs_winsock_strerror (WSAGetLastError ()));
+		return FALSE;
+	}
+
+	return TRUE;
+#endif /* G_OS_WIN32 */
+}
+
+/**
+ * _gnome_vfs_pipe:
+ * @fds: a pointer to an array or two ints
+ *
+ * Creates a unidirectional IPC pipe. On Unix, a pipe. On Win32, a
+ * pair of connected TCP sockets (thus actually bidirectional, but
+ * ignore that).
+ *
+ * Return value: TRUE if successful, FALSE otherwise.
+ *
+ * Since: 2.11
+ */
+
+int
+_gnome_vfs_pipe (int *fds)
+{
+#ifndef G_OS_WIN32
+	return pipe (fds);
+#else
+	SOCKET temp, socket1 = -1, socket2 = -1;
+	struct sockaddr_in saddr;
+	int len;
+	u_long arg;
+	fd_set read_set, write_set;
+	struct timeval tv;
+
+	temp = socket (AF_INET, SOCK_STREAM, 0);
+	
+	if (temp == INVALID_SOCKET) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+  	
+	arg = 1;
+	if (ioctlsocket (temp, FIONBIO, &arg) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+
+	memset (&saddr, 0, sizeof (saddr));
+	saddr.sin_family = AF_INET;
+	saddr.sin_port = 0;
+	saddr.sin_addr.s_addr = htonl (INADDR_LOOPBACK);
+
+	if (bind (temp, (struct sockaddr *)&saddr, sizeof (saddr))) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+
+	if (listen (temp, 1) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+
+	len = sizeof (saddr);
+	if (getsockname (temp, (struct sockaddr *)&saddr, &len)) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+
+	socket1 = socket (AF_INET, SOCK_STREAM, 0);
+	
+	if (socket1 == INVALID_SOCKET) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out0;
+	}
+
+	arg = 1;
+	if (ioctlsocket (socket1, FIONBIO, &arg) == SOCKET_ERROR) { 
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out1;
+	}
+
+	if (connect (socket1, (struct sockaddr  *)&saddr, len) != SOCKET_ERROR ||
+			WSAGetLastError () != WSAEWOULDBLOCK) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out1;
+	}
+
+	FD_ZERO (&read_set);
+	FD_SET (temp, &read_set);
+
+	tv.tv_sec = 0;
+	tv.tv_usec = 0;
+
+	if (select (0, &read_set, NULL, NULL, NULL) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out1;
+	}
+
+	if (!FD_ISSET (temp, &read_set)) {
+		errno = EIO;	/* Oh well, whatever */
+		goto out1;
+	}
+
+	socket2 = accept (temp, (struct sockaddr *) &saddr, &len);
+	if (socket2 == INVALID_SOCKET) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out1;
+	}
+
+	FD_ZERO (&write_set);
+	FD_SET (socket1, &write_set);
+
+	tv.tv_sec = 0;
+	tv.tv_usec = 0;
+
+	if (select (0, NULL, &write_set, NULL, NULL) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out2;
+	}
+
+	if (!FD_ISSET (socket1, &write_set)) {
+		errno = EIO;
+		goto out2;
+	}
+
+	arg = 0;
+	if (ioctlsocket (socket1, FIONBIO, &arg) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out2;
+	}
+
+	arg = 0;
+	if (ioctlsocket (socket2, FIONBIO, &arg) == SOCKET_ERROR) {
+		_gnome_vfs_map_winsock_error_to_errno ();
+		goto out2;
+	}
+
+	fds[0] = _open_osfhandle (socket1, O_WRONLY);
+	fds[1] = _open_osfhandle (socket2, O_WRONLY);
+
+	closesocket (temp);
+
+	return 0;
+
+out2:
+	closesocket (socket2);
+out1:
+	closesocket (socket1);
+out0:
+	closesocket (temp);
+
+	return -1;
+
+#endif
+}
+
+gboolean
+_gnome_vfs_pipe_set_blocking  (int pipe_fd, gboolean blocking)
+{
+	return _gnome_vfs_socket_set_blocking (pipe_fd, blocking);
+}
+
+
+#ifdef G_OS_WIN32
+void
+_gnome_vfs_map_winsock_error_to_errno (void)
+{
+	errno = WSAGetLastError ();
+	switch (errno) {
+	case WSAEBADF:
+		errno = EBADF; break;
+	case WSAEWOULDBLOCK:
+		errno = EAGAIN; break;
+	default:
+		errno = EIO; break; /* Oh well */
+	}
+}
+
+const char *
+_gnome_vfs_winsock_strerror (int error)
+{
+
+	switch (error) {
+	case WSAEOPNOTSUPP:
+		return "Operation not supported on transport endpoint";
+	case WSAEPFNOSUPPORT:
+		return "Protocol family not supported";
+	case WSAECONNRESET:
+		return "Connection reset by peer";
+	case WSAENOBUFS:
+		return "No buffer space available";
+	case WSAEAFNOSUPPORT:
+		return "Address family not supported by protocol family";
+	case WSAENOTSOCK:
+		return "Socket operation on non-socket";
+	case WSAENOPROTOOPT:
+		return "Protocol not available";
+	case WSAESHUTDOWN:
+		return "Can't send after socket shutdown";
+	case WSAECONNREFUSED:
+		return "Connection refused";
+	case WSAEADDRINUSE:
+		return "Address already in use";
+	case WSAECONNABORTED:
+		return "Connection aborted";
+	case WSAENETUNREACH:
+		return "Network is unreachable";
+	case WSAENETDOWN:
+		return "Network interface is not configured";
+	case WSAETIMEDOUT:
+		return "Connection timed out";
+	case WSAEHOSTDOWN:
+		return "Host is down";
+	case WSAEHOSTUNREACH:
+		return "Host is unreachable";
+	case WSAEINPROGRESS:
+		return "Connection already in progress";
+	case WSAEALREADY:
+		return "Socket already connected";
+	case WSAEPROTONOSUPPORT:
+		return "Unknown protocol";
+	case WSAESOCKTNOSUPPORT:
+		return "Socket type not supported";
+	case WSAEADDRNOTAVAIL:
+		return "Address not available";
+	case WSAEISCONN:
+		return "Socket is already connected";
+	case WSAENOTCONN:
+		return "Socket is not connected";
+	}
+	return "Unknown Windows Sockets error";
+}
+#endif
 

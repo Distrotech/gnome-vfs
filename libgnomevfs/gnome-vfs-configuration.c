@@ -26,13 +26,8 @@
 
 #include <dirent.h>
 #include <errno.h>
-#include <glib/ghash.h>
-#include <glib/glist.h>
-#include <glib/gmem.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gthread.h>
-#include <glib/gutils.h>
+#include <glib.h>
+#include <glib/gstdio.h>
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private.h"
 #include <sys/stat.h>
@@ -363,7 +358,7 @@ parse_file (Configuration *configuration,
 	guint line_buffer_size;
 	guint line_number;
 
-	f = fopen (file_name, "r");
+	f = g_fopen (file_name, "r");
 	if (f == NULL) {
 		g_warning (_("Configuration file `%s' was not found: %s"),
 			   file_name, strerror (errno));
@@ -408,7 +403,7 @@ configuration_load (void)
 		VfsDirSource *dir_source = (VfsDirSource *)list->data;
 		struct dirent *dent;
 
-		if (stat (dir_source->dirname, &dir_source->s) == -1)
+		if (g_stat (dir_source->dirname, &dir_source->s) == -1)
 			continue;
 
 		dirh = opendir (dir_source->dirname);
@@ -493,6 +488,7 @@ _gnome_vfs_configuration_init (void)
 	char *home_config;
 	char *environment_path;
 	const char *home_dir;
+	char *cfgdir;
 
 	G_LOCK (configuration);
 	if (configuration != NULL) {
@@ -502,7 +498,9 @@ _gnome_vfs_configuration_init (void)
 
 	configuration = g_new0 (Configuration, 1);
 
-	add_directory_internal (GNOME_VFS_MODULE_CFGDIR);
+	cfgdir = g_build_filename (GNOME_VFS_SYSCONFDIR, GNOME_VFS_MODULE_SUBDIR, NULL);
+	add_directory_internal (cfgdir);
+	g_free (cfgdir);
 	environment_path = getenv ("GNOME_VFS_MODULE_CONFIG_PATH");
 	if (environment_path != NULL) {
 		install_path_list (environment_path);
@@ -510,10 +508,9 @@ _gnome_vfs_configuration_init (void)
 
 	home_dir = g_get_home_dir ();
 	if (home_dir != NULL) {
-		home_config = g_strdup_printf ("%s%c%s",
-					       home_dir,
-					       G_DIR_SEPARATOR,
-					       ".gnome2/vfs/modules");
+		home_config = g_build_filename (home_dir,
+						".gnome2", "vfs", "modules",
+						NULL);
 		add_directory_internal (home_config);
 		g_free (home_config);
 	}
@@ -557,7 +554,7 @@ maybe_reload (void)
 
 	for (list = configuration->directories; list; list = list->next) {
 		VfsDirSource *dir_source = (VfsDirSource *) list->data;
-		if (stat (dir_source->dirname, &s) == -1)
+		if (g_stat (dir_source->dirname, &s) == -1)
 			continue;
 		if (s.st_mtime != dir_source->s.st_mtime) {
 			need_reload = TRUE;

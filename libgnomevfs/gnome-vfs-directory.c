@@ -111,10 +111,10 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 }
 
 static GnomeVFSResult
-open (GnomeVFSDirectoryHandle **handle,
-      const gchar *text_uri,
-      GnomeVFSFileInfoOptions options,
-      GnomeVFSContext *context)
+do_open (GnomeVFSDirectoryHandle **handle,
+	 const gchar *text_uri,
+	 GnomeVFSFileInfoOptions options,
+	 GnomeVFSContext *context)
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
@@ -154,7 +154,7 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open (handle, text_uri, options, NULL);
+	return do_open (handle, text_uri, options, NULL);
 }
 
 /**

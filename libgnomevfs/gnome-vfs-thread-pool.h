@@ -24,8 +24,6 @@
 #ifndef GNOME_VFS_THREAD_POOL
 #define GNOME_VFS_THREAD_POOL
 
-#include <pthread.h>
-
 int  _gnome_vfs_thread_create (void *(* thread_routine) (void *),
 			      void *thread_arguments);
 

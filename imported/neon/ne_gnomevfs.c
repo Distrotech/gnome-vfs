@@ -79,6 +79,7 @@ ne_gnomevfs_last_error (ne_request *req)
 }
 
 /* ************************************************************************** */
+#ifndef G_OS_WIN32
 #define check_error(__result, __sock) __sock->last_error = __result;   		      	      \
 				      switch (__result) {		              	      \
 				      case GNOME_VFS_OK: break; 			      \
@@ -89,7 +90,16 @@ ne_gnomevfs_last_error (ne_request *req)
 						      return NE_SOCK_CLOSED;		      \
 					      else if (errno == ECONNRESET)		      \
 						      return NE_SOCK_RESET;		      \
-				      default: return NE_SOCK_ERROR; }		              \
+				      default: return NE_SOCK_ERROR; }
+#else
+#define check_error(__result, __sock) __sock->last_error = __result;   		      	      \
+				      switch (__result) {		              	      \
+				      case GNOME_VFS_OK: break; 			      \
+				      case GNOME_VFS_ERROR_TIMEOUT: return NE_SOCK_TIMEOUT;   \
+				      case GNOME_VFS_ERROR_EOF: return NE_SOCK_CLOSED;        \
+				      case GNOME_VFS_ERROR_GENERIC: return NE_SOCK_CLOSED;    \
+				      default: return NE_SOCK_ERROR; }
+#endif
 
 /* ************************************************************************** */
 int
