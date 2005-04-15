@@ -1,7 +1,9 @@
 *.la
 *.lo
+*.patch
 .deps
 .libs
+.project
 ABOUT-NLS
 Makefile
 Makefile.in

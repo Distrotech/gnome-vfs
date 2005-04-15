@@ -1,6 +1,8 @@
-Makefile
-Makefile.in
+*.lo
+*.la
 .deps
 .libs
+Makefile
+Makefile.in
 GNOME_VFS_Moniker_std.server
 GNOME_VFS_Moniker_std.server.in

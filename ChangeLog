@@ -1,3 +1,11 @@
+2005-04-15  Christian Kellner  <gicmo@gnome.org>
+
+	* .cvsignore: Ignore *.patch and .project
+	* daemon/.cvsignore: Ignore .deps and .libs dirs
+	* imported/neon/.cvsignore: Added .deps
+	* monikers/.cvsignore: Added *.lo and *.la
+	* programs/.cvsignore: Added .deps and .libs
+	
 2005-04-14  Christian Kellner  <gicmo@gnome.org>
 
 	Integration of the Win32 integration patch. Mostly based
