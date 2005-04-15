@@ -1,5 +1,13 @@
 2005-04-15  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in: Require hal >= 0.5 and dbus >= 0.32
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Port to new hal API. 
+	Patch from David Zeuthen <davidz@redhat.com>
+	
+	Fixes bug #172576
+
+2005-04-15  Christian Kellner  <gicmo@gnome.org>
+
 	* .cvsignore: Ignore *.patch and .project
 	* daemon/.cvsignore: Ignore .deps and .libs dirs
 	* imported/neon/.cvsignore: Added .deps

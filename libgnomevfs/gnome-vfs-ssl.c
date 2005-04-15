@@ -90,7 +90,6 @@ struct GnomeVFSSSL {
 static int gcry_gthread_mutex_init (void **priv)			      
 {									      
 	GMutex* lock = g_mutex_new();
-	g_print ("Init\n");
 	if (!lock)								      
 		return ENOMEM;							      
 	*priv = lock;							      
