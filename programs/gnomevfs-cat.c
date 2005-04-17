@@ -72,6 +72,8 @@ main (int argc, char **argv)
 	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
 	show_result (result, "open", text_uri);
 
+	gnome_vfs_uri_unref (uri);
+
 	while (result == GNOME_VFS_OK) {
 		result = gnome_vfs_read (handle, buffer,
 				sizeof (buffer) - 1,

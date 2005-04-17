@@ -1,3 +1,7 @@
+2005-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* programs/gnomevfs-cat.c: Merge leak fix from stable.
+
 2005-04-17  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/Makefile.am: added new files to Makefile.am, fixes
