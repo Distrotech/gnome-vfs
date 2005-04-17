@@ -156,11 +156,11 @@ _xdg_mime_magic_match_free (XdgMimeMagicMatch *mime_magic_match)
 /* Reads in a hunk of data until a newline character or a '\000' is hit.  The
  * returned string is null terminated, and doesn't include the newline.
  */
-static char *
+static unsigned char *
 _xdg_mime_magic_read_to_newline (FILE *magic_file,
 				 int  *end_of_file)
 {
-  char *retval;
+  unsigned char *retval;
   int c;
   int len, pos;
 
@@ -268,7 +268,7 @@ _xdg_mime_magic_parse_header (FILE *magic_file, XdgMimeMagicMatch *match)
   if (c != ':')
     return XDG_MIME_MAGIC_ERROR;
 
-  buffer = _xdg_mime_magic_read_to_newline (magic_file, &end_of_file);
+  buffer = (char *)_xdg_mime_magic_read_to_newline (magic_file, &end_of_file);
   if (end_of_file)
     return XDG_MIME_MAGIC_EOF;
 
@@ -520,8 +520,7 @@ _xdg_mime_magic_matchlet_compare_to_data (XdgMimeMagicMatchlet *matchlet,
 					  size_t                len)
 {
   int i, j;
-
-  for (i = matchlet->offset; i <= matchlet->offset + matchlet->range_length; i++)
+  for (i = matchlet->offset; i < matchlet->offset + matchlet->range_length; i++)
     {
       int valid_matchlet = TRUE;
 
@@ -657,16 +656,20 @@ _xdg_mime_magic_lookup_data (XdgMimeMagic *mime_magic,
 			     size_t        len)
 {
   XdgMimeMagicMatch *match;
+  const char *mime_type;
 
+  mime_type = NULL;
   for (match = mime_magic->match_list; match; match = match->next)
     {
       if (_xdg_mime_magic_match_compare_to_data (match, data, len))
 	{
-	  return match->mime_type;
+	  if ((mime_type == NULL) || (xdg_mime_mime_type_subclass (match->mime_type, mime_type))) {
+	    mime_type = match->mime_type;
+	  }
 	}
     }
 
-  return NULL;
+  return mime_type;
 }
 
 static void
