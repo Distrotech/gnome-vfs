@@ -178,6 +178,7 @@ noinst_HEADERS =				\
 	gnome-vfs-volume-monitor-daemon.h	\
 	gnome-vfs-volume-monitor-private.h 	\
 	xdgmime.h				\
+	xdgmimecache.h				\
 	xdgmimeglob.h				\
 	xdgmimemagic.h				\
 	xdgmimeint.h				\
@@ -321,6 +322,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-xfer.c			\
 	xdgmimemagic.c				\
 	xdgmime.c				\
+	xdgmimecache.c				\
 	xdgmimeglob.c				\
 	xdgmimeint.c				\
 	xdgmimealias.c				\

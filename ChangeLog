@@ -1,5 +1,10 @@
 2005-04-17  Christophe Fergeau  <teuf@gnome.org>
 
+	* libgnomevfs/Makefile.am: added new files to Makefile.am, fixes
+	compilation
+
+2005-04-17  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/xdgmime*: sync with xdgmime
 
 2005-04-15  Christian Kellner  <gicmo@gnome.org>
