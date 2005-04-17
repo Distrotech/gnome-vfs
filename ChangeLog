@@ -1,3 +1,8 @@
+2005-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* programs/gnomevfs-cat.c: (main): Unref the uri when we're done
+	with it.
+
 2005-04-14  Sebastien Bacher  <seb128@debian.org>
 
 	* modules/cdda-cddb.c: (CDDBDoQuery): check the number of returned
