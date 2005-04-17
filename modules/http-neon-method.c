@@ -1474,7 +1474,7 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 {	
 	GnomeVFSModuleCallbackReceivedHeadersIn in_args;
 	GnomeVFSModuleCallbackReceivedHeadersOut out_args;
-	GList **headers, *iter;
+	GList **headers;
 	GnomeVFSURI *uri;
 	ne_session *session;
 
@@ -1498,14 +1498,6 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 					&in_args, sizeof (in_args),
 					&out_args, sizeof (out_args));
 	
-	for (iter = *headers; iter; iter = iter->next) {
-		DEBUG_HTTP_3 ("Headers returned %s,", (char *) iter->data);
-		g_free (iter->data);
-	}
-
-	g_list_free (*headers);
-	g_free (headers);
-
 	ne_set_request_private (req, "Headers Returned", "TRUE");
 	
 	DEBUG_HTTP_FUNC (0);
@@ -1565,6 +1557,30 @@ neon_setup_headers (ne_request *req, void *userdata, ne_buffer *header)
 	
 	g_list_free (out_args.headers);
 	
+	DEBUG_HTTP_FUNC (0);
+}
+
+static void 
+neon_free_headers (ne_request *req, void *userdata)
+{
+	GList **headers, *iter;
+	
+	DEBUG_HTTP_FUNC (1);
+	headers = ne_get_request_private (req, "Headers");
+	
+	if (headers == NULL) {
+		return;	
+	}
+	
+	for (iter = *headers; iter; iter = iter->next) {
+		DEBUG_HTTP_3 ("Freeing Header  %s,", (char *) iter->data);
+		g_free (iter->data);
+	}
+
+	g_list_free (*headers);
+	g_free (headers);
+	
+	ne_set_request_private (req, "Headers", NULL);
 	DEBUG_HTTP_FUNC (0);
 }
 
@@ -1648,6 +1664,7 @@ http_aquire_connection (HttpContext *context)
 	ne_set_session_private (session, "GnomeVFSURI", context->uri);
 	ne_hook_pre_send (session, neon_setup_headers, NULL);
 	ne_hook_post_send (session, neon_return_headers, NULL);
+	ne_hook_destroy_request (session, neon_free_headers, NULL);
 
 	if (proxy_for_uri (top_uri, &proxy)) {
 		HttpAuthInfo *proxy_auth;
@@ -1786,6 +1803,8 @@ http_follow_redirect (HttpContext *context)
 	
 	NE_FREE (redir_texturi);
 	
+	/* see if redirect is to another host:port pair so we need a new
+	 * connection/session */
 	if (! http_session_uri_equal (context->uri, new_uri)) {
 		
 		/* release connection */
@@ -1793,7 +1812,6 @@ http_follow_redirect (HttpContext *context)
 		context->session = NULL;
 		
 		http_context_set_uri (context, new_uri);
-		
 		result = http_aquire_connection (context);
 		
 	} else {
@@ -1802,6 +1820,10 @@ http_follow_redirect (HttpContext *context)
 		ne_set_session_private (context->session, "GnomeVFSURI", context->uri);
 		result = GNOME_VFS_OK;
 	}
+	
+	/* uri got dupped by http_context_set_uri () */
+	gnome_vfs_uri_unref (new_uri);
+	
 	DEBUG_HTTP ("[Redirec] Redirect result: %s", 
 		    gnome_vfs_result_to_string (result));
 	return result;

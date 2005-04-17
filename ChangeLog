@@ -1,3 +1,15 @@
+2005-04-17  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: 
+	(neon_return_headers): Don't free headers list here anymore.
+	(neon_free_headers): New function used to free the headers list.
+	(http_aquire_connection): Register neon_free_headers as a request-destroy
+	callback so headers will always get freed when requests are getting
+	destroyed. 
+	(http_follow_redirect): Unref a not used URI.
+	
+	Fixes bug #169826
+
 2005-04-17  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* programs/gnomevfs-cat.c: Merge leak fix from stable.
