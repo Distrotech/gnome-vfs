@@ -1,5 +1,10 @@
 NULL =
 
+if OS_WIN32
+FNMATCH_CFLAGS = -I$(top_srcdir)/imported/fnmatch
+FNMATCH_LIBS = ../imported/fnmatch/libfnmatch.la
+endif
+
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
@@ -7,6 +12,7 @@ INCLUDES =					\
 	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
 	$(MONIKERS_CFLAGS)			\
+	$(FNMATCH_CFLAGS)			\
 	-DXDG_PREFIX=_gnome_vfs_xdg		\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
@@ -125,6 +131,7 @@ endif
 
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
+	$(FNMATCH_LIBS)				\
 	$(SOCKET_LIBS)				\
 	$(INTLLIBS)				\
 	$(NULL)

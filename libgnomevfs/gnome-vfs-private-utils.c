@@ -841,7 +841,7 @@ _gnome_vfs_socket_set_blocking (int sock_fd, gboolean blocking)
 	
 	val = blocking ? 0 : 1;
  
-	if (ioctlsocket (fd, FIONBIO, &val) == SOCKET_ERROR) {
+	if (ioctlsocket (sock_fd, FIONBIO, &val) == SOCKET_ERROR) {
 		g_warning ("ioctlsocket(FIONBIO) failed: %s",
 			   _gnome_vfs_winsock_strerror (WSAGetLastError ()));
 		return FALSE;

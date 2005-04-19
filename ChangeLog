@@ -1,11 +1,68 @@
+2005-04-19  Tor Lillqvist  <tml@novell.com>
+
+	* gnome-vfs-zip.in: New file, used to build gnome-vfs zipfile
+	distribution for Win32.
+
+	* configure.in: We do have getaddrinfo() on Win32.
+
+	* imported/fnmatch/Makefile.am
+	* imported/fnmatch/fnmatch.c
+	* imported/fnmatch/fnmatch.h: Import the fnmatch() from GTK+ for
+	xdgmime's use on Win32.
+	
+	* libgnomevfs/Makefile.am: Use fnmatch() from ../imported/fnmatch
+	on Win32.
+	
+	* libgnomevfs/gnome-vfs-address.c
+	* libgnomevfs/gnome-vfs-resolve.c: Include <ws2tcpip.h> on Win32
+	for IPv6 support.
+
+	* libgnomevfs/gnome-vfs-address.c
+	(gnome_vfs_address_new_from_string): Clean up if-else and ifdef
+	mess. Use WSAStringToAddress() on Win32.
+	(gnome_vfs_address_to_string): Use WSAAddressToString() on Win32.
+
+	* libgnomevfs/gnome-vfs-mime.c
+	(gnome_vfs_mime_type_from_name_or_default): On Win32 look also for
+	a (forward) slash. No need to use g_utf8_strrchr() when looking
+	for single byte characters.
+
+	* libgnomevfs/gnome-vfs-utils.c
+	(gnome_vfs_get_uri_from_local_path,
+	gnome_vfs_is_executable_command_string,
+	gnome_vfs_make_uri_from_input_internal,
+	gnome_vfs_make_uri_from_input_with_dirs,
+	gnome_vfs_make_uri_canonical, gnome_vfs_make_uri_from_shell_arg):
+	Use g_path_is_absolute() to check for absolute paths. Don't just
+	check first character for being a slash.
+	(gnome_vfs_make_uri_from_input_internal,
+	gnome_vfs_make_uri_from_input_with_dirs): Don't support the tilde
+	convention on Windows. It's not used on Windows, and it would be
+	overly complex to find out the home directory (or what corresponds
+	to it) for another account anyway.
+
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(_gnome_vfs_socket_set_blocking): Fix typo.
+
+	* libgnomevfs/gnome-vfs-resolve.c
+	(_gnome_vfs_result_from_gai_error): Conditionalize some errors not
+	present on Win32.
+	
+	* modules/file-method.c: Include g_access() from GLib HEAD if
+	built against GLib < 2.7.0.
+	(get_access_info): Use g_access() for better localized file name
+	support On Win32. Use g_file_test(G_FILE_TEST_IS_EXECUTABLE)
+	instead of access(X_OK) to check for executability. The
+	Microsoft's C library's access() implementation is a bit silly.
+
 2005-04-17  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: 
 	(neon_return_headers): Don't free headers list here anymore.
 	(neon_free_headers): New function used to free the headers list.
-	(http_aquire_connection): Register neon_free_headers as a request-destroy
-	callback so headers will always get freed when requests are getting
-	destroyed. 
+	(http_aquire_connection): Register neon_free_headers as a
+	request-destroy callback so headers will always get freed when
+	requests are getting destroyed.
 	(http_follow_redirect): Unref a not used URI.
 	
 	Fixes bug #169826

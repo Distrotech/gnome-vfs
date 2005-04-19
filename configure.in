@@ -53,6 +53,8 @@ dnl Check for Win32
 case "$host" in
   *-*-mingw*)
     os_win32=yes
+    # We do have getaddrinfo
+    AC_CACHE_VAL(ac_cv_func_getaddrinfo, [ac_cv_func_getaddrinfo=yes])
     ;;
   *)
     os_win32=no
@@ -925,8 +927,13 @@ if test $enable_ipv6 = yes; then
 
 
   AC_TRY_COMPILE([ 
+		#ifdef _WIN32
+		#include <winsock2.h>
+		#include <ws2tcpip.h>
+		#else
 		#include <sys/types.h>
 		#include <sys/socket.h>
+		#endif
     ], [
 	     socket(AF_INET6, SOCK_STREAM, 0)
     ], [
@@ -1073,9 +1080,11 @@ AC_SUBST(REBUILD)
 AC_OUTPUT([
 Makefile
 gnome-vfs.spec
+gnome-vfs-zip
 libgnomevfs/gnome-vfs-file-size.h
 libgnomevfs/Makefile
 imported/Makefile
+imported/fnmatch/Makefile
 imported/neon/Makefile
 modules/Makefile
 daemon/Makefile

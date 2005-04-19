@@ -37,6 +37,7 @@
 #include <arpa/inet.h>
 #else
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #endif
 
 struct _GnomeVFSAddress {
@@ -99,34 +100,52 @@ gnome_vfs_address_get_type (void) {
 GnomeVFSAddress *
 gnome_vfs_address_new_from_string (const char *address)
 {
-	   GnomeVFSAddress *addr;
-	   struct sockaddr_in sin;
-#ifdef ENABLE_IPV6
-	   struct sockaddr_in6 sin6;
+	struct sockaddr_in sin;
+#ifdef G_OS_WIN32
+	int address_length;
 #endif
 
-	   addr = NULL;
-	   sin.sin_family = AF_INET;
+#if (defined (G_OS_WIN32) || defined (HAVE_INET_PTON)) && defined (ENABLE_IPV6)
+	struct sockaddr_in6 sin6;
+#endif
 
-#ifdef HAVE_INET_PTON
-	   if (inet_pton (AF_INET, address, &sin.sin_addr) > 0) {
-			 addr = gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
-#ifdef ENABLE_IPV6		
-	   } else if (inet_pton (AF_INET6, address, &sin6.sin6_addr) > 0) {
-			 sin6.sin6_family = AF_INET6;
-			 addr = gnome_vfs_address_new_from_sockaddr (SA (&sin6), SIN6_LEN);
-			 
-#endif /* ENABLE_IPV6 */
-	   }
+	sin.sin_family = AF_INET;
+
+#ifdef G_OS_WIN32
+	address_length = SIN_LEN;
+	if (WSAStringToAddress ((LPTSTR) address, AF_INET, NULL,
+				(LPSOCKADDR) &sin.sin_addr,
+				&address_length) == 0)
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
+#  ifdef ENABLE_IPV6
+	address_length = SIN6_LEN;
+	if (WSAStringToAddress ((LPTSTR) address, AF_INET6, NULL,
+				(LPSOCKADDR) &sin6.sin6_addr,
+				&address_length) == 0) {
+		sin6.sin6_family = AF_INET6;
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin6), SIN6_LEN);
+	}
+#  endif  /* ENABLE_IPV6 */
+
+#elif defined (HAVE_INET_PTON)
+	if (inet_pton (AF_INET, address, &sin.sin_addr) > 0)
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
+#  ifdef ENABLE_IPV6		
+	if (inet_pton (AF_INET6, address, &sin6.sin6_addr) > 0) {
+		sin6.sin6_family = AF_INET6;
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin6), SIN6_LEN);
+	}
+#  endif /* ENABLE_IPV6 */
+
 #elif defined (HAVE_INET_ATON)
-	   if (inet_aton (address, &sin.sin_addr) > 0) {
-			 addr = gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
-	   }
+	if (inet_aton (address, &sin.sin_addr) > 0)
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
 #else
-	   if ((sin.sin_addr.s_addr = inet_addr (address)) != INADDR_NONE)
-			 addr = gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
+	if ((sin.sin_addr.s_addr = inet_addr (address)) != INADDR_NONE)
+		return gnome_vfs_address_new_from_sockaddr (SA (&sin), SIN_LEN);
 #endif	
-	   return addr;
+
+	return NULL;
 }
 
 /**
@@ -218,6 +237,16 @@ gnome_vfs_address_get_family_type (GnomeVFSAddress *address)
 char *
 gnome_vfs_address_to_string (GnomeVFSAddress *address)
 {
+#ifdef G_OS_WIN32
+	   char text_addr[100];
+	   DWORD text_length = sizeof (text_addr);
+
+	   if (WSAAddressToString (address->sa, SA_SIZE (address->sa),
+				   NULL, text_addr, &text_length) == 0)
+		   return g_strdup (text_addr);
+
+	   return NULL;
+#else
 	   const char *text_addr;
 #ifdef HAVE_INET_NTOP
 	   char buf[MAX_ADDRSTRLEN];
@@ -250,6 +279,7 @@ gnome_vfs_address_to_string (GnomeVFSAddress *address)
 	   
 	  
 	   return text_addr != NULL ? g_strdup (text_addr) : NULL;
+#endif
 }
 
 /**

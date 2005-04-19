@@ -100,7 +100,15 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 		return defaultv;
 	}
 
-	separator = g_utf8_strrchr (filename, -1, '/');
+	separator = strrchr (filename, '/');
+#ifdef G_OS_WIN32
+	{
+		const char *sep2 = strrchr (filename, '\\');
+		if (separator == NULL ||
+		    (sep2 != NULL && sep2 > separator))
+			separator = sep2;
+	}
+#endif
 	if (separator != NULL) {
 		separator++;
 		if (*separator == '\000')

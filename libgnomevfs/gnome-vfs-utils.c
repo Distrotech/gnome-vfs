@@ -761,7 +761,7 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 		return NULL;
 	}
 
-	g_return_val_if_fail (local_full_path[0] == '/', NULL);
+	g_return_val_if_fail (g_path_is_absolute (local_full_path), NULL);
 
 	escaped_path = gnome_vfs_escape_path_string (local_full_path);
 	result = g_strconcat ("file://", escaped_path, NULL);
@@ -1001,7 +1001,7 @@ gnome_vfs_is_executable_command_string (const char *command_string)
 	gboolean found;
 
 	/* Check whether command_string is a full path for an executable. */
-	if (command_string[0] == '/') {
+	if (g_path_is_absolute (command_string)) {
 
 		/* FIXME bugzilla.eazel.com 2757:
 		 * Because we don't handle quoting, we can check for full
@@ -1407,7 +1407,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 					const char *filename_charset,
 					gboolean strip_trailing_whitespace)
 {
-	char *stripped, *path, *uri, *locale_path, *filesystem_path, *escaped;
+	char *stripped, *uri, *locale_path, *escaped;
 
 	g_return_val_if_fail (text != NULL, g_strdup (""));
 
@@ -1421,11 +1421,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 		stripped = g_strchug (g_strdup (text));
 	}
 
-	switch (stripped[0]) {
-	case '\0':
-		uri = g_strdup ("");
-		break;
-	case '/':
+	if (g_path_is_absolute (stripped)) {
 		if (!filenames_are_utf8) {
 			locale_path = g_convert (stripped, -1, filename_charset, "UTF-8", NULL, NULL, NULL);
 			if (locale_path != NULL) {
@@ -1439,8 +1435,13 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 		} else {
 			uri = gnome_vfs_get_uri_from_local_path (stripped);
 		}
+	} else switch (stripped[0]) {
+	case '\0':
+		uri = g_strdup ("");
 		break;
-	case '~':
+#ifndef G_OS_WIN32
+	case '~': {
+		char *path, *filesystem_path;
 		if (!filenames_are_utf8) {
 			filesystem_path = g_convert (stripped, -1, filename_charset, "UTF-8", NULL, NULL, NULL);
 		} else {
@@ -1458,6 +1459,8 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 			g_free (path);
 		}
                 /* don't insert break here, read above comment */
+	}
+#endif
 	default:
 		if (has_valid_scheme (stripped)) {
 			uri = gnome_vfs_escape_high_chars ((guchar *)stripped);
@@ -1547,16 +1550,17 @@ gnome_vfs_make_uri_from_input_with_dirs (const char *location,
 {
 	char *uri, *path, *dir;
 
-	switch (location[0]) {
+	if (g_path_is_absolute (location))
+		uri = gnome_vfs_make_uri_from_input (location);
+	else switch (location[0]) {
 	case '\0':
 		uri = g_strdup ("");
 		break;
-		
+#ifndef G_OS_WIN32		
 	case '~':
-	case '/':
 		uri = gnome_vfs_make_uri_from_input (location);
 		break;
-		
+#endif
 	default:
 		/* this might be a relative path, check if it exists relative
 		 * to current dir and home dir.
@@ -1810,11 +1814,19 @@ gnome_vfs_make_uri_canonical (const char *uri)
 	 * the rules are more strict.
 	 */
 
+#ifndef G_OS_WIN32
+#define URI_CONTAINS_NO_SCHEME(uri) (strchr (uri, ':') == NULL)
+#else
+#define URI_CONTAINS_NO_SCHEME(uri) \
+  (strlen (uri) > 2 && strchr (uri + 2, ':') == NULL)
+#endif
+
+
 	/* Add file: if there is no scheme. */
-	if (strchr (canonical_uri, ':') == NULL) {
+	if (URI_CONTAINS_NO_SCHEME (canonical_uri)) {
 		old_uri = canonical_uri;
 
-		if (old_uri[0] != '/') {
+		if (!g_path_is_absolute (old_uri)) {
 			/* FIXME bugzilla.eazel.com 5069: 
 			 *  bandaid alert. Is this really the right thing to do?
 			 * 
@@ -1945,12 +1957,11 @@ gnome_vfs_make_uri_from_shell_arg (const char *location)
 
 	g_return_val_if_fail (location != NULL, g_strdup (""));
 
-	switch (location[0]) {
+	if (g_path_is_absolute (location))
+		uri = gnome_vfs_get_uri_from_local_path (location);
+	else switch (location[0]) {
 	case '\0':
 		uri = g_strdup ("");
-		break;
-	case '/':
-		uri = gnome_vfs_get_uri_from_local_path (location);
 		break;
 	default:
 		if (has_valid_scheme (location)) {

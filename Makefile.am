@@ -18,6 +18,7 @@ EXTRA_DIST =					\
 	TODO					\
 	autogen.sh				\
 	gnome-vfs.spec				\
+	gnome-vfs-zip.in			\
 	gnome-vfs-2.0.pc.in			\
 	gnome-vfs-module-2.0.pc.in		\
 	gtk-doc.make				\

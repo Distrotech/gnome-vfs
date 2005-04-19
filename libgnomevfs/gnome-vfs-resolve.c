@@ -35,6 +35,7 @@ Boston, MA 02111-1307, USA.
 #include <arpa/inet.h>
 #else
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #endif
 
 #include <unistd.h>
@@ -170,9 +171,13 @@ _gnome_vfs_result_from_gai_error (int error)
 	   switch (error) {
 			 
 	   case EAI_NONAME: return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+#ifdef EAI_ADDRFAMILY
 	   case EAI_ADDRFAMILY:		
+#endif
 	   case EAI_NODATA: return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
+#ifdef EAI_SYSTEM
 	   case EAI_SYSTEM: return gnome_vfs_result_from_errno ();
+#endif
 	   case EAI_FAIL:
 	   case EAI_AGAIN: return GNOME_VFS_ERROR_NAMESERVER;
 			 

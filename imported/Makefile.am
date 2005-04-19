@@ -1,1 +1,1 @@
-SUBDIRS=neon
+SUBDIRS=neon fnmatch
