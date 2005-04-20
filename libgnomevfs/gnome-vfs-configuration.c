@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-configuration.h"
 
-#include <dirent.h>
 #include <errno.h>
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -394,31 +393,31 @@ configuration_load (void)
 	gchar *file_names[MAX_CFG_FILES + 1];
 	GList *list;
 	int i = 0;
-	DIR *dirh;
+	GDir *dirh;
 
 	configuration->method_to_module_path = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, hash_free_module_path);
 
 	/* Go through the list of configuration directories and build up a list of config files */
 	for (list = configuration->directories; list && i < MAX_CFG_FILES; list = list->next) {
 		VfsDirSource *dir_source = (VfsDirSource *)list->data;
-		struct dirent *dent;
+		const char *dent;
 
 		if (g_stat (dir_source->dirname, &dir_source->s) == -1)
 			continue;
 
-		dirh = opendir (dir_source->dirname);
+		dirh = g_dir_open (dir_source->dirname, 0, NULL);
 		if(!dirh)
 			continue;
 
-		while ((dent = readdir(dirh)) && i < MAX_CFG_FILES) {
+		while ((dent = g_dir_read_name(dirh)) && i < MAX_CFG_FILES) {
 			char *ctmp;
-			ctmp = strstr(dent->d_name, ".conf");
+			ctmp = strstr(dent, ".conf");
 			if(!ctmp || strcmp(ctmp, ".conf"))
 				continue;
-			file_names[i] = g_strdup_printf ("%s/%s", dir_source->dirname, dent->d_name);
+			file_names[i] = g_build_filename (dir_source->dirname, dent, NULL);
 			i++;
 		}
-		closedir(dirh);
+		g_dir_close(dirh);
 	}
 	file_names[i] = NULL;
 
@@ -464,7 +463,7 @@ install_path_list (const gchar *environment_path)
 	while (1) {
 		char *elem;
 
-		p = strchr (oldp, ':');
+		p = strchr (oldp, G_SEARCHPATH_SEPARATOR);
 
 		if (p == NULL) {
 			if (*oldp != '\0') {

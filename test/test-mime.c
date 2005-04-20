@@ -49,6 +49,9 @@ is_uri (const char *str)
 {
 	const char *p;
 
+	if (g_path_is_absolute (str))
+		return FALSE;
+
 	if (! g_ascii_isalpha (*str)) {
 		return FALSE;
 	}
@@ -140,11 +143,11 @@ main (int argc, char **argv)
 			uri = NULL;
 		}
 		if (uri == NULL) {
-			if (uri_string[0] == '/') {
+			if (g_path_is_absolute (uri_string)) {
 				path = uri_string;
 			} else {
 				curdir = g_get_current_dir ();
-				path = g_strconcat (curdir, "/", uri_string, NULL);
+				path = g_build_filename (curdir,uri_string, NULL);
 				g_free (uri_string);
 				g_free (curdir);
 			}

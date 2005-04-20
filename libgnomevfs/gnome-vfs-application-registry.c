@@ -33,12 +33,10 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-result.h"
-#include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/time.h>
@@ -707,7 +705,7 @@ load_application_info_from (const char *filename, gboolean user_owned)
 	char *key;
 	char *lang;
 
-	fp = fopen (filename, "r");
+	fp = g_fopen (filename, "r");
 	if (fp == NULL)
 		return;
 
@@ -868,53 +866,57 @@ load_application_info_from (const char *filename, gboolean user_owned)
 static void
 application_info_load (ApplicationRegistryDir *source)
 {
-	DIR *dir;
-	struct dirent *dent;
+	GDir *dir;
+	const char *dent;
 	const int extlen = sizeof (".applications") - 1;
 	char *filename;
 	struct stat s;
 
-	if (stat (source->dirname, &s) != -1)
+	if (g_stat (source->dirname, &s) != -1)
 		source->valid = TRUE;
 	else
 		source->valid = FALSE;
 	
-	dir = opendir (source->dirname);
+	dir = g_dir_open (source->dirname, 0, NULL);
 	if (dir == NULL) {
 		source->valid = FALSE;
 		return;
 	}
 	if (source->system_dir) {
-		filename = g_strconcat (source->dirname, "/gnome-vfs.applications", NULL);
+		filename = g_build_filename (source->dirname,
+					     "gnome-vfs.applications",
+					     NULL);
 		load_application_info_from (filename, FALSE /*user_owned*/);
 		g_free (filename);
 	}
 
-	while ((dent = readdir (dir)) != NULL){
+	while ((dent = g_dir_read_name (dir)) != NULL){
 		
-		int len = strlen (dent->d_name);
+		int len = strlen (dent);
 
 		if (len <= extlen)
 			continue;
-		if (strcmp (dent->d_name + len - extlen, ".applications"))
+		if (strcmp (dent + len - extlen, ".applications"))
 			continue;
-		if (source->system_dir && strcmp (dent->d_name, "gnome-vfs.applications") == 0)
+		if (source->system_dir && strcmp (dent, "gnome-vfs.applications") == 0)
 			continue;
-		if ( ! source->system_dir && strcmp (dent->d_name, "user.applications") == 0)
+		if ( ! source->system_dir && strcmp (dent, "user.applications") == 0)
 			continue;
-		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
+		filename = g_build_filename (source->dirname, dent, NULL);
 		load_application_info_from (filename, FALSE /*user_owned*/);
 		g_free (filename);
 	}
 
 	if ( ! source->system_dir) {
-		filename = g_strconcat (source->dirname, "/user.applications", NULL);
-		/* Currently this is the only file that is "user owned".  It actually makes
-		 * sense.  Editting of other files from the API would be too complex */
+		filename = g_build_filename (source->dirname, "user.applications", NULL);
+		/* Currently this is the only file that is "user
+		 * owned".  It actually makes sense.  Editting of
+		 * other files from the API would be too complex
+		 */
 		load_application_info_from (filename, TRUE /*user_owned*/);
 		g_free (filename);
 	}
-	closedir (dir);
+	g_dir_close (dir);
 
 	_gnome_vfs_file_date_tracker_start_tracking_file (registry_date_tracker, source->dirname);
 }
@@ -962,7 +964,10 @@ gnome_vfs_application_registry_init (void)
 						       NULL);
 	gnome_registry_dir.system_dir = TRUE;
 	
-	user_registry_dir.dirname = g_strconcat (g_get_home_dir(), "/.gnome/application-info", NULL);
+	user_registry_dir.dirname = g_build_filename (g_get_home_dir(),
+						      ".gnome",
+						      "application-info",
+						      NULL);
 	user_registry_dir.system_dir = FALSE;
 
 	/* Make sure user directory exists */
@@ -1822,8 +1827,8 @@ gnome_vfs_application_registry_sync (void)
 
 	maybe_reload ();
 
-	file = g_strconcat (user_registry_dir.dirname, "/user.applications", NULL);
-	fp = fopen (file, "w");
+	file = g_build_filename (user_registry_dir.dirname, "user.applications", NULL);
+	fp = g_fopen (file, "w");
 
 	if ( ! fp) {
 		g_warning ("Cannot open '%s' for writing", file);

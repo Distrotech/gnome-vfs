@@ -1,3 +1,45 @@
+2005-04-20  Tor Lillqvist  <tml@novell.com>
+
+	Further Win32 work. Please note that also changes to the xdgmime
+	files are necessary for improved functionality on Win32. Those
+	have been submitted upstream. Hopefully they will get accepted,
+	and then propagate here.
+	
+	* imported/fnmatch/fnmatch.c (fnmatch_utf8): The fnmatch() lifted
+	from GTK+ returns TRUE on a match, while the "standard" fnmatch()
+	should return zero on a match. Thus we must negate the return
+	value.
+
+	* libgnomevfs/*.c: Use GDir functions instead of dirent functions,
+	for Win32 UTF-8 file name support. Use gstdio wrappers in more
+	places, for the same reason. Use g_build_filename() instead of
+	g_strconcat() when constructing file names. Use
+	G_SEARCHPATH_SEPARATOR instead of hardcoded ':'. Use g_file_test()
+	where applicable instead of stat() and/or access().
+
+	* libgnomevfs/gnome-vfs-utils.c (const guchar acceptable[]):
+	Improve comments: Put each char in a comment line above its
+	corresponding table entry.
+	(gnome_vfs_escape_path_string): Separate code for Windows. Turn
+	backslashes into forward slashes, and use a leading slash even if
+	the path is absolute and includes a drive letter. Don't escape the
+	colon after the drive letter. This matches the syntax used in
+	Inter Shortcut (.url) files.
+
+	Still have to investigate more what encoding to use for non-ASCII
+	characters for best interoperability with native Win32
+	applications. Explorer seems to use UTF-7 for file: URLs pointing
+	to files with non-ASCII names.
+
+	* modules/file-method.c (get_path_from_uri): Check also that there
+	actually is an initial slash in front of the drive letter and
+	colon.
+
+	* test/test-mime.c (is_uri): Check for absolute file path earlier
+	not to mistake drive letters for methods.
+	(main): Use g_path_is_absolute() instead of checking if first char
+	is a slash. Use g_build_filename() instead of g_strconcat().
+
 2005-04-19  Tor Lillqvist  <tml@novell.com>
 
 	* gnome-vfs-zip.in: New file, used to build gnome-vfs zipfile
@@ -9,10 +51,10 @@
 	* imported/fnmatch/fnmatch.c
 	* imported/fnmatch/fnmatch.h: Import the fnmatch() from GTK+ for
 	xdgmime's use on Win32.
-	
+
 	* libgnomevfs/Makefile.am: Use fnmatch() from ../imported/fnmatch
 	on Win32.
-	
+
 	* libgnomevfs/gnome-vfs-address.c
 	* libgnomevfs/gnome-vfs-resolve.c: Include <ws2tcpip.h> on Win32
 	for IPv6 support.
@@ -47,7 +89,7 @@
 	* libgnomevfs/gnome-vfs-resolve.c
 	(_gnome_vfs_result_from_gai_error): Conditionalize some errors not
 	present on Win32.
-	
+
 	* modules/file-method.c: Include g_access() from GLib HEAD if
 	built against GLib < 2.7.0.
 	(get_access_info): Use g_access() for better localized file name

@@ -37,8 +37,8 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
-#include <glib/gstrfuncs.h>
-#include <glib/gutils.h>
+#include <glib.h>
+#include <glib/gstdio.h>
 #include <gconf/gconf-client.h>
 #ifndef G_OS_WIN32
 #include <pwd.h>
@@ -114,13 +114,19 @@ typedef enum {
 } UnsafeCharacterSet;
 
 static const guchar acceptable[96] =
-{ /* X0   X1   X2   X3   X4   X5   X6   X7   X8   X9   XA   XB   XC   XD   XE   XF */
-    0x00,0x3F,0x20,0x20,0x20,0x00,0x2C,0x3F,0x3F,0x3F,0x3F,0x22,0x20,0x3F,0x3F,0x1C, /* 2X  !"#$%&'()*+,-./   */
-    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x38,0x20,0x20,0x2C,0x20,0x2C, /* 3X 0123456789:;<=>?   */
-    0x30,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, /* 4X @ABCDEFGHIJKLMNO   */
-    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x20,0x3F, /* 5X PQRSTUVWXYZ[\]^_   */
-    0x20,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, /* 6X `abcdefghijklmno   */
-    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x3F,0x20  /* 7X pqrstuvwxyz{|}~DEL */
+{ /*  X0   X1   X2   X3   X4   X5   X6   X7   X8   X9   XA   XB   XC   XD   XE   XF */
+  /*   !    "    #    $    %    &    '    (    )    *    +    ,         -    .    / */
+    0x00,0x3F,0x20,0x20,0x20,0x00,0x2C,0x3F,0x3F,0x3F,0x3F,0x22,0x20,0x3F,0x3F,0x1C, 
+  /*   0    1    2    3    4    5    6    7    8    9    :    ;    <    =    >    ? */
+    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x38,0x20,0x20,0x2C,0x20,0x2C, 
+  /*   @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O */
+    0x30,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, 
+  /*   P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _ */
+    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x20,0x3F, 
+  /*   `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o */
+    0x20,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, 
+  /*   p    q    r    s    t    u    v    w    x    y    z    {    |    }    ~  DEL */
+    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x3F,0x20  
 };
 
 enum {
@@ -276,7 +282,34 @@ gnome_vfs_escape_string (const gchar *string)
 gchar *
 gnome_vfs_escape_path_string (const gchar *path)
 {
+#ifdef G_OS_WIN32
+	gchar *path_copy = g_strdup (path);
+	gchar *p = path_copy;
+	gchar *retval;
+
+	/* Replace backslashes with slashes, that is what is used in
+	 * Explorer's "Internet Shortcuts" (.url files), so presumably
+	 * it's the standard.
+	 */
+	while (*p) {
+		if (*p == '\\')
+			*p = '/';
+		p++;
+	}
+	/* Paths starting with a drive letter get an extra leading slash */
+	if (g_ascii_isalpha (path_copy[0]) && path_copy[1] == ':') {
+		gchar *escaped_rest = gnome_vfs_escape_string_internal (path_copy+2, UNSAFE_PATH);
+		path_copy[2] = '\0';
+		retval = g_strconcat ("/", path_copy, escaped_rest, NULL);
+		g_free (escaped_rest);
+	} else
+		retval = gnome_vfs_escape_string_internal (path_copy, UNSAFE_PATH);
+	g_free (path_copy);
+
+	return retval;
+#else
 	return gnome_vfs_escape_string_internal (path, UNSAFE_PATH);
+#endif
 }
 
 /**
@@ -745,7 +778,9 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 
 /**
  * gnome_vfs_get_uri_from_local_path:
- * @local_full_path: a full local filesystem path (i.e. not relative)
+ * @local_full_path: a full local filesystem path (i.e. not relative). 
+ *                   On Windows this should be in the UTF-8 encoding, and
+ *		     can start with a drive letter, but doesn't have to.
  * 
  * Returns a file:/// URI for the local path @local_full_path.
  *
@@ -764,6 +799,7 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 	g_return_val_if_fail (g_path_is_absolute (local_full_path), NULL);
 
 	escaped_path = gnome_vfs_escape_path_string (local_full_path);
+
 	result = g_strconcat ("file://", escaped_path, NULL);
 	g_free (escaped_path);
 	return result;
@@ -888,10 +924,14 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 		gnome_var = GNOME_VFS_PREFIX;
 	}
 
-	paths = g_strsplit (gnome_var, ":", 0); 
+	paths = g_strsplit (gnome_var, G_SEARCHPATH_SEPARATOR_S, 0); 
 
 	for (temp_paths = paths; *temp_paths != NULL; temp_paths++) {
-		full_filename = g_strconcat (*temp_paths, "/share/pixmaps/", relative_filename, NULL);
+		full_filename = g_build_filename (*temp_paths,
+						  "share",
+						  "pixmaps",
+						  relative_filename,
+						  NULL);
 		if (g_file_test (full_filename, G_FILE_TEST_EXISTS)) {
 			g_strfreev (paths);
 			return full_filename;
@@ -916,20 +956,13 @@ strdup_to (const char *string, const char *end)
 static gboolean
 is_executable_file (const char *path)
 {
-	struct stat stat_buffer;
-
-	/* Check that it exists. */
-	if (stat (path, &stat_buffer) != 0) {
-		return FALSE;
-	}
-
-	/* Check that it is a file. */
-	if (!S_ISREG (stat_buffer.st_mode)) {
+	/* Check that it exists and is regular. */
+	if (!g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
 		return FALSE;
 	}
 
 	/* Check that it's executable. */
-	if (access (path, X_OK) != 0) {
+	if (!g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)) {
 		return FALSE;
 	}
 
@@ -947,7 +980,7 @@ executable_in_path (const char *executable_name)
 
 	for (piece_start = path_list; ; piece_start = piece_end + 1) {
 		/* Find the next piece of PATH. */
-		piece_end = strchr (piece_start, ':');
+		piece_end = strchr (piece_start, G_SEARCHPATH_SEPARATOR);
 		piece = strdup_to (piece_start, piece_end);
 		g_strstrip (piece);
 		
@@ -955,7 +988,12 @@ executable_in_path (const char *executable_name)
 			is_good = FALSE;
 		} else {
 			/* Try out this path with the executable. */
-			raw_path = g_strconcat (piece, "/", executable_name, NULL);
+			raw_path = g_build_filename (piece, executable_name, NULL);
+			/* XXX Can this be necessary? Surely PATH
+			 * isn't supposed to contain actual tildes,
+			 * but the shell expands any tilde one tries
+			 * to add to PATH?
+			 */ 
 			expanded_path = gnome_vfs_expand_initial_tilde (raw_path);
 			g_free (raw_path);
 			

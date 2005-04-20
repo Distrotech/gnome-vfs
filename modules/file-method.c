@@ -227,7 +227,7 @@ get_path_from_uri (GnomeVFSURI const *uri)
 		return NULL;
 	}
 #ifdef G_OS_WIN32
-	if (g_ascii_isalpha (path[1]) && path[2] == ':') {
+	if (path[0] == '/' && g_ascii_isalpha (path[1]) && path[2] == ':') {
 		gchar *retval = g_strdup (path + 1);
 		g_free (path);
 		return retval;

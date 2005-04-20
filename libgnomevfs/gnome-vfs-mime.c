@@ -36,10 +36,11 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
-#include <dirent.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
+#include <glib/gstdio.h>
 
 #define DEFAULT_DATE_TRACKER_INTERVAL	5	/* in milliseconds */
 
@@ -351,7 +352,7 @@ gnome_vfs_get_file_mime_type_internal (const char *path, const struct stat *opti
 	result = NULL;
 
 	/* get the stat info if needed */
-	if (optional_stat_info == NULL && stat (path, &tmp_stat_buffer) == 0) {
+	if (optional_stat_info == NULL && g_stat (path, &tmp_stat_buffer) == 0) {
 		optional_stat_info = &tmp_stat_buffer;
 	}
 
@@ -384,7 +385,7 @@ gnome_vfs_get_file_mime_type_internal (const char *path, const struct stat *opti
 	}
 	
 	if (!suffix_only) {
-		file = fopen(path, "r");
+		file = g_fopen(path, "r");
 	}
 
 	if (file != NULL) {
@@ -643,7 +644,7 @@ static void
 file_date_record_update_mtime (FileDateRecord *record)
 {
 	struct stat s;
-	record->mtime = (stat (record->file_path, &s) != -1) ? s.st_mtime : 0;
+	record->mtime = (g_stat (record->file_path, &s) != -1) ? s.st_mtime : 0;
 }
 
 static FileDateRecord *
@@ -728,7 +729,7 @@ check_and_update_one (gpointer key, gpointer value, gpointer user_data)
 	record = (FileDateRecord *)value;
 	return_has_changed = (gboolean *)user_data;
 
-	if (stat (record->file_path, &s) != -1) {
+	if (g_stat (record->file_path, &s) != -1) {
 		if (s.st_mtime != record->mtime) {
 			record->mtime = s.st_mtime;
 			*return_has_changed = TRUE;

@@ -1,7 +1,6 @@
 #include <config.h>
 
 #include "gnome-vfs-module-shared.h"
-#include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>

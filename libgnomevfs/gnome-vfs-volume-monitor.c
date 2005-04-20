@@ -30,6 +30,8 @@
 #include "gnome-vfs-volume-monitor-private.h"
 #include "gnome-vfs-volume-monitor-client.h"
 
+#include <glib/gstdio.h>
+
 static void gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *klass);
 static void gnome_vfs_volume_monitor_init       (GnomeVFSVolumeMonitor      *volume_monitor);
 static void gnome_vfs_volume_monitor_finalize   (GObject                    *object);
@@ -867,7 +869,7 @@ gnome_vfs_volume_monitor_get_volume_for_path  (GnomeVFSVolumeMonitor *volume_mon
 	GList *l;
 	GnomeVFSVolume *volume, *res;
 
-	if (stat (path, &statbuf) != 0)
+	if (g_stat (path, &statbuf) != 0)
 		return NULL;
 
 	device = statbuf.st_dev;

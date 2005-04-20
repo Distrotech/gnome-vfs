@@ -38,7 +38,6 @@
 #include <libgnomevfs/gnome-vfs-i18n.h>
 
 #include <libxml/xmlreader.h>
-#include <dirent.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -176,10 +175,10 @@ reload_if_needed (void)
 	if (gnome_mime_dir.force_reload || user_mime_dir.force_reload)
 		need_reload = TRUE;
 	else if (now > last_checked + 5) {
-		if (stat (gnome_mime_dir.dirname, &s) != -1 &&
+		if (g_stat (gnome_mime_dir.dirname, &s) != -1 &&
 		    s.st_mtime != gnome_mime_dir.s.st_mtime)
 			need_reload = TRUE;
-		else if (stat (user_mime_dir.dirname, &s) != -1 &&
+		else if (g_stat (user_mime_dir.dirname, &s) != -1 &&
 			 s.st_mtime != user_mime_dir.s.st_mtime)
 			need_reload = TRUE;
 	}

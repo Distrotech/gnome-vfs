@@ -28,6 +28,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info-cache.h"
 #include "gnome-vfs-mime-info.h"
@@ -99,7 +100,7 @@ gnome_vfs_mime_info_cache_dir_out_of_date (GnomeVFSMimeInfoCacheDir *dir, const 
 
 	filename = g_build_filename (dir->path, cache_file, NULL);
 
-	if (stat (filename, &buf) < 0) {
+	if (g_stat (filename, &buf) < 0) {
 		g_free (filename);
 		return TRUE;
 	}
@@ -157,7 +158,7 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 
 	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
 
-	if (stat (filename, &buf) < 0)
+	if (g_stat (filename, &buf) < 0)
 		goto error;
 
 	if (dir->mime_info_cache_timestamp > 0) 
@@ -247,7 +248,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	filename = g_build_filename (dir->path, "defaults.list", NULL);
 
-	if (stat (filename, &buf) < 0)
+	if (g_stat (filename, &buf) < 0)
 		goto error;
 
 	if (dir->defaults_list_timestamp > 0) 

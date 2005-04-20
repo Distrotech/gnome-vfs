@@ -109,7 +109,7 @@ install_path_list (const gchar *user_path_list)
 	while (1) {
 		gchar *elem;
 
-		p = strchr (oldp, ':');
+		p = strchr (oldp, G_SEARCHPATH_SEPARATOR);
 
 		if (p == NULL) {
 			if (*oldp != '\0') {
