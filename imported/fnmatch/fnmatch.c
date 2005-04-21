@@ -235,9 +235,16 @@ fnmatch_utf8 (const char *pattern,
 	      int         flags)
 {
   /* The xdgmime code always calls us with flags==0, make sure it
-   * stays like that, since this stripped-down fnmatch() doesn't
-   * handle any of the flags.
+   * stays like that, since GTK+'s stripped-down fnmatch() doesn't
+   * handle any of the flags. Or actually, as it says above, it acts
+   * as if FNM_FILE_NAME was always set, so let's hope that doesn't
+   * matter.
    */
   g_assert (flags == 0);
-  return gtk_fnmatch_intern (pattern, string, TRUE, FALSE);
+  /* GTK+'s _gtk_fnmatch() returns TRUE on match, FALSE on
+   * non-match. The real fnmatch() returns 0 on match, non-zero on
+   * non-match. Here we want to work like the real fnmatch(), thus the
+   * NOT operator.
+   */
+  return !gtk_fnmatch_intern (pattern, string, TRUE, FALSE);
 }
