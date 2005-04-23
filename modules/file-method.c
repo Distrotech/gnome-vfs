@@ -730,7 +730,6 @@ get_mime_type (GnomeVFSFileInfo *info,
 }
 
 #ifndef G_OS_WIN32
-
 static gchar *
 read_link (const gchar *full_name)
 {
@@ -756,7 +755,6 @@ read_link (const gchar *full_name)
 		buffer = g_realloc (buffer, size);
 	}
 }
-
 #endif
 
 static void
@@ -775,9 +773,16 @@ get_access_info (GnomeVFSFileInfo *file_info,
              file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
      }
 
-     if (g_file_test (full_name, G_FILE_TEST_IS_EXECUTABLE) == 0) {
+#ifdef G_OS_WIN32
+     if (g_file_test (full_name, G_FILE_TEST_IS_EXECUTABLE)) {
              file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
      }
+#else 
+     if (g_access (full_name, X_OK) == 0) {
+             file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+     }
+#endif 
+
      file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACCESS;
 }
 

@@ -1,3 +1,10 @@
+2005-04-23  Christian Kellner <gicmo@gnome.org>
+
+	* modules/file-method.c: (get_access_info): Switch back to call 
+	g_access on non win32 platforms. There is no need to call this on !win32.
+	I also removed the equals 0 check from the g_file_test "if case". This
+	totally broke gnome-vfs-xfer().
+
 2005-04-20  Tor Lillqvist  <tml@novell.com>
 
 	Further Win32 work. Please note that also changes to the xdgmime
