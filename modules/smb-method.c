@@ -801,10 +801,8 @@ initial_authentication (SmbAuthContext *actx)
                         }
                 }
                 
-                /* Server is in cache already, no need to get password */
+                /* Server is in cache already */
                 if (server != NULL) {
-        		g_free (actx->use_password);
-        		actx->use_password = g_strdup ("");
         		DEBUG_SMB(("[auth] Using connection for '%s@%s' from our server cache\n", actx->use_user, actx->use_domain));
                         found_user = TRUE;
         	}

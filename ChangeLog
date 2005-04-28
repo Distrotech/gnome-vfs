@@ -1,3 +1,10 @@
+2005-04-28  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/smb-method.c:
+	Fix the issue of two authentication dialogs when user selects
+	a second folder. Fixes bugzilla bug #167082.
+	Patch by Narayana Pattipati  <narayana.pattipati@wipro.com>
+	
 2005-04-23  Christian Kellner <gicmo@gnome.org>
 
 	* modules/file-method.c: (get_access_info): Switch back to call 
