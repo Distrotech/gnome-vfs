@@ -448,6 +448,14 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 
 	if (!VFS_METHOD_HAS_FUNC(a->method, set_file_info))
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		
+	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
+		
+		/* TODO:(Win32) Add check for "\", too? */
+		if (g_strrstr (info->name, "/") != NULL) {
+			return GNOME_VFS_ERROR_BAD_PARAMETERS;
+		}
+	}
 
 	return a->method->set_file_info (a->method, a, info, mask, context);
 }

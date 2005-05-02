@@ -2201,11 +2201,6 @@ do_set_file_info (GnomeVFSMethod *method,
 		g_free (encoded_dir);
 		g_assert (dir != NULL);
 
-		/* FIXME bugzilla.eazel.com 645: This needs to return
-		 * an error for incoming names with "/" characters in
-		 * them, instead of moving the file.
-		 */
-
 		new_name = g_build_filename (dir, info->name, NULL);
 
 		result = rename_helper (full_name, new_name, FALSE, context);

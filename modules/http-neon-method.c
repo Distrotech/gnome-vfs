@@ -3191,10 +3191,6 @@ do_set_file_info (GnomeVFSMethod 		*method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
-	/* this wouldn't rename but move the file */
-	if (g_strrstr (info->name, "/"))
-		return GNOME_VFS_ERROR_BAD_PARAMETERS;
-
 	parent_uri = gnome_vfs_uri_get_parent (uri);
 	
 	if (parent_uri == NULL) {

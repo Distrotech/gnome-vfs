@@ -1,3 +1,13 @@
+2005-05-02  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_set_file_info_cancellable): Check for "/" in 
+	info->name, since that would move the file instead of renaming
+	it.
+	* modules/file-method.c: (do_set_file_info): Remove the FIXME.
+	* modules/http-neon-method.c: (do_set_file_info): Remove the check
+	for "/" since this is done globally now.
+
 2005-04-28  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/smb-method.c:
