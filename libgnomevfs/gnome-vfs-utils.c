@@ -37,6 +37,7 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
+#include "gnome-vfs-method.h"
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <gconf/gconf-client.h>
@@ -49,16 +50,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-
-#if HAVE_SYS_STATVFS_H
-#include <sys/statvfs.h>
-#endif
-
-#if HAVE_SYS_VFS_H
-#include <sys/vfs.h>
-#elif HAVE_SYS_MOUNT_H
-#include <sys/mount.h>
-#endif
 
 #define KILOBYTE_FACTOR 1024.0
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
@@ -807,104 +798,23 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 
 /**
  * gnome_vfs_get_volume_free_space:
- * @vfs_uri:
- * @size:
+ * @vfs_uri: 
+ * @size: 
  * 
- * Stores in @size the amount of free space on a volume.
- * This only works for URIs with the file: scheme.
+ * Stores the amount of free space in bytes on @vfs-uri's
+ * volume in @size.
  *
- * Returns: GNOME_VFS_OK on success, otherwise an error code
+ * Returns: GNOME_VFS_OK on success, otherwise an
+ *          GNOME_VFS_ERROR_* code
  */
 GnomeVFSResult
 gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, 
 				 GnomeVFSFileSize  *size)
 {	
-#ifndef G_OS_WIN32
-	GnomeVFSFileSize free_blocks, block_size;
-       	int statfs_result;
-	const char *path, *scheme;
-	char *unescaped_path;
-
-#if HAVE_STATVFS
-	struct statvfs statfs_buffer;
-#else
-	struct statfs statfs_buffer;
-#endif
-
- 	*size = 0;
-
-	path = gnome_vfs_uri_get_path (vfs_uri);
-	if (path == NULL) {
+	if (!VFS_METHOD_HAS_FUNC(vfs_uri->method, get_volume_free_space))
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
-	}
 
-	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
-	
-        /* We only handle the file scheme for now */
-	if (g_ascii_strcasecmp (scheme, "file") != 0 || !_gnome_vfs_istr_has_prefix (path, "/")) {
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
-	}
-
-	unescaped_path = gnome_vfs_unescape_string (path, G_DIR_SEPARATOR_S);
-	
-#if HAVE_STATVFS
-	statfs_result = statvfs (unescaped_path, &statfs_buffer);
-	block_size = statfs_buffer.f_frsize; 
-#else
-#if STATFS_ARGS == 2
-	statfs_result = statfs (unescaped_path, &statfs_buffer);
-#elif STATFS_ARGS == 4
-	statfs_result = statfs (unescaped_path, &statfs_buffer,
-				sizeof (statfs_buffer), 0);
-#endif
-	block_size = statfs_buffer.f_bsize; 
-#endif  
-
-	if (statfs_result != 0) {
-		g_free (unescaped_path);
-		return gnome_vfs_result_from_errno ();
-	}
-
-
-/* CF: I assume ncpfs is linux specific, if you are on a non-linux platform
- * where ncpfs is available, please file a bug about it on bugzilla.gnome.org
- * (2004-03-08)
- */
-#if defined(__linux__)
-	/* ncpfs does not know the amount of available and free space */
-	if (statfs_buffer.f_bavail == 0 && statfs_buffer.f_bfree == 0) {
-		/* statvfs does not contain an f_type field, we try again
-		 * with statfs.
-		 */
-		struct statfs statfs_buffer2;
-		statfs_result = statfs (unescaped_path, &statfs_buffer2);
-		g_free (unescaped_path);
-
-		if (statfs_result != 0) {
-			return gnome_vfs_result_from_errno ();
-		}
-		
-		/* linux/ncp_fs.h: NCP_SUPER_MAGIC == 0x564c */
-		if (statfs_buffer2.f_type == 0x564c)
-		{
-			return GNOME_VFS_ERROR_NOT_SUPPORTED;
-		}
-	} else {
-		/* everything is copacetic... free the unescaped path */
-		g_free (unescaped_path);
-	}
-#else 	
-	g_free (unescaped_path);
-#endif
-	free_blocks = statfs_buffer.f_bavail;
-
-	*size = block_size * free_blocks;
-	
-	return GNOME_VFS_OK;
-#else
-	g_warning ("Not implemented: gnome_vfs_get_volume_free_space()");
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
-#endif
+	return vfs_uri->method->get_volume_free_space (vfs_uri->method, vfs_uri, size);
 }
 
 char *

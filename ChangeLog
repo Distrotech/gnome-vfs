@@ -1,3 +1,14 @@
+2005-04-28  Alexander Brausewetter  <br@absb.de>
+
+	* libgnomevfs/gnome-vfs-method.h
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space)
+	* modules/file-method.c: (do_get_volume_free_space): Added module support
+	for gnome_vfs_get_volume_free_space.
+
+	Fixes bug #302202.
+ 
+	* doc/writing-modules.sgml: Updated documentation according to changes.
+ 
 2005-05-02  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:
