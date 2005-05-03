@@ -980,8 +980,8 @@ _gnome_vfs_pipe (int *fds)
 		goto out2;
 	}
 
-	fds[0] = _open_osfhandle (socket1, O_WRONLY);
-	fds[1] = _open_osfhandle (socket2, O_WRONLY);
+	fds[0] = socket1;
+	fds[1] = socket2;
 
 	closesocket (temp);
 

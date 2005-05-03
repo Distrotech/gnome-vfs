@@ -450,9 +450,11 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
-		
-		/* TODO:(Win32) Add check for "\", too? */
-		if (g_strrstr (info->name, "/") != NULL) {
+		if (strchr (info->name, '/') != NULL
+#ifdef G_OS_WIN32
+		    || strchr (info->name, '\\') != NULL
+#endif
+		    ) {
 			return GNOME_VFS_ERROR_BAD_PARAMETERS;
 		}
 	}

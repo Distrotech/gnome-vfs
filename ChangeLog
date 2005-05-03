@@ -1,3 +1,19 @@
+2005-05-03  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c
+	(gnome_vfs_set_file_info_cancellable): Use strchr() instead of
+	g_strrstr(), we are looking for just one byte anywhere in the
+	string. Or am I confused and there really is some reason to use
+	g_strrstr()? Anyway, on Win32 check for backslash, too.
+
+	* libgnomevfs/gnome-vfs-job.c (execute_create_as_channel): Use
+	g_io_channel_win32_new_socket() on the pipe fds on Win32 here,
+	too.
+
+	* libgnomevfs/gnome-vfs-private-utils.c (_gnome_vfs_pipe): On
+	Win32, return the actual sockets, not sockets encapsulated as C
+	library file descriptors. 
+
 2005-04-28  Alexander Brausewetter  <br@absb.de>
 
 	* libgnomevfs/gnome-vfs-method.h

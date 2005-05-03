@@ -1180,8 +1180,13 @@ execute_create_as_channel (GnomeVFSJob *job)
 		return;
 	}
 	
+#ifndef G_OS_WIN32
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);
+#else
+	channel_in = g_io_channel_win32_new_socket (pipefd[0]);
+	channel_out = g_io_channel_win32_new_socket (pipefd[1]);
+#endif
 
 	notify_result->specifics.create_as_channel.channel = channel_out;
 
