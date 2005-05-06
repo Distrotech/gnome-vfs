@@ -1,3 +1,11 @@
+2005-05-06  Christian Kellner <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (init_progress):
+	Initialize progress_info->duplicate_count to 0.
+
+	Patch from Torsten Schoenfeld <kaffeetisch@gmx.de>.
+	Fixes bug #169626.
+
 2005-05-06  Christian Kellner  <gicmo@gnome.org>
 
 	* doc/gnome-vfs-2.0-sections.txt:

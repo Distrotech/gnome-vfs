@@ -101,6 +101,7 @@ init_progress (GnomeVFSProgressCallbackState *progress_state,
 	progress_info->bytes_copied = 0;
 	progress_info->total_bytes_copied = 0;
 	progress_info->duplicate_name = NULL;
+	progress_info->duplicate_count = 0;
 	progress_info->top_level_item = FALSE;
 
 	progress_state->progress_info = progress_info;
