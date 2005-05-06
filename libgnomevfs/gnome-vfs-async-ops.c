@@ -443,12 +443,54 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 				   GnomeVFSAsyncOpenAsChannelCallback callback,
 				   gpointer callback_data)
 {
+	GnomeVFSURI *uri;
+	g_return_if_fail (text_uri != NULL);
+	
+	uri = gnome_vfs_uri_new (text_uri);
+	gnome_vfs_async_create_uri_as_channel (handle_return, uri, open_mode, 
+					       exclusive, perm, priority, 
+					       callback, callback_data);
+	if (uri != NULL) {
+		gnome_vfs_uri_unref (uri);
+	}
+}
+
+
+/**
+ * gnome_vfs_async_create_uri_as_channel:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @uri: #GnomeVFSURI to open as a #GIOChannel, creating it as necessary
+ * @open_mode: open for reading, writing, random, etc
+ * @exclusive: replace the file if it already exists
+ * @perm: standard POSIX-style permissions bitmask, permissions of created file
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ *
+ * Open @uri as a #GIOChannel, creating it as necessary. Once the channel has 
+ * been established @callback will be called with @callback_data, the result of the 
+ * operation, and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
+ * at @text_uri in @open_mode.
+ *
+ * Since: 2.12
+ **/
+void           gnome_vfs_async_create_uri_as_channel  (GnomeVFSAsyncHandle                  **handle_return,
+						       GnomeVFSURI                           *uri,
+						       GnomeVFSOpenMode                       open_mode,
+						       gboolean                               exclusive,
+						       guint                                  perm,
+						       int				      priority,
+						       GnomeVFSAsyncCreateAsChannelCallback   callback,
+						       gpointer                               callback_data)
+{
 	GnomeVFSJob *job;
 	GnomeVFSCreateAsChannelOp *create_as_channel_op;
 	GnomeVFSAsyncHandle *result;
 
 	g_return_if_fail (handle_return != NULL);
-	g_return_if_fail (text_uri != NULL);
+	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
 	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
 	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
@@ -457,7 +499,7 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 
 
 	create_as_channel_op = &job->op->specifics.create_as_channel;
-	create_as_channel_op->uri = gnome_vfs_uri_new (text_uri);
+	create_as_channel_op->uri = uri == NULL ? NULL : gnome_vfs_uri_ref (uri);
 	create_as_channel_op->open_mode = open_mode;
 	create_as_channel_op->exclusive = exclusive;
 	create_as_channel_op->perm = perm;
@@ -465,6 +507,7 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 	result = job->job_handle;
 	_gnome_vfs_job_go (job);
 }
+
 
 /**
  * gnome_vfs_async_close:

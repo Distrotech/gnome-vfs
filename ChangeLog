@@ -1,5 +1,16 @@
 2005-05-06  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	(gnome_vfs_async_create_as_channel),
+	(gnome_vfs_async_create_uri_as_channel):
+	Implement gnome_vfs_async_create_uri_as_channel and
+	use it in gnome_vfs_async_create_as_channel.
+
+	Patch from Christophe Fergeau <teuf@gnome.org>.
+	Fixes bug #138398.
+
+2005-05-06  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-job.c: (serve_channel_write),
 	(execute_create_as_channel): Call create internally
 	instead of open.
