@@ -913,7 +913,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 		io_result = g_io_channel_read_chars (channel_in, buffer, buffer_size,
 						     &bytes_read, NULL);
-
+                
 		if (io_result == G_IO_STATUS_AGAIN)
 			continue;
 		if (io_result != G_IO_STATUS_NORMAL || bytes_read == 0)
@@ -1149,10 +1149,12 @@ execute_create_as_channel (GnomeVFSJob *job)
 	if (create_as_channel_op->uri == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
 	} else {
-		result = gnome_vfs_open_uri_cancellable
+		result = gnome_vfs_create_uri_cancellable
 			(&handle,
 			 create_as_channel_op->uri,
 			 create_as_channel_op->open_mode,
+                         create_as_channel_op->exclusive,
+                         create_as_channel_op->perm,
 			 job->op->context);
 	}
 	

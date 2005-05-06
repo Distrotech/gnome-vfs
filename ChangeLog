@@ -1,4 +1,13 @@
-2005-05-06  Christian Kellner <gicmo@gnome.org>
+2005-05-06  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-job.c: (serve_channel_write),
+	(execute_create_as_channel): Call create internally
+	instead of open.
+	
+	Patch from Mikael Hallendal <micke@imendio.com>
+	Fixes bug #157261.
+
+2005-05-06  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (init_progress):
 	Initialize progress_info->duplicate_count to 0.
