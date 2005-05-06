@@ -321,11 +321,18 @@ typedef enum {
 	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3
 } GnomeVFSSetFileInfoMask;
 
-typedef struct {
+
+struct _GnomeVFSGetFileInfoResult {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 	GnomeVFSFileInfo *file_info;
-} GnomeVFSGetFileInfoResult;
+};
+
+typedef struct _GnomeVFSGetFileInfoResult GnomeVFSGetFileInfoResult;
+
+GType                      gnome_vfs_get_file_info_result_get_type (void);
+GnomeVFSGetFileInfoResult* gnome_vfs_get_file_info_result_dup  (GnomeVFSGetFileInfoResult *result);
+void                       gnome_vfs_get_file_info_result_free (GnomeVFSGetFileInfoResult *result);
 
 /**
  * GNOME_VFS_FILE_INFO_SYMLINK:

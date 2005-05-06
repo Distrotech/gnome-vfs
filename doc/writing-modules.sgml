@@ -267,7 +267,7 @@ void vfs_module_shutdown (GnomeVFSMethod *method);</programlisting>
 
       <para>A method can choose itself which functions to implement. However, it
       must at least provide a <type>GnomeVFSMethodOpenFunc</type> and
-      <type>GnomeVFSMethodIsLocalFunc</type> implementation.
+      <type>GnomeVFSMethodIsLocalFunc</type> implementation.</para>
       
 
       <programlisting role="c">

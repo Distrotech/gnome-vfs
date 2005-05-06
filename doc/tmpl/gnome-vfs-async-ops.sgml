@@ -442,3 +442,20 @@ POSIX-style file operations that run outside your main loop
 @callback_data: 
 
 
+<!-- ##### FUNCTION gnome_vfs_find_directory_result_dup ##### -->
+<para>
+
+</para>
+
+@result: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_find_directory_result_free ##### -->
+<para>
+
+</para>
+
+@result: 
+
+

@@ -1,3 +1,30 @@
+2005-05-06  Christian Kellner  <gicmo@gnome.org>
+
+	* doc/gnome-vfs-2.0-sections.txt:
+	* doc/tmpl/gnome-vfs-async-ops.sgml:
+	* doc/tmpl/gnome-vfs-file-info.sgml:
+	* doc/writing-modules.sgml:
+	Doc fixes and updates.
+	
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	(gnome_vfs_find_directory_result_get_type),
+	(gnome_vfs_find_directory_result_dup),
+	(gnome_vfs_find_directory_result_free):
+	Register GnomeVFSFindDirectoryResult as a boxed
+	type in the GType system.
+	
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	(gnome_vfs_get_file_info_result_get_type),
+	(gnome_vfs_get_file_info_result_dup),
+	(gnome_vfs_get_file_info_result_free):
+	Also register GnomeVFSGetFileInfoResult as a boxed 
+	type in the GType system.
+
+	Based on a patch from Murray Cumming <murrayc@murrayc.com>.
+	Fixes bug #139393.
+
 2005-05-03  Tor Lillqvist  <tml@novell.com>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c

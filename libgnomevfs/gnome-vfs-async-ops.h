@@ -266,14 +266,20 @@ typedef gint    (* GnomeVFSAsyncXferProgressCallback)
 						 GnomeVFSXferProgressInfo *info,
 						 gpointer data);
 
-typedef struct {
+struct _GnomeVFSFindDirectoryResult {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
 	/* Reserved to avoid future breaks in ABI compatibility */
 	void *reserved1;
 	void *reserved2;
-} GnomeVFSFindDirectoryResult;
+};
+
+typedef struct _GnomeVFSFindDirectoryResult GnomeVFSFindDirectoryResult;
+
+GType                        gnome_vfs_find_directory_result_get_type (void);
+GnomeVFSFindDirectoryResult* gnome_vfs_find_directory_result_dup      (GnomeVFSFindDirectoryResult* result);
+void                         gnome_vfs_find_directory_result_free     (GnomeVFSFindDirectoryResult* result);
 
 /**
  * GnomeVFSAsyncFindDirectoryCallback:

@@ -173,6 +173,8 @@ gnome_vfs_async_load_directory_uri
 gnome_vfs_async_xfer
 gnome_vfs_async_find_directory
 gnome_vfs_async_file_control
+gnome_vfs_find_directory_result_dup
+gnome_vfs_find_directory_result_free
 </SECTION>
 
 <SECTION>
@@ -393,6 +395,8 @@ gnome_vfs_file_info_list_ref
 gnome_vfs_file_info_list_unref
 gnome_vfs_file_info_list_copy
 gnome_vfs_file_info_list_free
+gnome_vfs_get_file_info_result_dup
+gnome_vfs_get_file_info_result_free
 </SECTION>
 
 <SECTION>

@@ -852,6 +852,74 @@ gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 	_gnome_vfs_job_go (job);
 }
 
+/* Register GnomeVFSFindDirectoryResult in the GType system */
+GType
+gnome_vfs_find_directory_result_get_type (void)
+{
+	static GType our_type = 0;
+
+	if (our_type == 0) {
+		our_type = g_boxed_type_register_static ("GnomeVfsFindDirectoryResult",
+			(GBoxedCopyFunc) gnome_vfs_find_directory_result_dup,
+			(GBoxedFreeFunc) gnome_vfs_find_directory_result_free);
+      
+	}
+		
+	return our_type;
+}
+
+/**
+ * gnome_vfs_find_directory_result_dup:
+ * @result: A #GnomeVFSFindDirectoryResult
+ *
+ * Duplicates @result.
+ *
+ * Note: The internal uri is not duplicated but its
+ * refcount is incremented.
+ * 
+ * Return value: A 1:1 copy of @result.
+ * 
+ * Since: 2.12
+ **/
+GnomeVFSFindDirectoryResult*
+gnome_vfs_find_directory_result_dup (GnomeVFSFindDirectoryResult *result)
+{
+	GnomeVFSFindDirectoryResult *copy;
+	
+	g_return_val_if_fail (result != NULL, NULL);
+
+	copy = g_new0 (GnomeVFSFindDirectoryResult, 1);
+
+	/* "Copy" and ref the objects. */
+	copy->uri = result->uri;
+	gnome_vfs_uri_ref (result->uri);
+
+	copy->result = result->result;
+
+	return copy;
+}
+
+/**
+ * gnome_vfs_find_directory_result_free:
+ * @result: A #GnomeVFSFindDirectoryResult.
+ *
+ * Unrefs the inner uri object and frees the memory 
+ * allocated for @result.
+ *
+ * Since: 2.12
+ **/
+void
+gnome_vfs_find_directory_result_free (GnomeVFSFindDirectoryResult* result)
+{
+	g_return_if_fail (result != NULL);
+
+	gnome_vfs_uri_unref (result->uri);
+	result->uri = NULL;
+
+	g_free (result);
+}
+
+
 static GnomeVFSAsyncHandle *
 async_load_directory (GnomeVFSURI *uri,
 		      GnomeVFSFileInfoOptions options,

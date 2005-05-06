@@ -341,3 +341,20 @@ stores information about files, GnomeVFS equivalent of stat
 @list: 
 
 
+<!-- ##### FUNCTION gnome_vfs_get_file_info_result_dup ##### -->
+<para>
+
+</para>
+
+@result: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_get_file_info_result_free ##### -->
+<para>
+
+</para>
+
+@result: 
+
+

@@ -362,3 +362,76 @@ gnome_vfs_file_info_list_free (GList *list)
 {
 	g_list_free (gnome_vfs_file_info_list_unref (list));
 }
+
+
+/* Register GnomeVfsGetFileInfoResult into the GType system  */
+GType
+gnome_vfs_get_file_info_result_get_type (void)
+{
+	static GType our_type = 0;
+
+	if (our_type == 0) {
+	    our_type = g_boxed_type_register_static ("GnomeVfsGetFileInfoResult",
+	        (GBoxedCopyFunc) gnome_vfs_get_file_info_result_dup,
+	        (GBoxedFreeFunc) gnome_vfs_get_file_info_result_free);
+	}
+	    
+	return our_type;
+}
+/**
+ * gnome_vfs_get_file_info_result_dup:
+ * @result: A #GnomeVFSGetFileInfoResult.
+ * 
+ * Duplicate @result.
+ *
+ * Note: The internal uri and file_ info objects are not duplicated
+ * but their refcount is incremented by 1.
+ *
+ * Return value: A duplicated version of @result.
+ *
+ * Since: 2.12
+ */
+GnomeVFSGetFileInfoResult*
+gnome_vfs_get_file_info_result_dup (GnomeVFSGetFileInfoResult *result)
+{
+	GnomeVFSGetFileInfoResult* copy;
+	
+	g_return_val_if_fail (result != NULL, NULL);
+
+	copy = g_new0 (GnomeVFSGetFileInfoResult, 1);
+
+	/* "Copy" and ref the objects: */
+	copy->uri = result->uri;
+	gnome_vfs_uri_ref (copy->uri);
+
+	copy->result = result->result;
+
+	copy->file_info = result->file_info;
+	gnome_vfs_file_info_ref (copy->file_info);
+
+	return copy;
+}
+
+/**
+ * gnome_vfs_get_file_info_result_free:
+ * @result: A #GnomeVFSGetFileInfoResult.
+ *
+ * Unrefs the internal uri and file_info objects and frees the
+ * memory  allocated for @result.
+ * 
+ * Since: 2.12
+ **/
+void
+gnome_vfs_get_file_info_result_free (GnomeVFSGetFileInfoResult *result)
+{
+	g_return_if_fail (result != NULL);
+ 
+	gnome_vfs_uri_unref (result->uri);
+	result->uri = NULL;
+
+	gnome_vfs_file_info_unref (result->file_info);
+	result->file_info = NULL;
+
+	g_free (result);
+}
+
