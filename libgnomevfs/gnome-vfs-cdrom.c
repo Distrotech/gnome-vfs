@@ -87,7 +87,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	}
 
 	return type;
-#elif defined(HAVE_SYS_MNTCTL_H) || defined(__APPLE__)
+#elif defined(HAVE_SYS_MNTCTL_H)
 	return CDS_NO_INFO;
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
 	struct ioc_toc_header header;
@@ -142,7 +142,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 
 #endif /* defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)*/
 	return type;
-#else
+#elif defined(__linux__)
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);
 	if (*fd  < 0) {
 		return -1;
@@ -153,7 +153,9 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 		return -1;
 	}
 	return ioctl (*fd, CDROM_DISC_STATUS, CDSL_CURRENT);
-#endif
+#else /* defined(__linux__) */
+	return CDS_NO_INFO;
+#endif /* defined(__linux__) */
 }
 
 #ifdef __linux__
