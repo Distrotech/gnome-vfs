@@ -165,7 +165,6 @@ noinst_HEADERS =				\
 	gnome-vfs-filesystem-type.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-hal-mounts.h			\
-	gnome-vfs-i18n.h			\
 	gnome-vfs-iso9660.h			\
 	gnome-vfs-job-queue.h			\
 	gnome-vfs-job-slave.h			\

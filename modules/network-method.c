@@ -31,13 +31,14 @@
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-directory.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-volume-monitor.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-dns-sd.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
+
+#include <glib/gi18n-lib.h>
 
 #define PATH_GCONF_GNOME_VFS_SMB "/system/smb"
 #define PATH_GCONF_GNOME_VFS_SMB_WORKGROUP "/system/smb/workgroup"

@@ -26,12 +26,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #ifndef G_OS_WIN32
 #include <pthread.h>
 #endif
-#include <libbonobo.h>
+#include <bonobo/bonobo-exception.h>
+#include <bonobo/bonobo-object.h>
 #include <gconf/gconf-client.h>
-#include "gnome-vfs-i18n.h"
 #include "gnome-vfs-volume-monitor-private.h"
 #include "gnome-vfs-volume.h"
 #include "gnome-vfs-utils.h"

@@ -24,8 +24,8 @@
 #include <config.h>
 #include "gnome-vfs-result.h"
 
-#include "gnome-vfs-i18n.h"
 #include <glib/gtypes.h>
+#include <glib/gi18n-lib.h>
 #include <errno.h>
 #ifndef G_OS_WIN32
 #include <netdb.h>

@@ -29,7 +29,6 @@
 
 #include "gnome-vfs-configuration.h"
 #include "gnome-vfs-client.h"
-#include "gnome-vfs-i18n.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
@@ -44,6 +43,7 @@
 #include <bonobo/bonobo-main.h>
 #include <glib/gmessages.h>
 #include <glib/gfileutils.h>
+#include <glib/gi18n-lib.h>
 #include <glib/gtypes.h>
 #include <glib/gstdio.h>
 #include <libgnomevfs/gnome-vfs-job-slave.h>

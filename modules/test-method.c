@@ -36,10 +36,10 @@
 
 #include <config.h>
 
+#include <glib/gi18n-lib.h>
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>

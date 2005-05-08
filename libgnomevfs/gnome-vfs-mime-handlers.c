@@ -32,11 +32,11 @@
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-utils.h"
-#include "gnome-vfs-i18n.h"
 #include <bonobo-activation/bonobo-activation-activate.h>
 #include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>
+#include <glib/gi18n-lib.h>
 
 #define GCONF_DEFAULT_VIEWER_EXEC_PATH   "/desktop/gnome/applications/component_viewer/exec"
 

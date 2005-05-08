@@ -35,7 +35,7 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
 #include "xdgmime.h"
-#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <glib/gi18n-lib.h>
 
 #include <libxml/xmlreader.h>
 #include <stdio.h>

@@ -41,12 +41,13 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module-callback-module-api.h>
 #include <libgnomevfs/gnome-vfs-standard-callbacks.h>
+
+#include <glib/gi18n-lib.h>
 
 #include <libsmbclient.h>
 

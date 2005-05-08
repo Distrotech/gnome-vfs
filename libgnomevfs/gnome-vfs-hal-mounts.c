@@ -34,8 +34,8 @@
 #include <unistd.h>
 
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 
 #include <libhal.h>
 #include <libhal-storage.h>

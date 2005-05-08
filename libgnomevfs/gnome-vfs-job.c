@@ -37,9 +37,9 @@ System (version for POSIX threads).
 #include <errno.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
+#include <glib/gi18n-lib.h>
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
 #include <libgnomevfs/gnome-vfs-context.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-backend.h>
 #include <string.h>
 #include <unistd.h>

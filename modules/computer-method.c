@@ -27,12 +27,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-volume-monitor.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
+
+#include <glib/gi18n-lib.h>
 
 typedef enum {
 	COMPUTER_HOME_LINK,

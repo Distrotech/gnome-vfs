@@ -38,12 +38,13 @@
 
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-directory.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-dns-sd.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
+
+#include <glib/gi18n-lib.h>
 
 #define BROWSE_TIMEOUT_MSEC 5000
 #define RESOLVE_TIMEOUT_MSEC 5000

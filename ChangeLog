@@ -1,3 +1,34 @@
+2005-05-08  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-i18n.h: removed.
+	* doc/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-cdrom.c:
+	* libgnomevfs/gnome-vfs-configuration.c:
+	* libgnomevfs/gnome-vfs-filesystem-type.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-job.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-parse-ls.c:
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* modules/computer-method.c:
+	* modules/dns-sd-method.c:
+	* modules/file-method.c:
+	* modules/network-method.c:
+	* modules/sftp-method.c:
+	* modules/smb-method.c:
+	* modules/test-method.c:
+	Port from gnome-vfs-i18n.h to gi18n-lib.h. 
+
+	Path from Christian Neumair  <chris@gnome-de.org>.
+	Should fix bug #168731.
+
+
 2005-05-07  Christian Neumair  <chris@gnome-de.org>
 
 	* configure.in: (BONOBO_REQUIRED): Require bonobo 2.3.1.

@@ -33,7 +33,7 @@
 #include <string.h>
 
 #include <glib.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <glib/gi18n-lib.h>
 
 #ifdef __linux__
 #include <linux/cdrom.h>

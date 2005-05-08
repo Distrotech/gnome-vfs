@@ -24,7 +24,7 @@
 #include <config.h>
 #include <string.h>
 #include <glib.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <glib/gi18n-lib.h>
 #include "gnome-vfs-filesystem-type.h"
 
 struct FSInfo {

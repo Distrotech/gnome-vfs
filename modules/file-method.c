@@ -28,7 +28,6 @@
 
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
@@ -39,6 +38,7 @@
 #include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #include <glib/gstdio.h>
 #ifndef G_OS_WIN32
 #include <dirent.h>

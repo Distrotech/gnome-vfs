@@ -51,7 +51,6 @@
 
 #include <config.h>
 
-#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-module.h>
@@ -66,6 +65,8 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <stdlib.h>
+
+#include <glib/gi18n-lib.h>
 
 #include "sftp.h"
 #include "pty-open.h"

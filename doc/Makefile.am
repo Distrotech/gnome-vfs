@@ -40,7 +40,6 @@ IGNORE_HFILES=					\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-daemon-method.h		\
 	gnome-vfs-handle-private.h		\
-	gnome-vfs-i18n.h			\
 	gnome-vfs-job-queue.h			\
 	gnome-vfs-job-slave.h			\
 	gnome-vfs-job.h				\

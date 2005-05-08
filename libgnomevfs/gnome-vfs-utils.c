@@ -32,13 +32,13 @@
 #endif
 #include "gnome-vfs-utils.h"
 
-#include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-method.h"
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #include <glib/gstdio.h>
 #include <gconf/gconf-client.h>
 #ifndef G_OS_WIN32

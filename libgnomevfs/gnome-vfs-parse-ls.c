@@ -28,7 +28,7 @@
 #include <config.h>
 #include "gnome-vfs-parse-ls.h"
 
-#include "gnome-vfs-i18n.h"
+#include <glib/gi18n-lib.h>
 #include <glib/gmem.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>

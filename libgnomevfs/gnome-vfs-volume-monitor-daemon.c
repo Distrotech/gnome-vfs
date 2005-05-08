@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-i18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume-monitor-private.h"
