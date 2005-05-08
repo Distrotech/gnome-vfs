@@ -625,7 +625,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		if (global_context != NULL) {
 #ifdef __linux__
 			if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) == 0) {
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__DragonFly__)
 			if (strcmp (drive->dev->device_path, global_context->drive->dev->device_path) == 0) {
 #endif
 				use_cache = TRUE;
@@ -715,7 +715,7 @@ do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 		if (global_context != NULL) {
 #ifdef __linux__
 				if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) != 0) {
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__DragonFly__)
 				if (strcmp (drive->dev->device_path, global_context->drive->dev->device_path) != 0) {
 #endif
 					/*	Clear old cache */

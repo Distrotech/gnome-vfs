@@ -268,7 +268,7 @@ mount_unmount_thread (void *arg)
 	}
 
 	if (info->should_eject) {
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__) || defined(__DragonFly__)
 	    	char *argv[5] = {
 		    	"cdcontrol",
 			"-f",

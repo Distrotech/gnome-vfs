@@ -1,5 +1,13 @@
 2005-05-08  Christian Kellner  <gicmo@gnome.org>
 
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread):
+	* modules/cdda-method.c:
+	Build fixes for DragonFly. Fixes bug #170530. 
+	Patch from Yonetani Tomokazu <qhwt+gnome@les.ath.cx>
+
+2005-05-08  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-i18n.h: removed.
 	* doc/Makefile.am:
 	* libgnomevfs/Makefile.am:
@@ -27,7 +35,6 @@
 
 	Path from Christian Neumair  <chris@gnome-de.org>.
 	Should fix bug #168731.
-
 
 2005-05-07  Christian Neumair  <chris@gnome-de.org>
 
