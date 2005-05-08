@@ -89,9 +89,9 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	return type;
 #elif defined(HAVE_SYS_MNTCTL_H) || defined(__APPLE__)
 	return CDS_NO_INFO;
-#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
+#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
 	struct ioc_toc_header header;
-#if defined(__FreeBSD__) || defined(__DragonFly__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)
 	struct ioc_read_toc_single_entry entry;
 #else
 	struct ioc_read_toc_entry entries;
@@ -113,7 +113,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	}
 
 	type = CDS_DATA_1;
-#if defined(__FreeBSD__) || defined(__DragonFly__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)
 	for (entry.track = header.starting_track;
 		entry.track <= header.ending_track;
 		entry.track++) {
@@ -126,7 +126,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 		}
 	}
 
-#else /* defined(__FreeBSD__) */
+#else /* defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)*/
 	entries.data_len = sizeof(entry);
 	entries.data = &entry;
 	for (i = header.starting_track; i <= header.ending_track; i++) {
@@ -140,7 +140,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 		}
 	}
 
-#endif /* defined(__FreeBSD__) */
+#endif /* defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)*/
 	return type;
 #else
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);

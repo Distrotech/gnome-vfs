@@ -122,6 +122,8 @@ VFS_CFLAGS="$warnCFLAGS $complCFLAGS"
 
 dnl semaphore functions are in librt.so on solaris
 AC_SEARCH_LIBS(sem_wait, rt)
+dnl and in libsem.so on systems that use libsem
+AC_SEARCH_LIBS(sem_wait, sem)
 
 dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T

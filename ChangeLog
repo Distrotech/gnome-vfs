@@ -1,5 +1,13 @@
 2005-05-08  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in: Check for sem_wait in -lsem
+	* libgnomevfs/gnome-vfs-cdrom.c: (_gnome_vfs_get_cdrom_type):
+	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread):
+	* modules/cdda-method.c:
+	Build fixes for GNU/k*BSD. Fixes bug #150568.
+	Patch from Robert Millan <rmh@debian.org>.
+
+2005-05-08  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread):
 	* modules/cdda-method.c:
