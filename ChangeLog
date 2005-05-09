@@ -1,3 +1,10 @@
+2005-05-09  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(_gnome_vfs_url_show_using_handler_with_env):
+	Properly expand "%s" occuring in arguments. 
+	Fixes bug #302992.
+
 2005-05-09  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory):

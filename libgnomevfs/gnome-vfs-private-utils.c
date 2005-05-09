@@ -587,12 +587,21 @@ _gnome_vfs_url_show_using_handler_with_env (const char  *url,
 
 	for (i = 0; i < argc; i++) {
 		char *arg;
+		char **strs;
 
-		if (strcmp (argv[i], "%s") != 0)
+		if (!strstr (argv[i], "%s"))
 			continue;
 
+		/* we can't simply printf the uri into argv[i], since the format
+		 * string might contain other specifiers (%d and friends) or multiple
+		 * references to the URI, which may result in crashes if expanded using
+		 * printf. */
 		arg = argv[i];
-		argv[i] = g_strdup (url);
+
+		strs = g_strsplit (argv[i], "%s", 0);
+		argv[i] = g_strjoinv (url, strs);
+		g_strfreev (strs);
+
 		g_free (arg);
 	}
 
