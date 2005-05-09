@@ -1682,28 +1682,36 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	gnome_vfs_directory_close (dest_directory_handle);
 	gnome_vfs_directory_close (source_directory_handle);
 
-	if (result == GNOME_VFS_OK) {
+	if (result == GNOME_VFS_OK) {			
 		GnomeVFSFileInfo *info;
-		info = gnome_vfs_file_info_new ();
+
+		if (target_dir_info && GNOME_VFS_FILE_INFO_SGID (target_dir_info)) {
+			info = gnome_vfs_file_info_dup (source_file_info);
+			info->gid = target_dir_info->gid;
+		} else {
+			/* No need to dup the file info in this case */
+			gnome_vfs_file_info_ref (source_file_info);
+			info = source_file_info;
+		}
+		
 		/* FIXME the modules should ignore setting of permissions if
 		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
 		 * for now, make sure permissions aren't set to 000
 		 */
-		gnome_vfs_file_info_copy (source_file_info, info);
-		if (target_dir_info && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
-			info->gid = target_dir_info->gid;
-		}
-		if ((source_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
+		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
+			
 			/* Call this separately from the time one, since one of them may fail,
 			   making the other not run. */
 			gnome_vfs_set_file_info_uri (target_dir_uri, info, 
-						     GNOME_VFS_SET_FILE_INFO_OWNER | GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
+						     GNOME_VFS_SET_FILE_INFO_OWNER | 
+						     GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
 		}
 		
 		/* Call this last so nothing else changes the times */
 		gnome_vfs_set_file_info_uri (target_dir_uri, info, GNOME_VFS_SET_FILE_INFO_TIME);
 		gnome_vfs_file_info_unref (info);
 	}
+	
 	if (target_dir_info) {
 		gnome_vfs_file_info_unref (target_dir_info);
 	}
