@@ -1,3 +1,9 @@
+2005-05-10  Christian Neumair  <chris@gnome-de.org>
+
+	* schemas/system_dns_sd.schemas.in:
+	Minor string fixes.
+	Fixes bug #149523.
+
 2005-05-09  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-private-utils.c:

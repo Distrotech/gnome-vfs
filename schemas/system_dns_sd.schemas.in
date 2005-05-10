@@ -19,9 +19,9 @@
       <type>string</type>
       <default></default>
       <locale name="C">
-        <short>Extra domains to look for dns-sd services in</short>
-        <long>Comma separated list of dns-sd domains that should be
-	visible in the network location.</long>
+        <short>Extra domains to look for DNS-SD services in</short>
+        <long>Comma separated list of DNS-SD domains that should be
+        visible in the "network:///" location.</long>
       </locale>
     </schema>
   </schemalist>
