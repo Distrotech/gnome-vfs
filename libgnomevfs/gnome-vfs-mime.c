@@ -193,14 +193,22 @@ const char *
 _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name, gboolean use_suffix)
 {
 	const char *result;
-	const char *zip_result;
+	const char *fn_result;
 
-	result = NULL;
+	result = fn_result = NULL;
+
+	/* Determine the mime type by filename as well, because
+	 * we need this for the subclassing check later
+	 */
+	if (file_name != NULL) {
+		fn_result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+	}
 
 	if (buffer != NULL) {
 		result = _gnome_vfs_read_mime_from_buffer (buffer);
-
+		
 		if (result != NULL && result != XDG_MIME_TYPE_UNKNOWN) {
+				
 			if ((strcmp (result, "application/x-ole-storage") == 0) ||
 			    (strcmp (result, "text/xml") == 0) ||
 			    (strcmp (result, "application/x-bzip") == 0) ||
@@ -210,19 +218,17 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				 * that extensions are more reliable than magic
 				 * typing. If the file has a suffix, then use 
 				 * the type from the suffix.
-		 		 *
-				 * FIXME bugzilla.gnome.org 46867:
-				 * Allow specific mime types to override 
-				 * magic detection
-				 */
-				
-				if (file_name != NULL) {
-					zip_result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
-					if (zip_result != NULL && zip_result != XDG_MIME_TYPE_UNKNOWN) {
-						return zip_result;
-					}
+		 		 */
+
+				if (fn_result != NULL && fn_result != XDG_MIME_TYPE_UNKNOWN) {
+					result = fn_result;
 				}
+				
+			} else if (fn_result && fn_result != XDG_MIME_TYPE_UNKNOWN &&
+				   xdg_mime_mime_type_subclass (fn_result, result)) {
+				result = fn_result;
 			}
+			
 			return result;
 		}
 		
@@ -231,12 +237,8 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				/* Text file -- treat extensions as a more 
 				 * accurate source of type information.
 				 */
-				if (file_name != NULL) {
-					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
-				}
-	
-				if ((result != NULL) && (result != XDG_MIME_TYPE_UNKNOWN)) {
-					return result;
+				if ((fn_result != NULL) && (fn_result != XDG_MIME_TYPE_UNKNOWN)) {
+					return fn_result;
 				}
 
 				/* Didn't find an extension match, assume plain text. */
@@ -249,10 +251,9 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 	}
 	
 	if (use_suffix &&
-	    (result == NULL || result == XDG_MIME_TYPE_UNKNOWN) &&
-	    file_name != NULL) {
+	    (result == NULL || result == XDG_MIME_TYPE_UNKNOWN)) {
 		/* No type recognized -- fall back on extensions. */
-		result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+		result = fn_result;
 	}
 	
 	if (result == NULL) {

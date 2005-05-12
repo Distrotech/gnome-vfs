@@ -1,3 +1,10 @@
+2005-05-12  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	(_gnome_vfs_get_mime_type_internal):
+	Implement mime subclassing lookup. 
+	Should fix bug #171595.
+
 2005-05-10  Christian Neumair  <chris@gnome-de.org>
 
 	* schemas/system_dns_sd.schemas.in:
