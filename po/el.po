@@ -261,7 +261,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Λειτουργία σε αχρηστία. Οι τροποποιήσεις από τον χρήστη στην βάση δεδομένων "
+"Λειτουργία σε αχρηστία. Οι τροποποιήσεις από το χρήστη στη βάση δεδομένων "
 "MIME δεν υποστηρίζονται πια."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
@@ -704,7 +704,7 @@ msgstr ""
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
+msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στη συσκευή."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
@@ -785,7 +785,7 @@ msgstr ""
 "\n"
 "Η ταυτότητα που στέλνεται από τον απομακρυσμένο υπολογιστή είναι %s. Αν "
 "θέλετε να είστε σίγουροι ότι είναι απόλυτα ασφαλές να συνεχίσετε, "
-"επικοινωνήστε με τον διαχειριστή του συστήματος σας."
+"επικοινωνήστε με το διαχειριστή του συστήματος σας."
 
 #: modules/sftp-method.c:1347
 msgid "Log In Anyway"
@@ -865,60 +865,60 @@ msgstr "Εκτέλεση της εντολής σε τερματικό"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Η εντολή που χρησιμοποιείται για τον χειρισμό \"aim\" URLs, αν ενεργοποιηθεί."
+msgstr "Η εντολή που χρησιμοποιείται για το χειρισμό \"aim\" URLs, αν ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"callto\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"callto\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"ghelp\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"ghelp\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"h323\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"h323\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"http\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"http\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"https\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"https\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"info\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"info\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"mailto\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"mailto\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό  \"man\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό  \"man\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
-"Η εντολή που χρησιμοποιείται για τον χειρισμό \"trash\" URLs, αν "
+"Η εντολή που χρησιμοποιείται για το χειρισμό \"trash\" URLs, αν "
 "ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
@@ -1151,7 +1151,7 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Αν αληθές, τότε οι συνδέσεις στον διαμεσολαβητή απαιτούν "
+"Αν αληθές, τότε οι συνδέσεις στο διαμεσολαβητή απαιτούν "
 "πιστοποίηση. Τα όνομα χρήστη/κωδικός καθορίζονται από το \"/system/"
 "http_proxy/authentication_user\" και \"/system/http_proxy/"
 "authentication_password\"."
@@ -1249,7 +1249,7 @@ msgid ""
 msgstr ""
 "Αυτό το κλειδί περιέχει μια λίστα από συστήματα στα οποία γίνεται απευθείας "
 "σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να "
-"είναι ονόματα συστήματος, τομείς (με την χρήση μιας αρχικής wildcard όπως *."
+"είναι ονόματα συστήματος, τομείς (με τη χρήση μιας αρχικής wildcard όπως *."
 "foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  "
 "netmask (κάτι σαν 192.168.0.0/24)."
 
@@ -1263,7 +1263,7 @@ msgstr "Χρήση διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά την διαμεσολάβηση http."
+msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά τη διαμεσολάβηση http."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
