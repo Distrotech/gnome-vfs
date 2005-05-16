@@ -1,3 +1,14 @@
+2005-05-16  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): On Win32, use
+	gnome_vfs_escape_path_string() on file: URIs to replace
+	backslashes with slashes etc.
+
+	* modules/file-method.c (do_open, do_create): Use binary mode on
+	Win32.
+	(do_remove_directory, do_find_directory, rename_helper): Use gstdio
+	wrappers here, too.
+	
 2005-05-12  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime.c:

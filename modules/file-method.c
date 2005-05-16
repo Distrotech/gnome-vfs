@@ -236,10 +236,11 @@ get_path_from_uri (GnomeVFSURI const *uri)
 		return NULL;
 	}
 #ifdef G_OS_WIN32
+	/* Drop slash in front of drive letter */
 	if (path[0] == '/' && g_ascii_isalpha (path[1]) && path[2] == ':') {
-		gchar *retval = g_strdup (path + 1);
-		g_free (path);
-		return retval;
+		gchar *tem = path;
+		path = g_strdup (path + 1);
+		g_free (tem);
 	}
 #endif
 	return path;
@@ -308,6 +309,9 @@ do_open (GnomeVFSMethod *method,
 		else
 			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
+#ifdef G_OS_WIN32
+	unix_mode |= _O_BINARY;
+#endif
 
 	if ((mode & GNOME_VFS_OPEN_TRUNCATE) ||
 	    (!(mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE)))
@@ -368,6 +372,9 @@ do_create (GnomeVFSMethod *method,
 
 	unix_mode = O_CREAT | O_TRUNC;
 	
+#ifdef G_OS_WIN32
+	unix_mode |= _O_BINARY;
+#endif
 	if (!(mode & GNOME_VFS_OPEN_WRITE))
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
@@ -1219,7 +1226,7 @@ do_remove_directory (GnomeVFSMethod *method,
 	if (full_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	retval = rmdir (full_name);
+	retval = g_rmdir (full_name);
 
 	g_free (full_name);
 
@@ -1917,11 +1924,11 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	if (create_if_needed && access (target_directory_path, F_OK) != 0) {
+	if (create_if_needed && g_access (target_directory_path, F_OK) != 0) {
 		mkdir_recursive (target_directory_path, permissions);
 	}
 
-	if (access (target_directory_path, F_OK) != 0) {
+	if (g_access (target_directory_path, F_OK) != 0) {
 		g_free (target_directory_path);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
@@ -2011,7 +2018,7 @@ rename_helper (const gchar *old_full_name,
 		if (S_ISDIR (statbuf.st_mode)) {
 			if (gnome_vfs_context_check_cancellation (context))
 				return GNOME_VFS_ERROR_CANCELLED;
-			retval = rmdir (new_full_name);
+			retval = g_rmdir (new_full_name);
 			if (retval != 0) {
 				return gnome_vfs_result_from_errno ();
 			}
