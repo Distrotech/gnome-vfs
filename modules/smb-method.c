@@ -134,6 +134,8 @@ typedef struct _SmbAuthContext {
 
 	gboolean cache_added;           /* Set when cache is added to during authentication */
 	gboolean cache_used;            /* Set when cache is used during authentication */
+
+	guint prompt_flags;           	/* Various URI flags set by initial_authentication */
 	
 } SmbAuthContext;
 
@@ -715,7 +717,7 @@ update_user_cache (SmbAuthContext *actx, gboolean with_share)
 }
 
 static gboolean
-lookup_user_cache (SmbAuthContext *actx, gboolean with_share, gboolean with_user)
+lookup_user_cache (SmbAuthContext *actx, gboolean with_share)
 {
         SmbCachedUser *user;
         gchar *key;
@@ -727,10 +729,13 @@ lookup_user_cache (SmbAuthContext *actx, gboolean with_share, gboolean with_user
         g_free (key);
        
         if (user) {
-                /* If the caller specified we already have a user name double check that... */
-                if (with_user && (!string_compare (user->username, actx->use_user) ||
-                                  !string_compare (user->domain, actx->use_domain)))
-                    return FALSE;
+                /* If we already have a user name or domain double check that... */
+		if (!(actx->prompt_flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME) &&
+		    !string_compare(user->username, actx->use_user))
+			return FALSE;
+		if (!(actx->prompt_flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN) &&
+		    !string_compare(user->domain, actx->use_domain))
+			return FALSE;
 
                 actx->use_user = string_realloc (actx->use_user, user->username);
                 actx->use_domain = string_realloc (actx->use_domain, user->domain);
@@ -757,6 +762,8 @@ initial_authentication (SmbAuthContext *actx)
 	DEBUG_SMB(("[auth] Initial authentication lookups\n"));
 
 	toplevel_uri =	(GnomeVFSToplevelURI*)actx->uri;
+	actx->prompt_flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME |
+		    	     GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
 	
 	/* Try parsing a user and domain out of the URI */
 	if (toplevel_uri && toplevel_uri->user_name != NULL && 
@@ -769,19 +776,28 @@ initial_authentication (SmbAuthContext *actx)
 					    	  	      tmp - toplevel_uri->user_name);
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (tmp + 1);
+
+			if (actx->use_domain != NULL)
+				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
+			if (actx->use_user != NULL)
+				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
+
 			DEBUG_SMB(("[auth] User from URI: %s@%s\n", actx->use_user, actx->use_domain));
 		} else {
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (toplevel_uri->user_name);
 			g_free (actx->use_domain);
 			actx->use_domain = NULL;
+
+			if (actx->use_user != NULL)
+				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
 			DEBUG_SMB(("[auth] User from URI: %s\n", actx->use_user));
 		}
                 preset_user = TRUE;
 	} 
 
-        if (lookup_user_cache (actx, TRUE, preset_user) ||
-            lookup_user_cache (actx, FALSE, preset_user))
+        if (lookup_user_cache (actx, TRUE) ||
+            lookup_user_cache (actx, FALSE))
                 found_user = TRUE;
 
         if (found_user || preset_user) {
@@ -904,10 +920,7 @@ prompt_authentication (SmbAuthContext *actx)
 	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD | GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED;
 	if (actx->state & SMB_AUTH_STATE_PROMPTED)
 		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_PREVIOUS_ATTEMPT_FAILED;
-	if (!actx->uri || ((GnomeVFSToplevelURI*)actx->uri)->user_name == NULL) {
-		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME |
-	  			 GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
-	}
+	in_args.flags |= actx->prompt_flags;
 
 	in_args.uri = get_auth_display_uri (actx, FALSE);
 	in_args.protocol = "smb";

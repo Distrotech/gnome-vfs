@@ -1,3 +1,10 @@
+2005-05-16  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* smb-method.c 
+	(lookup_user_cache, initial_authentication, prompt_authentication): 
+	Fix problems with prompting for authentication twice. 
+	Patch by Narayana Pattipati. Fixes bug #172695.
+	
 2005-05-16  Tor Lillqvist  <tml@novell.com>
 
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): On Win32, use
