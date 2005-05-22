@@ -67,32 +67,50 @@ const char *
 gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 {
 	GnomeVFSResult error;
-	GnomeVFSFileInfo info;
-
+	GnomeVFSFileInfo *info;
+	const char *type;
+	
+	info = gnome_vfs_file_info_new ();
+	type = NULL;
+	
 	/* Get file info and examine the type field to see if file is 
 	 * one of the special kinds. 
 	 */
-	error = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
-	if (error != GNOME_VFS_OK) {
-		return NULL;
-	}
+	error = gnome_vfs_get_file_info_uri (uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 
-	switch (info.type) {
-	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return "x-directory/normal";
-	case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
-		return "x-special/device-char";
-	case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
-		return "x-special/device-block";
-	case GNOME_VFS_FILE_TYPE_FIFO:
-		return "x-special/fifo";
-	case GNOME_VFS_FILE_TYPE_SOCKET:
-		return "x-special/socket";
-	default:
-		break;
-	}
+	if (error == GNOME_VFS_OK && 
+	    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
+		
+		switch (info->type) {
 
-	return NULL;	
+			case GNOME_VFS_FILE_TYPE_DIRECTORY:
+				type = "x-directory/normal";
+				break;
+				
+			case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
+				type = "x-special/device-char";
+				break;
+				
+			case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
+				type = "x-special/device-block";
+				break;
+				
+			case GNOME_VFS_FILE_TYPE_FIFO:
+				type = "x-special/fifo";
+				break;
+				
+			case GNOME_VFS_FILE_TYPE_SOCKET:
+				type = "x-special/socket";
+				break;
+
+			default:
+				break;
+		}
+
+	}
+	
+	gnome_vfs_file_info_unref (info);
+	return type;	
 }
 
 void
