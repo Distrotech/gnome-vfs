@@ -1,5 +1,11 @@
 2005-05-22  Christian Kellner  <gicmo@gnome.org>
 
+	* NEWS: Update for 2.11.1 release
+	* configure.in: 
+	Pre release version bump
+
+2005-05-22  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-module-shared.c:
 	(gnome_vfs_get_special_mime_type): Use the
 	GnomeVFSFileInfo struct properly.

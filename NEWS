@@ -1,3 +1,41 @@
+gnome-vfs 2.11.1
+	
+	* Features: 
+	+ Win32 support!
+	+ Subclassing support for the MIME system.
+	+ Implement gnome_vfs_async_create_uri_as_channel. (Note that the 
+	  _as_channel function family is marked as obsolete for now though)
+	+ Register GnomeVFSFindDirectoryResult and GnomeVFSGetFileInfoResult 
+	  as a boxed types in the GType system.
+	+ Added module support for gnome_vfs_get_volume_free_space.
+	+ Synched with xdgmime HEAD.
+	+ Support for hal 0.5 API.
+	+ gnome_vfs_forget_cache is now public API.
+	+ Detect empty files as "text/plain" so we can use them with nautilus.	
+	+ gnome_vfs_make_uri_from_input_with_trailing_ws: new function.
+
+	* Bugs fixed:
+	+ Fix gnome_vfs_get_special_mime_type to properly use GnomeVFSFileInfo.
+	+ Minor string fixes.
+	+ Properly expand "%s" occuring in arguments for gnome_vfs_url_show.
+	+ Restore preservation of atime, mtime and permissions for the xfer family.
+	+ Build fixes for GNU/k*BSD  and DragonFly.
+	+ Cleanly build with gcc 4.0.
+	+ Use gmodule-no-export-2.0 instead of gmodule-2.0 to avoid 
+      using --export-dynamic.
+    + Fix borken logic in gnomevfs-copy.
+	+ Initialize gnu crypto library/gnutls to use gthread locking.
+	+ Remove gnome-vfs-i18n.[hc] and use gi18n-lib.h. This fixes some 
+      some translation problems.
+	+ smb-method: Fix problems with prompting for authentication twice.
+    + smb-method: Fix caching problems with invalid logins.
+	+ http-neon-method: Plug various leaks.
+	+ Fix http proxy netmaks support.
+	+ Various doc fixes.	
+	+ Plugged various small leaks.
+
+	* Translation updates.
+
 gnome-vfs 2.10.0
     * Translation updates
 
