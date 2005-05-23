@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-12 17:47+0900\n"
-"PO-Revision-Date: 2005-02-12 17:46+0900\n"
+"POT-Creation-Date: 2005-05-23 19:33+0900\n"
+"PO-Revision-Date: 2005-05-23 19:31+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -25,36 +25,36 @@ msgstr "Bonobo を初期化できませんでした"
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
 
-#: ../libgnomevfs/gnome-vfs-cdrom.c:235
+#: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:227
+#: ../libgnomevfs/gnome-vfs-configuration.c:221
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d に NUL 文字があります。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:244
+#: ../libgnomevfs/gnome-vfs-configuration.c:238
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d にメソッド名がありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:284
+#: ../libgnomevfs/gnome-vfs-configuration.c:278
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d にオプションのエンドマーカがありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:295
+#: ../libgnomevfs/gnome-vfs-configuration.c:289
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d に不明なオプション %s があります。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:314
+#: ../libgnomevfs/gnome-vfs-configuration.c:308
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d にモジュール名がありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:368
+#: ../libgnomevfs/gnome-vfs-configuration.c:362
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "設定ファイル '%s' が見つかりません: %s"
@@ -204,48 +204,48 @@ msgstr "不明"
 msgid "Unknown operation type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1169
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することができません: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1687
+#: ../libgnomevfs/gnome-vfs-job.c:1699
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ジョブの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1720
+#: ../libgnomevfs/gnome-vfs-job.c:1732
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:255
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:306
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:600
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:619
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:637
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:675
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:816
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:838
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:857
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:876
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:929
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:946
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:963
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:981
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:999
-#: ../libgnomevfs/gnome-vfs-mime-info.c:643
-#: ../libgnomevfs/gnome-vfs-mime-info.c:650
-#: ../libgnomevfs/gnome-vfs-mime-info.c:658
-#: ../libgnomevfs/gnome-vfs-mime-info.c:665
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:690
-#: ../libgnomevfs/gnome-vfs-mime-info.c:697
-#: ../libgnomevfs/gnome-vfs-mime-info.c:704
-#: ../libgnomevfs/gnome-vfs-mime-info.c:711
-#: ../libgnomevfs/gnome-vfs-mime-info.c:719
-#: ../libgnomevfs/gnome-vfs-mime-info.c:726
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:106
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:260
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:311
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:605
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:642
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:661
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:680
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:821
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:843
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:862
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:881
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:934
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:951
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:968
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:986
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1004
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
+#: ../libgnomevfs/gnome-vfs-mime-info.c:668
+#: ../libgnomevfs/gnome-vfs-mime-info.c:676
+#: ../libgnomevfs/gnome-vfs-mime-info.c:693
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
+#: ../libgnomevfs/gnome-vfs-mime-info.c:722
+#: ../libgnomevfs/gnome-vfs-mime-info.c:729
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -263,282 +263,282 @@ msgid "More parsing errors will be ignored."
 msgstr "これ以上の解析エラーは無視されます。"
 
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:38
+#: ../libgnomevfs/gnome-vfs-result.c:42
 msgid "No error"
 msgstr "エラーはありません"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:39
+#: ../libgnomevfs/gnome-vfs-result.c:43
 msgid "File not found"
 msgstr "ファイルがありません"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:40
+#: ../libgnomevfs/gnome-vfs-result.c:44
 msgid "Generic error"
 msgstr "一般的なエラーです"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:41
+#: ../libgnomevfs/gnome-vfs-result.c:45
 msgid "Internal error"
 msgstr "内部エラーです"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:46
 msgid "Invalid parameters"
 msgstr "無効なパラメータです"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "Unsupported operation"
 msgstr "サポート外の動作です"
 
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "I/O error"
 msgstr "入出力エラーです"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Data corrupted"
 msgstr "データが壊れています"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Format not valid"
 msgstr "フォーマットが無効です"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Bad file handle"
 msgstr "おかしなファイル・ハンドルです"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "File too big"
 msgstr "ファイルが大きすぎます"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "No space left on device"
 msgstr "デバイスに空きがありません"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
 msgstr "読み取り専用のファイル・システムです"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Invalid URI"
 msgstr "無効な URI です"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
 msgstr "ファイルが開けません"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
 msgstr "オープンモードは無効です"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "Access denied"
 msgstr "アクセスが拒否されました"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
 msgstr "開いているファイルが多すぎます"
 
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "End of file"
 msgstr "ファイルの終端 (EOF) です"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "Not a directory"
 msgstr "フォルダではありません"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation in progress"
 msgstr "操作が進行中です"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation interrupted"
 msgstr "操作を中断しました"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "File exists"
 msgstr "ファイルは存在しています"
 
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
 msgstr "ループしているリンクに遭遇しました"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation not permitted"
 msgstr "許可されていない操作です"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Is a directory"
 msgstr "これはフォルダ"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Not enough memory"
 msgstr "メモリが足りません"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
 msgstr "ホストが見つかりません"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
 msgstr "ホスト名が無効です"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
 msgstr "ホストはアドレスを持っていません"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Login failed"
 msgstr "ログインに失敗しました"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Operation cancelled"
 msgstr "操作はキャンセルされました"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Directory busy"
 msgstr "フォルダにアクセスできません"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Directory not empty"
 msgstr "フォルダは空ではありません"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
 msgstr "リンクが多すぎます"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
 msgstr "読み取り専用のファイル・システムです"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Not on the same file system"
 msgstr "同一のファイルシステムではありません"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Name too long"
 msgstr "名前が長すぎます"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Service not available"
 msgstr "サービスがありません"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Request obsoletes service's data"
 msgstr "廃止されたサービスのデータを要求しました"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Protocol error"
 msgstr "プロトコルのエラーです"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Could not find master browser"
 msgstr "マスター・ブラウザが見つかりませんでした"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "No default action associated"
 msgstr "関連するデフォルトのアクションではありません"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
 msgstr "URL スキーマに対するハンドラではありません"
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Error parsing command line"
 msgstr "コマンド・ラインを解析する際にエラーが発生しました"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Error launching command"
 msgstr "コマンドを起動する際にエラーが発生しました"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:84 ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
 msgstr "タイムアウトです"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "Nameserver error"
 msgstr "ネームサーバのエラーです"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "The resource is locked"
 msgstr "リソースがロックされています"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Function call deprecated"
 msgstr "廃止予定の関数呼び出しです"
 
-#: ../libgnomevfs/gnome-vfs-result.c:203
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:85
+#: ../libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u バイト"
 msgstr[1] "%u バイト"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:91
+#: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f Kバイト"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:95
+#: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mバイト"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:99
+#: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1131
+#: ../libgnomevfs/gnome-vfs-utils.c:1096
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
@@ -684,7 +684,7 @@ msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:113
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:120
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -692,13 +692,13 @@ msgstr ""
 "されていないようです。"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:117
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:124
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "ボリュームをマウントできません。おそらくデバイスの中にメディアがないようで"
 "す。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:123
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -706,7 +706,7 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。フォーマットされていないフロッピー"
 "はマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:126
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -714,58 +714,58 @@ msgstr ""
 "選択したボリュームをマウントできません。フォーマットされていないボリュームは"
 "マウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:131
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid "Unable to mount the selected floppy drive."
 msgstr "選択したフロッピー・ドライブをマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:133
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:140
 msgid "Unable to mount the selected volume."
 msgstr "選択したボリュームをマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:152
 msgid "Unable to unmount the selected volume."
 msgstr "選択したボリュームをアンマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:257
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:313
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:264
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:320
 msgid "Failed to start command"
 msgstr "コマンドの起動に失敗しました"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:301
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:308
 msgid "Unable to eject media"
 msgstr "メディアを排出できません"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:499
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:511
 msgid "Unable to unmount connected server"
 msgstr "接続済のサーバをアンマウントできません"
 
-#: ../modules/computer-method.c:545
+#: ../modules/computer-method.c:546
 msgid "Network"
 msgstr "ネットワーク"
 
-#: ../modules/computer-method.c:563
+#: ../modules/computer-method.c:564
 msgid "Home"
 msgstr "ホーム"
 
-#: ../modules/computer-method.c:581
+#: ../modules/computer-method.c:582
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
-#: ../modules/file-method.c:413
+#: ../modules/file-method.c:536
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
 
-#: ../modules/network-method.c:1396
+#: ../modules/network-method.c:1397
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 
-#: ../modules/sftp-method.c:1313
+#: ../modules/sftp-method.c:1314
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "リモート・コンピュータ (%s) を識別できません"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1315
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -778,21 +778,21 @@ msgstr ""
 "リモート・コンピュータから送られた識別子は %s です。その識別子が絶対確実だと"
 "思う場合は、システム管理者に問い合わせて下さい。"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1323
 msgid "Log In Anyway"
 msgstr "とにかくログイン"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1324
 msgid "Cancel Login"
 msgstr "キャンセル"
 
 #. FIXME: we probably shouldn't use printf to output the message
-#: ../modules/test-method.c:590
+#: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
 msgstr "%s に適切な設定ファイルがありません\n"
 
-#: ../modules/test-method.c:592
+#: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "別の場所を示す環境変数 %s を使用して下さい。\n"
@@ -1061,15 +1061,14 @@ msgstr "指定したコマンドで URL \"trash\" を処理するかどうか"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
 msgstr ""
-"コンマ (,) で区切った DNS-SD のリストで、\"ネットワーク\" の中に表示されま"
-"す。"
+"コンマ (,) で区切った DNS-SD のリストで、\"network:///\" の中に表示されます。"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
-msgid "Extra domains to look for dns-sd services in"
-msgstr "サービス DNS-SD から検索する追加ドメイン"
+msgid "Extra domains to look for DNS-SD services in"
+msgstr "DNS-SD サービスで検索する追加ドメイン"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
