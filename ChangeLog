@@ -1,3 +1,8 @@
+2005-05-23  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/smb-method.c: (prompt_authentication)
+	Fill in default_user and default_domain
+	
 2005-05-22  Christian Kellner  <gicmo@gnome.org>
 
 	* configure.in: 

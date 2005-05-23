@@ -110,7 +110,6 @@ static time_t workgroups_timestamp = 0;
 #define SMB_AUTH_STATE_PREFILLED	0x00000010 	/* Have asked gnome-auth for prefilled auth */
 #define SMB_AUTH_STATE_PROMPTED		0x00000020 	/* Have asked gnome-auth for to prompt user */
 
-/* TODO: Move this to the top of the file */
 typedef struct _SmbAuthContext {
 	
 	GnomeVFSURI *uri;		/* Uri being worked with. Does not own this URI */
@@ -930,7 +929,8 @@ prompt_authentication (SmbAuthContext *actx)
 	in_args.domain = (char*)actx->use_domain;
 	in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
 
-	/* TODO: set default_user & default_domain? */
+	in_args.default_user = actx->use_user ? actx->use_user : (char*)g_get_user_name ();
+	in_args.default_domain = actx->use_domain ? actx->use_domain : smb_context->workgroup;
 	
 	memset (&out_args, 0, sizeof (out_args));
 
