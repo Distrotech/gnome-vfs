@@ -1220,7 +1220,8 @@ notify_gconf_value_changed (GConfClient *client,
 	g_free (current_workgroup);
 
 	current_workgroup = gconf_client_get_string (client, PATH_GCONF_GNOME_VFS_SMB_WORKGROUP, NULL);
-	if (current_workgroup == NULL) {
+	if (current_workgroup == NULL || !current_workgroup[0]) {
+		g_free (current_workgroup);
 		current_workgroup = g_strdup (DEFAULT_WORKGROUP_NAME);
 	}
 
@@ -1346,7 +1347,8 @@ vfs_module_init (const char *method_name, const char *args)
 	gconf_client_add_dir (gconf_client, PATH_GCONF_GNOME_VFS_DNS_SD, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
 
 	current_workgroup = gconf_client_get_string (gconf_client, PATH_GCONF_GNOME_VFS_SMB_WORKGROUP, NULL);
-	if (current_workgroup == NULL) {
+	if (current_workgroup == NULL || !current_workgroup[0]) {
+		g_free (current_workgroup);
 		current_workgroup = g_strdup (DEFAULT_WORKGROUP_NAME);
 	}
 

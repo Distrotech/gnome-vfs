@@ -38,6 +38,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 
@@ -95,9 +96,11 @@ static GHashTable *user_cache = NULL;
 #define CACHE_REAP_TIMEOUT (30 * 60)
 static guint cache_reap_timeout = 0;
 
+/* We load a default workgroup from gconf */
+#define PATH_GCONF_GNOME_VFS_SMB_WORKGROUP "/system/smb/workgroup"
+
 /* The magic "default workgroup" hostname */
 #define DEFAULT_WORKGROUP_NAME "X-GNOME-DEFAULT-WORKGROUP"
-
 
 /* 5 minutes before we re-read the workgroup cache again */
 #define WORKGROUP_CACHE_TIMEOUT (5*60)
@@ -603,6 +606,8 @@ static gboolean
 try_init (void)
 {
 	char *path;
+	GConfClient *gclient;
+	gchar *workgroup;
 	struct stat statbuf;
 
 	LOCK_SMB();
@@ -630,6 +635,20 @@ try_init (void)
 		smb_context->callbacks.get_cached_srv_fn    = get_cached_server;
 		smb_context->callbacks.remove_cached_srv_fn = remove_cached_server;
 		smb_context->callbacks.purge_cached_fn      = purge_cached;
+
+		gclient = gconf_client_get_default ();
+		if (gclient) {
+			workgroup = gconf_client_get_string (gclient, 
+					PATH_GCONF_GNOME_VFS_SMB_WORKGROUP, NULL);
+
+			/* libsmbclient frees this on it's own, so make sure 
+			 * to use simple system malloc */
+			if (workgroup && workgroup[0])
+				smb_context->workgroup = strdup (workgroup);
+			
+			g_free (workgroup);
+			g_object_unref (gclient);
+		}
 
 		if (!smbc_init_context (smb_context)) {
 			smbc_free_context (smb_context, FALSE);

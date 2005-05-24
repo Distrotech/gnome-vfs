@@ -1,3 +1,11 @@
+2005-05-24  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/network-method.c 
+	(notify_gconf_value_changed, vfs_module_init):
+	* modules/smb-method.c (try_init):
+	* schemas/system_smb.schemas.in: Use gconf SMB workgroup
+	for default in the SMB VFS method.
+	
 2005-05-23  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/smb-method.c: (prompt_authentication)
