@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-19 14:30-0400\n"
-"PO-Revision-Date: 2005-05-19 16:30-0400\n"
+"POT-Creation-Date: 2005-05-25 14:10-0400\n"
+"PO-Revision-Date: 2005-05-25 16:30-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -753,7 +753,7 @@ msgstr "Filesystem"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Unknown GnomeVFSSeekPosition %d"
 
-#: ../modules/network-method.c:1397
+#: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "Windows Network"
 
@@ -1236,5 +1236,14 @@ msgid "SMB workgroup"
 msgstr "SMB workgroup"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The window workgroup the user is part of"
-msgstr "The window workgroup to which the user belongs"
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+
+#~ msgid "The window workgroup the user is part of"
+#~ msgstr "The window workgroup to which the user belongs"
