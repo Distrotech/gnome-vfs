@@ -67,6 +67,9 @@ G_LOCK_DEFINE_STATIC (mime_mutex);
 /**
  * gnome_vfs_mime_shutdown:
  *
+ * Deprecated: This function doesn't have to be called as the
+ * operating system automatically cleans up resources when exiting.
+ *
  * Unload the MIME database from memory.
  **/
 
@@ -480,6 +483,8 @@ gnome_vfs_get_mime_type_from_uri (GnomeVFSURI *uri)
  *
  * Tries to guess the mime type of the file @uri by
  * checking the file data using the magic patterns. Does not handle text files properly
+ *
+ * Deprecated:
  *
  * Returns the mime-type for this filename.
  */

@@ -14,6 +14,9 @@ Abstraction for a mounted file system or a network location.
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### MACRO GNOME_IS_VFS_VOLUME ##### -->
 <para>
 

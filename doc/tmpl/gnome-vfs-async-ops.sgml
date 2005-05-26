@@ -33,6 +33,9 @@ POSIX-style file operations that run outside your main loop
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### MACRO GNOME_VFS_PRIORITY_MIN ##### -->
 <para>
 

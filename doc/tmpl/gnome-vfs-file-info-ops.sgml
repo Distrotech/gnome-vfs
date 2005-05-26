@@ -29,6 +29,9 @@ Getting and Setting File Information
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_get_file_info ##### -->
 <para>
 

@@ -938,6 +938,7 @@ load_application_info (void)
  * gnome_vfs_application_registry_init
  *
  * This function initializes the gnome-vfs application registry.  
+ *
  **/
 
 static void
@@ -1034,6 +1035,7 @@ remove_apps (gpointer key, gpointer value, gpointer user_data)
  * This is different from gnome_vfs_application_registry_shutdown which will
  * actually delete the registry and leave it in an uninitialized state.
  *
+
  */
 
 static void
@@ -1049,6 +1051,9 @@ gnome_vfs_application_registry_clear (void)
  * Synchronize gnome-vfs application registry data to disk, and free
  * resources.
  * 
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  */
 
 void
@@ -1091,6 +1096,9 @@ gnome_vfs_application_registry_shutdown (void)
  * certain that you've saved your registry before calling this function.  It
  * will destroy unsaved changes.
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  */
 
 void
@@ -1117,6 +1125,10 @@ gnome_vfs_application_registry_reload (void)
  * the registry, otherwise FALSE.
  *
  * Returns: TRUE if the application is in the registry, FALSE if not 
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1169,6 +1181,10 @@ get_keys_foreach(gpointer key, gpointer value, gpointer user_data)
  * keys set for @app_id in the application registry.
  *
  * Returns: A list of the keys set for @app_id
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1284,6 +1300,10 @@ real_get_bool_value (const Application *application, const char *key, gboolean *
  * Returns: the value associated with the key, or NULL if there is no
  * associated value
  *
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  */
 
 const char *
@@ -1314,6 +1334,10 @@ gnome_vfs_application_registry_peek_value (const char *app_id, const char *key)
  * applications associated with the app_id.
  *
  * Returns: TRUE if @key is set to "true" or "yes" for @app_id, otherwise FALSE
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1346,6 +1370,10 @@ gnome_vfs_application_registry_get_bool_value (const char *app_id, const char *k
  * Given the registry id this function will remove all applications that has
  * been set by the user.  You will need to call
  * gnome_vfs_application_registry_sync to save the changes.
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1382,6 +1410,10 @@ gnome_vfs_application_registry_remove_application (const char *app_id)
  * app_id.  You will need to call gnome_vfs_application_registry_sync to
  * realize the changes.
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
+ *
  */
 
 void
@@ -1414,6 +1446,10 @@ gnome_vfs_application_registry_set_value (const char *app_id,
  * a value specified by the user.  You will need to call
  * gnome_vfs_application_registry_sync to save your changes.
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
+ *
  */
 void
 gnome_vfs_application_registry_set_bool_value (const char *app_id,
@@ -1441,6 +1477,10 @@ gnome_vfs_application_registry_set_bool_value (const char *app_id,
  *
  * This function given the application and the target will wipe the current
  * value that the key contains.
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  * 
  */
 
@@ -1484,6 +1524,10 @@ cb_application_collect (gpointer key, gpointer value, gpointer user_data)
  *
  * Returns: a list of the application IDs for all applications which
  * support the given mime type.
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1543,6 +1587,10 @@ gnome_vfs_application_registry_get_applications (const char *mime_type)
  *
  * Returns: a list of the mime types supported
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
+ *
  */
 
 GList *
@@ -1588,6 +1636,10 @@ gnome_vfs_application_registry_get_mime_types (const char *app_id)
  * uri scheme will given is supported.
  *
  * Returns: TRUE if @app_id supports @uri_scheme, otherwise FALSE
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1659,6 +1711,10 @@ gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
  *
  * Returns: TRUE if @app_id supports @mime_type, otherwise FALSE.
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
+ *
  */
 
 gboolean
@@ -1707,6 +1763,10 @@ gnome_vfs_application_registry_supports_mime_type (const char *app_id,
  * Changes are not realized until the  gnome_vfs_application_registry_sync
  * function is called to save the changes to the file.
  *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
+ *
  */
 
 void
@@ -1734,6 +1794,10 @@ gnome_vfs_application_registry_clear_mime_types (const char *app_id)
  * application registry id and the mime type.  Changes are not realized until
  * the gnome_vfs_application_registry_sync function is called to save the
  * changes to the file.
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1764,6 +1828,10 @@ gnome_vfs_application_registry_add_mime_type (const char *app_id,
  * Given the application registry id and the mime type.  Changes are not
  * realized until the gnome_vfs_application_registry_sync function is called to
  * save the changes to the file.
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1812,6 +1880,10 @@ application_sync_foreach (gpointer key, gpointer value, gpointer user_data)
  * If successful, will return GNOME_VFS_OK
  *
  * Returns: GnomeVFSResult
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1864,6 +1936,10 @@ gnome_vfs_application_registry_sync (void)
  * the mime type associated by the application referred by app_id.
  *
  * Returns: GnomeVFSMimeApplication
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  *
  */
 
@@ -1946,6 +2022,10 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
  * GnomeVFSMimeApplication structure.  Changes are not realized until the
  * gnome_vfs_application_registry_sync function is called.
  *
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  */
 
 void
@@ -1982,6 +2062,10 @@ gnome_vfs_application_registry_save_mime_application (const GnomeVFSMimeApplicat
  * located in the prerequisite /usr area but rather in the user's area.
  *
  * Returns: gboolean
+ *
+ * Deprecated: All application registry functions have been
+ * deprecated. Use the functions available in gnome-mime-handlers
+ * instead.
  */
 
 gboolean

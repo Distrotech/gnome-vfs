@@ -99,6 +99,8 @@ gnome_vfs_mime_get_description (const char *mime_type)
  * 
  * Return value: GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_description (const char *mime_type, const char *description)
@@ -113,6 +115,10 @@ gnome_vfs_mime_set_description (const char *mime_type, const char *description)
  * 
  * Query the MIME database for the type of action to be performed on a particular MIME type by default.
  * 
+ * Deprecated: This function does not work with the new mime system,
+ * it always returns none except for directories where component is
+ * returned
+ *
  * Return value: The type of action to be performed on a file of 
  * MIME type, @mime_type by default.
  **/
@@ -139,6 +145,8 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
  * 
  * Query the MIME database for default action associated with a particular MIME type @mime_type.
  * 
+ * Deprecated: Use gnome_vfs_mime_get_default_application instead.
+ *
  * Return value: A GnomeVFSMimeAction representing the default action to perform upon
  * file of type @mime_type.
  **/
@@ -234,6 +242,9 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
  * does not have an extension, e.g. "i-regular" if the icon is supposed to be image
  * type agnostic between icon themes. Icons are generic, and not theme specific. These
  * will not necessarily match with the icons a user sees in Nautilus, you have been warned.
+ *
+ * Deprecated: Use the gnome_icon_lookup functions in libgnomeui instead.
+ *
  */
 const char *
 gnome_vfs_mime_get_icon (const char *mime_type)
@@ -253,6 +264,10 @@ gnome_vfs_mime_get_icon (const char *mime_type)
  *
  * Return value: A GnomeVFSResult indicating the success of the operation
  * or any errors that may have occurred.
+ *
+ * Deprecated: User modifications to the MIME database are no longer
+ * supported in gnome-vfs.
+ *
  */
 GnomeVFSResult
 gnome_vfs_mime_set_icon (const char *mime_type, const char *filename)
@@ -597,6 +612,8 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_default_action_type (const char *mime_type,
@@ -616,6 +633,8 @@ gnome_vfs_mime_set_default_action_type (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_default_application (const char *mime_type,
@@ -634,6 +653,8 @@ gnome_vfs_mime_set_default_application (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_default_component (const char *mime_type,
@@ -653,6 +674,8 @@ gnome_vfs_mime_set_default_component (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_short_list_applications (const char *mime_type,
@@ -672,6 +695,8 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_set_short_list_components (const char *mime_type,
@@ -724,6 +749,8 @@ gnome_vfs_mime_component_matches_id (Bonobo_ServerInfo *component, const char *i
  * Check whether an application id is in a list of GnomeVFSMimeApplications.
  * 
  * Return value: TRUE if an application whose id matches @id is in @applications.
+ *
+ * Deprecated: 
  */
 gboolean
 gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
@@ -742,6 +769,8 @@ gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
  * Check whether a component iid is in a list of Bonobo_ServerInfos.
  * 
  * Return value: TRUE if a component whose iid matches @iid is in @components.
+ *
+ * Deprecated: 
  */
 gboolean
 gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
@@ -762,6 +791,8 @@ gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
  * Return value: A new list where each GnomeVFSMimeApplication in the original
  * list is replaced by a char * with the application's id. The original list is
  * not modified.
+ *
+ * Deprecated:
  */
 GList *
 gnome_vfs_mime_id_list_from_application_list (GList *applications)
@@ -789,6 +820,8 @@ gnome_vfs_mime_id_list_from_application_list (GList *applications)
  * Return value: A new list where each Bonobo_ServerInfo in the original
  * list is replaced by a char * with the component's iid. The original list is
  * not modified.
+ *
+ * Deprecated:
  */
 GList *
 gnome_vfs_mime_id_list_from_component_list (GList *components)
@@ -813,6 +846,8 @@ gnome_vfs_mime_id_list_from_component_list (GList *components)
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
@@ -834,6 +869,8 @@ gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
  * 
  * Return value: The modified list. If the application is not found, the list will 
  * be unchanged.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  */
 GList *
 gnome_vfs_mime_remove_application_from_list (GList *applications, 
@@ -854,6 +891,8 @@ gnome_vfs_mime_remove_application_from_list (GList *applications,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
@@ -873,6 +912,8 @@ gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
@@ -894,6 +935,8 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
  * 
  * Return value: The modified list. If the component is not found, the list will 
  * be unchanged.
+ *
+ * Deprecated:
  */
 GList *
 gnome_vfs_mime_remove_component_from_list (GList *components, 
@@ -926,6 +969,8 @@ gnome_vfs_mime_remove_component_from_list (GList *components,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
@@ -944,6 +989,8 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
  * 
  * Return value: GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
@@ -961,6 +1008,8 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
  * 
  * Return value: GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
@@ -978,6 +1027,8 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_extend_all_applications (const char *mime_type,
@@ -996,6 +1047,8 @@ gnome_vfs_mime_extend_all_applications (const char *mime_type,
  * 
  * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
+ *
+ * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
  **/
 GnomeVFSResult
 gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
@@ -1103,6 +1156,9 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
  * @action: The GnomeVFSMimeAction to be freed
  * 
  * Frees a GnomeVFSMimeAction *.
+ *
+ * Deprecated: GnomeVFSMimeAction structures should not be used in new
+ * code.
  * 
  **/
 void
@@ -1160,6 +1216,9 @@ gnome_vfs_mime_component_list_free (GList *list)
  * application ID from the MIME database.
  *
  * Return value: GnomeVFSMimeApplication * corresponding to @id
+ *
+ * Deprecated: Use gnome_vfs_mime_application_new_from_desktop_id
+ * instead.
  **/
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
@@ -1194,6 +1253,10 @@ gnome_vfs_mime_application_new_from_id (const char *id)
  * GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
  *
  * Since: 2.4
+ *
+ * Deprecated: MIME actions are deprecated, use
+ * gnome_vfs_mime_application_launch instead.
+ *
  */
 GnomeVFSResult
 gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
@@ -1212,6 +1275,11 @@ gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
  * Return value: same as gnome_vfs_mime_action_launch
  *
  * Since: 2.4
+ *
+ * Deprecated: MIME actions are deprecated, use
+ * gnome_vfs_mime_application_launch_with_env instead.
+ *
+ *
  */
 GnomeVFSResult
 gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,

@@ -1,3 +1,52 @@
+2005-05-26  Anders Carlsson  <andersca@imendio.com>
+
+	* doc/tmpl/gnome-vfs-application-registry.sgml:
+	* doc/tmpl/gnome-vfs-async-ops.sgml:
+	* doc/tmpl/gnome-vfs-cancellation.sgml:
+	* doc/tmpl/gnome-vfs-context.sgml:
+	* doc/tmpl/gnome-vfs-directory-basic-ops.sgml:
+	* doc/tmpl/gnome-vfs-directory-find-ops.sgml:
+	* doc/tmpl/gnome-vfs-directory-list-ops.sgml:
+	* doc/tmpl/gnome-vfs-dns-sd.sgml:
+	* doc/tmpl/gnome-vfs-drive.sgml:
+	* doc/tmpl/gnome-vfs-file-advanced-ops.sgml:
+	* doc/tmpl/gnome-vfs-file-basic-ops.sgml:
+	* doc/tmpl/gnome-vfs-file-info-ops.sgml:
+	* doc/tmpl/gnome-vfs-file-info.sgml:
+	* doc/tmpl/gnome-vfs-file-rw-ops.sgml:
+	* doc/tmpl/gnome-vfs-file-size.sgml:
+	* doc/tmpl/gnome-vfs-file-trunc-ops.sgml:
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* doc/tmpl/gnome-vfs-init.sgml:
+	* doc/tmpl/gnome-vfs-method.sgml:
+	* doc/tmpl/gnome-vfs-mime-database-deprecated.sgml:
+	* doc/tmpl/gnome-vfs-mime-database.sgml:
+	* doc/tmpl/gnome-vfs-mime-monitor.sgml:
+	* doc/tmpl/gnome-vfs-mime.sgml:
+	* doc/tmpl/gnome-vfs-module-callback-module-api.sgml:
+	* doc/tmpl/gnome-vfs-module-callback.sgml:
+	* doc/tmpl/gnome-vfs-module-shared.sgml:
+	* doc/tmpl/gnome-vfs-module.sgml:
+	* doc/tmpl/gnome-vfs-monitor.sgml:
+	* doc/tmpl/gnome-vfs-ops.sgml:
+	* doc/tmpl/gnome-vfs-parse-ls.sgml:
+	* doc/tmpl/gnome-vfs-resolve.sgml:
+	* doc/tmpl/gnome-vfs-result.sgml:
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* doc/tmpl/gnome-vfs-socket.sgml:
+	* doc/tmpl/gnome-vfs-ssl.sgml:
+	* doc/tmpl/gnome-vfs-standard-callbacks.sgml:
+	* doc/tmpl/gnome-vfs-transform.sgml:
+	* doc/tmpl/gnome-vfs-uri.sgml:
+	* doc/tmpl/gnome-vfs-utils.sgml:
+	* doc/tmpl/gnome-vfs-volume-monitor.sgml:
+	* doc/tmpl/gnome-vfs-volume.sgml:
+	* doc/tmpl/gnome-vfs-xfer.sgml:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime.c:
+	Mark deprecated functions as deprecated in the docs.
+	
 2005-05-24  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/network-method.c 

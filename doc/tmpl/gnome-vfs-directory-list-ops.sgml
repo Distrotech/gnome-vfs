@@ -15,6 +15,9 @@ Listing the contents of directories.
 
 </para>
 
+<!-- ##### SECTION Stability_Level ##### -->
+
+
 <!-- ##### ENUM GnomeVFSDirectoryVisitOptions ##### -->
 <para>
 
