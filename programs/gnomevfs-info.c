@@ -128,7 +128,8 @@ main (int argc, char **argv)
 {
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult res;
-
+	char *text_uri;
+	
 	if (argc != 2) {
 		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
 		return 1;
@@ -139,8 +140,11 @@ main (int argc, char **argv)
 		return 1;
 	}
 
+	text_uri = gnome_vfs_make_uri_from_input_with_dirs (argv[1],
+							    GNOME_VFS_MAKE_URI_DIR_CURRENT);
+	
 	info = gnome_vfs_file_info_new ();
-	res = gnome_vfs_get_file_info (argv[1], info,
+	res = gnome_vfs_get_file_info (text_uri, info,
 			(GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 			 | GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
@@ -149,9 +153,9 @@ main (int argc, char **argv)
 	} else {
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (res));
 	}
-
 	
 	gnome_vfs_file_info_unref (info);
-
+	g_free (text_uri);
+	
 	return 0;
 }

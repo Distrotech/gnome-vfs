@@ -1,3 +1,9 @@
+2005-05-29  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-info.c: (main): Use 
+	gnome_vfs_make_uri_from_input_with_dirs () to smartly guess the uri
+	from user input.
+
 2005-05-26  Anders Carlsson  <andersca@imendio.com>
 
 	* doc/tmpl/gnome-vfs-application-registry.sgml:
