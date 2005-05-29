@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-12 05:47+0000\n"
-"PO-Revision-Date: 2005-05-12 11:39+0200\n"
+"POT-Creation-Date: 2005-05-29 06:39+0000\n"
+"PO-Revision-Date: 2005-05-29 13:55+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -220,23 +220,23 @@ msgstr "Neznámý typ úlohy %u"
 msgid "Operation stopped"
 msgstr "Operace zastavena"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:106
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:260
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:311
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:605
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:624
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:642
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:661
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:680
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:821
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:843
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:862
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:881
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:934
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:951
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:968
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1004
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
 #: ../libgnomevfs/gnome-vfs-mime-info.c:653
 #: ../libgnomevfs/gnome-vfs-mime-info.c:661
@@ -750,12 +750,12 @@ msgstr "Doma"
 msgid "Filesystem"
 msgstr "Systém souborů"
 
-#: ../modules/file-method.c:529
+#: ../modules/file-method.c:536
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
 
-#: ../modules/network-method.c:1397
+#: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "Síť Windows"
 
@@ -1053,7 +1053,9 @@ msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Čárkami oddělený seznam domén DNS-SD, které by měly být viditelné v umístění \"network:///\"."
+msgstr ""
+"Čárkami oddělený seznam domén DNS-SD, které by měly být viditelné v umístění "
+"\"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1227,5 +1229,11 @@ msgid "SMB workgroup"
 msgstr "Pracovní skupina SMB"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The window workgroup the user is part of"
-msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr "Pracovní skupina nebo doména Windows, jejímž členem je uživatel. Aby se úplně projevila nová pracovní skupina, uživatel se možná bude muset odhlásit a znovu přihlásit."
+
+#~ msgid "The window workgroup the user is part of"
+#~ msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
