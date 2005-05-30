@@ -238,9 +238,11 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 		if (result == NULL || result == XDG_MIME_TYPE_UNKNOWN) {
 			if (_gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
 				/* Text file -- treat extensions as a more 
-				 * accurate source of type information.
+				 * accurate source of type information BUT _only_ if
+				 * the extension is a subtype of text/plain.
 				 */
-				if ((fn_result != NULL) && (fn_result != XDG_MIME_TYPE_UNKNOWN)) {
+				if ((fn_result != NULL) && (fn_result != XDG_MIME_TYPE_UNKNOWN) &&
+				    xdg_mime_mime_type_subclass (fn_result, "text/plain")) {
 					return fn_result;
 				}
 
@@ -252,7 +254,7 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 			}
 		}
 	}
-	
+
 	if (use_suffix &&
 	    (result == NULL || result == XDG_MIME_TYPE_UNKNOWN)) {
 		/* No type recognized -- fall back on extensions. */

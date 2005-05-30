@@ -1,3 +1,11 @@
+2005-05-30  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	(_gnome_vfs_get_mime_type_internal): Only use extensions as the
+	more accurate mime-type if the mime-type of the extension is a 
+	subclass of text/plain. Fallback to text/plain if not. 
+	This should fix bug #304238.
+	
 2005-05-29  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-info.c: (main): Use 
