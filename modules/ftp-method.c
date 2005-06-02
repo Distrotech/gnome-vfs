@@ -2301,10 +2301,10 @@ get_list_command (FtpConnection   *conn,
 {
 	GnomeVFSResult result;
 
-	static const char *osx_candidates[] = { "LIST -a", NULL };
-	static const char *non_osx_candidates[] = { "LIST -aL", "LIST -a", "LIST -L", NULL };
+	static const char * const osx_candidates[] = { "LIST -a", NULL };
+	static const char * const non_osx_candidates[] = { "LIST -aL", "LIST -a", "LIST -L", NULL };
 
-	const char **candidates;
+	const char * const *candidates;
 
 	if (strstr(conn->server_type, "MACOS")) {
 		candidates = osx_candidates;

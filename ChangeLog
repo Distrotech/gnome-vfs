@@ -1,5 +1,10 @@
 2005-06-02  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c: (get_list_command): Use const modifier for
+	command candidates.
+
+2005-06-02  Christian Neumair  <chris@gnome-de.org>
+
 	* modules/ftp-method.c: (get_list_command), (do_open_directory):
 	Use smarter method to figure out what "LIST" parameters a particular
 	FTP server supports. Fixes #48427.
