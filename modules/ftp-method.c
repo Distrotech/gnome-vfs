@@ -123,6 +123,8 @@ typedef struct {
 	gchar *server_type; /* the response from TYPE */
 	GnomeVFSResult fivefifty; /* the result to return for an FTP 550 */
 
+	const char *list_cmd; /* the command to be used for LIST */
+
 #ifdef HAVE_GSSAPI
 	gboolean use_gssapi;
 	gss_ctx_id_t gcontext;
@@ -171,6 +173,9 @@ static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri,
 		                                GnomeVFSContext *context);
 static void           ftp_connection_release   (FtpConnection *conn,
 						gboolean error_release);
+
+static GnomeVFSResult get_list_command (FtpConnection   *conn,
+					GnomeVFSContext *context);
 
 static const int   control_port = 21;
 
@@ -245,6 +250,8 @@ ftp_response_to_vfs_result (FtpConnection *conn)
 	case 451:
 	case 551:
 	  return GNOME_VFS_ERROR_NOT_FOUND;
+	case 504:
+	  return GNOME_VFS_ERROR_BAD_PARAMETERS;
 	case 550:
 	  return conn->fivefifty;
 	case 452:
@@ -2283,6 +2290,50 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 				 file_info, options, context);
 }
 
+/* Tries out all suitable LIST parameter combinations until one succeeds.
+ * If there is an unexpected error, it is returned and has to be handled
+ * by the caller. Note that a successful LIST command also means that the
+ * list is actually requested, which also has to be handled by the caller.
+ * */
+static GnomeVFSResult
+get_list_command (FtpConnection   *conn,
+		  GnomeVFSContext *context)
+{
+	GnomeVFSResult result;
+
+	static const char *osx_candidates[] = { "LIST -a", NULL };
+	static const char *non_osx_candidates[] = { "LIST -aL", "LIST -a", "LIST -L", NULL };
+
+	const char **candidates;
+
+	if (strstr(conn->server_type, "MACOS")) {
+		candidates = osx_candidates;
+	} else {
+		candidates = non_osx_candidates;
+	}
+
+	do {
+		result = do_transfer_command (conn, (char *) *candidates, context);
+	}
+	while (*++candidates != NULL &&
+	       result == GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	if (result == GNOME_VFS_OK) {
+		/* we found the best suitable candidate for this server. */
+		g_assert (candidates != NULL);
+
+		conn->list_cmd = *candidates;
+	} else {
+		/* all commands failed, or an unexpected error occured,
+		 * just use "LIST". */
+
+		result = do_transfer_command (conn, "LIST", context);
+		conn->list_cmd = "LIST";
+	}
+
+	return result;
+}
+
 static GnomeVFSResult
 do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
@@ -2343,14 +2394,14 @@ do_open_directory (GnomeVFSMethod *method,
 	result = do_path_command (conn, "CWD", uri, cancellation);
 	if (result != GNOME_VFS_OK) {
 		ftp_connection_release (conn, TRUE);
+		g_string_free (dirlist, TRUE);
 		return result;
 	}
 
-	if(strstr(conn->server_type,"MACOS")) {
-		/* don't ask for symlinks from MacOS servers */
-		result = do_transfer_command (conn, "LIST", context);
+	if (conn->list_cmd != NULL) {
+		result = do_transfer_command (conn, (char *) conn->list_cmd, context);
 	} else {
-		result = do_transfer_command (conn, "LIST -L", context);
+		result = get_list_command (conn, context);
 	}
 
 	if (result != GNOME_VFS_OK) {
