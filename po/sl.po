@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-03 10:20+0200\n"
+"POT-Creation-Date: 2005-06-03 10:53+0200\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -39,6 +39,7 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d ne vsebuje imena metode."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:284
+#, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d ne vsebuje oznake konca možnosti."
 
@@ -197,6 +198,8 @@ msgstr "Zapis XIAFS"
 msgid "Unknown"
 msgstr "Neznano"
 
+#: ../libgnomevfs/gnome-vfs-job.c:734
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "Neznana vrsta dejanja %u"
 
@@ -245,8 +248,7 @@ msgstr "Operacija ustavljena"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
-"Opuščena funkcija.  Uporabniške spremembe baze MIME niso več podprte."
+msgstr "Opuščena funkcija.  Uporabniške spremembe baze MIME niso več podprte."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -512,6 +514,7 @@ msgid "Unknown error"
 msgstr "Neznana napaka"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:85
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u bajt"
@@ -520,6 +523,7 @@ msgstr[2] "%u bajti"
 msgstr[3] "%u bajtov"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:91
+#, c-format
 msgid "%.1f KB"
 msgstr "%.1f KB"
 
@@ -682,8 +686,7 @@ msgstr "Mrežni strežnik"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:114
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Ne morem priklopiti disketnika. Verjetno v disketniku ni diskete."
+msgstr "Ne morem priklopiti disketnika. Verjetno v disketniku ni diskete."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:118
@@ -695,14 +698,16 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Ne morem priklopiti disketnika. Na disketi je verjetno zapis, ki ga ni mogoče priklopiti."
+"Ne morem priklopiti disketnika. Na disketi je verjetno zapis, ki ga ni "
+"mogoče priklopiti."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:127
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Ne morem priklopiti izbranega zapisa. Zapis je verjetno v takšni obliki, da ga ni mogoče priklopiti."
+"Ne morem priklopiti izbranega zapisa. Zapis je verjetno v takšni obliki, da "
+"ga ni mogoče priklopiti."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected floppy drive."
@@ -765,8 +770,9 @@ msgid ""
 msgstr ""
 "To se zgodi, ko se prvič prijavite na računalnik.\n"
 "\n"
-"Identiteta poslana s strani oddaljenega računalnika je %s. Če želite biti povsem prepričani, "
-"ali je varno nadaljevati, stopite v stik s skrbnikom sistema." 
+"Identiteta poslana s strani oddaljenega računalnika je %s. Če želite biti "
+"povsem prepričani, ali je varno nadaljevati, stopite v stik s skrbnikom "
+"sistema."
 
 #: ../modules/sftp-method.c:1322
 msgid "Log In Anyway"
@@ -823,8 +829,8 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "Program, ki naj se uporabi za ogled datotek, ki za ogled zahtevajo "
-"komponento. Parameter %s bo zamenjan z URI naslovom datoteke, parameter %c bo"
-"zamenjan z IID komponente"
+"komponento. Parameter %s bo zamenjan z URI naslovom datoteke, parameter %c "
+"bozamenjan z IID komponente"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -926,67 +932,88 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"aim\"."
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"callto\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\"."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"ghelp\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"h323\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"http\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"https\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"info\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"mailto\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"man\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove \"trash\"."
+msgstr ""
+"Resnično, če naj ukaz naveden v ključu \"command\" obravnava URL naslove "
+"\"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Resnično, če naj bo ukaz, ki obravnava to vrsto naslovov URL pognan v terminalu."
+msgstr ""
+"Resnično, če naj bo ukaz, ki obravnava to vrsto naslovov URL pognan v "
+"terminalu."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1057,7 +1084,9 @@ msgstr "Naslov URL za samodejno nastavitev posrednika"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Vključi nastavitve posrednika, kadar dostopamo do interneta preko protokola HTTP."
+msgstr ""
+"Vključi nastavitve posrednika, kadar dostopamo do interneta preko protokola "
+"HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1089,9 +1118,10 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Če je resnično, potem povezave s posredniškim strežnikom zahtevajo avtentikacijo."
-" Kombinacija uporabniško ime/geslo je navedena v \"/system/http_proxy/"
-"authentication_user\" in \"/system/http_proxy/authentication_password\"."
+"Če je resnično, potem povezave s posredniškim strežnikom zahtevajo "
+"avtentikacijo. Kombinacija uporabniško ime/geslo je navedena v \"/system/"
+"http_proxy/authentication_user\" in \"/system/http_proxy/"
+"authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1150,34 +1180,32 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Vrata na računalniku \"/system/http_proxy/host\" skozi katera "
-"se bo posredovalo."
+"Vrata na računalniku \"/system/http_proxy/host\" skozi katera se bo "
+"posredovalo."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Vrata na računalniku \"/system/ftp_proxy/host\" skozi katera "
-"se bo posredovalo."
-
+"Vrata na računalniku \"/system/ftp_proxy/host\" skozi katera se bo "
+"posredovalo."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Vrata na računalniku \"/system/proxy/secure_host\" skozi katera "
-"se bo posredovalo."
+"Vrata na računalniku \"/system/proxy/secure_host\" skozi katera se bo "
+"posredovalo."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Vrata na računalniku \"/system/proxy/socks_host\" skozi katera "
-"se bo posredovalo."
-
+"Vrata na računalniku \"/system/proxy/socks_host\" skozi katera se bo "
+"posredovalo."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1187,9 +1215,9 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Ta ključ vsebuje seznam gostiteljev, ki so povezani neposredno in ne preko "
-"posrednika (če je aktiven). Vrednosti so lahko imena gositeljev, domene ("
-"z uporabo začetnega jokerja, npr. *.nekaj.si), IP naslovi gostiteljev ("
-"tako IPv4 kot IPv6) in mrežni naslovi z netmask (npr. 192.168.0.0/24)."
+"posrednika (če je aktiven). Vrednosti so lahko imena gositeljev, domene (z "
+"uporabo začetnega jokerja, npr. *.nekaj.si), IP naslovi gostiteljev (tako "
+"IPv4 kot IPv6) in mrežni naslovi z netmask (npr. 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
