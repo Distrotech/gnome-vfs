@@ -140,8 +140,7 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	text_uri = gnome_vfs_make_uri_from_input_with_dirs (argv[1],
-							    GNOME_VFS_MAKE_URI_DIR_CURRENT);
+	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 	
 	info = gnome_vfs_file_info_new ();
 	res = gnome_vfs_get_file_info (text_uri, info,

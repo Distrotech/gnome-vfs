@@ -43,8 +43,7 @@ int
 main (int argc, char **argv)
 {
 	GnomeVFSResult    result;
-	GnomeVFSURI 	 *from, *to;
-	gchar            *text_from, *text_to;
+	char  	         *from, *to;
 
 	if (argc != 3) {
 		fprintf (stderr, "Usage: %s <from> <to>\n", argv[0]);
@@ -56,26 +55,26 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	from = gnome_vfs_uri_new (argv[1]);
+	from = gnome_vfs_make_uri_from_shell_arg (argv[1]);
+	
 	if (from == NULL) {
-		fprintf (stderr, "URI %s not valid.\n", argv[1]);
+		fprintf (stderr, "Could not guess URI from %s\n", argv[1]);
 		return 1;
 	}
 
-	to = gnome_vfs_uri_new (argv[2]);
+	to = gnome_vfs_make_uri_from_shell_arg (argv[2]);
+
 	if (to == NULL) {
-		fprintf (stderr, "URI %s not valid.\n", argv[2]);
+		g_free (from);
+		fprintf (stderr, "Could not guess URI from %s\n", argv[2]);
 		return 1;
 	}
 
-	text_from = gnome_vfs_uri_to_string (from, GNOME_VFS_URI_HIDE_NONE);
-	text_to = gnome_vfs_uri_to_string (to, GNOME_VFS_URI_HIDE_NONE);
+	result = gnome_vfs_move (from, to, TRUE);
+	show_result (result, "move", from, to);
 
-	result = gnome_vfs_move_uri (from, to, TRUE);
-	show_result (result, "move", text_from, text_to);
-
-	g_free (text_from);
-	g_free (text_to);
+	g_free (from);
+	g_free (to);
 
 	return 0;
 }

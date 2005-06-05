@@ -102,8 +102,7 @@ main (int argc, char **argv)
 		return 1;
 	}
 	
-	text_uri = gnome_vfs_make_uri_from_input_with_dirs (argv[1],
-							    GNOME_VFS_MAKE_URI_DIR_CURRENT);
+	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 
 	if (text_uri == NULL) {
 		fprintf (stderr, "Could not create uri from location\n");

@@ -23,7 +23,7 @@
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-static char *directory;
+static char *directory = NULL;
 
 static void show_data (gpointer item, gpointer no_item);
 static void list (void);
@@ -124,7 +124,7 @@ main (int argc, char *argv[])
 	gnome_vfs_init ();
 
 	if (argc > 1) {
-		directory = argv[1];
+		directory = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 	} else {
 		char *tmp;
 
@@ -134,7 +134,9 @@ main (int argc, char *argv[])
 	}
 
 	list ();
-
+	
+	g_free (directory);
+	
 	gnome_vfs_shutdown ();
 	return 0;
 }

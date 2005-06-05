@@ -83,7 +83,8 @@ make_directory_with_parents (const gchar * text_uri, guint perm)
 int
 main (int argc, char *argv[])
 {
-	gchar *directory;
+	char *text_uri;
+	char *directory;
 	GnomeVFSResult result;
 	gboolean with_parents;
 
@@ -103,17 +104,26 @@ main (int argc, char *argv[])
 		return 0;
 	}
 
+	text_uri = gnome_vfs_make_uri_from_shell_arg (directory);
+
+	if (text_uri == NULL) {
+		fprintf (stderr, "Could not guess URI from %s.\n", argv[1]);
+		return 1;
+	}	
+	
 	if (with_parents) {
-		result = make_directory_with_parents (argv[1],
+		result = make_directory_with_parents (text_uri,
 				GNOME_VFS_PERM_USER_ALL
 				| GNOME_VFS_PERM_GROUP_ALL
 				| GNOME_VFS_PERM_OTHER_READ);
 	} else {
-		result = gnome_vfs_make_directory (argv[1],
+		result = gnome_vfs_make_directory (text_uri,
 				GNOME_VFS_PERM_USER_ALL
 				| GNOME_VFS_PERM_GROUP_ALL
 				| GNOME_VFS_PERM_OTHER_READ);
 	}
+	
+	g_free (text_uri);
 
 	if (result != GNOME_VFS_OK) {
 		g_print ("Error making directory %s\nReason: %s\n",
@@ -121,7 +131,7 @@ main (int argc, char *argv[])
 				gnome_vfs_result_to_string (result));
 		return 0;
 	}
-
+	
 	gnome_vfs_shutdown ();
 	return 0;
 }

@@ -1,3 +1,19 @@
+2005-06-05  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in:
+	Just make configuration summary more pretty.
+
+	* programs/gnomevfs-cat.c:
+	* programs/gnomevfs-copy.c:
+	* programs/gnomevfs-info.c:
+	* programs/gnomevfs-ls.c:
+	* programs/gnomevfs-mkdir.c:
+	* programs/gnomevfs-monitor.c:
+	* programs/gnomevfs-mv.c:
+	* programs/gnomevfs-rm.c:
+	Use gnome_vfs_make_uri_from_shell_arg () so we don't have to
+	specify full URIs for local paths.
+
 2005-06-02  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/ftp-method.c: (get_list_command): Use const modifier for

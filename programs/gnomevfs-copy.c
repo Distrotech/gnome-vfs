@@ -47,14 +47,12 @@ main (int argc, char **argv)
 		return 1;
 	}
 	
-	text_uri = gnome_vfs_make_uri_from_input_with_dirs (argv[1],
-							    GNOME_VFS_MAKE_URI_DIR_CURRENT);
+	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 
 	src = gnome_vfs_uri_new (text_uri);
 	g_free (text_uri);
 
-	text_uri = gnome_vfs_make_uri_from_input_with_dirs (argv[2],
-							    GNOME_VFS_MAKE_URI_DIR_CURRENT);
+	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[2]);
 	
 	dest = gnome_vfs_uri_new (text_uri);
 	g_free (text_uri);

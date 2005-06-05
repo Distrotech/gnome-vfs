@@ -42,9 +42,8 @@ show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
 int
 main (int argc, char **argv)
 {
-	GnomeVFSResult    result;
-	GnomeVFSURI 	 *uri;
-	gchar            *text_uri;
+	GnomeVFSResult   result;
+	char            *text_uri;
 
 	if (argc != 2) {
 		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
@@ -56,15 +55,14 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-	uri = gnome_vfs_uri_new (argv[1]);
-	if (uri == NULL) {
-		fprintf (stderr, "URI %s not valid.\n", argv[1]);
+	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]); 
+	
+	if (text_uri == NULL) {
+		fprintf (stderr, "Could not guess URI from %s.\n", argv[1]);
 		return 1;
 	}
 
-	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-
-	result = gnome_vfs_unlink_from_uri (uri);
+	result = gnome_vfs_unlink (text_uri);
 	show_result (result, "open", text_uri);
 
 	g_free (text_uri);
