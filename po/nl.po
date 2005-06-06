@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-17 22:03+0000\n"
-"PO-Revision-Date: 2005-05-18 08:12+0200\n"
+"POT-Creation-Date: 2005-06-05 05:50+0000\n"
+"PO-Revision-Date: 2005-06-05 08:20+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -222,23 +222,23 @@ msgstr "Onbekend taaktype %u"
 msgid "Operation stopped"
 msgstr "Operatie gestopt"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:106
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:260
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:311
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:605
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:624
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:642
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:661
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:680
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:821
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:843
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:862
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:881
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:934
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:951
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:968
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1004
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
 #: ../libgnomevfs/gnome-vfs-mime-info.c:653
 #: ../libgnomevfs/gnome-vfs-mime-info.c:661
@@ -761,7 +761,7 @@ msgstr "Bestandssysteem"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
 
-#: ../modules/network-method.c:1397
+#: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "Windows netwerk"
 
@@ -1078,7 +1078,9 @@ msgstr "Of de aangegeven opdracht \"trash\" URL's af dient te handelen."
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar behoren te zijn in de lokatie \"netwerk:///\"."
+msgstr ""
+"Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar behoren te "
+"zijn in de lokatie \"netwerk:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1251,13 +1253,19 @@ msgstr "Te gebruiken naam voor identificatie bij HTTP proxy-gebruik."
 msgid "SMB workgroup"
 msgstr "SMB werkgroep"
 
+#: ../schemas/system_smb.schemas.in.h:2
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr "De werkgroep of domein van het Windows-netwerk waar de gebruiker deel van is. Om de nieuwe werkgroep volledig effectief te laten zijn moet u mogelijk een keer uitloggen en opnieuw aanmelden."
+
 # Of:
 # De werkgroep waarvan de gebruiker deel uitmaakt.
 # Gaat het soms om de 'windows workgroup'? (ipv window workgroup)
 # Voorlopig even in het midden gelaten door window niet te vertalen.
-#: ../schemas/system_smb.schemas.in.h:2
-msgid "The window workgroup the user is part of"
-msgstr "De window werkgroep waar de gebruiker deel van uitmaakt"
+#~ msgid "The window workgroup the user is part of"
+#~ msgstr "De window werkgroep waar de gebruiker deel van uitmaakt"
 
 #~ msgid "CD-ROM Disc"
 #~ msgstr "CD-ROMschijf"
