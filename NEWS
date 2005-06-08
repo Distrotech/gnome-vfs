@@ -1,3 +1,12 @@
+gnome-vfs 2.11.2
+	* smb authentication fix
+	* use the gconf specified workgroup by default in the smb backend
+	* mark deprecated functions in the documentation
+	* Make the gnomevfs-* programs nicer to use
+	* only use extensions over sniffing for textfiles if the mimetype of
+	  the extension is a subclass of text/plain
+	* ftp method updates
+
 gnome-vfs 2.11.1
 	
 	* Features: 
