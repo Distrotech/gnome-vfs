@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-24 17:20+0200\n"
-"PO-Revision-Date: 2005-05-24 17:21+0200\n"
+"POT-Creation-Date: 2005-06-20 22:13+0200\n"
+"PO-Revision-Date: 2005-06-20 22:15+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -216,23 +216,23 @@ msgstr "Ukjent type jobb %u"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:106
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:260
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:311
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:605
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:624
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:642
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:661
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:680
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:821
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:843
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:862
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:881
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:934
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:951
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:968
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1004
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
 #: ../libgnomevfs/gnome-vfs-mime-info.c:653
 #: ../libgnomevfs/gnome-vfs-mime-info.c:661
@@ -752,7 +752,7 @@ msgstr "Filsystem"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjent GnomeVFSSeekPosition %d"
 
-#: ../modules/network-method.c:1397
+#: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "Windows nettverk"
 
@@ -1055,7 +1055,9 @@ msgstr "Om oppgitt kommando skal håndtere «trash»-URLer"
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Kommaseparert liste med DNS-SD-domener som skal være synlige i lokasjonen «network:///»."
+msgstr ""
+"Kommaseparert liste med DNS-SD-domener som skal være synlige i lokasjonen "
+"«network:///»."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1229,174 +1231,8 @@ msgid "SMB workgroup"
 msgstr "SMB-arbeidsgruppe"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The window workgroup the user is part of"
-msgstr "Windows arbeidsgruppe bruker er en del av"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM-plate"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Tom CD-R plate"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R plate"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Tom CD-RW plate"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW plate"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM plate"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Tom DVD-R plate"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R plate"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Tom DVD-RAM plate"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM plate"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Tom DVD-RW plate"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW plate"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Tom DVD+RW plate"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW plate"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Tom DVD+R plate"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R plate"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Optisk plate"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Lyd-CD"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Compact Flash medie"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Minnestaur"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Smart media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC-medie"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Diskett"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS-disk"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X disk"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows disk"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Linux disk"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Filen kunne ikke åpnes: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Feil under åpning av fil «%s»: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Filen er tom"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Kunne ikke lese fra fil «%s»: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "skrivebordsoppføringsfil inneholder linje, «%s», som ikke er en "
-#~ "oppføring, gruppe eller kommentar"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "skrivebordsoppføringsfil starter ikke med gyldig startsgruppe"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "skrivebordsoppføring inneholder linje, «%s», som ikke er UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "skrivebordsoppføring inneholder ukjent koding «%s»"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "skrivebordsoppføring har ikke gruppe «%s»"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "skrivebordsoppføring har ikke nøkkel «%s»"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "skrivebordsoppføring inneholder nøkkel «%s» som har verdi som ikke kan "
-#~ "fortolkes."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "skrivebordsoppføring inneholder ingen oversatt verdi for nøkkel «%s» med "
-#~ "locale «%s»."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "skrivebordsoppføring inneholder ugyldig escape-sekvens «%s»"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "skrivebordsoppføring inneholder escape-tegn ved slutten av linjen"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Verdi «%s» kan ikke tolkes som et tall."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Verdi «%s» kan ikke fortolkes som en bolsk verdi"
-
-#~ msgid "Applications"
-#~ msgstr "Applikasjoner"
-
-#~ msgid "Cards"
-#~ msgstr "Kort"
-
-#~ msgid "Files"
-#~ msgstr "Filer"
-
-#~ msgid "Folders"
-#~ msgstr "Mapper"
-
-#~ msgid "Help"
-#~ msgstr "Hjelp"
-
-#~ msgid "Hosts"
-#~ msgstr "Verter"
-
-#~ msgid "Links"
-#~ msgstr "Lenker"
-
-#~ msgid "Mail"
-#~ msgstr "E-post"
-
-#~ msgid "Tools"
-#~ msgstr "Verktøy"
-
-#~ msgid "Windows"
-#~ msgstr "Vinduer"
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr "Arbeidsgruppe eller domene brukeren er del av i Windows-nettverket. Brukeren må logge ut for at endringer skal tre i kraft."
