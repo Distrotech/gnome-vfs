@@ -1,3 +1,10 @@
+2005-06-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	add missing locking around some xdg_mime calls (#170947)
+	
+	Patch from Joe Marcus Clarke
+
 2005-04-17  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* programs/gnomevfs-cat.c: (main): Unref the uri when we're done
