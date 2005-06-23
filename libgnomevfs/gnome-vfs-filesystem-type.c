@@ -74,6 +74,7 @@ static struct FSInfo fs_data[] = {
 	{ "xenix"    , N_("Xenix Volume"), 0 },
 	{ "xfs"      , N_("XFS Linux Volume"), 1 },
 	{ "xiafs"    , N_("XIAFS Volume"), 0 },
+	{ "cifs"     , N_("CIFS Volume"), 1 },
 };
 
 static struct FSInfo *

@@ -1,3 +1,9 @@
+2005-06-23  Narayana Pattipati  <narayana.pattipati@wipro.com>
+
+	* libgnomevfs/gnome-vfs-filesystem-type.c:
+	Add an entry for Common Internet File System (CIFS) so that
+	it supports trash volume. Bugzilla bug#145442.
+
 2005-06-10  Federico Mena Quintero  <federico@ximian.com>
 
 	* libgnomevfs/xdgmime.c (xdg_mime_init_from_directory): Apply the
