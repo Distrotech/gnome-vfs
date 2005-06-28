@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-06 11:35+0700\n"
-"PO-Revision-Date: 2005-06-06 11:40+0700\n"
+"POT-Creation-Date: 2005-06-28 20:23+0700\n"
+"PO-Revision-Date: 2005-06-28 20:24+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,11 @@ msgstr "โวลุม XFS ของลินุกซ์"
 msgid "XIAFS Volume"
 msgstr "โวลุม XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:104
+#: libgnomevfs/gnome-vfs-filesystem-type.c:77
+msgid "CIFS Volume"
+msgstr "โวลุม CIFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:105
 msgid "Unknown"
 msgstr "ไม่รู้จัก"
 
@@ -1032,8 +1036,7 @@ msgstr "กำหนดให้คำสั่งนี้จัดการ UR
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "รายการโดเมน DNS-SD (คั่นด้วยจุลภาค) ที่น่าจะมองเห็นได้ในตำแหน่ง "
-"\"network:///\""
+msgstr "รายการโดเมน DNS-SD (คั่นด้วยจุลภาค) ที่น่าจะมองเห็นได้ในตำแหน่ง \"network:///\""
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
