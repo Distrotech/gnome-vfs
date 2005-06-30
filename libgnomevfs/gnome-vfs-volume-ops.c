@@ -40,6 +40,10 @@
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-private.h"
 
+#ifdef USE_HAL
+#include "gnome-vfs-hal-mounts.h"
+#endif
+
 #ifndef G_OS_WIN32
 
 #ifdef USE_VOLRMMOUNT
@@ -93,6 +97,7 @@ typedef struct {
 	char *argv[4];
 	char *mount_point;
 	char *device_path;
+	char *hal_udi;
 	GnomeVFSDeviceType device_type;
 	gboolean should_mount;
 	gboolean should_unmount;
@@ -209,6 +214,7 @@ report_mount_result (gpointer callback_data)
 	}
 	g_free (info->mount_point);
 	g_free (info->device_path);
+	g_free (info->hal_udi);
 	g_free (info->error_message);
 	g_free (info->detailed_error_message);
 	g_free (info);
@@ -237,8 +243,14 @@ mount_unmount_thread (void *arg)
 	if (info->should_mount || info->should_unmount) {
 		error = NULL;
 		if (g_spawn_sync (NULL,
-				   info->argv,
+				  info->argv,
+#if defined(USE_HAL) && defined(HAL_MOUNT) && defined(HAL_UMOUNT)
+				  /* do pass our environment when using hal mount progams */
+				  ((strcmp (info->argv[0], HAL_MOUNT) == 0) ||
+				   (strcmp (info->argv[0], HAL_UMOUNT) == 0)) ? NULL : envp,
+#else
 				   envp,
+#endif
 				   G_SPAWN_STDOUT_TO_DEV_NULL,
 				   NULL, NULL,
 				   NULL,
@@ -247,14 +259,28 @@ mount_unmount_thread (void *arg)
 				   &error)) {
 			if (exit_status != 0) {
 				info->succeeded = FALSE;
-				if (info->should_mount) {
-					info->error_message = generate_mount_error_message (standard_error,
-											    info->device_type);
+				if (strlen (standard_error) > 0) {
+					if (info->should_mount) {
+						info->error_message = generate_mount_error_message (standard_error,
+												    info->device_type);
+					} else {
+						info->error_message = generate_unmount_error_message (standard_error,
+												      info->device_type);
+					}
+					info->detailed_error_message = g_strdup (standard_error);
 				} else {
-					info->error_message = generate_unmount_error_message (standard_error,
-											      info->device_type);
+					/* As of 2.12 we introduce a new contract between gnome-vfs clients
+					 * invoking mount/unmount and the gnome-vfs-daemon:
+					 *
+					 *       "don't display an error dialog if error_message and
+					 *        detailed_error_message are both empty strings".
+					 *
+					 * We want this as we may use mount/unmount/ejects programs that
+					 * shows it's own dialogs. 
+					 */
+					info->error_message = g_strdup ("");
+					info->detailed_error_message = g_strdup ("");
 				}
-				info->detailed_error_message = g_strdup (standard_error);
 			}
 
 			g_free (standard_error);
@@ -268,23 +294,34 @@ mount_unmount_thread (void *arg)
 	}
 
 	if (info->should_eject) {
-#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)
-	    	char *argv[5] = {
-		    	"cdcontrol",
-			"-f",
-			NULL,
-			"eject",
-			NULL
-		};
-		argv[2] = info->device_path?info->device_path:info->mount_point;
-#else
-		char *argv[3] = {
-			"eject",
-			NULL,
-			NULL
-		};
-		argv[1] = info->device_path?info->device_path:info->mount_point;
+		char *argv[5];
+
+		argv[0] = NULL;
+
+#if defined(USE_HAL) && defined(HAL_EJECT)
+		if (info->hal_udi != NULL) {
+			argv[0] = HAL_EJECT;
+			argv[1] = info->device_path;
+			argv[2] = NULL;
+			
+			if (!g_file_test (argv [0], G_FILE_TEST_IS_EXECUTABLE))
+				argv[0] = NULL;
+		}
 #endif
+
+		if (argv[0] == NULL) {
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__DragonFly__)
+			argv[0] = "cdcontrol";
+			argv[1] = "-f";
+			argv[2] = info->device_path?info->device_path:info->mount_point;
+			argv[3] = "eject";
+			argv[4] = NULL;
+#else
+			argv[0] = "eject";
+			argv[1] = info->device_path?info->device_path:info->mount_point;
+			argv[2] = NULL;
+#endif
+		}
 
 		error = NULL;
 		if (g_spawn_sync (NULL,
@@ -336,6 +373,7 @@ mount_unmount_thread (void *arg)
 static void
 mount_unmount_operation (const char *mount_point,
 			 const char *device_path,
+			 const char *hal_udi,
 			 GnomeVFSDeviceType device_type,
 			 gboolean should_mount,
 			 gboolean should_unmount,
@@ -360,18 +398,41 @@ mount_unmount_operation (const char *mount_point,
 		name = mount_point;
 	}
 #else
-       name = mount_point;
+
+# ifdef USE_HAL
+	if (hal_udi != NULL) {
+		name = device_path;
+	} else
+		name = mount_point;
+# else
+	name = mount_point;
+# endif
+
 #endif
        
        if (should_mount) {
-		command = find_command (MOUNT_COMMAND);
+#if defined(USE_HAL) && defined(HAL_MOUNT)
+	       if (hal_udi != NULL && g_file_test (HAL_MOUNT, G_FILE_TEST_IS_EXECUTABLE))
+		       command = HAL_MOUNT;
+	       else
+		       command = find_command (MOUNT_COMMAND);
+#else
+	       command = find_command (MOUNT_COMMAND);
+#endif
 #ifdef  MOUNT_ARGUMENT
-		argument = MOUNT_ARGUMENT;
+	       argument = MOUNT_ARGUMENT;
 #endif
        }
 
        if (should_unmount) {
-		command = find_command (UMOUNT_COMMAND);
+#if defined(USE_HAL) && defined(HAL_UMOUNT)
+	       if (hal_udi != NULL && g_file_test (HAL_UMOUNT, G_FILE_TEST_IS_EXECUTABLE))
+		       command = HAL_UMOUNT;
+	       else
+		       command = find_command (UMOUNT_COMMAND);
+#else
+	       command = find_command (UMOUNT_COMMAND);
+#endif
 #ifdef  UNMOUNT_ARGUMENT
 		argument = UNMOUNT_ARGUMENT;
 #endif
@@ -392,6 +453,7 @@ mount_unmount_operation (const char *mount_point,
 	mount_info->mount_point = g_strdup (mount_point);
 	mount_info->device_path = g_strdup (device_path);
 	mount_info->device_type = device_type;
+	mount_info->hal_udi = g_strdup (hal_udi);
 	mount_info->should_mount = should_mount;
 	mount_info->should_unmount = should_unmount;
 	mount_info->should_eject = should_eject;
@@ -549,6 +611,7 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 		device_path = gnome_vfs_volume_get_device_path (volume);
 		mount_unmount_operation (mount_path,
 					 device_path,
+					 gnome_vfs_volume_get_hal_udi (volume),
 					 gnome_vfs_volume_get_device_type (volume),
 					 FALSE, TRUE, FALSE,
 					 callback, user_data);
@@ -588,6 +651,7 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 		device_path = gnome_vfs_volume_get_device_path (volume);
 		mount_unmount_operation (mount_path,
 					 device_path,
+					 gnome_vfs_volume_get_hal_udi (volume),
 					 gnome_vfs_volume_get_device_type (volume),
 					 FALSE, TRUE, TRUE,
 					 callback, user_data);
@@ -621,6 +685,7 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 	device_path = gnome_vfs_drive_get_device_path (drive);
 	mount_unmount_operation (mount_path,
 				 device_path,
+				 gnome_vfs_drive_get_hal_udi (drive),
 				 GNOME_VFS_DEVICE_TYPE_UNKNOWN,
 				 TRUE, FALSE, FALSE,
 				 callback, user_data);
@@ -713,6 +778,7 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 		device_path = gnome_vfs_drive_get_device_path (drive);
 		mount_unmount_operation (mount_path,
 					 device_path,
+					 gnome_vfs_drive_get_hal_udi (drive),
 					 GNOME_VFS_DEVICE_TYPE_UNKNOWN,
 					 FALSE, FALSE, TRUE,
 					 callback, user_data);

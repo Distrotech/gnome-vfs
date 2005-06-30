@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-hal-mounts.c - read and monitor volumes using freedesktop HAL
 
-   Copyright (C) 2004 Red Hat, Inc
+   Copyright (C) 2004-2005 Red Hat, Inc
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -47,10 +47,1050 @@
 #include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume-monitor-private.h"
 
+#define PATH_GCONF_GNOME_VFS_STORAGE "/system/storage"
+
 typedef struct {
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
-	LibHalStoragePolicy *hal_storage_policy;
+	guint gconf_client_connection_id;
 } GnomeVFSHalUserData;
+
+typedef enum {
+	HAL_ICON_DRIVE_REMOVABLE_DISK           = 0x10000,
+	HAL_ICON_DRIVE_REMOVABLE_DISK_IDE       = 0x10001,
+	HAL_ICON_DRIVE_REMOVABLE_DISK_SCSI      = 0x10002,
+	HAL_ICON_DRIVE_REMOVABLE_DISK_USB       = 0x10003,
+	HAL_ICON_DRIVE_REMOVABLE_DISK_IEEE1394  = 0x10004,
+	HAL_ICON_DRIVE_REMOVABLE_DISK_CCW       = 0x10005,
+	HAL_ICON_DRIVE_DISK                     = 0x10100,
+	HAL_ICON_DRIVE_DISK_IDE                 = 0x10101,
+	HAL_ICON_DRIVE_DISK_SCSI                = 0x10102,
+	HAL_ICON_DRIVE_DISK_USB                 = 0x10103,
+	HAL_ICON_DRIVE_DISK_IEEE1394            = 0x10104,
+	HAL_ICON_DRIVE_DISK_CCW                 = 0x10105,
+	HAL_ICON_DRIVE_CDROM                    = 0x10200,
+	HAL_ICON_DRIVE_CDWRITER                 = 0x102ff,
+	HAL_ICON_DRIVE_FLOPPY                   = 0x10300,
+	HAL_ICON_DRIVE_TAPE                     = 0x10400,
+	HAL_ICON_DRIVE_COMPACT_FLASH            = 0x10500,
+	HAL_ICON_DRIVE_MEMORY_STICK             = 0x10600,
+	HAL_ICON_DRIVE_SMART_MEDIA              = 0x10700,
+	HAL_ICON_DRIVE_SD_MMC                   = 0x10800,
+	HAL_ICON_DRIVE_CAMERA                   = 0x10900,
+	HAL_ICON_DRIVE_PORTABLE_AUDIO_PLAYER    = 0x10a00,
+	HAL_ICON_DRIVE_ZIP                      = 0x10b00,
+        HAL_ICON_DRIVE_JAZ                      = 0x10c00,
+        HAL_ICON_DRIVE_FLASH_KEY                = 0x10d00,
+
+	HAL_ICON_VOLUME_REMOVABLE_DISK          = 0x20000,
+	HAL_ICON_VOLUME_REMOVABLE_DISK_IDE      = 0x20001,
+	HAL_ICON_VOLUME_REMOVABLE_DISK_SCSI     = 0x20002,
+	HAL_ICON_VOLUME_REMOVABLE_DISK_USB      = 0x20003,
+	HAL_ICON_VOLUME_REMOVABLE_DISK_IEEE1394 = 0x20004,
+	HAL_ICON_VOLUME_REMOVABLE_DISK_CCW      = 0x20005,
+	HAL_ICON_VOLUME_DISK                    = 0x20100,
+	HAL_ICON_VOLUME_DISK_IDE                = 0x20101,
+	HAL_ICON_VOLUME_DISK_SCSI               = 0x20102,
+	HAL_ICON_VOLUME_DISK_USB                = 0x20103,
+	HAL_ICON_VOLUME_DISK_IEEE1394           = 0x20104,
+	HAL_ICON_VOLUME_DISK_CCW                = 0x20105,
+	/* specifically left out as we use icons based on media type in the optical drive
+	HAL_ICON_VOLUME_CDROM                   = 0x20200 */
+	HAL_ICON_VOLUME_FLOPPY                  = 0x20300,
+	HAL_ICON_VOLUME_TAPE                    = 0x20400,
+	HAL_ICON_VOLUME_COMPACT_FLASH           = 0x20500,
+	HAL_ICON_VOLUME_MEMORY_STICK            = 0x20600,
+	HAL_ICON_VOLUME_SMART_MEDIA             = 0x20700,
+	HAL_ICON_VOLUME_SD_MMC                  = 0x20800,
+	HAL_ICON_VOLUME_CAMERA                  = 0x20900,
+	HAL_ICON_VOLUME_PORTABLE_AUDIO_PLAYER   = 0x20a00,
+	HAL_ICON_VOLUME_ZIP                     = 0x20b00,
+        HAL_ICON_VOLUME_JAZ                     = 0x20c00,
+        HAL_ICON_VOLUME_FLASH_KEY               = 0x20d00,
+
+	HAL_ICON_DISC_CDROM                     = 0x30000,
+	HAL_ICON_DISC_CDR                       = 0x30001,
+	HAL_ICON_DISC_CDRW                      = 0x30002,
+	HAL_ICON_DISC_DVDROM                    = 0x30003,
+	HAL_ICON_DISC_DVDRAM                    = 0x30004,
+	HAL_ICON_DISC_DVDR                      = 0x30005,
+	HAL_ICON_DISC_DVDRW                     = 0x30006,
+	HAL_ICON_DISC_DVDPLUSR                  = 0x30007,
+	HAL_ICON_DISC_DVDPLUSRW                 = 0x30008,
+	HAL_ICON_DISC_DVDPLUSR_DL               = 0x30009
+} HalIcon;
+
+typedef struct {
+	HalIcon icon;
+	const char *icon_path;
+} HalIconPair;
+
+/* by design, the enums are laid out so we can do easy computations */
+static HalIconPair hal_icon_mapping[] = {
+	{HAL_ICON_DRIVE_REMOVABLE_DISK,           "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_REMOVABLE_DISK_IDE,       "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_REMOVABLE_DISK_SCSI,      "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_REMOVABLE_DISK_USB,       "gnome-dev-removable-usb"},
+	{HAL_ICON_DRIVE_REMOVABLE_DISK_IEEE1394,  "gnome-dev-removable-1394"},
+	{HAL_ICON_DRIVE_REMOVABLE_DISK_CCW,       "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_DISK,                     "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_DISK_IDE,                 "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_DISK_SCSI,                "gnome-dev-removable"},       /* TODO: gnome-dev-removable-scsi */
+	{HAL_ICON_DRIVE_DISK_USB,                 "gnome-dev-removable-usb"},
+	{HAL_ICON_DRIVE_DISK_IEEE1394,            "gnome-dev-removable-1394"},
+	{HAL_ICON_DRIVE_DISK_CCW,                 "gnome-dev-removable"},
+	{HAL_ICON_DRIVE_CDROM,                    "gnome-dev-removable"},       /* TODO: gnome-dev-removable-cdrom */
+	{HAL_ICON_DRIVE_CDWRITER,                 "gnome-dev-removable"},       /* TODO: gnome-dev-removable-cdwriter */
+	{HAL_ICON_DRIVE_FLOPPY,                   "gnome-dev-removable"},       /* TODO: gnome-dev-removable-floppy */
+	{HAL_ICON_DRIVE_TAPE,                     "gnome-dev-removable"},       /* TODO: gnome-dev-removable-tape */
+	{HAL_ICON_DRIVE_COMPACT_FLASH,            "gnome-dev-removable"},       /* TODO: gnome-dev-removable-cf */
+	{HAL_ICON_DRIVE_MEMORY_STICK,             "gnome-dev-removable"},       /* TODO: gnome-dev-removable-ms */
+	{HAL_ICON_DRIVE_SMART_MEDIA,              "gnome-dev-removable"},       /* TODO: gnome-dev-removable-sm */
+	{HAL_ICON_DRIVE_SD_MMC,                   "gnome-dev-removable"},       /* TODO: gnome-dev-removable-sdmmc */
+	{HAL_ICON_DRIVE_CAMERA,                   "gnome-dev-removable"},       /* TODO: gnome-dev-removable-camera */
+	{HAL_ICON_DRIVE_PORTABLE_AUDIO_PLAYER,    "gnome-dev-removable"},       /* TODO: gnome-dev-removable-ipod */
+	{HAL_ICON_DRIVE_ZIP,                      "gnome-dev-removable"},       /* TODO: gnome-dev-removable-zip */
+	{HAL_ICON_DRIVE_JAZ,                      "gnome-dev-removable"},       /* TODO: gnome-dev-removable-jaz */
+	{HAL_ICON_DRIVE_FLASH_KEY,                "gnome-dev-removable"},       /* TODO: gnome-dev-removable-pendrive */
+
+	{HAL_ICON_VOLUME_REMOVABLE_DISK,          "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_REMOVABLE_DISK_IDE,      "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_REMOVABLE_DISK_SCSI,     "gnome-dev-harddisk"},        /* TODO: gnome-dev-harddisk-scsi */
+	{HAL_ICON_VOLUME_REMOVABLE_DISK_USB,      "gnome-dev-harddisk-usb"},
+	{HAL_ICON_VOLUME_REMOVABLE_DISK_IEEE1394, "gnome-dev-harddisk-1394"},
+	{HAL_ICON_VOLUME_REMOVABLE_DISK_CCW,      "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_DISK,                    "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_DISK_IDE,                "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_DISK_SCSI,               "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_DISK_USB,                "gnome-dev-harddisk-usb"},
+	{HAL_ICON_VOLUME_DISK_IEEE1394,           "gnome-dev-harddisk-1394"},
+	{HAL_ICON_VOLUME_DISK_CCW,                "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_FLOPPY,                  "gnome-dev-floppy"},
+	{HAL_ICON_VOLUME_TAPE,                    "gnome-dev-harddisk"},
+	{HAL_ICON_VOLUME_COMPACT_FLASH,           "gnome-dev-media-cf"},
+	{HAL_ICON_VOLUME_MEMORY_STICK,            "gnome-dev-media-ms"},
+	{HAL_ICON_VOLUME_SMART_MEDIA,             "gnome-dev-media-sm"},
+	{HAL_ICON_VOLUME_SD_MMC,                  "gnome-dev-media-sdmmc"},
+	{HAL_ICON_VOLUME_CAMERA,                  "camera"},
+	{HAL_ICON_VOLUME_PORTABLE_AUDIO_PLAYER,   "gnome-dev-ipod"},
+	{HAL_ICON_VOLUME_ZIP,                     "gnome-dev-zipdisk"},
+	{HAL_ICON_VOLUME_JAZ,                     "gnome-dev-jazdisk"},
+	{HAL_ICON_VOLUME_FLASH_KEY,               "gnome-dev-harddisk"},        /* TODO: gnome-dev-pendrive */
+
+	{HAL_ICON_DISC_CDROM,                     "gnome-dev-cdrom"},
+	{HAL_ICON_DISC_CDR,                       "gnome-dev-disc-cdr"},
+	{HAL_ICON_DISC_CDRW,                      "gnome-dev-disc-cdrw"},
+	{HAL_ICON_DISC_DVDROM,                    "gnome-dev-disc-dvdrom"},
+	{HAL_ICON_DISC_DVDRAM,                    "gnome-dev-disc-dvdram"},
+	{HAL_ICON_DISC_DVDR,                      "gnome-dev-disc-dvdr"},
+	{HAL_ICON_DISC_DVDRW,                     "gnome-dev-disc-dvdrw"},
+	{HAL_ICON_DISC_DVDPLUSR,                  "gnome-dev-disc-dvdr-plus"},
+	{HAL_ICON_DISC_DVDPLUSRW,                 "gnome-dev-disc-dvdrw"},      /* TODO: gnome-dev-disc-dvdrw-plus */
+	{HAL_ICON_DISC_DVDPLUSR_DL,               "gnome-dev-disc-dvdr-plus"},  /* TODO: gnome-dev-disc-dvdr-plus-dl */
+
+	{0x00, NULL}
+};
+
+/*------------------------------------------------------------------------*/
+
+static const char *
+_hal_lookup_icon (HalIcon icon)
+{
+	int i;
+	const char *result;
+
+	result = NULL;
+
+	/* TODO: could make lookup better than O(n) */
+	for (i = 0; hal_icon_mapping[i].icon_path != NULL; i++) {
+		if (hal_icon_mapping[i].icon == icon) {
+			result = hal_icon_mapping[i].icon_path;
+			break;
+		}
+	}
+
+	return result;
+}
+
+/* hal_volume may be NULL */
+static char *
+_hal_drive_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
+			    LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	const char *name;
+	LibHalDriveBus bus;
+	LibHalDriveType drive_type;
+
+	bus        = libhal_drive_get_bus (hal_drive);
+	drive_type = libhal_drive_get_type (hal_drive);
+
+	/* by design, the enums are laid out so we can do easy computations */
+
+	switch (drive_type) {
+	case LIBHAL_DRIVE_TYPE_REMOVABLE_DISK:
+	case LIBHAL_DRIVE_TYPE_DISK:
+		name = _hal_lookup_icon (0x10000 + drive_type*0x100 + bus);
+		break;
+
+	case LIBHAL_DRIVE_TYPE_CDROM:
+	{
+		LibHalDriveCdromCaps cdrom_caps;
+		gboolean cdrom_can_burn;
+
+		/* can burn if other flags than cdrom and dvdrom */
+		cdrom_caps = libhal_drive_get_cdrom_caps (hal_drive);
+		cdrom_can_burn = ((cdrom_caps & (LIBHAL_DRIVE_CDROM_CAPS_CDROM|
+						 LIBHAL_DRIVE_CDROM_CAPS_DVDROM)) == cdrom_caps);
+	
+		name = _hal_lookup_icon (0x10000 + drive_type*0x100 + (cdrom_can_burn ? 0xff : 0x00));
+		break;
+	}
+
+	default:
+		name = _hal_lookup_icon (0x10000 + drive_type*0x100);
+	}
+
+	if (name != NULL)
+		return g_strdup (name);
+	else {
+		g_warning ("_hal_drive_policy_get_icon : error looking up icon; defaulting to gnome-dev-removable");
+		return g_strdup ("gnome-dev-removable");
+	}
+}
+
+static char *
+_hal_volume_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
+			     LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	const char *name;
+	LibHalDriveBus bus;
+	LibHalDriveType drive_type;
+	LibHalVolumeDiscType disc_type;
+
+	/* by design, the enums are laid out so we can do easy computations */
+
+	if (libhal_volume_is_disc (hal_volume)) {
+		disc_type = libhal_volume_get_disc_type (hal_volume);
+		name = _hal_lookup_icon (0x30000 + disc_type);
+		goto out;
+	}
+
+	if (hal_drive == NULL) {
+		name = _hal_lookup_icon (HAL_ICON_VOLUME_REMOVABLE_DISK);
+		goto out;
+	}
+
+	bus        = libhal_drive_get_bus (hal_drive);
+	drive_type = libhal_drive_get_type (hal_drive);
+
+	switch (drive_type) {
+	case LIBHAL_DRIVE_TYPE_REMOVABLE_DISK:
+	case LIBHAL_DRIVE_TYPE_DISK:
+		name = _hal_lookup_icon (0x20000 + drive_type*0x100 + bus);
+		break;
+
+	default:
+		name = _hal_lookup_icon (0x20000 + drive_type*0x100);
+	}
+out:
+	if (name != NULL)
+		return g_strdup (name);
+	else {
+		g_warning ("_hal_volume_policy_get_icon : error looking up icon; defaulting to gnome-dev-harddisk");
+		return g_strdup ("gnome-dev-harddisk");
+	}
+}
+
+/*------------------------------------------------------------------------*/
+static char *
+_hal_size_as_string (gint64 size)
+{
+	char *result;
+	char* sizes_str[] = {"K", "M", "G", "T", NULL};
+	gint64 cur = 1000L;
+	gint64 base = 10L;
+	gint64 step = 10L*10L*10L;
+	int cur_str = 0;
+
+	result = NULL;
+
+	do {
+		if (sizes_str[cur_str+1] == NULL || size < cur*step) {
+			/* found the unit, display a comma number if result is a single digit */
+			if (size < cur*base) {
+				result = g_strdup_printf ("%.01f%s", ((double)size)/((double)cur), sizes_str[cur_str]);
+			} else {
+				result = g_strdup_printf ("%lld%s", size / cur, sizes_str[cur_str]);
+			}
+			goto out;
+		}
+
+		cur *= step;
+		cur_str++;
+
+	} while (TRUE);
+
+out:
+	return result;
+}
+
+/*------------------------------------------------------------------------*/
+/* hal_volume may be NULL */
+static char *
+_hal_drive_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
+				    LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	const char *model;
+	const char *vendor;
+	LibHalDriveType drive_type;
+	char *name;
+	char *vm_name;
+	gboolean may_prepend_external;
+
+
+	name = NULL;
+	may_prepend_external = FALSE;
+
+	drive_type = libhal_drive_get_type (hal_drive);
+
+	/* Handle disks without removable media */
+	if ((drive_type == LIBHAL_DRIVE_TYPE_DISK) &&
+	    !libhal_drive_uses_removable_media (hal_drive) && 
+	    hal_volume != NULL) {
+		const char *label;
+		const char *size_str;
+
+		/* use label if available */
+		label = libhal_volume_get_label (hal_volume);
+		if (label != NULL && strlen (label) > 0) {
+			name = g_strdup (label);
+			goto out;
+		}
+
+		/* Otherwise, just use volume size */
+
+		size_str = _hal_size_as_string (libhal_volume_get_size (hal_volume));
+		if (size_str != NULL) {
+			name = g_strdup_printf (_("%s Volume"), size_str);
+		}
+
+		goto out;
+	}
+
+	/* removable media and special drives */
+
+	/* drives we know the type of */
+	if (drive_type == LIBHAL_DRIVE_TYPE_CDROM) {
+		const char *first;
+		const char *sep;
+		const char *second;
+		LibHalDriveCdromCaps drive_cdrom_caps;
+			
+		drive_cdrom_caps = libhal_drive_get_cdrom_caps (hal_drive);
+
+		first = _("CD-ROM");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_CDR)
+			first = _("CD-R");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_CDRW)
+			first = _("CD-RW");
+		
+		sep = _("/");
+			
+		second = NULL;
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDROM)
+			second = _("DVD-ROM");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDPLUSR)
+			second = _("DVD+R");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDPLUSRW)
+			second = _("DVD+RW");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDR)
+			second = _("DVD-R");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDRW)
+			second = _("DVD-RW");
+		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDRAM)
+			second = _("DVD-RAM");
+		if ((drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDR) &&
+		    (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDPLUSR))
+			second = _("DVD±R");
+		if ((drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDRW) &&
+		    (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDPLUSRW))
+			second = _("DVD±RW");
+
+		name = g_strdup_printf (_("%s%s%s Drive"), first, second != NULL ? sep : "", second);
+		may_prepend_external = TRUE;		
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_FLOPPY) {
+		name = g_strdup (_("Floppy Drive"));
+		may_prepend_external = TRUE;
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_COMPACT_FLASH) {
+		name = g_strdup (_("Compact Flash Drive"));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_MEMORY_STICK) {
+		name = g_strdup (_("Memory Stick Drive"));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_SMART_MEDIA) {
+		name = g_strdup (_("Smart Media Drive"));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_SD_MMC) {
+		name = g_strdup (_("SD/MMC Drive"));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_ZIP) {
+		name = g_strdup (_("Zip Drive"));
+		may_prepend_external = TRUE;
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_JAZ) {
+		name = g_strdup (_("Jaz Drive"));
+		may_prepend_external = TRUE;
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_FLASHKEY) {
+		name = g_strdup (_("Pen Drive"));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER) {
+		name = g_strdup_printf (_("%s %s Music Player"), 
+					libhal_drive_get_vendor (hal_drive),
+					libhal_drive_get_model (hal_drive));
+	} else if (drive_type == LIBHAL_DRIVE_TYPE_CAMERA) {
+		name = g_strdup_printf (_("%s %s Digital Camera"), 
+					libhal_drive_get_vendor (hal_drive),
+					libhal_drive_get_model (hal_drive));
+	}
+
+	if (name != NULL)
+		goto out;
+
+	/* model and vendor at last resort */
+	model = libhal_drive_get_model (hal_drive);
+	vendor = libhal_drive_get_vendor (hal_drive);
+	vm_name = NULL;
+	if (vendor == NULL || strlen (vendor) == 0) {
+		if (model != NULL && strlen (model) > 0)
+			vm_name = g_strdup (model);
+	} else {
+		if (model == NULL || strlen (model) == 0)
+			vm_name = g_strdup (vendor);
+		else {
+			vm_name = g_strdup_printf ("%s %s", vendor, model);
+		}
+	}
+
+	if (vm_name != NULL) {
+		name = vm_name;
+	}
+
+out:
+	/* lame fallback */
+	if (name == NULL)
+		name = g_strdup (_("Drive"));
+
+	if (may_prepend_external) {
+		if (libhal_drive_is_hotpluggable (hal_drive)) {
+			char *tmp = name;
+			name = g_strdup_printf (_("External %s"), name);
+			g_free (tmp);
+		}
+	}
+
+	return name;
+}
+
+static char *
+_hal_volume_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
+				     LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	LibHalDriveType drive_type;
+	const char *volume_label;
+	char *name;
+	char *size_str;
+
+	name = NULL;
+
+	drive_type = libhal_drive_get_type (hal_drive);
+	volume_label = libhal_volume_get_label (hal_volume);
+
+	/* Use volume label if available */
+	if (volume_label != NULL) {
+		name = g_strdup (volume_label);
+		goto out;
+	}
+
+	/* Handle media in optical drives */
+	if (drive_type == LIBHAL_DRIVE_TYPE_CDROM) {
+		switch (libhal_volume_get_disc_type (hal_volume)) {
+
+		default:
+			/* explict fallthrough */
+
+		case LIBHAL_VOLUME_DISC_TYPE_CDROM:
+			name = g_strdup (_("CD-ROM Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_CDR:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank CD-R Disc"));
+			else
+				name = g_strdup (_("CD-R Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_CDRW:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank CD-RW Disc"));
+			else
+				name = g_strdup (_("CD-RW Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_DVDROM:
+			name = g_strdup (_("DVD-ROM Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_DVDRAM:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank DVD-RAM Disc"));
+			else
+				name = g_strdup (_("DVD-RAM Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_DVDR:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank DVD-R Disc"));
+			else
+				name = g_strdup (_("DVD-R Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_DVDRW:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank DVD-RW Disc"));
+			else
+				name = g_strdup (_("DVD-RW Disc"));
+
+			break;
+
+		case LIBHAL_VOLUME_DISC_TYPE_DVDPLUSR:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank DVD+R Disc"));
+			else
+				name = g_strdup (_("DVD+R Disc"));
+			break;
+			
+		case LIBHAL_VOLUME_DISC_TYPE_DVDPLUSRW:
+			if (libhal_volume_disc_is_blank (hal_volume))
+				name = g_strdup (_("Blank DVD+RW Disc"));
+			else
+				name = g_strdup (_("DVD+RW Disc"));
+			break;
+		}
+		
+		/* Special case for pure audio disc */
+		if (libhal_volume_disc_has_audio (hal_volume) && !libhal_volume_disc_has_data (hal_volume)) {
+			free (name);
+			name = g_strdup (_("Audio Disc"));
+		}
+
+		goto out;
+	}
+
+	/* Fallback: size of media */
+
+	size_str = _hal_size_as_string (libhal_volume_get_size (hal_volume));
+	if (size_str != NULL) {
+		if (libhal_drive_uses_removable_media (hal_drive)) {
+			name = g_strdup_printf (_("%s Removable Volume"), size_str);
+		} else {
+			name = g_strdup_printf (_("%s Volume"), size_str);
+		}
+		g_free (size_str);
+	}
+
+
+out:
+	/* lame fallback */
+	if (name == NULL)
+		name = g_strdup (_("Volume"));
+
+	return name;
+}
+
+/*------------------------------------------------------------------------*/
+
+/* hal_volume may be NULL */
+static gboolean
+_hal_drive_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+			 LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	gboolean ret;
+	gboolean display_internal_hard_drives;
+	gboolean display_scsi_drives;
+	gboolean display_scsi_optical_drives;
+	gboolean display_external_drives;
+	gboolean display_drives_removable;
+
+	ret = FALSE;
+
+	/* respect the gconf settings! */
+	display_internal_hard_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
+							      PATH_GCONF_GNOME_VFS_STORAGE 
+							      "/display_internal_hard_drives",
+							      NULL);
+	display_scsi_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
+						     PATH_GCONF_GNOME_VFS_STORAGE 
+						     "/display_scsi_drives",
+						     NULL);
+	display_scsi_optical_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
+							     PATH_GCONF_GNOME_VFS_STORAGE 
+							     "/display_scsi_optical_drives",
+							     NULL);
+	display_external_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
+							 PATH_GCONF_GNOME_VFS_STORAGE
+							 "/display_external_drives",
+							 NULL);
+	display_drives_removable = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
+							  PATH_GCONF_GNOME_VFS_STORAGE
+							  "/display_drives_with_removable_media",
+							  NULL);
+
+	if (!display_external_drives) {
+		if (libhal_drive_is_hotpluggable (hal_drive))
+			goto out;
+	}
+
+	if (!display_drives_removable) {
+		if (libhal_drive_uses_removable_media (hal_drive))
+			goto out;
+	}
+
+	if (!display_internal_hard_drives) {
+		if ((libhal_drive_uses_removable_media (hal_drive) == FALSE) && 
+		    (libhal_drive_is_hotpluggable (hal_drive) == FALSE))
+			goto out;
+	}
+
+	if (!display_scsi_drives) {
+		if (libhal_drive_get_bus (hal_drive) == LIBHAL_DRIVE_BUS_SCSI) {
+			if (display_scsi_optical_drives) {
+				if (libhal_drive_get_type (hal_drive) == LIBHAL_DRIVE_TYPE_CDROM) {
+					/* we're safe */
+				} else {
+					goto out;
+				}
+			} else {
+				goto out;
+			}
+		}
+	}
+
+	ret = TRUE;
+
+out:
+	return ret;
+}
+
+static gboolean
+_hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+			  LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	const char *label;
+	const char *fstype;
+	gboolean ret;
+	const char *fhs23_toplevel_mount_points[] = {
+		"/",
+		"/bin",
+		"/boot",
+		"/dev",
+		"/etc",
+		"/home",
+		"/lib",
+		"/lib64",
+		"/media",
+		"/mnt",
+		"/opt",
+		"/root",
+		"/sbin",
+		"/srv",
+		"/tmp",
+		"/usr",
+		"/var",
+		"/proc",
+		"/sbin",
+		NULL
+	};
+
+	ret = FALSE;
+
+	/* need to pass drive checks before considering volumes */
+	if (!_hal_drive_policy_check (volume_monitor_daemon, hal_drive, hal_volume))
+		goto out;
+
+	/* needs to be a mountable filesystem OR audio disc OR blank disc */
+	if (! ((libhal_volume_get_fsusage (hal_volume) == LIBHAL_VOLUME_USAGE_MOUNTABLE_FILESYSTEM) ||
+	       libhal_volume_disc_has_audio (hal_volume) ||
+	       libhal_volume_disc_is_blank (hal_volume)))
+		goto out;
+
+	/* if mounted; discard if it got a FHS-2.3 name (to get /, /boot, /usr etc. out of the way) 
+	 *
+	 * (yes, this breaks if the user mounts it later but that is not normally the case for such volumes)
+	 */
+	if (libhal_volume_is_mounted (hal_volume)) {
+		int i;
+		const char *mount_point;
+
+		mount_point = libhal_volume_get_mount_point (hal_volume);
+		/* blacklist fhs2.3 top level mount points */
+		if (mount_point != NULL) {
+			for (i = 0; fhs23_toplevel_mount_points[i] != NULL; i++) {
+				if (strcmp (mount_point, fhs23_toplevel_mount_points[i]) == 0)
+					goto out;
+			}
+		}
+	}
+
+	label = libhal_volume_get_label (hal_volume);
+	fstype = libhal_volume_get_fstype (hal_volume);
+
+	/* blacklist partitions with name 'bootstrap' of type HFS (Apple uses that) */
+	if (label != NULL && fstype != NULL && strcmp (label, "bootstrap") == 0 && strcmp (fstype, "hfs") == 0)
+		goto out;
+
+	ret = TRUE;
+out:
+	return ret;
+}
+
+static gboolean
+_hal_volume_policy_show_on_desktop (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+				    LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	gboolean ret;
+
+	ret = TRUE;
+
+	/* Right now we show everything on the desktop */
+
+#if 0
+	/* TODO: fix bug in gnome-panel as icon wont show if volume is not user_visible */
+
+	/* TODO: here's an interesting bug (in Nautilus?); if we set vol->priv->user_visible
+	 *       to FALSE for a volume the icon won't get refreshed when it's mounted
+	 */
+
+	/* when the two bugs above are resolved we may enable this code: */
+
+	/* show everything but non-hotpluggable fixed drives are shown on the desktop */
+	if ((libhal_drive_uses_removable_media (hal_drive) == FALSE) && 
+	    (libhal_drive_is_hotpluggable (hal_drive) == FALSE))
+		ret = FALSE;
+#endif
+
+	return ret;
+}
+
+/*------------------------------------------------------------------------*/
+
+static int
+_hal_get_gnome_vfs_device_type (LibHalDrive *hal_drive)
+{
+	int result;
+
+	/* fallthroughs are explicit */
+	switch (libhal_drive_get_type (hal_drive)) {
+        case LIBHAL_DRIVE_TYPE_CDROM:
+		result = GNOME_VFS_DEVICE_TYPE_CDROM;
+		break;
+        case LIBHAL_DRIVE_TYPE_FLOPPY:
+		result = GNOME_VFS_DEVICE_TYPE_FLOPPY;
+		break;
+        case LIBHAL_DRIVE_TYPE_ZIP:
+		result = GNOME_VFS_DEVICE_TYPE_ZIP;
+		break;
+        case LIBHAL_DRIVE_TYPE_JAZ:
+		result = GNOME_VFS_DEVICE_TYPE_JAZ;
+		break;
+        case LIBHAL_DRIVE_TYPE_CAMERA:
+		result = GNOME_VFS_DEVICE_TYPE_CAMERA;
+		break;
+        case LIBHAL_DRIVE_TYPE_COMPACT_FLASH:
+        case LIBHAL_DRIVE_TYPE_SMART_MEDIA:
+        case LIBHAL_DRIVE_TYPE_SD_MMC:
+        case LIBHAL_DRIVE_TYPE_FLASHKEY:
+        case LIBHAL_DRIVE_TYPE_MEMORY_STICK:
+		result = GNOME_VFS_DEVICE_TYPE_MEMORY_STICK;
+		break;
+        case LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
+		result = GNOME_VFS_DEVICE_TYPE_MUSIC_PLAYER;
+		break;
+	case LIBHAL_DRIVE_TYPE_TAPE:
+        case LIBHAL_DRIVE_TYPE_REMOVABLE_DISK:
+        case LIBHAL_DRIVE_TYPE_DISK:
+	default:
+		result = GNOME_VFS_DEVICE_TYPE_HARDDRIVE;
+		break;
+	}
+
+	return result;
+}
+
+static void
+_hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+				LibHalDrive *hal_drive)
+{
+	GnomeVFSDrive *drive;
+	GnomeVFSVolumeMonitor *volume_monitor;
+	GnomeVFSHalUserData *hal_userdata;
+	char *name;
+
+	g_return_if_fail (hal_drive != NULL);
+
+	g_debug ("entering _hal_add_drive_without_volumes for\n  drive udi '%s'\n",
+		 libhal_drive_get_udi (hal_drive));
+
+	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
+	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
+
+	if (!_hal_drive_policy_check (volume_monitor_daemon, hal_drive, NULL)) {
+		/* make sure to delete the drive/volume for policy changes */
+		drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
+			volume_monitor, libhal_drive_get_udi (hal_drive));
+		if (drive != NULL) {
+			_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+		}
+		goto out;
+	}
+
+	/* don't add if it's already there */
+	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_drive_get_udi (hal_drive));
+	if (drive != NULL)
+		goto out;
+
+	/* doesn't make sense for devices without removable storage */
+	if (!libhal_drive_uses_removable_media (hal_drive))
+		goto out;
+	
+	drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
+	drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (HAL_MOUNTS_INVALID_URI); /* (!) */
+	drive->priv->is_connected = 1;
+	drive->priv->device_path = g_strdup (libhal_drive_get_device_file (hal_drive));
+	drive->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);
+	drive->priv->icon = _hal_drive_policy_get_icon (volume_monitor_daemon, hal_drive, NULL);
+	name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, NULL);
+	drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
+	g_free (name);
+	drive->priv->is_user_visible = TRUE;
+	drive->priv->volumes = NULL;
+	drive->priv->hal_udi = g_strdup (libhal_drive_get_udi (hal_drive));
+
+	_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+	gnome_vfs_drive_unref (drive);
+
+out:
+	;
+}
+
+static gboolean
+_hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+		 LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+	gboolean ret;
+	GnomeVFSVolume *vol;
+	GnomeVFSDrive *drive;
+	GnomeVFSVolumeMonitor *volume_monitor;
+	GnomeVFSHalUserData *hal_userdata;
+	char *name;
+
+	g_return_val_if_fail (hal_drive != NULL, FALSE);
+	g_return_val_if_fail (hal_volume != NULL, FALSE);
+
+	ret = FALSE;
+
+	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
+	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
+
+	if (!_hal_volume_policy_check (volume_monitor_daemon, hal_drive, hal_volume)) {
+		/* make sure to completey delete any existing drive/volume for policy changes */
+		vol = _gnome_vfs_volume_monitor_find_volume_by_hal_udi (
+			volume_monitor, libhal_volume_get_udi (hal_volume));
+		if (vol != NULL) {
+			_gnome_vfs_volume_monitor_unmounted (volume_monitor, vol);
+		}
+		drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
+			volume_monitor, libhal_volume_get_udi (hal_volume));
+		if (drive != NULL) {
+			_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+		}
+		goto out;
+	}
+
+	//g_debug ("entering _hal_add_volume for\n  drive udi '%s'\n  volume udi '%s'\n",
+	//	 libhal_drive_get_udi (drive), libhal_volume_get_udi (volume));
+
+	/* OK, check if we got a drive_without_volumes drive and delete that since we're going to add a
+	 * drive for added partitions */
+	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_drive_get_udi (hal_drive));
+	if (drive != NULL) {
+		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+	}
+
+	/* if we had a drive from here but where we weren't mounted, just use that drive and update
+	 * activation_uri as we now have a definite mount point...
+	 */
+	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_volume_get_udi (hal_volume));
+	if (drive != NULL) {
+		if (libhal_volume_disc_has_audio (hal_volume)) {
+			drive->priv->activation_uri = g_strdup_printf ("cdda://%s", 
+								       libhal_volume_get_device_file (hal_volume));
+		} else if (libhal_volume_disc_is_blank (hal_volume)) {
+			drive->priv->activation_uri = g_strdup ("burn:///");
+		} else if (libhal_volume_is_mounted (hal_volume)) {
+			drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
+				libhal_volume_get_mount_point (hal_volume));
+		} else {
+			/* This sucks but it doesn't make sense to talk about the activation_uri if we're not mounted!
+			 * So fake it...
+			 */
+			drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (HAL_MOUNTS_INVALID_URI); 
+		}
+
+	} else {
+		drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
+		if (libhal_volume_disc_has_audio (hal_volume)) {
+			drive->priv->activation_uri = g_strdup_printf ("cdda://%s", 
+								       libhal_volume_get_device_file (hal_volume));
+		} else if (libhal_volume_disc_is_blank (hal_volume)) {
+			drive->priv->activation_uri = g_strdup ("burn:///");
+		} else if (libhal_volume_is_mounted (hal_volume)) {
+			drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
+				libhal_volume_get_mount_point (hal_volume));
+		} else {
+			/* This sucks but it doesn't make sense to talk about the activation_uri if we're not mounted!
+			 * So fake it...
+			 */
+			drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (HAL_MOUNTS_INVALID_URI); 
+		}
+		drive->priv->is_connected = TRUE;
+		drive->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
+		drive->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);
+		
+		/* TODO: could add an icon of a drive with media in it since this codepath only
+		 * handles drives with media in them
+		 */
+		drive->priv->icon = _hal_drive_policy_get_icon (volume_monitor_daemon, hal_drive, NULL);
+		name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
+		drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
+		g_free (name);
+		drive->priv->is_user_visible = TRUE;
+		drive->priv->volumes = NULL;
+		drive->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
+		drive->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
+		
+		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
+	}
+
+
+	vol = _gnome_vfs_volume_monitor_find_volume_by_hal_udi (volume_monitor, libhal_volume_get_udi (hal_volume));
+	if (vol == NULL && 
+	    (libhal_volume_is_mounted (hal_volume) || 
+	     libhal_volume_disc_has_audio (hal_volume) ||
+	     libhal_volume_disc_is_blank (hal_volume))) {
+
+		vol = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
+		
+		vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_MOUNTPOINT;
+		vol->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
+		vol->priv->unix_device = makedev (libhal_volume_get_device_major (hal_volume), 
+						  libhal_volume_get_device_minor (hal_volume));
+
+		if (libhal_volume_disc_has_audio (hal_volume)) {
+			vol->priv->activation_uri = g_strdup_printf ("cdda://%s", 
+								     libhal_volume_get_device_file (hal_volume));
+		} else if (libhal_volume_disc_is_blank (hal_volume)) {
+			vol->priv->activation_uri = g_strdup ("burn:///");
+		} else {
+			vol->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
+				libhal_volume_get_mount_point (hal_volume));
+		}
+		vol->priv->filesystem_type = g_strdup (libhal_volume_get_fstype (hal_volume));
+		vol->priv->is_read_only = FALSE;
+		vol->priv->is_mounted = TRUE;
+		
+		vol->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);
+
+		name = _hal_volume_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
+		vol->priv->display_name = _gnome_vfs_volume_monitor_uniquify_volume_name (volume_monitor, name);
+		g_free (name);
+		vol->priv->icon = _hal_volume_policy_get_icon (volume_monitor_daemon, hal_drive, hal_volume);
+		vol->priv->is_user_visible = _hal_volume_policy_show_on_desktop (volume_monitor_daemon, 
+										 hal_drive, hal_volume);
+		vol->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
+		vol->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
+
+		vol->priv->drive = drive;
+		_gnome_vfs_drive_add_mounted_volume (drive, vol);
+
+		_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);
+		gnome_vfs_volume_unref (vol);
+	}
+	
+	ret = TRUE;
+
+out:
+
+	return ret;
+}
+
+static void 
+_hal_update_all (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
+{
+	char **drives;
+	int num_drives;
+	DBusError error;
+
+	g_debug ("entering _hal_update_all");
+
+	dbus_error_init (&error);
+	drives = libhal_find_device_by_capability (volume_monitor_daemon->hal_ctx,
+						   "storage", &num_drives, &error);
+	if (drives != NULL) {
+		int i;
+
+		for (i = 0; i < num_drives; i++) {
+			LibHalDrive *drive;
+
+			g_debug ("drive = '%s'", drives[i]);
+			drive = libhal_drive_from_udi (volume_monitor_daemon->hal_ctx, drives[i]);
+			if (drive != NULL) {
+				char **volumes;
+				int num_volumes;
+				int num_volumes_added;
+
+				num_volumes_added = 0;
+
+				volumes = libhal_drive_find_all_volumes (volume_monitor_daemon->hal_ctx,
+									 drive, &num_volumes);
+				if (num_volumes > 0) {
+					int j;
+
+					for (j = 0; j < num_volumes; j++) {
+						LibHalVolume *volume;
+
+						g_debug ("  volume = '%s'", volumes[j]);
+						volume = libhal_volume_from_udi (volume_monitor_daemon->hal_ctx, 
+										 volumes[j]);
+
+						if (_hal_add_volume (volume_monitor_daemon, drive, volume))
+							num_volumes_added++;
+
+						libhal_volume_free (volume);
+
+					}
+
+					// TODO: figure out why this crashes: libhal_free_string_array (volumes);
+
+				}
+
+				if (num_volumes_added == 0) {
+					/* if we didn't add any volumes show the drive_without_volumes drive */
+					_hal_add_drive_without_volumes (volume_monitor_daemon, drive);
+				}
+				
+				libhal_drive_free (drive);
+			}
+
+		}
+
+		libhal_free_string_array (drives);
+	}
+}
+
 
 static void 
 _hal_device_added (LibHalContext *hal_ctx, 
@@ -58,28 +1098,81 @@ _hal_device_added (LibHalContext *hal_ctx,
 {
 	GnomeVFSHalUserData *hal_userdata;
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
+
+	g_debug ("Entering %s", __FUNCTION__);
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
 	volume_monitor_daemon = hal_userdata->volume_monitor_daemon;
 
-	/* Handle optical discs without data since these are not handled
-	 * by GNOME VFS
-	 */
-	if (libhal_device_get_property_bool (hal_ctx, udi, "volume.is_disc", NULL)) {
-		const char *storage_udi;
+	if (libhal_device_query_capability (hal_ctx, udi, "volume", NULL)) {
+		char *drive_udi;
+		LibHalDrive *drive;
+		LibHalVolume *volume;
+		DBusError error;
 
-		storage_udi = libhal_device_get_property_string (hal_ctx, udi, "block.storage_device", NULL);
-		if (storage_udi != NULL) {
-			GnomeVFSDrive *drive;
+		drive = NULL;
+		volume = NULL;
 
-			drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
-				GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), storage_udi);
+		dbus_error_init (&error);
+		drive_udi = libhal_device_get_property_string (hal_ctx, udi, "block.storage_device", &error);
+		if (dbus_error_is_set (&error)) {			
+			g_warning ("Error retrieving block.storage_device on '%s': Error: '%s' Message: '%s'",
+				   udi, error.name, error.message);
+			dbus_error_free (&error);
+			goto vol_add_out;
+		}
+
+		drive = libhal_drive_from_udi (volume_monitor_daemon->hal_ctx, drive_udi);
+		volume = libhal_volume_from_udi (volume_monitor_daemon->hal_ctx, udi);
+		if (drive == NULL || volume == NULL)
+			goto vol_add_out;
+		
+		_hal_add_volume (volume_monitor_daemon, drive, volume);
+
+	vol_add_out:
+		if (drive_udi != NULL)
+			libhal_free_string (drive_udi);
+		
+		if (drive != NULL)
+			libhal_drive_free (drive);
+		
+		if (volume != NULL)
+			libhal_volume_free (volume);
+
+	} else if (libhal_device_query_capability (hal_ctx, udi, "storage", NULL)) {
+		char **devs;
+		int num_dev;
+		DBusError error;
+
+		dbus_error_init (&error);
+
+		/* don't want to add as drive if we got volumes */
+		devs = libhal_manager_find_device_string_match (volume_monitor_daemon->hal_ctx,
+								"block.storage_device", udi,
+								&num_dev, &error);
+		if (dbus_error_is_set (&error)) {			
+			g_warning ("Error retrieving finding devs on '%s': Error: '%s' Message: '%s'",
+				   udi, error.name, error.message);
+			dbus_error_free (&error);
+			goto drive_add_out;
+		}
+
+		/* our own device object also got block.storage_device==udi so num_dev must be one */
+		if (num_dev == 1) {
+			LibHalDrive *drive;
+
+			drive = libhal_drive_from_udi (volume_monitor_daemon->hal_ctx, udi);
 			if (drive != NULL) {
-				/* this function also handles optical discs without data */
-				_gnome_vfs_hal_mounts_modify_drive (volume_monitor_daemon, drive);
+				_hal_add_drive_without_volumes (volume_monitor_daemon, drive);
+				libhal_drive_free (drive);
 			}
-		}		
+		}
+
+		libhal_free_string_array (devs);
+	drive_add_out:
+		;
 	}
+
 }
 
 static void 
@@ -89,122 +1182,146 @@ _hal_device_removed (LibHalContext *hal_ctx, const char *udi)
 	GnomeVFSVolume *volume;
 	GnomeVFSHalUserData *hal_userdata;
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
+	char *hal_drive_udi;
+
+	g_debug ("Entering %s", __FUNCTION__);
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
 	volume_monitor_daemon = hal_userdata->volume_monitor_daemon;
 
-	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
-		GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), udi);
-
 	volume = _gnome_vfs_volume_monitor_find_volume_by_hal_udi (
 		GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), udi);
 
-	/* Just remove the drive and or volume here; will also be done in 
-	 * update_mtab_volumes and update_fstab_drives in the source file 
-	 * gnome-vfs-volume-monitor-daemon.c but that wont matter much.
-	 *
-	 * We need to do this to handle optical discs without data since these
-	 * are not handled by GNOME VFS
-	 */
+	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
+		GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), udi);
+
+	hal_drive_udi = NULL;
+
 	if (volume != NULL) {
 		_gnome_vfs_volume_monitor_unmounted (GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), volume);
 	}
 
 	if (drive != NULL) {
+		if (hal_drive_udi == NULL)
+			hal_drive_udi = g_strdup (drive->priv->hal_drive_udi);
 		_gnome_vfs_volume_monitor_disconnected (GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), drive);
 	}
+
+	g_debug ("hal_drive_udi = %s", hal_drive_udi);
+
+	/* if there are no other drives with the same hal_drive_udi as us, add a drive_without_volumes object  */
+	if (hal_drive_udi != NULL && 
+	    _gnome_vfs_volume_monitor_find_drive_by_hal_drive_udi (
+		    GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), hal_drive_udi) == NULL) {
+		LibHalDrive *drive;
+
+		g_debug ("going to add drive_without_volumes for %s", hal_drive_udi);
+
+		drive = libhal_drive_from_udi (volume_monitor_daemon->hal_ctx, hal_drive_udi);
+		if (drive != NULL) {
+			_hal_add_drive_without_volumes (volume_monitor_daemon, drive);
+			libhal_drive_free (drive);
+		}
+	}
+
+	g_free (hal_drive_udi);
 }
 
+static void
+_hal_device_property_modified (LibHalContext *hal_ctx,
+			       const char *udi,
+			       const char *key,
+			       dbus_bool_t is_removed,
+			       dbus_bool_t is_added)
+{
+	DBusError error;
+	GnomeVFSHalUserData *hal_userdata;
+	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
+	GnomeVFSVolumeMonitor *volume_monitor;
+	char *drive_udi;
+	LibHalDrive *drive;
+	LibHalVolume *volume;
+
+	drive_udi = NULL;
+	drive = NULL;
+	volume = NULL;
+
+	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
+	volume_monitor_daemon = hal_userdata->volume_monitor_daemon;	
+	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
 
 
-static LibHalStoragePolicyIconPair icon_mapping[] = {
-	{LIBHAL_STORAGE_ICON_DRIVE_REMOVABLE_DISK,           "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_REMOVABLE_DISK_IDE,       "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_REMOVABLE_DISK_SCSI,      "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_REMOVABLE_DISK_USB,       "gnome-dev-removable-usb"},
-	{LIBHAL_STORAGE_ICON_DRIVE_REMOVABLE_DISK_IEEE1394,  "gnome-dev-removable-1394"},
-	{LIBHAL_STORAGE_ICON_DRIVE_DISK,                     "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_DISK_IDE,                 "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_DISK_SCSI,                "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_DISK_USB,                 "gnome-dev-removable-usb"},
-	{LIBHAL_STORAGE_ICON_DRIVE_DISK_IEEE1394,            "gnome-dev-removable-1394"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CDROM,                    "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CDROM_IDE,                "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CDROM_SCSI,               "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CDROM_USB,                "gnome-dev-removable-usb"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CDROM_IEEE1394,           "gnome-dev-removable-1394"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLOPPY,                   "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLOPPY_IDE,               "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLOPPY_SCSI,              "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLOPPY_USB,               "gnome-dev-removable-usb"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLOPPY_IEEE1394,          "gnome-dev-removable-1394"},
-	{LIBHAL_STORAGE_ICON_DRIVE_TAPE,                     "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_COMPACT_FLASH,            "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_MEMORY_STICK,             "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_SMART_MEDIA,              "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_SD_MMC,                   "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_CAMERA,                   "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_PORTABLE_AUDIO_PLAYER,    "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_ZIP,                      "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_JAZ,                      "gnome-dev-removable"},
-	{LIBHAL_STORAGE_ICON_DRIVE_FLASH_KEY,                "gnome-dev-removable"},
+	if (!is_removed && g_ascii_strcasecmp (key, "volume.is_mounted") == 0) {
+		gboolean is_mounted;
+		gboolean is_audio_disc;
+		gboolean is_blank_disc;
 
-	{LIBHAL_STORAGE_ICON_VOLUME_REMOVABLE_DISK,          "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_REMOVABLE_DISK_IDE,      "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_REMOVABLE_DISK_SCSI,     "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_REMOVABLE_DISK_USB,      "gnome-dev-harddisk-usb"},
-	{LIBHAL_STORAGE_ICON_VOLUME_REMOVABLE_DISK_IEEE1394, "gnome-dev-harddisk-1394"},
-	{LIBHAL_STORAGE_ICON_VOLUME_DISK,                    "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_DISK_IDE,                "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_DISK_SCSI,               "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_DISK_USB,                "gnome-dev-harddisk-usb"},
-	{LIBHAL_STORAGE_ICON_VOLUME_DISK_IEEE1394,           "gnome-dev-harddisk-1394"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CDROM,                   "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CDROM_IDE,               "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CDROM_SCSI,              "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CDROM_USB,               "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CDROM_IEEE1394,          "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLOPPY,                  "gnome-dev-floppy"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLOPPY_IDE,              "gnome-dev-floppy"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLOPPY_SCSI,             "gnome-dev-floppy"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLOPPY_USB,              "gnome-dev-floppy"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLOPPY_IEEE1394,         "gnome-dev-floppy"},
-	{LIBHAL_STORAGE_ICON_VOLUME_TAPE,                    "gnome-dev-harddisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_COMPACT_FLASH,           "gnome-dev-media-cf"},
-	{LIBHAL_STORAGE_ICON_VOLUME_MEMORY_STICK,            "gnome-dev-media-ms"},
-	{LIBHAL_STORAGE_ICON_VOLUME_SMART_MEDIA,             "gnome-dev-media-sm"},
-	{LIBHAL_STORAGE_ICON_VOLUME_SD_MMC,                  "gnome-dev-media-sdmmc"},
-	{LIBHAL_STORAGE_ICON_VOLUME_CAMERA,                  "camera"},
-	{LIBHAL_STORAGE_ICON_VOLUME_PORTABLE_AUDIO_PLAYER,   "gnome-dev-ipod"},
-	{LIBHAL_STORAGE_ICON_VOLUME_ZIP,                     "gnome-dev-zipdisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_JAZ,                     "gnome-dev-jazdisk"},
-	{LIBHAL_STORAGE_ICON_VOLUME_FLASH_KEY,               "gnome-dev-harddisk"},
+		dbus_error_init (&error);
+		is_mounted = libhal_device_get_property_bool (hal_ctx, udi, "volume.is_mounted", &error);
+		if (dbus_error_is_set (&error)) {			
+			g_warning ("Error retrieving volume.is_mounted on '%s': Error: '%s' Message: '%s'",
+				   udi, error.name, error.message);
+			dbus_error_free (&error);
+			goto out;
+		}
 
-/*
-	{LIBHAL_STORAGE_ICON_DISC_CDROM,                     "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_DISC_CDR,                       "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_DISC_CDRW,                      "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDROM,                    "gnome-dev-dvd"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDRAM,                    "gnome-dev-dvd"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDR,                      "gnome-dev-dvd"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDRW,                     "gnome-dev-dvd"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDPLUSR,                  "gnome-dev-dvd"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDPLUSRW,                 "gnome-dev-dvd"},
-*/
+		is_blank_disc = libhal_device_get_property_bool (hal_ctx, udi, "volume.disc.is_blank", NULL);
+		is_audio_disc = libhal_device_get_property_bool (hal_ctx, udi, "volume.disc.has_audio", NULL);
 
-	{LIBHAL_STORAGE_ICON_DISC_CDROM,                     "gnome-dev-cdrom"},
-	{LIBHAL_STORAGE_ICON_DISC_CDR,                       "gnome-dev-disc-cdr"},
-	{LIBHAL_STORAGE_ICON_DISC_CDRW,                      "gnome-dev-disc-cdrw"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDROM,                    "gnome-dev-disc-dvdrom"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDRAM,                    "gnome-dev-disc-dvdram"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDR,                      "gnome-dev-disc-dvdr"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDRW,                     "gnome-dev-disc-dvdrw"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDPLUSR,                  "gnome-dev-disc-dvdr-plus"},
-	{LIBHAL_STORAGE_ICON_DISC_DVDPLUSRW,                 "gnome-dev-disc-dvdrw"}, /* missing -plus icon here! */
+		if (is_mounted || is_blank_disc || is_audio_disc) {
+			/* add new volume since it's now mounted */
 
-	{0x00, NULL}
-};
+			drive_udi = libhal_device_get_property_string (hal_ctx, udi, "block.storage_device", &error);
+			if (dbus_error_is_set (&error)) {			
+				g_warning ("Error retrieving block.storage_device on '%s': Error: '%s' Message: '%s'",
+					   udi, error.name, error.message);
+				dbus_error_free (&error);
+				goto out;
+			}
 
+			drive = libhal_drive_from_udi (volume_monitor_daemon->hal_ctx, drive_udi);
+			volume = libhal_volume_from_udi (volume_monitor_daemon->hal_ctx, udi);
+			if (drive == NULL || volume == NULL)
+				goto out;
+
+			_hal_add_volume (volume_monitor_daemon, drive, volume);
+		} else {
+			GnomeVFSVolume *vol;
+
+			vol = _gnome_vfs_volume_monitor_find_volume_by_hal_udi (volume_monitor, udi);
+			if (vol != NULL) {
+				/* remove volume since it's unmounted */
+				_gnome_vfs_volume_monitor_unmounted (volume_monitor, vol);				
+			}
+		}
+		
+	}
+out:
+	if (drive_udi != NULL)
+		libhal_free_string (drive_udi);
+
+	if (drive != NULL)
+		libhal_drive_free (drive);
+
+	if (volume != NULL)
+		libhal_volume_free (volume);
+}
+	
+
+
+static void
+_hal_settings_changed (GConfClient* client,
+		       guint cnxn_id,
+		       GConfEntry *entry,
+		       gpointer data)
+{
+	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
+
+	volume_monitor_daemon = data;
+
+	g_debug ("in _hal_settings_changed");
+	_gnome_vfs_hal_mounts_force_reprobe (volume_monitor_daemon);
+}
 
 gboolean
 _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
@@ -212,7 +1329,8 @@ _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 	DBusError error;
 	DBusConnection *dbus_connection;
 	GnomeVFSHalUserData *hal_userdata;
-	LibHalStoragePolicy *hal_storage_policy;
+
+	g_debug ("Entering %s", __FUNCTION__);
 
 	/* Initialise the connection to the hal daemon */
 	if ((volume_monitor_daemon->hal_ctx = 
@@ -224,7 +1342,7 @@ _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 	dbus_error_init (&error);
 	dbus_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
 	if (dbus_error_is_set (&error)) {
-		g_warning ("Error connecting to D-BUS system bus: %s\n",
+		g_warning ("Error connecting to D-BUS system bus: %s",
 			   error.message);
 		dbus_error_free (&error);
 		return FALSE;
@@ -238,35 +1356,54 @@ _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 				     _hal_device_added);
 	libhal_ctx_set_device_removed (volume_monitor_daemon->hal_ctx,
 		  		       _hal_device_removed);
-	
+	libhal_ctx_set_device_property_modified (volume_monitor_daemon->hal_ctx,
+						 _hal_device_property_modified);
+
 	if (!libhal_ctx_init (volume_monitor_daemon->hal_ctx, &error)) {
 		g_warning ("libhal_ctx_init failed: %s\n", error.message);
 		dbus_error_free (&error);
 		return FALSE;
 	}
 
-
-	/* Setup GNOME specific policy - right now this is only icons */
-	hal_storage_policy = libhal_storage_policy_new ();
-	libhal_storage_policy_set_icon_mapping (hal_storage_policy, icon_mapping);
-
 	/* Tie some data with the libhal context */
 	hal_userdata = g_new0 (GnomeVFSHalUserData, 1);
 	hal_userdata->volume_monitor_daemon = volume_monitor_daemon;
-	hal_userdata->hal_storage_policy = hal_storage_policy;
 	libhal_ctx_set_user_data (volume_monitor_daemon->hal_ctx,
-			       hal_userdata);
+				  hal_userdata);
+
+	gconf_client_add_dir (volume_monitor_daemon->gconf_client,
+			      PATH_GCONF_GNOME_VFS_STORAGE,
+			      GCONF_CLIENT_PRELOAD_RECURSIVE,
+			      NULL);
+
+	hal_userdata->gconf_client_connection_id =
+		gconf_client_notify_add (volume_monitor_daemon->gconf_client,
+					 PATH_GCONF_GNOME_VFS_STORAGE,
+					 _hal_settings_changed,
+					 volume_monitor_daemon,
+					 NULL,
+					 NULL);
+
+
+	/* Simply watch all property changes instead of dynamically
+	 * adding/removing match rules bus-side to only match certain
+	 * objects...
+	 */
+	libhal_device_property_watch_all (volume_monitor_daemon->hal_ctx, &error);
+
+	/* add drives/volumes from HAL */
+	_hal_update_all (volume_monitor_daemon);
+
 	return TRUE;
 }
 
 void
 _gnome_vfs_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
-	GnomeVFSHalUserData *hal_userdata;
 	DBusError error;
+	GnomeVFSHalUserData *hal_userdata;
 
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
-	libhal_storage_policy_free (hal_userdata->hal_storage_policy);
 
 	dbus_error_init (&error);
 	if (!libhal_ctx_shutdown (volume_monitor_daemon->hal_ctx, &error)) {
@@ -279,39 +1416,35 @@ _gnome_vfs_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 		g_warning ("hal_shutdown failed - unable to free hal context\n");
 	}
 
+	gconf_client_notify_remove (volume_monitor_daemon->gconf_client,
+				    hal_userdata->gconf_client_connection_id);
+
 }
+
+void
+_gnome_vfs_hal_mounts_force_reprobe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
+{
+	g_debug ("entering _gnome_vfs_hal_mounts_force_reprobe");
+	_hal_update_all (volume_monitor_daemon);
+}
+
 
 /**************************************************************************/
 
-/** Ask HAL for more information about the drive and modify properties on the
- *  GnomeVFSDrive as appropriate. Note that this happens before the object
- *  is added to the volume monitor.
- *
- *  @param  volume_monitor_daemon  Handle to the volume monitor daemon
- *  @param  drive                  Handle to the GnomeVFSDrive object
- */
-void 
+GnomeVFSDrive *
 _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
 				    GnomeVFSDrive *drive)
 {
-	char *drive_name;
-	char *drive_icon;
-	char *unique_drive_name;
+	GnomeVFSDrive *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
-	LibHalVolume *hal_volume;
-	GnomeVFSHalUserData *hal_userdata;
-	LibHalStoragePolicy *hal_storage_policy;
-	char *target_mount_point;
 
 	hal_drive = NULL;
-	hal_volume = NULL;
+
+	result = drive;
 
 	if ((hal_ctx = volume_monitor_daemon->hal_ctx) == NULL)
 		goto out;
-
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
-	hal_storage_policy = hal_userdata->hal_storage_policy;
 
 	if (drive == NULL || drive->priv == NULL || drive->priv->device_path == NULL)
 		goto out;
@@ -320,234 +1453,52 @@ _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 	 * /dev/sda1 etc, however we get the Drive object for the parent if
 	 * that is the case. This is a feature of libhal-storage.
 	 */
-	if ((hal_drive = libhal_drive_from_device_file (hal_ctx, drive->priv->device_path)) == NULL) {
-		g_warning ("%s: no hal drive for device=%s", __FUNCTION__, drive->priv->device_path);
-		goto out;
+	hal_drive = libhal_drive_from_device_file (hal_ctx, drive->priv->device_path);
+	if (hal_drive != NULL) {
+		/* ok, this device file is in HAL and thus managed by this backend */
+		gnome_vfs_drive_unref (drive);
+		result = NULL;
 	}
-
-	/* There may not be a volume object associated, so hal_volume may be NULL */
-	hal_volume = libhal_volume_from_device_file (hal_ctx, drive->priv->device_path);
-
-	/* For optical discs, we manually add/remove GnomeVFSVolume optical discs without 
-	 * data (e.g. blank and pure audio) since these don't appear in the mounted filesystems
-	 * file /etc/mtab
-	 */
-	if (hal_volume != NULL && 
-	    libhal_drive_get_type (hal_drive) == LIBHAL_DRIVE_TYPE_CDROM && 
-	    libhal_volume_is_disc (hal_volume) && !libhal_volume_disc_has_data (hal_volume)) {
-		GnomeVFSVolume *volume;
-		char *volume_name;
-		char *volume_icon;
-
-		/* see if we already got a volume */
-		volume = gnome_vfs_drive_get_mounted_volume (drive);
-		if (volume != NULL) {
-			gnome_vfs_volume_unref (volume);
-		} else {
-			
-			volume_name = libhal_volume_policy_compute_display_name (
-				hal_drive, hal_volume, hal_storage_policy);
-
-			/* set icon name; try dedicated icon name first... */
-			if (libhal_drive_get_dedicated_icon_volume (hal_drive) != NULL)
-				volume_icon = strdup (libhal_drive_get_dedicated_icon_volume (hal_drive));
-			else
-				volume_icon = libhal_volume_policy_compute_icon_name (
-					hal_drive, hal_volume, hal_storage_policy);
-
-			volume = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
-			volume->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
-			volume->priv->volume_type = GNOME_VFS_VOLUME_TYPE_MOUNTPOINT;
-			
-			if (libhal_volume_disc_is_blank (hal_volume)) {
-				/* Blank discs should open the burn:/// location */
-				volume->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
-				volume->priv->activation_uri = g_strdup ("burn:///");
-				volume->priv->unix_device = makedev (libhal_volume_get_device_major (hal_volume), 
-								     libhal_volume_get_device_minor (hal_volume));
-				volume->priv->filesystem_type = g_strdup (libhal_volume_get_fstype (hal_volume));
-			} else if (libhal_volume_disc_has_audio (hal_volume)) {
-				/* Audio discs with data should open the cdda:///dev/cdrom location */
-				volume->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
-				volume->priv->activation_uri = g_strdup_printf (
-					"cdda://%s", libhal_volume_get_device_file (hal_volume));
-				volume->priv->unix_device = makedev (libhal_volume_get_device_major (hal_volume), 
-								     libhal_volume_get_device_minor (hal_volume));
-				volume->priv->filesystem_type = g_strdup (libhal_volume_get_fstype (hal_volume));
-			}
-			
-			volume->priv->is_read_only = TRUE;
-			volume->priv->is_mounted = FALSE;
-			
-			volume->priv->device_type = GNOME_VFS_DEVICE_TYPE_CDROM;
-			
-			volume->priv->display_name = _gnome_vfs_volume_monitor_uniquify_volume_name (
-				GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), volume_name);
-			volume->priv->icon = g_strdup (volume_icon);
-			volume->priv->is_user_visible = TRUE;
-			
-			volume->priv->drive = drive;
-
-			_gnome_vfs_drive_add_mounted_volume (drive, volume);
-			
-			_gnome_vfs_volume_monitor_mounted (GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), volume);
-			gnome_vfs_volume_unref (volume);
-
-			free (volume_name);
-			free (volume_icon);
-		}
-	} else if (hal_volume == NULL && libhal_drive_get_type (hal_drive) == LIBHAL_DRIVE_TYPE_CDROM) {
-		GnomeVFSVolume *volume;
-
-		/* Remove GnomeVFSVolume with same device file */
-
-		volume = gnome_vfs_drive_get_mounted_volume (drive);
-		if (volume != NULL) {
-			_gnome_vfs_volume_monitor_unmounted (GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), volume);
-		}
-	}
-
-
-	/* Now, modify the drive with the hal stuff, unless we've already done so */
-	if (drive->priv->hal_udi != NULL)
-		goto out;
-
-	/* set whether we need to eject */
-	drive->priv->must_eject_at_unmount = libhal_drive_requires_eject (hal_drive);
-
-	/* set display name */
-	drive_name = libhal_drive_policy_compute_display_name (hal_drive, hal_volume, hal_storage_policy);
-	unique_drive_name = _gnome_vfs_volume_monitor_uniquify_drive_name (
-		GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), drive_name);
-	if (drive->priv->display_name != NULL)
-		g_free (drive->priv->display_name);
-	drive->priv->display_name = unique_drive_name;
-	free (drive_name);
-
-	/* set icon name; try dedicated icon name first... */
-	if (libhal_drive_get_dedicated_icon_drive (hal_drive) != NULL)
-		drive_icon = strdup (libhal_drive_get_dedicated_icon_drive (hal_drive));
-	else
-		drive_icon = libhal_drive_policy_compute_icon_name (hal_drive, hal_volume, hal_storage_policy);
-	if (drive->priv->icon != NULL)
-		g_free (drive->priv->icon);
-	drive->priv->icon = g_strdup (drive_icon);
-	free (drive_icon);
-
-	/* figure out target mount point; first see if we're mounted */
-	target_mount_point = NULL;
-	if (hal_volume != NULL) {
-		const char *str;
-		str = libhal_volume_get_mount_point (hal_volume);
-		if (str != NULL)
-			target_mount_point = g_strdup (str);
-	}
-
-	/* otherwise take the mount path that was found in /etc/fstab or /etc/mtab */
-	if (target_mount_point == NULL)
-		target_mount_point = gnome_vfs_get_local_path_from_uri (drive->priv->activation_uri);
-
-	/* if we don't use removable media and the volume shouldn't be visible, then hide the drive */
-	if(!libhal_drive_uses_removable_media (hal_drive) && 
-	   !libhal_volume_policy_should_be_visible (hal_drive, hal_volume, hal_storage_policy, target_mount_point))
-		drive->priv->is_user_visible = FALSE;
-
-	g_free (target_mount_point);
-
-	/* set hal udi */
-	drive->priv->hal_udi = g_strdup (libhal_drive_get_udi (hal_drive));
 
 out:
-	libhal_volume_free (hal_volume);
 	libhal_drive_free (hal_drive);
+
+	return result;
 }
 
-void 
+GnomeVFSVolume *
 _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
 				     GnomeVFSVolume *volume)
 {
-	char *volume_name;
-	char *volume_icon;
-	char *unique_volume_name;
+	GnomeVFSVolume *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
-	LibHalVolume *hal_volume;
-	GnomeVFSHalUserData *hal_userdata;
-	LibHalStoragePolicy *hal_storage_policy;
-	char *target_mount_point;
 
-	hal_volume = NULL;
 	hal_drive = NULL;
+
+	result = volume;
 
 	if ((hal_ctx = volume_monitor_daemon->hal_ctx) == NULL)
 		goto out;
+
 	if (volume == NULL || volume->priv == NULL || volume->priv->device_path == NULL)
 		goto out;
 
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
-	hal_storage_policy = hal_userdata->hal_storage_policy;
-
-	/* Now, modify the drive with the hal stuff, unless we've already done so */
-	if (volume->priv->hal_udi != NULL)
-		goto out;
-
-	/* Note, the device_path points to what hal calls a volume, e.g. 
+	/* Note, the device_path may point to what hal calls a volume, e.g. 
 	 * /dev/sda1 etc, however we get the Drive object for the parent if
 	 * that is the case. This is a feature of libhal-storage.
 	 */
-	if ((hal_drive = libhal_drive_from_device_file (hal_ctx, volume->priv->device_path)) == NULL) {
-		g_warning ("%s: no hal drive for device=%s", __FUNCTION__, volume->priv->device_path);
-		goto out;
-	}
-	if ((hal_volume = libhal_volume_from_device_file (hal_ctx, volume->priv->device_path)) == NULL) {
-		g_warning ("%s: no hal volume for device=%s", __FUNCTION__, volume->priv->device_path);
-		goto out;
+	hal_drive = libhal_drive_from_device_file (hal_ctx, volume->priv->device_path);
+	if (hal_drive != NULL) {
+		/* ok, this device file is in HAL and thus managed by this backend */
+		gnome_vfs_volume_unref (volume);
+		result = NULL;
 	}
 
-	/* set display name */
-	volume_name = libhal_volume_policy_compute_display_name (hal_drive, hal_volume, hal_storage_policy);
-	unique_volume_name = _gnome_vfs_volume_monitor_uniquify_volume_name (
-		GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), volume_name);
-	if (volume->priv->display_name != NULL)
-		g_free (volume->priv->display_name);
-	volume->priv->display_name = unique_volume_name;
-	free (volume_name);
-
-	/* set icon name; try dedicated icon name first... */
-	if (libhal_drive_get_dedicated_icon_volume (hal_drive) != NULL)
-		volume_icon = strdup (libhal_drive_get_dedicated_icon_volume (hal_drive));
-	else
-		volume_icon = libhal_volume_policy_compute_icon_name (hal_drive, hal_volume, hal_storage_policy);
-	if (volume->priv->icon != NULL)
-		g_free (volume->priv->icon);
-	volume->priv->icon = g_strdup (volume_icon);
-	free (volume_icon);
-
-	/* figure out target mount point; first see if we're mounted */
-	target_mount_point = NULL;
-	{
-		const char *str;
-		str = libhal_volume_get_mount_point (hal_volume);
-		if (str != NULL)
-			target_mount_point = g_strdup (str);
-	}
-
-	/* otherwise take the mount path that was found in /etc/fstab or /etc/mtab */
-	if (target_mount_point == NULL)
-		target_mount_point = gnome_vfs_get_local_path_from_uri (volume->priv->activation_uri);
-
-	/* set whether it's visible on the desktop */
-	volume->priv->is_user_visible = 
-		libhal_volume_policy_should_be_visible (hal_drive, hal_volume, hal_storage_policy, target_mount_point) &&
-		(libhal_drive_is_hotpluggable (hal_drive) || libhal_drive_uses_removable_media (hal_drive));
-
-	g_free (target_mount_point);
-
-	/* set hal udi */
-	volume->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
 out:
 	libhal_drive_free (hal_drive);
-	libhal_volume_free (hal_volume);
+
+	return result;
 }
 
 #endif /* USE_HAL */

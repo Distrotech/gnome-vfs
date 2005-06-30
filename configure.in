@@ -693,6 +693,25 @@ else
 	USE_HAL=""
 fi
 
+if test "x$USE_HAL" != "x"; then
+  AC_ARG_WITH(hal-mount,  [  --with-hal-mount=PROGRAM     Program for mounting filesystems known to HAL],
+	      with_hal_mount="$withval", with_hal_mount="none")
+  if test "x$with_hal_mount" != "xnone"; then
+    AC_DEFINE_UNQUOTED(HAL_MOUNT, "$with_hal_mount", [Path to program for mounting filesystems known to HAL])
+  fi
+  AC_ARG_WITH(hal-umount, [  --with-hal-umount=PROGRAM    Program for unmounting filesystems known to HAL],
+	      with_hal_umount="$withval", with_hal_umount="none")
+  if test "x$with_hal_umount" != "xnone"; then
+    AC_DEFINE_UNQUOTED(HAL_UMOUNT, "$with_hal_umount", [Path to program for unmounting filesystems known to HAL])
+  fi
+  AC_ARG_WITH(hal-eject,  [  --with-hal-eject=PROGRAM     Program for ejecting filesystems known to HAL],
+	      with_hal_eject="$withval", with_hal_eject="none")
+  if test "x$with_hal_eject" != "xnone"; then
+    AC_DEFINE_UNQUOTED(HAL_EJECT, "$with_hal_eject", [Path to program for ejecting filesystems known to HAL])
+  fi
+fi
+
+
 dnl ==============================================================================
 dnl Check for a supported resolver functions
 dnl ==============================================================================

@@ -28,3 +28,4 @@ schemas/desktop_gnome_url_handlers.schemas.in
 schemas/system_dns_sd.schemas.in
 schemas/system_http_proxy.schemas.in
 schemas/system_smb.schemas.in
+schemas/system_storage.schemas.in

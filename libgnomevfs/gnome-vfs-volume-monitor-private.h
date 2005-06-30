@@ -62,6 +62,7 @@ struct _GnomeVFSVolumePrivate {
 
 	/* Only for HAL devices: */
 	char *hal_udi;
+	char *hal_drive_udi; /* only available to daemon; not exported */
 
 	/* Only for connected servers */
 	char *gconf_id;
@@ -85,6 +86,7 @@ struct _GnomeVFSDrivePrivate {
 
 	/* Only for HAL devices: */
 	char *hal_udi;
+	char *hal_drive_udi; /* only available to daemon; not exported */
 
 	gboolean must_eject_at_unmount;
 };
@@ -137,6 +139,11 @@ GnomeVFSVolume *_gnome_vfs_volume_monitor_find_volume_by_hal_udi (GnomeVFSVolume
 								  const char            *hal_udi);
 GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_hal_udi   (GnomeVFSVolumeMonitor *volume_monitor,
 								  const char            *hal_udi);
+
+GnomeVFSVolume *_gnome_vfs_volume_monitor_find_volume_by_hal_drive_udi (GnomeVFSVolumeMonitor *volume_monitor,
+									const char            *hal_drive_udi);
+GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_hal_drive_udi   (GnomeVFSVolumeMonitor *volume_monitor,
+									const char            *hal_drive_udi);
 
 #endif /* USE_HAL */
 

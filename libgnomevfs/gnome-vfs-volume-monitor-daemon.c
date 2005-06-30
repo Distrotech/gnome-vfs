@@ -155,6 +155,8 @@ connected_servers_changed (GConfClient* client,
 static void
 gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
+	volume_monitor_daemon->gconf_client = gconf_client_get_default ();
+
 #ifdef USE_HAL
 	if (_gnome_vfs_hal_mounts_init (volume_monitor_daemon)) {
 		/* It worked, do use HAL */
@@ -170,7 +172,6 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 					mtab_changed,
 					volume_monitor_daemon);
 
-	volume_monitor_daemon->gconf_client = gconf_client_get_default ();
 	gconf_client_add_dir (volume_monitor_daemon->gconf_client,
 			      CONNECTED_SERVERS_DIR,
 			      GCONF_CLIENT_PRELOAD_RECURSIVE,
@@ -197,6 +198,10 @@ gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitor *volume_monit
 	
 	volume_monitor_daemon = GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor);
 	
+#ifdef USE_HAL
+	if (!dont_use_hald)
+		_gnome_vfs_hal_mounts_force_reprobe (volume_monitor_daemon);
+#endif
 	update_fstab_drives (volume_monitor_daemon);
 	update_mtab_volumes (volume_monitor_daemon);
 	update_connected_servers (volume_monitor_daemon);
@@ -223,6 +228,13 @@ gnome_vfs_volume_monitor_daemon_finalize (GObject *object)
 
 	gconf_client_notify_remove (volume_monitor_daemon->gconf_client,
 				    volume_monitor_daemon->connected_id);
+
+
+#ifdef USE_HAL
+	if (!dont_use_hald) {
+		_gnome_vfs_hal_mounts_shutdown (volume_monitor_daemon);
+	}
+#endif /* USE_HAL */
 	
 	g_object_unref (volume_monitor_daemon->gconf_client);
 	
@@ -721,7 +733,13 @@ update_fstab_drives (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			drive = _gnome_vfs_volume_monitor_find_fstab_drive_by_activation_uri (volume_monitor, uri);
 
 			if (drive != NULL) {
+#ifdef USE_HAL
+				/* don't remove if managed by the hal backend */
+				if (dont_use_hald || drive->priv->hal_udi == NULL)
+					_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+#else
 				_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+#endif
 			} else {
 				g_warning ("removed drive not in old fstab list??");
 			}
@@ -737,12 +755,23 @@ update_fstab_drives (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			if (drive != NULL) {
 
 #ifdef USE_HAL
-				if (!dont_use_hald)
-					_gnome_vfs_hal_mounts_modify_drive (volume_monitor_daemon, drive);
-#endif /* USE_HAL */
-					
+				if (!dont_use_hald) {
+					GnomeVFSDrive *new_drive;
+
+					new_drive = _gnome_vfs_hal_mounts_modify_drive (volume_monitor_daemon, drive);
+					if (new_drive != NULL) {
+						_gnome_vfs_volume_monitor_connected (volume_monitor, new_drive);
+						gnome_vfs_drive_unref (new_drive);
+					}
+				} else {
+					_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+					gnome_vfs_drive_unref (drive);
+				}
+#else
 				_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
 				gnome_vfs_drive_unref (drive);
+#endif /* USE_HAL */
+					
 			}
 		}
 
@@ -988,7 +1017,13 @@ update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			vol = _gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (volume_monitor, uri);
 
 			if (vol != NULL) {
+#ifdef USE_HAL
+				/* don't remove if managed by the hal backend */
+				if (dont_use_hald || vol->priv->hal_udi == NULL)
+					_gnome_vfs_volume_monitor_unmounted (volume_monitor, vol);
+#else
 				_gnome_vfs_volume_monitor_unmounted (volume_monitor, vol);
+#endif
 			} else {
 				g_warning ("removed volume not in old mtab list??");
 			}
@@ -1007,11 +1042,22 @@ update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			vol = create_vol_from_mount (volume_monitor, mount);
 			vol->priv->unix_device = unix_device;
 #ifdef USE_HAL
-			if (!dont_use_hald)
-				_gnome_vfs_hal_mounts_modify_volume (volume_monitor_daemon, vol);
-#endif /* USE_HAL */
-			_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);
+			if (!dont_use_hald) {
+				GnomeVFSVolume *new_vol;
+
+				new_vol = _gnome_vfs_hal_mounts_modify_volume (volume_monitor_daemon, vol);
+				if (new_vol != NULL) {
+					_gnome_vfs_volume_monitor_mounted (volume_monitor, new_vol);
+					gnome_vfs_volume_unref (new_vol);
+				}
+			} else {
+				_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);			
+				gnome_vfs_volume_unref (vol);
+			}
+#else
+			_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);			
 			gnome_vfs_volume_unref (vol);
+#endif /* USE_HAL */
 		}
 
 		g_list_free (devices);

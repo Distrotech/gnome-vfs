@@ -1,3 +1,18 @@
+2005-06-30  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.[ch]:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c: (report_mount_result),
+	* libgnomevfs/gnome-vfs-volume.c: (gnome_vfs_volume_finalize):
+	* schemas/Makefile.am:
+	Improvements to the hal-based version of the volume/drive handling.
+	Now also allows hal-specific mount/unmount/eject apps.
+	Patch from David Zeuthen <david@fubar.dk>
+
 2005-06-23  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime.c:

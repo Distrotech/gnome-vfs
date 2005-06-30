@@ -155,6 +155,7 @@ gnome_vfs_volume_finalize (GObject *object)
 	g_free (priv->icon);
 	g_free (priv->gconf_id);
 	g_free (priv->hal_udi);
+	g_free (priv->hal_drive_udi);
 	g_free (priv);
 	volume->priv = NULL;
 	
