@@ -5,7 +5,7 @@ libgnomevfs/gnome-vfs-cdrom.c
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
 libgnomevfs/gnome-vfs-filesystem-type.c
-libgnomevfs/gnome-vfs-hal-mounts.c
+[encoding: UTF-8]libgnomevfs/gnome-vfs-hal-mounts.c
 libgnomevfs/gnome-vfs-init.c
 libgnomevfs/gnome-vfs-job.c
 libgnomevfs/gnome-vfs-mime-handlers.c

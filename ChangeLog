@@ -1,5 +1,14 @@
 2005-07-01  Christian Kellner  <gicmo@gnome.org>
 
+	* NEWS: 
+	Update for release.
+	
+	* po/POTFILES.in:
+	Mark strings in libgnomevfs/gnome-vfs-hal-mounts.c as UTF-8
+	encoded. This fixes broken distcheck.
+
+2005-07-01  Christian Kellner  <gicmo@gnome.org>
+
 	* schemas/system_storage.schemas.in: New file.
 	Also part of the hal patch from David.
 
