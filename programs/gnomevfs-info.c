@@ -21,6 +21,7 @@
 */
 
 #include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,7 +54,7 @@ type_to_string (GnomeVFSFileType type)
 }
 
 static void
-show_file_info (GnomeVFSFileInfo *info)
+show_file_info (GnomeVFSFileInfo *info, const char *uri)
 {
 #define FLAG_STRING(info, which)                                \
 	(GNOME_VFS_FILE_INFO_##which (info) ? "YES" : "NO")
@@ -66,8 +67,18 @@ show_file_info (GnomeVFSFileInfo *info)
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME && info->symlink_name != NULL)
 		printf ("Symlink to        : %s\n", info->symlink_name);
 
-	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE)
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
+		GnomeVFSMimeApplication *app;
+
 		printf ("MIME type         : %s\n", info->mime_type);
+		
+		app = gnome_vfs_mime_get_default_application_for_uri (uri, info->mime_type);
+
+		if (app != NULL) {
+			printf ("Default app       : %s\n", 
+				gnome_vfs_mime_application_get_desktop_id (app));
+		}
+	}
 
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SIZE)
 		printf ("Size              : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
@@ -148,7 +159,7 @@ main (int argc, char **argv)
 			 | GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
 	if (res == GNOME_VFS_OK) {
-		show_file_info (info);
+		show_file_info (info, text_uri);
 	} else {
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (res));
 	}

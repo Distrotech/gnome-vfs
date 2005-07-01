@@ -1,5 +1,11 @@
 2005-07-01  Christian Kellner  <gicmo@gnome.org>
 
+	* programs/gnomevfs-info.c: Add the
+	"Default app" field. Fixes bug #309319.
+	Patch from Joe Shaw <joeshaw@novell.com>
+	
+2005-07-01  Christian Kellner  <gicmo@gnome.org>
+
 	* configure.in:
 	Post release version bump.
 
