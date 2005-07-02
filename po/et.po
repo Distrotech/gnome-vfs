@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs Gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-27 04:31+0100\n"
-"PO-Revision-Date: 2005-02-21 08:47+0200\n"
+"PO-Revision-Date: 2005-07-02 14:20+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee> \n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "Bonobo'd ei saa lähtestada"
+msgstr "Bonobo'd pole võimalik lähtestada"
 
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "Gnome vfs'i ei saa lähtestada"
+msgstr "Gnome vfs'i pole võimalik lähtestada"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
@@ -210,7 +210,7 @@ msgstr "Tundmatu operatsioonitüüp: %u"
 #: libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Toru avatud GIOChannel kanalile ei saa luua: %s"
+msgstr "Avatud GIOChannel kanalile pole võimalik toru luua: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
@@ -687,8 +687,7 @@ msgstr "Võrguserver"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Flopiketast ei õnnestu ühendada. Tõenäoliselt pole ketast seadmes."
+msgstr "Flopiketast ei õnnestu ühendada. Tõenäoliselt pole ketast seadmes."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -701,7 +700,7 @@ msgstr "Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühild
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, mida ei saa külge ühendada."
+msgstr "Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, mida pole võimalik külge ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -786,7 +785,7 @@ msgstr "Teistsuguse asukoha määramiseks kasuta keskkonnamuutujat %s.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Tavaline Moniker'i factory"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -815,7 +814,7 @@ msgstr "Vaikimisi terminalikäivitusargument"
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
 msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr ""
+msgstr "Rakendus, mida kasutada failide puhul, mille vaatamiseks on vaja kasutada komponenti. Parameeter %s asendatakse faili URI'ga, parameeter %c komponendi IID'ga."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid "The default terminal application to use for applications that require a terminal."
@@ -1099,23 +1098,23 @@ msgstr "Socks proxi masina nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr ""
+msgstr "Port, defineeritud \"/system/http_proxy/host\" poolt, mille kaudu proxyt kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr ""
+msgstr "Port, defineeritud \"/system/proxy/ftp_host\" poolt, mille kaudu proxyt kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr ""
+msgstr "Port, defineeritud \"/system/proxy/secure_host\" poolt, mille kaudu proxyt kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr ""
+msgstr "Port, defineeritud \"/system/proxy/socks_host\" poolt, mille kaudu proxyt kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
+msgstr "See võti sisaldab nimekirja hostidest kuhu ühendutakse otse, ilma et kasutataks proxyt (isegi kui see on aktiivne). Väärtused võivad olla hostinimed, domeenid (kasutades vormi *.foo.com), IP-aadressid (nii IPv6 kui IPv6) ja võrguaadressid koos võrgumaskiga (näiteks 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1136,4 +1135,3 @@ msgstr "SMB töögrupp"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Akende töögrupp, milles kasutaja osaleb"
-
