@@ -8,7 +8,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs Gnome 2.10\n"
+"Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-07-02 06:09+0000\n"
 "PO-Revision-Date: 2005-07-02 14:20+0300\n"
