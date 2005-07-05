@@ -26,8 +26,6 @@
 
 #include "gnome-vfs-volume-monitor-daemon.h"
 
-#define HAL_MOUNTS_INVALID_URI "/gnome/vfs2/internal/no/uri/available"
-
 gboolean _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
 
 void _gnome_vfs_hal_mounts_force_reprobe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);

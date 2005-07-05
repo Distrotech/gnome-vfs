@@ -1,3 +1,30 @@
+2005-07-05  Christian Kellner  <gicmo@gnome.org>
+
+	Second part of the even-more-rocking-hal-support by
+	David Zeuthen  <davidz@redhat.com>:
+	
+	Fixes pointed out by Alexander Larsson.
+
+	* libgnomevfs/gnome-vfs-hal-mounts.h: Don't define 
+	HAL_MOUNTS_INVALID_URI as it's actually not used
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Uncomment a lot of g_debug calls
+	(GnomeVFSHalUserData): Add display_* settings from gconf
+	(_hal_size_as_string): Delete this function
+	(_hal_drive_policy_get_display_name): Use
+	gnome_vfs_format_file_size_ for_display instead of
+	_hal_size_as_string
+	(_hal_drive_policy_check): Use settings from GnomeVFSHalUserData
+	instead of calling into gconf
+	(_hal_add_drive_without_volumes): Set activation_uri to empty
+	string instead of HAL_MOUNTS_INVALID_URI
+	(_hal_add_volume): Don't attempt to reuse a drive if it's already
+	there - instead just delete the drive and add a new one. Also set
+	activation_uri to empty string instead of HAL_MOUNTS_INVALID_URI
+	(_hal_get_settings_from_gconf): New function
+	(_hal_settings_changed): Call _hal_get_settings_from_gconf
+	(_gnome_vfs_hal_mounts_init): Call _hal_get_settings_from_gconf
+
 2005-07-01  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-info.c: Add the
