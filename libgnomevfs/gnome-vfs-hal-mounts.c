@@ -225,6 +225,10 @@ _hal_drive_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	LibHalDriveBus bus;
 	LibHalDriveType drive_type;
 
+	name = libhal_drive_get_dedicated_icon_drive (hal_drive);
+	if (name != NULL)
+		goto out;
+
 	bus        = libhal_drive_get_bus (hal_drive);
 	drive_type = libhal_drive_get_type (hal_drive);
 
@@ -254,6 +258,7 @@ _hal_drive_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		name = _hal_lookup_icon (0x10000 + drive_type*0x100);
 	}
 
+out:
 	if (name != NULL)
 		return g_strdup (name);
 	else {
@@ -270,6 +275,10 @@ _hal_volume_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	LibHalDriveBus bus;
 	LibHalDriveType drive_type;
 	LibHalVolumeDiscType disc_type;
+
+	name = libhal_drive_get_dedicated_icon_volume (hal_drive);
+	if (name != NULL)
+		goto out;
 
 	/* by design, the enums are laid out so we can do easy computations */
 
@@ -871,47 +880,45 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
 	}
 
-	/* if we had a drive from here but where we weren't mounted, just use that drive and update
-	 * activation_uri as we now have a definite mount point...
+	/* if we had a drive from here but where we weren't mounted, just use that drive since nothing actually
+	 * changed 
 	 */
 	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_volume_get_udi (hal_volume));
-	if (drive != NULL) {
-		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
-	}
-
-	drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
-	if (libhal_volume_disc_has_audio (hal_volume)) {
-		drive->priv->activation_uri = g_strdup_printf ("cdda://%s", 
-							       libhal_volume_get_device_file (hal_volume));
-	} else if (libhal_volume_disc_is_blank (hal_volume)) {
-		drive->priv->activation_uri = g_strdup ("burn:///");
-	} else if (libhal_volume_is_mounted (hal_volume)) {
-		drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
-			libhal_volume_get_mount_point (hal_volume));
-	} else {
-		/* This sucks but it doesn't make sense to talk about the activation_uri if we're not mounted!
-		 * So just set it to the empty string
+	if (drive == NULL) {
+		drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
+		if (libhal_volume_disc_has_audio (hal_volume)) {
+			drive->priv->activation_uri = g_strdup_printf ("cdda://%s", 
+								       libhal_volume_get_device_file (hal_volume));
+		} else if (libhal_volume_disc_is_blank (hal_volume)) {
+			drive->priv->activation_uri = g_strdup ("burn:///");
+		} else if (libhal_volume_is_mounted (hal_volume)) {
+			drive->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
+				libhal_volume_get_mount_point (hal_volume));
+		} else {
+			/* This sucks but it doesn't make sense to talk about the activation_uri if we're not mounted!
+			 * So just set it to the empty string
+			 */
+			drive->priv->activation_uri = g_strdup ("");
+		}
+		drive->priv->is_connected = TRUE;
+		drive->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
+		drive->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);
+	
+		/* TODO: could add an icon of a drive with media in it since this codepath only
+		 * handles drives with media in them
 		 */
-		drive->priv->activation_uri = g_strdup ("");
+		drive->priv->icon = _hal_drive_policy_get_icon (volume_monitor_daemon, hal_drive, NULL);
+		name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
+		drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
+		g_free (name);
+		drive->priv->is_user_visible = TRUE;
+		drive->priv->volumes = NULL;
+		drive->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
+		drive->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
+	
+		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
 	}
-	drive->priv->is_connected = TRUE;
-	drive->priv->device_path = g_strdup (libhal_volume_get_device_file (hal_volume));
-	drive->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);
-	
-	/* TODO: could add an icon of a drive with media in it since this codepath only
-	 * handles drives with media in them
-	 */
-	drive->priv->icon = _hal_drive_policy_get_icon (volume_monitor_daemon, hal_drive, NULL);
-	name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
-	drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
-	g_free (name);
-	drive->priv->is_user_visible = TRUE;
-	drive->priv->volumes = NULL;
-	drive->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
-	drive->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
-	
-	_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
-	gnome_vfs_drive_unref (drive);
 
 	vol = _gnome_vfs_volume_monitor_find_volume_by_hal_udi (volume_monitor, libhal_volume_get_udi (hal_volume));
 	if (vol == NULL && 
