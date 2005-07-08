@@ -289,18 +289,21 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	} else {
 		/* assume file: method and the home directory */
 		near_uri = gnome_vfs_uri_new (g_get_home_dir());
-		/* Need to expand the final symlink, since if the homedir is a symlink
-		 * we want to look at the device the home symlink points to, not the
-		 * one the symlink is stored on */
-		if (_gnome_vfs_uri_resolve_all_symlinks_uri (near_uri,
-							     &resolved_uri) == GNOME_VFS_OK) {
-			gnome_vfs_uri_unref (near_uri);
-			near_uri = resolved_uri;
-		}
 	}
 
+	/* Need to expand the final symlink, since if the directory is a symlink
+	 * we want to look at the device the symlink points to, not the one the
+	 * symlink is stored on
+	 */
+	result = _gnome_vfs_uri_resolve_all_symlinks_uri (near_uri, &resolved_uri);
+	if (result == GNOME_VFS_OK) {
+		gnome_vfs_uri_unref (near_uri);
+		near_uri = resolved_uri;
+	} else
+		return result;
+
 	g_assert (near_uri != NULL);
-		
+
 	if (!VFS_METHOD_HAS_FUNC(near_uri->method, find_directory)) {
 		gnome_vfs_uri_unref (near_uri);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;

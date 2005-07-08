@@ -1,3 +1,12 @@
+2005-07-08  Federico Mena Quintero  <federico@ximian.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c
+	(gnome_vfs_find_directory_cancellable): Canonicalize the near_uri
+	unconditionally.  If we are finding a trash directory, we also
+	need to look at the real device, not the device on which the
+	symlink is stored.  Also, return an error if we cannot
+	canonicalize the symlink.
+
 2005-07-08  Paolo Borelli  <pborelli@katamail.com>
 
 	* libgnomevfs/gnome-vfs-xfer.[ch]: add an option to not
