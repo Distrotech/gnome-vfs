@@ -45,7 +45,8 @@ typedef enum {
 	GNOME_VFS_XFER_REMOVESOURCE = 1 << 8,
 	GNOME_VFS_XFER_USE_UNIQUE_NAMES = 1 << 9,
 	GNOME_VFS_XFER_LINK_ITEMS = 1 << 10,
-	GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE = 1 << 11
+	GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE = 1 << 11,
+	GNOME_VFS_XFER_TARGET_DEFAULT_PERMS = 1 << 12
 } GnomeVFSXferOptions;
 
 /* Progress status, to be reported to the caller of the transfer operation.  */

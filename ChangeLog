@@ -1,3 +1,8 @@
+2005-07-08  Paolo Borelli  <pborelli@katamail.com>
+
+	* libgnomevfs/gnome-vfs-xfer.[ch]: add an option to not
+	preserve permissions when xfering a file. Bug 309604.
+
 2005-07-07  David Zeuthen  <davidz@redhat.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c (_hal_drive_policy_get_icon):

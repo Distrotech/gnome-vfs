@@ -1512,15 +1512,17 @@ copy_file (GnomeVFSFileInfo *info,
 	if (result == GNOME_VFS_OK) {
 		/* ignore errors while setting file info attributes at this point */
 		
-		/* FIXME the modules should ignore setting of permissions if
-		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
-		 * for now, make sure permissions aren't set to 000
-		 */
-		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
-			/* Call this separately from the time one, since one of them may fail,
-			   making the other not run. */
-			gnome_vfs_set_file_info_uri (target_uri, info, 
-						     GNOME_VFS_SET_FILE_INFO_OWNER | GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
+		if (!(xfer_options & GNOME_VFS_XFER_TARGET_DEFAULT_PERMS)) {
+			/* FIXME the modules should ignore setting of permissions if
+			 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
+			 * for now, make sure permissions aren't set to 000
+			 */
+			if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
+				/* Call this separately from the time one, since one of them may fail,
+				   making the other not run. */
+				gnome_vfs_set_file_info_uri (target_uri, info, 
+							     GNOME_VFS_SET_FILE_INFO_OWNER | GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
+			}
 		}
 		
 		/* Call this last so nothing else changes the times */
@@ -1693,18 +1695,20 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 			gnome_vfs_file_info_ref (source_file_info);
 			info = source_file_info;
 		}
-		
-		/* FIXME the modules should ignore setting of permissions if
-		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
-		 * for now, make sure permissions aren't set to 000
-		 */
-		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
-			
-			/* Call this separately from the time one, since one of them may fail,
-			   making the other not run. */
-			gnome_vfs_set_file_info_uri (target_dir_uri, info, 
-						     GNOME_VFS_SET_FILE_INFO_OWNER | 
-						     GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
+
+		if (!(xfer_options & GNOME_VFS_XFER_TARGET_DEFAULT_PERMS)) {
+			/* FIXME the modules should ignore setting of permissions if
+			 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
+			 * for now, make sure permissions aren't set to 000
+			 */
+			if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
+				
+				/* Call this separately from the time one, since one of them may fail,
+				   making the other not run. */
+				gnome_vfs_set_file_info_uri (target_dir_uri, info, 
+							     GNOME_VFS_SET_FILE_INFO_OWNER | 
+							     GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
+			}
 		}
 		
 		/* Call this last so nothing else changes the times */
@@ -2724,6 +2728,9 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
  * onto the destination is not overwritten.  It will only copy the unique items
  * from the source to the destjnation.
  * GNOME_VFS_XFER_LINK_ITEMS: <TBA>
+ * GNOME_VFS_XFER_TARGET_DEFAULT_PERMS: This means that the target file will
+ * not have the same permissions of the source file, but will instead have the 
+ * default permissions of the destination location.
  * @error_mode:  When this function returns you need to check the error code
  * for the results of the copy.  The results are generally:
  * GNOME_VFS_XFER_ERROR_MODE_ABORT: This means that the operation was aborted
