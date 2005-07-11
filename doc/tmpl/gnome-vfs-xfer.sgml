@@ -35,6 +35,7 @@ Conveniently copy/move/delete files en masse
 @GNOME_VFS_XFER_USE_UNIQUE_NAMES: 
 @GNOME_VFS_XFER_LINK_ITEMS: 
 @GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE: 
+@GNOME_VFS_XFER_TARGET_DEFAULT_PERMS: 
 
 <!-- ##### ENUM GnomeVFSXferProgressStatus ##### -->
 <para>

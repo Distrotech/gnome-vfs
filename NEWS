@@ -1,3 +1,9 @@
+gnome-vfs 2.11.4
+	* handle symlinks to mountpoints when finding trash dirs
+	* optionally don't preserve permissions when copying
+	* fixes to the HAL integration
+	* show default app in gnomevfs-info program
+
 gnome-vfs 2.11.3
 	* Improvements to the hal-based volume/drive handling.	
 	* Common Internet File System now supports a trash 
