@@ -1,3 +1,9 @@
+2005-07-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c: (howl_resolve_idle):
+	actually pass text parameters for mDNS (#310292)
+	Patch from Christian Persch
+
 2005-07-11  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

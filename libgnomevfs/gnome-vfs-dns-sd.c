@@ -1181,8 +1181,12 @@ howl_resolve_idle (gpointer data)
 {
 	GnomeVFSDNSSDResolveHandle *handle;
 	GnomeVFSDNSSDService service;
-	
+	GHashTable *hash;
+
 	handle = data;
+
+	hash = decode_txt_record (handle->text,
+				  handle->text_len);
 
 	service.name = handle->name;
 	service.type = handle->type;
@@ -1193,10 +1197,14 @@ howl_resolve_idle (gpointer data)
 			  &service,
 			  handle->host,
 			  handle->port,
-			  NULL,
+			  hash,
 			  handle->text_len,
 			  handle->text,
 			  handle->callback_data);
+
+	if (hash) {
+		g_hash_table_destroy (hash);
+	}
 
 	free_resolve_handle (handle);
 	
