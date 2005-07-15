@@ -1,3 +1,10 @@
+2005-07-15  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Disable cdda method by default.
+	We don't recommend that you ship or use this
+	module atm.
+
 2005-07-15  William Jon McCann  <mccann@jhu.edu>
 
 	* modules/file-method.c (do_is_local): Add autofs and unknown
