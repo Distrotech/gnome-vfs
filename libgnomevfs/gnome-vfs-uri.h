@@ -67,7 +67,7 @@ typedef struct {
 	gchar *host_name;
 	guint host_port;
 
-	/* Authorization information.  */
+	/* Authorization information. (unescaped) */
 	gchar *user_name;
 	gchar *password;
 

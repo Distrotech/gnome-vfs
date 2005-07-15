@@ -1,3 +1,9 @@
+2005-07-15  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-uri.[ch]:
+	Handle escaped chars in username/password (#89106)
+	Patch from Ryan Lortie
+
 2005-07-14  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-dns-sd.c: (howl_resolve_idle):

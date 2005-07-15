@@ -214,7 +214,10 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		/* *cur == ':' or '@' and string contains a @ before a / */
 
 		if (uri_strlen_to (cur_tok_start, cur) > 0) {
-			*user_return = uri_strdup_to (cur_tok_start,cur);
+			char *tmp;
+			tmp = uri_strdup_to (cur_tok_start,cur);
+			*user_return = gnome_vfs_unescape_string (tmp, NULL);
+			g_free (tmp);
 		}
 
 		if (*cur == ':') {
@@ -226,7 +229,10 @@ split_toplevel_uri (const gchar *path, guint path_len,
 				success = FALSE;
 				goto done;
 			} else if (uri_strlen_to (cur_tok_start, cur) > 0) {
-				*password_return = uri_strdup_to (cur_tok_start,cur);
+				char *tmp;
+				tmp = uri_strdup_to (cur_tok_start,cur);
+				*password_return = gnome_vfs_unescape_string (tmp, NULL);
+				g_free (tmp);
 			}
 		}
 
@@ -1142,7 +1148,7 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			 GnomeVFSURIHideOptions hide_options)
 {
 	GString *string;
-	gchar *result;
+	gchar *result, *tmp;
 
 	string = g_string_new (uri->method_string);
 	g_string_append_c (string, ':');
@@ -1165,14 +1171,18 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 
 		if (top_level_uri->user_name != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_USER_NAME) == 0) {
-			g_string_append (string, top_level_uri->user_name);
+			tmp = gnome_vfs_escape_string (top_level_uri->user_name);
+			g_string_append (string, tmp);
+			g_free (tmp);
 			shown_user_pass = TRUE;
 		}
 
 		if (top_level_uri->password != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_PASSWORD) == 0) {
+			tmp = gnome_vfs_escape_string (top_level_uri->password);
 			g_string_append_c (string, ':');
-			g_string_append (string, top_level_uri->password);
+			g_string_append (string, tmp);
+			g_free (tmp);
 			shown_user_pass = TRUE;
 		}
 
