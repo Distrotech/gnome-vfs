@@ -1,3 +1,8 @@
+2005-07-15  William Jon McCann  <mccann@jhu.edu>
+
+	* modules/file-method.c (do_is_local): Add autofs and unknown
+	filesystem types to not local list (#310418)
+
 2005-07-15  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-uri.[ch]:

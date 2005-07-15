@@ -1178,6 +1178,8 @@ do_is_local (GnomeVFSMethod *method,
 			char *type = filesystem_type (path, path, &statbuf);
 			gboolean is_local = ((strcmp (type, "nfs") != 0) && 
 					     (strcmp (type, "afs") != 0) &&
+					     (strcmp (type, "autofs") != 0) &&
+					     (strcmp (type, "unknown") != 0) &&
 					     (strcmp (type, "ncpfs") != 0));
 			local = GINT_TO_POINTER (is_local ? 1 : -1);
 			g_hash_table_insert (fstype_hash, path, local);
