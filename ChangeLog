@@ -1,3 +1,9 @@
+2005-07-18  Sebastien Bacher  <seb128@debian.org>
+
+	* libgnomevfs/gnome-vfs-filesystem-type.c:
+	list reiser4, fix the trash issues with it,
+	patch by James Lademann <jwlademann@myrealbox.com> (Closes: #153100).
+
 2005-07-18  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/sftp-method.c:

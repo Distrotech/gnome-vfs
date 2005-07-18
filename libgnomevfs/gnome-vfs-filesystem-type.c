@@ -61,6 +61,7 @@ static struct FSInfo fs_data[] = {
 	{ "nwfs"     , N_("Netware Volume"), 0 },
 	{ "proc"     , N_("System Volume"), 0 },
 	{ "procfs"   , N_("System Volume"), 0 },
+	{ "reiser4"  , N_("Reiser4 Linux Volume"), 1 },
 	{ "reiserfs" , N_("ReiserFS Linux Volume"), 1 },
 	{ "smbfs"    , N_("Windows Shared Volume"), 1 },
 	{ "supermount",N_("SuperMount Volume"), 0 },
