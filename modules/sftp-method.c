@@ -1752,7 +1752,7 @@ do_open (GnomeVFSMethod        *method,
 	guint id;
 	gint32 sftp_mode;
 	gchar *sftp_handle;
-	gint sftp_handle_len, sftp_res;
+	gint sftp_handle_len;
 	gchar *path;
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
@@ -1788,9 +1788,9 @@ do_open (GnomeVFSMethod        *method,
 	buffer_send (&msg, conn->out_fd);
 	buffer_free (&msg);
 	
-	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, (guint32 *)&sftp_handle_len);
+	res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, (guint32 *)&sftp_handle_len);
 
-	if (sftp_res == SSH2_FX_OK) {
+	if (res == GNOME_VFS_OK) {
 		handle = g_new0 (SftpOpenHandle, 1);
 		handle->sftp_handle = sftp_handle;
 		handle->sftp_handle_len = sftp_handle_len;
@@ -1808,7 +1808,7 @@ do_open (GnomeVFSMethod        *method,
 		sftp_connection_unlock (conn);
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
-		return sftp_status_to_vfs_result (sftp_res);
+		return res;
 	}
 }
 
@@ -1829,7 +1829,6 @@ do_create (GnomeVFSMethod        *method,
 	Buffer msg;
 	int id;
 	int ssh_mode;
-	guint sftp_res;
 
 	gchar *sftp_handle;
 	guint sftp_handle_len;
@@ -1875,10 +1874,10 @@ do_create (GnomeVFSMethod        *method,
 	buffer_send (&msg, conn->out_fd);
 	buffer_free (&msg);
 
-	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
+	res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
 
 
-	if (sftp_res == SSH2_FX_OK) {
+	if (res == GNOME_VFS_OK) {
 		handle = g_new0 (SftpOpenHandle, 1);
 		handle->sftp_handle = sftp_handle;
 		handle->sftp_handle_len = sftp_handle_len;
@@ -1896,7 +1895,7 @@ do_create (GnomeVFSMethod        *method,
 		sftp_connection_unlock (conn);
 		
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
-		return sftp_status_to_vfs_result (sftp_res);
+		return res;
 	}
 }
 
@@ -2414,7 +2413,6 @@ do_open_directory (GnomeVFSMethod          *method,
 	gchar *sftp_handle;
 	Buffer msg;
 	guint id, sftp_handle_len;
-	guint sftp_res;
 	gchar *path;
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
@@ -2446,11 +2444,11 @@ do_open_directory (GnomeVFSMethod          *method,
 
 	buffer_free (&msg);
 
-	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
+	res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Result is %d", __FUNCTION__, sftp_res));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Result is %d", __FUNCTION__, res));
 
-	if (sftp_res == SSH2_FX_OK) {
+	if (res == GNOME_VFS_OK) {
 		handle = g_new0 (SftpOpenHandle, 1);
 		handle->sftp_handle = sftp_handle;
 		handle->sftp_handle_len = sftp_handle_len;
@@ -2469,15 +2467,15 @@ do_open_directory (GnomeVFSMethod          *method,
 		return GNOME_VFS_OK;
 	} else {
 		/* For some reason, some servers report EOF when the directory doesn't exist. *shrug* */
-		if (sftp_res == SSH2_FX_EOF)
-			sftp_res = SSH2_FX_NO_SUCH_FILE;
+		if (res == GNOME_VFS_ERROR_EOF)
+			res = GNOME_VFS_ERROR_NOT_FOUND;
 
 		sftp_connection_unref (conn);
 		sftp_connection_unlock (conn);
 
 		*method_handle = NULL;
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
-		return sftp_status_to_vfs_result (sftp_res);
+		return res;
 	}
 }
 
