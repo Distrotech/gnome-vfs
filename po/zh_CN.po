@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-29 22:38+0000\n"
-"PO-Revision-Date: 2005-05-30 10:11+0800\n"
+"POT-Creation-Date: 2005-07-17 22:28+0000\n"
+"PO-Revision-Date: 2005-07-18 13:09+0800\n"
 "Last-Translator: LoneStar <lone@auvtech.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,11 @@ msgstr "XFS Linux 卷"
 msgid "XIAFS Volume"
 msgstr "XIAFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:104
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+msgid "CIFS Volume"
+msgstr "CIFS 卷"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
 msgid "Unknown"
 msgstr "未知"
 
@@ -536,195 +540,195 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1096
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (无效的 Unicode)"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:551
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:607
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
 msgid "Floppy"
 msgstr "软盘"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:610
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-RAM"
 msgstr "CD-ROM/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-RW"
 msgstr "CD-ROM/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-RAM"
 msgstr "CD-R/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-RW"
 msgstr "CD-R/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-RW/DVD-ROM"
 msgstr "CD-RW/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-RAM"
 msgstr "CD-RW/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-R"
 msgstr "CD-RW/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
 msgid "Disk"
 msgstr "磁盘"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "USB Drive"
 msgstr "USB 驱动器"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "IEEE1394 Drive"
 msgstr "IEEE1394 驱动器"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "CF"
 msgstr "CF"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "SD/MMC"
 msgstr "SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 msgid "Memory Stick"
 msgstr "记忆棒"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
 msgstr "SM 介质"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
 msgid "Zip Drive"
 msgstr "Zip 驱动器"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "相机"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
 msgid "Root Volume"
 msgstr "根卷"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:888
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
 msgid "Audio CD"
 msgstr "音频 CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:921
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
 msgid "Unknown volume"
 msgstr "未知卷"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1109
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
 msgid "Network server"
 msgstr "网络服务器"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:120
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "无法挂载软盘驱动器。可能驱动器中没有软盘。"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:124
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "无法挂载卷。可能设备中没有介质。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:130
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr "无法挂载软盘驱动器。可能软盘的格式无法挂载。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:133
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr "无法挂载选中的卷。可能卷的格式无法挂载。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
 msgid "Unable to mount the selected floppy drive."
 msgstr "无法挂载选中的软盘驱动器。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:140
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to mount the selected volume."
 msgstr "无法挂载选中的卷。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:152
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
 msgid "Unable to unmount the selected volume."
 msgstr "无法卸载选中的卷。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:264
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:320
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
 msgid "Failed to start command"
 msgstr "启动命令失败"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:308
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
 msgstr "无法弹出介质"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:511
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
 msgstr "无法卸载连接的服务器"
 
@@ -1194,6 +1198,59 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"用户所属的 Windows 网络工作组或域。为了让新工作组完全生效，用户可能需要"
-"注销并再次登录。"
+"用户所属的 Windows 网络工作组或域。为了让新工作组完全生效，用户可能需要注销并"
+"再次登录。"
 
+#: ../schemas/system_storage.schemas.in.h:1
+msgid "Display SCSI drives"
+msgstr "显示 SCSI 驱动器"
+
+#: ../schemas/system_storage.schemas.in.h:2
+msgid "Display SCSI optical drives"
+msgstr "显示 SCSI 光驱"
+
+#: ../schemas/system_storage.schemas.in.h:3
+msgid "Display drives with removable media"
+msgstr "显示可移动介质的驱动器"
+
+#: ../schemas/system_storage.schemas.in.h:4
+msgid "Display external drives"
+msgstr "显示外部驱动器"
+
+#: ../schemas/system_storage.schemas.in.h:5
+msgid "Display internal hard drives"
+msgstr "显示硬盘"
+
+#: ../schemas/system_storage.schemas.in.h:6
+msgid ""
+"Whether to display SCSI optical drives even if /system/storage/"
+"display_scsi_drives is set to FALSE."
+msgstr "是否显示 SCSI 光驱，即使 /system/storage/"
+"display_scsi_drives 设为 FALSE。"
+
+#: ../schemas/system_storage.schemas.in.h:7
+msgid "Whether to display drives and mountable volumes from SCSI drives."
+msgstr "是否显示 SCSI 驱动器的驱动器和可挂载卷。"
+
+#: ../schemas/system_storage.schemas.in.h:8
+msgid ""
+"Whether to display drives and mountable volumes from drives with removable "
+"media (e.g. drives where media can be inserted and removed)."
+msgstr ""
+"是否显示可移动介质(即可插入和删除介质的驱动器)的驱动器和可挂载卷。"
+
+#: ../schemas/system_storage.schemas.in.h:9
+msgid ""
+"Whether to display drives and mountable volumes from external drives (e.g. "
+"drives that are hotpluggable; e.g. drives that can be attached and detached "
+"while the system is running)."
+msgstr ""
+"是否显示外部驱动器(即可热插拔的驱动器以及系统运行中可连接和断开的驱动器)"
+"的驱动器和可挂载卷。"
+
+#: ../schemas/system_storage.schemas.in.h:10
+msgid ""
+"Whether to display drives and mountable volumes from internal hard drives "
+"(non-SCSI optical drives are always shown)."
+msgstr ""
+"是否显示硬盘(非 SCSI 光驱总是显示)的驱动器和可挂载卷。"
