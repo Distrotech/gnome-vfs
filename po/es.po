@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-06 17:16+0200\n"
-"PO-Revision-Date: 2005-07-06 17:25+0200\n"
+"POT-Creation-Date: 2005-07-21 22:07+0200\n"
+"PO-Revision-Date: 2005-07-21 22:07+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -147,62 +147,66 @@ msgid "Netware Volume"
 msgstr "Volumen Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Volumen Linux Reiser4"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "Volumen Linux ReiserFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Volumen compartido de Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "Volumen SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "Volumen DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Volumen Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Volumen Solaris UDFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Volumen Solaris PCFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Volumen Sun SAM-QFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Volumen mejorado de DOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Volumen VFAT de Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Volumen Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "Volumen Linux XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "Volumen XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "Volumen CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -1074,7 +1078,9 @@ msgstr "Indica si el comando especificado debe manipular las URLs «trash»"
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Lista separada por comas de dominios DNS-SD que deberían ser visibles en la dirección «network:///»."
+msgstr ""
+"Lista separada por comas de dominios DNS-SD que deberían ser visibles en la "
+"dirección «network:///»."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1253,7 +1259,10 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "El grupo de trabajo de red de Windows o el dominio del que el usuario es parte. Para que un grupo grupo nuevo tenga efecto, el usuario puede necesitar cerrar la sesión y entrar de nuevo."
+msgstr ""
+"El grupo de trabajo de red de Windows o el dominio del que el usuario es "
+"parte. Para que un grupo grupo nuevo tenga efecto, el usuario puede "
+"necesitar cerrar la sesión y entrar de nuevo."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1279,30 +1288,43 @@ msgstr "Mostrar discos duros internos"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Indica si se deben mostrar las unidades ópticas SCSI incluso si /system/storage/display_scsi_drives está estalecido a FALSE."
+msgstr ""
+"Indica si se deben mostrar las unidades ópticas SCSI incluso si /system/"
+"storage/display_scsi_drives está estalecido a FALSE."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr "Indica si se deben mostrar las unidades y los volúmenes montables de las unidades SCSI."
+msgstr ""
+"Indica si se deben mostrar las unidades y los volúmenes montables de las "
+"unidades SCSI."
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Indica si se deben mostrar las unidades y los volúmenes montables de las unidades con soportes extraíbles (e.j. unidades donde los soportes pueden insertarse y extraerse)."
+msgstr ""
+"Indica si se deben mostrar las unidades y los volúmenes montables de las "
+"unidades con soportes extraíbles (e.j. unidades donde los soportes pueden "
+"insertarse y extraerse)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr "Indica si se deben mostrar las unidades y los volúmenes montables de unidades externas (e.j. unidades que son enchufadas en caliente, unidades que se pueden enchufar o desenchufar cuando el sistema está en funcionamiento)."
+msgstr ""
+"Indica si se deben mostrar las unidades y los volúmenes montables de "
+"unidades externas (e.j. unidades que son enchufadas en caliente, unidades "
+"que se pueden enchufar o desenchufar cuando el sistema está en "
+"funcionamiento)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr "Indica si se deben mostrar las unidades y los volúmenes montables de discos duros internos (los no SCSI ópticos siempre se muestran)"
+msgstr ""
+"Indica si se deben mostrar las unidades y los volúmenes montables de discos "
+"duros internos (los no SCSI ópticos siempre se muestran)"
 
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "El grupo de trabajo de windows del que el usuario es parte"
