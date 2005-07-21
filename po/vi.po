@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-08 06:19+0000\n"
-"PO-Revision-Date: 2005-07-08 15:54+0700\n"
+"POT-Creation-Date: 2005-07-21 06:30+0000\n"
+"PO-Revision-Date: 2004-10-07 09:32+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Không thể khới động gnome vfs"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "Khối ISO 9660"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:221
 #, c-format
@@ -38,14 +38,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d không chứa tên phương thức."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:278
-#, c-format
+#, fuzzy, c-format
 msgid "%s:%d has no options endmarker."
-msgstr ""
+msgstr "%s:%d không chứa tên phương thức."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:289
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s:%d không có tùy chọn %s."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:308
 #, c-format
@@ -142,62 +142,68 @@ msgid "Netware Volume"
 msgstr "Khối Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-msgid "ReiserFS Linux Volume"
+#, fuzzy
+msgid "Reiser4 Linux Volume"
 msgstr "Khối Linux ReiserFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+msgid "ReiserFS Linux Volume"
+msgstr "Khối Linux ReiserFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Khối Chia sẻ Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "Khối SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "Khối DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Khối Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Khối Solaris Udfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Khối Solaris Pcfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Khối Sun SAM-QFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Khối DOS Cải tiến"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Khối Windows VFAT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Khối Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "Khối Linux XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "Khối XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#, fuzzy
 msgid "CIFS Volume"
-msgstr "Khối CIFS"
+msgstr "Khối XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Không rõ"
 
@@ -251,7 +257,7 @@ msgstr "Thao tác đã dừng"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Hàm lỗi thời. Sửa chữa cơ sở dữ liệu MIME từ người dùng không còn được hỗ trợ."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -510,7 +516,7 @@ msgstr "Tài nguyên bị khóa"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Function call deprecated"
-msgstr "Gọi hàm lỗi thời"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
@@ -757,7 +763,7 @@ msgstr "Mạng Windows"
 #: ../modules/sftp-method.c:1314
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "Định danh máy ở xa (%s) không biết."
+msgstr ""
 
 #: ../modules/sftp-method.c:1315
 #, c-format
@@ -770,7 +776,7 @@ msgstr ""
 
 #: ../modules/sftp-method.c:1323
 msgid "Log In Anyway"
-msgstr "Vẫn đăng nhập"
+msgstr ""
 
 #: ../modules/sftp-method.c:1324
 msgid "Cancel Login"
@@ -805,15 +811,15 @@ msgstr "moniker tập tin chung"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Ứng dụng xem mặc định"
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Ứng dụng terminal mặc định"
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Tham số cho terminal mặc định"
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -821,207 +827,217 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "Ứng dụng để xem tập tin cho những ứng dụng cần xem tập tin. Tham số %s sẽ được thay bằng URI của tập tin, tham số %c sẽ được thay bằng IID của thành phần này."
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Ứng dụng terminal mặc định cho những ứng dụng cần terminal."
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Tham số cần dùng cho ứng dụng terminal mặc định."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "Chạy lệnh từ terminal"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"aim\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"callto\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"ghelp\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"h323\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"http\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"https\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"info\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"mailto\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"man\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Lệnh dùng để xử lý URL \"trash\" nếu được bật."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Bộ xử lý cho URL \"aim\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Bộ xử lý cho URL \"callto\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Bộ xử lý cho URL \"ghelp\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Bộ xử lý cho URL \"h323\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Bộ xử lý cho URL \"http\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Bộ xử lý cho URL \"https\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Bộ xử lý cho URL \"info\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Bộ xử lý cho URL \"mailto\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Bộ xử lý cho URL \"man\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Bộ xử lý cho URL \"trash\""
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"aim\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"callto\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"ghelp\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"h323\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"http\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"https\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"info\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"mailto\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"man\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "True nếu lệnh xác định trong khoá \"command\" cần xử lý URL \"trash\"."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "True nếu lệnh được dùng để xử lý loại URL này cần chạy trong terminal."
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"aim\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"callto\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"ghelp\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"h323\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"http\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"https\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"info\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"mailto\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"man\" hay không"
+msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Lệnh xác định có được dùng để xử lý URL \"trash\" hay không"
+msgstr ""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1035,104 +1051,104 @@ msgstr "Những domain khác cần dùng để tìm dịch vụ DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "Cách hiển thị dịch vụ DNS-SD cục bộ"
+msgstr ""
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Giá trị hợp lệ là \"merged\", \"separate\" và \"disabled\"."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Xác thực kết nối máy chủ proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "URL cấu hình proxy tự động"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Bật thiết lập proxy khi truy cập HTTP trên Internet."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "Tên máy proxy FTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "Tên cổng proxy FTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "Tên máy proxy HTTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "Mật khẩu proxy HTTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr "Cổng proxy HTTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "Tên người dùng proxy HTTP"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Nếu true, kết nối đến máy chủ proxy cần xác thực. Tên người dùng/Mật khẩu được định nghĩa trong \"/system/http_proxy/authentication_user\" và \"/system/http_proxy/authentication_password\"."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "Máy không dùng proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Mật khẩu cầu dùng để xác thực khi dùng proxy http."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Kiểu cấu hình proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "Tên máy SOCKS proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "Cổng SOCKS proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "Tên máy Secure HTTP proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "Cổng Secure HTTP proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Chọn kiểu cấu hình proxy. Giá trị hợp lệ là \"none\", \"manual\", \"auto\"."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "Tên máy để đi qua FTP proxy."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "Tên máy để đi qua HTTP proxy."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Tên máy để đi qua Secure HTTP proxy."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "Tên máy để đi qua SOCKS proxy."
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
@@ -1172,7 +1188,7 @@ msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr "Dùng HTTP proxy"
+msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
@@ -1180,7 +1196,7 @@ msgstr ""
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr "SMB workgroup"
+msgstr ""
 
 #: ../schemas/system_smb.schemas.in.h:2
 msgid ""
@@ -1238,169 +1254,168 @@ msgid ""
 "(non-SCSI optical drives are always shown)."
 msgstr ""
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Đĩa CD-ROM"
+msgid "CD-ROM Disc"
+msgstr "Đĩa CD-ROM"
 
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Đĩa trắng CD-R"
+msgid "Blank CD-R Disc"
+msgstr "Đĩa trắng CD-R"
 
-#~ msgid "CD-R Disc"
-#~ msgstr "Đĩa CD-R"
+msgid "CD-R Disc"
+msgstr "Đĩa CD-R"
 
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Đĩa trắng CD-RW"
+msgid "Blank CD-RW Disc"
+msgstr "Đĩa trắng CD-RW"
 
-#~ msgid "CD-RW Disc"
-#~ msgstr "Đĩa CD-RW"
+msgid "CD-RW Disc"
+msgstr "Đĩa CD-RW"
 
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Đĩa DVD-ROM"
+msgid "DVD-ROM Disc"
+msgstr "Đĩa DVD-ROM"
 
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Đĩa trắng DVD-R"
+msgid "Blank DVD-R Disc"
+msgstr "Đĩa trắng DVD-R"
 
-#~ msgid "DVD-R Disc"
-#~ msgstr "Đĩa DVD-R"
+msgid "DVD-R Disc"
+msgstr "Đĩa DVD-R"
 
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Đĩa trắng DVD-RAM"
+msgid "Blank DVD-RAM Disc"
+msgstr "Đĩa trắng DVD-RAM"
 
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Đĩa DVD-RAM"
+msgid "DVD-RAM Disc"
+msgstr "Đĩa DVD-RAM"
 
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Đĩa trắng DVD-RW"
+msgid "Blank DVD-RW Disc"
+msgstr "Đĩa trắng DVD-RW"
 
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Đĩa DVD-RW"
+msgid "DVD-RW Disc"
+msgstr "Đĩa DVD-RW"
 
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Đĩa trắng DVD+RW"
+msgid "Blank DVD+RW Disc"
+msgstr "Đĩa trắng DVD+RW"
 
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Đĩa DVD+RW"
+msgid "DVD+RW Disc"
+msgstr "Đĩa DVD+RW"
 
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Đĩa trắng DVD+R"
+msgid "Blank DVD+R Disc"
+msgstr "Đĩa trắng DVD+R"
 
-#~ msgid "DVD+R Disc"
-#~ msgstr "Đĩa DVD+R"
+msgid "DVD+R Disc"
+msgstr "Đĩa DVD+R"
 
-#~ msgid "Optical Disc"
-#~ msgstr "Đĩa quang"
+msgid "Optical Disc"
+msgstr "Đĩa quang"
 
-#~ msgid "Audio Disc"
-#~ msgstr "Đĩa nhạc"
+msgid "Audio Disc"
+msgstr "Đĩa nhạc"
 
-#~ msgid "Compact Flash Media"
-#~ msgstr "Đĩa Compact Flash"
+msgid "Compact Flash Media"
+msgstr "Đĩa Compact Flash"
 
-#~ msgid "Memory Stick Media"
-#~ msgstr "Thanh bộ nhớ"
+msgid "Memory Stick Media"
+msgstr "Thanh bộ nhớ"
 
-#~ msgid "Smart Media Media"
-#~ msgstr "Đĩa Smart Media"
+msgid "Smart Media Media"
+msgstr "Đĩa Smart Media"
 
-#~ msgid "Floppy Disk"
-#~ msgstr "Đĩa mềm"
+msgid "Floppy Disk"
+msgstr "Đĩa mềm"
 
-#~ msgid "Mac OS disk"
-#~ msgstr "Đĩa Mac OS"
+msgid "Mac OS disk"
+msgstr "Đĩa Mac OS"
 
-#~ msgid "Mac OS X disk"
-#~ msgstr "Đĩa Mac OS X"
+msgid "Mac OS X disk"
+msgstr "Đĩa Mac OS X"
 
-#~ msgid "Windows Disk"
-#~ msgstr "Đĩa Windows"
+msgid "Windows Disk"
+msgstr "Đĩa Windows"
 
-#~ msgid "Linux Disk"
-#~ msgstr "Đĩa Linux"
+msgid "Linux Disk"
+msgstr "Đĩa Linux"
 
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Không thể mở tập tin: %s"
+msgid "File could not be opened: %s"
+msgstr "Không thể mở tập tin: %s"
 
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Lỗi mở tập tin '%s': %s"
+msgid "Failed to open file '%s': %s"
+msgstr "Lỗi mở tập tin '%s': %s"
 
-#~ msgid "File is empty"
-#~ msgstr "Tập tin rỗng"
+msgid "File is empty"
+msgstr "Tập tin rỗng"
 
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Lỗi đọc từ tập tin '%s': %s"
+msgid "Failed to read from file '%s': %s"
+msgstr "Lỗi đọc từ tập tin '%s': %s"
 
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "Desktop entry chứa dòng '%s' không phải là entry, nhóm hoặc chú thích"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "Desktop entry chứa dòng '%s' không phải là entry, nhóm hoặc chú thích"
 
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "Tập tin Desktop entry không bắt đầu bằng nhóm hợp lệ"
+msgid "desktop entries file does not start with legal start group"
+msgstr "Tập tin Desktop entry không bắt đầu bằng nhóm hợp lệ"
 
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "Desktop entry chứa dòng '%s' không phải là UTF-8"
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr "Desktop entry chứa dòng '%s' không phải là UTF-8"
 
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "Desktop entry chứa bảng mã lạ '%s'"
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr "Desktop entry chứa bảng mã lạ '%s'"
 
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "Desktop entry không có nhóm '%s'"
+msgid "desktop entries do not have group '%s'"
+msgstr "Desktop entry không có nhóm '%s'"
 
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "Desktop entry không có khóa '%s'"
+msgid "desktop entries do not have key '%s'"
+msgstr "Desktop entry không có khóa '%s'"
 
-#~ msgid "Applications"
-#~ msgstr "Ứng dụng"
+msgid "Applications"
+msgstr "Ứng dụng"
 
-#~ msgid "Cards"
-#~ msgstr "Thẻ"
+msgid "Cards"
+msgstr "Thẻ"
 
-#~ msgid "Files"
-#~ msgstr "Tập tin"
+msgid "Files"
+msgstr "Tập tin"
 
-#~ msgid "Folders"
-#~ msgstr "Thư mục"
+msgid "Folders"
+msgstr "Thư mục"
 
-#~ msgid "Help"
-#~ msgstr "Trợ giúp"
+msgid "Help"
+msgstr "Trợ giúp"
 
-#~ msgid "Hosts"
-#~ msgstr "Máy"
+msgid "Hosts"
+msgstr "Máy"
 
-#~ msgid "Links"
-#~ msgstr "Liên kết"
+msgid "Links"
+msgstr "Liên kết"
 
-#~ msgid "Mail"
-#~ msgstr "Thư tín"
+msgid "Mail"
+msgstr "Thư tín"
 
-#~ msgid "Tools"
-#~ msgstr "Công cụ"
+msgid "Tools"
+msgstr "Công cụ"
 
-#~ msgid "Windows"
-#~ msgstr "Cửa sổ"
-
-#, fuzzy
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Không có bộ xử lý cho URL scheme"
+msgid "Windows"
+msgstr "Cửa sổ"
 
 #, fuzzy
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Không có bộ xử lý cho URL scheme"
+msgid "The handler for HTTP URLs"
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #, fuzzy
-#~ msgid "Handle ghelp URLs"
-#~ msgstr "Không có bộ xử lý cho URL scheme"
+msgid "The handler for HTTPS URLs"
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #, fuzzy
-#~ msgid "Handle trash URLs"
-#~ msgstr "Không có bộ xử lý cho URL scheme"
+msgid "Handle ghelp URLs"
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "File handle sai"
+msgid "Handle trash URLs"
+msgstr "Không có bộ xử lý cho URL scheme"
 
 #, fuzzy
-#~ msgid "mailto URL handler"
-#~ msgstr "File handle sai"
+msgid "aim URL handler"
+msgstr "File handle sai"
 
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
+#, fuzzy
+msgid "mailto URL handler"
+msgstr "File handle sai"
+
+msgid "1 byte"
+msgstr "1 byte"
