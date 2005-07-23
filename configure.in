@@ -412,7 +412,7 @@ if test $have_socket = yes; then
 fi
 
 dnl modules/cdda
-
+have_cdda=no
 AM_CONDITIONAL(HAVE_CDDA, false)
 AC_ARG_ENABLE(cdda,
 [  --enable-cdda		Enable cdda module (not recommended)],
@@ -421,6 +421,7 @@ AC_ARG_ENABLE(cdda,
 	AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
 	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia -lcdda_interface"
 	AM_CONDITIONAL(HAVE_CDDA, true)
+	have_cdda=yes
     ])
   fi
 ])
@@ -1148,7 +1149,8 @@ echo "
 	HAL  support:                $msg_hal
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends
-	Samba method:		     $msg_samba"
+	Samba method:		     $msg_samba
+	CDDA method:		     $have_cdda"
 case "X$ENABLE_PROFILER" in
 X1)
 echo "	Enable profiler:             yes"

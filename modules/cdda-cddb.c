@@ -598,7 +598,8 @@ gboolean CDDBRead(cdrom_drive *cd_desc, CDDBServer *server,
   
   socket=CDDBConnect(server);
   if(socket==-1) return FALSE;
-  
+ 
+  memset (&disc, 0, sizeof (disc)); 
   /* CDStat(cd_desc,&disc,TRUE); */
   
   data->data_genre=entry->entry_genre;

@@ -1,5 +1,11 @@
 2005-07-24  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in: Indicate if we build the cdda method
+	* modules/cdda-cddb.c: (CDDBRead): Initialize disc. This should
+	fix bug #309661.
+
+2005-07-24  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-hal-mounts.c:
 	(_hal_drive_policy_get_display_name): 
 	Avoid displaying (null) if the CD-ROM is not a combo
