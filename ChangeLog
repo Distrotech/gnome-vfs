@@ -1,3 +1,11 @@
+2005-07-24  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_hal_drive_policy_get_display_name): 
+	Avoid displaying (null) if the CD-ROM is not a combo
+	drive. Fixes bug #310296. 
+	Patch from Sebastien Bacher <seb128@debian.org>.
+
 2005-07-23  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: Don't loop ad infinitum when

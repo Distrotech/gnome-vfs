@@ -362,7 +362,6 @@ _hal_drive_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 	/* drives we know the type of */
 	if (drive_type == LIBHAL_DRIVE_TYPE_CDROM) {
 		const char *first;
-		const char *sep;
 		const char *second;
 		LibHalDriveCdromCaps drive_cdrom_caps;
 			
@@ -374,8 +373,6 @@ _hal_drive_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_CDRW)
 			first = _("CD-RW");
 		
-		sep = _("/");
-			
 		second = NULL;
 		if (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDROM)
 			second = _("DVD-ROM");
@@ -396,7 +393,12 @@ _hal_drive_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 		    (drive_cdrom_caps & LIBHAL_DRIVE_CDROM_CAPS_DVDPLUSRW))
 			second = _("DVD±RW");
 
-		name = g_strdup_printf (_("%s%s%s Drive"), first, second != NULL ? sep : "", second);
+		if (second != NULL) {
+			name = g_strdup_printf (_("%s/%s Drive"), first, second);
+		} else {
+			name = g_strdup_printf (_("%s Drive"), first);
+		}
+			
 		may_prepend_external = TRUE;		
 	} else if (drive_type == LIBHAL_DRIVE_TYPE_FLOPPY) {
 		name = g_strdup (_("Floppy Drive"));
