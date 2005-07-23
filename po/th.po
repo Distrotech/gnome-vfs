@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-28 20:23+0700\n"
-"PO-Revision-Date: 2005-06-28 20:24+0700\n"
+"POT-Creation-Date: 2005-07-22 16:10+0700\n"
+"PO-Revision-Date: 2005-07-22 16:28+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -146,62 +146,66 @@ msgid "Netware Volume"
 msgstr "โวลุม Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "โวลุม Reiser4 ของลินุกซ์"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "โวลุม ReiserFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "โวลุมใช้ร่วมของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "โวลุม SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "โวลุม DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "โวลุม Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "โวลุม Udfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "โวลุม Pcfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "โวลุม SAM-QFS ของซัน"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "โวลุม DOS แบบปรับปรุง"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "โวลุม VFAT ของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "โวลุม Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "โวลุม XFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "โวลุม XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "โวลุม CIFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "ไม่รู้จัก"
 
@@ -544,195 +548,195 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1096
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (ยูนิโค้ดที่ใช้ไม่ได้)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:551
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:607
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
 msgid "Floppy"
 msgstr "ฟลอปปี้"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:610
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R"
 msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-RAM"
 msgstr "CD-ROM/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-RW"
 msgstr "CD-ROM/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-RAM"
 msgstr "CD-R/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-RW"
 msgstr "CD-R/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-RW/DVD-ROM"
 msgstr "CD-RW/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-RAM"
 msgstr "CD-RW/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-R"
 msgstr "CD-RW/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
 msgid "Disk"
 msgstr "ดิสก์"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "USB Drive"
 msgstr "ไดรฟ์ USB"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "IEEE1394 Drive"
 msgstr "ไดรฟ์ IEEE 1394"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "CF"
 msgstr "CF"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "SD/MMC"
 msgstr "SD/MMC"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
 msgid "Zip Drive"
 msgstr "ไดรฟ์ Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "กล้อง"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
 msgid "Root Volume"
 msgstr "โวลุม root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:888
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
 msgid "Audio CD"
 msgstr "ซีดีเพลง"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:921
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
 msgid "Unknown volume"
 msgstr "โวลุมไม่รู้จัก"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1109
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
 msgid "Network server"
 msgstr "เซิร์ฟเวอร์เครือข่าย"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:120
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "เมานท์ฟลอปปี้ไม่สำเร็จ อาจจะไม่มีแผ่นอยู่ไม่ตัวอ่าน"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:124
+#: libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "เมานท์โวลุมนี้ไม่สำเร็จ อาจจะไม่มีแผ่นอยู่ไม่ตัวอ่าน"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr "เมานท์ฟลอปปี้ไม่สำเร็จ แผ่นอาจจะใช้รูปแบบจัดเก็บที่ไม่รู้จัก"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr "เมานท์โวลุมนี้ไม่สำเร็จ แผ่นอาจจะใช้รูปแบบจัดเก็บที่ไม่รู้จัก"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:138
+#: libgnomevfs/gnome-vfs-volume-ops.c:143
 msgid "Unable to mount the selected floppy drive."
 msgstr "เมานท์ไดรฟ์ฟลอปปี้ที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:140
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to mount the selected volume."
 msgstr "เมานท์โวลุมที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:152
+#: libgnomevfs/gnome-vfs-volume-ops.c:157
 msgid "Unable to unmount the selected volume."
 msgstr "เลิกเมานท์โวลุมที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:264
-#: libgnomevfs/gnome-vfs-volume-ops.c:320
+#: libgnomevfs/gnome-vfs-volume-ops.c:290
+#: libgnomevfs/gnome-vfs-volume-ops.c:357
 msgid "Failed to start command"
 msgstr "เรียกใช้คำสั่งไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:308
+#: libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
-msgstr "เด้งแผ่นออกไม่สำเร็จ"
+msgstr "ดันแผ่นออกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:511
+#: libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
 msgstr "เลิกเมานท์เซิร์ฟเวอร์ที่ต่ออยู่ไม่สำเร็จ"
 
@@ -1205,6 +1209,63 @@ msgid ""
 msgstr ""
 "เวิร์กกรุปหรือโดเมนของเครือข่ายวินโดวส์ที่ผู้ใช้อาศัยอยู่ "
 "ผู้ใช้อาจต้องออกจากระบบแล้วเข้าใหม่เพื่อจะเริ่มใช้เวิร์กกรุปใหม่ได้"
+
+#: schemas/system_storage.schemas.in.h:1
+msgid "Display SCSI drives"
+msgstr "แสดงไดรฟ์ SCSI"
+
+#: schemas/system_storage.schemas.in.h:2
+msgid "Display SCSI optical drives"
+msgstr "แสดงไดรฟ์ซีดี/ดีวีดี SCSI"
+
+#: schemas/system_storage.schemas.in.h:3
+msgid "Display drives with removable media"
+msgstr "แสดงไดรฟ์ถอดเสียบ"
+
+#: schemas/system_storage.schemas.in.h:4
+msgid "Display external drives"
+msgstr "แสดงไดรฟ์ภายนอก"
+
+#: schemas/system_storage.schemas.in.h:5
+msgid "Display internal hard drives"
+msgstr "แสดงฮาร์ดดิสก์ภายใน"
+
+#: schemas/system_storage.schemas.in.h:6
+msgid ""
+"Whether to display SCSI optical drives even if /system/storage/"
+"display_scsi_drives is set to FALSE."
+msgstr ""
+"กำหนดว่าจะแสดงไดรฟ์ซีดี/ดีวีดี SCSI แม้ว่าจะกำหนด "
+"/system/storage/display_scsi_drives เป็น FALSE หรือไม่"
+
+#: schemas/system_storage.schemas.in.h:7
+msgid "Whether to display drives and mountable volumes from SCSI drives."
+msgstr "กำหนดว่าจะแสดงไดรฟ์และโวลุมที่เมานท์ได้ผ่านไดรฟ์ SCSI หรือไม่"
+
+#: schemas/system_storage.schemas.in.h:8
+msgid ""
+"Whether to display drives and mountable volumes from drives with removable "
+"media (e.g. drives where media can be inserted and removed)."
+msgstr ""
+"กำหนดว่าจะแสดงไดรฟ์และโวลุมที่เมานท์ได้ผ่านไดรฟ์ถอดเสียบ "
+"(เช่น ไดรฟ์ที่สามารถเปลี่ยนแผ่นได้) หรือไม่"
+
+#: schemas/system_storage.schemas.in.h:9
+msgid ""
+"Whether to display drives and mountable volumes from external drives (e.g. "
+"drives that are hotpluggable; e.g. drives that can be attached and detached "
+"while the system is running)."
+msgstr ""
+"กำหนดว่าจะแสดงไดรฟ์และโวลุมที่เมานท์ผ่านไดรฟ์ภายนอก (เช่น ไดรฟ์ที่ "
+"hotplug ได้ หรือสามารถถอดหรือเพิ่มในระหว่างที่ระบบทำงานอยู่ได้) หรือไม่"
+
+#: schemas/system_storage.schemas.in.h:10
+msgid ""
+"Whether to display drives and mountable volumes from internal hard drives "
+"(non-SCSI optical drives are always shown)."
+msgstr ""
+"กำหนดว่าจะแสดงไดรฟ์และโวลุมที่เมานท์ได้ผ่านฮาร์ดไดรฟ์ภายในหรือไม่ "
+"(ไดรฟ์ซีดี/ดีวีดีที่ไม่ใช่ SCSI จะแสดงเสมอ)"
 
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "workgroup บนวินโดวส์ที่ผู้ใช้อยู่"
