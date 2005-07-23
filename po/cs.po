@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-05 14:09+0000\n"
-"PO-Revision-Date: 2005-07-10 14:25+0200\n"
+"POT-Creation-Date: 2005-07-23 14:28+0000\n"
+"PO-Revision-Date: 2005-07-23 18:23+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -146,62 +146,66 @@ msgid "Netware Volume"
 msgstr "Svazek Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Svazek Linuxu Reiser4"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "Svazek Linuxu ReiserFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Sdílený svazek Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "Svazek SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "Svazek DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Svazek Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Svazek Solarisu Udfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Svazek Solarisu Pcfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Svazek Sun SAM-QFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Rozšířený svazek DOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Svazek Windows VFAT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Svazek Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "Svazek Linuxu XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "Svazek XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "Svazek CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1266,7 +1270,9 @@ msgstr "Zobrazovat interní pevné disky"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Jestli zobrazovat optické jednotky SCSI, i když je /system/storage/display_scsi_drives nastaveno na FALSE."
+msgstr ""
+"Jestli zobrazovat optické jednotky SCSI, i když je /system/storage/"
+"display_scsi_drives nastaveno na FALSE."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
@@ -1277,7 +1283,9 @@ msgstr "Jestli zobrazovat mechaniky a připojitelné svazky z mechanik SCSI."
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Jestli zobrazovat mechaniky a připojitelné svazky z mechanik z výměnnými médii (např. mechaniky, jejichž média lze vkládat a vyjímat)."
+msgstr ""
+"Jestli zobrazovat mechaniky a připojitelné svazky z mechanik z výměnnými "
+"médii (např. mechaniky, jejichž média lze vkládat a vyjímat)."
 
 # FIXME: s/e.g./i.e./
 #: ../schemas/system_storage.schemas.in.h:9
@@ -1285,10 +1293,14 @@ msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr "Jestli zobrazovat mechaniky a připojitelné svazky z externích mechanik (např. mechanik, které leze připojit a odpojit za běhu systému)."
+msgstr ""
+"Jestli zobrazovat mechaniky a připojitelné svazky z externích mechanik "
+"(např. mechanik, které leze připojit a odpojit za běhu systému)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr "Jestli zobrazovat mechaniky a připojitelné svazky z interních pevných disků (ne-SCSI optické mechaniky se zobrazují vždy)."
+msgstr ""
+"Jestli zobrazovat mechaniky a připojitelné svazky z interních pevných disků "
+"(ne-SCSI optické mechaniky se zobrazují vždy)."
