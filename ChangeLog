@@ -1,3 +1,9 @@
+2005-07-23  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: Don't loop ad infinitum when
+	authentication fails on GET. Also fix a Typo. 
+	Fixes bug #310596. Patch from jylefort@FreeBSD.org.
+	
 2005-07-18  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-filesystem-type.c:

@@ -1607,7 +1607,7 @@ typedef struct {
 
 
 static GnomeVFSResult
-http_aquire_connection (HttpContext *context)
+http_acquire_connection (HttpContext *context)
 {
 	GnomeVFSToplevelURI *top_uri;
 	char *user_agent;	
@@ -1767,7 +1767,7 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
-	result = http_aquire_connection (ctx);
+	result = http_acquire_connection (ctx);
 	
 	if (result != GNOME_VFS_OK) {
 		*context = NULL;
@@ -1812,7 +1812,7 @@ http_follow_redirect (HttpContext *context)
 		context->session = NULL;
 		
 		http_context_set_uri (context, new_uri);
-		result = http_aquire_connection (context);
+		result = http_acquire_connection (context);
 		
 	} else {
 		
@@ -2249,6 +2249,7 @@ get_start:
 
 	add_default_header_handlers (req, handle->info);
 	
+get_retry:
 	res = ne_begin_request (req);
 	result = resolve_result (res, req);
 	
@@ -2277,11 +2278,13 @@ get_start:
 		}
 		
 		res = ne_end_request (req);
+
+		if (res == NE_RETRY) {
+			goto get_retry;
+		}
+		
 		ne_request_destroy (req);
 		req = NULL;
-		
-		if (res == NE_RETRY || res == NE_AUTH || res == NE_PROXYAUTH)
-			goto get_start;
 		
 		if (res == NE_REDIRECT) {
 			result = http_follow_redirect (hctx);
