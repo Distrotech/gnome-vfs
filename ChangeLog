@@ -1,4 +1,11 @@
 2005-07-25  Christian Kellner  <gicmo@gnome.org>
+	
+	* configure.in:
+	Post release version bump.
+
+=== gnome-vfs 2.11.90 ===
+
+2005-07-25  Christian Kellner  <gicmo@gnome.org>
 
 	* NEWS:
 	Update for release
