@@ -1,3 +1,17 @@
+gnome-vfs 2.11.90
+	Note: The cdda method has been disabled. We don't
+	recommend shipping or using of it.
+	
+	* Avoid displaying "(null)" for non combo CD-ROM drives
+	* Howl (dns-sd): Pass text parameter in callback. 
+	* Handle escaped chars in username and password for GnomeVFSURI
+	* Fix trash handling for reiserfs 4
+	* file-method: Add unkown and autofs as local filesystems
+	* sftp-method: Fix error handling
+	* htt-neon-method: Fix infinit loop in auth code
+	* cdda-method: gcc4 compile fixes
+	* Various translation updates
+
 gnome-vfs 2.11.4
 	* handle symlinks to mountpoints when finding trash dirs
 	* optionally don't preserve permissions when copying
