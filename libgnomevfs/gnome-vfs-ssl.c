@@ -53,9 +53,13 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#ifndef G_OS_WIN32
 #include <netinet/in.h>
 #include <netdb.h>
 #include <sys/socket.h>
+#else
+#include <winsock2.h>
+#endif
 #endif
 
 #if defined GNUTLS_COMPAT

@@ -1,3 +1,10 @@
+2005-07-27  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am (SUBDIRS): Reorder: put imported first, as the
+	xdgmime stuff in libgnomevfs depends on imported/fnmatch on Win32.
+
+	* libgnomevfs/gnome-vfs-ssl.c: Use <winsock2.h> on Win32.
+
 2005-07-25  Christian Kellner  <gicmo@gnome.org>
 	
 	* configure.in:
