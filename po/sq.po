@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.sq\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-16 14:29+0000\n"
-"PO-Revision-Date: 2005-07-16 18:31+0200\n"
+"POT-Creation-Date: 2005-07-28 06:32+0000\n"
+"PO-Revision-Date: 2005-07-28 10:17+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -142,62 +142,66 @@ msgid "Netware Volume"
 msgstr "Volum Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Volum Linux Reiser4"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "Volum Linux ReiserFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Volum Windows i përbashkët"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "Volum SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "Volum DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Volum Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Volum Udfs Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Volum Pcfs Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Volum Sun SAM-QFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Volum Dos i përparuar"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Volum Windows VFAT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Volum Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "Volum Linux XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "Volum XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "Volum CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Nuk njihet"
 
@@ -1250,9 +1254,9 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Grupi i punës i rrjetit Windows apo domain pestar i të cilit është përdoruesi. Në "
-"menyrë që grupi i ri i punës të njihet efektivisht përdoruesit do t'i duhet të shkëputet "
-"dhe të identifikohet përsëri."
+"Grupi i punës i rrjetit Windows apo domain pestar i të cilit është "
+"përdoruesi. Në menyrë që grupi i ri i punës të njihet efektivisht "
+"përdoruesit do t'i duhet të shkëputet dhe të identifikohet përsëri."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1284,15 +1288,17 @@ msgstr ""
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr "Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët SCSI."
+msgstr ""
+"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët "
+"SCSI."
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
 msgstr ""
-"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët me njësi "
-"të heqshme (p.sh. dispozitivët ku suportet mund të futen apo nxirren)."
+"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët me "
+"njësi të heqshme (p.sh. dispozitivët ku suportet mund të futen apo nxirren)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1300,15 +1306,15 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
-"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët e jashtëm (p.sh. "
-"dispozitivët që janë hotpluggable; p.sh. dispozitivë që mund të futen dhe të hiqen ndërkohë "
-"që sistemi është duke punuar)."
+"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga dispozitivët e "
+"jashtëm (p.sh. dispozitivët që janë hotpluggable; p.sh. dispozitivë që mund "
+"të futen dhe të hiqen ndërkohë që sistemi është duke punuar)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
 msgstr ""
-"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga disqet e brendshëm fiks "
-"(do të shfaqen gjithashtu edhe dispozitivët optikë jo-SCSI)."
+"Nëse duhen shfaqur dispozitivët dhe volumet e montueshme nga disqet e "
+"brendshëm fiks (do të shfaqen gjithashtu edhe dispozitivët optikë jo-SCSI)."
 
