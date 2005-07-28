@@ -1,3 +1,9 @@
+2005-07-28  Tor Lillqvist  <tml@novell.com>
+
+	* Makefile.am (SUBDIRS): Revert change below, breaks
+	build. imported/neon uses libgnomevfs-2.la. Will have to handle
+	the libgnomevfs dependency on imported/fnmatch some other way.
+
 2005-07-27  Tor Lillqvist  <tml@novell.com>
 
 	* Makefile.am (SUBDIRS): Reorder: put imported first, as the
