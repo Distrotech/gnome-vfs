@@ -60,7 +60,6 @@ libneon_la_LIBADD =			\
 
 libneon_la_LDFLAGS =			\
 	$(NEON_LINK_FLAGS)			\
-	../../libgnomevfs/libgnomevfs-2.la \
 	$(NULL)
 
 libneon_la_SOURCES = \

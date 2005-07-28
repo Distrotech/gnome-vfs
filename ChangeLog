@@ -1,8 +1,8 @@
 2005-07-28  Tor Lillqvist  <tml@novell.com>
 
-	* Makefile.am (SUBDIRS): Revert change below, breaks
-	build. imported/neon uses libgnomevfs-2.la. Will have to handle
-	the libgnomevfs dependency on imported/fnmatch some other way.
+	* imported/neon/Makefile.am (libneon_la_LDFLAGS): As libneon is a
+	static library, no need to link with libgnomevfs, especially as it
+	isn't even built yet after the below change.
 
 2005-07-27  Tor Lillqvist  <tml@novell.com>
 

@@ -1,8 +1,8 @@
 SUBDIRS_GNOME=monikers doc schemas
 
 SUBDIRS =					\
-	libgnomevfs				\
 	imported				\
+	libgnomevfs				\
 	modules					\
 	daemon					\
 	schemas					\
