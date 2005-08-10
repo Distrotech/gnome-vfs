@@ -1,3 +1,4 @@
+# translation of mk.po to Macedonian
 # translation of gnome-vfs.HEAD.mk.po to
 # translation of gnome-vfs.HEAD.mk.po to Macedonian
 # translation of gnome-vfs.HEAD.mk.po to
@@ -9,19 +10,21 @@
 # Vladislav Bidikov <bidikovi@mail.com.mk>, 2003.
 # Arangel Angov <ufo@linux.net.mk>, 2004.
 # Tomislav Markovski <herrera@users.sourceforge.net>, 2004.
+# Арангел Ангов <ufo@linux.net.mk>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD.mk\n"
+"Project-Id-Version: mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-13 14:20+0000\n"
-"PO-Revision-Date: 2005-07-14 00:43+0200\n"
-"Last-Translator: Tomislav Markovski <herrera@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-08-10 14:45+0000\n"
+"PO-Revision-Date: 2005-08-10 18:18+0200\n"
+"Last-Translator: Арангел Ангов <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural= n%10==1 && n%100!=11 ? 0 : 1"
+"Plural-Forms: nplurals=3; plural= n%10==1 && n%100!=11 ? 0 : 1\n"
+"X-Generator: KBabel 1.10\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -150,62 +153,66 @@ msgid "Netware Volume"
 msgstr "Netware партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "ReiserFS Linux простор"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Виндоувс споделена партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "Супер монтиран простор"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "DVD уред"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Подобрена DOS партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Виндоувс VFAT партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Xenix партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "XFS Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "CIFS простор"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Непознато"
 
@@ -696,10 +703,8 @@ msgstr "Мрежен сервер"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Не можам да го монтирам флопи уредот. Најверојатно нема флопи во уредот."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Не можам да го монтирам флопи уредот. Најверојатно нема флопи во уредот."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:129
@@ -804,8 +809,7 @@ msgstr "Не можам да пронајдам датотека со подес
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Користете ја променливата за околина %s за да одреди друга локација. \n"
+msgstr "Користете ја променливата за околина %s за да одреди друга локација. \n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -947,77 +951,88 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „aim“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„aim“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „callto“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„callto“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „ghelp“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„ghelp“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „h323“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„h323“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „http“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„http“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „https“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„https“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „info“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„info“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „mailto“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„mailto“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „man“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„man“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Точно ако одредената команда во клучот „команда“ треба да се справува со „trash“ адреси."
+"Точно ако одредената команда во клучот „команда“ треба да се справува со "
+"„trash“ адреси."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Точно ако командата која што се користи за справување со овој тип на адреси треба да биде извршена во терминал."
+"Точно ако командата која што се користи за справување со овој тип на адреси "
+"треба да биде извршена во терминал."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1064,7 +1079,8 @@ msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
-"Листа разделена со запирки од DNS-SD домените кои што би требало да се видливи на локацијата „network:///“."
+"Листа разделена со запирки од DNS-SD домените кои што би требало да се "
+"видливи на локацијата „network:///“."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1088,8 +1104,7 @@ msgstr "URL за автоматска конфигурација на proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"Ги вклучува подесувањата за proxy кога се пристапува на HTTP преку Интернет."
+msgstr "Ги вклучува подесувањата за proxy кога се пристапува на HTTP преку Интернет."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1131,8 +1146,7 @@ msgstr "Хостови без proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Лозинка за преминување на автентикацијата кога се работи преку HTTP proxy."
+msgstr "Лозинка за преминување на автентикацијата кога се работи преку HTTP proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1183,16 +1197,16 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Портата на машината дефинирана во \"/system/http_proxy/host\" преку која "
-"што користите прокси."
+"Портата на машината дефинирана во \"/system/http_proxy/host\" преку која што "
+"користите прокси."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Портата на машината дефинирана во \"/system/proxy/ftp_host\" преку која "
-"што користите прокси."
+"Портата на машината дефинирана во \"/system/proxy/ftp_host\" преку која што "
+"користите прокси."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -1217,10 +1231,11 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Копчето содржи листа на хостови кои што се врзани директно наместо преку"
-"прокси (доколку е активно). Вредностите можат да бидат имиња на хостови, "
-"домени (со користење на некој знак како на пример *.foo.com), IP адреси на "
-"хостови (вклучувајќи IPv4 и IPv6) и мрежни адреси со маски (нешто како 192.168.0.0/24)."
+"Копчето содржи листа на хостови кои што се врзани директно наместо "
+"прекупрокси (доколку е активно). Вредностите можат да бидат имиња на "
+"хостови, домени (со користење на некој знак како на пример *.foo.com), IP "
+"адреси на хостови (вклучувајќи IPv4 и IPv6) и мрежни адреси со маски (нешто "
+"како 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1244,9 +1259,9 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Работната група или доменот на Виндоуз чија што член е корисникот. За"
-"да биде додаден во нова работна група корисникот може ќе треба да се одјави "
-"и повторно да се најави."
+"Работната група или доменот на Виндоуз чија што член е корисникот. Зада биде "
+"додаден во нова работна група корисникот може ќе треба да се одјави и "
+"повторно да се најави."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1285,8 +1300,8 @@ msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
 msgstr ""
-"Дали да прикажува уреди и монтирачки простори од преносливите уреди "
-"(пр. уреди каде што медиумот може да биде внесен и изваден)."
+"Дали да прикажува уреди и монтирачки простори од преносливите уреди (пр. "
+"уреди каде што медиумот може да биде внесен и изваден)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1294,187 +1309,15 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
-"Дали да прикажува уреди и монтирачки простори од надворешни уредо (пр. "
-"уреди кои што се „hotpluggable“; на пр. уреди кои што можат да бидат додадени "
-"и извадени додека системот е подигнат)."
+"Дали да прикажува уреди и монтирачки простори од надворешни уредо (пр. уреди "
+"кои што се „hotpluggable“; на пр. уреди кои што можат да бидат додадени и "
+"извадени додека системот е подигнат)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
 msgstr ""
-"Дали да прикаже уреди и монтирачки простори од внатрешните тврди дискови "
-"(не-SCSI оптичките уреди се прикажани секогаш)."
+"Дали да прикаже уреди и монтирачки простори од внатрешните тврди дискови (не-"
+"SCSI оптичките уреди се прикажани секогаш)."
 
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "Работната група од која што е дел корисникот"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Це-де ROM диск"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Празен диск"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Диск"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Празен ЦД-РВ диск"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "ЦД-РВ диск"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "ДВД-РОМ диск"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Празен ДВД диск"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Преснимлив ди-ви-ди диск"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Празен ди-ви-ди RAM диск"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Ди-ви-ди RAM диск"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Празен ДВД-РВ диск"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "ДВД-РВ диск"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Празен ДВД+РВ диск"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "ДВД+РВ диск"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Празен ДВД+Р диск"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "ДВД+Р диск"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Оптички диск"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Аудио диск"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Компактен флеш уред"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Мемориски уред"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Паметен уред"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC уред"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Флопи дискета"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS дискета"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Мек ОС X дискета"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Виндоувс дискета"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Линукс дискета"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Не можам да го парсирам: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Не успеав да ја отворам датотеката '%s': %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Датотеката е празна"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Не успеав да прочитам од датотеката '%s': %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "записите на работната површина ја содржат датотеката '%s' која што не е "
-#~ "запис, група или коментар"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr ""
-#~ "датотеката за записите на работната површина не започнува со легална "
-#~ "група за подигнување"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr ""
-#~ "записите на работната површина ја содржат линијата '%s' која што не е UTF-"
-#~ "8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "записите на работната површина содржат непознат енкодинг '%s'"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "записите на работната површина ја немаат групата '%s'"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "записите на работната површина го немаат клучот '%s'"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "записите на работната површина го содржат клучот'%s' кој што има вредност "
-#~ "која што не може да биде преведена."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "записите на работната површина не содржат преведена вредност за клучот '%"
-#~ "s' со locale '%s'."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "записите на работната површина содржат невалидни секвенци  '%s'"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Вредноста '%s' не може да биде преведена како број."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Вредноста '%s' не може да биде преведена како boolean."
-
-#~ msgid "Applications"
-#~ msgstr "Апликации"
-
-#~ msgid "Cards"
-#~ msgstr "Карти"
-
-#~ msgid "Files"
-#~ msgstr "Датотеки"
-
-#~ msgid "Folders"
-#~ msgstr "Папки"
-
-#~ msgid "Help"
-#~ msgstr "Помош"
-
-#~ msgid "Hosts"
-#~ msgstr "Хостови"
-
-#~ msgid "Links"
-#~ msgstr "Врски"
-
-#~ msgid "Mail"
-#~ msgstr "Пошта"
-
-#~ msgid "Tools"
-#~ msgstr "Алатки"
-
-#~ msgid "Windows"
-#~ msgstr "Прозорци"
