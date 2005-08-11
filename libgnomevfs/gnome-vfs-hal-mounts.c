@@ -1475,6 +1475,24 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 	 */
 	hal_drive = libhal_drive_from_device_file (hal_ctx, volume->priv->device_path);
 	if (hal_drive != NULL) {
+
+		/* handle drives that HAL can't poll and the user can still mount */
+		if (libhal_device_get_property_bool (hal_ctx, 
+						     libhal_drive_get_udi (hal_drive),
+						     "storage.media_check_enabled",
+						     NULL) == FALSE) {
+			GnomeVFSDrive *drive;
+
+			if ((drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
+				     GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon),
+				     libhal_drive_get_udi (hal_drive))) != NULL) {
+				volume->priv->drive = drive;
+				_gnome_vfs_drive_add_mounted_volume (drive, volume);
+				
+				goto out;
+			}
+		}
+
 		/* ok, this device file is in HAL and thus managed by this backend */
 		gnome_vfs_volume_unref (volume);
 		result = NULL;

@@ -1,3 +1,9 @@
+2005-08-10  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_gnome_vfs_hal_mounts_modify_volume): Handle the drives that HAL
+	doesn't detect media for (e.g. IDE Zip drives, legacy x86 floppies)
+
 2005-07-28  Tor Lillqvist  <tml@novell.com>
 
 	* imported/neon/Makefile.am (libneon_la_LDFLAGS): As libneon is a
