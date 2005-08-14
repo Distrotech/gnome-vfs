@@ -10,17 +10,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
+"Project-Id-Version: gnome-vfs.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-05 06:11+0000\n"
-"PO-Revision-Date: 2005-07-05 20:32+0200\n"
+"POT-Creation-Date: 2005-08-14 06:39+0000\n"
+"PO-Revision-Date: 2005-08-14 10:00+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.10.1\n"
+"Plural-Forms:  nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.10\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -149,62 +149,66 @@ msgid "Netware Volume"
 msgstr "Netware kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Reiser4 Linux kötet"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Windows megosztott kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "SuperMount kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "DVD kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Xenix kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "XFS Linux kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "XIAFS kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "CIFS kötet"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -1070,7 +1074,9 @@ msgstr "A megadott parancs kezelje-e a \"trash\" URL-eket"
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "A \"network:///\" helyen látható DNS-SD tartományok vesszővel elválasztott listája."
+msgstr ""
+"A \"network:///\" helyen látható DNS-SD tartományok vesszővel elválasztott "
+"listája."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1241,7 +1247,10 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "A Windows hálózati munkacsoport vagy tartomány, amelynek a felhasználó része. Egy új munkacsoport teljes életbe lépéséhez a felhasználónak lehet, hogy ki-, majd újra be kell jelentkeznie."
+msgstr ""
+"A Windows hálózati munkacsoport vagy tartomány, amelynek a felhasználó "
+"része. Egy új munkacsoport teljes életbe lépéséhez a felhasználónak lehet, "
+"hogy ki-, majd újra be kell jelentkeznie."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1267,7 +1276,9 @@ msgstr "Belső merevlemezes meghajtók megjelenítése"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Megjelenítse-e a SCSI optikai meghajtókat, akkor is, ha a /system/storage/display_scsi_drives értéke hamis?"
+msgstr ""
+"Megjelenítse-e a SCSI optikai meghajtókat, akkor is, ha a /system/storage/"
+"display_scsi_drives értéke hamis?"
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
@@ -1277,21 +1288,26 @@ msgstr "Megjelenítse-e a meghajtókat és csatolható köteteket SCSI meghajtó
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Megjelenítse-e a meghajtókat és csatolható köteteket eltávolítható hordozóval rendelkező meghajtókról (például olyan meghajtók, melyekben a hordozó cserélhető)?"
+msgstr ""
+"Megjelenítse-e a meghajtókat és csatolható köteteket eltávolítható "
+"hordozóval rendelkező meghajtókról (például olyan meghajtók, melyekben a "
+"hordozó cserélhető)?"
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr "Megjelenítse-e a meghajtókat és csatolható köteteket külső meghajtókról (Például működés közben behelyezhető meghajtók, melyek a rendszer működése közben csatolhatók és leválaszthatók)?"
+msgstr ""
+"Megjelenítse-e a meghajtókat és csatolható köteteket külső meghajtókról "
+"(Például működés közben behelyezhető meghajtók, melyek a rendszer működése "
+"közben csatolhatók és leválaszthatók)?"
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr "Megjelenítse-e a meghajtókat és csatolható köteteket a belső merevlemezekről (a nem-SCSI optikai meghajtók mindig megjelennek)?"
-
-msgid "The window workgroup the user is part of"
-msgstr "A munkacsoport, amelyhez a felhasználó tartozik"
+msgstr ""
+"Megjelenítse-e a meghajtókat és csatolható köteteket a belső merevlemezekről "
+"(a nem-SCSI optikai meghajtók mindig megjelennek)?"
 
