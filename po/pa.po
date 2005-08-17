@@ -6,16 +6,17 @@
 # Amanpreet Singh Alam <amanliunx@netscapet.net>, 2004.
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004.
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
+# Amanpreet Singh Brar <amanpreetsinghalam@redhat.com>, 2005.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-07 22:18+0000\n"
-"PO-Revision-Date: 2005-07-08 11:33+0530\n"
-"Last-Translator: Amanpreet Singh Alam <amanpreetalam@yahoo.com>\n"
-"Language-Team: Punjabi <fedora-transa-pa@redhat.com>\n"
+"POT-Creation-Date: 2005-08-17 06:39+0000\n"
+"PO-Revision-Date: 2005-08-17 18:25+0530\n"
+"Last-Translator: Amanpreet Singh Brar <amanpreetsinghalam@redhat.com>\n"
+"Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -158,63 +159,67 @@ msgid "Netware Volume"
 msgstr "ਨੈਟਵੇਅਰ ਵਾਲੀਅਮ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Reiser4 ਲੀਨਕਸ ਵਾਲੀਅਮ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Windows ਸਾਂਝਾ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "ਸੁਪਰਮਾਊਟ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "DVD ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS  ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Xenix ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "XFS ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "XIAFS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "CIFS ਵਾਲੀਅਮ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
@@ -1014,9 +1019,7 @@ msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ 
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" URL ਨੂੰ ਵਰਤ "
-"ਸਕੇ|"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" URL ਨੂੰ ਵਰਤ ਸਕੇ|"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
@@ -1117,8 +1120,8 @@ msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
-"DNS-SD ਡੋਮੇਨਾਂ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ, ਜੋ ਕਿ "
-"\"ਨੈਟਵਰਕ:///\" ਟਿਕਾਣੇ ਉੱਤੇ ਵਿਖਾਈ ਦੇਣੀ ਚਾਹੀਦੀ ਹੈ।"
+"DNS-SD ਡੋਮੇਨਾਂ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ, ਜੋ ਕਿ \"ਨੈਟਵਰਕ:///\" ਟਿਕਾਣੇ ਉੱਤੇ ਵਿਖਾਈ ਦੇਣੀ "
+"ਚਾਹੀਦੀ ਹੈ।"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1233,32 +1236,32 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/http_proxy/host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ "
-"ਰਾਹੀਂ ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/http_proxy/host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/ftp_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ ਪਰਾਕਸੀ "
-"ਚਲਾ ਰਹੇ ਹੋ।"
+"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/ftp_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/secure_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ "
-"ਰਾਹੀਂ ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
+"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/secure_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ\"/system/proxy/socks_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ "
-"ਰਾਹੀਂ ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ\"/system/proxy/socks_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1267,9 +1270,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"ਇਹ ਕੁੰਜੀ ਉਹਨਾਂ ਮੇਜ਼ਬਾਨਾਂ ਦੀ ਸੂਚੀ ਉਪਲੱਬਧ ਕਰਵਾਉਦੀ ਹੈ, ਜੋ ਸਿੱਧੇ ਜੁਡ਼ੇ ਹਨ, ਨਾ ਕਿ ਪਰਾਕਸੀ (ਜੇ ਸਰਗਰਮ "
-"ਹੈ)। ਮੁੱਲ ਮੇਜ਼ਬਾਨ ਨਾਂ, ਡੋਮੇਨ (ਸ਼ੁਰੂਆਤੀ wildcard ਜਿਵੇਂ ਕਿ *.foo.com ਵਰਤ ਕੇ ), IP ਮੇਜ਼ਬਾਨ ਸਿਰਨਾਵਾਂ "
-"(ਦੋਵੇਂ IPv4 ਅਤੇ IPv6) ਅਤੇ ਨੈਟਵਰਕ ਸਿਰਨਾਵੇਂ ਨਾਲ ਨੈਟਮਾਸਕ (netmask) (ਜਿਵੇਂ ਕਿ 192.168.0.0/24)"
+"ਇਹ ਕੁੰਜੀ ਉਹਨਾਂ ਮੇਜ਼ਬਾਨਾਂ ਦੀ ਸੂਚੀ ਉਪਲੱਬਧ ਕਰਵਾਉਦੀ ਹੈ, ਜੋ ਸਿੱਧੇ ਜੁਡ਼ੇ ਹਨ, ਨਾ ਕਿ ਪਰਾਕਸੀ (ਜੇ "
+"ਸਰਗਰਮ ਹੈ)। ਮੁੱਲ ਮੇਜ਼ਬਾਨ ਨਾਂ, ਡੋਮੇਨ (ਸ਼ੁਰੂਆਤੀ wildcard ਜਿਵੇਂ ਕਿ *.foo.com ਵਰਤ ਕੇ ), IP "
+"ਮੇਜ਼ਬਾਨ ਸਿਰਨਾਵਾਂ (ਦੋਵੇਂ IPv4 ਅਤੇ IPv6) ਅਤੇ ਨੈਟਵਰਕ ਸਿਰਨਾਵੇਂ ਨਾਲ ਨੈਟਮਾਸਕ (netmask) (ਜਿਵੇਂ ਕਿ "
+"192.168.0.0/24)"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1293,8 +1297,8 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"ਵਿੰਡੋ (Windows) ਨੈਟਵਰਕ ਵਰਕਗਰੁੱਪ ਜਾਂ ਡੋਮੇਨ, ਜਿਸ ਦਾ ਉਪਭੋਗੀ ਭਾਗ ਹੈ। ਇੱਕ ਨਵੇਂ ਵਰਕਗਰੁੱਪ "
-"ਨੂੰ ਪੂਰੀ ਤਰਾਂ ਸਰਗਰਮ ਹੋਣ ਲਈ ਉਪਭੋਗੀ ਲਾਗਆਉਟ ਅਤੇ ਮੁੜ ਲਾਗਿੰਨ ਕਰ ਸਕਦਾ ਹੈ।"
+"ਵਿੰਡੋ (Windows) ਨੈਟਵਰਕ ਵਰਕਗਰੁੱਪ ਜਾਂ ਡੋਮੇਨ, ਜਿਸ ਦਾ ਉਪਭੋਗੀ ਭਾਗ ਹੈ। ਇੱਕ ਨਵੇਂ ਵਰਕਗਰੁੱਪ ਨੂੰ ਪੂਰੀ "
+"ਤਰਾਂ ਸਰਗਰਮ ਹੋਣ ਲਈ ਉਪਭੋਗੀ ਲਾਗਆਉਟ ਅਤੇ ਮੁੜ ਲਾਗਿੰਨ ਕਰ ਸਕਦਾ ਹੈ।"
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1321,8 +1325,8 @@ msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
 msgstr ""
-"ਕੀ SCSI ਆਪਟੀਕਲ ਡਰਾਇਵਾਂ ਵੇਖਾਉਣੀਆਂ ਹਨ, ਭਾਵੇ ਕਿ /system/storage/"
-"display_scsi_drives ਝੂਠ (FALSE) ਹੋਵੇ।"
+"ਕੀ SCSI ਆਪਟੀਕਲ ਡਰਾਇਵਾਂ ਵੇਖਾਉਣੀਆਂ ਹਨ, ਭਾਵੇ ਕਿ /system/storage/display_scsi_drives "
+"ਝੂਠ (FALSE) ਹੋਵੇ।"
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
@@ -1333,8 +1337,8 @@ msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
 msgstr ""
-"ਕੀ ਹਟਾਉਣ ਯੋਗ ਮੀਡਿਆ ਨਾਲ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ (ਜਿਵੇਂ "
-"ਕਿ ਡਰਾਇਵਾਂ, ਜਿੱਥੇ ਕਿ ਮੀਡਿਆ ਪਾਇਆ ਅਤੇ ਕੱਢਿਆ ਜਾ ਸਕਦਾ ਹੈ)।"
+"ਕੀ ਹਟਾਉਣ ਯੋਗ ਮੀਡਿਆ ਨਾਲ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ (ਜਿਵੇਂ ਕਿ ਡਰਾਇਵਾਂ, "
+"ਜਿੱਥੇ ਕਿ ਮੀਡਿਆ ਪਾਇਆ ਅਤੇ ਕੱਢਿਆ ਜਾ ਸਕਦਾ ਹੈ)।"
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1342,15 +1346,14 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
-"ਕੀ ਬਾਹਰੀ ਡਰਾਇਵਾਂ ਤੋਂ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ (ਜਿਵੇਂ "
-"ਕਿ ਹਾਟਪਲੱਗ ਡਰਾਇਵਾਂ, ਜਿਵੇਂ ਡਰਾਇਵਾਂ ਜਿੰਨਾਂ ਨੂੰ ਚੱਲਦੇ ਸਿਸਟਮ ਤੋਂ ਕੱਢਿਆ ਅਤੇ ਲਗਾਇਆ "
-"ਜਾ ਸਕਦਾ ਹੈ)।"
+"ਕੀ ਬਾਹਰੀ ਡਰਾਇਵਾਂ ਤੋਂ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ (ਜਿਵੇਂ ਕਿ ਹਾਟਪਲੱਗ "
+"ਡਰਾਇਵਾਂ, ਜਿਵੇਂ ਡਰਾਇਵਾਂ ਜਿੰਨਾਂ ਨੂੰ ਚੱਲਦੇ ਸਿਸਟਮ ਤੋਂ ਕੱਢਿਆ ਅਤੇ ਲਗਾਇਆ ਜਾ ਸਕਦਾ ਹੈ)।"
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
 msgstr ""
-"ਕੀ ਅੰਦਰੂਨੀ ਹਾਰਡ ਡਰਾਇਵਾਂ ਤੋਂ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ "
-"(ਨਾ-SCSI ਆਪਟੀਕਲ ਡਰਾਇਵਾਂ ਹਮੇਸ਼ਾ ਵਿਖਾਈਆਂ ਜਾਦੀਆਂ ਹਨ)।"
+"ਕੀ ਅੰਦਰੂਨੀ ਹਾਰਡ ਡਰਾਇਵਾਂ ਤੋਂ ਡਰਾਇਵਾਂ ਅਤੇ ਮਾਊਟ ਹੋਣ ਯੋਗ ਵਾਲੀਅਮ ਵੇਖਾਉਣੇ ਹਨ (ਨਾ-SCSI ਆਪਟੀਕਲ "
+"ਡਰਾਇਵਾਂ ਹਮੇਸ਼ਾ ਵਿਖਾਈਆਂ ਜਾਦੀਆਂ ਹਨ)।"
 
