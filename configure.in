@@ -50,7 +50,7 @@ AM_PROG_LIBTOOL
 AC_PROG_INTLTOOL([0.29])
 
 dnl Check for Win32
-case "$host" in
+case $host in
   *-*-mingw*)
     os_win32=yes
     # We do have getaddrinfo
@@ -271,17 +271,16 @@ dnl ====================================
 ENABLE_PROFILER=
 AC_ARG_ENABLE(profiler,
 [  --enable-profiler		Enable profiler],
-ENABLE_PROFILER=1
-AC_DEFINE(ENABLE_PROFILER, 1, [Whether to enable profiler support]))
-
-if test "x$ENABLE_PROFILER" = "x1"
-then
+[ENABLE_PROFILER=1
+AC_DEFINE(ENABLE_PROFILER, 1, [Whether to enable profiler support])
+])
+if test "$ENABLE_PROFILER" = 1; then
 	CFLAGS="-g -O -gdwarf-2 -finstrument-functions -D__NO_STRING_INLINES"
 	LDFLAGS="/gnome/PROFILE/lib/libprofiler.so -lpthread"
 fi
 
 AC_SUBST(ENABLE_PROFILER)
-AM_CONDITIONAL(ENABLE_PROFILER, test "x$ENABLE_PROFILER" = "x1")
+AM_CONDITIONAL(ENABLE_PROFILER, test "$ENABLE_PROFILER" = 1)
 dnl ====================================
 
 dnl turn warnings into errors to enforce clean code for cvs users (not in tarball)
@@ -413,18 +412,17 @@ fi
 
 dnl modules/cdda
 have_cdda=no
-AM_CONDITIONAL(HAVE_CDDA, false)
 AC_ARG_ENABLE(cdda,
 [  --enable-cdda		Enable cdda module (not recommended)],
 [
   if test "x$enable_cdda" != "xno"; then
 	AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
 	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia -lcdda_interface"
-	AM_CONDITIONAL(HAVE_CDDA, true)
 	have_cdda=yes
     ])
   fi
 ])
+AM_CONDITIONAL(HAVE_CDDA, test $have_cdda = yes)
 AC_SUBST(CDDA_LIBS)
 
 dnl GSSAPI
@@ -471,22 +469,17 @@ AC_SUBST(GSSAPI_CFLAGS)
 dnl ******************************
 dnl http-method (neon checks)
 dnl ******************************
-AC_ARG_ENABLE(http_neon, [  --disable-http-neon       build without the new neon http module
+AC_ARG_ENABLE(http-neon, [  --disable-http-neon       build without the new neon http module
 										    but use the old one])
 if test "x$enable_http_neon" != "xno"; then
      VFS_NEON_BUNDLED(imported/neon)
-     AM_CONDITIONAL(USE_HTTP_NEON, true)
-else
-	AM_CONDITIONAL(USE_HTTP_NEON, false)   
 fi
+AM_CONDITIONAL(USE_HTTP_NEON, test "x$enable_http_neon" != "xno")
 
-dnl REMOVE THE FOLLOWING LINE AFTER NEON CHECK-IN
-dnl AM_CONDITIONAL(USE_HTTP_NEON, false)  
-    
 dnl modules/cdemenu-desktop
 
 AC_MSG_CHECKING(for Solaris platform)
-case "$host" in
+case $host in
         *solaris*) build_cdemenu_module=yes ;;
         *) build_cdemenu_module=no ;;
 esac
@@ -497,18 +490,15 @@ dnl ******************************
 dnl Samba 3.0
 dnl ******************************
 
-AM_CONDITIONAL(HAVE_SAMBA, false)
 AC_ARG_ENABLE(samba, [  --disable-samba       build without samba support])
+msg_samba="no"
 if test "x$enable_samba" != "xno"; then
   AC_ARG_WITH(samba-includes, [  --with-samba-includes=PREFIX     Location of samba includes.],
 	      with_samba_includes="$withval", with_samba_includes="/usr/include")
   have_samba_includes="no"
   if test "x${with_samba_includes}" != "xno"; then
 	CPPFLAGS_save="$CPPFLAGS"
-	
-	AC_MSG_CHECKING(for Samba 3.0 includes)
-	AC_MSG_RESULT("")
-	
+
 	echo "before test, samba_includes: ${samba_includes}"
 
 	CPPFLAGS="$CPPFLAGS -I$with_samba_includes"
@@ -531,14 +521,10 @@ if test "x$enable_samba" != "xno"; then
 	else
 		SAMBA_CFLAGS=""
 	fi
-  else
-	AC_MSG_CHECKING(for Samba 3.0 includes)
-	AC_MSG_RESULT(no)
   fi
   echo "have_samba_includes: ${have_samba_includes}"
   AC_ARG_WITH(samba-libs, [  --with-samba-libs=PREFIX     	Location of Samba libs.],
 	      with_samba_libs="$withval", with_samba_libs="/usr/lib")
-  msg_samba="no"
   if test "x${with_samba_libs}" != "xno" -a "x${have_samba_includes}" != "xno"; then
 	LDFLAGS_save="$LDFLAGS"
 	
@@ -553,16 +539,15 @@ if test "x$enable_samba" != "xno"; then
                 else
                 	SAMBA_LIBS="-lsmbclient"
                 fi
-		AM_CONDITIONAL(HAVE_SAMBA, true)
 	else
 		SAMBA_CFLAGS=""
 		SAMBA_LIBS=""
-		AM_CONDITIONAL(HAVE_SAMBA, false)
 	fi
   fi
   AC_MSG_CHECKING(for Samba 3.0 libraries)
-  AC_MSG_RESULT(${msg_samba})
+  AC_MSG_RESULT($msg_samba)
 fi
+AM_CONDITIONAL(HAVE_SAMBA, test $msg_samba = yes)
 AC_SUBST(SAMBA_CFLAGS)
 AC_SUBST(SAMBA_LIBS)
 
@@ -684,23 +669,24 @@ dnl ****************************
 msg_hal=no
 AC_ARG_ENABLE(hal,
 AC_HELP_STRING([--enable-hal],[use hal, if available]),
-[case "${enableval}" in
+[case $enableval in
 yes) ENABLE_HAL=yes ;;
 no)  ENABLE_HAL=no ;;
-*) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
+*) AC_MSG_ERROR(bad value $enableval for --enable-hal) ;;
 esac],
 [ENABLE_HAL=yes]) dnl Default value
 
-if test "x$ENABLE_HAL" = "xyes"; then
+if test "$ENABLE_HAL" = "yes"; then
 	PKG_CHECK_MODULES(HAL, hal >= 0.5,
-		[ USE_HAL="hal >= 0.5, hal-storage >= 0.5, dbus-1 >= 0.32, dbus-glib-1 >= 0.32"; AC_DEFINE(USE_HAL, 1, [defined if using libhal])]
-		msg_hal=yes,
+		[ USE_HAL="hal >= 0.5, hal-storage >= 0.5, dbus-1 >= 0.32, dbus-glib-1 >= 0.32"
+		  AC_DEFINE(USE_HAL, 1, [defined if using libhal])
+		  msg_hal=yes],
 		[ USE_HAL=""])
 else
 	USE_HAL=""
 fi
 
-if test "x$USE_HAL" != "x"; then
+if test "$USE_HAL" != ""; then
   AC_ARG_WITH(hal-mount,  [  --with-hal-mount=PROGRAM     Program for mounting filesystems known to HAL],
 	      with_hal_mount="$withval", with_hal_mount="none")
   if test "x$with_hal_mount" != "xnone"; then
@@ -772,15 +758,15 @@ if test "x$have_res_ninit" = "xyes"; then
     AC_DEFINE([HAVE_RES_NINIT], 1, [Indicates if res_ninit is available])
 else
     AC_CHECK_LIB(bind, res_ninit, 
-    		AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
-		RESOLVER_LIBS="-lbind",
-    		AC_CHECK_LIB(resolv, res_ninit, 
-			AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
-			if test "x$need_lib_resolv" = "xno"; then
-				RESOLVER_LIBS="-lresolv"
-			fi
-		)
-    )
+    	[AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
+	 RESOLVER_LIBS="-lbind",
+    	 AC_CHECK_LIB(resolv, res_ninit, 
+		[AC_DEFINE(HAVE_RES_NINIT, 1, [Indicates if res_ninit is available])
+		 if test "x$need_lib_resolv" = "xno"; then
+			RESOLVER_LIBS="-lresolv"
+		 fi
+		])
+	])
 fi
 
 
@@ -902,7 +888,7 @@ AC_CHECK_FUNC(gethostbyname_r, [
 			 gethostbyname_r ("localhost",
 						   &result,
 						   buf);
-        ], [
+	   ], [
         
 			 dnl Have HP-UX gethostbyname_r
 
@@ -913,9 +899,9 @@ AC_CHECK_FUNC(gethostbyname_r, [
 			     [Define to 1 if gethostbyname_r is used for name resolution])
 			 have_resolver=yes
 			 
-	  ], [
+	   ], [
 			 AC_MSG_RESULT(no)
-	  ] #hpux
+	   ] #hpux
      )] #solaris
   )] #glibc
 )]) #check func
@@ -1141,6 +1127,8 @@ gnome-vfs-module-2.0.pc
 chmod u+x test/vfs-run
 
 dnl <= Configuration summary =>
+profiler_enabled=no
+test "$ENABLE_PROFILER" = 1 && profiler_enabled=yes
 echo 
 echo "Gnome VFS configuration summary:"
 echo "
@@ -1150,14 +1138,6 @@ echo "
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends
 	Samba method:		     $msg_samba
-	CDDA method:		     $have_cdda"
-case "X$ENABLE_PROFILER" in
-X1)
-echo "	Enable profiler:             yes"
-;;
-*)
-echo "	Enable profiler:             no"
-echo
-;;
-esac
-
+	CDDA method:		     $have_cdda
+	Enable profiler:             $profiler_enabled
+"
