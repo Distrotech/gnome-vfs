@@ -282,7 +282,10 @@ else
 fi
 
 NEON_SUPPORTS_SSL=yes
-AC_DEFINE(NEON_SSL, 1, [Build neon ssl support])
+dnl NEON_SSL is an autoconf macro in current version of neon:
+m4_pushdef([NEON_SSL], [[NEON_SSL]])
+AC_DEFINE([NEON_SSL], 1, [Build neon ssl support])
+m4_popdef([NEON_SSL])
 
 if test "x$have_gssapi" = "xyes"; then
 
