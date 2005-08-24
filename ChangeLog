@@ -1,5 +1,12 @@
 2005-08-23  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_hal_add_drive_without_volumes), (_hal_add_volume): 
+	Honour hal's storage.eject_required flag.
+	This fixes bug #314272
+
+2005-08-23  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: (add_data_dir),
 	(gnome_vfs_mime_init): Use g_get_user_data_dir () instead
 	of a home grown solution. 
