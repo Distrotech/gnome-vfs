@@ -105,7 +105,7 @@ add_data_dir (const char *dir)
 
 	directory = g_new0 (MimeDirectory, 1);
 
-	directory->path = g_build_filename (dir, "/mime/", NULL);
+	directory->path = g_build_filename (dir, "mime", NULL);
 
 	mime_directories = g_list_append (mime_directories, directory);
 }
@@ -114,9 +114,7 @@ static void
 gnome_vfs_mime_init (void)
 {
 	const char *xdg_data_home;
-	const char *xdg_data_dirs;
-	char **split_data_dirs;
-	int i;
+	const char * const *xdg_data_dirs;
 
 	/*
 	 * The hash tables that store the mime keys.
@@ -125,37 +123,15 @@ gnome_vfs_mime_init (void)
 					      g_str_equal,
 					      g_free,
 					      (GDestroyNotify)mime_entry_free);
-	
-	xdg_data_home = g_getenv ("XDG_DATA_HOME");
-	if (xdg_data_home) {
-		add_data_dir (xdg_data_home);
-	} else {
-		const char *home;
-		
-		home = g_getenv ("HOME");
-		if (home) {
-			char *guessed_xdg_home;
-			
-			guessed_xdg_home = g_build_filename (home, 
-							     "/.local/share/",
-							     NULL);
-			add_data_dir (guessed_xdg_home);
-			g_free (guessed_xdg_home);
-		}
-	}
 
-	xdg_data_dirs = g_getenv ("XDG_DATA_DIRS");
-	if (!xdg_data_dirs) {
-		xdg_data_dirs = "/usr/local/share/:/usr/share/";
-	}
-	
-	split_data_dirs = g_strsplit (xdg_data_dirs, ":", 0);
-	
-	for (i = 0; split_data_dirs[i] != NULL; i++) {
-		add_data_dir (split_data_dirs[i]);
-	}
+	xdg_data_home = g_get_user_data_dir ();
+	add_data_dir (xdg_data_home);
 
-	g_strfreev (split_data_dirs);
+	for (xdg_data_dirs = g_get_system_data_dirs (); 
+	     *xdg_data_dirs; 
+	     xdg_data_dirs++) {
+		add_data_dir (*xdg_data_dirs);
+	}
 
 	last_checked = time (NULL);
 	gnome_vfs_mime_inited = TRUE;
