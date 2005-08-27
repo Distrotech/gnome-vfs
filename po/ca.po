@@ -1259,7 +1259,7 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "El grup de treball o domini de la xarxa de Windows al qual pertany l'usuari. Per a que un grup de treball nou tinga efecte, és possible que l'usuari necessite sortir i tornar a entrar."
+msgstr "El grup de treball o domini de la xarxa de Windows al qual pertany l'usuari. Per a que un grup de treball nou tingui efecte, és possible que l'usuari necessite sortir i tornar a entrar."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
