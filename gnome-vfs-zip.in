@@ -37,4 +37,5 @@ lib/pkgconfig/gnome-vfs-2.0.pc
 lib/pkgconfig/gnome-vfs-module-2.0.pc
 include/gnome-vfs-2.0
 include/gnome-vfs-module-2.0
+share/gtk-doc/html/gnome-vfs-2.0
 EOF
