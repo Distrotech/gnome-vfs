@@ -1,69 +1,71 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-vfs package.
-# pclouds <pclouds@gmx.net>, 2002.
+# Vietnamese translation for Gnome-VFS.
+# Copyright © 2005 Gnome i18n Project for Vietnamese.
+# Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs VERSION\n"
+"Project-Id-Version: gnome-vfs Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-21 06:30+0000\n"
-"PO-Revision-Date: 2004-10-07 09:32+0700\n"
-"Last-Translator: pclouds <pclouds@gmx.net>\n"
-"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2005-08-26 23:26+0000\n"
+"PO-Revision-Date: 2005-08-28 17:40+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.2.2\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "Không thể khởi động Bonobo"
+msgstr "Không thể khởi động Bonobo."
 
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "Không thể khới động gnome vfs"
+msgstr "Không thể khới động gnome vfs."
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Khối ISO-9960"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:221
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d chứa ký tự NUL."
+msgstr "%s:%d chứa ký tự NUL (rỗng)."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:238
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d không chứa tên phương thức."
+msgstr "%s:%d không chứa tên phương pháp."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d không chứa tên phương thức."
+msgstr "%s:%d không chứa dấu kết thức tùy chọn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:289
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d có tùy chọn không rõ %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:308
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d không chứa tên module."
+msgstr "%s:%d không chứa tên mô-đun."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:362
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Không tìm thấy tập tin cấu hình `%s': %s"
+msgstr "Không tìm thấy tập tin cấu hình « %s »: %s"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "Khối APFS"
+msgstr "Khối AFFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "Khối Mạng AFS"
+msgstr "Khối mạng AFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
@@ -76,11 +78,11 @@ msgstr "Ổ đĩa CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "CD Nhạc"
+msgstr "Đĩa CD số nhạc"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Khối Thiết bị phần cứng"
+msgstr "Khối thiết bị phần cứng"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -142,9 +144,8 @@ msgid "Netware Volume"
 msgstr "Khối Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#, fuzzy
 msgid "Reiser4 Linux Volume"
-msgstr "Khối Linux ReiserFS"
+msgstr "Khối Linux Reiser4"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
@@ -152,7 +153,7 @@ msgstr "Khối Linux ReiserFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
-msgstr "Khối Chia sẻ Windows"
+msgstr "Khối chia sẻ Windows"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
@@ -180,7 +181,7 @@ msgstr "Khối Sun SAM-QFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
-msgstr "Khối DOS Cải tiến"
+msgstr "Khối DOS cải tiến"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
@@ -199,13 +200,12 @@ msgid "XIAFS Volume"
 msgstr "Khối XIAFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
-#, fuzzy
 msgid "CIFS Volume"
-msgstr "Khối XIAFS"
+msgstr "Khối CIFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
-msgstr "Không rõ"
+msgstr "Không biết"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -215,7 +215,7 @@ msgstr "Kiểu thao tác lạ %u"
 #: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Không thể tạo ống dẫn cho GIOChannel: %s"
+msgstr "Không thể tạo ống dẫn cho kênh GIOChannel: %s"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1699
 #, c-format
@@ -243,30 +243,30 @@ msgstr "Thao tác đã dừng"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
+#: ../libgnomevfs/gnome-vfs-mime-info.c:622
+#: ../libgnomevfs/gnome-vfs-mime-info.c:629
+#: ../libgnomevfs/gnome-vfs-mime-info.c:637
+#: ../libgnomevfs/gnome-vfs-mime-info.c:644
+#: ../libgnomevfs/gnome-vfs-mime-info.c:652
+#: ../libgnomevfs/gnome-vfs-mime-info.c:669
 #: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:683
+#: ../libgnomevfs/gnome-vfs-mime-info.c:690
+#: ../libgnomevfs/gnome-vfs-mime-info.c:698
+#: ../libgnomevfs/gnome-vfs-mime-info.c:705
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "Chức năng bị phản đối. Không còn hỗ trợ lại việc sửa đổi cơ sở dữ liệu MIME do người dùng tạo."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Không thể phân tích: %s"
+msgstr "Không thể phân tách: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr "Nhiều lỗi phân tích hơn sẽ bị bỏ qua."
+msgstr "Nhiều lỗi phân tách hơn sẽ bị bỏ qua."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:42
@@ -286,7 +286,7 @@ msgstr "Lỗi chung"
 #. GNOME_VFS_ERROR_INTERNAL
 #: ../libgnomevfs/gnome-vfs-result.c:45
 msgid "Internal error"
-msgstr "Lỗi bên trong"
+msgstr "Lỗi nội bộ"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: ../libgnomevfs/gnome-vfs-result.c:46
@@ -301,12 +301,12 @@ msgstr "Thao tác không được hỗ trợ"
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "I/O error"
-msgstr "Lỗi I/O"
+msgstr "Lỗi I/O (nhập/xuất)"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Data corrupted"
-msgstr "Dữ liệu hỏng"
+msgstr "Dữ liệu bị hỏng"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: ../libgnomevfs/gnome-vfs-result.c:50
@@ -316,7 +316,7 @@ msgstr "Dạng thức không hợp lệ"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Bad file handle"
-msgstr "File handle sai"
+msgstr "Bộ xử lý tập tin sai"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:52
@@ -326,7 +326,7 @@ msgstr "Tập tin quá lớn"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "No space left on device"
-msgstr "Không còn chỗ trên thiết bị"
+msgstr "Không còn chỗ rảnh trên thiết bị"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
@@ -351,7 +351,7 @@ msgstr "Chế độ mở không hợp lệ"
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "Access denied"
-msgstr "Cấm truy xuất"
+msgstr "Truy cấp bị từ chối"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
@@ -381,12 +381,12 @@ msgstr "Thao tác bị ngắt"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "File exists"
-msgstr "Tập tin đã tồn tại"
+msgstr "Tập tin đã có"
 
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
-msgstr "Phát hiện liên kết vòng"
+msgstr "Phát hiện liên kết vòng lặp"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:66
@@ -406,17 +406,17 @@ msgstr "Không đủ bộ nhớ"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
-msgstr "Không tìm thấy host"
+msgstr "Không tìm thấy máy"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "Tên host không hợp lệ"
+msgstr "Tên máy không hợp lệ"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "Host không có địa chỉ"
+msgstr "Máy không có địa chỉ"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -451,7 +451,7 @@ msgstr "Hệ thống tập tin chỉ đọc"
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Not on the same file system"
-msgstr "Không nàm trên cùng hệ thống tập tin"
+msgstr "Không nằm trên cùng hệ thống tập tin"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:79
@@ -466,7 +466,7 @@ msgstr "Dịch vụ không sẵn sàng"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Request obsoletes service's data"
-msgstr "Yêu cầu dữ liệu của dịch vụ lỗi thời"
+msgstr "Yêu cầu làm cho dữ liệu của dịch vụ quá thời"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:82
@@ -486,27 +486,27 @@ msgstr "Không gắn với hành động mặc định nào"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Không có bộ xử lý cho lược đồ địa chỉ Mạng"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Error parsing command line"
-msgstr "Lỗi phân tích dòng lệnh"
+msgstr "Gặp lỗi khi phân tách dòng lệnh"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Error launching command"
-msgstr "Lỗi thực hiện dòng lệnh"
+msgstr "Gặp lỗi khi thực hiện lệnh"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
-msgstr "Quá hạn"
+msgstr "Quá thời"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "Nameserver error"
-msgstr "Lỗi nameserver"
+msgstr "Lỗi máy phục vụ tên"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:91
@@ -516,18 +516,17 @@ msgstr "Tài nguyên bị khóa"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Cuộc gọi chức năng bị phản đối"
 
 #: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
-msgstr "Lỗi lạ"
+msgstr "Không biết lỗi này"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
-msgstr[1] "%u byte"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -658,7 +657,7 @@ msgstr "Thanh bộ nhớ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
-msgstr "Smart Media"
+msgstr "Phương tiện thông minh"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
@@ -667,7 +666,7 @@ msgstr "Ổ đĩa Zip"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
-msgstr "Camera"
+msgstr "Máy ảnh"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "DVD"
@@ -679,7 +678,7 @@ msgstr "Khối gốc"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
 msgid "Audio CD"
-msgstr "CD Nhạc"
+msgstr "CD âm thanh"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
 msgid "Unknown volume"
@@ -687,36 +686,36 @@ msgstr "Khối lạ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
 msgid "Network server"
-msgstr "Máy chủ mạng"
+msgstr "Máy phục vụ mạng"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Không thể gắn kết đĩa mềm. Có lẽ do không có đĩa mềm trong ổ đĩa."
+msgstr "Không thể gắn kết ổ đĩa mềm. Rất có thể là không có đĩa mềm trong ổ đĩa."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Không thể gắn kết khối. Có lẽ do không có đĩa trong thiết bị."
+msgstr "Không thể gắn kết khối. Rất có thể là không có phương tiện nào trong thiết bị."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Không thể gắn kết đĩa mềm. Có lẽ do đĩa dùng định dạng không thể gắn kết."
+"Không thể gắn kết đĩa mềm. Rất có thể là đĩa dùng định dạng không thể gắn kết."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Không thể gắn kết khối. Có lẽ do khối dùng định dạng không thể gắn kết."
+"Không thể gắn kết khối đã chọn. Rất có thể là khối dùng định dạng không thể gắn kết."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:143
 msgid "Unable to mount the selected floppy drive."
-msgstr "Không thể gắn kết đĩa mềm đã chọn."
+msgstr "Không thể gắn kết ổ đĩa mềm đã chọn."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to mount the selected volume."
@@ -733,23 +732,23 @@ msgstr "Lỗi lệnh khởi động"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
-msgstr "Không thể đẩy đĩa ra"
+msgstr "Không thể đẩy phương tiện ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
-msgstr "Không thể bỏ gắn kết máy chủ đã kết nối"
+msgstr "Không thể bỏ gắn kết máy phục vụ đã kết nối."
 
 #: ../modules/computer-method.c:546
 msgid "Network"
-msgstr "Mạng"
+msgstr "mạng"
 
 #: ../modules/computer-method.c:564
 msgid "Home"
-msgstr "Home"
+msgstr "Về"
 
 #: ../modules/computer-method.c:582
 msgid "Filesystem"
-msgstr "Hệ tập tin"
+msgstr "Hệ thống tập tin"
 
 #: ../modules/file-method.c:536
 #, c-format
@@ -758,12 +757,12 @@ msgstr "Không biết GnomeVFSSeekPosition %d"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "Mạng Windows"
+msgstr "mạng Windows"
 
 #: ../modules/sftp-method.c:1314
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Không biết máy tính ở xa (%s) là máy nào."
 
 #: ../modules/sftp-method.c:1315
 #, c-format
@@ -772,11 +771,13 @@ msgid ""
 "\n"
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
-msgstr ""
+msgstr "Điều này xảy ra khi bạn đăng nhập vào máy tính lần đầu tiên.\n"
+"\n"
+"Máy tính ở xa đã gởi thông tin nhận diện là %s. Nếu bạn muốn đảm bảo là toàn an để tiếp tục, hãy liên lạc với quản trị hệ thống."
 
 #: ../modules/sftp-method.c:1323
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Đăng nhập bất chấp"
 
 #: ../modules/sftp-method.c:1324
 msgid "Cancel Login"
@@ -786,16 +787,16 @@ msgstr "Hủy đăng nhập"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Không thể tìm tập tin thông số hợp lệ tại %s\n"
+msgstr "Không thể tìm tập tin thông số hợp lệ tại %s.\n"
 
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Hãy dùng biến môi trười %s để xác định một vị trí khác.\n"
+msgstr "Hãy dùng biến môi trường %s để xác định một vị trí khác.\n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Moniker factory chuẩn"
+msgstr "Bộ tạo Moniker chuẩn"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -811,15 +812,15 @@ msgstr "moniker tập tin chung"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Ứng dụng xem thành phần mặc định"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Ứng dụng thiết bị cuối mặc định"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Đối số thức hiện cho thiết bị cuối"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -827,352 +828,349 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
+msgstr "Ứng dụng cần sử dụng để xem tập tin cần thiết thành phần để xem nó. Tham số %s sẽ được thay thế bằng các URI của tập tin đó, tham số %c sẽ được thay thế bằng IID của thành phần."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "Ứng dụng thiết bị cuỗi mặc định cần sử dụng cho các ứng dụng cần thiết thiết bị cuối."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Đối số thực hiện cần sử dụng cho ứng dụng thiết bị cuỗi mặc định"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr ""
+msgstr "Chạy lệnh trong thiết bị cuối"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « aim », nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « callto » (gọi đến), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « ghelp » (trợ giúp g), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « h323 », nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « http », nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « https », nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « info » (thông tin), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « mailto » (gởi thư cho), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « man » (trang hướng dẫn), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "Lệnh được dùng để xử lý các địa chỉ Mạng kiểu « trash » (rắc), nếu bật."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « aim »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « callto » (gợi đến)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « ghelp » (trợ giúp g)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « h323 »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « http »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « https »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « info » (thông tin)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « mailto » (gởi thư cho)(."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « man » (trang hướng dẫn)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
+msgstr "Bộ xử lý cho địa chỉ Mạng « trash » (rác)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « aim »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « callto » (gợi đến)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « ghelp » (trợ giúp g)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « h323 »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « http »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « https »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « info » (thông tin)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « mailto » (gởi thư cho)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « man » (trang hướng dẫn)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
+msgstr "Đúng nếu lệnh được xác định trong khóa « lệnh » nên xử lý các địa chỉ Mạng « trash » (rác)."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
+msgstr "Đúng nếu lệnh được dùng để xử lý địa chỉ Mạng kiểu này nên được dùng trong thiết bị cuối."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « aim » hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « callto » (gợi đến) hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « ghelp » (trợ giúp g) hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « h323 » hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « http » hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « https » hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « info » (thông tin) hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « mailto » (gởi thư cho) hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « man » (trang hướng dẫn) hay không."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
+msgstr "Lệnh được xác định có nên xử lý địa chỉ Mạng « trash » (rác) hay không."
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr ""
+msgstr "Danh sách các miền DNS-SD, định giới bằng dấu phẩy, nên được hiển thị trong địa điểm « network:// »."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "Những domain khác cần dùng để tìm dịch vụ DNS-SD"
+msgstr "Những miền khác cần dùng để tìm dịch vụ DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Cách hiển thị dịch vụ DNS-SD địa phương"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Giá trị có thể là:\n"
+" • merged — đã phối hợp.\n"
+" • separate — riêng,\n"
+" • disabled — bị tắt."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Xác thực kết nối đến máy phục vụ ủy nhiệm"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Địa chỉ Mạng tự động cấu hình ủy nhiệm"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Hiệu lực thiết lập ủy nhiệm khi truy cập HTTP qua Mạng."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Tên máy ủy nhiệm FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Cổng ủy nhiệm FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Tên máy ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Mật khẩu ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Cổng ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Tên người dùng ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
+msgstr "Nếu đúng thì mọi kết nối đến máy phục vụ ủy nhiệm thì cần thiết xác thực. Tổ hợp tên người dùng và mật khẩu được định nghĩa bằng \"/system/http_proxy/"
+"authentication_user\" và \"/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Máy không ủy nhiệm"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Mật khẩu để gởi qua là xác thực khi dùng ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Chế độ cấu hình ủy nhiệm"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Tên máy ủy nhiệm SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Cổng ủy nhiệm SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Tên máy ủy nhiệm HTTP bảo mật"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Cổng ủy nhiệm HTTP bảo mật"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
+msgstr "Hãy chọn chế độ cấu hình ủy nhiệm. Giá trị được hỗ trợ là:\n"
+" • none — không có,\n"
+" • manual — thủ công,\n"
+" • auto — tự động."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Tên của máy sẽ cho phép kết nối FTP ủy nhiệm đi qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Tên của máy sẽ cho phép kết nối HTTP ủy nhiệm đi qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Tên của máy sẽ cho phép kết nối HTTP bảo mật ủy nhiệm đi qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Tên của máy sẽ cho phép kết nối SOCKS ủy nhiệm đi qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
+msgstr "Cổng trên máy được định nghĩa bởi \"/system/http_proxy/host\" mà sẽ cho phép bạn kết nối ủy nhiệm qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
+msgstr "Cổng trên máy được định nghĩa bởi \"/system/proxy/ftp_host\" mà sẽ cho phép bạn kết nối ủy nhiệm qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "Cổng trên máy được định nghĩa bởi \"/system/proxy/secure_host\" mà sẽ cho phép bạn kết nối ủy nhiệm qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "Cổng trên máy được định nghĩa bởi \"/system/proxy/socks_host\" mà sẽ cho phép bạn kết nối ủy nhiệm qua nó."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1180,30 +1178,30 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
+msgstr "Khóa này chứa danh sách các máy được kết nối trực tiếp, hơn là qua ủy nhiệm (nếu nó hoạt động). Giá trị có thể là tên máy, miền (dùng ký tự đại diện ban đầu như « *.phu.com »), địa chỉ IP của máy (cả IPv4 lẫn IPv6 đều) và địa chỉ mạng có mặt nạ mạng (như <192.168.0.0/24>)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "Địa chỉ Mạng cung cấp giá trị cấu hình ủy nhiệm."
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Dùng ủy nhiệm HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Tên người dùng để gởi qua là xác thực khi dùng ủy nhiệm HTTP."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Nhóm làm việc SMB"
 
 #: ../schemas/system_smb.schemas.in.h:2
 msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr ""
+msgstr "Nhóm làm việc chạy mạng Windows hoặc miền mà người dùng thuộc về nó. Người dùng có lẽ sẽ cần phãi đăng xuất rồi đăng nhập lại để dùng một nhóm làm việc mới."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1215,7 +1213,7 @@ msgstr "Hiện ổ quang SCSI"
 
 #: ../schemas/system_storage.schemas.in.h:3
 msgid "Display drives with removable media"
-msgstr "Hiện ổ tháo được"
+msgstr "Hiện ổ có phương tiện tháo rời được"
 
 #: ../schemas/system_storage.schemas.in.h:4
 msgid "Display external drives"
@@ -1223,199 +1221,34 @@ msgstr "Hiện ổ nằm ngoài"
 
 #: ../schemas/system_storage.schemas.in.h:5
 msgid "Display internal hard drives"
-msgstr "Hiện ổ đĩa bên trong"
+msgstr "Hiện ổ đĩa cứng bên trong"
 
 #: ../schemas/system_storage.schemas.in.h:6
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr ""
+msgstr "Có nên hiển thị ổ quang SCSI, tham chí nếu « /system/storage/"
+"display_scsi_drives » được đặt là SAI."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr ""
+msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ SCSI hay không."
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr ""
+msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ có phương tiện tháo rời được hay không (v.d. ổ cho phép chèn và đẩy ra phương tiện)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr ""
+msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ đĩa bên ngoài (v.d. đĩa có thể cầm phít nóng: có thể gắn kết và tháo gắn kết đĩa khi hệ thống đang chạy)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr ""
-
-msgid "CD-ROM Disc"
-msgstr "Đĩa CD-ROM"
-
-msgid "Blank CD-R Disc"
-msgstr "Đĩa trắng CD-R"
-
-msgid "CD-R Disc"
-msgstr "Đĩa CD-R"
-
-msgid "Blank CD-RW Disc"
-msgstr "Đĩa trắng CD-RW"
-
-msgid "CD-RW Disc"
-msgstr "Đĩa CD-RW"
-
-msgid "DVD-ROM Disc"
-msgstr "Đĩa DVD-ROM"
-
-msgid "Blank DVD-R Disc"
-msgstr "Đĩa trắng DVD-R"
-
-msgid "DVD-R Disc"
-msgstr "Đĩa DVD-R"
-
-msgid "Blank DVD-RAM Disc"
-msgstr "Đĩa trắng DVD-RAM"
-
-msgid "DVD-RAM Disc"
-msgstr "Đĩa DVD-RAM"
-
-msgid "Blank DVD-RW Disc"
-msgstr "Đĩa trắng DVD-RW"
-
-msgid "DVD-RW Disc"
-msgstr "Đĩa DVD-RW"
-
-msgid "Blank DVD+RW Disc"
-msgstr "Đĩa trắng DVD+RW"
-
-msgid "DVD+RW Disc"
-msgstr "Đĩa DVD+RW"
-
-msgid "Blank DVD+R Disc"
-msgstr "Đĩa trắng DVD+R"
-
-msgid "DVD+R Disc"
-msgstr "Đĩa DVD+R"
-
-msgid "Optical Disc"
-msgstr "Đĩa quang"
-
-msgid "Audio Disc"
-msgstr "Đĩa nhạc"
-
-msgid "Compact Flash Media"
-msgstr "Đĩa Compact Flash"
-
-msgid "Memory Stick Media"
-msgstr "Thanh bộ nhớ"
-
-msgid "Smart Media Media"
-msgstr "Đĩa Smart Media"
-
-msgid "Floppy Disk"
-msgstr "Đĩa mềm"
-
-msgid "Mac OS disk"
-msgstr "Đĩa Mac OS"
-
-msgid "Mac OS X disk"
-msgstr "Đĩa Mac OS X"
-
-msgid "Windows Disk"
-msgstr "Đĩa Windows"
-
-msgid "Linux Disk"
-msgstr "Đĩa Linux"
-
-msgid "File could not be opened: %s"
-msgstr "Không thể mở tập tin: %s"
-
-msgid "Failed to open file '%s': %s"
-msgstr "Lỗi mở tập tin '%s': %s"
-
-msgid "File is empty"
-msgstr "Tập tin rỗng"
-
-msgid "Failed to read from file '%s': %s"
-msgstr "Lỗi đọc từ tập tin '%s': %s"
-
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "Desktop entry chứa dòng '%s' không phải là entry, nhóm hoặc chú thích"
-
-msgid "desktop entries file does not start with legal start group"
-msgstr "Tập tin Desktop entry không bắt đầu bằng nhóm hợp lệ"
-
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "Desktop entry chứa dòng '%s' không phải là UTF-8"
-
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "Desktop entry chứa bảng mã lạ '%s'"
-
-msgid "desktop entries do not have group '%s'"
-msgstr "Desktop entry không có nhóm '%s'"
-
-msgid "desktop entries do not have key '%s'"
-msgstr "Desktop entry không có khóa '%s'"
-
-msgid "Applications"
-msgstr "Ứng dụng"
-
-msgid "Cards"
-msgstr "Thẻ"
-
-msgid "Files"
-msgstr "Tập tin"
-
-msgid "Folders"
-msgstr "Thư mục"
-
-msgid "Help"
-msgstr "Trợ giúp"
-
-msgid "Hosts"
-msgstr "Máy"
-
-msgid "Links"
-msgstr "Liên kết"
-
-msgid "Mail"
-msgstr "Thư tín"
-
-msgid "Tools"
-msgstr "Công cụ"
-
-msgid "Windows"
-msgstr "Cửa sổ"
-
-#, fuzzy
-msgid "The handler for HTTP URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
-
-#, fuzzy
-msgid "The handler for HTTPS URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
-
-#, fuzzy
-msgid "Handle ghelp URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
-
-#, fuzzy
-msgid "Handle trash URLs"
-msgstr "Không có bộ xử lý cho URL scheme"
-
-#, fuzzy
-msgid "aim URL handler"
-msgstr "File handle sai"
-
-#, fuzzy
-msgid "mailto URL handler"
-msgstr "File handle sai"
-
-msgid "1 byte"
-msgstr "1 byte"
+msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ đĩa cứng nội bộ (luôn luôn hiển thị ổ quang không phải SCSI)."
