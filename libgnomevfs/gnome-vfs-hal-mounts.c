@@ -32,6 +32,7 @@
 #include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <limits.h>
 
 #include <glib.h>
 #include <glib/gi18n-lib.h>
@@ -48,6 +49,10 @@
 #include "gnome-vfs-volume-monitor-private.h"
 
 #define PATH_GCONF_GNOME_VFS_STORAGE "/system/storage"
+
+#ifndef PATHNAME_MAX
+# define PATHNAME_MAX	1024
+#endif
 
 typedef struct {
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
@@ -1425,6 +1430,9 @@ _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 	GnomeVFSDrive *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
+	char path[PATH_MAX] = "/dev/";
+	char *target = path + 5;
+	int ret;
 
 	hal_drive = NULL;
 
@@ -1445,6 +1453,22 @@ _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 		/* ok, this device file is in HAL and thus managed by this backend */
 		gnome_vfs_drive_unref (drive);
 		result = NULL;
+		goto out;
+	}
+
+	/* No luck? Let's see if device_path is a symlink and check its target, too */
+	ret = readlink (drive->priv->device_path, target, PATH_MAX - 1);
+	if (ret < 0)
+		goto out;
+	target[ret] = '\0';
+	/* Save some prepending and store the "/dev/" needed for relative links */
+	if (target[0] != '/')
+		target = path;
+	hal_drive = libhal_drive_from_device_file (hal_ctx, target);
+	if (hal_drive != NULL) {
+		/* ok, this device file is in HAL and thus managed by this backend */
+		gnome_vfs_drive_unref (drive);
+		result = NULL;
 	}
 
 out:
@@ -1460,6 +1484,9 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 	GnomeVFSVolume *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
+	char path[PATH_MAX] = "/dev/";
+	char *target = path + 5;
+	int ret;
 
 	hal_drive = NULL;
 
@@ -1478,6 +1505,39 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 	hal_drive = libhal_drive_from_device_file (hal_ctx, volume->priv->device_path);
 	if (hal_drive != NULL) {
 
+		/* handle drives that HAL can't poll and the user can still mount */
+		if (libhal_device_get_property_bool (hal_ctx, 
+						     libhal_drive_get_udi (hal_drive),
+						     "storage.media_check_enabled",
+						     NULL) == FALSE) {
+			GnomeVFSDrive *drive;
+
+			if ((drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (
+				     GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon),
+				     libhal_drive_get_udi (hal_drive))) != NULL) {
+				volume->priv->drive = drive;
+				_gnome_vfs_drive_add_mounted_volume (drive, volume);
+				
+				goto out;
+			}
+		}
+
+		/* ok, this device file is in HAL and thus managed by this backend */
+		gnome_vfs_volume_unref (volume);
+		result = NULL;
+		goto out;
+	}
+
+	/* No luck? Let's see if device_path is a symlink and check its target, too */
+	ret = readlink (volume->priv->device_path, target, PATH_MAX - 1);
+	if (ret < 0)
+		goto out;
+	target[ret] = '\0';
+	/* Save some prepending and store the "/dev/" needed for relative links */
+	if (target[0] != '/')
+		target = path;
+	hal_drive = libhal_drive_from_device_file (hal_ctx, target);
+	if (hal_drive != NULL) {
 		/* handle drives that HAL can't poll and the user can still mount */
 		if (libhal_device_get_property_bool (hal_ctx, 
 						     libhal_drive_get_udi (hal_drive),

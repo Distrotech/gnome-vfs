@@ -1,3 +1,12 @@
+2005-08-28  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_gnome_vfs_hal_mounts_modify_drive),
+	(_gnome_vfs_hal_mounts_modify_volume):
+	Check both the listed device node and its resolved link 
+	target against HAL, before adding as a new device.
+	Patch from Robert Love <rml@novell.com>. Fixes bug #314490.
+
 2005-08-29  Tor Lillqvist  <tml@novell.com>
 
 	* gnome-vfs-zip.in: Include also documentation in the developer
