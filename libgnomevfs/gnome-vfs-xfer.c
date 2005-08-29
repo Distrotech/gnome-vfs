@@ -1632,7 +1632,8 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 
 				source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info->name);
 				dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info->name);
-				
+				progress_set_source_target_uris (progress, source_uri, dest_uri);
+
 				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 					result = copy_file (info, source_uri, dest_uri, 
 							    xfer_options, error_mode, overwrite_mode, 
