@@ -2,15 +2,15 @@
 # Copyright (C) 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2001.
 # Abel Cheung <abel@oaka.org>, 2002-2003.
-# Woodman Tuen <woodman@culturecom.com.hk>, 2004
+# Woodman Tuen <wmtuen@gmail.com>, 2004
 # Li-Jen Hsin <hsin@med.cgu.edu.tw>, 2004 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.7.93\n"
+"Project-Id-Version: gnome-vfs 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-01 20:56+0800\n"
-"PO-Revision-Date: 2005-06-20 17:42+0800\n"
+"POT-Creation-Date: 2005-09-01 22:40+0000\n"
+"PO-Revision-Date: 2005-08-26 18:27+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (traditional) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "不能啟動 Bonobo"
+msgstr "Bonobo 無法初始化"
 
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "不能啟動 gnome vfs"
+msgstr "gnome vfs 無法初始化"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -58,7 +58,7 @@ msgstr "%s：第 %d 行沒有指定模組名稱。"
 #: ../libgnomevfs/gnome-vfs-configuration.c:362
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "找不到組態檔案‘%s’：%s"
+msgstr "找不到設定檔‘%s’：%s"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -145,63 +145,66 @@ msgid "Netware Volume"
 msgstr "Netware 檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Reiser4 Linux 檔案系統"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Windows 共享檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "SuperMount 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "DVD 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "增強型 DOS 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Xenix 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "XFS Linux 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "XIAFS 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
-#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
-msgstr "XIAFS 檔案系統"
+msgstr "CIFS 檔案系統"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "不明"
 
@@ -241,21 +244,21 @@ msgstr "操作已停止"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "本功能已過時。現在已不再支援讓用戶直接修改 MIME 資料庫。"
+msgstr "本功能已不再使用。現在已不再支援讓使用者直接修改 MIME 資料庫。"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -389,7 +392,7 @@ msgstr "遇上循環的連結"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation not permitted"
-msgstr "不許可的操作程序"
+msgstr "不允許的操作程序"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:67
@@ -439,7 +442,7 @@ msgstr "目錄內仍有檔案存在"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
-msgstr "鏈結過多"
+msgstr "連結過多"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
@@ -499,7 +502,7 @@ msgstr "啟動指令時出現錯誤"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
-msgstr "到達計時時間"
+msgstr "逾時"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
@@ -524,7 +527,7 @@ msgstr "不明的錯誤"
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u 位元組"
+msgstr[0] "%u 個位元組"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -544,7 +547,7 @@ msgstr "%.1f GB"
 #: ../libgnomevfs/gnome-vfs-utils.c:1096
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
-msgstr " (無效的統一碼)"
+msgstr "（無效的統一碼）"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
@@ -664,7 +667,7 @@ msgstr "Zip 磁碟機"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
-msgstr "相機"
+msgstr "照相機"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "DVD"
@@ -690,36 +693,36 @@ msgstr "網路伺服器"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "軟碟機裝載失敗。可能軟碟機內並沒有磁片。"
+msgstr "無法裝載軟碟機。可能軟碟機內並沒有磁片。"
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "檔案系統裝載失敗。可能裝置中沒有任何媒體。"
+msgstr "無法裝載檔案系統。可能裝置中沒有任何媒體。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "軟碟機裝載失敗。可能軟碟機所使用的格式不能被裝載。"
+msgstr "無法裝載軟碟機。可能軟碟機所使用的格式不能被裝載。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "已選取的檔案系統裝載失敗。可能該檔案系統的所使用的格式不能裝載。"
+msgstr "無法裝載已選的檔案系統。可能該檔案系統的所使用的格式不能裝載。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:143
 msgid "Unable to mount the selected floppy drive."
-msgstr "已選取的軟碟機裝載失敗。"
+msgstr "無法裝載已選的軟碟機。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to mount the selected volume."
-msgstr "已選取的檔案系統裝載失敗。"
+msgstr "無法裝載已選的檔案系統。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:157
 msgid "Unable to unmount the selected volume."
-msgstr "已選取的檔案系統卸載失敗。"
+msgstr "無法卸載已選的檔案系統。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:290
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:357
@@ -728,11 +731,11 @@ msgstr "指令啟動失敗"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
-msgstr "不能將媒體退出"
+msgstr "無法退出媒體"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
-msgstr "不能將已連接的伺服器卸載"
+msgstr "無法卸載已連接的伺服器"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -785,7 +788,7 @@ msgstr "取消登入"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "在 %s 中找不到有效的組態檔\n"
+msgstr "在 %s 中找不到有效的設定檔\n"
 
 #: ../modules/test-method.c:589
 #, c-format
@@ -810,7 +813,7 @@ msgstr "一般的 file moniker"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "預設的元件檢示程式"
+msgstr "預設的元件檢視程式"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -842,7 +845,7 @@ msgstr "預設終端機程式所使用的 exec 參數。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "在終端機中執行命令"
+msgstr "在終端機中執行指令"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
@@ -928,119 +931,117 @@ msgstr "處理 “trash”URL 的處理程序"
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “aim”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “aim”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “callto”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “callto”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “ghelp”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “ghelp”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “h323”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “h323”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “http”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “http”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “https”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “https”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “info”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “info”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “mailto”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “mailto”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “man”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “man”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "如設定為真，在「指令」欄中指定的指令為處理 “trash”URL 的程式。"
+msgstr "如設定為‘TRUE’，在「指令」欄中指定的指令為處理 “trash”URL 的程式。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "若為真，處理此 URL 的程式必須在終端機中執行。"
+msgstr "如設定為‘TRUE’，處理此 URL 的程式必須在終端機中執行。"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "指定的命令應否處理 “aim”URL"
+msgstr "指定的指令應否處理 “aim”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "指定的命令應否處理 “callto”URL"
+msgstr "指定的指令應否處理 “callto”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "指定的命令應否處理 “ghelp”URL"
+msgstr "指定的指令應否處理 “ghelp”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "指定的命令應否處理 “h323”URL"
+msgstr "指定的指令應否處理 “h323”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "指定的命令應否處理 “http”URL"
+msgstr "指定的指令應否處理 “http”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "指定的命令應否處理 “https”URL"
+msgstr "指定的指令應否處理 “https”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "指定的命令應否處理 “info”URL"
+msgstr "指定的指令應否處理 “info”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "指定的命令應否處理 “mailto”URL"
+msgstr "指定的指令應否處理 “mailto”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "指定的命令應否處理 “man”URL"
+msgstr "指定的指令應否處理 “man”URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "指定的命令應否處理 “trash”URL"
+msgstr "指定的指令應否處理 “trash”URL"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-#, fuzzy
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "在網路位置應該可見的 dns-sd 領域列表，以逗號區隔。"
+msgstr "在“network:///“位置中顯示的 DNS-SD 網域清單，以逗號區隔。"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
-#, fuzzy
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "找尋 dns-sd 服務的額外網域"
+msgstr "找尋 DNS-SD 服務的額外網域"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1203,42 +1204,48 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
+"使用者所屬的在 Windows 網路群組或網域。新增一個新群組時，使用者可能需要登出及"
+"登入後才能完全生效，"
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
-msgstr ""
+msgstr "顯示 SCSI 硬碟"
 
 #: ../schemas/system_storage.schemas.in.h:2
 msgid "Display SCSI optical drives"
-msgstr ""
+msgstr "顯示 SCSI 光碟機"
 
 #: ../schemas/system_storage.schemas.in.h:3
 msgid "Display drives with removable media"
-msgstr ""
+msgstr "顯示可抽取式硬碟"
 
 #: ../schemas/system_storage.schemas.in.h:4
 msgid "Display external drives"
-msgstr ""
+msgstr "顯示外置硬碟"
 
 #: ../schemas/system_storage.schemas.in.h:5
 msgid "Display internal hard drives"
-msgstr ""
+msgstr "顯示內置硬碟"
 
 #: ../schemas/system_storage.schemas.in.h:6
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
 msgstr ""
+"若 /system/storage/display_scsi_drives 設定為‘FALSE’時，是否顯示 SCSI 光碟"
+"機。"
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr ""
+msgstr "是否顯示 SCSI 硬碟及其可掛載的檔案系統。"
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
 msgstr ""
+"是否顯示可抽取式硬碟及其可掛載的檔案系統。（例如：可以插入及移除媒體的硬"
+"碟）。"
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1246,12 +1253,11 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
+"是否顯示外置硬碟及其可掛載的檔案系統。（例如：熱插拔式硬碟；系統正在運行時可"
+"以插入、拔出的裝置）。"
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr ""
-
-
-
+msgstr "是否顯示內置硬碟及其可掛載的檔案系統。（非光學裝置也同樣顯示）。"
