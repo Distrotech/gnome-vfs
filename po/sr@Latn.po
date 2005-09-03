@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-08 09:44+0200\n"
-"PO-Revision-Date: 2005-07-08 10:04+0200\n"
+"POT-Creation-Date: 2005-09-03 21:03+0200\n"
+"PO-Revision-Date: 2005-09-03 21:03+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -151,62 +151,66 @@ msgid "Netware Volume"
 msgstr "Netware disk"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Reiser4 Linux Volume"
+msgstr "Linuks Rajzer4 disk"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
 msgstr "Linuks RajzerFS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
 msgstr "Deljeni Windows disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
 msgstr "SuperMount disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
 msgstr "DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
 msgstr "Solaris Udfs disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
 msgstr "Solaris Pcfs disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
 msgstr "Unapređeni DOS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
 msgstr "Xenix disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
 msgstr "Linuks XFS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
 msgstr "XIAFS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
 msgstr "CIFS disk"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:105
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Nepoznat"
 
@@ -246,17 +250,17 @@ msgstr "Operacija zaustavljena"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -1076,7 +1080,9 @@ msgstr "Da li navedena naredba treba da se koristi za „trash“ adrese."
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Zapetom razdvojen spisak DNS-SD domena koji su dostupni na putanji „network:///."
+msgstr ""
+"Zapetom razdvojen spisak DNS-SD domena koji su dostupni na putanji "
+"„network:///."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1088,7 +1094,9 @@ msgstr "Kako da prikazuje lokalnu DNS-SD uslugu"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Dopuštene vrednosti su „merged“ (spojeno), „separate“ (razdvojeno) i „disabled“ (isključeno)."
+msgstr ""
+"Dopuštene vrednosti su „merged“ (spojeno), „separate“ (razdvojeno) i "
+"„disabled“ (isključeno)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1205,7 +1213,8 @@ msgstr "Port računara datog u „/system/proxy/ftp_proxy“ kroz koji posreduje
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Port računara datog u „/system/proxy/secure_proxy“ kroz koji posreduje."
+msgstr ""
+"Port računara datog u „/system/proxy/secure_proxy“ kroz koji posreduje."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -1220,7 +1229,12 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Ovaj ključ sadrži spisak računara koji su neposredno povezani, umesto putem posrednika (ukoliko je u dejstvu). Ove vrednosti mogu biti imena računara, domeni (pomoću početnih navoda kao što je *.nešto.iju), IP adrese računara (bilo IP4 bilo IP6) i adrese mreža uz mrežnu masku (nešto kao što je 192.168.0.0/24)."
+msgstr ""
+"Ovaj ključ sadrži spisak računara koji su neposredno povezani, umesto putem "
+"posrednika (ukoliko je u dejstvu). Ove vrednosti mogu biti imena računara, "
+"domeni (pomoću početnih navoda kao što je *.nešto.iju), IP adrese računara "
+"(bilo IP4 bilo IP6) i adrese mreža uz mrežnu masku (nešto kao što je "
+"192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1243,7 +1257,9 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "Radna grupa ili domen Windows mreže čiji je korisnik član. Da bi nova radna grupa uzela maha korisnik će možda morati da se odjavi i ponovo prijavi."
+msgstr ""
+"Radna grupa ili domen Windows mreže čiji je korisnik član. Da bi nova radna "
+"grupa uzela maha korisnik će možda morati da se odjavi i ponovo prijavi."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1269,7 +1285,9 @@ msgstr "Prikaži unutrašnje tvrde diskove"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Da li da prikazuje optičke SCSI uređaje čak i ako je /system/storage/display_scsi_drives isključen."
+msgstr ""
+"Da li da prikazuje optičke SCSI uređaje čak i ako je /system/storage/"
+"display_scsi_drives isključen."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
@@ -1279,7 +1297,9 @@ msgstr "Da li da prikazuje uređaje i priključive diskove sa SCSI uređaja."
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Da li da prikazuje uređaje i priključive diskove sa uređaja sa uklonjivim nosačima (npr. uređaji gde se nosač može ubaciti i izbaciti)."
+msgstr ""
+"Da li da prikazuje uređaje i priključive diskove sa uređaja sa uklonjivim "
+"nosačima (npr. uređaji gde se nosač može ubaciti i izbaciti)."
 
 # bug: hotpluggable is technobabble, second part of "eg." should be enough
 #: ../schemas/system_storage.schemas.in.h:9
@@ -1287,13 +1307,17 @@ msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr "Da li da prikazuje uređaje i priključive diskove sa spoljašnjih uređaja (npr. uređaji koji se mogu priključiti u toku rada)."
+msgstr ""
+"Da li da prikazuje uređaje i priključive diskove sa spoljašnjih uređaja (npr. "
+"uređaji koji se mogu priključiti u toku rada)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr "Da li da prikazuje uređaje i priključive diskove sa unutrašnjih tvrdih diskova (otpički ne-SCSI diskovi se uvek prikazuju)."
+msgstr ""
+"Da li da prikazuje uređaje i priključive diskove sa unutrašnjih tvrdih diskova "
+"(otpički ne-SCSI diskovi se uvek prikazuju)."
 
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "Vindouz radna grupa koje je korisnik član"
