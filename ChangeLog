@@ -1,3 +1,16 @@
+2005-08-30  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Fix up some issues with the
+	HAL backend; for details see this bug report
+	http://bugzilla.gnome.org/show_bug.cgi?id=171073#c17 
+	The problem is that the hal backend makes the mistake of not
+	adding a drive/volume if it fails the policy checks. For instance,
+	this means that the drive/volume for e.g. /home or /usr is not
+	added since we don't want to show an icon for this location.  The
+	correct behavior, if policy checks fails, is to still add the
+	drive/volume but set the is_user_visble flag to FALSE.
+	Also rework how debbugging works.
+
 2005-08-31  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c:
