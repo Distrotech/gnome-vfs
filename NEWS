@@ -1,3 +1,11 @@
+gnome-vfs 2.12
+	* Fix problem with trash dissapearing on some volumes when
+	  using HAL.
+	* Fix locking issue with xdg-mime code that could cause
+	  crashes.
+	* Fix wrong filenames sometimes displayed when copying files.
+	* Don't duplicate volumes both in HAL and fstab
+
 gnome-vfs 2.11.91
 
 	* Honour hal's storage.eject_required flag.
