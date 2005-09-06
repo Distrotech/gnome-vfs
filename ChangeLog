@@ -1,3 +1,14 @@
+2005-09-06  Alexander Larsson  <alexl@redhat.com>
+
+	* autogen.sh:
+	Require automake 1.8
+	
+	* libgnomevfs/Makefile.am:
+	Work with 1.8
+	
+	* daemon/Makefile.am:
+	Don't dist auto-build corba files (#315294)
+
 2005-09-05  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

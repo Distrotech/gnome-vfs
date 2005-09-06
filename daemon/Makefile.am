@@ -28,6 +28,13 @@ endif
 
 gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(LIBGNOMEVFSDAEMON_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
+CORBA_SOURCE = \
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon.h		\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-common.c	\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-stubs.c	\
+	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-skels.c
+
+
 gnome_vfs_daemon_SOURCES = \
 	gnome-vfs-daemon.c \
 	gnome-vfs-daemon.h \
@@ -37,19 +44,9 @@ gnome_vfs_daemon_SOURCES = \
 	gnome-vfs-daemon-dir-handle.c \
 	gnome-vfs-daemon-handle.h \
 	gnome-vfs-daemon-handle.c \
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon.h		\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-common.c	\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-stubs.c	\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-skels.c
+	$(CORBA_SOURCE)
 
-# Hack for now
-BONOBO_ACTIVATION_IDL_DIR=`pkg-config --variable=idldir bonobo-activation-2.0`
-
-idls = GNOME_VFS_Daemon.idl
-idl_flags = -I $(BONOBO_ACTIVATION_IDL_DIR)
-
-$(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
-	$(ORBIT_IDL) $(idl_flags) $(idls)
+BUILT_SOURCES = $(CORBA_SOURCE)
 
 serverfile = GNOME_VFS_Daemon.server.in
 serverdir = $(libdir)/bonobo/servers
@@ -60,3 +57,9 @@ install-data-hook :
 
 
 EXTRA_DIST = $(serverfile)
+
+# We don't want the corba files in the tarball, but we can't delete
+# them until now, because this directory also needs them during make dist
+dist-hook:
+	cd $(distdir)/../libgnomevfs/ ; rm -f $(CORBA_SOURCE)
+

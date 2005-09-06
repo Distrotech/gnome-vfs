@@ -76,36 +76,24 @@ libgnomevfs_built_cfiles = gnome-vfs-enum-types.c
 # Don't build the library until we have built the header that it needs:
 $(OBJECTS) $(libgnomevfs_2_la_OBJECTS): $(libgnomevfs_built_headers)
 
-gnome-vfs-enum-types.h: s-enum-types-h
-	@true
-
-s-enum-types-h: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
-	( cd $(srcdir) && glib-mkenums \
+gnome-vfs-enum-types.h: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
+	(cd $(srcdir) && glib-mkenums \
 			--fhead "#ifndef __LIBGNOMEVFS_ENUM_TYPES_H__\n#define __LIBGNOMEVFS_ENUM_TYPES_H__\n\n#include <glib-object.h>\n\nG_BEGIN_DECLS\n" \
 			--fprod "/* enumerations from \"@filename@\" */\n" \
 			--vhead "GType @enum_name@_get_type (void);\n#define GNOME_VFS_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n" 	\
 			--ftail "G_END_DECLS\n\n#endif /* __LIBGNOMEVFS_ENUM_TYPES_H__ */" \
-		$(libgnomevfs_headers_to_scan_for_enums) ) > tmp-gnome-vfs-enum-types.h \
-	&& (cmp -s tmp-gnome-vfs-enum-types.h $(srcdir)/gnome-vfs-enum-types.h || cp tmp-gnome-vfs-enum-types.h $(srcdir)/gnome-vfs-enum-types.h ) \
-	&& rm -f tmp-gnome-vfs-enum-types.h	\
-	&& echo timestamp > $(@F)
+		$(libgnomevfs_headers_to_scan_for_enums)) > $@
 
-gnome-vfs-enum-types.c: s-enum-types-c
-	@true
-
-s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
-	( cd $(srcdir) && glib-mkenums \
+gnome-vfs-enum-types.c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
+	(cd $(srcdir) && glib-mkenums \
 			--fhead "#include <libgnomevfs/gnome-vfs.h>\n" \
 			--fhead "#include <libgnomevfs/gnome-vfs-mime-handlers.h>\n" \
 			--fhead "#include <glib-object.h>" \
-      --fprod "\n/* enumerations from \"@filename@\" */" \
+		      	--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {" 	\
 			--vprod "      { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
 			--vtail "      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\"@EnumName@\", values);\n  }\n  return etype;\n}\n" \
-		$(libgnomevfs_headers_to_scan_for_enums) ) > tmp-gnome-vfs-enum-types.c \
-	&& (cmp -s tmp-gnome-vfs-enum-types.c $(srcdir)/gnome-vfs-enum-types.c || cp tmp-gnome-vfs-enum-types.c $(srcdir)/gnome-vfs-enum-types.c ) \
-	&& rm -f tmp-gnome-vfs-enum-types.c \
-	&& echo timestamp > $(@F)
+		$(libgnomevfs_headers_to_scan_for_enums)) > $@
 
 
 # %.c %.h: %.gob
@@ -372,7 +360,7 @@ EXTRA_DIST = check-headers.pl $(idls)
 
 BUILT_SOURCES = $(CORBA_SOURCE) \
 	gnome-vfs-enum-types.h			\
-	s-enum-types-h				\
 	gnome-vfs-enum-types.c			\
-	s-enum-types-c
+	$(NULL)
 CLEANFILES = $(BUILT_SOURCES)
+
