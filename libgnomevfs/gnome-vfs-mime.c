@@ -344,11 +344,18 @@ static GnomeVFSResult
 file_read_binder (gpointer context, gpointer buffer, 
 		  GnomeVFSFileSize bytes, GnomeVFSFileSize *bytes_read)
 {
-	FILE *file = (FILE *)context;	
+	FILE *file = (FILE *)context;
+	
 	*bytes_read = fread (buffer, 1, bytes, file);
-	if (*bytes_read < 0) {
-		*bytes_read = 0;
-		return gnome_vfs_result_from_errno ();
+	
+	/* short read, check eof */
+	if (*bytes_read < bytes) {
+	
+		if (feof (file)) {
+			return GNOME_VFS_ERROR_EOF;
+		} else {
+			return gnome_vfs_result_from_errno ();
+		} 
 	}
 
 	return GNOME_VFS_OK;
