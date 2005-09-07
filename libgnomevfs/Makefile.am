@@ -356,7 +356,7 @@ $(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
 	$(ORBIT_IDL) $(idl_flags) $(srcdir)/$(idls)
 
 # TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl $(idls)
+EXTRA_DIST = check-headers.pl $(idls) $(libgnomevfs_win32_sources)
 
 BUILT_SOURCES = $(CORBA_SOURCE) \
 	gnome-vfs-enum-types.h			\

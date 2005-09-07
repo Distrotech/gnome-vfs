@@ -1,3 +1,9 @@
+2005-09-08  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/Makefile.am (EXTRA_DIST): Include
+	libgnomevfs_win32_sources which otherwise wouldn't be in the
+	tarball as make distdir is run on Unix.
+
 2005-09-07  Christian Kellner  <gicmo@gnome.org> 
 
 	* libgnomevfs/gnome-vfs-mime.c: (file_read_binder):
