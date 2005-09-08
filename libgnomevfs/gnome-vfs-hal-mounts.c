@@ -1508,7 +1508,7 @@ _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 	GnomeVFSDrive *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
-	char path[PATH_MAX] = "/dev/";
+	char path[PATH_MAX + 5] = "/dev/";
 	char *target = path + 5;
 	int ret;
 
@@ -1562,7 +1562,7 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 	GnomeVFSVolume *result;
 	LibHalContext *hal_ctx; 
 	LibHalDrive *hal_drive;
-	char path[PATH_MAX] = "/dev/";
+	char path[PATH_MAX + 5] = "/dev/";
 	char *target = path + 5;
 	int ret;
 
