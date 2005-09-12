@@ -1,3 +1,9 @@
+2005-09-12  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_find_directory_cancellable):
+	NULLify *result_uri before doing anything. Partially fixes #308639.
+
 2005-09-08  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c:

@@ -281,6 +281,8 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 
 	g_return_val_if_fail (result_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
+	*result_uri = NULL;
+
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
