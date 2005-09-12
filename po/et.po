@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-21 14:29+0000\n"
+"POT-Creation-Date: 2005-09-09 13:31+0200\n"
 "PO-Revision-Date: 2005-07-21 20:46+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -248,17 +248,17 @@ msgstr "Operatsioon seisatud"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -273,7 +273,7 @@ msgstr "Analüüsimine pole võimalik: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr "Järgmiseid töötlusvigu eiratakse."
+msgstr "Järgmisi töötlusvigu eiratakse."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:42
@@ -353,7 +353,7 @@ msgstr "Fail ei ole avatud"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "Avamismood ei ole kehtiv"
+msgstr "Avamismoodus ei ole kehtiv"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
@@ -733,7 +733,7 @@ msgstr "Valitud ketast ei õnnestu külge ühendada."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:157
 msgid "Unable to unmount the selected volume."
-msgstr "Valitud ketast ei õnnestu lahti ühendada."
+msgstr "Ühendust valitud kettaga ei õnnestu katkestada."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:290
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:357
@@ -746,7 +746,7 @@ msgstr "Meediat ei õnnuestu väljastada"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
-msgstr "Ühendatud serverit ei õnnestu lahti ühendada"
+msgstr "Ühendust serveriga ei õnnestu katkestada"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -784,7 +784,7 @@ msgid ""
 msgstr ""
 "See juhtub kui sa logid arvutisse esimest korda.\n"
 "\n"
-"Kaugarvuti saadetud identiteet on %s. Kui sa tahad turvalises jätkamises "
+"Kaugarvuti saadetud identiteet on %s. Kui tahad turvalises jätkamises "
 "täiesti kindel olla, siis võta ühendust süsteemihalduriga."
 
 #: ../modules/sftp-method.c:1323
@@ -1079,7 +1079,7 @@ msgstr "Automaatne proksi seadistamise URL"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Lubab proksi seaded kui HTTP-le pääsetakse ligi üle Interneti."
+msgstr "Lubab proksi seaded, kui HTTP-le pääsetakse ligi Interneti kaudu."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1233,7 +1233,7 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Windows'i võrgunduse töögrupi või domeeni nimi kuhu see kasutaja kuulub. "
+"Windows'i võrgunduse töögrupi või domeeni nimi, kuhu see kasutaja kuulub. "
 "Selleks et kasutaja saaks täielikult ära kasutada uue töögrupi privileege, "
 "peaks ta kõigepealt välja ja seejärel uuesti sisse logima."
 
