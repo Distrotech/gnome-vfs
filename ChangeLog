@@ -1,3 +1,9 @@
+2005-09-13  Stepan Kasal  <kasal@ucw.cz>
+
+	* gnome-vfs-2.0.pc.in: Add dependency on gobject-2.0.
+	* gnome-vfs-module-2.0.pc.in: Likewise; also add the dependencies
+	which were added to gnome-vfs-2.0.pc.in on 2004-10-13.
+
 2005-09-12  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:
