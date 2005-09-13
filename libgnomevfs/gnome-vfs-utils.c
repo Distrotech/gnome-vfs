@@ -1949,7 +1949,7 @@ GnomeVFSResult
 _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 					 GnomeVFSURI **result_uri)
 {
-	GnomeVFSURI *new_uri, *resolved_uri;
+	GnomeVFSURI *new_uri, *new_uri_parent, *resolved_uri;
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult res;
 	char *p;
@@ -1988,11 +1988,13 @@ _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 				gnome_vfs_uri_unref (new_uri);
 				goto out;
 			}
-			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
+			new_uri_parent = gnome_vfs_uri_get_parent (new_uri);
+			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri_parent,
 								       info->symlink_name);
+			gnome_vfs_uri_unref (new_uri_parent);
 			if (*p != 0) {
 				gnome_vfs_uri_unref (uri);
-				uri = gnome_vfs_uri_append_path (resolved_uri, p);
+				uri = gnome_vfs_uri_append_string (resolved_uri, p);
 				gnome_vfs_uri_unref (resolved_uri);
 			} else {
 				gnome_vfs_uri_unref (uri);
