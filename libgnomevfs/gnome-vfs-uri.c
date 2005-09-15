@@ -844,6 +844,12 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 				char *tmp = separator - 1;
 				if ((separator != mutable_base_uri) && (*tmp != '/')) {
 					*separator = '\0';
+				} else {
+					/* Maybe there is no domain part and this is a toplevel URI's child */
+					char *tmp2 = strstr (mutable_base_uri, ":///");
+					if (tmp2 != NULL && tmp2 + 3 == separator) {
+						*(separator + 1) = '\0';
+					}
 				}
 			}
 		}
@@ -890,7 +896,12 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
  * @base: The base URI.
  * @relative_reference: A string representing a possibly relative URI reference
  * 
- * Create a new URI from @relative_reference, relative to @base.
+ * Create a new URI from @relative_reference, relative to @base. The resolution
+ * algorithm follows RFC 2396. For details, see section 5.2 of
+ * http://www.ietf.org/rfc/rfc2396.txt .
+ *
+ * In short, if the @base URI ends in '/', @relative_reference is appended to @base,
+ * otherwise it replaces the part of @base after the last '/'.
  *
  * Return value: The new URI.
  **/

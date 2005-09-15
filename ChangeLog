@@ -1,6 +1,15 @@
 2005-09-13  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-utils.c:
+	(_gnome_vfs_uri_resolve_all_symlinks_uri): Partially revert the last
+	commit which was a workaround for a bug in
+	* libgnomevfs/gnome-vfs-uri.c: (make_full_uri_from_relative),
+	(gnome_vfs_uri_resolve_relative): Properly resolve symlinks on the
+	toplevel for URIs without any domain. Improve documentation.
+
+2005-09-13  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-utils.c:
 	(_gnome_vfs_uri_resolve_all_symlinks_uri): Correctly resolve symlinks,
 	and correctly re-append the rest of the URI text upon resolution.
 	Fixes #308639.
