@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs Gnome HEAD\n"
+"Project-Id-Version: gnome-vfs 2.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-26 23:26+0000\n"
-"PO-Revision-Date: 2005-08-28 17:40+0930\n"
+"PO-Revision-Date: 2005-09-16 16:53+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -657,7 +657,7 @@ msgstr "Thanh bộ nhớ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
-msgstr "Phương tiện thông minh"
+msgstr "Vật chứa thông minh"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
@@ -697,7 +697,7 @@ msgstr "Không thể gắn kết ổ đĩa mềm. Rất có thể là không có
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Không thể gắn kết khối. Rất có thể là không có phương tiện nào trong thiết bị."
+msgstr "Không thể gắn kết khối. Rất có thể là không có vật chứa nào trong thiết bị."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
@@ -732,7 +732,7 @@ msgstr "Lỗi lệnh khởi động"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
-msgstr "Không thể đẩy phương tiện ra"
+msgstr "Không thể đẩy vật chứa ra"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
@@ -1049,7 +1049,7 @@ msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr "Giá trị có thể là:\n"
 " • merged — đã phối hợp.\n"
 " • separate — riêng,\n"
-" • disabled — bị tắt."
+" • disabled — đã tắt."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1213,7 +1213,7 @@ msgstr "Hiện ổ quang SCSI"
 
 #: ../schemas/system_storage.schemas.in.h:3
 msgid "Display drives with removable media"
-msgstr "Hiện ổ có phương tiện tháo rời được"
+msgstr "Hiện ổ có vật chứa tháo rời được"
 
 #: ../schemas/system_storage.schemas.in.h:4
 msgid "Display external drives"
@@ -1238,7 +1238,7 @@ msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ 
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ có phương tiện tháo rời được hay không (v.d. ổ cho phép chèn và đẩy ra phương tiện)."
+msgstr "Có nên hiển thị ổ và khối tin có thể gắn kết từ ổ có vật chứa tháo rời được hay không (v.d. ổ cho phép chèn và đẩy ra vật chứa)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
