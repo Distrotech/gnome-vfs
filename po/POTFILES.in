@@ -1,11 +1,12 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
+[encoding: UTF-8]
 daemon/gnome-vfs-daemon.c
 libgnomevfs/gnome-vfs-cdrom.c
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
 libgnomevfs/gnome-vfs-filesystem-type.c
-[encoding: UTF-8]libgnomevfs/gnome-vfs-hal-mounts.c
+libgnomevfs/gnome-vfs-hal-mounts.c
 libgnomevfs/gnome-vfs-init.c
 libgnomevfs/gnome-vfs-job.c
 libgnomevfs/gnome-vfs-mime-handlers.c

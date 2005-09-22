@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-03 21:03+0200\n"
-"PO-Revision-Date: 2005-09-03 21:03+0200\n"
+"POT-Creation-Date: 2005-09-22 12:48+0200\n"
+"PO-Revision-Date: 2005-09-22 12:52+0200\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -213,6 +213,206 @@ msgstr "CIFS диск"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Непознат"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#, c-format
+msgid "%s Volume"
+msgstr "%s диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "%s/%s диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "%s диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Дискета"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Компактни-флеш диск (CF)"
+
+# Чаробни штапић? :)
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Меморијски штапић"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Мудри носач (SM)"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "SD/MMC носач"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Зип диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Џез диск"
+
+# :)
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+msgid "Pen Drive"
+msgstr "Оловкасти диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#, c-format
+msgid "%s %s Music Player"
+msgstr "%s %s пуштач музике"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "%s %s дигитални фотоапарат"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+msgid "Drive"
+msgstr "Уређај"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#, c-format
+msgid "External %s"
+msgstr "Спољни %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+msgid "CD-ROM Disc"
+msgstr "CD-ROM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+msgid "Blank CD-R Disc"
+msgstr "Празан CD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+msgid "CD-R Disc"
+msgstr "CD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+msgid "Blank CD-RW Disc"
+msgstr "Празан CD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "CD-RW Disc"
+msgstr "CD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+msgid "DVD-ROM Disc"
+msgstr "DVD-ROM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+msgid "Blank DVD-RAM Disc"
+msgstr "Празан DVD-RAM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+msgid "Blank DVD-R Disc"
+msgstr "Празан DVD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+msgid "DVD-R Disc"
+msgstr "DVD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+msgid "Blank DVD-RW Disc"
+msgstr "Празан DVD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "DVD-RW Disc"
+msgstr "DVD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD+R Disc"
+msgstr "Празан DVD+R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD+R Disc"
+msgstr "DVD+R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+msgid "Blank DVD+RW Disc"
+msgstr "Празан DVD+RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "DVD+RW Disc"
+msgstr "DVD+RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+msgid "Audio Disc"
+msgstr "Звучни диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#, c-format
+msgid "%s Removable Volume"
+msgstr "Уклоњиви %s диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+msgid "Volume"
+msgstr "Диск"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -564,35 +764,6 @@ msgstr " (неисправан Уникод)"
 msgid "Floppy"
 msgstr "Дискета"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "ЦД"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "ЦД-Р"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "ЦД-РВ"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "ДВД-РОМ"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "ДВД-РАМ"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "ДВД-Р"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "ДВД-РВ"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
 msgstr "ЦД-РОМ/ДВД-РОМ"
@@ -670,11 +841,6 @@ msgstr "Меморијски штапић"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
 msgstr "Мудри носач (SM)"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Зип диск"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
@@ -1322,62 +1488,8 @@ msgstr ""
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "Виндоуз радна група које је корисник члан"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "ЦД-РОМ диск"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Празан ЦД-Р диск"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "ЦД-Р диск"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Празан ЦД-РВ диск"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "ЦД-РВ диск"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "ДВД-РОМ диск"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Празан ДВД-Р диск"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "ДВД-Р диск"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Празан ДВД-РАМ диск"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "ДВД-РАМ диск"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Празан ДВД-РВ диск"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "ДВД-РВ диск"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Празан ДВД+РВ диск"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "ДВД+РВ диск"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Празан ДВД+Р диск"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "ДВД+Р диск"
-
 #~ msgid "Optical Disc"
 #~ msgstr "Оптички диск"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Звучни диск"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Компактни-флеш (CF)"
 
 # Чаробни штапић? :)
 #~ msgid "Memory Stick Media"
@@ -1385,12 +1497,6 @@ msgstr ""
 
 #~ msgid "Smart Media Media"
 #~ msgstr "Мудри носач (SM)"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC носач"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Дискета"
 
 #~ msgid "Mac OS disk"
 #~ msgstr "Мекинтош диск"

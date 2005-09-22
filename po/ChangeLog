@@ -1,3 +1,9 @@
+2005-09-22  Danilo Šegan  <danilo@gnome.org>
+
+	* POTFILES.in: Updated (fixing bug #316914).
+
+	* sr.po, sr@Latn.po: Updated.
+
 2005-09-16  Clytie Siddall <clytie@riverland.net.au>
 
         * vi.po: Updated Vietnamese translation.
