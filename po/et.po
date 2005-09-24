@@ -1,5 +1,8 @@
-# gnome-vfs eesti keele tõlge
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Gnome-vfs eesti keele tõlge.
+# Estonian translation of  Gnome-vfs.
+#
+# Copyright (C) 2002, 2003, 2005 Free Software Foundation, Inc.
+#
 # Ilmar Kerm <ikerm@hot.ee>, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
 # Kitt <peroona@hot.ee>, 2005.
@@ -11,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs Gnome 2.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-27 04:31+0100\n"
-"PO-Revision-Date: 2005-07-02 14:20+0300\n"
+"PO-Revision-Date: 2005-09-23 02:02+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee> \n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -250,16 +253,18 @@ msgstr "Operatsioon seisatud"
 #: libgnomevfs/gnome-vfs-mime-info.c:719
 #: libgnomevfs/gnome-vfs-mime-info.c:726
 msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Aegunud funktsioon.  Kasutajapoolne MIME andmebaasi muutmine pole enam toetatud."
+msgstr ""
+"Aegunud funktsioon.  Kasutajapoolne MIME andmebaasi muutmine pole enam "
+"toetatud."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ei suuda töödelda: %s"
+msgstr "Analüüsimine pole võimalik: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr "Järgmiseid töötlusvigu eiratakse."
+msgstr "Järgmisi töötlusvigu eiratakse."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -339,7 +344,7 @@ msgstr "Fail ei ole avatud"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "Avamismood ei ole kehtiv"
+msgstr "Avamismoodus ei ole kehtiv"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -454,7 +459,7 @@ msgstr "Nimi on liiga pikk"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "Teenus ei ole kättesaadav"
+msgstr "Teenus pole kättesaadav"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
@@ -495,7 +500,7 @@ msgstr "Viga käsu käivitamisel"
 #: libgnomevfs/gnome-vfs-result.c:84
 #: libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr "Vaheaeg saabunud"
+msgstr "Ajapiirang on ületatud"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
@@ -696,11 +701,15 @@ msgstr "Seadet ei õnnestu külge ühendada. Tõenäoliselt pole meediat seadmes
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühildamatus vormingus."
+msgstr ""
+"Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühildamatus "
+"vormingus."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, mida pole võimalik külge ühendada."
+msgstr ""
+"Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, "
+"mida pole võimalik külge ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -712,7 +721,7 @@ msgstr "Valitud ketast ei õnnestu külge ühendada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Valitud ketast ei õnnestu lahti ühendada."
+msgstr "Ühendust valitud kettaga ei õnnestu katkestada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:257
 #: libgnomevfs/gnome-vfs-volume-ops.c:313
@@ -725,7 +734,7 @@ msgstr "Meediat ei õnnuestu väljastada"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
-msgstr "Ühendatud serverit ei õnnestu lahti ühendada"
+msgstr "Ühendust serveriga ei õnnestu katkestada"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -762,7 +771,8 @@ msgid ""
 msgstr ""
 "See juhtub kui sa logid arvutisse esimest korda.\n"
 "\n"
-"Kaugarvuti saadetud identiteet on %s. Kui sa tahad turvalises jätkamises täiesti kindel olla, siis võta ühendust süsteemihalduriga."
+"Kaugarvuti saadetud identiteet on %s. Kui tahad turvalises jätkamises "
+"täiesti kindel olla, siis võta ühendust süsteemihalduriga."
 
 #: modules/sftp-method.c:1347
 msgid "Log In Anyway"
@@ -814,11 +824,15 @@ msgstr "Vaikimisi terminalikäivitusargument"
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
 msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Rakendus, mida kasutada failide puhul, mille vaatamiseks on vaja kasutada komponenti. Parameeter %s asendatakse faili URI'ga, parameeter %c komponendi IID'ga."
+msgstr ""
+"Rakendus, mida kasutada failide puhul, mille vaatamiseks on vaja kasutada "
+"komponenti. Parameeter %s asendatakse faili URI'ga, parameeter %c komponendi "
+"IID'ga."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Vaikimisi terminalirakendus kasutamiseks terminali vajavate rakenduste jaoks."
+msgstr ""
+"Vaikimisi terminalirakendus kasutamiseks terminali vajavate rakenduste jaoks."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -950,7 +964,9 @@ msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"trash\" URLe.
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "Tõene, kui käsku, mis määratud seda tüüpi URLide käsitlemiseks, tuleks käivitada terminalis ."
+msgstr ""
+"Tõene, kui käsku, mis määratud seda tüüpi URLide käsitlemiseks, tuleks "
+"käivitada terminalis ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1006,7 +1022,8 @@ msgstr "Kuidas kuvada kohalikku DNS-SD teenust"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Võimalikud väärtused on \"kokkupandud\", \"eraldatud\" ja \"keelatud\"."
+msgstr ""
+"Võimalikud väärtused on \"kokkupandud\", \"eraldatud\" ja \"keelatud\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1018,7 +1035,7 @@ msgstr "Automaatne proksi seadistamise URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Lubab proksi seaded kui HTTP-le pääsetakse ligi üle Interneti."
+msgstr "Lubab proksi seaded, kui HTTP-le pääsetakse ligi Interneti kaudu."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1078,7 +1095,9 @@ msgstr "Turvalise HTTP proksi port"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Vali proksi konfiguratsiooni mood. Toetatud väärtused on \"pole\", \"käsitsi\", \"automaatne\"."
+msgstr ""
+"Vali proksi konfiguratsiooni mood. Toetatud väärtused on \"pole\", \"käsitsi"
+"\", \"automaatne\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1098,23 +1117,35 @@ msgstr "Socks proxi masina nimi"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/http_proxy/host\" poolt, mille kaudu proxyt kasutatakse."
+msgstr ""
+"Port, defineeritud \"/system/http_proxy/host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/ftp_host\" poolt, mille kaudu proxyt kasutatakse."
+msgstr ""
+"Port, defineeritud \"/system/proxy/ftp_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/secure_host\" poolt, mille kaudu proxyt kasutatakse."
+msgstr ""
+"Port, defineeritud \"/system/proxy/secure_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/socks_host\" poolt, mille kaudu proxyt kasutatakse."
+msgstr ""
+"Port, defineeritud \"/system/proxy/socks_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "See võti sisaldab nimekirja hostidest kuhu ühendutakse otse, ilma et kasutataks proxyt (isegi kui see on aktiivne). Väärtused võivad olla hostinimed, domeenid (kasutades vormi *.foo.com), IP-aadressid (nii IPv6 kui IPv6) ja võrguaadressid koos võrgumaskiga (näiteks 192.168.0.0/24)."
+msgstr ""
+"See võti sisaldab nimekirja hostidest kuhu ühendutakse otse, ilma et "
+"kasutataks proxyt (isegi kui see on aktiivne). Väärtused võivad olla "
+"hostinimed, domeenid (kasutades vormi *.foo.com), IP-aadressid (nii IPv6 kui "
+"IPv6) ja võrguaadressid koos võrgumaskiga (näiteks 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
