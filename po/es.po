@@ -1,3 +1,4 @@
+# translation of es.po to 
 # traducción de es.po al Spanish
 # translation of gnome-vfs.HEAD.po to Spanish
 # Copyright (C) 2000,2003, 2004, 2005 Free Software Foundation, Inc.
@@ -9,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-21 22:07+0200\n"
-"PO-Revision-Date: 2005-07-21 22:07+0200\n"
-"Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2005-09-25 03:40+0200\n"
+"PO-Revision-Date: 2005-09-25 03:43+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -210,6 +211,204 @@ msgstr "Volumen CIFS"
 msgid "Unknown"
 msgstr "Desconocido"
 
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#, c-format
+msgid "%s Volume"
+msgstr "Volumen %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "Unidad %s/%s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "Unidad %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Disquetera"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Unidad Compact Flash"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Unidad de barra de memoria"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Unidad Smart Media"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "Unidad SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Unidad Zip"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Unidad Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+msgid "Pen Drive"
+msgstr "Pen Drive"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#, c-format
+msgid "%s %s Music Player"
+msgstr "Reproductor de música %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "Cámara digital %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+msgid "Drive"
+msgstr "Unidad"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#, c-format
+msgid "External %s"
+msgstr "%s externo"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+msgid "CD-ROM Disc"
+msgstr "Disco CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+msgid "Blank CD-R Disc"
+msgstr "Disco CD-R virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+msgid "CD-R Disc"
+msgstr "Disco CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+msgid "Blank CD-RW Disc"
+msgstr "Disco CD-RW virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "CD-RW Disc"
+msgstr "Disco CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+msgid "DVD-ROM Disc"
+msgstr "Disco DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+msgid "Blank DVD-RAM Disc"
+msgstr "Disco DVD-RAM virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+msgid "DVD-RAM Disc"
+msgstr "Disco DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+msgid "Blank DVD-R Disc"
+msgstr "Disco DVD-R virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+msgid "DVD-R Disc"
+msgstr "Disco DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+msgid "Blank DVD-RW Disc"
+msgstr "Disco DVD-RW virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "DVD-RW Disc"
+msgstr "Disco DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD+R Disc"
+msgstr "Disco DVD+R virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD+R Disc"
+msgstr "Disco DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+msgid "Blank DVD+RW Disc"
+msgstr "Disco DVD+RW virgen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "DVD+RW Disc"
+msgstr "Disco DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+msgid "Audio Disc"
+msgstr "Disco de sonido"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#, c-format
+msgid "%s Removable Volume"
+msgstr "Volumen extraíble %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+msgid "Volume"
+msgstr "Volumen"
+
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
@@ -246,17 +445,17 @@ msgstr "La operación ha sido detenida"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -559,35 +758,6 @@ msgstr " (Unicode inválido)"
 msgid "Floppy"
 msgstr "Disquete"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "CD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "CD-RW"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "DVD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "DVD-RAM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "DVD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "DVD-RW"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
@@ -665,11 +835,6 @@ msgstr "Barra de memoria"
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Unidad Zip"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "Cámara"
@@ -696,8 +861,7 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -807,8 +971,7 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -859,8 +1022,7 @@ msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
-"El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1326,333 +1488,3 @@ msgstr ""
 "Indica si se deben mostrar las unidades y los volúmenes montables de discos "
 "duros internos (los no SCSI ópticos siempre se muestran)"
 
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "El grupo de trabajo de windows del que el usuario es parte"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Disco CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Disco CD-R virgen"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Disco CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Disco CD-RW virgen"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Disco CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Disco DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Disco DVD-R virgen"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Disco DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Disco DVD-RAM virgen"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Disco DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Disco DVD-RW virgen"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Disco DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Disco DVD+RW virgen"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Disco DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Disco DVD+R virgen"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Disco DVD+R"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Disco óptico"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Disco de sonido"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Soporte Compact Flash"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Soporte Memory Stick"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Soporte Smart Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "Soporte SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Disquete"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Disco Mac OS"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Disco Mac OS X"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Disco Windows"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Disco Linux"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "El archivo no pudo abrirse: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Falló al abrir el archivo «%s»: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "El archivo está vacío"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Falló al leer del archivo «%s»: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "las entradas del escritorio contienen la línea «%s» que no es una "
-#~ "entrada, grupo o comentario"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr ""
-#~ "el archivo de las entradas del escritorio no empieza con un grupo de "
-#~ "inicio legal"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "las entradas del escritorio contienen la línea «%s» que no es UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr ""
-#~ "las entradas del escritorio contienen una codificación desconocida «%s»"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "las entradas del escritorio no tienen un grupo «%s»"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "las entradas del escritorio no tienen la clave «%s»"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "las entradas del escritorio contienen la clave «%s» la cual tiene un "
-#~ "valor que no puede ser interpretado."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "las entradas del escritorio no contienen ningún valor traducido para la "
-#~ "clave «%s» en el idioma «%s»"
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr ""
-#~ "las entradas del escritorio contienen una secuencia de escape inválida «%"
-#~ "s»"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr ""
-#~ "las entradas del escritorio contienen un carácter de escape al final de "
-#~ "la línea"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "El valor «%s» no se puede interpretar como un número."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "El valor «%s» no se puede interpretar como un booleano."
-
-#~ msgid "Applications"
-#~ msgstr "Aplicaciones"
-
-#~ msgid "Cards"
-#~ msgstr "Tarjetas"
-
-#~ msgid "Files"
-#~ msgstr "Archivos"
-
-#~ msgid "Folders"
-#~ msgstr "Carpetas"
-
-#~ msgid "Help"
-#~ msgstr "Ayuda"
-
-#~ msgid "Hosts"
-#~ msgstr "Hosts"
-
-#~ msgid "Links"
-#~ msgstr "Enlaces"
-
-#~ msgid "Mail"
-#~ msgstr "Correo"
-
-#~ msgid "Tools"
-#~ msgstr "Herramientas"
-
-#~ msgid "Windows"
-#~ msgstr "Ventanas"
-
-#~ msgid "CD Disc"
-#~ msgstr "Disco compacto"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "El comando usado para manipular las URLs HTTP, si están activadas."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "El comando usado para manipular las URLs HTTPS, si están activadas."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "El manipulador para las URLs HTTP"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "El manipulador para las URLs HTTPS"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Establecer a «true» si el programa especificado en la clave «comando» "
-#~ "debería manipular las URLs HTTP."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Establecer a «true» si el programa especificado en la clave «comando» "
-#~ "debería manipular las URLs HTTPS."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Indica si el comando especificado debe manipulas las URLs HTTP"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Indica si el comando especificado debe manipulas las URLs HTTPS"
-
-#~ msgid "H323 URL handler"
-#~ msgstr "Manipulador URL H323"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "Manipulador URL HTTP"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "Manipulador URL HTTPS"
-
-#~ msgid "Handle callto URLs"
-#~ msgstr "Manipula las URLs callto"
-
-#~ msgid "Handle ghelp URLs"
-#~ msgstr "Manipula las URLs ghelp"
-
-#~ msgid "Handle info URLs"
-#~ msgstr "Manipula las URLs info"
-
-#~ msgid "Handle mailto URLs"
-#~ msgstr "Manipula las URLs mailto"
-
-#~ msgid "Handle man URLs"
-#~ msgstr "Manipula las URLs man"
-
-#~ msgid "Handle trash URLs"
-#~ msgstr "Manipula las URLs trash"
-
-#~ msgid "aim URL handler"
-#~ msgstr "Manipulador de URL aim"
-
-#~ msgid "callto URL handler"
-#~ msgstr "Manipulador de URL callto"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "Manipulador de URL ghelp"
-
-#~ msgid "info URL handler"
-#~ msgstr "Manipulador de URL info"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "Manipulador de URL mailto"
-
-#~ msgid "man URL handler"
-#~ msgstr "Manipulador de URL man"
-
-#~ msgid "trash URL handler"
-#~ msgstr "Manipulador de URL trash"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Se ha producido un fallo al guardar el marcador (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "No se puede obtener información para el archivo «%s»: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Fallo al cargar la imagen «%s»: razón no conocida, probablemente un "
-#~ "archivo de imagen corrupto"
-
-#~ msgid "How to handle http URLs"
-#~ msgstr "Cómo manipular las URLs http"
-
-#~ msgid "How to handle https URLs"
-#~ msgstr "Cómo manipular las URLs https"
-
-#~ msgid "Set to true to have a program specified in command handle https URLs"
-#~ msgstr ""
-#~ "Establecer a «true» para tener un  programa especificado en el comando "
-#~ "para manejar las URLs https"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
-#~ "URLs"
-#~ msgstr ""
-#~ "Establecer a «verdadero» para tener un programa especificado en la línea "
-#~ "de comandos para manipular las URLs ghelp"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/info handle info URLs"
-#~ msgstr ""
-#~ "Establecer a «verdadero» para tener un programa especificado en programs/"
-#~ "info que maneje las URLs info"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/man handle man URLs"
-#~ msgstr ""
-#~ "Establecer a «verdadero» para tener un programa especificado en programs/"
-#~ "man que maneje las URLs man"
-
-#~ msgid "URL handler for h323 uris"
-#~ msgstr "Manipulador de URLs h323"
-
-#~ msgid "URL handler for http uris"
-#~ msgstr "Manipulador de URLs http"
-
-#~ msgid "URL handler for https uris"
-#~ msgstr "Manipulador de URLs https"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "Hosts que no son contactados a través del proxy"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "El nombre de la maquina por la que se hace proxy http."
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr "Usar ajustes del proxy al acceder a http"
-
-#~ msgid "http proxy password"
-#~ msgstr "contraseña del proxy http"
-
-#~ msgid "http proxy username"
-#~ msgstr "usuario del proxy http"
-
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
