@@ -64,7 +64,7 @@ struct FileDateTracker {
 #ifdef G_THREADS_ENABLED
 
 /* We lock this mutex whenever we modify global state in this module.  */
-G_LOCK_DEFINE_STATIC (mime_mutex);
+G_LOCK_DEFINE (gnome_vfs_mime_mutex);
 
 #endif /* G_LOCK_DEFINE_STATIC */
 
@@ -78,11 +78,11 @@ G_LOCK_DEFINE_STATIC (mime_mutex);
 void
 gnome_vfs_mime_shutdown (void)
 {
-	G_LOCK (mime_mutex);
+	G_LOCK (gnome_vfs_mime_mutex);
 
 	xdg_mime_shutdown ();
 
-	G_UNLOCK (mime_mutex);
+	G_UNLOCK (gnome_vfs_mime_mutex);
 }
 
 /**
@@ -115,9 +115,9 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 		separator = filename;
 	}
 
-	G_LOCK (mime_mutex);
+	G_LOCK (gnome_vfs_mime_mutex);
 	mime_type = xdg_mime_get_mime_type_from_file_name (separator);
-	G_UNLOCK (mime_mutex);
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	if (mime_type)
 		return mime_type;
@@ -167,9 +167,9 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 	GnomeVFSResult result = GNOME_VFS_OK;
 	const char *mime_type;
 
-	G_LOCK (mime_mutex);
+	G_LOCK (gnome_vfs_mime_mutex);
 	max_extents = xdg_mime_get_max_buffer_extents ();
-	G_UNLOCK (mime_mutex);
+	G_UNLOCK (gnome_vfs_mime_mutex);
 	max_extents = CLAMP (max_extents, 0, MAX_SNIFF_BUFFER_ALLOWED);
 
 	if (!buffer->read_whole_file) {
@@ -178,11 +178,11 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
 		return NULL;
 	}
-	G_LOCK (mime_mutex);
+	G_LOCK (gnome_vfs_mime_mutex);
 
 	mime_type = xdg_mime_get_mime_type_for_data (buffer->buffer, buffer->buffer_length);
 
-	G_UNLOCK (mime_mutex);
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	return mime_type;
 	
@@ -594,9 +594,9 @@ gnome_vfs_mime_type_is_equal (const char *a,
 	g_return_val_if_fail (a != NULL, FALSE);
 	g_return_val_if_fail (b != NULL, FALSE);
 
-	G_LOCK (mime_mutex);
+	G_LOCK (gnome_vfs_mime_mutex);
 	xdg_mime_mime_type_equal (a, b);
-	G_UNLOCK (mime_mutex);
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	return FALSE;
 }
@@ -631,12 +631,12 @@ gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 	if (gnome_vfs_mime_type_is_equal (mime_type, base_mime_type)) {
 		return GNOME_VFS_MIME_IDENTICAL;
 	} else {
-		G_LOCK (mime_mutex);
+		G_LOCK (gnome_vfs_mime_mutex);
 		if (xdg_mime_mime_type_subclass (mime_type, base_mime_type)) {
-			G_UNLOCK (mime_mutex);
+			G_UNLOCK (gnome_vfs_mime_mutex);
 			return GNOME_VFS_MIME_PARENT;
 		}
-		G_UNLOCK (mime_mutex);
+		G_UNLOCK (gnome_vfs_mime_mutex);
 	}
 
 	return GNOME_VFS_MIME_UNRELATED;

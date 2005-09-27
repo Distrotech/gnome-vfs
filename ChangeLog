@@ -1,3 +1,9 @@
+2005-09-27  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime.c:
+	Wrap the rest of the xdg_mime calls in locks. (#170947)
+
 2005-07-08  Federico Mena Quintero  <federico@ximian.com>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c

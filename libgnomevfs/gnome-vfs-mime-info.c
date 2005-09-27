@@ -71,6 +71,8 @@ static GList *mime_directories = NULL;
 
 static GHashTable *mime_entries = NULL;
 
+G_LOCK_EXTERN (gnome_vfs_mime_mutex);
+
 static gboolean
 does_string_contain_caps (const char *string)
 {
@@ -491,7 +493,9 @@ get_entry (const char *mime_type)
 	MimeEntry *entry;
 	char *path;
 
+	G_LOCK (gnome_vfs_mime_mutex);	
 	umime =	xdg_mime_unalias_mime_type (mime_type);
+	G_UNLOCK (gnome_vfs_mime_mutex);	
 
 	entry = g_hash_table_lookup (mime_entries, umime);
 	
