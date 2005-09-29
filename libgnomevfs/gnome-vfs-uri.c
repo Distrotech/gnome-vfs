@@ -506,7 +506,6 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	gchar *method_string;
 	const gchar *rest;
 
-	g_print ("%s: %s\n", __FUNCTION__, text_uri);
 	rest = get_method_string (text_uri, &method_string);
 	if (strcmp (method_string, "file") == 0) {
 		gchar *slashified, *p;
