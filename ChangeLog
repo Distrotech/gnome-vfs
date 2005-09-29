@@ -1,3 +1,26 @@
+2005-09-29  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/gnome-vfs-configuration.c
+	* libgnomevfs/gnome-vfs-method.c: Include
+	gnome-vfs-private-utils.h on Win32 to get the redefinitions of
+	GNOME_VFS_SYSCONFDIR and GNOME_VFS_LIBDIR so that we don't have
+	compile-time pathnames in the binary, and install-anywhere
+	actually works.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): Simplify the
+	Win32 code. Don't call gnome_vfs_escape_path_string() as the Unix
+	code doesn't either. Just turn backslashes into slashes.
+
+	I am still not sure whether it is correct for all use cases,
+	though. Unfortunately much GNOME software mixes URIs and pathnames
+	rather freely (which mostly works on Unix where pathname syntax
+	matches the local part of a file: URI). The parameter to this
+	function is called text_uri, and said to be "a string representing
+	a URI". What does that mean? Is it actually a pathname in the
+	so-called GLib file name encoding (on-disk encoding on Unix, UTF-8
+	on Windows), or a URI that already is properly URI-escaped?
+	Apparently currently it can be either, sigh.
+
 2005-09-13  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-utils.c:

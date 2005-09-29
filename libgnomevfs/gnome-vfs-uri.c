@@ -506,28 +506,20 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	gchar *method_string;
 	const gchar *rest;
 
+	g_print ("%s: %s\n", __FUNCTION__, text_uri);
 	rest = get_method_string (text_uri, &method_string);
 	if (strcmp (method_string, "file") == 0) {
-		/* Use gnome_vfs_escape_path_string() to replace
-		 * backslashes with slashes etc. Be careful not to
-		 * pass the colon after the method string (if
-		 * present), or the colon after a drive letter to
-		 * gnome_vfs_escape_path_string().
-		 */
-		const gchar *past_root = g_path_skip_root (rest);
-		gchar *escaped = gnome_vfs_escape_path_string (past_root);
-		gchar *root = g_strndup (rest, past_root - rest);
-		gchar *full = g_strconcat (method_string,
-					   ":",
-					   root,
-					   escaped,
-					   NULL);
-		GnomeVFSURI *result =
-			gnome_vfs_uri_new_private (full, FALSE, FALSE, TRUE);
+		gchar *slashified, *p;
+		GnomeVFSURI *result;
 
-		g_free (full);
-		g_free (escaped);
-		g_free (root);
+		if (g_ascii_strncasecmp (text_uri, "file://", 7) == 0)
+			rest += 2;
+		slashified = g_strdup (rest);
+		for (p = slashified; *p; p++)
+			if (*p == '\\')
+				*p = '/';
+		result = gnome_vfs_uri_new_private (slashified, FALSE, FALSE, TRUE);
+		g_free (slashified);
 		g_free (method_string);
 
 		return result;

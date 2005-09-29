@@ -26,6 +26,9 @@
 
 #include "gnome-vfs-configuration.h"
 #include "gnome-vfs-private.h"
+#ifdef G_OS_WIN32
+#include "gnome-vfs-private-utils.h"
+#endif
 #include <gmodule.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-transform.h>

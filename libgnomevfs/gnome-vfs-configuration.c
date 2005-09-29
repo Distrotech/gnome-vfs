@@ -29,6 +29,10 @@
 #include <glib/gstdio.h>
 #include <glib/gi18n-lib.h>
 #include "gnome-vfs-private.h"
+#ifdef G_OS_WIN32
+#include "gnome-vfs-private-utils.h"
+#endif
+
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
