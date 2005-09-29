@@ -508,7 +508,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 	rest = get_method_string (text_uri, &method_string);
 	if (strcmp (method_string, "file") == 0) {
-		gchar *slashified, *p;
+		gchar *slashified, *p, *full;
 		GnomeVFSURI *result;
 
 		if (g_ascii_strncasecmp (text_uri, "file://", 7) == 0)
@@ -517,7 +517,12 @@ gnome_vfs_uri_new (const gchar *text_uri)
 		for (p = slashified; *p; p++)
 			if (*p == '\\')
 				*p = '/';
-		result = gnome_vfs_uri_new_private (slashified, FALSE, FALSE, TRUE);
+		if (*slashified == '/')
+			full = g_strconcat ("file://", slashified, NULL);
+		else
+			full = g_strconcat ("file:///", slashified, NULL);
+		result = gnome_vfs_uri_new_private (full, FALSE, FALSE, TRUE);
+		g_free (full);
 		g_free (slashified);
 		g_free (method_string);
 
