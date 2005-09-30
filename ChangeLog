@@ -1,3 +1,10 @@
+2005-09-30  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(_gnome_vfs_mime_sniff_buffer_get):
+	Fix mime sniffing being broken for small file, due to change in
+	EOF behaviour in 2005-09-07 change.
+
 2005-09-29  Tor Lillqvist  <tml@novell.com>
 
 	* libgnomevfs/gnome-vfs-configuration.c
