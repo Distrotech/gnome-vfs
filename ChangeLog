@@ -1,5 +1,12 @@
 2005-10-03  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Bump version to 2.13.1. Further 2.12.x work is on gnome-2-12 branch.
+
+=== gnome-vfs 2.12.1 ===
+	
+2005-10-03  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS:
 	Update for 2.12.1.
 
