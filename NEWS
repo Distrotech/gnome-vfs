@@ -1,3 +1,8 @@
+gnome-vfs 2.12.1
+	* Fix gnome_vfs_uri_resolve_all_symlinks in some cases
+	* win32 fixes
+	* add gobject-2.0 dependency to .pc file
+	
 gnome-vfs 2.12
 	* Fix problem with trash dissapearing on some volumes when
 	  using HAL.
