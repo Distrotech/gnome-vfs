@@ -1,3 +1,9 @@
+2005-10-05  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in: 
+	* NEWS:
+	Make 2.12.1.1 release with samba fix.
+
 2005-10-05  Edward Hervey  <edward@fluendo.com>
 
 	* configure.in: (HAVE_SAMBA_OLD_CLOSE):

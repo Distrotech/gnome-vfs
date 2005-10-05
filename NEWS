@@ -1,3 +1,6 @@
+gnome-vfs 2.12.1.1
+	* build with samba 3.0.20
+	
 gnome-vfs 2.12.1
 	* Fix gnome_vfs_uri_resolve_all_symlinks in some cases
 	* win32 fixes
