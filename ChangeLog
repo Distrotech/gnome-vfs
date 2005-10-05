@@ -1,3 +1,10 @@
+2005-10-05  Edward Hervey  <edward@fluendo.com>
+
+	* configure.in: (HAVE_SAMBA_OLD_CLOSE):
+	* modules/smb-method.c:
+	Added correct handling of the renaming of the close function pointer in samba's
+	libsmbclient.h (close --> close_fn)
+
 2005-10-03  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

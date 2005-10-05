@@ -1486,7 +1486,11 @@ do_close (GnomeVFSMethod *method,
 
 		/* Important: perform_authentication leaves and re-enters the lock! */
 		while (perform_authentication (&actx) > 0) {
+#ifdef HAVE_SAMBA_OLD_CLOSE
 			r = smb_context->close (smb_context, handle->file);
+#else
+			r = smb_context->close_fn (smb_context, handle->file);
+#endif
 			actx.res = (r >= 0) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 		}
 
