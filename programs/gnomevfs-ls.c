@@ -23,10 +23,8 @@
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-char *directory;
-
-static void show_data (gpointer item, gpointer no_item);
-static void list (void);
+static void show_data (gpointer item, const char *directory);
+static void list (const char *directory);
 
 static const gchar *
 type_to_string (GnomeVFSFileType type)
@@ -54,7 +52,7 @@ type_to_string (GnomeVFSFileType type)
 }
 
 static void
-show_data (gpointer item, gpointer no_item)
+show_data (gpointer item, const char *directory)
 {
 	GnomeVFSFileInfo *info;
 	char *path;
@@ -78,7 +76,7 @@ show_data (gpointer item, gpointer no_item)
 }
 
 void
-list (void)
+list (const char *directory)
 {
 	GnomeVFSResult result;
 	GnomeVFSFileInfo *info;
@@ -97,7 +95,7 @@ list (void)
 
 	info = gnome_vfs_file_info_new ();
 	while ((result = gnome_vfs_directory_read_next (handle, info)) == GNOME_VFS_OK) {
-		show_data ((gpointer) info, NULL);
+		show_data ((gpointer) info, directory);
 	}
 
 	gnome_vfs_file_info_unref (info);
@@ -106,6 +104,8 @@ list (void)
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}
+
+	gnome_vfs_directory_close (handle);
 }
 
 int
@@ -117,16 +117,20 @@ main (int argc, char *argv[])
 	gnome_vfs_init ();
 
 	if (argc > 1) {
-		directory = argv[1];
+		int i;
+
+		for (i = 1; i < argc; i++) {
+			list (argv[i]);
+		}
 	} else {
-		char *tmp;
+		char *tmp, *directory;
 
 		tmp = g_get_current_dir ();
 		directory = gnome_vfs_escape_path_string (tmp);
+		list (directory);
 		g_free (tmp);
+		g_free (directory);
 	}
-
-	list ();
 
 	gnome_vfs_shutdown ();
 	return 0;
