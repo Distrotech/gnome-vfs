@@ -115,6 +115,7 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 			    GnomeVFSContext *context)
 {
 	GnomeVFSFileSize dummy_bytes_read;
+	GnomeVFSResult res;
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
@@ -129,9 +130,14 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 		*bytes_read = 0;
 		return GNOME_VFS_OK;
 	}
-	
-	return _gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_read,
+
+	res = _gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_read,
 					 context);
+	if (res != GNOME_VFS_OK) {
+		*bytes_read = 0;
+	}
+
+	return res;
 }
 
 GnomeVFSResult

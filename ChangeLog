@@ -1,3 +1,13 @@
+2005-10-11  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_read_cancellable): Make sure bytes_read is set to 0 when
+	the read returns an error (fixes possible problems using gnomevfs-cat
+	with methods that don't set *bytes_read to 0 when an error
+	occurs)
+
 2005-10-12  Bastien Nocera  <hadess@hadess.net>
 
 	reviewed by: Alexander Larsson  <alexl@redhat.com>
