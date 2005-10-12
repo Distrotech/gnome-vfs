@@ -1,3 +1,11 @@
+2005-10-12  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* programs/gnomevfs-ls.c: (show_data), (list), (main):
+	Add the ability to list more than one directory, really
+	test dir_close()
+
 2005-10-05  Edward Hervey  <edward@fluendo.com>
 
 	* configure.in: (HAVE_SAMBA_OLD_CLOSE):

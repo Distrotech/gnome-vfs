@@ -1,6 +1,6 @@
 /* gnomevfs-ls.c - Test for open_dir(), read_dir() and close_dir() for gnome-vfs
 
-   Copyright (C) 2003, Red Hat
+   Copyright (C) 2003, 2005, Red Hat
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -23,10 +23,8 @@
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-static char *directory = NULL;
-
-static void show_data (gpointer item, gpointer no_item);
-static void list (void);
+static void show_data (gpointer item, const char *directory);
+static void list (const char *directory);
 
 static const gchar *
 type_to_string (GnomeVFSFileType type)
@@ -54,7 +52,7 @@ type_to_string (GnomeVFSFileType type)
 }
 
 static void
-show_data (gpointer item, gpointer no_item)
+show_data (gpointer item, const char *directory)
 {
 	GnomeVFSFileInfo *info;
 	char *path;
@@ -78,7 +76,7 @@ show_data (gpointer item, gpointer no_item)
 }
 
 void
-list (void)
+list (const char *directory)
 {
 	GnomeVFSResult result;
 	GnomeVFSFileInfo *info;
@@ -96,7 +94,7 @@ list (void)
 
 	info = gnome_vfs_file_info_new ();
 	while ((result = gnome_vfs_directory_read_next (handle, info)) == GNOME_VFS_OK) {
-		show_data ((gpointer) info, NULL);
+		show_data ((gpointer) info, directory);
 	}
 
 	gnome_vfs_file_info_unref (info);
@@ -109,10 +107,9 @@ list (void)
 	result = gnome_vfs_directory_close (handle);
 
 	if ((result != GNOME_VFS_OK) && (result != GNOME_VFS_ERROR_EOF)) {
-		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
+		g_print ("Error closing: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}
-
 }
 
 int
@@ -124,19 +121,24 @@ main (int argc, char *argv[])
 	gnome_vfs_init ();
 
 	if (argc > 1) {
-		directory = gnome_vfs_make_uri_from_shell_arg (argv[1]);
+		int i;
+
+		for (i = 1; i < argc; i++) {
+			char *directory;
+			directory = gnome_vfs_make_uri_from_shell_arg (argv[i]);
+			list (directory);
+			g_free (directory);
+		}
 	} else {
-		char *tmp;
+		char *tmp, *directory;
 
 		tmp = g_get_current_dir ();
 		directory = gnome_vfs_escape_path_string (tmp);
+		list (directory);
 		g_free (tmp);
+		g_free (directory);
 	}
 
-	list ();
-	
-	g_free (directory);
-	
 	gnome_vfs_shutdown ();
 	return 0;
 }
