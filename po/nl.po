@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-22 21:41+0200\n"
+"POT-Creation-Date: 2005-10-15 12:33+0200\n"
 "PO-Revision-Date: 2005-09-23 01:42+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -33,33 +33,33 @@ msgstr "Kan gnome-vfs niet starten"
 msgid "ISO 9660 Volume"
 msgstr "ISO-9660 volumen"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d bevat NUL-tekens."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d bevat geen methodenaam."
 
 # eindmarkering/eindemarkering
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d bevat geen eindemarkering voor opties."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d heeft onbekende opties %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d bevat geen modulenaam."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:366
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Configuratiebestand '%s' is niet gevonden: %s"
@@ -971,7 +971,9 @@ msgid ""
 msgstr ""
 "Dit gebeurt wanneer u zich voor de eerste keer bij een computer aanmeldt.\n"
 "\n"
-"De identiteit die door de computer op afstand is verzonden is %s. Indien u absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact op met de systeembeheerder."
+"De identiteit die door de computer op afstand is verzonden is %s. Indien u "
+"absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact "
+"op met de systeembeheerder."
 
 #: ../modules/sftp-method.c:1323
 msgid "Log In Anyway"
@@ -1139,67 +1141,89 @@ msgstr "Het programma dat \"trash\" URL's afhandelt"
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"aim\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"aim\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Waar indine de opdracht aangegeven in de sleutel: \"command\", \"callto\"-URL's dient af te handelen."
+msgstr ""
+"Waar indine de opdracht aangegeven in de sleutel: \"command\", \"callto\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"ghelp\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"ghelp\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"h323\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"h323\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\" \"http\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\" \"http\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"https\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"https\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"info\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"info\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"mailto\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"mailto\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"man\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"man\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"trash\"-URL's dient af te handelen."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"trash\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Waar indien de opdracht om dit type URL af te handelen in een terminalvenster gestart dient te worden."
+msgstr ""
+"Waar indien de opdracht om dit type URL af te handelen in een "
+"terminalvenster gestart dient te worden."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1245,7 +1269,9 @@ msgstr "Of de aangegeven opdracht \"trash\"-URL's dient af te handelen."
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Een door komma's gescheiden lijst met DNS-SD domeinen die zichtbaar behoren te zijn in de locatie \"netwerk:///\"."
+msgstr ""
+"Een door komma's gescheiden lijst met DNS-SD domeinen die zichtbaar behoren "
+"te zijn in de locatie \"netwerk:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1389,7 +1415,9 @@ msgstr ""
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/socks_host\""
+msgstr ""
+"De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/"
+"system/proxy/socks_host\""
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1397,7 +1425,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Deze sleutel bevat een lijst van computers die direct benaderd dienen te worden in plaats van via de proxy. De waardes kunnen computernamen zijn, of domeinen (met jokertekens zoals: *.bla.com), IP-adressen (zowel IPv4 als IPv6) of netwerkadressen met netmasker zoals 192.168.0.0/24."
+msgstr ""
+"Deze sleutel bevat een lijst van computers die direct benaderd dienen te "
+"worden in plaats van via de proxy. De waardes kunnen computernamen zijn, of "
+"domeinen (met jokertekens zoals: *.bla.com), IP-adressen (zowel IPv4 als "
+"IPv6) of netwerkadressen met netmasker zoals 192.168.0.0/24."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1420,7 +1452,10 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "De werkgroep of het domein van het Windows-netwerk waar de gebruiker deel van is. Om de nieuwe werkgroep volledig effectief te laten zijn moet u mogelijkerwijs een keer uitloggen en opnieuw aanmelden."
+msgstr ""
+"De werkgroep of het domein van het Windows-netwerk waar de gebruiker deel "
+"van is. Om de nieuwe werkgroep volledig effectief te laten zijn moet u "
+"mogelijkerwijs een keer uitloggen en opnieuw aanmelden."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
