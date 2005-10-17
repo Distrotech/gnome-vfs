@@ -1,3 +1,10 @@
+2005-10-17  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(_gnome_vfs_uri_resolve_all_symlinks_uri):
+	Correctly resolve nested symlinks without accessing invalid memory.
+	Fixes #318457.
+
 2005-10-05  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
