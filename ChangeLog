@@ -1,3 +1,9 @@
+2005-10-17  Alexander Larsson  <alexl@redhat.com>
+
+	* test/Makefile.am:
+	* test/test-parse-ls-lga.c:
+	Add ls parser test from #163671
+
 2005-10-11  Bastien Nocera  <hadess@hadess.net>
 
 	reviewed by: Alexander Larsson  <alexl@redhat.com>

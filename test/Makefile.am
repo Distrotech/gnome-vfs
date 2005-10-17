@@ -31,6 +31,7 @@ noinst_PROGRAMS =				\
 	test-mime-info-cache			\
 	test-mime-handlers-set			\
 	test-monitor				\
+	test-parse-ls-lga			\
 	test-performance			\
 	test-seek				\
 	test-shell				\
@@ -71,6 +72,9 @@ test_async_LDADD = $(libraries)
 
 test_performance_SOURCES = test-performance.c
 test_performance_LDADD = $(libraries)
+
+test_parse_ls_lga_SOURCES = test-parse-ls-lga.c
+test_parse_ls_lga_LDADD = $(libraries)
 
 #test_resolv_SOURCES = test-resolv.c
 #test_resolv_LDADD = $(libraries)
