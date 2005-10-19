@@ -1,3 +1,8 @@
+005-10-19  Matthias Clasen  <mclasen@redhat.com>
+
+	* libgnomevfs/xdg*.[hc]: Sync to upstream to fix
+	handling of the mime cache.
+
 2005-10-17  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-utils.c:
