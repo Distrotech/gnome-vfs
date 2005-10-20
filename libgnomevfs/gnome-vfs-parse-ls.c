@@ -360,16 +360,35 @@ vfs_parse_filemode (const char *p)
 	return res;
 }
 
+static gboolean
+is_last_column (int idx,
+		int num_cols,
+		const char *carbon,
+		int column_ptr[])
+{
+	const char *p;
+
+	if (idx + 1 == num_cols) {
+		return TRUE;
+	}
+
+	p = carbon + column_ptr[idx + 1] - 1;
+	return *p == '\r' || *p == '\n';
+}
+
 static int
 vfs_parse_filedate (int idx,
 		    char *columns[],
+		    int num_cols,
+		    const char *carbon,
+		    int column_ptr[],
 		    time_t *t)
 {	/* This thing parses from idx in columns[] array */
 
 	char *p;
 	struct tm tim;
 	int d[3];
-	int	got_year = 0;
+	int got_year = 0, got_time = 0;
 	int current_mon;
 	time_t now;
     
@@ -439,14 +458,20 @@ vfs_parse_filedate (int idx,
 	}
 
 	/* Here we expect to find time and/or year */
-    
+
 	if (is_num (columns[idx])) {
-		if (is_time (columns[idx], &tim) || (got_year = is_year (columns[idx], &tim))) {
+		if ((got_time = is_time (columns[idx], &tim)) ||
+		    (got_year = is_year (columns[idx], &tim))) {
 			idx++;
 
 			/* This is a special case for ctime () or Mon DD YYYY hh:mm */
 			if (is_num (columns[idx]) && 
-			   ((got_year = is_year (columns[idx], &tim)) || is_time (columns[idx], &tim)))
+			    !is_last_column (idx, num_cols, carbon, column_ptr) && /* ensure that we don't eat two lines at once,
+										      where the first line provides a year-like
+										      filename but no year, or a time-like filename
+										      but no time */
+			    ((!got_year && (got_year = is_year (columns[idx], &tim))) ||
+			     (!got_time && (got_time = is_time (columns[idx], &tim)))))
 				idx++; /* time & year or reverse */
 		} /* only time or date */
 	}
@@ -489,6 +514,7 @@ gnome_vfs_parse_ls_lga (const char *p,
 		return 0;
 
 	p_copy = g_strdup (p);
+
 	if ((i = vfs_parse_filetype (*(p++))) == -1)
 		goto error;
 
@@ -592,7 +618,7 @@ gnome_vfs_parse_ls_lga (const char *p,
 #endif
 	}
 
-	idx = vfs_parse_filedate (idx, columns, &s->st_mtime);
+	idx = vfs_parse_filedate (idx, columns, num_cols, p, column_ptr, &s->st_mtime);
 	if (!idx)
 		goto error;
 	/* Use resulting time value */
