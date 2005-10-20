@@ -922,13 +922,14 @@ prefill_authentication (SmbAuthContext *actx)
 }
 
 static gboolean
-prompt_authentication (SmbAuthContext *actx)
+prompt_authentication (SmbAuthContext *actx,
+		       gboolean       *cancelled)
 {
 	/* IMPORTANT: We are NOT in the lock at this point */
 
 	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
 	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
-	gboolean invoked, cancelled = FALSE;
+	gboolean invoked;
 	
 	g_return_val_if_fail (actx != NULL, FALSE);
 	g_return_val_if_fail (actx->for_server != NULL, FALSE);
@@ -961,7 +962,6 @@ prompt_authentication (SmbAuthContext *actx)
 		 &out_args, sizeof (out_args));
 
 	if (invoked) {
-		cancelled = out_args.abort_auth;
                 if (in_args.flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME) {
                      g_free (actx->use_user);
                        actx->use_user = string_dup_nzero (out_args.username);
@@ -977,7 +977,9 @@ prompt_authentication (SmbAuthContext *actx)
 		actx->keyring = actx->save_auth && out_args.keyring ? g_strdup (out_args.keyring) : NULL;
 		DEBUG_SMB(("[auth] Prompted credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
 	} 
-	
+
+	*cancelled = out_args.abort_auth;
+
 	actx->state |= SMB_AUTH_STATE_PROMPTED;
 
 	g_free (out_args.username);
@@ -987,7 +989,7 @@ prompt_authentication (SmbAuthContext *actx)
 
 	g_free (in_args.uri);
 
-	return invoked && !cancelled;
+	return invoked && !*cancelled;
 }
 
 static void
@@ -1125,7 +1127,7 @@ init_authentication (SmbAuthContext *actx, GnomeVFSURI *uri)
 static int
 perform_authentication (SmbAuthContext *actx)
 {
-	gboolean cont, auth_failed = FALSE;
+	gboolean cont, auth_failed = FALSE, auth_cancelled = FALSE;
 	int ret = -1;
 	
 	/* IMPORTANT: We are IN the lock at this point */
@@ -1203,7 +1205,7 @@ perform_authentication (SmbAuthContext *actx)
 				}
 				
 				if (!cont)
-					cont = prompt_authentication (actx);
+					cont = prompt_authentication (actx, &auth_cancelled);
 				
 			LOCK_SMB();
 			
@@ -1214,9 +1216,16 @@ perform_authentication (SmbAuthContext *actx)
 			if (cont)
 				ret = 1;
 			else {
-				/* Note that we leave actx->res set to whatever it was set to */
-				DEBUG_SMB(("[auth] Authentication cancelled by user.\n"));
 				ret = -1;
+
+				if (auth_cancelled) {
+					DEBUG_SMB(("[auth] Authentication cancelled by user.\n"));
+					actx->res = GNOME_VFS_ERROR_CANCELLED;
+				} else {
+					DEBUG_SMB(("[auth] Authentication failed with result %s.\n",
+						  gnome_vfs_result_to_string (actx->res)));
+					/* Note that we leave actx->res set to whatever it was set to */
+				}
 			}
 					
 		/* Weird, don't want authentication, but failed */

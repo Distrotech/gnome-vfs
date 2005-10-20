@@ -1,5 +1,16 @@
 2005-10-20  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c:
+	(query_user_for_authn_info), (ftp_connection_create):
+	* modules/sftp-method.c:
+	(invoke_full_auth), (sftp_connect):
+	* modules/smb-method.c:
+	(prompt_authentication), (perform_authentication):
+	Correctly return GNOME_VFS_ERROR_CANCELLED if an authentication was
+	cancelled.
+
+2005-10-20  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-parse-ls.c:
 	(is_last_column), (vfs_parse_filedate):
 	(gnome_vfs_parse_ls_lga):

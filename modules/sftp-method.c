@@ -927,7 +927,8 @@ invoke_full_auth (const GnomeVFSURI *uri,
 		  char **user_out,
 		  char **object_out,
 		  char **authtype_out,
-		  gboolean *save_password_out)
+		  gboolean *save_password_out,
+		  gboolean *abort_auth_out)
 {
 	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
 	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
@@ -969,6 +970,8 @@ invoke_full_auth (const GnomeVFSURI *uri,
 	} else {
 		*password_out = NULL;
 	}
+
+	*abort_auth_out = out_args.abort_auth;
 
 	g_free (in_args.uri);
 	g_free (in_args.username);
@@ -1208,6 +1211,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		char *endpos;
 		char *hostname = NULL;
 		char *fingerprint = NULL;
+		gboolean aborted;
 
 		if (client_vendor == SFTP_VENDOR_SSH) {
 			prompt_fd = err_fd;
@@ -1255,11 +1259,14 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
 				} else if (invoke_full_auth (uri, done_auth, buffer, &password, &keyring, 
-							     &user, &object, &authtype, &save_password) && password != NULL) {
+							     &user, &object, &authtype, &save_password, &aborted) && password != NULL) {
 					full_auth = TRUE;
 					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
+				} else if (aborted) {
+					res = GNOME_VFS_ERROR_CANCELLED;
+					goto bail;
 				} else {
 					res = GNOME_VFS_ERROR_ACCESS_DENIED;
 					goto bail;
