@@ -3,7 +3,7 @@
 	* libgnomevfs/gnome-vfs-parse-ls.c:
 	(is_last_column), (vfs_parse_filedate):
 	(gnome_vfs_parse_ls_lga):
-	Improve parsing of directories which have names that match dates,
+	Improve parsing of files which have names that match dates,
 	years or times of day. Fixes #163671.
 
 2005-10-19  Matthias Clasen  <mclasen@redhat.com>
