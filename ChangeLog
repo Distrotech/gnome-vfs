@@ -1,3 +1,12 @@
+2005-10-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	reviewed by: Christian Kellner
+
+	* doc/gnome-vfs-2.0-sections.txt,
+	* libgnomevfs/gnome-vfs-ops.c,
+	* libgnomevfs/gnome-vfs-ops.h: add gnome_vfs_exists as the text uri
+	pendant to gnome_vfs_uri_exists
+
 2005-10-20  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-info.c: (main): Add command line options to force
