@@ -1,3 +1,8 @@
+2005-10-20  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-info.c: (main): Add command line options to force
+	slow mime type detection and the following of symlinks.
+
 2005-10-19  Matthias Clasen  <mclasen@redhat.com>
 
 	* libgnomevfs/xdg*.[hc]: Sync to upstream to fix

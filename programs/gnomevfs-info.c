@@ -20,8 +20,14 @@
    Author: Bastien Nocera <hadess@hadess.net>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
+
+#include <glib.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -134,14 +140,34 @@ show_file_info (GnomeVFSFileInfo *info, const char *uri)
 #undef FLAG_STRING
 }
 
+static gboolean slow_mime = FALSE;
+static gboolean follow_links = TRUE;
+
+static GOptionEntry entries[] = 
+{
+	{ "slow-mime", 's', 0, G_OPTION_ARG_NONE, &slow_mime, "force slow MIME type detection where available (sniffing, algorithmic detection, etc)", NULL },
+	{ "no-follow", 'n', G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &follow_links, "do not automatically follow symbolic links and retrieve the properties of their target", NULL },
+	{ NULL }
+};
+
+
+
 int
 main (int argc, char **argv)
 {
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult res;
+	GnomeVFSFileInfoOptions options;
 	char *text_uri;
+	GError *error;
+	GOptionContext *context;
 	
-	if (argc != 2) {
+	error = NULL;
+	context = g_option_context_new ("- get file info from uri");
+  	g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+  	g_option_context_parse (context, &argc, &argv, &error);
+	
+	if (argc != 2 || error != NULL) {
 		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
 		return 1;
 	}
@@ -154,16 +180,29 @@ main (int argc, char **argv)
 	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 	
 	info = gnome_vfs_file_info_new ();
-	res = gnome_vfs_get_file_info (text_uri, info,
-			(GNOME_VFS_FILE_INFO_GET_MIME_TYPE
-			 | GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
-			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
+	
+	options = GNOME_VFS_FILE_INFO_GET_MIME_TYPE | 
+		  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS;
+
+	if (slow_mime) {
+		options |= GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE;
+	} else {
+		options |= GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE;
+	}
+
+	if (follow_links) {
+		options |= GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
+	}
+	
+	res = gnome_vfs_get_file_info (text_uri, info, options);
+	
 	if (res == GNOME_VFS_OK) {
 		show_file_info (info, text_uri);
 	} else {
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (res));
 	}
-	
+
+	g_option_context_free (context);
 	gnome_vfs_file_info_unref (info);
 	g_free (text_uri);
 	
