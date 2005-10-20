@@ -13,6 +13,7 @@ test-dns-sd
 test-escape
 test-find-directory
 test-info
+test-long-cancel
 test-mime
 test-mime-handlers
 test-mime-handlers-set

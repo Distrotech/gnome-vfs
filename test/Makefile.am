@@ -26,6 +26,7 @@ noinst_PROGRAMS =				\
 	test-escape				\
 	test-find-directory			\
 	test-info				\
+	test-long-cancel			\
 	test-mime				\
 	test-mime-handlers			\
 	test-mime-info-cache			\
@@ -96,6 +97,9 @@ test_shell_LDADD = $(libraries)
 
 test_info_SOURCES = test-info.c
 test_info_LDADD = $(libraries)
+
+test_long_cancel_SOURCES = test-long-cancel.c
+test_long_cancel_LDADD = $(libraries)
 
 test_mime_SOURCES = test-mime.c
 test_mime_LDADD = $(libraries)

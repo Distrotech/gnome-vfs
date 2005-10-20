@@ -1,3 +1,11 @@
+2005-10-20  Alexander Larsson  <alexl@redhat.com>
+
+	* test/.cvsignore:
+	* test/Makefile.am:
+	* test/test-long-cancel.c:
+	Add a cancellation test for http.
+	This shows a problem in the patch in bug #123472
+
 2005-10-20  Sven Herzberg  <herzi@gnome-de.org>
 
 	reviewed by: Christian Kellner
