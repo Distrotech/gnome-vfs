@@ -1250,7 +1250,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 	gboolean got_connection;
 	gboolean ret;
 	gboolean connection_failed;
-	gboolean aborted;
+	gboolean aborted = FALSE;
 	
 	cancellation = get_cancellation (context);
 	
