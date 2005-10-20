@@ -809,7 +809,8 @@ save_authn_info (GnomeVFSURI *uri,
 
 static gboolean
 query_user_for_authn_info (GnomeVFSURI *uri, 
-			   char **user, char **pass, char **keyring, gboolean *save,
+			   char **user, char **pass, char **keyring,
+			   gboolean *save, gboolean *aborted,
 			   gboolean no_username)
 {
 	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
@@ -850,10 +851,10 @@ query_user_for_authn_info (GnomeVFSURI *uri,
 		*pass = g_strdup ("nobody@gnome.org");
                 goto error;
         }
-	
-        ret = !out_args.abort_auth;
-	
-        if (!ret) {
+
+	*aborted = out_args.abort_auth;
+
+	if (out_args.abort_auth) {
                 goto error;
         }
 	
@@ -882,8 +883,8 @@ query_user_for_authn_info (GnomeVFSURI *uri,
        	g_free (out_args.domain);
        	g_free (out_args.password);
        	g_free (out_args.keyring);
-	
-	return ret;
+
+	return ret && !out_args.abort_auth;
 } 
 
 static gboolean
@@ -1249,6 +1250,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 	gboolean got_connection;
 	gboolean ret;
 	gboolean connection_failed;
+	gboolean aborted;
 	
 	cancellation = get_cancellation (context);
 	
@@ -1320,7 +1322,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 				pool->num_connections++;
 				G_UNLOCK (connection_pools);
 				ret = query_user_for_authn_info (uri, &user, &pass, &keyring, &save_authn, 
-								 !uri_has_username); 
+								 &aborted, !uri_has_username); 
 				G_LOCK (connection_pools);
 				pool->num_connections--;
 				if (!ret) {
@@ -1330,7 +1332,12 @@ ftp_connection_create (FtpConnectionPool *pool,
 					g_free (user);
 					g_free (pass);
 					g_free (keyring);
-                                	return GNOME_VFS_ERROR_LOGIN_FAILED;
+
+					if (aborted) {
+						return GNOME_VFS_ERROR_CANCELLED;
+					} else {
+						return GNOME_VFS_ERROR_LOGIN_FAILED;
+					}
 				}
 				g_string_free (conn->response_buffer, TRUE);
                         	conn->response_buffer = g_string_new ("");
