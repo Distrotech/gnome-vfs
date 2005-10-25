@@ -50,7 +50,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "ל-%s:%d יש אפשרות לא ידועה %s"
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -175,9 +175,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "כרך Pcfs סולאריס"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "כרך AFFS"
+msgstr "כרך Sun SAM-QF"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -204,9 +203,9 @@ msgid "Unknown"
 msgstr "לא ידוע"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "סוג op לא ידוע %u"
+msgstr "סוג פעולה לא ידוע %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -249,6 +248,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -327,7 +328,7 @@ msgstr "מערכת קבצים לקריאה בלבד"
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "כתובת לא תקנית"
+msgstr "כתובת לא תקינה"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -417,7 +418,7 @@ msgstr "התחברות נכשלה"
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
-msgstr "הפעולה התבטלה"
+msgstr "הפעולה בוטלה"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -492,23 +493,22 @@ msgstr "שגיאה בהפעלת פקודה"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "פרק זמן מקסימאלי עבר"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "שגיאה כללית"
+msgstr "שגיאת שרת שמות"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "המשאב נעול"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Function call deprecated"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -524,17 +524,20 @@ msgstr[1] "%u בתים"
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
-msgstr "%.1f KB"
+msgstr ""
+"‏%.1f קילו-בתים"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
-msgstr "MB %.1f"
+msgstr ""
+"‏%.1f מגה-בתים"
 
 #: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
-msgstr "GB %.1f"
+msgstr ""
+"‏%.1f ג'יגה-בתים"
 
 #: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
@@ -549,110 +552,101 @@ msgstr "תקליטון"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:610
 msgid "CD-ROM"
-msgstr "תקליטור"
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
-#, fuzzy
 msgid "CD-R"
-msgstr "תקליטור"
+msgstr "CD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
-#, fuzzy
 msgid "CD-RW"
-msgstr "תקליטור"
+msgstr "CD-RW"
+
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "תקליטור"
+msgstr "DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
-#, fuzzy
+
 msgid "DVD-RAM"
-msgstr "כונן תקליטורים"
+msgstr "DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
 msgid "DVD-R"
-msgstr ""
+msgstr "DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
 msgid "DVD-RW"
-msgstr ""
+msgstr "DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "תקליטור"
+msgstr "CD-ROM/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "תקליטור"
+msgstr "CD-ROM/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "תקליטור"
+msgstr "CD-ROM/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "תקליטור"
+msgstr "CD-ROM/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "תקליטור"
+msgstr "CD-R/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-R/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-R/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-R/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "תקליטור"
+msgstr "CD-RW/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RW/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RW/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RW/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
-msgstr ""
+msgstr "כונן"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
-#, fuzzy
 msgid "USB Drive"
-msgstr "כונן Zip"
+msgstr "כונן USB"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "כונן IEEE1394"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "SD/MMC"
-msgstr ""
+msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
@@ -660,9 +654,8 @@ msgid "Memory Stick"
 msgstr "מקל זיכרון"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "Smart Media"
-msgstr "מקל זיכרון"
+msgstr "מדיה חכמה"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
@@ -675,7 +668,7 @@ msgstr "מצלמה"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
 msgid "Root Volume"
@@ -766,7 +759,7 @@ msgstr "רשת חלונות"
 #: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "זהות המחשב המרוחק (%s) לא ידועה."
 
 #: modules/sftp-method.c:1339
 #, c-format
@@ -779,11 +772,11 @@ msgstr ""
 
 #: modules/sftp-method.c:1347
 msgid "Log In Anyway"
-msgstr ""
+msgstr "התחבר"
 
 #: modules/sftp-method.c:1348
 msgid "Cancel Login"
-msgstr ""
+msgstr "בטל התחברות"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -843,9 +836,8 @@ msgid "The exec argument to use for the default terminal application."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "הפעל תוכנית במסוף"
+msgstr "הפעל את הפקודה במסוף"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
