@@ -2124,7 +2124,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		}
 		
 		return GNOME_VFS_ERROR_HOST_NOT_FOUND;
-#elif definded (HAVE_HOWL)
+#elif defined (HAVE_HOWL)
 		sw_discovery session;
 		sw_salt salt;
 		sw_result res;
