@@ -1,5 +1,10 @@
 2005-10-25  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/Makefile.am: 
+	Add Avahi cflags/libs to dns-sd module
+
+2005-10-25  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* libgnomevfs/gnome-vfs-dns-sd.c:
 	* modules/dns-sd-method.c:

@@ -7,6 +7,7 @@ INCLUDES =					\
 	$(MODULES_XML_GCONF_CFLAGS)		\
 	$(MODULES_FILE_CFLAGS) 			\
 	$(HOWL_CFLAGS)				\
+	$(AVAHI_CFLAGS)				\
 	$(LIBEFS_CFLAGS)			\
 	$(SAMBA_CFLAGS)				\
 	$(GSSAPI_CFLAGS)			\
@@ -103,7 +104,7 @@ libcomputer_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libdns_sd_la_SOURCES = dns-sd-method.c
 libdns_sd_la_LDFLAGS = $(module_flags)
-libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) ../libgnomevfs/libgnomevfs-2.la
+libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) $(AVAHI_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `file' method
 
