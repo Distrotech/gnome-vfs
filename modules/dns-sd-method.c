@@ -29,6 +29,13 @@
 #include <time.h>
 #include <sys/time.h>
 
+#ifdef HAVE_AVAHI
+#include <avahi-client/client.h>
+#include <avahi-common/error.h>
+#include <avahi-common/simple-watch.h>
+#include <avahi-glib/glib-watch.h>
+#endif 
+
 #ifdef HAVE_HOWL
 /* Need to work around howl exporting its config file... */
 #undef PACKAGE
@@ -61,12 +68,12 @@ static struct {
 	{"_sftp-ssh._tcp", "sftp", "gnome-fs-ssh"},
 };
 
-#ifdef HAVE_HOWL
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 G_LOCK_DEFINE_STATIC (local);
 static gboolean started_local = FALSE;
 static GList *local_files = NULL;
 static GList *local_monitors = NULL;
-#endif /* HAVE_HOWL */
+#endif /* HAVE_HOWL || HAVE_AVAHI */
 
 typedef struct {
 	char *data;
@@ -216,8 +223,7 @@ encode_filename (const char *service,
 	return g_string_free (string, FALSE);
 }
 
-#ifdef HAVE_HOWL
-
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 static void
 call_monitors (gboolean add, char *filename)
 {
@@ -239,7 +245,6 @@ call_monitors (gboolean add, char *filename)
 	}
 	gnome_vfs_uri_unref (info_uri);
 }
-
 
 static void
 local_browse (gboolean add,
@@ -291,6 +296,137 @@ local_browse (gboolean add,
 	}
 }
 
+static void
+local_browse_callback (GnomeVFSDNSSDBrowseHandle *handle,
+		       GnomeVFSDNSSDServiceStatus status,
+		       const GnomeVFSDNSSDService *service,
+		       gpointer callback_data)
+{
+	G_LOCK (local);
+
+	local_browse (status == GNOME_VFS_DNS_SD_SERVICE_ADDED,
+		      service->name, service->type, service->domain);
+	
+	G_UNLOCK (local);
+}
+#endif /* HAVE_HOWL || HAVE_AVAHI */
+
+
+#ifdef HAVE_AVAHI
+static void
+avahi_client_callback (AvahiClient *client, AvahiClientState state, void *user_data)
+{
+	AvahiSimplePoll *poll;
+
+	poll = user_data;
+	if (state == AVAHI_CLIENT_DISCONNECTED) {
+		avahi_simple_poll_quit (poll);
+	}
+}
+
+static void 
+local_browse_callback_sync (AvahiServiceBrowser *b,
+			    AvahiIfIndex interface,
+			    AvahiProtocol protocol,
+			    AvahiBrowserEvent event,
+			    const char *name,
+			    const char *type,
+			    const char *domain,
+			    void *user_data)
+{
+	if (event == AVAHI_BROWSER_NEW)
+		local_browse (TRUE, name, type, domain);
+	else if (event == AVAHI_BROWSER_REMOVE)
+		local_browse (FALSE, name, type, domain);
+}
+
+static void
+stop_poll_timeout (AvahiTimeout *timeout, void *user_data)
+{
+	AvahiSimplePoll *poll = user_data;
+	
+	avahi_simple_poll_quit (poll);
+}
+
+
+static void
+init_local (void)
+{
+	int i;
+	GnomeVFSResult res;
+	
+	if (!started_local) {
+		AvahiSimplePoll *simple_poll;
+		const AvahiPoll *poll;
+		AvahiClient *client = NULL;
+		AvahiServiceBrowser **sb;
+		struct timeval tv;
+		int error;
+		
+		started_local = TRUE;
+		
+		for (i = 0; i < G_N_ELEMENTS (dns_sd_types); i++) {
+			GnomeVFSDNSSDBrowseHandle *handle;
+			res = gnome_vfs_dns_sd_browse (&handle,
+						       "local",
+						       dns_sd_types[i].type,
+						       local_browse_callback,
+						       NULL, NULL);
+			if (res == GNOME_VFS_OK) {
+				dns_sd_types[i].handle = handle;
+			}
+		}
+
+		simple_poll = avahi_simple_poll_new ();
+		if (simple_poll == NULL) {
+			g_warning ("Failed to create simple poll object");
+			return;
+		}
+
+		poll = avahi_simple_poll_get (simple_poll);
+		client = avahi_client_new (poll, 
+					   avahi_client_callback, simple_poll, &error);
+		
+		/* Check wether creating the client object succeeded */
+		if (client == NULL) {
+			g_warning ("Failed to create client: %s\n", avahi_strerror (error));
+			avahi_simple_poll_free (simple_poll);
+			return;
+		}
+
+		sb = g_new0 (AvahiServiceBrowser *, G_N_ELEMENTS (dns_sd_types));
+
+		for (i = 0; i < G_N_ELEMENTS (dns_sd_types); i++) {
+			sb[i] = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
+							   dns_sd_types[i].type, "local",
+							   local_browse_callback_sync, NULL);
+		}
+		
+
+		avahi_elapse_time (&tv, LOCAL_SYNC_BROWSE_DELAY_MSEC, 0);
+		poll->timeout_new (poll, &tv, stop_poll_timeout,
+				   (void *)simple_poll);
+
+		/* Run the main loop util reply or timeout */
+		for (;;)
+			if (avahi_simple_poll_iterate (simple_poll, -1) != 0)
+				break;
+
+		for (i = 0; i < G_N_ELEMENTS (dns_sd_types); i++) {
+			if (sb[i] != NULL) {
+				avahi_service_browser_free (sb[i]);
+			}
+		}
+		avahi_client_free (client);
+		avahi_simple_poll_free (simple_poll);
+
+					  
+	}
+}
+#endif /* HAVE_AVAHI */
+
+
+#ifdef HAVE_HOWL
 static sw_result
 local_browse_callback_sync (sw_discovery                 discovery,
 			    sw_discovery_oid             id,
@@ -309,19 +445,6 @@ local_browse_callback_sync (sw_discovery                 discovery,
 	return SW_OKAY;
 }
 			    
-static void
-local_browse_callback (GnomeVFSDNSSDBrowseHandle *handle,
-		       GnomeVFSDNSSDServiceStatus status,
-		       const GnomeVFSDNSSDService *service,
-		       gpointer callback_data)
-{
-	G_LOCK (local);
-
-	local_browse (status == GNOME_VFS_DNS_SD_SERVICE_ADDED,
-		      service->name, service->type, service->domain);
-	
-	G_UNLOCK (local);
-}
 
 static void
 init_local (void)
@@ -694,7 +817,7 @@ directory_handle_add_filename (DirectoryHandle *dir_handle, char *file)
 	}
 }
 
-#ifdef HAVE_HOWL
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 static void
 directory_handle_add_filenames (DirectoryHandle *dir_handle, GList *files)
 {
@@ -703,7 +826,7 @@ directory_handle_add_filenames (DirectoryHandle *dir_handle, GList *files)
 		files = files->next;
 	}
 } 
-#endif
+#endif /* HAVE_HOWL || HAVE_AVAHI */
 
 static GnomeVFSResult
 do_open_directory (GnomeVFSMethod *method,
@@ -733,14 +856,14 @@ do_open_directory (GnomeVFSMethod *method,
 	dir_handle = directory_handle_new (options);
 	
 	if (strcmp (domain, "local") == 0) {
-#ifdef HAVE_HOWL
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 		G_LOCK (local);
 		init_local ();
 
 		directory_handle_add_filenames (dir_handle, local_files);
 		
 		G_UNLOCK (local);
-#endif /* HAVE_HOWL */
+#endif /* HAVE_HOWL || HAVE_AVAHI */
 	} else 	{
 		for (i=0; i < G_N_ELEMENTS (dns_sd_types); i++) {
 			int n_services;
@@ -1007,7 +1130,7 @@ do_monitor_add (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
-#ifdef HAVE_HOWL
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 	if (strcmp (uri->text, "") == 0 ||
 	    strcmp (uri->text, "/") == 0) {
 		int *handle;
@@ -1025,7 +1148,7 @@ do_monitor_add (GnomeVFSMethod *method,
 
 		return GNOME_VFS_OK;
 	} else 
-#endif /* HAVE_HOWL */
+#endif /* HAVE_HOWL || HAVE_AVAHI */
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
@@ -1033,7 +1156,7 @@ static GnomeVFSResult
 do_monitor_cancel (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
-#ifdef HAVE_HOWL
+#if defined (HAVE_HOWL) || defined (HAVE_AVAHI)
 	G_LOCK (local);
 	
 	local_monitors = g_list_remove (local_monitors, method_handle);
@@ -1044,7 +1167,7 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
-#endif /* HAVE_HOWL */
+#endif /* HAVE_HOWL || HAVE_AVAHI */
 }
 
 
