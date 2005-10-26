@@ -744,7 +744,6 @@ avahi_client_callback (AvahiClient *client, AvahiClientState state, void *userda
 static AvahiClient *
 get_global_avahi_client (void) {
 	AvahiGLibPoll *glib_poll;
-	const char *version;
 	int error;
 
 	if (!avahi_initialized) {
@@ -760,17 +759,6 @@ get_global_avahi_client (void) {
 			/* Print out the error string */
 			g_warning ("Error initializing Avahi: %s", avahi_strerror (error));
 			avahi_glib_poll_free (glib_poll);
-			return NULL;
-		}
-		/* Make a call to get the version string from the daemon */
-		version = avahi_client_get_version_string (global_client);
-		
-		/* Check if the call suceeded */
-		if (version == NULL) {
-			g_warning ("Error getting version string: %s", avahi_strerror (avahi_client_errno (global_client)));
-			avahi_client_free (global_client);
-			avahi_glib_poll_free (glib_poll);
-			global_client = NULL;
 			return NULL;
 		}
 		avahi_initialized = TRUE;

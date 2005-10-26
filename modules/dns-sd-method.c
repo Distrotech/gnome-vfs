@@ -65,6 +65,7 @@ static struct {
 } dns_sd_types[] = {
 	{"_ftp._tcp", "ftp", "gnome-fs-ftp"},
 	{"_webdav._tcp", "dav", "gnome-fs-share"},
+	{"_webdavs._tcp", "davs", "gnome-fs-share"},
 	{"_sftp-ssh._tcp", "sftp", "gnome-fs-ssh"},
 };
 

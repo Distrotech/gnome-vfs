@@ -1,3 +1,11 @@
+2005-10-26  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	No need to get server version to check for success.
+	
+	* modules/dns-sd-method.c:
+	Also support davs.
+
 2005-10-25  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/Makefile.am: 
