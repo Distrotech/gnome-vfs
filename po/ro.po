@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-14 14:38+0000\n"
-"PO-Revision-Date: 2005-08-14 22:54+0300\n"
+"POT-Creation-Date: 2005-10-23 13:03+0200\n"
+"PO-Revision-Date: 2005-10-23 17:01+0300\n"
 "Last-Translator: Mişu Moldovan <dumol@gnome.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -28,32 +28,32 @@ msgstr "Nu s-a putut iniţializa gnome-vfs"
 msgid "ISO 9660 Volume"
 msgstr "Volum ISO 9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d conţine caractere NUL."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d nu conţine nici un nume de metodă."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d nu are opţiuni „endmarker”."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d are opţiuni necunoscute %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d nu conţine nici un nume de modul."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:366
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Fişierul de configurare „%s” nu a fost găsit: %s"
@@ -206,6 +206,204 @@ msgstr "Volum CIFS"
 msgid "Unknown"
 msgstr "Necunoscut"
 
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#, c-format
+msgid "%s Volume"
+msgstr "Volum %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "Unitate %s/%s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "Unitate %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Unitate dischetă"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Unitate „Compact Flash”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Unitate „Memory Stick”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Unitate „Smart Media”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "Unitate SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Unitate ZIP"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Unitate Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+msgid "Pen Drive"
+msgstr "Unitate Pen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#, c-format
+msgid "%s %s Music Player"
+msgstr "Redare audio %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "Cameră digitală %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+msgid "Drive"
+msgstr "Unitate"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#, c-format
+msgid "External %s"
+msgstr "%s externă"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+msgid "CD-ROM Disc"
+msgstr "Disc CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+msgid "Blank CD-R Disc"
+msgstr "Disc CD-R gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+msgid "CD-R Disc"
+msgstr "Disc CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+msgid "Blank CD-RW Disc"
+msgstr "Disc CD-RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "CD-RW Disc"
+msgstr "Disc CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+msgid "DVD-ROM Disc"
+msgstr "Unitate DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+msgid "Blank DVD-RAM Disc"
+msgstr "Disc DVD-RAM gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+msgid "DVD-RAM Disc"
+msgstr "Disc DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+msgid "Blank DVD-R Disc"
+msgstr "Disc gol DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+msgid "DVD-R Disc"
+msgstr "Disc DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+msgid "Blank DVD-RW Disc"
+msgstr "Disc DVD-RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "DVD-RW Disc"
+msgstr "Disc DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD+R Disc"
+msgstr "Disc DVD+R gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD+R Disc"
+msgstr "Disc DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+msgid "Blank DVD+RW Disc"
+msgstr "Disc DVD+RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "DVD+RW Disc"
+msgstr "Disc DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+msgid "Audio Disc"
+msgstr "Disc audio"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#, c-format
+msgid "%s Removable Volume"
+msgstr "Volum amovibil %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+msgid "Volume"
+msgstr "Volum"
+
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
@@ -242,17 +440,17 @@ msgstr "Operaţie oprită"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -260,12 +458,12 @@ msgstr ""
 "Funcţie ieşită din uz. Modificările personalizate în baza de date MIME nu "
 "mai sunt suportate."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:692
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Nu am putut procesa: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:694
 msgid "More parsing errors will be ignored."
 msgstr "Alte erori de procesare vor fi ignorate."
 
@@ -555,35 +753,6 @@ msgstr " (Unicode invalid"
 msgid "Floppy"
 msgstr "Dischetă"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "CD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "CD-RW"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "DVD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "DVD-RAM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "DVD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "DVD-RW"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
@@ -660,11 +829,6 @@ msgstr "Modul de memorie"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "Smart Media"
 msgstr "Smart Media"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Unitate ZIP"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
@@ -765,12 +929,12 @@ msgstr "GnomeVFSSeekPosition %d necunoscut"
 msgid "Windows Network"
 msgstr "Reţea Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitatea calculatorului la distanţă (%s) nu este cunoscută."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -783,11 +947,11 @@ msgstr ""
 "Identitatea trimisă de calculatorul la distanţă este %s. Dacă doriţi să fiţi "
 "absolut sigur că puteţi continua în siguranţă, contactaţi administratorul."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
 msgstr "Continuă oricum"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1331
 msgid "Cancel Login"
 msgstr "Renunţă"
 
@@ -1241,8 +1405,8 @@ msgid ""
 "and log back in."
 msgstr ""
 "Grupul sau domeniul Windows din care face parte utilizatorul. Pentru a intra "
-"în vigoare setările unui nou workgroup, utilizatorul s-ar putea să trebuiască"
-" să se deautentifice şi apoi să se autentifice din nou."
+"în vigoare setările unui nou workgroup, utilizatorul s-ar putea să "
+"trebuiască să se deautentifice şi apoi să se autentifice din nou."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1306,74 +1470,14 @@ msgstr ""
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "Grupul Windows (workgroup) din care face parte utilizatorul"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Disc CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Disc CD-R gol"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Disc CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Disc CD-RW gol"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Disc CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Unitate DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Disc gol DVD-R"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Disc DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Disc DVD-RAM gol"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Disc DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Disc DVD-RW gol"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Disc DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Disc DVD+RW gol"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Disc DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Disc DVD+R gol"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Disc DVD+R"
-
 #~ msgid "Optical Disc"
 #~ msgstr "Disc optic"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Disc audio"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Mediu „Compact Flash”"
 
 #~ msgid "Memory Stick Media"
 #~ msgstr "Mediu „Memory Stick”"
 
 #~ msgid "Smart Media Media"
 #~ msgstr "Mediu „Smart Media”"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "Mediu SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Dischetă"
 
 #~ msgid "Mac OS disk"
 #~ msgstr "Disc Mac OS"
