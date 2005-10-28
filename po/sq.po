@@ -1,21 +1,19 @@
-# Përkthimi i mesazheve të gnome-vfs.gnome-2-12.sq.po në shqip
 # Përkthimi i mesazheve të gnome-vfs në shqip
 # Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # Laurent Dhima <laurenti@alblinux.net>, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.gnome-2-12.sq\n"
+"Project-Id-Version: gnome-vfs.gnome-2-12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-06 13:28+0200\n"
-"PO-Revision-Date: 2005-10-07 18:40+0200\n"
+"POT-Creation-Date: 2005-10-28 13:05+0200\n"
+"PO-Revision-Date: 2005-10-28 17:24+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10.2\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -397,9 +395,9 @@ msgid "Audio Disc"
 msgstr "Disk audio"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
-#, fuzzy, c-format
+#, c-format
 msgid "%s Removable Volume"
-msgstr "Volum sistemi"
+msgstr "%s Volum i lëvizëshëm"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
@@ -459,12 +457,12 @@ msgstr ""
 "Funksion që nuk përdoret më.  Ndryshimet nga përdoruesi tek databaza MIME "
 "nuk suportohen më."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:692
 #, c-format
 msgid "Could not parse: %s"
 msgstr "I pamundur analizimi: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:694
 msgid "More parsing errors will be ignored."
 msgstr "Gabimet e tjera të analizimit do të injorohen."
 
@@ -931,12 +929,12 @@ msgstr "GnomeVFSSeekPosition %d i panjohur"
 msgid "Windows Network"
 msgstr "Rrjeti Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identiteti i kompjuterit remot (%s) është i panjohur."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -950,11 +948,11 @@ msgstr ""
 "krejtësisht i sigurt që mund të vazhdoni, kontakto administratorin e "
 "sistemit."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
 msgstr "Futu sidoqoftë"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1331
 msgid "Cancel Login"
 msgstr "Anullo futjen"
 
