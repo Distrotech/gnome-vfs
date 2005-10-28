@@ -1,3 +1,14 @@
+2005-10-28  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	* libgnomevfs/gnome-vfs-mime-utils.h:
+	* libgnomevfs/gnome-vfs-vfs-utils.c:
+	Add gnome_vfs_get_slow_mime_type API. Rename _gnome_vfs_get_slow_mime_type
+	to _gnome_vfs_get_slow_mime_type_internal, make it return errors on
+	failure and use it in gnome_vfs_url_show_with_env and
+	gnome_vfs_get_slow_mime_type.
+
 2005-10-26  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-dns-sd.c:

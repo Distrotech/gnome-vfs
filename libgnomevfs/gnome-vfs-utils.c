@@ -2175,10 +2175,9 @@ gnome_vfs_url_show_with_env (const char  *url,
 	
 	g_free (scheme);
 
-	type = _gnome_vfs_get_slow_mime_type (url);
-
-	if (type == NULL) {
-		return GNOME_VFS_ERROR_NO_DEFAULT;
+	result = _gnome_vfs_get_slow_mime_type_internal (url, &type);
+	if (result != GNOME_VFS_OK) {
+		return result;
 	}
 	
 	params.data = (char *) url;

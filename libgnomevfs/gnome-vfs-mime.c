@@ -800,7 +800,7 @@ _gnome_vfs_file_date_tracker_date_has_changed (FileDateTracker *tracker)
  * gnome_vfs_get_mime_type:
  * @text_uri: URI of the file for which to get the mime type
  * 
- * Determine the mime type of @text_uri. The mime type is determined
+ * Determine the guessed mime type of @text_uri. The mime type is determined
  * in the same way as by gnome_vfs_get_file_info(). This is meant as
  * a convenience function for times when you only want the mime type.
  * 
@@ -828,27 +828,59 @@ gnome_vfs_get_mime_type (const char *text_uri)
 	return mime_type;
 }
 
-/* This is private due to the feature freeze, maybe it should be public */
+/**
+ * gnome_vfs_get_slow_mime_type:
+ * @text_uri: URI of the file for which to get the mime type
+ * 
+ * Determine the mime type of @text_uri. The mime type is determined
+ * in the same way as by gnome_vfs_get_file_info(). This is meant as
+ * a convenience function for times when you only want the mime type.
+ * 
+ * Return value: The mime type, or NULL if there is an error reading 
+ * the file.
+ *
+ * Since: 2.14
+ **/
 char *
-_gnome_vfs_get_slow_mime_type (const char *text_uri)
+gnome_vfs_get_slow_mime_type (const char *text_uri)
+{
+	GnomeVFSResult result;
+	char *ret;
+
+	result = _gnome_vfs_get_slow_mime_type_internal (text_uri, &ret);
+	g_assert (result == GNOME_VFS_OK || ret == NULL);
+
+	return ret;
+}
+
+/* This is private due to the feature freeze, maybe it should be public */
+GnomeVFSResult
+_gnome_vfs_get_slow_mime_type_internal (const char  *text_uri,
+					char       **mime_type)
 {
 	GnomeVFSFileInfo *info;
-	char *mime_type;
 	GnomeVFSResult result;
+
+	g_assert (mime_type != NULL);
 
 	info = gnome_vfs_file_info_new ();
 	result = gnome_vfs_get_file_info (text_uri, info,
 					  GNOME_VFS_FILE_INFO_GET_MIME_TYPE |
 					  GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE |
 					  GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
-	if (info->mime_type == NULL || result != GNOME_VFS_OK) {
-		mime_type = NULL;
-	} else {
-		mime_type = g_strdup (info->mime_type);
+	if (result == GNOME_VFS_OK && info->mime_type == NULL) {
+		result = GNOME_VFS_ERROR_GENERIC;
 	}
+
+	if (result != GNOME_VFS_OK) {
+		*mime_type = NULL;
+	} else {
+		*mime_type = g_strdup (info->mime_type);
+	}
+
 	gnome_vfs_file_info_unref (info);
 
-	return mime_type;
+	return result;
 }
 
 void
