@@ -30,12 +30,12 @@
 
 
 static gboolean timing = FALSE;
-static gboolean quite = FALSE;
+static gboolean quiet = FALSE;
 
 static GOptionEntry entries[] = 
 {
 	{ "time", 't', 0, G_OPTION_ARG_NONE, &timing, "Time the directory listening operation", NULL },
-	{ "quite", 'q', 0, G_OPTION_ARG_NONE, &quite, "Do not output the stat information (useful in conjunction with the --time)", NULL},
+	{ "quiet", 'q', 0, G_OPTION_ARG_NONE, &quiet, "Do not output the stat information (useful in conjunction with the --time)", NULL},
 	{ NULL }
 };
 
@@ -117,7 +117,7 @@ list (const char *directory)
 
 	info = gnome_vfs_file_info_new ();
 	while ((result = gnome_vfs_directory_read_next (handle, info)) == GNOME_VFS_OK) {
-		if (quite == FALSE) {
+		if (!quiet) {
 			show_data ((gpointer) info, directory);
 		}
 	}

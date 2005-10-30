@@ -1,3 +1,7 @@
+2005-10-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* programs/gnomevfs-ls.c: (list), (main): fix typo (quite => quiet).
+
 2005-10-30  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-ls.c: (list), (main): Add command line option
