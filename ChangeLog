@@ -1,3 +1,8 @@
+2005-10-30  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-ls.c: (list), (main): Add command line option
+	to suppress stat info output and another one for timing the operation.
+
 2005-10-28  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-mime.c:

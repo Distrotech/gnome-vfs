@@ -20,8 +20,24 @@
    Author: Bastien Nocera <hadess@hadess.net>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <glib.h>
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
+
+
+static gboolean timing = FALSE;
+static gboolean quite = FALSE;
+
+static GOptionEntry entries[] = 
+{
+	{ "time", 't', 0, G_OPTION_ARG_NONE, &timing, "Time the directory listening operation", NULL },
+	{ "quite", 'q', 0, G_OPTION_ARG_NONE, &quite, "Do not output the stat information (useful in conjunction with the --time)", NULL},
+	{ NULL }
+};
 
 static void show_data (gpointer item, const char *directory);
 static void list (const char *directory);
@@ -81,7 +97,14 @@ list (const char *directory)
 	GnomeVFSResult result;
 	GnomeVFSFileInfo *info;
 	GnomeVFSDirectoryHandle *handle;
-
+	GTimer *timer;
+	
+	timer = NULL;
+	if (timing) {
+		timer = g_timer_new ();
+		g_timer_start (timer);	
+	}
+	
 	result = gnome_vfs_directory_open (&handle, directory,
 			GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 			| GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
@@ -94,9 +117,11 @@ list (const char *directory)
 
 	info = gnome_vfs_file_info_new ();
 	while ((result = gnome_vfs_directory_read_next (handle, info)) == GNOME_VFS_OK) {
-		show_data ((gpointer) info, directory);
+		if (quite == FALSE) {
+			show_data ((gpointer) info, directory);
+		}
 	}
-
+	
 	gnome_vfs_file_info_unref (info);
 
 	if ((result != GNOME_VFS_OK) && (result != GNOME_VFS_ERROR_EOF)) {
@@ -110,15 +135,35 @@ list (const char *directory)
 		g_print ("Error closing: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}
+
+	if (timing) {
+		gdouble duration;
+		gulong  msecs;
+		
+		g_timer_stop (timer);
+		
+		duration = g_timer_elapsed (timer, &msecs);
+		g_timer_destroy (timer);
+		g_print ("Total time: %.16e\n", duration);
+	}
+
+	
 }
 
 int
 main (int argc, char *argv[])
 {
-  
+  	GError *error;
+	GOptionContext *context;
+
   	setlocale (LC_ALL, "");
 
 	gnome_vfs_init ();
+	
+	error = NULL;
+	context = g_option_context_new ("- list files at <uri>");
+  	g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+  	g_option_context_parse (context, &argc, &argv, &error);
 
 	if (argc > 1) {
 		int i;
