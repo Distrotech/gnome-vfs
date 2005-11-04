@@ -718,6 +718,24 @@ out:
 }
 
 static gboolean
+_hal_volume_temp_udi (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
+                          LibHalDrive *hal_drive, LibHalVolume *hal_volume)
+{
+        const char *volume_udi;
+        gboolean ret;
+
+        ret = FALSE;
+
+        volume_udi = libhal_volume_get_udi (hal_volume);
+
+        if (strncmp (volume_udi, "/org/freedesktop/Hal/devices/temp",
+                     strlen ("/org/freedesktop/Hal/devices/temp")) == 0)
+                ret = TRUE;
+
+        return ret;
+}
+
+static gboolean
 _hal_volume_policy_show_on_desktop (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
 				    LibHalDrive *hal_drive, LibHalVolume *hal_volume)
 {
@@ -876,6 +894,9 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
+	if ( _hal_volume_temp_udi (volume_monitor_daemon, hal_drive, hal_volume))
+		goto out;
+
 	allowed_by_policy = _hal_volume_policy_check (volume_monitor_daemon, hal_drive, hal_volume);
 
 	if (!allowed_by_policy) {
@@ -1019,7 +1040,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	}
 	
 	ret = TRUE;
-
+out:
 	return ret;
 }
 

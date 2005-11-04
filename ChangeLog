@@ -1,3 +1,9 @@
+2005-11-04  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	Fix problem with multiple cd volumes (#319689)
+	Patch from Jon Nettleton
+
 2005-10-20  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/ftp-method.c:
