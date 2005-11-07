@@ -894,9 +894,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
-	if ( _hal_volume_temp_udi (volume_monitor_daemon, hal_drive, hal_volume))
-		goto out;
-
 	allowed_by_policy = _hal_volume_policy_check (volume_monitor_daemon, hal_drive, hal_volume);
 
 	if (!allowed_by_policy) {
@@ -930,6 +927,9 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
 		}
 	}
+
+	if ( _hal_volume_temp_udi (volume_monitor_daemon, hal_drive, hal_volume))
+		goto out;
 
 #ifdef HAL_SHOW_DEBUG
 	g_debug ("entering _hal_add_volume for\n  drive udi '%s'\n  volume udi '%s'\n",
