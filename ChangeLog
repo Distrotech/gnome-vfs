@@ -1,3 +1,9 @@
+2005-11-07  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):
+	Fix for earlier change.
+	Patch from Jon Nettleton
+
 2005-11-04  Matthias Clasen  <mclasen@redhat.com>
 
 	* libgnomevfs/xdgmime.c (xdg_mime_list_mime_parents): Prevent
