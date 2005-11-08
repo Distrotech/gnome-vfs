@@ -1,3 +1,8 @@
+2005-11-08  Alexander Larsson  <alexl@redhat.com>
+
+	* doc/about.sgml:
+	Change example to handle shell arguments.
+
 2005-11-07  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):
