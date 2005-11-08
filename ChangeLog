@@ -1,3 +1,9 @@
+2005-11-08  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_equal):
+	Return early if the two URIs are the same. Patch from
+	Christian Neumair. Closes bug #302743.
+
 2005-11-08  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
