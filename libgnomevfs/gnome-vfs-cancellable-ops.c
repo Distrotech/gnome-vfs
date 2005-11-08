@@ -190,6 +190,7 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;

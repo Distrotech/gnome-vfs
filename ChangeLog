@@ -1,5 +1,11 @@
 2005-11-08  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-cancellable-ops.c (gnome_vfs_get_file_info_uri_cancellable):
+	Check for NULL info. (#320476)
+	Patch from Thomas Wabner
+
+2005-11-08  Alexander Larsson  <alexl@redhat.com>
+	
 	* doc/about.sgml:
 	Change example to handle shell arguments.
 
