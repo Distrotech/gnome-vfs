@@ -2516,11 +2516,10 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		progress->progress_info->total_bytes_copied = 0;
 
 		if (result != GNOME_VFS_OK) {
-			/* don't care about any results from handle_error */
-			handle_error (&result, progress, &error_mode, &skip);
-
-			/* whatever error it was, we handled it */
-			result = GNOME_VFS_OK;
+			if (handle_error (&result, progress, &error_mode, &skip)) {
+				/* whatever error it was, we handled it */
+				result = GNOME_VFS_OK;
+			}
 		} else {
 			call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 

@@ -1,5 +1,11 @@
 2005-11-08  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
+	Don't ignore return value from handle_error (#320869)
+	Patch from paolo borelli
+
+2005-11-08  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-cancellable-ops.c (gnome_vfs_get_file_info_uri_cancellable):
 	Check for NULL info. (#320476)
 	Patch from Thomas Wabner
