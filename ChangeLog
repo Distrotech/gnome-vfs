@@ -1,3 +1,9 @@
+2005-11-08  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_equal):
+	Merge fix for bug #302743 from HEAD. Patch from
+	Christian Neumair.
+
 2005-11-07  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):

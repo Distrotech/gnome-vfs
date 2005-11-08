@@ -1595,6 +1595,9 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 	g_return_val_if_fail (a != NULL, FALSE);
 	g_return_val_if_fail (b != NULL, FALSE);
 
+	if (a == b)
+		return TRUE;
+
 	/* First check non-toplevel elements.  */
 	while (a->parent != NULL && b->parent != NULL) {
 		if (!compare_elements (a, b)) {
