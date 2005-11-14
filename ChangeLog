@@ -1,3 +1,11 @@
+2005-11-14  Federico Mena Quintero  <federico@ximian.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_delete_items): Turn
+	on progress->progress_info->top_level_item.  This will make
+	Nautilus know that it must remove the metadata of really-deleted
+	files (in nautilus-file-operations.c:sync_transfer_callback():
+	GNOME_VFS_XFER_PHASE_DELETESOURCE).  Fixes part of bug #45953.
+
 2005-11-14  Alexander Larsson  <alexl@redhat.com>
 
 	* doc/gnome-vfs-2.0-sections.txt:

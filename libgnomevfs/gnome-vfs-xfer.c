@@ -2205,6 +2205,7 @@ gnome_vfs_xfer_delete_items (const GList *source_uri_list,
 	 */
 	progress->progress_info->bytes_total
 		= progress->progress_info->files_total * DEFAULT_SIZE_OVERHEAD;
+	progress->progress_info->top_level_item = TRUE;
 	if (result != GNOME_VFS_ERROR_INTERRUPTED) {
 		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 		result = gnome_vfs_xfer_delete_items_common (source_uri_list,
