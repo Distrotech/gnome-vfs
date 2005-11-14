@@ -92,15 +92,14 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_DEPRECATED_FUNCTION */       N_("Function call deprecated")
 };
 
-
 /**
- * gnome_vfs_result_from_errno_code
- * @errno_code: integer of the same type as the system "errno"
+ * gnome_vfs_result_from_errno_code:
+ * @errno_code: integer of the same type as the system "errno".
  *
- * Converts a system errno value to a GnomeVFSResult.
+ * Converts a system errno value to a #GnomeVFSResult.
  *
- * Return value: a GnomeVFSResult equivalent to @errno_code
- **/
+ * Return value: a #GnomeVFSResult equivalent to @errno_code.
+ */
 GnomeVFSResult
 gnome_vfs_result_from_errno_code (int errno_code)
 {
@@ -151,26 +150,25 @@ gnome_vfs_result_from_errno_code (int errno_code)
 /**
  * gnome_vfs_result_from_errno:
  * 
- * Converts the system errno to a GnomeVFSResult.
+ * Converts the system errno to a #GnomeVFSResult.
  *
- * Return value: a GnomeVFSResult equivalent to the current system errno
- **/
+ * Return value: a #GnomeVFSResult equivalent to the current system errno.
+ */
 GnomeVFSResult
 gnome_vfs_result_from_errno (void)
 {
        return gnome_vfs_result_from_errno_code(errno);
 }
  
-
 #ifndef G_OS_WIN32
 /**
  * gnome_vfs_result_from_h_errno:
  * 
- * Converts the system "h_errno" to a GnomeVFSResult (h_errno represents errors
+ * Converts the system "h_errno" to a #GnomeVFSResult (h_errno represents errors
  * accessing and finding internet hosts)
  *
- * Return value: a GnomeVFSResult equivalent to the current system "h_errno"
- **/
+ * Return value: a #GnomeVFSResult equivalent to the current system "h_errno".
+ */
 GnomeVFSResult
 gnome_vfs_result_from_h_errno (void)
 {
@@ -179,13 +177,13 @@ gnome_vfs_result_from_h_errno (void)
 
 /**
  * gnome_vfs_result_from_h_errno_val:
- * @h_errno_code: A integer containing representing the same error codes
+ * @h_errno_code: an integer representing the same error code
  * as the system h_errno.
  * 
- * Converts the error code of @h_errno into a #GnomeVFSResult.
+ * Converts the error code @h_errno_code into a #GnomeVFSResult.
  * 
- * Return Value: The #GnomeVFSResult equivalent to the h_errno error code.
- **/
+ * Return Value: The #GnomeVFSResult equivalent to the @h_errno_code.
+ */
 GnomeVFSResult
 gnome_vfs_result_from_h_errno_val (int h_errno_code)
 {
@@ -202,13 +200,13 @@ gnome_vfs_result_from_h_errno_val (int h_errno_code)
 
 /**
  * gnome_vfs_result_to_string:
- * @result: the result to convert to a string
+ * @result: a #GnomeVFSResult to convert to a string.
  *
- * Returns a string representation of @result, useful for debugging
+ * Returns a string representing @result, useful for debugging
  * purposes, but probably not appropriate for passing to the user.
  *
- * Return value: a string representing @result
- **/
+ * Return value: a string representing @result.
+ */
 const char *
 gnome_vfs_result_to_string (GnomeVFSResult result)
 {

@@ -18,6 +18,20 @@ Functions for manipulating URIs
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### STRUCT GnomeVFSURI ##### -->
+<para>
+
+</para>
+
+@ref_count: 
+@text: 
+@fragment_id: 
+@method_string: 
+@method: 
+@parent: 
+@reserved1: 
+@reserved2: 
+
 <!-- ##### STRUCT GnomeVFSToplevelURI ##### -->
 <para>
 

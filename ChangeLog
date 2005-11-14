@@ -1,5 +1,42 @@
 2005-11-14  Alexander Larsson  <alexl@redhat.com>
 
+	* doc/gnome-vfs-2.0-sections.txt:
+	* doc/tmpl/gnome-vfs-uri.sgml:
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-context.c:
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-find-directory.c:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-job-queue.c:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	* libgnomevfs/gnome-vfs-mime.c:
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-parse-ls.c:
+	* libgnomevfs/gnome-vfs-resolve.c:
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-socket-buffer.c:
+	* libgnomevfs/gnome-vfs-socket.c:
+	* libgnomevfs/gnome-vfs-ssl.c:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Documentation fixes from archana.shah@wipro.com (#313661)
+
+2005-11-14  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* libgnomevfs/Makefile.am:
 	Hide symbols that start with _

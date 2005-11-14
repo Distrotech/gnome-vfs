@@ -72,11 +72,11 @@ static GList *        copy_str_list                              (GList         
 
 /**
  * gnome_vfs_mime_get_description:
- * @mime_type: the mime type
+ * @mime_type: the mime type.
  *
- * Query the MIME database for a description of the specified MIME type.
+ * Query the MIME database for a description of the @mime_type.
  *
- * Return value: A description of MIME type @mime_type
+ * Return value: description of MIME type @mime_type.
  */
 const char *
 gnome_vfs_mime_get_description (const char *mime_type)
@@ -91,17 +91,17 @@ gnome_vfs_mime_get_description (const char *mime_type)
 
 /**
  * gnome_vfs_mime_set_description:
- * @mime_type: A const char * containing a mime type
- * @description: A description of this MIME type
+ * @mime_type: a const char * containing a mime type.
+ * @description: a description of this MIME type.
  * 
- * Set the description of this MIME type in the MIME database. The description
+ * Set the @description of this MIME type in the MIME database. The @description
  * should be something like "Gnumeric spreadsheet".
  * 
- * Return value: GnomeVFSResult indicating the success of the operation or any
+ * Return value: #GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_description (const char *mime_type, const char *description)
 {
@@ -111,17 +111,17 @@ gnome_vfs_mime_set_description (const char *mime_type, const char *description)
 
 /**
  * gnome_vfs_mime_get_default_action_type:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
  * 
- * Query the MIME database for the type of action to be performed on a particular MIME type by default.
+ * Query the MIME database for the type of action to be performed on @mime_type.
  * 
- * Deprecated: This function does not work with the new mime system,
- * it always returns none except for directories where component is
+ * Deprecated: This function does not work with the new mime system.
+ * It always returns none except for directories where component is
  * returned
  *
  * Return value: The type of action to be performed on a file of 
- * MIME type, @mime_type by default.
- **/
+ * MIME type @mime_type by default.
+ */
 GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
@@ -141,15 +141,15 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_default_action:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
  * 
- * Query the MIME database for default action associated with a particular MIME type @mime_type.
+ * Query the MIME database for default action associated with @mime_type.
  * 
- * Deprecated: Use gnome_vfs_mime_get_default_application instead.
+ * Deprecated: Use gnome_vfs_mime_get_default_application() instead.
  *
- * Return value: A GnomeVFSMimeAction representing the default action to perform upon
+ * Return value: a #GnomeVFSMimeAction representing the default action to perform upon
  * file of type @mime_type.
- **/
+ */
 GnomeVFSMimeAction *
 gnome_vfs_mime_get_default_action (const char *mime_type)
 {
@@ -189,13 +189,13 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_default_application:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
  * Query the MIME database for the application to be executed on files of MIME type
  * @mime_type by default.
  * 
- * Return value: A GnomeVFSMimeApplication representing the default handler of @mime_type
- **/
+ * Return value: a #GnomeVFSMimeApplication representing the default handler of @mime_type.
+ */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
@@ -233,18 +233,18 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_icon:
- * @mime_type: A const char * containing a  MIME type
+ * @mime_type: a const char * containing a  MIME type.
  *
- * Query the MIME database for an icon representing the specified MIME type.
+ * Query the MIME database for an icon representing the @mime_type.
  *
- * Return value: The filename of the icon as listed in the MIME database. This is
- * usually a filename without path information, e.g. "i-chardev.png", and sometimes
+ * It usually returns a filename without path information, e.g. "i-chardev.png", and sometimes
  * does not have an extension, e.g. "i-regular" if the icon is supposed to be image
- * type agnostic between icon themes. Icons are generic, and not theme specific. These
+ * type agnostic between icon themes. Icons are generic and not theme specific. These
  * will not necessarily match with the icons a user sees in Nautilus, you have been warned.
  *
- * Deprecated: Use the gnome_icon_lookup functions in libgnomeui instead.
+ * Return value: The filename of the icon as listed in the MIME database.
  *
+ * Deprecated: Use gnome_icon_lookup() function in libgnomeui instead.
  */
 const char *
 gnome_vfs_mime_get_icon (const char *mime_type)
@@ -254,15 +254,15 @@ gnome_vfs_mime_get_icon (const char *mime_type)
 
 /**
  * gnome_vfs_mime_set_icon:
- * @mime_type: A const char * containing a  MIME type
- * @filename: a const char * containing an image filename
+ * @mime_type: a const char * containing a  MIME type.
+ * @filename: a const char * containing an image filename.
  *
- * Set the icon entry for a particular MIME type in the MIME database. Note that
+ * Set the icon entry for @mime_type in the MIME database. Note that
  * icon entries need not necessarily contain the full path, and do not necessarily need to
  * specify an extension. So "i-regular", "my-special-icon.png", and "some-icon"
  * are all valid icon filenames.
  *
- * Return value: A GnomeVFSResult indicating the success of the operation
+ * Return value: a #GnomeVFSResult indicating the success of the operation
  * or any errors that may have occurred.
  *
  * Deprecated: User modifications to the MIME database are no longer
@@ -279,14 +279,14 @@ gnome_vfs_mime_set_icon (const char *mime_type, const char *filename)
 
 /**
  * gnome_vfs_mime_can_be_executable:
- * @mime_type: A const char * containing a mime type
+ * @mime_type: a const char * containing a mime type.
  * 
- * Check whether files of this MIME type might conceivably be executable.
- * Default for known types if FALSE. Default for unknown types is TRUE.
+ * Check whether files of @mime_type might conceivably be executable.
+ * Default for known types if %FALSE. Default for unknown types is %TRUE.
  * 
- * Return value: gboolean containing TRUE if some files of this MIME type
- * are registered as being executable, and false otherwise.
- **/
+ * Return value: %TRUE if files of @mime_type
+ * can be executable, %FALSE otherwise.
+ */
 gboolean
 gnome_vfs_mime_can_be_executable (const char *mime_type)
 {
@@ -312,14 +312,14 @@ gnome_vfs_mime_can_be_executable (const char *mime_type)
 
 /**
  * gnome_vfs_mime_set_can_be_executable:
- * @mime_type: A const char * containing a mime type
- * @new_value: A boolean value indicating whether @mime_type could be executable.
+ * @mime_type: a const char * containing a mime type.
+ * @new_value: a boolean value indicating whether @mime_type could be executable.
  * 
- * Set whether files of this MIME type might conceivably be executable.
+ * Set whether files of @mime_type might conceivably be executable.
  * 
- * Return value: GnomeVFSResult indicating the success of the operation or any
+ * Return value: a #GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
 {
@@ -329,14 +329,14 @@ gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
 
 /**
  * gnome_vfs_mime_get_default_component:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
  * Query the MIME database for the default Bonobo component to be activated to 
  * view files of MIME type @mime_type.
  * 
- * Return value: An Bonobo_ServerInfo * representing the OAF server to be activated
+ * Return value: a #Bonobo_ServerInfo * representing the OAF server to be activated
  * to get a reference to the proper component.
- **/
+ */
 Bonobo_ServerInfo *
 gnome_vfs_mime_get_default_component (const char *mime_type)
 {
@@ -409,18 +409,18 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_short_list_applications:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
- * Return an alphabetically sorted list of GnomeVFSMimeApplication data
- * structures for the requested mime type. GnomeVFS no longer supports the
+ * Return an alphabetically sorted list of #GnomeVFSMimeApplication data
+ * structures for the @mime_type. gnome-vfs no longer supports the
  * concept of a "short list" of applications that the user might be interested
  * in.
  * 
- * Return value: A GList * where the elements are GnomeVFSMimeApplication *
+ * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
  * representing various applications to display in the short list for @mime_type.
  *
- * @Deprecated: Use gnome_vfs_mime_get_all_applications() instead.
-**/ 
+ * Deprecated: Use gnome_vfs_mime_get_all_applications() instead.
+ */ 
 GList *
 gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 {
@@ -430,17 +430,17 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_short_list_components:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
- * Return an unsorted sorted list of Bonobo_ServerInfo * data structures for the
- * requested mime type.  GnomeVFS no longer supports the concept of a "short
+ * Return an unsorted sorted list of #Bonobo_ServerInfo * data structures for the
+ * @mime_type. gnome-vfs no longer supports the concept of a "short
  * list" of applications that the user might be interested in.
  * 
- * Return value: A GList * where the elements are Bonobo_ServerInfo *
+ * Return value: a #GList * where the elements are #Bonobo_ServerInfo *
  * representing various components to display in the short list for @mime_type.
  *
- * @Deprecated: Use gnome_vfs_mime_get_all_components() instead.
- **/ 
+ * Deprecated: Use gnome_vfs_mime_get_all_components() instead.
+ */ 
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
@@ -502,15 +502,15 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_all_applications:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
- * Return an alphabetically sorted list of GnomeVFSMimeApplication
+ * Return an alphabetically sorted list of #GnomeVFSMimeApplication
  * data structures representing all applications in the MIME database registered
  * to handle files of MIME type @mime_type (and supertypes).
  * 
- * Return value: A GList * where the elements are GnomeVFSMimeApplication *
+ * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
  * representing applications that handle MIME type @mime_type.
- **/ 
+ */ 
 GList *
 gnome_vfs_mime_get_all_applications (const char *mime_type)
 {
@@ -545,15 +545,15 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_all_components:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
- * Return an alphabetically sorted list of Bonobo_ServerInfo
+ * Return an alphabetically sorted list of #Bonobo_ServerInfo
  * data structures representing all Bonobo components registered
- * to handle files of MIME type @mime_type (and supertypes).
+ * to handle files of @mime_type (and supertypes).
  * 
- * Return value: A GList * where the elements are Bonobo_ServerInfo *
- * representing components that can handle MIME type @mime_type.
- **/ 
+ * Return value: a #GList * where the elements are #Bonobo_ServerInfo *
+ * representing components that can handle @mime_type.
+ */ 
 GList *
 gnome_vfs_mime_get_all_components (const char *mime_type)
 {
@@ -605,16 +605,16 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 }
 /**
  * gnome_vfs_mime_set_default_action_type:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
- * @action_type: A GnomeVFSMimeActionType containing the action to perform by default
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
+ * @action_type: a #GnomeVFSMimeActionType containing the action to perform by default.
  * 
- * Sets the default action type to be performed on files of MIME type @mime_type.
+ * Sets the default action type to be performed on files of @mime_type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_default_action_type (const char *mime_type,
 					GnomeVFSMimeActionType action_type)
@@ -625,17 +625,17 @@ gnome_vfs_mime_set_default_action_type (const char *mime_type,
 
 /**
  * gnome_vfs_mime_set_default_application:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_id: A key representing an application in the MIME database 
- * (GnomeVFSMimeApplication->id, for example)
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_id: a key representing an application in the MIME database 
+ * (#GnomeVFSMimeApplication->id, for example).
  * 
- * Sets the default application to be run on files of MIME type @mime_type.
+ * Sets the default application to be run on files of @mime_type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_default_application (const char *mime_type,
 					const char *application_id)
@@ -646,16 +646,16 @@ gnome_vfs_mime_set_default_application (const char *mime_type,
 
 /**
  * gnome_vfs_mime_set_default_component:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @component_iid: The OAFIID of a component
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @component_iid: OAFIID of a component.
  * 
- * Sets the default component to be activated for files of MIME type @mime_type.
+ * Sets the default component to be activated for files of @mime_type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_default_component (const char *mime_type,
 				      const char *component_iid)
@@ -666,17 +666,17 @@ gnome_vfs_mime_set_default_component (const char *mime_type,
 
 /**
  * gnome_vfs_mime_set_short_list_applications:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_ids: GList of const char * application ids
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_ids: #GList of const char * application ids.
  * 
  * Set the short list of applications for the specified MIME type. The short list
  * contains applications recommended for possible selection by the user.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 					    GList *application_ids)
@@ -687,17 +687,17 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 
 /**
  * gnome_vfs_mime_set_short_list_components:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @component_iids: GList of const char * OAF IIDs
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @component_iids: #GList of const char * OAFIIDs.
  * 
- * Set the short list of components for the specified MIME type. The short list
- * contains companents recommended for possible selection by the user. * 
+ * Set the short list of components for the @mime_type. The short list
+ * contains companents recommended for possible selection by the user.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_set_short_list_components (const char *mime_type,
 					  GList *component_iids)
@@ -742,13 +742,13 @@ gnome_vfs_mime_component_matches_id (Bonobo_ServerInfo *component, const char *i
 
 /**
  * gnome_vfs_mime_id_in_application_list:
- * @id: An application id.
- * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * @id: an application id.
+ * @applications: a #GList * whose nodes are #GnomeVFSMimeApplications, such as the
  * result of gnome_vfs_mime_get_short_list_applications().
  * 
- * Check whether an application id is in a list of GnomeVFSMimeApplications.
+ * Check whether an application id is in a list of #GnomeVFSMimeApplications.
  * 
- * Return value: TRUE if an application whose id matches @id is in @applications.
+ * Return value: %TRUE if an application whose id matches @id is in @applications.
  *
  * Deprecated: 
  */
@@ -762,13 +762,13 @@ gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
 
 /**
  * gnome_vfs_mime_id_in_component_list:
- * @iid: A component iid.
- * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
+ * @iid: a component iid.
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * 
- * Check whether a component iid is in a list of Bonobo_ServerInfos.
+ * Check whether a component iid is in a list of #Bonobo_ServerInfos.
  * 
- * Return value: TRUE if a component whose iid matches @iid is in @components.
+ * Return value: %TRUE if a component whose iid matches @iid is in @components.
  *
  * Deprecated: 
  */
@@ -783,12 +783,12 @@ gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
 
 /**
  * gnome_vfs_mime_id_list_from_application_list:
- * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * @applications: a #GList * whose nodes are GnomeVFSMimeApplications, such as the
  * result of gnome_vfs_mime_get_short_list_applications().
  * 
- * Create a list of application ids from a list of GnomeVFSMimeApplications.
+ * Create a list of application ids from a list of #GnomeVFSMimeApplications.
  * 
- * Return value: A new list where each GnomeVFSMimeApplication in the original
+ * Return value: a new list where each #GnomeVFSMimeApplication in the original
  * list is replaced by a char * with the application's id. The original list is
  * not modified.
  *
@@ -812,12 +812,12 @@ gnome_vfs_mime_id_list_from_application_list (GList *applications)
 
 /**
  * gnome_vfs_mime_id_list_from_component_list:
- * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * 
- * Create a list of component iids from a list of Bonobo_ServerInfos.
+ * Create a list of component iids from a list of #Bonobo_ServerInfos.
  * 
- * Return value: A new list where each Bonobo_ServerInfo in the original
+ * Return value: a new #GList where each #Bonobo_ServerInfo in the original
  * list is replaced by a char * with the component's iid. The original list is
  * not modified.
  *
@@ -838,17 +838,17 @@ gnome_vfs_mime_id_list_from_component_list (GList *components)
 
 /**
  * gnome_vfs_mime_add_application_to_short_list:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_id: const char * containing the application's id in the MIME database
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_id: const char * containing the application's id in the MIME database.
  * 
- * Add an application to the short list for MIME type @mime_type. The short list contains
+ * Add an application to the short list for @mime_type. The short list contains
  * applications recommended for display as choices to the user for a particular MIME type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 					      const char *application_id)
@@ -859,13 +859,13 @@ gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_remove_application_from_list:
- * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * @applications: a #GList * whose nodes are #GnomeVFSMimeApplications, such as the
  * result of gnome_vfs_mime_get_short_list_applications().
- * @application_id: The id of an application to remove from @applications.
- * @did_remove: If non-NULL, this is filled in with TRUE if the application
- * was found in the list, FALSE otherwise.
+ * @application_id: id of an application to remove from @applications.
+ * @did_remove: If non-NULL, this is filled in with %TRUE if the application
+ * was found in the list, %FALSE otherwise.
  * 
- * Remove an application specified by id from a list of GnomeVFSMimeApplications.
+ * Remove an application specified by id from a list of #GnomeVFSMimeApplications.
  * 
  * Return value: The modified list. If the application is not found, the list will 
  * be unchanged.
@@ -883,17 +883,17 @@ gnome_vfs_mime_remove_application_from_list (GList *applications,
 
 /**
  * gnome_vfs_mime_remove_application_from_short_list:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_id: const char * containing the application's id in the MIME database
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_id: const char * containing the application's id in the MIME database.
  * 
- * Remove an application from the short list for MIME type @mime_type. The short list contains
+ * Remove an application specified by @application_id from the short list for @mime_type. A short list contains
  * applications recommended for display as choices to the user for a particular MIME type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
 						   const char *application_id)
@@ -904,17 +904,17 @@ gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_add_component_to_short_list:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @iid: const char * containing the component's OAF IID
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @iid: const char * containing the component's OAFIID.
  * 
- * Add a component to the short list for MIME type @mime_type. The short list contains
+ * Add a component to the short list for @mime_type. A short list contains
  * components recommended for display as choices to the user for a particular MIME type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 					    const char *iid)
@@ -925,13 +925,13 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_remove_component_from_list:
- * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * @iid: The iid of a component to remove from @components.
- * @did_remove: If non-NULL, this is filled in with TRUE if the component
- * was found in the list, FALSE otherwise.
+ * @did_remove: If non-NULL, this is filled in with %TRUE if the component
+ * was found in the list, %FALSE otherwise.
  * 
- * Remove a component specified by iid from a list of Bonobo_ServerInfos.
+ * Remove a component specified by iid from a list of #Bonobo_ServerInfos.
  * 
  * Return value: The modified list. If the component is not found, the list will 
  * be unchanged.
@@ -961,17 +961,17 @@ gnome_vfs_mime_remove_component_from_list (GList *components,
 
 /**
  * gnome_vfs_mime_remove_component_from_short_list:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @iid: const char * containing the component's OAF IID
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @iid: const char * containing the component's OAFIID.
  * 
- * Remove a component from the short list for MIME type @mime_type. The short list contains
+ * Remove a component from the short list for @mime_type. The short list contains
  * components recommended for display as choices to the user for a particular MIME type.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 						 const char *iid)
@@ -982,16 +982,16 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_add_extension:
- * @extension: The extension to add (e.g. "txt")
- * @mime_type: The mime type to add the mapping to.
+ * @extension: extension to add (e.g. "txt").
+ * @mime_type: mime type to add the mapping to.
  * 
  * Add a file extension to the specificed MIME type in the MIME database.
  * 
- * Return value: GnomeVFSResult indicating the success of the operation or any
+ * Return value: a #GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 {
@@ -1001,16 +1001,16 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 
 /**
  * gnome_vfs_mime_remove_extension:
- * @extension: The extension to remove
- * @mime_type: The mime type to remove the extension from
+ * @extension: extension to remove.
+ * @mime_type: mime type to remove the extension from.
  * 
- * Removes a file extension from the specificed MIME type in the MIME database.
+ * Removes a file extension from the @mime_type in the MIME database.
  * 
- * Return value: GnomeVFSResult indicating the success of the operation or any
+ * Return value: a #GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 {
@@ -1020,16 +1020,16 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 
 /**
  * gnome_vfs_mime_extend_all_applications:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_ids: a GList of const char * containing application ids
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_ids: a #GList of const char * containing application ids.
  * 
  * Register @mime_type as being handled by all applications list in @application_ids.
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_extend_all_applications (const char *mime_type,
 					GList *application_ids)
@@ -1040,16 +1040,16 @@ gnome_vfs_mime_extend_all_applications (const char *mime_type,
 
 /**
  * gnome_vfs_mime_remove_from_all_applications:
- * @mime_type: A const char * containing a mime type, e.g. "application/x-php"
- * @application_ids: a GList of const char * containing application ids
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @application_ids: a #GList of const char * containing application ids.
  * 
  * Remove @mime_type as a handled type from every application in @application_ids
  * 
- * Return value: A GnomeVFSResult indicating the success of the operation or reporting 
+ * Return value: a #GnomeVFSResult indicating the success of the operation or reporting 
  * any errors encountered.
  *
  * Deprecated: User modifications to the MIME database are no longer supported by gnome-vfs.
- **/
+ */
 GnomeVFSResult
 gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 					     GList *application_ids)
@@ -1060,14 +1060,15 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 
 /**
  * gnome_vfs_mime_application_equal:
- * @application: a #GnomeVFSMimeApplication
+ * @app_a: a #GnomeVFSMimeApplication.
+ * @app_b: a #GnomeVFSMimeApplication.
  * 
  * Compare @app_a and @app_b.
  * 
- * Return value: %TRUE if @a and @b are equal, %FALSE otherwise.
+ * Return value: %TRUE if @app_a and @app_b are equal, %FALSE otherwise.
  *
  * Since: 2.10
- **/
+ */
 gboolean
 gnome_vfs_mime_application_equal (GnomeVFSMimeApplication *app_a,
 				  GnomeVFSMimeApplication *app_b)
@@ -1080,12 +1081,12 @@ gnome_vfs_mime_application_equal (GnomeVFSMimeApplication *app_a,
 
 /**
  * gnome_vfs_mime_application_copy:
- * @application: The GnomeVFSMimeApplication to be duplicated.
+ * @application: a #GnomeVFSMimeApplication to be duplicated.
  * 
- * Creates a newly referenced copy of a GnomeVFSMimeApplication object.
+ * Creates a newly referenced copy of a #GnomeVFSMimeApplication object.
  * 
- * Return value: A copy of @application
- **/
+ * Return value: a copy of @application.
+ */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 {
@@ -1119,11 +1120,11 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 
 /**
  * gnome_vfs_mime_application_free:
- * @application: The GnomeVFSMimeApplication to be freed
+ * @application: a #GnomeVFSMimeApplication to be freed.
  * 
- * Frees a GnomeVFSMimeApplication *.
+ * Frees a #GnomeVFSMimeApplication *.
  * 
- **/
+ */
 void
 gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application) 
 {
@@ -1153,14 +1154,13 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 
 /**
  * gnome_vfs_mime_action_free:
- * @action: The GnomeVFSMimeAction to be freed
+ * @action: a #GnomeVFSMimeAction to be freed.
  * 
- * Frees a GnomeVFSMimeAction *.
+ * Frees a #GnomeVFSMimeAction *.
  *
- * Deprecated: GnomeVFSMimeAction structures should not be used in new
+ * Deprecated: #GnomeVFSMimeAction structures should not be used in new
  * code.
- * 
- **/
+ */
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
 {
@@ -1180,12 +1180,11 @@ gnome_vfs_mime_action_free (GnomeVFSMimeAction *action)
 
 /**
  * gnome_vfs_mime_application_list_free:
- * @list: a GList of GnomeVFSApplication * to be freed
+ * @list: a #GList of #GnomeVFSApplication * to be freed.
  * 
- * Frees lists of GnomeVFSApplications, as returned from functions such
+ * Frees lists of #GnomeVFSApplications, as returned from functions such
  * as gnome_vfs_get_all_applications().
- * 
- **/
+ */
 void
 gnome_vfs_mime_application_list_free (GList *list)
 {
@@ -1195,12 +1194,11 @@ gnome_vfs_mime_application_list_free (GList *list)
 
 /**
  * gnome_vfs_mime_component_list_free:
- * @list: a GList of Bonobo_ServerInfo * to be freed
+ * @list: a #GList of #Bonobo_ServerInfo * to be freed.
  * 
- * Frees lists of Bonobo_ServerInfo * (as returned from functions such
- * as @gnome_vfs_get_all_components)
- * 
- **/
+ * Frees lists of #Bonobo_ServerInfo * (as returned from functions such
+ * as @gnome_vfs_get_all_components).
+ */
 void
 gnome_vfs_mime_component_list_free (GList *list)
 {
@@ -1210,16 +1208,16 @@ gnome_vfs_mime_component_list_free (GList *list)
 
 /**
  * gnome_vfs_mime_application_new_from_id:
- * @id: A const char * containing an application id
+ * @id: a const char * containing an application id.
  * 
- * Fetches the GnomeVFSMimeApplication associated with the specified
- * application ID from the MIME database.
+ * Fetches the #GnomeVFSMimeApplication associated with the specified
+ * application @id from the MIME database.
  *
- * Return value: GnomeVFSMimeApplication * corresponding to @id
+ * Return value: a #GnomeVFSMimeApplication * corresponding to @id.
  *
- * Deprecated: Use gnome_vfs_mime_application_new_from_desktop_id
+ * Deprecated: Use gnome_vfs_mime_application_new_from_desktop_id()
  * instead.
- **/
+ */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
@@ -1228,14 +1226,14 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 
 /** 
  * gnome_vfs_mime_action_launch:
- * @action: the GnomeVFSMimeAction to launch
- * @uris: parameters for the GnomeVFSMimeAction
+ * @action: the #GnomeVFSMimeAction to launch.
+ * @uris: parameters for the #GnomeVFSMimeAction.
  *
- * Launches the given mime action with the given parameters. If 
- * the action is an application the command line parameters will
+ * Launches the given mime @action with the given parameters. If 
+ * the @action is an application the command line parameters will
  * be expanded as required by the application. The application
  * will also be launched in a terminal if that is required. If the
- * application only supports one argument per instance then multile
+ * application only supports one argument per instance then multiple
  * instances of the application will be launched.
  *
  * If the default action is a component it will be launched with
@@ -1244,19 +1242,18 @@ gnome_vfs_mime_application_new_from_id (const char *id)
  * %s and %c in the command line will be replaced with the list of
  * parameters and the default component IID respectively.
  *
- * Return value: GNOME_VFS_OK if the action was launched,
- * GNOME_VFS_ERROR_BAD_PARAMETERS for an invalid action.
- * GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is
- * not supported by the action.
- * GNOME_VFS_ERROR_PARSE if the action command can not be parsed.
- * GNOME_VFS_ERROR_LAUNCH if the action command can not be launched.
- * GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
+ * Return value: %GNOME_VFS_OK if the @action was launched,
+ * %GNOME_VFS_ERROR_BAD_PARAMETERS for an invalid @action.
+ * %GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is
+ * not supported by the @action.
+ * %GNOME_VFS_ERROR_PARSE if the @action command can not be parsed.
+ * %GNOME_VFS_ERROR_LAUNCH if the @action command can not be launched.
+ * %GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
  *
  * Since: 2.4
  *
  * Deprecated: MIME actions are deprecated, use
- * gnome_vfs_mime_application_launch instead.
- *
+ * gnome_vfs_mime_application_launch() instead.
  */
 GnomeVFSResult
 gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
@@ -1268,18 +1265,16 @@ gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
 /**
  * gnome_vfs_mime_action_launch_with_env:
  *
- * Same as gnome_vfs_mime_action_launch except that the
+ * Same as gnome_vfs_mime_action_launch() except that the
  * application or component viewer will be launched with
  * the given environment.
  *
- * Return value: same as gnome_vfs_mime_action_launch
+ * Return value: same as gnome_vfs_mime_action_launch().
  *
  * Since: 2.4
  *
  * Deprecated: MIME actions are deprecated, use
- * gnome_vfs_mime_application_launch_with_env instead.
- *
- *
+ * gnome_vfs_mime_application_launch_with_env() instead.
  */
 GnomeVFSResult
 gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,
@@ -1333,8 +1328,8 @@ gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,
 
 /**
  * gnome_vfs_mime_application_launch:
- * @app: the GnomeVFSMimeApplication to launch
- * @uris: parameters for the GnomeVFSMimeApplication
+ * @app: the #GnomeVFSMimeApplication to launch.
+ * @uris: parameters for the #GnomeVFSMimeApplication.
  *
  * Launches the given mime application with the given parameters.
  * Command line parameters will be expanded as required by the
@@ -1344,14 +1339,14 @@ gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,
  * launched.
  *
  * Return value: 
- * GNOME_VFS_OK if the application was launched.
- * GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is not
+ * %GNOME_VFS_OK if the application was launched.
+ * %GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is not
  * supported by the application.
- * GNOME_VFS_ERROR_PARSE if the application command can not
+ * %GNOME_VFS_ERROR_PARSE if the application command can not
  * be parsed.
- * GNOME_VFS_ERROR_LAUNCH if the application command can not
+ * %GNOME_VFS_ERROR_LAUNCH if the application command can not
  * be launched.
- * GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
+ * %GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
  *
  * Since: 2.4
  */
@@ -1365,10 +1360,10 @@ gnome_vfs_mime_application_launch (GnomeVFSMimeApplication *app,
 /**
  * gnome_vfs_mime_application_launch_with_env:
  *
- * Same as gnome_vfs_mime_application_launch except that
+ * Same as gnome_vfs_mime_application_launch() except that
  * the application will be launched with the given environment.
  *
- * Return value: same as gnome_vfs_mime_application_launch
+ * Return value: same as gnome_vfs_mime_application_launch().
  *
  * Since: 2.4
  */
@@ -1800,11 +1795,11 @@ guess_deprecated_fields_from_exec (GnomeVFSMimeApplication *application)
 
 /**
  * gnome_vfs_mime_application_new_from_desktop_id:
- * @id: the identifier of a desktop entry
+ * @id: the identifier of a desktop entry.
  *
- * Returns a new #GnomeVFSMimeApplication.
+ * Returns a new #GnomeVFSMimeApplication for the @id.
  *
- * Return value: a #GnomeVFSMimeApplication
+ * Return value: a #GnomeVFSMimeApplication.
  *
  * Since: 2.10
  */
@@ -1902,13 +1897,13 @@ exit:
 
 /**
  * gnome_vfs_mime_application_get_default_application_for_uri:
- * @mime_type: a const char * containing a mime type, e.g. "application/x-php"
- * @uri: a stringified URI
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @uri: a stringified uri.
  *
  * Query the MIME database for the application to be executed on the file
- * identified by @uri of MIME type @mime_type by default.
+ * identified by @uri of @mime_type by default.
  * 
- * Return value: A GnomeVFSMimeApplication representing the default handler
+ * Return value: a #GnomeVFSMimeApplication representing the default handler.
  *
  * Since: 2.10
  */
@@ -1964,14 +1959,14 @@ gnome_vfs_mime_get_default_application_for_uri (const char *uri,
 
 /**
  * gnome_vfs_mime_get_all_applications_for_uri:
- * @mime_type: a const char * containing a mime type, e.g. "application/x-php"
- * @uri: a stringified URI
+ * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
+ * @uri: a stringified uri.
  * 
- * Return an alphabetically sorted list of GnomeVFSMimeApplication
+ * Return an alphabetically sorted list of #GnomeVFSMimeApplication
  * data structures representing all applications in the MIME database able
- * to handle the file identified by @uri of MIME type @mime_type (and supertypes).
+ * to handle the file identified by @uri of @mime_type (and supertypes).
  * 
- * Return value: A GList * where the elements are GnomeVFSMimeApplication *
+ * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
  * representing all possible handlers
  *
  * Since: 2.10
@@ -2019,11 +2014,11 @@ gnome_vfs_mime_get_all_applications_for_uri (const char *uri,
 
 /**
  * gnome_vfs_mime_application_get_desktop_file_path:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns the identifier of the desktop entry.
  *
- * Return value: the identifier of the desktop entry
+ * Return value: the identifier of the desktop entry.
  *
  * Since: 2.10
  */
@@ -2042,13 +2037,13 @@ gnome_vfs_mime_application_get_desktop_id (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_desktop_file_path:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns the path of the desktop entry, a configuration
  * file describing the properties of a particular program like
  * it's name, how it is to be launched, how it appears in menus.
  *
- * Return value: the path of the .desktop file
+ * Return value: the path of the .desktop file.
  *
  * Since: 2.10
  */
@@ -2067,9 +2062,9 @@ gnome_vfs_mime_application_get_desktop_file_path (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_name:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
- * Returns the name of the application.
+ * Returns the name of the application @app
  *
  * Return value: the name of the application.
  *
@@ -2085,7 +2080,7 @@ gnome_vfs_mime_application_get_name (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_generic_name:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns the generic name of the application.
  *
@@ -2108,7 +2103,7 @@ gnome_vfs_mime_application_get_generic_name (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_icon:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns an icon representing the specified application.
  *
@@ -2134,14 +2129,14 @@ gnome_vfs_mime_application_get_icon (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_exec:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns the program to execute, possibly with arguments
  * and parameter variables, as specified by the
  * <ulink url="http://www.freedesktop.org/standards/desktop-entry-spec">
- * Desktop Entry Specification</ulink>
+ * Desktop Entry Specification</ulink>.
  *
- * Return value: the command line to execute
+ * Return value: the command line to execute.
  *
  * Since: 2.10
  */
@@ -2160,18 +2155,18 @@ gnome_vfs_mime_application_get_exec (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_get_binary_name:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns the binary name of the specified application.
  * Useful to implement startup notification.
- * Note that this only provide partial information about
+ * Note that this only provides partial information about
  * application execution, it misses arguments and macros.
  * DO NOT USE it to launch the application.
  * Use gnome_vfs_mime_application_launch or
- * gnome_vfs_mime_application_get_exec if you really
+ * gnome_vfs_mime_application_get_exec() if you really
  * need to write a custom launcher.
  *
- * Return value: the application's binary name
+ * Return value: the application's binary name.
  *
  * Since: 2.10
  */
@@ -2190,12 +2185,12 @@ gnome_vfs_mime_application_get_binary_name (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_supports_uris:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns whether the application accept uris as command
  * lines arguments.
  *
- * Return value: %TRUE if the application can handle uris
+ * Return value: %TRUE if the application can handle uris.
  *
  * Since: 2.10
  */
@@ -2214,11 +2209,11 @@ gnome_vfs_mime_application_supports_uris (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_requires_terminal:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns whether the application runs in a terminal window.
  *
- * Return value: %TRUE if the application runs in a terminal
+ * Return value: %TRUE if the application runs in a terminal.
  *
  * Since: 2.10
  */
@@ -2232,14 +2227,14 @@ gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
 
 /**
  * gnome_vfs_mime_application_supports_startup_notification:
- * @app: a #GnomeVFSMimeApplication
+ * @app: a #GnomeVFSMimeApplication.
  *
  * Returns whether the application supports startup notification.
  * If true, it is KNOWN that the application will send a
  * "remove" message when started with the DESKTOP_LAUNCH_ID
  * environment variable set.
  *
- * Return value: %TRUE if the application supports startup notification
+ * Return value: %TRUE if the application supports startup notification.
  *
  * Since: 2.10
  */

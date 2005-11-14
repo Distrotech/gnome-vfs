@@ -150,9 +150,9 @@ G_LOCK_DEFINE_STATIC (volume_monitor_ref);
 
 /** 
  * gnome_vfs_volume_monitor_ref:
- * @volume_monitor: a #GnomeVFSVolumeMonitor
+ * @volume_monitor: #GnomeVFSVolumeMonitor.
  *
- * Increases the reference count of a #GnomeVFSVolumeMonitor by one.
+ * Increases the refcount of @volume_monitor by one.
  *
  * You shouldn't use this function unless you know what you are doing:
  * #GnomeVFSVolumeMonitor is to be used as a singleton object, see
@@ -177,9 +177,9 @@ gnome_vfs_volume_monitor_ref (GnomeVFSVolumeMonitor *volume_monitor)
 
 /** 
  * gnome_vfs_volume_monitor_unref:
- * @volume_monitor: a #GnomeVFSVolumeMonitor
+ * @volume_monitor: #GnomeVFSVolumeMonitor.
  *
- * Decreases the reference count of a #GnomeVFSVolumeMonitor by one.
+ * Decreases the refcount of @volume_monitor by one.
  *
  * You shouldn't use this function unless you know what you are doing:
  * #GnomeVFSVolumeMonitor is to be used as a singleton object, see
@@ -503,15 +503,15 @@ _gnome_vfs_volume_monitor_find_connected_server_by_gconf_id (GnomeVFSVolumeMonit
 
 /** 
  * gnome_vfs_volume_monitor_get_volume_by_id:
- * @volume_monitor: a #GnomeVFSVolumeMonitor
- * @id: the #GnomeVFSVolume id to look for
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
+ * @id: #GnomeVFSVolume id to look for.
  *
  * Looks for a #GnomeVFSVolume whose id is @id. A valid @volume_monitor to pass
- * to this function can be acquired using gnome_vfs_get_volume_monitor()
+ * to this function can be acquired using gnome_vfs_get_volume_monitor().
  *
- * Returns: the #GnomeVFSVolume corresponding to @id, or NULL if no 
+ * Returns: the #GnomeVFSVolume corresponding to @id, or %NULL if no 
  * #GnomeVFSVolume with a matching id could be found. The caller owns a 
- * reference on the returned volume, and must call @gnome_vfs_volume_unref
+ * reference on the returned volume, and must call gnome_vfs_volume_unref()
  * when it no longer needs it.
  *
  * Since: 2.6
@@ -557,15 +557,15 @@ gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monitor
 
 /** 
  * gnome_vfs_volume_monitor_get_drive_by_id:
- * @volume_monitor: a #GnomeVFSVolumeMonitor
- * @id: the #GnomeVFSVolume id to look for
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
+ * @id: the #GnomeVFSVolume id to look for.
  *
  * Looks for a #GnomeVFSDrive whose id is @id. A valid @volume_monitor to pass
  * to this function can be acquired using gnome_vfs_get_volume_monitor()
  *
- * Returns: the #GnomeVFSDrive corresponding to @id, or NULL if no 
+ * Returns: the #GnomeVFSDrive corresponding to @id, or %NULL if no 
  * #GnomeVFSDrive with a matching id could be found. The caller owns a 
- * reference on the returned drive, and must call @gnome_vfs_drive_unref
+ * reference on the returned drive, and must call gnome_vfs_drive_unref()
  * when it no longer needs it.
  *
  * Since: 2.6
@@ -633,8 +633,8 @@ _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
 
 /** 
  * gnome_vfs_volume_monitor_emit_pre_unmount:
- * @volume_monitor: the #GnomeVFSVolumeMonitor
- * @volume: a #GnomeVFSVolume
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
+ * @volume: a #GnomeVFSVolume.
  *
  * Emits the "pre-unmount" signal on @volume. 
  *
@@ -747,7 +747,7 @@ _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 
 /** 
  * gnome_vfs_volume_monitor_get_mounted_volumes:
- * @volume_monitor: the #GnomeVFSVolumeMonitor
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
  *
  * Gets the list of all the mounted #GnomeVFSVolume volumes.
  *
@@ -777,11 +777,11 @@ gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_moni
 
 /** 
  * gnome_vfs_volume_monitor_get_connected_drives:
- * @volume_monitor:
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
  *
- *
- *
- * Returns:
+ * Returns a #GList of all connected drives to the machine. The #GnomeVFSDrive
+ * objects must be unreffed by the caller when no longer needed with  
+ * gnome_vfs_drive_unref() and the #GList must be freed.
  *
  * Since: 2.6
  */
@@ -893,12 +893,11 @@ _gnome_vfs_volume_monitor_uniquify_drive_name (GnomeVFSVolumeMonitor *volume_mon
 
 /** 
  * gnome_vfs_volume_monitor_get_volume_for_path:
- * @volume_monitor:
- * @path:
+ * @volume_monitor: a #GnomeVFSVolumeMonitor.
+ * @path: string representing a path.
  *
- *
- *
- * Returns:
+ * Returns: the #GnomeVFSVolume corresponding to the @path.  Volume returned 
+ * must be unreffed by the caller with gnome_vfs_volume_unref().
  *
  * Since: 2.6
  */

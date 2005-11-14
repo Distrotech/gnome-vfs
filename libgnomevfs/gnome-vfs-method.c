@@ -161,6 +161,14 @@ init_path_list (void)
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_method_init:
+ *
+ * Initializes the gnome-vfs methods. If already initialized then will simply return
+ * %TRUE.
+ *
+ * Return value: Returns %TRUE.
+ */
 gboolean
 gnome_vfs_method_init (void)
 {
@@ -382,6 +390,13 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	return module_element;
 }
 
+/**
+ * gnome_vfs_method_get:
+ * @name: name of the protocol.
+ *
+ * Returns the method handle for the given protocol @name. @name could be any protocol
+ * which gnome-vfs implements. Like ftp, http, smb etc..
+ */
 GnomeVFSMethod *
 gnome_vfs_method_get (const gchar *name)
 {
@@ -392,6 +407,15 @@ gnome_vfs_method_get (const gchar *name)
 	module_element = gnome_vfs_add_module_to_hash_table (name);
 	return module_element ? module_element->method : NULL;
 }
+
+/**
+ * gnome_vfs_transform_get:
+ * @name: name of the method to get the transform of.
+ *
+ * Get the transform for the method @name.
+ *
+ * Return value: a #GnomeVFSTransform handle for @name.
+ */
 
 GnomeVFSTransform *
 gnome_vfs_transform_get (const gchar *name)

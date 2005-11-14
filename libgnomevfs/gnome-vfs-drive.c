@@ -128,11 +128,11 @@ gnome_vfs_drive_init (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_ref:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
+ * Increases the refcount of the @drive by 1.
  *
- *
- * Returns:
+ * Returns: the @drive.
  *
  * Since: 2.6
  */
@@ -151,9 +151,9 @@ gnome_vfs_drive_ref (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_unref:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
+ * Decreases the refcount of the @drive by 1.
  *
  * Since: 2.6
  */
@@ -205,11 +205,9 @@ gnome_vfs_drive_finalize (GObject *object)
 
 /** 
  * gnome_vfs_drive_get_id:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: drive id, a #gulong value.
  *
  * Since: 2.6
  */
@@ -221,11 +219,9 @@ gnome_vfs_drive_get_id (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_device_type:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: device type, a #GnomeVFSDeviceType value.
  *
  * Since: 2.6
  */
@@ -237,14 +233,14 @@ gnome_vfs_drive_get_device_type (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_mounted_volume:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
+ * Returns the first mounted volume for the @drive.
  *
- *
- * Returns:
+ * Returns: a #GnomeVFSVolume.
  *
  * Since: 2.6
- * Deprecated: Use gnome_vfs_drive_get_mounted_volumes() instead
+ * Deprecated: Use gnome_vfs_drive_get_mounted_volumes() instead.
  */
 GnomeVFSVolume *
 gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
@@ -268,9 +264,9 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_volume_list_free:
- * @volumes:
+ * @volumes: list of #GnomeVFSVolumes to be freed.
  *
- *
+ * Frees the list @volumes.
  *
  * Since: 2.8
  */
@@ -288,11 +284,9 @@ gnome_vfs_drive_volume_list_free (GList *volumes)
 
 /** 
  * gnome_vfs_drive_get_mounted_volumes:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: list of mounted volumes for the @drive.
  *
  * Since: 2.8
  */
@@ -314,11 +308,9 @@ gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_is_mounted:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if the @drive is mounted, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -365,11 +357,9 @@ gnome_vfs_drive_add_mounted_volume_private (GnomeVFSDrive      *drive,
 
 /** 
  * gnome_vfs_drive_get_device_path:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the device path of the #drive.
  *
  * Since: 2.6
  */
@@ -381,11 +371,9 @@ gnome_vfs_drive_get_device_path (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_activation_uri:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the activation uri of the #drive.
  *
  * Since: 2.6
  */
@@ -397,11 +385,9 @@ gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_hal_udi:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the unique device id of the @drive.
  *
  * Since: 2.6
  */
@@ -413,11 +399,9 @@ gnome_vfs_drive_get_hal_udi (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_display_name:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the display name of the @drive.
  *
  * Since: 2.6
  */
@@ -429,11 +413,9 @@ gnome_vfs_drive_get_display_name (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_get_icon:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the icon filename of the @drive.
  *
  * Since: 2.6
  */
@@ -445,11 +427,9 @@ gnome_vfs_drive_get_icon (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_is_user_visible:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if the @drive is visible to the user, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -461,11 +441,9 @@ gnome_vfs_drive_is_user_visible (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_is_connected:
- * @drive:
+ * @drive: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if the @drive is connected, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -477,12 +455,10 @@ gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_compare:
- * @a:
- * @b:
+ * @a: a #GnomeVFSDrive.
+ * @b: a #GnomeVFSDrive.
  *
- *
- *
- * Returns:
+ * Returns: 0 if the drives are same.
  *
  * Since: 2.6
  */
@@ -532,10 +508,10 @@ decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
 
 /** 
  * gnome_vfs_drive_to_corba:
- * @drive:
- * @corba_drive:
+ * @drive: a #GnomeVFSDrive.
+ * @corba_drive: a GNOME_VFS_Drive object.
  *
- *
+ * Fills @corba_drive with the values from @drive.
  *
  * Since: 2.6
  */

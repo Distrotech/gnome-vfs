@@ -96,13 +96,13 @@ gnome_vfs_thread_init (void)
 /**
  * gnome_vfs_init:
  *
- * If GnomeVFS is not already initialized, initialize it. This must be
- * called prior to performing any other GnomeVFS operations, and may
+ * If gnome-vfs is not already initialized, initialize it. This must be
+ * called prior to performing any other gnome-vfs operations, and may
  * be called multiple times without error.
  * 
- * Return value: %TRUE if GnomeVFS is successfully initialized (or was
- * already initialized)
- **/
+ * Return value: %TRUE if gnome-vfs is successfully initialized (or was
+ * already initialized).
+ */
 gboolean 
 gnome_vfs_init (void)
 {
@@ -156,11 +156,11 @@ gnome_vfs_init (void)
 /**
  * gnome_vfs_initialized:
  *
- * Detects if GnomeVFS has already been initialized (GnomeVFS must be
+ * Detects if gnome-vfs has already been initialized (gnome-vfs must be
  * initialized prior to using any methods or operations).
  * 
- * Return value: %TRUE if GnomeVFS has already been initialized
- **/
+ * Return value: %TRUE if gnome-vfs has already been initialized.
+ */
 gboolean
 gnome_vfs_initialized (void)
 {
@@ -175,10 +175,10 @@ gnome_vfs_initialized (void)
 /**
  * gnome_vfs_shutdown:
  *
- * Cease all active GnomeVFS operations and unload the MIME
+ * Cease all active gnome-vfs operations and unload the MIME
  * database from memory.
  * 
- **/
+ */
 void
 gnome_vfs_shutdown (void)
 {
@@ -225,8 +225,8 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
  * Check if the current thread is the thread with the main glib event loop.
  *
  * Return value: %TRUE if the current thread is the thread with the 
- * main glib event loop
- **/
+ * main glib event loop.
+ */
 gboolean
 gnome_vfs_is_primary_thread (void)
 {

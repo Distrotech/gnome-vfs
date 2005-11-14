@@ -42,7 +42,6 @@
    be allowed to call `gnome_vfs_cancellation_cancel()'.  *All* the code is
    based on this assumption.  */
 
-
 struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
@@ -53,15 +52,14 @@ struct GnomeVFSCancellation {
 G_LOCK_DEFINE_STATIC (pipes);
 G_LOCK_DEFINE_STATIC (client_call);
 
-
 /**
  * gnome_vfs_cancellation_new:
  * 
- * Create a new GnomeVFSCancellation object for reporting cancellation to a
- * GNOME VFS module.
+ * Create a new #GnomeVFSCancellation object for reporting cancellation to a
+ * gnome-vfs module.
  * 
  * Return value: A pointer to the new GnomeVFSCancellation object.
- **/
+ */
 GnomeVFSCancellation *
 gnome_vfs_cancellation_new (void)
 {
@@ -78,10 +76,10 @@ gnome_vfs_cancellation_new (void)
 
 /**
  * gnome_vfs_cancellation_destroy:
- * @cancellation: A GnomeVFSCancellation object
+ * @cancellation: a #GnomeVFSCancellation object.
  * 
  * Destroy @cancellation.
- **/
+ */
 void
 gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 {
@@ -122,7 +120,7 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
 
 /**
  * gnome_vfs_cancellation_cancel:
- * @cancellation: A GnomeVFSCancellation object
+ * @cancellation: a #GnomeVFSCancellation object.
  * 
  * Send a cancellation request through @cancellation.
  *
@@ -130,9 +128,9 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
  * callbacks, there is a small race condition where the
  * operation finished callback will be called even if you
  * cancelled the operation. Its the apps responsibility
- * to handle this. See gnome_vfs_async_cancel for more
+ * to handle this. See gnome_vfs_async_cancel() for more
  * discussion about this.
- **/
+ */
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
@@ -179,12 +177,12 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 
 /**
  * gnome_vfs_cancellation_check:
- * @cancellation: A GnomeVFSCancellation object
+ * @cancellation: a #GnomeVFSCancellation object.
  * 
  * Check for pending cancellation.
  * 
  * Return value: %TRUE if the operation should be interrupted.
- **/
+ */
 gboolean
 gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
 {
@@ -196,13 +194,13 @@ gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
 
 /**
  * gnome_vfs_cancellation_ack:
- * @cancellation: A GnomeVFSCancellation object
+ * @cancellation: a #GnomeVFSCancellation object.
  * 
  * Acknowledge a cancellation.  This should be called if
- * `gnome_vfs_cancellation_check()' returns %TRUE or if `select()' reports that
+ * gnome_vfs_cancellation_check() returns %TRUE or if select() reports that
  * input is available on the file descriptor returned by
- * `gnome_vfs_cancellation_get_fd()'.
- **/
+ * gnome_vfs_cancellation_get_fd().
+ */
 void
 gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
 {
@@ -225,21 +223,21 @@ gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
 
 /**
  * gnome_vfs_cancellation_get_fd:
- * @cancellation: A GnomeVFSCancellation object
+ * @cancellation: a #GnomeVFSCancellation object.
  * 
  * Get a file descriptor -based notificator for @cancellation.  When
  * @cancellation receives a cancellation request, a character will be made
  * available on the returned file descriptor for input.
  *
  * This is very useful for detecting cancellation during I/O operations: you
- * can use the `select()' call to check for available input/output on the file
+ * can use the select() call to check for available input/output on the file
  * you are reading/writing, and on the notificator's file descriptor at the
  * same time.  If a data is available on the notificator's file descriptor, you
  * know you have to cancel the read/write operation.
  * 
  * Return value: the notificator's file descriptor, or -1 if starved of
  *               file descriptors.
- **/
+ */
 gint
 gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation)
 {

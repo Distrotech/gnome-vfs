@@ -92,11 +92,11 @@ gnome_vfs_volume_init (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_ref:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
+ * Increases the refcount of the @volume by 1.
  *
- *
- * Returns:
+ * Returns: the @volume.
  *
  * Since: 2.6
  */
@@ -115,9 +115,9 @@ gnome_vfs_volume_ref (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_unref:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
+ * Decreases the refcount of the @volume by 1.
  *
  * Since: 2.6
  */
@@ -166,11 +166,9 @@ gnome_vfs_volume_finalize (GObject *object)
 
 /** 
  * gnome_vfs_volume_get_volume_type:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: the volume type for @volume.
  *
  * Since: 2.6
  */
@@ -183,11 +181,9 @@ gnome_vfs_volume_get_volume_type (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_device_type:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: the device type for @volume.
  *
  * Since: 2.6
  */
@@ -199,11 +195,9 @@ gnome_vfs_volume_get_device_type (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_id:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: the id for the @volume.
  *
  * Since: 2.6
  */
@@ -215,11 +209,9 @@ gnome_vfs_volume_get_id (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_drive:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: the drive for the @volume.
  *
  * Since: 2.6
  */
@@ -257,11 +249,9 @@ gnome_vfs_volume_set_drive_private (GnomeVFSVolume     *volume,
 
 /** 
  * gnome_vfs_volume_get_device_path:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for device path of @volume.
  *
  * Since: 2.6
  */
@@ -273,11 +263,9 @@ gnome_vfs_volume_get_device_path (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_activation_uri:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for activation uri of @volume.
  *
  * Since: 2.6
  */
@@ -289,11 +277,9 @@ gnome_vfs_volume_get_activation_uri (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_hal_udi:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for unique device id of @volume.
  *
  * Since: 2.6
  */
@@ -305,11 +291,9 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_filesystem_type:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for filesystem type of @volume.
  *
  * Since: 2.6
  */
@@ -321,11 +305,9 @@ gnome_vfs_volume_get_filesystem_type (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_display_name:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for display name of @volume.
  *
  * Since: 2.6
  */
@@ -337,11 +319,9 @@ gnome_vfs_volume_get_display_name (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_get_icon:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns: a newly allocated string
+ * Returns: a newly allocated string for the icon filename of @volume.
  *
  * Since: 2.6
  */
@@ -353,11 +333,9 @@ gnome_vfs_volume_get_icon (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_is_user_visible:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if @volume is visible to the user, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -369,11 +347,9 @@ gnome_vfs_volume_is_user_visible (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_is_read_only:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if the @volume is read-only to the user, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -385,11 +361,9 @@ gnome_vfs_volume_is_read_only (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_is_mounted:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if the @volume is mounted, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -401,11 +375,9 @@ gnome_vfs_volume_is_mounted (GnomeVFSVolume *volume)
 
 /** 
  * gnome_vfs_volume_handles_trash:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: %TRUE if @volume handles trash, %FALSE otherwise.
  *
  * Since: 2.6
  */
@@ -455,12 +427,10 @@ _gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type)
 
 /** 
  * gnome_vfs_volume_compare:
- * @a:
- * @b:
+ * @a: a #GnomeVFSVolume.
+ * @b: a #GnomeVFSVolume.
  *
- *
- *
- * Returns:
+ * Returns: 0 if volumes @a and @b are same.
  *
  * Since: 2.6
  */
@@ -515,9 +485,10 @@ decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
 
 /** 
  * gnome_vfs_volume_to_corba:
- * @volume:
+ * @volume: a #GnomeVFSVolume.
+ * @corba_volume: a GNOME_VFS_volume object.
  *
- *
+ * Fills @corba_volume with the values from the @volume.
  *
  * Since: 2.6
  */

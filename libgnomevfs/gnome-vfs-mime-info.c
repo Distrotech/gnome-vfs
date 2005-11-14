@@ -191,7 +191,7 @@ _gnome_vfs_mime_info_shutdown (void)
  *
  * Reload the MIME database from disk and notify any listeners
  * holding active #GnomeVFSMIMEMonitor objects.
- **/
+ */
 void
 gnome_vfs_mime_info_reload (void)
 {
@@ -208,8 +208,8 @@ gnome_vfs_mime_info_reload (void)
  * gnome_vfs_mime_freeze:
  *
  * Freezes the mime data so that you can do multiple
- * updates to the dat in one batch without needing
- * to back the files to disk or readind them
+ * updates to the data in one batch without needing
+ * to back the files to disk or reading them.
  */
 void
 gnome_vfs_mime_freeze (void)
@@ -223,8 +223,8 @@ gnome_vfs_mime_freeze (void)
  * gnome_vfs_mime_thaw:
  *
  * UnFreezes the mime data so that you can do multiple
- * updates to the dat in one batch without needing
- * to back the files to disk or readind them
+ * updates to the data in one batch without needing
+ * to back the files to disk or reading them.
  */
 void
 gnome_vfs_mime_thaw (void)
@@ -497,19 +497,17 @@ get_entry (const char *mime_type)
 }
 
 /**
- * gnome_vfs_mime_set_value
+ * gnome_vfs_mime_set_value:
  * @mime_type: a mime type.
  * @key: a key to store the value in.
- * @value: the value to store in the key.
+ * @value: the value to store in the @key.
  *
- * This function is going to set the value
- * associated to the key and it will save it
+ * This function will set the @value for the @key and it will save it
  * to the user' file if necessary.
- * You should not free the key/values passed to
- * this function. They are used internally.
+ * You should not free the @key/@value passed to this function.
+ * They are used internally.
  *
- * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
- *
+ * Returns: %GNOME_VFS_OK if the operation succeeded, otherwise an error code.
  */
 GnomeVFSResult
 gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *value)
@@ -521,13 +519,13 @@ gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *va
 /**
  * gnome_vfs_mime_get_value:
  * @mime_type: a mime type.
- * @key: A key to lookup for the given mime-type
+ * @key: a key to lookup for the given @mime_type.
  *
  * This function retrieves the value associated with @key in
- * the given GnomeMimeContext.  The string is private, you
+ * the given #GnomeMimeContext.  The string is private, you
  * should not free the result.
  *
- * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code
+ * Returns: %GNOME_VFS_OK if the operation succeeded, otherwise an error code.
  */
 const char *
 gnome_vfs_mime_get_value (const char *mime_type, const char *key)
@@ -562,9 +560,9 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
  * gnome_vfs_mime_type_is_known:
  * @mime_type: a mime type.
  *
- * This function returns TRUE if @mime_type is in the MIME database at all.
+ * This function returns %TRUE if @mime_type is in the MIME database at all.
  *
- * Returns: TRUE if anything is known about @mime_type, otherwise FALSE
+ * Returns: %TRUE if anything is known about @mime_type, otherwise %FALSE.
  */
 gboolean
 gnome_vfs_mime_type_is_known (const char *mime_type)
@@ -590,12 +588,12 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 
 /**
  * gnome_vfs_mime_get_extensions_list:
- * @mime_type: type to get the extensions of
+ * @mime_type: mime type to get the extensions of.
  *
  * Get the file extensions associated with mime type @mime_type.
  *
- * Return value: a GList of char *s
- **/
+ * Return value: a #GList of char *s.
+ */
 GList *
 gnome_vfs_mime_get_extensions_list (const char *mime_type)
 {
@@ -605,11 +603,11 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 
 /**
  * gnome_vfs_mime_extensions_list_free:
- * @list: the extensions list
+ * @list: the extensions list.
  *
- * Call this function on the list returned by gnome_vfs_mime_extensions
- * to free the list and all of its elements.
- **/
+ * Call this function on the list returned by gnome_vfs_mime_get_extensions_list()
+ * to free the @list and all of its elements.
+ */
 void
 gnome_vfs_mime_extensions_list_free (GList *list)
 {

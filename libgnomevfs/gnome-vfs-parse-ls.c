@@ -495,6 +495,18 @@ vfs_parse_filedate (int idx,
 	return idx;
 }
 
+/**
+ * gnome_vfs_parse_ls_lga:
+ * @p: string containing the data in the form same as 'ls -al'.
+ * @s: pointer to stat structure.
+ * @filename: filename, will be filled here.
+ * @linkname: linkname, will be filled here.
+ *
+ * Parses the string @p which is in the form same as the 'ls -al' output and fills
+ * in the details in the struct @s, @filename and @linkname.
+ *
+ * Return value: 0 if cannot parse @p, 1 if successful.
+ */
 int
 gnome_vfs_parse_ls_lga (const char *p,
 			struct stat *s,

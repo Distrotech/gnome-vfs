@@ -245,6 +245,7 @@ gnome_vfs_ssl_set_timeout
 
 <SECTION>
 <FILE>gnome-vfs-uri</FILE>
+GnomeVFSURI
 GnomeVFSToplevelURI
 GnomeVFSURIHideOptions
 GNOME_VFS_URI_MAGIC_CHR

@@ -71,7 +71,7 @@ G_LOCK_DEFINE (gnome_vfs_mime_mutex);
  * operating system automatically cleans up resources when exiting.
  *
  * Unload the MIME database from memory.
- **/
+ */
 
 void
 gnome_vfs_mime_shutdown (void)
@@ -85,13 +85,13 @@ gnome_vfs_mime_shutdown (void)
 
 /**
  * gnome_vfs_mime_type_from_name_or_default:
- * @filename: A filename (the file does not necesarily exist).
- * @defaultv: A default value to be returned if no match is found
+ * @filename: a filename (the file does not necessarily exist).
+ * @defaultv: a default value to be returned if no match is found.
  *
  * This routine tries to determine the mime-type of the filename
  * only by looking at the filename from the GNOME database of mime-types.
  *
- * Returns the mime-type of the @filename.  If no value could be
+ * Returns: the mime-type of the @filename.  If no value could be
  * determined, it will return @defaultv.
  */
 const char *
@@ -133,11 +133,12 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 
 /**
  * gnome_vfs_mime_type_from_name:
- * @filename: A filename (the file does not necessarily exist).
+ * @filename: a filename (the file does not necessarily exist).
  *
- * Determined the mime type for @filename.
+ * Determine the mime type for @filename.
  *
- * Returns the mime-type for this filename.
+ * Returns: the mime-type for this filename. Will return
+ * %GNOME_VFS_MIME_TYPE_UNKNOWN if mime-type could not be found.
  */
 const char *
 gnome_vfs_mime_type_from_name (const gchar * filename)
@@ -281,16 +282,16 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
  * gnome_vfs_get_mime_type_common:
  * @uri: a real file or a non-existent uri.
  *
- * Tries to guess the mime type of the file represented by @uir.
+ * Tries to guess the mime type of the file represented by @uri.
  * Favors using the file data to the @uri extension.
- * Handles passing @uri of a non-existent file by falling back
- * on returning a type based on the extension.
+ * Handles @uri of a non-existent file by falling back
+ * on returning a type based on the extension. If cant find the mime-type based on the 
+ * extension also then returns 'application/octet-stream'.
  *
  * FIXME: This function will not necessarily return the same mime type as doing a
  * get file info on the text uri.
  *
- * Returns: the mime-type for this uri.
- * 
+ * Returns: the mime-type for @uri.
  */
 const char *
 gnome_vfs_get_mime_type_common (GnomeVFSURI *uri)
@@ -429,17 +430,17 @@ gnome_vfs_get_file_mime_type_internal (const char *path, const struct stat *opti
 
 /**
  * gnome_vfs_get_file_mime_type_fast:
- * @path: a path of a file.
+ * @path: path of the file whose mime type is to be found out.
  * @optional_stat_info: optional stat buffer.
  *
  * Tries to guess the mime type of the file represented by @path.
- * If It uses extention/name detection first, and if that fails
+ * It uses extention/name detection first, and if that fails
  * it falls back to mime-magic based lookup. This is faster
- * than always doing mime-magic, but doesn't always produce
+ * than always doing mime-magic but doesn't always produce
  * the right answer, so for important decisions 
- * you should use gnome_vfs_get_file_mime_type.
+ * you should use gnome_vfs_get_file_mime_type().
  *
- * Returns: the mime-type for this path
+ * Returns: the mime-type for file at @path.
  */
 const char *
 gnome_vfs_get_file_mime_type_fast (const char *path, const struct stat *optional_stat_info)
@@ -450,19 +451,19 @@ gnome_vfs_get_file_mime_type_fast (const char *path, const struct stat *optional
 
 /**
  * gnome_vfs_get_file_mime_type:
- * @path: a path of a file.
+ * @path: path of a file whose mime type is to be found out.
  * @optional_stat_info: optional stat buffer.
  * @suffix_only: whether or not to do a magic-based lookup.
  *
  * Tries to guess the mime type of the file represented by @path.
  * If @suffix_only is false, uses the mime-magic based lookup first.
- * Handles passing @path of a non-existent file by falling back
+ * Handles @path of a non-existent file by falling back
  * on returning a type based on the extension.
  *
  * If you need a faster, less accurate version, use
- * @gnome_vfs_get_file_mime_type_fast.
+ * gnome_vfs_get_file_mime_type_fast().
  *
- * Returns: the mime-type for this path
+ * Returns: the mime-type for file at @path.
  */
 const char *
 gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat_info,
@@ -473,13 +474,13 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *optional_stat
 
 /**
  * gnome_vfs_get_mime_type_from_uri:
- * @uri: A file uri.
+ * @uri: a file uri.
  *
  * Tries to guess the mime type of the file @uri by
  * checking the file name extension. Works on non-existent
  * files.
  *
- * Returns the mime-type for this filename.
+ * Returns: the mime-type for file at @uri.
  */
 const char *
 gnome_vfs_get_mime_type_from_uri (GnomeVFSURI *uri)
@@ -497,14 +498,14 @@ gnome_vfs_get_mime_type_from_uri (GnomeVFSURI *uri)
 
 /**
  * gnome_vfs_get_mime_type_from_file_data:
- * @uri: A file uri.
+ * @uri: a file uri.
  *
  * Tries to guess the mime type of the file @uri by
- * checking the file data using the magic patterns. Does not handle text files properly
+ * checking the file data using the magic patterns. Does not handle text files properly.
  *
  * Deprecated:
  *
- * Returns the mime-type for this filename.
+ * Returns: the mime-type for this filename.
  */
 const char *
 gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
@@ -530,13 +531,13 @@ gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
 
 /**
  * gnome_vfs_get_mime_type_for_data:
- * @data: A pointer to data in memory.
- * @data_size: Size of the data.
+ * @data: a pointer to data in memory.
+ * @data_size: size of the data.
  *
  * Tries to guess the mime type of the data in @data
  * using the magic patterns.
  *
- * Returns the mime-type for this filename.
+ * Returns: the mime-type for @data.
  */
 const char *
 gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
@@ -591,7 +592,10 @@ extract_prefix_add_suffix (const char *string, const char *separator, const char
         return result;
 }
 
-/* Returns the supertype for a mime type. Note that if called
+/* gnome_vfs_get_supertype_from_mime_type:
+ * @mime_type: mimetype to get the supertype for.
+ *
+ * Returns: the supertype for @mime type. Note that if called
  * on a supertype it will return a copy of the supertype.
  */
 char *
@@ -606,14 +610,14 @@ gnome_vfs_get_supertype_from_mime_type (const char *mime_type)
 
 /**
  * gnome_vfs_mime_type_is_equal:
- * @a: A const char * containing a mime type, e.g. "image/png"
- * @b: A const char * containing a mime type, e.g. "image/png"
+ * @a: a const char * containing a mime type, e.g. "image/png".
+ * @b: a const char * containing a mime type, e.g. "image/png".
  * 
  * Compares two mime types to determine if they are equivalent.  They are
  * equivalent if and only if they refer to the same mime type.
  * 
- * Return value: %TRUE, if a and b are equivalent mime types
- **/
+ * Return value: %TRUE, if a and b are equivalent mime types.
+ */
 gboolean
 gnome_vfs_mime_type_is_equal (const char *a,
 			      const char *b)
@@ -630,24 +634,26 @@ gnome_vfs_mime_type_is_equal (const char *a,
 
 /**
  * gnome_vfs_mime_type_get_equivalence:
- * @mime_type: A const char * containing a mime type, e.g. "image/png"
- * @base_mime_type: A const char * containing either a mime type or a subtype.
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
+ * @base_mime_type: a const char * containing either a mime type or a base mime type.
  * 
- * Compares @mime_type to @base_mime_type.  There are a three possible
- * relationships between the two strings.  If they are identical and @mime_type
- * is the same as @base_mime_type, then #GNOME_VFS_MIME_IDENTICAL is returned.
- * This would be the case if "audio/midi" and "audio/x-midi" are passed in.
+ * Compares @mime_type to @base_mime_type.  There are three possible
+ * relationships between the two strings.
  *
- * If @base_mime_type is a parent type of @mime_type, then
- * #GNOME_VFS_MIME_PARENT is returned.  As an example, "text/plain" is a parent
+ * a) If they are identical and @mime_type is the same as @base_mime_type,
+ *  then %GNOME_VFS_MIME_IDENTICAL is returned. This would be the case if
+ *  "audio/midi" and "audio/x-midi" are passed in.
+ *
+ * b) If @base_mime_type is a parent type of @mime_type, then
+ * %GNOME_VFS_MIME_PARENT is returned.  As an example, "text/plain" is a parent
  * of "text/rss", "image" is a parent of "image/png", and
  * "application/octet-stream" is a parent of almost all types.
  *
- * Finally, if the two mime types are unrelated, than #GNOME_VFS_MIME_UNRELATED
+ * c) Finally, if the two mime types are unrelated, than %GNOME_VFS_MIME_UNRELATED
  * is returned.
  * 
- * Return value:
- **/
+ * Returns: value 0,1 or 2 indicating the relationship between @mime_type and @base_mime_type.
+ */
 GnomeVFSMimeEquivalence
 gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 				     const char *base_mime_type)
@@ -798,15 +804,15 @@ _gnome_vfs_file_date_tracker_date_has_changed (FileDateTracker *tracker)
 
 /**
  * gnome_vfs_get_mime_type:
- * @text_uri: URI of the file for which to get the mime type
- * 
- * Determine the guessed mime type of @text_uri. The mime type is determined
+ * @text_uri: path of the file for which to get the mime type.
+ *
+ * Determine the mime type of @text_uri. The mime type is determined
  * in the same way as by gnome_vfs_get_file_info(). This is meant as
- * a convenience function for times when you only want the mime type.
- * 
- * Return value: The mime type, or NULL if there is an error reading 
+ * a convenient function for times when you only want the mime type.
+ *
+ * Return value: The mime type, or %NULL if there is an error reading
  * the file.
- **/
+ */
 char *
 gnome_vfs_get_mime_type (const char *text_uri)
 {

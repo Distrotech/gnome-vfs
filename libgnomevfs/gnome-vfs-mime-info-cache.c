@@ -654,6 +654,12 @@ gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache)
 	g_free (cache);
 }
 
+/**
+ * gnome_vfs_mime_info_cache_reload:
+ * @dir: directory path which needs reloading.
+ * 
+ * Reload the mime information for the @dir.
+ */
 void
 gnome_vfs_mime_info_cache_reload (const char *dir)
 {
@@ -687,6 +693,16 @@ get_all_parent_types (const char *mime_type)
 
 	return g_list_reverse (l);
 }
+
+/**
+ * gnome_vfs_mime_get_all_desktop_entries:
+ * @mime_type: a mime type.
+ *
+ * Returns all the desktop filenames for @mime_type.
+ *
+ * Return value: a #GList containing the desktop filenames containing the
+ * @mime_type.
+ */
 
 GList *
 gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
@@ -794,6 +810,14 @@ get_default_desktop_entry (const char *mime_type)
 	return NULL;
 }
 
+/**
+ * gnome_vfs_mime_get_default_desktop_entry:
+ * @mime_type: a mime type.
+ *
+ * Returns the default desktop filename for @mime_type.
+ *
+ * Return value: the default desktop filename for @mime_type.
+ */
 gchar *
 gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 {
