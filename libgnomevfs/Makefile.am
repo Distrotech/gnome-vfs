@@ -68,6 +68,8 @@ libgnomevfs_headers = 				\
 	gnome-vfs-uri.h				\
 	$(NULL)
 
+export_symbols = $(LIBTOOL_EXPORT_OPTIONS)
+
 # Generate the enums source code, with glib-mkenums:
 # This is based on the same Makefile.am stuff in pango:
 libgnomevfs_built_headers = gnome-vfs-enum-types.h
@@ -127,6 +129,7 @@ libgnomevfs_2_la_LIBADD =			\
 libgnomevfs_2_la_LDFLAGS =			\
 	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
 	-no-undefined \
+	$(export_symbols) \
 	$(NULL)
 
 libgnomevfsdaemon_2_la_LIBADD =			\
@@ -330,7 +333,13 @@ libgnomevfs_2_la_SOURCES =			\
 # BUILT_SOURCES = $(GOB_SRCLIST)
 # CLEANFILES = $(BUILT_SOURCES)
 
+# The daemon uses all interfaces in gnome-vfs-cdrom
+# and uses _gnome_vfs_filesystem_volume_name, which all
+# only use static data.
+#
 libgnomevfsdaemon_2_la_SOURCES =		\
+	gnome-vfs-filesystem-type.c		\
+	gnome-vfs-cdrom.c			\
 	gnome-vfs-hal-mounts.c			\
 	gnome-vfs-volume-monitor-daemon.c	\
 	gnome-vfs-volume-monitor.c	 	\

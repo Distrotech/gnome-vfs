@@ -82,7 +82,7 @@ gnome_vfs_get_is_daemon (void)
 }
 
 GType
-_gnome_vfs_get_daemon_volume_monitor_type (void)
+gnome_vfs_get_daemon_volume_monitor_type (void)
 {
 	return daemon_volume_monitor_type;
 }

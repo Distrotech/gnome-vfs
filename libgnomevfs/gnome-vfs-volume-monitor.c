@@ -248,7 +248,7 @@ _gnome_vfs_get_volume_monitor_internal (gboolean create)
 	    create &&
 	    !volume_monitor_was_shutdown) {
 		if (gnome_vfs_get_is_daemon ()) {
-			the_volume_monitor = g_object_new (_gnome_vfs_get_daemon_volume_monitor_type (), NULL);
+			the_volume_monitor = g_object_new (gnome_vfs_get_daemon_volume_monitor_type (), NULL);
 		} else {
 			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_CLIENT, NULL);
 		}
@@ -285,7 +285,7 @@ _gnome_vfs_volume_monitor_shutdown (void)
 	
 	if (the_volume_monitor != NULL) {
 		if (!gnome_vfs_get_is_daemon ()) {
-			_gnome_vfs_volume_monitor_client_shutdown (GNOME_VFS_VOLUME_MONITOR_CLIENT (the_volume_monitor));
+			gnome_vfs_volume_monitor_client_shutdown_private (GNOME_VFS_VOLUME_MONITOR_CLIENT (the_volume_monitor));
 		}
 		
 		gnome_vfs_volume_monitor_unref (the_volume_monitor);
@@ -693,8 +693,8 @@ _gnome_vfs_volume_monitor_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
 	
 	drive = volume->priv->drive;
 	if (drive != NULL) {
-		_gnome_vfs_volume_unset_drive (volume, drive);
-		_gnome_vfs_drive_remove_volume (drive, volume);
+		gnome_vfs_volume_unset_drive_private (volume, drive);
+		gnome_vfs_drive_remove_volume_private (drive, volume);
 	}
 	
 	gnome_vfs_volume_unref (volume);
@@ -734,8 +734,8 @@ _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 		GnomeVFSVolume *volume;
 		volume = GNOME_VFS_VOLUME (vol_list->data);
 
-		_gnome_vfs_volume_unset_drive (volume, drive);
-		_gnome_vfs_drive_remove_volume (drive, volume);
+		gnome_vfs_volume_unset_drive_private (volume, drive);
+		gnome_vfs_drive_remove_volume_private (drive, volume);
 	}
 
 	g_list_free (vol_list);

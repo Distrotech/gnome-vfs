@@ -42,7 +42,7 @@
 
 #define MIXED_API_WARNING "Cannot call %s with a GNOMEVFSMimeApplication structure "\
 			  "constructed by the deprecated application registry", \
-			  __FUNCTION__
+			  G_GNUC_FUNCTION
 
 struct _GnomeVFSMimeApplicationPrivate
 {

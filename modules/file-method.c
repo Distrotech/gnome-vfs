@@ -2531,7 +2531,7 @@ do_get_volume_free_space (GnomeVFSMethod *method,
  	*free_space = 0;
 
 	path = gnome_vfs_uri_get_path (uri);
-	if (path == NULL || !_gnome_vfs_istr_has_prefix (path, "/")) {
+	if (path == NULL || *path != '/') {
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 

@@ -699,8 +699,8 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 
 	if (mounted_volume != NULL &&
 	    mounted_volume->priv->drive == NULL) {
-		_gnome_vfs_drive_add_mounted_volume (drive, mounted_volume);
-		_gnome_vfs_volume_set_drive (mounted_volume, drive);
+		gnome_vfs_drive_add_mounted_volume_private (drive, mounted_volume);
+		gnome_vfs_volume_set_drive_private (mounted_volume, drive);
 	}
 
 	return drive;
@@ -985,7 +985,7 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 		}
 		
 		vol->priv->drive = containing_drive;
-		_gnome_vfs_drive_add_mounted_volume (containing_drive, vol);
+		gnome_vfs_drive_add_mounted_volume_private (containing_drive, vol);
 	}
 
 	return vol;

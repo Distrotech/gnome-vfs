@@ -220,7 +220,7 @@ _gnome_vfs_volume_monitor_client_daemon_died (GnomeVFSVolumeMonitorClient *volum
 }
 
 void
-_gnome_vfs_volume_monitor_client_shutdown (GnomeVFSVolumeMonitorClient *volume_monitor_client)
+gnome_vfs_volume_monitor_client_shutdown_private (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 {
         CORBA_Environment ev;
 	GNOME_VFS_Daemon daemon;

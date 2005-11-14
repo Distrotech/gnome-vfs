@@ -1,3 +1,25 @@
+2005-11-14  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	Hide symbols that start with _
+	
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.c: 
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	Make private functions used by the daemon _private.
+	
+	* modules/file-method.c:
+	Fix up use of private gnome-vfs library function.
+
 2005-11-08  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_equal):

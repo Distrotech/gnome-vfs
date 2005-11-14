@@ -185,8 +185,7 @@ gnome_vfs_drive_finalize (GObject *object)
 		GnomeVFSVolume *vol;
 		vol = GNOME_VFS_VOLUME (current_vol->data);
 
-		_gnome_vfs_volume_unset_drive (vol,
-					       drive);
+		gnome_vfs_volume_unset_drive_private (vol, drive);
 		gnome_vfs_volume_unref (vol);
 	}
 
@@ -336,8 +335,8 @@ gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
 }
 
 void
-_gnome_vfs_drive_remove_volume (GnomeVFSDrive      *drive,
-			       GnomeVFSVolume     *volume)
+gnome_vfs_drive_remove_volume_private (GnomeVFSDrive      *drive,
+				       GnomeVFSVolume     *volume)
 {
 	G_LOCK (drives);
 	g_assert ((g_list_find (drive->priv->volumes,
@@ -350,8 +349,8 @@ _gnome_vfs_drive_remove_volume (GnomeVFSDrive      *drive,
 }
 
 void
-_gnome_vfs_drive_add_mounted_volume  (GnomeVFSDrive      *drive,
-				      GnomeVFSVolume     *volume)
+gnome_vfs_drive_add_mounted_volume_private (GnomeVFSDrive      *drive,
+					    GnomeVFSVolume     *volume)
 {
 	G_LOCK (drives);
 
@@ -606,8 +605,8 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 			GnomeVFSVolume *volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
 										 corba_drive->volumes._buffer[i]);
 			if (volume != NULL) {
-				_gnome_vfs_drive_add_mounted_volume (drive, volume);
-				_gnome_vfs_volume_set_drive (volume, drive);
+				gnome_vfs_drive_add_mounted_volume_private (drive, volume);
+				gnome_vfs_volume_set_drive_private (volume, drive);
 			}
 		}
 	}

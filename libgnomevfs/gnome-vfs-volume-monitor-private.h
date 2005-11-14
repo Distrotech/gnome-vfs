@@ -91,13 +91,13 @@ struct _GnomeVFSDrivePrivate {
 	gboolean must_eject_at_unmount;
 };
 
-void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,
+void gnome_vfs_volume_set_drive_private         (GnomeVFSVolume        *volume,
 						 GnomeVFSDrive         *drive);
-void _gnome_vfs_drive_add_mounted_volume        (GnomeVFSDrive         *drive,
+void gnome_vfs_drive_add_mounted_volume_private (GnomeVFSDrive         *drive,
 						 GnomeVFSVolume        *volume);
-void _gnome_vfs_drive_remove_volume             (GnomeVFSDrive         *drive,
+void gnome_vfs_drive_remove_volume_private      (GnomeVFSDrive         *drive,
 						 GnomeVFSVolume        *volume);
-void _gnome_vfs_volume_unset_drive              (GnomeVFSVolume        *volume,
+void gnome_vfs_volume_unset_drive_private       (GnomeVFSVolume        *volume,
 						 GnomeVFSDrive         *drive);
 void _gnome_vfs_volume_monitor_mounted          (GnomeVFSVolumeMonitor *volume_monitor,
 						 GnomeVFSVolume        *volume);

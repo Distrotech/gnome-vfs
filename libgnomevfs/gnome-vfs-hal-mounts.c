@@ -1029,7 +1029,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		vol->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
 
 		vol->priv->drive = drive;
-		_gnome_vfs_drive_add_mounted_volume (drive, vol);
+		gnome_vfs_drive_add_mounted_volume_private (drive, vol);
 
 #ifdef HAL_SHOW_DEBUG
 		g_debug ("Adding GnomeVFSVolume for device path %s", libhal_volume_get_device_file (hal_volume));
@@ -1615,7 +1615,7 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 				     GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon),
 				     libhal_drive_get_udi (hal_drive))) != NULL) {
 				volume->priv->drive = drive;
-				_gnome_vfs_drive_add_mounted_volume (drive, volume);
+				gnome_vfs_drive_add_mounted_volume_private (drive, volume);
 				
 				goto out;
 			}
@@ -1648,7 +1648,7 @@ _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor
 				     GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon),
 				     libhal_drive_get_udi (hal_drive))) != NULL) {
 				volume->priv->drive = drive;
-				_gnome_vfs_drive_add_mounted_volume (drive, volume);
+				gnome_vfs_drive_add_mounted_volume_private (drive, volume);
 				
 				goto out;
 			}
