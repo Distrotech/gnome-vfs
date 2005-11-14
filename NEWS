@@ -1,3 +1,17 @@
+gnome-vfs 2.13.1
+	* Support for recent samba
+	* Fix bug when resolving nested symlinks
+	* Sync to upstream xdg-mime code
+	* Various fixes to gnomevfs-* apps
+	* New functions gnome_vfs_exists, gnome_vfs_get_slow_mime
+	* Better ls parsing for ftp
+	* Return GNOME_VFS_ERROR_CANCELLED when authentication is cancelled
+	* Add avahi support
+	* Fix problem when mounting cd multiple times
+	* Hide private symbols
+	* Better docs
+	* Fix metadata removal issue with deletion in Nautilus
+
 gnome-vfs 2.12.1
 	* Fix gnome_vfs_uri_resolve_all_symlinks in some cases
 	* win32 fixes
