@@ -77,7 +77,7 @@ show_data (gpointer item, const char *directory)
 
 	path = g_strconcat (directory, "/", info->name, NULL);
 
-	g_print ("%s\t%s%s%s\t(%s, %s)\tsize %ld\tmode %04o\n",
+	g_print ("%s\t%s%s%s\t(%s, %s)\tsize %" GNOME_VFS_SIZE_FORMAT_STR "\tmode %04o\n",
 			info->name,
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link: " : "",
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? info->symlink_name
@@ -85,7 +85,7 @@ show_data (gpointer item, const char *directory)
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " ]" : "",
 			type_to_string (info->type),
 			info->mime_type,
-			(glong) info->size,
+			info->size,
 			info->permissions);
 
 	g_free (path);

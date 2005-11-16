@@ -1,3 +1,10 @@
+2005-11-16  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-ls.c: Use GNOME_VFS_SIZE_FORMAT_STR in the
+	format string and avoid so the cast to glong.
+
+	This should fix bug #314691.
+
 2005-11-14  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
