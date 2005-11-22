@@ -38,8 +38,10 @@
 
 #ifdef HAVE_AVAHI
 #include <avahi-client/client.h>
+#include <avahi-client/lookup.h>
 #include <avahi-common/error.h>
 #include <avahi-common/simple-watch.h>
+#include <avahi-common/timeval.h>
 #include <avahi-glib/glib-watch.h>
 #endif 
 
@@ -733,32 +735,47 @@ unicast_resolve_sync (const char *name,
 static AvahiClient *global_client = NULL;
 static gboolean avahi_initialized = FALSE;
 
+static AvahiClient *get_global_avahi_client (void);
+
 /* Callback for state changes on the Client */
 static void
 avahi_client_callback (AvahiClient *client, AvahiClientState state, void *userdata)
 {
-	if (state == AVAHI_CLIENT_DISCONNECTED) {
+	if (state == AVAHI_CLIENT_FAILURE) {
+		if (avahi_client_errno (client) == AVAHI_ERR_DISCONNECTED) {
+			/* Destroy old client */
+			avahi_client_free (client);
+			global_client = NULL;
+			avahi_initialized = FALSE;
+
+			/* Reconnect */
+			get_global_avahi_client ();
+		}
 	}
 }
 
 static AvahiClient *
 get_global_avahi_client (void) {
-	AvahiGLibPoll *glib_poll;
+	static AvahiGLibPoll *glib_poll = NULL;
 	int error;
 
 	if (!avahi_initialized) {
-		glib_poll = avahi_glib_poll_new (NULL, G_PRIORITY_DEFAULT);
+		if (glib_poll == NULL) {
+			glib_poll = avahi_glib_poll_new (NULL, G_PRIORITY_DEFAULT);
+		}
 
 		/* Create a new AvahiClient instance */
 		global_client = avahi_client_new (avahi_glib_poll_get (glib_poll),
+						  AVAHI_CLIENT_NO_FAIL,
 						  avahi_client_callback,
-						  NULL,
+						  glib_poll,
 						  &error);
 
 		if (global_client == NULL) {    
 			/* Print out the error string */
 			g_warning ("Error initializing Avahi: %s", avahi_strerror (error));
 			avahi_glib_poll_free (glib_poll);
+			glib_poll = NULL;
 			return NULL;
 		}
 		avahi_initialized = TRUE;
@@ -767,7 +784,6 @@ get_global_avahi_client (void) {
 	return global_client;
 }
 #endif
-
 
 #ifdef HAVE_HOWL
 
@@ -924,6 +940,7 @@ avahi_browse_callback (AvahiServiceBrowser *b,
 		       const char *name,
 		       const char *type,
 		       const char *domain,
+		       AvahiLookupResultFlags flags,
 		       void *userdata)
 {
 	GnomeVFSDNSSDBrowseHandle *handle;
@@ -933,6 +950,12 @@ avahi_browse_callback (AvahiServiceBrowser *b,
 	service.name = (char *)name;
 	service.type = (char *)type;
 	service.domain = (char *)domain;
+	
+	if (event == AVAHI_BROWSER_FAILURE ||
+	    event == AVAHI_BROWSER_ALL_FOR_NOW ||
+	    event == AVAHI_BROWSER_CACHE_EXHAUSTED) {
+		return;
+	}
 	
 	if (!handle->cancelled) {
 		handle->callback (handle,
@@ -1098,7 +1121,9 @@ gnome_vfs_dns_sd_browse (GnomeVFSDNSSDBrowseHandle **handle_out,
 		handle->is_local = TRUE;
 		client = get_global_avahi_client ();
 		if (client) {
-			sb = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, type, NULL, avahi_browse_callback, handle);
+			sb = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, type, NULL, 
+							AVAHI_LOOKUP_USE_MULTICAST,
+							avahi_browse_callback, handle);
 			if (sb != NULL) {
 				handle->avahi_sb = sb;
 				*handle_out = handle;
@@ -1291,6 +1316,7 @@ avahi_resolve_async_callback (AvahiServiceResolver *r,
 			      const AvahiAddress *address,
 			      uint16_t port,
 			      AvahiStringList *txt,
+			      AvahiLookupResultFlags flags,
 			      void *user_data)
 {
 	GnomeVFSDNSSDResolveHandle *handle;
@@ -1327,7 +1353,7 @@ avahi_resolve_async_callback (AvahiServiceResolver *r,
 		}
 		g_free (text);
 
-	} else if (event == AVAHI_RESOLVER_TIMEOUT) {
+	} else if (event == AVAHI_RESOLVER_FAILURE) {
 		handle->callback (handle,
 				  GNOME_VFS_ERROR_HOST_NOT_FOUND,
 				  NULL,
@@ -1506,6 +1532,7 @@ gnome_vfs_dns_sd_resolve (GnomeVFSDNSSDResolveHandle **handle_out,
 		if (client) {
 			sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 							 name, type, domain, AVAHI_PROTO_UNSPEC, 
+							 AVAHI_LOOKUP_USE_MULTICAST,
 							 avahi_resolve_async_callback, handle);
 			if (sr != NULL) {
 				handle->avahi_sr = sr;
@@ -1633,7 +1660,7 @@ avahi_browse_sync_client_callback (AvahiClient *client, AvahiClientState state, 
 	struct sync_browse_data *data;
 
 	data = user_data;
-	if (state == AVAHI_CLIENT_DISCONNECTED) {
+	if (state == AVAHI_CLIENT_FAILURE) {
 		avahi_simple_poll_quit (data->poll);
 	}
 }
@@ -1646,6 +1673,7 @@ avahi_browse_sync_callback (AvahiServiceBrowser *b,
 			    const char *name,
 			    const char *type,
 			    const char *domain,
+			    AvahiLookupResultFlags flags,
 			    void *user_data)
 {
 	struct sync_browse_data *data;
@@ -1676,10 +1704,11 @@ avahi_browse_sync_callback (AvahiServiceBrowser *b,
 			g_free (existing->domain);
 			g_array_remove_index (data->array, i);
 		}
-	} else {
-		g_warning ("Unknown browse status\n");
+	} else if (event == AVAHI_BROWSER_ALL_FOR_NOW) {
+		avahi_simple_poll_quit (data->poll);
 	}
-	
+
+
 	if (free_service) {
 		g_free (service.name);
 		g_free (service.type);
@@ -1817,7 +1846,7 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 		}
 
 		poll = avahi_simple_poll_get (simple_poll);
-		client = avahi_client_new (poll, 
+		client = avahi_client_new (poll, 0,
 					   avahi_browse_sync_client_callback, &data, &error);
 		
 		/* Check wether creating the client object succeeded */
@@ -1830,7 +1859,8 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 
 		array = g_array_new (FALSE, FALSE, sizeof (GnomeVFSDNSSDService));
 		data.array = array;
-		sb = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, type, NULL, avahi_browse_sync_callback, &data);
+		sb = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, type, NULL, 
+						AVAHI_LOOKUP_USE_MULTICAST, avahi_browse_sync_callback, &data);
 		if (sb == NULL) {
 			g_warning ("Failed to create service browser: %s\n", avahi_strerror (avahi_client_errno (client)));
 			g_array_free (array, TRUE);
@@ -1943,7 +1973,7 @@ avahi_resolve_sync_client_callback (AvahiClient *c, AvahiClientState state, void
 	struct sync_resolve_data *data;
 
 	data = user_data;
-	if (state == AVAHI_CLIENT_DISCONNECTED) {
+	if (state == AVAHI_CLIENT_FAILURE) {
 		avahi_simple_poll_quit (data->poll);
 	}
 }
@@ -1960,6 +1990,7 @@ avahi_resolve_sync_callback (AvahiServiceResolver *r,
 			     const AvahiAddress *address,
 			     uint16_t port,
 			     AvahiStringList *txt,
+			     AvahiLookupResultFlags flags,
 			     void *user_data)
 {
 	struct sync_resolve_data *data;
@@ -2069,7 +2100,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 			return GNOME_VFS_ERROR_GENERIC;
 		}
 
-		client = avahi_client_new (avahi_simple_poll_get (simple_poll), 
+		client = avahi_client_new (avahi_simple_poll_get (simple_poll), 0, 
 					   avahi_resolve_sync_client_callback, &resolve_data, &error);
 		
 		/* Check wether creating the client object succeeded */
@@ -2081,6 +2112,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		
 		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 						 name, type, domain, AVAHI_PROTO_UNSPEC, 
+						 AVAHI_LOOKUP_USE_MULTICAST,
 						 avahi_resolve_sync_callback, &resolve_data);
 		if (sr == NULL) {
 			g_warning ("Failed to resolve service '%s': %s\n", name, avahi_strerror (avahi_client_errno (client)));

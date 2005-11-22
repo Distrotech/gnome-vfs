@@ -1,5 +1,14 @@
 2005-11-22  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/dns-sd-method.c: 
+	* libgnomevfs/gnome-vfs-dns-sd.c
+	Port to Avahi 0.6
+	
+	* configure.in: 
+	Require avahi 0.6
+
+2005-11-22  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-dns-sd.c:
 	Revert accidental removal of avahi code.
 
