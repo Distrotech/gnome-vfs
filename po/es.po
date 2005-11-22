@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-25 03:40+0200\n"
-"PO-Revision-Date: 2005-09-25 03:43+0200\n"
+"POT-Creation-Date: 2005-11-22 23:18+0100\n"
+"PO-Revision-Date: 2005-11-22 23:22+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,32 +33,32 @@ msgstr "No se pudo inicializar gnome vfs"
 msgid "ISO 9660 Volume"
 msgstr "Volumen ISO 9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d contiene caracteres nulos."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d contiene un método sin nombre."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d no tiene opciones el marcador de fin de opciones."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d tiene opciones desconocidas %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d contiene un modulo sin nombre."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:366
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "No se encuentra el archivo de configuración `%s': %s"
@@ -445,17 +445,17 @@ msgstr "La operación ha sido detenida"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -463,12 +463,12 @@ msgstr ""
 "Función obsoleta. Las modificaciones del usuario a la base de datos MIME no "
 "se soportan a partir de ahora."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "No se puede analizar: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "El resto de los errores de análisis serán ignorados."
 
@@ -722,7 +722,7 @@ msgstr "El recurso está bloqueado"
 msgid "Function call deprecated"
 msgstr "La llamada de función es obsoleta"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Error desconocido"
 
@@ -748,7 +748,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1106
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -843,37 +843,38 @@ msgstr "Cámara"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Volumen raíz"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "CD de sonido"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Volumen desconocido"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Servidor de red"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:169
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Imposible montar el volumen. Probablemente no introdujo un soporte en el "
 "dispositivo."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -881,7 +882,14 @@ msgstr ""
 "Imposible montar la unidad de disquetes. El disquete probablemente está en "
 "un formato que no puede ser montado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr "Imposible montar el volumen. Si esta es una unidad encriptada, entonces se usó una contraseña o clave incorrecta."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -889,28 +897,57 @@ msgstr ""
 "Imposible montar el volumen seleccionado. El volumen probablemente está en "
 "un formato que no puede ser montado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
 msgstr "Imposible montar la unidad de disquetes seleccionada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
 msgstr "Imposible montar el volumen seleccionado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr "Imposible desmontar el volumen seleccionado. El volumen probablemente lo está usando al menos un programa."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
 msgstr "Imposible desmontar el volumen seleccionado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:375
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Falló al leer los datos desde el proceso hijo %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:419
+msgid "Couldn't run mount process in a pty"
+msgstr "No se pudo ejecutar el proceso de montaje en un pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:464
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Error inesperado en select() al leer datos desde un proceso hijo (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:518
+msgid "Couldn't send password to mount process."
+msgstr "No se pudo enviar la contraseña al proceso de montaje."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:557
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Error inesperado en waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:648
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:715
 msgid "Failed to start command"
 msgstr "Falló al iniciar el comando"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:703
 msgid "Unable to eject media"
 msgstr "No se pudo expulsar el soporte"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:932
 msgid "Unable to unmount connected server"
 msgstr "No se pudo desmontar el servidor conectado"
 
@@ -935,12 +972,12 @@ msgstr "GnomeVFSSeekPosition %d desconocida"
 msgid "Windows Network"
 msgstr "Red de Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "La identidad de la computadora remota (%s) es desconocida."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -954,11 +991,11 @@ msgstr ""
 "absolutamente seguro de que es seguro continuar, consulte con el "
 "administrador del sistema."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
 msgstr "Iniciar sesión de todas formas"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1331
 msgid "Cancel Login"
 msgstr "Cancelar inicio de sesión"
 
@@ -971,7 +1008,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -1022,7 +1060,8 @@ msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1487,4 +1526,3 @@ msgid ""
 msgstr ""
 "Indica si se deben mostrar las unidades y los volúmenes montables de discos "
 "duros internos (los no SCSI ópticos siempre se muestran)"
-
