@@ -199,6 +199,7 @@ libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-transform.h			\
 	gnome-vfs-socket-buffer.h		\
 	gnome-vfs-socket.h			\
+	gnome-vfs-pty.h				\
 	$(NULL)
 
 
@@ -252,6 +253,7 @@ libgnomevfs_unix_sources =			\
 	gnome-vfs-cdrom.c			\
 	gnome-vfs-dns-sd.c			\
 	gnome-vfs-parse-ls.c			\
+	gnome-vfs-pty.c				\
 	$(NULL)
 
 if OS_WIN32

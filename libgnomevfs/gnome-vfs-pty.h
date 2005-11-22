@@ -23,14 +23,19 @@
 
 G_BEGIN_DECLS
 
+enum {
+	GNOME_VFS_PTY_REAP_CHILD = 1,
+	GNOME_VFS_PTY_LOGIN_TTY = 2
+};
+
 /* Start up the given binary (exact path, not interpreted at all) in a
  * pseudo-terminal of its own, returning the descriptor for the master
  * side of the PTY pair, logging the session to the specified files, and
  * storing the child's PID in the given argument. */
-int _gnome_vfs_pty_open(pid_t *child, char **env_add,
-			const char *command, char **argv, const char *directory,
-			int columns, int rows,
-			int *stdin_fd, int *stdout_fd, int *stderr_fd);
+int gnome_vfs_pty_open(pid_t *child, guint flags, char **env_add,
+		       const char *command, char **argv, const char *directory,
+		       int columns, int rows,
+		       int *stdin_fd, int *stdout_fd, int *stderr_fd);
 int _gnome_vfs_pty_get_size(int master, int *columns, int *rows);
 
 G_END_DECLS

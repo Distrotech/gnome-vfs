@@ -69,7 +69,7 @@
 #include <glib/gi18n-lib.h>
 
 #include "sftp.h"
-#include "pty-open.h"
+#include <libgnomevfs/gnome-vfs-pty.h>
 
 size_t default_req_len = 32768;
 guint max_req = 16;
@@ -1149,7 +1149,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 
 	tty_fd = -1;
 #ifdef USE_PTY
-	tty_fd =_gnome_vfs_pty_open(&ssh_pid, NULL,
+	tty_fd = gnome_vfs_pty_open(&ssh_pid, GNOME_VFS_PTY_REAP_CHILD, NULL,
 				    args[0], args+1, NULL,
 				    300, 300, 
 				    &out_fd, &in_fd, &err_fd);

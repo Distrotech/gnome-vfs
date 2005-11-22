@@ -23,6 +23,9 @@
 
 #include <config.h>
 
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 #include <glib.h>
@@ -39,9 +42,28 @@
 #include "gnome-vfs-drive.h"
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-standard-callbacks.h"
+#include "gnome-vfs-module-callback-module-api.h"
+#include "gnome-vfs-module-callback-private.h"
+#include "gnome-vfs-pty.h"
 
 #ifdef USE_HAL
 #include "gnome-vfs-hal-mounts.h"
+#endif
+
+#ifdef HAVE_GRANTPT
+/* We only use this on systems with unix98 ptys */
+#define USE_PTY 1
+#endif
+
+#if 0
+#define DEBUG_MOUNT_ENABLE
+#endif
+
+#ifdef DEBUG_MOUNT_ENABLE
+#define DEBUG_MOUNT(x) g_print x
+#else
+#define DEBUG_MOUNT(x) 
 #endif
 
 #ifndef G_OS_WIN32
@@ -67,7 +89,13 @@ static const char *mount_known_locations [] = {
 };
 
 static const char *umount_known_locations [] = {
-	"/usr/bin/pumount", "/bin/pumount",
+	"/sbin/umount", "/bin/umount",
+	"/usr/sbin/umount", "/usr/bin/umount",
+	NULL
+};
+
+static const char *pumount_known_locations [] = {
+	"/usr/sbin/pumount", "/usr/bin/pumount",
 	"/sbin/umount", "/bin/umount",
 	"/usr/sbin/umount", "/usr/bin/umount",
 	NULL
@@ -77,6 +105,8 @@ static const char *umount_known_locations [] = {
 #define MOUNT_SEPARATOR " "
 #define UMOUNT_COMMAND umount_known_locations
 #define UMOUNT_SEPARATOR " "
+#define PUMOUNT_COMMAND pumount_known_locations
+#define PUMOUNT_SEPARATOR " "
 
 #endif /* USE_VOLRMMOUNT */
 
@@ -111,6 +141,20 @@ typedef struct {
 	char *detailed_error_message;
 } MountThreadInfo;
 
+/* Since we're not a module handling jobs, we need to do our own marshalling
+   of the authentication callbacks */
+typedef struct _MountThreadAuth {
+	const gchar *callback;
+	gconstpointer in_args;
+	gsize in_size;
+	gpointer out_args;
+	gsize out_size;
+	gboolean invoked;
+
+	GCond *cond;
+	GMutex *mutex;
+} MountThreadAuth;
+
 static char *
 generate_mount_error_message (char *standard_error,
 			      GnomeVFSDeviceType device_type)
@@ -134,6 +178,10 @@ generate_mount_error_message (char *standard_error,
 		if (device_type == GNOME_VFS_DEVICE_TYPE_FLOPPY) {
 			message = g_strdup_printf (_("Unable to mount the floppy drive. "
 						     "The floppy is probably in a format that cannot be mounted."));
+		} else if (device_type == GNOME_VFS_DEVICE_TYPE_LOOPBACK) {
+			/* Probably a wrong password */
+			message = g_strdup_printf (_("Unable to mount the volume. "
+						     "If this is an encrypted drive, then the wrong password or key was used."));
 		} else {
 			message = g_strdup_printf (_("Unable to mount the selected volume. "
 						     "The volume is probably in a format that cannot be mounted."));
@@ -154,7 +202,13 @@ generate_unmount_error_message (char *standard_error,
 {
 	char *message;
 	
-	message = g_strdup (_("Unable to unmount the selected volume."));
+	if ((strstr (standard_error, "busy") != NULL)) {
+		message = g_strdup_printf (_("Unable to unmount the selected volume. "
+					     "The volume is in use by one or more programs."));
+	} else {
+		message = g_strdup (_("Unable to unmount the selected volume."));
+	}	
+
 	return message;
 }
 
@@ -222,6 +276,314 @@ report_mount_result (gpointer callback_data)
 	return FALSE;
 }
 
+static gboolean
+invoke_async_auth_cb (MountThreadAuth *auth)
+{
+	g_mutex_lock (auth->mutex);
+	auth->invoked = gnome_vfs_module_callback_invoke (auth->callback, 
+					auth->in_args, auth->in_size, 
+					auth->out_args, auth->out_size);
+	g_cond_signal (auth->cond);
+	g_mutex_unlock (auth->mutex);
+	return FALSE;
+}
+
+static gboolean
+invoke_async_auth (const gchar *callback_name, gconstpointer in,
+		   gsize in_size, gpointer out, gsize out_size)
+{
+	MountThreadAuth auth;
+	memset (&auth, 0, sizeof(auth));
+	auth.callback = callback_name;
+	auth.in_args = in;
+	auth.in_size = in_size;
+	auth.out_args = out;
+	auth.out_size = out_size;
+	auth.invoked = FALSE;
+	auth.mutex = g_mutex_new ();
+	auth.cond = g_cond_new ();
+
+	DEBUG_MOUNT (("mount invoking auth callback: %s\n", callback_name));
+
+	g_mutex_lock (auth.mutex);
+	g_idle_add_full (G_PRIORITY_HIGH_IDLE, (GSourceFunc)invoke_async_auth_cb, &auth, NULL);
+	g_cond_wait (auth.cond, auth.mutex);
+
+	g_mutex_unlock (auth.mutex);
+	g_mutex_free (auth.mutex);
+	g_cond_free (auth.cond);
+
+	DEBUG_MOUNT (("mount invoked auth callback: %s %d\n", callback_name, auth.invoked));
+	
+	return auth.invoked;
+}
+
+static gboolean
+invoke_full_auth (MountThreadInfo *info, char **password_out)
+{
+	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
+	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
+	gboolean invoked;
+
+	*password_out = NULL;
+
+	memset (&in_args, 0, sizeof (in_args));
+	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD;
+	in_args.uri = gnome_vfs_get_uri_from_local_path (info->mount_point);
+	in_args.protocol = "file";
+	in_args.object = NULL;
+	in_args.authtype = "password";
+	in_args.domain = NULL;
+	in_args.port = 0;
+	in_args.server = (gchar*)info->device_path;
+	in_args.username = NULL;
+
+	memset (&out_args, 0, sizeof (out_args));
+
+	invoked = invoke_async_auth (GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION,
+				     &in_args, sizeof (in_args), &out_args, sizeof (out_args));
+
+	if (invoked && !out_args.abort_auth) {
+		*password_out = out_args.password;
+		out_args.password = NULL;
+	}
+
+	g_free (in_args.uri);
+	g_free (out_args.username);
+	g_free (out_args.password);
+	g_free (out_args.keyring);
+	g_free (out_args.domain);
+
+	return invoked && !out_args.abort_auth;
+}
+
+static gint
+read_data (GString *str, gint *fd, GError **error)
+{
+	gssize bytes;
+	gchar buf[4096];
+
+again:
+	bytes = read (*fd, buf, 4096);
+	if (bytes < 0) {
+		if (errno == EINTR)
+			goto again;
+		else if (errno == EIO) /* This seems to occur on a tty */
+			bytes = 0;
+		else {
+			g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_READ,
+			             _("Failed to read data from child process %d (%s)"), 
+			             *fd, g_strerror (errno));
+			return -1;
+		}
+	}
+
+	if (str)
+		str = g_string_append_len (str, buf, bytes);
+	/* Close when no more data */
+	if (bytes == 0) {
+		g_printerr("closing\n");
+		close (*fd);
+		*fd = -1;
+	}
+	
+	return bytes;
+}
+
+static gboolean
+spawn_mount (MountThreadInfo *info, gchar **envp, gchar **standard_error, 
+	     gint *exit_status, GError **error)
+{
+	gint tty_fd, in_fd, out_fd, err_fd;
+	fd_set rfds, wfds;
+	GPid pid;
+	gint ret, status;
+	GString *outstr = NULL;
+	GString *errstr = NULL;
+	gboolean failed = FALSE;
+	gboolean with_password = FALSE;
+	gboolean need_password = FALSE;
+	gchar* password = NULL;
+	
+	tty_fd = in_fd = out_fd = err_fd = -1;
+
+#ifdef USE_PTY
+	with_password = info->should_mount;
+	
+	if (with_password) {
+		tty_fd = gnome_vfs_pty_open (&pid, GNOME_VFS_PTY_LOGIN_TTY, envp, 
+					     info->argv[0], info->argv, 
+					     NULL, 300, 300, &in_fd, &out_fd, 
+					     standard_error ? &err_fd : NULL);
+		if (tty_fd == -1) {
+			g_warning (_("Couldn't run mount process in a pty"));
+			with_password = FALSE;
+		}
+	} 
+#endif
+	
+	if (!with_password) {
+		if (!g_spawn_async_with_pipes (NULL, info->argv, envp, 
+					       G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_STDOUT_TO_DEV_NULL, 
+					       NULL, NULL, &pid, NULL, NULL, 
+					       standard_error ? &err_fd : NULL, error)) {
+			g_critical ("Could not launch mount command: %s", (*error)->message);
+			return FALSE;
+		}
+	}
+	
+	outstr = g_string_new (NULL);
+	if (standard_error)
+		errstr = g_string_new (NULL);
+
+	/* Read data until we get EOF on both pipes. */
+	while (!failed && (err_fd >= 0 || tty_fd >= 0)) {
+		ret = 0;
+
+		FD_ZERO (&rfds);
+		FD_ZERO (&wfds);
+		
+		if (out_fd >= 0)
+			FD_SET (out_fd, &rfds);
+		if (tty_fd >= 0)
+			FD_SET (tty_fd, &rfds);
+		if (err_fd >= 0)
+			FD_SET (err_fd, &rfds);
+		
+		if (need_password) {
+			if (in_fd >= 0)
+				FD_SET (in_fd, &wfds);
+			if (tty_fd >= 0)
+				FD_SET (tty_fd, &wfds);
+		}
+          
+		ret = select (FD_SETSIZE, &rfds, &wfds, NULL, NULL /* no timeout */);
+		if (ret < 0 && errno != EINTR) {
+			failed = TRUE;
+			g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_READ, 
+				     _("Unexpected error in select() reading data from a child process (%s)"),
+				     g_strerror (errno));
+			break;
+		}
+		
+		/* Read possible password prompt */
+		if (tty_fd >= 0 && FD_ISSET (tty_fd, &rfds)) {
+			if (read_data (outstr, &tty_fd, error) == -1) {
+				failed = TRUE;
+				break;
+			}
+		}
+		
+		/* Read possible password prompt */
+		if (out_fd >= 0 && FD_ISSET (out_fd, &rfds)) {
+			if (read_data(outstr, &out_fd, error) == -1) {
+				failed = TRUE;
+				break;
+			}
+		}
+
+		/* Look for a password prompt */
+		g_string_ascii_down (outstr);
+		if (g_strstr_len (outstr->str, outstr->len, "password")) {
+			DEBUG_MOUNT (("mount needs a password\n"));
+			g_string_erase (outstr, 0, -1);
+			need_password = TRUE;
+		}
+		
+		if (need_password && ((tty_fd >= 0 && FD_ISSET (tty_fd, &wfds)) ||
+				      (in_fd >= 0 && FD_ISSET (in_fd, &wfds)))) {
+
+			g_free (password);
+			password = NULL;
+
+			/* Prompt for a password */
+			if (!invoke_full_auth (info, &password) || password == NULL) {
+				
+				DEBUG_MOUNT (("user cancelled mount password prompt\n"));
+				
+				/* User cancelled, empty string returned */
+				g_string_erase (errstr, 0, -1);
+				kill (pid, SIGTERM);
+				break;
+				
+			/* Got a password */
+			} else {
+				
+				DEBUG_MOUNT (("got password: %s\n", password));
+				
+				if (write(tty_fd, password, strlen(password)) == -1 || 
+				    write(tty_fd, "\n", 1) == -1) {
+					g_warning ("couldn't send password to child mount process: %s\n", g_strerror (errno));
+					g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_READ, 
+						     _("Couldn't send password to mount process."));
+					failed = TRUE;
+				}
+				
+			} 
+
+			need_password = FALSE;
+		}
+	
+		if (err_fd >= 0 && FD_ISSET (err_fd, &rfds)) {
+			if (read_data (errstr, &err_fd, error) == -1) {
+				failed = TRUE;
+				break;
+			}
+		}
+	}
+
+	if (in_fd >= 0)
+		close (in_fd);
+	if (out_fd >= 0)
+		close (out_fd);
+	if (err_fd >= 0)
+		close (err_fd);
+	if (tty_fd >= 0)
+		close (tty_fd);
+
+	/* Wait for child to exit, even if we have
+	 * an error pending.
+	 */
+again:
+
+	ret = waitpid (pid, &status, 0);
+
+	if (ret < 0) {
+		if (errno == EINTR)
+			goto again;
+		else if (!failed) {
+			failed = TRUE;
+			g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_READ,
+				     _("Unexpected error in waitpid() (%s)"), g_strerror (errno));
+		}
+	}
+
+	g_free (password);
+	
+	if (failed) {
+		if (errstr)
+			g_string_free (errstr, TRUE);
+		g_string_free (outstr, TRUE);
+		return FALSE;
+	} else {
+		if (exit_status)
+			*exit_status = status;
+		if (standard_error) {
+			/* Sad as it may be, certain mount helpers (like mount.cifs)
+			 * on Linux and perhaps other OSs return their error 
+			 * output on stdout. */
+			if (outstr->len && !errstr->len) {
+				*standard_error = g_string_free (outstr, FALSE);
+				g_string_free (errstr, TRUE);
+			} else {
+				*standard_error = g_string_free (errstr, FALSE);
+				g_string_free (outstr, TRUE);
+			}
+		}
+		return TRUE;
+	}
+}
+
 static void *
 mount_unmount_thread (void *arg)
 {
@@ -242,8 +604,7 @@ mount_unmount_thread (void *arg)
 
 	if (info->should_mount || info->should_unmount) {
 		error = NULL;
-		if (g_spawn_sync (NULL,
-				  info->argv,
+ 		if (spawn_mount (info, 
 #if defined(USE_HAL) && defined(HAL_MOUNT) && defined(HAL_UMOUNT)
 				  /* do pass our environment when using hal mount progams */
 				  ((strcmp (info->argv[0], HAL_MOUNT) == 0) ||
@@ -251,9 +612,6 @@ mount_unmount_thread (void *arg)
 #else
 				   envp,
 #endif
-				   G_SPAWN_STDOUT_TO_DEV_NULL,
-				   NULL, NULL,
-				   NULL,
 				   &standard_error,
 				   &exit_status,
 				   &error)) {
@@ -425,13 +783,14 @@ mount_unmount_operation (const char *mount_point,
        }
 
        if (should_unmount) {
+		gboolean is_in_media = g_str_has_prefix (mount_point, "/media");
 #if defined(USE_HAL) && defined(HAL_UMOUNT)
 	       if (hal_udi != NULL && g_file_test (HAL_UMOUNT, G_FILE_TEST_IS_EXECUTABLE))
 		       command = HAL_UMOUNT;
 	       else
-		       command = find_command (UMOUNT_COMMAND);
+		       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
 #else
-	       command = find_command (UMOUNT_COMMAND);
+	       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
 #endif
 #ifdef  UNMOUNT_ARGUMENT
 		argument = UNMOUNT_ARGUMENT;
@@ -686,7 +1045,7 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 	mount_unmount_operation (mount_path,
 				 device_path,
 				 gnome_vfs_drive_get_hal_udi (drive),
-				 GNOME_VFS_DEVICE_TYPE_UNKNOWN,
+				 gnome_vfs_drive_get_device_type (drive),
 				 TRUE, FALSE, FALSE,
 				 callback, user_data);
 	g_free (mount_path);

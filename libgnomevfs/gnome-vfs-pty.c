@@ -41,8 +41,11 @@
 #ifdef HAVE_TERMIOS_H
 #include <termios.h>
 #endif
+#ifdef HAVE_UTMP_H
+#include <utmp.h>
+#endif
 #include <glib.h>
-#include "pty-open.h"
+#include "gnome-vfs-pty.h"
 
 int _gnome_vfs_pty_set_size(int master, int columns, int rows);
 
@@ -248,7 +251,7 @@ n_write(int fd, const void *buffer, size_t count)
 /* Run the given command (if specified), using the given descriptor as the
  * controlling terminal. */
 static int
-_gnome_vfs_pty_run_on_pty(int fd, 
+_gnome_vfs_pty_run_on_pty(int fd, gboolean login,
 			  int stdin_fd, int stdout_fd, int stderr_fd, 
 			  int ready_reader, int ready_writer,
 			  char **env_add, const char *command, char **argv,
@@ -303,6 +306,14 @@ _gnome_vfs_pty_run_on_pty(int fd,
 		chdir(directory);
 	}
 
+#ifdef HAVE_UTMP_H
+	/* This sets stdin, stdout, stderr to the socket */	
+	if (login && login_tty (fd) == -1) {
+		g_printerr ("mount child process login_tty failed: %s\n", strerror (errno));
+		return -1;
+	}
+#endif
+	
 	/* Signal to the parent that we've finished setting things up by
 	 * sending an arbitrary byte over the status pipe and waiting for
 	 * a response.  This synchronization step ensures that the pty is
@@ -361,7 +372,7 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 				const char *directory,
 				int columns, int rows, 
 				int *stdin_fd, int *stdout_fd, int *stderr_fd, 
-				pid_t *child)
+				pid_t *child, gboolean reapchild, gboolean login)
 {
 	int fd, i;
 	char c;
@@ -379,7 +390,7 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		goto bail_ready;
 	}
 
-	if (pipe(pid_pipe)) {
+	if (reapchild && pipe(pid_pipe)) {
 		/* Error setting up pipes. Bail. */
 		goto bail_pid;
 	}
@@ -409,33 +420,36 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		/* Child. Close the parent's ends of the pipes. */
 		close(ready_a[0]);
 		close(ready_b[1]);
-		close(pid_pipe[0]);
-
+	
 		close(stdin_pipe[1]);
 		close(stdout_pipe[0]);
 		close(stderr_pipe[0]);
 
-		/* Fork a intermediate child. This is needed to not
-		 * produce zombies! */
-		grandchild_pid = fork();
+		if(reapchild) {
+			close(pid_pipe[0]);
 
-		if (grandchild_pid < 0) {
-			/* Error during fork! */
-			n_write (pid_pipe[1], &grandchild_pid, 
-					sizeof (grandchild_pid));
-			_exit (1);
-		} else if (grandchild_pid > 0) {
-			/* Parent! (This is the actual intermediate child;
-			 * so write the pid to the parent and then exit */
-			n_write (pid_pipe[1], &grandchild_pid, 
-					sizeof (grandchild_pid));
-			close (pid_pipe[1]);
-			_exit (0);
-		}
+			/* Fork a intermediate child. This is needed to not
+			 * produce zombies! */
+			grandchild_pid = fork();
+
+			if (grandchild_pid < 0) {
+				/* Error during fork! */
+				n_write (pid_pipe[1], &grandchild_pid, 
+					 sizeof (grandchild_pid));
+				_exit (1);
+			} else if (grandchild_pid > 0) {
+				/* Parent! (This is the actual intermediate child;
+				 * so write the pid to the parent and then exit */
+				n_write (pid_pipe[1], &grandchild_pid, 
+					 sizeof (grandchild_pid));
+				close (pid_pipe[1]);
+				_exit (0);
+			}
 		
-		/* Start a new session and become process-group leader. */
-		setsid();
-		setpgid(0, 0);
+			/* Start a new session and become process-group leader. */
+			setsid();
+			setpgid(0, 0);
+		}
 
 		/* Close most descriptors. */
 		for (i = 0; i < sysconf(_SC_OPEN_MAX); i++) {
@@ -469,7 +483,7 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		/* Store 0 as the "child"'s ID to indicate to the caller that
 		 * it is now the child. */
 		*child = 0;
-		return _gnome_vfs_pty_run_on_pty(fd, 
+		return _gnome_vfs_pty_run_on_pty(fd, login,
 						 stdin_pipe[1], stdout_pipe[1], stderr_pipe[1], 
 						 ready_b[0], ready_a[1],
 						 env_add, command, argv, directory);
@@ -479,32 +493,40 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		 * handshake, and return the child's PID. */
 		close(ready_b[0]);
 		close(ready_a[1]);
-		close(pid_pipe[1]);
 
 		close(stdin_pipe[0]);
 		close(stdout_pipe[1]);
 		close(stderr_pipe[1]);
 
-		/* Reap the intermediate child */
-            wait_again:	
-		if (waitpid (pid, NULL, 0) < 0) {
-			if (errno == EINTR) {
-				goto wait_again;
-			} else if (errno == ECHILD) {
-				; /* NOOP! Child already reaped. */
-			} else {
-				g_warning ("waitpid() should not fail"
-					  	"in pty-open.c");
+		if (reapchild) {
+			close(pid_pipe[1]);
+
+			/* Reap the intermediate child */
+        	wait_again:	
+			if (waitpid (pid, NULL, 0) < 0) {
+				if (errno == EINTR) {
+					goto wait_again;
+				} else if (errno == ECHILD) {
+					; /* NOOP! Child already reaped. */
+				} else {
+					g_warning ("waitpid() should not fail in pty-open.c");
+				}
 			}
-		}
-		
-		/*
-		 * Read the child pid from the pid_pipe 
-		 * */
-		if (n_read (pid_pipe[0], child, sizeof (pid_t)) 
-				!= sizeof (pid_t) || *child == -1) {
-			g_warning ("Error while spanning child!");
-			goto bail_fork;
+	
+			/*
+			 * Read the child pid from the pid_pipe 
+			 * */
+			if (n_read (pid_pipe[0], child, sizeof (pid_t)) 
+			  	!= sizeof (pid_t) || *child == -1) {
+				g_warning ("Error while spanning child!");
+				goto bail_fork;
+			}
+			
+			close(pid_pipe[0]);
+
+		} else {
+			/* No intermediate child, simple */
+			*child = pid;
 		}
 		
 		/* Wait for the child to be ready, set the window size, then
@@ -531,7 +553,6 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 		n_write(ready_b[1], &c, 1);
 		close(ready_a[0]);
 		close(ready_b[1]);
-		close(pid_pipe[0]);
 
 		*stdin_fd = stdin_pipe[1];
 		*stdout_fd = stdout_pipe[0];
@@ -553,8 +574,10 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 	close(stdin_pipe[0]);
 	close(stdin_pipe[1]);
  bail_stdin:
-	close(pid_pipe[0]);
-	close(pid_pipe[1]);
+	if(reapchild) {
+		close(pid_pipe[0]);
+		close(pid_pipe[1]);
+	}
  bail_pid:
 	close(ready_a[0]);
 	close(ready_a[1]);
@@ -701,7 +724,7 @@ _gnome_vfs_pty_unlockpt(int fd)
 }
 
 static int
-_gnome_vfs_pty_open_unix98(pid_t *child, char **env_add,
+_gnome_vfs_pty_open_unix98(pid_t *child, guint flags, char **env_add,
 			   const char *command, char **argv,
 			   const char *directory, int columns, int rows,
 			   int *stdin_fd, int *stdout_fd, int *stderr_fd)
@@ -733,7 +756,10 @@ _gnome_vfs_pty_open_unix98(pid_t *child, char **env_add,
 			if (_gnome_vfs_pty_fork_on_pty_name(buf, fd, env_add, command,
 						      argv, directory,
 						      columns, rows,
-						      stdin_fd, stdout_fd, stderr_fd, child) != 0) {
+						      stdin_fd, stdout_fd, stderr_fd, 
+						      child, 
+						      flags & GNOME_VFS_PTY_REAP_CHILD, 
+						      flags & GNOME_VFS_PTY_LOGIN_TTY) != 0) {
 				close(fd);
 				fd = -1;
 			}
@@ -765,15 +791,15 @@ _gnome_vfs_pty_open_unix98(pid_t *child, char **env_add,
  * Returns: an open file descriptor for the pty master, -1 on failure
  */
 int
-_gnome_vfs_pty_open(pid_t *child, char **env_add,
-		    const char *command, char **argv, const char *directory,
-		    int columns, int rows,
-		    int *stdin_fd, int *stdout_fd, int *stderr_fd)
+gnome_vfs_pty_open(pid_t *child, guint flags, char **env_add, 
+		   const char *command, char **argv, const char *directory,
+		   int columns, int rows,
+		   int *stdin_fd, int *stdout_fd, int *stderr_fd)
 {
 	int ret = -1;
 	if (ret == -1) {
-		ret = _gnome_vfs_pty_open_unix98(child, env_add, command, argv,
-						 directory, columns, rows,
+		ret = _gnome_vfs_pty_open_unix98(child, flags, env_add, command, 
+						 argv, directory, columns, rows,
 						 stdin_fd, stdout_fd, stderr_fd);
 	}
 #ifdef GNOME_VFS_DEBUG

@@ -160,6 +160,7 @@ fi;
 
 AC_SEARCH_LIBS(gethostent, nsl)
 AC_SEARCH_LIBS(setsockopt, socket)
+AC_SEARCH_LIBS(login_tty, util)
 
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statfs statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll posix_fadvise fchmod)
@@ -999,7 +1000,7 @@ dnl ****************************
 dnl *** Checks for pty stuff ***
 dnl ****************************
 
-AC_CHECK_HEADERS(sys/un.h stropts.h termios.h)
+AC_CHECK_HEADERS(sys/un.h stropts.h termios.h utmp.h)
 
 # Check for PTY handling functions.
 AC_CHECK_FUNCS(getpt posix_openpt grantpt unlockpt ptsname ptsname_r)

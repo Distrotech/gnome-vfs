@@ -1,5 +1,23 @@
 2005-11-22  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	* modules/Makefile.am:
+	* module/pty-open.[ch]
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-pty.[ch]:
+	Move pty-open to libgnomevfs and add some features
+
+	* modules/sftp-method.c: (sftp_connect):
+	Use the new pty-open
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	Implement password asking when mounting.
+
+	Patch from Nate Nielsen
+
+2005-11-22  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/dns-sd-method.c: 
 	* libgnomevfs/gnome-vfs-dns-sd.c
 	Port to Avahi 0.6

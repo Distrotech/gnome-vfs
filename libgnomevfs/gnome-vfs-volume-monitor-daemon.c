@@ -684,6 +684,11 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 		if (drive->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_WINDOWS;
 		}
+	} else if ((strcmp (mount->filesystem_type, "smbfs") == 0) ||
+		   (strcmp (mount->filesystem_type, "cifs") == 0)) {
+		drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_SMB;
+	} else if (mount->is_loopback) {
+		drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_LOOPBACK;
 	}
 
 	drive->priv->icon = get_drive_icon_from_type (drive->priv->device_type, mount->mount_path);
