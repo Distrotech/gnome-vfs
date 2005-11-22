@@ -1,3 +1,8 @@
+2005-11-22  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	Revert accidental removal of avahi code.
+
 2005-11-16  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-ls.c: Use GNOME_VFS_SIZE_FORMAT_STR in the
