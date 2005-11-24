@@ -32,7 +32,11 @@ EXTRA_DIST =					\
 	default-modules.conf			\
 	smb-module.conf				\
 	cdda-module.conf			\
-	ssl-modules.conf
+	ssl-modules.conf			\
+	inotify-helper.c			\
+	inotify-helper.h			\
+	local_inotify.h				\
+	local_inotify_syscalls.h
 
 ###  Module setup
 if HAVE_CDDA
@@ -108,9 +112,14 @@ libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) $(AVAHI_LIBS) ../libgnomevfs/
 
 ###  `file' method
 
+if HAVE_INOTIFY
+libfile_la_SOURCES = file-method.c fstype.c inotify-helper.c
+else
 libfile_la_SOURCES = file-method.c fstype.c
+endif
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
 
 ###  `network' method
 

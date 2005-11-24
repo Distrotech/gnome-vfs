@@ -60,6 +60,11 @@
 #include <fam.h>
 #endif
 
+#if defined(HAVE_LINUX_INOTIFY_H) || defined(HAVE_SYS_INOTIFY_H)
+#define USE_INOTIFY 1
+#include "inotify-helper.h"
+#endif
+
 #if HAVE_SYS_STATVFS_H
 #include <sys/statvfs.h>
 #endif
@@ -146,7 +151,6 @@ typedef struct {
 	GnomeVFSURI *uri;
 	gboolean     cancelled;
 } FileMonitorHandle;
-
 #endif
 
 #ifdef PATH_MAX
@@ -2408,13 +2412,12 @@ monitor_setup (void)
 }
 #endif
 
-static GnomeVFSResult
-do_monitor_add (GnomeVFSMethod *method,
-		GnomeVFSMethodHandle **method_handle_return,
-		GnomeVFSURI *uri,
-		GnomeVFSMonitorType monitor_type)
-{
 #ifdef HAVE_FAM
+static GnomeVFSResult fam_monitor_add (GnomeVFSMethod *method,
+				       GnomeVFSMethodHandle **method_handle_return,
+				       GnomeVFSURI *uri,
+				       GnomeVFSMonitorType monitor_type)
+{
 	FileMonitorHandle *handle;
 	char *filename;
 
@@ -2457,16 +2460,62 @@ do_monitor_add (GnomeVFSMethod *method,
 	g_free (filename);
 
 	return GNOME_VFS_OK;
-#else
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
-#endif
+
 }
+#endif
+
+#ifdef USE_INOTIFY
+static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
+					   GnomeVFSMethodHandle **method_handle_return,
+					   GnomeVFSURI *uri,
+					   GnomeVFSMonitorType monitor_type)
+{
+	inotify_sub *sub;
+	char *filename;
+
+	filename = get_path_from_uri (uri);
+	if (filename == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+
+	sub = inotify_sub_new (uri, monitor_type);
+	if (sub == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	if (inotify_helper_add (sub) == FALSE) {
+		inotify_sub_free (sub);
+		*method_handle_return = NULL;
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
+
+	*method_handle_return = (GnomeVFSMethodHandle *)sub;
+	return GNOME_VFS_OK;
+
+}
+#endif
 
 static GnomeVFSResult
-do_monitor_cancel (GnomeVFSMethod *method,
-		   GnomeVFSMethodHandle *method_handle)
+do_monitor_add (GnomeVFSMethod *method,
+		GnomeVFSMethodHandle **method_handle_return,
+		GnomeVFSURI *uri,
+		GnomeVFSMonitorType monitor_type)
 {
+#ifdef USE_INOTIFY
+	if (inotify_helper_init ()) {
+		return inotify_monitor_add (method, method_handle_return, uri, monitor_type);
+	}
+#endif
 #ifdef HAVE_FAM
+	return fam_monitor_add (method, method_handle_return, uri, monitor_type);
+#endif
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
+#ifdef HAVE_FAM
+static GnomeVFSResult fam_monitor_cancel (GnomeVFSMethod *method,
+					  GnomeVFSMethodHandle *method_handle)
+{
 	FileMonitorHandle *handle = (FileMonitorHandle *)method_handle;
 
 	if (!monitor_setup ()) {
@@ -2492,9 +2541,41 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	G_UNLOCK (fam_connection);
 
 	return GNOME_VFS_OK;
-#else
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
 #endif
+
+
+#ifdef USE_INOTIFY
+static GnomeVFSResult inotify_monitor_cancel (GnomeVFSMethod *method,
+					      GnomeVFSMethodHandle *method_handle)
+{
+	inotify_sub *sub = (inotify_sub *)method_handle;
+
+	if (sub->cancelled)
+		return GNOME_VFS_OK;
+
+	sub->cancelled = TRUE;
+
+	inotify_helper_remove (sub);
+	inotify_sub_free (sub);
+	return GNOME_VFS_OK;
+
+}
+#endif
+
+static GnomeVFSResult
+do_monitor_cancel (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle)
+{
+#ifdef USE_INOTIFY
+	if (inotify_helper_init ()) {
+		return inotify_monitor_cancel (method, method_handle);
+	}
+#endif
+#ifdef HAVE_FAM
+	return fam_monitor_cancel (method, method_handle);
+#endif
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -2591,7 +2672,7 @@ do_get_volume_free_space (GnomeVFSMethod *method,
 	*free_space = block_size * free_blocks;
 	
 	return GNOME_VFS_OK;
-#else // G_OS_WIN32
+#else /* G_OS_WIN32 */
 	g_warning ("Not implemented for WIN32: file-method.c:do_get_volume_free_space()");
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif

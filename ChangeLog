@@ -1,3 +1,14 @@
+2005-11-24  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/file-method.c:
+	* modules/inotify-helper.c:
+	* modules/inotify-helper.h:
+	* modules/local_inotify.h:
+	* modules/local_inotify_syscalls.h:
+	Inotify support, patch from John McCutchan
+
 2005-11-22  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
