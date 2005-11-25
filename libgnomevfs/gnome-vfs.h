@@ -25,6 +25,7 @@
 #ifndef GNOME_VFS_H
 #define GNOME_VFS_H
 
+#include <libgnomevfs/gnome-vfs-acl.h>
 #include <libgnomevfs/gnome-vfs-address.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>

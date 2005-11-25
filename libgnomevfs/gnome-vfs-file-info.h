@@ -30,6 +30,7 @@
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-acl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -124,6 +125,7 @@ typedef enum {
  * @GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME: Symlink name field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: Access bits of the permissions
+ * @GNOME_VFS_FILE_INFO_FIELDS_ACL: ACLs field is valid
  * bitfield are valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
@@ -147,7 +149,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_CTIME = 1 << 11,
 	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
 	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13,
-	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14
+	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14,
+	GNOME_VFS_FILE_INFO_FIELDS_ACL = 1 << 15
 } GnomeVFSFileInfoFields;
 
 /* FIXME: It's silly to use the symbolic constants for POSIX here.
@@ -262,13 +265,15 @@ typedef struct {
 
 	guint refcount;
 
+	/* File ACLs */
+	GnomeVFSACL *acl;
+
 	/* Reserved for future expansions to GnomeVFSFileInfo without having
 	   to break ABI compatibility */
 	void *reserved1;
 	void *reserved2;
 	void *reserved3;
 	void *reserved4;
-	void *reserved5;
 } GnomeVFSFileInfo;
 
 /**
@@ -285,6 +290,7 @@ typedef struct {
  * to what would return access(2) on a local file system (ie is the 
  * file readable, writable and/or executable). Can be really slow on 
  * remote file systems
+ * @GNOME_VFS_FILE_INFO_GET_ACL: get ACLs for the file
  *
  * Packed boolean bitfield representing options that can
  * be passed into a gnome_vfs_get_file_info() call (or other
@@ -298,7 +304,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE = 1 << 2,
 	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3,
-	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4
+	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4,
+	GNOME_VFS_FILE_INFO_GET_ACL = 1 << 5
 } GnomeVFSFileInfoOptions;
 
 /**
@@ -308,6 +315,7 @@ typedef enum {
  * @GNOME_VFS_SET_FILE_INFO_PERMISSIONS: change the permissions
  * @GNOME_VFS_SET_FILE_INFO_OWNER: change the file's owner
  * @GNOME_VFS_SET_FILE_INFO_TIME: change the file's time stamp(s)
+ * @GNOME_VFS_SET_FILE_INFO_ACL: change the file's ACLs
  *
  * Packed boolean bitfield representing the aspects of the file
  * to be changed in a gnome_vfs_set_file_info() call.
@@ -318,7 +326,8 @@ typedef enum {
 	GNOME_VFS_SET_FILE_INFO_NAME = 1 << 0,
 	GNOME_VFS_SET_FILE_INFO_PERMISSIONS = 1 << 1,
 	GNOME_VFS_SET_FILE_INFO_OWNER = 1 << 2,
-	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3
+	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3,
+	GNOME_VFS_SET_FILE_INFO_ACL = 1 << 4
 } GnomeVFSSetFileInfoMask;
 
 

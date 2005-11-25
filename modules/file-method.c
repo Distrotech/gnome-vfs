@@ -74,6 +74,8 @@
 #include <sys/mount.h>
 #endif
 
+#include "file-method-acl.h"
+
 #ifdef G_OS_WIN32
 #include <windows.h>
 #endif
@@ -1106,6 +1108,10 @@ do_get_file_info (GnomeVFSMethod *method,
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 		get_mime_type (file_info, full_name, options, &statbuf);
 	}
+	
+	if (options & GNOME_VFS_FILE_INFO_GET_ACL) {
+		file_get_acl (full_name, file_info, &statbuf, context);	
+	}
 
 	g_free (full_name);
 
@@ -1145,6 +1151,10 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 		get_mime_type (file_info, full_name, options, &statbuf);
+	}
+
+	if (options & GNOME_VFS_FILE_INFO_GET_ACL) {
+		file_get_acl (full_name, file_info, &statbuf, context);	
 	}
 
 	g_free (full_name);
@@ -2226,9 +2236,10 @@ do_set_file_info (GnomeVFSMethod *method,
 		new_name = g_build_filename (dir, info->name, NULL);
 
 		result = rename_helper (full_name, new_name, FALSE, context);
-
+		
 		g_free (dir);
-		g_free (new_name);
+		g_free (full_name);
+		full_name = new_name;
 
 		if (result != GNOME_VFS_OK) {
 			g_free (full_name);
@@ -2263,6 +2274,7 @@ do_set_file_info (GnomeVFSMethod *method,
 		g_warning ("Not implemented: GNOME_VFS_SET_FILE_INFO_OWNER");
 #endif
 	}
+	
 	if (gnome_vfs_context_check_cancellation (context)) {
 		g_free (full_name);
 		return GNOME_VFS_ERROR_CANCELLED;
@@ -2279,6 +2291,23 @@ do_set_file_info (GnomeVFSMethod *method,
 			return gnome_vfs_result_from_errno ();
 		}
 	}
+
+	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (full_name);
+		return GNOME_VFS_ERROR_CANCELLED;
+	}
+	
+	if (mask & GNOME_VFS_SET_FILE_INFO_ACL) {
+		GnomeVFSResult result;
+		
+		result = file_set_acl (full_name, info, context);
+		
+		if (result != GNOME_VFS_OK) {
+			g_free (full_name);
+			return result;	
+		}
+	}
+	
 
 	g_free (full_name);
 

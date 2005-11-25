@@ -60,6 +60,73 @@ type_to_string (GnomeVFSFileType type)
 }
 
 static void
+show_acl (GnomeVFSACL *acl)
+{
+	GList *ace_list;
+	GList *iter;
+	
+	printf ("ACLs              :\n");
+	
+	ace_list = gnome_vfs_acl_get_ace_list (acl);
+	
+	for (iter = ace_list; iter; iter = iter->next) {
+		GnomeVFSACLKind  kind;
+		GnomeVFSACE     *ace;
+		GnomeVFSACLPerm *perms;
+		gboolean         negative;
+		gboolean         inherit;
+		char            *id;
+		const char      *kind_str;
+		
+		ace = GNOME_VFS_ACE (iter->data);
+		
+		kind = GNOME_VFS_ACL_KIND_NULL;
+		inherit = FALSE;
+		negative = FALSE;
+		id = "";
+		perms = NULL;
+		
+		g_object_get (ace,
+		              "kind", &kind, 
+		              "id", &id,
+		              "permissions", &perms,
+		              "negative", &negative,
+		              "inherit", &inherit,
+		              NULL);
+	
+		kind_str = gnome_vfs_acl_kind_to_string (kind);
+		
+		if (kind == GNOME_VFS_ACL_KIND_NULL) {
+			continue;	
+		}
+		
+		printf ("                  : %s:%s:", kind_str, id);
+		
+		if (perms != NULL) {
+			GnomeVFSACLPerm *piter;
+			const char *pstr;
+			
+			for (piter = perms; *piter; piter++) {
+				pstr = gnome_vfs_acl_perm_to_string (*piter);
+				printf ("%s ", pstr);
+			}	
+		}
+		
+		if (inherit || negative) {
+			if (inherit && negative) {
+				printf (" (negative, inherit)");
+			} else {
+				printf (" (%s)", negative ? "negative" : "inherit");	
+			}
+		}
+		
+		printf ("\n");
+	}
+	
+	gnome_vfs_free_ace_list (ace_list);
+}
+
+static void
 show_file_info (GnomeVFSFileInfo *info, const char *uri)
 {
 #define FLAG_STRING(info, which)                                \
@@ -136,6 +203,10 @@ show_file_info (GnomeVFSFileInfo *info, const char *uri)
 		printf ("Executable        : %s\n",
 				(info->permissions&GNOME_VFS_PERM_ACCESS_EXECUTABLE?"YES":"NO"));
 	}
+	
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_ACL) {
+		show_acl (info->acl);	
+	}
 
 #undef FLAG_STRING
 }
@@ -182,7 +253,8 @@ main (int argc, char **argv)
 	info = gnome_vfs_file_info_new ();
 	
 	options = GNOME_VFS_FILE_INFO_GET_MIME_TYPE | 
-		  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS;
+		  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS |
+		  GNOME_VFS_FILE_INFO_GET_ACL;
 
 	if (slow_mime) {
 		options |= GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE;

@@ -204,6 +204,8 @@ libgnomevfsmoduleinclude_HEADERS =		\
 
 
 libgnomevfsinclude_HEADERS =			\
+	gnome-vfs-ace.h						\
+	gnome-vfs-acl.h						\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-address.h			\
 	gnome-vfs-async-ops.h			\
@@ -264,6 +266,8 @@ endif
 
 libgnomevfs_2_la_SOURCES =			\
 	$(CORBA_SOURCE)				\
+	gnome-vfs-ace.c						\
+	gnome-vfs-acl.c						\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-address.c			\
 	gnome-vfs-async-job-map.c		\

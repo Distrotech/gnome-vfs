@@ -1,3 +1,23 @@
+2005-11-25  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in: 
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-ace.c:
+	* libgnomevfs/gnome-vfs-ace.h:
+	* libgnomevfs/gnome-vfs-acl.c: 
+	* libgnomevfs/gnome-vfs-acl.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs.h:
+	* modules/Makefile.am:
+	* modules/file-method-acl.c: 
+	* modules/file-method-acl.h:
+	* modules/file-method.c: 
+	* programs/gnomevfs-info.c: 
+	* test/Makefile.am:
+	* test/test-acl.c:
+
+	First start of ACL support in GnomeVFS.
+
 2005-11-24  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

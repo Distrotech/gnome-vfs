@@ -111,14 +111,23 @@ libdns_sd_la_LDFLAGS = $(module_flags)
 libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) $(AVAHI_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `file' method
-
 if HAVE_INOTIFY
-libfile_la_SOURCES = file-method.c fstype.c inotify-helper.c
+FILE_ADD_SOURCES = inotify-helper.c
 else
-libfile_la_SOURCES = file-method.c fstype.c
+FILE_ADD_SOURCES = 
 endif
+
+libfile_la_SOURCES =           \
+        file-method.c          \
+	fstype.c               \
+	file-method-acl.h      \
+	file-method-acl.c      \
+	$(FILE_ADD_SOURCES)    \
+	$(NULL)
+	
+	
 libfile_la_LDFLAGS = $(module_flags)
-libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
+libfile_la_LIBADD = $(ACL_LIBS) $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 
 ###  `network' method
