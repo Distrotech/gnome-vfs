@@ -1,3 +1,18 @@
+2005-11-26  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: Make it compile on Win32
+	again, although it does not really do anything useful on
+	Win32. Just providing the API as no-ops, more or less, to avoid
+	ifdefs in client code.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): Add logic
+	for Win32 so we won't return crap like /x:/foo/bar.zap.
+
+	* modules/file-method.c (rename_helper): On Win32, if
+	force_replace and old_exists, try removing the old file (or
+	directory) first. Don't then bother on Win32 with the EISDIR error
+	case after the rename.
+
 2005-11-26  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_items), (move_items),
@@ -74,7 +89,7 @@
 	Post release version bump
 
 === gnome-vfs 2.13.1 ===
-	
+
 2005-11-14  Alexander Larsson  <alexl@redhat.com>
 
 	* NEWS:
