@@ -1,5 +1,12 @@
 2005-11-26  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_items), (move_items),
+	(link_items): Free progress_info->duplicate_name before
+	setting it (#322324).
+	Patch from Richard Hult <richard@imendio.com>.
+
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
 	* modules/http-neon-method.c:
 	Port http neon method to neon 0.25;
 
