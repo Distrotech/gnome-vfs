@@ -2003,8 +2003,14 @@ rename_helper (const gchar *old_full_name,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
+#ifdef G_OS_WIN32
+	if (force_replace && old_exists)
+		g_remove (new_full_name);
+#endif
+
 	retval = g_rename (old_full_name, new_full_name);
 
+#ifndef G_OS_WIN32
 	/* FIXME bugzilla.eazel.com 1186: The following assumes that,
 	 * if `new_uri' and `old_uri' are on different file systems,
 	 * `rename()' will always return `EXDEV' instead of `EISDIR',
@@ -2031,7 +2037,7 @@ rename_helper (const gchar *old_full_name,
 			retval = g_rename (old_full_name, new_full_name);
 		}
 	}
-
+#endif
 	if (retval != 0) {
 		return gnome_vfs_result_from_errno ();
 	}

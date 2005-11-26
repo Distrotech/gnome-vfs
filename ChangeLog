@@ -1,3 +1,13 @@
+2005-11-26  Tor Lillqvist  <tml@novell.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): Add logic
+	for Win32 so we won't return crap like /x:/foo/bar.zap.
+
+	* modules/file-method.c (rename_helper): On Win32, if
+	force_replace and old_exists, try removing the old file (or
+	directory) first. Don't then bother on Win32 with the EISDIR error
+	case after the rename.
+
 2005-11-08  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_equal):

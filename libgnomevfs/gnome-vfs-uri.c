@@ -1148,6 +1148,17 @@ gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
  * Translate @uri into a printable string.  The string will not contain the
  * URI elements specified by @hide_options.
  * 
+ * One should be careful when striving for Win32 portability. A file:
+ * URI on Win32 might look like file:///x:/foo/bar.txt. Note that the
+ * part after file:// is not a legal file name, you need to remove the
+ * / in front of the drive letter. This function does that
+ * automatically if @hide_options specifies that the toplevel method,
+ * user name, password, host name and host port should be hidden.
+ *
+ * On the other hand, a file: URI for a UNC path looks like
+ * file:////server/share/foo/bar.txt, and in that case the part after
+ * file:// is the correct file name.
+ *
  * Return value: A malloced printable string representing @uri.
  **/
 gchar *
@@ -1221,7 +1232,21 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	}
 	
 	if (uri->text != NULL) {
+#ifndef G_OS_WIN32
 		g_string_append (string, uri->text);
+#else
+		if (uri->text[0] == '/' &&
+		    g_ascii_isalpha (uri->text[1]) &&
+		    uri->text[2] == ':' &&
+		    (hide_options & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) &&
+		    (hide_options & GNOME_VFS_URI_HIDE_USER_NAME) &&
+		    (hide_options & GNOME_VFS_URI_HIDE_PASSWORD) &&
+		    (hide_options & GNOME_VFS_URI_HIDE_HOST_NAME) &&
+		    (hide_options & GNOME_VFS_URI_HIDE_HOST_PORT))
+			g_string_append (string, uri->text + 1);
+		else
+			g_string_append (string, uri->text);
+#endif
 	}
 
 	if (uri->fragment_id != NULL 
