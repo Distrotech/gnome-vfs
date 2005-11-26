@@ -1,5 +1,10 @@
 2005-11-26  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c:
+	Port http neon method to neon 0.25;
+
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
 	* acinclude.m4:
 	* imported/neon/Makefile.am:
 	* imported/neon/ne_gnomevfs.c:
