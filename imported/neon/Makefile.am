@@ -19,7 +19,6 @@ NEON_INCLUDES = \
 	ne_auth.h	\
 	ne_basic.h	\
 	ne_compress.h	\
-	ne_cookies.h	\
 	ne_dates.h	\
 	ne_defs.h	\
 	ne_i18n.h	\
@@ -44,8 +43,8 @@ NEON_BASE_SOURCES = ne_request.c ne_session.c 	\
 	ne_basic.c  ne_string.c	 		\
 	ne_uri.c ne_dates.c ne_alloc.c  	\
 	ne_md5.c ne_utils.c    			\
-	ne_auth.c 					\
-	ne_cookies.c ne_redirect.c		\
+	ne_auth.c 				\
+	ne_redirect.c		\
 	ne_compress.c
 
 NEON_DAV_SOURCES = \

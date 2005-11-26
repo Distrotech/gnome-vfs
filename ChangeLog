@@ -1,3 +1,11 @@
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
+	* acinclude.m4:
+	* imported/neon/Makefile.am:
+	* imported/neon/ne_gnomevfs.c:
+	Make neon build again. Part I of the port to
+	neon 0.25.
+
 2005-11-24  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
