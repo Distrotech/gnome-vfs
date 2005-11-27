@@ -1,3 +1,7 @@
+2005-11-27  Christian Kellner  <gicmo@gnome.org>
+
+	* imported/neon/Makefile.am: Define NE_HAVE_DAV.
+
 2005-11-26  Tor Lillqvist  <tml@novell.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: Make it compile on Win32

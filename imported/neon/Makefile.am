@@ -1,6 +1,7 @@
 NULL =
 
 INCLUDES =					\
+	-DNE_HAVE_DAV				\
 	$(NEON_CFLAGS)				\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(GSSAPI_CFLAGS)			\
