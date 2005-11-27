@@ -491,21 +491,13 @@ void ne_sock_switch_ssl (ne_socket *sock, void *ssl)
 
 
 int
-ne_sock_connect_ssl (ne_socket *sock, ne_ssl_context *ctx)
+ne_sock_connect_ssl (ne_socket *sock, ne_ssl_context *ctx,
+		     void *userdata)
 {
 	/* Enable SSL with an already-negotiated SSL socket. */
 	return 0;
 }
 
-/* SSL Stuff  */
-
-
-
-ne_ssl_socket *ne_sock_sslsock (ne_socket *sock)
-{
-	/* dummy */
-	return NULL;
-}
 
 /* ************************************************************************** */
 
@@ -561,7 +553,7 @@ ne_negotiate_ssl (ne_request *req)
 /* *************************************************************************** */
 
 ne_ssl_context *
-ne_ssl_context_create (void)
+ne_ssl_context_create (int mode)
 {
 	return NULL;
 }
@@ -649,7 +641,7 @@ const char *ne_ssl_cert_identity(const ne_ssl_certificate *cert)
 }
 
 
-const char *ne_ssl_clicert_name(ne_ssl_client_cert *ccert)
+const char *ne_ssl_clicert_name(const ne_ssl_client_cert *ccert)
 {
 	return NULL;
 }

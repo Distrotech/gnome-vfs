@@ -1763,6 +1763,7 @@ copy_items (const GList *source_uri_list,
 		result = gnome_vfs_get_file_info_uri (source_uri, info, 
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
+		g_free (progress->progress_info->duplicate_name);
 		progress->progress_info->duplicate_name =
 			gnome_vfs_uri_extract_short_path_name
 			((GnomeVFSURI *)target_item->data);
@@ -1909,6 +1910,7 @@ move_items (const GList *source_uri_list,
 		source_uri = (GnomeVFSURI *)source_item->data;
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 
+		g_free (progress->progress_info->duplicate_name);
 		progress->progress_info->duplicate_name =  
 			gnome_vfs_uri_extract_short_path_name
 			((GnomeVFSURI *)target_item->data);
@@ -2016,6 +2018,8 @@ link_items (const GList *source_uri_list,
 		source_reference = gnome_vfs_uri_to_string (source_uri, GNOME_VFS_URI_HIDE_NONE);
 
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
+
+		g_free (progress->progress_info->duplicate_name);
 		progress->progress_info->duplicate_name =
 			gnome_vfs_uri_extract_short_path_name
 			((GnomeVFSURI *)target_item->data);

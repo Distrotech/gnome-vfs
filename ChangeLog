@@ -1,22 +1,37 @@
-2005-11-25  Christian Kellner  <gicmo@gnome.org>
+2005-11-26  Tor Lillqvist  <tml@novell.com>
 
-	* configure.in: 
-	* libgnomevfs/Makefile.am:
-	* libgnomevfs/gnome-vfs-ace.c:
-	* libgnomevfs/gnome-vfs-ace.h:
-	* libgnomevfs/gnome-vfs-acl.c: 
-	* libgnomevfs/gnome-vfs-acl.h:
-	* libgnomevfs/gnome-vfs-file-info.h:
-	* libgnomevfs/gnome-vfs.h:
-	* modules/Makefile.am:
-	* modules/file-method-acl.c: 
-	* modules/file-method-acl.h:
-	* modules/file-method.c: 
-	* programs/gnomevfs-info.c: 
-	* test/Makefile.am:
-	* test/test-acl.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c: Make it compile on Win32
+	again, although it does not really do anything useful on
+	Win32. Just providing the API as no-ops, more or less, to avoid
+	ifdefs in client code.
 
-	First start of ACL support in GnomeVFS.
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): Add logic
+	for Win32 so we won't return crap like /x:/foo/bar.zap.
+
+	* modules/file-method.c (rename_helper): On Win32, if
+	force_replace and old_exists, try removing the old file (or
+	directory) first. Don't then bother on Win32 with the EISDIR error
+	case after the rename.
+
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_items), (move_items),
+	(link_items): Free progress_info->duplicate_name before
+	setting it (#322324).
+	Patch from Richard Hult <richard@imendio.com>.
+
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c:
+	Port http neon method to neon 0.25;
+
+2005-11-26  Christian Kellner  <gicmo@gnome.org>
+
+	* acinclude.m4:
+	* imported/neon/Makefile.am:
+	* imported/neon/ne_gnomevfs.c:
+	Make neon build again. Part I of the port to
+	neon 0.25.
 
 2005-11-24  Alexander Larsson  <alexl@redhat.com>
 
@@ -74,7 +89,7 @@
 	Post release version bump
 
 === gnome-vfs 2.13.1 ===
-	
+
 2005-11-14  Alexander Larsson  <alexl@redhat.com>
 
 	* NEWS:

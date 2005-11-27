@@ -906,12 +906,17 @@ neon_session_save_auth (ne_request 	  *req,
 
 
 /* ************************************************************************** */
-/* Response header parser */
+/* Header parsing utilities */
+
 static gboolean
 header_value_to_number (const char *header_value, gulong *number)
 {
 	gulong result;
 	const char *p = header_value;
+
+	if (header_value == NULL) {
+		return FALSE;
+	}
 	
 	for (result = 0; g_ascii_isdigit (*p); p++)
 		result = 10 * result + (*p - '0');
@@ -923,21 +928,6 @@ header_value_to_number (const char *header_value, gulong *number)
 	return TRUE;
 }
 
-static void
-set_content_length (GnomeVFSFileInfo *file_info, const char *value)
-{
-	gboolean result;
-	gulong size;
-	
-	result = header_value_to_number (value, &size);
-	
-	if (! result) return;
-
-	DEBUG_HTTP_2 ("set size");
-	
-	file_info->size = size;
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
-}
 
 static char *
 strip_semicolon (const char *value)
@@ -952,44 +942,12 @@ strip_semicolon (const char *value)
 	}
 }
 
-static void
-set_content_type (GnomeVFSFileInfo *file_info, const char *value)
-{
-	g_free (file_info->mime_type);
 
-	file_info->mime_type = strip_semicolon (value);
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-}
-
-static void
-set_last_modified (GnomeVFSFileInfo *file_info, const char *value)
-{
-	time_t time;
-
-	if (! gnome_vfs_atotm (value, &time))
-		return;
-	
-	file_info->mtime = time;
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MTIME;
-}
-
-static void
-set_access_time (GnomeVFSFileInfo *file_info, const char *value)
-{
-	time_t time;
-
-	if (! gnome_vfs_atotm (value, &time))
-		return;
-
-	file_info->atime = time;
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ATIME;
-}
-
-static void 
-set_dav_class (void *userdata, const char *value)
+static DavClass 
+parse_dav_header (const char *value)
 {
 	char *tokens = ne_strdup(value), *pnt = tokens;
-        DavClass *dav_class = userdata;
+        DavClass dav_class = DAV_CLASS_NOT_SET;
     
 	DEBUG_HTTP_3 ("parsing dav: %s", tokens); 
 
@@ -1000,16 +958,17 @@ set_dav_class (void *userdata, const char *value)
 		tok = ne_shave(tok, " \r\t");
 
 		if (strcmp (tok, "1") == 0) {
-			*dav_class = 1;
+			dav_class = 1;
 		} else if (strcmp(tok, "2") == 0) {
-			*dav_class = 1;
+			dav_class = 1;
 		} 
 		
-		DEBUG_HTTP_3 ("DAV Level: %d", *dav_class);
+		DEBUG_HTTP_3 ("DAV Level: %d", dav_class);
 		
 	} while (pnt != NULL);
     
 	ne_free (tokens);
+	return dav_class;
 }
 
 typedef enum {
@@ -1074,15 +1033,16 @@ quit_allow_lookup_destroy (void)
 }
 
 
-static void 
-set_allow (void *userdata, const char *value)
+static HttpMethods
+parse_allow_header (const char *value)
 {
-	char *tokens = ne_strdup(value), *pnt = tokens;
-	HttpMethods *methods = userdata;
+	char *tokens = ne_strdup (value), *pnt = tokens;
+	HttpMethods methods;
 	struct HttpMethod *method;
     
 	DEBUG_HTTP_3 ("parsing allow: %s", pnt);
-	
+	methods = ALLOW_NOT_SET;
+
 	do {
 		char *tok = ne_qtoken (&pnt, ',',  "\"'");
 		if (!tok) break;
@@ -1096,21 +1056,12 @@ set_allow (void *userdata, const char *value)
 		
 		DEBUG_HTTP_3 ("setting %s to yes", method->string);
 		
-		*methods |= method->type;
+		methods |= method->type;
 		
 	} while (pnt != NULL);
     
 	ne_free (tokens);
-}
-
-static void 
-set_content_range (void *ud, const char *value)
-{
-	int *range = ud;
-	
-    	if (strncmp (value, "bytes ", 6) != 0) {
-		*range = -1;
-    	}
+	return methods;
 }
 
 /* function for setting the etag value
@@ -1126,27 +1077,48 @@ set_etag (void **etag, const char *value)
 */
 
 static void
-add_default_header_handlers (ne_request *req, GnomeVFSFileInfo *info)
+std_headers_to_file_info (ne_request *req, GnomeVFSFileInfo *info)
 {
+	const char *value;
+	time_t	    time;
+	gboolean    result;
+	gulong      size;
+	
+	value = ne_get_response_header (req, "Last-Modified");
 
-	ne_add_response_header_handler (req, "Last-Modified", 
-					(ne_header_handler) set_last_modified,
-		   			info);
+	if (value != NULL && gnome_vfs_atotm (value, &time)) {
+		
+		info->mtime = time;
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MTIME;
+	}
+
 	
-	ne_add_response_header_handler (req, "Content-Length", 
-					(ne_header_handler) set_content_length,
-					info);
+	value  = ne_get_response_header (req, "Content-Length");
+	result = header_value_to_number (value, &size);
 	
-	ne_add_response_header_handler (req, "Content-Type",
-					(ne_header_handler) set_content_type,
-					info);
+	if (result == TRUE) {
 	
-	ne_add_response_header_handler (req, "Date",
-					(ne_header_handler) set_access_time,
-					info);
-       
+		info->size = size;
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+	}
+	
+	
+	value  = ne_get_response_header (req, "Content-Type");
+
+	if (value != NULL) {
+		g_free (info->mime_type);
+
+		info->mime_type = strip_semicolon (value);
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+	}
+
+	value = ne_get_response_header (req, "Date");
+
+	if (value != NULL && gnome_vfs_atotm (value, &time)) {
+		info->atime = time;
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ATIME;
+	}
 }
-
 
 /* ************************************************************************** */
 /* Propfind request handlers */
@@ -1474,29 +1446,54 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 {	
 	GnomeVFSModuleCallbackReceivedHeadersIn in_args;
 	GnomeVFSModuleCallbackReceivedHeadersOut out_args;
-	GList **headers;
+	GList       *headers;
+	void        *hiter;
 	GnomeVFSURI *uri;
-	ne_session *session;
+	ne_session  *session;
+	const char  *hkey, *hval;
 
 	DEBUG_HTTP_FUNC (1);
 	
 	session = ne_get_session (req);
 	
-	if (ne_get_request_private (req, "Headers Returned"))
+	if (ne_get_request_private (req, "Headers Returned")) {
 		return 0;
+	}
 	
-	headers = ne_get_request_private (req, "Headers");
+	headers = NULL;
+	hiter = NULL;
+
+	while ((hiter = ne_response_header_iterate (req,
+						    hiter,
+						    &hkey,
+						    &hval))) {
+		char *header;
+
+		if (hkey == NULL || hval == NULL) {
+			continue;
+		}
+		
+		header = g_strdup_printf ("%s: %s", hkey, hval);
+		headers = g_list_prepend (headers, header);
+	}
+
+	if (headers == NULL) {
+		return 0;
+	}
+	
 	uri = ne_get_session_private (session, "GnomeVFSURI");
 
 	memset (&in_args, 0, sizeof (in_args));
 	memset (&out_args, 0, sizeof (out_args));
 	
 	in_args.uri = uri;
-	in_args.headers = *headers;
+	in_args.headers = headers;
 
 	gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_HTTP_RECEIVED_HEADERS,
 					&in_args, sizeof (in_args),
 					&out_args, sizeof (out_args));
+	
+	/* FIXME: free stuff here?  */
 	
 	ne_set_request_private (req, "Headers Returned", "TRUE");
 	
@@ -1506,33 +1503,17 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 }
 
 static void 
-neon_header_catcher (void *userdata, const char *value)
-{
-	GList **headers = (GList **) userdata;
-
-	DEBUG_HTTP_3 ("Catching Header %s,", (char *) value);
-
-	*headers = g_list_prepend (*headers, g_strdup (value));	
-}
-
-
-static void 
 neon_setup_headers (ne_request *req, void *userdata, ne_buffer *header)
 {
 	GnomeVFSModuleCallbackAdditionalHeadersIn in_args;
 	GnomeVFSModuleCallbackAdditionalHeadersOut out_args;
-	GList *iter, **headers;
+	GList *iter;
 	gboolean ret;
 	GnomeVFSURI *uri;
 	ne_session *session;
 
 	DEBUG_HTTP_FUNC (1);
 	
-	headers = g_new0 (GList *, 1);
-
-	ne_set_request_private (req, "Headers", headers);
-	ne_add_response_header_catcher (req, neon_header_catcher, headers);
-
 	session = ne_get_session (req);
 	uri = ne_get_session_private (session, "GnomeVFSURI");
 
@@ -1560,48 +1541,24 @@ neon_setup_headers (ne_request *req, void *userdata, ne_buffer *header)
 	DEBUG_HTTP_FUNC (0);
 }
 
-static void 
-neon_free_headers (ne_request *req, void *userdata)
-{
-	GList **headers, *iter;
-	
-	DEBUG_HTTP_FUNC (1);
-	headers = ne_get_request_private (req, "Headers");
-	
-	if (headers == NULL) {
-		return;	
-	}
-	
-	for (iter = *headers; iter; iter = iter->next) {
-		DEBUG_HTTP_3 ("Freeing Header  %s,", (char *) iter->data);
-		g_free (iter->data);
-	}
-
-	g_list_free (*headers);
-	g_free (headers);
-	
-	ne_set_request_private (req, "Headers", NULL);
-	DEBUG_HTTP_FUNC (0);
-}
-
 /* ************************************************************************** */
 /* Http context */
 typedef struct {
 	
 	GnomeVFSURI *uri;
-	char *path;
+	char        *path;
 	
 	const char *scheme;
-	gboolean ssl;
+	gboolean    ssl;
 	
-	DavClass dav_class;
+	DavClass    dav_class;
 	HttpMethods methods;
 	
 	ne_session *session;
 
-	gboolean dav_mode;
-	gboolean redirected;
-	guint    redir_count;
+	gboolean    dav_mode;
+	gboolean    redirected;
+	guint       redir_count;
 	
 } HttpContext;
 
@@ -1664,7 +1621,6 @@ http_acquire_connection (HttpContext *context)
 	ne_set_session_private (session, "GnomeVFSURI", context->uri);
 	ne_hook_pre_send (session, neon_setup_headers, NULL);
 	ne_hook_post_send (session, neon_return_headers, NULL);
-	ne_hook_destroy_request (session, neon_free_headers, NULL);
 
 	if (proxy_for_uri (top_uri, &proxy)) {
 		HttpAuthInfo *proxy_auth;
@@ -1775,7 +1731,10 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 		return result;
 	}
 
-	ctx->dav_mode = scheme_is_dav (uri);
+	/* initialize the missing bits */
+	ctx->dav_mode  = scheme_is_dav (uri);
+	ctx->dav_class = DAV_CLASS_NOT_SET;
+	ctx->methods   = ALLOW_NOT_SET;
 	
 	*context = ctx;
 
@@ -1876,7 +1835,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	   will treat PROPFIND as GET and some servers may deny us PROFIND but
 	   allow us HEAD. */
 	if (res == NE_OK && ne_get_status (req)->code == 207) {
-		
 
 		if (pfctx.target != NULL) {
 			gnome_vfs_file_info_copy (info, pfctx.target);	
@@ -1894,8 +1852,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
  head_start:	
 	req  = ne_request_create (context->session, "HEAD", context->path);
 
-	add_default_header_handlers (req, info);
-		
 	res = ne_request_dispatch (req);
 
 	if (res == NE_REDIRECT) {
@@ -1923,6 +1879,8 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
+		std_headers_to_file_info (req, info);
+		
 		/* work-around for broken icecast server */
 		if (! g_ascii_strcasecmp (info->mime_type, "audio/mpeg")) {
 			ne_close_connection (ne_get_session (req));
@@ -1994,17 +1952,10 @@ http_options (HttpContext *hctx)
 {
 	GnomeVFSResult  result;
 	ne_request     *req;
-	DavClass 	klass;
-	HttpMethods	methods;
 	int		res;
 	
  options_start:	
-	klass = DAV_CLASS_NOT_SET;
-	methods = 0;
 	req = ne_request_create (hctx->session, "OPTIONS", hctx->path);
-	ne_add_response_header_handler (req, "DAV", set_dav_class, &klass);
-	ne_add_response_header_handler (req, "Allow", set_allow, &methods);
-	
 	res = ne_request_dispatch (req);
 	
 	if (res == NE_REDIRECT) {
@@ -2014,13 +1965,24 @@ http_options (HttpContext *hctx)
 	}
 
 	result = resolve_result (res, req);
-	ne_request_destroy (req);
-	
-	if (result == GNOME_VFS_OK) {
 		
-		hctx->dav_class = klass;
-		hctx->methods = methods;
+	if (result == GNOME_VFS_OK) {
+		const char *value;
+
+		value = ne_get_response_header (req, "DAV");
+
+		if (value != NULL) {
+			hctx->dav_class = parse_dav_header (value);
+		}
+	
+		value = ne_get_response_header (req, "Allow");
+
+		if (value != NULL) {
+			hctx->methods = parse_allow_header (value);
+		}
 	}
+
+	ne_request_destroy (req);
 
 	return result;
 }
@@ -2061,7 +2023,7 @@ dav_request (ne_request *req, gboolean allow_redirect)
 	status = (ne_status *) ne_get_status (req);
     
 	if (status->code == 207) {
-		if (!ne_xml_valid (p))
+		if (ne_xml_failed (p))
 			res = NE_ERROR;  
 		if (error != 0) {
 			status->code = error;
@@ -2222,8 +2184,6 @@ http_transfer_start_read (HttpFileHandle *handle)
 	GnomeVFSResult result;
 	HttpContext *hctx;
 	ne_request  *req;
-	int	     range;
-	char 	     dropbuf[4096];
 	int 	     res;
 	const ne_status *status;
 	
@@ -2239,20 +2199,17 @@ get_start:
 		
 		handle->can_range = TRUE;
 		
-		ne_print_request_header (req, "Range", "bytes=%"GNOME_VFS_OFFSET_FORMAT_STR"-", handle->offset);
-		
-		ne_add_response_header_handler (req, "Content-Range",
-						(ne_header_handler) set_content_range,
-						&range);
-	}
-	
+		ne_print_request_header (req, "Range",
+					 "bytes=%"GNOME_VFS_OFFSET_FORMAT_STR"-",
+					 handle->offset);
 
-	add_default_header_handlers (req, handle->info);
-	
+		ne_add_request_header (req, "Accept-Ranges", "bytes");
+	}
+
 get_retry:
-	res = ne_begin_request (req);
+
+	res    = ne_begin_request (req);
 	result = resolve_result (res, req);
-	
 	status = ne_get_status (req);
 	
 	DEBUG_HTTP ("[GET] %s, %d, %d", gnome_vfs_result_to_string (result), res, status->code);
@@ -2265,9 +2222,8 @@ get_retry:
 	}
 	
 	if (IS_REDIRECT (status->code) || IS_AUTH_REQ (status->code)) {
-		/* send the body to /dev/null */				
-		while ((res = ne_read_response_block (req, dropbuf, sizeof (dropbuf))) > 0)
-			/* noop */;
+		/* We are not interested in the body */
+		res = ne_discard_response (req);	
 		
 		if (res < 0) {
 			handle->transfer_state = TRANSFER_ERROR;
@@ -2296,6 +2252,8 @@ get_retry:
 	
 	if (result == GNOME_VFS_OK) { 
 		/* 2xx .. success */
+	
+		std_headers_to_file_info (req, handle->info);
 		
 		if (handle->use_range && status->code != 206) {
 			DEBUG_HTTP ("[GET] {ranged} disabled");
@@ -2308,7 +2266,6 @@ get_retry:
 		*/
 		neon_return_headers (req, NULL, status);
 
-		
 		handle->transfer_state = TRANSFER_READ;
 		handle->transfer.read = req;
 	}

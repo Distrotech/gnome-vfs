@@ -24,13 +24,13 @@
 #include <config.h>
 
 #include <sys/types.h>
-#include <sys/wait.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #ifndef G_OS_WIN32
+#include <sys/wait.h>
 #include <pthread.h>
 #endif
 #include <bonobo/bonobo-exception.h>
