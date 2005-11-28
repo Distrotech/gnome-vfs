@@ -1,3 +1,16 @@
+gnome-vfs 2.12.2
+	* Correctly resolve nested symlinks without accessing
+	  invalid memory
+	* Synch xdgmime with upstream to fix handling of the
+	  mime cache
+	* Improve parsing of files which have names that match dates,
+	  years or times of day.
+	* Correctly return GNOME_VFS_ERROR_CANCELLED if an
+	  authentication was cancelled in the ftp, sftp and smb method
+	* Fix problem with multiple cd volumes 
+	* Add logic for Win32 so we won't return crap like /x:/foo/bar.zap
+          and fix handling of file overwrites.
+
 gnome-vfs 2.12.1.1
 	* build with samba 3.0.20
 	
