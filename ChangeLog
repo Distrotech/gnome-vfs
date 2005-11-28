@@ -1,5 +1,12 @@
 2005-11-28  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in:
+	Post release version bump
+
+=== gnome-vfs 2.12.2 ===
+
+2005-11-28  Christian Kellner  <gicmo@gnome.org>
+
 	* NEWS:
 	Update for 2.12.2.
 
