@@ -35,6 +35,7 @@ EXTRA_DIST =					\
 	ssl-modules.conf			\
 	inotify-helper.c			\
 	inotify-helper.h			\
+	inotify-kernel.h			\
 	local_inotify.h				\
 	local_inotify_syscalls.h
 
@@ -112,7 +113,7 @@ libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) $(AVAHI_LIBS) ../libgnomevfs/
 
 ###  `file' method
 if HAVE_INOTIFY
-FILE_ADD_SOURCES = inotify-helper.c
+FILE_ADD_SOURCES = inotify-kernel.c inotify-helper.c
 else
 FILE_ADD_SOURCES = 
 endif

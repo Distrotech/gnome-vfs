@@ -485,10 +485,13 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
 		info->size = buffer_read_gint64 (buf);
 	}
+	
 	if (flags & SSH2_FILEXFER_ATTR_UIDGID) {
 		info->uid = buffer_read_gint32 (buf);
 		info->gid = buffer_read_gint32 (buf);
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IDS;	
 	}
+	
 	if (flags & SSH2_FILEXFER_ATTR_PERMISSIONS) {
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
 		info->permissions = buffer_read_gint32 (buf);
@@ -520,10 +523,6 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
 	info->io_block_size = default_req_len;
-
-	/* Set the uid and gid fields naively to the current user to trick Nautilus */
-	info->uid = getuid ();
-	info->gid = getgid ();
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Read file info from %p", buf));
 }

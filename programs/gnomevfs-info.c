@@ -177,9 +177,11 @@ show_file_info (GnomeVFSFileInfo *info, const char *uri)
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT)
 		printf ("Link count        : %d\n", info->link_count);
 
-	printf ("UID               : %d\n", info->uid);
-	printf ("GID               : %d\n", info->gid);
-
+	if (info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_IDS) {
+		printf ("UID               : %d\n", info->uid);
+		printf ("GID               : %d\n", info->gid);
+	}
+	
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_ATIME)
 		printf ("Access time       : %s", ctime (&info->atime));
 

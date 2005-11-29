@@ -125,8 +125,9 @@ typedef enum {
  * @GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME: Symlink name field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: Access bits of the permissions
- * @GNOME_VFS_FILE_INFO_FIELDS_ACL: ACLs field is valid
  * bitfield are valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_IDS: UID and GID information is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_ACL: ACL field is valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
  * Name is always assumed valid (how else would you have gotten a
@@ -150,7 +151,9 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
 	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13,
 	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14,
-	GNOME_VFS_FILE_INFO_FIELDS_ACL = 1 << 15
+	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14,
+	GNOME_VFS_FILE_INFO_FIELDS_IDS = 1 << 15,
+	GNOME_VFS_FILE_INFO_FIELDS_ACL = 1 << 16
 } GnomeVFSFileInfoFields;
 
 /* FIXME: It's silly to use the symbolic constants for POSIX here.
