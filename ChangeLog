@@ -1,3 +1,15 @@
+2005-11-28  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/Makefile.am: Compile inotify-kernel.c, ship inotify-kernel.h.
+	* modules/inotify-kernel.c: (ik_startup), (ik_event_internal_new),
+	(ik_event_new), (ik_event_free), (ik_watch), (ik_ignore),
+	(ik_read_events), (ik_read_callback), (g_timeval_lt),
+	(g_timeval_eq), (ik_pair_events), (ik_event_add_microseconds),
+	(ik_event_ready), (ik_pair_moves), (ik_process_events),
+	(ik_process_eq_callback):
+	* modules/inotify-kernel.h: Factored out inotify code that deals with the
+	kernel and raw events.
+
 2005-11-27  Christian Kellner  <gicmo@gnome.org>
 
 	* imported/neon/Makefile.am: Define NE_HAVE_DAV.
