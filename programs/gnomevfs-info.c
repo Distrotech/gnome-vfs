@@ -123,7 +123,7 @@ show_acl (GnomeVFSACL *acl)
 		printf ("\n");
 	}
 	
-	gnome_vfs_free_ace_list (ace_list);
+	gnome_vfs_acl_free_ace_list (ace_list);
 }
 
 static void
