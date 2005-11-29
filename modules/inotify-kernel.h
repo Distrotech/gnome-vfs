@@ -17,23 +17,20 @@
 #ifndef __INOTIFY_KERNEL_H
 #define __INOTIFY_KERNEL_H
 
-typedef struct {
+typedef struct ik_event_s {
     guint32 wd;
     guint32 mask;
     guint32 cookie;
     guint32 len;
     char *  name;
-	gboolean paired;
-	guint32 pair_wd;
-	guint32 pair_mask;
-	guint32 pair_len;
-	char *  pair_name;
+	struct ik_event_s *pair;
 } ik_event_t;
 
 gboolean ik_startup (void (*cb)(ik_event_t *event));
+ik_event_t *ik_event_new_dummy (const char *name, guint32 wd, guint32 mask);
 void ik_event_free (ik_event_t *event);
 
 guint32 ik_watch(const char *path, guint32 mask, int *err);
-int ik_ignore(guint32 wd);
+int ik_ignore(const char *path, guint32 wd);
 
 #endif

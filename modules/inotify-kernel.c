@@ -50,6 +50,8 @@ static void (*user_cb)(ik_event_t *event);
 static gboolean ik_read_callback (gpointer user_data);
 static gboolean ik_process_eq_callback (gpointer user_data);
 
+G_LOCK_DEFINE_STATIC (ik_lock);
+
 typedef struct ik_event_internal {
 	ik_event_t *event;
 	gboolean seen;
@@ -60,16 +62,22 @@ typedef struct ik_event_internal {
 
 gboolean ik_startup (void (*cb)(ik_event_t *event))
 {
+	static gboolean initialized = FALSE;
 	GSource *source;
 
+	G_LOCK(ik_lock);
 	user_cb = cb;
 	/* Ignore multi-calls */
-	if (inotify_instance_fd >= 0)
-		return TRUE;
+	if (initialized) {
+		G_UNLOCK(ik_lock);
+		return inotify_instance_fd >= 0;
+	}
 
+	initialized = TRUE;
 	inotify_instance_fd = inotify_init ();
 
 	if (inotify_instance_fd < 0) {
+		G_UNLOCK(ik_lock);
 		return FALSE;
 	}
 
@@ -88,6 +96,7 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	event_queue = g_queue_new ();
 	events_to_process = g_queue_new ();
 
+	G_UNLOCK(ik_lock);
 	return TRUE;
 }
 
@@ -123,10 +132,26 @@ static ik_event_t *ik_event_new (char *buffer)
    return event;
 }
 
+ik_event_t *ik_event_new_dummy (const char *name, guint32 wd, guint32 mask)
+{
+	ik_event_t *event = g_new0(ik_event_t,1);
+	event->wd = wd;
+	event->mask = mask;
+	event->cookie = 0;
+	if (name)
+		event->name = g_strdup(name);
+	else
+		event->name = g_strdup("");
+
+	event->len = strlen (event->name);
+
+	return event;
+}
+
 void ik_event_free (ik_event_t *event)
 {
-	if (event->paired)
-		g_free (event->pair_name);
+	if (event->pair)
+		ik_event_free (event->pair);
 	g_free(event->name);
 	g_free(event);
 }
@@ -153,7 +178,7 @@ guint32 ik_watch (const char *path, guint32 mask, int *err)
    return wd;
 }
 
-int ik_ignore(guint32 wd)
+int ik_ignore(const char *path, guint32 wd)
 {
    g_assert (wd >= 0);
    g_assert (inotify_instance_fd >= 0);
@@ -244,6 +269,7 @@ static gboolean ik_read_callback(gpointer user_data)
 
 	buffer_i = 0;
 	events = 0;
+	G_LOCK(ik_lock);
 	while (buffer_i < buffer_size)
 	{
 		struct inotify_event *event;
@@ -254,6 +280,7 @@ static gboolean ik_read_callback(gpointer user_data)
 		buffer_i += event_size;
 		events++;
 	}
+	G_UNLOCK(ik_lock);
 	return TRUE;
 }
 
@@ -390,15 +417,8 @@ ik_process_events ()
 			/* We send out paired MOVED_FROM/MOVED_TO events in the same event buffer */
 			g_assert (event->event->mask == IN_MOVED_FROM && event->pair->event->mask == IN_MOVED_TO);
 			/* Copy the paired data */
-			event->event->paired = TRUE;
-			event->event->pair_wd = event->pair->event->wd;
-			event->event->pair_mask = event->pair->event->mask;
-			event->event->pair_len = event->pair->event->len;
-			event->event->pair_name = event->pair->event->name;
+			event->event->pair = event->pair->event;
             event->pair->sent = TRUE;
-			/* The pairs ik_event_t is never sent to the user so
-			 * we free it here */
-			g_free (event->pair->event);
         } else if (event->event->cookie) {
 			/* If we couldn't pair a MOVED_FROM and MOVED_TO together, we change
 			 * the event masks */
@@ -421,6 +441,7 @@ ik_process_events ()
 gboolean ik_process_eq_callback (gpointer user_data)
 {
     /* Try and move as many events to the event queue */
+	G_LOCK(ik_lock);
     ik_process_events ();
 
 	while (!g_queue_is_empty (event_queue))
@@ -430,5 +451,6 @@ gboolean ik_process_eq_callback (gpointer user_data)
 		user_cb (event);
 	}
 
+	G_UNLOCK(ik_lock);
 	return TRUE;
 }

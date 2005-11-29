@@ -34,13 +34,12 @@
  * Instead we use the local version.
  */
 #include "local_inotify.h"
-#include "local_inotify_syscalls.h"
 #elif defined (HAVE_LINUX_INOTIFY_H)
 #include <linux/inotify.h>
-#include "local_inotify_syscalls.h"
 #endif
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+#include "inotify-kernel.h"
 #include "inotify-helper.h"
 
 #define GAM_INOTIFY_SANITY
@@ -85,17 +84,6 @@ typedef struct {
 	GList *subs;
 } inotify_data_t;
 
-typedef struct _inotify_event_t {
-	gint wd;
-	gint mask;
-	gint cookie;
-	char *name;
-	gboolean seen;
-	gboolean sent;
-	GTimeVal hold_until;
-	struct _inotify_event_t *pair; 
-} inotify_event_t;
-
 typedef struct {
 	char *path;
 	GTime last_scan_time;
@@ -118,17 +106,9 @@ static GHashTable *	wd_hash = NULL;
 static GList *		missing_list = NULL;
 static GList *		links_list = NULL;
 static GHashTable *	cookie_hash = NULL;
-static GQueue *		event_queue = NULL;
-static GQueue *		events_to_process = NULL;
-static GIOChannel *	inotify_read_ioc = NULL;
-static int		inotify_device_fd = -1;
 
 #define I_W if (inotify_debug_enabled) g_warning 
 #define GAM_INOTIFY_MASK (IN_MODIFY|IN_ATTRIB|IN_MOVED_FROM|IN_MOVED_TO|IN_DELETE|IN_CREATE|IN_DELETE_SELF|IN_UNMOUNT|IN_MOVE_SELF)
-
-static int 	gam_inotify_add_watch 		(const char *path, guint32 mask, int *err);
-static int 	gam_inotify_rm_watch 		(const char *path, guint32 wd);
-static void 	gam_inotify_read_events 	(gsize *buffer_size_out, gchar **buffer_out);
 
 static gboolean gam_inotify_is_missing		(const char *path);
 static gboolean gam_inotify_nolonger_missing 	(const char *path);
@@ -144,9 +124,6 @@ static gboolean	gam_inotify_scan_links		(gpointer userdata);
 static void	gam_inotify_poll_link		(inotify_links_t *links);
 
 static void 	gam_inotify_sanity_check	(void);
-
-static gboolean	g_timeval_lt			(GTimeVal *val1, GTimeVal *val2);
-static gboolean	g_timeval_eq			(GTimeVal *val1, GTimeVal *val2);
 
 static const char *
 mask_to_string (int mask)
@@ -203,7 +180,7 @@ mask_to_string (int mask)
 }
 
 static GnomeVFSMonitorEventType
-mask_to_gam_event (gint mask)
+mask_to_event_type (gint mask)
 {
 	mask &= ~IN_ISDIR;
 	switch (mask)
@@ -238,7 +215,7 @@ mask_to_gam_event (gint mask)
 }
 
 static GnomeVFSMonitorEventType
-mask_to_gam_event_dir_as_file (gint mask)
+mask_to_event_type_dir_as_file (gint mask)
 {
 	mask &= ~IN_ISDIR;
 	switch (mask)
@@ -269,7 +246,7 @@ mask_to_gam_event_dir_as_file (gint mask)
 }
 
 static GnomeVFSMonitorEventType
-mask_to_gam_event_file_as_dir (gint mask)
+mask_to_event_type_file_as_dir (gint mask)
 {
 	mask &= ~IN_ISDIR;
 	switch (mask)
@@ -314,7 +291,6 @@ get_path_from_uri (GnomeVFSURI const *uri)
     }
     return path;
 }
-
 
 inotify_sub *
 inotify_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
@@ -391,104 +367,8 @@ gam_inotify_data_free(inotify_data_t * data)
 	g_free(data);
 }
 
-static inotify_event_t *
-gam_inotify_event_new_dummy (const char *filename, guint32 mask)
-{
-	inotify_event_t *gam_event = g_new0(inotify_event_t, 1);
-
-	gam_event->wd = -1;
-	gam_event->mask = mask;
-	gam_event->cookie = -1;
-
-	if (filename)
-	{
-		gam_event->name = g_strdup(filename);
-	} else {
-		gam_event->name = g_strdup("");
-	}
-
-	return gam_event;
-}
-
-static inotify_event_t *
-gam_inotify_event_new (struct inotify_event *event)
-{
-	inotify_event_t *gam_event;
-	GTimeVal tv;
-
-	gam_event = g_new0(inotify_event_t, 1);
-
-	gam_event->wd = event->wd;
-	gam_event->mask = event->mask;
-	gam_event->cookie = event->cookie;
-
-	if (event->len) 
-	{
-		gam_event->name = g_strdup (event->name);
-	} else {
-		gam_event->name = g_strdup ("");
-	}
-
-	g_get_current_time (&tv);
-	g_time_val_add (&tv, DEFAULT_HOLD_UNTIL_TIME);
-	gam_event->hold_until = tv;
-
-	return gam_event;
-}
-
 static void
-gam_inotify_event_free (inotify_event_t *event)
-{
-	g_free (event->name);
-	g_free (event);
-}
-
-static void
-gam_inotify_event_pair_with (inotify_event_t *event1, inotify_event_t *event2)
-{
-	g_assert (event1 && event2);
-	/* We should only be pairing events that have the same cookie */
-	g_assert (event1->cookie == event2->cookie);
-	/* We shouldn't pair an event that already is paired */
-	g_assert (event1->pair == NULL && event2->pair == NULL);
-	event1->pair = event2;
-	event2->pair = event1;
-	
-	I_W( "inotify: pairing a MOVE together\n");
-	if (g_timeval_lt (&event1->hold_until, &event2->hold_until))
-		event1->hold_until = event2->hold_until;
-
-	event2->hold_until = event1->hold_until;
-}
-
-static void
-gam_inotify_event_add_microseconds (inotify_event_t *event, glong ms)
-{
-	g_assert (event);
-	g_time_val_add (&event->hold_until, ms);
-}
-
-static gboolean
-gam_inotify_event_ready (inotify_event_t *event)
-{
-	GTimeVal tv;
-	g_assert (event);
-
-	g_get_current_time (&tv);
-
-	/* An event is ready if,
-	 *
-	 * it has no cookie -- there is nothing to be gained by holding it
-	 * or, it is already paired -- we don't need to hold it anymore
-	 * or, we have held it long enough
-	 */
-	return event->cookie == 0 || 
-	       event->pair != NULL ||
-	       g_timeval_lt(&event->hold_until, &tv) || g_timeval_eq(&event->hold_until, &tv);
-}
-
-static void
-gam_inotify_emit_one_event (inotify_data_t *data, inotify_event_t *event, inotify_sub *sub)
+gam_inotify_emit_one_event (inotify_data_t *data, ik_event_t *event, inotify_sub *sub)
 {
 	gint is_dir_node = 0;
 	GnomeVFSMonitorEventType gevent;
@@ -507,14 +387,14 @@ gam_inotify_emit_one_event (inotify_data_t *data, inotify_event_t *event, inotif
 	if (watching_dir_as_file)
 	{
 		I_W ("inotify: watching dir as file\n");
-		gevent = mask_to_gam_event_dir_as_file(event->mask);
+		gevent = mask_to_event_type_dir_as_file(event->mask);
 		fullpath = g_strdup (data->path);
 	} else if (watching_file_as_dir) {
 		I_W ("inotify: watching file as dir\n");
-		gevent = mask_to_gam_event_file_as_dir (event->mask);
+		gevent = mask_to_event_type_file_as_dir (event->mask);
 		fullpath = g_strdup (data->path);
 	} else {
-		gevent = mask_to_gam_event (event->mask);
+		gevent = mask_to_event_type (event->mask);
 		if (strlen (event->name) == 0)
 			fullpath = g_strdup (data->path);
 		else
@@ -537,7 +417,7 @@ gam_inotify_emit_one_event (inotify_data_t *data, inotify_event_t *event, inotif
 }
 
 static void
-gam_inotify_emit_events (inotify_data_t *data, inotify_event_t *event)
+gam_inotify_emit_events (inotify_data_t *data, inotify_data_t *pair_data, ik_event_t *event)
 {
 	GList *l;
 
@@ -548,18 +428,28 @@ gam_inotify_emit_events (inotify_data_t *data, inotify_event_t *event)
 		inotify_sub *sub = l->data;
 		gam_inotify_emit_one_event (data, event, sub);
 	}
+
+	if (pair_data) {
+	    for (l = pair_data->subs; l; l = l->next) {
+		    inotify_sub *sub = l->data;
+		    gam_inotify_emit_one_event (pair_data, event->pair, sub);
+	    }
+	}
+
 }
 
 static void
-gam_inotify_process_event (inotify_event_t *event)
+gam_inotify_process_event (ik_event_t *event)
 {
 	inotify_data_t *data = NULL;
+	inotify_data_t *pair_data = NULL;
 
 	data = g_hash_table_lookup (wd_hash, GINT_TO_POINTER(event->wd));
 
 	if (!data) 
 	{
 		I_W( "inotify: got %s event for unknown wd %d\n", mask_to_string (event->mask), event->wd);
+		ik_event_free (event);
 		return;
 	}
 
@@ -567,12 +457,14 @@ gam_inotify_process_event (inotify_event_t *event)
 	{
 		I_W( "inotify: ignoring event on temporarily deactivated watch %s\n", data->path);
 		data->deactivated_events++;
+		ik_event_free (event);
 		return;
 	}
 
 	if (data->ignored) {
 		I_W( "inotify: got event on ignored watch %s\n", data->path);
 		data->ignored_events++;
+		ik_event_free (event);
 		return;
 	} 
 
@@ -580,6 +472,7 @@ gam_inotify_process_event (inotify_event_t *event)
 	{
 		data->ignored = TRUE;
 		data->ignored_events++;
+		ik_event_free (event);
 		return;
 	}
 
@@ -589,7 +482,7 @@ gam_inotify_process_event (inotify_event_t *event)
 		/* Remove the wd from the hash table */
 		g_hash_table_remove (wd_hash, GINT_TO_POINTER(data->wd));
 		/* Send delete event */
-		gam_inotify_emit_events (data, event);
+		gam_inotify_emit_events (data, NULL, event);
 		data->events++;
 		/* Set state bits in struct */
 		data->wd = GAM_INOTIFY_WD_MISSING;
@@ -598,14 +491,19 @@ gam_inotify_process_event (inotify_event_t *event)
 		data->dir = FALSE;
 		/* Add path to missing list */
 		gam_inotify_add_missing (data->path, FALSE);
+		ik_event_free (event);
 		return;
 	}
+
+	if (event->pair)
+	    pair_data = g_hash_table_lookup (wd_hash, GINT_TO_POINTER(event->pair->wd));
 
 	if (event->mask & GAM_INOTIFY_MASK)
 	{
 		I_W( "inotify: got %s on = %s/%s\n",  mask_to_string (event->mask), data->path, event->name);
-		gam_inotify_emit_events (data, event);
+		gam_inotify_emit_events (data, pair_data, event);
 		data->events++;
+		ik_event_free (event);
 		return;
 	}
 
@@ -617,127 +515,12 @@ gam_inotify_process_event (inotify_event_t *event)
 		// XXX: Kill server and hope for the best?
 		// XXX: Or we could send_initial_events , does this work for FAM?
 		g_warning( "inotify: DANGER, queue over flowed! Events have been missed.\n");
+		ik_event_free (event);
 		return;
 	}
 
 	g_warning( "inotify: error event->mask = %d\n", event->mask);
-}
-
-static void
-gam_inotify_pair_moves (gpointer data, gpointer user_data)
-{
-	inotify_event_t *event = (inotify_event_t *)data;
-
-	if (event->seen == TRUE || event->sent == TRUE)
-		return;
-
-	if (event->cookie != 0)
-	{
-		if (event->mask & IN_MOVED_FROM) {
-			g_hash_table_insert (cookie_hash, GINT_TO_POINTER(event->cookie), event);
-			gam_inotify_event_add_microseconds (event, MOVE_HOLD_UNTIL_TIME);
-		} else if (event->mask & IN_MOVED_TO) {
-			inotify_event_t *match = NULL;
-			match = g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->cookie));
-			if (match) {
-				g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->cookie));
-				gam_inotify_event_pair_with (match, event);
-			}
-		}
-	}
-	event->seen = TRUE;
-}
-
-static void
-gam_inotify_process_internal ()
-{
-	int ecount = 0;
-	g_queue_foreach (events_to_process, gam_inotify_pair_moves, NULL);
-
-	while (!g_queue_is_empty (events_to_process)) 
-	{
-		inotify_event_t *event = g_queue_peek_head (events_to_process);
-
-		if (!gam_inotify_event_ready (event)) {
-			I_W( "inotify: event not ready\n");
-			break;
-		}
-
-		/* Pop it */
-		event = g_queue_pop_head (events_to_process);
-		/* This must have been sent as part of a MOVED_TO/MOVED_FROM */
-		if (event->sent)
-			continue;
-
-		/* Check if this is a MOVED_FROM that is also sitting in the cookie_hash */
-		if (event->cookie && event->pair == NULL &&
-			g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->cookie)))
-		{
-			g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->cookie));
-			event->sent = TRUE;
-		}
-		
-		g_queue_push_tail (event_queue, event);
-		ecount++;
-		if (event->pair) {
-			// if this event has a pair
-			event->pair->sent = TRUE;
-			g_queue_push_tail (event_queue, event->pair);
-			ecount++;
-		}
-
-	}
-	if (ecount)
-		I_W( "inotify: moved %d events to event queue\n", ecount);
-}
-
-static gboolean
-gam_inotify_process_event_queue (gpointer data)
-{
-	G_LOCK(inotify);
-	/* Try and move as many events to the event queue */
-	gam_inotify_process_internal ();
-
-	/* Send the events on the event queue to gam clients */
-	while (!g_queue_is_empty (event_queue))
-	{
-		inotify_event_t *event = g_queue_pop_head (event_queue);
-		g_assert (event);
-		gam_inotify_process_event (event);
-		gam_inotify_event_free (event);
-	}
-
-	G_UNLOCK(inotify);
-	return TRUE;
-}
-
-static gboolean
-gam_inotify_read_handler(gpointer user_data)
-{
-	gchar *buffer;
-	gsize buffer_size, buffer_i, events;
-
-        gam_inotify_read_events (&buffer_size, &buffer);
-
-	G_LOCK(inotify);
-	
-        buffer_i = 0;
-        events = 0;
-        while (buffer_i < buffer_size) 
-	{
-                struct inotify_event *event;
-                gsize event_size;
-                event = (struct inotify_event *)&buffer[buffer_i];
-                event_size = sizeof(struct inotify_event) + event->len;
-		g_queue_push_tail (events_to_process, gam_inotify_event_new (event));
-                buffer_i += event_size;
-                events++;
-        }
-
-	G_UNLOCK(inotify);
-
-	I_W( "inotify recieved %d events\n", events);
-        return TRUE;
+	ik_event_free (event);
 }
 
 /**
@@ -761,9 +544,9 @@ inotify_helper_add (inotify_sub * sub)
 		return TRUE;
 	}
 
-	wd = gam_inotify_add_watch (path, GAM_INOTIFY_MASK, &err);
+	wd = ik_watch (path, GAM_INOTIFY_MASK, &err);
 	if (wd < 0) {
-		inotify_event_t *event;
+		ik_event_t *event;
 		I_W( "inotify: could not add watch for %s\n", path);
 		if (err == EACCES) {
 			I_W( "inotify: adding %s to missing list PERM\n", path);
@@ -775,13 +558,12 @@ inotify_helper_add (inotify_sub * sub)
 		gam_inotify_add_missing (path, err == EACCES ? TRUE : FALSE);
 
 		/* FAM sends a delete event in this case, so we do too */
-		event = gam_inotify_event_new_dummy (path, IN_DELETE);
-		gam_inotify_emit_events (data, event);
-		gam_inotify_event_free (event);
-
+		event = ik_event_new_dummy (path, -1, IN_DELETE);
+		gam_inotify_emit_events (data, NULL, event);
+		ik_event_free (event);
 	} else if (gam_inotify_is_link (path)) {
 		/* The file turned out to be a link, cancel the watch, and add it to the links list */
-		gam_inotify_rm_watch (path, wd);
+		ik_ignore (path, wd);
 		I_W( "inotify: could not add watch for %s\n", path);
 		I_W( "inotify: adding %s to links list\n", path);
 		data = gam_inotify_data_new (path, GAM_INOTIFY_WD_LINK, FALSE);
@@ -843,7 +625,7 @@ inotify_helper_remove (inotify_sub * sub)
 		} else {
 			g_hash_table_remove (wd_hash, GINT_TO_POINTER(data->wd));
 			g_hash_table_remove (path_hash, data->path);
-			gam_inotify_rm_watch (data->path, data->wd);
+			ik_ignore (data->path, data->wd);
 		}
 		I_W ("inotify: removing watch for %s\n", path);
 		gam_inotify_data_free (data);
@@ -865,161 +647,34 @@ gboolean
 inotify_helper_init (void)
 {
 	static gboolean initialized = FALSE;
-	GSource *source;
 
 	G_LOCK(inotify);
 	
 	if (initialized == TRUE) {
 		G_UNLOCK(inotify);
-		return inotify_device_fd >= 0;
+		return ik_startup (gam_inotify_process_event);
 	}
 
 	initialized = TRUE;
 
-	inotify_device_fd = inotify_init ();
-
-	if (inotify_device_fd < 0) {
+	if (ik_startup (gam_inotify_process_event) == FALSE) {
 		g_warning( "Could not initialize inotify\n");
 		G_UNLOCK(inotify);
 		return FALSE;
 	}
 
-	inotify_read_ioc = g_io_channel_unix_new(inotify_device_fd);
-
-	g_io_channel_set_encoding(inotify_read_ioc, NULL, NULL);
-	g_io_channel_set_flags(inotify_read_ioc, G_IO_FLAG_NONBLOCK, NULL);
-
-	source = g_io_create_watch(inotify_read_ioc,
-				   G_IO_IN | G_IO_HUP | G_IO_ERR);
-	g_source_set_callback(source, gam_inotify_read_handler, NULL, NULL);
-	g_source_attach(source, NULL);
-	g_source_unref (source);
 	g_timeout_add (SCAN_MISSING_TIME, gam_inotify_scan_missing, NULL);
 	g_timeout_add (SCAN_LINKS_TIME, gam_inotify_scan_links, NULL);
-	g_timeout_add (PROCESS_EVENTS_TIME, gam_inotify_process_event_queue, NULL);
 
 	path_hash = g_hash_table_new(g_str_hash, g_str_equal);
 	wd_hash = g_hash_table_new(g_direct_hash, g_direct_equal);
 	cookie_hash = g_hash_table_new(g_direct_hash, g_direct_equal);
-	event_queue = g_queue_new ();
-	events_to_process = g_queue_new ();
 
 	G_UNLOCK(inotify);
 
 	I_W ("initialized inotify backend\n");
 	
 	return TRUE;
-}
-
-int gam_inotify_add_watch (const char *path, guint32 mask, int *err)
-{
-	int wd = -1;
-
-	g_assert (path != NULL);
-	g_assert (inotify_device_fd >= 0);
-
-	wd = inotify_add_watch (inotify_device_fd, path, mask);
-
-	if (wd < 0)
-	{
-		int e = errno;
-		I_W( "inotify: failed to add watch for %s - %s\n", path, strerror(e));
-		if (err)
-			*err = e;
-		return wd;
-	} 
-	else 
-	{
-		I_W( "inotify: success adding watch for %s (wd = %d)\n", path, wd);
-	}
-
-	g_assert (wd >= 0);
-
-	return wd;
-}
-
-int gam_inotify_rm_watch (const char *path, guint32 wd)
-{
-	g_assert (wd >= 0);
-
-	if (inotify_rm_watch (inotify_device_fd, wd) < 0) 
-	{
-		int e = errno;
-		I_W( "inotify: failed to rm watch for %s (wd = %d)\n", path, wd);
-		I_W( "inotify: reason = %s\n", strerror (e));
-		return -1;
-	}
-	else
-	{
-		I_W( "inotify: success removing watch for %s (wd = %d)\n", path, wd);
-	}
-
-	return 0;
-}
-
-/* Code below based on beagle inotify glue code. I assume it was written by Robert Love */
-#define MAX_PENDING_COUNT 5
-#define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
-#define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
-#define MAX_QUEUED_EVENTS 1024
-#define AVERAGE_EVENT_SIZE sizeof (struct inotify_event) + 16
-#define PENDING_PAUSE_MICROSECONDS 8000
-
-void gam_inotify_read_events (gsize *buffer_size_out, gchar **buffer_out)
-{
-        int prev_pending = 0, pending_count = 0;
-        static gchar *buffer = NULL;
-        static gsize buffer_size;
-
-
-        /* Initialize the buffer on our first read() */
-        if (buffer == NULL)
-        {
-                buffer_size = AVERAGE_EVENT_SIZE;
-                buffer_size *= MAX_QUEUED_EVENTS;
-                buffer = g_malloc (buffer_size);
-        }
-
-        *buffer_size_out = 0;
-        *buffer_out = NULL;
-
-        prev_pending = 0;
-        pending_count = 0;
-	
-        while (pending_count < MAX_PENDING_COUNT) {
-                unsigned int pending;
-
-                if (ioctl (inotify_device_fd, FIONREAD, &pending) == -1)
-                        break;
-
-                pending /= AVERAGE_EVENT_SIZE;
-
-                /* Don't wait if the number of pending events is too close
-                 * to the maximum queue size.
-                 */
-
-                if (pending > PENDING_THRESHOLD (MAX_QUEUED_EVENTS))
-                        break;
-
-                /* With each successive iteration, the minimum rate for
-                 * further sleep doubles. */
-
-                if (pending-prev_pending < PENDING_MARGINAL_COST(pending_count))
-                        break;
-
-		prev_pending = pending;
-                pending_count++;
-
-                /* We sleep for a bit and try again */
-                g_usleep (PENDING_PAUSE_MICROSECONDS);
-        }
-
-	memset(buffer, 0, buffer_size);
-
-        if (g_io_channel_read_chars (inotify_read_ioc, (char *)buffer, buffer_size, buffer_size_out, NULL) != G_IO_STATUS_NORMAL) {
-                g_warning( "inotify: failed to read from buffer\n");
-        }
-        *buffer_out = buffer;
 }
 
 gboolean gam_inotify_is_missing (const char *path)
@@ -1104,7 +759,7 @@ static gboolean gam_inotify_nolonger_missing (const char *path)
 
 	g_assert ((data->missing == TRUE || data->permission == TRUE) && data->link == FALSE);
 
-	wd = gam_inotify_add_watch (path, GAM_INOTIFY_MASK,&err);
+	wd = ik_watch (path, GAM_INOTIFY_MASK,&err);
 	if (wd < 0) {
 		/* Check if we don't have access to the new file */
 		if (err == EACCES)
@@ -1123,15 +778,15 @@ static gboolean gam_inotify_nolonger_missing (const char *path)
 		I_W( "inotify: Missing resource %s exists now BUT IT IS A LINK\n", path);
 		/* XXX: See NOTE1 */
 		if (g_hash_table_lookup (wd_hash, GINT_TO_POINTER(wd)) == NULL)
-			gam_inotify_rm_watch (path, wd);
+			ik_ignore (path, wd);
 		data->missing = FALSE;
 		data->permission = FALSE;
 		data->link = TRUE;
 		data->wd = GAM_INOTIFY_WD_LINK;
 		gam_inotify_add_link (path);
-		inotify_event_t *event = gam_inotify_event_new_dummy (data->path, IN_CREATE);
-		gam_inotify_emit_events (data, event);
-		gam_inotify_event_free (event);
+		ik_event_t *event = ik_event_new_dummy (data->path, -1, IN_CREATE);
+		gam_inotify_emit_events (data, NULL, event);
+		ik_event_free (event);
 
 		return TRUE;
 	}
@@ -1143,9 +798,9 @@ static gboolean gam_inotify_nolonger_missing (const char *path)
 	data->dir = (sbuf.st_mode & S_IFDIR);
 	data->wd = wd;
 	g_hash_table_insert(wd_hash, GINT_TO_POINTER(data->wd), data);
-	inotify_event_t *event = gam_inotify_event_new_dummy(data->path, IN_CREATE);
-	gam_inotify_emit_events (data, event);
-	gam_inotify_event_free (event);
+	ik_event_t *event = ik_event_new_dummy (data->path, -1, IN_CREATE);
+	gam_inotify_emit_events (data, NULL, event);
+	ik_event_free (event);
 	data->missing = FALSE;
 	data->permission = FALSE;
 
@@ -1219,7 +874,7 @@ gam_inotify_nolonger_link (const char *path)
 
 	g_assert (data->link == TRUE && data->missing == FALSE && data->permission == FALSE);
 
-	wd = gam_inotify_add_watch (path, GAM_INOTIFY_MASK, &err);
+	wd = ik_watch (path, GAM_INOTIFY_MASK, &err);
 	if (wd < 0) {
 		/* The file must not exist anymore, so we add it to the missing list */
 		data->link = FALSE;
@@ -1237,9 +892,9 @@ gam_inotify_nolonger_link (const char *path)
 
 		gam_inotify_add_missing (path, data->permission);
 
-		inotify_event_t *event = gam_inotify_event_new_dummy(data->path, IN_DELETE);
-		gam_inotify_emit_events (data, event);
-		gam_inotify_event_free (event);
+		ik_event_t *event = ik_event_new_dummy (data->path, -1, IN_DELETE);
+		gam_inotify_emit_events (data, NULL, event);
+		ik_event_free (event);
 		return TRUE;
 	} else if (gam_inotify_is_link (path)) {
 		I_W( "inotify: Link resource %s re-appeared as a link...\n", path);
@@ -1251,15 +906,15 @@ gam_inotify_nolonger_link (const char *path)
 		 * handled by ref counting
 		 */
 		if (g_hash_table_lookup (wd_hash, GINT_TO_POINTER(wd)) == NULL)
-			gam_inotify_rm_watch (path, wd);
+			ik_ignore (path, wd);
 		data->missing = FALSE;
 		data->permission = FALSE;
 		data->link = TRUE;
 		data->wd = GAM_INOTIFY_WD_LINK;
 		g_hash_table_insert(wd_hash, GINT_TO_POINTER(data->wd), data);
-		inotify_event_t *event = gam_inotify_event_new_dummy(data->path, IN_CREATE);
-		gam_inotify_emit_events (data, event);
-		gam_inotify_event_free (event);
+		ik_event_t *event = ik_event_new_dummy (data->path, -1, IN_CREATE);
+		gam_inotify_emit_events (data, NULL, event);
+		ik_event_free (event);
 		return FALSE;
 	}
 
@@ -1267,9 +922,9 @@ gam_inotify_nolonger_link (const char *path)
 	data->dir = (sbuf.st_mode & S_IFDIR);
 	data->wd = wd;
 	g_hash_table_insert(wd_hash, GINT_TO_POINTER(data->wd), data);
-	inotify_event_t *event = gam_inotify_event_new_dummy(data->path, IN_CREATE);
-	gam_inotify_emit_events (data, event);
-	gam_inotify_event_free (event);
+	ik_event_t *event = ik_event_new_dummy (data->path, -1, IN_CREATE);
+	gam_inotify_emit_events (data, NULL, event);
+	ik_event_free (event);
 	data->missing = FALSE;
 	data->permission = FALSE;
 	return TRUE;
@@ -1399,10 +1054,10 @@ gam_inotify_poll_link (inotify_links_t *links)
 	if (gam_inotify_stat_changed (sbuf, links->sbuf))
 	{
 		inotify_data_t *data = g_hash_table_lookup (path_hash, links->path);
-		inotify_event_t *event = gam_inotify_event_new_dummy (data->path, IN_MODIFY);
+		ik_event_t *event = ik_event_new_dummy  (data->path, -1, IN_MODIFY);
 		g_assert (data);
-		gam_inotify_emit_events (data, event);
-		gam_inotify_event_free (event);
+		gam_inotify_emit_events (data, NULL, event);
+		ik_event_free (event);
 	}
 
 	links->sbuf = sbuf;
@@ -1511,26 +1166,3 @@ gam_inotify_sanity_check (void)
 	gam_inotify_missing_list_sanity_check ();
 #endif
 }
-
-static gboolean
-g_timeval_lt(GTimeVal *val1, GTimeVal *val2)
-{
-	if (val1->tv_sec < val2->tv_sec)
-		return TRUE;
-
-	if (val1->tv_sec > val2->tv_sec)
-		return FALSE;
-
-	/* val1->tv_sec == val2->tv_sec */
-	if (val1->tv_usec < val2->tv_usec)
-		return TRUE;
-
-	return FALSE;
-}
-
-static gboolean
-g_timeval_eq(GTimeVal *val1, GTimeVal *val2)
-{
-	return (val1->tv_sec == val2->tv_sec) && (val1->tv_usec == val2->tv_usec);
-}
-

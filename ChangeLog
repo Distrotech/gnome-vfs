@@ -1,3 +1,18 @@
+2005-11-29  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-helper.c: (mask_to_event_type),
+	(mask_to_event_type_dir_as_file), (mask_to_event_type_file_as_dir),
+	(gam_inotify_emit_one_event), (gam_inotify_emit_events),
+	(gam_inotify_process_event), (inotify_helper_add),
+	(inotify_helper_remove), (inotify_helper_init),
+	(gam_inotify_nolonger_missing), (gam_inotify_nolonger_link),
+	(gam_inotify_poll_link), (gam_inotify_sanity_check): inotify-helper now
+	uses inotify-kernel. 
+	* modules/inotify-kernel.c: (ik_startup), (ik_event_new_dummy),
+	(ik_event_free), (ik_ignore), (ik_read_callback),
+	(ik_process_events), (ik_process_eq_callback):
+	* modules/inotify-kernel.h: Slight changes for inotify-helper.
+
 2005-11-29  Christian Kellner  <gicmo@gnome.org>
 
 	* doc/tmpl/gnome-vfs-file-info.sgml:
