@@ -1,3 +1,24 @@
+2005-11-29  Christian Kellner  <gicmo@gnome.org>
+
+	* doc/tmpl/gnome-vfs-file-info.sgml:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Add GNOME_VFS_FILE_INFO_FIELDS_IDS to indicate
+	UID/GID fields are valid.
+	
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_stat_to_file_info):
+	* modules/http-neon-method.c:
+	* modules/nfs-method.c: (nfs_attr_to_file_info):
+	* modules/sftp-method.c: (buffer_read_file_info):
+	* modules/tar-method.c: (do_get_file_info):
+	Set GNOME_VFS_FILE_INFO_FIELDS_IDS if uid/gid are
+	valid.
+	
+	* programs/gnomevfs-info.c: (show_file_info):
+	Honor GNOME_VFS_FILE_INFO_FIELDS_IDS.
+
+	Fixes #40644.
+
 2005-11-28  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/Makefile.am: Compile inotify-kernel.c, ship inotify-kernel.h.
