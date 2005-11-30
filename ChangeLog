@@ -1,3 +1,9 @@
+2005-12-01  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-resolve.c: Check if EAI_NODATA is defined
+	before using it. Patch by Joe Marcus Clarke <marcus@freebsd.org>.
+	(#168203 part I)
+
 2005-11-30  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/bzip2-method.c: (do_read): Return GNOME_VFS_ERROR_EOF on

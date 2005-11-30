@@ -174,7 +174,9 @@ _gnome_vfs_result_from_gai_error (int error)
 #ifdef EAI_ADDRFAMILY
 	   case EAI_ADDRFAMILY:		
 #endif
+#ifdef EAI_NODATA
 	   case EAI_NODATA: return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
+#endif
 #ifdef EAI_SYSTEM
 	   case EAI_SYSTEM: return gnome_vfs_result_from_errno ();
 #endif
