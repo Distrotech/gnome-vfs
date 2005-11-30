@@ -1,3 +1,11 @@
+2005-11-30  Christian Kellner  <gicmo@gnome.org>
+
+	reviewed by: <delete if not using a buddy>
+
+	* libgnomevfs/gnome-vfs-configuration.c: Spit out a warning if
+	loading if a config file failed (#41139). Patch from
+	Christian Neumair <chris@gnome-de.org>
+
 2005-11-30  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/inotify-kernel.c: (ik_move_stats), (ik_mask_to_string),

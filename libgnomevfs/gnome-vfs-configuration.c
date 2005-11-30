@@ -349,10 +349,7 @@ parse_line (Configuration *configuration,
 	return retval;
 }
 
-/* FIXME bugzilla.eazel.com 1139:
-   maybe we should return FALSE if any errors during parsing happen so
-   that we abort immediately, but this sounds a bit too overkill.  */
-static gboolean
+static void
 parse_file (Configuration *configuration,
 	    const gchar *file_name)
 {
@@ -365,7 +362,7 @@ parse_file (Configuration *configuration,
 	if (f == NULL) {
 		g_warning (_("Configuration file `%s' was not found: %s"),
 			   file_name, strerror (errno));
-		return FALSE;
+		return;
 	}
 
 	line_buffer = NULL;
@@ -379,16 +376,18 @@ parse_file (Configuration *configuration,
 				      &lines_read);
 		if (line_len == -1)
 			break;	/* EOF */
-		parse_line (configuration, line_buffer, line_len, file_name,
-			    line_number);
+
+		if (!parse_line (configuration, line_buffer, line_len, file_name,
+				 line_number)) /* stop parsing if we failed */ {
+			g_warning (_("%s:%d aborted parsing."), file_name, line_number);
+			break;
+		}
+
 		line_number += lines_read;
 	}
 
 	g_free (line_buffer);
-
 	fclose (f);
-
-	return TRUE;
 }
 
 static void
@@ -427,7 +426,6 @@ configuration_load (void)
 
 	/* Now read these cfg files */
 	for(i = 0; file_names[i]; i++) {
-		/* FIXME: should we try to catch errors? */
 		parse_file (configuration, file_names[i]);
 		g_free (file_names[i]);
 	}
