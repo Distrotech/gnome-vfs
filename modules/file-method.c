@@ -1065,6 +1065,10 @@ do_read_directory (GnomeVFSMethod *method,
 		 */
 		return GNOME_VFS_OK;
 	}
+
+	if (handle->options & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
+		get_access_info (file_info, full_name);
+	}
 	
 	if (handle->options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 		get_mime_type (file_info, full_name, handle->options, &statbuf);

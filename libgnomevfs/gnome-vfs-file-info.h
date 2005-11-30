@@ -125,7 +125,7 @@ typedef enum {
  * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: Access bits of the permissions
  * bitfield are valid
- * @GNOME_VFS_FILE_INFO_FIELDS_IDS: UID and GID information is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_IDS: UID and GID information are valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
  * Name is always assumed valid (how else would you have gotten a

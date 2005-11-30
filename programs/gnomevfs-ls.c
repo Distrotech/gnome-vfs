@@ -31,11 +31,14 @@
 
 static gboolean timing = FALSE;
 static gboolean quiet = FALSE;
+static gboolean access_rights = FALSE;
 
 static GOptionEntry entries[] = 
 {
 	{ "time", 't', 0, G_OPTION_ARG_NONE, &timing, "Time the directory listening operation", NULL },
 	{ "quiet", 'q', 0, G_OPTION_ARG_NONE, &quiet, "Do not output the stat information (useful in conjunction with the --time)", NULL},
+	{ "access-rights", 'a', 0, G_OPTION_ARG_NONE, &access_rights, "Get access rights", NULL},
+
 	{ NULL }
 };
 
@@ -77,7 +80,7 @@ show_data (gpointer item, const char *directory)
 
 	path = g_strconcat (directory, "/", info->name, NULL);
 
-	g_print ("%s\t%s%s%s\t(%s, %s)\tsize %" GNOME_VFS_SIZE_FORMAT_STR "\tmode %04o\n",
+	g_print ("%s\t%s%s%s\t(%s, %s)\tsize %" GNOME_VFS_SIZE_FORMAT_STR "",
 			info->name,
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link: " : "",
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? info->symlink_name
@@ -85,9 +88,30 @@ show_data (gpointer item, const char *directory)
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " ]" : "",
 			type_to_string (info->type),
 			info->mime_type,
-			info->size,
-			info->permissions);
+			info->size);
 
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) {
+			g_print ("\tmode %04o", info->permissions);
+	}
+
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_ACCESS) {
+		g_print ("\t");
+		
+		if (info->permissions & GNOME_VFS_PERM_ACCESS_READABLE) {
+			g_print ("r");
+		}
+		
+		if (info->permissions & GNOME_VFS_PERM_ACCESS_WRITABLE) {
+			g_print ("w");
+		}
+		
+		if (info->permissions & GNOME_VFS_PERM_ACCESS_EXECUTABLE) {
+			g_print ("x");
+		}
+	}
+
+	g_print ("\n");
+	
 	g_free (path);
 }
 
@@ -97,6 +121,7 @@ list (const char *directory)
 	GnomeVFSResult result;
 	GnomeVFSFileInfo *info;
 	GnomeVFSDirectoryHandle *handle;
+	GnomeVFSFileInfoOptions options;
 	GTimer *timer;
 	
 	timer = NULL;
@@ -105,9 +130,14 @@ list (const char *directory)
 		g_timer_start (timer);	
 	}
 	
-	result = gnome_vfs_directory_open (&handle, directory,
-			GNOME_VFS_FILE_INFO_GET_MIME_TYPE
-			| GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+	options = GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+			| GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
+
+	if (access_rights) {
+		options |= GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS;
+	}
+	
+	result = gnome_vfs_directory_open (&handle, directory, options);
 
 	if (result != GNOME_VFS_OK) {
 		g_print("Error opening: %s\n", gnome_vfs_result_to_string

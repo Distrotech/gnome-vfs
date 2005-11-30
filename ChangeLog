@@ -1,3 +1,14 @@
+2005-11-30  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Correct a typo.
+	
+	* modules/file-method.c: (do_read_directory): Get access
+	rights if GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS is requested.
+	
+	* programs/gnomevfs-ls.c: (show_data), (list):
+	Add command line option to get access rights and display them.
+	
 2005-11-29  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/inotify-helper.c: (mask_to_event_type),
