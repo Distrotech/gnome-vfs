@@ -1933,7 +1933,7 @@ gnome_vfs_mime_get_default_application_for_uri (const char *uri,
 	g_free (scheme);
 	
 	app = gnome_vfs_mime_get_default_application (mime_type);
-	if (local || gnome_vfs_mime_application_supports_uris (app)) {
+	if (local || app == NULL || gnome_vfs_mime_application_supports_uris (app)) {
 		return app;
 	} else {
 		gnome_vfs_mime_application_free (app);
