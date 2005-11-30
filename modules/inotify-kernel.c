@@ -50,6 +50,9 @@ static void (*user_cb)(ik_event_t *event);
 static gboolean ik_read_callback (gpointer user_data);
 static gboolean ik_process_eq_callback (gpointer user_data);
 
+static guint32 ik_move_matches = 0;
+static guint32 ik_move_misses = 0;
+
 G_LOCK_DEFINE_STATIC (ik_lock);
 
 typedef struct ik_event_internal {
@@ -193,6 +196,126 @@ int ik_ignore(const char *path, guint32 wd)
    return 0;
 }
 
+void ik_move_stats (guint32 *matches, guint32 *misses)
+{
+	if (matches)
+		*matches = ik_move_matches;
+
+	if (misses)
+		*misses = ik_move_misses;
+}
+
+const char *ik_mask_to_string (guint32 mask)
+{
+	gboolean is_dir = mask & IN_ISDIR;
+	mask &= ~IN_ISDIR;
+
+	if (is_dir)
+	{
+		switch (mask)
+		{
+			case IN_ACCESS:
+				return "ACCESS (dir)";
+			break;
+			case IN_MODIFY:
+				return "MODIFY (dir)";
+			break;
+			case IN_ATTRIB:
+				return "ATTRIB (dir)";
+			break;
+			case IN_CLOSE_WRITE:
+				return "CLOSE_WRITE (dir)";
+			break;
+			case IN_CLOSE_NOWRITE:
+				return "CLOSE_NOWRITE (dir)"; 
+			break;
+			case IN_OPEN:
+				return "OPEN (dir)";
+			break;
+			case IN_MOVED_FROM:
+				return "MOVED_FROM (dir)";
+			break;
+			case IN_MOVED_TO:
+				return "MOVED_TO (dir)";
+			break;
+			case IN_DELETE:
+				return "DELETE (dir)";
+			break;
+			case IN_CREATE:
+				return "CREATE (dir)";
+			break;
+			case IN_DELETE_SELF:
+				return "DELETE_SELF (dir)";
+			break;
+			case IN_UNMOUNT:
+				return "UNMOUNT (dir)";
+			break;
+			case IN_Q_OVERFLOW:
+				return "Q_OVERFLOW (dir)";
+			break;
+			case IN_IGNORED:
+				return "IGNORED (dir)";
+			break;
+			default:
+				return "UNKNOWN_EVENT (dir)";
+			break;
+
+		}
+	} else {
+		switch (mask)
+		{
+			case IN_ACCESS:
+				return "ACCESS";
+			break;
+			case IN_MODIFY:
+				return "MODIFY";
+			break;
+			case IN_ATTRIB:
+				return "ATTRIB";
+			break;
+			case IN_CLOSE_WRITE:
+				return "CLOSE_WRITE";
+			break;
+			case IN_CLOSE_NOWRITE:
+				return "CLOSE_NOWRITE";
+			break;
+			case IN_OPEN:
+				return "OPEN";
+			break;
+			case IN_MOVED_FROM:
+				return "MOVED_FROM";
+			break;
+			case IN_MOVED_TO:
+				return "MOVED_TO";
+			break;
+			case IN_DELETE:
+				return "DELETE";
+			break;
+			case IN_CREATE:
+				return "CREATE";
+			break;
+			case IN_DELETE_SELF:
+				return "DELETE_SELF";
+			break;
+			case IN_UNMOUNT:
+				return "UNMOUNT";
+			break;
+			case IN_Q_OVERFLOW:
+				return "Q_OVERFLOW";
+			break;
+			case IN_IGNORED:
+				return "IGNORED";
+			break;
+			default:
+				return "UNKNOWN_EVENT";
+			break;
+
+		}
+	}
+}
+
+/* Implementation below */
+
 #define MAX_PENDING_COUNT 5
 #define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
 #define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
@@ -314,8 +437,10 @@ ik_pair_events (ik_event_internal_t *event1, ik_event_internal_t *event2)
     g_assert (event1->event->cookie == event2->event->cookie);
     /* We shouldn't pair an event that already is paired */
     g_assert (event1->pair == NULL && event2->pair == NULL);
+
+	/* Pair the internal structures and the ik_event_t structures */
     event1->pair = event2;
-    event2->pair = event1;
+	event1->event->pair = event2->event;
 
     if (g_timeval_lt (&event1->hold_until, &event2->hold_until))
         event1->hold_until = event2->hold_until;
@@ -415,19 +540,23 @@ ik_process_events ()
 
         if (event->pair) {
 			/* We send out paired MOVED_FROM/MOVED_TO events in the same event buffer */
-			g_assert (event->event->mask == IN_MOVED_FROM && event->pair->event->mask == IN_MOVED_TO);
+			//g_assert (event->event->mask == IN_MOVED_FROM && event->pair->event->mask == IN_MOVED_TO);
 			/* Copy the paired data */
-			event->event->pair = event->pair->event;
             event->pair->sent = TRUE;
+			event->sent = TRUE;
+			ik_move_matches++;
         } else if (event->event->cookie) {
 			/* If we couldn't pair a MOVED_FROM and MOVED_TO together, we change
 			 * the event masks */
-			if (event->event->mask & IN_MOVED_FROM)
-				event->event->mask = IN_DELETE|(event->event->mask & IN_ISDIR);
-			if (event->event->mask & IN_MOVED_TO)
-				event->event->mask = IN_CREATE|(event->event->mask & IN_ISDIR);
 			/* Changeing MOVED_FROM to DELETE and MOVED_TO to create lets us make
 			 * the gaurantee that you will never see a non-matched MOVE event */
+
+			if (event->event->mask & IN_MOVED_FROM) {
+				event->event->mask = IN_DELETE|(event->event->mask & IN_ISDIR);
+				ik_move_misses++; // not super accurate, if we aren't watching the destination it still counts as a miss
+			}
+			if (event->event->mask & IN_MOVED_TO)
+				event->event->mask = IN_CREATE|(event->event->mask & IN_ISDIR);
 		}
 
 		/* Push the ik_event_t onto the event queue */

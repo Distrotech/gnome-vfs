@@ -1,3 +1,13 @@
+2005-11-30  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-kernel.c: (ik_move_stats), (ik_mask_to_string),
+	(ik_pair_events), (ik_process_events):
+	* modules/inotify-kernel.h: Add utility functions: ik_move_stats -
+	returns the # of matched moves and missed moves. Missed moves is an
+	over-estimate because we count impossible to match moves to.
+	ik_mask_to_string - returns the string version of the event.
+	Fix crash when moving files in nautilus.
+
 2005-11-30  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

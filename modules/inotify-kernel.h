@@ -33,4 +33,8 @@ void ik_event_free (ik_event_t *event);
 guint32 ik_watch(const char *path, guint32 mask, int *err);
 int ik_ignore(const char *path, guint32 wd);
 
+/* The miss count will probably be enflated */
+void ik_move_stats (guint32 *matches, guint32 *misses);
+const char *ik_mask_to_string (guint32 mask);
+
 #endif
