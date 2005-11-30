@@ -1,5 +1,10 @@
 2005-11-30  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/bzip2-method.c: (do_read): Return GNOME_VFS_ERROR_EOF on
+	BZ_STREAM_END result. Patch from jylefort@FreeBSD.org (#322652)
+
+2005-11-30  Christian Kellner  <gicmo@gnome.org>
+
 	reviewed by: <delete if not using a buddy>
 
 	* libgnomevfs/gnome-vfs-configuration.c: Spit out a warning if
