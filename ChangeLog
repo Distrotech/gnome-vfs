@@ -1,3 +1,7 @@
+2005-12-01  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/xdgmime*: Sync with xdgmime.
+
 2005-12-01  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/file-method.c: (inotify_monitor_cancel): Use
