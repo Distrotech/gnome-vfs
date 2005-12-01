@@ -1,3 +1,26 @@
+2005-12-01  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/file-method.c: (inotify_monitor_cancel): Use
+	inotify_helper_cancel.
+	* modules/inotify-helper.c: (inotify_helper_init),
+	(inotify_sub_new), (inotify_sub_free), (inotify_helper_add),
+	(inotify_helper_cancel), (ih_watched_dir_new),
+	(ih_watched_dir_free), (ih_emit_one_event), (ih_emit_event),
+	(ih_wd_delete), (ih_event_callback), (ih_is_missing),
+	(ih_send_not_missing_events), (ih_is_not_missing),
+	(ih_scan_missing), (ih_mask_to_EventType):
+	* modules/inotify-helper.h:
+	* modules/inotify-kernel.c: (ik_startup), (ik_read_callback),
+	(ik_process_eq_callback): Pretty much a rewrite. Much less code. Fixes many problems with
+	old backend. Including:
+
+	1) The gamin influence.
+	2) Support mapping multiple paths to one watch descriptor. Watching the
+	symbolic link and its target now work, giving you events on both paths
+	even though they share the same wd.
+	3) Monitor a files parent directory, not the file itself. My latest inotify
+	changes in 2.6.13 needed this.
+
 2005-12-01  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-resolve.c: Check if EAI_NODATA is defined

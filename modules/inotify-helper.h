@@ -29,16 +29,18 @@
 
 typedef struct inotify_sub {
 	GnomeVFSURI *uri;
-	char *path;
+	GnomeVFSMonitorType type;
+	char *dir;
+	char *filename;
 	gboolean cancelled;
-	gboolean dir;
 } inotify_sub;
+
+gboolean	 inotify_helper_init		(void);
 
 inotify_sub	*inotify_sub_new		(GnomeVFSURI *uri, GnomeVFSMonitorType);
 void		 inotify_sub_free		(inotify_sub *sub);
 
-gboolean	 inotify_helper_init		(void);
 gboolean	 inotify_helper_add		(inotify_sub *sub);
-gboolean	 inotify_helper_remove		(inotify_sub *sub);
+gboolean	 inotify_helper_cancel		(inotify_sub *sub);
 
 #endif /* __INOTIFY_HELPER_H */

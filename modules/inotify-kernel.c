@@ -36,7 +36,7 @@
 #endif
 
 /* Timings for pairing MOVED_TO / MOVED_FROM events */
-#define PROCESS_EVENTS_TIME 33 /* milliseconds */
+#define PROCESS_EVENTS_TIME 66 /* milliseconds */
 #define DEFAULT_HOLD_UNTIL_TIME 1000 /* 1 millisecond */
 #define MOVE_HOLD_UNTIL_TIME 5000 /* 5 milliseconds */
 
@@ -53,7 +53,18 @@ static gboolean ik_process_eq_callback (gpointer user_data);
 static guint32 ik_move_matches = 0;
 static guint32 ik_move_misses = 0;
 
-G_LOCK_DEFINE_STATIC (ik_lock);
+/* We use the lock from inotify-helper.c
+ *
+ * There are two places that we take this lock
+ *
+ * 1) In ik_read_callback
+ *
+ * 2) ik_process_eq_callback.
+ *
+ *
+ * The rest of locking is taken care of in inotify-helper.c
+ */
+G_LOCK_EXTERN (inotify_lock);
 
 typedef struct ik_event_internal {
 	ik_event_t *event;
@@ -68,11 +79,9 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	static gboolean initialized = FALSE;
 	GSource *source;
 
-	G_LOCK(ik_lock);
 	user_cb = cb;
 	/* Ignore multi-calls */
 	if (initialized) {
-		G_UNLOCK(ik_lock);
 		return inotify_instance_fd >= 0;
 	}
 
@@ -80,7 +89,6 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	inotify_instance_fd = inotify_init ();
 
 	if (inotify_instance_fd < 0) {
-		G_UNLOCK(ik_lock);
 		return FALSE;
 	}
 
@@ -93,13 +101,12 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	g_source_attach(source, NULL);
 	g_source_unref (source);
 
-	g_timeout_add (PROCESS_EVENTS_TIME, ik_process_eq_callback, NULL);
-
 	cookie_hash = g_hash_table_new(g_direct_hash, g_direct_equal);
 	event_queue = g_queue_new ();
 	events_to_process = g_queue_new ();
 
-	G_UNLOCK(ik_lock);
+	g_timeout_add (PROCESS_EVENTS_TIME, ik_process_eq_callback, NULL);
+
 	return TRUE;
 }
 
@@ -388,11 +395,11 @@ static gboolean ik_read_callback(gpointer user_data)
 	gchar *buffer;
 	gsize buffer_size, buffer_i, events;
 
+	G_LOCK(inotify_lock);
 	ik_read_events (&buffer_size, &buffer);
 
 	buffer_i = 0;
 	events = 0;
-	G_LOCK(ik_lock);
 	while (buffer_i < buffer_size)
 	{
 		struct inotify_event *event;
@@ -403,7 +410,7 @@ static gboolean ik_read_callback(gpointer user_data)
 		buffer_i += event_size;
 		events++;
 	}
-	G_UNLOCK(ik_lock);
+	G_UNLOCK(inotify_lock);
 	return TRUE;
 }
 
@@ -570,7 +577,7 @@ ik_process_events ()
 gboolean ik_process_eq_callback (gpointer user_data)
 {
     /* Try and move as many events to the event queue */
-	G_LOCK(ik_lock);
+	G_LOCK(inotify_lock);
     ik_process_events ();
 
 	while (!g_queue_is_empty (event_queue))
@@ -580,6 +587,6 @@ gboolean ik_process_eq_callback (gpointer user_data)
 		user_cb (event);
 	}
 
-	G_UNLOCK(ik_lock);
+	G_UNLOCK(inotify_lock);
 	return TRUE;
 }

@@ -2566,7 +2566,7 @@ static GnomeVFSResult inotify_monitor_cancel (GnomeVFSMethod *method,
 
 	sub->cancelled = TRUE;
 
-	inotify_helper_remove (sub);
+	inotify_helper_cancel (sub);
 	inotify_sub_free (sub);
 	return GNOME_VFS_OK;
 
