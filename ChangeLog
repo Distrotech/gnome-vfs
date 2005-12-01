@@ -1,3 +1,8 @@
+2005-12-01  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-helper.c: (inotify_helper_cancel): Fix crash when
+	opening gtk file selector.
+
 2005-12-01  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/xdgmime*: Sync with xdgmime.

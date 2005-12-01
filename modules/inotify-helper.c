@@ -244,7 +244,11 @@ inotify_helper_cancel (inotify_sub * sub)
 
 	dir = g_hash_table_lookup (path_hash, path);
 	g_assert (dir);
-	g_assert (g_list_find (dir->subs, sub));
+	if (!g_list_find (dir->subs, sub))
+	{
+		G_UNLOCK(inotify_lock);
+		return TRUE;
+	}
 
 	IH_W("inotify: unsubscribing from %s\n", dir->path);
 	dir->subs = g_list_remove_all (dir->subs, sub);
