@@ -1,5 +1,11 @@
 2005-12-02  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-address.c:
+	* libgnomevfs/gnome-vfs-address.h:
+	No code/logic changes only reformating.
+
+2005-12-02  Christian Kellner  <gicmo@gnome.org>
+
 	The "Get Out With The Sickness" commit. It replaces
 	gnome-vfs' own implementation of a thread pool and
 	priority queue (which was never working correctly).

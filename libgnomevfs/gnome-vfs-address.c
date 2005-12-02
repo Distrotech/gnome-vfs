@@ -52,11 +52,11 @@ struct _GnomeVFSAddress {
 
 #ifdef ENABLE_IPV6
 
-# define SIN6_LEN				sizeof (struct sockaddr_in6)
+# define SIN6_LEN			sizeof (struct sockaddr_in6)
 # define SIN6(__s)				((struct sockaddr_in6 *) __s)
 # define VALID_AF(__sa)			(__sa->sa_family == AF_INET  || __sa->sa_family == AF_INET6)
 # define SA_SIZE(__sa)			(__sa->sa_family == AF_INET ? SIN_LEN : \
-   											         SIN6_LEN)
+   								      SIN6_LEN)
 # define AF_SIZE(__af)			(__af == AF_INET6 ? SIN6_LEN : SIN_LEN)
 # define MAX_ADDRSTRLEN			INET6_ADDRSTRLEN
 
@@ -72,7 +72,8 @@ struct _GnomeVFSAddress {
 
 /* Register GnomeVFSAddress in the glib type system */
 GType 
-gnome_vfs_address_get_type (void) {
+gnome_vfs_address_get_type (void)
+{
 	static GType addr_type = 0;
 
 	if (addr_type == 0) {
@@ -164,16 +165,16 @@ GnomeVFSAddress *
 gnome_vfs_address_new_from_sockaddr (struct sockaddr *sa,
 							  int              len)
 {
-	   GnomeVFSAddress *addr;
+	GnomeVFSAddress *addr;
 
-	   g_return_val_if_fail (sa != NULL, NULL);
-	   g_return_val_if_fail (VALID_AF (sa), NULL);
-	   g_return_val_if_fail (len == AF_SIZE (sa->sa_family), NULL);
+	g_return_val_if_fail (sa != NULL, NULL);
+	g_return_val_if_fail (VALID_AF (sa), NULL);
+	g_return_val_if_fail (len == AF_SIZE (sa->sa_family), NULL);
 	   
-	   addr = g_new0 (GnomeVFSAddress, 1);
-	   addr->sa = g_memdup (sa, len);
+	addr = g_new0 (GnomeVFSAddress, 1);
+	addr->sa = g_memdup (sa, len);
 
-	   return addr;
+	return addr;
 }
 
 /**
@@ -192,16 +193,16 @@ gnome_vfs_address_new_from_sockaddr (struct sockaddr *sa,
 GnomeVFSAddress *
 gnome_vfs_address_new_from_ipv4 (guint32 ipv4_address)
 {
-	   GnomeVFSAddress *addr;
-	   struct sockaddr_in *sin;
-	   
-	   sin = g_new0 (struct sockaddr_in, 1);
-	   sin->sin_addr.s_addr = ipv4_address;
-	   sin->sin_family = AF_INET;
+	GnomeVFSAddress *addr;
+	struct sockaddr_in *sin;
 
-	   addr = gnome_vfs_address_new_from_sockaddr (SA (sin), SIN_LEN);
+	sin = g_new0 (struct sockaddr_in, 1);
+	sin->sin_addr.s_addr = ipv4_address;
+	sin->sin_family = AF_INET;
 
-	   return addr;
+	addr = gnome_vfs_address_new_from_sockaddr (SA (sin), SIN_LEN);
+
+	return addr;
 }
 
 /**
@@ -217,9 +218,9 @@ gnome_vfs_address_new_from_ipv4 (guint32 ipv4_address)
 int
 gnome_vfs_address_get_family_type (GnomeVFSAddress *address)
 {
-	   g_return_val_if_fail (address != NULL, -1);
+	g_return_val_if_fail (address != NULL, -1);
 
-	   return address->sa->sa_family;
+	return address->sa->sa_family;
 }
 
 
@@ -238,47 +239,47 @@ char *
 gnome_vfs_address_to_string (GnomeVFSAddress *address)
 {
 #ifdef G_OS_WIN32
-	   char text_addr[100];
-	   DWORD text_length = sizeof (text_addr);
+	char text_addr[100];
+	DWORD text_length = sizeof (text_addr);
 
-	   if (WSAAddressToString (address->sa, SA_SIZE (address->sa),
-				   NULL, text_addr, &text_length) == 0)
-		   return g_strdup (text_addr);
+	if (WSAAddressToString (address->sa, SA_SIZE (address->sa),
+				NULL, text_addr, &text_length) == 0)
+		return g_strdup (text_addr);
 
-	   return NULL;
+	return NULL;
 #else
-	   const char *text_addr;
+	const char *text_addr;
 #ifdef HAVE_INET_NTOP
-	   char buf[MAX_ADDRSTRLEN];
+	char buf[MAX_ADDRSTRLEN];
 #endif	
-	   g_return_val_if_fail (address != NULL, NULL);
-	   
-	   text_addr = NULL;
+	g_return_val_if_fail (address != NULL, NULL);
 
-	   switch (address->sa->sa_family) {
+	text_addr = NULL;
+
+	switch (address->sa->sa_family) {
 #if defined (ENABLE_IPV6) && defined (HAVE_INET_NTOP)	
-	   case AF_INET6:
+	case AF_INET6:
 			 
-			 text_addr = inet_ntop (AF_INET6,
-							    &SIN6 (address->sa)->sin6_addr,
-							    buf,
-							    sizeof (buf));
-			 break;
+		text_addr = inet_ntop (AF_INET6,
+				       &SIN6 (address->sa)->sin6_addr,
+				       buf,
+				       sizeof (buf));
+		break;
 #endif
-	   case AF_INET:
+	case AF_INET:
 #if HAVE_INET_NTOP
-			 text_addr = inet_ntop (AF_INET,
-							    &SIN (address->sa)->sin_addr,
-							    buf,
-							    sizeof (buf));
+		text_addr = inet_ntop (AF_INET,
+				       &SIN (address->sa)->sin_addr,
+				       buf,
+				       sizeof (buf));
 #else
-			 text_addr = inet_ntoa (SIN (address->sa)->sin_addr);
+		text_addr = inet_ntoa (SIN (address->sa)->sin_addr);
 #endif  /* HAVE_INET_NTOP */
-			 break;
-	   }
+		break;
+	}
 	   
 	  
-	   return text_addr != NULL ? g_strdup (text_addr) : NULL;
+	return text_addr != NULL ? g_strdup (text_addr) : NULL;
 #endif
 }
 
@@ -297,13 +298,13 @@ gnome_vfs_address_to_string (GnomeVFSAddress *address)
 guint32
 gnome_vfs_address_get_ipv4 (GnomeVFSAddress *address)
 {
-	   g_return_val_if_fail (address != NULL, 0);
-	   g_return_val_if_fail (address->sa != NULL, 0);
+	g_return_val_if_fail (address != NULL, 0);
+	g_return_val_if_fail (address->sa != NULL, 0);
 
-	   if (address->sa->sa_family != AF_INET)
-			 return 0;
+	if (address->sa->sa_family != AF_INET)
+		return 0;
 
-	   return (guint32) SIN (address->sa)->sin_addr.s_addr;
+	return (guint32) SIN (address->sa)->sin_addr.s_addr;
 }
 
 
@@ -329,31 +330,34 @@ gnome_vfs_address_get_sockaddr (GnomeVFSAddress *address,
 						  guint16          port,
 						  int             *len)
 {
-	   struct sockaddr *sa;
+	struct sockaddr *sa;
 
-	   g_return_val_if_fail (address != NULL, NULL);
-	   
-	   sa = g_memdup (address->sa, SA_SIZE (address->sa));
+	g_return_val_if_fail (address != NULL, NULL);
 
-	   switch (address->sa->sa_family) {
+	sa = g_memdup (address->sa, SA_SIZE (address->sa));
+
+	switch (address->sa->sa_family) {
 #ifdef ENABLE_IPV6
-	   case AF_INET6:
-			 SIN6 (sa)->sin6_port = g_htons (port);
-			 
-			 if (len != NULL)
-				    *len = SIN6_LEN;
-			 break;
+	case AF_INET6:
+		SIN6 (sa)->sin6_port = g_htons (port);
+
+		if (len != NULL) {
+			*len = SIN6_LEN;
+		}
+		
+		break;
 #endif
-	   case AF_INET:
-			 SIN (sa)->sin_port = g_htons (port);
+	case AF_INET:
+		SIN (sa)->sin_port = g_htons (port);
 
-			 if (len != NULL)
-				    *len = SIN_LEN;
-			 break;
+		if (len != NULL) {
+			*len = SIN_LEN;
+		}
+		break;
 
-	   }
+	}
 
-	   return sa;
+	return sa;
 }
 
 /**
@@ -369,15 +373,15 @@ gnome_vfs_address_get_sockaddr (GnomeVFSAddress *address,
 GnomeVFSAddress *
 gnome_vfs_address_dup (GnomeVFSAddress *address)
 {
-	   GnomeVFSAddress *addr;
+	GnomeVFSAddress *addr;
 
-	   g_return_val_if_fail (address != NULL, NULL);
-	   g_return_val_if_fail (VALID_AF (address->sa), NULL);
+	g_return_val_if_fail (address != NULL, NULL);
+	g_return_val_if_fail (VALID_AF (address->sa), NULL);
 
-	   addr = g_new0 (GnomeVFSAddress, 1);
-	   addr->sa = g_memdup (address->sa, SA_SIZE (address->sa));
+	addr = g_new0 (GnomeVFSAddress, 1);
+	addr->sa = g_memdup (address->sa, SA_SIZE (address->sa));
 
-	   return addr;
+	return addr;
 }
 
 /**
@@ -391,12 +395,10 @@ gnome_vfs_address_dup (GnomeVFSAddress *address)
 void
 gnome_vfs_address_free (GnomeVFSAddress *address)
 {
-	   g_return_if_fail (address != NULL);
+	g_return_if_fail (address != NULL);
 
-	   if (address->sa)
-			 g_free (address->sa);
-
-	   g_free (address);
+	g_free (address->sa);	
+	g_free (address);
 }
 
 
