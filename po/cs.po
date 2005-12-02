@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-25 21:32+0200\n"
-"PO-Revision-Date: 2005-09-25 22:42+0200\n"
+"POT-Creation-Date: 2005-12-02 14:53+0100\n"
+"PO-Revision-Date: 2005-12-02 20:15+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,35 +31,41 @@ msgstr "Nemohu inicializovat gnome vfs"
 msgid "ISO 9660 Volume"
 msgstr "Svazek ISO 9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s: %d obsahuje znaky NUL."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s: %d neobsahuje název metody."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s: %d nemá značku konce voleb."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d má neznámé volby %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s: %d neobsahuje název modulu."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Soubor s nastavením `%s' nebyl nalezen: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d zpracovávání přerušeno."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -443,29 +449,29 @@ msgstr "Operace zastavena"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
 "Zastaralá funkce. Změny databáze MIME uživatelem již nejsou podporovány."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Nemohu zpracovat: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Další chyby při zpracovávání budou ignorovány."
 
@@ -719,7 +725,7 @@ msgstr "Zdroj je uzamčen"
 msgid "Function call deprecated"
 msgstr "Volání funkce zastaralé"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -746,7 +752,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1106
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
@@ -841,35 +847,35 @@ msgstr "Fotoaparát"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Kořenový svazek"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Zvukové CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Neznámý svazek"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Síťový server"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:169
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Nemohu připojit disketovou mechaniku. V mechanice pravděpodobně není disketa."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Nemohu připojit svazek. V mechanice pravděpodobně není médium."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -877,7 +883,14 @@ msgstr ""
 "Nemohu připojit disketovou mechaniku. Disketa je pravděpodobně ve formátu, "
 "který nelze připojit."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr "Nemohu připojit svazek. Je-li to šifrovaný svazek, bylo použito špatné heslo nebo klíč."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -885,28 +898,57 @@ msgstr ""
 "Nemohu připojit vybraný svazek. Svazek je pravděpodobně ve formátu, který "
 "nelze připojit."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
 msgstr "Nemohu připojit vybranou disketovou mechaniku."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
 msgstr "Nemohu připojit vybraný svazek."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr "Nemohu odpojit vybraný svazek. Svazek pravděpodobně používá nějaký program."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
 msgstr "Nemohu odpojit vybraný svazek."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:375
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Nemohu číst data od synovského procesu %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:419
+msgid "Couldn't run mount process in a pty"
+msgstr "Nemohu spustit proces mount v pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:464
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Neočekávaná chyba v select() při čtení dat z synovského procesu (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:518
+msgid "Couldn't send password to mount process."
+msgstr "Nemohu odeslat heslo procesu mount."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:557
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Neočekávaná chyba v waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:648
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:715
 msgid "Failed to start command"
 msgstr "Nemohu spustit příkaz"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:703
 msgid "Unable to eject media"
 msgstr "Nemohu vysunout médium"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:932
 msgid "Unable to unmount connected server"
 msgstr "Nemohu odpojit připojený server"
 
@@ -922,7 +964,7 @@ msgstr "Doma"
 msgid "Filesystem"
 msgstr "Systém souborů"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:540
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
@@ -931,12 +973,12 @@ msgstr "Neznámé GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Síť Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identita vzdáleného počítače (%s) není známa."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -949,11 +991,11 @@ msgstr ""
 "Identita odeslaná vzdáleným počítačem je %s. Pokud si chcete být úplně "
 "jisti, že je bezpečné pokračovat, kontaktujte správce systému."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Přesto se přihlásit"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Zrušit přihlašování"
 
@@ -1434,7 +1476,9 @@ msgstr "Zobrazovat interní pevné disky"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Jestli zobrazovat optické mechaniky SCSI, i když je /system/storage/display_scsi_drives nastaveno na FALSE."
+msgstr ""
+"Jestli zobrazovat optické mechaniky SCSI, i když je /system/storage/"
+"display_scsi_drives nastaveno na FALSE."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
