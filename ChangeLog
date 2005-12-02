@@ -1,3 +1,35 @@
+2005-12-02  Christian Kellner  <gicmo@gnome.org>
+
+	The "Get Out With The Sickness" commit. It replaces
+	gnome-vfs' own implementation of a thread pool and
+	priority queue (which was never working correctly).
+
+	* libgnomevfs/gnome-vfs-job-queue.c: Use GThreadPool. It
+	lacks prioritizing for now - which was not working anyway. We 
+	will add that to glib's GThreadPool and then re-add here.
+	
+	* libgnomevfs/gnome-vfs-job-queue.h:
+	Mark functions as internal with G_GNUC_INTERNAL and remove
+	gnome_vfs_job_queue_run ().
+
+	* libgnomevfs/gnome-vfs-pthread.c:
+	* libgnomevfs/gnome-vfs-init.c: Remove calls
+	to thread pool's init and shutdown functions
+	which are gone now.
+	
+	* libgnomevfs/gnome-vfs-thread-pool.c:
+	* libgnomevfs/gnome-vfs-thread-pool.h:
+	* libgnomevfs/gnome-vfs-job-slave.c:
+	* libgnomevfs/gnome-vfs-job-slave.h:
+	Obsoleted by GThreadPool. Removed.
+		
+	* libgnomevfs/Makefile.am:
+	Remove -thread-pool.[ch] and -job-slave.[ch]
+	
+	* libgnomevfs/gnome-vfs-job.c:
+	Remove gnome-vfs-job-slave.h include.
+
+
 2005-12-01  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/inotify-helper.c: (inotify_helper_cancel): Fix crash when

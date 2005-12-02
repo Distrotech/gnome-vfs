@@ -31,7 +31,6 @@ System (version for POSIX threads).
 #include "gnome-vfs-job.h"
 
 #include "gnome-vfs-async-job-map.h"
-#include "gnome-vfs-job-slave.h"
 #include "gnome-vfs-job-queue.h"
 #include "gnome-vfs-private-utils.h"
 #include <errno.h>
