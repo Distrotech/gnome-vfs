@@ -1,3 +1,14 @@
+2005-12-04  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-address.c:
+	* libgnomevfs/gnome-vfs-address.h:
+	Implement gnome_vfs_address_equal () and 
+	gnome_vfs_address_match ().
+	
+	* test/Makefile.am:
+	* test/test-address.c: 
+	Add tests for GnomeVFSAddress objects.
+
 2005-12-02  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-address.c:

@@ -55,6 +55,13 @@ struct sockaddr *gnome_vfs_address_get_sockaddr      (GnomeVFSAddress *address,
 						      guint16          port,
 						      int             *len);
 
+gboolean         gnome_vfs_address_equal             (const GnomeVFSAddress *a,
+						      const GnomeVFSAddress *b);
+
+gboolean         gnome_vfs_address_match             (const GnomeVFSAddress *a,
+						      const GnomeVFSAddress *b,
+						      guint             prefix);
+
 GnomeVFSAddress *gnome_vfs_address_dup               (GnomeVFSAddress *address);
 void             gnome_vfs_address_free              (GnomeVFSAddress *address);
 

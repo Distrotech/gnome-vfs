@@ -16,6 +16,7 @@ platform_only_programs = test-dns-sd test-symlinks
 endif
 
 noinst_PROGRAMS =				\
+	test-address				\
 	test-async				\
 	test-async-cancel                       \
 	test-async-directory			\
@@ -60,13 +61,20 @@ TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
 		GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules \
 		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml \
 		SRCDIR=$(srcdir)
-TESTS = test-async-cancel test-escape test-uri test-queue $(srcdir)/auto-test
+TESTS = test-address      \
+	test-async-cancel \
+	test-escape       \
+	test-uri          \
+	test-queue $(srcdir)/auto-test
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
 	$(TEST_LIBS)					\
 	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
+
+test_address_SOURCES = test-address.c
+test_address_LDADD = $(libraries)
 
 test_async_SOURCES = test-async.c
 test_async_LDADD = $(libraries)

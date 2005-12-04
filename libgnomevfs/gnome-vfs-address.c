@@ -163,14 +163,17 @@ gnome_vfs_address_new_from_string (const char *address)
  **/
 GnomeVFSAddress *
 gnome_vfs_address_new_from_sockaddr (struct sockaddr *sa,
-							  int              len)
+				     int              len)
 {
 	GnomeVFSAddress *addr;
 
 	g_return_val_if_fail (sa != NULL, NULL);
-	g_return_val_if_fail (VALID_AF (sa), NULL);
 	g_return_val_if_fail (len == AF_SIZE (sa->sa_family), NULL);
-	   
+
+	if (VALID_AF (sa) == FALSE) {
+		return NULL;
+	}	
+       	
 	addr = g_new0 (GnomeVFSAddress, 1);
 	addr->sa = g_memdup (sa, len);
 
@@ -327,8 +330,8 @@ gnome_vfs_address_get_ipv4 (GnomeVFSAddress *address)
  **/
 struct sockaddr *
 gnome_vfs_address_get_sockaddr (GnomeVFSAddress *address,
-						  guint16          port,
-						  int             *len)
+				guint16          port,
+				int             *len)
 {
 	struct sockaddr *sa;
 
@@ -359,6 +362,192 @@ gnome_vfs_address_get_sockaddr (GnomeVFSAddress *address,
 
 	return sa;
 }
+
+static gboolean
+v4_v4_equal (const struct sockaddr_in *a,
+	     const struct sockaddr_in *b)
+{
+	return a->sin_addr.s_addr == b->sin_addr.s_addr;
+}
+
+static gboolean
+v4_v4_match (const struct sockaddr_in *a,
+	     const struct sockaddr_in *b,
+	     guint                     prefix)
+{
+	struct in_addr cmask;
+	
+	cmask.s_addr = g_htonl (~0 << (32 - prefix));
+
+	return (a->sin_addr.s_addr & cmask.s_addr) == 
+		(b->sin_addr.s_addr & cmask.s_addr);
+}
+
+#ifdef ENABLE_IPV6
+static gboolean
+v6_v6_equal (const struct sockaddr_in6 *a,
+	     const struct sockaddr_in6 *b)
+{
+	return IN6_ARE_ADDR_EQUAL (a->sin6_addr.s6_addr,
+				   b->sin6_addr.s6_addr);
+}
+
+static gboolean
+v4_v6_match (const struct sockaddr_in  *a4,
+	     const struct sockaddr_in6 *b6,
+	     guint                      prefix)
+{
+	struct  sockaddr_in b4;
+	guint32 v4_numeric;
+	
+	if (! IN6_IS_ADDR_V4MAPPED (&b6->sin6_addr)) {
+		return FALSE;	
+	}
+	
+	memset (&b4, 0, sizeof (b4));
+
+	v4_numeric = b6->sin6_addr.s6_addr[12] << 24 | 
+		     b6->sin6_addr.s6_addr[13] << 16 |
+		     b6->sin6_addr.s6_addr[14] << 8  | 
+		     b6->sin6_addr.s6_addr[15];
+
+	b4.sin_addr.s_addr = g_htonl (v4_numeric);	
+
+	if (prefix == 0 || prefix > 31) {
+		return v4_v4_equal (a4, &b4);
+	}	
+	
+	return v4_v4_match (a4, &b4, prefix);
+}
+
+static gboolean
+v6_v6_match (const struct sockaddr_in6 *a,
+	     const struct sockaddr_in6 *b,
+	     guint                      prefix)
+{
+	guint8        i;
+	guint8        n;
+	const guint8 *ia;
+	const guint8 *ib;
+
+	/* XXX: optimize that for known platfroms (e.g.: Linux) */
+	
+	/* n are bytes in this for here */
+	n = prefix / 8;
+
+	ia = a->sin6_addr.s6_addr;
+	ib = b->sin6_addr.s6_addr;
+	
+	for (i = 0; i < n; i++) {
+		if (*ia++ != *ib++) {
+			return FALSE;
+		}
+	}
+	
+	/* n are the rest bits (if any) for here */
+	if ((n = (8 - prefix % 8)) != 8) {
+		if ((*ia & (0xff << n)) != (*ib & (0xff << n))) {
+			return FALSE;
+		}
+	}
+	
+	return TRUE;
+}
+#endif
+
+/**
+ * gnome_vfs_address_match:
+ * @a: A #GnomeVFSAddress
+ * @b: A #GnomeVFSAddress to compare with @a
+ * @prefix: Number of bits to take into account starting
+ * from the left most one.
+ * 
+ * Matches the first @prefix number of bits of two given #GnomeVFSAddress 
+ * objects and returns TRUE of they match otherwise FALSE. This function can
+ * also match mapped address (i.e. IPv4 mapped IPv6 addresses).
+ * 
+ * Return value: TRUE if the two addresses match.
+ *
+ * Since: 2.14 
+ **/
+gboolean
+gnome_vfs_address_match (const GnomeVFSAddress *a,
+			 const GnomeVFSAddress *b,
+			 guint                  prefix)
+{
+	guint8 fam_a;
+       	guint8 fam_b;
+
+	g_return_val_if_fail (a != NULL || a->sa != NULL, FALSE);
+	g_return_val_if_fail (b != NULL || b->sa != NULL, FALSE);
+
+	fam_a = a->sa->sa_family;
+	fam_b = b->sa->sa_family;
+
+	if (fam_a == AF_INET && fam_b == AF_INET) {
+		if (prefix == 0 || prefix > 31) {
+			return v4_v4_equal (SIN (a->sa), SIN (b->sa));
+		} else {
+			return v4_v4_match (SIN (a->sa), SIN (b->sa), prefix);
+		}		
+	}
+#ifdef ENABLE_IPV6
+	else if (fam_a == AF_INET6 && fam_b == AF_INET6) {
+		if (prefix == 0 || prefix > 127) {
+			return v6_v6_equal (SIN6 (a->sa), SIN6 (b->sa));
+		} else {
+			return v6_v6_match (SIN6 (a->sa), SIN6 (b->sa), prefix);
+		}
+	} else if (fam_a == AF_INET && fam_b == AF_INET6) {
+		return v4_v6_match (SIN (a->sa), SIN6 (b->sa), prefix);
+	} else if (fam_a == AF_INET6 && fam_b == AF_INET) {
+		return v4_v6_match (SIN (b->sa), SIN6 (a->sa), prefix);
+	} 
+#endif
+
+	/* This is the case when we are trying to compare unkown family types */
+	g_assert_not_reached ();
+	return FALSE;
+}
+
+
+/**
+ * gnome_vfs_address_equal:
+ * @a: A #GnomeVFSAddress
+ * @b: A #GnomeVFSAddress to compare with @a
+ *
+ * Compares two #GnomeVFSAddress objects and returns TRUE if they have the
+ * addresses are equal as well as the address family type. 
+ * 
+ * Return value: TRUE if the two addresses match.
+ *
+ * Since: 2.14 
+ **/
+gboolean
+gnome_vfs_address_equal (const GnomeVFSAddress *a,
+			 const GnomeVFSAddress *b)
+{
+	guint8 fam_a;
+       	guint8 fam_b;
+
+	g_return_val_if_fail (a != NULL || a->sa != NULL, FALSE);
+	g_return_val_if_fail (b != NULL || b->sa != NULL, FALSE);
+
+	
+	fam_a = a->sa->sa_family;
+	fam_b = b->sa->sa_family;
+
+	if (fam_a == AF_INET && fam_b == AF_INET) {
+		return v4_v4_equal (SIN (a->sa), SIN (b->sa));		
+	}
+#ifdef ENABLE_IPV6
+	else if (fam_a == AF_INET6 && fam_b == AF_INET6) {
+		return v6_v6_equal (SIN6 (a->sa), SIN6 (b->sa));
+	}	
+#endif
+	return FALSE;
+}
+
 
 /**
  * gnome_vfs_address_dup:
