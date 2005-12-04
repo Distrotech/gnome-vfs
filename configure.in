@@ -62,19 +62,6 @@ case $host in
 esac
 AM_CONDITIONAL(OS_WIN32, [test "$os_win32" = "yes"])
 
-dnl Check for inotify
-inotify_support=no
-AC_CHECK_HEADERS([linux/inotify.h],
-		 [
-		 inotify_support=yes
-		 ])
-AC_CHECK_HEADERS([sys/inotify.h],
-		 [
-		 inotify_support=yes
-		 ])
-
-AM_CONDITIONAL(HAVE_INOTIFY, [test "$inotify_support" = "yes"])
-
 dnl Globally define_GNU_SOURCE and therefore enable the GNU extensions
 AC_DEFINE(_GNU_SOURCE, 1, [Enable GNU Extensions])
 
@@ -1028,7 +1015,27 @@ dnl =====================
 dnl File system monitors
 dnl =====================
 fs_monitor_backends=""
- 
+
+dnl **********************
+dnl *** inotify***
+dnl **********************
+
+inotify_support=no
+AC_CHECK_HEADERS([linux/inotify.h],
+		 [
+		 inotify_support=yes
+		 ])
+AC_CHECK_HEADERS([sys/inotify.h],
+		 [
+		 inotify_support=yes
+		 ])
+
+AM_CONDITIONAL(HAVE_INOTIFY, [test "$inotify_support" = "yes"]) 
+
+if test "$inotify_support" = "yes"; then
+  fs_monitor_backends="inotify "
+fi
+
 dnl **********************
 dnl *** Checks for FAM ***
 dnl **********************
@@ -1181,7 +1188,6 @@ echo "
       	Avahi support:		     $msg_avahi
       	Howl support:		     $msg_howl
 	HAL  support:                $msg_hal
-	inotify support:             $inotify_support
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends
 	Samba method:		     $msg_samba

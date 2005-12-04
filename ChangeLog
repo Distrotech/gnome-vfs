@@ -1,5 +1,11 @@
 2005-12-04  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in: Move inotify checks into the fs monitor
+	section. Remove "have inotify" summary notice but merge it
+	into the "FS monitor backends" notice.
+
+2005-12-04  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-address.c:
 	* libgnomevfs/gnome-vfs-address.h:
 	Implement gnome_vfs_address_equal () and 
