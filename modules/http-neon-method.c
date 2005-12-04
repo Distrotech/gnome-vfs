@@ -1394,6 +1394,11 @@ neon_session_pool_insert (GnomeVFSURI *uri, ne_session *session)
 		g_hash_table_insert (neon_session_table, uri, pool);
 	}
 	
+	/* Make sure we forget the auth info so multiple users for
+	 * the same uri doesnt confict. We have our own cache to
+	 * compensate this */
+	ne_forget_auth (session);	
+	
 	pool->unused_sessions = g_list_append (pool->unused_sessions, 
 					       session);
 

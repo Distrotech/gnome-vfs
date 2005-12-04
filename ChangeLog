@@ -1,5 +1,11 @@
 2005-12-04  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c: (neon_session_pool_insert):
+	Forget auth cached when inserting the session into the
+	session cache. See the code comments for details.
+
+2005-12-04  Christian Kellner  <gicmo@gnome.org>
+
 	* configure.in: Move inotify checks into the fs monitor
 	section. Remove "have inotify" summary notice but merge it
 	into the "FS monitor backends" notice.
