@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-25 16:12+0200\n"
-"PO-Revision-Date: 2005-11-25 16:10+0200\n"
+"POT-Creation-Date: 2005-12-05 09:04+0200\n"
+"PO-Revision-Date: 2005-12-05 09:04+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,30 @@ msgstr "Bonobo не може да бъде инициализиран"
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Не може да бъде инициализиран gnome vfs"
+
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr ""
+"Атрибутът „commonName“ (общо име) липсваше в името на субекта в сертификата "
+"на сървъра"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "Неуспех при договарянето по SSL: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "Сървърът не изпрати веригата от сертификати"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "Отговорът надвишава максималния брой на свойства"
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "Отговорът не може да се анализира: %s"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -56,10 +80,16 @@ msgstr "%s:%d има непознати опции %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не съдържа име на модул."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Файлът с настройките „%s“ не е намерен: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d анализирането е преустановено."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -407,22 +437,22 @@ msgstr "Подвижен дял, %s"
 msgid "Volume"
 msgstr "Дял"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Неизвестен тип операция %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Не може да се създаде програмен канал за отваряне на GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Неизвестен вид задача %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Операцията е спряна"
 
@@ -974,12 +1004,12 @@ msgstr "Неизвестна позиция GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Мрежа на Windows"
 
-#: ../modules/sftp-method.c:1321
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Идентичността на отдалечения компютър (%s) е непозната."
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -993,11 +1023,11 @@ msgstr ""
 "сигурни, че е безопасно да продължите, свържете се със системния "
 "администратор."
 
-#: ../modules/sftp-method.c:1330
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Влизане въпреки всичко"
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Отказ на влизането"
 
