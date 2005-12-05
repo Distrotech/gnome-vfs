@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 23:18+0100\n"
-"PO-Revision-Date: 2005-11-22 23:22+0100\n"
+"POT-Creation-Date: 2005-12-06 00:42+0100\n"
+"PO-Revision-Date: 2005-12-06 00:44+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,28 @@ msgstr "No se pudo inicializar Bonobo"
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
+
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "Al certificado del servidor le falta el atributo commonName en el nombre del sujeto"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "La negociación SSL falló: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "El servidor no envió la cadena del certificado"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "La respuesta excede el contador máximo de la propiedad"
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "No se puede analizar la respuesta: %s"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -58,10 +80,16 @@ msgstr "%s:%d tiene opciones desconocidas %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d contiene un modulo sin nombre."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "No se encuentra el archivo de configuración `%s': %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d abortó el análisis."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -409,22 +437,22 @@ msgstr "Volumen extraíble %s"
 msgid "Volume"
 msgstr "Volumen"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tipo de operación desconocido %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No se puede crear el pipe para el GIOChannel abierto: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabajo %u desconocido"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "La operación ha sido detenida"
 
@@ -887,7 +915,9 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "Imposible montar el volumen. Si esta es una unidad encriptada, entonces se usó una contraseña o clave incorrecta."
+msgstr ""
+"Imposible montar el volumen. Si esta es una unidad encriptada, entonces se "
+"usó una contraseña o clave incorrecta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
@@ -909,7 +939,9 @@ msgstr "Imposible montar el volumen seleccionado."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "Imposible desmontar el volumen seleccionado. El volumen probablemente lo está usando al menos un programa."
+msgstr ""
+"Imposible desmontar el volumen seleccionado. El volumen probablemente lo "
+"está usando al menos un programa."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
@@ -963,7 +995,7 @@ msgstr "Directorio inicial"
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:540
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconocida"
@@ -972,12 +1004,12 @@ msgstr "GnomeVFSSeekPosition %d desconocida"
 msgid "Windows Network"
 msgstr "Red de Windows"
 
-#: ../modules/sftp-method.c:1321
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "La identidad de la computadora remota (%s) es desconocida."
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -991,11 +1023,11 @@ msgstr ""
 "absolutamente seguro de que es seguro continuar, consulte con el "
 "administrador del sistema."
 
-#: ../modules/sftp-method.c:1330
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Iniciar sesión de todas formas"
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Cancelar inicio de sesión"
 
