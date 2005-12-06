@@ -19,11 +19,11 @@ msgstr "Project-Id-Version: gnome-vfs 2.12.1.1\n"
 
 #:../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "Không thể khởi động Bonobo."
+msgstr "Không thể khởi động Bonobo"
 
 #:../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "Không thể khới động gnome vfs."
+msgstr "Không thể khới động gnome vfs"
 
 #:../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -78,7 +78,7 @@ msgstr "Ổ đĩa CD-ROM"
 
 #:../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "Đĩa CD số nhạc"
+msgstr "Đĩa CD nhạc"
 
 #:../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
@@ -277,11 +277,11 @@ msgstr "Ổ %s"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:412
 msgid "Floppy Drive"
-msgstr "Ổ đĩa mếm"
+msgstr "Ổ đĩa mềm"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "Compact Flash Drive"
-msgstr "Ổ khó phai gọn (CF)"
+msgstr "Ổ Compact Flash"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:417
 msgid "Memory Stick Drive"
@@ -289,7 +289,7 @@ msgstr "Ổ thanh bộ nhớ"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:419
 msgid "Smart Media Drive"
-msgstr "Ổ vật chứa thông minh"
+msgstr "Ổ Smart Media"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:421
 msgid "SD/MMC Drive"
@@ -307,7 +307,7 @@ msgstr "Ổ đĩa Jaz"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:429
 msgid "Pen Drive"
-msgstr "Ổ bút"
+msgstr "Pen Drive"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:431
 #,c-format
@@ -399,7 +399,7 @@ msgstr "Đĩa âm thanh"
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #,c-format
 msgid "%s Removable Volume"
-msgstr "Khối Hệ thống %s"
+msgstr "Khối có thể tháo rời %s"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
@@ -595,7 +595,7 @@ msgstr "Thao tác không được phép"
 #.GNOME_VFS_ERROR_IS_DIRECTORY
 #:../libgnomevfs/gnome-vfs-result.c:67
 msgid "Is a directory"
-msgstr "là thư mục"
+msgstr "Là thư mục"
 
 #.GNOME_VFS_ERROR_NO_MEMORY
 #:../libgnomevfs/gnome-vfs-result.c:68
@@ -905,15 +905,15 @@ msgstr "Không thể bỏ gắn kết máy phục vụ đã kết nối."
 
 #:../modules/computer-method.c:546
 msgid "Network"
-msgstr "mạng"
+msgstr "Mạng"
 
 #:../modules/computer-method.c:564
 msgid "Home"
-msgstr "Về"
+msgstr "Cá nhân"
 
 #:../modules/computer-method.c:582
 msgid "Filesystem"
-msgstr "Hệ thống tập tin"
+msgstr "Hệ tập tin"
 
 #:../modules/file-method.c:536
 #,c-format
