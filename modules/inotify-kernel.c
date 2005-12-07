@@ -23,6 +23,11 @@
 #include <string.h>
 #include <glib.h>
 #include "inotify-kernel.h"
+
+/* Just include the local headers to stop all the pain */
+#include "local_inotify.h"
+#include "local_inotify_syscalls.h"
+#if 0
 #ifdef HAVE_SYS_INOTIFY_H
 /* We don't actually include the libc header, because there has been
  * problems with libc versions that was built without inotify support.
@@ -33,6 +38,7 @@
 #elif defined (HAVE_LINUX_INOTIFY_H)
 #include <linux/inotify.h>
 #include "local_inotify_syscalls.h"
+#endif
 #endif
 
 /* Timings for pairing MOVED_TO / MOVED_FROM events */

@@ -1,3 +1,9 @@
+2005-12-06  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-helper.c:
+	* modules/inotify-kernel.c: Just use the local copy of the headers. To
+	many people have broken systems and are complaining.
+
 2005-12-04  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: (neon_session_pool_insert):
