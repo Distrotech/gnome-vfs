@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-02 15:59+0200\n"
-"PO-Revision-Date: 2005-12-02 16:05+0200\n"
+"POT-Creation-Date: 2005-12-07 15:14+0200\n"
+"PO-Revision-Date: 2005-12-07 15:34+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,28 @@ msgstr "Nepavyko inicijuoti Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Nepavyko inicijuoti gnome vfs"
 
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "Serverio sertifikato temoje nebuvo commonName atributo"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "SSL derybos nepavyko: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "Serveris neatsiuntė sertifikato grandinės"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "Atsakymas viršija maksimalų savybių skaičių"
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "Nepavyko apdoroti atsako: %s"
+
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 skirsnis"
@@ -32,27 +54,27 @@ msgstr "ISO 9660 skirsnis"
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d turi savyje NUL simbolių."
+msgstr "%s:%d yra NUL simbolių."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d neturi savyje metodo pavadinimo."
+msgstr "%s:%d nėra metodo pavadinimo."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d neturi nustatymų pabaigos žymės."
+msgstr "%s:%d nėra parametrų pabaigos žymės."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s:%d turi nežinumus parametrus %s."
+msgstr "%s:%d yra nežinomų parametrų %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d neturi savyje modulio vardo."
+msgstr "%s:%d nėra modulio vardo."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -75,7 +97,7 @@ msgstr "AFS tinklo skirsnis"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "Auto-atpažintas skirsnis"
+msgstr "Automatiškai atpažintas skirsnis"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -411,22 +433,22 @@ msgstr "%s atjungiamas skirsnis"
 msgid "Volume"
 msgstr "Skirsnis"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Nežinomas operacijos tipas %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Nepavyko sukurti konvejerio, skirto atverti GIOChannel: %s"
+msgstr "Nepavyko sukurti konvejerio GIOChannel atvėrimui: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Nežinomas užduoties tipas %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operacija sustabdyta"
 
@@ -462,7 +484,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Pasenus funkcija. Vartotojo modifikacijos MIME duombazei nebepalaikomos."
+"Pasenusi funkcija. Naudotojo MIME duombazės modifikacijos nebepalaikomos."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
@@ -546,12 +568,12 @@ msgstr "Blogas URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
-msgstr "Byla neatidaryta"
+msgstr "Byla neatverta"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "Atidarymo būdas negaliojantis"
+msgstr "Atvėrimo būdas neteisingas"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
@@ -561,7 +583,7 @@ msgstr "Priėjimas uždraustas"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
-msgstr "Per daug atidarytų bylų"
+msgstr "Per daug atvertų bylų"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:60
@@ -576,7 +598,7 @@ msgstr "Ne aplankas"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation in progress"
-msgstr "Vyksta operacija"
+msgstr "Vykdoma operacija"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:63
@@ -626,7 +648,7 @@ msgstr "Hostas neturi adreso"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Login failed"
-msgstr "Prisijungimas nepavyko"
+msgstr "Prisijungti nepavyko"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:73
@@ -671,7 +693,7 @@ msgstr "Paslauga neprieinama"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Request obsoletes service's data"
-msgstr "Užklausa paslaugos duomenis padaro nebereikalingais"
+msgstr "Užklausa pasendina paslaugos duomenis"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:82
@@ -686,7 +708,7 @@ msgstr "Nepavyko rasti pagrindinės naršyklės"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "No default action associated"
-msgstr "Nesusietas joks įprastas veiksmas"
+msgstr "Nesusietas joks numatytasis veiksmas"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:85
@@ -716,7 +738,7 @@ msgstr "Vardų serverio klaida"
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "The resource is locked"
-msgstr "Resursas yra užrakintas"
+msgstr "Resursas užrakintas"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:92
@@ -865,12 +887,12 @@ msgstr "Tinklo serveris"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:169
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Nepavyko prijungti diskelio. Greičiausiai diskelio nėra įrenginyje."
+msgstr "Nepavyko prijungti diskelio. Greičiausiai įrenginyje nėra diskelio."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Nepavyko prijungti skirsnio. Greičiausiai diskelio nėra įrenginyje."
+msgstr "Nepavyko prijungti skirsnio. Greičiausiai įrenginyje nėra laikmenos."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
@@ -878,7 +900,7 @@ msgid ""
 "cannot be mounted."
 msgstr ""
 "Nepavyko prijungti diskelio. Greičiausiai diskelio formatas toks, kurio "
-"negalima prijungti."
+"prijungti negalima."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:183
@@ -886,8 +908,8 @@ msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"Nepavyko atjungti skirsnio. Jeigu tai užšifruotas diskas, tai buvo panaudotas "
-"neteisingas slaptažodis arba raktas."
+"Nepavyko atjungti skirsnio. Jeigu tai užšifruotas diskas, tai buvo "
+"panaudotas neteisingas slaptažodis arba raktas."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
@@ -899,18 +921,19 @@ msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
-msgstr "Nepavyko prijungti nurodyto diskelio."
+msgstr "Nepavyko prijungti pasirinkto diskelio."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
-msgstr "Nepavyko prijungti nurodyto skirsnio."
+msgstr "Nepavyko prijungti pasirinkto skirsnio."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr ""
-"Nepavyko atjungti pasirinkto skirsnio. Skirsnį naudoja viena ar daugiau programų."
+"Nepavyko atjungti pasirinkto skirsnio. Skirsnį naudoja viena ar daugiau "
+"programų."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
@@ -928,7 +951,9 @@ msgstr "Nepavyko pty paleisti prijungimo proceso"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:464
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Netikėta klaida funkcijoje select() skaitant duomenis iš antrinio proceso (%s)"
+msgstr ""
+"Netikėta klaida funkcijoje select() skaitant duomenis iš antrinio proceso (%"
+"s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:518
 msgid "Couldn't send password to mount process."
@@ -989,7 +1014,7 @@ msgstr ""
 "Tai atsitinka kai jūs prisijungiate prie kompiuterio pirmą kartą.\n"
 "\n"
 "Nutolusio kompiuterio atsiųsta tapatybė yra %s. Jeigu norite būti visiškai "
-"tikri, kad tęsti yra saugu, susisiekit su sistemos administratoriumi."
+"tikri, kad tęsti yra saugu, susisiekite su sistemos administratoriumi."
 
 #: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
@@ -1008,11 +1033,11 @@ msgstr "%s nepavyko rasti tinkamos nustatymų bylos\n"
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Naudokite aplinkos kintamąjį %s, kad nurodyti kitą vietą.\n"
+msgstr "Naudokite aplinkos kintamąjį %s, norėdami nurodyti kitą vietą.\n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Įprasta vardų gamykla"
+msgstr "Standartinė vardų gamykla"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -1028,15 +1053,15 @@ msgstr "bendrinis bylų vardas"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Įprastakomponentų peržiūros programa"
+msgstr "Numatytoji komponentų peržiūros programa"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Standartinė terminalo programa"
+msgstr "Numatytoji terminalo programa"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Įprasto terminalo paleidimo argumentas"
+msgstr "Numatytojo terminalo paleidimo argumentas"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1054,12 +1079,12 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Įprasta terminalo programa, naudojama su programomis, kurioms reikia "
+"Numatytoji terminalo programa, naudojama su programomis, kurioms reikia "
 "terminalo."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Argumentas naudojamas paleidžiant įprasta terminalo programą."
+msgstr "Argumentas naudojamas paleidžiant numatytąją terminalo programą."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1278,12 +1303,12 @@ msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
-"Kableliu atskirtų DNS-SD domenų, kurie turėtų būti matomi „network:///“ "
+"Kableliu atskirtų DNS-SD sričių, kurios turėtų būti matomos „network:///“ "
 "vietoje, sąrašas."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "Papildomi domenai, kuriuose ieškoti DNS-SD paslaugų"
+msgstr "Papildomos sritys, kuriose ieškoti DNS-SD paslaugų"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1295,40 +1320,39 @@ msgstr "Galimos reikšmės yra „merged“, „separate“ ir „disabled“."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Tarpinėje stotyje naudoti autorizavimą"
+msgstr "Tarpiniamer serveryje naudoti autorizavimą"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "Automatinių tarpinės stoties nustatymų adresas"
+msgstr "Automatinių tarpinio serverio nustatymų adresas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"Įjungia tarpinės stoties panaudojimą, kai Internatas naršomas naudojant HTTP."
+msgstr "Įjungia tarpinio serverio naudojimą naršant Internete per HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "FTP tarpinės stoties vardas"
+msgstr "FTP tarpinio serverio vardas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "FTP tarpinės stoties prievadas"
+msgstr "FTP tarpinio serverio prievadas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "HTTP tarpinės stoties vardas"
+msgstr "HTTP tarpinio serverio vardas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "HTTP tarpinės stoties slaptažodis"
+msgstr "HTTP tarpinio serverio slaptažodis"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr "HTTP tarpinės stoties prievadas"
+msgstr "HTTP tarpinio serverio prievadas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "HTTP tarpinės stoties naudotojas"
+msgstr "HTTP tarpinio serverio naudotojas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -1342,76 +1366,76 @@ msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "Adresai pasiekiami nenaudojant tarpinės stoties"
+msgstr "Adresai pasiekiami nenaudojant tarpinio serverio"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Slaptažodis, naudojamas jungiantis per HTTP tarpinę stotį."
+msgstr "Slaptažodis, naudojamas jungiantis per HTTP tarpinį serverį."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Tarpinės stoties nustatymų veiksena"
+msgstr "Tarpinio serverio nustatymų režimas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "SOCKS tarpinės stoties vardas"
+msgstr "SOCKS tarpinio serverio vardas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "SOCKS tarpinės stoties prievadas"
+msgstr "SOCKS tarpinio serverio prievadas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "Tarpinė saugaus HTTP stotis"
+msgstr "Saugaus HTTP tarpinio serverio vardas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "Saugaus HTTP tarpinės stoties prievadas"
+msgstr "Saugaus HTTP tarpinio serverio prievadas"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Pasirinkite tarpinės stoties nustatymų veikseną. Galimos reikšmės yra "
+"Pasirinkite tarpinio serverio nustatymų režimą. Galimos reikšmės yra "
 "„none“, „manual“, „auto“."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "Kompiuteris, teikiantis tarpinės FTP stoties paslaugas."
+msgstr "Kompiuteris, teikiantis tarpinio FTP serverio paslaugas."
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "Kompiuteris, teikiantis tarpinės HTTP stoties paslaugas."
+msgstr "Kompiuteris, teikiantis tarpinio HTTP serverio paslaugas."
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Kompiuteris, teikiantis tarpinės saugaus HTTP stoties paslaugas."
+msgstr "Kompiuteris, teikiantis tarpinio saugaus HTTP serverio paslaugas."
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "Kompiuteris, teikiantis tarpinės socks stoties paslaugas."
+msgstr "Kompiuteris, teikiantis tarpinio socks serverio paslaugas."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Tarpinės http stoties prievadas, saugomas „/system/http_proxy/host“ rakte."
+"Tarpinio http serverio prievadas, saugomas „/system/http_proxy/host“ rakte."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Tarpinės ftp stoties prievadas, saugomas „/system/http_proxy/host“ rakte."
+"Tarpinio ftp serverio prievadas, saugomas „/system/http_proxy/host“ rakte."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Tarpinės saugaus http stoties prievadas, saugomas „/system/http_proxy/host“ "
+"Tarpinio saugaus http serverio prievadas, saugomas „/system/http_proxy/host“ "
 "rakte."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
@@ -1419,7 +1443,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Tarpinės socks stoties prievadas, saugomas „/system/http_proxy/host“ rakte."
+"Tarpinio socks serverio prievadas, saugomas „/system/http_proxy/host“ rakte."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1429,22 +1453,22 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Šis raktas saugo adresus, prie kurių yra jungiamasi tiesiogiai, o ne per "
-"tarpinę stotį (jei tokia naudojama). Reikšmės gali saugoti mašinų vardus, "
-"domenus (su priekyje esančių apibendrinančiu simboliu, kaip *.example.com), "
-"mašinų IP adresus (tiek IPv4, tiek IPv6) bei tinklų adresus su tinklo "
-"kaukėmis (kažkas panašaus į 192.168.0.0/24)."
+"tarpinį serverį (jei toks naudojamas). Reikšmėse galima saugoti kompiuterių "
+"vardus, sritis (su priekyje esančių apibendrinančiu simboliu, pvz., kaip "
+"*.pavyzdys.lt), kompiuterių IP adresus (tiek IPv4, tiek IPv6) bei tinklų "
+"adresus su tinklo kaukėmis (kažkas panašaus į 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "Adresas, kuriame saugomi tarpinės stoties nustatymai"
+msgstr "Adresas, kuriame saugomi tarpinio serverio nustatymai"
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr "Naudoti HTTP tarpinę stotį"
+msgstr "Naudoti HTTP tarpinį serverį"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Naudotojo vardas naudojamas jungiantis per HTTP tarpinę stotį."
+msgstr "Naudotojo vardas naudojamas jungiantis per HTTP tarpinį serverį."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1456,7 +1480,7 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Windows tinklų darbo grupė arba domenas, kuriai priklauso naudotojas. Tam, "
+"Windows tinklų darbo grupė arba sritis, kuriai priklauso naudotojas. Tam, "
 "kad visiškai įsigaliotų atlikti pakeitimai, naudotojui gali reikti "
 "atsijungti ir prisijungti iš naujo."
 
