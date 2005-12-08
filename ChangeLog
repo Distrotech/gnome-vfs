@@ -1,3 +1,8 @@
+2005-12-07  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/local_inotify.h: Update inotify header with my changes queued
+	for 2.6.16.
+
 2005-12-06  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/inotify-helper.c:
