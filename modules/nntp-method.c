@@ -1677,9 +1677,9 @@ add_file_to_folder (GHashTable *folders, nntp_file *file)
 	
 	folder_contents = g_hash_table_lookup (folders, file->folder_name);
 	if (folder_contents != NULL) {
-		g_list_append(folder_contents, file);
+		folder_contents = g_list_append (folder_contents, file);
 	} else {
-		folder_contents = g_list_append(NULL, file);
+		folder_contents = g_list_append (NULL, file);
 		g_hash_table_insert (folders, g_strdup(file->folder_name), folder_contents);
 	}
 }
