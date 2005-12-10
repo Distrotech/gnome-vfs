@@ -148,7 +148,7 @@ static ik_event_t *ik_event_new (char *buffer)
    return event;
 }
 
-ik_event_t *ik_event_new_dummy (const char *name, guint32 wd, guint32 mask)
+ik_event_t *ik_event_new_dummy (const char *name, gint32 wd, guint32 mask)
 {
 	ik_event_t *event = g_new0(ik_event_t,1);
 	event->wd = wd;
@@ -172,9 +172,9 @@ void ik_event_free (ik_event_t *event)
 	g_free(event);
 }
 
-guint32 ik_watch (const char *path, guint32 mask, int *err)
+gint32 ik_watch (const char *path, guint32 mask, int *err)
 {
-   int wd = -1;
+   gint32 wd = -1;
 
    g_assert (path != NULL);
    g_assert (inotify_instance_fd >= 0);
@@ -194,7 +194,7 @@ guint32 ik_watch (const char *path, guint32 mask, int *err)
    return wd;
 }
 
-int ik_ignore(const char *path, guint32 wd)
+int ik_ignore(const char *path, gint32 wd)
 {
    g_assert (wd >= 0);
    g_assert (inotify_instance_fd >= 0);

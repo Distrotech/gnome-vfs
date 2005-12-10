@@ -21,15 +21,13 @@
 */
 
 
-#ifndef __INOTIFY_HELPER_H
-#define __INOTIFY_HELPER_H
-
-#include <libgnomevfs/gnome-vfs-monitor-private.h>
+#ifndef __INOTIFY_MISSING_H
+#define __INOTIFY_MISSING_H
 
 #include "inotify-sub.h"
 
-gboolean	 ih_startup		(void);
-gboolean	 ih_sub_add		(ih_sub_t *sub);
-gboolean	 ih_sub_cancel		(ih_sub_t *sub);
+void im_startup (void (*missing_cb)(ih_sub_t *sub));
+void im_add (ih_sub_t *sub);
+void im_rm (ih_sub_t *sub);
 
-#endif /* __INOTIFY_HELPER_H */
+#endif /* __INOTIFY_MISSING_H */

@@ -14,27 +14,14 @@
 	Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __INOTIFY_KERNEL_H
-#define __INOTIFY_KERNEL_H
+#ifndef __INOTIFY_PATH_H
+#define __INOTIFY_PATH_H
 
-typedef struct ik_event_s {
-    gint32 wd;
-    guint32 mask;
-    guint32 cookie;
-    guint32 len;
-    char *  name;
-	struct ik_event_s *pair;
-} ik_event_t;
+#include "inotify-kernel.h"
+#include "inotify-sub.h"
 
-gboolean ik_startup (void (*cb)(ik_event_t *event));
-ik_event_t *ik_event_new_dummy (const char *name, gint32 wd, guint32 mask);
-void ik_event_free (ik_event_t *event);
-
-gint32 ik_watch(const char *path, guint32 mask, int *err);
-int ik_ignore(const char *path, gint32 wd);
-
-/* The miss count will probably be enflated */
-void ik_move_stats (guint32 *matches, guint32 *misses);
-const char *ik_mask_to_string (guint32 mask);
+gboolean ip_startup (void (*event_cb)(ik_event_t *event, ih_sub_t *sub));
+gboolean ip_start_watching (ih_sub_t *sub);
+gboolean ip_stop_watching  (ih_sub_t *sub);
 
 #endif

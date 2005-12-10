@@ -2480,7 +2480,7 @@ static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
 					   GnomeVFSURI *uri,
 					   GnomeVFSMonitorType monitor_type)
 {
-	inotify_sub *sub;
+	ih_sub_t *sub;
 	char *filename;
 
 	filename = get_path_from_uri (uri);
@@ -2488,13 +2488,13 @@ static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
-	sub = inotify_sub_new (uri, monitor_type);
+	sub = ih_sub_new (uri, monitor_type);
 	if (sub == NULL) {
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
-	if (inotify_helper_add (sub) == FALSE) {
-		inotify_sub_free (sub);
+	if (ih_sub_add (sub) == FALSE) {
+		ih_sub_free (sub);
 		*method_handle_return = NULL;
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
@@ -2512,7 +2512,7 @@ do_monitor_add (GnomeVFSMethod *method,
 		GnomeVFSMonitorType monitor_type)
 {
 #ifdef USE_INOTIFY
-	if (inotify_helper_init ()) {
+	if (ih_startup ()) {
 		return inotify_monitor_add (method, method_handle_return, uri, monitor_type);
 	}
 #endif
@@ -2559,15 +2559,15 @@ static GnomeVFSResult fam_monitor_cancel (GnomeVFSMethod *method,
 static GnomeVFSResult inotify_monitor_cancel (GnomeVFSMethod *method,
 					      GnomeVFSMethodHandle *method_handle)
 {
-	inotify_sub *sub = (inotify_sub *)method_handle;
+	ih_sub_t *sub = (ih_sub_t *)method_handle;
 
 	if (sub->cancelled)
 		return GNOME_VFS_OK;
 
 	sub->cancelled = TRUE;
 
-	inotify_helper_cancel (sub);
-	inotify_sub_free (sub);
+	ih_sub_cancel (sub);
+	ih_sub_free (sub);
 	return GNOME_VFS_OK;
 
 }
@@ -2578,7 +2578,7 @@ do_monitor_cancel (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
 #ifdef USE_INOTIFY
-	if (inotify_helper_init ()) {
+	if (ih_startup ()) {
 		return inotify_monitor_cancel (method, method_handle);
 	}
 #endif

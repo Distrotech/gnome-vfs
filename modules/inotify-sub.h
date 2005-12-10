@@ -21,15 +21,22 @@
 */
 
 
-#ifndef __INOTIFY_HELPER_H
-#define __INOTIFY_HELPER_H
+#ifndef __INOTIFY_SUB_H
+#define __INOTIFY_SUB_H
 
-#include <libgnomevfs/gnome-vfs-monitor-private.h>
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSMonitorType type;
+	char *path;
+	char *dir;
+	char *filename;
+	guint32 extra_flags;
+	gboolean cancelled;
+	gboolean missing;
+} ih_sub_t;
 
-#include "inotify-sub.h"
+ih_sub_t	*ih_sub_new		(GnomeVFSURI *uri, GnomeVFSMonitorType);
+void		 ih_sub_free 	 	(ih_sub_t *sub);
+void		 ih_sub_setup		(ih_sub_t *sub);
 
-gboolean	 ih_startup		(void);
-gboolean	 ih_sub_add		(ih_sub_t *sub);
-gboolean	 ih_sub_cancel		(ih_sub_t *sub);
-
-#endif /* __INOTIFY_HELPER_H */
+#endif /* __INOTIFY_SUB_H */

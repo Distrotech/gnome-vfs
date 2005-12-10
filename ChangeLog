@@ -1,3 +1,48 @@
+2005-12-10  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/Makefile.am: Add new inotify files.
+	* modules/file-method.c: (inotify_monitor_add), (do_monitor_add),
+	(inotify_monitor_cancel), (do_monitor_cancel): Adapt to changes in inotify
+	backend.
+	* modules/inotify-helper.c: (ih_startup), (ih_sub_add),
+	(ih_sub_cancel), (ih_event_callback), (ih_not_missing_callback),
+	(ih_mask_to_EventType): 
+	* modules/inotify-helper.h:
+	* modules/inotify-kernel.c: (ik_event_new_dummy), (ik_watch),
+	(ik_ignore):
+	* modules/inotify-kernel.h:
+	* modules/inotify-missing.c: (im_startup), (im_add), (im_rm),
+	(im_scan_missing):
+	* modules/inotify-missing.h:
+	* modules/inotify-path.c: (ip_startup), (ip_map_path_dir),
+	(ip_map_sub_dir), (ip_map_wd_dir), (ip_start_watching),
+	(ip_unmap_path_dir), (ip_unmap_wd_dir), (ip_unmap_wd),
+	(ip_unmap_sub_dir), (ip_unmap_all_subs), (ip_stop_watching),
+	(ip_watched_dir_new), (ip_watched_dir_free), (ip_wd_delete),
+	(ip_event_dispatch), (ip_event_callback):
+	* modules/inotify-path.h:
+	* modules/inotify-sub.c: (ih_sub_new), (ih_sub_free),
+	(ih_sub_setup):
+	* modules/inotify-sub.h: 
+	
+	Factored the inotify backend into more modules.
+
+	inotify-path: A path based interface to inotify-kernel.
+	inotify-missing: Polls twice a second for missing subscriptions.
+	inotify-sub: An inotify helper subscription.
+
+	Fixes the busted missing list. The missing list now monitors
+	each subscription instead of each directory. This fixes issues with the
+	missing list and symbolic links.
+
+	Fixes monitoring of paths with spaces in them.
+
+	Includes code to take advantage of race avoidance flags scheduled for
+	inclusion with 2.6.16.
+
+	Supports "don't follow symbolic link" behaviour when it is added to
+	gnome-vfs.
+
 2005-12-09  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/nntp-method.c (generate_folder_from_element):
