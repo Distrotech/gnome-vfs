@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-02 14:53+0100\n"
-"PO-Revision-Date: 2005-12-02 20:15+0100\n"
+"POT-Creation-Date: 2005-12-11 14:38+0100\n"
+"PO-Revision-Date: 2005-12-11 22:35+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,28 @@ msgstr "Nemohu inicializovat Bonobo"
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
+
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "Certifikátu serveru chyběl atribut commonName v názvu předmětu"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "Vyjednávání SSL selhalo: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "Server neposlal řetězec certifikátů"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "Odpověď překračuje maximální počet vlastností"
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "Nemohu zpracovat odpověď: %s"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -413,22 +435,22 @@ msgstr "Výměnný svazek %s"
 msgid "Volume"
 msgstr "Svazek"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Neznámý typ operace %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nemohu vytvořit rouru pro otevření GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznámý typ úlohy %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operace zastavena"
 
@@ -888,7 +910,9 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "Nemohu připojit svazek. Je-li to šifrovaný svazek, bylo použito špatné heslo nebo klíč."
+msgstr ""
+"Nemohu připojit svazek. Je-li to šifrovaný svazek, bylo použito špatné heslo "
+"nebo klíč."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
@@ -910,7 +934,8 @@ msgstr "Nemohu připojit vybraný svazek."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "Nemohu odpojit vybraný svazek. Svazek pravděpodobně používá nějaký program."
+msgstr ""
+"Nemohu odpojit vybraný svazek. Svazek pravděpodobně používá nějaký program."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
