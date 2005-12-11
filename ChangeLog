@@ -1,3 +1,9 @@
+2005-12-11  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-helper.c: Disable debug messages
+	* modules/inotify-kernel.c: Tweak timings to be suitable for a
+	application.
+
 2005-12-10  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/Makefile.am: Add new inotify files.

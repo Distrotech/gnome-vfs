@@ -42,7 +42,7 @@
 #endif
 
 /* Timings for pairing MOVED_TO / MOVED_FROM events */
-#define PROCESS_EVENTS_TIME 66 /* milliseconds */
+#define PROCESS_EVENTS_TIME 125 /* milliseconds */
 #define DEFAULT_HOLD_UNTIL_TIME 1000 /* 1 millisecond */
 #define MOVE_HOLD_UNTIL_TIME 5000 /* 5 milliseconds */
 
@@ -329,12 +329,12 @@ const char *ik_mask_to_string (guint32 mask)
 
 /* Implementation below */
 
-#define MAX_PENDING_COUNT 5
+#define MAX_PENDING_COUNT 4
 #define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
 #define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
 #define MAX_QUEUED_EVENTS 2048
 #define AVERAGE_EVENT_SIZE sizeof (struct inotify_event) + 16
-#define PENDING_PAUSE_MICROSECONDS 8000
+#define PENDING_PAUSE_MICROSECONDS 4000
 
 static void ik_read_events (gsize *buffer_size_out, gchar **buffer_out)
 {

@@ -47,7 +47,7 @@
 #include "inotify-missing.h"
 #include "inotify-path.h"
 
-static gboolean		inotify_debug_enabled = TRUE;
+static gboolean		inotify_debug_enabled = FALSE;
 #define IH_W if (inotify_debug_enabled) g_warning 
 
 static void ih_event_callback (ik_event_t *event, ih_sub_t *sub);
