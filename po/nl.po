@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-15 12:33+0200\n"
-"PO-Revision-Date: 2005-09-23 01:42+0200\n"
+"POT-Creation-Date: 2005-12-09 14:44+0100\n"
+"PO-Revision-Date: 2005-12-09 22:03+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,29 @@ msgstr "Kan bonobo niet starten"
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome-vfs niet starten"
+
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "In het servercertificaat ontbrak de commonName-attribuut in het onderwerp"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "SSL-onderhandeling is mislukt: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "Server heeft geen certificaatketting verstuurd"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "Antwoord overschrijdt maximum aantal eigenschappen"
+
+# verwerken/ontleden
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "Kon antwoord niet verwerken: %s"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -59,10 +82,16 @@ msgstr "%s:%d heeft onbekende opties %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d bevat geen modulenaam."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Configuratiebestand '%s' is niet gevonden: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d verwerken is afgebroken."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -414,22 +443,22 @@ msgstr "%s verwisselbaar volumen"
 msgid "Volume"
 msgstr "Volumen"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Onbekend opdrachttype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan geen pijplijn aanmaken voor GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Onbekend taaktype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Opdracht gestopt"
 
@@ -450,17 +479,17 @@ msgstr "Opdracht gestopt"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -469,13 +498,13 @@ msgstr ""
 "langer ondersteund."
 
 # verwerken/ontleden
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Kan niet verwerken: %s"
 
 # komende/volgende/hieropvolgende
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Volgende verwerkingsfouten worden genegeerd."
 
@@ -736,7 +765,7 @@ msgstr "De bron is in gebruik"
 msgid "Function call deprecated"
 msgstr "Functie-aanroep afgeraden"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
@@ -763,7 +792,7 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1106
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (ongeldige Unicode)"
@@ -859,24 +888,24 @@ msgstr "Camera"
 msgid "DVD"
 msgstr "dvd"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Root-volumen"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Audio-cd"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Onbekend volumen"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Netwerkserver"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:169
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -884,13 +913,13 @@ msgstr ""
 "apparaat."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Kan het volumen niet aankoppelen. Er zit waarschijnlijk geen schijf in het "
 "apparaat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -898,7 +927,14 @@ msgstr ""
 "Kan het diskettestation niet aankoppelen. De diskette bevat waarschijnlijk "
 "een niet ondersteund bestandssysteem."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr "Kon het volumen niet aankoppelen. Indien dit een versleutelde schijf is, is mogelijkerwijs een foutief wachtwoord of sleutel gegeven."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -906,28 +942,57 @@ msgstr ""
 "Kan het geselecteerde volumen niet aankoppelen. Het volumen bevat "
 "waarschijnlijk een niet ondersteund bestandssysteem."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
 msgstr "Kan de het geselecteerde diskettestation niet aankoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
 msgstr "Kan het geselecteerde volumen niet aankoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr "Kon het geselecteerde volumen niet afkoppelen. Het volumen is nog in gebruik bij een of meerdere programma's."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
 msgstr "Kan het geselecteerde volumen niet ontkoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:375
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Lezen van gegevens van dochterproces %d is mislukt (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:419
+msgid "Couldn't run mount process in a pty"
+msgstr "Kon aankoppelingsproces niet uitvoeren in een pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:464
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Onverwachte fout in select() tijdens lezen van gegevens van een dochterproces (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:518
+msgid "Couldn't send password to mount process."
+msgstr "Kon wachtwoord niet naar aankoppelingsproces sturen."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:557
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Onverwachte fout in waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:648
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:715
 msgid "Failed to start command"
 msgstr "Kan opdracht niet starten"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:703
 msgid "Unable to eject media"
 msgstr "Kan media niet uitwerpen"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:932
 msgid "Unable to unmount connected server"
 msgstr "Kan aangekoppelde server niet ontkoppelen"
 
@@ -944,7 +1009,7 @@ msgstr "Persoonlijke map"
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:540
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
@@ -954,14 +1019,14 @@ msgid "Windows Network"
 msgstr "Windows netwerk"
 
 # externe computer/computer op afstand
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "De identiteit van de computer op afstand (%s) is onbekend."
 
 # absoluut zeker wilt weten of/er absoluut zeker van wilt zijn dat
 # /zeker wilt weten of/absulute zekerheid wilt hebben dat
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -975,11 +1040,11 @@ msgstr ""
 "absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact "
 "op met de systeembeheerder."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Toch aanmelden"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Aanmelden annuleren"
 
