@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-26 17:43+0700\n"
-"PO-Revision-Date: 2005-11-26 17:51+0700\n"
+"POT-Creation-Date: 2005-12-12 17:44+0700\n"
+"PO-Revision-Date: 2005-12-12 18:18+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,28 @@ msgstr "เริ่มใช้ Bonobo ไม่สำเร็จ"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "เริ่มใช้ gnome vfs ไม่สำเร็จ"
+
+#: imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "ใบรับรองของเซิร์ฟเวอร์ขาดข้อมูล commonName ในชื่อเรื่อง"
+
+#: imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "การเจรจาเชื่อมต่อ SSL ล้มเหลว: %s"
+
+#: imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "เซิร์ฟเวอร์ไม่ได้ส่งชุดใบรับรองมาให้"
+
+#: imported/neon/ne_props.c:372 imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "คำตอบที่ได้เกินจำนวนข้อมูลสูงสุดที่กำหนด"
+
+#: imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "ไม่สามารถแจงคำตอบ: %s"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -56,10 +78,16 @@ msgstr "%s:%d มีตัวเลือกที่ไม่รู้จัก
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ไม่มีชื่อโมดูล"
 
-#: libgnomevfs/gnome-vfs-configuration.c:366
+#: libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "ไม่เจอแฟ้มปรับแต่ง `%s': %s"
+
+#. stop parsing if we failed
+#: libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d เลิกแจงต่อ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -407,22 +435,22 @@ msgstr "โวลุมถอดเสียบ %s"
 msgid "Volume"
 msgstr "โวลุม"
 
-#: libgnomevfs/gnome-vfs-job.c:734
+#: libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "ไม่รู้จักปฏิบัติการชนิด %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1025 libgnomevfs/gnome-vfs-job.c:1176
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ไม่สามารถสร้างไปป์สำหรับเปิด GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1699
+#: libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ไม่รู้จักงานชนิด %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1732
+#: libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "หยุดปฏิบัติแล้ว"
 
@@ -878,9 +906,7 @@ msgstr "เมานท์ฟลอปปี้ไม่สำเร็จ แ�
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr ""
-"ไม่สามารถเมานท์โวลุมได้ ถ้าเป็นไดรว์ที่เข้ารหัสไว้ "
-"ก็เป็นไปได้ว่ารหัสผ่านหรือกุญแจผิด"
+msgstr "ไม่สามารถเมานท์โวลุมได้ ถ้าเป็นไดรว์ที่เข้ารหัสไว้ ก็เป็นไปได้ว่ารหัสผ่านหรือกุญแจผิด"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
@@ -963,12 +989,12 @@ msgstr "ไม่รู้จัก GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "เครือข่ายวินโดวส์"
 
-#: modules/sftp-method.c:1321
+#: modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ไม่สามารถจำแนกเอกลักษณ์ของเครื่องฝั่งโน้น (%s) ได้"
 
-#: modules/sftp-method.c:1322
+#: modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -981,11 +1007,11 @@ msgstr ""
 "ข้อความบอกเอกลักษณ์ที่เครื่องฝั่งโน้นส่งมาคือ \"%s\"  "
 "ถ้าคุณต้องการมั่นใจว่าปลอดภัยที่จะดำเนินการต่อ กรุณาติดต่อผู้ดูแลระบบ"
 
-#: modules/sftp-method.c:1330
+#: modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "เข้าระบบต่อไป"
 
-#: modules/sftp-method.c:1331
+#: modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "ยกเลิกการเข้าระบบ"
 
@@ -1002,19 +1028,19 @@ msgstr "ใช้ตัวแปรแวดล้อม %s ถ้าต้อ�
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "โรงงาน Moniker มาตรฐาน"
+msgstr "โรงงานมอนิเกอร์มาตรฐาน"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "ส่วนขยายมอนิเกอร์สำหรับแฟ้ม"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "มอนิเกอร์ GNOME VFS ทั่วไป"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr ""
+msgstr "มอนิเกอร์แฟ้มทั่วไป"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
