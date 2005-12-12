@@ -1,3 +1,14 @@
+gnome-vfs 2.13.2
+	* Support Avahi 0.6
+	* Support passwords in mount
+	* Inotify support
+	* Update neon import to 0.25
+	* Leak fixes
+	* Win32 fixes
+	* Add GNOME_VFS_FILE_INFO_FIELDS_IDS to see if uid/gid are valid
+	* Update to lates xdgmime
+	* Use the glib GThreadPool code instead of our own threadpool
+
 gnome-vfs 2.13.1
 	* Support for recent samba
 	* Fix bug when resolving nested symlinks

@@ -1,6 +1,11 @@
+2005-12-12  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update for release.
+
 2005-12-12  Christian Kellner  <gicmo@gnome.org>
 
-        * modules/http-neon-method.c: Check for mime type vadility
+        * modules/http-neon-method.c: Check for mime type validity
         before using it in a comparation. (#323657). Patch from
         William Jon McCann  <mccann@jhu.edu>
 
@@ -176,8 +181,6 @@
 	BZ_STREAM_END result. Patch from jylefort@FreeBSD.org (#322652)
 
 2005-11-30  Christian Kellner  <gicmo@gnome.org>
-
-	reviewed by: <delete if not using a buddy>
 
 	* libgnomevfs/gnome-vfs-configuration.c: Spit out a warning if
 	loading if a config file failed (#41139). Patch from
