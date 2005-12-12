@@ -1,8 +1,8 @@
-2005-12-12  Christian Kellner,,,  <gicmo@gnome.org>
+2005-12-12  Christian Kellner  <gicmo@gnome.org>
 
-	reviewed by: <delete if not using a buddy>
-
-	* modules/http-neon-method.c: (http_get_file_info):
+        * modules/http-neon-method.c: Check for mime type vadility
+        before using it in a comparation. (#323657). Patch from
+        William Jon McCann  <mccann@jhu.edu>
 
 2005-12-11  John McCutchan  <ttb@tentacle.dhs.org>
 
