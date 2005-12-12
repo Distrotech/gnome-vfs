@@ -1874,9 +1874,11 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	ne_request_destroy (req);
 	
 	if (result == GNOME_VFS_OK) {
-		const char *name;
+		const char *name;	
 		
 		name = gnome_vfs_uri_get_path (context->uri);
+	
+		gnome_vfs_file_info_clear (info);
 		
 		info->name  = g_path_get_basename (name);
 		info->type  = GNOME_VFS_FILE_TYPE_REGULAR;
@@ -1887,7 +1889,8 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		std_headers_to_file_info (req, info);
 		
 		/* work-around for broken icecast server */
-		if (! g_ascii_strcasecmp (info->mime_type, "audio/mpeg")) {
+		if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
+		    && ! g_ascii_strcasecmp (info->mime_type, "audio/mpeg")) {
 			ne_close_connection (ne_get_session (req));
 		}
 		
