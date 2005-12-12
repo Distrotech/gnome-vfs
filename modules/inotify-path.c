@@ -24,6 +24,10 @@
 */
 
 #include "config.h"
+
+/* Don't put conflicting kernel types in the global namespace: */
+#define __KERNEL_STRICT_NAMES
+
 #include "local_inotify.h"
 #if 0
 #ifdef HAVE_SYS_INOTIFY_H

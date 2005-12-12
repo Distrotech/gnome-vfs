@@ -1,5 +1,10 @@
 2005-12-12  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/inotify-path.c:
+	Define __KERNEL_STRICT_NAMES to make things build.
+
+2005-12-12  Alexander Larsson  <alexl@redhat.com>
+
 	* imported/neon/Makefile.am (NEON_INCLUDES):
 	Add ne_xmlreq.h
 
