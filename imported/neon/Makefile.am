@@ -36,6 +36,7 @@ NEON_INCLUDES = \
 	ne_uri.h	\
 	ne_utils.h	\
 	ne_xml.h	\
+	ne_xmlreq.h	\
 	ne_gnomevfs.h	\
 	$(NULL)
 
