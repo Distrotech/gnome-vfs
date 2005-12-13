@@ -205,7 +205,7 @@ load_module (const gchar *module_name, const char *method_name, const char *args
 	*method = NULL;
 	*transform = NULL;
 
-	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
+	module = g_module_open (module_name, G_MODULE_BIND_LAZY | G_MODULE_BIND_LOCAL);
 	if (module == NULL) {
 		g_warning ("Cannot load module `%s' (%s)", module_name, g_module_error ());
 		return;
