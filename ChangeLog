@@ -1,5 +1,12 @@
 2005-12-12  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Post release version bump.
+
+=== gnome-vfs 2.13.2 ===
+
+2005-12-12  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/inotify-path.c:
 	Define __KERNEL_STRICT_NAMES to make things build.
 
