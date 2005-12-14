@@ -1,3 +1,7 @@
+gnome-vfs 2.13.3
+        * load modules with BIND_LOCAL
+	* inotify fix
+	
 gnome-vfs 2.13.2
 	* Support Avahi 0.6
 	* Support passwords in mount
