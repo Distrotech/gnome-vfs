@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-22 22:55+0900\n"
-"PO-Revision-Date: 2005-09-22 22:55+0900\n"
+"POT-Creation-Date: 2005-12-17 11:16+0900\n"
+"PO-Revision-Date: 2005-12-17 11:16+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -25,39 +25,67 @@ msgstr "Bonobo を初期化できませんでした"
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
 
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr "サーバ証明書には commonName 属性が subject 名の中にありません"
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr "SSL ネゴシエーションに失敗しました: %s"
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr "サーバが証明書チェインを送信しませんでした"
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr "応答が最大プロパティ数を超えました"
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, c-format
+msgid "Could not parse response: %s"
+msgstr "応答を解析できませんでした: %s"
+
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d に NUL 文字があります。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d にメソッド名がありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d にオプションのエンドマーカがありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d に不明なオプション %s があります。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d にモジュール名がありません。"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "設定ファイル '%s' が見つかりません: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d 解析を中止しました"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -405,22 +433,22 @@ msgstr "%s リムーバブル・ボリューム"
 msgid "Volume"
 msgstr "ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することができません: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ジョブの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
@@ -441,29 +469,29 @@ msgstr "操作を停止しました"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
 "廃止予定の関数です。MIME 型データベースの変更はもうサポートしていません。"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "解析できませんでした: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "これ以上の解析エラーは無視されます。"
 
@@ -717,7 +745,7 @@ msgstr "リソースがロックされています"
 msgid "Function call deprecated"
 msgstr "廃止予定の関数呼び出しです"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
@@ -743,7 +771,7 @@ msgstr "%.1f Mバイト"
 msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1106
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
@@ -838,24 +866,24 @@ msgstr "カメラ"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Root ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "オーディオ CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "不明なボリューム"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:169
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -863,13 +891,13 @@ msgstr ""
 "されていないようです。"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "ボリュームをマウントできません。おそらくデバイスの中にメディアがないようで"
 "す。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -877,7 +905,16 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。フォーマットされていないフロッピー"
 "はマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"ボリュームをマウントできません。暗号化されたドライブならば、パスワードが間"
+"違っているか鍵が必要です。"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -885,28 +922,61 @@ msgstr ""
 "選択したボリュームをマウントできません。フォーマットされていないボリュームは"
 "マウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
 msgstr "選択したフロッピー・ドライブをマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
 msgstr "選択したボリュームをマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"選択したボリュームをマウントできません。一個以上のプログラムがそのボリューム"
+"を使用しています"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
 msgstr "選択したボリュームをアンマウントできません。"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:375
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "子プロセス %d (%s) からデータの読み込みに失敗しました"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:419
+msgid "Couldn't run mount process in a pty"
+msgstr "お使いの PTY でマウント・プロセスを起動できませんでした"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:464
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"子プロセス (%s) からデータを読み込む際に select(2) で原因不明なエラーが発生し"
+"ました"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:518
+msgid "Couldn't send password to mount process."
+msgstr "パスワードをマウント・プロセスに送信できませんでした"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:557
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "waitpid(2) (%s) している際に原因不明なエラーが発生しました"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:648
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:715
 msgid "Failed to start command"
 msgstr "コマンドの起動に失敗しました"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:703
 msgid "Unable to eject media"
 msgstr "メディアを排出できません"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:932
 msgid "Unable to unmount connected server"
 msgstr "接続済のサーバをアンマウントできません"
 
@@ -922,7 +992,7 @@ msgstr "ホーム"
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:540
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
@@ -931,12 +1001,12 @@ msgstr "不明な GnomeVFSSeekPosition %d です"
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "リモート・コンピュータ (%s) を識別できません"
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -949,11 +1019,11 @@ msgstr ""
 "リモート・コンピュータから送られた識別子は %s です。その識別子が絶対確実だと"
 "思う場合は、システム管理者に問い合わせて下さい。"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "とにかくログイン"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "キャンセル"
 
