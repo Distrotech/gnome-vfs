@@ -352,10 +352,11 @@ void                       gnome_vfs_get_file_info_result_free (GnomeVFSGetFileI
  *
  * Set the symbolic link field in @info to @value.
  */
-#define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value)			\
-	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK)	\
-	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SYMLINK))
-
+ #define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value) \
+       ((info)->flags = (value ? \
+       ((info)->flags | GNOME_VFS_FILE_FLAGS_SYMLINK) : \
+       ((info)->flags & ~GNOME_VFS_FILE_FLAGS_SYMLINK)))
+       
 /**
  * GNOME_VFS_FILE_INFO_LOCAL:
  * @info: GnomeVFSFileInfo struct
@@ -372,10 +373,10 @@ void                       gnome_vfs_get_file_info_result_free (GnomeVFSGetFileI
  *
  * Set the "local file" field in @info to @value.
  */
-#define GNOME_VFS_FILE_INFO_SET_LOCAL(info, value)			\
-	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_LOCAL)		\
-	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_LOCAL))
-
+ #define GNOME_VFS_FILE_INFO_SET_LOCAL(info, value) \
+       ((info)->flags = (value ? \
+       ((info)->flags | GNOME_VFS_FILE_FLAGS_LOCAL) : \
+       ((info)->flags & ~GNOME_VFS_FILE_FLAGS_LOCAL)))
 
 /**
  * GNOME_VFS_FILE_INFO_SUID:
@@ -412,8 +413,9 @@ void                       gnome_vfs_get_file_info_result_free (GnomeVFSGetFileI
  * Set the SUID field in @info to @value.
  */
 #define GNOME_VFS_FILE_INFO_SET_SUID(info, value)		\
-	(value ? ((info)->permissions |= GNOME_VFS_PERM_SUID)	\
-	       : ((info)->permissions &= ~GNOME_VFS_PERM_SUID))
+       ((info)->flags = (value ? \
+       ((info)->flags | GNOME_VFS_PERM_SUID) : \
+       ((info)->flags & ~GNOME_VFS_PERM_SUID)))
 
 /**
  * GNOME_VFS_FILE_INFO_SET_SGID:
@@ -423,8 +425,10 @@ void                       gnome_vfs_get_file_info_result_free (GnomeVFSGetFileI
  * Set the SGID field in @info to @value.
  */
 #define GNOME_VFS_FILE_INFO_SET_SGID(info, value)		\
-	(value ? ((info)->permissions |= GNOME_VFS_PERM_SGID)	\
-	       : ((info)->permissions &= ~GNOME_VFS_PERM_SGID))
+		((info)->flags = (value ? \
+		((info)->flags | GNOME_VFS_PERM_SGID) : \
+		((info)->flags & ~GNOME_VFS_PERM_SGID)))      
+	       
 /**
  * GNOME_VFS_FILE_INFO_SET_STICKY:
  * @info: GnomeVFSFileInfo struct

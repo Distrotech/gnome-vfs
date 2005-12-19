@@ -1,3 +1,10 @@
+2005-12-19  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-info.h: Tweak macros to acutally
+	use the value returned from the ? : statement to keep gcc happy.
+	
+	Patch from Trevor Davenport <trevor.davenport@gmail.com>
+
 2005-12-14  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
@@ -39,9 +46,9 @@
 
 2005-12-12  Christian Kellner  <gicmo@gnome.org>
 
-        * modules/http-neon-method.c: Check for mime type validity
-        before using it in a comparation. (#323657). Patch from
-        William Jon McCann  <mccann@jhu.edu>
+	* modules/http-neon-method.c: Check for mime type validity
+	before using it in a comparation. (#323657). Patch from
+	William Jon McCann  <mccann@jhu.edu>
 
 2005-12-11  John McCutchan  <ttb@tentacle.dhs.org>
 
