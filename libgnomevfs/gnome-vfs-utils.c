@@ -771,11 +771,13 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 /**
  * gnome_vfs_get_uri_from_local_path:
  * @local_full_path: a full local filesystem path (i.e. not relative).
- *
- * On Windows this should be in the UTF-8 encoding, and can start with a drive
- * letter, but doesn't have to.
  * 
- * Returns a file:/// uri for the local path @local_full_path.
+ * Returns a file:/// URI for the local path @local_full_path, 
+ * such as a path provided by gtk_file_chooser_get_filename().
+ * The resulting URI may be provided, for instance, to gnome_vfs_uri_new().
+ *
+ * On Windows @local_full_path should be in the UTF-8 encoding, and can start with a drive
+ * letter, but doesn't have to.
  *
  * Return value: a newly allocated string containing the uri corresponding 
  * to @local_full_path (%NULL for some bad errors).

@@ -491,11 +491,15 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 
 /**
  * gnome_vfs_uri_new:
- * @text_uri: a string representing a uri.
+ * @text_uri: an escaped string representing a uri.
  * 
  * Create a new uri from @text_uri. Unsupported and unsafe methods
  * are not allowed and will result in %NULL being returned. URL
  * transforms are allowed.
+ *
+ * The @a text_uri must be an escaped URI string such as returned by 
+ * gnome_vfs_get_uri_from_local_path(), gnome_vfs_make_uri_from_input(), 
+ * or gtk_file_chooser_get_uri().
  * 
  * Return value: The new uri.
  */
@@ -1117,11 +1121,12 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 /**
  * gnome_vfs_uri_append_file_name:
  * @uri: a #GnomeVFSURI.
- * @filename: any "regular" file name (can include #, /, etc).
+ * @filename: any "regular" file name (can include #, /, etc) in the file system encoding. This is not an escaped URI.
  * 
  * Create a new uri obtained by appending @file_name to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
- * the start of @file_name if necessary.
+ * the start of @file_name if necessary. @file_name might, for instance, be the 
+ * result of a call to g_dir_read_name().
  * 
  * Return value: The new uri obtained by combining @uri and @path.
  */

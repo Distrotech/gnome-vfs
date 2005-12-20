@@ -1,3 +1,10 @@
+2005-12-19  Murray Cumming  <murrayc@murrayc.com>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-utils.c: Expand some documentation 
+	to make it clearer what types of strings are expected/provided 
+	by some functions.
+
 2005-12-19  John McCutchan  <ttb@tentacle.dhs.org>
 
 	* modules/file-method.c: (inotify_monitor_add),
