@@ -31,6 +31,9 @@
 
 #include "inotify-sub.h"
 
+
+static void ih_sub_setup (ih_sub_t *sub);
+
 ih_sub_t *
 ih_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
 {
@@ -40,8 +43,11 @@ ih_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
 	sub->type = mon_type;
 	sub->uri = uri;
 	gnome_vfs_uri_ref (uri);
-	sub->path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), "/");
-	if (!sub->path)
+	sub->pathname = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), "/");
+	/* gnome_vfs_unescape_string returns NULL when
+	 * the uri path passed to it is invalid.
+	 */
+	if (!sub->pathname)
 	{
 		g_free (sub);
 		gnome_vfs_uri_unref (uri);
@@ -53,6 +59,8 @@ ih_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
 		sub->extra_flags |= IN_DONT_FOLLOW;
 	}
 */
+
+	ih_sub_setup (sub);
 	return sub;
 }
 
@@ -61,71 +69,75 @@ ih_sub_free (ih_sub_t *sub)
 {
 	if (sub->filename)
 		g_free (sub->filename);
-	if (sub->dir)
-	    g_free (sub->dir);
-	g_free (sub->path);
+	if (sub->dirname)
+	    g_free (sub->dirname);
+	g_free (sub->pathname);
 	gnome_vfs_uri_unref (sub->uri);
 	g_free (sub);
 }
 
-/* Determines if the subscription is watching
- * 1) A file
- * 2) A symlink with dont_follow_symlink flag set
- * 3) A directory
- *
- * Sets up internal subscription state:
- * sub->dir is the path that we want to monitor with inotify
- * and sub->filename is the filename when needed.
- *
- * XXX
- * This is racey because in the path could be deleted and recreated in
- * between the time we call this and the time we activate inotify on the
- * path.
- * XXX
- *
- * There are two cases where we need to call this:
- *
- * 1) The first time we add this subscription
- * 2) When the missing list reactivates this subscription
- */
-void
-ih_sub_setup (ih_sub_t *sub)
+static
+gchar *ih_sub_get_uri_dirname (GnomeVFSURI *uri)
 {
-	gchar *t;
-	size_t len;
-	if (sub->dir)
-		g_free (sub->dir);
-	if (sub->filename)
-		g_free (sub->filename);
+	gchar *t, *out;
+	t = gnome_vfs_uri_extract_dirname (uri);
+	out = gnome_vfs_unescape_string (t, "/");
+	g_free (t);
 
-	if (sub->type & GNOME_VFS_MONITOR_DIRECTORY)
-	{
-		sub->dir = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (sub->uri), "/");
-		/* Just put something in there */
-		if (!sub->dir)
-			sub->dir = g_strdup (gnome_vfs_uri_get_path (sub->uri));
-	} else {
-		t = gnome_vfs_uri_extract_dirname (sub->uri);
-		sub->dir = gnome_vfs_unescape_string (t, "/");
-		if (!sub->dir)
-			sub->dir = t;
-		else
-			g_free (t);
+	return out;
+}
 
-		t = gnome_vfs_uri_extract_short_name (sub->uri);
-		sub->filename = gnome_vfs_unescape_string (t, "/");
-		if (!sub->filename)
-			sub->filename = t;
-		else
-			g_free (t);
-	}
+static
+gchar *ih_sub_get_uri_filename (GnomeVFSURI *uri)
+{
+	gchar *t, *out;
+	t = gnome_vfs_uri_extract_short_name (uri);
+	out = gnome_vfs_unescape_string (t, "/");
+	g_free (t);
 
-	len = strlen (sub->dir);
+	return out;
+}
+
+static 
+void ih_sub_fix_dirname (ih_sub_t *sub)
+{
+	size_t len = 0;
+	
+	g_assert (sub->dirname);
+
+	len = strlen (sub->dirname);
 
 	/* We need to strip a trailing slash
 	 * to get the correct behaviour
 	 * out of the kernel
 	 */
-	if (sub->dir[len] == '/')
-		sub->dir[len] = '\0';
+	if (sub->dirname[len] == '/')
+		sub->dirname[len] = '\0';
+}
+
+/*
+ * XXX: Currently we just follow the gnome vfs monitor type flags when
+ * deciding how to treat the path. In the future we could try
+ * and determine whether the path points to a directory or a file but
+ * that is racey.
+ */
+static void
+ih_sub_setup (ih_sub_t *sub)
+{
+	/* Remove previous state */
+	if (sub->dirname)
+		g_free (sub->dirname);
+	if (sub->filename)
+		g_free (sub->filename);
+
+	if (sub->type & GNOME_VFS_MONITOR_DIRECTORY)
+	{
+		sub->dirname = g_strdup (sub->pathname);
+		sub->filename = NULL;
+	} else {
+		sub->dirname = ih_sub_get_uri_dirname (sub->uri);
+		sub->filename = ih_sub_get_uri_filename (sub->uri);
+	}
+
+	ih_sub_fix_dirname (sub);
 }

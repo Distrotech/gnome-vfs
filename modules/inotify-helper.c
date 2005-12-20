@@ -110,8 +110,6 @@ ih_sub_add (ih_sub_t * sub)
 {
 	G_LOCK(inotify_lock);
 	
-	ih_sub_setup (sub);
-
 	if (!ip_start_watching (sub))
 	{
 		im_add (sub);
@@ -129,12 +127,13 @@ ih_sub_cancel (ih_sub_t * sub)
 {
 	G_LOCK(inotify_lock);
 
-	if (sub->missing)
-		im_rm (sub);
-	else
+	if (!sub->cancelled)
+	{
 		ip_stop_watching (sub);
+		im_rm (sub);
 
-	sub->cancelled = TRUE;
+		sub->cancelled = TRUE;
+	}
 
 	G_UNLOCK(inotify_lock);
 	return TRUE;
@@ -150,9 +149,9 @@ static void ih_event_callback (ik_event_t *event, ih_sub_t *sub)
 	gevent = ih_mask_to_EventType (event->mask);
 	if (event->name)
 	{
-		fullpath = g_strdup_printf ("%s/%s", sub->dir, event->name);
+		fullpath = g_strdup_printf ("%s/%s", sub->dirname, event->name);
 	} else {
-		fullpath = g_strdup_printf ("%s/", sub->dir);
+		fullpath = g_strdup_printf ("%s/", sub->dirname);
 	}
 
 	info_uri_str = gnome_vfs_get_uri_from_local_path (fullpath);
@@ -172,14 +171,14 @@ static void ih_not_missing_callback (ih_sub_t *sub)
 
 	if (sub->filename)
 	{
-		fullpath = g_strdup_printf ("%s/%s", sub->dir, sub->filename);
+		fullpath = g_strdup_printf ("%s/%s", sub->dirname, sub->filename);
 		if (!g_file_test (fullpath, G_FILE_TEST_EXISTS)) {
 			g_free (fullpath);
 			return;
 		}
 		mask = IN_CREATE;
 	} else {
-		fullpath = g_strdup_printf ("%s/", sub->dir);
+		fullpath = g_strdup_printf ("%s/", sub->dirname);
 		mask = IN_CREATE|IN_ISDIR;
 	}
 

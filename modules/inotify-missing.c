@@ -89,7 +89,6 @@ static gboolean im_scan_missing (gpointer user_data)
 		gboolean not_m = FALSE;
 
 		g_assert (sub);
-		ih_sub_setup (sub);
 		not_m = ip_start_watching (sub);
 
 		if (not_m)

@@ -1,3 +1,20 @@
+2005-12-19  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-helper.c: (ih_sub_add), (ih_sub_cancel),
+	(ih_event_callback), (ih_not_missing_callback):
+	Don't call ih_sub_setup anymore. 
+	Unconditionally call im_rm.
+	* modules/inotify-missing.c: (im_scan_missing):
+	Don't call ih_sub_setup anymore.
+	* modules/inotify-path.c: (ip_start_watching):
+	Rename 'dir' to 'dirname'.
+	* modules/inotify-sub.c: (ih_sub_new), (ih_sub_free),
+	(ih_sub_get_uri_dirname), (ih_sub_get_uri_filename),
+	(ih_sub_fix_dirname), (ih_sub_setup):
+	Rework ih_sub_setup.
+	* modules/inotify-sub.h:
+	Make ih_sub_setup private.
+
 2005-12-19  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-file-info.h: Tweak macros to acutally

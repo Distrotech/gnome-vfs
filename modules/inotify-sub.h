@@ -27,16 +27,14 @@
 typedef struct {
 	GnomeVFSURI *uri;
 	GnomeVFSMonitorType type;
-	char *path;
-	char *dir;
+	char *pathname;
+	char *dirname;
 	char *filename;
 	guint32 extra_flags;
 	gboolean cancelled;
-	gboolean missing;
 } ih_sub_t;
 
 ih_sub_t	*ih_sub_new		(GnomeVFSURI *uri, GnomeVFSMonitorType);
 void		 ih_sub_free 	 	(ih_sub_t *sub);
-void		 ih_sub_setup		(ih_sub_t *sub);
 
 #endif /* __INOTIFY_SUB_H */

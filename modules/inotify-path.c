@@ -141,13 +141,13 @@ gboolean ip_start_watching (ih_sub_t *sub)
 	int err;
 	ip_watched_dir_t *dir;
 
-	dir = g_hash_table_lookup (path_dir_hash, sub->dir);
+	dir = g_hash_table_lookup (path_dir_hash, sub->dirname);
 	if (dir)
 	{
 		goto out;
 	}
 	
-	wd = ik_watch (sub->dir, IP_INOTIFY_MASK|IN_ONLYDIR|sub->extra_flags, &err);
+	wd = ik_watch (sub->dirname, IP_INOTIFY_MASK|IN_ONLYDIR|sub->extra_flags, &err);
 	if (wd < 0) 
 	{
 		return FALSE;
@@ -155,9 +155,9 @@ gboolean ip_start_watching (ih_sub_t *sub)
 		/* Create new watched directory and associate it with the 
 		 * wd hash and path hash
 		 */
-		dir = ip_watched_dir_new (sub->dir, wd);
+		dir = ip_watched_dir_new (sub->dirname, wd);
 		ip_map_wd_dir (wd, dir);
-		ip_map_path_dir (sub->dir, dir);
+		ip_map_path_dir (sub->dirname, dir);
 	}
 
 out:
