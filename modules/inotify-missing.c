@@ -30,7 +30,10 @@
 #include "inotify-missing.h"
 #include "inotify-path.h"
 
-#define SCAN_MISSING_TIME 500 /* 2 Hz */
+#define SCAN_MISSING_TIME 1000 /* 1 Hz */
+
+static gboolean     im_debug_enabled = FALSE;
+#define IM_W if (im_debug_enabled) g_warning
 
 /* We put ih_sub_t's that are missing on this list */
 static GList *missing_sub_list = NULL;
@@ -42,21 +45,24 @@ G_LOCK_EXTERN (inotify_lock);
 /* inotify_lock must be held before calling */
 void im_startup (void (*callback)(ih_sub_t *sub))
 {
-	gboolean initialized = FALSE;
+	static gboolean initialized = FALSE;
 
 	if (!initialized) {
+		initialized = TRUE;
 		missing_cb = callback;
 		g_timeout_add (SCAN_MISSING_TIME, im_scan_missing, NULL);
-		initialized = TRUE;
 	}
 }
 
 /* inotify_lock must be held before calling */
 void im_add (ih_sub_t *sub)
 {
-	if (g_list_find (missing_sub_list, sub)) 
+	if (g_list_find (missing_sub_list, sub)) {
+		IM_W("asked to add %s to missing list but it's already on the list!\n", sub->pathname);
 		return;
+	}
 
+	IM_W("adding %s to missing list\n", sub->dirname);
 	missing_sub_list = g_list_prepend (missing_sub_list, sub);
 }
 
@@ -67,10 +73,15 @@ void im_rm (ih_sub_t *sub)
 
 	link = g_list_find (missing_sub_list, sub);
 
-	if (!link)
+	if (!link) {
+		IM_W("asked to remove %s from missing list but it isn't on the list!\n", sub->pathname);
 		return;
+	}
+
+	IM_W("removing %s from missing list\n", sub->dirname);
 
 	missing_sub_list = g_list_remove_link (missing_sub_list, link);
+	g_list_free_1 (link);
 }
 
 /* Scans the list of missing subscriptions checking if they
@@ -83,28 +94,33 @@ static gboolean im_scan_missing (gpointer user_data)
 
 	G_LOCK(inotify_lock);
 
+	IM_W("scanning missing list with %d items\n", g_list_length (missing_sub_list));
 	for (l = missing_sub_list; l; l = l->next)
 	{
 		ih_sub_t *sub = l->data;
 		gboolean not_m = FALSE;
 
+		IM_W("checking %p\n", sub);
 		g_assert (sub);
+		g_assert (sub->dirname);
 		not_m = ip_start_watching (sub);
 
 		if (not_m)
 		{
 			missing_cb (sub);
+			IM_W("removed %s from missing list\n", sub->dirname);
 			/* We have to build a list of list nodes to remove from the
 			* missing_sub_list. We do the removal outside of this loop.
 			*/
 			nolonger_missing = g_list_prepend (nolonger_missing, l);
-		}
+		} 
 	}
 
 	for (l = nolonger_missing; l ; l = l->next)
 	{
 		GList *llink = l->data;
 		missing_sub_list = g_list_remove_link (missing_sub_list, llink);
+		g_list_free_1 (llink);
 	}
 
 	g_list_free (nolonger_missing);

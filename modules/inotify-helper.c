@@ -47,8 +47,8 @@
 #include "inotify-missing.h"
 #include "inotify-path.h"
 
-static gboolean		inotify_debug_enabled = FALSE;
-#define IH_W if (inotify_debug_enabled) g_warning 
+static gboolean		ih_debug_enabled = FALSE;
+#define IH_W if (ih_debug_enabled) g_warning 
 
 static void ih_event_callback (ik_event_t *event, ih_sub_t *sub);
 static void ih_not_missing_callback (ih_sub_t *sub);
@@ -129,10 +129,10 @@ ih_sub_cancel (ih_sub_t * sub)
 
 	if (!sub->cancelled)
 	{
-		ip_stop_watching (sub);
-		im_rm (sub);
-
+		IH_W("cancelling %s\n", sub->pathname);
 		sub->cancelled = TRUE;
+		im_rm (sub);
+		ip_stop_watching (sub);
 	}
 
 	G_UNLOCK(inotify_lock);

@@ -2481,12 +2481,6 @@ static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
 					   GnomeVFSMonitorType monitor_type)
 {
 	ih_sub_t *sub;
-	char *filename;
-
-	filename = get_path_from_uri (uri);
-	if (filename == NULL) {
-		return GNOME_VFS_ERROR_INVALID_URI;
-	}
 
 	sub = ih_sub_new (uri, monitor_type);
 	if (sub == NULL) {
@@ -2563,8 +2557,6 @@ static GnomeVFSResult inotify_monitor_cancel (GnomeVFSMethod *method,
 
 	if (sub->cancelled)
 		return GNOME_VFS_OK;
-
-	sub->cancelled = TRUE;
 
 	ih_sub_cancel (sub);
 	ih_sub_free (sub);

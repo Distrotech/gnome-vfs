@@ -31,6 +31,8 @@
 
 #include "inotify-sub.h"
 
+static gboolean     is_debug_enabled = FALSE;
+#define IS_W if (is_debug_enabled) g_warning
 
 static void ih_sub_setup (ih_sub_t *sub);
 
@@ -49,6 +51,7 @@ ih_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
 	 */
 	if (!sub->pathname)
 	{
+		IS_W("new subscription for %s failed because of invalid characters.\n", gnome_vfs_uri_get_path (uri));
 		g_free (sub);
 		gnome_vfs_uri_unref (uri);
 		return NULL;
@@ -59,6 +62,8 @@ ih_sub_new (GnomeVFSURI *uri, GnomeVFSMonitorType mon_type)
 		sub->extra_flags |= IN_DONT_FOLLOW;
 	}
 */
+
+	IS_W("new subscription for %s being setup\n", sub->pathname);
 
 	ih_sub_setup (sub);
 	return sub;
@@ -124,12 +129,6 @@ void ih_sub_fix_dirname (ih_sub_t *sub)
 static void
 ih_sub_setup (ih_sub_t *sub)
 {
-	/* Remove previous state */
-	if (sub->dirname)
-		g_free (sub->dirname);
-	if (sub->filename)
-		g_free (sub->filename);
-
 	if (sub->type & GNOME_VFS_MONITOR_DIRECTORY)
 	{
 		sub->dirname = g_strdup (sub->pathname);
@@ -140,4 +139,10 @@ ih_sub_setup (ih_sub_t *sub)
 	}
 
 	ih_sub_fix_dirname (sub);
+
+	IS_W("sub->dirname = %s\n", sub->dirname);
+	if (sub->filename)
+	{
+		IS_W("sub->filename = %s\n", sub->filename);
+	}
 }

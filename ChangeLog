@@ -1,5 +1,17 @@
 2005-12-19  John McCutchan  <ttb@tentacle.dhs.org>
 
+	* modules/file-method.c: (inotify_monitor_add),
+	(inotify_monitor_cancel):
+	* modules/inotify-helper.c: (ih_sub_cancel):
+	Stop cancelling the subscription before it was really cancelled. This
+	avoids freeing the subscription while it's still active and stops crashes.
+	* modules/inotify-missing.c: 
+	* modules/inotify-path.c: 
+	* modules/inotify-sub.c: 
+	Add some debug output.
+
+2005-12-19  John McCutchan  <ttb@tentacle.dhs.org>
+
 	* modules/inotify-helper.c: (ih_sub_add), (ih_sub_cancel),
 	(ih_event_callback), (ih_not_missing_callback):
 	Don't call ih_sub_setup anymore. 

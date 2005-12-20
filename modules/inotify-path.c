@@ -66,6 +66,9 @@ typedef struct ip_watched_dir_s {
 	GList *subs;
 } ip_watched_dir_t;
 
+static gboolean     ip_debug_enabled = FALSE;
+#define IP_W if (ip_debug_enabled) g_warning
+
 /* path -> ip_watched_dir */
 static GHashTable * path_dir_hash = NULL;
 /* ih_sub_t * -> ip_watched_dir *
@@ -141,20 +144,29 @@ gboolean ip_start_watching (ih_sub_t *sub)
 	int err;
 	ip_watched_dir_t *dir;
 
+	g_assert (sub);
+	g_assert (!sub->cancelled);
+	g_assert (sub->dirname);
+
+	IP_W("Starting to watch %s\n", sub->dirname);
 	dir = g_hash_table_lookup (path_dir_hash, sub->dirname);
 	if (dir)
 	{
+		IP_W("Already watching\n");
 		goto out;
 	}
 	
+	IP_W("Trying to add inotify watch ");
 	wd = ik_watch (sub->dirname, IP_INOTIFY_MASK|IN_ONLYDIR|sub->extra_flags, &err);
 	if (wd < 0) 
 	{
+		IP_W("Failed\n");
 		return FALSE;
 	} else {
 		/* Create new watched directory and associate it with the 
 		 * wd hash and path hash
 		 */
+		IP_W("Success\n");
 		dir = ip_watched_dir_new (sub->dirname, wd);
 		ip_map_wd_dir (wd, dir);
 		ip_map_path_dir (sub->dirname, dir);
