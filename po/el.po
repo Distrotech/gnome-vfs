@@ -23,14 +23,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-12 19:13+0300\n"
-"PO-Revision-Date: 2005-08-12 19:13+0300\n"
+"POT-Creation-Date: 2005-12-22 01:09+0200\n"
+"PO-Revision-Date: 2005-12-22 01:26+0200\n"
 "Last-Translator: Simos Xenitellis <simos@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -40,39 +40,67 @@ msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Αδυναμία αρχικοποίησης gnome vfs"
 
+#: ../imported/neon/ne_gnutls.c:434
+msgid "Server certificate was missing commonName attribute in subject name"
+msgstr ""
+
+#: ../imported/neon/ne_gnutls.c:471
+#, c-format
+msgid "SSL negotiation failed: %s"
+msgstr ""
+
+#: ../imported/neon/ne_gnutls.c:480
+msgid "Server did not send certificate chain"
+msgstr ""
+
+#: ../imported/neon/ne_props.c:372 ../imported/neon/ne_props.c:412
+msgid "Response exceeds maximum property count"
+msgstr ""
+
+#: ../imported/neon/ne_xmlreq.c:31
+#, fuzzy, c-format
+msgid "Could not parse response: %s"
+msgstr "Αδύνατη η συντακτική ανάλυση απόκρισης: %s"
+
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "Τόμος ISO 9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "Το %s:%d περιέχει χαρακτήρες NUL."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "Το %s:%d δεν περιέχει όνομα μεθόδου."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d δεν έχει endmarker επιλογών."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d έχει άγνωστες επιλογές %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "Το %s:%d δεν περιέχει όνομα αρθρώματος."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Το αρχείο ρυθμίσεων `%s' δε βρέθηκε: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -222,22 +250,221 @@ msgstr "Τόμος CIFS"
 msgid "Unknown"
 msgstr "Άγνωστος"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#, c-format
+msgid "%s Volume"
+msgstr "%s Τόμος"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "%s/%s Οδηγός"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "%s Οδηγός"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Οδηγός δισκέτας"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Οδηγός Compact Flash"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Οδηγός Memory Stick"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Οδηγός Smart Media"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "Οδηγός SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Οδηγός zip"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Οδηγός Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+#, fuzzy
+msgid "Pen Drive"
+msgstr "Οδηγός zip"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#, c-format
+msgid "%s %s Music Player"
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, fuzzy, c-format
+msgid "%s %s Digital Camera"
+msgstr "%s %s Ψηφιακή κάμερα"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+msgid "Drive"
+msgstr "Οδηγός"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#, c-format
+msgid "External %s"
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+msgid "CD-ROM Disc"
+msgstr "Δίσκος CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+msgid "Blank CD-R Disc"
+msgstr "Άδειος Δίσκος CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+msgid "CD-R Disc"
+msgstr "Δίσκος CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+msgid "Blank CD-RW Disc"
+msgstr "Άδειος Δίσκος CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "CD-RW Disc"
+msgstr "Δίσκος CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+msgid "DVD-ROM Disc"
+msgstr "Δίσκος DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+msgid "Blank DVD-RAM Disc"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+msgid "DVD-RAM Disc"
+msgstr "Δίσκος DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+msgid "Blank DVD-R Disc"
+msgstr "Άδειος Δίσκος DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+msgid "DVD-R Disc"
+msgstr "Δίσκος DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+msgid "Blank DVD-RW Disc"
+msgstr "Άδειος Δίσκος DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "DVD-RW Disc"
+msgstr "Δίσκος DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD+R Disc"
+msgstr "Άδειος Δίσκος DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD+R Disc"
+msgstr "Δίσκος DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+msgid "Blank DVD+RW Disc"
+msgstr "Άδειος Δίσκος DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "DVD+RW Disc"
+msgstr "Δίσκος DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+msgid "Audio Disc"
+msgstr "Δίσκος Audio"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#, fuzzy, c-format
+msgid "%s Removable Volume"
+msgstr "Τόμος Συστήματος"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+msgid "Volume"
+msgstr "Τόμος"
+
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Άγνωστος τύπος λειτουργίας %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ανεπιτυχής δημιουργία διασωλήνωσης για το ανοιχτό GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Άγνωστη είδος εργασίας %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 
@@ -258,17 +485,17 @@ msgstr "Η λειτουργία διακόπηκε"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
 #: ../libgnomevfs/gnome-vfs-mime-info.c:700
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -276,12 +503,12 @@ msgstr ""
 "Λειτουργία σε αχρηστία. Οι τροποποιήσεις από το χρήστη στη βάση δεδομένων "
 "MIME δεν υποστηρίζονται πια."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Αδύνατη η συντακτική ανάλυση: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Επιπλεόν συντακτικά σφάλματα θα αγνοηθούν."
 
@@ -535,7 +762,7 @@ msgstr "Ο πόρος είναι κλειδωμένος"
 msgid "Function call deprecated"
 msgstr "Function call deprecated"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Άγνωστο σφάλμα"
 
@@ -561,7 +788,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GΒ"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (μη έγκυρο Unicode)"
@@ -570,35 +797,6 @@ msgstr " (μη έγκυρο Unicode)"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
 msgid "Floppy"
 msgstr "Δισκέτα"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "CD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "CD-RW"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "DVD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "DVD-RAM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "DVD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
@@ -677,11 +875,6 @@ msgstr "Memory Stick"
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Οδηγός zip"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "Φωτογραφική μηχανή"
@@ -690,24 +883,24 @@ msgstr "Φωτογραφική μηχανή"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Τόμος Root"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Άγνωστος τόμος"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Εξυπηρετητής δικτύου"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:169
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -715,12 +908,12 @@ msgstr ""
 "στον οδηγό."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:173
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στη συσκευή."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:179
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -728,7 +921,14 @@ msgstr ""
 "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε "
 "μορφή που δεν μπορεί να προσαρτηθεί."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -736,28 +936,59 @@ msgstr ""
 "Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν "
 "μπορεί να προσαρτηθεί."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the selected floppy drive."
 msgstr "Αδυναμία προσάρτησης του επιλεγμένου οδηγού δισκέτας."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
 msgid "Unable to mount the selected volume."
 msgstr "Αδυναμία προσάρτησης του επιλεγμένου τόμου."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Αδυναμία προσάρτησης του επιλεγμένου τόμου. Πιθανόν ο τόμος να είναι σε χρήση από ένα"
+"ή περισσότερα προγράμματα."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
 msgstr "Αδυναμία αποπροσάρτησης του επιλεγμένου τόμου."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:375
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Αποτυχία ανάγνωσης δεδομένων από θυγατρική διεργασία %d·(%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:419
+msgid "Couldn't run mount process in a pty"
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:464
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:518
+msgid "Couldn't send password to mount process."
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:557
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr ""
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:648
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:715
 msgid "Failed to start command"
 msgstr "Αποτυχία έναρξης εντολής"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:703
 msgid "Unable to eject media"
 msgstr "Αδυναμία αποβολής μέσου"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:932
 msgid "Unable to unmount connected server"
 msgstr "Αδυναμία αποπροσάρτησης συνδεδεμένου εξυπηρετητή"
 
@@ -773,7 +1004,7 @@ msgstr "Αρχή"
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:540
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Άγνωστη GnomeVFSSeekPosition %d"
@@ -782,12 +1013,12 @@ msgstr "Άγνωστη GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Δίκτυο Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Η ταυτότητα του απομακρυσμένου υπολογιστή (%s) είναι άγνωστη. "
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -801,11 +1032,11 @@ msgstr ""
 "θέλετε να είστε σίγουροι ότι είναι απόλυτα ασφαλές να συνεχίσετε, "
 "επικοινωνήστε με το διαχειριστή του συστήματος σας."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Είσοδος οπωσδήποτε"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Ακύρωση Σύνδεσης"
 
@@ -1260,7 +1491,7 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Αυτό το κλειδί περιέχει μια λίστα από συστήματα στα οποία γίνεται απευθείας "
-"σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να "
+"σύνδεση, παρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να "
 "είναι ονόματα συστήματος, τομείς (με τη χρήση μιας αρχικής wildcard όπως *."
 "foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  "
 "netmask (κάτι σαν 192.168.0.0/24)."
@@ -1352,74 +1583,14 @@ msgstr ""
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "Η ομάδα εργασίας windows όπου ο χρήστης είναι μέλος"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Δίσκος CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Άδειος Δίσκος CD-R"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Δίσκος CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Άδειος Δίσκος CD-RW"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Δίσκος CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Δίσκος DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Άδειος Δίσκος DVD-R"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Δίσκος DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "DVD-R"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Δίσκος DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Άδειος Δίσκος DVD-RW"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Δίσκος DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Άδειος Δίσκος DVD+RW"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Δίσκος DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Άδειος Δίσκος DVD+R"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Δίσκος DVD+R"
-
 #~ msgid "Optical Disc"
 #~ msgstr "Οπτικός Δίσκος"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Δίσκος Audio"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Compact Flash Media"
 
 #~ msgid "Memory Stick Media"
 #~ msgstr "Memory Stick Media"
 
 #~ msgid "Smart Media Media"
 #~ msgstr "Smart Media Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC Media"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Δισκέτα"
 
 #~ msgid "Mac OS disk"
 #~ msgstr "Δίσκος MAC OS"
@@ -1441,9 +1612,6 @@ msgstr ""
 
 #~ msgid "File is empty"
 #~ msgstr "Το αρχείο είναι κενό"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Αποτυχία ανάγνωσης από το αρχείο '%s': %s"
 
 #~ msgid ""
 #~ "desktop entries contain line '%s' which is not an entry, group, or comment"
