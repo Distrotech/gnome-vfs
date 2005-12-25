@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-12 17:44+0700\n"
-"PO-Revision-Date: 2005-12-12 18:18+0700\n"
+"POT-Creation-Date: 2005-12-25 09:50+0700\n"
+"PO-Revision-Date: 2005-12-25 09:53+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -715,7 +715,7 @@ msgstr "ไม่มีปฏิบัติการกำหนดไว้ใ
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
-msgstr "ไม่มีตัวจัดการ URL ชนิดนี้"
+msgstr "ไม่มีโปรแกรมจัดการ URL ชนิดนี้"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:86
@@ -773,7 +773,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1106
+#: libgnomevfs/gnome-vfs-utils.c:1108
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (ยูนิโค้ดผิดรูปแบบ)"
@@ -1044,7 +1044,7 @@ msgstr "มอนิเกอร์แฟ้มทั่วไป"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "โปรแกรมตัวแสดงปริยาย"
+msgstr "โปรแกรมแสดงปริยาย"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -1573,35 +1573,35 @@ msgstr ""
 #~ msgstr "ตั้งเป็น true ถ้าต้องการให้โปรแกรมใน \"command\" จัดการ URL ชนิด HTTPS"
 
 #~ msgid "H323 URL handler"
-#~ msgstr "ตัวจัดการ H323 URL"
+#~ msgstr "โปรแกรมจัดการ H323 URL"
 
 #~ msgid "HTTP URL handler"
-#~ msgstr "ตัวจัดการ HTTP URL"
+#~ msgstr "โปรแกรมจัดการ HTTP URL"
 
 #~ msgid "HTTPS URL handler"
-#~ msgstr "ตัวจัดการ HTTPS URL"
+#~ msgstr "โปรแกรมจัดการ HTTPS URL"
 
 #, fuzzy
 #~ msgid "aim URL handler"
-#~ msgstr "ตัวจัดการ man URL"
+#~ msgstr "โปรแกรมจัดการ man URL"
 
 #~ msgid "callto URL handler"
-#~ msgstr "ตัวจัดการ callto URL"
+#~ msgstr "โปรแกรมจัดการ callto URL"
 
 #~ msgid "ghelp URL handler"
-#~ msgstr "ตัวจัดการ ghelp URL"
+#~ msgstr "โปรแกรมจัดการ ghelp URL"
 
 #~ msgid "info URL handler"
-#~ msgstr "ตัวจัดการ info URL"
+#~ msgstr "โปรแกรมจัดการ info URL"
 
 #~ msgid "mailto URL handler"
-#~ msgstr "ตัวจัดการ mailto URL"
+#~ msgstr "โปรแกรมจัดการ mailto URL"
 
 #~ msgid "man URL handler"
-#~ msgstr "ตัวจัดการ man URL"
+#~ msgstr "โปรแกรมจัดการ man URL"
 
 #~ msgid "trash URL handler"
-#~ msgstr "ตัวจัดการ trash URL"
+#~ msgstr "โปรแกรมจัดการ trash URL"
 
 #~ msgid "1 byte"
 #~ msgstr "1 ไบต์"
