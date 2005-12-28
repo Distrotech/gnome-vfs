@@ -1,3 +1,9 @@
+2005-12-28  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: (do_seek):
+	Only abort the transfer if position acutally changed.
+	Path from Jan Kratochvil (#324984). 
+
 2005-12-19  Murray Cumming  <murrayc@murrayc.com>
 
 	* libgnomevfs/gnome-vfs-uri.c:
@@ -10,8 +16,10 @@
 	* modules/file-method.c: (inotify_monitor_add),
 	(inotify_monitor_cancel):
 	* modules/inotify-helper.c: (ih_sub_cancel):
-	Stop cancelling the subscription before it was really cancelled. This
-	avoids freeing the subscription while it's still active and stops crashes.
+	Stop cancelling the subscription before it was really cancelled.
+	This avoids freeing the subscription while it's still active and
+	stops crashes.
+	
 	* modules/inotify-missing.c: 
 	* modules/inotify-path.c: 
 	* modules/inotify-sub.c: 
@@ -23,14 +31,18 @@
 	(ih_event_callback), (ih_not_missing_callback):
 	Don't call ih_sub_setup anymore. 
 	Unconditionally call im_rm.
+	
 	* modules/inotify-missing.c: (im_scan_missing):
 	Don't call ih_sub_setup anymore.
+	
 	* modules/inotify-path.c: (ip_start_watching):
 	Rename 'dir' to 'dirname'.
+	
 	* modules/inotify-sub.c: (ih_sub_new), (ih_sub_free),
 	(ih_sub_get_uri_dirname), (ih_sub_get_uri_filename),
 	(ih_sub_fix_dirname), (ih_sub_setup):
 	Rework ih_sub_setup.
+	
 	* modules/inotify-sub.h:
 	Make ih_sub_setup private.
 

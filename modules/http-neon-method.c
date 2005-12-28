@@ -2639,9 +2639,10 @@ do_seek (GnomeVFSMethod	      *method,
 	
 	handle = (HttpFileHandle *) method_handle;
 	
-	if (handle->mode & GNOME_VFS_OPEN_READ && handle->can_range != TRUE)
+	if (handle->mode & GNOME_VFS_OPEN_READ && handle->can_range != TRUE) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
-	
+	}
+		
 	result = GNOME_VFS_OK;
 	
 	switch (whence) {
@@ -2673,11 +2674,16 @@ do_seek (GnomeVFSMethod	      *method,
 	
 	}
 	
-	
-	/* REVIEW: is this error correct ? */
+	/* FIXME: is this error correct ? */
 	if (new_position < 0) {
 		DEBUG_HTTP ("seeking to %lld", new_position);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	/* if we shall seek to where we already are just
+	 * return OK */
+	if (handle->offset == new_position) {
+		return GNOME_VFS_OK;
 	}
 	
 	handle->offset = new_position;
