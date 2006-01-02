@@ -1,3 +1,8 @@
+2006-01-02  John McCutchan  <ttb@tentacle.dhs.org>
+
+	* modules/inotify-path.c: (ip_unmap_wd_dir), (ip_unmap_wd):
+	dir_list can be empty. Fixes #325001.
+
 2005-12-28  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: (do_seek):

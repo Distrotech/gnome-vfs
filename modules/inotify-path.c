@@ -189,8 +189,9 @@ static void
 ip_unmap_wd_dir (gint32 wd, ip_watched_dir_t *dir)
 {
 	GList *dir_list = g_hash_table_lookup (wd_dir_hash, GINT_TO_POINTER(wd));
+	if (!dir_list)
+		return;
 	g_assert (wd >= 0 && dir);
-	g_assert (g_list_length (dir_list) > 0);
 	dir_list = g_list_remove (dir_list, dir);
 	if (g_list_length (dir_list) == 0) {
 		g_hash_table_remove (wd_dir_hash, GINT_TO_POINTER(dir->wd));
@@ -203,8 +204,9 @@ static void
 ip_unmap_wd (gint32 wd)
 {
 	GList *dir_list = g_hash_table_lookup (wd_dir_hash, GINT_TO_POINTER(wd));
+	if (!dir_list)
+		return;
 	g_assert (wd >= 0);
-	g_assert (g_list_length (dir_list) > 0);
 	g_hash_table_remove (wd_dir_hash, GINT_TO_POINTER(wd));
 	g_list_free (dir_list);
 }
