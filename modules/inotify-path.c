@@ -343,8 +343,8 @@ static void ip_event_dispatch (GList *dir_list, GList *pair_dir_list, ik_event_t
 			/* If the event and the subscription have a filename
 			 * they need to match before the event could be delivered.
 			 */
-			if (event->name && sub->filename) {
-				if (strcmp (event->name, sub->filename))
+			if (event->pair->name && sub->filename) {
+				if (strcmp (event->pair->name, sub->filename))
 					continue;
 			/* If the event doesn't have a filename, but the subscription does
 			 * we shouldn't deliever the event */
