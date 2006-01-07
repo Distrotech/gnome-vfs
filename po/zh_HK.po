@@ -1,5 +1,5 @@
-# Chinese (Taiwan) translation of gnome-vfs.
-# Copyright (C) 2001, 02, 03, 04, 05 Free Software Foundation, Inc.
+# Chinese (Hong Kong) translation of gnome-vfs.
+# Copyright (C) 2005 Free Software Foundation, Inc.
 # Joe Man <trmetal@yahoo.com.hk>, 2001.
 # Woodman Tuen <wmtuen@gmail.com>, 2004
 # Li-Jen Hsin <hsin@med.cgu.edu.tw>, 2004 
@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: gnome-vfs 2.13.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-05 22:23+0800\n"
-"PO-Revision-Date: 2006-01-06 08:32+0800\n"
+"PO-Revision-Date: 2006-01-06 08:36+0800\n"
 "Last-Translator: Abel Cheung <abel@oaka.org>\n"
-"Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
+"Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,7 +67,7 @@ msgstr "AFFS 檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "AFFS 網路檔案系統"
+msgstr "AFFS 網絡檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
@@ -80,11 +80,11 @@ msgstr "光碟機"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "CD 數位音樂"
+msgstr "CD 數碼音樂"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "硬體裝置檔案系統"
+msgstr "硬件裝置檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -139,7 +139,7 @@ msgstr "Minix 檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "NFS 網路檔案系統"
+msgstr "NFS 網絡檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
@@ -219,7 +219,7 @@ msgstr "%s 檔案系統"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
 msgid "CD-ROM"
-msgstr "光碟"
+msgstr "CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
@@ -234,7 +234,7 @@ msgstr "CD-RW"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "DVD-ROM"
-msgstr "DVD 光碟"
+msgstr "DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 msgid "DVD+R"
@@ -307,9 +307,11 @@ msgstr "Zip 磁碟機"
 msgid "Jaz Drive"
 msgstr "Jaz 磁碟機"
 
+# (Abel) 目前只有俗稱能夠令大多數人明白，
+# 甚麼「閃存」「隨身碟」反而少人用
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 msgid "Pen Drive"
-msgstr "隨身碟"
+msgstr "手指"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
 #, c-format
@@ -319,7 +321,7 @@ msgstr "%s %s 音樂播放器"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Digital Camera"
-msgstr "%s %s 數位相機"
+msgstr "%s %s 數碼相機"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
 msgid "Drive"
@@ -716,7 +718,7 @@ msgstr "資源被鎖住了"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Function call deprecated"
-msgstr "函式已經過時了"
+msgstr "函數已經過時了"
 
 #: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
@@ -832,7 +834,7 @@ msgstr "Smart Media"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
-msgstr "照相機"
+msgstr "相機"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "DVD"
@@ -852,7 +854,7 @@ msgstr "不明的檔案系統"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
 msgid "Network server"
-msgstr "網路伺服器"
+msgstr "網絡伺服器"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:125
@@ -904,7 +906,7 @@ msgstr "無法卸載已連接的伺服器"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
-msgstr "網路"
+msgstr "網絡"
 
 #: ../modules/computer-method.c:564
 msgid "Home"
@@ -921,7 +923,7 @@ msgstr "不明的 GnomeVFSSeekPosition (搜尋位置) %d"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "Windows 網路"
+msgstr "Windows 網絡"
 
 #: ../modules/sftp-method.c:1321
 #, c-format
@@ -936,9 +938,9 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"當您首次登入一台主機時會發生。\n"
+"當你首次登入一台主機時會發生。\n"
 "\n"
-"遠端主機傳送來的身分為 %s。若您肯定繼續使用是安全的，請與系統管理者接洽。"
+"遠端主機傳送來的身分為 %s。若你肯定繼續使用是安全的，請與系統管理者接洽。"
 
 #: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
@@ -994,7 +996,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"有些檔案需要有一個元件來檢視它們，這裡指定檢視所用的程式。參數 %s 會被檔案的 "
+"有些檔案需要有一個元件來檢視它們，這裏指定檢視所用的程式。參數 %s 會被檔案的 "
 "URI 所取代，參數 %c 會被元件 IID 所取代。"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
@@ -1225,7 +1227,7 @@ msgstr "代表自動代理伺服器設定的 URL"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "經網際網路存取 HTTP 時啟用代理伺服器設定。"
+msgstr "經互聯網存取 HTTP 時啟用代理伺服器設定。"
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1344,7 +1346,7 @@ msgid ""
 msgstr ""
 "這設定鍵中包含了不是通過代理伺服器（如果它有啟用），而是使用直接連線的主機清"
 "單。設定值可以是主機名稱，網域名稱（使用萬用字元如 *.foo.com），主機 IP 地址"
-"（IPv4 及 IPV6 亦可）和包括網路遮罩的網路地址（如 192.168.0.0/24）。"
+"（IPv4 及 IPV6 亦可）和包括網絡遮罩的網絡地址（如 192.168.0.0/24）。"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1368,7 +1370,7 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"使用者所屬的 Windows 網路群組或網域。新的群組可能要等使用者再登入後才能完全生"
+"使用者所屬的 Windows 網絡群組或網域。新的群組可能要等使用者再登入後才能完全生"
 "效，"
 
 #: ../schemas/system_storage.schemas.in.h:1
@@ -1427,13 +1429,13 @@ msgid ""
 msgstr "是否顯示內置硬碟及其可裝載的檔案系統。（非 SCSI 光碟也會顯示）。"
 
 #~ msgid "Server certificate was missing commonName attribute in subject name"
-#~ msgstr "伺服器憑證的 subject 欄位缺少了 commonName 屬性"
+#~ msgstr "伺服器證書的 subject 欄位缺少了 commonName 屬性"
 
 #~ msgid "SSL negotiation failed: %s"
 #~ msgstr "SSL 協議失敗：%s"
 
 #~ msgid "Server did not send certificate chain"
-#~ msgstr "伺服器沒有送出中繼憑證 (chain certificate)"
+#~ msgstr "伺服器沒有送出中繼證書 (chain certificate)"
 
 #~ msgid "Response exceeds maximum property count"
 #~ msgstr "回應資料的屬性數目超過上限"
@@ -1448,7 +1450,7 @@ msgstr "是否顯示內置硬碟及其可裝載的檔案系統。（非 SCSI 光
 #~ "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 #~ "password or key was used."
 #~ msgstr ""
-#~ "無法裝載檔案系統。如果這是個已加密的檔案系統，即是表示密碼或金鑰錯誤。"
+#~ "無法裝載檔案系統。如果這是個已加密的檔案系統，即是表示密碼或密碼匙錯誤。"
 
 #~ msgid ""
 #~ "Unable to unmount the selected volume. The volume is in use by one or "
