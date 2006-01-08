@@ -501,9 +501,9 @@ ne_sock_connect_ssl (ne_socket *sock, ne_ssl_context *ctx,
 
 /* ************************************************************************** */
 
-#ifdef NEON_SSL
+#ifdef NE_HAVE_SSL
 int
-ne_negotiate_ssl (ne_request *req)
+ne__negotiate_ssl (ne_request *req)
 {
 	GnomeVFSSSL *ssl;
 	GnomeVFSCancellation *cancellation;

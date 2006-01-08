@@ -43,10 +43,8 @@
 #include <windows.h> /* for GetCurrentThreadId() etc */
 #endif
 
-#if (defined (NEON_SSL) && defined (HAVE_OPENSSL))
+#ifdef HAVE_OPENSSL
 #include <openssl/rand.h>
-#else
-#undef NEON_SSL
 #endif
 
 #include <time.h>

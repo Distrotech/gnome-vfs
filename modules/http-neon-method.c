@@ -83,8 +83,6 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
-/* #define DEBUG_HTTP_ENABLE 1 */
-#undef DEBUG_HTTP_ENABLE
 #ifdef DEBUG_HTTP_ENABLE
 
 void http_debug_printf(const char *func, const char *fmt, ...) G_GNUC_PRINTF (2,3);
@@ -1577,11 +1575,19 @@ http_acquire_connection (HttpContext *context)
 	HttpProxyInfo proxy;
 	ne_session *session;
 	
+
+	if (context->ssl == TRUE &&
+	    ! ne_has_support (NE_FEATURE_SSL)) {
+		DEBUG_HTTP ("SSL not supported!");
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+	
 	top_uri = gnome_vfs_uri_get_toplevel (context->uri);
 
-	if (top_uri == NULL)
+	if (top_uri == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
-	
+	}
+		
 	session = neon_session_pool_lookup (context->uri);
 	
 	if (session != NULL) {
@@ -1677,20 +1683,27 @@ http_context_set_uri (HttpContext *context, GnomeVFSURI *uri)
 {
 	char *uri_string;
 	
-	if (context->uri)
+	if (context->uri) {
 		gnome_vfs_uri_unref (context->uri);
-	
-	if (context->path != NULL)
+	}
+		
+	if (context->path != NULL) {
 		g_free (context->path);
-	
+	}
+		
 	context->uri = gnome_vfs_uri_dup (uri);
 	context->scheme = resolve_alias (gnome_vfs_uri_get_scheme (uri));
 	
 	if (gnome_vfs_uri_get_host_port (context->uri) == 0) {
-		if (g_str_equal (context->scheme, "https"))
-			gnome_vfs_uri_set_host_port (context->uri, DEFAULT_HTTPS_PORT);
-		else 
-			gnome_vfs_uri_set_host_port (context->uri, DEFAULT_HTTP_PORT);
+		if (g_str_equal (context->scheme, "https")) {
+			gnome_vfs_uri_set_host_port (context->uri,
+						     DEFAULT_HTTPS_PORT);
+			context->ssl = TRUE;
+		} else { 
+			gnome_vfs_uri_set_host_port (context->uri,
+						     DEFAULT_HTTP_PORT);
+			context->ssl = FALSE;
+		}
 	}
 	
 	uri_string = gnome_vfs_uri_to_string (context->uri, GNOME_VFS_URI_HIDE_USER_NAME

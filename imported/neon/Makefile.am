@@ -1,7 +1,14 @@
 NULL =
 
+if HAVE_SSL
+SSL_DEFINES = -DNE_HAVE_SSL
+else
+SSL_DEFINES =
+endif
+
 INCLUDES =					\
 	-DNE_HAVE_DAV				\
+	$(SSL_DEFINES)                          \
 	$(NEON_CFLAGS)				\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(GSSAPI_CFLAGS)			\

@@ -34,10 +34,8 @@
 #include <zlib.h>
 #endif
 
-#if (defined (NEON_SSL) && defined (HAVE_OPENSSL))
+#ifdef HAVE_OPENSSL
 #include <openssl/opensslv.h>
-#else
-#undef NEON_SSL
 #endif
 
 #ifdef HAVE_GNUTLS

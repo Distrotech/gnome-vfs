@@ -1,3 +1,22 @@
+2006-01-08  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in:
+	Clean up some SSL stuff and report SSL support.
+	Add --http-debug configure options to enable http module
+	debugging support (activate per default it for cvs versions).
+	
+	* imported/neon/Makefile.am:
+	* imported/neon/ne_auth.c:
+	* imported/neon/ne_gnomevfs.c:
+	* imported/neon/ne_utils.c:
+	Make SSL work again.
+	
+	* modules/http-neon-method.c:
+	Report NOT_SUPPORTED if a ssl uri was requested but no ssl
+	support was compiled in.
+
+	(#326030)
+
 2006-01-07  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
 
 	* configure.in: Add "zh_HK" to ALL_LINGUAS.
