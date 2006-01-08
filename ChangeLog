@@ -1,9 +1,15 @@
 2006-01-08  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c: (http_get_file_info):
+	Destroy the request object only after we have read out the
+	headers. Patch from Christian Neumair (#325861).
+
+2006-01-08  Christian Kellner  <gicmo@gnome.org>
+
 	* configure.in:
 	Clean up some SSL stuff and report SSL support.
 	Add --http-debug configure options to enable http module
-	debugging support (activate per default it for cvs versions).
+	debugging support (activate it per default for cvs versions).
 	
 	* imported/neon/Makefile.am:
 	* imported/neon/ne_auth.c:

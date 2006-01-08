@@ -1884,7 +1884,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 
 
 	result = resolve_result (res, req);	
-	ne_request_destroy (req);
 	
 	if (result == GNOME_VFS_OK) {
 		const char *name;	
@@ -1908,7 +1907,9 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		}
 		
 	}
-
+	
+	ne_request_destroy (req);
+	
 	return result;
 }
 
