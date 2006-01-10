@@ -1,3 +1,10 @@
+2006-01-10  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in: Require glib 2.9.2
+	
+	* modules/file-method.c: Remove code copied from glib obsoleted
+	with the dependency to glib 2.9.2. 
+
 2006-01-08  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: (http_get_file_info):
