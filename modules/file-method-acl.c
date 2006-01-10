@@ -36,22 +36,52 @@
 #include <sys/resource.h>
 
 #ifdef HAVE_PWD_H
-#include <pwd.h>
+# include <pwd.h>
 #endif
 
 #ifdef HAVE_GRP_H
-#include <grp.h>
+# include <grp.h>
 #endif
 
 #ifdef HAVE_POSIX_ACL
-#include <acl/libacl.h>
+# include <acl/libacl.h>
 #endif
 
 #include "file-method-acl.h"
 
+#define CMD_PERM_READ           4
+#define CMD_PERM_WRITE          2
+#define CMD_PERM_EXECUTE        1
+#define CMD_PERM_COND_EXECUTE   8
+
+
 /* ************************************************************************** */
 /* POSIX ACL */
 #ifdef HAVE_POSIX_ACL
+
+static uid_t
+string_to_uid (const char *uid)
+{
+	struct passwd *passwd;
+	
+	passwd = getpwnam(uid);
+	if (passwd == NULL) return 0;
+	
+	return passwd->pw_uid;
+}
+
+
+static gid_t
+string_to_gid (const char *gid)
+{
+	struct group *group;
+        
+	group = getgrnam (gid);
+	if (group == NULL) return 0;
+        
+	return group->gr_gid;
+}
+
 
 static char *
 uid_to_string (uid_t uid) 
@@ -220,7 +250,7 @@ posix_acl_read (GnomeVFSACL *acl,
 		return 0;	
 	}
 
-    n    = 0;
+	n = 0;
 	e_id = ACL_FIRST_ENTRY;	
 	while ((res = acl_get_entry (p_acl, e_id, &entry)) == 1) {
 		GnomeVFSACLPerm   pset[POSIX_N_TAGS];
@@ -230,11 +260,15 @@ posix_acl_read (GnomeVFSACL *acl,
 		acl_tag_t         e_type;
 		void             *e_qf;
 		char             *id;	
-
+		
 		e_id   = ACL_NEXT_ENTRY;	
 		e_type = ACL_UNDEFINED_ID;
 		e_qf   = NULL;
 		
+//		prop = (def) ? GNOME_VFS_ACL_DEFAULT : GNOME_VFS_ACL_TYPE_NULL;
+		/* Read "default"	
+		 */
+	
 		res = acl_get_tag_type (entry, &e_type);
 
 		if (res == -1 || e_type == ACL_UNDEFINED_ID || e_type == ACL_MASK) {
@@ -285,6 +319,10 @@ posix_acl_read (GnomeVFSACL *acl,
 
 		g_free (id);
 
+		if (def) {
+			g_object_set (G_OBJECT(ace), "inherit", def, NULL);
+		}
+
 		gnome_vfs_acl_set (acl, ace);
 
 		g_object_unref (ace);
@@ -303,16 +341,12 @@ posix_acl_read (GnomeVFSACL *acl,
 
 GnomeVFSResult file_get_acl (const char       *path,
                              GnomeVFSFileInfo *info,
-                             struct stat      *statbuf, /* needed? */
+                             struct stat      *statbuf,
                              GnomeVFSContext  *context)
 {
 #ifdef HAVE_POSIX_ACL
 	acl_t p_acl;
 	int   n;
-	
-	if (acl_extended_file (path) != 1) {
-		return GNOME_VFS_OK;
-	}
 	
 	if (info->acl != NULL) {
 		/* FIXME create a _clear () for this */
@@ -350,13 +384,245 @@ GnomeVFSResult file_get_acl (const char       *path,
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
 }
-                             
+
+ 
+static GnomeVFSResult
+aclerrno_to_vfserror (int acl_errno)
+{
+	switch (acl_errno) {
+	case ENOENT:			 
+	case EINVAL:       
+		return GNOME_VFS_ERROR_BAD_FILE;
+	case EACCES:     
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
+	case ENAMETOOLONG: 
+		return GNOME_VFS_ERROR_NAME_TOO_LONG;
+	case EPERM:
+		return GNOME_VFS_ERROR_NOT_PERMITTED;
+	case ENOSPC:
+		return GNOME_VFS_ERROR_NO_SPACE;
+	case EROFS:
+		return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
+	default:
+		break;
+	}
+	
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+
+static acl_entry_t
+find_entry (acl_t acl, acl_tag_t type, id_t id)
+{
+        acl_entry_t  ent;
+        acl_tag_t    e_type;
+        id_t        *e_id_p;
+	
+        if (acl_get_entry(acl, ACL_FIRST_ENTRY, &ent) != 1)
+                return NULL;
+	
+        for(;;) {
+                acl_get_tag_type(ent, &e_type);
+                if (type == e_type) {
+                        if (id == ACL_UNDEFINED_ID) 
+                                return ent;
+			
+			e_id_p = acl_get_qualifier(ent);
+			
+			if (e_id_p == NULL)
+				return NULL;
+			
+			if (*e_id_p == id) {
+				acl_free(e_id_p);
+				return ent;
+			}
+			
+			acl_free(e_id_p);
+                }
+		
+                if (acl_get_entry(acl, ACL_NEXT_ENTRY, &ent) != 1)
+                        return NULL;
+        }
+}
+
+
+static void
+set_permset (acl_permset_t permset, mode_t perm)
+{
+        if (perm & CMD_PERM_READ)
+                acl_add_perm (permset, ACL_READ);
+        else
+                acl_delete_perm (permset, ACL_READ);
+	   
+        if (perm & CMD_PERM_WRITE)
+                acl_add_perm (permset, ACL_WRITE);
+        else
+                acl_delete_perm (permset, ACL_WRITE);
+	   
+        if (perm & CMD_PERM_EXECUTE)
+                acl_add_perm (permset, ACL_EXECUTE);
+        else
+                acl_delete_perm (permset, ACL_EXECUTE);
+}
+
+static int
+clone_entry (acl_t  from_acl, acl_tag_t from_type,
+	     acl_t *to_acl,   acl_tag_t to_type)
+{
+        acl_entry_t from_entry;
+	acl_entry_t to_entry;
+	
+        from_entry = find_entry(from_acl, from_type, ACL_UNDEFINED_ID);
+        if (from_entry == NULL) return 1;
+	
+	if (acl_create_entry(to_acl, &to_entry) != 0)
+		return -1;
+	
+	acl_copy_entry(to_entry, from_entry);
+	acl_set_tag_type(to_entry, to_type);
+	
+	return 0;
+}
+
+                            
 GnomeVFSResult 
 file_set_acl (const char             *path,
-			  const GnomeVFSFileInfo *info,
+	      const GnomeVFSFileInfo *info,
               GnomeVFSContext        *context)
 {
+#ifdef HAVE_POSIX_ACL
+	GList *acls;
+	GList *entry;
+	acl_t  acl_obj;
+	acl_t  acl_obj_default;
+
+
+	if (info->acl == NULL) 
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	
+	/* POSIX ACL object
+	 */
+	acl_obj_default = acl_get_file (path, ACL_TYPE_DEFAULT);     
+
+	acl_obj = acl_get_file (path, ACL_TYPE_ACCESS);      
+	if (acl_obj == NULL) return GNOME_VFS_ERROR_GENERIC;
+
+	/* Parse stored information
+	 */
+	acls = gnome_vfs_acl_get_ace_list (info->acl);
+	if (acls == NULL) return GNOME_VFS_OK;
+
+	for (entry=acls; entry != NULL; entry = entry->next) {
+		GnomeVFSACE           *ace  = GNOME_VFS_ACE(entry->data);
+		const char            *id_str;
+		GnomeVFSACLKind        kind;
+		int                    id;
+
+		int                    re;
+		acl_tag_t              type;
+		mode_t                 perms      = 0;
+		acl_entry_t            new_entry  = NULL;
+		acl_permset_t          permset    = NULL;
+		gboolean               is_default = FALSE;
+		
+		id_str     = gnome_vfs_ace_get_id (ace);
+		kind       = gnome_vfs_ace_get_kind (ace);
+		is_default = gnome_vfs_ace_get_inherit (ace);
+		
+		/* Perms
+		 */
+		if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_READ))
+			perms |= CMD_PERM_READ;
+		else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_WRITE))
+			perms |= CMD_PERM_WRITE;
+		else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_EXECUTE))
+			perms |= CMD_PERM_EXECUTE;
+		
+		/* Type
+		 */
+		switch (kind) {
+		case GNOME_VFS_ACL_USER:
+			id   = string_to_uid (id_str);
+			type = ACL_USER;			
+			break;
+
+		case GNOME_VFS_ACL_GROUP:
+			id   = string_to_gid (id_str);
+			type = ACL_GROUP;
+			break;
+
+		case GNOME_VFS_ACL_OTHER:
+			type = ACL_OTHER;
+			break;
+
+		default:
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;			
+		}
+
+		/* Add the entry
+		 */
+		new_entry = find_entry (acl_obj, type, id);
+		if (new_entry == NULL) {
+			/* new */
+			if (is_default)
+				re = acl_create_entry (&acl_obj_default, &new_entry);
+			else
+				re = acl_create_entry (&acl_obj, &new_entry);
+			if (re != 0) return aclerrno_to_vfserror (errno);
+			
+			/* e_tag */
+			re = acl_set_tag_type (new_entry, type);
+			if (re != 0) return aclerrno_to_vfserror (errno);
+			
+			/* e_id */
+			re = acl_set_qualifier (new_entry, &id);
+			if (re != 0) return aclerrno_to_vfserror (errno);
+		}
+
+		/* e_perm */
+		re = acl_get_permset (new_entry, &permset);
+		if (re != 0) return aclerrno_to_vfserror (errno);
+		set_permset (permset, perms);
+
+		/* Fix it up
+		 */
+		if (is_default && (acl_obj_default != NULL)) {
+			if (! find_entry (acl_obj_default, ACL_USER_OBJ, ACL_UNDEFINED_ID)) {
+				clone_entry (acl_obj, ACL_USER_OBJ, &acl_obj_default, ACL_USER_OBJ);
+			}
+			
+			if (! find_entry (acl_obj_default, ACL_GROUP_OBJ, ACL_UNDEFINED_ID)) {
+				clone_entry (acl_obj, ACL_GROUP_OBJ, &acl_obj_default, ACL_GROUP_OBJ);
+			}
+			
+			if (! find_entry (acl_obj_default, ACL_OTHER, ACL_UNDEFINED_ID)) {
+				clone_entry (acl_obj, ACL_OTHER, &acl_obj_default, ACL_OTHER);
+			}			
+		}
+		
+		if (acl_equiv_mode (acl_obj, NULL) != 0) {
+
+			if (! find_entry (acl_obj, ACL_MASK, ACL_UNDEFINED_ID)) {                       
+				clone_entry (acl_obj, ACL_GROUP_OBJ, &acl_obj, ACL_MASK);
+			}
+
+			if (is_default)
+				re = acl_calc_mask (&acl_obj_default);
+			else 
+				re = acl_calc_mask (&acl_obj);
+
+/* 			tmp = (prop == GNOME_VFS_ACL_DEFAULT) ? acl_obj_default: acl_obj; */			
+/* 			re = acl_calc_mask (&tmp); */
+
+			if (re != 0) return aclerrno_to_vfserror (errno);
+		}
+	}
+		
+	gnome_vfs_acl_free_ace_list (acls);
+	return GNOME_VFS_OK;
+#else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 

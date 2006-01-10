@@ -424,6 +424,7 @@ gnome_vfs_ace_get_id (GnomeVFSACE *entry)
 	
 	return priv->id; 
 }
+
 void
 gnome_vfs_ace_set_id (GnomeVFSACE *entry,
                       const char  *id)
@@ -435,6 +436,40 @@ gnome_vfs_ace_set_id (GnomeVFSACE *entry,
 	g_free (priv->id);
 	priv->id = g_strdup (id);
 }
+
+void 
+gnome_vfs_ace_set_inherit (GnomeVFSACE *entry,
+			   gboolean     inherit)
+{
+	g_object_set (G_OBJECT(entry), "inherit", inherit, NULL);
+}
+
+gboolean
+gnome_vfs_ace_get_inherit (GnomeVFSACE *entry)
+{
+	gboolean inherit;
+
+	g_object_get (G_OBJECT(entry), "inherit", &inherit, NULL);
+	return inherit;
+}
+
+
+void 
+gnome_vfs_ace_set_negative (GnomeVFSACE *entry,
+			    gboolean     negative)
+{
+	g_object_set (G_OBJECT(entry), "negative", negative, NULL);
+}
+
+gboolean
+gnome_vfs_ace_get_negative (GnomeVFSACE *entry)
+{
+	gboolean negative;
+
+	g_object_get (G_OBJECT(entry), "negative", &negative, NULL);
+	return negative;
+}
+
 
 const GnomeVFSACLPerm  *
 gnome_vfs_ace_get_perms (GnomeVFSACE *entry)

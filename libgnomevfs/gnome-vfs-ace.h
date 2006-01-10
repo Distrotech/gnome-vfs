@@ -47,12 +47,12 @@ struct _GnomeVFSACE {
 };
 
 struct _GnomeVFSACEClass {
-    GObjectClass parent_class;
+	GObjectClass parent_class;
     
-    void (*reserved1) (void);
-    void (*reserved2) (void);
-    void (*reserved3) (void);
-    void (*reserved4) (void);
+	void (*reserved1) (void);
+	void (*reserved2) (void);
+	void (*reserved3) (void);
+	void (*reserved4) (void);
 };
 
 
@@ -66,8 +66,6 @@ GnomeVFSACE *           gnome_vfs_ace_new            (GnomeVFSACLKind  kind,
                                                       const char      *id,
                                                       GnomeVFSACLPerm *perms);
 
-
-
 GnomeVFSACLKind         gnome_vfs_ace_get_kind       (GnomeVFSACE      *entry);
 void                    gnome_vfs_ace_set_kind       (GnomeVFSACE      *entry,
                                                       GnomeVFSACLKind   kind);
@@ -75,7 +73,15 @@ void                    gnome_vfs_ace_set_kind       (GnomeVFSACE      *entry,
 const char *            gnome_vfs_ace_get_id         (GnomeVFSACE      *entry);
 void                    gnome_vfs_ace_set_id         (GnomeVFSACE      *entry,
                                                       const char       *id);
-                                              
+
+gboolean                gnome_vfs_ace_get_inherit    (GnomeVFSACE *entry);
+void                    gnome_vfs_ace_set_inherit    (GnomeVFSACE *entry,
+						      gboolean     inherit);
+
+gboolean                gnome_vfs_ace_get_negative   (GnomeVFSACE *entry);
+void                    gnome_vfs_ace_set_negative   (GnomeVFSACE *entry,
+						      gboolean     negative);
+
 const GnomeVFSACLPerm * gnome_vfs_ace_get_perms      (GnomeVFSACE      *entry);
 void                    gnome_vfs_ace_set_perms      (GnomeVFSACE      *entry,
                                                       GnomeVFSACLPerm  *perms);

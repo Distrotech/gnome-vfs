@@ -51,15 +51,14 @@ enum {
 
 const char *  gnome_vfs_acl_perm_to_string   (GnomeVFSACLPerm perm);
 
-
-
 enum {
 	GNOME_VFS_ACL_PERM_NULL = 0,
-	GNOME_VFS_ACL_READ   = 1,
+	GNOME_VFS_ACL_READ      = 1,
 	GNOME_VFS_ACL_WRITE,
 	GNOME_VFS_ACL_EXECUTE, 
 	GNOME_VFS_ACL_PERM_SYS_LAST
 };
+
 
 /* ************************************************************************** */
 

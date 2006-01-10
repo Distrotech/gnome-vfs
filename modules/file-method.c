@@ -2305,9 +2305,8 @@ do_set_file_info (GnomeVFSMethod *method,
 	
 	if (mask & GNOME_VFS_SET_FILE_INFO_ACL) {
 		GnomeVFSResult result;
-		
+
 		result = file_set_acl (full_name, info, context);
-		
 		if (result != GNOME_VFS_OK) {
 			g_free (full_name);
 			return result;	
