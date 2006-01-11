@@ -33,6 +33,8 @@
 
 #include <sys/time.h>
 #include <arpa/inet.h>
+
+#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-inet-connection.h>
 #include <libgnomevfs/gnome-vfs-socket-buffer.h>
@@ -142,8 +144,11 @@ typedef struct {
 	GnomeVFSFileInfoOptions file_info_options;
 } FtpDirHandle;
 
-
+/* Gconf key's "use_http_proxy" is for FTP as well, it should be renamed */
 static const char USE_PROXY_KEY[] = "/system/http_proxy/use_http_proxy";
+
+static const char PROXY_FTP_HOST_KEY[] = "/system/proxy/ftp_host";
+static const char PROXY_FTP_PORT_KEY[] = "/system/proxy/ftp_port";
 
 
 static GnomeVFSResult do_open	         (GnomeVFSMethod               *method,
@@ -179,6 +184,9 @@ static GnomeVFSResult get_list_command (FtpConnection   *conn,
 
 static const int   control_port = 21;
 
+/* FTP Proxy */
+static gchar *proxy_host = NULL;
+static int proxy_port = 0;
 
 /* A GHashTable of FtpConnectionPool */
 
@@ -1071,7 +1079,15 @@ ftp_login (FtpConnection *conn,
 	gchar *tmpstring;
 	GnomeVFSResult result;
 	
-	tmpstring = g_strdup_printf ("USER %s", user);
+	if (!proxy_host) {
+		tmpstring = g_strdup_printf ("USER %s", user);
+	} else {
+		/* Using FTP proxy */
+		tmpstring = g_strdup_printf ("USER %s@%s",
+					     user,
+					     gnome_vfs_uri_get_host_name (conn->uri));
+	}
+
 	result = do_basic_command (conn, tmpstring, cancellation);
 	g_free (tmpstring);
 
@@ -1095,7 +1111,9 @@ try_connection (GnomeVFSURI *uri,
 	gint port = control_port;
 	const char *host;
 	
-	if (gnome_vfs_uri_get_host_port (uri)) {
+	if (proxy_host) {
+		port = proxy_port;
+	} else if (gnome_vfs_uri_get_host_port (uri)) {
                 port = gnome_vfs_uri_get_host_port (uri);
         }
 
@@ -1103,7 +1121,12 @@ try_connection (GnomeVFSURI *uri,
 	if (*saved_ip != NULL) {
 		host = *saved_ip;
 	} else {
-		host = gnome_vfs_uri_get_host_name (uri);
+		if (!proxy_host) {
+			host = gnome_vfs_uri_get_host_name (uri);
+		} else  {
+			/* Use FTP proxy */
+			host = proxy_host;
+		}
 	}
 
 	if (host == NULL) {
@@ -2820,12 +2843,37 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
+	GConfClient *gclient;
+
 	connection_pools = g_hash_table_new (ftp_connection_uri_hash, 
 					     ftp_connection_uri_equal);
+
+	gclient = gconf_client_get_default ();
+	if (gclient) {
+		if (gconf_client_get_bool (gclient, USE_PROXY_KEY, NULL)) {
+			/* Using FTP proxy */
+			proxy_host = gconf_client_get_string (gclient,
+							      PROXY_FTP_HOST_KEY,
+							      NULL);
+			/* Don't use blank hostname */
+			if (proxy_host &&
+			    *proxy_host == 0) {
+				g_free (proxy_host);
+				proxy_host = NULL;
+			}
+			proxy_port = gconf_client_get_int (gclient,
+							   PROXY_FTP_PORT_KEY,
+							   NULL);
+		} else proxy_host = NULL;
+	}
+
 	return &method;
 }
 
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
+	if (proxy_host) {
+		g_free (proxy_host);
+	}
 }
