@@ -1,6 +1,12 @@
 2006-01-11  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c:
+	don't use absolut paths, fixes #312343
+	Patch from Fabio Bonelli
+	
+2006-01-11  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ftp-method.c:
 	initial ftp proxy work, #113200
 	Patch from Fabio Bonelli
 

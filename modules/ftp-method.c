@@ -596,22 +596,42 @@ do_path_command (FtpConnection *conn,
 		 GnomeVFSURI *uri,
 		 GnomeVFSCancellation *cancellation) 
 {
-	char *path;
-	char *actual_command;
+	char *unescaped;
+	gchar *basename,
+	      *path,
+	      *actual_command,
+	      *cwd_command;
 	GnomeVFSResult result;
+	int end;
 
-	/* as some point we may need to make this execute a CD and then
-  	 * a command using the basename rather than the full path. I am yet
-	 * to come across such a system.
-	 */
-	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-
-	if (path == NULL || path[0] == '\0') {
-		actual_command = g_strconcat (command, " /", NULL);
-	} else {
-		actual_command = g_strconcat (command, " ", path, NULL);
+	/* Execute a CD and then a command using the basename rather
+	 * than the full path. Useful for some (buggy?) systems. */
+	unescaped = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (unescaped == NULL || unescaped[0] == '\0') {
+		unescaped = g_strdup ("/");
 	}
+
+	/* Remove trailing slashes */
+	end = strlen(unescaped) - 1;
+	if (end > 0 && unescaped[end] == '/') {
+		unescaped[end] = 0;
+	}
+	
+	basename = g_path_get_basename (unescaped);
+	path = g_path_get_dirname (unescaped);
+	g_free (unescaped);
+
+	cwd_command = g_strconcat ("CWD ", path, NULL);
 	g_free (path);
+	result = do_basic_command (conn, cwd_command, cancellation);
+	g_free (cwd_command);
+	if (result != GNOME_VFS_OK) {
+		g_free (basename);
+		return result;
+	}
+
+	actual_command = g_strconcat (command, " ", basename, NULL);
+	g_free (basename);
 
 	result = do_basic_command (conn, actual_command, cancellation);
 	g_free (actual_command);
@@ -744,22 +764,41 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 static GnomeVFSResult
 do_path_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSURI *uri, GnomeVFSContext *context) 
 {
-	char *path;
-	char *actual_command;
+	char *unescaped;
+	gchar *basename,
+	      *path,
+	      *cwd_command,
+	      *actual_command;
 	GnomeVFSResult result;
+	int end;
 
-	/* as some point we may need to make this execute a CD and then
-  	 * a command using the basename rather than the full path. I am yet
-	 * to come across such a system.
-	 */
-	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
-
-	if (path == NULL || path[0] == '\0') {
-		actual_command = g_strconcat (command, " /", NULL);
-	} else {
-		actual_command = g_strconcat (command, " ", path, NULL);
+	unescaped = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	if (unescaped == NULL || unescaped[0] == '\0') {
+		unescaped = g_strdup ("/");
 	}
+
+	/* Remove trailing slashes */
+	end = strlen(unescaped) - 1;
+	if (end > 0 && unescaped[end] == '/') {
+		unescaped[end] = 0;
+	}
+
+	basename = g_path_get_basename (unescaped);
+	path = g_path_get_dirname (unescaped);
+	g_free (unescaped);
+
+	cwd_command = g_strconcat ("CWD ", path, NULL);
 	g_free (path);
+	result = do_basic_command (conn, cwd_command,
+				   get_cancellation (context));
+	g_free (cwd_command);
+	if (result != GNOME_VFS_OK) {
+		g_free (basename);
+		return result;
+	}
+
+	actual_command = g_strconcat (command, " ", basename, NULL);
+	g_free (basename);
 
 	result = do_transfer_command (conn, actual_command, context);
 	g_free (actual_command);
