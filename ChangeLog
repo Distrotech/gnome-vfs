@@ -1,3 +1,10 @@
+2006-01-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (list_add_items_and_size):
+	Always pass GNOME_VFS_FILE_INFO_DEFAULT, even in FOLLOW_LINKS case.
+	Doesn't really matter (default is 0), but looks cleaner.
+	Patch from Christian Neumair (#325861)
+
 2005-00-12  Archana Shah  <archana.shah@wipro.com>
 	* libgnomevfs/gnome-vfs-xfer.c: (handle_overwrite):
 	Skip the copy operation if we are trying to overwrite the file onto itself.

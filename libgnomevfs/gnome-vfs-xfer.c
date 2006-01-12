@@ -755,10 +755,9 @@ list_add_items_and_size (const GList *name_uri_list,
 	each_params.progress = progress;
 	each_params.result = GNOME_VFS_OK;
 
+	info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS) {
-		info_options = GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
-	} else {
-		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
+		info_options |= GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
 	}
 
 	return gnome_vfs_visit_list (name_uri_list, info_options,
@@ -805,10 +804,9 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 	each_params.progress = progress;
 	each_params.result = GNOME_VFS_OK;
 
+	info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS) {
-		info_options = GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
-	} else {
-		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
+		info_options |= GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
 	}
 
 	return gnome_vfs_directory_visit_uri (dir_uri, info_options,
@@ -939,10 +937,9 @@ handle_merged_directory_name_conflicts (GnomeVFSXferOptions xfer_options,
 	if (xfer_options & GNOME_VFS_XFER_SAMEFS)
 		visit_options |= GNOME_VFS_DIRECTORY_VISIT_SAMEFS;
 
+	info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS) {
-		info_options = GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
-	} else {
-		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
+		info_options |= GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
 	}
 
 	params.result = GNOME_VFS_OK;
