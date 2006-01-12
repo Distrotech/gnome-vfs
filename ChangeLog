@@ -1,3 +1,8 @@
+2005-00-12  Archana Shah  <archana.shah@wipro.com>
+	* libgnomevfs/gnome-vfs-xfer.c: (handle_overwrite):
+	Skip the copy operation if we are trying to overwrite the file onto itself.
+	Partly fixes bug# 311591
+
 2006-01-11  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c:

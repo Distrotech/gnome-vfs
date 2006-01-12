@@ -1026,9 +1026,15 @@ handle_name_conflicts (GList **source_uri_list,
 		    gnome_vfs_get_file_info_uri (uri, target_info, GNOME_VFS_FILE_INFO_DEFAULT) == GNOME_VFS_OK) {
 			progress_set_source_target_uris (progress, source_uri, uri);
 			
-			/* no error getting info -- file exists, ask what to do */
-			replace = handle_overwrite (&result, progress, error_mode,
-						    overwrite_mode, &replace, &skip);
+			/* Skip if we are trying to copy the file to itself */
+			if (gnome_vfs_uri_equal (uri, source_uri)) {
+				replace = FALSE;
+				skip = TRUE;
+			} else {
+				/* no error getting info -- file exists, ask what to do */
+				replace = handle_overwrite (&result, progress, error_mode,
+							    overwrite_mode, &replace, &skip);
+			}
 			
 			/* FIXME bugzilla.eazel.com 1207:
 			 * move items to Trash here
