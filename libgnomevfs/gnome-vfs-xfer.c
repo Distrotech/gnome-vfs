@@ -337,7 +337,7 @@ handle_overwrite (GnomeVFSResult *result,
 	switch (*overwrite_mode) {
 	case GNOME_VFS_XFER_OVERWRITE_MODE_ABORT:
 		*replace = FALSE;
-		*result = GNOME_VFS_ERROR_FILE_EXISTS;
+		*result = GNOME_VFS_ERROR_INTERRUPTED;
 		*skip = FALSE;
 		return FALSE;
 	case GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE:
@@ -357,7 +357,7 @@ handle_overwrite (GnomeVFSResult *result,
 		switch (action) {
 		case GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT:
 			*replace = FALSE;
-			*result = GNOME_VFS_ERROR_FILE_EXISTS;
+			*result = GNOME_VFS_ERROR_INTERRUPTED;
 			*skip = FALSE;
 			return FALSE;
 		case GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE:
