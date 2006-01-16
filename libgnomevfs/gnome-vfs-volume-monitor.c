@@ -809,19 +809,19 @@ volume_name_is_unique (GnomeVFSVolumeMonitor *volume_monitor,
 
 	for (l = volume_monitor->priv->mtab_volumes; l != NULL; l = l->next) {
 		volume = l->data;
-		if (strcmp (volume->priv->display_name, name) == 0) {
+		if (volume->priv->is_user_visible && strcmp (volume->priv->display_name, name) == 0) {
 			return FALSE;
 		}
 	}
 	for (l = volume_monitor->priv->server_volumes; l != NULL; l = l->next) {
 		volume = l->data;
-		if (strcmp (volume->priv->display_name, name) == 0) {
+		if (volume->priv->is_user_visible && strcmp (volume->priv->display_name, name) == 0) {
 			return FALSE;
 		}
 	}
 	for (l = volume_monitor->priv->vfs_volumes; l != NULL; l = l->next) {
 		volume = l->data;
-		if (strcmp (volume->priv->display_name, name) == 0) {
+		if (volume->priv->is_user_visible && strcmp (volume->priv->display_name, name) == 0) {
 			return FALSE;
 		}
 	}
@@ -857,13 +857,13 @@ drive_name_is_unique (GnomeVFSVolumeMonitor *volume_monitor,
 
 	for (l = volume_monitor->priv->fstab_drives; l != NULL; l = l->next) {
 		drive = l->data;
-		if (strcmp (drive->priv->display_name, name) == 0) {
+		if (drive->priv->is_user_visible && strcmp (drive->priv->display_name, name) == 0) {
 			return FALSE;
 		}
 	}
 	for (l = volume_monitor->priv->vfs_drives; l != NULL; l = l->next) {
 		drive = l->data;
-		if (strcmp (drive->priv->display_name, name) == 0) {
+		if (drive->priv->is_user_visible && strcmp (drive->priv->display_name, name) == 0) {
 			return FALSE;
 		}
 	}

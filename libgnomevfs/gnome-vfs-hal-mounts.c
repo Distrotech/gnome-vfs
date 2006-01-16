@@ -428,13 +428,21 @@ _hal_drive_policy_get_display_name (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 	} else if (drive_type == LIBHAL_DRIVE_TYPE_FLASHKEY) {
 		name = g_strdup (_("Pen Drive"));
 	} else if (drive_type == LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER) {
+		const char *vendor;
+		const char *model;
+		vendor = libhal_drive_get_vendor (hal_drive);
+		model = libhal_drive_get_model (hal_drive);
 		name = g_strdup_printf (_("%s %s Music Player"), 
-					libhal_drive_get_vendor (hal_drive),
-					libhal_drive_get_model (hal_drive));
+					vendor != NULL ? vendor : "",
+					model != NULL ? model : "");
 	} else if (drive_type == LIBHAL_DRIVE_TYPE_CAMERA) {
+		const char *vendor;
+		const char *model;
+		vendor = libhal_drive_get_vendor (hal_drive);
+		model = libhal_drive_get_model (hal_drive);
 		name = g_strdup_printf (_("%s %s Digital Camera"), 
-					libhal_drive_get_vendor (hal_drive),
-					libhal_drive_get_model (hal_drive));
+					vendor != NULL ? vendor : "",
+					model != NULL ? model : "");
 	}
 
 	if (name != NULL)
@@ -687,6 +695,12 @@ _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	       libhal_volume_disc_is_blank (hal_volume)))
 		goto out;
 
+	/* for volumes the vendor and/or sysadmin wants to be ignore (e.g. bootstrap HFS
+	 * partitions on the Mac, HP_RECOVERY partitions on HP systems etc.)
+	 */
+	if (libhal_volume_should_ignore (hal_volume))
+		goto out;
+
 	/* if mounted; discard if it got a FHS-2.3 name (to get /, /boot, /usr etc. out of the way) 
 	 *
 	 * (yes, this breaks if the user mounts it later but that is not normally the case for such volumes)
@@ -709,8 +723,10 @@ _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	fstype = libhal_volume_get_fstype (hal_volume);
 
 	/* blacklist partitions with name 'bootstrap' of type HFS (Apple uses that) */
+/*
 	if (label != NULL && fstype != NULL && strcmp (label, "bootstrap") == 0 && strcmp (fstype, "hfs") == 0)
 		goto out;
+*/
 
 	ret = TRUE;
 out:

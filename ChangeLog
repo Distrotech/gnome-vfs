@@ -1,3 +1,25 @@
+2006-01-15  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: 
+	(mount_unmount_thread): Use gnome-mount if configured to do so. 
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	(drive_name_is_unique): Do not test name uniqueness against hidden
+	drives
+	(volume_name_is_unique): Same for volumes
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_hal_drive_policy_get_display_name): Vendor as returned from
+	libhal- storage may be NULL; handle that case
+	(_hal_volume_policy_check): Use new hal 0.5.6 API addition to hide
+	volumes that are to be ignored
+
+	* libgnomevfs/Makefile.am: Export $(bindir) as GNOME_VFS_BINDIR as
+	it's needed to find gnome-mount and friends
+
+	* configure.in: Look for gnome-mount and use it if found (unless
+	specifically told not to; on by default). Require hal >= 0.5.6.
+
 2006-01-15  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (handle_overwrite):

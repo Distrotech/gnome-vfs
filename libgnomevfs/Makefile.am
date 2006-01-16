@@ -21,6 +21,7 @@ INCLUDES =					\
 	-D_REENTRANT				\
 	-DG_DISABLE_DEPRECATED			\
 	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
+	-DGNOME_VFS_BINDIR=\"$(bindir)\"	\
 	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
 	-DGNOME_VFS_LIBDIR=\"$(libdir)\"	\
 	-DGNOME_VFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \

@@ -155,6 +155,9 @@ typedef struct _MountThreadAuth {
 	GMutex *mutex;
 } MountThreadAuth;
 
+
+#if !defined(USE_GNOME_MOUNT)
+/* gnome-mount programs display their own dialogs so no use for these functions */
 static char *
 generate_mount_error_message (char *standard_error,
 			      GnomeVFSDeviceType device_type)
@@ -211,6 +214,7 @@ generate_unmount_error_message (char *standard_error,
 
 	return message;
 }
+#endif /* !defined(USE_GNOME_MOUNT) */
 
 static void
 force_probe (void)
@@ -605,7 +609,12 @@ mount_unmount_thread (void *arg)
 	if (info->should_mount || info->should_unmount) {
 		error = NULL;
  		if (spawn_mount (info, 
-#if defined(USE_HAL) && defined(HAL_MOUNT) && defined(HAL_UMOUNT)
+#if defined(USE_GNOME_MOUNT)
+				  /* do pass our environment when using gnome-mount progams */
+				  ((strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-mount") == 0) ||
+				   (strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-umount") == 0) ||
+				   (strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-eject") == 0)) ? NULL : envp,
+#elif defined(USE_HAL) && defined(HAL_MOUNT) && defined(HAL_UMOUNT)
 				  /* do pass our environment when using hal mount progams */
 				  ((strcmp (info->argv[0], HAL_MOUNT) == 0) ||
 				   (strcmp (info->argv[0], HAL_UMOUNT) == 0)) ? NULL : envp,
@@ -617,6 +626,11 @@ mount_unmount_thread (void *arg)
 				   &error)) {
 			if (exit_status != 0) {
 				info->succeeded = FALSE;
+#if defined(USE_GNOME_MOUNT)
+				/* gnome-mount programs display their own dialogs */
+				info->error_message = g_strdup ("");
+				info->detailed_error_message = g_strdup ("");
+#else
 				if (strlen (standard_error) > 0) {
 					if (info->should_mount) {
 						info->error_message = generate_mount_error_message (standard_error,
@@ -639,6 +653,7 @@ mount_unmount_thread (void *arg)
 					info->error_message = g_strdup ("");
 					info->detailed_error_message = g_strdup ("");
 				}
+#endif
 			}
 
 			g_free (standard_error);
@@ -656,7 +671,17 @@ mount_unmount_thread (void *arg)
 
 		argv[0] = NULL;
 
-#if defined(USE_HAL) && defined(HAL_EJECT)
+#if defined(USE_GNOME_MOUNT)
+		if (info->hal_udi != NULL) {
+			argv[0] = GNOME_VFS_BINDIR "/gnome-eject";
+			argv[1] = "--hal-udi";
+			argv[2] = info->hal_udi;
+			argv[3] = NULL;
+			
+			if (!g_file_test (argv [0], G_FILE_TEST_IS_EXECUTABLE))
+				argv[0] = NULL;
+		}
+#elif defined(USE_HAL) && defined(HAL_EJECT)
 		if (info->hal_udi != NULL) {
 			argv[0] = HAL_EJECT;
 			argv[1] = info->device_path;
@@ -700,8 +725,14 @@ mount_unmount_thread (void *arg)
 
 			if (exit_status != 0) {
 				info->succeeded = FALSE;
+#if defined(USE_GNOME_MOUNT)
+				/* gnome-mount programs display their own dialogs */
+				info->error_message = g_strdup ("");
+				info->detailed_error_message = g_strdup ("");
+#else
 				info->error_message = g_strdup (_("Unable to eject media"));
 				info->detailed_error_message = g_strdup (standard_error);
+#endif
 			} else {
 				/* If the eject succeed then ignore the previous unmount error (if any) */
 				info->succeeded = TRUE;
@@ -769,7 +800,15 @@ mount_unmount_operation (const char *mount_point,
 #endif
        
        if (should_mount) {
-#if defined(USE_HAL) && defined(HAL_MOUNT)
+#if defined(USE_GNOME_MOUNT)
+	       if (hal_udi != NULL && g_file_test (GNOME_VFS_BINDIR "/gnome-mount", G_FILE_TEST_IS_EXECUTABLE)) {
+		       command = GNOME_VFS_BINDIR "/gnome-mount";
+		       argument = "--hal-udi";
+		       name = hal_udi;
+	       } else {
+		       command = find_command (MOUNT_COMMAND);
+	       }
+#elif defined(USE_HAL) && defined(HAL_MOUNT)
 	       if (hal_udi != NULL && g_file_test (HAL_MOUNT, G_FILE_TEST_IS_EXECUTABLE))
 		       command = HAL_MOUNT;
 	       else
@@ -783,8 +822,16 @@ mount_unmount_operation (const char *mount_point,
        }
 
        if (should_unmount) {
-		gboolean is_in_media = g_str_has_prefix (mount_point, "/media");
-#if defined(USE_HAL) && defined(HAL_UMOUNT)
+	       gboolean is_in_media = g_str_has_prefix (mount_point, "/media");
+#if defined(USE_GNOME_MOUNT)
+	       if (hal_udi != NULL && g_file_test (GNOME_VFS_BINDIR "/gnome-umount", G_FILE_TEST_IS_EXECUTABLE)) {
+		       command = GNOME_VFS_BINDIR "/gnome-umount";
+		       argument = "--hal-udi";
+		       name = hal_udi;
+	       } else {
+		       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
+	       }
+#elif defined(USE_HAL) && defined(HAL_UMOUNT)
 	       if (hal_udi != NULL && g_file_test (HAL_UMOUNT, G_FILE_TEST_IS_EXECUTABLE))
 		       command = HAL_UMOUNT;
 	       else
