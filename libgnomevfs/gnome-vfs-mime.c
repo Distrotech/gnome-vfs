@@ -132,18 +132,81 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 }
 
 /**
+ * gnome_vfs_mime_type_for_name:
+ * @filename: a filename.
+ *
+ * Determine the mime type for @filename. The file @filename may
+ * not exist, this function does not access the actual file.
+ * If the mime-type cannot be determined, %GNOME_VFS_MIME_TYPE_UNKNOWN
+ * is returned.
+ * 
+ * Returns: the mime-type for this filename or
+ * %GNOME_VFS_MIME_TYPE_UNKNOWN if mime-type could not be determined.
+ *
+ * Since: 2.14
+ */
+const char *
+gnome_vfs_get_mime_type_for_name (const char *filename)
+{
+	return gnome_vfs_mime_type_from_name_or_default (filename,
+							 GNOME_VFS_MIME_TYPE_UNKNOWN);
+}
+
+/**
  * gnome_vfs_mime_type_from_name:
  * @filename: a filename (the file does not necessarily exist).
  *
  * Determine the mime type for @filename.
  *
+ * Deprecated: This function is deprecated, use
+ * gnome_vfs_get_mime_type_for_name instead.
+ *
  * Returns: the mime-type for this filename. Will return
  * %GNOME_VFS_MIME_TYPE_UNKNOWN if mime-type could not be found.
  */
 const char *
-gnome_vfs_mime_type_from_name (const gchar * filename)
+gnome_vfs_mime_type_from_name (const gchar *filename)
 {
-	return gnome_vfs_mime_type_from_name_or_default (filename, GNOME_VFS_MIME_TYPE_UNKNOWN);
+	return gnome_vfs_get_mime_type_for_name (filename);
+}
+
+/**
+ * gnome_vfs_mime_type_for_name_and_data:
+ * @filename: a filename.
+ * @data: a pointer to the data in the memory
+ * @data_size: the size of @data
+ *
+ * Determine the mime-type for @filename and @data. This function tries
+ * to be smart (e.g. mime subclassing) about returning the right mime-type 
+ * by looking at both the @data and the @filename. The file will not be 
+ * accessed.
+ * If the mime-type cannot be determined, %GNOME_VFS_MIME_TYPE_UNKNOWN
+ * is returned.
+ * 
+ * Returns: the mime-type for this filename or
+ * %GNOME_VFS_MIME_TYPE_UNKNOWN if mime-type could not be determined.
+ *
+ * Since: 2.14
+ */
+const char *
+gnome_vfs_mime_type_for_name_and_data (const char    *filename,
+				       gconstpointer  data,
+				       gssize         data_size)
+{
+	GnomeVFSMimeSniffBuffer *sniff_buffer;
+	const char *mime_type;
+	
+	sniff_buffer = gnome_vfs_mime_sniff_buffer_new_from_existing_data (data,
+									   data_size);
+
+	
+	mime_type = _gnome_vfs_get_mime_type_internal (sniff_buffer,
+						       filename,
+						       TRUE);
+
+	gnome_vfs_mime_sniff_buffer_free (sniff_buffer);
+
+	return mime_type;
 }
 
 static const char *
@@ -196,7 +259,9 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 }
 
 const char *
-_gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name, gboolean use_suffix)
+_gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer,
+				   const char              *file_name,
+				   gboolean                 use_suffix)
 {
 	const char *result;
 	const char *fn_result;

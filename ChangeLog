@@ -1,3 +1,17 @@
+2006-01-16  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-utils.h:
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-mime.c: 
+	(gnome_vfs_get_mime_type_for_name),
+	(gnome_vfs_mime_type_for_name_and_data): 
+	New mime utility functions for use with e.g. mmap'ed files
+	
+	(gnome_vfs_mime_type_from_name): Deprecated, use 
+	gnome_vfs_get_mime_type_for_name instead.
+
+	Based on a patch from Paolo Borelli <pborelli@katamail.com> (#324185)
+	
 2006-01-15  David Zeuthen  <davidz@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c: 

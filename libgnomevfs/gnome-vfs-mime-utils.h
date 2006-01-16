@@ -44,15 +44,20 @@ typedef enum {
   GNOME_VFS_MIME_PARENT
 } GnomeVFSMimeEquivalence;
 
-GnomeVFSMimeEquivalence gnome_vfs_mime_type_get_equivalence (const char    *mime_type,
-							     const char    *base_mime_type);
-gboolean                gnome_vfs_mime_type_is_equal        (const char    *a,
-							     const char    *b);
+GnomeVFSMimeEquivalence gnome_vfs_mime_type_get_equivalence   (const char    *mime_type,
+							       const char    *base_mime_type);
+gboolean                gnome_vfs_mime_type_is_equal          (const char    *a,
+							       const char    *b);
 
-const char             *gnome_vfs_get_mime_type_for_data    (gconstpointer  data,
-							     int            data_size);
-char                   *gnome_vfs_get_mime_type             (const char    *text_uri);
-char                   *gnome_vfs_get_slow_mime_type        (const char    *text_uri);
+const char             *gnome_vfs_get_mime_type_for_name      (const char *filename);
+const char             *gnome_vfs_get_mime_type_for_data      (gconstpointer  data,
+							       int            data_size);
+const char             *gnome_vfs_mime_type_for_name_and_data (const char    *filename,
+							       gconstpointer  data,
+							       gssize         data_size);
+
+char                   *gnome_vfs_get_mime_type               (const char    *text_uri);
+char                   *gnome_vfs_get_slow_mime_type          (const char    *text_uri);
 
 
 G_END_DECLS
