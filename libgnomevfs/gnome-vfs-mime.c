@@ -132,7 +132,7 @@ gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defa
 }
 
 /**
- * gnome_vfs_mime_type_for_name:
+ * gnome_vfs_get_mime_type_for_name:
  * @filename: a filename.
  *
  * Determine the mime type for @filename. The file @filename may
@@ -171,7 +171,7 @@ gnome_vfs_mime_type_from_name (const gchar *filename)
 }
 
 /**
- * gnome_vfs_mime_type_for_name_and_data:
+ * gnome_vfs_get_mime_type_for_name_and_data:
  * @filename: a filename.
  * @data: a pointer to the data in the memory
  * @data_size: the size of @data
@@ -189,9 +189,9 @@ gnome_vfs_mime_type_from_name (const gchar *filename)
  * Since: 2.14
  */
 const char *
-gnome_vfs_mime_type_for_name_and_data (const char    *filename,
-				       gconstpointer  data,
-				       gssize         data_size)
+gnome_vfs_get_mime_type_for_name_and_data (const char    *filename,
+					   gconstpointer  data,
+					   gssize         data_size)
 {
 	GnomeVFSMimeSniffBuffer *sniff_buffer;
 	const char *mime_type;

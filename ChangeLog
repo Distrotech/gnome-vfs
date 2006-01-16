@@ -1,6 +1,13 @@
 2006-01-16  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-utils.h:
+	* libgnomevfs/gnome-vfs-mime.c:
+	Rename gnome_vfs_mime_type_for_name_and_data to 
+	gnome_vfs_get_mime_type_for_name_and_data.
+
+2006-01-16  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-utils.h:
 	* libgnomevfs/gnome-vfs-mime.h:
 	* libgnomevfs/gnome-vfs-mime.c: 
 	(gnome_vfs_get_mime_type_for_name),
