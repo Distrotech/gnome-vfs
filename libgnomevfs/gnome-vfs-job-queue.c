@@ -41,53 +41,103 @@ static volatile gboolean gnome_vfs_quitting = FALSE;
 static void
 thread_entry_point (gpointer data, gpointer user_data)
 {
-	guint id;
 	GnomeVFSJob *job;
-	GnomeVFSAsyncHandle *job_handle;
 	gboolean complete;
 
-	job_handle = (GnomeVFSAsyncHandle *) data;
-
-	id = GPOINTER_TO_UINT (job_handle);
+	job = (GnomeVFSJob *) data;
 	/* job map must always be locked before the job_lock
 	 * if both locks are needed */
 	_gnome_vfs_async_job_map_lock ();
 	
-	job = _gnome_vfs_async_job_map_get_job (job_handle);
-	
-	if (job == NULL) {
-		JOB_DEBUG (("job already dead, bail %u", id));
+	if (_gnome_vfs_async_job_map_get_job (job->job_handle) == NULL) {
+		JOB_DEBUG (("job already dead, bail %p",
+			    job->job_handle));
 		_gnome_vfs_async_job_map_unlock ();
+		g_print ("baling out\n");
+
+		/* FIXME: doesn't that leak here? */
 		return;
 	}
 	
-	JOB_DEBUG (("locking job_lock %u", id));
+	JOB_DEBUG (("locking job_lock %p", job->job_handle));
 	g_mutex_lock (job->job_lock);
 	_gnome_vfs_async_job_map_unlock ();
 
 	_gnome_vfs_job_execute (job);
 	complete = _gnome_vfs_job_complete (job);
 	
-	JOB_DEBUG (("Unlocking access lock %u", id));
+	JOB_DEBUG (("Unlocking access lock %p", job->job_handle));
 	g_mutex_unlock (job->job_lock);
 
 	if (complete) {
 		_gnome_vfs_async_job_map_lock ();
-		JOB_DEBUG (("job %u done, removing from map and destroying", id));
-		_gnome_vfs_async_job_completed (job_handle);
+		JOB_DEBUG (("job %p done, removing from map and destroying", 
+			    job->job_handle));
+		_gnome_vfs_async_job_completed (job->job_handle);
 		_gnome_vfs_job_destroy (job);
 		_gnome_vfs_async_job_map_unlock ();
 	}
 }
 
+static gint
+prioritize_threads (gconstpointer a,
+		    gconstpointer b,
+		    gpointer      user_data)
+{
+	GnomeVFSJob *job_a;
+	GnomeVFSJob *job_b;
+	int          prio_a;
+	int          prio_b;
+	int          retval;
+	
+	job_a = (GnomeVFSJob *) a;
+	job_b = (GnomeVFSJob *) b;
 
-void 
+	prio_a = job_a->priority;
+	prio_b = job_b->priority;
+
+	/* From glib gtk-doc:
+	 * 
+	 * a negative value if the first task should be processed 
+	 * before the second or a positive value if the 
+	 * second task should be processed first. 
+	 *
+	 */
+	
+	if (prio_a > prio_b) {
+		return -1;
+	} else if (prio_a < prio_b) {
+		return 1;
+	}
+
+	/* Since job_handles are just increasing u-ints
+	 * we return a negative value if job_a->job_handle >
+	 * job_b->job_handle so we have sort the old job
+	 * before the newer one  */
+	retval = GPOINTER_TO_UINT (job_a->job_handle) -
+		 GPOINTER_TO_UINT (job_b->job_handle);
+
+	return retval;
+}
+
+void
 _gnome_vfs_job_queue_init (void)
 {
+	GError *err = NULL;
+
 	thread_pool = g_thread_pool_new (thread_entry_point,
 					 NULL,
 					 DEFAULT_THREAD_COUNT_LIMIT,
 					 FALSE,
+					 &err);
+
+	if (G_UNLIKELY (thread_pool == NULL)) {
+		g_error ("Could not create threadpool: %s",
+			 err->message);
+	}
+	
+	g_thread_pool_set_sort_function (thread_pool,
+					 prioritize_threads,
 					 NULL);
 }
 
@@ -106,7 +156,7 @@ _gnome_vfs_job_schedule (GnomeVFSJob *job)
 		return FALSE;
 	}
 
-	g_thread_pool_push (thread_pool, job->job_handle, &err);
+	g_thread_pool_push (thread_pool, job, &err);
 
 	if (G_UNLIKELY (err != NULL)) {
 		g_warning ("Could not push thread %s into pool\n",

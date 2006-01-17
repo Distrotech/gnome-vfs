@@ -1,5 +1,21 @@
 2006-01-16  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-job-queue.c:
+	(thread_entry_point),
+	(_gnome_vfs_job_schedule):
+	Directly use the GnomeVFSJob struct not the job_handle.
+	
+	(_gnome_vfs_job_queue_init),
+	(prioritize_threads):
+	Prioritize threads.
+
+	* libgnomevfs/gnome-vfs-job.h:
+	Mark functions as internal with G_GNUC_INTERNAL.
+
+	* configure.in: Require glib 2.9.3.
+
+2006-01-16  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-mime-utils.h:
 	* libgnomevfs/gnome-vfs-mime.c:
 	Rename gnome_vfs_mime_type_for_name_and_data to 
