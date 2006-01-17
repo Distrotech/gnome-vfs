@@ -64,8 +64,8 @@ TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
 TESTS = test-address      \
 	test-async-cancel \
 	test-escape       \
-	test-uri          \
-	test-queue $(srcdir)/auto-test
+	test-uri       	  \
+       	$(srcdir)/auto-test	
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\

@@ -1,3 +1,21 @@
+gnome-vfs 2.13.4
+	* Add support for gnome-mount
+	* Re-add thread prioritizing
+	* Add gnome_vfs_get_mime_type_for_name_and_data () and
+          gnome_vfs_get_mime_type_for_name () 
+	* Deprecate gnome_vfs_mime_type_from_name ()
+	* Skip attempts to overwrite a file onto itself in 
+          gnome_vfs_xfer and friends.
+	* Retrun GNOME_VFS_ERROR_INTERRUPTED when aborting transfers
+	* inotify: Fix various crashers and bugs
+	* ftp-method: Basic support for proxies
+	* http-method: Fix SSL support
+	* http-mehtod: Fix bugs introduced during the neon upgrade
+	* Various hal related volume fixes
+	* Hide some more private functions
+	* Some documentation updates
+	* Translation updates
+
 gnome-vfs 2.13.3
         * load modules with BIND_LOCAL
 	* inotify fix

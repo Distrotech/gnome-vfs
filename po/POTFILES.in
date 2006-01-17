@@ -2,9 +2,6 @@
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
 daemon/gnome-vfs-daemon.c
-imported/neon/ne_gnutls.c
-imported/neon/ne_props.c
-imported/neon/ne_xmlreq.c
 libgnomevfs/gnome-vfs-cdrom.c
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
