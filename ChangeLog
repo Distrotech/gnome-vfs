@@ -1,5 +1,11 @@
 2006-01-17  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in:
+	Post release version bump.
+
+=== gnome-vfs 2.13.4 ===
+2006-01-17  Christian Kellner  <gicmo@gnome.org>
+
 	* NEWS: Update for release.
 	
 	* po/POTFILES.in:
