@@ -1,21 +1,21 @@
 # Gnome-vfs eesti keele tõlge.
 # Estonian translation of  Gnome-vfs.
 #
-# Copyright (C) 2002, 2003, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2005, 2006 Free Software Foundation, Inc.
 #
 # Ilmar Kerm <ikerm@hot.ee>, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2003.
 # Kitt <peroona@hot.ee>, 2005.
 # Priit Laes <amd@store20.com>, 2005.
-# Ivar Smolin <okul@linux.ee>, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs GNOME 2.12\n"
+"Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-03 13:29+0200\n"
-"PO-Revision-Date: 2005-10-05 23:17+0300\n"
-"Last-Translator: Priit Laes <amd@store20.com>\n"
+"POT-Creation-Date: 2006-01-17 07:10+0100\n"
+"PO-Revision-Date: 2006-01-17 14:26+0200\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,10 +59,16 @@ msgstr "%s:%d sisaldab tundmatuid valikuid %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ei sisalda mooduli nime."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Seadistusfaili '%s' ei leitud: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d katkestas parsimise."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -213,10 +219,10 @@ msgid "Unknown"
 msgstr "Tundmatu"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
 #, c-format
 msgid "%s Volume"
-msgstr ""
+msgstr "%s seade"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
@@ -308,125 +314,124 @@ msgstr "Zip ketas"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
 msgid "Jaz Drive"
-msgstr ""
+msgstr "Jaz-seade"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 msgid "Pen Drive"
-msgstr ""
+msgstr "Pen-seade"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s muusikamängija"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s digikaamera"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
 msgid "Drive"
 msgstr "Ketas"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
 #, c-format
 msgid "External %s"
 msgstr "Väline %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
 msgid "CD-ROM Disc"
 msgstr "CD-ROM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
 msgid "Blank CD-R Disc"
 msgstr "Tühi CD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
 msgid "CD-R Disc"
 msgstr "CD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "Blank CD-RW Disc"
 msgstr "Tühi CD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
 msgid "CD-RW Disc"
 msgstr "CD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
 msgid "Blank DVD-RAM Disc"
 msgstr "Tühi DVD-RAM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
 msgid "Blank DVD-R Disc"
 msgstr "Tühi DVD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
 msgid "DVD-R Disc"
 msgstr "DVD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
 msgid "Blank DVD-RW Disc"
 msgstr "Tühi DVD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "DVD-RW Disc"
 msgstr "DVD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
 msgid "Blank DVD+R Disc"
 msgstr "Tühi DVD+R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
 msgid "DVD+R Disc"
 msgstr "DVD+R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
 msgid "Blank DVD+RW Disc"
 msgstr "Tühi DVD+RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
 msgid "DVD+RW Disc"
 msgstr "DVD+RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
 msgid "Audio Disc"
 msgstr "Audioplaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
 #, c-format
 msgid "%s Removable Volume"
-msgstr ""
+msgstr "%s eemaldatav seade"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
 msgid "Volume"
-msgstr ""
+msgstr "Seade"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tundmatu operatsioonitüüp: %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025
-#: ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Avatud GIOChannel kanalile pole võimalik toru luua: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tundmatu töö tüüp %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operatsioon seisatud"
 
@@ -447,26 +452,30 @@ msgstr "Operatsioon seisatud"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
-msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Aegunud funktsioon.  Kasutajapoolne MIME andmebaasi muutmine pole enam toetatud."
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Aegunud funktsioon.  Kasutajapoolne MIME andmebaasi muutmine pole enam "
+"toetatud."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Analüüsimine pole võimalik: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Järgmisi töötlusvigu eiratakse."
 
@@ -701,8 +710,7 @@ msgid "Error launching command"
 msgstr "Viga käsu käivitamisel"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
 msgstr "Ajapiirang on ületatud"
 
@@ -721,7 +729,7 @@ msgstr "Ressurss on lukus"
 msgid "Function call deprecated"
 msgstr "Funktsioonikutsung on aegunud"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Tundmatu viga"
 
@@ -747,7 +755,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (vigane Unicode)"
@@ -842,62 +850,112 @@ msgstr "Kaamera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Juurseade"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Tundmatu seade"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Võrguserver"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:172
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Flopiketast ei õnnestu ühendada. Tõenäoliselt pole ketast seadmes."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:176
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Seadet ei õnnestu külge ühendada. Tõenäoliselt pole meediat seadmes."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühildamatus vormingus."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:182
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühildamatus "
+"vormingus."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, mida pole võimalik külge ühendada."
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Seadet pole võimalik ühendada. Kui tegemist on krüptitud seadmega, siis on "
+"kasutatakse ilmselt vale parooli või võtit."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:189
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, "
+"mida pole võimalik külge ühendada."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid "Unable to mount the selected floppy drive."
 msgstr "Valitud flopiketast ei õnnestu külge ühendada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid "Unable to mount the selected volume."
 msgstr "Valitud ketast ei õnnestu külge ühendada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Valitud ketast ei õnnestu lahti ühendada. Ketas on tõenäoliselt mõne "
+"programmi poolt kasutusel."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:212
 msgid "Unable to unmount the selected volume."
 msgstr "Ühendust valitud kettaga ei õnnestu katkestada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:379
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Tõrge lapsprotsessilt %d andmete lugemisel (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:423
+msgid "Couldn't run mount process in a pty"
+msgstr "Ühendamisprotsessi pole võimalik pseudoterminalil käivitada"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:468
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"Ootamatu viga select() funktsioonis andmete lugemisel lapsprotsessilt (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:522
+msgid "Couldn't send password to mount process."
+msgstr "Ühendamisprotsessile pole võimalik parooli saata"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:561
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Ootamatu viga waitpid() funktsioonis (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:663
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:746
 msgid "Failed to start command"
 msgstr "Tõrge käsu käivitamisel"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:733
 msgid "Unable to eject media"
 msgstr "Meediat ei õnnuestu väljastada"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:979
 msgid "Unable to unmount connected server"
 msgstr "Ühendust serveriga ei õnnestu katkestada"
 
@@ -913,7 +971,7 @@ msgstr "Kodu"
 msgid "Filesystem"
 msgstr "Failisüsteem"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tundmatu GnomeVFSSeekPosition %d"
@@ -922,27 +980,29 @@ msgstr "Tundmatu GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows'i võrk"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Võrguarvuti (%s) identiteet on tundmatu."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 msgstr ""
 "See juhtub kui sa logid arvutisse esimest korda.\n"
 "\n"
-"Kaugarvuti saadetud identiteet on %s. Kui tahad turvalises jätkamises täiesti kindel olla, siis võta ühendust süsteemihalduriga."
+"Kaugarvuti saadetud identiteet on %s. Kui tahad turvalises jätkamises "
+"täiesti kindel olla, siis võta ühendust süsteemihalduriga."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Logi siiski sisse"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Loobu sisselogimisest"
 
@@ -987,12 +1047,21 @@ msgstr "Vaikimisi terminalikäivitusargument"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Rakendus, mida kasutada failide puhul, mille vaatamiseks on vaja kasutada komponenti. Parameeter %s asendatakse faili URI'ga, parameeter %c komponendi IID'ga."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Rakendus, mida kasutada failide puhul, mille vaatamiseks on vaja kasutada "
+"komponenti. Parameeter %s asendatakse faili URI'ga, parameeter %c komponendi "
+"IID'ga."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Vaikimisi terminalirakendus kasutamiseks terminali vajavate rakenduste jaoks."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Vaikimisi terminalirakendus kasutamiseks terminali vajavate rakenduste jaoks."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1083,48 +1152,72 @@ msgid "The handler for \"trash\" URLs"
 msgstr "\"trash\" URLi käsitleja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"aim\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"callto\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"ghelp\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"h323\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"http\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"https\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"info\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"mailto\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"man\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
 msgstr "Tõene, kui \"käsk\" võtmes määratud käsk käsitleb \"trash\" URLe."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "Tõene, kui käsku, mis määratud seda tüüpi URLide käsitlemiseks, tuleks käivitada terminalis ."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Tõene, kui käsku, mis määratud seda tüüpi URLide käsitlemiseks, tuleks "
+"käivitada terminalis ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1167,8 +1260,12 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Kas määratud käsk peaks käsitlema \"trash\" URLe"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
-msgstr "Komadega eraldatud rida DNS-SD domeenidest, mis peaksid olema nähtavad võrgukohas \"network:///\"."
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"Komadega eraldatud rida DNS-SD domeenidest, mis peaksid olema nähtavad "
+"võrgukohas \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1180,7 +1277,8 @@ msgstr "Kuidas kuvada kohalikku DNS-SD teenust"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Võimalikud väärtused on \"kokkupandud\", \"eraldatud\" ja \"keelatud\"."
+msgstr ""
+"Võimalikud väärtused on \"kokkupandud\", \"eraldatud\" ja \"keelatud\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1219,8 +1317,14 @@ msgid "HTTP proxy username"
 msgstr "HTTP proksi kasutajanimi"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Kui tõene, siis ühendused proxy-serverisse vajavad autentimist. Kasutajanimi/salasõna on defineeritud võtmetega \"/system/http_proxy/authentication_user\" ja \"/system/http_proxy/authentication_password\"."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Kui tõene, siis ühendused proxy-serverisse vajavad autentimist. Kasutajanimi/"
+"salasõna on defineeritud võtmetega \"/system/http_proxy/authentication_user"
+"\" ja \"/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1251,8 +1355,12 @@ msgid "Secure HTTP proxy port"
 msgstr "Turvalise HTTP proksi port"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Vali proksi konfiguratsiooni mood. Toetatud väärtused on \"pole\", \"käsitsi\", \"automaatne\"."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Vali proksi konfiguratsiooni mood. Toetatud väärtused on \"pole\", \"käsitsi"
+"\", \"automaatne\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1271,24 +1379,48 @@ msgid "The machine name to proxy socks through."
 msgstr "Socks proxi masina nimi"
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/http_proxy/host\" poolt, mille kaudu proxyt kasutatakse."
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"Port, defineeritud \"/system/http_proxy/host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/ftp_host\" poolt, mille kaudu proxyt kasutatakse."
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"Port, defineeritud \"/system/proxy/ftp_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/secure_host\" poolt, mille kaudu proxyt kasutatakse."
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"Port, defineeritud \"/system/proxy/secure_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "Port, defineeritud \"/system/proxy/socks_host\" poolt, mille kaudu proxyt kasutatakse."
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"Port, defineeritud \"/system/proxy/socks_host\" poolt, mille kaudu proxyt "
+"kasutatakse."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "See võti sisaldab nimekirja hostidest kuhu ühendutakse otse, ilma et kasutataks proxyt (isegi kui see on aktiivne). Väärtused võivad olla hostinimed, domeenid (kasutades vormi *.foo.com), IP-aadressid (nii IPv6 kui IPv6) ja võrguaadressid koos võrgumaskiga (näiteks 192.168.0.0/24)."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"See võti sisaldab nimekirja hostidest kuhu ühendutakse otse, ilma et "
+"kasutataks proxyt (isegi kui see on aktiivne). Väärtused võivad olla "
+"hostinimed, domeenid (kasutades vormi *.foo.com), IP-aadressid (nii IPv6 kui "
+"IPv6) ja võrguaadressid koos võrgumaskiga (näiteks 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1307,8 +1439,14 @@ msgid "SMB workgroup"
 msgstr "SMB töögrupp"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
-msgstr "Windows'i võrgunduse töögrupi või domeeni nimi, kuhu see kasutaja kuulub. Selleks et kasutaja saaks täielikult ära kasutada uue töögrupi privileege, peaks ta kõigepealt välja ja seejärel uuesti sisse logima."
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"Windows'i võrgunduse töögrupi või domeeni nimi, kuhu see kasutaja kuulub. "
+"Selleks et kasutaja saaks täielikult ära kasutada uue töögrupi privileege, "
+"peaks ta kõigepealt välja ja seejärel uuesti sisse logima."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1331,21 +1469,43 @@ msgid "Display internal hard drives"
 msgstr "Näita sisemisi kõvakettaid"
 
 #: ../schemas/system_storage.schemas.in.h:6
-msgid "Whether to display SCSI optical drives even if /system/storage/display_scsi_drives is set to FALSE."
-msgstr "Kas näidata SCSI optilisi kettaid isegi kui /system/storage/display_scsi_drives on VÄÄR."
+msgid ""
+"Whether to display SCSI optical drives even if /system/storage/"
+"display_scsi_drives is set to FALSE."
+msgstr ""
+"Kas näidata SCSI optilisi kettaid isegi kui /system/storage/"
+"display_scsi_drives on VÄÄR."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
 msgstr "Kas näidata kettaid ja külgehaagitavaid seadeid SCSI ketastelt."
 
 #: ../schemas/system_storage.schemas.in.h:8
-msgid "Whether to display drives and mountable volumes from drives with removable media (e.g. drives where media can be inserted and removed)."
-msgstr "Kas näidata kettaid ja külgehaagitavaid seadeid eemaldatavate andmekandjatega (näiteks kettaid kuhu andmekandjaid saab sisestada ja eemaldada)."
+msgid ""
+"Whether to display drives and mountable volumes from drives with removable "
+"media (e.g. drives where media can be inserted and removed)."
+msgstr ""
+"Kas näidata kettaid ja külgehaagitavaid seadeid eemaldatavate "
+"andmekandjatega (näiteks kettaid kuhu andmekandjaid saab sisestada ja "
+"eemaldada)."
 
 #: ../schemas/system_storage.schemas.in.h:9
-msgid "Whether to display drives and mountable volumes from external drives (e.g. drives that are hotpluggable; e.g. drives that can be attached and detached while the system is running)."
-msgstr "Kas näidata kettaid ja külgehaagitavaid seadeid välistelt kõvaketastelt (näiteks kettaid mida saab jooksvalt külge ühendada - mille sisestamist ja eemaldadamist saab teostada jooksva süsteemiga)."
+msgid ""
+"Whether to display drives and mountable volumes from external drives (e.g. "
+"drives that are hotpluggable; e.g. drives that can be attached and detached "
+"while the system is running)."
+msgstr ""
+"Kas näidata kettaid ja külgehaagitavaid seadeid välistelt kõvaketastelt "
+"(näiteks kettaid mida saab jooksvalt külge ühendada - mille sisestamist ja "
+"eemaldadamist saab teostada jooksva süsteemiga)."
 
 #: ../schemas/system_storage.schemas.in.h:10
-msgid "Whether to display drives and mountable volumes from internal hard drives (non-SCSI optical drives are always shown)."
-msgstr "Kas näidata kettaid ja külgehaagitavaid seadeid sisemistelt kõvaketastelt (mitte-SCSI optilisi kettaid näidatakse alati)."
+msgid ""
+"Whether to display drives and mountable volumes from internal hard drives "
+"(non-SCSI optical drives are always shown)."
+msgstr ""
+"Kas näidata kettaid ja külgehaagitavaid seadeid sisemistelt kõvaketastelt "
+"(mitte-SCSI optilisi kettaid näidatakse alati)."
+
+#~ msgid "The window workgroup the user is part of"
+#~ msgstr "Akende töögrupp, milles kasutaja osaleb"
