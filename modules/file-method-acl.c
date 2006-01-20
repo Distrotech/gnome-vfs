@@ -28,6 +28,7 @@
 #include <config.h>
 #endif
 
+#include <stdio.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
@@ -47,40 +48,16 @@
 # include <acl/libacl.h>
 #endif
 
+#ifdef HAVE_SOLARIS_ACL
+# include <sys/acl.h>
+#endif
+
 #include "file-method-acl.h"
 
 #define CMD_PERM_READ           4
 #define CMD_PERM_WRITE          2
 #define CMD_PERM_EXECUTE        1
 #define CMD_PERM_COND_EXECUTE   8
-
-
-/* ************************************************************************** */
-/* POSIX ACL */
-#ifdef HAVE_POSIX_ACL
-
-static uid_t
-string_to_uid (const char *uid)
-{
-	struct passwd *passwd;
-	
-	passwd = getpwnam(uid);
-	if (passwd == NULL) return 0;
-	
-	return passwd->pw_uid;
-}
-
-
-static gid_t
-string_to_gid (const char *gid)
-{
-	struct group *group;
-        
-	group = getgrnam (gid);
-	if (group == NULL) return 0;
-        
-	return group->gr_gid;
-}
 
 
 static char *
@@ -210,7 +187,36 @@ gid_to_string (gid_t gid)
 	return gid_string;
 }
 
+static uid_t
+string_to_uid (const char *uid)
+{
+	struct passwd *passwd;
+	
+	passwd = getpwnam(uid);
+	if (passwd == NULL) return 0;
+	
+	return passwd->pw_uid;
+}
+
+
+static gid_t
+string_to_gid (const char *gid)
+{
+	struct group *group;
+        
+	group = getgrnam (gid);
+	if (group == NULL) return 0;
+        
+	return group->gr_gid;
+}
+
+
+/* ************************************************************************** */
+/* POSIX ACL */
+
+#ifdef HAVE_POSIX_ACL
 #define POSIX_N_TAGS 3
+
 static int
 permset_to_perms (acl_permset_t set, GnomeVFSACLPerm *tags)
 {
@@ -234,6 +240,78 @@ permset_to_perms (acl_permset_t set, GnomeVFSACLPerm *tags)
 	}
 
 	return i;
+}
+
+static acl_entry_t
+find_entry (acl_t acl, acl_tag_t type, id_t id)
+{
+        acl_entry_t  ent;
+        acl_tag_t    e_type;
+        id_t        *e_id_p;
+	
+        if (acl_get_entry(acl, ACL_FIRST_ENTRY, &ent) != 1)
+                return NULL;
+	
+        for(;;) {
+                acl_get_tag_type(ent, &e_type);
+                if (type == e_type) {
+                        if (id == ACL_UNDEFINED_ID) 
+                                return ent;
+			
+			e_id_p = acl_get_qualifier(ent);
+			
+			if (e_id_p == NULL)
+				return NULL;
+			
+			if (*e_id_p == id) {
+				acl_free(e_id_p);
+				return ent;
+			}
+			
+			acl_free(e_id_p);
+                }
+		
+                if (acl_get_entry(acl, ACL_NEXT_ENTRY, &ent) != 1)
+                        return NULL;
+        }
+}
+
+static void
+set_permset (acl_permset_t permset, mode_t perm)
+{
+        if (perm & CMD_PERM_READ)
+                acl_add_perm (permset, ACL_READ);
+        else
+                acl_delete_perm (permset, ACL_READ);
+	   
+        if (perm & CMD_PERM_WRITE)
+                acl_add_perm (permset, ACL_WRITE);
+        else
+                acl_delete_perm (permset, ACL_WRITE);
+	   
+        if (perm & CMD_PERM_EXECUTE)
+                acl_add_perm (permset, ACL_EXECUTE);
+        else
+                acl_delete_perm (permset, ACL_EXECUTE);
+}
+
+static int
+clone_entry (acl_t  from_acl, acl_tag_t from_type,
+	     acl_t *to_acl,   acl_tag_t to_type)
+{
+        acl_entry_t from_entry;
+	acl_entry_t to_entry;
+	
+        from_entry = find_entry(from_acl, from_type, ACL_UNDEFINED_ID);
+        if (from_entry == NULL) return 1;
+	
+	if (acl_create_entry(to_acl, &to_entry) != 0)
+		return -1;
+	
+	acl_copy_entry(to_entry, from_entry);
+	acl_set_tag_type(to_entry, to_type);
+	
+	return 0;
 }
 
 static int
@@ -288,7 +366,7 @@ posix_acl_read (GnomeVFSACL *acl,
 		
 		e_qf = acl_get_qualifier (entry);
 		
-		id = NULL;
+		id   = NULL;
 		kind = GNOME_VFS_ACL_KIND_NULL;
 		switch (e_type) {
 
@@ -324,7 +402,6 @@ posix_acl_read (GnomeVFSACL *acl,
 		}
 
 		gnome_vfs_acl_set (acl, ace);
-
 		g_object_unref (ace);
 
 		if (e_qf) {
@@ -339,12 +416,232 @@ posix_acl_read (GnomeVFSACL *acl,
 
 #endif /* HAVE_POSIX_ACL */
 
+
+/* ************************************************************************** */
+/* SOLARIS ACL */
+
+#ifdef HAVE_SOLARIS_ACL
+#define SOLARIS_N_TAGS 3
+
+static int
+permset_to_perms (int set, GnomeVFSACLPerm *tags)
+{
+	int i;
+	
+	memset (tags, 0, sizeof (GnomeVFSACLPerm) * SOLARIS_N_TAGS);
+	i = 0;
+
+	if (set & 4) {
+		tags[i] = GNOME_VFS_ACL_READ;
+		i++;
+	}
+
+	if (set & 2) {
+		tags[i] = GNOME_VFS_ACL_WRITE;
+		i++;
+	}
+
+	if (set & 1) {
+		tags[i] = GNOME_VFS_ACL_EXECUTE;
+		i++;
+	}
+
+	return i;
+}
+
+static int
+solaris_acl_read (GnomeVFSACL *acl,
+		  aclent_t    *aclp,
+		  int          aclcnt,
+		  gboolean     def)
+{
+	int       i;
+	aclent_t *tp;
+
+	for (tp = aclp, i=0; i < aclcnt; tp++, i++) {
+		GnomeVFSACE     *ace;
+		GnomeVFSACLKind  kind;
+		GnomeVFSACLPerm  pset[SOLARIS_N_TAGS];
+		char            *id;	
+
+		id   = NULL;
+		kind = GNOME_VFS_ACL_KIND_NULL;
+
+		switch (tp->a_type) {
+		case USER:
+			id = uid_to_string(tp->a_id);
+		case USER_OBJ:
+			kind = GNOME_VFS_ACL_USER;
+			break;
+
+		case GROUP:
+			id = gid_to_string(tp->a_id);			
+		case GROUP_OBJ:
+			kind = GNOME_VFS_ACL_GROUP;
+			break;
+
+		case CLASS_OBJ:
+			kind = GNOME_VFS_ACL_MASK;
+			break;
+
+		case OTHER_OBJ:
+			kind = GNOME_VFS_ACL_OTHER;
+			break;
+		}
+
+		permset_to_perms (tp->a_perm, pset);
+		ace = gnome_vfs_ace_new (kind, id, pset);
+		
+		gnome_vfs_acl_set (acl, ace);
+		g_object_unref (ace);
+	}
+
+	return 0;
+}
+
+static GnomeVFSResult
+translate_ace_into_aclent (GnomeVFSACE *ace, aclent_t *aclp)
+{
+ 	int               re;
+	gboolean          is_default = FALSE;
+	const char       *id_str;
+	GnomeVFSACLKind   kind;
+	int               id;
+	
+	id_str     = gnome_vfs_ace_get_id (ace);
+	kind       = gnome_vfs_ace_get_kind (ace);
+	is_default = gnome_vfs_ace_get_inherit (ace);
+
+	aclp->a_perm = 0;
+	aclp->a_id   = 0;
+	aclp->a_type = 0;
+	
+	/* Permissions
+	 */
+	if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_READ)) {
+		aclp->a_perm |= 4;
+	} else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_WRITE)) {
+		aclp->a_perm |= 2;
+	} else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_EXECUTE)) {
+		aclp->a_perm |= 1;
+	}
+
+	/* Kind
+	 */
+	id = NULL;
+	switch (kind) {
+		case GNOME_VFS_ACL_USER:
+			aclp->a_type = USER;
+			if (id_str) {
+				id = string_to_uid (id_str);
+			} else {
+				aclp->a_type = USER_OBJ;
+			}
+			break;
+		case GNOME_VFS_ACL_GROUP:
+			aclp->a_type = GROUP;
+			if (id_str) {
+				id = string_to_gid (id_str);
+			} else {
+				aclp->a_type = GROUP_OBJ;				
+			}
+			break;
+		case GNOME_VFS_ACL_OTHER:
+			aclp->a_type = OTHER_OBJ;
+			break;
+
+		case GNOME_VFS_ACL_MASK:
+			aclp->a_type = CLASS_OBJ;
+			break;
+
+		default:
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;			
+	}
+
+	return GNOME_VFS_OK;
+}
+
+#endif /* HAVE_SOLARIS_ACL */
+
+
+
+/* ************************************************************************** */
+/* Common */
+
+static GnomeVFSResult
+aclerrno_to_vfserror (int acl_errno)
+{
+	switch (acl_errno) {
+	case ENOENT:			 
+	case EINVAL:       
+		return GNOME_VFS_ERROR_BAD_FILE;
+	case ENOSYS:
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	case EACCES:     
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
+	case ENAMETOOLONG: 
+		return GNOME_VFS_ERROR_NAME_TOO_LONG;
+	case EPERM:
+		return GNOME_VFS_ERROR_NOT_PERMITTED;
+	case ENOSPC:
+		return GNOME_VFS_ERROR_NO_SPACE;
+	case EROFS:
+		return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
+	default:
+		break;
+	}
+	
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+
 GnomeVFSResult file_get_acl (const char       *path,
                              GnomeVFSFileInfo *info,
                              struct stat      *statbuf,
                              GnomeVFSContext  *context)
 {
-#ifdef HAVE_POSIX_ACL
+#ifdef HAVE_SOLARIS_ACL	
+	int       re;
+	int       aclcnt;
+	aclent_t *aclp;
+
+	if (info->acl != NULL) {
+		/* FIXME create a _clear () for this */
+		g_object_unref (info->acl);	
+	}
+	
+	info->acl = gnome_vfs_acl_new ();
+
+	aclcnt = acl (path, GETACLCNT, 0, NULL);
+	if (aclcnt < 0) {
+		return aclerrno_to_vfserror (errno);
+	}
+
+	if (aclcnt < MIN_ACL_ENTRIES) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	aclp = (aclent_t *)malloc(sizeof (aclent_t) * aclcnt);
+	if (aclp == NULL) {
+		return GNOME_VFS_ERROR_NO_MEMORY;		
+	}
+
+	errno = 0;
+	re = acl (path, GETACL, aclcnt, aclp);
+	if (re < 0) {
+		return aclerrno_to_vfserror (errno);		
+	}
+	
+	re = solaris_acl_read (info->acl, aclp, aclcnt, FALSE);
+	if (re < 0) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	free (aclp);
+
+	return GNOME_VFS_OK;
+
+#elif defined(HAVE_POSIX_ACL)
 	acl_t p_acl;
 	int   n;
 	
@@ -385,112 +682,69 @@ GnomeVFSResult file_get_acl (const char       *path,
 #endif
 }
 
- 
-static GnomeVFSResult
-aclerrno_to_vfserror (int acl_errno)
-{
-	switch (acl_errno) {
-	case ENOENT:			 
-	case EINVAL:       
-		return GNOME_VFS_ERROR_BAD_FILE;
-	case EACCES:     
-		return GNOME_VFS_ERROR_ACCESS_DENIED;
-	case ENAMETOOLONG: 
-		return GNOME_VFS_ERROR_NAME_TOO_LONG;
-	case EPERM:
-		return GNOME_VFS_ERROR_NOT_PERMITTED;
-	case ENOSPC:
-		return GNOME_VFS_ERROR_NO_SPACE;
-	case EROFS:
-		return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
-	default:
-		break;
-	}
-	
-	return GNOME_VFS_ERROR_GENERIC;
-}
-
-
-static acl_entry_t
-find_entry (acl_t acl, acl_tag_t type, id_t id)
-{
-        acl_entry_t  ent;
-        acl_tag_t    e_type;
-        id_t        *e_id_p;
-	
-        if (acl_get_entry(acl, ACL_FIRST_ENTRY, &ent) != 1)
-                return NULL;
-	
-        for(;;) {
-                acl_get_tag_type(ent, &e_type);
-                if (type == e_type) {
-                        if (id == ACL_UNDEFINED_ID) 
-                                return ent;
-			
-			e_id_p = acl_get_qualifier(ent);
-			
-			if (e_id_p == NULL)
-				return NULL;
-			
-			if (*e_id_p == id) {
-				acl_free(e_id_p);
-				return ent;
-			}
-			
-			acl_free(e_id_p);
-                }
-		
-                if (acl_get_entry(acl, ACL_NEXT_ENTRY, &ent) != 1)
-                        return NULL;
-        }
-}
-
-
-static void
-set_permset (acl_permset_t permset, mode_t perm)
-{
-        if (perm & CMD_PERM_READ)
-                acl_add_perm (permset, ACL_READ);
-        else
-                acl_delete_perm (permset, ACL_READ);
-	   
-        if (perm & CMD_PERM_WRITE)
-                acl_add_perm (permset, ACL_WRITE);
-        else
-                acl_delete_perm (permset, ACL_WRITE);
-	   
-        if (perm & CMD_PERM_EXECUTE)
-                acl_add_perm (permset, ACL_EXECUTE);
-        else
-                acl_delete_perm (permset, ACL_EXECUTE);
-}
-
-static int
-clone_entry (acl_t  from_acl, acl_tag_t from_type,
-	     acl_t *to_acl,   acl_tag_t to_type)
-{
-        acl_entry_t from_entry;
-	acl_entry_t to_entry;
-	
-        from_entry = find_entry(from_acl, from_type, ACL_UNDEFINED_ID);
-        if (from_entry == NULL) return 1;
-	
-	if (acl_create_entry(to_acl, &to_entry) != 0)
-		return -1;
-	
-	acl_copy_entry(to_entry, from_entry);
-	acl_set_tag_type(to_entry, to_type);
-	
-	return 0;
-}
-
-                            
 GnomeVFSResult 
 file_set_acl (const char             *path,
 	      const GnomeVFSFileInfo *info,
               GnomeVFSContext        *context)
 {
-#ifdef HAVE_POSIX_ACL
+#ifdef HAVE_SOLARIS_ACL
+	GList           *acls;
+	GList           *entry;
+	guint            len;
+	GnomeVFSResult   re;
+	aclent_t        *new_aclp;
+	aclent_t        *taclp;
+	guint            aclp_i;
+
+	if (info->acl == NULL) 
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+
+	acls = gnome_vfs_acl_get_ace_list (info->acl);
+	if (acls == NULL) return GNOME_VFS_OK;
+	
+	len = g_list_length (acls);
+	if (len <= 0) return GNOME_VFS_OK;
+
+	new_aclp = (aclent_t *) malloc (len * sizeof(aclent_t));
+	if (new_aclp == NULL) return GNOME_VFS_ERROR_NO_MEMORY;
+
+	memset (new_aclp, 0, len * sizeof(aclent_t));
+
+	aclp_i = 0;
+	taclp  = new_aclp;
+	for (entry=acls; entry != NULL; entry = entry->next) {
+		GnomeVFSACE *ace = GNOME_VFS_ACE(entry->data);
+
+		re = translate_ace_into_aclent (ace, taclp);
+		if (re != GNOME_VFS_OK) continue;
+
+		aclp_i++;
+		taclp++;
+	}
+
+	/* Sort it out
+	 */
+ 	re = aclsort (aclp_i, 0, (aclent_t *)new_aclp);
+	if (re == -1) {
+		g_free (new_aclp);
+		return GNOME_VFS_ERROR_INTERNAL;
+	}		
+
+	/* Commit it to the file system
+	 */
+	re = acl (path, SETACL, aclp_i, (aclent_t *)new_aclp); 
+ 	if (re < 0) {
+		int err = errno;
+
+		printf ("Error: 2\n");
+		g_free (new_aclp);
+		return aclerrno_to_vfserror(err);
+	}
+
+	g_free (new_aclp);
+	return GNOME_VFS_OK;
+	
+#elif defined(HAVE_POSIX_ACL)
 	GList *acls;
 	GList *entry;
 	acl_t  acl_obj;
@@ -513,7 +767,8 @@ file_set_acl (const char             *path,
 	if (acls == NULL) return GNOME_VFS_OK;
 
 	for (entry=acls; entry != NULL; entry = entry->next) {
-		GnomeVFSACE           *ace  = GNOME_VFS_ACE(entry->data);
+		GnomeVFSACE           *ace        = GNOME_VFS_ACE(entry->data);
+		gboolean               is_default = FALSE;
 		const char            *id_str;
 		GnomeVFSACLKind        kind;
 		int                    id;
@@ -523,7 +778,6 @@ file_set_acl (const char             *path,
 		mode_t                 perms      = 0;
 		acl_entry_t            new_entry  = NULL;
 		acl_permset_t          permset    = NULL;
-		gboolean               is_default = FALSE;
 		
 		id_str     = gnome_vfs_ace_get_id (ace);
 		kind       = gnome_vfs_ace_get_kind (ace);
@@ -610,9 +864,6 @@ file_set_acl (const char             *path,
 				re = acl_calc_mask (&acl_obj_default);
 			else 
 				re = acl_calc_mask (&acl_obj);
-
-/* 			tmp = (prop == GNOME_VFS_ACL_DEFAULT) ? acl_obj_default: acl_obj; */			
-/* 			re = acl_calc_mask (&tmp); */
 
 			if (re != 0) return aclerrno_to_vfserror (errno);
 		}

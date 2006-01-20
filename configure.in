@@ -1033,6 +1033,16 @@ ACL_LIBS=""
 
 AC_CHECK_LIB(attr,getxattr,[ACL_LIBS="$ACL_LIBS -lattr"])
 AC_CHECK_LIB(acl,acl_get_file,[ACL_LIBS="$ACL_LIBS -lacl"])
+AC_CHECK_LIB(sec,acl_get,[ACL_LIBS="$ACL_LIBS -lsec"])
+
+AC_CACHE_CHECK([for Solaris ACL], gvfs_cv_HAVE_SOLARIS_ACLS,[
+		acl_LIBS=$LIBS
+		LIBS="$LIBS -lsec"
+		AC_TRY_LINK([#include <sys/types.h>
+#include <sys/acl.h>],
+[ acl_t *acl; int fd; return acl_get (fd, 0, &acl);],
+gvfs_cv_HAVE_SOLARIS_ACLS=yes, gvfs_cv_HAVE_SOLARIS_ACLS=no)
+		LIBS=$acl_LIBS])
 
 AC_CACHE_CHECK([for POSIX ACL], gvfs_cv_HAVE_POSIX_ACLS,[
 		acl_LIBS=$LIBS
@@ -1043,14 +1053,20 @@ AC_CACHE_CHECK([for POSIX ACL], gvfs_cv_HAVE_POSIX_ACLS,[
 gvfs_cv_HAVE_POSIX_ACLS=yes, gvfs_cv_HAVE_POSIX_ACLS=no)
 		LIBS=$acl_LIBS])
 
+if test x"$gvfs_cv_HAVE_SOLARIS_ACLS" = x"yes" ; then
+    have_solaris_acl_support=yes
+    acl_backends="solaris"
 
-if test x"$gvfs_cv_HAVE_POSIX_ACLS" = x"yes"; then
+    AC_DEFINE(HAVE_SOLARIS_ACL,1,[Have Solaris ACLs])
+    AC_CHECK_HEADERS([pwd.h grp.h])
+fi
+
+if test x"$gvfs_cv_HAVE_POSIX_ACLS" = x"yes" ; then
     have_posix_acl_support=yes
     acl_backends="posix"
 
     AC_DEFINE(HAVE_POSIX_ACL,1,[Have POSIX ACLs])
     AC_CHECK_FUNCS(acl_extended_file)
-    
     
     AC_CHECK_HEADERS([pwd.h])
     if test "$ac_cv_header_pwd_h" = "yes"; then
@@ -1103,6 +1119,7 @@ fi
 
 AC_SUBST(ACL_LIBS)
 AM_CONDITIONAL(HAVE_POSIX_ACL, test $have_posix_acl_support = yes)
+AM_CONDITIONAL(HAVE_SOLARIS_ACL, test $have_solaris_acl_support = yes)
 
 dnl =====================
 dnl File system monitors

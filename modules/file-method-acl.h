@@ -40,7 +40,7 @@ GnomeVFSResult file_get_acl (const char       *path,
                              GnomeVFSContext  *context);
                              
 GnomeVFSResult file_set_acl (const char             *path,
-							 const GnomeVFSFileInfo *info,
+			     const GnomeVFSFileInfo *info,
                              GnomeVFSContext         *context);
 
 G_END_DECLS
