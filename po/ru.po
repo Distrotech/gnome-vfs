@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-30 06:49+0000\n"
-"PO-Revision-Date: 2005-08-30 17:00+0300\n"
-"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
+"POT-Creation-Date: 2006-01-22 06:51+0100\n"
+"PO-Revision-Date: 2006-01-22 18:10+0400\n"
+"Last-Translator: Maxim Popov <ravemax@hotbox.ru>\n"
 "Language-Team:  <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\\n"
-"\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\\n\n"
 "X-Generator: KBabel 1.10.2\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
@@ -31,35 +31,41 @@ msgstr "Не удалось проинициализировать подсис�
 msgid "ISO 9660 Volume"
 msgstr "Том ISO9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d содержит символы NUL."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не содержит имени метода."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d не содержит маркера окончания."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d содержит неизвестный параметр %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не содержит имени модуля."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Файл конфигурации \"%s\" не найден: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d отменена обработка."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -209,22 +215,220 @@ msgstr "Том CIFS"
 msgid "Unknown"
 msgstr "Неизв."
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
+#, c-format
+msgid "%s Volume"
+msgstr "Том %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "Устройство %s/%s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "Устройство %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Дисковод"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Устройство Compact Flash"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Устройство Memory Stick"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Устройство Smart Media"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "Устройство SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Диск ZIP"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Привод Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+msgid "Pen Drive"
+msgstr "USB-накопитель"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Music Player"
+msgstr "Музыкальный проигрыватель %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "Цифровая камера %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
+msgid "Drive"
+msgstr "Устройство"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
+#, c-format
+msgid "External %s"
+msgstr "Внешний %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
+msgid "CD-ROM Disc"
+msgstr "CD-ROM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
+msgid "Blank CD-R Disc"
+msgstr "Чистый CD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
+msgid "CD-R Disc"
+msgstr "CD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
+msgid "Blank CD-RW Disc"
+msgstr "Чистый CD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
+msgid "CD-RW Disc"
+msgstr "CD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
+msgid "DVD-ROM Disc"
+msgstr "DVD-ROM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
+msgid "Blank DVD-RAM Disc"
+msgstr "Чистый DVD-RAM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
+msgid "Blank DVD-R Disc"
+msgstr "Чистый DVD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
+msgid "DVD-R Disc"
+msgstr "DVD-R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD-RW Disc"
+msgstr "Чистый DVD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD-RW Disc"
+msgstr "DVD-RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
+msgid "Blank DVD+R Disc"
+msgstr "Чистый DVD+R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
+msgid "DVD+R Disc"
+msgstr "DVD+R диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
+msgid "Blank DVD+RW Disc"
+msgstr "Чистый DVD+RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
+msgid "DVD+RW Disc"
+msgstr "DVD+RW диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
+msgid "Audio Disc"
+msgstr "Аудио диск"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
+#, c-format
+msgid "%s Removable Volume"
+msgstr "%s Отключаемый том"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
+msgid "Volume"
+msgstr "Том"
+
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Тип операции %u неизвестен"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Вид задания %u неизвестен"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
@@ -245,17 +449,17 @@ msgstr "Действие остановлено"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:622
-#: ../libgnomevfs/gnome-vfs-mime-info.c:629
-#: ../libgnomevfs/gnome-vfs-mime-info.c:637
-#: ../libgnomevfs/gnome-vfs-mime-info.c:644
-#: ../libgnomevfs/gnome-vfs-mime-info.c:652
-#: ../libgnomevfs/gnome-vfs-mime-info.c:669
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:683
-#: ../libgnomevfs/gnome-vfs-mime-info.c:690
-#: ../libgnomevfs/gnome-vfs-mime-info.c:698
-#: ../libgnomevfs/gnome-vfs-mime-info.c:705
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -263,12 +467,12 @@ msgstr ""
 "Устаревшая функция. Пользовательские изменения базы данных MIME больше не "
 "поддерживаются."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не удалось разобрать: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Остальные ошибки разбора будут проигнорированы."
 
@@ -522,7 +726,7 @@ msgstr "Ресурс заблокирован"
 msgid "Function call deprecated"
 msgstr "Функция устарела"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
@@ -549,7 +753,7 @@ msgstr "%.1f МБ"
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (недопустимая последовательность Юникода)"
@@ -558,35 +762,6 @@ msgstr " (недопустимая последовательность Юник
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
 msgid "Floppy"
 msgstr "Дискета"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "CD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "CD-RW"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "DVD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "DVD-RAM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "DVD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
@@ -665,11 +840,6 @@ msgstr "Memory Stick"
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Диск ZIP"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "Камера"
@@ -678,33 +848,36 @@ msgstr "Камера"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Корневой том"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Аудио CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Неизвестный том"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Сетевой сервер"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:172
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:176
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Невозможно подсоединить том. Возможно, носитель отсутствует в устройстве."
+msgstr ""
+"Невозможно подсоединить том. Возможно, носитель отсутствует в устройстве."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:182
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -712,7 +885,16 @@ msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета в формате, который не "
 "может быть подсоединен."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Невозможно подключить том. Если это зашифрованное устройство, возможно "
+"введен неверный пароль или использован неверный ключ."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:189
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -720,28 +902,60 @@ msgstr ""
 "Невозможно подсоединить выбранный том. Возможно, том в формате, который не "
 "может быть подсоединён."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid "Unable to mount the selected floppy drive."
 msgstr "Невозможно подсоединить выбранную дискету."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid "Unable to mount the selected volume."
 msgstr "Невозможно подсоединить выбранный том."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Невозможно подсоединить выбранный том. Возможно, том используется одной или "
+"более программой."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:212
 msgid "Unable to unmount the selected volume."
 msgstr "Невозможно отсоединить выбранный том."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:379
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Ошибка чтения данных из дочернего процесса %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:423
+msgid "Couldn't run mount process in a pty"
+msgstr "Невозможно запустить процесс монтирования в псевдотерминале"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:468
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"Непредвиденная ошибка в select() при чтении данных из дочернего процесса (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:522
+msgid "Couldn't send password to mount process."
+msgstr "Невозможно отправить сообщение процессу монтирования."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:561
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Непредвиденная ошибка в waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:663
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:746
 msgid "Failed to start command"
 msgstr "Ошибка при запуске команды"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:733
 msgid "Unable to eject media"
 msgstr "Невозможно извлечь носитель"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:979
 msgid "Unable to unmount connected server"
 msgstr "Невозможно отсоединить подключённый сервер"
 
@@ -757,7 +971,7 @@ msgstr "Начало"
 msgid "Filesystem"
 msgstr "Файловая система"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестное значение GnomeVFSSeekPosition %d"
@@ -766,12 +980,12 @@ msgstr "Неизвестное значение GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Сеть Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Идентификационная информация удалённого компьютера (%s) неизвестна."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -785,11 +999,11 @@ msgstr ""
 "убедиться, что продолжение соединения будет полностью безопасна, свяжитесь с "
 "ситемным администратором."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Войти всё равно"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Отменить вход"
 
@@ -861,23 +1075,28 @@ msgstr "Запускать программу в терминале"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"aim\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"aim\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"callto\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"callto\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"ghelp\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"ghelp\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа h323, если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа h323, если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"http\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"http\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
@@ -887,19 +1106,23 @@ msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"info\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"info\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"mailto\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"mailto\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"man\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"man\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Команда, используемая для обработки URL типа \"trash\", если ключ установлен"
+msgstr ""
+"Команда, используемая для обработки URL типа \"trash\", если ключ установлен"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1073,11 +1296,14 @@ msgstr "Будет ли указанная команда обрабатыват
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Разделённый запятыми список доменов типа DNS-SD, которые должны быть видимы по адресу \"network:///\"."
+msgstr ""
+"Разделённый запятыми список доменов типа DNS-SD, которые должны быть видимы "
+"по адресу \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "Дополнительные домены, в которых осуществлять поиск сервисов типа DNS-SD"
+msgstr ""
+"Дополнительные домены, в которых осуществлять поиск сервисов типа DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1258,7 +1484,10 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "Рабочая группа или домен Windows, к которым относится пользователь. Чтобы изменение рабочей группы вступило в силу, возможно потребуется повторная регистрация в системе."
+msgstr ""
+"Рабочая группа или домен Windows, к которым относится пользователь. Чтобы "
+"изменение рабочей группы вступило в силу, возможно потребуется повторная "
+"регистрация в системе."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1284,7 +1513,9 @@ msgstr "Отображать внутренние жесткие диски"
 msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
-msgstr "Отображать ли оптические диски SCSI, даже если /system/storage/display_scsi_drives установлен в FALSE."
+msgstr ""
+"Отображать ли оптические диски SCSI, даже если /system/storage/"
+"display_scsi_drives установлен в FALSE."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
@@ -1294,18 +1525,23 @@ msgstr "Отображать ли устройства и монтируемые
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
-msgstr "Отображать ли устройства и монтируемые тома с устройств со сменными носителями."
+msgstr ""
+"Отображать ли устройства и монтируемые тома с устройств со сменными "
+"носителями."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
 "Whether to display drives and mountable volumes from external drives (e.g. "
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
-msgstr "Отображать ли диски и монтируемые тома с внешних устройств (таких, которые могут быть подключены и отключены во время работы системы)."
+msgstr ""
+"Отображать ли диски и монтируемые тома с внешних устройств (таких, которые "
+"могут быть подключены и отключены во время работы системы)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
-msgstr "Отображать ли устройства и монтируемые тома с внутренних жестких дисков (не-SCSI оптические диски отображаются всегда)."
-
+msgstr ""
+"Отображать ли устройства и монтируемые тома с внутренних жестких дисков (не-"
+"SCSI оптические диски отображаются всегда)."
