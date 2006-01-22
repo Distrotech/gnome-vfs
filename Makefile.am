@@ -15,6 +15,7 @@ SUBDIRS =					\
 
 EXTRA_DIST =					\
 	HACKING					\
+	MAINTAINERS 				\
 	TODO					\
 	autogen.sh				\
 	gnome-vfs.spec				\
