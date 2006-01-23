@@ -83,7 +83,7 @@ struct _GnomeVFSACLClass {
 
 GType         gnome_vfs_acl_get_type          (void) G_GNUC_CONST;
 GnomeVFSACL * gnome_vfs_acl_new               (void);
-
+void          gnome_vfs_acl_clear             (GnomeVFSACL *acl);
 void          gnome_vfs_acl_set               (GnomeVFSACL *acl,
 					       GnomeVFSACE *ace);
 

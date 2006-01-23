@@ -96,7 +96,7 @@ gnome_vfs_acl_init (GnomeVFSACL *acl)
  *
  * Return value: The new #GnomeVFSACL 
  *
- * Since: 2.14
+ * Since: 2.16
  **/
 
 GnomeVFSACL *
@@ -109,6 +109,36 @@ gnome_vfs_acl_new (void)
 	return acl;
 }
 
+/**
+ * gnome_vfs_acl_clear:
+ * @acl: A valid #GnomeVFSACL object
+ *
+ * This will clear the #GnomeVFSACL object resetting it to a
+ * state exaclty as if it was newly created.
+ * 
+ * Since: 2.16
+ **/
+void
+gnome_vfs_acl_clear (GnomeVFSACL *acl)
+{
+	GnomeVFSACLPrivate *priv;
+	GnomeVFSACE        *entry;
+	GList              *iter;	
+	
+	priv = GET_PRIVATE (acl);
+	
+	entry = NULL;
+	
+	for (iter = priv->entries; iter; iter = iter->next) {
+		entry = GNOME_VFS_ACE (iter->data);
+		
+		g_object_unref (entry);		
+	}
+
+	g_list_free (priv->entries);
+
+	priv->entires = NULL;
+}
 
 /**
  * gnome_vfs_acl_set:
@@ -120,7 +150,7 @@ gnome_vfs_acl_new (void)
  * permission on the object otherwise it will ref @ace and insert it
  * into it's list. 
  *
- * Since: 2.14
+ * Since: 2.16
  **/
 void
 gnome_vfs_acl_set (GnomeVFSACL *acl,
@@ -161,7 +191,7 @@ gnome_vfs_acl_set (GnomeVFSACL *acl,
  * existing #GnomeVFSACE that machtes @ace. If found it will remove it
  * from its internal list.
  *
- * Since: 2.14
+ * Since: 2.16
  **/
 void
 gnome_vfs_acl_unset (GnomeVFSACL *acl,
@@ -201,7 +231,7 @@ gnome_vfs_acl_unset (GnomeVFSACL *acl,
  * Return value: A newly created list you have to free with 
  * gnome_vfs_acl_get_ace_list.
  * 
- * Since: 2.14
+ * Since: 2.16
  **/
 GList*
 gnome_vfs_acl_get_ace_list (GnomeVFSACL *acl)
@@ -225,7 +255,7 @@ gnome_vfs_acl_get_ace_list (GnomeVFSACL *acl)
  * This will unref all the #GnomeVFSACE in the list and free it
  * afterwards
  * 
- * Since: 2.14
+ * Since: 2.16
  **/
 void
 gnome_vfs_acl_free_ace_list (GList *ace_list)
