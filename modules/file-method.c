@@ -1072,6 +1072,10 @@ do_read_directory (GnomeVFSMethod *method,
 		get_mime_type (file_info, full_name, handle->options, &statbuf);
 	}
 
+	if (handle->options & GNOME_VFS_FILE_INFO_GET_ACL) {
+		file_get_acl (full_name, file_info, &statbuf, context);
+	}
+
 	return GNOME_VFS_OK;
 }
 
