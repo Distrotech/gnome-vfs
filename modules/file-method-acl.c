@@ -637,8 +637,10 @@ GnomeVFSResult file_get_acl (const char       *path,
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
 
+	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACL;
+	
 	free (aclp);
-
+	
 	return GNOME_VFS_OK;
 
 #elif defined(HAVE_POSIX_ACL)
