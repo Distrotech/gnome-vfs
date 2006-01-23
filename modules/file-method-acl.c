@@ -606,12 +606,11 @@ GnomeVFSResult file_get_acl (const char       *path,
 	aclent_t *aclp;
 
 	if (info->acl != NULL) {
-		/* FIXME create a _clear () for this */
-		g_object_unref (info->acl);	
+		gnome_vfs_acl_clear (info->acl);
+	} else {
+		info->acl = gnome_vfs_acl_new ();
 	}
 	
-	info->acl = gnome_vfs_acl_new ();
-
 	aclcnt = acl (path, GETACLCNT, 0, NULL);
 	if (aclcnt < 0) {
 		return aclerrno_to_vfserror (errno);
