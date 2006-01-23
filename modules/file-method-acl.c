@@ -118,7 +118,7 @@ uid_to_string (uid_t uid)
 
 	if (pw == NULL) {
 		setpwent ();
-		pw = getpwuid (getuid ());
+		pw = getpwuid (uid);
 		endpwent ();
 	}
 
