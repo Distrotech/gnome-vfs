@@ -1,3 +1,27 @@
+2006-01-24  David Zeuthen  <davidz@redhat.com>
+
+	Eject fixes, based on initial patch from Alexander Larsson. 
+	Should fix #328126.
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: 
+	(mount_unmount_operation): Handle mount_point being NULL
+	(gnome_vfs_volume_eject): Handle eject for TYPE_VFS_MOUNT volumes
+	stemming from the hal backend (e.g. burn:// and cdda://)
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c: 
+	(_gnome_vfs_volume_monitor_find_volume_by_hal_udi): Also search
+	the vfs_volumes as we now put burn:// and cdda:// volumes here
+	(_gnome_vfs_volume_monitor_find_volume_by_hal_drive_udi): -do-
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: 
+	(_hal_volume_policy_show_on_desktop): Remove the TODO here as alexl
+	confirmed that there is no setting for hiding certain mounted volumes
+	from the desktop
+	(_hal_add_volume): Use TYPE_VFS_MOUNT for cdda:// and burn:// volumes
+	as these are not file systems
+	(_hal_update_all, _hal_device_added, _hal_device_removed): Put in 
+	some more debug here
+
 2006-01-22  Christian Kellner  <gicmo@gnome.org>
 
 	* Makefile.am: Added MAINTAINERS file.

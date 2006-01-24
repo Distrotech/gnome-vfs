@@ -780,7 +780,8 @@ mount_unmount_operation (const char *mount_point,
 
 	
 #ifdef USE_VOLRMMOUNT
-	name = strrchr (mount_point, '/');
+	if (mount_point != NULL) {
+		name = strrchr (mount_point, '/');
 	if (name != NULL) {
 		name = name + 1;
 	} else {
@@ -822,7 +823,7 @@ mount_unmount_operation (const char *mount_point,
        }
 
        if (should_unmount) {
-	       gboolean is_in_media = g_str_has_prefix (mount_point, "/media");
+	       gboolean is_in_media = mount_point != NULL ? g_str_has_prefix (mount_point, "/media") : FALSE;
 #if defined(USE_GNOME_MOUNT)
 	       if (hal_udi != NULL && g_file_test (GNOME_VFS_BINDIR "/gnome-umount", G_FILE_TEST_IS_EXECUTABLE)) {
 		       command = GNOME_VFS_BINDIR "/gnome-umount";
@@ -856,7 +857,7 @@ mount_unmount_operation (const char *mount_point,
 		mount_info->argv[i++] = NULL;
 	}
 	
-	mount_info->mount_point = g_strdup (mount_point);
+	mount_info->mount_point = g_strdup (mount_point != NULL ? mount_point : "");
 	mount_info->device_path = g_strdup (device_path);
 	mount_info->device_type = device_type;
 	mount_info->hal_udi = g_strdup (hal_udi);
@@ -1023,7 +1024,9 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
-	} else {
+	} else if (type == GNOME_VFS_VOLUME_TYPE_VFS_MOUNT) {
+		/* left intentionally blank as these cannot be mounted and thus not unmounted */
+	} else if (type == GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER) {
 		unmount_connected_server (volume, callback, user_data);
 	}
 }
@@ -1045,6 +1048,7 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 {
 	char *mount_path, *device_path;
 	char *uri;
+	char *hal_udi;
 	GnomeVFSVolumeType type;
 	
 	emit_pre_unmount (volume);
@@ -1063,7 +1067,25 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
-	} else {
+	} else if (type == GNOME_VFS_VOLUME_TYPE_VFS_MOUNT) {
+		hal_udi = gnome_vfs_volume_get_hal_udi (volume);
+		uri = gnome_vfs_volume_get_activation_uri (volume);
+		device_path = gnome_vfs_volume_get_device_path (volume);
+
+		/* special handling for optical disc VFS_MOUNT created by the hal backend */
+		if (hal_udi != NULL &&
+		    (g_str_has_prefix (uri, "cdda://") || g_str_has_prefix (uri, "burn:///"))) {
+			device_path = gnome_vfs_volume_get_device_path (volume);
+			mount_unmount_operation (NULL,
+						 device_path,
+						 hal_udi,
+						 gnome_vfs_volume_get_device_type (volume),
+						 FALSE, FALSE, TRUE,
+						 callback, user_data);
+			g_free (device_path);
+		    }
+		g_free (uri);
+	} else if (type == GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER) {
 		unmount_connected_server (volume, callback, user_data);
 	}
 }

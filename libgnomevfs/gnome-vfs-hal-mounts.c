@@ -759,22 +759,9 @@ _hal_volume_policy_show_on_desktop (GnomeVFSVolumeMonitorDaemon *volume_monitor_
 
 	ret = TRUE;
 
-	/* Right now we show everything on the desktop */
-
-#if 0
-	/* TODO: fix bug in gnome-panel as icon wont show if volume is not user_visible */
-
-	/* TODO: here's an interesting bug (in Nautilus?); if we set vol->priv->user_visible
-	 *       to FALSE for a volume the icon won't get refreshed when it's mounted
+	/* Right now we show everything on the desktop as there is no setting
+	 * for this.. potentially we could hide fixed drives..
 	 */
-
-	/* when the two bugs above are resolved we may enable this code: */
-
-	/* show everything but non-hotpluggable fixed drives are shown on the desktop */
-	if ((libhal_drive_uses_removable_media (hal_drive) == FALSE) && 
-	    (libhal_drive_is_hotpluggable (hal_drive) == FALSE))
-		ret = FALSE;
-#endif
 
 	return ret;
 }
@@ -1021,9 +1008,11 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 						  libhal_volume_get_device_minor (hal_volume));
 
 		if (libhal_volume_disc_has_audio (hal_volume)) {
+			vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_VFS_MOUNT;
 			vol->priv->activation_uri = g_strdup_printf ("cdda://%s", 
 								     libhal_volume_get_device_file (hal_volume));
 		} else if (libhal_volume_disc_is_blank (hal_volume)) {
+			vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_VFS_MOUNT;
 			vol->priv->activation_uri = g_strdup ("burn:///");
 		} else {
 			vol->priv->activation_uri = gnome_vfs_get_uri_from_local_path (
@@ -1128,6 +1117,11 @@ _hal_update_all (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 
 		libhal_free_string_array (drives);
 	}
+
+#ifdef HAL_SHOW_DEBUG
+	g_debug ("leaving _hal_update_all");
+#endif
+
 }
 
 
@@ -1139,7 +1133,7 @@ _hal_device_added (LibHalContext *hal_ctx,
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
 
 #ifdef HAL_SHOW_DEBUG
-	g_debug ("Entering %s", __FUNCTION__);
+	g_debug ("Entering %s for udi %s", __FUNCTION__, udi);
 #endif
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
@@ -1226,7 +1220,7 @@ _hal_device_removed (LibHalContext *hal_ctx, const char *udi)
 	char *hal_drive_udi;
 
 #ifdef HAL_SHOW_DEBUG
-	g_debug ("Entering %s", __FUNCTION__);
+	g_debug ("Entering %s for udi %s", __FUNCTION__, udi);
 #endif
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);

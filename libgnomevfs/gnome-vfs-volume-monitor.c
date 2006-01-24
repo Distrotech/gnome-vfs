@@ -317,6 +317,18 @@ _gnome_vfs_volume_monitor_find_volume_by_hal_udi (GnomeVFSVolumeMonitor *volume_
 			break;
 		}
 	}
+
+	/* burn:/// and cdda:// optical discs are by the hal backend added as VFS_MOUNT */
+	if (ret == NULL) {
+		for (l = volume_monitor->priv->vfs_volumes; l != NULL; l = l->next) {
+			vol = l->data;
+			if (vol->priv != NULL && vol->priv->hal_drive_udi != NULL && 
+			    strcmp (vol->priv->hal_udi, hal_udi) == 0) {
+				ret = vol;
+				break;
+			}
+		}
+	}
 	
 	return ret;
 }
@@ -359,6 +371,18 @@ _gnome_vfs_volume_monitor_find_volume_by_hal_drive_udi (GnomeVFSVolumeMonitor *v
 		    strcmp (vol->priv->hal_drive_udi, hal_drive_udi) == 0) {
 			ret = vol;
 			break;
+		}
+	}
+
+	/* burn:/// and cdda:// optical discs are by the hal backend added as VFS_MOUNT */
+	if (ret == NULL) {
+		for (l = volume_monitor->priv->vfs_volumes; l != NULL; l = l->next) {
+			vol = l->data;
+			if (vol->priv != NULL && vol->priv->hal_drive_udi != NULL && 
+			    strcmp (vol->priv->hal_drive_udi, hal_drive_udi) == 0) {
+				ret = vol;
+				break;
+			}
 		}
 	}
 	
