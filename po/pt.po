@@ -1,14 +1,14 @@
 # gnome-vfs's Portuguese Translation.
-# Copyright © 2001, 2002, 2003, 2004, 2005 gnome-vfs
+# Copyright © 2001, 2002, 2003, 2004, 2005, 2006 gnome-vfs
 # Distributed under the same licence as the gnome-vfs package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.12\n"
+"Project-Id-Version: 2.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-24 18:50+0100\n"
-"PO-Revision-Date: 2005-07-24 19:00+0000\n"
+"POT-Creation-Date: 2006-01-27 23:43+0000\n"
+"PO-Revision-Date: 2006-01-27 23:50+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,35 +28,41 @@ msgstr "Incapaz de inicializar gnome vfs"
 msgid "ISO 9660 Volume"
 msgstr "Unidade ISO 9660"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d contém caracteres NUL."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d não contém nome de método."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d não contém terminador de opções."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d contém opções desconhecidas %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d não contém nome de módulo."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Não foi encontrado ficheiro de configuração `%s': %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d abortou o parseamento."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -206,22 +212,220 @@ msgstr "Unidade CIFS"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
+#, c-format
+msgid "%s Volume"
+msgstr "Unidade %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#, c-format
+msgid "%s/%s Drive"
+msgstr "Dispositivo %s/%s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#, c-format
+msgid "%s Drive"
+msgstr "Dispositivo %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+msgid "Floppy Drive"
+msgstr "Dispositivo de Disquette"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "Compact Flash Drive"
+msgstr "Dispositivo de Flash Compacta"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+msgid "Memory Stick Drive"
+msgstr "Dispositivo de Caneta de Memória"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+msgid "Smart Media Drive"
+msgstr "Dispositivo de Smart Media"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "SD/MMC Drive"
+msgstr "Dispositivo SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+msgid "Zip Drive"
+msgstr "Dispositivo Zip"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+msgid "Jaz Drive"
+msgstr "Dispositivo Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+msgid "Pen Drive"
+msgstr "Dispositivo Pen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Music Player"
+msgstr "Reprodutor de Música %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "Câmara Digital %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
+msgid "Drive"
+msgstr "Dispositivo"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
+#, c-format
+msgid "External %s"
+msgstr "%s Externo"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
+msgid "CD-ROM Disc"
+msgstr "Disco CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
+msgid "Blank CD-R Disc"
+msgstr "Disco CD-R Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
+msgid "CD-R Disc"
+msgstr "Disco CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
+msgid "Blank CD-RW Disc"
+msgstr "Disco CD-RW Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
+msgid "CD-RW Disc"
+msgstr "Disco CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
+msgid "DVD-ROM Disc"
+msgstr "Disco CVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
+msgid "Blank DVD-RAM Disc"
+msgstr "Disco DVD-RAM Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
+msgid "DVD-RAM Disc"
+msgstr "Disco DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
+msgid "Blank DVD-R Disc"
+msgstr "Disco DVD-R Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
+msgid "DVD-R Disc"
+msgstr "Disco DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD-RW Disc"
+msgstr "Disco DVD-RW Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD-RW Disc"
+msgstr "Disco DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
+msgid "Blank DVD+R Disc"
+msgstr "Disco DVD+R Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
+msgid "DVD+R Disc"
+msgstr "Disco DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
+msgid "Blank DVD+RW Disc"
+msgstr "Disco DVD+RW Virgem"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
+msgid "DVD+RW Disc"
+msgstr "Disco DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
+msgid "Audio Disc"
+msgstr "Disco Audio"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
+#, c-format
+msgid "%s Removable Volume"
+msgstr "Unidade Removível %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
+msgid "Volume"
+msgstr "Unidade"
+
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tipo de operação %u desconhecido"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Incapaz de criar canal para GIOChannel aberto: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabalho %u desconhecido"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operação parada"
 
@@ -242,17 +446,17 @@ msgstr "Operação parada"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:653
-#: ../libgnomevfs/gnome-vfs-mime-info.c:661
-#: ../libgnomevfs/gnome-vfs-mime-info.c:668
-#: ../libgnomevfs/gnome-vfs-mime-info.c:676
-#: ../libgnomevfs/gnome-vfs-mime-info.c:693
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
 #: ../libgnomevfs/gnome-vfs-mime-info.c:700
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
-#: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#: ../libgnomevfs/gnome-vfs-mime-info.c:722
-#: ../libgnomevfs/gnome-vfs-mime-info.c:729
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -260,12 +464,12 @@ msgstr ""
 "Função obsoleta.  Não são mais suportadas alterações pelo utilizador à base "
 "de dados MIME."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Incapaz de parsear: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Erros de parseamento subsequentes serão ignorados."
 
@@ -519,7 +723,7 @@ msgstr "O recurso está em utilização exclusiva"
 msgid "Function call deprecated"
 msgstr "Chamada de função obsoleta"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
@@ -545,7 +749,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -554,35 +758,6 @@ msgstr " (Unicode inválido)"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
 msgid "Floppy"
 msgstr "Disquette"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
-msgid "CD-R"
-msgstr "CD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-msgid "CD-RW"
-msgstr "CD-RW"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-msgid "DVD-ROM"
-msgstr "DVD-ROM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-msgid "DVD-RAM"
-msgstr "DVD-RAM"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-msgid "DVD-R"
-msgstr "DVD-R"
-
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-msgid "DVD-RW"
-msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "CD-ROM/DVD-ROM"
@@ -661,11 +836,6 @@ msgstr "Caneta de Memória"
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
-msgid "Zip Drive"
-msgstr "Dispositivo Zip"
-
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Camera"
 msgstr "Câmara"
@@ -674,24 +844,24 @@ msgstr "Câmara"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Unidade Raíz"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Unidade desconhecida"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Servidor de rede"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:172
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -699,13 +869,13 @@ msgstr ""
 "nenhuma disquette dentro do dispositivo."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:176
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Incapaz de montar a unidade. Provavelmente não existe nenhum media no "
 "dispositivo."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:182
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -713,7 +883,16 @@ msgstr ""
 "Incapaz de montar o dispositivo de disquette. Provavelmente a disquette "
 "encontra-se num formato que não pode ser montado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Incapaz de montar o volume. Se este for um dispositivo encriptado, foi "
+"utilizada a senha ou chave incorrecta."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:189
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -721,28 +900,59 @@ msgstr ""
 "Incapaz de montar a unidade seleccionada. Provavelmente a unidade encontra-"
 "se num formato que não pode ser montado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid "Unable to mount the selected floppy drive."
 msgstr "Incapaz de montar o dispositivo de disquette seleccionado."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid "Unable to mount the selected volume."
 msgstr "Incapaz de montar a unidade seleccionada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Incapaz de desmontar a unidade seleccionada. A unidade encontra-se em "
+"utilização por uma ou mais aplicações."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:212
 msgid "Unable to unmount the selected volume."
 msgstr "Incapaz de desmontar a unidade seleccionada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:379
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Falha ao ler dados do processo filho %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:423
+msgid "Couldn't run mount process in a pty"
+msgstr "Incapaz de executar o processo de montagem numa pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:468
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Erro inesperado no select() ao ler dados de um processo filho (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:522
+msgid "Couldn't send password to mount process."
+msgstr "Incapaz de enviar a senha para um processo de montagem."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:561
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Erro inesperado no waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:663
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:746
 msgid "Failed to start command"
 msgstr "Falha ao iniciar comando"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:733
 msgid "Unable to eject media"
 msgstr "Incapaz de ejectar media"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:980
 msgid "Unable to unmount connected server"
 msgstr "Incapaz de desmontar servidor ligado"
 
@@ -758,7 +968,7 @@ msgstr "Pasta Pessoal"
 msgid "Filesystem"
 msgstr "Sistema de ficheiros"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconhecida"
@@ -767,12 +977,12 @@ msgstr "GnomeVFSSeekPosition %d desconhecida"
 msgid "Windows Network"
 msgstr "Rede Windows"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Desconhece-se a identidade do comuptador remoto (%s)."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -785,11 +995,11 @@ msgstr ""
 "A identidade enviada pelo computador remoto é %s. Se deseja ter a certeza "
 "absoluta de que é seguro prosseguir, contacte o administrador de sistemas."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Ainda Assim Iniciar Sessão"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Cancelar o Início de Sessão"
 
@@ -1255,9 +1465,9 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"O grupo de trabalho de rede Windows ou o domínio a que o utilizador pertence. "
-"Para que um novo grupo de trabalho tenha efeito total o utilizador poderá "
-"ter de terminar a sessão e iniciá-la novamente."
+"O grupo de trabalho de rede Windows ou o domínio a que o utilizador "
+"pertence. Para que um novo grupo de trabalho tenha efeito total o utilizador "
+"poderá ter de terminar a sessão e iniciá-la novamente."
 
 #: ../schemas/system_storage.schemas.in.h:1
 msgid "Display SCSI drives"
@@ -1284,20 +1494,22 @@ msgid ""
 "Whether to display SCSI optical drives even if /system/storage/"
 "display_scsi_drives is set to FALSE."
 msgstr ""
-"Se apresentar ou não dispositivos ópticos SCSI mesmo se "
-"/system/storage/display_scsi_drives estiver definido como FALSE."
+"Se apresentar ou não dispositivos ópticos SCSI mesmo se /system/storage/"
+"display_scsi_drives estiver definido como FALSE."
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr "Se apresentar ou não dispositivos e unidades montáveis de dispositivos SCSI."
+msgstr ""
+"Se apresentar ou não dispositivos e unidades montáveis de dispositivos SCSI."
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
 "Whether to display drives and mountable volumes from drives with removable "
 "media (e.g. drives where media can be inserted and removed)."
 msgstr ""
-"Se apresentar ou não dispositivos e unidades montáveis de dispositivos com media "
-"amovível (por ex. dispositivos onde pode ser inserido e removido media)."
+"Se apresentar ou não dispositivos e unidades montáveis de dispositivos com "
+"media amovível (por ex. dispositivos onde pode ser inserido e removido "
+"media)."
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1305,9 +1517,10 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
-"Se apresentar ou não dispositivos e volumes montáveis de dispositivos externos "
-"(por ex. dispositivos que são \"hotpluggable\"; por ex. dispositivos que podem "
-"ser ligados e desligados do computador enquanto este funciona)."
+"Se apresentar ou não dispositivos e volumes montáveis de dispositivos "
+"externos (por ex. dispositivos que são \"hotpluggable\"; por ex. "
+"dispositivos que podem ser ligados e desligados do computador enquanto este "
+"funciona)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
@@ -1320,74 +1533,14 @@ msgstr ""
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "O grupo de trabalho windows a que o utilizador pertence"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Disco CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Disco CD-R Virgem"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Disco CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Disco CD-RW Virgem"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Disco CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Disco CVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Disco DVD-R Virgem"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Disco DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Disco DVD-RAM Virgem"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Disco DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Disco DVD-RW Virgem"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Disco DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Disco DVD+RW Virgem"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Disco DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Disco DVD+R Virgem"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Disco DVD+R"
-
 #~ msgid "Optical Disc"
 #~ msgstr "Disco Óptico"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Disco Audio"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Média de Flash Compacta"
 
 #~ msgid "Memory Stick Media"
 #~ msgstr "Média de Caneta de Memória"
 
 #~ msgid "Smart Media Media"
 #~ msgstr "Média Smart Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "Média SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Disquette"
 
 #~ msgid "Mac OS disk"
 #~ msgstr "Disco Mac OS"
@@ -1409,9 +1562,6 @@ msgstr ""
 
 #~ msgid "File is empty"
 #~ msgstr "O ficheiro está vazio"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Falha ao ler do ficheiro '%s': %s"
 
 #~ msgid ""
 #~ "desktop entries contain line '%s' which is not an entry, group, or comment"
