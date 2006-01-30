@@ -82,6 +82,19 @@ struct _GnomeVFSVolumeClass {
 	GObjectClass parent_class;
 };
 
+/**
+ * GnomeVFSVolumeOpCallback: 
+ * @succeeded:
+ * @error:
+ * @detailed_error:
+ * @user_data:
+ *
+ * Note that if succeeded is FALSE and error, detailed_error are both
+ * empty strings the client is not supposed to display a dialog as an
+ * external mount/umount/eject helper will have done so.
+ *
+ * Since: 2.6
+ */
 typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
 					  char *error,
 					  char *detailed_error,
