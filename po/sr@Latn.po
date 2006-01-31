@@ -1,19 +1,20 @@
 # Serbian translation of gnome-vfs
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005, 2006.
 #
 # This file is distributed under the same license as the gnome-vfs package.
 #
 # Maintainer: Dušan Živojnov <calvin@verat.net>
 # Reviewed on 2004-02-03 by: Danilo Šegan <dsegan@gmx.net>
 # Reviewed on 2005-07-08 by: Danilo Šegan <dsegan@gmx.net>
+# Reviewed on 2005-09-22 by: Danilo Šegan <danilo@prevod.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-22 12:48+0200\n"
-"PO-Revision-Date: 2005-09-22 12:52+0200\n"
-"Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
+"POT-Creation-Date: 2006-01-31 22:50+0100\n"
+"PO-Revision-Date: 2006-01-31 22:59+0100\n"
+"Last-Translator: Slobodan D. Sredojević <slobo@akrep.be>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,41 +29,47 @@ msgstr "Ne mogu da pokrenem Bonobo"
 # Gnomov Virtuelni Sistem Datoteka — VSD? Ili Gnomovo „oponašanje sistema datoteka“ — OSD?
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "Ne mogu da pokrenem Gnomov VSD"
+msgstr "Ne mogu da pokrenem Gnomovo oponašanje sistema datoteka"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 disk"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d sadrži NUL znakove."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne sadrži ime metoda."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
 msgstr "%s:%d ne sadrži oznaku kraja opcija."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d koristi nepoznate opcije %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne sadrži ime modula."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Datoteka sa podešavanjima „%s“ nije nađena: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d je prekinuo raščlanjivanje."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -83,8 +90,9 @@ msgstr "CD uređaj"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "Digitalni zvučni CD"
+msgstr "Muzički disk"
 
+# bug(slobo): hm, ne bih rekao
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
 msgstr "Disk na hardverskom uređaju"
@@ -144,7 +152,7 @@ msgstr "Miniks disk"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "Mrežni NFS disk"
+msgstr "Disk mrežnog sistema datoteka"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
@@ -215,7 +223,7 @@ msgid "Unknown"
 msgstr "Nepoznat"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
 #, c-format
 msgid "%s Volume"
 msgstr "%s disk"
@@ -311,127 +319,127 @@ msgstr "Zip disk"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
 msgid "Jaz Drive"
-msgstr "Džez disk"
+msgstr "DŽez disk"
 
 # :)
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 msgid "Pen Drive"
 msgstr "Olovkasti disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s puštač muzike"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s digitalni fotoaparat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
 msgid "Drive"
 msgstr "Uređaj"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
 #, c-format
 msgid "External %s"
 msgstr "Spoljni %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
 msgid "CD-ROM Disc"
-msgstr "CD-ROM disk"
+msgstr "Običan disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
 msgid "Blank CD-R Disc"
-msgstr "Prazan CD-R disk"
+msgstr "Prazan jednom-upisiv disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
 msgid "CD-R Disc"
-msgstr "CD-R disk"
+msgstr "Jednom-upisiv disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "Blank CD-RW Disc"
-msgstr "Prazan CD-RW disk"
+msgstr "Prazan piši-briši disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
 msgid "CD-RW Disc"
-msgstr "CD-RW disk"
+msgstr "Piši-briši disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
 msgid "DVD-ROM Disc"
-msgstr "DVD-ROM disk"
+msgstr "Običan DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
 msgid "Blank DVD-RAM Disc"
-msgstr "Prazan DVD-RAM disk"
+msgstr "Prazan - DVD memorijski disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
 msgid "DVD-RAM Disc"
-msgstr "DVD-RAM disk"
+msgstr "Memorijski - DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
 msgid "Blank DVD-R Disc"
-msgstr "Prazan DVD-R disk"
+msgstr "Prazan jednom upisivi - DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
 msgid "DVD-R Disc"
-msgstr "DVD-R disk"
-
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
-msgid "Blank DVD-RW Disc"
-msgstr "Prazan DVD-RW disk"
-
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
-msgid "DVD-RW Disc"
-msgstr "DVD-RW disk"
+msgstr "Jednom upisivi - DVD disk"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
-msgid "Blank DVD+R Disc"
-msgstr "Prazan DVD+R disk"
+msgid "Blank DVD-RW Disc"
+msgstr "Prazan piši-briši DVD disk"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD-RW Disc"
+msgstr "Piši-briši DVD disk"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
+msgid "Blank DVD+R Disc"
+msgstr "Prazan jednom upisivi + DVD disk"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
 msgid "DVD+R Disc"
-msgstr "DVD+R disk"
+msgstr "Jednom upisivi + DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
 msgid "Blank DVD+RW Disc"
-msgstr "Prazan DVD+RW disk"
+msgstr "Prazan piši+briši DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
 msgid "DVD+RW Disc"
-msgstr "DVD+RW disk"
+msgstr "Piši+briši DVD disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
 msgid "Audio Disc"
 msgstr "Zvučni disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
 #, c-format
 msgid "%s Removable Volume"
 msgstr "Uklonjivi %s disk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
 msgid "Volume"
 msgstr "Disk"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Nepoznat tip operacije %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne mogu napraviti cevku za otvoreni GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Nepoznata vrsta posla %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
-msgstr "Operacija zaustavljena"
+msgstr "Radnja je zaustavljena"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
@@ -450,29 +458,29 @@ msgstr "Operacija zaustavljena"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
 "Prevaziđena funkcija.  Izmene korisnika u MIME bazi više nisu podržane."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Ne mogu raščlaniti: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Ostale greške u obradi će biti zanemarene."
 
@@ -575,7 +583,7 @@ msgstr "Kraj datoteke"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "Not a directory"
-msgstr "Nije direktorijum"
+msgstr "Nije fascikla"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:62
@@ -605,7 +613,7 @@ msgstr "Operacija nije dozvoljena"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Is a directory"
-msgstr "Jeste direktorijum"
+msgstr "Jeste fascikla"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:68
@@ -615,17 +623,17 @@ msgstr "Nema dovoljno memorije"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
-msgstr "Domaćin nije nađen"
+msgstr "Računar nije nađen"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "Ime domaćina nije ispravno"
+msgstr "Ime računara nije ispravno"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "Domaćin nema adresu"
+msgstr "Računar nema adresu"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -635,7 +643,7 @@ msgstr "Neuspešna prijava"
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Operation cancelled"
-msgstr "Operacija obustavljena"
+msgstr "Radnja je obustavljena"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:74
@@ -715,7 +723,7 @@ msgstr "Dostignut rok"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "Nameserver error"
-msgstr "Greška sa serverom naziva"
+msgstr "Greška sa serverom imena"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:91
@@ -727,7 +735,7 @@ msgstr "Resurs je zaključan"
 msgid "Function call deprecated"
 msgstr "Poziv funkcije je prevaziđen"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Nepoznata greška"
 
@@ -754,7 +762,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (neispravan Unikod)"
@@ -850,34 +858,34 @@ msgstr "Fotoaparat"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
-msgstr "Osnovni disk"
+msgstr "Koreni disk"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
-msgstr "Zvučni CD"
+msgstr "Muzički disk"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Nepoznati disk"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Mrežni server"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:172
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ne mogu da priključim disketu. Verovatno disketa nije u uređaju. "
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:176
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ne mogu da priključim disk. Verovatno nema nosača u uređaju. "
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:182
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -885,7 +893,16 @@ msgstr ""
 "Ne mogu da priključim disketu. Verovatno je disketa u zapisu koji se ne može "
 "čitati."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Ne mogu da priključim disk. Ako je on šifrovan, tada je bila iskorišćena "
+"pogrešna lozinka ili ključ."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:189
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -893,30 +910,62 @@ msgstr ""
 "Ne mogu da priključim izabrani disk. Verovatno je disk u zapisu koji se ne "
 "može čitati."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ne mogu da priključim izabranu disketu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid "Unable to mount the selected volume."
 msgstr "Ne mogu da priključim izabrani disk."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
-msgid "Unable to unmount the selected volume."
-msgstr "Ne mogu da isključim izabrani disk."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Ne mogu da odspojim izabrani disk. Njega verovatno koristi neki program ili "
+"programi."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:212
+msgid "Unable to unmount the selected volume."
+msgstr "Ne mogu da odspojim izabrani disk."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:379
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Neuspešno čitanje datoteke iz naslednog procesa %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:423
+msgid "Couldn't run mount process in a pty"
+msgstr "Ne mogu da pokrenem proces priključenja u lažnom terminalu"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:468
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"Neočekivana greška u funkciji select() pri čitanju podataka u naslednom procesu "
+"(%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:522
+msgid "Couldn't send password to mount process."
+msgstr "Ne mogu da pošaljem lozinku procesu koji priključuje"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:561
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Neočekivana greška unutar izvršenja funkcije waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:663
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:746
 msgid "Failed to start command"
 msgstr "Neuspešno pokretanje naredbe"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:733
 msgid "Unable to eject media"
 msgstr "Ne mogu da izbacim nosač"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:980
 msgid "Unable to unmount connected server"
-msgstr "Ne mogu da isključim vezu sa serverom"
+msgstr "Ne mogu da odspojim priključeni server"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -930,7 +979,7 @@ msgstr "Lični"
 msgid "Filesystem"
 msgstr "Sistem datoteka"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznato GnomeVFSSeekPosition %d"
@@ -939,12 +988,12 @@ msgstr "Nepoznato GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows mreža"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1320
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitet udaljenog računara (%s) nije poznat."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -958,11 +1007,11 @@ msgstr ""
 "potpuno sigurni da je bezbedno da nastavite, stupite u vezu sa "
 "administratorom sistema."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1329
 msgid "Log In Anyway"
 msgstr "Ipak se prijavi"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1330
 msgid "Cancel Login"
 msgstr "Otkaži prijavu"
 
@@ -987,7 +1036,7 @@ msgstr "datoteka MonikerExtender"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "osnovni Gnom VSD nadimak"
+msgstr "osnovni nadimak Gnomovog oponašavača sistema datoteka"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
@@ -1520,10 +1569,6 @@ msgstr ""
 
 #~ msgid "File is empty"
 #~ msgstr "Datoteka je prazna"
-
-# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Neuspešno čitanje datoteke „%s“: %s"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #~ msgid ""
