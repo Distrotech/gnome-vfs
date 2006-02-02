@@ -54,7 +54,8 @@ case $host in
   *-*-mingw*)
     os_win32=yes
     # We do have getaddrinfo
-    AC_CACHE_VAL(ac_cv_func_getaddrinfo, [ac_cv_func_getaddrinfo=yes])
+    # But only on XP, so don't use it as Win2000 is still widespread
+    # AC_CACHE_VAL(ac_cv_func_getaddrinfo, [ac_cv_func_getaddrinfo=yes])
     ;;
   *)
     os_win32=no
