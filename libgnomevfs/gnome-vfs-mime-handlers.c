@@ -193,42 +193,35 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
  * 
  * Query the MIME database for the application to be executed on files of MIME type
  * @mime_type by default.
+ *
+ * If you know the actual uri of the file you should use gnome_vfs_mime_get_default_application_for_uri
+ * instead, as it will then be able to pick a better app. For instance it won't pick
+ * an app that claims to only handle local files for a remote uri.
  * 
  * Return value: a #GnomeVFSMimeApplication representing the default handler of @mime_type.
  */
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
-	char *default_application_id;
-	GnomeVFSMimeApplication *default_application;
-	GList *list;
+	GnomeVFSMimeApplication *app;
+	GList *applications, *l;
 
-	default_application = NULL;
+	app = NULL;
+	
+	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
+	for (l = applications; l != NULL; l = l->next) {
+		app = gnome_vfs_mime_application_new_from_id (l->data);
 
-	/* First, try the default for the mime type */
-	default_application_id = gnome_vfs_mime_get_default_desktop_entry (mime_type);
-	if (default_application_id != NULL
-	    && default_application_id[0] != '\0') {
-		default_application =
-			gnome_vfs_mime_application_new_from_id (default_application_id);
-		g_free (default_application_id);
-	}
-
-	if (default_application == NULL) {
-
-		/* Failing that, try something from the complete list */
-		list = gnome_vfs_mime_get_all_desktop_entries (mime_type);
-
-		if (list != NULL) {
-			default_application = 
-				gnome_vfs_mime_application_new_from_id ((char *) list->data);
-
-			g_list_foreach (list, (GFunc) g_free, NULL);
-			g_list_free (list);
+		if (app != NULL) {
+			break;
 		}
 	}
 
-	return default_application;
+	
+	g_list_foreach (applications, (GFunc) g_free, NULL);
+	g_list_free (applications);
+
+	return app;
 }
 
 /**
@@ -1895,6 +1888,22 @@ exit:
 	return app;
 }
 
+static gboolean
+uri_is_local (const char *uri)
+{
+	char *scheme;
+	gboolean local;
+
+	local = FALSE;
+	
+	scheme = gnome_vfs_get_uri_scheme (uri);
+	if (scheme != NULL) {
+		local = (strcmp (scheme, "file") == 0);
+		g_free (scheme);
+	}
+	return local;
+}
+
 /**
  * gnome_vfs_mime_application_get_default_application_for_uri:
  * @mime_type: a const char * containing a mime type, e.g. "application/x-php".
@@ -1913,35 +1922,19 @@ gnome_vfs_mime_get_default_application_for_uri (const char *uri,
 {
 	GList *applications, *l;
 	GnomeVFSMimeApplication *app = NULL;
-	char *scheme;
 	gboolean local;
 	
 	g_return_val_if_fail (uri != NULL, NULL);
 	g_return_val_if_fail (mime_type != NULL, NULL);
-	
-	scheme = gnome_vfs_get_uri_scheme (uri);
-	if (scheme != NULL) {
-		local = (strcmp (scheme, "file") == 0);
-	} else {
-		return NULL;
-	}
-	g_free (scheme);
-	
-	app = gnome_vfs_mime_get_default_application (mime_type);
-	if (local || app == NULL || gnome_vfs_mime_application_supports_uris (app)) {
-		return app;
-	} else {
-		gnome_vfs_mime_application_free (app);
-		app = NULL;
-	}
 
+	local = uri_is_local (uri);
+	
 	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
 
 	for (l = applications; l != NULL; l = l->next) {
 		app = gnome_vfs_mime_application_new_from_id (l->data);
 
-		if (app != NULL)
-		{
+		if (app != NULL) {
 			if (local || gnome_vfs_mime_application_supports_uris (app)) {
 				break;
 			} else {
@@ -1977,19 +1970,12 @@ gnome_vfs_mime_get_all_applications_for_uri (const char *uri,
 {
 	GList *applications, *l, *result = NULL;
 	GnomeVFSMimeApplication *app;
-	char *scheme;
 	gboolean local;
 	
 	g_return_val_if_fail (uri != NULL, NULL);
 	g_return_val_if_fail (mime_type != NULL, NULL);
 	
-	scheme = gnome_vfs_get_uri_scheme (uri);
-	if (scheme != NULL) {
-		local = (strcmp (scheme, "file") == 0);
-	} else {
-		return NULL;
-	}
-	g_free (scheme);
+	local = uri_is_local (uri);
 
 	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
 

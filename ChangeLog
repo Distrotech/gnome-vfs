@@ -1,3 +1,17 @@
+2006-02-06  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	Tweak default application handling a bit.
+	Now if a mimetype has no default in defaults.list we pick
+	any availible handler for that type before going on to the
+	parent mimetype. This fixes e.g. the application/rtf case
+	where we used to pick gedit (default for text/plain) instead
+	of abiword (non-default, but only handler for application/rtf).
+	
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	Remove unused definition.
+
 2006-02-02  Tor Lillqvist  <tml@novell.com>
 
 	* configure.in: Don't use getaddrinfo() on Windows. It's
