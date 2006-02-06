@@ -1,5 +1,11 @@
 2006-02-06  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (handle_overwrite):
+	For now, revert the change: 2006-01-15  Christian Neumair  <chris@gnome-de.org>
+	See bug #327984
+
+2006-02-06  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
 	Tweak default application handling a bit.
