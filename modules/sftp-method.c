@@ -1248,6 +1248,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 			buffer[len] = 0;
 			if (g_str_has_suffix (buffer, "password: ") ||
 			    g_str_has_suffix (buffer, "Password: ") ||
+			    g_str_has_suffix (buffer, "Password:")  ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
 				if (!done_auth && gnome_vfs_uri_get_password (uri) != NULL) {
 					password = g_strdup (gnome_vfs_uri_get_password (uri));
