@@ -1,3 +1,9 @@
+gnome-vfs 2.13.91
+	* Eject fixes for volume manager
+	* Windows 2000 portability fixes
+	* Revert overwrite error dialog change that caused problems
+	* ssh fixes for newer BSD and OSX releases
+	
 gnome-vfs 2.13.4
 	* Add support for gnome-mount
 	* Re-add thread prioritizing
