@@ -1,3 +1,9 @@
+2006-02-14  James Henstridge  <james@jamesh.id.au>
+
+	* modules/http-neon-method.c: fix some HTTP_DEBUG() calls to use
+	GNOME_VFS_*_FORMAT_STR constants in their format strings, to fix
+	build on 64 bit systems.
+
 2006-02-13  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

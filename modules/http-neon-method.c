@@ -2570,7 +2570,8 @@ do_read (GnomeVFSMethod 	*method,
 	/* cast is valid because n must be greater than 0 */
 	*bytes_read = n;
 
-	DEBUG_HTTP ("[read] bytes read %lld", *bytes_read);
+	DEBUG_HTTP ("[read] bytes read %" GNOME_VFS_SIZE_FORMAT_STR,
+	            *bytes_read);
 
 	handle->offset += *bytes_read;
 	return result;
@@ -2617,10 +2618,14 @@ do_write (GnomeVFSMethod 	*method,
 		ba->data[handle->offset] = *pos;
 		pos++;
 		handle->offset++;
-		DEBUG_HTTP ("%s, %llu, %lld", (char *) pos, num_bytes, handle->offset);
+		DEBUG_HTTP ("%s, %" GNOME_VFS_SIZE_FORMAT_STR
+		            ", %" GNOME_VFS_OFFSET_FORMAT_STR,
+		            (char *) pos, num_bytes, handle->offset);
 	}
 	
-	DEBUG_HTTP ("[write] %lld, %d, %llu", handle->offset, ba->len, num_bytes);
+	DEBUG_HTTP ("[write] %" GNOME_VFS_OFFSET_FORMAT_STR
+	            ", %d, %" GNOME_VFS_SIZE_FORMAT_STR,
+	            handle->offset, ba->len, num_bytes);
 	ba = g_byte_array_append (ba, pos, num_bytes - over_len);
 	
 	handle->offset += num_bytes;
@@ -2690,7 +2695,8 @@ do_seek (GnomeVFSMethod	      *method,
 	
 	/* FIXME: is this error correct ? */
 	if (new_position < 0) {
-		DEBUG_HTTP ("seeking to %lld", new_position);
+		DEBUG_HTTP ("seeking to %" GNOME_VFS_OFFSET_FORMAT_STR,
+		            new_position);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
