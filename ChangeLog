@@ -1,5 +1,11 @@
 2006-02-17  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume-monitor.c (_gnome_vfs_volume_monitor_disconnect_all,
+	_gnome_vfs_volume_monitor_unmount_all):
+	Plug mem leaks found by manny.
+
+2006-02-17  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-volume-ops.c:
 	Use pmount in /media if not using gnome-mount or hal-mount.
 

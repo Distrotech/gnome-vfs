@@ -638,6 +638,8 @@ _gnome_vfs_volume_monitor_unmount_all (GnomeVFSVolumeMonitor *volume_monitor)
 		_gnome_vfs_volume_monitor_unmounted (volume_monitor, volume);
 		gnome_vfs_volume_unref (volume);
 	}
+	
+	g_list_free (volumes);
 }
 
 void
@@ -653,6 +655,8 @@ _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
 		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
 		gnome_vfs_drive_unref (drive);
 	}
+
+	g_list_free (drives);
 }
 
 /** 
