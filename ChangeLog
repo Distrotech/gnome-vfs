@@ -1,3 +1,8 @@
+2006-02-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	Use pmount in /media if not using gnome-mount or hal-mount.
+
 2006-02-15  Gustavo J. A. M. Carneiro  <gjc@gnome.org>
 
 	* configure.in: Change --http-debug configure option name to

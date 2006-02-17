@@ -88,6 +88,13 @@ static const char *mount_known_locations [] = {
 	NULL
 };
 
+static const char *pmount_known_locations [] = {
+	"/usr/sbin/pmount", "/usr/bin/pmount",
+	"/sbin/mount", "/bin/mount",
+	"/usr/sbin/mount", "/usr/bin/mount",
+	NULL
+};
+
 static const char *umount_known_locations [] = {
 	"/sbin/umount", "/bin/umount",
 	"/usr/sbin/umount", "/usr/bin/umount",
@@ -103,6 +110,8 @@ static const char *pumount_known_locations [] = {
 
 #define MOUNT_COMMAND mount_known_locations
 #define MOUNT_SEPARATOR " "
+#define PMOUNT_COMMAND pmount_known_locations
+#define PMOUNT_SEPARATOR " "
 #define UMOUNT_COMMAND umount_known_locations
 #define UMOUNT_SEPARATOR " "
 #define PUMOUNT_COMMAND pumount_known_locations
@@ -777,8 +786,8 @@ mount_unmount_operation (const char *mount_point,
 	pthread_t mount_thread;
 	const char *name;
 	int i;
+	gboolean is_in_media;
 
-	
 #ifdef USE_VOLRMMOUNT
 	if (mount_point != NULL) {
 		name = strrchr (mount_point, '/');
@@ -799,7 +808,9 @@ mount_unmount_operation (const char *mount_point,
 # endif
 
 #endif
-       
+
+	is_in_media = mount_point != NULL ? g_str_has_prefix (mount_point, "/media") : FALSE;
+
        if (should_mount) {
 #if defined(USE_GNOME_MOUNT)
 	       if (hal_udi != NULL && g_file_test (GNOME_VFS_BINDIR "/gnome-mount", G_FILE_TEST_IS_EXECUTABLE)) {
@@ -815,7 +826,7 @@ mount_unmount_operation (const char *mount_point,
 	       else
 		       command = find_command (MOUNT_COMMAND);
 #else
-	       command = find_command (MOUNT_COMMAND);
+	       command = find_command (is_in_media ? PMOUNT_COMMAND : MOUNT_COMMAND);
 #endif
 #ifdef  MOUNT_ARGUMENT
 	       argument = MOUNT_ARGUMENT;
@@ -823,20 +834,19 @@ mount_unmount_operation (const char *mount_point,
        }
 
        if (should_unmount) {
-	       gboolean is_in_media = mount_point != NULL ? g_str_has_prefix (mount_point, "/media") : FALSE;
 #if defined(USE_GNOME_MOUNT)
 	       if (hal_udi != NULL && g_file_test (GNOME_VFS_BINDIR "/gnome-umount", G_FILE_TEST_IS_EXECUTABLE)) {
 		       command = GNOME_VFS_BINDIR "/gnome-umount";
 		       argument = "--hal-udi";
 		       name = hal_udi;
 	       } else {
-		       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
+		       command = find_command (UMOUNT_COMMAND);
 	       }
 #elif defined(USE_HAL) && defined(HAL_UMOUNT)
 	       if (hal_udi != NULL && g_file_test (HAL_UMOUNT, G_FILE_TEST_IS_EXECUTABLE))
 		       command = HAL_UMOUNT;
 	       else
-		       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
+		       command = find_command (UMOUNT_COMMAND);
 #else
 	       command = find_command (is_in_media ? PUMOUNT_COMMAND : UMOUNT_COMMAND);
 #endif
