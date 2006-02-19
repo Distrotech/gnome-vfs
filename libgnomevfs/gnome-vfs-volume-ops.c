@@ -88,16 +88,12 @@ static const char *mount_known_locations [] = {
 	NULL
 };
 
+#if !defined(USE_GNOME_MOUNT)
+
 static const char *pmount_known_locations [] = {
 	"/usr/sbin/pmount", "/usr/bin/pmount",
 	"/sbin/mount", "/bin/mount",
 	"/usr/sbin/mount", "/usr/bin/mount",
-	NULL
-};
-
-static const char *umount_known_locations [] = {
-	"/sbin/umount", "/bin/umount",
-	"/usr/sbin/umount", "/usr/bin/umount",
 	NULL
 };
 
@@ -107,6 +103,15 @@ static const char *pumount_known_locations [] = {
 	"/usr/sbin/umount", "/usr/bin/umount",
 	NULL
 };
+
+#endif /* ! USE_GNOME_MOUNT */
+
+static const char *umount_known_locations [] = {
+	"/sbin/umount", "/bin/umount",
+	"/usr/sbin/umount", "/usr/bin/umount",
+	NULL
+};
+
 
 #define MOUNT_COMMAND mount_known_locations
 #define MOUNT_SEPARATOR " "

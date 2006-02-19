@@ -87,6 +87,7 @@ struct _GnomeVFSDrivePrivate {
 	/* Only for HAL devices: */
 	char *hal_udi;
 	char *hal_drive_udi; /* only available to daemon; not exported */
+	char *hal_backing_crypto_volume_udi; /* only available to daemon; not exported */
 
 	gboolean must_eject_at_unmount;
 };

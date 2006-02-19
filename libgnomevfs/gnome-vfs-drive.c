@@ -196,6 +196,7 @@ gnome_vfs_drive_finalize (GObject *object)
 	g_free (priv->icon);
 	g_free (priv->hal_udi);
 	g_free (priv->hal_drive_udi);
+	g_free (priv->hal_backing_crypto_volume_udi);
 	g_free (priv);
 	drive->priv = NULL;
 	

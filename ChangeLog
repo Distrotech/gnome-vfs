@@ -1,3 +1,23 @@
+2006-02-18  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: Don't define the variables
+	pmount_known_locations and pumount_known_locations when building
+	with USE_GNOME_MOUNT as -Werror complains about it.
+
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h: 
+	(GnomeVFSDrivePrivate): Add hal_backing_crypto_volume_udi
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c (_hal_volume_policy_check):
+	Show crypto volumes if they have no cleartext columes associated
+	with them
+	(_hal_add_volume): Remove GnomeVFSDrive for crypto drive if we are
+	the corresponding cleartext volume
+	(_hal_device_removed): Add back GnomeVFSDrive for crypto drive if
+	the cleartext volume is going away
+
+	* libgnomevfs/gnome-vfs-drive.c (gnome_vfs_drive_finalize): Free
+	hal_backing_crypto_volume_udi
+
 2006-02-17  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-monitor.c (_gnome_vfs_volume_monitor_disconnect_all,

@@ -27,6 +27,7 @@
 
 /* uncomment to get helpful debug messages */
 /* #define HAL_SHOW_DEBUG */
+#define HAL_SHOW_DEBUG
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -689,11 +690,31 @@ _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	if (!_hal_drive_policy_check (volume_monitor_daemon, hal_drive, hal_volume))
 		goto out;
 
-	/* needs to be a mountable filesystem OR audio disc OR blank disc */
+	/* needs to be a mountable filesystem OR contain crypto bits OR audio disc OR blank disc */
 	if (! ((libhal_volume_get_fsusage (hal_volume) == LIBHAL_VOLUME_USAGE_MOUNTABLE_FILESYSTEM) ||
+	       (libhal_volume_get_fsusage (hal_volume) == LIBHAL_VOLUME_USAGE_CRYPTO) ||
 	       libhal_volume_disc_has_audio (hal_volume) ||
 	       libhal_volume_disc_is_blank (hal_volume)))
 		goto out;
+
+	/* if we contain crypto bits, only show if our cleartext volume is not yet setup */
+	if (libhal_volume_get_fsusage (hal_volume) == LIBHAL_VOLUME_USAGE_CRYPTO) {
+		DBusError error;
+		char **clear_devices;
+		int num_clear_devices;
+
+		dbus_error_init (&error);
+		clear_devices = libhal_manager_find_device_string_match (volume_monitor_daemon->hal_ctx,
+									 "volume.crypto_luks.clear.backing_volume",
+									 libhal_volume_get_udi (hal_volume),
+									 &num_clear_devices,
+									 &error);
+		if (clear_devices != NULL && num_clear_devices > 0) {
+			libhal_free_string_array (clear_devices);
+			goto out;
+		}
+	}
+
 
 	/* for volumes the vendor and/or sysadmin wants to be ignore (e.g. bootstrap HFS
 	 * partitions on the Mac, HP_RECOVERY partitions on HP systems etc.)
@@ -845,12 +866,14 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 
 	/* don't add if it's already there */
 	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_drive_get_udi (hal_drive));
-	if (drive != NULL)
+	if (drive != NULL) {
 		goto out;
+	}
 
 	/* doesn't make sense for devices without removable storage */
-	if (!libhal_drive_uses_removable_media (hal_drive))
+	if (!libhal_drive_uses_removable_media (hal_drive)) {
 		goto out;
+	}
 	
 	drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
 	drive->priv->activation_uri = g_strdup ("");
@@ -888,16 +911,28 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	GnomeVFSHalUserData *hal_userdata;
 	char *name;
 	gboolean allowed_by_policy;
+	DBusError error;
+	char *backing_udi;
 
 	g_return_val_if_fail (hal_drive != NULL, FALSE);
 	g_return_val_if_fail (hal_volume != NULL, FALSE);
 
 	ret = FALSE;
+	backing_udi = NULL;
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
 	allowed_by_policy = _hal_volume_policy_check (volume_monitor_daemon, hal_drive, hal_volume);
+
+#ifdef HAL_SHOW_DEBUG
+	g_debug ("entering _hal_add_volume for\n"
+		 "  drive udi '%s'\n"
+		 "  volume udi '%s'\n"
+		 "  allowd_by_policy %s",
+		 libhal_drive_get_udi (hal_drive), libhal_volume_get_udi (hal_volume),
+		 allowed_by_policy ? "yes" : "no");
+#endif
 
 	if (!allowed_by_policy) {
 		/* make sure to completey delete any existing drive/volume for policy changes if the 
@@ -934,10 +969,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	if ( _hal_volume_temp_udi (volume_monitor_daemon, hal_drive, hal_volume))
 		goto out;
 
-#ifdef HAL_SHOW_DEBUG
-	g_debug ("entering _hal_add_volume for\n  drive udi '%s'\n  volume udi '%s'\n",
-		 libhal_drive_get_udi (hal_drive), libhal_volume_get_udi (hal_volume));
-#endif
 
 	/* OK, check if we got a drive_without_volumes drive and delete that since we're going to add a
 	 * drive for added partitions */
@@ -947,6 +978,36 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		g_debug ("Removing GnomeVFSDrive for device path %s", drive->priv->device_path);
 #endif
 		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+	}
+
+	if (!allowed_by_policy && 
+	    libhal_volume_get_fsusage (hal_volume) != LIBHAL_VOLUME_USAGE_MOUNTABLE_FILESYSTEM)
+		goto out;
+
+	/* If we're stemming from a crypto volume... then remove the
+	 * GnomeVFSDrive we added so users had a way to invoke
+	 * gnome-mount for asking for the pass-phrase...
+	 */
+	dbus_error_init (&error);
+	backing_udi = libhal_device_get_property_string (
+		volume_monitor_daemon->hal_ctx,
+		libhal_volume_get_udi (hal_volume),
+		"volume.crypto_luks.clear.backing_volume",
+		&error);
+	if (backing_udi != NULL) {
+		GnomeVFSDrive *backing_drive;
+		
+		backing_drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, backing_udi);
+		if (backing_drive != NULL) {
+#ifdef HAL_SHOW_DEBUG
+			g_debug ("Removing GnomeVFSDrive for crypto device with path %s "
+				 "(got cleartext device at path %s)", 
+				 backing_drive->priv->device_path,
+				 libhal_volume_get_device_file (hal_volume));
+#endif
+			_gnome_vfs_volume_monitor_disconnected (volume_monitor, backing_drive);
+		}
+		
 	}
 
 	/* if we had a drive from here but where we weren't mounted, just use that drive since nothing actually
@@ -984,6 +1045,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		drive->priv->volumes = NULL;
 		drive->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
 		drive->priv->hal_drive_udi = g_strdup (libhal_drive_get_udi (hal_drive));
+		drive->priv->hal_backing_crypto_volume_udi = g_strdup (backing_udi);
                 drive->priv->must_eject_at_unmount = libhal_drive_requires_eject (hal_drive);
 
 #ifdef HAL_SHOW_DEBUG
@@ -1046,6 +1108,10 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	
 	ret = TRUE;
 out:
+
+	if (backing_udi != NULL)
+		libhal_free_string (backing_udi);
+	
 	return ret;
 }
 
@@ -1104,6 +1170,10 @@ _hal_update_all (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 					/* TODO: figure out why this crashes: libhal_free_string_array (volumes); */
 
 				}
+
+#ifdef HAL_SHOW_DEBUG
+				g_debug ("  added %d volumes", num_volumes_added);
+#endif
 
 				if (num_volumes_added == 0) {
 					/* if we didn't add any volumes show the drive_without_volumes drive */
@@ -1242,12 +1312,45 @@ _hal_device_removed (LibHalContext *hal_ctx, const char *udi)
 	}
 
 	if (drive != NULL) {
+		char *backing_udi;
+
 		if (hal_drive_udi == NULL)
 			hal_drive_udi = g_strdup (drive->priv->hal_drive_udi);
 #ifdef HAL_SHOW_DEBUG
 		g_debug ("Removing GnomeVFSDrive for device path %s", drive->priv->device_path);
 #endif
+
+		if (drive->priv->hal_backing_crypto_volume_udi != NULL)
+			backing_udi = g_strdup (drive->priv->hal_backing_crypto_volume_udi);
+		else
+			backing_udi = NULL;
+
+
 		_gnome_vfs_volume_monitor_disconnected (GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon), drive);
+
+		if (backing_udi != NULL) {
+			LibHalVolume *crypto_volume;
+
+#ifdef HAL_SHOW_DEBUG
+			g_debug ("Adding back GnomeVFSDrive for crypto volume");
+#endif
+			crypto_volume = libhal_volume_from_udi (volume_monitor_daemon->hal_ctx, backing_udi);
+			if (crypto_volume != NULL) {
+				LibHalDrive *crypto_drive;
+				
+				crypto_drive = libhal_drive_from_udi (
+					volume_monitor_daemon->hal_ctx,
+					libhal_volume_get_storage_device_udi (crypto_volume));
+				if (crypto_drive != NULL) {
+					_hal_add_volume (volume_monitor_daemon, crypto_drive, crypto_volume);
+					libhal_drive_free (crypto_drive);
+				}
+				libhal_volume_free (crypto_volume);
+			}
+			
+			g_free (backing_udi);
+		}
+
 	}
 
 #ifdef HAL_SHOW_DEBUG
