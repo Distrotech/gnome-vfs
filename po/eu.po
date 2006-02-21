@@ -1,21 +1,22 @@
+# translation of eu.po to Basque
 # translation of gnome-vfs.po to Basque
-# Copyright (C) 2001, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: eu3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-18 20:21+0200\n"
-"PO-Revision-Date: 2005-10-18 20:21+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team:  Basque <itzulpena@euskalgnu.org>\n"
+"POT-Creation-Date: 2006-02-21 13:17+0100\n"
+"PO-Revision-Date: 2006-02-21 13:18+0100\n"
+"Last-Translator: Iñaki Larrañaga <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n == 1);\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -54,10 +55,16 @@ msgstr "%s: %d(e)k aukera ezezaguna du, %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d(e)k ez du modulu-izenik."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ezin izan da `%s' konfigurazio-fitxategia aurkitu: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d analisia bertan behear utzi du"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -207,251 +214,251 @@ msgstr "CIFS bolumena"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:363
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 #, c-format
 msgid "%s Volume"
 msgstr "%s bolumena"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:379
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
 msgid "CD-ROM"
 msgstr "CD-ROMa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:381
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R"
 msgstr "CD-Ra"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:383
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-RW"
 msgstr "CD-RWa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:387
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "DVD-ROM"
 msgstr "DVD-ROMa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:389
 msgid "DVD+R"
 msgstr "DVD+Ra"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
 msgid "DVD+RW"
 msgstr "DVD+RWa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-R"
 msgstr "DVD-Ra"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:395
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-RW"
 msgstr "DVD-RWa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-RAM"
 msgstr "DVD-RAMa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:400
 msgid "DVD±R"
 msgstr "DVD±Ra"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:403
 msgid "DVD±RW"
 msgstr "DVD±RWa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 #, c-format
 msgid "%s/%s Drive"
 msgstr "%s/%s unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:408
 #, c-format
 msgid "%s Drive"
 msgstr "%s unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Floppy Drive"
 msgstr "Diskete unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:416
 msgid "Compact Flash Drive"
 msgstr "Compact Flash unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Memory Stick Drive"
 msgstr "Memoria arkatz unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Smart Media Drive"
 msgstr "Smart Media unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:422
 msgid "SD/MMC Drive"
 msgstr "SD/MMC unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:424
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
 msgid "Zip Drive"
 msgstr "ZIP unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 msgid "Jaz Drive"
 msgstr "Jaz unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:430
 msgid "Pen Drive"
 msgstr "Arkatz unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:436
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s musika erreproduzitzailea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:444
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s kamera digitala"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:474
 msgid "Drive"
 msgstr "Unitatea"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:479
 #, c-format
 msgid "External %s"
 msgstr "Kanpoko %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-ROM Disc"
 msgstr "CD-ROM diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-R Disc"
 msgstr "CD-R disko garbia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-R Disc"
 msgstr "CD-R diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:527
 msgid "Blank CD-RW Disc"
 msgstr "CD-RW disko garbia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
 msgid "CD-RW Disc"
 msgstr "CD-RW diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-RAM Disc"
 msgstr "DVD-RAM disko garbia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-R Disc"
 msgstr "DVD-R disko garbia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-R Disc"
 msgstr "DVD-R diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:552
 msgid "Blank DVD-RW Disc"
 msgstr "DVD-RW disko garbia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:554
 msgid "DVD-RW Disc"
 msgstr "DVD-RW diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+R Disc"
 msgstr "DVD+R disko grabia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+R Disc"
 msgstr "DVD+R diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
 msgid "Blank DVD+RW Disc"
 msgstr "DVD+RW disko grabia"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "DVD+RW Disc"
 msgstr "DVD+RW diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:576
 msgid "Audio Disc"
 msgstr "Audioko diskoa"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:587
 #, c-format
 msgid "%s Removable Volume"
 msgstr "%s bolumen aldagarria"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:598
 msgid "Volume"
 msgstr "Bolumena"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "%u eragiketa mota ezezaguna"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ezin izan da GIOChannel irekitzeko kanalizazioa sortu: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "%u lan-mota ezezaguna"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Eragiketa geldiarazita"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -459,12 +466,12 @@ msgstr ""
 "Funtzio zaharkitua.  Erabiltzaileak egindako MIME datubasearen aldaketarik "
 "ez da onartuko"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Ezin izan da hau analizatu: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Gainerako analisi-erroreei ez zaie jaramonik egingo."
 
@@ -718,7 +725,7 @@ msgstr "Baliabidea blokeatuta dago"
 msgid "Function call deprecated"
 msgstr "Funtzioaren deia zaharkitua"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Errore ezezaguna"
 
@@ -744,7 +751,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (Unicode baliogabea)"
@@ -839,34 +846,33 @@ msgstr "Kamara"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Erroa bolumena"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "CD audioa"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Bolumen ezezaguna"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Sareko zerbitzaria"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:190
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ezin da bolumena muntau. Baliteke gailuan euskarririk ez egotea."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -874,7 +880,16 @@ msgstr ""
 "Ezin da diskete gailua muntatu. Baliteke disketeak muntatu ezin daitekeen "
 "formatua edukitzea."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:200
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Ezin da bolumena muntatu. Enkriptatutako unitatea bada, pasahitz edo gako "
+"okerra erabili da."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -882,28 +897,59 @@ msgstr ""
 "Ezin da hautatutako bolumena muntatu. Baliteke bolumenak muntatu ezin "
 "daitekeen formatua edukitzea."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ezin da hautatutako diskete gailua muntatu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:210
 msgid "Unable to mount the selected volume."
 msgstr "Ezin da hautatutako bolumena muntatu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:223
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Ezin da hautatutako bolumena muntatu. Programa batek (edo gehiagok)darabil "
+"bolumena."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:226
 msgid "Unable to unmount the selected volume."
 msgstr "Ezin da hautatutako bolumena desmuntatu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:393
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Huts egin du %d (%s) ume-prozesutik datuak irakurtzean"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:437
+msgid "Couldn't run mount process in a pty"
+msgstr "Ezin izan da muntatz-prozesuan 'pty' batean exekutatu"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:482
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Ustegabeko errorea select() funtzioan ume-prozesutik (%s) datuak irakurtzean"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:536
+msgid "Couldn't send password to mount process."
+msgstr "Ezin izan da pasahitza muntatzeko prozesuari bidali"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:575
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Ustegabeko errorea waitpid() (%s) funtzioan"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:677
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:760
 msgid "Failed to start command"
 msgstr "Huts egin du komandoa abiatzean."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:747
 msgid "Unable to eject media"
 msgstr "Ezin da euskarria egotzi."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:995
 msgid "Unable to unmount connected server"
 msgstr "Ezin da konektatutako zerbitzaria desmuntatu."
 
@@ -919,21 +965,21 @@ msgstr "Etxea"
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "%d nomeVFSSeekPosition ezezaguna"
+msgstr "%d GnomeVFSSeekPosition ezezaguna"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "Windows sarea"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Urruneko ordenagailuaren (%s) identitatea ezezaguna da."
 
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -946,11 +992,11 @@ msgstr ""
 "Urruneko ordenagailuak bidalitako idetitatea %s da. Jar zaitez sistemako "
 "arduradunarekin harremanetan erabateko segurtasuna duela ziurtatzeko."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
 msgstr "Sartu hala ere"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1331
 msgid "Cancel Login"
 msgstr "Utzi saioa amaitzea bertan behera"
 
@@ -1184,8 +1230,7 @@ msgstr ""
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
-"Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
+msgstr "Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1446,8 +1491,7 @@ msgstr ""
 
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr ""
-"SCSI gailuetako unitateak eta bolumen muntagarriak bistaratuko diren edo ez."
+msgstr "SCSI gailuetako unitateak eta bolumen muntagarriak bistaratuko diren edo ez."
 
 #: ../schemas/system_storage.schemas.in.h:8
 msgid ""
@@ -1476,5 +1520,3 @@ msgstr ""
 "Barneko disko gogorren unitateak eta bolumen muntagarriak bistaratuko diren "
 "edo ez (SCSI motakoak ez diren gailu-optikoak beti erakusten dira)."
 
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
