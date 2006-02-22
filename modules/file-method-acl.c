@@ -462,36 +462,48 @@ solaris_acl_read (GnomeVFSACL *acl,
 		GnomeVFSACE     *ace;
 		GnomeVFSACLKind  kind;
 		GnomeVFSACLPerm  pset[SOLARIS_N_TAGS+1];
-		char            *id;	
+		char            *id;
 
 		id   = NULL;
 		kind = GNOME_VFS_ACL_KIND_NULL;
 
 		switch (tp->a_type) {
 		case USER:
+		case DEF_USER:
 			id = uid_to_string(tp->a_id);
 		case USER_OBJ:
+		case DEF_USER_OBJ:
 			kind = GNOME_VFS_ACL_USER;
 			break;
 
 		case GROUP:
+		case DEF_GROUP:
 			id = gid_to_string(tp->a_id);			
 		case GROUP_OBJ:
+		case DEF_GROUP_OBJ:
 			kind = GNOME_VFS_ACL_GROUP;
 			break;
 
+		case OTHER_OBJ:
+		case DEF_OTHER_OBJ:
+			kind = GNOME_VFS_ACL_OTHER;
+			break;
+
 		case CLASS_OBJ:
+		case DEF_CLASS_OBJ:
 			kind = GNOME_VFS_ACL_MASK;
 			break;
 
-		case OTHER_OBJ:
-			kind = GNOME_VFS_ACL_OTHER;
-			break;
+		default:
+			g_warning ("Unhandled Solaris ACE: %d\n", tp->a_type);
 		}
 
 		permset_to_perms (tp->a_perm, pset);
 		ace = gnome_vfs_ace_new (kind, id, pset);
-		
+
+		if (tp->a_type & ACL_DEFAULT)
+			gnome_vfs_ace_set_inherit (ace, TRUE);
+
 		gnome_vfs_acl_set (acl, ace);
 		g_object_unref (ace);
 	}
@@ -537,17 +549,15 @@ translate_ace_into_aclent (GnomeVFSACE *ace, aclent_t *aclp)
 				aclp->a_type = (is_default) ? DEF_USER : USER;
 				aclp->a_id = string_to_uid (id_str);
 			} else {
-				aclp->a_type = (is_default) ? 
-					DEF_USER_OBJ : USER_OBJ; 
+				aclp->a_type = (is_default) ? DEF_USER_OBJ : USER_OBJ;
 			}
 			break;
 		case GNOME_VFS_ACL_GROUP:
 			if (id_str) {
-				aclp->a_type = (is_default) ? DEF_GROUP : GROUP;;
+				aclp->a_type = (is_default) ? DEF_GROUP : GROUP;
 				aclp->a_id = string_to_gid (id_str);
 			} else {
-				aclp->a_type = (is_default) ? 
-					DEF_GROUP_OBJ : GROUP_OBJ;				
+				aclp->a_type = (is_default) ? DEF_GROUP_OBJ : GROUP_OBJ;				
 			}
 			break;
 	        case GNOME_VFS_ACL_OTHER:
