@@ -20,10 +20,12 @@
    Boston, MA 02111-1307, USA.
 
    Author: Christian Kellner <gicmo@gnome.org>
+           Alvaro Lopez Ortega <alvaro@sun.com>
 */
 
 #include "gnome-vfs-ace.h"
 #include "gnome-vfs-acl.h"
+
 /* ************************************************************************** */
 /* GnomeVFSACLEntry */
 /* ************************************************************************** */
@@ -496,7 +498,57 @@ void
 gnome_vfs_ace_add_perm (GnomeVFSACE     *entry,
                         GnomeVFSACLPerm  perm)
 {
-	g_critical ("implement me");         	
+	GnomeVFSACEPrivate *priv;
+	PermSet            *permset;
+	gint                i;
+
+	g_assert (GNOME_VFS_IS_ACE(entry));
+
+	priv    = GET_PRIVATE (entry);
+	permset = &priv->perm_set;
+
+	for (i=0; i<permset->count; i++) {
+		if (permset->perms[i] == perm)
+			return;
+	}
+	
+	if (permset->array_len < permset->count) {
+		permset->perms = g_realloc (permset->perms, 
+					    sizeof(GnomeVFSACLPerm) * (permset->count + 2));
+		permset->array_len++;
+	}
+
+	permset->perms[permset->count] = perm;
+	permset->count++;
+
+	g_qsort_with_data (permset->perms,
+			   permset->count++,
+			   sizeof (GnomeVFSACLPerm),
+			   (GCompareDataFunc) cmp_perm,
+			   NULL);
+}
+
+void
+gnome_vfs_ace_del_perm (GnomeVFSACE      *entry,
+			GnomeVFSACLPerm   perm)
+{
+	guint               i;
+	GnomeVFSACEPrivate *priv;
+	PermSet            *permset;
+
+	priv    = GET_PRIVATE (entry);
+	permset = &priv->perm_set;
+
+	if (permset->perms == NULL) 
+		return;
+
+	for (i=0; i<permset->count; i++) {
+		if (permset->perms[i] == perm) {
+			g_memmove (&permset->perms[i], &permset->perms[i+1], permset->count - i);
+			permset->count--;
+			break;
+		}
+	}
 }
 
 gboolean
