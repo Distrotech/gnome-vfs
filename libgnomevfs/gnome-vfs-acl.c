@@ -137,7 +137,7 @@ gnome_vfs_acl_clear (GnomeVFSACL *acl)
 
 	g_list_free (priv->entries);
 
-	priv->entires = NULL;
+	priv->entries = NULL;
 }
 
 /**
