@@ -222,7 +222,7 @@ permset_to_perms (acl_permset_t set, GnomeVFSACLPerm *tags)
 {
 	int i;
 	
-	memset (tags, 0, sizeof (GnomeVFSACLPerm) * POSIX_N_TAGS);
+	memset (tags, 0, sizeof (GnomeVFSACLPerm) * (POSIX_N_TAGS + 1));
 	i = 0;
 
 	if (acl_get_perm (set, ACL_READ) == 1) {
@@ -331,7 +331,7 @@ posix_acl_read (GnomeVFSACL *acl,
 	n = 0;
 	e_id = ACL_FIRST_ENTRY;	
 	while ((res = acl_get_entry (p_acl, e_id, &entry)) == 1) {
-		GnomeVFSACLPerm   pset[POSIX_N_TAGS];
+		GnomeVFSACLPerm   pset[POSIX_N_TAGS + 1];
 		GnomeVFSACLKind   kind;
 		GnomeVFSACE      *ace;
 		acl_permset_t     e_ps;
@@ -428,7 +428,7 @@ permset_to_perms (int set, GnomeVFSACLPerm *tags)
 {
 	int i;
 	
-	memset (tags, 0, sizeof (GnomeVFSACLPerm) * SOLARIS_N_TAGS);
+	memset (tags, 0, sizeof (GnomeVFSACLPerm) * (SOLARIS_N_TAGS + 1));
 	i = 0;
 
 	if (set & 4) {
@@ -461,7 +461,7 @@ solaris_acl_read (GnomeVFSACL *acl,
 	for (tp = aclp, i=0; i < aclcnt; tp++, i++) {
 		GnomeVFSACE     *ace;
 		GnomeVFSACLKind  kind;
-		GnomeVFSACLPerm  pset[SOLARIS_N_TAGS];
+		GnomeVFSACLPerm  pset[SOLARIS_N_TAGS+1];
 		char            *id;	
 
 		id   = NULL;
@@ -515,14 +515,16 @@ translate_ace_into_aclent (GnomeVFSACE *ace, aclent_t *aclp)
 	aclp->a_perm = 0;
 	aclp->a_id   = 0;
 	aclp->a_type = 0;
-	
+
 	/* Permissions
 	 */
 	if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_READ)) {
 		aclp->a_perm |= 4;
-	} else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_WRITE)) {
+	}
+	if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_WRITE)) {
 		aclp->a_perm |= 2;
-	} else if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_EXECUTE)) {
+	} 
+	if (gnome_vfs_ace_check_perm (ace, GNOME_VFS_ACL_EXECUTE)) {
 		aclp->a_perm |= 1;
 	}
 
@@ -531,22 +533,22 @@ translate_ace_into_aclent (GnomeVFSACE *ace, aclent_t *aclp)
 	id = NULL;
 	switch (kind) {
 		case GNOME_VFS_ACL_USER:
-			aclp->a_type = USER;
 			if (id_str) {
-				id = string_to_uid (id_str);
+				aclp->a_type = USER;
+				aclp->a_id = string_to_uid (id_str);
 			} else {
 				aclp->a_type = USER_OBJ;
 			}
 			break;
 		case GNOME_VFS_ACL_GROUP:
-			aclp->a_type = GROUP;
 			if (id_str) {
-				id = string_to_gid (id_str);
+				aclp->a_type = GROUP;
+				aclp->a_id = string_to_gid (id_str);
 			} else {
 				aclp->a_type = GROUP_OBJ;				
 			}
 			break;
-		case GNOME_VFS_ACL_OTHER:
+	        case GNOME_VFS_ACL_OTHER:
 			aclp->a_type = OTHER_OBJ;
 			break;
 
@@ -652,8 +654,6 @@ GnomeVFSResult file_get_acl (const char       *path,
 		info->acl = gnome_vfs_acl_new ();
 	}
 	
-	info->acl = gnome_vfs_acl_new ();
-	
 	p_acl = acl_get_file (path, ACL_TYPE_ACCESS);
 	n = posix_acl_read (info->acl, p_acl, FALSE);
 	
@@ -738,7 +738,6 @@ file_set_acl (const char             *path,
  	if (re < 0) {
 		int err = errno;
 
-		printf ("Error: 2\n");
 		g_free (new_aclp);
 		return aclerrno_to_vfserror(err);
 	}
