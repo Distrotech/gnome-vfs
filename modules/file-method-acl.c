@@ -534,26 +534,28 @@ translate_ace_into_aclent (GnomeVFSACE *ace, aclent_t *aclp)
 	switch (kind) {
 		case GNOME_VFS_ACL_USER:
 			if (id_str) {
-				aclp->a_type = USER;
+				aclp->a_type = (is_default) ? DEF_USER : USER;
 				aclp->a_id = string_to_uid (id_str);
 			} else {
-				aclp->a_type = USER_OBJ;
+				aclp->a_type = (is_default) ? 
+					DEF_USER_OBJ : USER_OBJ; 
 			}
 			break;
 		case GNOME_VFS_ACL_GROUP:
 			if (id_str) {
-				aclp->a_type = GROUP;
+				aclp->a_type = (is_default) ? DEF_GROUP : GROUP;;
 				aclp->a_id = string_to_gid (id_str);
 			} else {
-				aclp->a_type = GROUP_OBJ;				
+				aclp->a_type = (is_default) ? 
+					DEF_GROUP_OBJ : GROUP_OBJ;				
 			}
 			break;
 	        case GNOME_VFS_ACL_OTHER:
-			aclp->a_type = OTHER_OBJ;
+			aclp->a_type = (is_default) ? DEF_OTHER_OBJ : OTHER_OBJ;
 			break;
 
 		case GNOME_VFS_ACL_MASK:
-			aclp->a_type = CLASS_OBJ;
+			aclp->a_type = (is_default) ? DEF_CLASS_OBJ : CLASS_OBJ;
 			break;
 
 		default:
