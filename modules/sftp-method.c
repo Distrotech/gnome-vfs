@@ -65,6 +65,7 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 #include <glib/gi18n-lib.h>
 

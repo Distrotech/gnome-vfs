@@ -1,3 +1,7 @@
+2006-02-23  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/sftp-method.c: Include <sys/time.h>. Fixes #325135.
+
 2006-02-21  David Zeuthen  <davidz@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c (gnome_vfs_volume_eject)
