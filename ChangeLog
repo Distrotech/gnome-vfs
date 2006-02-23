@@ -1,3 +1,17 @@
+2006-02-21  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c (gnome_vfs_volume_eject)
+	(gnome_vfs_volume_unmount): Get the hal_udi for from the drive if
+	a volume doesn't have a hal_udi and we're using gnome-mount. This
+	is the case for PC style floppy disks, IDE zip drives and other
+	drives that hal cannot poll. This means we can use gnome-eject
+	resp. gnome-eject for these which is necessary as we used
+	gnome-mount to actually mount them (needs privs and needs to clean
+	up mount point). Also fixes leaking the hal udi. This is also Red
+	Hat bug #182046.
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Uncomment debug
+
 2006-02-19  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/xdgmimemagic.c: (_xdg_mime_magic_lookup_data): When two

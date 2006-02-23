@@ -1027,18 +1027,37 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 
 	type = gnome_vfs_volume_get_volume_type (volume);
 	if (type == GNOME_VFS_VOLUME_TYPE_MOUNTPOINT) {
+		char *hal_udi;
+
 		uri = gnome_vfs_volume_get_activation_uri (volume);
 		mount_path = gnome_vfs_get_local_path_from_uri (uri);
 		g_free (uri);
 		device_path = gnome_vfs_volume_get_device_path (volume);
+		hal_udi = gnome_vfs_volume_get_hal_udi (volume);
+
+#if defined(USE_GNOME_MOUNT)
+		/* Volumes from drives that are not polled may not
+		 * have a hal_udi.. take the one from HAL to get
+		 * gnome-mount working */
+		if (hal_udi == NULL) {
+			GnomeVFSDrive *drive;
+			drive = gnome_vfs_volume_get_drive (volume);
+			if (drive != NULL) {
+				hal_udi = gnome_vfs_drive_get_hal_udi (drive);
+				gnome_vfs_drive_unref (drive);
+			}
+		}
+#endif /* USE_GNOME_MOUNT */
+
 		mount_unmount_operation (mount_path,
 					 device_path,
-					 gnome_vfs_volume_get_hal_udi (volume),
+					 hal_udi,
 					 gnome_vfs_volume_get_device_type (volume),
 					 FALSE, TRUE, FALSE,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
+		g_free (hal_udi);
 	} else if (type == GNOME_VFS_VOLUME_TYPE_VFS_MOUNT) {
 		/* left intentionally blank as these cannot be mounted and thus not unmounted */
 	} else if (type == GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER) {
@@ -1074,14 +1093,31 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 		mount_path = gnome_vfs_get_local_path_from_uri (uri);
 		g_free (uri);
 		device_path = gnome_vfs_volume_get_device_path (volume);
+		hal_udi = gnome_vfs_volume_get_hal_udi (volume);
+
+#if defined(USE_GNOME_MOUNT)
+		/* Volumes from drives that are not polled may not
+		 * have a hal_udi.. take the one from HAL to get
+		 * gnome-mount working */
+		if (hal_udi == NULL) {
+			GnomeVFSDrive *drive;
+			drive = gnome_vfs_volume_get_drive (volume);
+			if (drive != NULL) {
+				hal_udi = gnome_vfs_drive_get_hal_udi (drive);
+				gnome_vfs_drive_unref (drive);
+			}
+		}
+#endif /* USE_GNOME_MOUNT */
+
 		mount_unmount_operation (mount_path,
 					 device_path,
-					 gnome_vfs_volume_get_hal_udi (volume),
+					 hal_udi,
 					 gnome_vfs_volume_get_device_type (volume),
 					 FALSE, TRUE, TRUE,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
+		g_free (hal_udi);
 	} else if (type == GNOME_VFS_VOLUME_TYPE_VFS_MOUNT) {
 		hal_udi = gnome_vfs_volume_get_hal_udi (volume);
 		uri = gnome_vfs_volume_get_activation_uri (volume);
@@ -1100,6 +1136,7 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 			g_free (device_path);
 		    }
 		g_free (uri);
+		g_free (hal_udi);
 	} else if (type == GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER) {
 		unmount_connected_server (volume, callback, user_data);
 	}

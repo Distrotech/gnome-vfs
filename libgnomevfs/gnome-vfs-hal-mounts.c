@@ -27,7 +27,6 @@
 
 /* uncomment to get helpful debug messages */
 /* #define HAL_SHOW_DEBUG */
-#define HAL_SHOW_DEBUG
 
 #include <stdio.h>
 #include <stdlib.h>
