@@ -423,6 +423,110 @@ posix_acl_read (GnomeVFSACL *acl,
 #ifdef HAVE_SOLARIS_ACL
 #define SOLARIS_N_TAGS 3
 
+static gboolean
+fixup_acl (GnomeVFSACL *acl, GSList *acls)
+{
+	GSList   *i;
+	gboolean  defaults     = FALSE;
+	gboolean  user_obj     = FALSE;
+	gboolean  group_obj    = FALSE;
+	gboolean  other_obj    = FALSE;
+	gboolean  class_needed = FALSE;
+	gboolean  changed      = FALSE;
+
+	/* Is there some default entry?
+	 */
+	for (i=acls; i != NULL; i=i->next) {
+		const char       *id_str;
+		GnomeVFSACLKind   kind;
+		GnomeVFSACE      *ace = GNOME_VFS_ACE(i->data);
+	
+		if (!gnome_vfs_ace_get_inherit(ace)) 
+			continue;
+
+		defaults = TRUE;
+
+		id_str = gnome_vfs_ace_get_id (ace);
+		kind   = gnome_vfs_ace_get_kind (ace);
+
+		switch (kind) {
+		case GNOME_VFS_ACL_USER:
+			if (id_str == NULL)
+				user_obj = TRUE;
+			else
+				class_needed = TRUE;
+			break;
+		case GNOME_VFS_ACL_GROUP:
+			if (id_str == NULL)
+				group_obj = TRUE;
+			else
+				class_needed = TRUE;
+			break;
+	        case GNOME_VFS_ACL_OTHER:
+			if (id_str == NULL)
+				other_obj = TRUE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (!defaults) return FALSE;
+
+	/* Add the missing ACEs
+	 */
+	if (!user_obj) {
+		GnomeVFSACE     *ace;
+		GnomeVFSACLPerm perms[] = {GNOME_VFS_ACL_READ,
+					   GNOME_VFS_ACL_WRITE,
+					   GNOME_VFS_ACL_EXECUTE, 0};
+
+		ace = gnome_vfs_ace_new (GNOME_VFS_ACL_USER, NULL, perms);
+		gnome_vfs_ace_set_inherit (ace, TRUE);
+		gnome_vfs_acl_set (acl, ace);
+		g_slist_append(acls, ace);
+
+		changed = TRUE;
+	}
+
+	if (!group_obj) {
+		GnomeVFSACE     *ace;
+		GnomeVFSACLPerm  perms[] = {0};
+
+		ace = gnome_vfs_ace_new (GNOME_VFS_ACL_GROUP, NULL, perms);
+		gnome_vfs_ace_set_inherit (ace, TRUE);
+		gnome_vfs_acl_set (acl, ace);
+
+		changed = TRUE;
+	}
+
+	if (!other_obj) {
+		GnomeVFSACE     *ace;
+		GnomeVFSACLPerm  perms[] = {0};
+
+		ace = gnome_vfs_ace_new (GNOME_VFS_ACL_OTHER, NULL, perms);
+		gnome_vfs_ace_set_inherit (ace, TRUE);
+		gnome_vfs_acl_set (acl, ace);
+
+		changed = TRUE;
+	}	
+
+	if (class_needed) {
+		GnomeVFSACE     *ace;
+		GnomeVFSACLPerm  perms[] = {GNOME_VFS_ACL_READ,
+					    GNOME_VFS_ACL_WRITE,
+					    GNOME_VFS_ACL_EXECUTE, 0};
+
+		ace = gnome_vfs_ace_new (GNOME_VFS_ACL_MASK, NULL, perms);
+		gnome_vfs_ace_set_inherit (ace, TRUE);
+		gnome_vfs_acl_set (acl, ace);
+
+		changed = TRUE;
+	}
+
+	return changed;
+}
+
 static int
 permset_to_perms (int set, GnomeVFSACLPerm *tags)
 {
@@ -709,26 +813,34 @@ file_set_acl (const char             *path,
 	aclent_t        *new_aclp;
 	aclent_t        *taclp;
 	guint            aclp_i;
+	gboolean         changed;
 
 	if (info->acl == NULL) 
 		return GNOME_VFS_ERROR_BAD_PARAMETERS;
 
 	acls = gnome_vfs_acl_get_ace_list (info->acl);
 	if (acls == NULL) return GNOME_VFS_OK;
-	
+
+	changed = fixup_acl (info->acl, acls);	
+	if (changed) {
+		gnome_vfs_acl_free_ace_list (acls);
+
+		acls = gnome_vfs_acl_get_ace_list (info->acl);
+		if (acls == NULL) return GNOME_VFS_OK;
+	}
+
 	len = g_list_length (acls);
 	if (len <= 0) return GNOME_VFS_OK;
 
 	new_aclp = (aclent_t *) malloc (len * sizeof(aclent_t));
 	if (new_aclp == NULL) return GNOME_VFS_ERROR_NO_MEMORY;
-
 	memset (new_aclp, 0, len * sizeof(aclent_t));
 
 	aclp_i = 0;
 	taclp  = new_aclp;
 	for (entry=acls; entry != NULL; entry = entry->next) {
 		GnomeVFSACE *ace = GNOME_VFS_ACE(entry->data);
-
+		
 		re = translate_ace_into_aclent (ace, taclp);
 		if (re != GNOME_VFS_OK) continue;
 
