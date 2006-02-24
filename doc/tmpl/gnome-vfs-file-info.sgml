@@ -99,6 +99,7 @@ stores information about files, GnomeVFS equivalent of stat
 @GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE: 
 @GNOME_VFS_FILE_INFO_FOLLOW_LINKS: 
 @GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS: 
+@GNOME_VFS_FILE_INFO_NAME_ONLY: 
 
 <!-- ##### ENUM GnomeVFSSetFileInfoMask ##### -->
 <para>

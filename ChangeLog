@@ -1,3 +1,10 @@
+2006-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* doc/tmpl/gnome-vfs-file-info.sgml:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* modules/file-method.c:
+	Add and implement GNOME_VFS_FILE_INFO_NAME_ONLY for readdir.
+
 2006-02-23  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/sftp-method.c: Include <sys/time.h>. Fixes #325135.

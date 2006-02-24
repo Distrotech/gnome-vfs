@@ -287,6 +287,9 @@ typedef struct {
  * to what would return access(2) on a local file system (ie is the 
  * file readable, writable and/or executable). Can be really slow on 
  * remote file systems
+ * @GNOME_VFS_FILE_INFO_ONLY_NAME: When reading a directory, only
+ * get the filename (if doing so is faster). Useful to e.g. count
+ * the number of files.
  *
  * Packed boolean bitfield representing options that can
  * be passed into a gnome_vfs_get_file_info() call (or other
@@ -300,7 +303,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE = 1 << 2,
 	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3,
-	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4
+	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4,
+	GNOME_VFS_FILE_INFO_NAME_ONLY = 1 << 5
 } GnomeVFSFileInfoOptions;
 
 /**

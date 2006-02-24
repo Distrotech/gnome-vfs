@@ -1001,6 +1001,10 @@ do_read_directory (GnomeVFSMethod *method,
 #endif
 	full_name = handle->name_buffer;
 
+	if (handle->options & GNOME_VFS_FILE_INFO_NAME_ONLY) {
+		return GNOME_VFS_OK;
+	}
+		
 	if (get_stat_info (file_info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
 		/* Return OK - this should not terminate the directory iteration
 		 * and we will know from the valid_fields that we don't have the
