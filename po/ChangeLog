@@ -1,3 +1,8 @@
+2006-02-25  Benoît Dejean  <benoit@placenet.org>
+
+	* fr.po: Updated French translation.
+	Switched to Ki/Mi/Gi prefixes.
+
 2006-02-25  Hendrik Brandt  <heb@gnome-de.org>
 
 	* de.po: Updated German translation.
