@@ -14,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-27 20:34+0200\n"
-"PO-Revision-Date: 2005-09-27 20:40+0200\n"
+"POT-Creation-Date: 2006-02-25 15:59+0100\n"
+"PO-Revision-Date: 2006-02-25 15:59+0100\n"
 "Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -33,49 +33,55 @@ msgstr "GNOME-VFS konnte nicht initialisiert werden"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "ISO 9660-Datenträger"
+msgstr "ISO 9660-DatentrÃ¤ger"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:221
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d enthält NUL-Zeichen."
+msgstr "%s:%d enthÃ¤lt NUL-Zeichen."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:238
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d enthält keinen Methodennamen."
+msgstr "%s:%d enthÃ¤lt keinen Methodennamen."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:278
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d enthält keinen Optionsendmarker."
+msgstr "%s:%d enthÃ¤lt keinen Optionsendmarker."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:289
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%d has unknown options %s."
 msgstr "%s:%d hat unbekannte Optionen %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:308
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d enthält keinen Modulnamen."
+msgstr "%s:%d enthÃ¤lt keinen Modulnamen."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:362
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Die Konfigurationsdatei »%s« wurde nicht gefunden: %s"
+msgstr "Die Konfigurationsdatei Â»%sÂ« wurde nicht gefunden: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d Analyse abgebrochen."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "AFFS-Datenträger"
+msgstr "AFFS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "AFS-Netzwerkdatenträger"
+msgstr "AFS-NetzwerkdatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "Automatisch erkannter Datenträger"
+msgstr "Automatisch erkannter DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -89,136 +95,136 @@ msgstr "CD-Digital-Audio"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Hardware-Gerätedatenträger"
+msgstr "Hardware-GerÃ¤tedatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "Ext2-Linux-Datenträger"
+msgstr "Ext2-Linux-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr "Ext3-Linux-Datenträger"
+msgstr "Ext3-Linux-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr "MS-DOS-Datenträger"
+msgstr "MS-DOS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr "MacOS-Datenträger"
+msgstr "MacOS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr "CD-ROM-Datenträger"
+msgstr "CD-ROM-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr "Hsfs-CDROM-Datenträger"
+msgstr "Hsfs-CDROM-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr "JFS-Datenträger"
+msgstr "JFS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr "Windows NT-Datenträger"
+msgstr "Windows NT-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr "Systemdatenträger"
+msgstr "SystemdatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr "Speicherdatenträger"
+msgstr "SpeicherdatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr "Minix-Datenträger"
+msgstr "Minix-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "NFS-Netzwerkdatenträger"
+msgstr "NFS-NetzwerkdatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr "Netware-Datenträger"
+msgstr "Netware-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Reiser4 Linux Volume"
-msgstr "Reiser4-Linux-Datenträger"
+msgstr "Reiser4-Linux-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS-Linux-Datenträger"
+msgstr "ReiserFS-Linux-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
-msgstr "Freigegebener Windows-Datenträger"
+msgstr "Freigegebener Windows-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
-msgstr "SuperMount-Datenträger"
+msgstr "SuperMount-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
-msgstr "DVD-Datenträger"
+msgstr "DVD-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
-msgstr "Solaris-/BSD-Datenträger"
+msgstr "Solaris-/BSD-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
-msgstr "Udfs-Solaris-Datenträger"
+msgstr "Udfs-Solaris-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
-msgstr "Pcfs-Solaris-Datenträger"
+msgstr "Pcfs-Solaris-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
-msgstr "Sun SAM-QFS-Datenträger"
+msgstr "Sun SAM-QFS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
-msgstr "Erweiterter DOS-Datenträger"
+msgstr "Erweiterter DOS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
-msgstr "Windows-VFAT-Datenträger"
+msgstr "Windows-VFAT-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
-msgstr "Xenix-Datenträger"
+msgstr "Xenix-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
-msgstr "XFS-Linux-Datenträger"
+msgstr "XFS-Linux-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
-msgstr "XIAFS-Datenträger"
+msgstr "XIAFS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
-msgstr "CIFS-Datenträger"
+msgstr "CIFS-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
 #, c-format
 msgid "%s Volume"
-msgstr "%s-Datenträger"
+msgstr "%s-DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
@@ -265,12 +271,12 @@ msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
-msgid "DVD±R"
-msgstr "DVD±R"
+msgid "DVDÂ±R"
+msgstr "DVDÂ±R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
-msgid "DVD±RW"
-msgstr "DVD±RW"
+msgid "DVDÂ±RW"
+msgstr "DVDÂ±RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
 #, c-format
@@ -316,163 +322,163 @@ msgstr "Jaz-Laufwerk"
 msgid "Pen Drive"
 msgstr "USB-Stick-Laufwerk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s Musik-Player"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s Digitale Kamera"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
 msgid "Drive"
 msgstr "Laufwerk"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
 #, c-format
 msgid "External %s"
 msgstr "Externes %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
 msgid "CD-ROM Disc"
 msgstr "CD-ROM-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
 msgid "Blank CD-R Disc"
 msgstr "CD-R-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
 msgid "CD-R Disc"
 msgstr "CD-ROM-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "Blank CD-RW Disc"
 msgstr "CD-RW-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
 msgid "CD-RW Disc"
 msgstr "CD-RW-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
 msgid "Blank DVD-RAM Disc"
 msgstr "DVD-RAM-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
 msgid "Blank DVD-R Disc"
 msgstr "DVD-R-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
 msgid "DVD-R Disc"
 msgstr "DVD-R-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
 msgid "Blank DVD-RW Disc"
 msgstr "DVD-RW-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "DVD-RW Disc"
 msgstr "DVD-RW-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
 msgid "Blank DVD+R Disc"
 msgstr "DVD+R-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
 msgid "DVD+R Disc"
 msgstr "DVD+R-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
 msgid "Blank DVD+RW Disc"
 msgstr "DVD+RW-Rohling"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
 msgid "DVD+RW Disc"
 msgstr "DVD+RW-Medium"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
 msgid "Audio Disc"
 msgstr "Audio-CD"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
 #, c-format
 msgid "%s Removable Volume"
-msgstr "%s entfernbarer Datenträger"
+msgstr "%s entfernbarer DatentrÃ¤ger"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
 msgid "Volume"
-msgstr "Datenträger"
+msgstr "DatentrÃ¤ger"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Unbekannter Vorgangstyp %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
-"Es konnte keine Weiterleitung für den offenen GIOChannel angelegt werden: %s"
+"Es konnte keine Weiterleitung fÃ¼r den offenen GIOChannel angelegt werden: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Unbekannter Auftragstyp %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Vorgang gestoppt"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Veraltete Funktion. Änderungen an der MIME-Datenbank durch den Benutzer "
-"werden nicht mehr unterstützt."
+"Veraltete Funktion. Ã„nderungen an der MIME-Datenbank durch den Benutzer "
+"werden nicht mehr unterstÃ¼tzt."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:666
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Syntaxanalyse nicht möglich: %s"
+msgstr "Syntaxanalyse nicht mÃ¶glich: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:668
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Weitere Syntaxanalysefehler werden ignoriert."
 
@@ -499,12 +505,12 @@ msgstr "Interner Fehler"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: ../libgnomevfs/gnome-vfs-result.c:46
 msgid "Invalid parameters"
-msgstr "Ungültige Parameter"
+msgstr "UngÃ¼ltige Parameter"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "Unsupported operation"
-msgstr "Nicht unterstützter Vorgang"
+msgstr "Nicht unterstÃ¼tzter Vorgang"
 
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:48
@@ -514,12 +520,12 @@ msgstr "E/A-Fehler"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Data corrupted"
-msgstr "Daten beschädigt"
+msgstr "Daten beschÃ¤digt"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Format not valid"
-msgstr "Format ungültig"
+msgstr "Format ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:51
@@ -529,32 +535,32 @@ msgstr "Fehlerhafter Dateideskriptor"
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "File too big"
-msgstr "Datei zu groß"
+msgstr "Datei zu groÃŸ"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "No space left on device"
-msgstr "Kein Speicherplatz auf Gerät verfügbar"
+msgstr "Kein Speicherplatz auf GerÃ¤t verfÃ¼gbar"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
-msgstr "Dateisystem schreibgeschützt"
+msgstr "Dateisystem schreibgeschÃ¼tzt"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Invalid URI"
-msgstr "URI ungültig"
+msgstr "URI ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
-msgstr "Datei nicht geöffnet"
+msgstr "Datei nicht geÃ¶ffnet"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "Öffnungsmodus ungültig"
+msgstr "Ã–ffnungsmodus ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
@@ -564,7 +570,7 @@ msgstr "Zugriff verweigert"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
-msgstr "Zu viele Dateien geöffnet"
+msgstr "Zu viele Dateien geÃ¶ffnet"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:60
@@ -579,7 +585,7 @@ msgstr "Kein Verzeichnis"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation in progress"
-msgstr "Vorgang läuft"
+msgstr "Vorgang lÃ¤uft"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:63
@@ -594,7 +600,7 @@ msgstr "Datei existiert"
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
-msgstr "Ringschluss bei Verknüpfungen entdeckt"
+msgstr "Ringschluss bei VerknÃ¼pfungen entdeckt"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:66
@@ -609,7 +615,7 @@ msgstr "Ist ein Verzeichnis"
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Not enough memory"
-msgstr "Nicht genügend Speicher"
+msgstr "Nicht genÃ¼gend Speicher"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
@@ -619,7 +625,7 @@ msgstr "Rechner nicht gefunden"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "Rechnername ungültig"
+msgstr "Rechnername ungÃ¼ltig"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
@@ -649,12 +655,12 @@ msgstr "Verzeichnis nicht leer"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
-msgstr "Zu viele Verknüpfungen"
+msgstr "Zu viele VerknÃ¼pfungen"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
-msgstr "Dateisystem schreibgeschützt"
+msgstr "Dateisystem schreibgeschÃ¼tzt"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:78
@@ -666,7 +672,7 @@ msgstr "Nicht auf demselben Dateisystem"
 msgid "Name too long"
 msgstr "Name zu lang"
 
-# CHECK - erreichbar <=> verfügbar
+# CHECK - erreichbar <=> verfÃ¼gbar
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Service not available"
@@ -675,7 +681,7 @@ msgstr "Dienst nicht erreichbar"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Request obsoletes service's data"
-msgstr "Anfrage lässt Dienstdaten veralten"
+msgstr "Anfrage lÃ¤sst Dienstdaten veralten"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:82
@@ -695,7 +701,7 @@ msgstr "Keine Vorgabeaktion festgelegt"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
-msgstr "Kein Handler für URL-Schema"
+msgstr "Kein Handler fÃ¼r URL-Schema"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:86
@@ -705,12 +711,12 @@ msgstr "Fehler beim Analysieren der Befehlszeilensyntax"
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Error launching command"
-msgstr "Fehler beim Ausführen des Befehls"
+msgstr "Fehler beim AusfÃ¼hren des Befehls"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
-msgstr "Zeitüberschreitung"
+msgstr "ZeitÃ¼berschreitung"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
@@ -727,7 +733,7 @@ msgstr "Die Ressource ist gesperrt"
 msgid "Function call deprecated"
 msgstr "Veraltete Funktion aufgerufen"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
@@ -753,10 +759,10 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
-msgstr " (ungültiger Unicode)"
+msgstr " (ungÃ¼ltiger Unicode)"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
@@ -811,10 +817,10 @@ msgstr "CD-RW/DVD-R"
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-# CHECK: oder ist »Diskette« gemeint?
+# CHECK: oder ist Â»DisketteÂ« gemeint?
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
 msgid "Disk"
-msgstr "Datenträger"
+msgstr "DatentrÃ¤ger"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "USB Drive"
@@ -849,25 +855,25 @@ msgstr "Kamera"
 msgid "DVD"
 msgstr "DVD"
 
-# CHECK - Wurzeldatenträger ?
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+# CHECK - WurzeldatentrÃ¤ger ?
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
-msgstr "Root-Datenträger"
+msgstr "Root-DatentrÃ¤ger"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "Audio-CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
-msgstr "Unbekannter Datenträger"
+msgstr "Unbekannter DatentrÃ¤ger"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Netzwerk-Server"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -875,13 +881,13 @@ msgstr ""
 "sich keine Diskette im Laufwerk."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:190
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Der Datenträger konnte nicht eingebunden werden. Vermutlich befindet sich "
-"kein Medium im Gerät."
+"Der DatentrÃ¤ger konnte nicht eingebunden werden. Vermutlich befindet sich "
+"kein Medium im GerÃ¤t."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -889,39 +895,81 @@ msgstr ""
 "Das Diskettenlaufwerk konnte nicht eingebunden werden. Vermutlich liegt die "
 "Diskette in einem nicht einbindbaren Format vor."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:200
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Der DatentrÃ¤ger konnte nicht eingebunden werden. Falls es sich hierbei um "
+"einen verschlÃ¼sselten DatentrÃ¤ger handelt, wurde das falsche Passwort "
+"angegeben."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Der gewählte Datenträger konnte nicht eingebunden werden. Vermutlich liegt "
-"der Datenträger in einem nicht einbindbaren Format vor."
+"Der gewÃ¤hlte DatentrÃ¤ger konnte nicht eingebunden werden. Vermutlich liegt "
+"der DatentrÃ¤ger in einem nicht einbindbaren Format vor."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected floppy drive."
-msgstr "Das gewählte Diskettenlaufwerk konnte nicht eingebunden werden."
+msgstr "Das gewÃ¤hlte Diskettenlaufwerk konnte nicht eingebunden werden."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:210
 msgid "Unable to mount the selected volume."
-msgstr "Der gewählte Datenträger konnte nicht eingebunden werden."
+msgstr "Der gewÃ¤hlte DatentrÃ¤ger konnte nicht eingebunden werden."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:223
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Der gewÃ¤hlte DatentrÃ¤ger konnte nicht ausgehÃ¤ngt werden, da noch mindestens "
+"ein Programm auf ihn zugreift."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:226
 msgid "Unable to unmount the selected volume."
-msgstr "Der gewählte Datenträger konnte nicht ausgehängt werden."
+msgstr "Der gewÃ¤hlte DatentrÃ¤ger konnte nicht ausgehÃ¤ngt werden."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:393
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Daten konnte nicht von Kindprozess %d (%s) gelesen werden"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:437
+msgid "Couldn't run mount process in a pty"
+msgstr "Der Prozess zum Einbinden konnte in einem PTY nicht ausgefÃ¼hrt werden"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:482
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"Unerwarteter Fehler in select() beim Lesen von Daten aus Kindprozess (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:536
+msgid "Couldn't send password to mount process."
+msgstr "Das Passwort konnte nicht an den Einbindeprozess gesendet werden."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:575
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Unerwarteter Fehler in waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:677
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:760
 msgid "Failed to start command"
-msgstr "Befehl konnte nicht ausgeführt werden"
+msgstr "Befehl konnte nicht ausgefÃ¼hrt werden"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:747
 msgid "Unable to eject media"
 msgstr "Medium konnte nicht ausgeworfen werden"
 
 # CHECK
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:995
 msgid "Unable to unmount connected server"
-msgstr "Verbundener Server konnte nicht ausgehängt werden"
+msgstr "Verbundener Server konnte nicht ausgehÃ¤ngt werden"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -929,13 +977,13 @@ msgstr "Netzwerk"
 
 #: ../modules/computer-method.c:564
 msgid "Home"
-msgstr "Persönlicher Ordner"
+msgstr "PersÃ¶nlicher Ordner"
 
 #: ../modules/computer-method.c:582
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GNOMEVFSSeekPosition %d unbekannt"
@@ -944,13 +992,13 @@ msgstr "GNOMEVFSSeekPosition %d unbekannt"
 msgid "Windows Network"
 msgstr "Windows-Netzwerk"
 
-#: ../modules/sftp-method.c:1314
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "Die Identität des entfernten Computers (%s) ist unbekannt."
+msgstr "Die IdentitÃ¤t des entfernten Computers (%s) ist unbekannt."
 
 # CHECK
-#: ../modules/sftp-method.c:1315
+#: ../modules/sftp-method.c:1323
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -960,15 +1008,15 @@ msgid ""
 msgstr ""
 "Dies passiert, wenn Sie sich das erste Mal an einem Computer anmelden.\n"
 "\n"
-"Die vom entfernten Computer übermittelte Identität ist %s. Kontaktieren Sie "
+"Die vom entfernten Computer Ã¼bermittelte IdentitÃ¤t ist %s. Kontaktieren Sie "
 "den Systemadministrator, falls Sie sich nicht sicher sind, ob es sicher ist, "
 "fortzufahren."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1331
 msgid "Log In Anyway"
 msgstr "Dennoch anmelden"
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1332
 msgid "Cancel Login"
 msgstr "Nicht anmelden"
 
@@ -976,7 +1024,7 @@ msgstr "Nicht anmelden"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Es konnte keine gültige Einstellung bei %s gefunden werden\n"
+msgstr "Es konnte keine gÃ¼ltige Einstellung bei %s gefunden werden\n"
 
 #: ../modules/test-method.c:589
 #, c-format
@@ -1002,7 +1050,7 @@ msgstr "Allgemeiner Datei-Moniker"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Vorgabeanwendung für Ansichtskomponenten"
+msgstr "Vorgabeanwendung fÃ¼r Ansichtskomponenten"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -1010,7 +1058,7 @@ msgstr "Vorgabe-Terminal-Anwendung"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Exec-Argument für Vorgabe-Terminal"
+msgstr "Exec-Argument fÃ¼r Vorgabe-Terminal"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1028,226 +1076,226 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Die Vorgabe-Terminal-Anwendung, die für Anwendungen verwendet wird, die ein "
+"Die Vorgabe-Terminal-Anwendung, die fÃ¼r Anwendungen verwendet wird, die ein "
 "Terminal erforderlich machen."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Das an die Vorgabe-Terminal-Anwendung zu übergebende exec-Argument."
+msgstr "Das an die Vorgabe-Terminal-Anwendung zu Ã¼bergebende exec-Argument."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "Den Befehl in einem Terminal ausführen"
+msgstr "Den Befehl in einem Terminal ausfÃ¼hren"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Der zum Handhaben von »aim«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»aimÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
 msgstr ""
-"Der zum Handhaben von »callto«-URLs verwendete Befehl, falls aktiviert."
+"Der zum Handhaben von Â»calltoÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Der zum Handhaben von »ghelp«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»ghelpÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Der zum Handhaben von »h323«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»h323Â«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Der zum Handhaben von »http«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»httpÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Der zum Handhaben von »https«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»httpsÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Der zum Handhaben von »info«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»infoÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
-"Der zum Handhaben von »mailto«-URLs verwendete Befehl, falls aktiviert."
+"Der zum Handhaben von Â»mailtoÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Der zum Handhaben von »man«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»manÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Der zum Handhaben von »trash«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von Â»trashÂ«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Der Handler für »aim«-URLs"
+msgstr "Der Handler fÃ¼r Â»aimÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "Der Handler für »callto«-URLs"
+msgstr "Der Handler fÃ¼r Â»calltoÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Der Handler für »ghelp«-URLs"
+msgstr "Der Handler fÃ¼r Â»ghelpÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "Der Handler für »h323«-URLs"
+msgstr "Der Handler fÃ¼r Â»h323Â«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "Der Handler für »http«-URLs"
+msgstr "Der Handler fÃ¼r Â»httpÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "Der Handler für »https«-URLs"
+msgstr "Der Handler fÃ¼r Â»httpsÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "Der Handler für »info«-URLs"
+msgstr "Der Handler fÃ¼r Â»infoÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Der Handler für »mailto«-URLs"
+msgstr "Der Handler fÃ¼r Â»mailtoÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "Der Handler für »man«-URLs"
+msgstr "Der Handler fÃ¼r Â»manÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Der Handler für »trash«-URLs"
+msgstr "Der Handler fÃ¼r Â»trashÂ«-URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »aim«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»aimÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »callto«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»calltoÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »ghelp«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»ghelpÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »h323«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»h323Â«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »http«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»httpÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »https«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»httpsÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »info«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»infoÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »mailto«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»mailtoÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »man«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»manÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, handhabt das in »command« angegebene "
-"Programm »trash«-URLs."
+"Falls dieser SchlÃ¼ssel wahr ist, handhabt das in Â»commandÂ« angegebene "
+"Programm Â»trashÂ«-URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Falls dieser Schlüssel wahr ist, wird das Programm, dass diesen URL-Typ "
-"handhaben soll, in einem Terminal ausgeführt."
+"Falls dieser SchlÃ¼ssel wahr ist, wird das Programm, dass diesen URL-Typ "
+"handhaben soll, in einem Terminal ausgefÃ¼hrt."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Soll der angegebene Befehl »aim«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»aimÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Soll der angegebene Befehl »callto«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»calltoÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Soll der angegebene Befehl »ghelp«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»ghelpÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Soll der angegebene Befehl »h323«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»h323Â«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Soll der angegebene Befehl »http«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»httpÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Soll der angegebene Befehl »https«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»httpsÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Soll der angegebene Befehl »info«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»infoÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Soll der angegebene Befehl »mailto«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»mailtoÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Soll der angegebene Befehl »man«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»manÂ«-URLs handhaben?"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Soll der angegebene Befehl »trash«-URLs handhaben?"
+msgstr "Soll der angegebene Befehl Â»trashÂ«-URLs handhaben?"
 
 # CHECK
 #: ../schemas/system_dns_sd.schemas.in.h:1
@@ -1255,12 +1303,12 @@ msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
-"Durch Kommata unterteilte Liste der DNS-SD-Domänen, die am Netzwerk-"
-"Speicherort »network:///« angezeigt werden sollen."
+"Durch Kommata unterteilte Liste der DNS-SD-DomÃ¤nen, die am Netzwerk-"
+"Speicherort Â»network:///Â« angezeigt werden sollen."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "Zusätzlich nach DNS-SD-Diensten zu durchsuchende Domänen"
+msgstr "ZusÃ¤tzlich nach DNS-SD-Diensten zu durchsuchende DomÃ¤nen"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1268,7 +1316,7 @@ msgstr "Legt fest, der lokale DNS-SD-Dienst angezeigt werden soll"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Zulässige Werte: »merged«, »separate« sowie »disabled«."
+msgstr "ZulÃ¤ssige Werte: Â»mergedÂ«, Â»separateÂ« sowie Â»disabledÂ«."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1314,9 +1362,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Legt fest, ob Verbindungen mit dem Proxy-Server legitimiert werden müssen. "
-"Hierbei werden die Werte von »/system/http_proxy/authentication_user« und »/"
-"system/http_proxy/authentication_password« als Benutzername bzw. Passwort "
+"Legt fest, ob Verbindungen mit dem Proxy-Server legitimiert werden mÃ¼ssen. "
+"Hierbei werden die Werte von Â»/system/http_proxy/authentication_userÂ« und Â»/"
+"system/http_proxy/authentication_passwordÂ« als Benutzername bzw. Passwort "
 "verwendet."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
@@ -1325,7 +1373,7 @@ msgstr "Nicht-Proxy-Rechner"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Zur HTTP-Proxy-Legitimation zu übergebendes Passwort"
+msgstr "Zur HTTP-Proxy-Legitimation zu Ã¼bergebendes Passwort"
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1352,8 +1400,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Legt den Proxy-Konfigurationsmodus fest. Zulässige Werte: »none« (keiner), "
-"»manual« (manuell) sowie »auto« (automatisch)."
+"Legt den Proxy-Konfigurationsmodus fest. ZulÃ¤ssige Werte: Â»noneÂ« (keiner), "
+"Â»manualÂ« (manuell) sowie Â»autoÂ« (automatisch)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1375,28 +1423,28 @@ msgstr "Der Rechnername des Socks-Proxys."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "Der Proxy-Port am von »/system/http_proxy/host« festgelegten Rechner."
+msgstr "Der Proxy-Port am von Â»/system/http_proxy/hostÂ« festgelegten Rechner."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Der Proxy-Port am von »/system/http_proxy/ftp_host« festgelegten Rechner."
+"Der Proxy-Port am von Â»/system/http_proxy/ftp_hostÂ« festgelegten Rechner."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Der Proxy-Port am von »/system/http_proxy/secure_host« festgelegten Rechner."
+"Der Proxy-Port am von Â»/system/http_proxy/secure_hostÂ« festgelegten Rechner."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Der Proxy-Port am von »/system/http_proxy/socks_host« festgelegten Rechner."
+"Der Proxy-Port am von Â»/system/http_proxy/socks_hostÂ« festgelegten Rechner."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1405,11 +1453,11 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Dieser Schlüssel enthält eine Liste der Rechner, mit denen eine "
+"Dieser SchlÃ¼ssel enthÃ¤lt eine Liste der Rechner, mit denen eine "
 "Direktverbindung aufgebaut werden soll, also nicht via Proxy (falls aktiv). "
-"Als Werte sind Rechnernamen, Domänen (per Wildcard, z.B. *.foo.de), IP-"
+"Als Werte sind Rechnernamen, DomÃ¤nen (per Wildcard, z.B. *.foo.de), IP-"
 "Rechneradresse (sowohl IPv4 als auch IPv6) und Netzwerkadressen mit einer "
-"Netzmaske (der Form 192.168.0.0/24) zulässig."
+"Netzmaske (der Form 192.168.0.0/24) zulÃ¤ssig."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1421,7 +1469,7 @@ msgstr "HTTP-Proxy verwenden"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Zur HTTP-Proxy-Legitimation zu übergebender Benutzername."
+msgstr "Zur HTTP-Proxy-Legitimation zu Ã¼bergebender Benutzername."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1433,8 +1481,8 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Die Windows-Netzwerkarbeitsgruppe oder -domäne zu der der Benutzer gehört. "
-"Damit eine neue Arbeitsgruppe vollständig übernommen werden kann, muss sich "
+"Die Windows-Netzwerkarbeitsgruppe oder -domÃ¤ne zu der der Benutzer gehÃ¶rt. "
+"Damit eine neue Arbeitsgruppe vollstÃ¤ndig Ã¼bernommen werden kann, muss sich "
 "der Benutzer ab- und wieder anmelden."
 
 #: ../schemas/system_storage.schemas.in.h:1
@@ -1468,7 +1516,7 @@ msgstr ""
 #: ../schemas/system_storage.schemas.in.h:7
 msgid "Whether to display drives and mountable volumes from SCSI drives."
 msgstr ""
-"Legt fest, ob Laufwerke und einbindbare Medien von SCSI-Geräten angezeigt "
+"Legt fest, ob Laufwerke und einbindbare Medien von SCSI-GerÃ¤ten angezeigt "
 "werden."
 
 #: ../schemas/system_storage.schemas.in.h:8
@@ -1478,7 +1526,7 @@ msgid ""
 msgstr ""
 "Legt fest, ob Laufwerke und einbindbare Medien von Wechsellaufwerken "
 "angezeigt werden (z.B. Laufwerke bei denen Medien eingelegt und wieder "
-"entnommen werden können)"
+"entnommen werden kÃ¶nnen)"
 
 #: ../schemas/system_storage.schemas.in.h:9
 msgid ""
@@ -1486,16 +1534,15 @@ msgid ""
 "drives that are hotpluggable; e.g. drives that can be attached and detached "
 "while the system is running)."
 msgstr ""
-"Legt fest, ob Laufwerke und einhängbare Medien von externen Laufwerken "
-"angezeigt werden (z.B. Laufwerke die während das System läuft verbunden und "
-"entfernt werden können)."
+"Legt fest, ob Laufwerke und einhÃ¤ngbare Medien von externen Laufwerken "
+"angezeigt werden (z.B. Laufwerke die wÃ¤hrend das System lÃ¤uft verbunden und "
+"entfernt werden kÃ¶nnen)."
 
 #: ../schemas/system_storage.schemas.in.h:10
 msgid ""
 "Whether to display drives and mountable volumes from internal hard drives "
 "(non-SCSI optical drives are always shown)."
 msgstr ""
-"Legt fest, ob Laufwerke und einhängbare Medien von internen Festplatten "
+"Legt fest, ob Laufwerke und einhÃ¤ngbare Medien von internen Festplatten "
 "angezeigt werden (optische Laufwerke, die nicht SCSI sind werden immer "
 "angezeigt)."
-
