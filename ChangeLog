@@ -1,3 +1,8 @@
+2006-02-27  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (get_access_info):
+	Slight optimization. We try to do as few access calls as possible.
+
 2006-02-24  Alexander Larsson  <alexl@redhat.com>
 
 	* doc/tmpl/gnome-vfs-file-info.sgml:

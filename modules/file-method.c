@@ -722,29 +722,49 @@ read_link (const gchar *full_name)
 
 static void
 get_access_info (GnomeVFSFileInfo *file_info,
-              const gchar *full_name)
+		 const gchar *full_name)
 {
      /* FIXME: should check errno after calling access because we don't
       * want to set valid_fields if something bad happened during one
       * of the access calls
       */
-     if (g_access (full_name, R_OK) == 0) {
-             file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE;
-     }
-
-     if (g_access (full_name, W_OK) == 0) {
-             file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
-     }
-
 #ifdef G_OS_WIN32
-     if (g_file_test (full_name, G_FILE_TEST_IS_EXECUTABLE)) {
-             file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
-     }
-#else 
-     if (g_access (full_name, X_OK) == 0) {
-             file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
-     }
-#endif 
+	file_info->permissions = 0;
+	if (g_access (full_name, R_OK) == 0) {
+		file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE;
+	}
+	if (g_access (full_name, W_OK) == 0) {
+		file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
+	}
+	if (g_file_test (full_name, G_FILE_TEST_IS_EXECUTABLE)) {
+		file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+	}
+#else
+	/* Try to minimize the nr of access calls. We rely on read almost
+	 * always being allowed in normal cases to keep down the number of
+	 * calls needed
+	 */
+	if (g_access (full_name, R_OK|W_OK) == 0) {
+		file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_WRITABLE;
+		if (g_access (full_name, X_OK) == 0) {
+			file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+		}
+	} else if (g_access (full_name, R_OK|X_OK) == 0) {
+		file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+	} else {
+		if (g_access (full_name, R_OK) == 0) {
+			file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE;
+		} else {
+			file_info->permissions = 0;
+			if (g_access (full_name, W_OK) == 0) {
+				file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
+			}
+			if (g_access (full_name, X_OK) == 0) {
+				file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+			}
+		}
+	}
+#endif
 
      file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACCESS;
 }
