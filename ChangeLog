@@ -1,5 +1,11 @@
 2006-02-27  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	Don't use AVAHI_LOOKUP_USE_MULTICAST (#332634)
+	patch from Mathias Hasselmann
+
+2006-02-27  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-uri.c:
 	Add g_return_val_if_fail for some arguments.
 	Add details to docs for gnome_vfs_uri_is_local.

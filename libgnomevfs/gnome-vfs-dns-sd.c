@@ -1532,8 +1532,7 @@ gnome_vfs_dns_sd_resolve (GnomeVFSDNSSDResolveHandle **handle_out,
 		if (client) {
 			sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 							 name, type, domain, AVAHI_PROTO_UNSPEC, 
-							 AVAHI_LOOKUP_USE_MULTICAST,
-							 avahi_resolve_async_callback, handle);
+							 0, avahi_resolve_async_callback, handle);
 			if (sr != NULL) {
 				handle->avahi_sr = sr;
 				*handle_out = handle;
@@ -2112,8 +2111,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		
 		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 						 name, type, domain, AVAHI_PROTO_UNSPEC, 
-						 AVAHI_LOOKUP_USE_MULTICAST,
-						 avahi_resolve_sync_callback, &resolve_data);
+						 0, avahi_resolve_sync_callback, &resolve_data);
 		if (sr == NULL) {
 			g_warning ("Failed to resolve service '%s': %s\n", name, avahi_strerror (avahi_client_errno (client)));
 			avahi_client_free (client);
