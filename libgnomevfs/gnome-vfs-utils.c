@@ -1429,7 +1429,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 			g_free (escaped);
 		} else {
 			escaped = gnome_vfs_escape_high_chars ((guchar *)stripped);
-			uri = g_strconcat ("file://", escaped, NULL);
+			uri = g_strconcat ("file:///", escaped, NULL);
 			g_free (escaped);
 		}
 	}

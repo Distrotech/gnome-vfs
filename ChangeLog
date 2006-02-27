@@ -1,5 +1,11 @@
 2006-02-27  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_make_uri_from_input_internal):
+	Prepend file:///, not file:// for strings that doesn't start with a slash.
+	Fixes #329781
+
+2006-02-27  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c (get_access_info):
 	Slight optimization. We try to do as few access calls as possible.
 
