@@ -1,3 +1,9 @@
+2006-02-27  Christian Neumair  <chris@gnome-de.org>
+
+        * src/xdgmimemagic.c: (_xdg_mime_magic_lookup_data): Make
+        priority equality check more robust so that it works for three or more
+        matches. Also allow matchlets with 0 priority.
+	
 2006-02-27  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_make_uri_from_input_internal):
