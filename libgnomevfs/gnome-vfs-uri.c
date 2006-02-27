@@ -913,7 +913,7 @@ gnome_vfs_uri_resolve_relative (const GnomeVFSURI *base,
 	char *text_new;
 	GnomeVFSURI *uri;
 
-	g_assert (relative_reference != NULL);
+	g_return_val_if_fail (relative_reference != NULL, NULL);
 
 	if (base == NULL) {
 		text_base = g_strdup ("");
@@ -1111,7 +1111,10 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 {
 	gchar *escaped_string;
 	GnomeVFSURI *new_uri;
-	
+
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (path != NULL, NULL);
+
 	escaped_string = gnome_vfs_escape_path_string (path);
 	new_uri = gnome_vfs_uri_append_string (uri, escaped_string);
 	g_free (escaped_string);
@@ -1136,6 +1139,9 @@ gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
 {
 	gchar *escaped_string;
 	GnomeVFSURI *new_uri;
+
+	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (filename != NULL, NULL);
 	
 	escaped_string = gnome_vfs_escape_string (filename);
 	new_uri = gnome_vfs_uri_append_string (uri, escaped_string);
@@ -1171,6 +1177,8 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 {
 	GString *string;
 	gchar *result, *tmp;
+
+	g_return_val_if_fail (uri != NULL, NULL);
 
 	string = g_string_new (uri->method_string);
 	g_string_append_c (string, ':');
@@ -1277,9 +1285,12 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
  * gnome_vfs_uri_is_local:
  * @uri: a #GnomeVFSURI.
  * 
- * Check if @uri is a local (native) file system.
+ * Check if @uri is a local URI. Note that the return value of this
+ * function entirely depends on the #GnomeVFSMethod associated with the
+ * URI. It is up to the method author to distinguish between remote URIs
+ * add URIs referring to entities on the local computer.
  * 
- * Return value: %FALSE if @uri is not a local file system, %TRUE otherwise.
+ * Return value: %TRUE if @uri refers to a local entity, %FALSE otherwise.
  */
 gboolean
 gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
@@ -1307,6 +1318,8 @@ gboolean
 gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 {
 	GnomeVFSURI *parent;
+
+	g_return_val_if_fail (uri != NULL, FALSE);
 
 	parent = gnome_vfs_uri_get_parent (uri);
 	if (parent == NULL) {
@@ -1431,6 +1444,8 @@ gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri)
 const gchar *
 gnome_vfs_uri_get_scheme (const GnomeVFSURI *uri)
 {
+	g_return_val_if_fail (uri != NULL, NULL);
+
 	return uri->method_string;
 }
 
@@ -1700,6 +1715,9 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 	GnomeVFSURI *item_parent_uri;
 	GnomeVFSURI *item;
 
+	g_return_val_if_fail (possible_parent != NULL, FALSE);
+	g_return_val_if_fail (possible_child != NULL, FALSE);
+
 	if (!recursive) {
 		item_parent_uri = gnome_vfs_uri_get_parent (possible_child);
 
@@ -1825,6 +1843,8 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 {
 	gchar *escaped_short_path_name, *short_path_name;
 	const gchar *host_name;
+
+	g_return_val_if_fail (uri != NULL, NULL);
 
 	escaped_short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
 	short_path_name = gnome_vfs_unescape_string (escaped_short_path_name, "/");
