@@ -729,7 +729,6 @@ get_access_info (GnomeVFSFileInfo *file_info,
       * of the access calls
       */
 #ifdef G_OS_WIN32
-	file_info->permissions = 0;
 	if (g_access (full_name, R_OK) == 0) {
 		file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE;
 	}
@@ -745,17 +744,16 @@ get_access_info (GnomeVFSFileInfo *file_info,
 	 * calls needed
 	 */
 	if (g_access (full_name, R_OK|W_OK) == 0) {
-		file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_WRITABLE;
+		file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_WRITABLE;
 		if (g_access (full_name, X_OK) == 0) {
 			file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
 		}
 	} else if (g_access (full_name, R_OK|X_OK) == 0) {
-		file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+		file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE | GNOME_VFS_PERM_ACCESS_EXECUTABLE;
 	} else {
 		if (g_access (full_name, R_OK) == 0) {
-			file_info->permissions = GNOME_VFS_PERM_ACCESS_READABLE;
+			file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE;
 		} else {
-			file_info->permissions = 0;
 			if (g_access (full_name, W_OK) == 0) {
 				file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
 			}
