@@ -102,6 +102,9 @@ static guint cache_reap_timeout = 0;
 /* The magic "default workgroup" hostname */
 #define DEFAULT_WORKGROUP_NAME "X-GNOME-DEFAULT-WORKGROUP"
 
+/* Guest logins use: */
+#define GUEST_LOGIN "guest"
+
 /* 5 minutes before we re-read the workgroup cache again */
 #define WORKGROUP_CACHE_TIMEOUT (5*60)
 
@@ -111,7 +114,8 @@ static time_t workgroups_timestamp = 0;
 /* Authentication ----------------------------------------------------------- */
 
 #define SMB_AUTH_STATE_PREFILLED	0x00000010 	/* Have asked gnome-auth for prefilled auth */
-#define SMB_AUTH_STATE_PROMPTED		0x00000020 	/* Have asked gnome-auth for to prompt user */
+#define SMB_AUTH_STATE_GUEST		0x00000020 	/* Have tried 'guest' authentication */
+#define SMB_AUTH_STATE_PROMPTED		0x00000040 	/* Have asked gnome-auth for to prompt user */
 
 typedef struct _SmbAuthContext {
 	
@@ -128,6 +132,7 @@ typedef struct _SmbAuthContext {
 	
 	/* Used in chat between perform_authentication and auth_callback */
 	gboolean auth_called;		/* Set by auth_callback */
+	gboolean preset_user;		/* Set when we have a preset user from the URI */
 	gchar *for_server;		/* Set by auth_callback */
 	gchar *for_share;		/* Set by auth_callback */
 	gchar *use_user;		/* Set by perform_authentication */
@@ -774,7 +779,6 @@ initial_authentication (SmbAuthContext *actx)
 	SmbServerCacheEntry server_lookup;
 	SmbServerCacheEntry *server;
         gboolean found_user = FALSE;
-        gboolean preset_user = FALSE;
 	char *tmp;
 
 	DEBUG_SMB(("[auth] Initial authentication lookups\n"));
@@ -794,31 +798,29 @@ initial_authentication (SmbAuthContext *actx)
 					    	  	      tmp - toplevel_uri->user_name);
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (tmp + 1);
-
-			if (actx->use_domain != NULL)
-				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
-			if (actx->use_user != NULL)
-				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
-
 			DEBUG_SMB(("[auth] User from URI: %s@%s\n", actx->use_user, actx->use_domain));
 		} else {
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (toplevel_uri->user_name);
 			g_free (actx->use_domain);
 			actx->use_domain = NULL;
-
-			if (actx->use_user != NULL)
-				actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
 			DEBUG_SMB(("[auth] User from URI: %s\n", actx->use_user));
 		}
-                preset_user = TRUE;
+		
+		if (actx->use_user != NULL) {
+			actx->preset_user = TRUE;
+			actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
+		}
+		if (actx->use_domain != NULL) {
+			actx->prompt_flags &= ~GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
+		}
 	} 
 
         if (lookup_user_cache (actx, TRUE) ||
             lookup_user_cache (actx, FALSE))
                 found_user = TRUE;
 
-        if (found_user || preset_user) {
+        if (found_user || actx->preset_user) {
         	/* Lookup the server in our internal cache */
         	server_lookup.server_name = (char*)actx->for_server;
         	server_lookup.share_name = (char*)actx->for_share;
@@ -828,9 +830,9 @@ initial_authentication (SmbAuthContext *actx)
         	server = g_hash_table_lookup (server_cache, &server_lookup);
         	if (server == NULL) {
                  
-                        /* If a blank user, try 'guest' */
+                        /* If a blank user, try looking up 'guest' */
                         if (!actx->use_user) {
-                                server_lookup.username = "guest";
+                                server_lookup.username = GUEST_LOGIN;
                                 server_lookup.domain = NULL;
                                 server = g_hash_table_lookup (server_cache, &server_lookup);
                         }
@@ -854,6 +856,7 @@ prefill_authentication (SmbAuthContext *actx)
 	GnomeVFSModuleCallbackFillAuthenticationIn in_args;
 	GnomeVFSModuleCallbackFillAuthenticationOut out_args;
 	gboolean invoked;
+	gboolean filled = FALSE;
 
 	g_return_val_if_fail (actx != NULL, FALSE);
 	g_return_val_if_fail (actx->for_server != NULL, FALSE);	
@@ -901,24 +904,30 @@ prefill_authentication (SmbAuthContext *actx)
                 invoked = gnome_vfs_module_callback_invoke
                                         (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
                                         &in_args, sizeof (in_args),
-                                        &out_args, sizeof (out_args));                               
+                                        &out_args, sizeof (out_args));                              
         }
         
 	if (invoked && out_args.valid) {
-		g_free (actx->use_user);
-		actx->use_user = string_dup_nzero (out_args.username);
-		g_free (actx->use_domain);
-		actx->use_domain = string_dup_nzero (out_args.domain);
-		g_free (actx->use_password);
-		actx->use_password = g_strdup (out_args.password);
-		DEBUG_SMB(("[auth] Prefilled credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+		/* When a preset user make sure we stick to this login */
+		if (!actx->preset_user || string_compare (actx->use_user, out_args.username)) {
+			
+			g_free (actx->use_user);
+			actx->use_user = string_dup_nzero (out_args.username);
+			g_free (actx->use_domain);
+			actx->use_domain = string_dup_nzero (out_args.domain);
+			g_free (actx->use_password);
+			actx->use_password = g_strdup (out_args.password);
+			
+			filled = TRUE;
+			DEBUG_SMB(("[auth] Prefilled credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+		}
 	} 
 	
 	g_free (out_args.username);
 	g_free (out_args.domain);
 	g_free (out_args.password);
 
-	return invoked && out_args.valid;
+	return filled;
 }
 
 static gboolean
@@ -949,7 +958,12 @@ prompt_authentication (SmbAuthContext *actx,
 	in_args.domain = (char*)actx->use_domain;
 	in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
 
-	in_args.default_user = actx->use_user ? actx->use_user : (char*)g_get_user_name ();
+	in_args.default_user = actx->use_user;
+	if (string_compare (in_args.default_user, GUEST_LOGIN))
+		in_args.default_user = NULL;
+	if (!in_args.default_user)
+		in_args.default_user = (char*)g_get_user_name ();
+	
 	in_args.default_domain = actx->use_domain ? actx->use_domain : smb_context->workgroup;
 	
 	memset (&out_args, 0, sizeof (out_args));
@@ -1198,12 +1212,26 @@ perform_authentication (SmbAuthContext *actx)
 			cont = FALSE;
 			
 			UNLOCK_SMB();
-
+			
+				/* Do we have gnome-keyring credentials for this? */
 				if (!(actx->state & SMB_AUTH_STATE_PREFILLED)) {
 					actx->state |= SMB_AUTH_STATE_PREFILLED;
 					cont = prefill_authentication (actx);
 				}
-				
+
+				/* Then we try a guest credentials... */
+				if (!cont && !actx->preset_user && !(actx->state & SMB_AUTH_STATE_GUEST)) {
+					g_free (actx->use_user);
+					actx->use_user = strdup(GUEST_LOGIN);
+					g_free (actx->use_domain);
+					actx->use_domain = NULL;
+					g_free (actx->use_password);
+					actx->use_password = strdup("");
+					actx->state |= SMB_AUTH_STATE_GUEST;
+					cont = TRUE;
+				}
+
+				/* And as a last step, prompt */
 				if (!cont)
 					cont = prompt_authentication (actx, &auth_cancelled);
 				
@@ -1279,19 +1307,19 @@ auth_callback (const char *server_name, const char *share_name,
                 strncpy (password_out, actx->use_password ? actx->use_password : "", pwmaxlen);
 		if (actx->use_domain)
 			strncpy (domain_out, actx->use_domain, domainmaxlen);
-                DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
-
-        /* On first login try a guest login */
-        } else if (actx->passes == 1) {
-                strncpy (username_out, "guest", unmaxlen);
-                strncpy (password_out, "", pwmaxlen);
-                DEBUG_SMB(("[auth] No credentials, trying 'guest' user login\n"));
-
-	/* We have no credentials ... */			
+		DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
+	
+	/* We have no credentials ... */
 	} else {
+		g_assert (!actx->preset_user);
+		
+		if (actx->passes == 1)
+			DEBUG_SMB(("[auth] No credentials, trying anonymous user login\n"));
+		else
+			DEBUG_SMB(("[auth] No credentials, returning null values\n"));
+		
 		strncpy (username_out, "", unmaxlen);
 		strncpy (password_out, "", pwmaxlen);
-                DEBUG_SMB(("[auth] No credentials, returning null values\n"));
 	}
 
 	/* Put in the default workgroup if none specified */

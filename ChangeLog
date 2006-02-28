@@ -1,5 +1,15 @@
 2006-02-28  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/smb-method.c:
+	Try to log in anonymously when possible.
+	This fixes problems browsing workgroups and gives
+	a lot less auth dialogs. However, it means you must put
+	the username in the uri if you want to log in with a username
+	on a share where anon login is allowed.
+	Patch from Nate Nielsen
+
+2006-02-28  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/file-method.c (get_access_info):
 	Fix bug in optimization that made us overwrite the normal
 	permissions.
