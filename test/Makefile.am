@@ -10,9 +10,8 @@ INCLUDES =					\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
 if OS_WIN32
-platform_only_programs =
 else
-platform_only_programs = test-dns-sd test-symlinks
+platform_only_programs = test-dns-sd test-symlinks test-parse-ls-lga
 endif
 
 noinst_PROGRAMS =				\
@@ -33,7 +32,6 @@ noinst_PROGRAMS =				\
 	test-mime-info-cache			\
 	test-mime-handlers-set			\
 	test-monitor				\
-	test-parse-ls-lga			\
 	test-performance			\
 	test-seek				\
 	test-shell				\
@@ -65,7 +63,7 @@ TESTS = test-address      \
 	test-async-cancel \
 	test-escape       \
 	test-uri       	  \
-       	$(srcdir)/auto-test	
+	$(srcdir)/auto-test	
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\

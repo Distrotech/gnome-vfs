@@ -33,8 +33,16 @@
 #include <string.h>
 #include <stdio.h>
 #include <sys/types.h>
+#include <glib.h>
+#ifndef G_OS_WIN32
 #include <sys/socket.h>
 #include <netinet/in.h>
+#define CLOSE_SOCKET(fd) close (fd)
+#else
+#include <winsock2.h>
+#define CLOSE_SOCKET(fd) closesocket(fd)
+typedef int socklen_t;
+#endif
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -65,7 +73,7 @@ create_master_socket (int *port)
 	}
 	
 	val = 1;
-	setsockopt (s, SOL_SOCKET, SO_REUSEADDR, &val, sizeof (val));
+	setsockopt (s, SOL_SOCKET, SO_REUSEADDR, (char *) &val, sizeof (val));
 	
 	/* bind the socket: */
 	if (bind (s,(struct sockaddr *)&sin, sizeof (sin)) < 0) {
@@ -161,7 +169,7 @@ start_cancel_timeout (gpointer data)
 	}
 	
 	fprintf (stderr, "closing client\n");
-	close (client_fd);
+	CLOSE_SOCKET (client_fd);
 
 	/* Wait a while to make sure get_info doesn't return after the cancel */
 	g_timeout_add (500,
@@ -178,7 +186,15 @@ main (int argc, char *argv[])
 	char *uri;
 	GnomeVFSAsyncHandle *handle;
 	GList *uris;
-	
+#ifdef G_OS_WIN32	
+	DWORD wVersionRequested = MAKEWORD(2, 2);
+	WSADATA wsaData;
+	if (WSAStartup (wVersionRequested, &wsaData)) {
+		fprintf (stderr, "WSAStartup failed\n");
+		exit (1);
+	}
+#endif
+
 	fprintf (stderr, "Initializing gnome-vfs...\n");
 	gnome_vfs_init ();
 	

@@ -1,3 +1,9 @@
+2006-03-01  Tor Lillqvist  <tml@novell.com>
+
+	* test/Makefile.am: test-parse-ls-lga is Unix-only.
+
+	* test/test-long-cancel.c: Make it build on Win32, too.
+
 2006-02-28  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/smb-method.c:
