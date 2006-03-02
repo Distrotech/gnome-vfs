@@ -798,6 +798,7 @@ gnome_vfs_mime_get_all_desktop_entries (const char *base_mime_type)
 		default_desktop_entry = get_default_desktop_entry (mime_type);
 		if (default_desktop_entry) {
 			desktop_entries = append_desktop_entry (desktop_entries, default_desktop_entry);
+			g_free (default_desktop_entry);
 		}
 		
 		for (dir_list = mime_info_cache->dirs;
