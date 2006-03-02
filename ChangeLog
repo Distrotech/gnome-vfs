@@ -1,5 +1,12 @@
 2006-03-02  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/xdgmimeglob.c (_xdg_glob_hash_insert_text):
+	Fix leak in glob code:
+	https://bugs.freedesktop.org/show_bug.cgi?id=5993
+	Patch from Martin Wehner
+	
+2006-03-02  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info-cache.c
 	(gnome_vfs_mime_get_all_desktop_entries):
 	Fix leak (#331931)
