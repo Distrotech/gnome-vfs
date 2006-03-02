@@ -1,3 +1,19 @@
+2006-03-02  David Zeuthen  <davidz@redhat.com>
+
+	* configure.in: Require hal 0.5.7 for new crypto bits in
+	libhal-storage 0.5.7
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Don't read settings from
+	/system/storage and remove code that uses it. Also use new API
+	available in libhal-storage 0.5.7 and later instead of relying on
+	a magic hal property volume.crypto_luks.clear.backing_volume.
+
+	* schemas/system_storage.schemas.in: Removed
+
+	* schemas/Makefile.am: Remove system_storage.schemas.in
+
+	* po/POTFILES.in: Remove system_storage.schemas.in
+
 2006-03-02  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/xdgmimeglob.c (_xdg_glob_hash_insert_text):

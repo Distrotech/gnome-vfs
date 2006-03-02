@@ -51,20 +51,12 @@
 #include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume-monitor-private.h"
 
-#define PATH_GCONF_GNOME_VFS_STORAGE "/system/storage"
-
 #ifndef PATHNAME_MAX
 # define PATHNAME_MAX	1024
 #endif
 
 typedef struct {
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
-	gboolean display_internal_hard_drives;
-	gboolean display_scsi_drives;
-	gboolean display_scsi_optical_drives;
-	gboolean display_external_drives;
-	gboolean display_drives_removable;
-	guint gconf_client_connection_id;
 } GnomeVFSHalUserData;
 
 typedef enum {
@@ -617,39 +609,8 @@ _hal_drive_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 
 	g_return_val_if_fail (hal_userdata != NULL, ret);
 
-	if (!hal_userdata->display_external_drives) {
-		if (libhal_drive_is_hotpluggable (hal_drive))
-			goto out;
-	}
-
-	if (!hal_userdata->display_drives_removable) {
-		if (libhal_drive_uses_removable_media (hal_drive))
-			goto out;
-	}
-
-	if (!hal_userdata->display_internal_hard_drives) {
-		if ((libhal_drive_uses_removable_media (hal_drive) == FALSE) && 
-		    (libhal_drive_is_hotpluggable (hal_drive) == FALSE))
-			goto out;
-	}
-
-	if (!hal_userdata->display_scsi_drives) {
-		if (libhal_drive_get_bus (hal_drive) == LIBHAL_DRIVE_BUS_SCSI) {
-			if (hal_userdata->display_scsi_optical_drives) {
-				if (libhal_drive_get_type (hal_drive) == LIBHAL_DRIVE_TYPE_CDROM) {
-					/* we're safe */
-				} else {
-					goto out;
-				}
-			} else {
-				goto out;
-			}
-		}
-	}
-
 	ret = TRUE;
 
-out:
 	return ret;
 }
 
@@ -698,18 +659,11 @@ _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 
 	/* if we contain crypto bits, only show if our cleartext volume is not yet setup */
 	if (libhal_volume_get_fsusage (hal_volume) == LIBHAL_VOLUME_USAGE_CRYPTO) {
-		DBusError error;
-		char **clear_devices;
-		int num_clear_devices;
+		char *clear_udi;
 
-		dbus_error_init (&error);
-		clear_devices = libhal_manager_find_device_string_match (volume_monitor_daemon->hal_ctx,
-									 "volume.crypto_luks.clear.backing_volume",
-									 libhal_volume_get_udi (hal_volume),
-									 &num_clear_devices,
-									 &error);
-		if (clear_devices != NULL && num_clear_devices > 0) {
-			libhal_free_string_array (clear_devices);
+		clear_udi = libhal_volume_crypto_get_clear_volume_udi (volume_monitor_daemon->hal_ctx, hal_volume);
+		if (clear_udi != NULL) {
+			free (clear_udi);
 			goto out;
 		}
 	}
@@ -910,8 +864,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	GnomeVFSHalUserData *hal_userdata;
 	char *name;
 	gboolean allowed_by_policy;
-	DBusError error;
-	char *backing_udi;
+	const char *backing_udi;
 
 	g_return_val_if_fail (hal_drive != NULL, FALSE);
 	g_return_val_if_fail (hal_volume != NULL, FALSE);
@@ -987,12 +940,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	 * GnomeVFSDrive we added so users had a way to invoke
 	 * gnome-mount for asking for the pass-phrase...
 	 */
-	dbus_error_init (&error);
-	backing_udi = libhal_device_get_property_string (
-		volume_monitor_daemon->hal_ctx,
-		libhal_volume_get_udi (hal_volume),
-		"volume.crypto_luks.clear.backing_volume",
-		&error);
+	backing_udi = libhal_volume_crypto_get_backing_volume_udi (hal_volume);
 	if (backing_udi != NULL) {
 		GnomeVFSDrive *backing_drive;
 		
@@ -1108,9 +1056,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	ret = TRUE;
 out:
 
-	if (backing_udi != NULL)
-		libhal_free_string (backing_udi);
-	
 	return ret;
 }
 
@@ -1458,67 +1403,6 @@ out:
 	if (volume != NULL)
 		libhal_volume_free (volume);
 }
-	
-
-static void 
-_hal_get_settings_from_gconf (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
-{
-	GnomeVFSHalUserData *hal_userdata;
-
-	g_return_if_fail (volume_monitor_daemon != NULL);
-
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
-
-	g_return_if_fail (hal_userdata != NULL);
-
-	/* respect the gconf settings! */
-	hal_userdata->display_internal_hard_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
-									    PATH_GCONF_GNOME_VFS_STORAGE 
-									    "/display_internal_hard_drives",
-									    NULL);
-	hal_userdata->display_scsi_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
-								   PATH_GCONF_GNOME_VFS_STORAGE 
-								   "/display_scsi_drives",
-								   NULL);
-	hal_userdata->display_scsi_optical_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
-									   PATH_GCONF_GNOME_VFS_STORAGE 
-									   "/display_scsi_optical_drives",
-									   NULL);
-	hal_userdata->display_external_drives = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
-								       PATH_GCONF_GNOME_VFS_STORAGE
-								       "/display_external_drives",
-								       NULL);
-	hal_userdata->display_drives_removable = gconf_client_get_bool (volume_monitor_daemon->gconf_client,
-									PATH_GCONF_GNOME_VFS_STORAGE
-									"/display_drives_with_removable_media",
-									NULL);
-}
-
-static void
-_hal_settings_changed (GConfClient* client,
-		       guint cnxn_id,
-		       GConfEntry *entry,
-		       gpointer data)
-{
-	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
-
-	volume_monitor_daemon = data;
-
-	g_return_if_fail (volume_monitor_daemon != NULL);
-
-#ifdef HAL_SHOW_DEBUG
-	g_debug ("in _hal_settings_changed");
-#endif
-
-#if 0
-	/* TODO: presently we don't support reloading settings from gconf. This
-	 *       requires some fixes not presently implemented
-	 */
-	_hal_get_settings_from_gconf (volume_monitor_daemon);
-	_gnome_vfs_hal_mounts_force_reprobe (volume_monitor_daemon);
-#endif
-
-}
 
 
 gboolean
@@ -1571,26 +1455,11 @@ _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 	libhal_ctx_set_user_data (volume_monitor_daemon->hal_ctx,
 				  hal_userdata);
 
-	gconf_client_add_dir (volume_monitor_daemon->gconf_client,
-			      PATH_GCONF_GNOME_VFS_STORAGE,
-			      GCONF_CLIENT_PRELOAD_RECURSIVE,
-			      NULL);
-
-	hal_userdata->gconf_client_connection_id =
-		gconf_client_notify_add (volume_monitor_daemon->gconf_client,
-					 PATH_GCONF_GNOME_VFS_STORAGE,
-					 _hal_settings_changed,
-					 volume_monitor_daemon,
-					 NULL,
-					 NULL);
-
 	/* Simply watch all property changes instead of dynamically
 	 * adding/removing match rules bus-side to only match certain
 	 * objects...
 	 */
 	libhal_device_property_watch_all (volume_monitor_daemon->hal_ctx, &error);
-
-	_hal_get_settings_from_gconf (volume_monitor_daemon);
 
 	/* add drives/volumes from HAL */
 	_hal_update_all (volume_monitor_daemon);
@@ -1616,9 +1485,6 @@ _gnome_vfs_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 	if (!libhal_ctx_free (volume_monitor_daemon->hal_ctx)) {
 		g_warning ("hal_shutdown failed - unable to free hal context\n");
 	}
-
-	gconf_client_notify_remove (volume_monitor_daemon->gconf_client,
-				    hal_userdata->gconf_client_connection_id);
 
 }
 

@@ -725,8 +725,8 @@ esac],
 [ENABLE_HAL=yes]) dnl Default value
 
 if test "$ENABLE_HAL" = "yes"; then
-	PKG_CHECK_MODULES(HAL, hal >= 0.5.6,
-		[ USE_HAL="hal >= 0.5.6, hal-storage >= 0.5.6, dbus-1 >= 0.32, dbus-glib-1 >= 0.32"
+	PKG_CHECK_MODULES(HAL, hal >= 0.5.7,
+		[ USE_HAL="hal >= 0.5.7, hal-storage >= 0.5.7, dbus-1 >= 0.32, dbus-glib-1 >= 0.32"
 		  AC_DEFINE(USE_HAL, 1, [defined if using libhal])
 		  msg_hal=yes],
 		[ USE_HAL=""])
