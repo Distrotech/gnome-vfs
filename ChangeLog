@@ -1,3 +1,10 @@
+2006-03-03  Mikael Hallendal  <micke@imendio.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(xfer_open_source): Emit progress with phase opening source.
+	(copy_file): Set file size, fixes issue where using recursive and the
+	files in a sub directory has the file size of the directory.
+
 2006-03-03  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c (_gnome_vfs_uri_resolve_all_symlinks_uri):

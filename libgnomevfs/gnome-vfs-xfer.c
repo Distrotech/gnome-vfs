@@ -1325,6 +1325,8 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 	GnomeVFSResult result;
 	gboolean retry;
 	
+        call_progress_often (progress, GNOME_VFS_XFER_PHASE_OPENSOURCE);
+
 	*skip = FALSE;
 	do {
 		retry = FALSE;
@@ -1455,6 +1457,10 @@ copy_file (GnomeVFSFileInfo *info,
 
 	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_OPENSOURCE;
 	progress->progress_info->bytes_copied = 0;
+        
+        progress->progress_info->file_size = info->size;
+        progress_set_source_target_uris (progress, source_uri, target_uri);
+
 	result = xfer_open_source (&source_handle, source_uri,
 				   progress, xfer_options,
 				   error_mode, skip);
