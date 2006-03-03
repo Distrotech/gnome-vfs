@@ -2002,6 +2002,15 @@ _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 			}
 			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
 								       info->symlink_name);
+			if (resolved_uri == NULL) {
+				gnome_vfs_uri_unref (new_uri);
+				/* FIXME this shouldn't happen. gnome_vfs_uri_resolve_relative
+				 * treats some relative URIs as absolute if they contain special
+				 * characters. We should escape them, or the relative URI recognition
+				 * should be improved */
+				break;
+			}
+
 			if (*p != 0) {
 				gnome_vfs_uri_unref (new_uri);
 
