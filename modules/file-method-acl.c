@@ -431,6 +431,7 @@ fixup_acl (GnomeVFSACL *acl, GSList *acls)
 	gboolean  user_obj     = FALSE;
 	gboolean  group_obj    = FALSE;
 	gboolean  other_obj    = FALSE;
+	gboolean  mask_obj     = FALSE;
 	gboolean  class_needed = FALSE;
 	gboolean  changed      = FALSE;
 
@@ -465,6 +466,10 @@ fixup_acl (GnomeVFSACL *acl, GSList *acls)
 	        case GNOME_VFS_ACL_OTHER:
 			if (id_str == NULL)
 				other_obj = TRUE;
+			break;
+	        case GNOME_VFS_ACL_MASK:
+			if (id_str == NULL)
+				mask_obj = TRUE;
 			break;
 		default:
 			break;
@@ -511,7 +516,7 @@ fixup_acl (GnomeVFSACL *acl, GSList *acls)
 		changed = TRUE;
 	}	
 
-	if (class_needed) {
+	if (class_needed && !mask) {
 		GnomeVFSACE     *ace;
 		GnomeVFSACLPerm  perms[] = {GNOME_VFS_ACL_READ,
 					    GNOME_VFS_ACL_WRITE,
