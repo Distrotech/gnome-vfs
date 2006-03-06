@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-17 07:10+0100\n"
+"POT-Creation-Date: 2006-02-02 05:40+0100\n"
 "PO-Revision-Date: 2006-01-20 09:42+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -59,16 +59,10 @@ msgstr "%s:%d sisaldab tundmatuid valikuid %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ei sisalda mooduli nime."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:363
+#: ../libgnomevfs/gnome-vfs-configuration.c:366
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Seadistusfaili '%s' ei leitud: %s"
-
-#. stop parsing if we failed
-#: ../libgnomevfs/gnome-vfs-configuration.c:382
-#, c-format
-msgid "%s:%d aborted parsing."
-msgstr "%s:%d katkestas parsimise."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -219,7 +213,7 @@ msgid "Unknown"
 msgstr "Tundmatu"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:588
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Volume"
 msgstr "%s seade"
@@ -320,118 +314,118 @@ msgstr "Jaz-seade"
 msgid "Pen Drive"
 msgstr "Pen-seade"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s muusikamängija"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:443
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s digikaamera"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:473
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
 msgid "Drive"
 msgstr "Ketas"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:478
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
 msgid "External %s"
 msgstr "Väline %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:514
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
 msgid "CD-ROM Disc"
 msgstr "CD-ROM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:519
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
 msgid "Blank CD-R Disc"
 msgstr "Tühi CD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:521
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "CD-R Disc"
 msgstr "CD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
 msgid "Blank CD-RW Disc"
 msgstr "Tühi CD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:528
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "CD-RW Disc"
 msgstr "CD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:532
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:537
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
 msgid "Blank DVD-RAM Disc"
 msgstr "Tühi DVD-RAM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:539
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:544
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
 msgid "Blank DVD-R Disc"
 msgstr "Tühi DVD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:546
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "DVD-R Disc"
 msgstr "DVD-R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
 msgid "Blank DVD-RW Disc"
 msgstr "Tühi DVD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "DVD-RW Disc"
 msgstr "DVD-RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:559
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
 msgid "Blank DVD+R Disc"
 msgstr "Tühi DVD+R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:561
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "DVD+R Disc"
 msgstr "DVD+R plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:566
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
 msgid "Blank DVD+RW Disc"
 msgstr "Tühi DVD+RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:568
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "DVD+RW Disc"
 msgstr "DVD+RW plaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:575
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
 msgid "Audio Disc"
 msgstr "Audioplaat"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:586
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #, c-format
 msgid "%s Removable Volume"
 msgstr "%s eemaldatav seade"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:597
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
 msgstr "Seade"
 
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tundmatu operatsioonitüüp: %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Avatud GIOChannel kanalile pole võimalik toru luua: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1699
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tundmatu töö tüüp %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1732
 msgid "Operation stopped"
 msgstr "Operatsioon seisatud"
 
@@ -452,17 +446,17 @@ msgstr "Operatsioon seisatud"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
-#: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
-#: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
-#: ../libgnomevfs/gnome-vfs-mime-info.c:678
-#: ../libgnomevfs/gnome-vfs-mime-info.c:685
-#: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
-#: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:626
+#: ../libgnomevfs/gnome-vfs-mime-info.c:633
+#: ../libgnomevfs/gnome-vfs-mime-info.c:641
+#: ../libgnomevfs/gnome-vfs-mime-info.c:648
+#: ../libgnomevfs/gnome-vfs-mime-info.c:656
+#: ../libgnomevfs/gnome-vfs-mime-info.c:673
+#: ../libgnomevfs/gnome-vfs-mime-info.c:680
+#: ../libgnomevfs/gnome-vfs-mime-info.c:687
+#: ../libgnomevfs/gnome-vfs-mime-info.c:694
+#: ../libgnomevfs/gnome-vfs-mime-info.c:702
+#: ../libgnomevfs/gnome-vfs-mime-info.c:709
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -470,12 +464,12 @@ msgstr ""
 "Aegunud funktsioon.  Kasutajapoolne MIME andmebaasi muutmine pole enam "
 "toetatud."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:692
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Analüüsimine pole võimalik: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:694
 msgid "More parsing errors will be ignored."
 msgstr "Järgmisi töötlusvigu eiratakse."
 
@@ -729,7 +723,7 @@ msgstr "Ressurss on lukus"
 msgid "Function call deprecated"
 msgstr "Funktsioonikutsung on aegunud"
 
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "Tundmatu viga"
 
@@ -755,7 +749,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1108
+#: ../libgnomevfs/gnome-vfs-utils.c:1096
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (vigane Unicode)"
@@ -850,114 +844,73 @@ msgstr "Kaamera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
 msgid "Root Volume"
 msgstr "Juurseade"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
 msgid "Unknown volume"
 msgstr "Tundmatu seade"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
 msgid "Network server"
 msgstr "Võrguserver"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:172
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Flopiketast ei õnnestu ühendada. Tõenäoliselt pole ketast seadmes."
+msgstr "Flopiketast pole võimalik ühendada. Tõenäoliselt pole ketast seadmes."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:176
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Seadet ei õnnestu külge ühendada. Tõenäoliselt pole meediat seadmes."
+msgstr "Seadet pole võimalik külge ühendada. Tõenäoliselt pole meediat seadmes."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:182
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Flopiketast ei õnnestu külge ühendada. Ketas on tõenäoliselt ühildamatus "
+"Flopiketast pole võimalik külge ühendada. Ketas on tõenäoliselt ühildamatus "
 "vormingus."
 
-#. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:186
-msgid ""
-"Unable to mount the volume. If this is an encrypted drive, then the wrong "
-"password or key was used."
-msgstr ""
-"Seadet pole võimalik ühendada. Kui tegemist on krüptitud seadmega, siis on "
-"kasutatakse ilmselt vale parooli või võtit."
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:189
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Valitud ketast ei õnnestu külge ühendada. Ketas on tõenäoliselt vormingus, "
+"Valitud ketast pole võimalik külge ühendada. Ketas on tõenäoliselt vormingus, "
 "mida pole võimalik külge ühendada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
 msgid "Unable to mount the selected floppy drive."
-msgstr "Valitud flopiketast ei õnnestu külge ühendada."
+msgstr "Valitud flopiketast pole võimalik külge ühendada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:196
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to mount the selected volume."
-msgstr "Valitud ketast ei õnnestu külge ühendada."
+msgstr "Valitud ketast pole võimalik külge ühendada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:209
-msgid ""
-"Unable to unmount the selected volume. The volume is in use by one or more "
-"programs."
-msgstr ""
-"Valitud ketast ei õnnestu lahti ühendada. Ketas on tõenäoliselt mõne "
-"programmi poolt kasutusel."
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:212
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
 msgid "Unable to unmount the selected volume."
-msgstr "Ühendust valitud kettaga ei õnnestu katkestada."
+msgstr "Ühendust valitud kettaga pole võimalik katkestada."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:379
-#, c-format
-msgid "Failed to read data from child process %d (%s)"
-msgstr "Tõrge lapsprotsessilt %d andmete lugemisel (%s)"
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:423
-msgid "Couldn't run mount process in a pty"
-msgstr "Ühendamisprotsessi pole võimalik pseudoterminalil käivitada"
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:468
-#, c-format
-msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr ""
-"Ootamatu viga select() funktsioonis andmete lugemisel lapsprotsessilt (%s)"
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:522
-msgid "Couldn't send password to mount process."
-msgstr "Ühendamisprotsessile pole võimalik parooli saata"
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:561
-#, c-format
-msgid "Unexpected error in waitpid() (%s)"
-msgstr "Ootamatu viga waitpid() funktsioonis (%s)"
-
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:663
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:746
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
 msgid "Failed to start command"
 msgstr "Tõrge käsu käivitamisel"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:733
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
 msgid "Unable to eject media"
-msgstr "Meediat ei õnnuestu väljastada"
+msgstr "Meediat pole võimalik väljastada"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:979
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
 msgid "Unable to unmount connected server"
-msgstr "Ühendust serveriga ei õnnestu katkestada"
+msgstr "Ühendust serveriga pole võimalik katkestada"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -971,7 +924,7 @@ msgstr "Kodu"
 msgid "Filesystem"
 msgstr "Failisüsteem"
 
-#: ../modules/file-method.c:483
+#: ../modules/file-method.c:536
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tundmatu GnomeVFSSeekPosition %d"
@@ -980,12 +933,12 @@ msgstr "Tundmatu GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows'i võrk"
 
-#: ../modules/sftp-method.c:1320
+#: ../modules/sftp-method.c:1321
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Võrguarvuti (%s) identiteet on tundmatu."
 
-#: ../modules/sftp-method.c:1321
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -998,11 +951,11 @@ msgstr ""
 "Kaugarvuti saadetud identiteet on %s. Kui tahad turvalises jätkamises "
 "täiesti kindel olla, siis võta ühendust süsteemihalduriga."
 
-#: ../modules/sftp-method.c:1329
+#: ../modules/sftp-method.c:1330
 msgid "Log In Anyway"
 msgstr "Logi siiski sisse"
 
-#: ../modules/sftp-method.c:1330
+#: ../modules/sftp-method.c:1331
 msgid "Cancel Login"
 msgstr "Loobu sisselogimisest"
 
@@ -1506,6 +1459,3 @@ msgid ""
 msgstr ""
 "Kas näidata kettaid ja külgehaagitavaid seadeid sisemistelt kõvaketastelt "
 "(mitte-SCSI optilisi kettaid näidatakse alati)."
-
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "Akende töögrupp, milles kasutaja osaleb"
