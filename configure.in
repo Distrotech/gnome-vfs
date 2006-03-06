@@ -735,41 +735,21 @@ else
 fi
 
 if test "$USE_HAL" != ""; then
-  AC_ARG_WITH(hal-mount,  [  --with-hal-mount=PROGRAM     Program for mounting filesystems known to HAL],
+  AC_ARG_WITH(hal-mount,  [  --with-hal-mount=PROGRAM     Program for mounting filesystems known to HAL (not used if gnome-mount is installed)],
 	      with_hal_mount="$withval", with_hal_mount="none")
   if test "x$with_hal_mount" != "xnone"; then
-    AC_DEFINE_UNQUOTED(HAL_MOUNT, "$with_hal_mount", [Path to program for mounting filesystems known to HAL])
+    AC_DEFINE_UNQUOTED(HAL_MOUNT, "$with_hal_mount", [Path to program for mounting filesystems known to HAL (not used if gnome-mount is installed)])
   fi
-  AC_ARG_WITH(hal-umount, [  --with-hal-umount=PROGRAM    Program for unmounting filesystems known to HAL],
+  AC_ARG_WITH(hal-umount, [  --with-hal-umount=PROGRAM    Program for unmounting filesystems known to HAL (not used if gnome-mount is installed)],
 	      with_hal_umount="$withval", with_hal_umount="none")
   if test "x$with_hal_umount" != "xnone"; then
-    AC_DEFINE_UNQUOTED(HAL_UMOUNT, "$with_hal_umount", [Path to program for unmounting filesystems known to HAL])
+    AC_DEFINE_UNQUOTED(HAL_UMOUNT, "$with_hal_umount", [Path to program for unmounting filesystems known to HAL (not used if gnome-mount is installed)])
   fi
-  AC_ARG_WITH(hal-eject,  [  --with-hal-eject=PROGRAM     Program for ejecting filesystems known to HAL],
+  AC_ARG_WITH(hal-eject,  [  --with-hal-eject=PROGRAM     Program for ejecting filesystems known to HAL (not used if gnome-mount is installed)],
 	      with_hal_eject="$withval", with_hal_eject="none")
   if test "x$with_hal_eject" != "xnone"; then
-    AC_DEFINE_UNQUOTED(HAL_EJECT, "$with_hal_eject", [Path to program for ejecting filesystems known to HAL])
+    AC_DEFINE_UNQUOTED(HAL_EJECT, "$with_hal_eject", [Path to program for ejecting filesystems known to HAL (not used if gnome-mount is installed)])
   fi
-fi
-
-
-msg_gnome_mount=no
-AC_ARG_ENABLE(gnome-mount,
-AC_HELP_STRING([--enable-gnome-mount],[use gnome-mount, if available]),
-[case $enableval in
-yes) ENABLE_GNOME_MOUNT=yes ;;
-no)  ENABLE_GNOME_MOUNT=no ;;
-*) AC_MSG_ERROR(bad value $enableval for --enable-gnome-mount) ;;
-esac],
-[ENABLE_GNOME_MOUNT=yes]) dnl Default value
-
-if test "$ENABLE_GNOME_MOUNT" = "yes"; then
-	PKG_CHECK_MODULES(GNOME_MOUNT, gnome-mount >= 0.4,
-		[ AC_DEFINE(USE_GNOME_MOUNT, 1, [defined if using gnome-mount])
-		  msg_gnome_mount="yes, overrides --with-hal-mount et. al."],
-		[ USE_GNOME_MOUNT=""])
-else
-	USE_GNOME_MOUNT=""
 fi
 
 
@@ -1237,7 +1217,6 @@ echo "
       	Avahi support:		     $msg_avahi
       	Howl support:		     $msg_howl
 	HAL  support:                $msg_hal
-	gnome-mount support:	     $msg_gnome_mount
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends
 	Samba method:		     $msg_samba
