@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-04 13:04+0100\n"
+"POT-Creation-Date: 2006-01-03 19:23+0100\n"
 "PO-Revision-Date: 2005-12-04 13:08+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
@@ -770,7 +770,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1106
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
@@ -907,7 +907,9 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "Kan ikke montere volumet. Hvis dette er en kryptert stasjon ble feil passord eller nøkkel brukt."
+msgstr ""
+"Kan ikke montere volumet. Hvis dette er en kryptert stasjon ble feil passord "
+"eller nøkkel brukt."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:186
 msgid ""
@@ -929,7 +931,9 @@ msgstr "Kan ikke montere valgt volum."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "Kan ikke montere valgt volum. Volumet er sannsynligvis i bruk av ett eller flere programmer."
+msgstr ""
+"Kan ikke montere valgt volum. Volumet er sannsynligvis i bruk av ett eller "
+"flere programmer."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:209
 msgid "Unable to unmount the selected volume."
