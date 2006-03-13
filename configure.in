@@ -1033,14 +1033,14 @@ ACL_LIBS=""
 
 AC_CHECK_LIB(attr,getxattr,[ACL_LIBS="$ACL_LIBS -lattr"])
 AC_CHECK_LIB(acl,acl_get_file,[ACL_LIBS="$ACL_LIBS -lacl"])
-AC_CHECK_LIB(sec,acl_get,[ACL_LIBS="$ACL_LIBS -lsec"])
+AC_CHECK_LIB(sec,acl,[ACL_LIBS="$ACL_LIBS -lsec"])
 
 AC_CACHE_CHECK([for Solaris ACL], gvfs_cv_HAVE_SOLARIS_ACLS,[
 		acl_LIBS=$LIBS
 		LIBS="$LIBS -lsec"
 		AC_TRY_LINK([#include <sys/types.h>
 #include <sys/acl.h>],
-[ acl_t *acl; int fd; return acl_get (fd, 0, &acl);],
+[ return acl ("/", GETACL, 0, NULL);],
 gvfs_cv_HAVE_SOLARIS_ACLS=yes, gvfs_cv_HAVE_SOLARIS_ACLS=no)
 		LIBS=$acl_LIBS])
 
