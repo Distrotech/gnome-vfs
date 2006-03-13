@@ -1,3 +1,12 @@
+gnome-vfs 2.14.0
+	* Fix circular dependency on gnome-mount
+	* Fix some details in gnome_vfs_xfer callbacks
+	* Avoid crash with symlinks that has ':' in them
+	* Update hal volume manager policies
+	* Fix leaks
+	* Better smb authentication code
+	* Fix permission reading bug introduced in 2.13.92
+
 gnome-vfs 2.13.92
 	* Build fixes
 	* Fix memory leaks
