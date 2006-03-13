@@ -1,20 +1,21 @@
 # Romanian translation for gnome-vfs
-# Copyright (C) 2001 - 2005 Free Software Foundation, Inc.
+# Copyright (C) 2001 - 2006 Free Software Foundation, Inc.
 # Marius Andreiana <mandreiana@yahoo.com>, 2001.
-# Mişu Moldovan <dumol@gnome.ro>, 2003 - 2005.
+# Mişu Moldovan <dumol@gnome.ro>, 2003 - 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-23 13:03+0200\n"
-"PO-Revision-Date: 2005-10-23 17:01+0300\n"
+"POT-Creation-Date: 2006-03-12 14:51+0100\n"
+"PO-Revision-Date: 2006-03-12 22:51+0200\n"
 "Last-Translator: Mişu Moldovan <dumol@gnome.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1))\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -53,10 +54,16 @@ msgstr "%s:%d are opţiuni necunoscute %s."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d nu conţine nici un nume de modul."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Fişierul de configurare „%s” nu a fost găsit: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d se abandonează prelucrarea."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -206,109 +213,109 @@ msgstr "Volum CIFS"
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Volume"
 msgstr "Volum %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
 msgid "%s/%s Drive"
 msgstr "Unitate %s/%s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s Drive"
 msgstr "Unitate %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
 msgstr "Unitate dischetă"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
 msgid "Compact Flash Drive"
 msgstr "Unitate „Compact Flash”"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
 msgstr "Unitate „Memory Stick”"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
 msgstr "Unitate „Smart Media”"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
 msgstr "Unitate SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
 msgid "Zip Drive"
 msgstr "Unitate ZIP"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Jaz Drive"
 msgstr "Unitate Jaz"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
 msgid "Pen Drive"
 msgstr "Unitate Pen"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 #, c-format
 msgid "%s %s Music Player"
 msgstr "Redare audio %s %s"
@@ -404,53 +411,53 @@ msgstr "Volum amovibil %s"
 msgid "Volume"
 msgstr "Volum"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tip necunoscut de operaţiune %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Nu putut crea conectorul „pipe” pentru deschiderea GIOChannel: %s"
+msgstr "Nu s-a putut crea un conector pentru deschiderea GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tip necunoscut de sarcină %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operaţie oprită"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -458,12 +465,12 @@ msgstr ""
 "Funcţie ieşită din uz. Modificările personalizate în baza de date MIME nu "
 "mai sunt suportate."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:692
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Nu am putut procesa: %s"
+msgstr "Nu s-a putut procesa: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:694
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "Alte erori de procesare vor fi ignorate."
 
@@ -525,12 +532,12 @@ msgstr "Fişier prea mare"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "No space left on device"
-msgstr "Nu mai e spaţiu pe disc"
+msgstr "Nu mai e spaţiu liber pe disc"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
-msgstr "Sistemul de fişiere este „read-only”"
+msgstr "Sistemul de fişiere e protejat la scriere"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:55
@@ -605,17 +612,17 @@ msgstr "Memorie insuficientă"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
-msgstr "Gazda nu a fost găsită"
+msgstr "Serverul nu a fost găsit"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "Numele gazdei este invalid"
+msgstr "Numele serverului este invalid"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "Gazda nu are o adresă"
+msgstr "Serverul nu are o adresă"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -645,7 +652,7 @@ msgstr "Prea multe legături"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
-msgstr "Sistem de fişiere „read-only”"
+msgstr "Sistem de fişiere protejat la scriere"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:78
@@ -675,7 +682,7 @@ msgstr "Eroare de protocol"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Could not find master browser"
-msgstr "Nu am găsit un server „master browser”"
+msgstr "Nu s-a găsit un server „master browser”"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:84
@@ -717,7 +724,7 @@ msgstr "Resursa este blocată"
 msgid "Function call deprecated"
 msgstr "Apel-funcţie nesuportat"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:215
 msgid "Unknown error"
 msgstr "Eroare necunoscută"
 
@@ -727,6 +734,7 @@ msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u octet"
 msgstr[1] "%u octeţi"
+msgstr[2] "%u de octeţi"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -743,10 +751,10 @@ msgstr "%.1f MO"
 msgid "%.1f GB"
 msgstr "%.1f GO"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
 msgid " (invalid Unicode)"
-msgstr " (Unicode invalid"
+msgstr " (Unicode invalid)"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
@@ -838,75 +846,116 @@ msgstr "Cameră"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
 msgid "Root Volume"
 msgstr "Volum rădăcină"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
 msgid "Audio CD"
 msgstr "CD audio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
 msgid "Unknown volume"
 msgstr "Volum necunoscut"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
 msgstr "Server în reţea"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Nu reuşesc să montez unitatea de dischetă. Probabil nu e nici o dischetă în "
+"Nu s-a putut monta unitatea de dischetă. Probabil nu e nici o dischetă în "
 "unitate."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Nu reuşesc să montez volumul. Probabil nu e nimic în unitate."
+msgstr "Nu s-a putut monta volumul. Probabil nu e nimic în unitate."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nu reuşesc să montez unitatea de dischetă. Probabil discheta este într-un "
+"Nu s-a putut monta unitatea de dischetă. Probabil discheta este într-un "
 "format care nu poate fi montat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Nu s-a putut monta volumul. În cazul în care este un volum criptat, probabil "
+"s-a folosit o parolă ori o cheie greşită."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nu reuşesc să montez volumul selectat. Probabil este într-un format care nu "
+"Nu s-a putut monta volumul selectat. Probabil este într-un format care nu "
 "poate fi montat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid "Unable to mount the selected floppy drive."
-msgstr "Nu reuşesc să montez unitatea de dischetă selectată."
+msgstr "Nu s-a putut monta unitatea de dischetă selectată."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
 msgid "Unable to mount the selected volume."
-msgstr "Nu reuşesc să montez volumul selectat."
+msgstr "Nu s-a putut monta volumul selectat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Nu s-a putut monta volumul selectat. Probabil este într-un format care nu "
+"poate fi montat."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
-msgstr "Nu reuşesc să demontez volumul selectat."
+msgstr "Nu s-a putat demonta volumul selectat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Nu s-au putut citi datele de la procesul copil %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+msgid "Couldn't run mount process in a pty"
+msgstr "Nu s-a executa procesul de montare într-un pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "Eroare neaşteptată în select() la citirea datelor de la procesul "
+"copil (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+msgid "Couldn't send password to mount process."
+msgstr "Nu s-a putut transmite parola procesului de montare."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Eroare neaşteptată în waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
 msgid "Failed to start command"
-msgstr "Nu reuşesc să execut comanda"
+msgstr "Nu s-a putut executa comanda"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
 msgid "Unable to eject media"
-msgstr "Nu reuşesc să ejectez mediul din unitate"
+msgstr "Nu s-a putut ejecta mediul din unitate"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
 msgid "Unable to unmount connected server"
-msgstr "Nu reuşesc să demontez serverul conectat"
+msgstr "Nu s-a putut demonta serverul conectat"
 
 #: ../modules/computer-method.c:546
 msgid "Network"
@@ -920,7 +969,7 @@ msgstr "Acasă"
 msgid "Filesystem"
 msgstr "Sistem de fişiere"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d necunoscut"
@@ -929,12 +978,12 @@ msgstr "GnomeVFSSeekPosition %d necunoscut"
 msgid "Windows Network"
 msgstr "Reţea Windows"
 
-#: ../modules/sftp-method.c:1321
+#: ../modules/sftp-method.c:1322
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitatea calculatorului la distanţă (%s) nu este cunoscută."
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1323
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -942,16 +991,16 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"Acest lucru se întâmplă la prima autentificare la un calculator.\n"
+"Acest lucru se întâmplă la prima autentificare pe un server.\n"
 "\n"
 "Identitatea trimisă de calculatorul la distanţă este %s. Dacă doriţi să fiţi "
 "absolut sigur că puteţi continua în siguranţă, contactaţi administratorul."
 
-#: ../modules/sftp-method.c:1330
+#: ../modules/sftp-method.c:1331
 msgid "Log In Anyway"
 msgstr "Continuă oricum"
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1332
 msgid "Cancel Login"
 msgstr "Renunţă"
 
@@ -959,7 +1008,7 @@ msgstr "Renunţă"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Nu am găsit un fişier valid de configurare în %s\n"
+msgstr "Nu s-a găsit un fişier valid de configurare în %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
@@ -1001,7 +1050,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Aplicaţie de utilizat pentru vizualizarea fişierele ce necesită o componentă "
+"Aplicaţie de utilizat pentru vizualizarea fişierelor ce necesită o componentă "
 "de vizualizare. Parametrul %s va fi înlocuit cu URI-ul fişierului, iar "
 "parametrul %c va fi înlocuit cu componenta IID."
 
@@ -1300,7 +1349,7 @@ msgstr "Adrese fără proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Parola necesară la autentificarea la serverul proxy HTTP."
+msgstr "Parolă necesară la autentificarea la serverul proxy HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1380,7 +1429,7 @@ msgstr ""
 "Această cheie conţine o listă a adreselor la care se preferă conectarea "
 "directă, nu prin proxy. Aceste adrese pot fi nume de servere, domenii (cu "
 "caractere „wildcard”, de ex. *.foo.com), adrese IP (atât IPv4, cât şi IPv6) "
-"şi adrese de reţea cu mască (de ex. 192.168.0.0/24)."
+"şi adrese de reţea cu mască (de ex. 192.168.0.0/16)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1408,173 +1457,3 @@ msgstr ""
 "în vigoare setările unui nou workgroup, utilizatorul s-ar putea să "
 "trebuiască să se deautentifice şi apoi să se autentifice din nou."
 
-#: ../schemas/system_storage.schemas.in.h:1
-msgid "Display SCSI drives"
-msgstr "Arată unităţile SCSI"
-
-#: ../schemas/system_storage.schemas.in.h:2
-msgid "Display SCSI optical drives"
-msgstr "Arată unităţile optice SCSI"
-
-#: ../schemas/system_storage.schemas.in.h:3
-msgid "Display drives with removable media"
-msgstr "Arată unităţile cu medii amovibile"
-
-#: ../schemas/system_storage.schemas.in.h:4
-msgid "Display external drives"
-msgstr "Arată unităţile externe"
-
-#: ../schemas/system_storage.schemas.in.h:5
-msgid "Display internal hard drives"
-msgstr "Arată unităţile interne HDD"
-
-#: ../schemas/system_storage.schemas.in.h:6
-msgid ""
-"Whether to display SCSI optical drives even if /system/storage/"
-"display_scsi_drives is set to FALSE."
-msgstr ""
-"Specifică dacă se arată unităţile optice SCSI chiar dacă /system/storage/"
-"display_scsi_drives este setat ca FALSE"
-
-#: ../schemas/system_storage.schemas.in.h:7
-msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr ""
-"Specifică dacă se arată unităţile şi volumele montabile ale unităţilor SCSI."
-
-#: ../schemas/system_storage.schemas.in.h:8
-msgid ""
-"Whether to display drives and mountable volumes from drives with removable "
-"media (e.g. drives where media can be inserted and removed)."
-msgstr ""
-"Specifică dacă se arată unităţile şi volumele montabile ale unităţilor cu "
-"medii amovibile (de ex. unităţi în care se inserează CD-uri sau DVD-uri)"
-
-#: ../schemas/system_storage.schemas.in.h:9
-msgid ""
-"Whether to display drives and mountable volumes from external drives (e.g. "
-"drives that are hotpluggable; e.g. drives that can be attached and detached "
-"while the system is running)."
-msgstr ""
-"Specifică dacă se arată unităţile şi volumele montabile ale unităţilor "
-"externe (de ex. unităţi de tip „hotplug” ce pot fi ataşate sau detaşate în "
-"timp ce calculatorul este pornit)."
-
-#: ../schemas/system_storage.schemas.in.h:10
-msgid ""
-"Whether to display drives and mountable volumes from internal hard drives "
-"(non-SCSI optical drives are always shown)."
-msgstr ""
-"Specifică dacă se arată unităţile şi volumele montabile ale unităţilor HDD "
-"interne (unităţile optice non-SCSI sunt întotdeauna arătate)."
-
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "Grupul Windows (workgroup) din care face parte utilizatorul"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Disc optic"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Mediu „Memory Stick”"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Mediu „Smart Media”"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Disc Mac OS"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Disc Mac OS X"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Disc Windows"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Disc Linux"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Fişierul nu a putut fi deschis: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Nu am reuşit să deschid fişierul „%s”: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Fişierul este gol"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Nu am reuşit să citesc din fişierul „%s”: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "intrările desktop conţin linia „%s”, care nu este o intrare, un grup ori "
-#~ "un comentariu"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "fişierele tip „intrări desktop” nu încep cu grupul corect de start"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "intrările desktop conţin linia „%s” care nu este UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "intrările desktop conţin codarea necunoscută „%s”"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "intrările desktop nu au grupul „%s”"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "intrările desktop nu au cheia „%s”"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "intrările desktop conţin cheia „%s” care are o valuare ce nu poate fi "
-#~ "interpretată"
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "intrările desktop nu conţin o valoare tradusă pentru cheia „%s” în "
-#~ "localizarea „%s”"
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "intrările desktop conţin secvenţe „escaped” invalide „%s”"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "intrările desktop conţin caractere „escape” la sfârşitul liniei"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Valoarea „%s” nu poate fi interpretată ca un număr."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Valoarea „%s” nu poate fi interpretată boolean"
-
-#~ msgid "Applications"
-#~ msgstr "Aplicaţii"
-
-#~ msgid "Cards"
-#~ msgstr "Cărţi"
-
-#~ msgid "Files"
-#~ msgstr "Fişiere"
-
-#~ msgid "Folders"
-#~ msgstr "Directoare"
-
-#~ msgid "Help"
-#~ msgstr "Ajutor"
-
-#~ msgid "Hosts"
-#~ msgstr "Gazde"
-
-#~ msgid "Links"
-#~ msgstr "Legături"
-
-#~ msgid "Mail"
-#~ msgstr "Mail"
-
-#~ msgid "Tools"
-#~ msgstr "Unelte"
-
-#~ msgid "Windows"
-#~ msgstr "Ferestre"
