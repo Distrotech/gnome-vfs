@@ -516,7 +516,7 @@ fixup_acl (GnomeVFSACL *acl, GSList *acls)
 		changed = TRUE;
 	}	
 
-	if (class_needed && !mask) {
+	if (class_needed && !mask_obj) {
 		GnomeVFSACE     *ace;
 		GnomeVFSACLPerm  perms[] = {GNOME_VFS_ACL_READ,
 					    GNOME_VFS_ACL_WRITE,
