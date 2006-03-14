@@ -354,7 +354,7 @@ msgstr "Ổ đĩa"
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #,c-format
 msgid "External %s"
-msgstr "Bên ngoài %s"
+msgstr "%s lắp ngoài"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:506
 msgid "CD-ROM Disc"
@@ -427,7 +427,7 @@ msgstr "Đĩa âm thanh"
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #,c-format
 msgid "%s Removable Volume"
-msgstr "Khối tin rời %s"
+msgstr "Khối rời %s"
 
 #:../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
@@ -623,7 +623,7 @@ msgstr "Thao tác không được phép"
 #.GNOME_VFS_ERROR_IS_DIRECTORY
 #:../libgnomevfs/gnome-vfs-result.c:67
 msgid "Is a directory"
-msgstr "là thư mục"
+msgstr "Là thư mục"
 
 #.GNOME_VFS_ERROR_NO_MEMORY
 #:../libgnomevfs/gnome-vfs-result.c:68
@@ -879,7 +879,7 @@ msgstr "Khối lạ"
 
 #:../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
 msgid "Network server"
-msgstr "Máy phục vụ mạng"
+msgstr "Máy chủ"
 
 #.Handle floppy case
 #:../libgnomevfs/gnome-vfs-volume-ops.c:169
@@ -969,15 +969,15 @@ msgstr "Không thể bỏ gắn kết máy phục vụ đã kết nối."
 
 #:../modules/computer-method.c:546
 msgid "Network"
-msgstr "mạng"
+msgstr "Mạng"
 
 #:../modules/computer-method.c:564
 msgid "Home"
-msgstr "Về"
+msgstr "Thư mục cá nhân"
 
 #:../modules/computer-method.c:582
 msgid "Filesystem"
-msgstr "Hệ thống tập tin"
+msgstr "Hệ tập tin"
 
 #:../modules/file-method.c:540
 #,c-format
@@ -986,7 +986,7 @@ msgstr "Không biết GnomeVFSSeekPosition %d"
 
 #:../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "mạng Windows"
+msgstr "Mạng Windows"
 
 #:../modules/sftp-method.c:1320
 #,c-format
