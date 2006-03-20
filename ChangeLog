@@ -1,5 +1,11 @@
 2006-03-20  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c: (do_path_command), (do_path_transfer_command),
+	(invalidate_dirlist_cache), (do_open_directory), (do_read_directory):
+	Use "/" when path is NULL. Fixes #308231.
+
+2006-03-20  Christian Neumair  <chris@gnome-de.org>
+
 	* modules/ftp-method.c: (do_make_directory):
 	* modules/sftp-method.c: (do_make_directory):
 	Correctly return GNOME_VFS_ERROR_FILE_EXISTS if directory existed.

@@ -609,6 +609,7 @@ do_path_command (FtpConnection *conn,
 	 * than the full path. Useful for some (buggy?) systems. */
 	unescaped = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 	if (unescaped == NULL || unescaped[0] == '\0') {
+		g_free (unescaped);
 		unescaped = g_strdup ("/");
 	}
 
@@ -775,6 +776,7 @@ do_path_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSURI *uri,
 
 	unescaped = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 	if (unescaped == NULL || unescaped[0] == '\0') {
+		g_free (unescaped);
 		unescaped = g_strdup ("/");
 	}
 
@@ -1619,7 +1621,7 @@ invalidate_dirlist_cache (GnomeVFSURI *uri)
 	G_LOCK (connection_pools);
 	pool = ftp_connection_pool_lookup (uri);
 	g_hash_table_remove (pool->cached_dirlists,
-			     uri->text);
+			     uri->text != NULL ? uri->text : "/");
 	G_UNLOCK (connection_pools);
 }
 
@@ -2433,7 +2435,7 @@ do_open_directory (GnomeVFSMethod *method,
 	G_LOCK (connection_pools);
 	pool = ftp_connection_pool_lookup (uri);
 	cached_dirlist = g_hash_table_lookup (pool->cached_dirlists,
-					      uri->text);
+					      uri->text != NULL ? uri->text : "/");
 	if (cached_dirlist != NULL) {
 		gettimeofday (&tv, NULL);
 
@@ -2514,7 +2516,7 @@ do_open_directory (GnomeVFSMethod *method,
 	cached_dirlist->read_time = tv.tv_sec;
 	
 	g_hash_table_replace (pool->cached_dirlists,
-			      g_strdup (uri->text),
+			      g_strdup (uri->text != NULL ? uri->text : "/"),
 			      cached_dirlist);
 	
 	G_UNLOCK (connection_pools);
@@ -2636,7 +2638,7 @@ do_read_directory (GnomeVFSMethod *method,
 
 				GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
-				file_info->symlink_name = gnome_vfs_unescape_string (uri->text, "/");
+				file_info->symlink_name = gnome_vfs_unescape_string (uri->text != NULL ? uri->text : "/", "/");
 				
 				g_free (file_info->name);
 				file_info->name = real_name;
