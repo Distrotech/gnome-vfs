@@ -72,8 +72,8 @@
 #include "sftp.h"
 #include <libgnomevfs/gnome-vfs-pty.h>
 
-size_t default_req_len = 32768;
-guint max_req = 16;
+static size_t default_req_len = 32*1024;
+static guint max_req = 8;
 
 #ifdef HAVE_GRANTPT
 /* We only use this on systems with unix98 ptys */
@@ -523,7 +523,7 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 	}
 
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
-	info->io_block_size = default_req_len;
+	info->io_block_size = default_req_len * max_req;
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Read file info from %p", buf));
 }
@@ -1963,14 +1963,14 @@ do_read (GnomeVFSMethod       *method,
 	Buffer msg;
 	char type;
 	int recv_id, status;
-	guint num_req, req_ptr, req_svc_ptr, req_svc;
+	guint req_ptr, req_svc_ptr, req_svc;
 	guint len;
 	guchar *buffer;
 	guchar *curr_ptr;
-	gboolean out_of_order;
 	GnomeVFSResult result;
 	gboolean got_eof;
 	guint outstanding;
+	int queue_len;
 
 	struct ReadRequest 
 	{
@@ -1987,14 +1987,16 @@ do_read (GnomeVFSMethod       *method,
 	
 	handle = SFTP_OPEN_HANDLE (method_handle);
 	*bytes_read = 0;
-	num_req = 0;
-	req_ptr = 0;
-	req_svc_ptr = 0;
+	req_ptr = 0; /* Queue head */
+	req_svc_ptr = 0; /* Queue tail */
 	curr_ptr = buffer_in;
 	buffer = buffer_in;
 	outstanding = 0;
 
-	read_req = g_new0 (struct ReadRequest, max_req);
+	/* This must be at least one larger than max_req so we don't wrap around the compares.
+	 * This means we always leave one unused element between the head and tail. */
+	queue_len = max_req + 1;
+	read_req = g_new0 (struct ReadRequest, queue_len);
 
 	buffer_init (&msg);
 
@@ -2002,7 +2004,9 @@ do_read (GnomeVFSMethod       *method,
 
 	while ((*bytes_read < num_bytes) ||
 	       (outstanding > 0)) {
-		while (num_req < max_req && curr_ptr < buffer + num_bytes) {
+		/* Request as many blocks as we can without overfilling the queue (i.e. max_req) */
+		while (curr_ptr < buffer + num_bytes &&
+		       (req_ptr + 1) % queue_len != req_svc_ptr) {
 			read_req[req_ptr].id = sftp_connection_get_id (handle->connection);
 			read_req[req_ptr].req_len =
 				MIN ((buffer + num_bytes) - curr_ptr, default_req_len);
@@ -2021,10 +2025,8 @@ do_read (GnomeVFSMethod       *method,
 						 handle->sftp_handle, handle->sftp_handle_len);
 
 			curr_ptr += read_req[req_ptr].req_len;
-			++num_req;
 
-			if (++req_ptr >= max_req)
-				req_ptr = 0;
+			req_ptr = (req_ptr + 1) % queue_len;
 		}
 
 		buffer_clear (&msg);
@@ -2041,13 +2043,12 @@ do_read (GnomeVFSMethod       *method,
 		recv_id = buffer_read_gint32 (&msg);
 
 		/* Look for the id received among sent ids */
-		out_of_order = FALSE;
-		req_svc = req_svc_ptr;
-		while (read_req[req_svc].id != recv_id && req_svc != req_ptr) {
-			if (read_req[req_svc].id != 0)
-				out_of_order = TRUE;
-			if (++req_svc >= max_req)
-				req_svc = 0;
+		for (req_svc = req_svc_ptr;
+		     req_svc != req_ptr;
+		     req_svc = (req_svc + 1) % queue_len) {
+			if (read_req[req_svc].id == recv_id) {
+				break;
+			}
 		}
 
 		if (req_svc == req_ptr) { /* Didn't find the id -- unexpected reply */
@@ -2120,8 +2121,10 @@ do_read (GnomeVFSMethod       *method,
 			return GNOME_VFS_ERROR_PROTOCOL_ERROR;
 		}
 
-		if (!out_of_order)
-			req_svc_ptr = req_svc;
+		/* Pop finished requests from the tail */
+		while (req_svc_ptr != req_ptr && read_req[req_svc_ptr].id == 0) {
+			req_svc_ptr = (req_svc_ptr + 1) % queue_len;
+		}
 	}
 
 	handle->offset += *bytes_read;
@@ -2151,9 +2154,10 @@ do_write (GnomeVFSMethod       *method,
 	Buffer msg;
 	char type;
 	int recv_id, status;
-	guint req_ptr = 0, req_svc;
+	guint req_ptr, req_svc, req_svc_ptr;
 	guint curr_offset;
 	const guchar *buffer;
+	int queue_len;
 
 	struct WriteRequest 
 	{
@@ -2167,38 +2171,47 @@ do_write (GnomeVFSMethod       *method,
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
-	write_req = g_new0 (struct WriteRequest, max_req);
+
+	/* This must be at least one larger than max_req so we don't wrap around the compares.
+	 * This means we always leave one unused element between the head and tail. */
+	queue_len = max_req + 1;
+	write_req = g_new0 (struct WriteRequest, queue_len);
+	
 	buffer_init (&msg);
 	*bytes_written = 0;
 	curr_offset = 0;
 	buffer = buffer_in;
+	req_ptr = 0;
+	req_svc_ptr = 0;
 
 	sftp_connection_lock (handle->connection);
 
 	while (*bytes_written < num_bytes) {
-		write_req[req_ptr].id = sftp_connection_get_id (handle->connection);
-		write_req[req_ptr].req_len = MIN (num_bytes - curr_offset, default_req_len);
-		write_req[req_ptr].offset = curr_offset;
+		while (curr_offset < num_bytes &&
+		       (req_ptr + 1) % queue_len != req_svc_ptr) {
+			write_req[req_ptr].id = sftp_connection_get_id (handle->connection);
+			write_req[req_ptr].req_len = MIN (num_bytes - curr_offset, default_req_len);
+			write_req[req_ptr].offset = curr_offset;
 
-		curr_offset += write_req[req_ptr].req_len;
+			curr_offset += write_req[req_ptr].req_len;
 
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: (%d) Sending write request %d, length %d, offset %d",
-			      __FUNCTION__, req_ptr, write_req[req_ptr].id,
-			      write_req[req_ptr].req_len, write_req[req_ptr].offset));
+			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
+				      "%s: (%d) Sending write request %d, length %d, offset %d",
+				      __FUNCTION__, req_ptr, write_req[req_ptr].id,
+				      write_req[req_ptr].req_len, write_req[req_ptr].offset));
 
-		buffer_clear (&msg);
-		buffer_write_gchar (&msg, SSH2_FXP_WRITE);
-		buffer_write_gint32 (&msg, write_req[req_ptr].id);
-		buffer_write_block (&msg, handle->sftp_handle, handle->sftp_handle_len);
-		buffer_write_gint64 (&msg, handle->offset + write_req[req_ptr].offset);
-		buffer_write_block (&msg, buffer + write_req[req_ptr].offset,
-				    write_req[req_ptr].req_len);
+			buffer_clear (&msg);
+			buffer_write_gchar (&msg, SSH2_FXP_WRITE);
+			buffer_write_gint32 (&msg, write_req[req_ptr].id);
+			buffer_write_block (&msg, handle->sftp_handle, handle->sftp_handle_len);
+			buffer_write_gint64 (&msg, handle->offset + write_req[req_ptr].offset);
+			buffer_write_block (&msg, buffer + write_req[req_ptr].offset,
+					    write_req[req_ptr].req_len);
+			
+			buffer_send (&msg, handle->connection->out_fd);
 
-		buffer_send (&msg, handle->connection->out_fd);
-
-		if (++req_ptr >= max_req)
-			req_ptr = 0;
+			req_ptr = (req_ptr + 1) % queue_len;
+		}
 
 		buffer_clear (&msg);
 		buffer_recv (&msg, handle->connection->in_fd);
@@ -2212,17 +2225,8 @@ do_write (GnomeVFSMethod       *method,
 			return GNOME_VFS_ERROR_PROTOCOL_ERROR;
 		}
 
-		req_svc = req_ptr;
-		if (write_req[req_svc].id != recv_id) {
-			++req_svc;
-
-			while (write_req[req_svc].id != recv_id && req_svc != req_ptr)
-				if (++req_svc >= max_req)
-					req_svc = 0;
-		}
 
 		status = buffer_read_gint32 (&msg);
-		
 		if (status != SSH2_FX_OK) {
 			buffer_free (&msg);
 			g_free (write_req);
@@ -2230,8 +2234,31 @@ do_write (GnomeVFSMethod       *method,
 			return sftp_status_to_vfs_result (status);
 		}
 
+		/* Look for the id received among sent ids */
+		for (req_svc = req_svc_ptr;
+		     req_svc != req_ptr;
+		     req_svc = (req_svc + 1) % queue_len) {
+			if (write_req[req_svc].id == recv_id) {
+				break;
+			}
+		}
+		
+		if (req_svc == req_ptr) { /* Didn't find the id -- unexpected reply */
+			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Unexpected id %d",
+				      __FUNCTION__, recv_id));
+			buffer_free (&msg);
+			g_free (write_req);
+			sftp_connection_unlock (handle->connection);
+			return GNOME_VFS_ERROR_PROTOCOL_ERROR;
+		}
+
 		write_req[req_svc].id = 0;
 		*bytes_written += write_req[req_svc].req_len;
+
+		/* Pop finished requests from the tail */
+		while (req_svc_ptr != req_ptr && write_req[req_svc_ptr].id == 0) {
+			req_svc_ptr = (req_svc_ptr + 1) % queue_len;
+		}
 	}
 
 	handle->offset += *bytes_written;

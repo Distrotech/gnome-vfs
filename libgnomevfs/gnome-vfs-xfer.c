@@ -1204,7 +1204,8 @@ copy_file_data (GnomeVFSHandle *target_handle,
 		GnomeVFSProgressCallbackState *progress,
 		GnomeVFSXferOptions xfer_options,
 		GnomeVFSXferErrorMode *error_mode,
-		guint block_size,
+		guint source_block_size,
+		guint target_block_size,
 		gboolean *skip)
 {
 	GnomeVFSResult result;
@@ -1212,6 +1213,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 	const char *write_buffer;
 	GnomeVFSFileSize total_bytes_read;
 	gboolean forget_cache;
+	guint block_size;
 
 	*skip = FALSE;
 
@@ -1219,6 +1221,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 		return GNOME_VFS_ERROR_INTERRUPTED;
 	}
 
+	block_size = MAX (source_block_size, target_block_size);
 	buffer = g_malloc (block_size);
 	total_bytes_read = 0;
 
@@ -1443,7 +1446,8 @@ copy_symlink (GnomeVFSURI *source_uri,
 }
 
 static GnomeVFSResult
-copy_file (GnomeVFSFileInfo *info,  
+copy_file (GnomeVFSFileInfo *info,
+	   GnomeVFSFileInfo *target_dir_info,
 	   GnomeVFSURI *source_uri,
 	   GnomeVFSURI *target_uri,
 	   GnomeVFSXferOptions xfer_options,
@@ -1498,6 +1502,8 @@ copy_file (GnomeVFSFileInfo *info,
 					  */
 					 (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE && info->io_block_size > 0)
 					 ? info->io_block_size : 8192,
+					 (target_dir_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE && target_dir_info->io_block_size > 0)
+					 ? target_dir_info->io_block_size : 8192,
 					 skip);
 	}
 
@@ -1644,7 +1650,8 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 				progress_set_source_target_uris (progress, source_uri, dest_uri);
 
 				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
-					result = copy_file (info, source_uri, dest_uri, 
+					result = copy_file (info, target_dir_info,
+							    source_uri, dest_uri, 
 							    xfer_options, error_mode, overwrite_mode, 
 							    progress, &skip_child);
 				} else if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
@@ -1657,7 +1664,8 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 						result = gnome_vfs_get_file_info_uri (source_uri, symlink_target_info,
 										      GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
 						if (result == GNOME_VFS_OK) 
-							result = copy_file (symlink_target_info, source_uri, dest_uri, 
+							result = copy_file (symlink_target_info, target_dir_info,
+									    source_uri, dest_uri, 
 									    xfer_options, error_mode, overwrite_mode, 
 									    progress, &skip_child);
 						gnome_vfs_file_info_unref (symlink_target_info);
@@ -1786,7 +1794,6 @@ copy_items (const GList *source_uri_list,
 			if (result == GNOME_VFS_OK && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
 				info->gid = target_dir_info->gid;
 			}
-			gnome_vfs_file_info_unref (target_dir_info);
 			result = GNOME_VFS_OK;
 
 			/* optionally keep trying until we hit a unique target name */
@@ -1811,7 +1818,8 @@ copy_items (const GList *source_uri_list,
 				
 				
 				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
-					result = copy_file (info, source_uri, target_uri, 
+					result = copy_file (info, target_dir_info,
+							    source_uri, target_uri, 
 							    xfer_options, error_mode, 
 							    &overwrite_mode_abort, 
 							    progress, &skip);
@@ -1871,6 +1879,8 @@ copy_items (const GList *source_uri_list,
 				
 				/* try again with new uri */
 			}
+
+			gnome_vfs_file_info_unref (target_dir_info);
 		}
 
 		gnome_vfs_file_info_unref (info);

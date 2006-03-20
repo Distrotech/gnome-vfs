@@ -1,3 +1,14 @@
+2006-03-20  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Use MAX(source_block_size, target_block_size) as copy block size.
+	
+	* modules/sftp-method.c:
+	Clean up read/write to correctly handle multiple outstanding blocks.
+	Increase block_size by max_req times to get better transfer performance.
+
+	Based on patch from Christian Neumair
+	
 2006-03-13  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
