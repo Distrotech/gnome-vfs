@@ -1028,7 +1028,9 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 				libhal_volume_get_mount_point (hal_volume));
 		}
 		vol->priv->filesystem_type = g_strdup (libhal_volume_get_fstype (hal_volume));
-		vol->priv->is_read_only = FALSE;
+		vol->priv->is_read_only = libhal_device_get_property_bool (volume_monitor_daemon->hal_ctx,
+									   libhal_volume_get_udi (hal_volume),
+									   "volume.is_mounted_read_only", NULL);
 		vol->priv->is_mounted = TRUE;
 		
 		vol->priv->device_type = _hal_get_gnome_vfs_device_type (hal_drive);

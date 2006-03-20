@@ -1,3 +1,9 @@
+2006-03-20  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):
+	Set GnomeVFSVolume's is_read_only property to the value of the HAL
+	devices's "volume.is_mounted_read_only" property.
+
 2006-03-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
