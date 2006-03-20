@@ -59,6 +59,7 @@
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-module-callback-module-api.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-standard-callbacks.h>
 
 #include <string.h>
@@ -2715,6 +2716,11 @@ do_make_directory (GnomeVFSMethod  *method,
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
+
+	if (res == GNOME_VFS_ERROR_GENERIC &&
+	    gnome_vfs_uri_exists (uri)) {
+		res = GNOME_VFS_ERROR_FILE_EXISTS;
+	}
 
 	return res;
 }

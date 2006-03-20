@@ -45,6 +45,7 @@
 #include <libgnomevfs/gnome-vfs-module-callback-module-api.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <stdio.h> /* for sscanf */
@@ -2700,6 +2701,9 @@ do_make_directory (GnomeVFSMethod *method,
 		do_path_command_completely (chmod_command, uri, context,
 			GNOME_VFS_ERROR_ACCESS_DENIED);
 		g_free(chmod_command);
+	} else if (result != GNOME_VFS_ERROR_CANCELLED &&
+		   gnome_vfs_uri_exists (uri)) {
+		result = GNOME_VFS_ERROR_FILE_EXISTS;
 	}
 
 	return result;

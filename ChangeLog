@@ -1,5 +1,12 @@
 2006-03-20  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c: (do_make_directory):
+	* modules/sftp-method.c: (do_make_directory):
+	Correctly return GNOME_VFS_ERROR_FILE_EXISTS if directory existed.
+	Fixes #161279.
+
+2006-03-20  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):
 	Set GnomeVFSVolume's is_read_only property to the value of the HAL
 	devices's "volume.is_mounted_read_only" property.
