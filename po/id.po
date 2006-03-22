@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-16 23:06+0100\n"
-"PO-Revision-Date: 2006-03-17 10:55+0700\n"
+"PO-Revision-Date: 2006-03-22 21:45+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <kontak@id.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "File konfigurasi '%s' tidak ditemukan: %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d membatalkan penguraian."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -319,12 +319,12 @@ msgstr "Pen"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 #, c-format
 msgid "%s %s Music Player"
-msgstr ""
+msgstr "%s·%s Pemutar Musik"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
 msgid "%s %s Digital Camera"
-msgstr ""
+msgstr "%s %s Kamera Digital"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
 msgid "Drive"
@@ -333,7 +333,7 @@ msgstr "Drive"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
 msgid "External %s"
-msgstr ""
+msgstr "Luar %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
 msgid "CD-ROM Disc"
