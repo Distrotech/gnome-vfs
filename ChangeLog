@@ -1,3 +1,9 @@
+2006-03-27  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_get_unix_mount_table):
+	OpenBSD support.
+	Patch from Genadijus Paleckis <rwx@openbsd.lt>
+
 2006-03-20  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/ftp-method.c: (do_path_command), (do_path_transfer_command),
