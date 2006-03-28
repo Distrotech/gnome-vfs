@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.or\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-24 17:27+0530\n"
-"PO-Revision-Date: 2006-03-29 01:21+0530\n"
+"PO-Revision-Date: 2006-03-29 01:44+0530\n"
 "Last-Translator: Gora Mohanty <gora_mohanty@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
 "MIME-Version: 1.0\n"
@@ -340,7 +340,7 @@ msgstr "ଡ୍ରାଇଭ୍"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
 msgid "External %s"
-msgstr ""
+msgstr "ବାହ୍ଯ %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
 msgid "CD-ROM Disc"
@@ -473,7 +473,7 @@ msgstr "ଚାଳନା ବନ୍ଦ ହୋଇଯାଇଛି"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "ଅପସନ୍ଦ ଫଳନ. ମାଇମ ତଥ୍ଯାଧାରରେ ବ୍ଯବହାରକାରୀ ପରିବର୍ତ୍ତନ ଏବେ ଅସହାୟକ."
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:704
@@ -772,12 +772,12 @@ msgstr "ନାମସେବକ ତ୍ରୁଟି"
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "The resource is locked"
-msgstr ""
+msgstr "ସମ୍ବଳଟି ଅପରିବର୍ତ୍ତନୀୟ"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Function call deprecated"
-msgstr ""
+msgstr "ଫଳନ ଡାକରା ଅପସନ୍ଦ"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: ../libgnomevfs/gnome-vfs-result.c:215
@@ -946,7 +946,8 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr ""
+msgstr "ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଯଦି ଏହା ଗୋଟିଏ ସଂଗୁପ୍ତ ଡ୍ରାଇଭ, ତେବେ ଭୁଲ ପ୍ରବେଶ "
+"ସଂକେତ ବା ଚାବି ବ୍ଯବହାର କରାଯାଇଥିଲା."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
@@ -978,25 +979,25 @@ msgstr "ବଛା ଅଂଶକୁ କାଢ଼ିବାରେ ଅସଫଳ."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:387
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr ""
+msgstr "ନିର୍ଭରକ ପ୍ରକ୍ରିୟାଠାରୁ ତଥ୍ଯ ପଢ଼ିହେଲା ନାହିଁ %d (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:431
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "ସ୍ଥାପନ ପ୍ରକ୍ରିୟାକୁ ପି.ଟି.ୱାଇ.ରେ ଚଳାଇହେଲା ନାହିଁ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:476
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr ""
+msgstr "ନିର୍ଭରକ ପ୍ରକ୍ରିୟାଠାରୁ ତଥ୍ଯ ପଢ଼ିବାରେ select()ରେ ଅପ୍ରତ୍ଯାଶିତ ତ୍ରୁଟି (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:530
 msgid "Couldn't send password to mount process."
-msgstr ""
+msgstr "ସ୍ଥାପନ ପ୍ରକ୍ରିୟାକୁ ପ୍ରବେଶ ସଂକେତ ପଠାଇହେଲା ନାହିଁ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:569
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr ""
+msgstr "waitpid()ରେ ଅପ୍ରତ୍ଯାଶିତ ତ୍ରୁଟି (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:679
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:765
@@ -1527,7 +1528,8 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr ""
+msgstr "ବ୍ଯବହରକାରୀର ୱିଣ୍ଡୋଜ କାର୍ଯ୍ଯସମୂହ ବା ପରିସର. ନୂଆ କାର୍ଯ୍ଯସମୂହ ସମ୍ପୂର୍ଣ୍ଣ ପ୍ରଭାବ ଦେଖିବା "
+"ପାଇଁ ବ୍ଯବହରକାରୀକୁ ଲଗ ଆଉଟ କରି ପୁଣି ଲଗଇନ କରିବାକୁ ପଡ଼ିପାରେ."
 
 #~ msgid "CD Disc"
 #~ msgstr "ସି.ଡି. ଡିସ୍କ"
