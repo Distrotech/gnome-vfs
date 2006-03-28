@@ -388,8 +388,7 @@ static gboolean
 v6_v6_equal (const struct sockaddr_in6 *a,
 	     const struct sockaddr_in6 *b)
 {
-	return IN6_ARE_ADDR_EQUAL (a->sin6_addr.s6_addr,
-				   b->sin6_addr.s6_addr);
+	return IN6_ARE_ADDR_EQUAL (&a->sin6_addr, &b->sin6_addr);
 }
 
 static gboolean
