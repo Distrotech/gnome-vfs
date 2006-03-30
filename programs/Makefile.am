@@ -22,6 +22,7 @@ bin_PROGRAMS =						\
 	gnomevfs-mkdir					\
 	gnomevfs-mv					\
 	gnomevfs-rm					\
+	gnomevfs-df					\
 	$(NULL)
 
 gnomevfs_cat_SOURCES = gnomevfs-cat.c
@@ -47,4 +48,7 @@ gnomevfs_mv_LDADD = $(libraries)
 
 gnomevfs_rm_SOURCES = gnomevfs-rm.c
 gnomevfs_rm_LDADD = $(libraries)
+
+gnomevfs_df_SOURCES = gnomevfs-df.c
+gnomevfs_df_LDADD = $(libraries)
 

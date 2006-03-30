@@ -1,3 +1,10 @@
+2006-03-30  Bastien Nocera  <hadess@hadess.net>
+
+	* programs/Makefile.am:
+	* programs/gnomevfs-df.c: (show_free_space), (ignore_volume),
+	(main): add a program to show the amount of free space available on
+	local filesystems
+
 2006-03-28  Christian Kellner  <gicmo@gnome.org>
 	* libgnomevfs/gnome-vfs-address.c: Fix use of the IN6_ARE_ADDR_EQUAL
 	macro. (Fixes #336390)
