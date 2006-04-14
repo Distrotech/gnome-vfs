@@ -1,3 +1,13 @@
+2006-04-14 Dinoop Thomas  <dinoop.thomas@wipro.com>
+
+	*  modules/smb-method.c: (add_cached_server), (find_cached_server),
+	(get_cached_server), (update_user_cache), (lookup_user_cache),
+	(initial_authentication), (prefill_authentication),
+	(prompt_authentication), (save_authentication):
+	Made extra checks so when debugging is enabled, it doesn't crash on Solaris
+	while trying to print strings which are NULL.
+	Fixes bug #305645.
+
 2006-04-02 Vladimer Sichinava  <vlsichinava@gmail.com>
 
         * configure.in: Added "ka" (Georgian) to ALL_LINGUAS

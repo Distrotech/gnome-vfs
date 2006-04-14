@@ -356,7 +356,10 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 	SmbServerCacheEntry *entry = NULL;
 
 	DEBUG_SMB(("[auth] adding cached server: server: %s, share: %s, domain: %s, user: %s\n",
-		   server_name, share_name, domain, username));
+		   server_name ? server_name : "", 
+		   share_name ? share_name : "",
+		   domain ? domain : "",
+		   username ? username : ""));
 	
 	schedule_cache_reap ();
 	
@@ -382,7 +385,11 @@ find_cached_server (const char *server_name, const char *share_name,
 	SmbServerCacheEntry entry;
 	SmbServerCacheEntry *res;
 
-	DEBUG_SMB(("find_cached_server: server: %s, share: %s, domain: %s, user: %s\n", server_name, share_name, domain, username));
+	DEBUG_SMB(("find_cached_server: server: %s, share: %s, domain: %s, user: %s\n", 
+		   server_name ? server_name : "", 
+		   share_name ? share_name : "",
+		   domain ? domain : "", 
+		   username ? username : ""));
 
 	entry.server_name = (char *)server_name;
 	entry.share_name = (char *)share_name;
@@ -409,7 +416,10 @@ get_cached_server (SMBCCTX * context,
 	srv = find_cached_server (server_name, share_name, domain, username);
 	if (srv != NULL) {
 		DEBUG_SMB(("got cached server: server: %s, share: %s, domain: %s, user: %s\n",
-		   	  	  server_name, share_name, domain, username));
+		   	   server_name ? server_name : "", 
+			   share_name ? share_name : "",
+			   domain ? domain : "", 
+			   username ? username : ""));
 		current_auth_context->cache_used = TRUE;
 		return srv;
 	}
@@ -723,7 +733,10 @@ update_user_cache (SmbAuthContext *actx, gboolean with_share)
         key = g_strdup_printf ("%s/%s", actx->for_server, with_share ? actx->for_share : "");
         user = (SmbCachedUser*)g_hash_table_lookup (user_cache, key);
         
-        DEBUG_SMB(("[auth] Saved in cache: %s = %s:%s@%s\n", key, actx->use_user, actx->use_domain, actx->use_password));
+        DEBUG_SMB(("[auth] Saved in cache: %s = %s:%s@%s\n", key,
+		   actx->use_user ? actx->use_user : "", 
+		   actx->use_domain ? actx->use_domain : "", 
+		   actx->use_password ? actx->use_password : ""));
         
         if (!user) {
                 user = g_new0 (SmbCachedUser, 1);
@@ -763,7 +776,10 @@ lookup_user_cache (SmbAuthContext *actx, gboolean with_share)
                 actx->use_user = string_realloc (actx->use_user, user->username);
                 actx->use_domain = string_realloc (actx->use_domain, user->domain);
                 actx->use_password = string_realloc (actx->use_password, user->password);
-                DEBUG_SMB(("[auth] Looked up in cache: %s:%s@%s\n", actx->use_user, actx->use_domain, actx->use_password));
+                DEBUG_SMB(("[auth] Looked up in cache: %s:%s@%s\n", 
+			   actx->use_user ? actx->use_user : "",
+			   actx->use_domain ? actx->use_domain : "",
+			   actx->use_password ? actx->use_password : ""));
                 return TRUE;
         }
         
@@ -798,13 +814,16 @@ initial_authentication (SmbAuthContext *actx)
 					    	  	      tmp - toplevel_uri->user_name);
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (tmp + 1);
-			DEBUG_SMB(("[auth] User from URI: %s@%s\n", actx->use_user, actx->use_domain));
+			DEBUG_SMB(("[auth] User from URI: %s@%s\n", 
+				   actx->use_user ? actx->use_user : "", 
+				   actx->use_domain ? actx->use_domain : ""));
 		} else {
 			g_free (actx->use_user);
 			actx->use_user = string_dup_nzero (toplevel_uri->user_name);
 			g_free (actx->use_domain);
 			actx->use_domain = NULL;
-			DEBUG_SMB(("[auth] User from URI: %s\n", actx->use_user));
+			DEBUG_SMB(("[auth] User from URI: %s\n", 
+				   actx->use_user ? actx->use_user : ""));
 		}
 		
 		if (actx->use_user != NULL) {
@@ -840,7 +859,9 @@ initial_authentication (SmbAuthContext *actx)
                 
                 /* Server is in cache already */
                 if (server != NULL) {
-        		DEBUG_SMB(("[auth] Using connection for '%s@%s' from our server cache\n", actx->use_user, actx->use_domain));
+        		DEBUG_SMB(("[auth] Using connection for '%s@%s' from our server cache\n", 
+				   actx->use_user ? actx->use_user : "", 
+				   actx->use_domain ? actx->use_domain : ""));
                         found_user = TRUE;
         	}
         }
@@ -872,7 +893,8 @@ prefill_authentication (SmbAuthContext *actx)
 
 	memset (&out_args, 0, sizeof (out_args));
 
-	DEBUG_SMB(("[auth] Trying to prefill credentials for: %s\n", in_args.uri));
+	DEBUG_SMB(("[auth] Trying to prefill credentials for: %s\n", 
+		   in_args.uri ? in_args.uri : ""));
 
 	invoked = gnome_vfs_module_callback_invoke
 		              (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
@@ -899,7 +921,8 @@ prefill_authentication (SmbAuthContext *actx)
 
                 memset (&out_args, 0, sizeof (out_args));
 
-                DEBUG_SMB(("[auth] Trying to prefill server credentials for: %s\n", in_args.uri));
+                DEBUG_SMB(("[auth] Trying to prefill server credentials for: %s\n", 
+			   in_args.uri ? in_args.uri : ""));
 
                 invoked = gnome_vfs_module_callback_invoke
                                         (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
@@ -919,7 +942,10 @@ prefill_authentication (SmbAuthContext *actx)
 			actx->use_password = g_strdup (out_args.password);
 			
 			filled = TRUE;
-			DEBUG_SMB(("[auth] Prefilled credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+			DEBUG_SMB(("[auth] Prefilled credentials: %s@%s:%s\n", 
+				   actx->use_user ? actx->use_user : "", 
+				   actx->use_domain ? actx->use_domain : "", 
+				   actx->use_password ? actx->use_password : ""));
 		}
 	} 
 	
@@ -968,7 +994,8 @@ prompt_authentication (SmbAuthContext *actx,
 	
 	memset (&out_args, 0, sizeof (out_args));
 
-	DEBUG_SMB(("[auth] Prompting credentials for: %s\n", in_args.uri));
+	DEBUG_SMB(("[auth] Prompting credentials for: %s\n", 
+		   in_args.uri ? in_args.uri : ""));
 
 	invoked = gnome_vfs_module_callback_invoke
 		(GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION,
@@ -989,7 +1016,10 @@ prompt_authentication (SmbAuthContext *actx,
 		g_free (actx->keyring);
 		actx->save_auth = out_args.save_password;
 		actx->keyring = actx->save_auth && out_args.keyring ? g_strdup (out_args.keyring) : NULL;
-		DEBUG_SMB(("[auth] Prompted credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+		DEBUG_SMB(("[auth] Prompted credentials: %s@%s:%s\n", 
+			    actx->use_user ? actx->use_user : "", 
+			    actx->use_domain ? actx->use_domain : "",
+			    actx->use_password ? actx->use_password : ""));
 	} 
 
 	*cancelled = out_args.abort_auth;
@@ -1036,8 +1066,13 @@ save_authentication (SmbAuthContext *actx)
 	in_args.password = (char*)actx->use_password;
 
 	memset (&out_args, 0, sizeof (out_args));
-	DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", in_args.uri, actx->use_user, actx->use_domain, actx->use_password));
-	DEBUG_SMB(("[auth] Keyring: %s\n", actx->keyring));
+	DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", 
+		   in_args.uri ? in_args.uri : "", 
+		   actx->use_user ? actx->use_user : "", 
+		   actx->use_domain ? actx->use_domain : "",
+		   actx->use_password ? actx->use_password : ""));
+	DEBUG_SMB(("[auth] Keyring: %s\n", 
+		   actx->keyring ? actx->keyring : ""));
 
 	invoked = gnome_vfs_module_callback_invoke
                                 (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
@@ -1060,8 +1095,13 @@ save_authentication (SmbAuthContext *actx)
         in_args.password = (char*)actx->use_password;
         
         memset (&out_args, 0, sizeof (out_args));
-        DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", in_args.uri, actx->use_user, actx->use_domain, actx->use_password));
-        DEBUG_SMB(("[auth] Keyring: %s\n", actx->keyring));
+        DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", 
+		   in_args.uri ? in_args.uri : "", 
+		   actx->use_user ? actx->use_user : "", 
+		   actx->use_domain ? actx->use_domain : "", 
+		   actx->use_password ? actx->use_password : ""));
+        DEBUG_SMB(("[auth] Keyring: %s\n", 
+		   actx->keyring ? actx->keyring : ""));
 
         invoked = gnome_vfs_module_callback_invoke
                                 (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
@@ -1280,7 +1320,8 @@ auth_callback (const char *server_name, const char *share_name,
 	SMBCSRV *server;
 	
 	DEBUG_SMB (("[auth] auth_callback called: server: %s share: %s\n",
-		    server_name, share_name));
+		    server_name ? server_name : "", 
+		    share_name ? share_name : ""));
 
 	g_return_if_fail (current_auth_context != NULL);
 	actx = current_auth_context;
@@ -1307,7 +1348,10 @@ auth_callback (const char *server_name, const char *share_name,
                 strncpy (password_out, actx->use_password ? actx->use_password : "", pwmaxlen);
 		if (actx->use_domain)
 			strncpy (domain_out, actx->use_domain, domainmaxlen);
-		DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
+		DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", 
+			   username_out ? username_out : "", 
+			   password_out ? password_out : "", 
+			   domain_out ? domain_out : ""));
 	
 	/* We have no credentials ... */
 	} else {
