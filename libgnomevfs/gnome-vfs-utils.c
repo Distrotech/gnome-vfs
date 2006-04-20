@@ -2076,19 +2076,15 @@ gnome_vfs_resolve_symlink (const char *path,
 	int i, j, n;
 	GString *res_path;
 
-	if (symlink[0] == '/') {
+	p = strrchr (path, '/');
+	
+	if (symlink[0] == '/' || p == NULL) {
 		return g_strdup (symlink);
 	}
 
-	p = strrchr (path, '/');
-
 	/* either use whole path as base (if it ends in '/'),
 	 * or chop its filename part */
-	if (p != NULL) {
-		p = g_strndup (path, p - path);
-	} else {
-		p = g_strdup (p);
-	}
+	p = g_strndup (path, p - path);
 		
 	filename = g_build_filename (p, symlink, NULL);
 	g_free (p);
