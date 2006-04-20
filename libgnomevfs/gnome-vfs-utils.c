@@ -2067,6 +2067,73 @@ _gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
 	return res;
 }
 
+char *
+gnome_vfs_resolve_symlink (const char *path,
+			   const char *symlink)
+{
+	char *p, *filename;
+	char **strs;
+	int i, j, n;
+	GString *res_path;
+
+	if (symlink[0] == '/') {
+		return g_strdup (symlink);
+	}
+
+	p = strrchr (path, '/');
+
+	/* either use whole path as base (if it ends in '/'),
+	 * or chop its filename part */
+	if (p != NULL) {
+		p = g_strndup (path, p - path);
+	} else {
+		p = g_strdup (p);
+	}
+		
+	filename = g_build_filename (p, symlink, NULL);
+	g_free (p);
+
+	strs = g_strsplit (filename, "/", -1);
+
+	g_free (filename);
+
+	n = g_strv_length (strs);
+
+	for (i = 0; i < n; i++) {
+		if (!strcmp (strs[i], "") ||
+		    !strcmp (strs[i], ".")) {
+			g_free (strs[i]);
+			strs[i] = NULL;
+		} else if (!strcmp (strs[i], "..")) {
+			g_free (strs[i]);
+			strs[i] = NULL;
+
+			for (j = i; strs[j] == NULL && j > 0; j--)
+				;
+
+			g_free (strs[j]);
+			strs[j] = NULL;
+		}
+	}
+
+	res_path = g_string_new (NULL);
+
+	for (i = 0; i < n; i++)
+		if (strs[i] != NULL) {
+			g_string_append_c (res_path, '/');
+			g_string_append (res_path, strs[i]);
+			g_free (strs[i]);
+		}
+
+	/* TODO also re-append '/' if the symlink ends in '/'? */ 
+	if (res_path->len == 0)
+		g_string_append_c (res_path, '/');
+
+	g_free (strs);
+
+	return g_string_free (res_path, FALSE);
+}
+
 gboolean 
 _gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
 {

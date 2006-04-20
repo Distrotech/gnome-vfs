@@ -1,5 +1,16 @@
 2006-04-20  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	Add gnome_vfs_resolve_symlink
+	
+	* modules/sftp-method.c:
+	Work on symlink support
+
+	Patch from Christian Neumair
+
+2006-04-20  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Bump version to 2.15.1
 	Gnome 2.14 work continues on gnome-2-14 branch
