@@ -1,3 +1,8 @@
+gnome-vfs 2.14.1
+	* Some performance fixes for sftp
+	* Mark CD volumes as readonly (HAL)
+	* Portability and build fixes
+
 gnome-vfs 2.14.0
 	* Fix circular dependency on gnome-mount
 	* Fix some details in gnome_vfs_xfer callbacks
