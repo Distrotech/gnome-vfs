@@ -654,7 +654,6 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 	GNOME_VFS_FileInfo *corba_info;
@@ -671,7 +670,6 @@ do_get_file_info (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_GetFileInfo (daemon,
 						 uri_str,
 						 &corba_info,
@@ -709,7 +707,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	GnomeVFSClientCall *client_call;
 	GNOME_VFS_FileInfo *corba_info;
 	
@@ -717,7 +714,6 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_DaemonHandle_GetFileInfo ((GNOME_VFS_DaemonHandle) method_handle,
 						  &corba_info,
 						  options,
@@ -795,7 +791,6 @@ do_make_directory (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
@@ -811,7 +806,6 @@ do_make_directory (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_MakeDirectory (daemon,
 						   uri_str,
 						   perm,
@@ -841,7 +835,6 @@ do_remove_directory (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
@@ -857,7 +850,6 @@ do_remove_directory (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_RemoveDirectory (daemon,
 						     uri_str,
 						     BONOBO_OBJREF (client_call),
@@ -888,7 +880,6 @@ do_move (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *old_uri_str;
 	char *new_uri_str;
 	GnomeVFSClientCall *client_call;
@@ -906,7 +897,6 @@ do_move (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_Move (daemon,
 					  old_uri_str,
 					  new_uri_str,
@@ -938,7 +928,6 @@ do_unlink (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
@@ -954,7 +943,6 @@ do_unlink (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_Unlink (daemon,
 					    uri_str,
 					    BONOBO_OBJREF (client_call),
@@ -985,7 +973,6 @@ do_check_same_fs (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *source_uri_str;
 	char *target_uri_str;
 	GnomeVFSClientCall *client_call;
@@ -1004,7 +991,6 @@ do_check_same_fs (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_CheckSameFS (daemon,
 						 source_uri_str,
 						 target_uri_str,
@@ -1039,7 +1025,6 @@ do_set_file_info (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 	GNOME_VFS_FileInfo *corba_info;
@@ -1059,7 +1044,6 @@ do_set_file_info (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_SetFileInfo (daemon,
 						 uri_str,
 						 corba_info,
@@ -1087,7 +1071,6 @@ do_truncate (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
@@ -1103,7 +1086,6 @@ do_truncate (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_Truncate (daemon,
 					      uri_str,
 					      where,
@@ -1138,7 +1120,6 @@ do_find_directory (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *near_uri_str;
 	char *result_uri_str;
 	GnomeVFSClientCall *client_call;
@@ -1155,7 +1136,6 @@ do_find_directory (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_FindDirectory (daemon,
 						   near_uri_str,
 						   kind,
@@ -1196,7 +1176,6 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	GnomeVFSClient *client;
 	GnomeVFSResult res;
 	CORBA_Environment ev;
-	GNOME_VFS_DaemonHandle handle;
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
@@ -1212,7 +1191,6 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	client_call = _gnome_vfs_client_call_get (context);
 	
 	CORBA_exception_init (&ev);
-	handle = CORBA_OBJECT_NIL;
 	res = GNOME_VFS_AsyncDaemon_CreateSymbolicLink (daemon,
 							uri_str,
 							target_reference,

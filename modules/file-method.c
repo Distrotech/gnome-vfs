@@ -774,7 +774,6 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	       struct stat *statptr)
 {
 	struct stat statbuf;
-	gboolean followed_symlink;
 #ifndef G_OS_WIN32
 	gboolean is_symlink;
 	char *link_file_path;
@@ -783,8 +782,6 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	char *newpath;
 #endif
 	gboolean recursive;
-	
-	followed_symlink = FALSE;
 	
 	recursive = FALSE;
 
@@ -816,7 +813,6 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			}
 		}
 		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
-		followed_symlink = TRUE;
 	}
 #endif
 	gnome_vfs_stat_to_file_info (file_info, statptr);
@@ -1862,9 +1858,6 @@ do_find_directory (GnomeVFSMethod *method,
 			/* This volume does not contain our home, we have to find/create the Trash
 			 * elsewhere on the volume. Use a heuristic to find a good place.
 			 */
-			FindByDeviceIDParameters tmp;
-			tmp.device_id = near_item_stat.st_dev;
-
 			if (gnome_vfs_context_check_cancellation (context))
 				return GNOME_VFS_ERROR_CANCELLED;
 

@@ -38,49 +38,6 @@ typedef struct {
 	const char *target_reference;
 } CallbackData;
 
-static int measure_speed = 0;
-static int sort = 0;
-static int items_per_notification = 1;
-
-static struct poptOption options[] = {
-	{
-		"chunk-size",
-		'c',
-		POPT_ARG_INT,
-		&items_per_notification,
-		0,
-		"Number of items to send for every notification",
-	        "NUM_ITEMS"
-	},
-	{
-		"measure-speed",
-		'm',
-		POPT_ARG_NONE,
-		&measure_speed,
-		0,
-		"Measure speed without displaying anything",
-		NULL
-	},
-	{
-		"sort",
-		's',
-		POPT_ARG_NONE,
-		&sort,
-		0,
-		"Sort entries",
-		NULL
-	},
-	{
-		NULL,
-		0,
-		0,
-		NULL,
-		0,
-		NULL,
-		NULL
-	}
-};
-
 static int
 deal_with_result (GnomeVFSResult result, GnomeVFSResult expected_result, 
 	const char *uri, const char *target_uri, const char *target_reference, 
@@ -259,11 +216,6 @@ int
 main (int argc, const char **argv)
 {
 	GnomeVFSURI *directory, *file_to_delete;
-
-	poptContext popt_context;
-
-	popt_context = poptGetContext ("test-vfs", argc, argv,
-				       options, 0);
 
 	if (argc != 2) {
 		fprintf (stderr, "Usage: %s <directory>\n", argv[0]);

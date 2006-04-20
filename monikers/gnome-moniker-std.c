@@ -36,6 +36,6 @@ bonobo_std_moniker_factory (BonoboGenericFactory *this,
 BONOBO_OAF_SHLIB_FACTORY_MULTI ("OAFIID:GNOME_VFS_Moniker_std_Factory",
 				"bonobo standard moniker",
 				bonobo_std_moniker_factory,
-				NULL);
+				NULL)
 
 

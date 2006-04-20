@@ -562,7 +562,7 @@ struct _Header {
 };
 typedef struct _Header Header;
 
-static Header headers[] = {
+static const Header headers[] = {
 	{ "Content-Length", set_content_length },
 	{ "Content-Type", set_content_type },
 	{ "Last-Modified", set_last_modified },

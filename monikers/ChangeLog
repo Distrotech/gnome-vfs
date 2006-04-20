@@ -1,3 +1,11 @@
+2006-04-20  Alexander Larsson  <alexl@redhat.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* bonobo-storage-fs.c:
+	* bonobo-storage-vfs.c:
+	* gnome-moniker-std.c:
+
 2004-08-01  Gustavo J. A. M. Carneiro  <gustavo@users.sourceforge.net>
 
 	* bonobo-stream-vfs.c

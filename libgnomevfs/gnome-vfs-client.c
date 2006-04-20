@@ -11,7 +11,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	gnome_vfs_client,
 	GNOME_VFS_Client,
 	BonoboObject,
-	BONOBO_TYPE_OBJECT);
+	BONOBO_TYPE_OBJECT)
 
 
 struct _GnomeVFSClientPrivate {

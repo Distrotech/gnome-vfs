@@ -13,7 +13,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	gnome_vfs_client_call,
 	GNOME_VFS_ClientCall,
 	BonoboObject,
-	BONOBO_TYPE_OBJECT);
+	BONOBO_TYPE_OBJECT)
 
 
 static GStaticPrivate daemon_client_call_private = G_STATIC_PRIVATE_INIT;

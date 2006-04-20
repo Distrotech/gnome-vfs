@@ -33,7 +33,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	gnome_vfs_daemon_handle,
 	GNOME_VFS_DaemonHandle,
 	BonoboObject,
-	BONOBO_TYPE_OBJECT);
+	BONOBO_TYPE_OBJECT)
 
 
 static void

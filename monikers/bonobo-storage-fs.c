@@ -454,7 +454,7 @@ bonobo_storage_fs_init (GObject *object)
 BONOBO_TYPE_FUNC_FULL (BonoboStorageFS,
 		       Bonobo_Storage,
 		       bonobo_object_get_type (),
-		       bonobo_storage_fs);
+		       bonobo_storage_fs)
 
 /** 
  * bonobo_storage_fs_open:

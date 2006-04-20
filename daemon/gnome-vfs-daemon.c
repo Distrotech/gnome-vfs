@@ -51,7 +51,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	gnome_vfs_daemon,
 	GNOME_VFS_Daemon,
 	BonoboObject,
-	BONOBO_TYPE_OBJECT);
+	BONOBO_TYPE_OBJECT)
 
 
 static void disconnect_client_from_volume_monitor (const GNOME_VFS_Client client);

@@ -283,7 +283,7 @@ ftp_response_to_vfs_result (FtpConnection *conn)
 }
 
 #ifdef HAVE_GSSAPI
-static char *radixN =
+static const char *radixN =
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 static char pad = '=';
@@ -1005,9 +1005,7 @@ ftp_kerberos_login (FtpConnection *conn,
 	char *encoded_token;
 	int len;
 	GnomeVFSResult result;
-	gboolean auth_ok;
 
-	auth_ok = FALSE;
 	result = do_basic_command (conn, "AUTH GSSAPI", cancellation);
 	if (result != GNOME_VFS_OK) {
 		return result;

@@ -291,7 +291,7 @@ typedef struct {
 	   
 } MethodSchemes;
 
-static MethodSchemes supported_schemes[] = {
+static const MethodSchemes supported_schemes[] = {
 
 	{"http",  FALSE, "http",  FALSE},
 	{"dav",   FALSE, "http",  TRUE},
@@ -303,7 +303,7 @@ static MethodSchemes supported_schemes[] = {
 static char *
 resolve_alias (const char *scheme) 
 {
-	MethodSchemes *iter;
+	const MethodSchemes *iter;
 	
 	if (scheme == NULL)
 		return NULL;
@@ -988,11 +988,11 @@ typedef enum {
 	
 } HttpMethods;
 
-struct HttpMethod {
+static struct HttpMethod {
 	char           *string;
 	HttpMethods  type;
 	
-} http_all_methods [] = {
+} const http_all_methods [] = {
 	{"OPTIONS", ALLOW_OPTIONS},
 	{"GET", ALLOW_GET},
 	{"HEAD", ALLOW_HEAD},
@@ -1015,12 +1015,12 @@ static GHashTable *http_methods = NULL;
 static void
 quick_allow_lookup_init (void)
 {
-	struct HttpMethod *iter;
+	const struct HttpMethod *iter;
 	
 	http_methods = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	for (iter = http_all_methods; iter->string; iter++) {
-		g_hash_table_insert (http_methods, iter->string, iter);
+		g_hash_table_insert (http_methods, iter->string, (struct HttpMethod *)iter);
 	}
 }
 

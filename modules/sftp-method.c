@@ -191,10 +191,10 @@ typedef struct
 
 typedef ssize_t (*read_write_fn) (int, void *, size_t);
 
-static gsize
+static gssize
 atomic_io (read_write_fn f, gint fd, gpointer buffer_in, gsize size) 
 {
-	gsize pos = 0, res;
+	gssize pos = 0, res;
 	guchar *buffer;
         long int __result;
 

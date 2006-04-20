@@ -1,5 +1,39 @@
 2006-04-20  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/gnome-vfs-async-daemon.c:
+	* daemon/gnome-vfs-daemon-dir-handle.c:
+	* daemon/gnome-vfs-daemon-handle.c:
+	* daemon/gnome-vfs-daemon.c:
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	* libgnomevfs/gnome-vfs-client-call.c:
+	* libgnomevfs/gnome-vfs-client.c:
+	* libgnomevfs/gnome-vfs-configuration.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	* libgnomevfs/gnome-vfs-job.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	* modules/cdda-cddb.c:
+	* modules/file-method.c:
+	* modules/ftp-method.c:
+	* modules/http-method.c:
+	* modules/http-neon-method.c:
+	* modules/nntp-method.c:
+	* modules/sftp-method.c:
+	* modules/smb-method.c:
+	* test/test-long-cancel.c:
+	* test/test-mime-info-cache.c:
+	* test/test-seek.c:
+	* test/test-symlinks.c:
+	Fix warnings from ICC.
+	Patch from Kjartan Maraas
+
+2006-04-20  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-private-utils.h:
 	* libgnomevfs/gnome-vfs-utils.c:
 	Add gnome_vfs_resolve_symlink

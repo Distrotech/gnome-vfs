@@ -91,7 +91,6 @@ auth_demarshal_in (const CORBA_any *any_in,
 {
 	GNOME_VFS_ModuleCallbackAuthenticationIn *corba_in;
 	GnomeVFSModuleCallbackAuthenticationIn *auth_in;
-	GnomeVFSModuleCallbackAuthenticationOut *auth_out;
 	
 	if (!CORBA_TypeCode_equal (any_in->_type, TC_GNOME_VFS_ModuleCallbackAuthenticationIn, NULL)) {
 		return FALSE;
@@ -99,7 +98,7 @@ auth_demarshal_in (const CORBA_any *any_in,
 	
 	auth_in = *in = g_new0 (GnomeVFSModuleCallbackAuthenticationIn, 1);
 	*in_size = sizeof (GnomeVFSModuleCallbackAuthenticationIn);
-	auth_out = *out = g_new0 (GnomeVFSModuleCallbackAuthenticationOut, 1);
+	*out = g_new0 (GnomeVFSModuleCallbackAuthenticationOut, 1);
 	*out_size = sizeof (GnomeVFSModuleCallbackAuthenticationOut);
 
 	corba_in = (GNOME_VFS_ModuleCallbackAuthenticationIn *)any_in->_value;
@@ -220,7 +219,6 @@ full_auth_demarshal_in (const CORBA_any *any_in,
 {
 	GNOME_VFS_ModuleCallbackFullAuthenticationIn *corba_in;
 	GnomeVFSModuleCallbackFullAuthenticationIn *auth_in;
-	GnomeVFSModuleCallbackFullAuthenticationOut *auth_out;
 	
 	if (!CORBA_TypeCode_equal (any_in->_type, TC_GNOME_VFS_ModuleCallbackFullAuthenticationIn, NULL)) {
 		return FALSE;
@@ -228,7 +226,7 @@ full_auth_demarshal_in (const CORBA_any *any_in,
 	
 	auth_in = *in = g_new0 (GnomeVFSModuleCallbackFullAuthenticationIn, 1);
 	*in_size = sizeof (GnomeVFSModuleCallbackFullAuthenticationIn);
-	auth_out = *out = g_new0 (GnomeVFSModuleCallbackFullAuthenticationOut, 1);
+	*out = g_new0 (GnomeVFSModuleCallbackFullAuthenticationOut, 1);
 	*out_size = sizeof (GnomeVFSModuleCallbackFullAuthenticationOut);
 
 	corba_in = (GNOME_VFS_ModuleCallbackFullAuthenticationIn *)any_in->_value;
@@ -370,7 +368,6 @@ fill_auth_demarshal_in (const CORBA_any *any_in,
 {
 	GNOME_VFS_ModuleCallbackFillAuthenticationIn *corba_in;
 	GnomeVFSModuleCallbackFillAuthenticationIn *auth_in;
-	GnomeVFSModuleCallbackFillAuthenticationOut *auth_out;
 	
 	if (!CORBA_TypeCode_equal (any_in->_type, TC_GNOME_VFS_ModuleCallbackFillAuthenticationIn, NULL)) {
 		return FALSE;
@@ -378,7 +375,7 @@ fill_auth_demarshal_in (const CORBA_any *any_in,
 	
 	auth_in = *in = g_new0 (GnomeVFSModuleCallbackFillAuthenticationIn, 1);
 	*in_size = sizeof (GnomeVFSModuleCallbackFillAuthenticationIn);
-	auth_out = *out = g_new0 (GnomeVFSModuleCallbackFillAuthenticationOut, 1);
+	*out = g_new0 (GnomeVFSModuleCallbackFillAuthenticationOut, 1);
 	*out_size = sizeof (GnomeVFSModuleCallbackFillAuthenticationOut);
 
 	corba_in = (GNOME_VFS_ModuleCallbackFillAuthenticationIn *)any_in->_value;
@@ -510,7 +507,6 @@ save_auth_demarshal_in (const CORBA_any *any_in,
 {
 	GNOME_VFS_ModuleCallbackSaveAuthenticationIn *corba_in;
 	GnomeVFSModuleCallbackSaveAuthenticationIn *auth_in;
-	GnomeVFSModuleCallbackSaveAuthenticationOut *auth_out;
 	
 	if (!CORBA_TypeCode_equal (any_in->_type, TC_GNOME_VFS_ModuleCallbackSaveAuthenticationIn, NULL)) {
 		return FALSE;
@@ -518,7 +514,7 @@ save_auth_demarshal_in (const CORBA_any *any_in,
 	
 	auth_in = *in = g_new0 (GnomeVFSModuleCallbackSaveAuthenticationIn, 1);
 	*in_size = sizeof (GnomeVFSModuleCallbackSaveAuthenticationIn);
-	auth_out = *out = g_new0 (GnomeVFSModuleCallbackSaveAuthenticationOut, 1);
+	*out = g_new0 (GnomeVFSModuleCallbackSaveAuthenticationOut, 1);
 	*out_size = sizeof (GnomeVFSModuleCallbackSaveAuthenticationOut);
 
 	corba_in = (GNOME_VFS_ModuleCallbackSaveAuthenticationIn *)any_in->_value;
@@ -541,18 +537,14 @@ static CORBA_any *
 save_auth_marshal_out (gconstpointer out, gsize out_size)
 {
 	CORBA_any *retval;
-	GNOME_VFS_ModuleCallbackSaveAuthenticationOut *ret_out;
-	const GnomeVFSModuleCallbackSaveAuthenticationOut *auth_out;
 
 	if (out_size != sizeof (GnomeVFSModuleCallbackSaveAuthenticationOut)) {
 		return NULL;
 	}
-	auth_out = out;
 
 	retval = CORBA_any_alloc ();
 	retval->_type = TC_GNOME_VFS_ModuleCallbackSaveAuthenticationOut;
 	retval->_value = GNOME_VFS_ModuleCallbackSaveAuthenticationOut__alloc ();
-	ret_out = retval->_value;
 
 	return retval;
 }
@@ -560,16 +552,10 @@ save_auth_marshal_out (gconstpointer out, gsize out_size)
 static gboolean
 save_auth_demarshal_out (CORBA_any *any_out, gpointer out, gsize out_size)
 {
-	GNOME_VFS_ModuleCallbackSaveAuthenticationOut *corba_out;
-	GnomeVFSModuleCallbackSaveAuthenticationOut *auth_out;
-
 	if (!CORBA_TypeCode_equal (any_out->_type, TC_GNOME_VFS_ModuleCallbackSaveAuthenticationOut, NULL) ||
 	    out_size != sizeof (GnomeVFSModuleCallbackSaveAuthenticationOut)) {
 		return FALSE;
 	}
-	auth_out = out;
-
-	corba_out = (GNOME_VFS_ModuleCallbackSaveAuthenticationOut *)any_out->_value;
 
 	return TRUE;
 }
@@ -647,7 +633,6 @@ question_demarshal_in (const CORBA_any *any_in,
 {
 	GNOME_VFS_ModuleCallbackQuestionIn *corba_in;
 	GnomeVFSModuleCallbackQuestionIn *question_in;
-	GnomeVFSModuleCallbackQuestionOut *question_out;
 	int cnt;
 
 	if (!CORBA_TypeCode_equal (any_in->_type, TC_GNOME_VFS_ModuleCallbackQuestionIn, NULL)) {
@@ -656,7 +641,7 @@ question_demarshal_in (const CORBA_any *any_in,
 	
 	question_in = *in = g_new0 (GnomeVFSModuleCallbackQuestionIn, 1);
 	*in_size = sizeof (GnomeVFSModuleCallbackQuestionIn);
-	question_out = *out = g_new0 (GnomeVFSModuleCallbackQuestionOut, 1);
+	*out = g_new0 (GnomeVFSModuleCallbackQuestionOut, 1);
 	*out_size = sizeof (GnomeVFSModuleCallbackQuestionOut);
 
 	corba_in = (GNOME_VFS_ModuleCallbackQuestionIn *)any_in->_value;

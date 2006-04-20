@@ -485,7 +485,6 @@ void           gnome_vfs_async_create_uri_as_channel  (GnomeVFSAsyncHandle      
 {
 	GnomeVFSJob *job;
 	GnomeVFSCreateAsChannelOp *create_as_channel_op;
-	GnomeVFSAsyncHandle *result;
 
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
@@ -502,7 +501,7 @@ void           gnome_vfs_async_create_uri_as_channel  (GnomeVFSAsyncHandle      
 	create_as_channel_op->exclusive = exclusive;
 	create_as_channel_op->perm = perm;
 
-	result = job->job_handle;
+	*handle_return = job->job_handle;
 	_gnome_vfs_job_go (job);
 }
 

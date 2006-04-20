@@ -771,7 +771,6 @@ gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
 	return g_list_find_custom
 		(components, (gpointer) iid,
 		 (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
-	return FALSE;
 }
 
 /**

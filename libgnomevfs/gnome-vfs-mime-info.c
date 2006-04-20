@@ -56,8 +56,10 @@ typedef struct {
 	char *path;
 } MimeDirectory;
 
+#if 0
 /* These ones are used to automatically reload mime info on demand */
 static time_t last_checked;
+#endif
 
 /* To initialize the module automatically */
 static gboolean gnome_vfs_mime_inited = FALSE;
@@ -134,8 +136,9 @@ gnome_vfs_mime_init (void)
 	     xdg_data_dirs++) {
 		add_data_dir (*xdg_data_dirs);
 	}
-
+#if 0
 	last_checked = time (NULL);
+#endif
 	gnome_vfs_mime_inited = TRUE;
 }
 
@@ -317,12 +320,9 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 {
 	MimeEntry *entry;
 	int ret;
-	int depth;
 	int previous_lang_level = INT_MAX;
 	
 	entry = g_new0 (MimeEntry, 1);
-
-	depth = xmlTextReaderDepth (reader);
 
 	ret = xmlTextReaderRead (reader);
 	while (ret == 1) {

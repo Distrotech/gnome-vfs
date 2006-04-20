@@ -222,7 +222,7 @@ parse_line (Configuration *configuration,
 	
 	string_len = strlen (line_buffer);
 	if (string_len != line_len) {
-		g_warning (_("%s:%d contains NUL characters."),
+		g_warning (_("%s:%u contains NUL characters."),
 			   file_name, line_number);
 		return FALSE;
 	}
@@ -239,7 +239,7 @@ parse_line (Configuration *configuration,
 			gchar *method_name;
 
 			if (p == method_start) {
-				g_warning (_("%s:%d contains no method name."),
+				g_warning (_("%s:%u contains no method name."),
 					   file_name, line_number);
 				retval = FALSE;
 				goto cleanup;
@@ -279,7 +279,7 @@ parse_line (Configuration *configuration,
 			}
 			
 			if (*p == '\0') {
-				g_warning (_("%s:%d has no options endmarker."),
+				g_warning (_("%s:%u has no options endmarker."),
 						   file_name, line_number);
 				retval = FALSE;
 				goto cleanup;
@@ -290,7 +290,7 @@ parse_line (Configuration *configuration,
 				if (strcmp (option, "daemon") == 0) {
 					daemon = TRUE;
 				} else {
-					g_warning (_("%s:%d has unknown options %s."),
+					g_warning (_("%s:%u has unknown options %s."),
 						   file_name, line_number, option);
 				}
 				g_free (option);
@@ -309,7 +309,7 @@ parse_line (Configuration *configuration,
 	
 	if (*p == '\0') {
 		if (method_list != NULL) {
-			g_warning (_("%s:%d contains no module name."),
+			g_warning (_("%s:%u contains no module name."),
 				   file_name, line_number);
 			retval = FALSE;
 		} else {

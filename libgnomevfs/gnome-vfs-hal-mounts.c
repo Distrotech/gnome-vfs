@@ -130,7 +130,7 @@ typedef struct {
 } HalIconPair;
 
 /* by design, the enums are laid out so we can do easy computations */
-static HalIconPair hal_icon_mapping[] = {
+static const HalIconPair hal_icon_mapping[] = {
 	{HAL_ICON_DRIVE_REMOVABLE_DISK,           "gnome-dev-removable"},
 	{HAL_ICON_DRIVE_REMOVABLE_DISK_IDE,       "gnome-dev-removable"},
 	{HAL_ICON_DRIVE_REMOVABLE_DISK_SCSI,      "gnome-dev-removable"},
@@ -618,8 +618,10 @@ static gboolean
 _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
 			  LibHalDrive *hal_drive, LibHalVolume *hal_volume)
 {
+#if 0
 	const char *label;
 	const char *fstype;
+#endif
 	gboolean ret;
 	const char *fhs23_toplevel_mount_points[] = {
 		"/",
@@ -692,16 +694,14 @@ _hal_volume_policy_check (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			}
 		}
 	}
-
+#if 0
 	label = libhal_volume_get_label (hal_volume);
 	fstype = libhal_volume_get_fstype (hal_volume);
 
 	/* blacklist partitions with name 'bootstrap' of type HFS (Apple uses that) */
-/*
 	if (label != NULL && fstype != NULL && strcmp (label, "bootstrap") == 0 && strcmp (fstype, "hfs") == 0)
 		goto out;
-*/
-
+#endif
 	ret = TRUE;
 out:
 	return ret;
@@ -791,7 +791,6 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 {
 	GnomeVFSDrive *drive;
 	GnomeVFSVolumeMonitor *volume_monitor;
-	GnomeVFSHalUserData *hal_userdata;
 	char *name;
 
 	g_return_if_fail (hal_drive != NULL);
@@ -802,7 +801,6 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 #endif
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
 	if (!_hal_drive_policy_check (volume_monitor_daemon, hal_drive, NULL)) {
 		/* make sure to delete the drive/volume for policy changes */
@@ -861,7 +859,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	GnomeVFSVolume *vol;
 	GnomeVFSDrive *drive;
 	GnomeVFSVolumeMonitor *volume_monitor;
-	GnomeVFSHalUserData *hal_userdata;
 	char *name;
 	gboolean allowed_by_policy;
 	const char *backing_udi;
@@ -873,7 +870,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	backing_udi = NULL;
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_daemon);
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
 	allowed_by_policy = _hal_volume_policy_check (volume_monitor_daemon, hal_drive, hal_volume);
 
@@ -1473,9 +1469,6 @@ void
 _gnome_vfs_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
 	DBusError error;
-	GnomeVFSHalUserData *hal_userdata;
-
-	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (volume_monitor_daemon->hal_ctx);
 
 	dbus_error_init (&error);
 	if (!libhal_ctx_shutdown (volume_monitor_daemon->hal_ctx, &error)) {

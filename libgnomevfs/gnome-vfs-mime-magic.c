@@ -129,12 +129,12 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	return FALSE;
 }
 
-static int bitrates[2][15] = {
+static const int bitrates[2][15] = {
 	{ 0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320},
 	{ 0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160 }
 };	
 
-static int frequencies[2][3] = {
+static const int frequencies[2][3] = {
 	{ 44100, 48000, 32000 },
 	{ 22050, 24000, 16000 }	
 };	

@@ -36,7 +36,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	gnome_vfs_async_daemon,
 	GNOME_VFS_AsyncDaemon,
 	BonoboObject,
-	BONOBO_TYPE_OBJECT);
+	BONOBO_TYPE_OBJECT)
 
 
 /* Protects the client_call_context hashtable, and the existance of

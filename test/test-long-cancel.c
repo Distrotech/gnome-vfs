@@ -96,7 +96,7 @@ create_master_socket (int *port)
 	return s;
 }
 
-int client_fd = -1;
+static int client_fd = -1;
 
 static gboolean
 new_client (GIOChannel  *channel,

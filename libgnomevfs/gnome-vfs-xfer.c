@@ -866,11 +866,10 @@ handle_merged_name_conflict_visit (const gchar *rel_path,
 	GnomeVFSFileInfo *source_info;
 	GnomeVFSFileInfo *target_info;
 	GnomeVFSResult result;
-	gboolean replace, skip;
+	gboolean skip;
 
 	params = data;
 
-	replace = FALSE;
 	skip = FALSE;
 	result = GNOME_VFS_OK;
 	target_info = gnome_vfs_file_info_new ();

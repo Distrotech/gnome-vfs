@@ -1236,9 +1236,9 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 		
 		if (top_level_uri->host_port > 0 
 			&& (hide_options & GNOME_VFS_URI_HIDE_HOST_PORT) == 0) {
-			gchar tmp[128];
-			sprintf (tmp, ":%d", top_level_uri->host_port);
-			g_string_append (string, tmp);
+			gchar temp[128];
+			sprintf (temp, ":%u", top_level_uri->host_port);
+			g_string_append (string, temp);
 		}
 
 	}

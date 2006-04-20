@@ -345,4 +345,4 @@ bonobo_storage_vfs_init (GObject *object)
 BONOBO_TYPE_FUNC_FULL (BonoboStorageVfs,
 		       Bonobo_Storage,
 		       bonobo_object_get_type (),
-		       bonobo_storage_vfs);
+		       bonobo_storage_vfs)

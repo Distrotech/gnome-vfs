@@ -432,10 +432,8 @@ remove_server  (gpointer key,
 		gpointer user_data)
 {
 	SmbServerCacheEntry *entry;
-	SMBCSRV *server;
 	
 	entry = key;
-	server = user_data;
 
 	if (entry->server == user_data) {
 		entry->server = NULL;
