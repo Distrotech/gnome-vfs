@@ -2598,7 +2598,7 @@ do_read_directory (GnomeVFSMethod *method,
 					break;
 				}
 				
-				symlink_name = g_strdup (symlink_info->symlink_name);
+				symlink_name = gnome_vfs_escape_path_string (symlink_info->symlink_name);
 				gnome_vfs_file_info_clear (symlink_info);
 				
 				link_uri = gnome_vfs_uri_resolve_relative (uri, symlink_name);
