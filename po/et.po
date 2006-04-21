@@ -11,7 +11,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
+"Project-Id-Version: gnome-vfs 2.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-20 06:54+0100\n"
 "PO-Revision-Date: 2006-01-20 10:10+0200\n"
@@ -1506,4 +1506,3 @@ msgid ""
 msgstr ""
 "Kas näidata kettaid ja külgehaagitavaid seadeid sisemistelt kõvaketastelt "
 "(mitte-SCSI optilisi kettaid näidatakse alati)."
-
