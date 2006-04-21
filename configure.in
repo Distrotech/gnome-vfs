@@ -417,10 +417,31 @@ AC_ARG_ENABLE(cdda,
 [  --enable-cdda		Enable cdda module (not recommended)],
 [
   if test "x$enable_cdda" != "xno"; then
-	AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
+    AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
 	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia -lcdda_interface"
 	have_cdda=yes
     ])
+
+    if test "$have_cdda" = yes; then
+      dnl FreeBSD applies some patches to cdparanoia to support their libcam
+      dnl library.  We need to detect if those ara available because the
+      dnl cdrom_drive structure changes internally.
+      AC_MSG_CHECKING([whether cdparanoia uses FreeBSD's libcam])
+      AC_COMPILE_IFELSE([#include <cdda_interface.h>
+int
+main(void)
+{
+    struct cdrom_drive cd;
+    void *v = (void *) cd.dev;
+    return 0;
+}],
+        [AC_DEFINE(HAVE_CDDA_WITH_LIBCAM, 1,
+          [Define to 1 if cdparanoia contains FreeBSD-specific libcam support])
+         cdda_with_libcam=yes],
+        [cdda_with_libcam=no
+      ])
+      AC_MSG_RESULT($cdda_with_libcam)
+    fi
   fi
 ])
 AM_CONDITIONAL(HAVE_CDDA, test $have_cdda = yes)

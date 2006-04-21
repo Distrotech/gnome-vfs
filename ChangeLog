@@ -1,3 +1,12 @@
+2006-04-21  Julio M. Merino Vidal  <jmmv@NetBSD.org>
+
+	* configure.in:
+	* modules/cdda-method.c: Check if cdparanoia contains FreeBSD-specific
+	patches to use their libcam library.  If so, use their modified
+	cdrom_drive structure; otherwise, use the pristine definition.
+	Fixes cdda-method's build under non-Linux, non-FreeBSD systems (such
+	as NetBSD) and closes bug #134276.
+
 2006-04-21  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c (do_read_directory): 
