@@ -1,3 +1,8 @@
+2006-04-21  Martyn Russell  <martyn@imendio.com>
+
+	* libgnomevfs/gnome-vfs-result.c: Removed duplicate
+	GNOEM_VFS_ERROR_TIMEOUT string, fixes bug #335250.
+	
 2006-04-20  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-async-daemon.c:
