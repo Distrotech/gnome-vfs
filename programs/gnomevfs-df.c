@@ -31,6 +31,8 @@
 #include <unistd.h>
 #include <string.h>
 
+#include "authentication.c"
+
 static void
 show_free_space (const char *text_uri)
 {
@@ -100,6 +102,8 @@ main (int argc, char **argv)
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
+
+	command_line_authentication_init ();
 
 	if (argc == 2) {
 		char *text_uri;

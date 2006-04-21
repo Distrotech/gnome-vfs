@@ -34,6 +34,8 @@
 #include <unistd.h>
 #include <time.h>
 
+#include "authentication.c"
+
 static const gchar *
 type_to_string (GnomeVFSFileType type)
 {
@@ -178,6 +180,8 @@ main (int argc, char **argv)
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
+
+	command_line_authentication_init ();
 
 	text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
 	

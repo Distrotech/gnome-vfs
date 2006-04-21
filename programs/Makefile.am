@@ -52,3 +52,4 @@ gnomevfs_rm_LDADD = $(libraries)
 gnomevfs_df_SOURCES = gnomevfs-df.c
 gnomevfs_df_LDADD = $(libraries)
 
+EXTRA_DIST = authentication.c

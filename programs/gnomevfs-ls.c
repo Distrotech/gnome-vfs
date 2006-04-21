@@ -28,6 +28,7 @@
 #include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include "authentication.c"
 
 static gboolean timing = FALSE;
 static gboolean quiet = FALSE;
@@ -189,7 +190,9 @@ main (int argc, char *argv[])
   	setlocale (LC_ALL, "");
 
 	gnome_vfs_init ();
-	
+
+	command_line_authentication_init ();
+
 	error = NULL;
 	context = g_option_context_new ("- list files at <uri>");
   	g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);

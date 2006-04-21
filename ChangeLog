@@ -1,5 +1,25 @@
 2006-04-21  Christian Neumair  <chris@gnome-de.org>
 
+	* programs/Makefile.am:
+	* programs/authentication.c:
+	Add CLI authentication callbacks.
+
+	* programs/gnomevfs-cat.c: (main):
+	* programs/gnomevfs-copy.c: (main):
+	* programs/gnomevfs-df.c: (main):
+	* programs/gnomevfs-info.c: (main):
+	* programs/gnomevfs-ls.c: (main):
+	* programs/gnomevfs-mkdir.c: (main):
+	* programs/gnomevfs-monitor.c: (main):
+	* programs/gnomevfs-mv.c: (main):
+	* programs/gnomevfs-rm.c: (main):
+	Use CLI authentication.
+
+	* programs/gnomevfs-xfer.c:
+	Add Xfer testing utility.
+
+2006-04-21  Christian Neumair  <chris@gnome-de.org>
+
 	* modules/smb-method.c: (string_nzero), (find_cached_server):
 	Treat "" as NULL for SmbServerCacheEntry cache lookups.
 	Should fix mass connection establishment.
