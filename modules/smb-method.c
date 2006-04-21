@@ -190,6 +190,14 @@ string_ndup_nzero (const gchar *s, const guint n)
 		return NULL;
 	return g_strndup (s, n);
 }
+
+static const char*
+string_nzero  (const gchar *s)
+{
+	if (!s || !s[0])
+		return NULL;
+	return s;
+}
 	     	   
 static gboolean
 string_compare (const char *a, const char *b)
@@ -391,10 +399,11 @@ find_cached_server (const char *server_name, const char *share_name,
 		   domain ? domain : "", 
 		   username ? username : ""));
 
-	entry.server_name = (char *)server_name;
-	entry.share_name = (char *)share_name;
-	entry.domain = (char *)domain;
-	entry.username = (char *)username;
+	/* "" must be treated as NULL, because add_cached_server() uses string_dup_nzero() */
+	entry.server_name = (char *) string_nzero (server_name);
+	entry.share_name = (char *) string_nzero (share_name);
+	entry.domain = (char *) string_nzero (domain);
+	entry.username = (char *) string_nzero (username);
 
 	res = g_hash_table_lookup (server_cache, &entry);
 

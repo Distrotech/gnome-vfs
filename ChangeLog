@@ -1,3 +1,9 @@
+2006-04-21  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/smb-method.c: (string_nzero), (find_cached_server):
+	Treat "" as NULL for SmbServerCacheEntry cache lookups.
+	Should fix mass connection establishment.
+
 2006-04-21  Martyn Russell  <martyn@imendio.com>
 
 	* libgnomevfs/gnome-vfs-result.c: Removed duplicate
