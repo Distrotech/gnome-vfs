@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-09 22:52+0100\n"
-"PO-Revision-Date: 2006-03-10 12:34+0530\n"
+"POT-Creation-Date: 2006-04-21 06:36+0200\n"
+"PO-Revision-Date: 2006-04-21 11:39+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -40,31 +41,31 @@ msgstr "आईएसओ 9660 वॉल्यूम"
 # libgnomevfs/gnome-vfs-configuration.c:223
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s:%d में नल कैरेक्टर्स हैं."
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u में रिक्त संप्रतीक हैं."
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s:%d में कोई विधि नाम नहीं है."
+msgid "%s:%u contains no method name."
+msgstr "%s:%u में कोई विधि नाम नहीं है."
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%d में एण्ड-मार्कर विकल्प नहीं हैं."
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%u में एण्ड-मार्कर विकल्प नहीं हैं."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s:%d में अज्ञात विकल्प हैं %s."
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%u में अज्ञात विकल्प हैं %s."
 
 # libgnomevfs/gnome-vfs-configuration.c:269
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s:%d में कोई मॉड्यूल नाम नहीं है."
+msgid "%s:%u contains no module name."
+msgstr "%s:%u में कोई मॉड्यूल नाम नहीं है."
 
 # libgnomevfs/gnome-vfs-configuration.c:322
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
@@ -438,13 +439,13 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुले जीआईओ-चैनल हेतु पाइप बना नहीं सका: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "ऑपरेशन रोका गया"
 
@@ -456,15 +457,15 @@ msgstr "ऑपरेशन रोका गया"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: ../libgnomevfs/gnome-vfs-mime-info.c:624
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:639
@@ -1001,7 +1002,9 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "वाल्यूम को माउण्ट करने में अक्षम. अगर यह विगोपित चालन है तब गलत शब्दकूट या कुंजी प्रयुक्त हुआ था."
+msgstr ""
+"वाल्यूम को माउण्ट करने में अक्षम. अगर यह विगोपित चालन है तब गलत शब्दकूट या कुंजी प्रयुक्त "
+"हुआ था."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
@@ -1088,12 +1091,12 @@ msgstr "अज्ञात गनोम-वीएफ़एस-सीक-स्�
 msgid "Windows Network"
 msgstr "विंडोज़ नेटवर्क"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "(%s) दूरस्थ कंप्यूटर की पहचान अनजान है."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1106,11 +1109,11 @@ msgstr ""
 "दूरस्थ कंप्यूटर के द्वारा भेजी पहचान %s है. अगर आप जारी रखने के लिये पूरी तरह से सुरक्षित "
 "रखना चाहिते हैं, सिस्टम प्रशासक को संपर्क करें."
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "किसी तरह लॉगिन करें"
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "लॉगिन रद्द करें"
 
