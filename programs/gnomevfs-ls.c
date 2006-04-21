@@ -211,7 +211,7 @@ main (int argc, char *argv[])
 		char *tmp, *directory;
 
 		tmp = g_get_current_dir ();
-		directory = gnome_vfs_escape_path_string (tmp);
+		directory = gnome_vfs_get_uri_from_local_path (tmp);
 		list (directory);
 		g_free (tmp);
 		g_free (directory);

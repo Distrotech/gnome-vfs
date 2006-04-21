@@ -513,7 +513,7 @@ PrependOneURIToList (const gchar *rel_path, GnomeVFSFileInfo *info,
 	PrependOneURIParams *params;
 
 	params = (PrependOneURIParams *)cast_to_params;
-	params->uri_list = g_list_prepend (params->uri_list, gnome_vfs_uri_append_string (
+	params->uri_list = g_list_prepend (params->uri_list, gnome_vfs_uri_append_path (
 		params->base_uri, rel_path));
 
 	if (recursing_will_loop) {
@@ -873,10 +873,10 @@ handle_merged_name_conflict_visit (const gchar *rel_path,
 	skip = FALSE;
 	result = GNOME_VFS_OK;
 	target_info = gnome_vfs_file_info_new ();
-	target_uri = gnome_vfs_uri_append_string (params->target_uri, rel_path);
+	target_uri = gnome_vfs_uri_append_path (params->target_uri, rel_path);
 	if (gnome_vfs_get_file_info_uri (target_uri, target_info, GNOME_VFS_FILE_INFO_DEFAULT) == GNOME_VFS_OK) {
 		source_info = gnome_vfs_file_info_new ();
-		source_uri = gnome_vfs_uri_append_string (params->source_uri, rel_path);
+		source_uri = gnome_vfs_uri_append_path (params->source_uri, rel_path);
 		
 		if (gnome_vfs_get_file_info_uri (source_uri, source_info, GNOME_VFS_FILE_INFO_DEFAULT) == GNOME_VFS_OK) {
 			if (target_info->type != GNOME_VFS_FILE_TYPE_DIRECTORY ||
@@ -1789,7 +1789,7 @@ copy_items (const GList *source_uri_list,
 			/* get target_dir URI and file info to take care of SGID */
 			target_dir_info = gnome_vfs_file_info_new ();
 			result = gnome_vfs_get_file_info_uri (target_dir_uri, target_dir_info,
-																						GNOME_VFS_FILE_INFO_DEFAULT);
+							      GNOME_VFS_FILE_INFO_DEFAULT);
 			if (result == GNOME_VFS_OK && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
 				info->gid = target_dir_info->gid;
 			}

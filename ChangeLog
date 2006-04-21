@@ -1,3 +1,15 @@
+2006-04-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	Escape ? in paths. This is a special character in URIs which there is
+	no reason not to escape.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Correctly escape pathnames from _visit_uri when appending to uris.
+	
+	* programs/gnomevfs-ls.c: (main):
+	Use gnome_vfs_get_uri_from_local_path, not gnome_vfs_escape_path_string.
+
 2006-04-21  Christian Neumair  <chris@gnome-de.org>
 
 	* programs/Makefile.am:
