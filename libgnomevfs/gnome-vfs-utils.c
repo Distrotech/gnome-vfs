@@ -1964,6 +1964,7 @@ _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 	GnomeVFSURI *new_uri, *resolved_uri;
 	GnomeVFSFileInfo *info;
 	GnomeVFSResult res;
+	char *escaped_symlink;
 	char *p;
 	int n_followed_symlinks;
 
@@ -2000,8 +2001,10 @@ _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 				gnome_vfs_uri_unref (new_uri);
 				goto out;
 			}
+			escaped_symlink = gnome_vfs_escape_path_string (info->symlink_name);
 			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
-								       info->symlink_name);
+								       escaped_symlink);
+			g_free (escaped_symlink);
 			if (resolved_uri == NULL) {
 				gnome_vfs_uri_unref (new_uri);
 				/* FIXME this shouldn't happen. gnome_vfs_uri_resolve_relative

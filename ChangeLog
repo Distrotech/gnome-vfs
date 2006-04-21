@@ -1,5 +1,11 @@
 2006-04-21  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c
+	(_gnome_vfs_uri_resolve_all_symlinks_uri):
+	Escape the symlink name before calling resolve_relative.
+	
+2006-04-21  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-utils.c:
 	Correct the first line of comments in the acceptable table.
 	
