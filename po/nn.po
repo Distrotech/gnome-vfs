@@ -1,22 +1,23 @@
+# translation of nn.po to Norwegian Nynorsk
 # Norwegian (nynorsk) translation of gnome-vfs.
 # Copyright (C) 2002 Free Software Foundation
 # Kjartan Maraas  <kmaraas@gnome.org>, 2001, 2006.
 # Roy-Magne Mo <rmo@sunnmore.net>, 2001-2002.
-# Åsmund Skjæveland <aasmunds@fys.uio.no>, 2003, 2004.
+# Åsmund Skjæveland <aasmunds@fys.uio.no>, 2003, 2004, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.13.x\n"
+"Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-09 11:04+0100\n"
-"PO-Revision-Date: 2006-03-09 11:11+0100\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
+"POT-Creation-Date: 2006-04-23 16:26+0200\n"
+"PO-Revision-Date: 2006-04-23 16:26+0200\n"
+"Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -32,28 +33,28 @@ msgstr "ISO 9660-volum"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s:%d inneheld NUL-teikn."
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u inneheld NUL-teikn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s:%d innheld ikkje noko metodenamn."
+msgid "%s:%u contains no method name."
+msgstr "%s:%u innheld ikkje noko metodenamn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s: %d har ikkje noko sluttmerke på alternativa."
+msgid "%s:%u has no options endmarker."
+msgstr "%s: %u har ikkje noko sluttmerke på alternativa."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s: %d har ukjende alternativ %s."
+msgid "%s:%u has unknown options %s."
+msgstr "%s: %u har ukjende val %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s:%d inneheld ikkje nokon modulnamn."
+msgid "%s:%u contains no module name."
+msgstr "%s:%u inneheld ikkje nokon modulnamn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -64,7 +65,7 @@ msgstr "Oppsettfila «%s» vart ikkje funnen: %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d avbraut tolking."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -404,9 +405,9 @@ msgid "Audio Disc"
 msgstr "Lyd-CD"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
-#, c-format, fuzzy
+#, c-format
 msgid "%s Removable Volume"
-msgstr "%s  volum"
+msgstr "%s Flyttbart volum"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
@@ -423,12 +424,12 @@ msgstr "Ukjend operasjonstype %u"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikkje oppretta røyr for open GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ukjend jobbtype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "Operasjonen vart stoppa"
 
@@ -440,15 +441,15 @@ msgstr "Operasjonen vart stoppa"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: ../libgnomevfs/gnome-vfs-mime-info.c:624
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:639
@@ -707,7 +708,7 @@ msgid "Error launching command"
 msgstr "Feil under køyring av kommando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
 msgstr "Tidsgrense nådd"
 
@@ -717,16 +718,16 @@ msgid "Nameserver error"
 msgstr "Namnetenarfeil"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "Ressursen er låst"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
 msgstr "Funksjonskallet er forelda"
 
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#: ../libgnomevfs/gnome-vfs-result.c:214
 msgid "Unknown error"
 msgstr "Ukjend feil"
 
@@ -890,6 +891,8 @@ msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
+"Klarte ikkje å montera volumet. Dersom det var ein kryptert stasjon, vart "
+"feil passord eller nøkkel brukt."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
@@ -911,7 +914,9 @@ msgstr "Kan ikkje montera det valde volumet."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "Kan ikkje montera det valde volumet. Volumet er truleg i bruk av eitt eller fleier program."
+msgstr ""
+"Kan ikkje montera det valde volumet. Volumet er truleg i bruk av eitt eller "
+"fleier program."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
@@ -929,21 +934,21 @@ msgstr "Kunne ikkje køyra monteringsprogram i ein pty"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:476
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr ""
+msgstr "Uventa feil i select() under lesing av data frå ein barnprosess (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:530
 msgid "Couldn't send password to mount process."
-msgstr ""
+msgstr "Klarte ikkje å senda passord til monteringsprosess."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:569
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr ""
+msgstr "Uventa feil i waitpid() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:679
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:765
 msgid "Failed to start command"
-msgstr "Feil under start av kommando"
+msgstr "Klarte ikkje å starta kommando"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:752
 msgid "Unable to eject media"
@@ -974,12 +979,12 @@ msgstr "Ukjend GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows-nettverk"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identiteten til den eksterne maskinen (%s) er ukjent."
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -993,11 +998,11 @@ msgstr ""
 "vera heilt viss på at det er trygt å halda fram, bør du kontakta "
 "systemadministratoren."
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "Logg inn likevel"
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "Avbryt innlogging"
 
@@ -1278,7 +1283,9 @@ msgstr "Om den oppgjevne kommandoen skal handsama «trash»-adresser"
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "Kommadelt liste over DNS-SD-domener som skal vera synlege i nettverksplasseringa."
+msgstr ""
+"Kommadelt liste over DNS-SD-domener som skal vera synlege i "
+"nettverksplasseringa."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1330,7 +1337,6 @@ msgstr "Brukarnamn på HTTP-mellomtenar"
 
 # TRN: Gives not the meaning.
 #: ../schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
@@ -1465,3 +1471,6 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
+"Windows-nettverk-arbeidsgruppa eller -domenet som brukaren er ein del av. "
+"For at ei ny arbeidsgruppe skal tre i kraft må brukaren kanskje logga av og "
+"på."
