@@ -1,3 +1,8 @@
+2006-04-24  Alexander Larsson  <alexl@redhat.com>
+
+	* POTFILES.in:
+	Add programs/authentication.c
+
 2006-04-23  Daniel Nylander  <po@danielnylander.se>
 
 	* sv.po: Updated Swedish translation.
