@@ -54,11 +54,19 @@ NEON_BASE_SOURCES = ne_request.c ne_session.c 	\
 	ne_md5.c ne_utils.c    			\
 	ne_auth.c 				\
 	ne_redirect.c		\
-	ne_compress.c
+	ne_compress.c	\
+	ne_openssl.c
 
 NEON_DAV_SOURCES = \
 	ne_207.c ne_xml.c \
-	ne_props.c ne_locks.c
+	ne_props.c ne_locks.c ne_xmlreq.c
+
+if HAVE_SSL
+NEON_SSL_SOURCES = ne_openssl.c
+else
+NEON_SSL_SOURCES = ne_stubssl.c
+endif
+
 
 NEON_EXTRA_SOURCES = ne_acl.c ne_gnomevfs.c
 
@@ -73,6 +81,7 @@ libneon_la_LDFLAGS =			\
 libneon_la_SOURCES = \
 	$(NEON_INCLUDES)	\
 	$(NEON_BASE_SOURCES) 	\
+	$(NEON_SSL_SOURCES)	\
 	$(NEON_DAV_SOURCES) 	\
 	$(NEON_EXTRA_SOURCES)	\
         $(NULL)
