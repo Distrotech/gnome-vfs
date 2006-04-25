@@ -1,5 +1,21 @@
 2006-04-25  Christian Neumair  <chris@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-drive.c: (gnome_vfs_drive_finalize),
+	(gnome_vfs_drive_compare):
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_hal_add_drive_without_volumes), (_hal_add_volume),
+	* libgnomevfs/gnome-vfs-volume.c: (gnome_vfs_volume_finalize),
+	(gnome_vfs_volume_compare), (_gnome_vfs_volume_from_corba):
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	(create_drive_from_mount_point), (create_vol_from_mount),
+	(connected_server_compare), (get_connected_servers),
+	(create_volume_from_connected_server):
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	Create collation keys for volume and drive display names, and
+	strcmp the keys instead of the names. Fixes #321320.
+
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-directory.c: (directory_visit_internal):
 	Return GNOME_VFS_ERROR_INTERRUPTED when callback returns 0.
 

@@ -50,6 +50,7 @@ struct _GnomeVFSVolumePrivate {
 	char *activation_uri;
 	char *filesystem_type;
 	char *display_name;
+	char *display_name_key;
 	char *icon;
 	
 	gboolean is_user_visible;
@@ -79,6 +80,7 @@ struct _GnomeVFSDrivePrivate {
 	
 	char *activation_uri;
 	char *display_name;
+	char *display_name_key;
 	char *icon;
 	
 	gboolean is_user_visible;
