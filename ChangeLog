@@ -1,5 +1,12 @@
 2006-04-25  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c: (query_user_for_authn_info),
+	(ftp_connection_create):
+	Handle anonymous login failure, add query_user_for_authn_info
+	documentation. Fixes #336619.
+
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread):
 	Don't strcmp NULL when ejecting. Partly fixes #337014.
 

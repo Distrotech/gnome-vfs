@@ -857,6 +857,13 @@ save_authn_info (GnomeVFSURI *uri,
         g_free (in_args.uri);
 }
 
+/*
+ * Returns FALSE if callback was not handled (*aborted
+ *   will be FALSE, user will be "anonymous")
+ *
+ * Returns TRUE if callback invocation succeeded, *aborted
+ *   will be set to TRUE only if the user didn't cancel
+ */
 static gboolean
 query_user_for_authn_info (GnomeVFSURI *uri, 
 			   char **user, char **pass, char **keyring,
@@ -867,7 +874,7 @@ query_user_for_authn_info (GnomeVFSURI *uri,
         GnomeVFSModuleCallbackFullAuthenticationOut out_args;
 	gboolean ret;
 
-	ret = FALSE;
+	ret = *aborted = FALSE;
 	
 	memset (&in_args, 0, sizeof (in_args));
         memset (&out_args, 0, sizeof (out_args));
@@ -895,7 +902,6 @@ query_user_for_authn_info (GnomeVFSURI *uri,
                                                 &out_args, sizeof (out_args));
 
 	if (!ret) {
-		ret = TRUE;
 		/* No callback, try anon login */
 		*user = g_strdup ("anonymous");
 		*pass = g_strdup ("nobody@gnome.org");
@@ -934,7 +940,7 @@ query_user_for_authn_info (GnomeVFSURI *uri,
        	g_free (out_args.password);
        	g_free (out_args.keyring);
 
-	return ret && !out_args.abort_auth;
+	return ret;
 } 
 
 static gboolean
@@ -1390,7 +1396,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 								 &aborted, !uri_has_username); 
 				G_LOCK (connection_pools);
 				pool->num_connections--;
-				if (!ret) {
+				if (aborted) {
 					gnome_vfs_uri_unref (conn->uri);
 					g_string_free (conn->response_buffer, TRUE);
 					g_free (conn);
@@ -1398,11 +1404,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 					g_free (pass);
 					g_free (keyring);
 
-					if (aborted) {
-						return GNOME_VFS_ERROR_CANCELLED;
-					} else {
-						return GNOME_VFS_ERROR_LOGIN_FAILED;
-					}
+					return GNOME_VFS_ERROR_CANCELLED;
 				}
 				g_string_free (conn->response_buffer, TRUE);
                         	conn->response_buffer = g_string_new ("");
@@ -1412,7 +1414,9 @@ ftp_connection_create (FtpConnectionPool *pool,
 				if (result == GNOME_VFS_OK) {
 					break;
 				}
-				if (result != GNOME_VFS_ERROR_LOGIN_FAILED) {
+				if (result != GNOME_VFS_ERROR_LOGIN_FAILED ||
+				    !ret /* if callback was not handled, and anonymous
+					    login failed, don't run into endless loop */) {
 					gnome_vfs_uri_unref (conn->uri);
 					g_string_free (conn->response_buffer, TRUE);
 					g_free (conn);
