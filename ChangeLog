@@ -1,3 +1,8 @@
+2006-04-25  Alexander Larsson  <alexl@redhat.com>
+
+	* imported/neon/Makefile.am:
+	Include sources needed to resolve all symbols.
+	
 2006-04-25  Julio M. Merino Vidal  <jmmv@NetBSD.org>
 
 	* libgnomevfs/xdgmimemagic.c, modules/fstype.c: Removed the hardcoded

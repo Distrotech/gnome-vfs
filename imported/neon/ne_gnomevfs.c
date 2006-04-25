@@ -668,3 +668,7 @@ ne_ssl_certificate *ne_ssl_cert_import(const char *data)
 
 void ne_ssl_set_clicert(ne_session *sess, const ne_ssl_client_cert *cc) 
 {}
+
+void ne_ssl_context_trustcert(ne_ssl_context *ctx, const ne_ssl_certificate *cert)
+{
+}
