@@ -152,6 +152,7 @@ gnome_vfs_volume_finalize (GObject *object)
 	g_free (priv->activation_uri);
 	g_free (priv->filesystem_type);
 	g_free (priv->display_name);
+	g_free (priv->display_name_key);
 	g_free (priv->icon);
 	g_free (priv->gconf_id);
 	g_free (priv->hal_udi);
@@ -453,7 +454,7 @@ gnome_vfs_volume_compare (GnomeVFSVolume *a,
 		return res;
 	}
 
-	res = strcmp (priva->display_name, privb->display_name);
+	res = strcmp (priva->display_name_key, privb->display_name_key);
 	if (res != 0) {
 		return res;
 	}
@@ -552,7 +553,15 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 	volume->priv->icon = decode_corba_string_or_null (corba_volume->icon, TRUE);
 	volume->priv->gconf_id = decode_corba_string_or_null (corba_volume->gconf_id, TRUE);
 	volume->priv->hal_udi = decode_corba_string_or_null (corba_volume->hal_udi, TRUE);
-	
+
+	if (volume->priv->display_name != NULL) {
+		char *tmp = g_utf8_casefold (volume->priv->display_name, -1);
+		volume->priv->display_name_key = g_utf8_collate_key (tmp, -1);
+		g_free (tmp);
+	} else {
+		volume->priv->display_name_key = NULL;
+	}
+
 	volume->priv->is_user_visible = corba_volume->is_user_visible;
 	volume->priv->is_read_only = corba_volume->is_read_only;
 	volume->priv->is_mounted = corba_volume->is_mounted;

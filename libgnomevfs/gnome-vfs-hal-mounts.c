@@ -835,6 +835,9 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 	name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, NULL);
 	drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
 	g_free (name);
+	name = g_utf8_casefold (drive->priv->display_name, -1);
+	drive->priv->display_name_key = g_utf8_collate_key (name, -1);
+	g_free (name);
 	drive->priv->is_user_visible = TRUE;
 	drive->priv->volumes = NULL;
 	drive->priv->hal_udi = g_strdup (libhal_drive_get_udi (hal_drive));
@@ -984,6 +987,9 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
 		drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
 		g_free (name);
+		name = g_utf8_casefold (drive->priv->display_name, -1);
+		drive->priv->display_name_key = g_utf8_collate_key (name, -1);
+		g_free (name);
 		drive->priv->is_user_visible = allowed_by_policy;
 		drive->priv->volumes = NULL;
 		drive->priv->hal_udi = g_strdup (libhal_volume_get_udi (hal_volume));
@@ -1033,6 +1039,9 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 
 		name = _hal_volume_policy_get_display_name (volume_monitor_daemon, hal_drive, hal_volume);
 		vol->priv->display_name = _gnome_vfs_volume_monitor_uniquify_volume_name (volume_monitor, name);
+		g_free (name);
+		name = g_utf8_casefold (drive->priv->display_name, -1);
+		drive->priv->display_name_key = g_utf8_collate_key (name, -1);
 		g_free (name);
 		vol->priv->icon = _hal_volume_policy_get_icon (volume_monitor_daemon, hal_drive, hal_volume);
 		vol->priv->is_user_visible = allowed_by_policy && 

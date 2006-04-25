@@ -449,8 +449,6 @@ gnome_vfs_transform_get (const gchar *name)
 void
 _gnome_vfs_method_shutdown (void)
 {
-	ModuleElement *module_element;
-
 	G_LOCK (gnome_vfs_method_init);
 
 	if (module_hash != NULL) {

@@ -193,6 +193,7 @@ gnome_vfs_drive_finalize (GObject *object)
 	g_free (priv->device_path);
 	g_free (priv->activation_uri);
 	g_free (priv->display_name);
+	g_free (priv->display_name_key);
 	g_free (priv->icon);
 	g_free (priv->hal_udi);
 	g_free (priv->hal_drive_udi);
@@ -478,7 +479,7 @@ gnome_vfs_drive_compare (GnomeVFSDrive *a,
 		return res;
 	}
 
-	res = strcmp (priva->display_name, privb->display_name);
+	res = strcmp (priva->display_name_key, privb->display_name_key);
 	if (res != 0) {
 		return res;
 	}
@@ -593,7 +594,15 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 	drive->priv->display_name = decode_corba_string_or_null (corba_drive->display_name, TRUE);
 	drive->priv->icon = decode_corba_string_or_null (corba_drive->icon, TRUE);
 	drive->priv->hal_udi = decode_corba_string_or_null (corba_drive->hal_udi, TRUE);
-	
+
+	if (drive->priv->display_name != NULL) {
+		char *tmp = g_utf8_casefold (drive->priv->display_name, -1);
+		drive->priv->display_name_key = g_utf8_collate_key (tmp, -1);
+		g_free (tmp);
+	} else {
+		drive->priv->display_name_key = NULL;
+	}
+
 	drive->priv->is_user_visible = corba_drive->is_user_visible;
 	drive->priv->is_connected = corba_drive->is_connected;
 
