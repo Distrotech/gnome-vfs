@@ -185,6 +185,8 @@ gnome_vfs_shutdown (void)
 #endif
 	_gnome_vfs_client_shutdown ();
 	bonobo_debug_shutdown ();
+
+	_gnome_vfs_method_shutdown ();
 }
 
 void

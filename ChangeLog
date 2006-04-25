@@ -1,3 +1,13 @@
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-method.c: (module_element_free),
+	(init_hash_table), (load_module), (load_module_in_path_list),
+	(gnome_vfs_add_module_to_hash_table), (_gnome_vfs_method_shutdown),
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_shutdown):
+	Add _gnome_vfs_method_shutdown, invoke each module's shutdown function
+	when shutting down GnomeVFS. Fixes #154980.
+
 2006-04-25  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c:
