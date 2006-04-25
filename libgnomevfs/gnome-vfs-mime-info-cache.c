@@ -56,6 +56,8 @@ typedef struct {
 	guint should_ping_mime_monitor : 1;
 } GnomeVFSMimeInfoCache;
 
+G_LOCK_EXTERN (gnome_vfs_mime_mutex);
+
 extern void _gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor); 
 extern void _gnome_vfs_mime_info_cache_init (void);
 
@@ -682,6 +684,8 @@ get_all_parent_types (const char *mime_type)
 	GList *l = NULL;
 	int i;
 
+	G_LOCK (gnome_vfs_mime_mutex);
+	
 	umime = xdg_mime_unalias_mime_type (mime_type);
 	l = g_list_prepend (l, g_strdup (umime));
 
@@ -690,6 +694,8 @@ get_all_parent_types (const char *mime_type)
 	for (i = 0; parents && parents[i] != NULL; i++) {
 		l = g_list_prepend (l, g_strdup (parents[i]));
 	}
+	
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	return g_list_reverse (l);
 }

@@ -1,3 +1,8 @@
+2006-04-25  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c (get_all_parent_types):
+	Lock around calls to xdg_mime_*
+
 2006-04-21  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/default-modules.conf:
