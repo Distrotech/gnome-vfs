@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-23 05:15+0200\n"
-"PO-Revision-Date: 2006-04-23 11:11+0100\n"
+"POT-Creation-Date: 2006-04-25 13:39+0200\n"
+"PO-Revision-Date: 2006-04-25 16:34+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -33,28 +33,28 @@ msgstr "ISO 9660-volym"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%u contains NUL characters."
-msgstr "%s:%u innehåller NUL-tecken."
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d innehåller NUL-tecken."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%u contains no method name."
-msgstr "%s:%u innehåller inget metodnamn."
+msgid "%s:%d contains no method name."
+msgstr "%s:%d innehåller inget metodnamn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%u has no options endmarker."
-msgstr "%s:%u har ingen slutmarkör för flaggor."
+msgid "%s:%d has no options endmarker."
+msgstr "%s:%d har ingen slutmarkör för flaggor."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%u has unknown options %s."
-msgstr "%s:%u har okända flaggor %s."
+msgid "%s:%d has unknown options %s."
+msgstr "%s:%d har okända flaggor %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%u contains no module name."
-msgstr "%s:%u innehåller inget modulnamn."
+msgid "%s:%d contains no module name."
+msgstr "%s:%d innehåller inget modulnamn."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -429,12 +429,12 @@ msgstr "Okänd operationstyp %u"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan inte skapa rör till öppen GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#: ../libgnomevfs/gnome-vfs-job.c:1698
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Okänd jobbtyp %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1724
+#: ../libgnomevfs/gnome-vfs-job.c:1731
 msgid "Operation stopped"
 msgstr "Operationen stoppad"
 
@@ -446,15 +446,15 @@ msgstr "Operationen stoppad"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
 #: ../libgnomevfs/gnome-vfs-mime-info.c:624
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:639
@@ -961,12 +961,12 @@ msgstr "Okänd GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows-nätverk"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1323
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identiteten på fjärrdatorn (%s) är okänd."
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1324
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -977,11 +977,11 @@ msgstr ""
 "\n"
 "Identiteten som skickats av fjärrdatorn är %s. Om du vill vara absolut säker på att det är säkert att fortsätta bör du kontakta systemadministratören."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1332
 msgid "Log In Anyway"
 msgstr "Logga in ändå"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1333
 msgid "Cancel Login"
 msgstr "Avbryt inloggning"
 
