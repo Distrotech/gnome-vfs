@@ -1,3 +1,11 @@
+2006-04-25  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_launch_with_env), (expand_macro),
+	(expand_application_parameters), (test_exec_array),
+	(test_exec_macro_expansion):
+	Fix % parameters expansion in Exec field (bug #302436).
+
 2006-04-25  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-drive.c: (gnome_vfs_drive_finalize),
