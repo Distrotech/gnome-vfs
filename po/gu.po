@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-21 05:18+0200\n"
-"PO-Revision-Date: 2006-04-21 10:45+0530\n"
+"POT-Creation-Date: 2006-04-24 22:37+0200\n"
+"PO-Revision-Date: 2006-04-25 09:24+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -765,7 +766,7 @@ msgid "Error launching command"
 msgstr "આદેશ શરૂ કરવામાં ભૂલ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
 msgstr "સમય સમાપ્તિ સુધી પહોંચી ગયા"
 
@@ -776,17 +777,17 @@ msgid "Nameserver error"
 msgstr "નામસર્વર ભૂલ"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "સ્રોતને તાળુ મરાયેલ છે"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
 msgstr "વિધેય કોલ નીચે પાડી દેવાયો"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#: ../libgnomevfs/gnome-vfs-result.c:214
 msgid "Unknown error"
 msgstr "અજાણીતી ભૂલ"
 
@@ -1098,6 +1099,38 @@ msgstr "સામાન્ય જીનોમ VFS મોનીકર"
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "સામાન્ય ફાઇલ મોનીકર"
+
+#: ../programs/authentication.c:94
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "તમારા HTTP પ્રોક્સીને તમે પ્રવેશેલ હોય એ જરૂરી છે.\n"
+
+#: ../programs/authentication.c:95
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"\"%s\" વાપરવા માટે તમારે પ્રવેશ કરવો જ પડશે.\n"
+"%s"
+
+#: ../programs/authentication.c:98
+msgid "Your password will be transmitted unencrypted."
+msgstr "તમારો પાસવર્ડ એનક્રિપ્ટ થયા વિનાનો પરિવહન થશે."
+
+#: ../programs/authentication.c:99
+msgid "Your password will be transmitted encrypted."
+msgstr "તમારો પાસવર્ડ એનક્રિપ્ટ થયેલ પરિવહન થશે."
+
+#: ../programs/authentication.c:144
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "%s ડોમેઈન %s વાપરવા માટે તમારે પ્રવેશ કરવો જ પડશે\n"
+
+#: ../programs/authentication.c:146
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "%s વાપરવા માટે તમારે પ્રવેશ કરવો જ પડશે\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
