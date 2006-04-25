@@ -1,3 +1,8 @@
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread):
+	Don't strcmp NULL when ejecting. Partly fixes #337014.
+
 2006-04-21  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/smb-method.c: (string_nzero), (find_cached_server):
