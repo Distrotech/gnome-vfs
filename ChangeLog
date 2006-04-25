@@ -1,5 +1,11 @@
 2006-04-25  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/ftp-method.c:
+	Better handling of existing files in do_create and do_makedir.
+	Patch from Fabio Bonelli.
+
+2006-04-25  Alexander Larsson  <alexl@redhat.com>
+
 	* imported/neon/Makefile.am:
 	Include sources needed to resolve all symbols.
 	

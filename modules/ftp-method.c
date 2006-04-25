@@ -1862,7 +1862,52 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
-	return do_open(method, method_handle, uri, mode, context);
+	GnomeVFSResult result;
+	FtpConnection *conn;
+	gchar *chmod_command;
+
+	if ((mode & GNOME_VFS_OPEN_READ) && (mode & GNOME_VFS_OPEN_WRITE)) {
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
+	}
+
+	if (!(mode & GNOME_VFS_OPEN_READ) && !(mode & GNOME_VFS_OPEN_WRITE)) {
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
+	}
+
+	result = ftp_connection_acquire (uri, &conn, context);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	/* Exclusive set: we have to fail if the file exists */
+	if (exclusive) {
+		conn->operation = FTP_READ;
+		result = do_path_transfer_command (conn, "RETR", uri, context);
+
+		/* File exists or an error occurred */
+		if (result != GNOME_VFS_ERROR_NOT_FOUND) {
+			ftp_connection_release (conn, TRUE);
+
+			/* Return the error if there is one, otherwise the file exists */
+			return (result == GNOME_VFS_OK) ? GNOME_VFS_ERROR_FILE_EXISTS
+		                                        : result;
+		}
+	}
+
+	result = do_open(method, method_handle, uri, mode, context);
+	if (result != GNOME_VFS_OK) {
+		ftp_connection_release (conn, TRUE);
+		return result;
+	}
+
+	/* This is a not-standard command and FTP server may not support it,
+	 * so eventual errors will be ignored */
+	chmod_command = g_strdup_printf("SITE CHMOD %o", perm);
+	do_path_command (conn, chmod_command, uri, get_cancellation (context));
+
+	g_free (chmod_command);
+	ftp_connection_release (conn, TRUE);
+
+	return result;
 }
 
 static GnomeVFSResult 
@@ -2688,6 +2733,15 @@ do_make_directory (GnomeVFSMethod *method,
 {
 	GnomeVFSResult result;
 	gchar *chmod_command;
+
+	result = do_path_command_completely ("CWD", uri, context,
+			/* If the directory doesn't exist @result will be !GNOME_VFS_OK,
+			* in this case we don't return and proceed with MKD */
+			!GNOME_VFS_OK);
+
+	if (result == GNOME_VFS_OK) {
+		return GNOME_VFS_ERROR_FILE_EXISTS;
+	}
 
 	result = do_path_command_completely ("MKD", uri, context, 
 		GNOME_VFS_ERROR_ACCESS_DENIED);
