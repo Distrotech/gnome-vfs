@@ -742,9 +742,9 @@ mount_unmount_thread (void *arg)
 
 			if (exit_status != 0) {
 				info->succeeded = FALSE;
-				if ((strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-mount") == 0) ||
-				    (strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-umount") == 0) ||
-				    (strcmp (info->argv[0], GNOME_VFS_BINDIR "/gnome-eject") == 0)) {
+				if ((strcmp (argv[0], GNOME_VFS_BINDIR "/gnome-mount") == 0) ||
+				    (strcmp (argv[0], GNOME_VFS_BINDIR "/gnome-umount") == 0) ||
+				    (strcmp (argv[0], GNOME_VFS_BINDIR "/gnome-eject") == 0)) {
 					/* gnome-mount programs display their own dialogs */
 					info->error_message = g_strdup ("");
 					info->detailed_error_message = g_strdup ("");
