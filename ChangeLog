@@ -1,5 +1,10 @@
 2006-04-25  Christian Neumair  <chris@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-directory.c: (directory_visit_internal):
+	Return GNOME_VFS_ERROR_INTERRUPTED when callback returns 0.
+
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
 	* modules/ftp-method.c: (query_user_for_authn_info),
 	(ftp_connection_create):
 	Handle anonymous login failure, add query_user_for_authn_info

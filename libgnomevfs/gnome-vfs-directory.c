@@ -400,6 +400,8 @@ directory_visit_internal (GnomeVFSURI *uri,
 		recurse = FALSE;
 		stop = ! (* callback) (rel_path, info, recursing_will_loop,
 				       data, &recurse);
+		if (stop)
+			result = GNOME_VFS_ERROR_INTERRUPTED;
 
 		if (! stop
 		    && recurse
