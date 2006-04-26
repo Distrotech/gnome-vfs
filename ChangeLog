@@ -1,3 +1,11 @@
+2006-04-26  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	(_hal_add_drive_without_volumes):
+	Set drive is_user_visible based on mediacheck support.
+	(#321320)
+	Patch from Federico Mena Quintero
+
 2006-04-25  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

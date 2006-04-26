@@ -92,8 +92,6 @@ Listing the contents of directories.
 @callback: 
 @data: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_directory_visit_uri ##### -->
@@ -121,8 +119,6 @@ Listing the contents of directories.
 @callback: 
 @data: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@Param4: 
 
 
 <!-- ##### FUNCTION gnome_vfs_directory_visit_files_at_uri ##### -->

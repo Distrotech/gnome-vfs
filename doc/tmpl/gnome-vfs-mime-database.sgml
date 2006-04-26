@@ -243,8 +243,6 @@ functions for getting information about files based on their MIME type
 
 @app: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@application: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_application_free ##### -->
@@ -253,8 +251,6 @@ functions for getting information about files based on their MIME type
 </para>
 
 @app: 
-<!-- # Unused Parameters # -->
-@application: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_application_list_free ##### -->

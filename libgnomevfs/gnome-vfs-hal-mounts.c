@@ -792,6 +792,8 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 	GnomeVFSDrive *drive;
 	GnomeVFSVolumeMonitor *volume_monitor;
 	char *name;
+	DBusError error;
+	gboolean media_check_enabled;
 
 	g_return_if_fail (hal_drive != NULL);
 
@@ -826,6 +828,18 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 		goto out;
 	}
 	
+ 	dbus_error_init (&error);
+ 	media_check_enabled = libhal_device_get_property_bool (volume_monitor_daemon->hal_ctx,
+ 							       libhal_drive_get_udi (hal_drive),
+ 							       "storage.media_check_enabled",
+ 							       &error);
+ 	if (dbus_error_is_set (&error)) {
+ 		g_warning ("Error retrieving storage.media_check_enabled on '%s': Error: '%s' Message: '%s'",
+ 			   libhal_drive_get_udi (hal_drive), error.name, error.message);
+ 		dbus_error_free (&error);
+ 		media_check_enabled = FALSE;
+ 	}
+	
 	drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
 	drive->priv->activation_uri = g_strdup ("");
 	drive->priv->is_connected = 1;
@@ -835,10 +849,10 @@ _hal_add_drive_without_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daem
 	name = _hal_drive_policy_get_display_name (volume_monitor_daemon, hal_drive, NULL);
 	drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
 	g_free (name);
+	drive->priv->is_user_visible = !media_check_enabled; /* See http://bugzilla.gnome.org/show_bug.cgi?id=321320 */
 	name = g_utf8_casefold (drive->priv->display_name, -1);
 	drive->priv->display_name_key = g_utf8_collate_key (name, -1);
 	g_free (name);
-	drive->priv->is_user_visible = TRUE;
 	drive->priv->volumes = NULL;
 	drive->priv->hal_udi = g_strdup (libhal_drive_get_udi (hal_drive));
         drive->priv->must_eject_at_unmount = libhal_drive_requires_eject (hal_drive);
