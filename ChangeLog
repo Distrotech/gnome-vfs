@@ -1,3 +1,9 @@
+2006-04-27  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c: Relicense to LGPL
+	* libgnomevfs/gnome-vfs-mime-monitor.h: Same.
+	Closes bug #332301. (Joselin Mouette)
+
 2006-04-26  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c:
