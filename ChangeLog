@@ -1,3 +1,14 @@
+2006-04-26  Federico Mena Quintero  <federico@novell.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c
+	(_hal_add_drive_without_volumes): A drive with no mounted
+	volumes is user-visible if it *does not* have
+	storage.media_check_enabled turned on:  for example, floppy
+	drives.  Since they don't provide media detection, they can't be
+	auto-mounted by HAL/gnome-volume-manager.  This means that we need
+	to make them visible in the GUI so that the user can mount them by
+	hand.  See bug #321320.
+
 2006-04-25  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
