@@ -162,7 +162,9 @@ AC_SEARCH_LIBS(setsockopt, socket)
 AC_SEARCH_LIBS(login_tty, util)
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64 statfs statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll posix_fadvise fchmod)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statfs statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll posix_fadvise fchmod atoll)
+AC_CHECK_MEMBERS([struct stat.st_blksize, struct stat.st_rdev])
+AC_STRUCT_ST_BLOCKS
 
 dnl Volume monitor stuff			     
 AC_CHECK_FUNCS(setmntent endmntent hasmntopt getmntinfo)

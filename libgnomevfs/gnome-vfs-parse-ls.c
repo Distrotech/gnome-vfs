@@ -607,7 +607,7 @@ gnome_vfs_parse_ls_lga (const char *p,
 		    || sscanf (columns [idx2], " %d", &min) != 1)
 			goto error;
 	
-#ifdef HAVE_ST_RDEV
+#ifdef HAVE_STRUCT_STAT_ST_RDEV
 		/* Starting from linux 2.6, minor number is split between bits 
 		 * 0-7 and 20-31 of dev_t. This calculation is also valid
 		 * on older kernel with 8 bit minor and major numbers 
@@ -623,9 +623,13 @@ gnome_vfs_parse_ls_lga (const char *p,
 		/* Common file size */
 		if (!is_num (columns[idx2]))
 			goto error;
-	
-		s->st_size = (gsize) atol (columns [idx2]);
-#ifdef HAVE_ST_RDEV
+
+#ifdef HAVE_ATOLL
+		s->st_size = (off_t) atoll (columns [idx2]);
+#else
+		s->st_size = (off_t) atof (columns [idx2]);
+#endif
+#ifdef HAVE_STRUCT_STAT_ST_RDEV
 		s->st_rdev = 0;
 #endif
 	}
@@ -637,10 +641,10 @@ gnome_vfs_parse_ls_lga (const char *p,
 	s->st_atime = s->st_ctime = s->st_mtime;
 	s->st_dev = 0;
 	s->st_ino = 0;
-#ifdef HAVE_ST_BLKSIZE
+#ifdef HAVE_STRUCT_STAT_ST_BLKSIZE
 	s->st_blksize = 512;
 #endif
-#ifdef HAVE_ST_BLOCKS
+#ifdef HAVE_STRUCT_STAT_ST_BLOCKS
 	s->st_blocks = (s->st_size + 511) / 512;
 #endif
 
