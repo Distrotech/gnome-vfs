@@ -1,3 +1,20 @@
+2006-05-02  Federico Mena Quintero  <federico@novell.com>
+
+	Fix http://bugzilla.gnome.org/show_bug.cgi?id=338893: file size is
+	reported wrong in the FTP method for files larger than 2 GB.
+
+	* configure.in.orig: Check for atoll() to AC_CHECK_FUNCS().
+	Check for stat.st_blksize stat.st_rdev, and AC_STRUCT_ST_BLOCKS
+	(without these, we were never entering the corresponding #ifdef
+	blocks in gnome-vfs-parse-ls.c, and thus not filling in certain
+	fields of struct stat).
+
+	* libgnomevfs/gnome-vfs-parse-ls.c (gnome_vfs_parse_ls_lga): Use
+	atoll() when available for stat.st_size, or atof() if it's not
+	available.  Use HAVE_STRUCT_STAT_ST_RDEV,
+	HAVE_STRUCT_STAT_ST_BLOCKS, and HAVE_STRUCT_STAT_ST_BLKSIZE instead of
+	HAVE_ST_RDEV, HAVE_ST_BLOCKS, and HAVE_ST_BLKSIZE, respectively.
+
 2006-04-26  Federico Mena Quintero  <federico@novell.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c
