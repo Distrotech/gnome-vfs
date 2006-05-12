@@ -180,6 +180,8 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 	if (load_error != NULL)
 		goto error;
 
+	G_LOCK (gnome_vfs_mime_mutex);
+
 	for (i = 0; mime_types[i] != NULL; i++) {
 		gchar **desktop_file_ids;
 		desktop_file_ids = g_key_file_get_string_list (key_file,
@@ -195,11 +197,13 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 		}
 
 		gnome_vfs_mime_info_cache_dir_add_desktop_entries (dir,
-								   mime_types[i],
+								   xdg_mime_unalias_mime_type (mime_types[i]),
 								   desktop_file_ids);
 
 		g_strfreev (desktop_file_ids);
 	}
+
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	g_strfreev (mime_types);
 	g_key_file_free (key_file);
@@ -270,6 +274,8 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	if (load_error != NULL)
 		goto error;
 
+	G_LOCK (gnome_vfs_mime_mutex);
+
 	for (i = 0; mime_types[i] != NULL; i++) {
 		desktop_file_ids = g_key_file_get_string_list (key_file,
 							       "Default Applications",
@@ -283,9 +289,11 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 		}
 
 		g_hash_table_replace (dir->defaults_list_map,
-				      g_strdup (mime_types[i]),
+				      g_strdup (xdg_mime_unalias_mime_type (mime_types[i])),
 				      desktop_file_ids);
 	}
+
+	G_UNLOCK (gnome_vfs_mime_mutex);
 
 	g_strfreev (mime_types);
 	g_key_file_free (key_file);

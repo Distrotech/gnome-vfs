@@ -1,3 +1,10 @@
+2006-05-12  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_init),
+	(gnome_vfs_mime_info_cache_dir_init_defaults_list):
+	Unalias application MIME types before adding them to the cache.
+
 2006-05-02  Federico Mena Quintero  <federico@novell.com>
 
 	Fix http://bugzilla.gnome.org/show_bug.cgi?id=338893: file size is
