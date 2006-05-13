@@ -3297,6 +3297,10 @@ void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
 	G_LOCK (sftp_connection_table);
-	g_hash_table_foreach_remove (sftp_connection_table, (GHRFunc) close_thunk, NULL);
+
+	if (sftp_connection_table != NULL) {
+		g_hash_table_foreach_remove (sftp_connection_table, (GHRFunc) close_thunk, NULL);
+	}
+
 	G_UNLOCK (sftp_connection_table);
 }
