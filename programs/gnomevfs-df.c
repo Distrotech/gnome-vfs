@@ -81,6 +81,11 @@ ignore_volume (GnomeVFSVolume *vol)
 	int i;
 
 	type = gnome_vfs_volume_get_filesystem_type (vol);
+
+	if (type == NULL) {
+		return TRUE;
+	}
+
 	for (i = 0; i < G_N_ELEMENTS (ignored_fs); i++) {
 		if (strcmp (ignored_fs[i], type) == 0) {
 			g_free (type);
