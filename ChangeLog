@@ -1,4 +1,10 @@
 2006-05-14  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-df.c: (ignore_volume): Ignore volumes
+	with type == NULL for now (e.g. "Connect to Server" volumes).
+	Fixes #340910
+
+2006-05-14  Christian Kellner  <gicmo@gnome.org>
 	
 	Backported patch by Alexander Larrson from HEAD to unbreak
 	Christian's Unalias MIME types patch (Fixes bug #341534):
