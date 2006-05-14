@@ -1,3 +1,11 @@
+2006-05-14  Christian Kellner  <gicmo@gnome.org>
+	
+	Backported patch by Alexander Larrson from HEAD to unbreak
+	Christian's Unalias MIME types patch (Fixes bug #341446):
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: (get_all_parent_types):
+	Lock around calls to xdg_mime_*
+
 2006-05-12  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
