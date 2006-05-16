@@ -1,3 +1,9 @@
+2006-05-16  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/computer-method.c: (drive_connected), (fill_root):
+	Show all drives in computer:// (#341446)
+	Patch from Xavier Claessens
+
 2006-05-14  Christian Kellner  <gicmo@gnome.org>
 
 	* programs/gnomevfs-df.c: (ignore_volume): Ignore volumes
