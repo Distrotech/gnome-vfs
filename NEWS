@@ -1,3 +1,18 @@
+gnome-vfs 2.15.1
+	* Fix sftp symlink support
+	* Fix smb connecting many times to the server
+	* Add authentication to command line utils
+	* Escape "?" in paths, as this is a special char in uris
+	* Fix up symlink resolving in some cases
+	* Portability fixes for the cdda method
+	* Fix up locking around the xdg mime code where missing
+	* Better handling of existing files in create/makedir for ftp
+	* Shut down vfs backends on shutdown
+	* Handle ftp anon login failure better
+	* Handle more % expansions in Exec lines in desktop files
+	* Make GnomeVFSDrive user_visible only if it supports media check
+	* Fix ftp handling of large files
+	
 gnome-vfs 2.14.1
 	* Some performance fixes for sftp
 	* Mark CD volumes as readonly (HAL)
