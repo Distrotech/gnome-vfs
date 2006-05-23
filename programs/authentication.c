@@ -10,7 +10,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_TERMIOS_H
 #include <termios.h>
+#endif
 #include <unistd.h>
 
 
@@ -31,6 +33,7 @@
 static char *
 ask_for_password (void)
 {
+#ifdef HAVE_TERMIOS_H
 	char buffer[BUFSIZ];
 	int old_flags;
 	struct termios term_attr; 
@@ -57,6 +60,15 @@ ask_for_password (void)
 		fprintf (stderr, "tcgetattr() failed, skipping password.\n");
 
 	return ret;
+#else
+	char buffer[BUFSIZ];
+	char *ret;
+
+	FGETS_NO_NEWLINE (buffer, BUFSIZ, stdin);
+	ret = g_strdup (buffer);
+
+	return ret;
+#endif
 }
 
 static int
