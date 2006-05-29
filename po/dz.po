@@ -1,15 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dzongkha translation of gnome-vfs
+# Copyright @ 2006 Free software foundation, Inc.
+# Mindu Dorji.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-06 05:14+0100\n"
-"PO-Revision-Date: 2006-03-29 17:33-0500\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2006-05-03 22:55+0200\n"
+"PO-Revision-Date: 2006-05-23 11:48+0530\n"
+"Last-Translator: Mindu Dorji\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,49 +28,55 @@ msgstr "ཇི་ནོམ་ ཝིཨེཕ་ཨེསི་ འགོ་འ�
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "ཨའི་ཨེསི་ཨོ་ ༩༦༦༠ བོ་ལུསམ།"
+msgstr "ཨའི་ཨེསི་ཨོ་ ༩༦༦༠ སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s:%d ནང་ ཨེན་ཡུ་ཨེལ་ ཡིག་འབྲུ་འདུག"
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u ནང་ ཨེན་ཡུ་ཨེལ་ ཡིག་འབྲུ་འདུག"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s:%d ནང་ ཐབས་ལམ་གྱི་ མིང་མིན་འདུག"
+msgid "%s:%u contains no method name."
+msgstr "%s:%u ནང་ ཐབས་ལམ་གྱི་མིང་མིན་འདུག"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%d དེ་ལུ་ མཇུག་རྟགས་བཀོད་མིའི་ གདམ་ཁ་མིན་འདུག"
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%uལུ་ མཇུག་རྟགས་བཀོད་མིའི་ གདམ་ཁ་མིན་འདུག"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s:%d དེ་ལུ་ མ་ཤེས་པའི་གདམ་ཁ་ %s ཅིག་འདུག"
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%uལུ་ མ་ཤེས་པའི་གདམ་ཁ་ %sའདུག"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s:%d དེ་ལུ་ ཚད་གཞིའི་མིང་ མིན་འདུག"
+msgid "%s:%u contains no module name."
+msgstr "%s:%uལུ་ ཚད་གཞིའི་མིང་མིན་འདུག"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:366
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "རིམ་སྒྲིག་ཡིག་སྣོད་ ‘%s’  ཐོབ་མ་ཚུགས། %s"
 
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%dམིང་དཔྱད་འབད་ནི་བར་བཤོལ་འབད་ཡི།"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "ཨེ་ཨེཕ་ཨེཕ་ཨེསི་ བོ་ལུསམ།"
+msgstr "ཨེ་ཨེཕ་ཨེཕ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "ཨེ་ཨེཕ་ཨེསི་ ཡོངས་འབྲེལ་ བོ་ལུསམ། "
+msgstr "ཨེ་ཨེཕ་ཨེསི་ ཡོངས་འབྲེལ་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "རང་བཞིན་སྐྱོན་འཛིན་ བོ་ལུསམ།"
+msgstr "རང་བཞིན་སྐྱོན་འཛིན་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -84,234 +89,234 @@ msgstr "སི་ཌི་ ཌི་ཇི་ཊཱལ་ རྣར་ཉན།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "སྲ་ཆས་ ཐབས་འཕྲུལ་ བོ་ལུསམ།"
+msgstr "སྲ་ཆས་ ཐབས་འཕྲུལ་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "ཨི་ཨེགསི་ཊི་༢ ལའི་ནགསི་ བོ་ལུསམ།"
+msgstr "ཨི་ཨེགསི་ཊི་༢ ལི་ནགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr "ཨི་ཨེགསི་ཊི་༣ ལའི་ནགསི་ བོ་ལུསམ།"
+msgstr "ཨི་ཨེགསི་ཊི་༣ ལི་ནགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr "ཨེམ་ཨེསི་ཌོསི་ བོ་ལུསམ།"
+msgstr "ཨེམ་ཨེསི་ཌོསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr "མེཀ་ཨོ་ཨེསི་ བོ་ལུསམ།"
+msgstr "མེཀ་ཨོ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr "སི་ཌི་ རཱོམ་ བོ་ལུསམ།"
+msgstr "སི་ཌི་ རཱོམ་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr "ཨེཆ་ཨེསི་ཨེཕ་ཨེསི་ སི་ཌི་རཱོམ་ བོ་ལུསམ།"
+msgstr "ཨེཆ་ཨེསི་ཨེཕ་ཨེསི་ སི་ཌི་རཱོམ་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr "ཇེ་ཨེཕ་ཨེསི་ བོ་ལུསམ།"
+msgstr "ཇེ་ཨེཕ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr "ཝིན་ཌོསི་ ཨེན་ཊི་ བོ་ལུསམ།"
+msgstr "ཝིན་ཌོསི་ ཨེན་ཊི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr "རིམ་ལུགས་ བོ་ལུསམ།"
+msgstr "རིམ་ལུགས་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr "དྲན་ཚད་བོ་ལུསམ།"
+msgstr "དྲན་ཚད་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr "མི་ནིགསི་ བོ་ལུསམ།"
+msgstr "མི་ནིགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "ཨེན་ཨེཕ་ཨེསི་ ཡོངས་འབྲེལ་བོ་ལུསམ།"
+msgstr "ཨེན་ཨེཕ་ཨེསི་ ཡོངས་འབྲེལ་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr "ནེཊི་ཝེར་ བོ་ལུསམ།"
+msgstr "ནེཊི་ཝེར་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Reiser4 Linux Volume"
-msgstr "རི་སར་༤ ལའི་ནགསི་ བོ་ལུསམ།"
+msgstr "རི་སར་༤ ལི་ནགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "ReiserFS Linux Volume"
-msgstr "རི་སར་ཨེཕ་ཨེསི་ ལའི་ནགསི་ བོ་ལུསམ།"
+msgstr "རི་སར་ཨེཕ་ཨེསི་ ལི་ནགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows Shared Volume"
-msgstr "ཝིན་ཌོསི་ རུབ་སྤྱོད་བོ་ལུསམ།"
+msgstr "ཝིན་ཌོསི་ རུབ་སྤྱོད་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "SuperMount Volume"
-msgstr "སུ་པར་མ་འུནཊི་ བོ་ལུསམ།"
+msgstr "སུ་པར་མ་འུནཊི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "DVD Volume"
-msgstr "ཌི་བི་ཌི་ བོ་ལུསམ།"
+msgstr "ཌི་བི་ཌི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Solaris/BSD Volume"
-msgstr "སོ་ལ་རིསི་ / བི་ཨེསི་ཌི་ བོ་ལུསམ།"
+msgstr "སོ་ལ་རིསི་ / བི་ཨེསི་ཌི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Udfs Solaris Volume"
-msgstr "ཡུ་ཌི་ཨེཕ་ཨེསི་ སོ་ལ་རིསི་ བོ་ལུསམ།"
+msgstr "ཡུ་ཌི་ཨེཕ་ཨེསི་ སོ་ལ་རིསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Pcfs Solaris Volume"
-msgstr "པི་སི་ཨེཕ་ཨེསི་ སོ་ལ་རིསི་ བོ་ལུསམ།"
+msgstr "པི་སི་ཨེཕ་ཨེསི་ སོ་ལ་རིསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Sun SAM-QFS Volume"
-msgstr "སཱན་ ཨེསི་ཨེ་ཨེམ་-ཀིའུ་ཨེཕ་ཨེསི་ བོ་ལུསམ།"
+msgstr "སཱན་ ཨེསི་ཨེ་ཨེམ་-ཀིའུ་ཨེཕ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Enhanced DOS Volume"
-msgstr "གོང་སྤེལ་ཅན་གྱི་ ཌོསི་ བོ་ལུསམ།"
+msgstr "གོང་སྤེལ་ཅན་གྱི་ ཌོསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows VFAT Volume"
-msgstr "ཝིན་ཌོསི་ ཝི་ཨེཕ་ཨེ་ཊི་ བོ་ལུསམ།"
+msgstr "ཝིན་ཌོསི་ ཝི་ཨེཕ་ཨེ་ཊི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Xenix Volume"
-msgstr "ཟེ་ནིགསི་ བོ་ལུསམ།"
+msgstr "ཟེ་ནིགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XFS Linux Volume"
-msgstr "ཨེགསི་ཨེཕ་ཨེསི་ ལའི་ནགསི་་ བོ་ལུསམ།"
+msgstr "ཨེགསི་ཨེཕ་ཨེསི་ ལི་ནགསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "XIAFS Volume"
-msgstr "ཨེགསི་ཨའི་ཨེ་ཨེཕ་ཨེསི་ བོ་ལུསམ།"
+msgstr "ཨེགསི་ཨའི་ཨེ་ཨེཕ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "CIFS Volume"
-msgstr "སི་ཨའིཨེཕ་ཨེསི་ བོ་ལུསམ།"
+msgstr "སི་ཨའིཨེཕ་ཨེསི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
 msgid "Unknown"
 msgstr "མ་ཤེསཔ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:362
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Volume"
-msgstr "%s བོ་ལུསམ།"
+msgstr "%sསྦུང་ཚད།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "སི་ཌི་-རཱོམ། "
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "སི་ཌི་ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "ཌི་བི་ཌི་-རཱོམ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 msgid "DVD+R"
 msgstr "ཌི་བི་ཌི་+ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+RW"
 msgstr "ཌི་བི་ཌི་+ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:392
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "ཌི་བི་ཌི་- ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "ཌི་བི་ཌི་- ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "ཌི་བི་ཌི་- རེམ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
 msgid "DVD±R"
 msgstr "ཌི་བི་ཌི་+_ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:402
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
 msgid "DVD±RW"
 msgstr "ཌི་བི་ཌི་+_ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:405
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
 msgid "%s/%s Drive"
 msgstr "འདྲེན་འཕྲུལ་%s/%s།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s Drive"
 msgstr "འདྲེན་འཕྲུལ་%s།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:412
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
 msgstr "ཕོལོ་པི་འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
 msgid "Compact Flash Drive"
 msgstr "སྲབ་ཆུང་ རིབ་སྟོན་ བརྡ་ལམ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
 msgstr "དྲན་ཚད་མཉམ་སྦྱར་འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:419
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
 msgstr "སི་མཱཊི་བརྡ་ལམ་འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
 msgstr "ཨེསི་ཌི་/ཨེམ་ཨེམ་སི་འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ཛིཔ་འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:426
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Jaz Drive"
 msgstr "ཇེཛི་ཌའིབ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
 msgid "Pen Drive"
 msgstr "པེན་ཌའིབ།"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:431
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 #, c-format
 msgid "%s %s Music Player"
 msgstr "སྙན་ཆ་གཏང་འཕྲུལ་%s %s།"
@@ -401,69 +406,69 @@ msgstr "རྣར་ཉན་ཌིཀསི།"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #, c-format
 msgid "%s Removable Volume"
-msgstr "%s བཏོན་བཏུབ་པའི་བོ་ལུསམ།"
+msgstr "%s རྩ་བསྐྲད་གཏང་་བཏུབ་པའི་སྦུང་ཚད།"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
-msgstr "བོ་ལུསམ།"
+msgstr "སྦུང་ཚད།"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "མ་ཤེས་པའི་བཀོལ་སྤྱོད་ དབྱེ་བ་%u།"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025
-#: ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024
+#: ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ཇི་ཨའི་ཨོ་ ཅེ་ནཱལ་: %s གི་དོན་ལུ་ རྒྱུད་དུང་བཟོ་མི་ཚུགས་པས།"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1699
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "མ་ཤེས་པའི་ ལཱ་གི་དབྱེ་ཁག་ %u །"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1732
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "བཀོལ་སྤྱོད་མཚམས་འཇོག་སོང་ནུག"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:275
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:326
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:622
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:643
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:684
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:856
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:880
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:901
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:922
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:979
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:998
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1017
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1037
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1057
-#: ../libgnomevfs/gnome-vfs-mime-info.c:626
-#: ../libgnomevfs/gnome-vfs-mime-info.c:633
-#: ../libgnomevfs/gnome-vfs-mime-info.c:641
-#: ../libgnomevfs/gnome-vfs-mime-info.c:648
-#: ../libgnomevfs/gnome-vfs-mime-info.c:656
-#: ../libgnomevfs/gnome-vfs-mime-info.c:673
-#: ../libgnomevfs/gnome-vfs-mime-info.c:680
-#: ../libgnomevfs/gnome-vfs-mime-info.c:687
-#: ../libgnomevfs/gnome-vfs-mime-info.c:694
-#: ../libgnomevfs/gnome-vfs-mime-info.c:702
-#: ../libgnomevfs/gnome-vfs-mime-info.c:709
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
+#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:654
+#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
 msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
 msgstr "ངོས་ལེན་མེད་པའི་བྱ་བ། མ་ཡིམ་གནད་སྡུད་གཞི་རྟེན་ལུ་ ལག་ལེན་པའི་ལེགས་བཅོས་ཚུ་ལུ་ རྒྱབ་སྐྱོར་མིན་འདུག"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:692
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
 #, c-format
 msgid "Could not parse: %s"
 msgstr ":%s མིང་དཔྱད་འབད་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:694
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
 msgid "More parsing errors will be ignored."
 msgstr "མིང་དཔྱད་ཀྱི་འཛོལ་བ་ཧེང་བཀལ་ཚུ་ སྣང་མེད་བཞག་ནི་ཨིན།"
 
@@ -699,7 +704,6 @@ msgstr "བརྡ་བཀོད་གསར་བཙུགས་འབད་ན
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88
-#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "Timeout reached"
 msgstr "ངལ་མཚམས་གུ་ལྷོད་ནུག"
 
@@ -709,16 +713,16 @@ msgid "Nameserver error"
 msgstr "ནེམ་སར་བར་གྱི་འཛོལ་བ།"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "འཐོན་ཁུངས་དེ་ ལྡེ་མིག་བརྐྱབས་ནུག"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
 msgstr "བྱ་བའི་བོད་བརྡ་ ངོས་ལེན་མེདཔ་ཐལ་སོ་ནུག"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:214
 msgid "Unknown error"
 msgstr "མ་ཤེས་པའི་འཛོལ་བ།"
 
@@ -744,157 +748,189 @@ msgstr "%.1f ཨེམ་བི།"
 msgid "%.1f GB"
 msgstr "%.1f ཇི་བི། "
 
-#: ../libgnomevfs/gnome-vfs-utils.c:1096
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
 msgstr "(ནུས་མེད་ཡུ་ནི་ཀོཌི)"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
 msgstr "ཕོལོ་པི། "
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
 msgstr "སི་ཌི་-རཱོམ/ཌི་བི་ཌི་-རཱོམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-RAM"
 msgstr "སི་ཌི་-རཱོམ/ཌི་བི་ཌི་-རེམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-R"
 msgstr "སི་ཌི་-རཱོམ/ཌི་བི་ཌི་-ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-ROM/DVD-RW"
 msgstr "སི་ཌི་-རཱོམ/ཌི་བི་ཌི་-ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
 msgstr "སི་ཌི་-ཨར་/ཌི་བི་ཌི་-རཱོམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
 msgstr "སི་ཌི་-ཨར་/ཌི་བི་ཌི་-རེམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
 msgstr "སི་ཌི་-ཨར་/ཌི་བི་ཌི་-ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
 msgstr "སི་ཌི་-ཨར་/ཌི་བི་ཌི་-ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་/ཌི་བི་ཌི་-རཱོམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་/ཌི་བི་ཌི་-རེམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་/ཌི་བི་ཌི་-ཨར།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་/ཌི་བི་ཌི་-ཨར་ཌབ་ལུ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
 msgstr "ཌིཀསི།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
 msgstr "ཡུ་ཨེསི་བི་ འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
 msgstr "ཨའི་ཨི་ཨི་ཨི་༡༣༩༤ འདྲེན་འཕྲུལ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
 msgstr "སི་ཨེཕ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
 msgstr "ཨེསི་ཌི་/ཨེམ་ཨེམ་སི།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
 msgstr "དྲན་ཚད་སི་ཊིཀ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
 msgstr "སི་མཱཊི་ བརྡ་ལམ།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
 msgstr "པར་ཆས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
 msgstr "ཌི་བི་ཌི།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:836
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
-msgstr "རྩ་བའི་བོ་ལུསམ།"
+msgstr "རྩ་བའི་སྦུང་ཚད།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:917
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
 msgstr "རྣར་ཉན་སི་ཌི།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:950
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
-msgstr "མ་ཤེས་པའི་བོ་ལུསམ།"
+msgstr "མ་ཤེས་པའི་སྦུང་ཚད།"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1155
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
 msgstr "ཡོངས་འབྲེལ་སར་བར།"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:125
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ཕོལོ་པི་འདྲེན་འཕྲུལ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས། འདྲེན་འཕྲུལ་ནང་ལུ་ ཕོལོ་པི་མེདཔ་འོང་ནི་མས།"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:129
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "བོ་ལུསམ་སྦྱར་བརྩེགས་འབད་མ་ཚུགས། ཐབས་འཕྲུལ་ནང་ བརྡ་ལམ་མེདཔ་འོང་ནི་མས།"
+msgstr "སྦུང་ཚད་སྦྱར་བརྩེགས་འབད་མ་ཚུགས། ཐབས་འཕྲུལ་ནང་བརྡ་ལམ་མེདཔ་འོང་ནི་མས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:135
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
 msgstr "ཕོལོ་པི་འདྲེན་འཕྲུལ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས། ཕོལོ་པི་དེ་ སྦྱར་བརྩེགས་འབད་མ་བཏུབ་པའི་ རྩ་སྒྲིག་ཅིག་ནང་ ཡོདཔ་འོང་ནི་མས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:138
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "སེལ་འཐུ་འབད་མི་ བོ་ལུསམ་་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས། བོ་ལུསམ་དེ་ སྦྱར་བརྩེགས་འབད་མ་བཏུབ་པའི་ རྩ་སྒྲིག་ཅིག་ནང་ ཡོདཔ་འོང་ནི་མས།"
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
+msgstr "སྦུང་ཚད་ས་སྦྱར་བརྩེགས་འབད་མ་ཚུགས། གལ་སྲིད་འདི་གསང་བཟོས་འདྲེན་འཕྲུལ་ཅིག་ཨིན་པ་ཅིན་ ཆོག་ཡིག་ ཡང་ན་ ལྡེ་མིག་ཕྱི་འགྱུར་ལག་ལེན་འཐབ་འཐབ་འོང་།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:143
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+msgstr "སེལ་འཐུ་འབད་མི་སྦུང་ཚད་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས། སྦུང་ཚད་དེ་ སྦྱར་བརྩེགས་འབད་མ་བཏུབ་པའི་ རྩ་སྒྲིག་ཅིག་ནང་ ཡོདཔ་འོང་ནི་མས།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid "Unable to mount the selected floppy drive."
 msgstr "སེལ་འཐུ་འབད་མི་ ཕོལོ་པི་འདྲེན་འཕྲུལ་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:145
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
 msgid "Unable to mount the selected volume."
-msgstr "སེལ་འཐུ་འབད་མི་ བོ་ལུསམ་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས།"
+msgstr "སེལ་འཐུ་འབད་མི་སྦུང་ཚད་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:157
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
+msgstr "སེལ་འཐུ་འབད་མི་སྦུང་ཚད་དེ་ སྦྱར་བརྩེགས་འབད་མ་ཚུགས། སྦུང་ཚད་དེ་ སྦྱར་བརྩེགས་འབད་མ་བཏུབ་པའི་ རྩ་སྒྲིག་ཅིག་ནང་ཡོདཔ་འོང་ནི་མས།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
-msgstr "སེལ་འཐུ་འབད་མི་ བོ་ལུསམ་དེ་ བརྩེགས་བཤོལ་འབད་མ་ཚུགས།"
+msgstr "སེལ་འཐུ་འབད་མི་སྦུང་ཚད་དེ་ བརྩེགས་བཤོལ་འབད་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:290
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:357
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "ཆ་ལག་ལས་སྦྱོར་ %d (%s)ནང་ལས་ གནད་སྡུད་ལྷག་མ་ཚུགས།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+msgid "Couldn't run mount process in a pty"
+msgstr "པི་ཊི་ཝའི་ནང་ སྦྱར་བརྩེགས་ལས་སྦྱོར་ གཡོག་བཀོལ་མ་ཚུགས།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr "ཆ་ལག་ལས་སྦྱོར་(%s)ཅིག་ནང་ལས་ གནད་སྡུད་ལྷག་ནི་ལུ་ སེལ་འཐུ་()ནང་ རེ་བ་མེད་པའི་འཛོལ་བ།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+msgid "Couldn't send password to mount process."
+msgstr "སྦྱར་བརྩེགས་ལས་སྦྱོར་ལུ་ ཆོག་ཡིག་གཏང་མ་ཚུགས། "
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "ཝེཊི་པིཊི་() (%s)ནང་ལུ་ རེ་བ་མེད་པའི་འཛོལ་བ།"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
 msgid "Failed to start command"
 msgstr "བརྡ་བཀོད་འགོ་བཙུགས་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:345
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
 msgid "Unable to eject media"
 msgstr "བརྡ་ལམ་ཕྱི་བཏོན་འབད་མ་ཚུགས།"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:573
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
 msgid "Unable to unmount connected server"
 msgstr "འབྲེལ་མཐུད་ཅན་གྱི་སར་བར་ བརྩེགས་བཤོལ་འབད་མ་ཚུགས།"
 
@@ -910,7 +946,7 @@ msgstr "ཁྱིམ།"
 msgid "Filesystem"
 msgstr "ཡིག་སྣོད་རིམ་ལུགས།"
 
-#: ../modules/file-method.c:536
+#: ../modules/file-method.c:483
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "མ་ཤེས་པའི་ ཇི་ནོམ་ ཝི་ཨེཕ་ཨེསི་སིག་པོ་སི་ཤཱན་ %d།"
@@ -919,12 +955,12 @@ msgstr "མ་ཤེས་པའི་ ཇི་ནོམ་ ཝི་ཨེཕ�
 msgid "Windows Network"
 msgstr "ཝིན་ཌོསི་ ཡོངས་འབྲེལ།"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ཐག་རིང་གློག་རིག་ (%s) གི་ ངོ་རྟགས་ཤེས་མ་ཚུགས།"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -935,11 +971,11 @@ msgstr ""
 " \n"
 " ཐག་རིང་གློག་རིག་གིས་བཏང་མི་ ངོ་རྟགས་དེ་ %s ཨིན་པས། ཁྱོད་རང་ངེས་ཤེས་ཧྲིལ་བུ་ འདྲོངས་དགོ་པ་ཅིན་ འཕྲོ་མཐུད་རུང་ཉེན་ཁ་མེད། རིམ་ལུགས་བདག་སྐྱོང་པ་ལུ་ འབྲེལ་བ་འཐབ།"
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "གང་རུང་སྦེ་ ནང་བསྐྱོད་འབད།"
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "ནང་བསྐྱོད་ཆ་མེད་གཏང༌།"
 
@@ -969,6 +1005,38 @@ msgstr "ཇེ་ནི་རིཀ་ ཇི་ནོམ་ ཝི་ཨེཕ�
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "ཇེ་ནི་རིཀ་ ཡིག་སྣོད་ མོ་ནི་ཀར།"
+
+#: ../programs/authentication.c:94
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "ཁྱོད་ཀྱི་ཨེཆ་ཊི་ཊི་པི་ པོརོ་སི་གི་དོན་ལུ་ ཁྱོད་ཀྱིས་ནང་བསྐྱོད་འབད་དགོ\n"
+
+#: ../programs/authentication.c:95
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"ཁྱོད་ཀྱིས་\"%s\"ལུ་འཛུལ་སྤྱོད་འབད་ནི་ལུ་ ནང་བསྐྱོད་འབད་དགོ\n"
+"%s"
+
+#: ../programs/authentication.c:98
+msgid "Your password will be transmitted unencrypted."
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་ གསང་བ་མ་བཟོ་བར་སྤེལ་བཀྲམ་འབད་འོང་།"
+
+#: ../programs/authentication.c:99
+msgid "Your password will be transmitted encrypted."
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་ གསང་བ་བཟོ་སྟེ་ སྤེལ་བཀྲམ་འབད་འོང་།"
+
+#: ../programs/authentication.c:144
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "ཁྱོད་ཀྱིས་%s ཌོ་མེན་%sནང་ འཛུལ་སྤྱོད་འབད་ནི་ལུ་ ནང་བསྐྱོད་འབད་དགོ\n"
+
+#: ../programs/authentication.c:146
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "ཁྱོད་ཀྱིས་%sལུ་འཛུལ་སྤྱོད་འབད་ནི་ལུ་ ནང་བསྐྱོད་འབད་དགོ\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1307,54 +1375,52 @@ msgstr "ཨེསི་ཨེམ་བི་ལཱ་སྡེ།"
 msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
 msgstr "ལག་ལེན་པ་དེ་ ཆ་ཤས་ཅིག་ཨིན་མི་ ཝིན་ཌོསི་ཡོངས་འབྲེལ་སྡེ་ཚན་ ཡང་ན་ ཌོ་མེན། ལཱ་སྡེ་གསརཔ་ཅིག་ལུ་ ནུས་པ་ཧྲིལ་བུ་འཐོབ་ནིའི་དོན་ལུ་ ལག་ལེན་པ་དེ་གིས་ ཕྱིར་བསྐྱོད་འབད་ཞིནམ་ལས་ ལོག་ནང་བསྐྱོད་འབད་དགོཔ་འོང་།"
 
-#: ../schemas/system_storage.schemas.in.h:1
-msgid "Display SCSI drives"
-msgstr "ཨེསི་ཨི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
-
-#: ../schemas/system_storage.schemas.in.h:2
-msgid "Display SCSI optical drives"
-msgstr "ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊིཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
-
-#: ../schemas/system_storage.schemas.in.h:3
-msgid "Display drives with removable media"
-msgstr "འདྲེན་འཕྲུལ་ཚུ་ བཏོན་བཏུབ་པའི་བརྡ་ལམ་ཐོག་ལས་ བཀྲམ་སྟོན་འབད།"
-
-#: ../schemas/system_storage.schemas.in.h:4
-msgid "Display external drives"
-msgstr "ཕྱིའི་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
-
-#: ../schemas/system_storage.schemas.in.h:5
-msgid "Display internal hard drives"
-msgstr "ནང་འཁོད་ཀྱི་ ཧརཌི་ཌའིབསི་ཚུ་ བཀྲམ་སྟོན་འབད།"
-
-#: ../schemas/system_storage.schemas.in.h:6
-msgid "Whether to display SCSI optical drives even if /system/storage/display_scsi_drives is set to FALSE."
-msgstr "རིམ་ལུགས་/བསག་མཛོད་/བཀྲམ་སྟོན་/ཨེསི་སི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ རྫུན་པ་གུ་ གཞི་སྒྲིག་འབད་དེ་ཡོད་རུང་ ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊི་ཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
-
-#: ../schemas/system_storage.schemas.in.h:7
-msgid "Whether to display drives and mountable volumes from SCSI drives."
-msgstr "ཨེསི་སི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
-
-#: ../schemas/system_storage.schemas.in.h:8
-msgid "Whether to display drives and mountable volumes from drives with removable media (e.g. drives where media can be inserted and removed)."
-msgstr "བཏོན་བཏུབ་པའི་བརྡ་ལམ་ (དཔེར་ན་ བརྡ་ལམ་བཙུགས་བཏོན་འབད་བཏུབ་པའི་འདྲེན་འཕྲུལ་ཚུ་) ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
-
-#: ../schemas/system_storage.schemas.in.h:9
-msgid "Whether to display drives and mountable volumes from external drives (e.g. drives that are hotpluggable; e.g. drives that can be attached and detached while the system is running)."
-msgstr "ཕྱིའི་འདྲེན་འཕྲུལ་(དཔེར་ན་ རིམ་ལུགས་གཡོག་བཀོལ་བའི་བར་ན་ མཉམ་སྦྱར་འབད་ནི་དང་འཕྱལ་ནིའི་ འདྲེན་འཕྲུལ)ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་ བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
-
-#: ../schemas/system_storage.schemas.in.h:10
-msgid "Whether to display drives and mountable volumes from internal hard drives (non-SCSI optical drives are always shown)."
-msgstr "ནང་འཁོད་ཧརཌི་ཌའིབ་ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་ བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན། (ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊི་ཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ ཨ་རྟག་ར་ སྟོནམ་ཨིན) "
-
+#~ msgid "Display SCSI drives"
+#~ msgstr "ཨེསི་ཨི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
+#~ msgid "Display SCSI optical drives"
+#~ msgstr "ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊིཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
+#~ msgid "Display drives with removable media"
+#~ msgstr "འདྲེན་འཕྲུལ་ཚུ་ བཏོན་བཏུབ་པའི་བརྡ་ལམ་ཐོག་ལས་ བཀྲམ་སྟོན་འབད།"
+#~ msgid "Display external drives"
+#~ msgstr "ཕྱིའི་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད།"
+#~ msgid "Display internal hard drives"
+#~ msgstr "ནང་འཁོད་ཀྱི་ ཧརཌི་ཌའིབསི་ཚུ་ བཀྲམ་སྟོན་འབད།"
+#~ msgid ""
+#~ "Whether to display SCSI optical drives even if /system/storage/"
+#~ "display_scsi_drives is set to FALSE."
+#~ msgstr ""
+#~ "རིམ་ལུགས་/བསག་མཛོད་/བཀྲམ་སྟོན་/ཨེསི་སི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ རྫུན་པ་གུ་ གཞི་སྒྲིག་འབད་དེ་ཡོད་རུང་ "
+#~ "ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊི་ཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
+#~ msgid "Whether to display drives and mountable volumes from SCSI drives."
+#~ msgstr ""
+#~ "ཨེསི་སི་ཨེསི་ཨའི་འདྲེན་འཕྲུལ་ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་བོ་ལུསམ་ཚུ་ བཀྲམ་"
+#~ "སྟོན་འབད་ནི་ཨིན་ན་མེན།"
+#~ msgid ""
+#~ "Whether to display drives and mountable volumes from drives with "
+#~ "removable media (e.g. drives where media can be inserted and removed)."
+#~ msgstr ""
+#~ "བཏོན་བཏུབ་པའི་བརྡ་ལམ་ (དཔེར་ན་ བརྡ་ལམ་བཙུགས་བཏོན་འབད་བཏུབ་པའི་འདྲེན་འཕྲུལ་ཚུ་) ནང་ལས་ "
+#~ "འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་མེན།"
+#~ msgid ""
+#~ "Whether to display drives and mountable volumes from external drives (e."
+#~ "g. drives that are hotpluggable; e.g. drives that can be attached and "
+#~ "detached while the system is running)."
+#~ msgstr ""
+#~ "ཕྱིའི་འདྲེན་འཕྲུལ་(དཔེར་ན་ རིམ་ལུགས་གཡོག་བཀོལ་བའི་བར་ན་ མཉམ་སྦྱར་འབད་ནི་དང་འཕྱལ་ནིའི་ འདྲེན་"
+#~ "འཕྲུལ)ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་ བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་འབད་ནི་ཨིན་ན་"
+#~ "མེན།"
+#~ msgid ""
+#~ "Whether to display drives and mountable volumes from internal hard drives "
+#~ "(non-SCSI optical drives are always shown)."
+#~ msgstr ""
+#~ "ནང་འཁོད་ཧརཌི་ཌའིབ་ཚུ་ནང་ལས་ འདྲེན་འཕྲུལ་དང་ སྦྱར་བརྩེགས་འབད་བཏུབ་པའི་ བོ་ལུསམ་ཚུ་ བཀྲམ་སྟོན་"
+#~ "འབད་ནི་ཨིན་ན་མེན། (ཨེསི་སི་ཨེསི་ཨའི་ ཨོཔ་ཊི་ཀཱལ་འདྲེན་འཕྲུལ་ཚུ་ ཨ་རྟག་ར་ སྟོནམ་ཨིན) "
 #~ msgid "File could not be opened: %s"
 #~ msgstr "ཡིག་སྣོད་ཁ་ཕྱེ་མ་ཚུགས་ :%s"
 #~ msgid "Failed to open file '%s': %s"
 #~ msgstr "ཡིག་སྣོད་ ’%s’:%s ཁ་ཕྱེ་མ་ཚུགས།"
 #~ msgid "File is empty"
 #~ msgstr "ཡིག་སྣོད་སྟོངམ་ཨིན་པས།"
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "ཡིག་སྣོད་ '%s':%s ནང་ལས་ ལྷག་མ་ཚུགས།"
 #~ msgid ""
 #~ "desktop entries contain line '%s' which is not an entry, group, or comment"
 #~ msgstr "ཌེཀསི་ཊོཔ་ཐོ་བཀོད་ནང་ ཐོ་བཀོད་དང་ སྡེ་ཚན་ བསམ་བཀོད་མིན་པའི་གྱལ་རིམ ’%s’ འདུག"
