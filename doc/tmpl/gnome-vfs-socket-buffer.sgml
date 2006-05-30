@@ -93,8 +93,6 @@ You can manually force all internally buffered data to get written with
 @socket_buffer: 
 @cancellation: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@buffer: 
 
 
 <!-- ##### FUNCTION gnome_vfs_socket_buffer_read_until ##### -->

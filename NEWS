@@ -1,3 +1,13 @@
+gnome-vfs 2.14.2
+	* fix timout error string
+	* Use less connections for smb
+	* fix crash on cd eject
+	* ftp: handle anon login failure better
+	* Handle more parameter expansions in desktop files
+	* Hide automountable drives in various places, except in computer://
+	* ftp: handler files larger than 2 gig better
+	* Fix some locking issues in the mime code
+
 gnome-vfs 2.14.1
 	* Some performance fixes for sftp
 	* Mark CD volumes as readonly (HAL)
