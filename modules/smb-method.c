@@ -616,12 +616,27 @@ smb_uri_type (GnomeVFSURI *uri)
 static gboolean
 is_hidden_entry (char *name)
 {
-	if (name == NULL) return TRUE;
-
-	if (*(name + strlen (name) -1) == '$') return TRUE;
-
+	static const char *hidden_names[] = {
+		"IPC$",
+		"ADMIN$",
+		"print$",
+		"printer$"
+	};
+	
+	int i;
+	
+ 	if (name == NULL) return TRUE;
+ 
+	for (i = 0; i < G_N_ELEMENTS (hidden_names); i++)
+		if (g_ascii_strcasecmp (name, hidden_names[i]) == 0)
+			return TRUE;
+	
+	/* Shares that end in "$" are administrative shares, and Windows hides
+	 * them by default.  We have no way to say "this is a hidden file" in a
+	 * GnomeVFSFileInfo, so we'll make them visible for now.
+	 */
+	
 	return FALSE;
-
 }
 
 static gboolean

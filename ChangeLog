@@ -1,3 +1,9 @@
+2006-05-30  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c (is_hidden_entry):
+	Don't hide all shares that end with $.
+	Patch from Federico Mena Quintero
+
 2006-05-24  Tor Lillqvist  <tml@novell.com>
 
 	* programs/authentication.c (ask_for_password): Don't attempt to
