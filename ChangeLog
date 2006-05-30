@@ -1,3 +1,9 @@
+2006-05-30  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/computer-method.c (drive_connected), (fill_root):
+	Workaround issues with drives in the hal backend. (#341446)
+	Patch from Xavier Claessens
+
 2006-05-16  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/computer-method.c: (drive_connected), (fill_root):

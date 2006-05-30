@@ -309,15 +309,26 @@ drive_connected (GnomeVFSVolumeMonitor *volume_monitor,
 		 ComputerDir           *dir)
 {
 	ComputerFile *file;
+	GnomeVFSVolume *volume;
 	char *name;
 	
 	G_LOCK (root_dir);
-	file = computer_file_new (COMPUTER_DRIVE);
-	name = gnome_vfs_drive_get_display_name (drive);
-	file->file_name = build_file_name (name, ".drive");
-	g_free (name);
-	file->drive = gnome_vfs_drive_ref (drive);
-	computer_file_add (dir, file);
+	/* This is a hacky workaround for the fact that the
+	 * hal backend creates drive objects for "normal" mountpoints.
+	 * See #341446 for details.
+	 */
+	volume = gnome_vfs_drive_get_mounted_volume (drive);
+	if (volume == NULL || gnome_vfs_volume_is_user_visible (volume)) {
+		file = computer_file_new (COMPUTER_DRIVE);
+		name = gnome_vfs_drive_get_display_name (drive);
+		file->file_name = build_file_name (name, ".drive");
+		g_free (name);
+		file->drive = gnome_vfs_drive_ref (drive);
+		computer_file_add (dir, file);
+	}
+	if (volume != NULL) {
+		gnome_vfs_volume_unref (volume);
+	}
 	G_UNLOCK (root_dir);
 }
 
@@ -367,13 +378,24 @@ fill_root (ComputerDir *dir)
 	drives = gnome_vfs_volume_monitor_get_connected_drives (monitor);
 	
 	for (l = drives; l != NULL; l = l->next) {
+		GnomeVFSVolume *volume;
 		drive = l->data;
-		file = computer_file_new (COMPUTER_DRIVE);
-		name = gnome_vfs_drive_get_display_name (drive);
-		file->file_name = build_file_name (name, ".drive");
-		g_free (name);
-		file->drive = gnome_vfs_drive_ref (drive);
-		computer_file_add (dir, file);
+		/* This is a hacky workaround for the fact that the
+		 * hal backend creates drive objects for "normal" mountpoints.
+		 * See #341446 for details.
+		 */
+		volume = gnome_vfs_drive_get_mounted_volume (drive);
+		if (volume == NULL || gnome_vfs_volume_is_user_visible (volume)) {
+			file = computer_file_new (COMPUTER_DRIVE);
+			name = gnome_vfs_drive_get_display_name (drive);
+			file->file_name = build_file_name (name, ".drive");
+			g_free (name);
+			file->drive = gnome_vfs_drive_ref (drive);
+			computer_file_add (dir, file);
+		}
+		if (volume != NULL) {
+			gnome_vfs_volume_unref (volume);
+		}
 	}
 	
 	for (l = volumes; l != NULL; l = l->next) {
