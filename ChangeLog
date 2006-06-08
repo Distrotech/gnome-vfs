@@ -1,3 +1,33 @@
+2006-06-08  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-ace.[ch]: 
+	* libgnomevfs/gnome-vfs-acl.[ch]:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs.h:
+	Merge generic ACL work from acl branch.
+	
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	(gnome_vfs_daemon_convert_from_corba_file_info),
+	(gnome_vfs_daemon_convert_to_corba_file_info):
+	Add comment about missing code for acl.
+	
+	* modules/Makefile.am:
+	* modules/file-method-acl.[ch]:
+	* modules/file-method.c:
+	Merge posix and solaris ACL support.
+	
+	* programs/gnomevfs-info.c:
+	Show ACLs in gnomevfs-info.
+	
+	* test/Makefile.am:
+	* test/test-acl.c:
+	Add acl tests.
+
+	The work on the branch was done by Christian Kellner and
+	Alvaro Lopez Ortega.
+	
 2006-05-30  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/smb-method.c (is_hidden_entry):

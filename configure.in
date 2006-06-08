@@ -1062,6 +1062,102 @@ if test x$have_socketpair = x1 ; then
 fi
 
 dnl =====================
+dnl ACL checks
+dnl =====================
+acl_backends=""
+ACL_LIBS=""
+
+AC_CHECK_LIB(attr,getxattr,[ACL_LIBS="$ACL_LIBS -lattr"])
+AC_CHECK_LIB(acl,acl_get_file,[ACL_LIBS="$ACL_LIBS -lacl"])
+AC_CHECK_LIB(sec,acl,[ACL_LIBS="$ACL_LIBS -lsec"])
+
+AC_CACHE_CHECK([for Solaris ACL], gvfs_cv_HAVE_SOLARIS_ACLS,[
+		acl_LIBS=$LIBS
+		LIBS="$LIBS -lsec"
+		AC_TRY_LINK([#include <sys/types.h>
+#include <sys/acl.h>],
+[ return acl ("/", GETACL, 0, NULL);],
+gvfs_cv_HAVE_SOLARIS_ACLS=yes, gvfs_cv_HAVE_SOLARIS_ACLS=no)
+		LIBS=$acl_LIBS])
+
+AC_CACHE_CHECK([for POSIX ACL], gvfs_cv_HAVE_POSIX_ACLS,[
+		acl_LIBS=$LIBS
+		LIBS="$LIBS -lacl"
+		AC_TRY_LINK([#include <sys/types.h>
+#include <sys/acl.h>],
+[ acl_t acl; int entry_id; acl_entry_t *entry_p; return acl_get_entry (acl, entry_id, entry_p);],
+gvfs_cv_HAVE_POSIX_ACLS=yes, gvfs_cv_HAVE_POSIX_ACLS=no)
+		LIBS=$acl_LIBS])
+
+if test x"$gvfs_cv_HAVE_SOLARIS_ACLS" = x"yes" ; then
+    have_solaris_acl_support=yes
+    acl_backends="solaris"
+
+    AC_DEFINE(HAVE_SOLARIS_ACL,1,[Have Solaris ACLs])
+    AC_CHECK_HEADERS([pwd.h grp.h])
+fi
+
+if test x"$gvfs_cv_HAVE_POSIX_ACLS" = x"yes" ; then
+    have_posix_acl_support=yes
+    acl_backends="posix"
+
+    AC_DEFINE(HAVE_POSIX_ACL,1,[Have POSIX ACLs])
+    AC_CHECK_FUNCS(acl_extended_file)
+    
+    AC_CHECK_HEADERS([pwd.h])
+    if test "$ac_cv_header_pwd_h" = "yes"; then
+	 	AC_CACHE_CHECK([for posix getpwuid_r],
+			ac_cv_func_posix_getpwuid_r,
+			[AC_TRY_RUN([
+#include <errno.h>
+#include <pwd.h>
+int main () { 
+    char buffer[10000];
+    struct passwd pwd, *pwptr = &pwd;
+    int error;
+    errno = 0;
+    error = getpwuid_r (0, &pwd, buffer, 
+                        sizeof (buffer), &pwptr);
+   return (error < 0 && errno == ENOSYS) 
+	   || error == ENOSYS; 
+}                               ],
+				[ac_cv_func_posix_getpwuid_r=yes],
+				[ac_cv_func_posix_getpwuid_r=no])])
+		dnl GLIB_ASSERT_SET(ac_cv_func_posix_getpwuid_r)
+		if test "$ac_cv_func_posix_getpwuid_r" = yes; then
+			AC_DEFINE(HAVE_POSIX_GETPWUID_R,1,
+				[Have POSIX function getpwuid_r])
+		else
+	 		AC_CACHE_CHECK([for nonposix getpwuid_r],
+				ac_cv_func_nonposix_getpwuid_r,
+				[AC_TRY_LINK([#include <pwd.h>],
+                                	[char buffer[10000];
+                                	struct passwd pwd;
+                                	getpwuid_r (0, &pwd, buffer, 
+                                        		sizeof (buffer));],
+					[ac_cv_func_nonposix_getpwuid_r=yes],
+					[ac_cv_func_nonposix_getpwuid_r=no])])
+			dnl GLIB_ASSERT_SET(ac_cv_func_nonposix_getpwuid_r)
+			if test "$ac_cv_func_nonposix_getpwuid_r" = yes; then
+				AC_DEFINE(HAVE_NONPOSIX_GETPWUID_R,1,
+					[Have non-POSIX function getpwuid_r])
+			fi
+		fi
+	fi 
+
+	AC_CHECK_HEADERS([grp.h])
+
+	AC_CHECK_FUNCS(getgrgid_r)
+	AC_CHECK_FUNCS(getgrnam_r)
+	AC_CHECK_FUNCS(getpwnam_r)
+	
+fi
+
+AC_SUBST(ACL_LIBS)
+AM_CONDITIONAL(HAVE_POSIX_ACL, test $have_posix_acl_support = yes)
+AM_CONDITIONAL(HAVE_SOLARIS_ACL, test $have_solaris_acl_support = yes)
+
+dnl =====================
 dnl File system monitors
 dnl =====================
 fs_monitor_backends=""
@@ -1239,6 +1335,7 @@ echo "
       	Avahi support:		     $msg_avahi
       	Howl support:		     $msg_howl
 	HAL  support:                $msg_hal
+	File ACL backends:           $acl_backends
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends
 	Samba method:		     $msg_samba

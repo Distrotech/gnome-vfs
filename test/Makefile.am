@@ -15,6 +15,7 @@ platform_only_programs = test-dns-sd test-symlinks test-parse-ls-lga
 endif
 
 noinst_PROGRAMS =				\
+	test-acl				\
 	test-address				\
 	test-async				\
 	test-async-cancel                       \
@@ -59,7 +60,8 @@ TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
 		GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules \
 		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml \
 		SRCDIR=$(srcdir)
-TESTS = test-address      \
+TESTS = test-acl	  \
+	test-address      \
 	test-async-cancel \
 	test-escape       \
 	test-uri       	  \
@@ -70,6 +72,9 @@ libraries =						\
 	$(TEST_LIBS)					\
 	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
+
+test_acl_SOURCES = test-acl.c
+test_acl_LDADD = $(libraries)
 
 test_address_SOURCES = test-address.c
 test_address_LDADD = $(libraries)

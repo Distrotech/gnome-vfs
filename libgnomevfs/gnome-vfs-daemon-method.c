@@ -98,6 +98,12 @@ gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_i
 	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
 		file_info->mime_type = g_strdup (corba_info->mime_type);
 	}
+
+	/* TODO:
+	 * Add support for ACL and selinux.
+	 * No daemon method uses it so far, so we're avoiding breaking the
+	 * protocol for now.
+	 */
 }
 
 void
@@ -134,6 +140,12 @@ gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
 	} else {
 		corba_info->mime_type = corba_string_or_null_dup ("");
 	}
+	
+	/* TODO:
+	 * Add support for ACL and selinux.
+	 * No daemon method uses it so far, so we're avoiding breaking the
+	 * protocol for now.
+	 */
 }
 
 
