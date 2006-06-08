@@ -2,6 +2,18 @@
 
 	* configure.in:
 	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-file-info.[ch]:
+	* modules/file-method.c:
+	* programs/gnomevfs-info.c:
+	* programs/gnomevfs-ls.c:
+	* test/test-info.c:
+	Add support for reading the selinux context.
+	Patch from James Antill <james.antill@redhat.com>
+
+2006-06-08  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/Makefile.am:
 	* libgnomevfs/gnome-vfs-ace.[ch]: 
 	* libgnomevfs/gnome-vfs-acl.[ch]:
 	* libgnomevfs/gnome-vfs-file-info.h:

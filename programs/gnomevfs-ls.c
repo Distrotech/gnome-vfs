@@ -33,12 +33,17 @@
 static gboolean timing = FALSE;
 static gboolean quiet = FALSE;
 static gboolean access_rights = FALSE;
+static gboolean selinux_context = FALSE;
 
 static GOptionEntry entries[] = 
 {
 	{ "time", 't', 0, G_OPTION_ARG_NONE, &timing, "Time the directory listening operation", NULL },
 	{ "quiet", 'q', 0, G_OPTION_ARG_NONE, &quiet, "Do not output the stat information (useful in conjunction with the --time)", NULL},
 	{ "access-rights", 'a', 0, G_OPTION_ARG_NONE, &access_rights, "Get access rights", NULL},
+
+#ifdef HAVE_SELINUX
+	{ "selinux-context", 'Z', 0, G_OPTION_ARG_NONE, &selinux_context, "Get selinux context", NULL},
+#endif
 
 	{ NULL }
 };
@@ -111,6 +116,9 @@ show_data (gpointer item, const char *directory)
 		}
 	}
 
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT)
+		g_print ("\tcontext %s", info->selinux_context);
+
 	g_print ("\n");
 	
 	g_free (path);
@@ -137,6 +145,9 @@ list (const char *directory)
 	if (access_rights) {
 		options |= GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS;
 	}
+
+	if (selinux_context)
+		options |= GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT;
 	
 	result = gnome_vfs_directory_open (&handle, directory, options);
 

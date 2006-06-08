@@ -154,6 +154,9 @@ show_file_info (GnomeVFSFileInfo *info, const char *uri)
 				gnome_vfs_mime_application_get_desktop_id (app));
 		}
 	}
+	
+	if (info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT)
+		printf ("SELinux Context   : %s\n", info->selinux_context);
 
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SIZE)
 		printf ("Size              : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
@@ -260,7 +263,8 @@ main (int argc, char **argv)
 	
 	options = GNOME_VFS_FILE_INFO_GET_MIME_TYPE | 
 		  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS |
-		  GNOME_VFS_FILE_INFO_GET_ACL;
+		  GNOME_VFS_FILE_INFO_GET_ACL |
+		  GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT;
 
 	if (slow_mime) {
 		options |= GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE;

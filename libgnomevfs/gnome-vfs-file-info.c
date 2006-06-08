@@ -132,6 +132,7 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	g_free (info->name);
 	g_free (info->symlink_name);
 	g_free (info->mime_type);
+	g_free (info->selinux_context);
 
 	/* Ensure the ref count is maintained correctly */
 	g_static_mutex_lock (&file_info_ref_lock);
@@ -196,6 +197,7 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 	dest->name = g_strdup (src->name);
 	dest->symlink_name = g_strdup (src->symlink_name);
 	dest->mime_type = g_strdup (src->mime_type);
+	dest->selinux_context = g_strdup (src->selinux_context);
 
 	dest->refcount = old_refcount;
 
@@ -254,6 +256,12 @@ symlink_name_matches (char *a, char *b)
 	}
 }
 
+static gboolean
+selinux_context_matches (char *a, char*b) 
+{
+	return symlink_name_matches (a, b);
+}
+
 /**
  * gnome_vfs_file_info_matches:
  * @a: first #GnomeVFSFileInfo struct to compare.
@@ -295,6 +303,7 @@ gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 	    || a->uid != b->uid
 	    || a->gid != b->gid
 	    || strcmp (a->name, b->name) != 0
+	    || !selinux_context_matches (a->selinux_context, b->selinux_context)
 	    || !mime_matches (a->mime_type, b->mime_type)
 	    || !symlink_name_matches (a->symlink_name, b->symlink_name)) {
 		return FALSE;

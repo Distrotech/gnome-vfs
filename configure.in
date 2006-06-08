@@ -1209,6 +1209,19 @@ AC_CHECK_LIB(fam, FAMOpen,
 AC_SUBST(FAM_LIBS)
 fi
 
+dnl ****************************
+dnl *** Check for libselinux ***
+dnl ****************************
+SELINUX_LIBS=
+msg_selinux=no
+AC_CHECK_LIB(selinux, is_selinux_enabled,
+   [AC_CHECK_HEADERS(selinux/selinux.h,
+     [AC_DEFINE(HAVE_SELINUX, 1, [Define to 1 if libselinux is available])
+      SELINUX_LIBS="-lselinux"
+      msg_selinux=yes])
+   ])
+AC_SUBST(SELINUX_LIBS)
+
 dnl **************************
 dnl *** Checks for gtk-doc ***
 dnl **************************
@@ -1335,6 +1348,7 @@ echo "
       	Avahi support:		     $msg_avahi
       	Howl support:		     $msg_howl
 	HAL  support:                $msg_hal
+	SELinux  support:            $msg_selinux
 	File ACL backends:           $acl_backends
 	Gtk Doc:                     $enable_gtk_doc
 	FS monitor backends:         $fs_monitor_backends

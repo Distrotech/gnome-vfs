@@ -125,6 +125,7 @@ libgnomevfs_2_la_LIBADD =			\
 	$(FNMATCH_LIBS)				\
 	$(SOCKET_LIBS)				\
 	$(INTLLIBS)				\
+	$(SELINUX_LIBS)				\
 	$(NULL)
 
 libgnomevfs_2_la_LDFLAGS =			\

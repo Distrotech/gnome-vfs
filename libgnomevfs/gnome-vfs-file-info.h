@@ -128,6 +128,7 @@ typedef enum {
  * bitfield are valid
  * @GNOME_VFS_FILE_INFO_FIELDS_IDS: UID and GID information are valid
  * @GNOME_VFS_FILE_INFO_FIELDS_ACL: ACL field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT: SELinux Security context is valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
  * Name is always assumed valid (how else would you have gotten a
@@ -152,7 +153,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13,
 	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14,
 	GNOME_VFS_FILE_INFO_FIELDS_IDS = 1 << 15,
-	GNOME_VFS_FILE_INFO_FIELDS_ACL = 1 << 16	
+	GNOME_VFS_FILE_INFO_FIELDS_ACL = 1 << 16,
+	GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT = 1 << 17
 } GnomeVFSFileInfoFields;
 
 /* FIXME: It's silly to use the symbolic constants for POSIX here.
@@ -270,12 +272,14 @@ typedef struct {
 	/* File ACLs */
 	GnomeVFSACL *acl;
 
+	/* SELinux security context. -- ascii string, raw format. */
+	char* selinux_context;
+
 	/* Reserved for future expansions to GnomeVFSFileInfo without having
 	   to break ABI compatibility */
 	void *reserved1;
 	void *reserved2;
 	void *reserved3;
-	void *reserved4;
 } GnomeVFSFileInfo;
 
 /**
@@ -311,7 +315,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3,
 	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4,
 	GNOME_VFS_FILE_INFO_NAME_ONLY = 1 << 5,
-	GNOME_VFS_FILE_INFO_GET_ACL = 1 << 6
+	GNOME_VFS_FILE_INFO_GET_ACL = 1 << 6,
+	GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT = 1 << 7
 } GnomeVFSFileInfoOptions;
 
 /**
@@ -333,7 +338,8 @@ typedef enum {
 	GNOME_VFS_SET_FILE_INFO_PERMISSIONS = 1 << 1,
 	GNOME_VFS_SET_FILE_INFO_OWNER = 1 << 2,
 	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3,
-	GNOME_VFS_SET_FILE_INFO_ACL = 1 << 4
+	GNOME_VFS_SET_FILE_INFO_ACL = 1 << 4,
+	GNOME_VFS_SET_FILE_INFO_SELINUX_CONTEXT = 1 << 5
 } GnomeVFSSetFileInfoMask;
 
 

@@ -60,6 +60,10 @@
 #include <fam.h>
 #endif
 
+#ifdef HAVE_SELINUX
+#include <selinux/selinux.h>
+#endif
+
 #if defined(HAVE_LINUX_INOTIFY_H) || defined(HAVE_SYS_INOTIFY_H)
 #define USE_INOTIFY 1
 #include "inotify-helper.h"
@@ -722,6 +726,91 @@ read_link (const gchar *full_name)
 }
 #endif
 
+#ifdef HAVE_SELINUX
+/* convert a SELinux scurity context string to a g_malloc() compatible string */
+static char *sec_con2g_str(char *tmp)
+{
+        char *ret = tmp;
+  
+	if (tmp) {
+	         ret = g_strdup(tmp);
+		 freecon(tmp);
+	}
+
+	return ret;
+}
+#endif
+
+/* Get the SELinux security context */
+static int
+get_selinux_context (
+	GnomeVFSFileInfo *info,
+	const char *full_name,
+	GnomeVFSFileInfoOptions options)
+{
+#ifdef HAVE_SELINUX
+	if (is_selinux_enabled()) {
+	  
+		if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
+			&& (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
+
+			/* we are a symlink and aren't asked to follow -
+			 * return the type for a symlink */
+						
+			if (lgetfilecon_raw(full_name, &info->selinux_context) < 0)
+				return gnome_vfs_result_from_errno ();
+		} else {
+
+			if (getfilecon_raw(full_name, &info->selinux_context) < 0)
+				return gnome_vfs_result_from_errno ();
+		}
+
+		info->selinux_context = sec_con2g_str(info->selinux_context);
+		
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT;
+		return GNOME_VFS_OK;
+	}
+#endif
+	return GNOME_VFS_OK;
+}
+
+/* Get the SELinux security context from handle */
+static int 
+get_selinux_context_from_handle (
+	GnomeVFSFileInfo *info,
+	FileHandle *handle)
+{
+#ifdef HAVE_SELINUX
+	if (is_selinux_enabled()) {
+		if (fgetfilecon_raw(handle->fd, &info->selinux_context) >= 0) 
+			return gnome_vfs_result_from_errno ();	
+
+		info->selinux_context = sec_con2g_str(info->selinux_context);
+		
+		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SELINUX_CONTEXT;
+		return GNOME_VFS_OK;
+	}	
+#endif
+	return GNOME_VFS_OK;
+}
+
+/* Set the SELinux security context */
+static int 
+set_selinux_context (
+	const GnomeVFSFileInfo *info,
+	const char *full_name) 
+{
+#ifdef HAVE_SELINUX
+	if (is_selinux_enabled()) {
+		if (setfilecon_raw(full_name, info->selinux_context) < 0)
+			return gnome_vfs_result_from_errno ();
+
+		return GNOME_VFS_OK;
+	}
+#endif
+	return GNOME_VFS_OK;
+}
+
 static void
 get_access_info (GnomeVFSFileInfo *file_info,
 		 const gchar *full_name)
@@ -1020,6 +1109,12 @@ do_read_directory (GnomeVFSMethod *method,
 	if (handle->options & GNOME_VFS_FILE_INFO_NAME_ONLY) {
 		return GNOME_VFS_OK;
 	}
+
+	if (handle->options & GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT) {
+
+		/* Attempt to get selinux contet, ignore error (see below) */
+		get_selinux_context(file_info, full_name, handle->options);
+	}
 		
 	if (get_stat_info (file_info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
 		/* Return OK - this should not terminate the directory iteration
@@ -1070,6 +1165,14 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 	}
 
+	if (options & GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT) {
+		result = get_selinux_context (file_info, full_name, options);
+		if (result != GNOME_VFS_OK) { 
+			g_free (full_name);
+			return result;
+		}
+	} 
+
 	if (options & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
 		get_access_info (file_info, full_name);
 	}
@@ -1116,6 +1219,14 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		g_free (full_name);
 		return result;
+	}
+
+	if (options & GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT) {
+		result = get_selinux_context_from_handle (file_info, file_handle);
+		if (result != GNOME_VFS_OK) {
+			g_free (full_name);
+			return result;
+		}
 	}
 
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
@@ -2215,6 +2326,14 @@ do_set_file_info (GnomeVFSMethod *method,
 
 		if (result != GNOME_VFS_OK) {
 			g_free (full_name);
+			return result;
+		}
+	}
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_SELINUX_CONTEXT) {
+		GnomeVFSResult result = set_selinux_context(info, full_name);
+		if (result < 0) {
+			g_free(full_name);
 			return result;
 		}
 	}
