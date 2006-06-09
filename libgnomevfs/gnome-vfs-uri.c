@@ -1974,7 +1974,7 @@ gnome_vfs_uri_hash (gconstpointer p)
 		HASH_STRING (hash_value, uri_p->text);
 		HASH_STRING (hash_value, uri_p->method_string);
 
-		if (uri_p->parent != NULL) {
+		if (uri_p->parent == NULL) {
 			const GnomeVFSToplevelURI *toplevel;
 
 			toplevel = (const GnomeVFSToplevelURI *) uri_p;

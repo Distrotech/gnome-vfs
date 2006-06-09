@@ -1,3 +1,9 @@
+2006-06-09  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_hash):
+	Fix hash calculation for toplevel uris.
+	Bug found by Ken Ishii <keni4i@yahoo.com>
+
 2006-06-08  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
