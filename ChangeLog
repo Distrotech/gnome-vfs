@@ -1,3 +1,19 @@
+2006-06-12  John McCutchan  <john@johnmccutchan.com>
+
+	* modules/inotify-kernel.c:
+	* modules/inotify-missing.c:
+
+	The inotify monitoring code has two timers that run continuously
+
+	1) The missing list scan timer. This timer tests if any missing directories
+	have been recreated.
+
+	2) The event queue processing timer. This timer pairs MOVED_TO and MOVED_FROM
+	events together.
+
+	Both of these timers can be turned off when they have no work to do.
+	Also extend the delay between missing list scans from 1 to 2 seconds.
+
 2006-06-12  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

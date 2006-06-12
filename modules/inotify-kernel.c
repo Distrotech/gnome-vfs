@@ -42,7 +42,7 @@
 #endif
 
 /* Timings for pairing MOVED_TO / MOVED_FROM events */
-#define PROCESS_EVENTS_TIME 125 /* milliseconds */
+#define PROCESS_EVENTS_TIME 250 /* milliseconds (4 hz) */
 #define DEFAULT_HOLD_UNTIL_TIME 1000 /* 1 millisecond */
 #define MOVE_HOLD_UNTIL_TIME 5000 /* 5 milliseconds */
 
@@ -58,6 +58,8 @@ static gboolean ik_process_eq_callback (gpointer user_data);
 
 static guint32 ik_move_matches = 0;
 static guint32 ik_move_misses = 0;
+
+static gboolean process_eq_running = FALSE;
 
 /* We use the lock from inotify-helper.c
  *
@@ -111,7 +113,6 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	event_queue = g_queue_new ();
 	events_to_process = g_queue_new ();
 
-	g_timeout_add (PROCESS_EVENTS_TIME, ik_process_eq_callback, NULL);
 
 	return TRUE;
 }
@@ -328,7 +329,6 @@ const char *ik_mask_to_string (guint32 mask)
 }
 
 /* Implementation below */
-
 #define MAX_PENDING_COUNT 4
 #define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
 #define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
@@ -416,6 +416,14 @@ static gboolean ik_read_callback(gpointer user_data)
 		buffer_i += event_size;
 		events++;
 	}
+
+	/* If the event process callback is off, turn it back on */
+	if (!process_eq_running && events)
+	{
+		process_eq_running = TRUE;
+		g_timeout_add (PROCESS_EVENTS_TIME, ik_process_eq_callback, NULL);
+	}
+
 	G_UNLOCK(inotify_lock);
 	return TRUE;
 }
@@ -584,7 +592,7 @@ gboolean ik_process_eq_callback (gpointer user_data)
 {
     /* Try and move as many events to the event queue */
 	G_LOCK(inotify_lock);
-    ik_process_events ();
+	ik_process_events ();
 
 	while (!g_queue_is_empty (event_queue))
 	{
@@ -593,6 +601,13 @@ gboolean ik_process_eq_callback (gpointer user_data)
 		user_cb (event);
 	}
 
-	G_UNLOCK(inotify_lock);
-	return TRUE;
+	if (g_queue_get_length (events_to_process) == 0)
+	{
+	    	process_eq_running = FALSE;
+		G_UNLOCK(inotify_lock);
+		return FALSE;
+	} else {
+		G_UNLOCK(inotify_lock);
+		return TRUE;
+	}
 }

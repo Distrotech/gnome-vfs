@@ -30,7 +30,7 @@
 #include "inotify-missing.h"
 #include "inotify-path.h"
 
-#define SCAN_MISSING_TIME 1000 /* 1 Hz */
+#define SCAN_MISSING_TIME 2000 /* 1/2 Hz */
 
 static gboolean     im_debug_enabled = FALSE;
 #define IM_W if (im_debug_enabled) g_warning
@@ -38,6 +38,7 @@ static gboolean     im_debug_enabled = FALSE;
 /* We put ih_sub_t's that are missing on this list */
 static GList *missing_sub_list = NULL;
 static gboolean im_scan_missing (gpointer user_data);
+static gboolean scan_missing_running = FALSE;
 static void (*missing_cb)(ih_sub_t *sub) = NULL;
 
 G_LOCK_EXTERN (inotify_lock);
@@ -50,7 +51,6 @@ void im_startup (void (*callback)(ih_sub_t *sub))
 	if (!initialized) {
 		initialized = TRUE;
 		missing_cb = callback;
-		g_timeout_add (SCAN_MISSING_TIME, im_scan_missing, NULL);
 	}
 }
 
@@ -64,6 +64,13 @@ void im_add (ih_sub_t *sub)
 
 	IM_W("adding %s to missing list\n", sub->dirname);
 	missing_sub_list = g_list_prepend (missing_sub_list, sub);
+
+	/* If the timeout is turned off, we turn it back on */
+	if (!scan_missing_running)
+	{
+	    	scan_missing_running = TRUE;
+		g_timeout_add (SCAN_MISSING_TIME, im_scan_missing, NULL);
+	}
 }
 
 /* inotify_lock must be held before calling */
@@ -125,8 +132,15 @@ static gboolean im_scan_missing (gpointer user_data)
 
 	g_list_free (nolonger_missing);
 
-	G_UNLOCK(inotify_lock);
-	return TRUE;
-
+	/* If the missing list is now empty, we disable the timeout */
+	if (g_list_length (missing_sub_list) == 0)
+	{
+	    scan_missing_running = FALSE;
+	    G_UNLOCK(inotify_lock);
+	    return FALSE;
+	} else {
+	    G_UNLOCK(inotify_lock);
+	    return TRUE;
+	}
 }
 
