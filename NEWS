@@ -1,3 +1,10 @@
+gnome-vfs 2.15.2
+	* win32 fixes
+	* Don't hide smb shares that end with $
+	* ACL support
+	* Support for reading selinux context
+	* Fix bug in gnome_vfs_uri_hash
+	
 gnome-vfs 2.15.1
 	* Fix sftp symlink support
 	* Fix smb connecting many times to the server
