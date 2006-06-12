@@ -20,7 +20,7 @@
    Boston, MA 02111-1307, USA.
 
    Authors: 
-		 John McCutchan <ttb@tentacle.dhs.org>
+		 John McCutchan <john@johnmccutchan.com>
 */
 
 #include "config.h"

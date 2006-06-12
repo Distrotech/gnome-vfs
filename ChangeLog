@@ -1,5 +1,9 @@
 2006-06-12  John McCutchan  <john@johnmccutchan.com>
 
+	* modules/inotify*: Update my email address
+
+2006-06-12  John McCutchan  <john@johnmccutchan.com>
+
 	* modules/inotify-kernel.c:
 	* modules/inotify-missing.c:
 

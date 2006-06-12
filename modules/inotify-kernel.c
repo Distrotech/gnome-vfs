@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2005 John McCutchan
+	Copyright (C) 2006 John McCutchan <john@johnmccutchan.com>
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by

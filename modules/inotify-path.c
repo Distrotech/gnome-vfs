@@ -2,7 +2,7 @@
 
 /* inotify-helper.c - Gnome VFS Monitor based on inotify.
 
-   Copyright (C) 2005 John McCutchan
+   Copyright (C) 2006 John McCutchan
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -20,7 +20,7 @@
    Boston, MA 02111-1307, USA.
 
    Authors: 
-		 John McCutchan <ttb@tentacle.dhs.org>
+		 John McCutchan <john@johnmccutchan.com>
 */
 
 #include "config.h"
