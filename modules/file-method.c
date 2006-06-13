@@ -95,9 +95,11 @@ static FAMConnection *fam_connection = NULL;
 static gint fam_watch_id = 0;
 G_LOCK_DEFINE_STATIC (fam_connection);
 
+/* The first argument of this structure must be uri, so that it can be 
+   cast safely into a FileHandle. */
 typedef struct {
-	FAMRequest request;
 	GnomeVFSURI *uri;
+	FAMRequest request;
 	gboolean     cancelled;
 } FileMonitorHandle;
 #endif
@@ -2615,7 +2617,8 @@ do_monitor_add (GnomeVFSMethod *method,
 		GnomeVFSMonitorType monitor_type)
 {
 #ifdef USE_INOTIFY
-	if (ih_startup ()) {
+	/* For remote files, always prefer FAM */
+	if (do_is_local (method, uri) && ih_startup ()) {
 		return inotify_monitor_add (method, method_handle_return, uri, monitor_type);
 	}
 #endif
@@ -2679,7 +2682,12 @@ do_monitor_cancel (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
 #ifdef USE_INOTIFY
-	if (ih_startup ()) {
+	FileHandle *file_handle;
+	file_handle = (FileHandle *) method_handle;
+	/* It is possible to call file_handle->uri as it can be either 
+	 * a FileMonitorHandle or a ih_sub_t, and both structures also
+	 * have a GnomeVFSURI as first element. */
+	if (do_is_local (method, file_handle->uri) && ih_startup ()) {
 		return inotify_monitor_cancel (method, method_handle);
 	}
 #endif

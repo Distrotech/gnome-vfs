@@ -1,3 +1,10 @@
+2006-06-13  John McCutchan  <john@johnmccutchan.com>
+	From Josselin Mouette <joss@debian.org>:
+	* modules/file-method.c: (do_monitor_add), (do_monitor_cancel):
+	When inotify support is enabled, it always gets used if it's found in the
+	kernel. However, it won't work on remote filesystems. As such, monitoring for
+	NFS filesystems should still be done with FAM.
+
 2006-06-13  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/file-method-acl.c:
