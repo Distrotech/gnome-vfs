@@ -46,10 +46,12 @@
 
 #ifdef HAVE_POSIX_ACL
 # include <acl/libacl.h>
+#define HAVE_ACL
 #endif
 
 #ifdef HAVE_SOLARIS_ACL
 # include <sys/acl.h>
+#define HAVE_ACL
 #endif
 
 #include "file-method-acl.h"
@@ -59,6 +61,8 @@
 #define CMD_PERM_EXECUTE        1
 #define CMD_PERM_COND_EXECUTE   8
 
+
+#ifdef HAVE_ACL
 
 static char *
 uid_to_string (uid_t uid) 
@@ -804,6 +808,8 @@ GnomeVFSResult file_get_acl (const char       *path,
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
 }
+
+#endif /* HAVE_ACL */
 
 GnomeVFSResult 
 file_set_acl (const char             *path,

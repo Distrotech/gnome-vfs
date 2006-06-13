@@ -1,3 +1,8 @@
+2006-06-13  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method-acl.c:
+	Fix build when no ACL supported.
+
 2006-06-12  John McCutchan  <john@johnmccutchan.com>
 
 	* modules/inotify*: Update my email address
