@@ -1,3 +1,9 @@
+2006-06-19  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Check for later version of libselinux (#344349)
+	Patch from Elijah Newren
+
 2006-06-13  John McCutchan  <john@johnmccutchan.com>
 	From Josselin Mouette <joss@debian.org>:
 	* modules/file-method.c: (do_monitor_add), (do_monitor_cancel):
