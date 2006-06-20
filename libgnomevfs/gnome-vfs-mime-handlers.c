@@ -1504,6 +1504,9 @@ expand_macro (char macro, GString *exec, GnomeVFSMimeApplication *application, G
 			}
 		case 'm': /* deprecated */
 			break;
+		case '%':
+			g_string_append_c (exec, '%');
+			break;
 	}
 
 	*uri_list = uris;
