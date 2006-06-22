@@ -18,6 +18,12 @@ Listing the contents of directories.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### TYPEDEF GnomeVFSDirectoryHandle ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### ENUM GnomeVFSDirectoryVisitOptions ##### -->
 <para>
 
@@ -35,7 +41,7 @@ Listing the contents of directories.
 @rel_path: 
 @info: 
 @recursing_will_loop: 
-@data: 
+@user_data: 
 @recurse: 
 @Returns: 
 

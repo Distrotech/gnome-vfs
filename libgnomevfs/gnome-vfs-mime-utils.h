@@ -37,7 +37,18 @@ G_BEGIN_DECLS
  **/
 #define GNOME_VFS_MIME_TYPE_UNKNOWN "application/octet-stream"
 
-/* Comparison of mime types */
+/**
+ * GnomeVFSMimeEquivalence:
+ * @GNOME_VFS_MIME_UNRELATED: The two MIME types are not related.
+ * @GNOME_VFS_MIME_IDENTICAL: The two MIME types are identical.
+ * @GNOME_VFS_MIME_PARENT: One of the two MIME types is a parent of the other one.
+ * 			   Note that this relationship is transient, i.e. if
+ * 			   %a is a parent of %b and %b is a parent of %c,
+ * 			   %a is also considered a parent of %c.
+ *
+ * Describes the possible relationship between two MIME types, returned by
+ * gnome_vfs_mime_type_get_equivalence().
+ */
 typedef enum {
   GNOME_VFS_MIME_UNRELATED,
   GNOME_VFS_MIME_IDENTICAL,
@@ -62,4 +73,4 @@ char                   *gnome_vfs_get_slow_mime_type          (const char    *te
 
 G_END_DECLS
 
-#endif
+#endif /* GNOME_VFS_MIME_UTILS_H */

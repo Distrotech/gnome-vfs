@@ -1010,11 +1010,14 @@ unmount_connected_server (GnomeVFSVolume *volume,
 
 /** 
  * gnome_vfs_volume_unmount:
- * @volume:
- * @callback:
- * @user_data:
+ * @volume: the #GnomeVFSVolume that should be unmounted.
+ * @callback: the #GnomeVFSVolumeOpCallback that should be invoked after unmounting @volume.
+ * @user_data: the user data to pass to @callback.
  *
- *
+ * Note that gnome_vfs_volume_unmount() may also invoke gnome_vfs_volume_eject(),
+ * if the @volume signals that it should be ejected when it is unmounted.
+ * This may be true for CD-ROMs, USB sticks and other devices, depending on the
+ * backend providing the @volume.
  *
  * Since: 2.6
  */
@@ -1076,11 +1079,27 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 
 /** 
  * gnome_vfs_volume_eject:
- * @volume:
- * @callback:
- * @user_data:
+ * @volume: the #GnomeVFSVolume that should be ejected.
+ * @callback: the #GnomeVFSVolumeOpCallback that should be invoked after ejecting of @volume.
+ * @user_data: the user data to pass to @callback.
  *
+ * Requests ejection of a #GnomeVFSVolume.
  *
+ * Before the unmount operation is executed, the
+ * #GnomeVFSVolume::pre-unmount signal is emitted.
+ *
+ * If the @volume is a mount point (its type is
+ * #GNOME_VFS_VOLUME_TYPE_MOUNTPOINT), it is unmounted,
+ * and if it refers to a disc, it is also ejected.
+ *
+ * If the @volume is a special VFS mount, i.e.
+ * its type is #GNOME_VFS_VOLUME_TYPE_VFS_MOUNT, it
+ * is ejected.
+ *
+ * If the @volume is a connected server, it
+ * is removed from the list of connected servers.
+ *
+ * Otherwise, no further action is done.
  *
  * Since: 2.6
  */
@@ -1151,11 +1170,9 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 
 /** 
  * gnome_vfs_drive_mount:
- * @drive:
- * @callback:
- * @user_data:
- *
- *
+ * @drive: the #GnomeVFSDrive that should be mounted.
+ * @callback: the #GnomeVFSVolumeOpCallback that should be invoked after mounting @drive.
+ * @user_data: the user data to pass to @callback.
  *
  * Since: 2.6
  */
@@ -1182,11 +1199,18 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 
 /** 
  * gnome_vfs_drive_unmount:
- * @drive:
- * @callback:
- * @user_data:
+ * @drive: the #GnomeVFSDrive that should be unmounted.
+ * @callback: the #GnomeVFSVolumeOpCallback that should be invoked after unmounting @drive.
+ * @user_data: the user data to pass to @callback.
  *
+ * gnome_vfs_drive_unmount() invokes gnome_vfs_drive_eject(), if the @drive signals
+ * that it should be ejected when it is unmounted. This may be true for CD-ROMs,
+ * USB sticks and other devices, depending on the backend providing the #GnomeVFSDrive @drive.
  *
+ * If the @drive does not signal that it should be ejected when it is unmounted,
+ * gnome_vfs_drive_unmount() calls gnome_vfs_volume_unmount() for each of the
+ * @drive's mounted #GnomeVFSVolumes, which can be queried using
+ * gnome_vfs_drive_get_mounted_volumes().
  *
  * Since: 2.6
  */
@@ -1219,11 +1243,18 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 
 /** 
  * gnome_vfs_drive_eject:
- * @drive:
- * @callback:
- * @user_data:
+ * @drive: the #GnomeVFSDrive that should be ejcted.
+ * @callback: the #GnomeVFSVolumeOpCallback that should be invoked after ejecting @drive.
+ * @user_data: the user data to pass to @callback.
  *
+ * If @drive has associated #GnomeVFSVolume objects, all of them will be
+ * unmounted by calling gnome_vfs_volume_unmount() for each volume in
+ * gnome_vfs_drive_get_mounted_volumes(), except for the last one,
+ * for which gnome_vfs_volume_eject() is called to ensure that the
+ * @drive's media is ejected.
  *
+ * If @drive however has no associated #GnomeVFSVolume objects, it
+ * simply calls an unmount helper on the @drive.
  *
  * Since: 2.6
  */
@@ -1279,18 +1310,54 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 
 /** 
  * gnome_vfs_connect_to_server:
- * @uri:
- * @display_name:
- * @icon:
+ * @uri: The string representation of the server to connect to.
+ * @display_name: The display name that is used to identify the server connection.
+ * @icon: The icon that is used to identify the server connection.
  *
+ * This function adds a server connection to the specified @uri, which is displayed
+ * in user interfaces with the specified @display_name and @icon.
  *
+ * If this function is invoked successfully, the created server shows up in the
+ * list of mounted volumes of the #GnomeVFSVolumeMonitor, which can be queried
+ * using gnome_vfs_volume_monitor_get_mounted_volumes().
+ *
+ * <note>
+ * <para>
+ * This function does not have a return value. Hence, you can't easily detect
+ * whether the specified server was successfully created. The actual creation and
+ * consumption of the new server through the #GnomeVFSVolumeMonitor is done
+ * asynchronously.
+ * </para>
+ * <para>
+ * @uri, @display_name, and @icon can be freely chosen, but should be meaningful:
+ * </para>
+ * <para>
+ * @uri should refer to a valid location. You can check the validity of the
+ * location by calling gnome_vfs_uri_new() with @uri, and checking whether
+ * the return value is not %NULL.
+ * </para>
+ * <para>
+ * The @display_name should be queried from the user, and an empty string
+ * should not be considered valid.
+ * </para>
+ * <para>
+ * @icon typically references an icon from the icon theme. Some
+ * implementations currently use <literal>gnome-fs-smb</literal>,
+ * <literal>gnome-fs-ssh</literal>, <literal>gnome-fs-ftp</literal> and
+ * <literal>gnome-fs-share</literal>, depending on the type of the server
+ * referenced by @uri. The icon naming conventions might change in the
+ * future, though. Obeying the <ulink
+ * url="http://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html">
+ * freedesktop.org Icon Naming Specification</ulink> is suggested.
+ * </para>
+ * </note>
  *
  * Since: 2.6
  */
 void
-gnome_vfs_connect_to_server (char                     *uri,
-			     char                     *display_name,
-			     char                     *icon)
+gnome_vfs_connect_to_server (const char               *uri,
+			     const char               *display_name,
+			     const char               *icon)
 {
 	GConfClient *client;
 	GSList *dirs, *l;

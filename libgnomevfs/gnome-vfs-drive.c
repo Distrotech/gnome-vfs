@@ -83,6 +83,19 @@ gnome_vfs_drive_class_init (GnomeVFSDriveClass *class)
 	/* GObject signals */
 	o_class->finalize = gnome_vfs_drive_finalize;
 
+	/**
+	 * GnomeVFSDrive::volume-mounted:
+	 * @drive: the #GnomeVFSDrive which received the signal.
+	 * @volume: the #GnomeVFSVolume that has been mounted.
+	 *
+	 * This signal is emitted after the #GnomeVFSVolume @volume has been mounted.
+	 *
+	 * When the @volume is mounted, it is added to the @drive's list of mounted
+	 * volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 *
+	 * It is also added to the list of the #GnomeVFSVolumeMonitor's list of mounted
+	 * volumes, which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 **/
 	drive_signals[VOLUME_MOUNTED] =
 		g_signal_new ("volume_mounted",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -93,6 +106,24 @@ gnome_vfs_drive_class_init (GnomeVFSDriveClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_VOLUME);
 
+	/**
+	 * GnomeVFSDrive::volume-pre-unmount:
+	 * @drive: the #GnomeVFSDrive which received the signal.
+	 * @volume: the #GnomeVFSVolume that is about to be unmounted.
+	 *
+	 * This signal is emitted when the #GnomeVFSVolume @volume, which has been present in
+	 * the #GnomeVFSDrive @drive, is about to be unmounted.
+	 *
+	 * When the @volume is unmounted, it is removed from the @drive's list of mounted
+	 * volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 *
+	 * It is also removed from the #GnomeVFSVolumeMonitor's list of mounted volumes,
+	 * which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 *
+	 * When a client application receives this signal, it must free all resources
+	 * associated with the @volume, for instance cancel all pending file operations
+	 * on the @volume, and cancel all pending file monitors using gnome_vfs_monitor_cancel().
+	 **/
 	drive_signals[VOLUME_PRE_UNMOUNT] =
 		g_signal_new ("volume_pre_unmount",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -103,6 +134,20 @@ gnome_vfs_drive_class_init (GnomeVFSDriveClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_VOLUME);
 
+	/**
+	 * GnomeVFSDrive::volume-unmounted:
+	 * @drive: the #GnomeVFSDrive which received the signal.
+	 * @volume: the #GnomeVFSVolume that has been unmounted.
+	 *
+	 * This signal is emitted after the #GnomeVFSVolume @volume, which had been present in
+	 * the #GnomeVFSDrive @drive, has been unmounted.
+	 *
+	 * When the @volume is unmounted, it is removed from the @drive's list of mounted
+	 * volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 *
+	 * It is also removed from the #GnomeVFSVolumeMonitor's list of mounted volumes,
+	 * which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 **/
 	drive_signals[VOLUME_UNMOUNTED] =
 		g_signal_new ("volume_unmounted",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -128,11 +173,12 @@ gnome_vfs_drive_init (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_ref:
- * @drive: a #GnomeVFSDrive.
+ * @drive: a #GnomeVFSDrive, or %NULL.
  *
- * Increases the refcount of the @drive by 1.
+ * Increases the refcount of the @drive by 1, if it is not %NULL.
  *
- * Returns: the @drive.
+ * Returns: the @drive with its refcount increased by one,
+ * 	    or %NULL if @drive is %NULL.
  *
  * Since: 2.6
  */
@@ -151,9 +197,9 @@ gnome_vfs_drive_ref (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_unref:
- * @drive: a #GnomeVFSDrive.
+ * @drive: a #GnomeVFSDrive, or %NULL.
  *
- * Decreases the refcount of the @drive by 1.
+ * Decreases the refcount of the @drive by 1, if it is not %NULL.
  *
  * Since: 2.6
  */
@@ -266,9 +312,9 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 
 /** 
  * gnome_vfs_drive_volume_list_free:
- * @volumes: list of #GnomeVFSVolumes to be freed.
+ * @volumes: list of #GnomeVFSVolumes to be freed, or %NULL.
  *
- * Frees the list @volumes.
+ * Frees the list @volumes, if it is not %NULL.
  *
  * Since: 2.8
  */
@@ -361,6 +407,14 @@ gnome_vfs_drive_add_mounted_volume_private (GnomeVFSDrive      *drive,
  * gnome_vfs_drive_get_device_path:
  * @drive: a #GnomeVFSDrive.
  *
+ * Returns the device path of a #GnomeVFSDrive.
+ *
+ * For HAL drives, this returns the value of the
+ * drives's "block.device" key. For UNIX mounts,
+ * it returns the %mntent's %mnt_fsname entry.
+ *
+ * Otherwise, it returns %NULL.
+ *
  * Returns: a newly allocated string for the device path of the #drive.
  *
  * Since: 2.6
@@ -374,6 +428,12 @@ gnome_vfs_drive_get_device_path (GnomeVFSDrive *drive)
 /** 
  * gnome_vfs_drive_get_activation_uri:
  * @drive: a #GnomeVFSDrive.
+ *
+ * Returns the activation URI of a #GnomeVFSDrive.
+ *
+ * The returned URI usually refers to a valid location. You can check the
+ * validity of the location by calling gnome_vfs_uri_new() with the URI,
+ * and checking whether the return value is not %NULL.
  *
  * Returns: a newly allocated string for the activation uri of the #drive.
  *
@@ -389,7 +449,12 @@ gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
  * gnome_vfs_drive_get_hal_udi:
  * @drive: a #GnomeVFSDrive.
  *
- * Returns: a newly allocated string for the unique device id of the @drive.
+ * Returns the HAL UDI of a #GnomeVFSDrive.
+ *
+ * For HAL drives, this matches the value of the "info.udi" key,
+ * for other drives it is %NULL.
+ *
+ * Returns: a newly allocated string for the unique device id of the @drive, or %NULL.
  *
  * Since: 2.6
  */
@@ -431,6 +496,10 @@ gnome_vfs_drive_get_icon (GnomeVFSDrive *drive)
  * gnome_vfs_drive_is_user_visible:
  * @drive: a #GnomeVFSDrive.
  *
+ * Returns whether the @drive is visible to the user. This
+ * should be used by applications to determine whether it
+ * is included in user interfaces listing available drives.
+ *
  * Returns: %TRUE if the @drive is visible to the user, %FALSE otherwise.
  *
  * Since: 2.6
@@ -460,7 +529,37 @@ gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
  * @a: a #GnomeVFSDrive.
  * @b: a #GnomeVFSDrive.
  *
- * Returns: 0 if the drives are same.
+ * Compares two #GnomeVFSDrive objects @a and @b. Two
+ * #GnomeVFSDrive objects referring to different drives
+ * are guaranteed to not return 0 when comparing them,
+ * if they refer to the same drive 0 is returned.
+ *
+ * The resulting #gint should be used to determine the
+ * order in which @a and @b are displayed in graphical
+ * user interfces.
+ *
+ * The comparison algorithm first of all peeks the device
+ * type of @a and @b, they will be sorted in the following
+ * order:
+ * <itemizedlist>
+ * <listitem><para>Magnetic and opto-magnetic drives (ZIP, floppy)</para></listitem>
+ * <listitem><para>Optical drives (CD, DVD)</para></listitem>
+ * <listitem><para>External drives (USB sticks, music players)</para></listitem>
+ * <listitem><para>Mounted hard disks<</para></listitem>
+ * <listitem><para>Other drives<</para></listitem>
+ * </itemizedlist>
+ *
+ * Afterwards, the display name of @a and @b is compared
+ * using a locale-sensitive sorting algorithm, which
+ * involves g_utf8_collate_key().
+ *
+ * If two drives have the same display name, their
+ * unique ID is compared which can be queried using
+ * gnome_vfs_drive_get_id().
+ *
+ * Returns: 0 if the drives refer to the same @GnomeVFSDrive,
+ * a negative value if @a should be displayed before @b,
+ * or a positive value if @a should be displayed after @b.
  *
  * Since: 2.6
  */
@@ -470,7 +569,11 @@ gnome_vfs_drive_compare (GnomeVFSDrive *a,
 {
 	GnomeVFSDrivePrivate *priva, *privb;
 	gint res;
-	
+
+	if (a == b) {
+		return 0;
+	}
+
 	priva = a->priv;
 	privb = b->priv;
 

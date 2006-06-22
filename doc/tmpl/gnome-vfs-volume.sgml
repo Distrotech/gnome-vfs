@@ -77,7 +77,7 @@ Abstraction for a mounted file system or a network location.
 @succeeded: 
 @error: 
 @detailed_error: 
-@data: 
+@user_data: 
 
 
 <!-- ##### ENUM GnomeVFSVolumeType ##### -->

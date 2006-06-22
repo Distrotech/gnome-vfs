@@ -122,15 +122,6 @@ Monitors volume mounts and unmounts
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_volume_monitor_emit_pre_unmount ##### -->
-<para>
-
-</para>
-
-@volume_monitor: 
-@volume: 
-
-
 <!-- ##### FUNCTION gnome_vfs_volume_monitor_get_connected_drives ##### -->
 <para>
 

@@ -17,13 +17,6 @@ functions to get a mime-type for a file using its name or its content
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION gnome_vfs_mime_shutdown ##### -->
-<para>
-
-</para>
-
-
-
 <!-- ##### FUNCTION gnome_vfs_mime_type_from_name ##### -->
 <para>
 
@@ -70,6 +63,16 @@ functions to get a mime-type for a file using its name or its content
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_get_file_mime_type_fast ##### -->
+<para>
+
+</para>
+
+@path: 
+@optional_stat_info: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_get_file_mime_type ##### -->
 <para>
 
@@ -97,5 +100,27 @@ functions to get a mime-type for a file using its name or its content
 
 @mime_type: 
 @Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_info_cache_reload ##### -->
+<para>
+
+</para>
+
+@dir: 
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_reload ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_shutdown ##### -->
+<para>
+
+</para>
+
 
 

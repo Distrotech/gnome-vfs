@@ -28,6 +28,12 @@ You can manually force all internally buffered data to get written with
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### TYPEDEF GnomeVFSSocketBuffer ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION gnome_vfs_socket_buffer_new ##### -->
 <para>
 

@@ -1,3 +1,10 @@
+2006-06-22  Christian Neumair  <chris@gnome-de.org>
+
+	* doc/*:
+	* doc/tmpl/*:
+	* libgnomevfs/*:
+	Massive API documentation update.
+
 2006-06-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c (expand_macro):
@@ -198,6 +205,10 @@
 	(expand_application_parameters), (test_exec_array),
 	(test_exec_macro_expansion):
 	Fix % parameters expansion in Exec field (bug #302436).
+
+2006-04-25  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/*: Add more documentation.
 
 2006-04-25  Christian Neumair  <chris@gnome-de.org>
 

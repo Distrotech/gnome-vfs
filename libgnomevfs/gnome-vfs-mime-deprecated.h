@@ -32,6 +32,14 @@ G_BEGIN_DECLS
  * ------------------------------
  */
 
+/**
+ * GnomeVFSMimeActionType:
+ * @GNOME_VFS_MIME_ACTION_TYPE_NONE: neither an application nor a component.
+ * @GNOME_VFS_MIME_ACTION_TYPE_APPLICATION: an application.
+ * @GNOME_VFS_MIME_ACTION_TYPE_COMPONENT: a component.
+ *
+ * This is used to specify the %type of a #GnomeVFSMimeAction.
+ **/
 typedef enum {
 	GNOME_VFS_MIME_ACTION_TYPE_NONE,
 	GNOME_VFS_MIME_ACTION_TYPE_APPLICATION,
@@ -40,13 +48,15 @@ typedef enum {
 
 /**
  * GnomeVFSMimeAction:
+ * @action_type: The #GnomeVFSMimeActionType describing the type of this action.
  *
  * This data structure describes an action that can be done 
  * on a file.
  **/
 typedef struct _GnomeVFSMimeAction GnomeVFSMimeAction;
 
-struct _GnomeVFSMimeAction{
+struct _GnomeVFSMimeAction {
+	/* <public >*/
 	GnomeVFSMimeActionType action_type;
 	union {
 		Bonobo_ServerInfo *component;
@@ -54,6 +64,7 @@ struct _GnomeVFSMimeAction{
 		GnomeVFSMimeApplication *application;
 	} action;
 
+	/*< private >*/
 	/* Padded to avoid future breaks in ABI compatibility */
 	void *reserved1;
 };

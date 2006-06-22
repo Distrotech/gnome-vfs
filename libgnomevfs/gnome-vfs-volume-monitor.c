@@ -87,6 +87,19 @@ gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *class)
 	/* GObject signals */
 	o_class->finalize = gnome_vfs_volume_monitor_finalize;
 
+	/**
+	 * GnomeVFSVolumeMonitor::volume-mounted:
+	 * @volume_monitor: the #GnomeVFSVolumeMonitor which received the signal.
+	 * @volume: the #GnomeVFSVolume that has been mounted.
+	 *
+	 * This signal is emitted after the #GnomeVFSVolume @volume has been mounted.
+	 *
+	 * When the @volume is mounted, it is present in the @volume_monitor's list of mounted
+	 * volumes, which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 *
+	 * If the @volume has an associated #GnomeVFSDrive, it also appears in the drive's
+	 * list of mounted volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 **/
 	volume_monitor_signals[VOLUME_MOUNTED] =
 		g_signal_new ("volume_mounted",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -97,6 +110,23 @@ gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_VOLUME);
 
+	/**
+	 * GnomeVFSVolumeMonitor::volume-pre-unmount:
+	 * @volume_monitor: the #GnomeVFSVolumeMonitor which received the signal.
+	 * @volume: the #GnomeVFSVolume that is about to be unmounted.
+	 *
+	 * This signal is emitted when the #GnomeVFSVolume @volume is about to be unmounted.
+	 *
+	 * When the @volume is unmounted, it is removed from the @volume_monitor's list of mounted
+	 * volumes, which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 *
+	 * If the @volume has an associated #GnomeVFSDrive, it is also removed from in the drive's
+	 * list of mounted volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 *
+	 * When a client application receives this signal, it must free all resources
+	 * associated with the @volume, for instance cancel all pending file operations
+	 * on the @volume, and cancel all pending file monitors using gnome_vfs_monitor_cancel().
+	 **/
 	volume_monitor_signals[VOLUME_PRE_UNMOUNT] =
 		g_signal_new ("volume_pre_unmount",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -107,6 +137,19 @@ gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_VOLUME);
 
+	/**
+	 * GnomeVFSVolumeMonitor::volume-unmounted:
+	 * @volume_monitor: the #GnomeVFSVolumeMonitor which received the signal.
+	 * @volume: the #GnomeVFSVolume that has been unmounted.
+	 *
+	 * This signal is emitted after the #GnomeVFSVolume @volume has been unmounted.
+	 *
+	 * When the @volume is unmounted, it is removed from the @volume_monitor's list of mounted
+	 * volumes, which can be queried using gnome_vfs_volume_monitor_get_mounted_volumes().
+	 *
+	 * If the @volume has an associated #GnomeVFSDrive, it is also removed from in the drive's
+	 * list of mounted volumes, which can be queried using gnome_vfs_drive_get_mounted_volumes().
+	 **/
 	volume_monitor_signals[VOLUME_UNMOUNTED] =
 		g_signal_new ("volume_unmounted",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -117,6 +160,16 @@ gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_VOLUME);
 
+	/**
+	 * GnomeVFSVolumeMonitor::drive-connected:
+	 * @volume_monitor: the #GnomeVFSVolumeMonitor which received the signal.
+	 * @drive: the #GnomeVFSDrive that has been connected.
+	 *
+	 * This signal is emitted when the #GnomeVFSDrive @drive has been connected.
+	 *
+	 * When the @drive is connected, it is present in the @volume_monitor's list of connected
+	 * drives, which can be queried using gnome_vfs_volume_monitor_get_connected_drives().
+	 **/
 	volume_monitor_signals[DRIVE_CONNECTED] =
 		g_signal_new ("drive_connected",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -127,6 +180,16 @@ gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *class)
 			      G_TYPE_NONE, 1,
 			      GNOME_VFS_TYPE_DRIVE);
 
+	/**
+	 * GnomeVFSVolumeMonitor::drive-disconnected:
+	 * @volume_monitor: the #GnomeVFSVolumeMonitor which received the signal.
+	 * @drive: the #GnomeVFSDrive that has been disconnected.
+	 *
+	 * This signal is emitted after the #GnomeVFSDrive @drive has been disconnected.
+	 *
+	 * When the @drive is disconnected, it is removed from the @volume_monitor's list of connected
+	 * drives, which can be queried using gnome_vfs_volume_monitor_get_connected_drives().
+	 **/
 	volume_monitor_signals[DRIVE_DISCONNECTED] =
 		g_signal_new ("drive_disconnected",
 			      G_TYPE_FROM_CLASS (o_class),
@@ -150,15 +213,16 @@ G_LOCK_DEFINE_STATIC (volume_monitor_ref);
 
 /** 
  * gnome_vfs_volume_monitor_ref:
- * @volume_monitor: #GnomeVFSVolumeMonitor.
+ * @volume_monitor: the #GnomeVFSVolumeMonitor, or %NULL.
  *
- * Increases the refcount of @volume_monitor by one.
+ * Increases the refcount of @volume_monitor by one, if it is not %NULL.
  *
  * You shouldn't use this function unless you know what you are doing:
  * #GnomeVFSVolumeMonitor is to be used as a singleton object, see
  * gnome_vfs_get_volume_monitor() for more details.
  *
- * Returns: @volume_monitor with its refcount increased by one.
+ * Returns: @volume_monitor with its refcount increased by one,
+ * 	    or %NULL if @volume_monitor is %NULL.
  *
  * Since: 2.6
  */
@@ -177,9 +241,9 @@ gnome_vfs_volume_monitor_ref (GnomeVFSVolumeMonitor *volume_monitor)
 
 /** 
  * gnome_vfs_volume_monitor_unref:
- * @volume_monitor: #GnomeVFSVolumeMonitor.
+ * @volume_monitor: #GnomeVFSVolumeMonitor, or %NULL.
  *
- * Decreases the refcount of @volume_monitor by one.
+ * Decreases the refcount of @volume_monitor by one, if it is not %NULL.
  *
  * You shouldn't use this function unless you know what you are doing:
  * #GnomeVFSVolumeMonitor is to be used as a singleton object, see
@@ -807,9 +871,12 @@ gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_moni
  * gnome_vfs_volume_monitor_get_connected_drives:
  * @volume_monitor: a #GnomeVFSVolumeMonitor.
  *
- * Returns a #GList of all connected drives to the machine. The #GnomeVFSDrive
- * objects must be unreffed by the caller when no longer needed with  
- * gnome_vfs_drive_unref() and the #GList must be freed.
+ * Returns a #GList of all drives connected to the machine.
+ * The #GnomeVFSDrive objects must be unreffed by the caller when
+ * no longer needed with gnome_vfs_drive_unref() and the #GList must
+ * be freed.
+ *
+ * Returns: a #GList of all connected drives.
  *
  * Since: 2.6
  */
@@ -924,7 +991,18 @@ _gnome_vfs_volume_monitor_uniquify_drive_name (GnomeVFSVolumeMonitor *volume_mon
  * @volume_monitor: a #GnomeVFSVolumeMonitor.
  * @path: string representing a path.
  *
- * Returns: the #GnomeVFSVolume corresponding to the @path.  Volume returned 
+ * Returns the #GnomeVFSVolume corresponding to @path, or %NULL.
+ *
+ * The volume referring to @path is found by calling %stat on @path,
+ * and then iterating through the list of volumes that refer
+ * to currently mounted local file systems.
+ * The first volume in this list maching the @path's UNIX device
+ * is returned.
+ *
+ * If the %stat on @path was not successful, or no volume matches @path,
+ * or %NULL is returned.
+ *
+ * Returns: the #GnomeVFSVolume corresponding to the @path, or %NULL.  Volume returned 
  * must be unreffed by the caller with gnome_vfs_volume_unref().
  *
  * Since: 2.6

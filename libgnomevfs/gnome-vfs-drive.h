@@ -40,6 +40,7 @@ typedef struct _GnomeVFSDrivePrivate GnomeVFSDrivePrivate;
 struct _GnomeVFSDrive {
 	GObject parent;
 
+	/*< private >*/
         GnomeVFSDrivePrivate *priv;
 };
 

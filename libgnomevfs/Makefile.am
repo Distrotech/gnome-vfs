@@ -189,7 +189,6 @@ libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-method.h			\
-	gnome-vfs-mime.h			\
 	gnome-vfs-mime-info.h			\
 	gnome-vfs-module-callback-module-api.h	\
 	gnome-vfs-module-shared.h		\
@@ -221,6 +220,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
+	gnome-vfs-mime.h			\
 	gnome-vfs-mime-deprecated.h		\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info-cache.h		\

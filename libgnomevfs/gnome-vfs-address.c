@@ -288,8 +288,7 @@ gnome_vfs_address_to_string (GnomeVFSAddress *address)
 
 /**
  * gnome_vfs_address_get_ipv4:
- * @address: A #GnomeVFSAddress
- * 
+ * @address: A #GnomeVFSAddress.
  * 
  * Returns: The associated IPv4 address in network byte order.
  *
@@ -552,7 +551,7 @@ gnome_vfs_address_equal (const GnomeVFSAddress *a,
  * gnome_vfs_address_dup:
  * @address: A #GnomeVFSAddress.
  * 
- * Duplicates @adderss.
+ * Duplicates @address.
  * 
  * Return value: Duplicated @address or %NULL if @address was not valid.
  *

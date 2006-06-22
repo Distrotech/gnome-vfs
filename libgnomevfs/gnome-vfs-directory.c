@@ -466,14 +466,18 @@ directory_visit_internal (GnomeVFSURI *uri,
 
 /**
  * gnome_vfs_directory_visit_uri:
- * @uri: uri to start from.
- * @info_options: options specifying what kind of file information must be
- * retrieved.
- * @visit_options: options specifying the type of visit.
- * @callback: callback to be called for every visited file.
+ * @uri: #GnomeVFSURI of a directory to visit the files in.
+ * @info_options: #GnomeVFSFileInfoOptions specifying what kind of file information must be
+ * retrieved about the contents of the directory referenced by @uri.
+ * @visit_options: #GnomeVFSDirectoryVisitOptions controlling e.g. loop prevention,
+ * and filesystem checks. These affect the way visiting is done.
+ * @callback: #GnomeVFSDirectoryVisitFunc callback to be called for every visited file.
  * @data: data to be passed to @callback at each iteration.
  * 
  * Visit @uri, retrieving information as specified by @info_options. 
+ *
+ * This function is identical to gnome_vfs_directory_visit(), except
+ * that it takes a #GnomeVFSURI instead of a text URI.
  * 
  * Returns: a #GnomeVFSResult indicating whether the operation succeeded.
  *
@@ -486,6 +490,7 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       gpointer data)
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return directory_visit_internal (uri, NULL, NULL,
 					 info_options,
@@ -494,14 +499,18 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 
 /**
  * gnome_vfs_directory_visit:
- * @text_uri: string representation of uri to start from.
- * @info_options: options specifying what kind of file information must be
- * retrieved.
- * @visit_options: options specifying the type of visit.
- * @callback: callback to be called for every visited file.
+ * @text_uri: uri string representation of a directory to visit the files in.
+ * @info_options: #GnomeVFSFileInfoOptions specifying what kind of file information must be
+ * retrieved about the contents of the directory referenced by @uri.
+ * @visit_options: #GnomeVFSDirectoryVisitOptions controlling e.g. loop prevention,
+ * and filesystem checks. These affect the way visiting is done.
+ * @callback: #GnomeVFSDirectoryVisitFunc callback to be called for every visited file.
  * @data: data to be passed to @callback at each iteration.
  * 
  * Visit @text_uri, retrieving information as specified by @info_options.
+ *
+ * This function is identical to gnome_vfs_directory_visit_uri(), except
+ * that it takes a text URI instead of a #GnomeVFSURI.
  * 
  * Return value: a #GnomeVFSResult indicating the success of the operation.
  */
@@ -516,6 +525,7 @@ gnome_vfs_directory_visit (const gchar *text_uri,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL) {
@@ -533,15 +543,23 @@ gnome_vfs_directory_visit (const gchar *text_uri,
 
 /**
  * gnome_vfs_directory_visit_files_at_uri:
- * @uri: uri of a directory to visit the files in.
+ * @uri: #GnomeVFSURI of a directory to visit the files in.
  * @file_list: #GList of char *s of file names in @uri to visit.
- * @info_options: bitmask controlling the type of information to fetch.
- * @visit_options: options controlling e.g. loop prevention, and filesystem checks.
- * Affects the way visiting is done.
- * @callback: function to call with the file info structs.
+ * @info_options: #GnomeVFSFileInfoOptions specifying what kind of file information must be
+ * retrieved about the contents of the directory referenced by @uri.
+ * @visit_options: #GnomeVFSDirectoryVisitOptions controlling e.g. loop prevention,
+ * and filesystem checks. These affect the way visiting is done.
+ * @callback: #GnomeVFSDirectoryVisitFunc callback to call with the file info structs.
  * @data: data to pass to @callback.
  *
  * Fetches information about a list of files in a base uri @uri.
+ *
+ * This function is identical to gnome_vfs_directory_visit_files_at_uri(),
+ * except that it takes a #GnomeVFSURI instead of a text URI.
+ *
+ * If any of the files refers to a directory, and the @callback requests
+ * recursion for the specified file, gnome_vfs_directory_visit_uri() will
+ * be called for the directory.
  *
  * Return value: a #GnomeVFSResult indicating the success of the operation.
  */
@@ -559,6 +577,7 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (file_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	info = gnome_vfs_file_info_new ();
 	result = GNOME_VFS_OK;
@@ -602,12 +621,19 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
  * @text_uri: string representing the uri of a directory to visit the files in.
  * @file_list: #GList of char *s of file names in @uri to visit.
  * @info_options: bitmask controlling the type of information to fetch.
- * @visit_options: options controlling e.g. loop prevention, and filesystem checks.
- * Affects the way visiting is done.
- * @callback: function to call with the file info structs.
+ * @visit_options: #GnomeVFSDirectoryVisitOptions controlling e.g. loop prevention,
+ * and filesystem checks. These affect the way visiting is done.
+ * @callback: #GnomeVFSDirectoryVisitFunc callback to call with the file info structs.
  * @data: data to pass to @callback.
  *
  * Fetches information about a list of files in a base uri @uri.
+ *
+ * If any of the files refers to a directory, and the @callback requests
+ * recursion for the specified file, gnome_vfs_directory_visit_uri() will
+ * be called for the directory.
+ *
+ * This function is identical to gnome_vfs_directory_visit_files_at_uri(),
+ * except that it takes a text URI instead of a #GnomeVFSURI.
  *
  * Return value: a #GnomeVFSResult indicating the success of the operation.
  */
@@ -623,6 +649,9 @@ gnome_vfs_directory_visit_files (const gchar *text_uri,
 	GnomeVFSResult result;
 
 	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 
 	result = gnome_vfs_directory_visit_files_at_uri (uri, file_list,
 							 info_options,

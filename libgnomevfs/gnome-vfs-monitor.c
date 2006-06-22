@@ -365,10 +365,19 @@ get_min_delay  (GList *list, gint32 now)
 }
 
 
-/* for modules to send callbacks to the app */
+/**
+ * gnome_vfs_monitor_callback:
+ * @method_handle: Method-specific monitor handle obtained through gnome_vfs_monitor_add().
+ * @info_uri: URI that triggered the callback.
+ * @event_type: The event obtained for @info_uri.
+ *
+ * gnome_vfs_monitor_callback() is used by #GnomeVFSMethods to indicate that a particular
+ * resource changed, and will issue the emission of the #GnomeVFSMonitorCallback registered
+ * using gnome_vfs_monitor_add().
+ **/
 void
 gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
-                            GnomeVFSURI *info_uri, /* GList of uris */
+                            GnomeVFSURI *info_uri,
                             GnomeVFSMonitorEventType event_type)
 {
 	GnomeVFSMonitorCallbackData *callback_data, *other_data, *last_data;

@@ -33,6 +33,8 @@ struct FSInfo {
 	gboolean use_trash;
 };
 
+/* NB: Keep in sync with gnome_vfs_volume_get_filesystem_type()
+ * documentation! */
 static struct FSInfo fs_data[] = {
 	{ "affs"     , N_("AFFS Volume"), 0},
 	{ "afs"      , N_("AFS Network Volume"), 0 },

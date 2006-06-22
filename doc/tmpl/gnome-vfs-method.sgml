@@ -85,6 +85,12 @@ gnome-vfs-method
 @Returns: 
 
 
+<!-- ##### TYPEDEF GnomeVFSTransform ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION gnome_vfs_transform_get ##### -->
 <para>
 

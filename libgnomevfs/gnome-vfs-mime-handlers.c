@@ -1256,6 +1256,9 @@ gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
 
 /**
  * gnome_vfs_mime_action_launch_with_env:
+ * @action: the #GnomeVFSMimeAction to launch.
+ * @uris: parameters for the #GnomeVFSMimeAction.
+ * @envp: the environment to use for the action.
  *
  * Same as gnome_vfs_mime_action_launch() except that the
  * application or component viewer will be launched with
@@ -1351,6 +1354,9 @@ gnome_vfs_mime_application_launch (GnomeVFSMimeApplication *app,
 
 /**
  * gnome_vfs_mime_application_launch_with_env:
+ * @app: the #GnomeVFSMimeApplication to launch.
+ * @uris: parameters for the #GnomeVFSMimeApplication.
+ * @envp: the environment to use for the application.
  *
  * Same as gnome_vfs_mime_application_launch() except that
  * the application will be launched with the given environment.
@@ -2171,7 +2177,7 @@ gnome_vfs_mime_application_get_icon (GnomeVFSMimeApplication *app)
  *
  * Returns the program to execute, possibly with arguments
  * and parameter variables, as specified by the
- * <ulink url="http://www.freedesktop.org/standards/desktop-entry-spec">
+ * <ulink url="http://standards.freedesktop.org/desktop-entry-spec/">
  * Desktop Entry Specification</ulink>.
  *
  * Return value: the command line to execute.

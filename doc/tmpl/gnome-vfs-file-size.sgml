@@ -2,7 +2,7 @@
 GnomeVFSFileSize
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Data types used for specifying file sizes and seek positions
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

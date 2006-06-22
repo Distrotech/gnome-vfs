@@ -40,9 +40,25 @@ typedef enum {
 
 typedef struct _GnomeVFSMimeApplicationPrivate GnomeVFSMimeApplicationPrivate;
 
+/**
+ * GnomeVFSMimeApplication:
+ * @id: The desktop ID of the application.
+ * @name: The user-visible name of the application.
+ *
+ * A struct encapsulating information about an
+ * application known to the MIME database.
+ *
+ * Only very few fields of this information are actually
+ * public, most of them must be queried using the
+ * <literal>gnome_vfs_mime_application_*()</literal>
+ * API.
+ **/
 typedef struct {
-	char *id; /* PRIVATE */
+	/*< public > */
+	char *id;
 	char *name;
+
+	/*< private > */
 #ifndef GNOME_VFS_DISABLE_DEPRECATED
 	char *command;
 	gboolean can_open_multiple_files;
@@ -97,10 +113,10 @@ gboolean		 gnome_vfs_mime_application_supports_uris	          (GnomeVFSMimeAppli
 gboolean		 gnome_vfs_mime_application_requires_terminal             (GnomeVFSMimeApplication *app);
 gboolean		 gnome_vfs_mime_application_supports_startup_notification (GnomeVFSMimeApplication *app);
 const char		*gnome_vfs_mime_application_get_startup_wm_class          (GnomeVFSMimeApplication *app);
-GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                          (GnomeVFSMimeApplication *app);
+GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                          (GnomeVFSMimeApplication *application);
 gboolean		 gnome_vfs_mime_application_equal		          (GnomeVFSMimeApplication *app_a,
 									           GnomeVFSMimeApplication *app_b);
-void                     gnome_vfs_mime_application_free                          (GnomeVFSMimeApplication *app);
+void                     gnome_vfs_mime_application_free                          (GnomeVFSMimeApplication *application);
 
 /* Lists */
 

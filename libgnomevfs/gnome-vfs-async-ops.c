@@ -1075,28 +1075,54 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 /**
  * gnome_vfs_async_xfer:
  * @handle_return: when the function returns, will point to a handle for the operation.
- * @source_uri_list: #GList of #GnomeVFSURIs representing the files to be transferred.
- * @target_uri_list: #GList of #GnomeVFSURIs, the target locations for the elements
- * in @source_uri_list.
- * @xfer_options: various options controlling the details of the transfer. 
- * Use %GNOME_VFS_XFER_REMOUVESOURCE to make the operation a move rather than a copy.
- * @error_mode: report errors to the @progress_sync_callback, or simply abort.
- * @overwrite_mode: controls whether the xfer engine will overwrite automatically, 
- * skip the file, abort the operation, or query @progress_sync_callback.
- * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * @source_uri_list: A #GList of source #GnomeVFSURIs.
+ * @target_uri_list: A #GList of target #GnomeVFSURIs, each corresponding to one URI in
+ * @source_uri_list.
+ * @xfer_options: #GnomeVFSXferOptions defining the desired operation and parameters.
+ * @error_mode: A #GnomeVFSErrorMode specifying how to proceed if a VFS error occurs.
+ * @overwrite_mode: A #GnomeVFSOverwriteMode specifying how to proceed if a file is being overwritten.
+ * @priority: A value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
  * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
  * in allocating threads from the thread pool.
- * @progress_update_callback: called when the program requires responses to interactive queries
- * (e.g. overwriting files, handling errors, etc).
- * @update_callback_data: user data passed to @progress_update_callback.
- * @progress_sync_callback: called periodically to keep the client appraised of progress in
- * completing the xfer operation, and the current phase of the operation.
- * @sync_callback_data: user data passed to @progress_sync_callback.
+ * @progress_update_callback: A #GnomeVFSAsyncXferCallback called periodically for
+ * informing the program about progress, and when the program requires responses to
+ * interactive queries (e.g. overwriting files, handling errors, etc).
+ * @update_callback_data: User data to pass to @progress_update_callback.
+ * @progress_sync_callback: An optional #GnomeVFSXferCallback called whenever some state changed.
+ * @sync_callback_data: User data to pass to @progress_sync_callback.
  *
- * Perform a copy operation in a seperate thread. @progress_update_callback will be periodically
- * polled with status of the operation (percent done, the current phase of operation, the
- * current file being operated upon). If the xfer engine needs to query the caller to make
- * a decision or report on important error it will do so on @progress_sync_callback.
+ * Performs an Xfer operation in a seperate thread, otherwise like
+ * gnome_vfs_xfer_uri_list().
+ *
+ * See #GnomeVFSAsyncXferProgressCallback and #GnomeVFSXferProgressCallback for details on how the
+ * callback mechanism works.
+ *
+ * <note>
+ *  <para>
+ *   @progress_sync_callback should only be used if you want to execute additional
+ *   actions that may not wait until after the transfer, for instance because
+ *   you have to do them for each transferred file/directory, and that require
+ *   a very specific action to be taken. For instance, the Nautilus application
+ *   schedules metadata removal/moving/copying at specific phases.
+ *  </para>
+ *  <para>
+ *   Do not use @progress_sync_callback if you just need user feedback, because
+ *   each invocation is expensive, and requires a context switch.
+ *  </para>
+ *  <para>
+ *   If you use both @progress_update_callback and @progress_sync_callback,
+ *   the @progress_sync_callback will always be invoked before the
+ *   @progress_update_callback. It is recommended to do conflict
+ *   handling in @progress_update_callback, and always return %TRUE
+ *   in @progress_sync_callback, because if the Xfer's
+ *   #GnomeVFSXferProgressStatus is %GNOME_VFS_XFER_PROGRESS_STATUS_OK,
+ *   @progress_update_callback will only be invoked if it hasn't
+ *   been invoked within the last 100 milliseconds, and if 
+ *   @progress_update_callback is not invoked, only
+ *   @progress_sync_callback is authoritative for the
+ *   further processing, causing abortion if it is %FALSE.
+ *  </para>
+ * </note>
  *
  * Return value: %GNOME_VFS_OK if the paramaters were in order, 
  * or %GNOME_VFS_ERROR_BAD_PARAMETERS if something was wrong in the passed in arguments.

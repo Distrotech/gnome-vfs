@@ -159,7 +159,7 @@ gnome_vfs_get_mime_type_for_name (const char *filename)
  * Determine the mime type for @filename.
  *
  * Deprecated: This function is deprecated, use
- * gnome_vfs_get_mime_type_for_name instead.
+ * gnome_vfs_get_mime_type_for_name() instead.
  *
  * Returns: the mime-type for this filename. Will return
  * %GNOME_VFS_MIME_TYPE_UNKNOWN if mime-type could not be found.
@@ -619,6 +619,12 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 	return result;
 }
 
+/**
+ * gnome_vfs_mime_type_is_supertype:
+ * @mime_type: a const char * identifying a mime type.
+ *
+ * Returns: Whether @mime_type is of the form "foo<literal>/</literal>*".
+ **/
 gboolean
 gnome_vfs_mime_type_is_supertype (const char *mime_type)
 {
@@ -657,11 +663,19 @@ extract_prefix_add_suffix (const char *string, const char *separator, const char
         return result;
 }
 
-/* gnome_vfs_get_supertype_from_mime_type:
- * @mime_type: mimetype to get the supertype for.
+/**
+ * gnome_vfs_get_supertype_from_mime_type:
+ * @mime_type: mime type to get the supertype for.
  *
- * Returns: the supertype for @mime type. Note that if called
- * on a supertype it will return a copy of the supertype.
+ * Returns: The supertype for @mime_type, allocating new memory.
+ *
+ * The supertype of an application is computed by removing its
+ * suffix, and replacing it with "*". Thus, "foo/bar" will be
+ * converted to "foo<literal>/</literal>*".
+ *
+ * <note>
+ * If this function is called on a supertype, it will return a copy of the supertype.
+ * </note>
  */
 char *
 gnome_vfs_get_supertype_from_mime_type (const char *mime_type)
@@ -705,19 +719,25 @@ gnome_vfs_mime_type_is_equal (const char *a,
  * Compares @mime_type to @base_mime_type.  There are three possible
  * relationships between the two strings.
  *
- * a) If they are identical and @mime_type is the same as @base_mime_type,
+ * <itemizedlist>
+ * <listitem><para>
+ *  If they are identical and @mime_type is the same as @base_mime_type,
  *  then %GNOME_VFS_MIME_IDENTICAL is returned. This would be the case if
  *  "audio/midi" and "audio/x-midi" are passed in.
- *
- * b) If @base_mime_type is a parent type of @mime_type, then
+ * </para></listitem>
+ * <listitem><para>
+ * If @base_mime_type is a parent type of @mime_type, then
  * %GNOME_VFS_MIME_PARENT is returned.  As an example, "text/plain" is a parent
  * of "text/rss", "image" is a parent of "image/png", and
  * "application/octet-stream" is a parent of almost all types.
- *
- * c) Finally, if the two mime types are unrelated, than %GNOME_VFS_MIME_UNRELATED
+ * </para></listitem>
+ * <listitem><para>
+ * Finally, if the two mime types are unrelated, then %GNOME_VFS_MIME_UNRELATED
  * is returned.
+ * </para></listitem>
+ * </itemizedlist>
  * 
- * Returns: value 0,1 or 2 indicating the relationship between @mime_type and @base_mime_type.
+ * Returns: A #GnomeVFSMimeEquivalence indicating the relationship between @mime_type and @base_mime_type.
  */
 GnomeVFSMimeEquivalence
 gnome_vfs_mime_type_get_equivalence (const char *mime_type,
@@ -954,6 +974,11 @@ _gnome_vfs_get_slow_mime_type_internal (const char  *text_uri,
 	return result;
 }
 
+/**
+ * gnome_vfs_mime_reload:
+ *
+ * Reload the MIME database.
+ **/
 void
 gnome_vfs_mime_reload (void)
 {

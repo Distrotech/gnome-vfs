@@ -297,6 +297,16 @@ various utilities functions to manipulate uris
 
 
 
+<!-- ##### FUNCTION gnome_vfs_open_fd ##### -->
+<para>
+
+</para>
+
+@handle: 
+@filedes: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_read_entire_file ##### -->
 <para>
 

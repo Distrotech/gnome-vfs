@@ -823,22 +823,22 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 
 /**
  * gnome_vfs_icon_path_from_filename:
- * @relative_filename: path to a file. Could be relative or absolute path.
+ * @filename: path to a file. Could be relative or absolute path.
  *
- * Return value: Returns the icon path for the @relative_filename. Example:
+ * Return value: Returns the icon path for the @filename. Example:
  * gnome_vfs_icon_path_from_filename ("nautilus/nautilus-desktop.png") will return a string 
  * forming the full path of the file nautilus-desktop.png ie $PREFIX/share/pixmaps/nautilus/nautilus-desktop.png.
  */
 char *
-gnome_vfs_icon_path_from_filename (const char *relative_filename)
+gnome_vfs_icon_path_from_filename (const char *filename)
 {
 	const char *gnome_var;
 	char *full_filename;
 	char **paths, **temp_paths;
 
-	if (g_path_is_absolute (relative_filename) &&
-	    g_file_test (relative_filename, G_FILE_TEST_EXISTS))
-		return g_strdup (relative_filename);
+	if (g_path_is_absolute (filename) &&
+	    g_file_test (filename, G_FILE_TEST_EXISTS))
+		return g_strdup (filename);
 
 	gnome_var = g_getenv ("GNOME_PATH");
 
@@ -852,7 +852,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 		full_filename = g_build_filename (*temp_paths,
 						  "share",
 						  "pixmaps",
-						  relative_filename,
+						  filename,
 						  NULL);
 		if (g_file_test (full_filename, G_FILE_TEST_EXISTS)) {
 			g_strfreev (paths);
