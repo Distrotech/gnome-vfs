@@ -1,5 +1,5 @@
 # translation of gnome-vfs.HEAD.po to Dutch
-# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
+# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005, 2006.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
 # Reinout van Schouwen <reinout@cs.vu.nl>, 2004
 #
@@ -9,20 +9,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2006-05-20 07:05+0200\n"
-"PO-Revision-Date: 2006-05-20 11:34+0100\n"
-"Last-Translator: Vincent van Adrighem <adrighem@gnome.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-06-24 23:09+0200\n"
+"PO-Revision-Date: 2006-06-25 01:51+0200\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-# initialiseren?
+# initialiseren/starten
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
 msgstr "Kan bonobo niet starten"
 
-# initialiseren?
+# initialiseren/starten
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome-vfs niet starten"
@@ -68,154 +70,155 @@ msgstr "Configuratiebestand '%s' is niet gevonden: %s"
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d verwerken is afgebroken."
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "AFFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "AFS-netwerkvolumen"
 
 # ontdekt/bepaald/gedetecteerd
 # auto-gedetecteerd
 # determined/detected
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "Automatisch bepaald volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr "cd-rom apparaat"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+# cd-audio
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "cd digitale audio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "Hardware-apparaat volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "MSDOS Volume"
 msgstr "MSDOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "MacOS Volume"
 msgstr "MacOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "CDROM Volume"
 msgstr "cd-rom"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs cd-rom"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "JFS Volume"
 msgstr "JFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Windows NT Volume"
 msgstr "Windows NT-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "System Volume"
 msgstr "Systeemvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "Memory Volume"
 msgstr "Geheugenvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "Minix Volume"
 msgstr "Minixvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "NFS Network Volume"
 msgstr "NFS-netwerkvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Netware Volume"
 msgstr "Netware-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Windows Shared Volume"
 msgstr "Gedeeld Windowsvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "SuperMount Volume"
 msgstr "Supermount-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "DVD Volume"
 msgstr "dvd"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Udfs Solaris Volume"
 msgstr "UDFS Solaris-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Enhanced DOS Volume"
 msgstr "Verbeterd DOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Xenix Volume"
 msgstr "Xenix-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "XFS Linux Volume"
 msgstr "XFS Linuxvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "XIAFS Volume"
 msgstr "XIAFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "CIFS Volume"
 msgstr "CIFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -423,8 +426,7 @@ msgstr "Volumen"
 msgid "Unknown operation type %u"
 msgstr "Onbekend opdrachttype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024
-#: ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan geen pijplijn aanmaken voor GIOChannel: %s"
@@ -466,8 +468,12 @@ msgstr "Opdracht gestopt"
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
 #: ../libgnomevfs/gnome-vfs-mime-info.c:700
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
-msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Afgeraden functie. Gebruikerswijzigingen aan de MIME-database zijn niet langer ondersteund."
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Afgeraden functie. Gebruikerswijzigingen aan de MIME-database zijn niet "
+"langer ondersteund."
 
 # verwerken/ontleden
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
@@ -741,8 +747,14 @@ msgstr "Functie-aanroep afgeraden"
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
-# KB / Kb
 #: ../libgnomevfs/gnome-vfs-utils.c:78
+#, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u byte"
+msgstr[1] "%u bytes"
+
+# KB / Kb
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
@@ -872,26 +884,43 @@ msgstr "Netwerkserver"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:181
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Kan de diskette niet aankoppelen. Er zit waarschijnlijk geen diskette in het apparaat."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Kan de diskette niet aankoppelen. Er zit waarschijnlijk geen diskette in het "
+"apparaat."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:185
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Kan het volumen niet aankoppelen. Er zit waarschijnlijk geen schijf in het apparaat."
+msgstr ""
+"Kan het volumen niet aankoppelen. Er zit waarschijnlijk geen schijf in het "
+"apparaat."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:191
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Kan het diskettestation niet aankoppelen. De diskette bevat waarschijnlijk een niet ondersteund bestandssysteem."
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Kan het diskettestation niet aankoppelen. De diskette bevat waarschijnlijk "
+"een niet ondersteund bestandssysteem."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:195
-msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
-msgstr "Kon het volumen niet aankoppelen. Indien dit een versleutelde schijf is, is mogelijkerwijs een foutief wachtwoord of sleutel gegeven."
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Kon het volumen niet aankoppelen. Indien dit een versleutelde schijf is, is "
+"mogelijkerwijs een foutief wachtwoord of sleutel gegeven."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Kan het geselecteerde volumen niet aankoppelen. Het volumen bevat waarschijnlijk een niet ondersteund bestandssysteem."
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Kan het geselecteerde volumen niet aankoppelen. Het volumen bevat "
+"waarschijnlijk een niet ondersteund bestandssysteem."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid "Unable to mount the selected floppy drive."
@@ -902,8 +931,12 @@ msgid "Unable to mount the selected volume."
 msgstr "Kan het geselecteerde volumen niet aankoppelen."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:218
-msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
-msgstr "Kon het geselecteerde volumen niet afkoppelen. Het volumen is nog in gebruik bij een of meerdere programma's."
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Kon het geselecteerde volumen niet afkoppelen. Het volumen is nog in gebruik "
+"bij een of meerdere programma's."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
@@ -921,7 +954,9 @@ msgstr "Kon aankoppelingsproces niet uitvoeren in een pty"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:476
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Onverwachte fout in select() tijdens lezen van gegevens van een dochterproces (%s)"
+msgstr ""
+"Onverwachte fout in select() tijdens lezen van gegevens van een "
+"dochterproces (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:530
 msgid "Couldn't send password to mount process."
@@ -958,7 +993,7 @@ msgstr "Persoonlijke map"
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: ../modules/file-method.c:483
+#: ../modules/file-method.c:491
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
@@ -980,11 +1015,14 @@ msgstr "De identiteit van de computer op afstand (%s) is onbekend."
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 msgstr ""
 "Dit gebeurt wanneer u zich voor de eerste keer bij een computer aanmeldt.\n"
 "\n"
-"De identiteit die door de computer op afstand is verzonden is %s. Indien u absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact op met de systeembeheerder."
+"De identiteit die door de computer op afstand is verzonden is %s. Indien u "
+"absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact "
+"op met de systeembeheerder."
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
@@ -1021,12 +1059,12 @@ msgstr "algemene Gnome-VFS moniker"
 msgid "generic file moniker"
 msgstr "algemene bestandsmoniker"
 
-#: ../programs/authentication.c:94
+#: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
 msgstr "Uw HTTP-proxy verwacht dat u zich aanmeldt.\n"
 
-#: ../programs/authentication.c:95
+#: ../programs/authentication.c:107
 #, c-format
 msgid ""
 "You must log in to access \"%s\".\n"
@@ -1035,20 +1073,20 @@ msgstr ""
 "U dient zich aan te melden om \"%s\" te openen.\n"
 "%s"
 
-#: ../programs/authentication.c:98
+#: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
 msgstr "Uw wachtwoord zal onversleuteld worden verzonden."
 
-#: ../programs/authentication.c:99
+#: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
 msgstr "Uw wachtwoord zal versleuteld worden verzonden."
 
-#: ../programs/authentication.c:144
+#: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "U dient zich aan te melden om %s in het domein %s te openen.\n"
 
-#: ../programs/authentication.c:146
+#: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "U dient zich aan te melden om %s te openen.\n"
@@ -1067,12 +1105,22 @@ msgstr "Opstartargumenten voor standaard terminal"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Te gebruiken programma voor weergave van bestanden die een component vereisen. De parameter %s zal vervangen worden door de URI van het bestand en de parameter %c zal vervangen worden de de IID van de component."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Te gebruiken programma voor weergave van bestanden die een component "
+"vereisen. De parameter %s zal vervangen worden door de URI van het bestand "
+"en de parameter %c zal vervangen worden de de IID van de component."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Het standaard terminalprogramma voor toepassingen die een terminal nodig hebben."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Het standaard terminalprogramma voor toepassingen die een terminal nodig "
+"hebben."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1088,31 +1136,38 @@ msgstr "De opdracht voor het afhandelen van \"aim\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"callto\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"callto\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"ghelp\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"ghelp\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"h323\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"h323\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"http\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"http\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"https\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"https\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"info\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"info\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"mailto\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"mailto\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
@@ -1120,7 +1175,8 @@ msgstr "De opdracht voor het afhandelen van \"man\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "De opdracht voor het afhandelen van \"trash\"-URL's, indien ingeschakeld"
+msgstr ""
+"De opdracht voor het afhandelen van \"trash\"-URL's, indien ingeschakeld"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1163,48 +1219,92 @@ msgid "The handler for \"trash\" URLs"
 msgstr "Het programma dat \"trash\" URL's afhandelt"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"aim\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"aim\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
-msgstr "Waar indine de opdracht aangegeven in de sleutel: \"command\", \"callto\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr ""
+"Waar indine de opdracht aangegeven in de sleutel: \"command\", \"callto\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"ghelp\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"ghelp\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"h323\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"h323\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\" \"http\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\" \"http\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"https\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"https\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"info\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"info\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"mailto\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"mailto\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"man\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"man\"-URL's "
+"dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
-msgstr "Waar indien de opdracht aangegeven in de sleutel: \"command\", \"trash\"-URL's dient af te handelen."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"Waar indien de opdracht aangegeven in de sleutel: \"command\", \"trash\"-"
+"URL's dient af te handelen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "Waar indien de opdracht om dit type URL af te handelen in een terminalvenster gestart dient te worden."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Waar indien de opdracht om dit type URL af te handelen in een "
+"terminalvenster gestart dient te worden."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1247,8 +1347,12 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Of de aangegeven opdracht \"trash\"-URL's dient af te handelen."
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
-msgstr "Een door komma's gescheiden lijst met DNS-SD domeinen die zichtbaar behoren te zijn in de locatie \"netwerk:///\"."
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"Een door komma's gescheiden lijst met DNS-SD domeinen die zichtbaar behoren "
+"te zijn in de locatie \"netwerk:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1299,8 +1403,15 @@ msgid "HTTP proxy username"
 msgstr "HTTP-proxy gebruikersnaam"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Indien waar, wordt voor een verbinding met de proxyserver aanmeldingscontrole vereist. De combinatie van gebruikersnaam en wachtwoord komt voort uit \"/system/http_proxy/authentication_user\" en \"/system/http_proxy/authentication_password\"."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Indien waar, wordt voor een verbinding met de proxyserver "
+"aanmeldingscontrole vereist. De combinatie van gebruikersnaam en wachtwoord "
+"komt voort uit \"/system/http_proxy/authentication_user\" en \"/system/"
+"http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1331,8 +1442,12 @@ msgid "Secure HTTP proxy port"
 msgstr "Beveiligde HTTP-proxy poortnummer"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Kies de proxy configuratiemodus. Mogelijke waarden zijn \"none\" (geen), \"manual\" (handmatig) en \"auto\" (automatisch)."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Kies de proxy configuratiemodus. Mogelijke waarden zijn \"none\" (geen), "
+"\"manual\" (handmatig) en \"auto\" (automatisch)."
 
 # BUG: machine name. Dit is erg lelijk, moet zijn host/computer/server
 #: ../schemas/system_http_proxy.schemas.in.h:19
@@ -1352,26 +1467,50 @@ msgid "The machine name to proxy socks through."
 msgstr "De machinenaam waar de socks-proxy op draait."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "Het poortnummer op de machine die u als proxy gebruikt en gedefineerd door \"/system/http_proxy/host\" "
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"Het poortnummer op de machine die u als proxy gebruikt en gedefineerd door "
+"\"/system/http_proxy/host\" "
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/ftp_host\""
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/"
+"system/proxy/ftp_host\""
 
 # het poortnummer
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/secure_host\""
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/"
+"system/proxy/secure_host\""
 
 # Het poortnummer
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/system/proxy/socks_host\""
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"De poort op de machine die u als proxy gebruikt en gedefinieerd door \"/"
+"system/proxy/socks_host\""
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Deze sleutel bevat een lijst van computers die direct benaderd dienen te worden in plaats van via de proxy. De waardes kunnen computernamen zijn, of domeinen (met jokertekens zoals: *.bla.com), IP-adressen (zowel IPv4 als IPv6) of netwerkadressen met netmasker zoals 192.168.0.0/24."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Deze sleutel bevat een lijst van computers die direct benaderd dienen te "
+"worden in plaats van via de proxy. De waardes kunnen computernamen zijn, of "
+"domeinen (met jokertekens zoals: *.bla.com), IP-adressen (zowel IPv4 als "
+"IPv6) of netwerkadressen met netmasker zoals 192.168.0.0/24."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1390,6 +1529,11 @@ msgid "SMB workgroup"
 msgstr "SMB-werkgroep"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
-msgstr "De werkgroep of het domein van het Windows-netwerk waar de gebruiker deel van is. Om de nieuwe werkgroep volledig effectief te laten zijn moet u mogelijkerwijs een keer uitloggen en opnieuw aanmelden."
-
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"De werkgroep of het domein van het Windows-netwerk waar de gebruiker deel "
+"van is. Om de nieuwe werkgroep volledig effectief te laten zijn moet u "
+"mogelijkerwijs een keer uitloggen en opnieuw aanmelden."
