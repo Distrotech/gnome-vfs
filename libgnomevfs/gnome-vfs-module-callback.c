@@ -840,9 +840,11 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 	callback = NULL;
 
 	if (gnome_vfs_get_is_daemon()) {
+#ifdef DBUS_TODO
 		return _gnome_vfs_module_callback_marshal_invoke (callback_name,
 								  in, in_size,
 								  out, out_size);
+#endif
 	}
 	
 	initialize_per_thread_if_needed ();

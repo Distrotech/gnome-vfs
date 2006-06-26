@@ -26,16 +26,15 @@
 #define GNOME_VFS_CANCELLATION_PRIVATE_H
 
 #include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-client-call.h"
-#include "GNOME_VFS_Daemon.h"
 
 G_BEGIN_DECLS
 
-void _gnome_vfs_cancellation_add_client_call    (GnomeVFSCancellation *cancellation,
-						 GnomeVFSClientCall   *client_call);
-void _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
-						 GnomeVFSClientCall   *client_call);
+typedef void (*GnomeVFSCancellationCallback) (gpointer user_data);
 
+void _gnome_vfs_cancellation_set_callback   (GnomeVFSCancellation *cancellation,
+					     GnomeVFSCancellationCallback func,
+					     gpointer user_data);
+void _gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation);
 
 G_END_DECLS
 

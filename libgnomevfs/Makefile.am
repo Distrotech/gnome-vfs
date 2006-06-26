@@ -151,10 +151,9 @@ noinst_HEADERS =				\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation-private.h	\
 	gnome-vfs-cdrom.h			\
-	gnome-vfs-client-call.h			\
-	gnome-vfs-client.h			\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-daemon-method.h		\
+	gnome-vfs-dbus-utils.h                  \
 	gnome-vfs-filesystem-type.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-hal-mounts.h			\
@@ -274,11 +273,10 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
-	gnome-vfs-client.c			\
-	gnome-vfs-client-call.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-daemon-method.c		\
+	gnome-vfs-dbus-utils.c                  \
 	gnome-vfs-directory.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\

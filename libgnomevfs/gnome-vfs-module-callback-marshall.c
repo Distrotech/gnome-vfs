@@ -35,6 +35,7 @@
 #include "gnome-vfs-standard-callbacks.h"
 #include <GNOME_VFS_Daemon.h>
 
+#ifdef DBUS_TODO
 
 static CORBA_char *
 corba_string_or_null_dup (char *str)
@@ -901,3 +902,4 @@ _gnome_vfs_module_callback_demarshal_invoke (const char    *callback_name,
 	
 	return TRUE;
 }
+#endif

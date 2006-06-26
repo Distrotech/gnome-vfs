@@ -22,13 +22,12 @@
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #include <config.h>
+
 #include "gnome-vfs-cancellation-private.h"
-#include "GNOME_VFS_Daemon.h"
 
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
-#include "gnome-vfs-client.h"
-#include "gnome-vfs-client-call.h"
+
 #include <unistd.h>
 
 #ifdef G_OS_WIN32
@@ -46,11 +45,13 @@ struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
 	gint pipe_out;
-	GnomeVFSClientCall *client_call;
+
+	GnomeVFSCancellationCallback callback;
+	gpointer                     callback_data;
 };
 
 G_LOCK_DEFINE_STATIC (pipes);
-G_LOCK_DEFINE_STATIC (client_call);
+G_LOCK_DEFINE_STATIC (callback);
 
 /**
  * gnome_vfs_cancellation_new:
@@ -69,8 +70,9 @@ gnome_vfs_cancellation_new (void)
 	new->cancelled = FALSE;
 	new->pipe_in = -1;
 	new->pipe_out = -1;
-	new->client_call = NULL;
-
+	new->callback = NULL;
+	new->callback_data = NULL;
+	
 	return new;
 }
 
@@ -90,32 +92,40 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 		close (cancellation->pipe_out);
 	}
 	/* Can't have outstanding calls when destroying the cancellation */
+#ifdef DBUS_TODO
 	g_assert (cancellation->client_call == NULL);
+#endif
 	
 	g_free (cancellation);
 }
 
 void
-_gnome_vfs_cancellation_add_client_call (GnomeVFSCancellation *cancellation,
-					 GnomeVFSClientCall *client_call)
+_gnome_vfs_cancellation_set_callback (GnomeVFSCancellation *cancellation,
+				      GnomeVFSCancellationCallback func,
+				      gpointer user_data)
 {
-	G_LOCK (client_call);
+	G_LOCK (callback);
+
 	/* Each client call uses its own context/cancellation */
-	g_assert (cancellation->client_call == NULL);
+	g_assert (cancellation->callback == NULL);
+
+	/*g_print ("cancellation %p, callback %p\n", cancellation, func);*/
 	
-	cancellation->client_call = client_call;
-	G_UNLOCK (client_call);
+	cancellation->callback = func;
+	cancellation->callback_data = user_data;
+
+	G_UNLOCK (callback);
 }
 
 void
-_gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
-					    GnomeVFSClientCall *client_call)
+_gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation)
 {
-	G_LOCK (client_call);
-	g_assert (cancellation->client_call == client_call);
+	G_LOCK (callback);
 	
-	cancellation->client_call = NULL;
-	G_UNLOCK (client_call);
+	cancellation->callback = NULL;
+	cancellation->callback_data = NULL;
+
+	G_UNLOCK (callback);
 }
 
 /**
@@ -134,10 +144,9 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
-	GNOME_VFS_AsyncDaemon daemon;
-	GnomeVFSClient *client;
-	GnomeVFSClientCall *client_call;
-
+	GnomeVFSCancellationCallback callback;
+	gpointer user_data;
+	
 	g_return_if_fail (cancellation != NULL);
 
 	if (cancellation->cancelled)
@@ -146,32 +155,29 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	if (cancellation->pipe_out >= 0)
 		write (cancellation->pipe_out, "c", 1);
 
-	client_call = CORBA_OBJECT_NIL;
-	G_LOCK (client_call);
-	if (cancellation->client_call != NULL) {
+	callback = NULL;
+	user_data = NULL;
+	
+	G_LOCK (callback);
+	if (cancellation->callback) {
+		/* DBUS-TODO */
 		/* We need to delay the finishing of the client call to avoid
 		 * the cancel call below to cancel the next call in the job thread
 		 * if the job finishes after we drop the lock.
 		 */
-		_gnome_vfs_client_call_delay_finish (cancellation->client_call);
-		client_call = cancellation->client_call;
-		bonobo_object_ref (client_call);
+		/*_gnome_vfs_client_call_delay_finish (cancellation->client_call);*/
+		
+		callback = cancellation->callback;
+		user_data = cancellation->callback_data;
 	}
-	G_UNLOCK (client_call);
-
+	G_UNLOCK (callback);
+	
 	cancellation->cancelled = TRUE;
 
-	if (client_call != NULL) {
-		CORBA_Environment ev;
-		client = _gnome_vfs_get_client ();
-		daemon = _gnome_vfs_client_get_async_daemon (client);
-
-		CORBA_exception_init (&ev);
-		GNOME_VFS_AsyncDaemon_Cancel (daemon, BONOBO_OBJREF (client_call), &ev);
-		CORBA_exception_free (&ev);
-		_gnome_vfs_client_call_delay_finish_done (client_call);
-		bonobo_object_unref (client_call);
-		CORBA_Object_release (daemon, NULL);
+	if (callback) {
+		callback (user_data);
+		/* DBUS-TODO: */
+		/*_gnome_vfs_client_call_delay_finish_done (client_call);*/
 	}
 }
 
