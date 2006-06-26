@@ -31,9 +31,7 @@
 #include "gnome-vfs-module-callback-private.h"
 #include "gnome-vfs-backend.h"
 #include "gnome-vfs-private.h"
-#include "gnome-vfs-client-call.h"
 #include "gnome-vfs-standard-callbacks.h"
-#include <GNOME_VFS_Daemon.h>
 
 #ifdef DBUS_TODO
 
