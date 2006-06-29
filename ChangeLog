@@ -1,3 +1,11 @@
+2006-06-29  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Use one private dbus connection per thread for the
+	daemon method.
+
 2006-06-26  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

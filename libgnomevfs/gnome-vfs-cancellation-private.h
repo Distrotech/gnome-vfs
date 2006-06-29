@@ -29,11 +29,11 @@
 
 G_BEGIN_DECLS
 
-typedef void (*GnomeVFSCancellationCallback) (gpointer user_data);
+typedef void (*GnomeVFSCancellationCallback) (gint connection, gint handle);
 
 void _gnome_vfs_cancellation_set_callback   (GnomeVFSCancellation *cancellation,
 					     GnomeVFSCancellationCallback func,
-					     gpointer user_data);
+					     gint connection, gint handle);
 void _gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation);
 
 G_END_DECLS

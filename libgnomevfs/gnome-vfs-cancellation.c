@@ -47,7 +47,8 @@ struct GnomeVFSCancellation {
 	gint pipe_out;
 
 	GnomeVFSCancellationCallback callback;
-	gpointer                     callback_data;
+	gint connection;
+	gint handle;
 };
 
 G_LOCK_DEFINE_STATIC (pipes);
@@ -71,7 +72,8 @@ gnome_vfs_cancellation_new (void)
 	new->pipe_in = -1;
 	new->pipe_out = -1;
 	new->callback = NULL;
-	new->callback_data = NULL;
+	new->connection = 0;
+	new->handle = 0;
 	
 	return new;
 }
@@ -102,7 +104,7 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 void
 _gnome_vfs_cancellation_set_callback (GnomeVFSCancellation *cancellation,
 				      GnomeVFSCancellationCallback func,
-				      gpointer user_data)
+				      gint connection, gint handle)
 {
 	G_LOCK (callback);
 
@@ -112,7 +114,8 @@ _gnome_vfs_cancellation_set_callback (GnomeVFSCancellation *cancellation,
 	/*g_print ("cancellation %p, callback %p\n", cancellation, func);*/
 	
 	cancellation->callback = func;
-	cancellation->callback_data = user_data;
+	cancellation->connection = connection;
+	cancellation->handle = handle;
 
 	G_UNLOCK (callback);
 }
@@ -123,7 +126,8 @@ _gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation)
 	G_LOCK (callback);
 	
 	cancellation->callback = NULL;
-	cancellation->callback_data = NULL;
+	cancellation->connection = 0;
+	cancellation->handle = 0;
 
 	G_UNLOCK (callback);
 }
@@ -145,7 +149,7 @@ void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSCancellationCallback callback;
-	gpointer user_data;
+	gint handle, connection_id;
 	
 	g_return_if_fail (cancellation != NULL);
 
@@ -156,7 +160,8 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 		write (cancellation->pipe_out, "c", 1);
 
 	callback = NULL;
-	user_data = NULL;
+	handle = 0;
+	connection_id = 0;
 	
 	G_LOCK (callback);
 	if (cancellation->callback) {
@@ -168,14 +173,15 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 		/*_gnome_vfs_client_call_delay_finish (cancellation->client_call);*/
 		
 		callback = cancellation->callback;
-		user_data = cancellation->callback_data;
+		handle = cancellation->handle;
+		connection_id = cancellation->connection;
 	}
 	G_UNLOCK (callback);
 	
 	cancellation->cancelled = TRUE;
 
 	if (callback) {
-		callback (user_data);
+		callback (connection_id, handle);
 		/* DBUS-TODO: */
 		/*_gnome_vfs_client_call_delay_finish_done (client_call);*/
 	}

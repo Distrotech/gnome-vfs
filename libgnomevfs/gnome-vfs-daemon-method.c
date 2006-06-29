@@ -29,9 +29,7 @@
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-cancellation-private.h>
 
-/*#include <pthread.h>*/
-
-#include <dbus/dbus-glib.h>
+#include <dbus/dbus.h>
 
 /* This is the current max in D-BUS, any number larger are getting set to
  * 6 hours. */
@@ -55,7 +53,12 @@ typedef struct {
 	/* Probably need more stuff here? */
 } FileHandle;
 
-static gboolean          ensure_connection       (void);
+typedef struct {
+	DBusConnection *connection;
+	gint conn_id;
+	gint handle;
+} LocalConnection;
+
 static void              append_args_valist      (DBusMessage     *message,
 						  DvdArgumentType  first_arg_type,
 						  va_list          var_args);
@@ -68,26 +71,15 @@ static DBusMessage *     execute_operation       (const gchar     *method,
 static gboolean          check_if_reply_is_error (DBusMessage     *reply,
 						  GnomeVFSResult  *result);
 static DBusMessage *     create_method_call      (const gchar     *method);
-static gint32            cancellation_id_new     (GnomeVFSContext *context);
+static gint32            cancellation_id_new     (GnomeVFSContext *context,
+						  LocalConnection *conn);
 static void              cancellation_id_free    (gint32           cancellation_id,
 						  GnomeVFSContext *context);
 static DBusHandlerResult message_handler         (DBusConnection  *conn,
 						  DBusMessage     *message,
 						  gpointer         user_data);
-static gpointer          main_loop_thread        (gpointer         data);
-GnomeVFSMethod *         vfs_module_init         (const char      *method_name,
-						  const char      *args);
-void                     vfs_module_shutdown     (GnomeVFSMethod  *method);
 
-
-static DBusConnection *dbus_main_conn = NULL;
-static DBusConnection *dbus_conn = NULL;
-static dbus_int32_t    dbus_conn_id = 0;
-
-static GStaticMutex    mutex = G_STATIC_MUTEX_INIT;
-
-#define MUTEX_LOCK(x) g_static_mutex_lock (&mutex);
-#define MUTEX_UNLOCK(x) g_static_mutex_unlock (&mutex);
+static GStaticPrivate  local_connection_private = G_STATIC_PRIVATE_INIT;
 
 static void
 utils_append_string_or_null (DBusMessageIter *iter,
@@ -321,6 +313,7 @@ dbus_utils_message_get_file_info_list (DBusMessage *message)
 		if (info) {
 			list = g_list_prepend (list, info);
 		}
+		/* DBUS-TODO: use sentinel here so support growing the file-info */
 	} while (dbus_message_iter_next (&iter));
 
 	list = g_list_reverse (list);
@@ -333,144 +326,93 @@ typedef struct {
 	gchar *sender;
 } CancellationRequest;
 
-static gboolean
-idle_cancel_func (gpointer data)
+static void
+destroy_private_connection (gpointer data)
 {
-	DBusMessage *message;
-	gint32       cancellation_id;
+	LocalConnection *ret = data;
 
-	d(g_print ("Send cancel\n"));
-
-	if (!dbus_connection_get_is_connected (dbus_main_conn)) {
-		return FALSE;
-	}
-
-	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
- 						DVD_DAEMON_OBJECT,
-						DVD_DAEMON_INTERFACE,
-						DVD_DAEMON_METHOD_CANCEL);
-	if (!message) {
-		g_error ("Out of memory");
-	}
-
-	cancellation_id = GPOINTER_TO_INT (data);
-
-	if (!dbus_message_append_args (message,
-				       DBUS_TYPE_INT32, &cancellation_id,
-				       DBUS_TYPE_INT32, &dbus_conn_id,
-				       DBUS_TYPE_INVALID)) {
-		g_error ("Out of memory");
-	}
-
-	dbus_connection_send (dbus_main_conn, message, NULL);
-	dbus_message_unref (message);
-
-	return FALSE;
+	dbus_connection_disconnect (ret->connection);
+	dbus_connection_unref (ret->connection);
+	g_free (ret);
 }
 
-static gboolean
-ensure_main_connection (void)
+static LocalConnection *
+get_private_connection ()
 {
+	DBusMessage *message;
+	DBusMessage *reply;
 	DBusError error;
-	
-	/*g_print ("** ensure main connection, thread %p\n", (gpointer) pthread_self ());*/
-				
-	if (dbus_main_conn) {
-		return TRUE;
-	}
+	DBusConnection *main_conn, *private_conn;
+	gchar        *address;
+	dbus_int32_t conn_id;
+	LocalConnection *ret;
 
+	ret = g_static_private_get (&local_connection_private);
+	if (ret != NULL) {
+		return ret;
+	}
+	
 	dbus_error_init (&error);
-	dbus_main_conn = dbus_bus_get_private (DBUS_BUS_SESSION, &error);
-	if (!dbus_main_conn) {
+	
+	main_conn = dbus_bus_get_private (DBUS_BUS_SESSION, &error);
+	if (!main_conn) {
 		g_printerr ("Couldn't get main dbus connection: %s\n",
 			    error.message);
 		dbus_error_free (&error);
-		
-		return FALSE;
+		return NULL;
 	}
 	
-	dbus_connection_setup_with_g_main (dbus_main_conn, NULL);
-
-	return TRUE;
-}
-
-static gboolean
-ensure_connection (void)
-{
-	DBusMessage  *message;
-	DBusMessage  *reply;
-	gchar        *address;
-	DBusError     error;
-	GMainContext *context;
-
-	MUTEX_LOCK ("ensure");
-
-	/*g_print ("** ensure connection, thread %p\n", (gpointer) pthread_self ());*/
-	
-	if (dbus_conn && dbus_connection_get_is_connected (dbus_conn)) {
-		MUTEX_UNLOCK ("dbus_conn");
-		return TRUE;
-	}
-
-	if (!ensure_main_connection ()) {
-		MUTEX_UNLOCK ("dbus_conn");
-		return FALSE;
-	}
-
 	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
 						DVD_DAEMON_OBJECT,
 						DVD_DAEMON_INTERFACE,
 						DVD_DAEMON_METHOD_GET_CONNECTION);
-
-	dbus_error_init (&error);
-	reply = dbus_connection_send_with_reply_and_block (dbus_main_conn,
+	dbus_message_set_auto_start (message, TRUE);
+	reply = dbus_connection_send_with_reply_and_block (main_conn,
 							   message,
 							   -1,
 							   &error);
+	dbus_message_unref (message);
+	dbus_connection_disconnect (main_conn);
+	dbus_connection_unref (main_conn);
 	if (!reply) {
 		g_warning ("Error while getting peer-to-peer connection: %s",
 			   error.message);
 		dbus_error_free (&error);
-		MUTEX_UNLOCK ("p2p");
-		return FALSE;
+		return NULL;
 	}
 
 	dbus_message_get_args (reply, NULL,
 			       DBUS_TYPE_STRING, &address,
-			       DBUS_TYPE_INT32, &dbus_conn_id,
+			       DBUS_TYPE_INT32, &conn_id,
 			       DBUS_TYPE_INVALID);
-
-	if (dbus_conn) {
-		dbus_connection_unref (dbus_conn);
-	}
-
-	dbus_conn = dbus_connection_open_private (address, &error);
-	if (!dbus_conn) {
+	
+	private_conn = dbus_connection_open_private (address, &error);
+	if (!private_conn) {
 		g_warning ("Failed to connect to peer-to-peer address (%s): %s",
 			   address, error.message);
+		dbus_message_unref (reply);
 		dbus_error_free (&error);
-		MUTEX_UNLOCK ("p2p conn");
-		return FALSE;
+		return NULL;
 	}
+	dbus_message_unref (reply);
 
-	if (!dbus_connection_add_filter (dbus_conn, message_handler,
+	if (!dbus_connection_add_filter (private_conn, message_handler,
 					 NULL, NULL)) {
 		g_warning ("Failed to add filter to the connection.");
-		dbus_connection_disconnect (dbus_conn);
-		dbus_connection_unref (dbus_conn);
-
-		dbus_conn = NULL;
-		MUTEX_UNLOCK ("add filter");
-		return FALSE;
+		dbus_connection_disconnect (private_conn);
+		dbus_connection_unref (private_conn);
+		return NULL;
 	}
 
-	context = g_main_context_new ();
+	ret = g_new (LocalConnection, 1);
+	ret->connection = private_conn;
+	ret->conn_id = conn_id;
+	ret->handle = 0;
 
-	dbus_connection_setup_with_g_main (dbus_conn, context);
-	g_thread_create (main_loop_thread, context, FALSE, NULL);
-
-	MUTEX_UNLOCK ("ensure done");
-	return TRUE;
+	g_static_private_set (&local_connection_private,
+			      ret, destroy_private_connection);
+	
+	return ret;
 }
 
 static void
@@ -617,12 +559,13 @@ execute_operation (const gchar      *method,
 	va_list      var_args;
 	gint32       cancellation_id;
 	DBusError    error;
+	LocalConnection *connection;
+	DBusPendingCall *pending_call;
+	gint conn_id;
 
-	if (!ensure_connection ()) {
-		if (result) {
-			*result = GNOME_VFS_ERROR_INTERNAL;
-		}
-
+	connection = get_private_connection (&conn_id);
+	if (connection == NULL) {
+		*result = GNOME_VFS_ERROR_INTERNAL;
 		return NULL;
 	}
 
@@ -634,7 +577,8 @@ execute_operation (const gchar      *method,
 
 	cancellation_id = -1;
 	if (context) {
-		cancellation_id = cancellation_id_new (context);
+		cancellation_id = cancellation_id_new (context,
+						       connection);
 		dbus_message_append_args (message,
 					  DBUS_TYPE_INT32, &cancellation_id,
 					  DBUS_TYPE_INVALID);
@@ -647,38 +591,32 @@ execute_operation (const gchar      *method,
 		timeout = DBUS_TIMEOUT_DEFAULT;
 	}
 
-	MUTEX_LOCK ("send");
-	reply = dbus_connection_send_with_reply_and_block (dbus_conn,
-							   message,
-							   timeout,
-							   &error);
+	if (!dbus_connection_send_with_reply (connection->connection,
+					      message, &pending_call, timeout)) {
+		dbus_message_unref (message);
+		*result = GNOME_VFS_ERROR_INTERNAL;
+		return NULL;
+	}
 
-	MUTEX_UNLOCK ("send");
+	dbus_message_unref (message);
+	
+	/* DBUS-TODO: handle callbacks here (via message_handler) */
+	while (!dbus_pending_call_get_completed (pending_call) &&
+	       dbus_connection_read_write_dispatch (connection->connection, -1))
+		;
 
+	reply = dbus_pending_call_steal_reply (pending_call);
+
+	dbus_pending_call_unref (pending_call);
+	
 	if (cancellation_id != -1) {
 		cancellation_id_free (cancellation_id, context);
 	}
 
-	dbus_message_unref (message);
-
-	if (dbus_error_is_set (&error)) {
-                GnomeVFSResult vfs_result;
-
-		d(g_print ("Error: (Function: %s) %s\n",
-			 method, error.message));
-
-                vfs_result = GNOME_VFS_ERROR_GENERIC;
-
-                if (strcmp (error.name, DBUS_ERROR_TIMEOUT) == 0) {
-                        vfs_result = GNOME_VFS_ERROR_TIMEOUT;
-                }
-
-		dbus_error_free (&error);
-
+	if (reply == NULL) {
 		if (result) {
-			*result = GNOME_VFS_ERROR_GENERIC;
+			*result = GNOME_VFS_ERROR_TIMEOUT;
 		}
-
 		return NULL;
 	}
 
@@ -767,29 +705,56 @@ file_handle_free (FileHandle *handle)
 }
 
 static void
-cancellation_callback (gpointer user_data)
+cancellation_callback (gint connection_id, gint handle)
 {
-	g_idle_add (idle_cancel_func, user_data);
+#if 0
+	DBusMessage *message;
+
+	d(g_print ("Send cancel\n"));
+	/* DBUS-TODO: use mainthread dbus connection */
+	if (!dbus_connection_get_is_connected (dbus_main_conn)) {
+		return FALSE;
+	}
+
+	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
+ 						DVD_DAEMON_OBJECT,
+						DVD_DAEMON_INTERFACE,
+						DVD_DAEMON_METHOD_CANCEL);
+	if (!message) {
+		g_error ("Out of memory");
+	}
+
+	cancellation_id = GPOINTER_TO_INT (data);
+
+	if (!dbus_message_append_args (message,
+				       DBUS_TYPE_INT32, &handle,
+				       DBUS_TYPE_INT32, &connection_id,
+				       DBUS_TYPE_INVALID)) {
+		g_error ("Out of memory");
+	}
+
+	dbus_connection_send (dbus_main_conn, message, NULL);
+	dbus_message_unref (message);
+#endif
 }
 
 static gint32
-cancellation_id_new (GnomeVFSContext *context)
+cancellation_id_new (GnomeVFSContext *context,
+		     LocalConnection *conn)
 {
-	static gint32         next_handle = 0;
 	GnomeVFSCancellation *cancellation;
 
-	next_handle++;
-
+	conn->handle++;
 	if (context) {
 		cancellation = gnome_vfs_context_get_cancellation (context);
 		if (cancellation) {
 			_gnome_vfs_cancellation_set_callback (
 				cancellation, cancellation_callback,
-				GINT_TO_POINTER (next_handle));
+				conn->conn_id, conn->handle);
 		}
 	}
 
-	return next_handle;
+	return conn->handle;
 }
 
 static void
@@ -810,12 +775,18 @@ cancellation_id_free (gint32           cancellation_id,
 	 */
 }
 
+/* DBUS-TODO: monitor callbacks here? should be on main connection?
+ * problematic with no mainloop
+ * Instead this should handle callbacks
+ */
 /* This is a filter function, so never return HANDLED. */
 static DBusHandlerResult
 message_handler (DBusConnection *conn,
 		 DBusMessage    *message,
 		 gpointer        user_data)
 {
+	g_print ("message handler\n");
+#if 0
 	dbus_int32_t  id;
 	gchar        *uri_str;
 	dbus_int32_t  event_type;
@@ -840,25 +811,8 @@ message_handler (DBusConnection *conn,
 				    (GnomeVFSMonitorEventType) event_type);
 
 	gnome_vfs_uri_unref (uri);
-
+#endif
 	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-
-static gpointer
-main_loop_thread (gpointer data)
-{
-	GMainContext *context = (GMainContext *) data;
-
-	/*g_print ("main_loop_thread, thread %p", (gpointer) pthread_self ());*/
-	
-	while (TRUE) {
-		MUTEX_LOCK ("iterating");
-		g_main_context_iteration (context, FALSE);
-		MUTEX_UNLOCK ("main loop");
-		sleep (1);
-	}
-
-	return NULL;
 }
 
 static GnomeVFSResult
