@@ -22,46 +22,15 @@
 #include <string.h>
 #include <glib.h>
 
-#include <dbus/dbus-glib.h>
+#include <dbus/dbus.h>
 
 #include "gnome-vfs-volume-monitor-private.h"
 #include "gnome-vfs-dbus-utils.h"
 #include "dbus-utils.h"
 
-#define d(x)
-
-#if 0
-static void
-utils_append_string_or_null (DBusMessageIter *iter,
-			     const gchar     *str)
-{
-	if (!str) {
-		str = "";
-	}
-	
-	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
-}
-
-static gchar *
-utils_get_string_or_null (DBusMessageIter *iter)
-{
-	const gchar *str;
-	
-	dbus_message_iter_get_basic (iter, &str);
-	
-	if (str && strcmp (str, "") == 0) {
-		return NULL;
-	}
-
-	return g_strdup (str);
-}
-#endif
-
-
 /*
  * Volume messages
  */
-
 void
 dbus_utils_message_append_volume_list (DBusMessage *message, GList *volumes)
 {
