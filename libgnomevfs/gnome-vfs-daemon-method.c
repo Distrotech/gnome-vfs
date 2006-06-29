@@ -313,7 +313,6 @@ dbus_utils_message_get_file_info_list (DBusMessage *message)
 		if (info) {
 			list = g_list_prepend (list, info);
 		}
-		/* DBUS-TODO: use sentinel here so support growing the file-info */
 	} while (dbus_message_iter_next (&iter));
 
 	list = g_list_reverse (list);

@@ -216,6 +216,7 @@ daemon_new_connection_func (DBusServer     *server,
 			     daemon_connection);
 }
 
+/* DBUS-TODO: use non-abstract sockets */
 /* Note: Use abstract sockets like dbus does by default on Linux. Abstract
  * sockets are only available on Linux.
  */

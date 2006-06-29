@@ -446,6 +446,7 @@ daemon_connection_cancel (DaemonConnection *conn, gint32 cancellation_id)
 	CancellationHandle   *handle;
 	GnomeVFSCancellation *cancellation;
 
+	/* DBUS-TODO: lock here ? */
 	handle = connection_get_cancellation (conn, cancellation_id);
 	if (!handle) {
 		return;
