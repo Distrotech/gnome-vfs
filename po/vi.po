@@ -64,7 +64,7 @@ msgstr "%s:%d không chứa tên phương pháp."
 #:../libgnomevfs/gnome-vfs-configuration.c:282
 #,c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d không chứa dấu kết thức tùy chọn."
+msgstr "%s:%d không chứa dấu kết thúc tùy chọn."
 
 #:../libgnomevfs/gnome-vfs-configuration.c:293
 #,c-format
