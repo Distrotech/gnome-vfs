@@ -636,96 +636,150 @@ gnome_vfs_volume_compare (GnomeVFSVolume *a,
 }
 
 
-static CORBA_char *
-corba_string_or_null_dup (char *str)
+static void
+utils_append_string_or_null (DBusMessageIter *iter,
+			     const gchar     *str)
 {
-	if (str != NULL) {
-		return CORBA_string_dup (str);
-	} else {
-		return CORBA_string_dup ("");
+	if (!str) {
+		str = "";
 	}
+	
+	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
-/* empty string interpreted as NULL */
-static char *
-decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
+static gchar *
+utils_get_string_or_null (DBusMessageIter *iter)
 {
-	if (empty_is_null && *str == 0) {
+	const gchar *str;
+	
+	dbus_message_iter_get_basic (iter, &str);
+	
+	if (str && strcmp (str, "") == 0) {
 		return NULL;
-	} else {
-		return g_strdup (str);
 	}
+
+	return g_strdup (str);
 }
 
-/** 
- * gnome_vfs_volume_to_corba:
- * @volume: a #GnomeVFSVolume.
- * @corba_volume: a GNOME_VFS_volume object.
- *
- * Fills @corba_volume with the values from the @volume.
- *
- * Since: 2.6
- */
-void
-gnome_vfs_volume_to_corba (GnomeVFSVolume *volume,
-			   GNOME_VFS_Volume *corba_volume)
+gboolean
+gnome_vfs_volume_to_dbus (DBusMessageIter *iter,
+			  GnomeVFSVolume  *volume)
 {
-	GnomeVFSDrive *drive;
+	GnomeVFSVolumePrivate *priv;
+	DBusMessageIter        struct_iter;
+	GnomeVFSDrive         *drive;
+	gint32                 i;
 
-	corba_volume->id = volume->priv->id;
-	corba_volume->volume_type = volume->priv->volume_type;
-	corba_volume->device_type = volume->priv->device_type;
+	g_return_val_if_fail (iter != NULL, FALSE);
+	g_return_val_if_fail (volume != NULL, FALSE);
+
+	priv = volume->priv;
+
+	if (!dbus_message_iter_open_container (iter,
+					       DBUS_TYPE_STRUCT,
+					       NULL, /* for struct */
+					       &struct_iter)) {
+		return FALSE;
+	}
+
+	i = priv->id;
+	dbus_message_iter_append_basic (&struct_iter, DBUS_TYPE_INT32, &i);
+
+	i = priv->volume_type;
+	dbus_message_iter_append_basic (&struct_iter, DBUS_TYPE_INT32, &i);
+
+	i = priv->device_type;
+	dbus_message_iter_append_basic (&struct_iter, DBUS_TYPE_INT32, &i);
+
 	drive = gnome_vfs_volume_get_drive (volume);
 	if (drive != NULL) {
-		corba_volume->drive = drive->priv->id;
+		i = drive->priv->id;
 		gnome_vfs_drive_unref (drive);
 	} else {
-		corba_volume->drive = 0;
+		i = 0;
 	}
-	corba_volume->device_path = corba_string_or_null_dup (volume->priv->device_path);
-	corba_volume->unix_device = volume->priv->unix_device;
-	corba_volume->activation_uri = corba_string_or_null_dup (volume->priv->activation_uri);
-	corba_volume->filesystem_type = corba_string_or_null_dup (volume->priv->filesystem_type);
-	corba_volume->display_name = corba_string_or_null_dup (volume->priv->display_name);
-	corba_volume->icon = corba_string_or_null_dup (volume->priv->icon);
-	corba_volume->gconf_id = corba_string_or_null_dup (volume->priv->gconf_id);
-	corba_volume->hal_udi = corba_string_or_null_dup (volume->priv->hal_udi);
+	dbus_message_iter_append_basic (&struct_iter, DBUS_TYPE_INT32, &i);
+
+	utils_append_string_or_null (&struct_iter, priv->activation_uri);
+	utils_append_string_or_null (&struct_iter, priv->filesystem_type);
+	utils_append_string_or_null (&struct_iter, priv->display_name);
+	utils_append_string_or_null (&struct_iter, priv->icon);
+
+	dbus_message_iter_append_basic (&struct_iter,
+					DBUS_TYPE_BOOLEAN,
+					&priv->is_user_visible);
+	dbus_message_iter_append_basic (&struct_iter,
+					DBUS_TYPE_BOOLEAN,
+					&priv->is_read_only);
+	dbus_message_iter_append_basic (&struct_iter,
+					DBUS_TYPE_BOOLEAN,
+					&priv->is_mounted);
 	
-	corba_volume->is_user_visible = volume->priv->is_user_visible;
-	corba_volume->is_read_only = volume->priv->is_read_only;
-	corba_volume->is_mounted = volume->priv->is_mounted;
+	utils_append_string_or_null (&struct_iter, priv->device_path);
+
+	i = priv->unix_device;
+	dbus_message_iter_append_basic (&struct_iter, DBUS_TYPE_INT32, &i);
+
+	utils_append_string_or_null (&struct_iter, priv->hal_udi);
+	utils_append_string_or_null (&struct_iter, priv->gconf_id);
+
+	dbus_message_iter_close_container (iter, &struct_iter);
+	
+	return TRUE;
 }
 
 GnomeVFSVolume *
-_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
-			      GnomeVFSVolumeMonitor *volume_monitor)
+_gnome_vfs_volume_from_dbus (DBusMessageIter       *iter,
+			     GnomeVFSVolumeMonitor *volume_monitor)
 {
-	GnomeVFSVolume *volume;
+	GnomeVFSVolumePrivate *priv;
+	DBusMessageIter        struct_iter;
+	GnomeVFSVolume        *volume;
+	gint32                 i;
+
+	g_return_val_if_fail (iter != NULL, NULL);
+	g_return_val_if_fail (volume_monitor != NULL, NULL);
+	
+	g_assert (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRUCT);
 
 	volume = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
-	
-	volume->priv->id = corba_volume->id;
-	volume->priv->volume_type = corba_volume->volume_type;
-	volume->priv->device_type = corba_volume->device_type;
 
-	if (corba_volume->drive != 0) {
-		volume->priv->drive = gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor,
-										corba_volume->drive);
-		if (volume->priv->drive != NULL) {
-			gnome_vfs_drive_add_mounted_volume_private (volume->priv->drive, volume);
+	priv = volume->priv;
+
+	dbus_message_iter_recurse (iter, &struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &i);
+	priv->id = i;
+
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &i);
+	priv->volume_type = i;
+
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &i);
+	priv->device_type = i;
+
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &i);
+	if (i != 0) {
+		priv->drive = gnome_vfs_volume_monitor_get_drive_by_id (
+			volume_monitor, i);
+		
+		if (priv->drive != NULL) {
+			gnome_vfs_drive_add_mounted_volume_private (priv->drive, volume);
+			
 			/* The drive reference is weak */
-			gnome_vfs_drive_unref (volume->priv->drive);
+			gnome_vfs_drive_unref (priv->drive);
 		}
 	}
-								  
-	volume->priv->device_path = decode_corba_string_or_null (corba_volume->device_path, TRUE);
-	volume->priv->unix_device = corba_volume->unix_device;
-	volume->priv->activation_uri = decode_corba_string_or_null (corba_volume->activation_uri, TRUE);
-	volume->priv->filesystem_type = decode_corba_string_or_null (corba_volume->filesystem_type, TRUE);
-	volume->priv->display_name = decode_corba_string_or_null (corba_volume->display_name, TRUE);
-	volume->priv->icon = decode_corba_string_or_null (corba_volume->icon, TRUE);
-	volume->priv->gconf_id = decode_corba_string_or_null (corba_volume->gconf_id, TRUE);
-	volume->priv->hal_udi = decode_corba_string_or_null (corba_volume->hal_udi, TRUE);
+
+	dbus_message_iter_next (&struct_iter);
+	priv->activation_uri = utils_get_string_or_null (&struct_iter);
+
+	dbus_message_iter_next (&struct_iter);
+	priv->filesystem_type = utils_get_string_or_null (&struct_iter);
+
+	dbus_message_iter_next (&struct_iter);
+	priv->display_name = utils_get_string_or_null (&struct_iter);
 
 	if (volume->priv->display_name != NULL) {
 		char *tmp = g_utf8_casefold (volume->priv->display_name, -1);
@@ -734,10 +788,30 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 	} else {
 		volume->priv->display_name_key = NULL;
 	}
+	
+	dbus_message_iter_next (&struct_iter);
+	priv->icon = utils_get_string_or_null (&struct_iter);
 
-	volume->priv->is_user_visible = corba_volume->is_user_visible;
-	volume->priv->is_read_only = corba_volume->is_read_only;
-	volume->priv->is_mounted = corba_volume->is_mounted;
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &priv->is_user_visible);
 
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &priv->is_read_only);
+
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &priv->is_mounted);
+
+	dbus_message_iter_next (&struct_iter);
+	priv->device_path = utils_get_string_or_null (&struct_iter);
+
+	dbus_message_iter_next (&struct_iter);
+	dbus_message_iter_get_basic (&struct_iter, &priv->unix_device);
+
+	dbus_message_iter_next (&struct_iter);
+	priv->hal_udi = utils_get_string_or_null (&struct_iter);
+	
+	dbus_message_iter_next (&struct_iter);
+	priv->gconf_id = utils_get_string_or_null (&struct_iter);
+	
 	return volume;
 }

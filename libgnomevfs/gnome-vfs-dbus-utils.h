@@ -112,18 +112,6 @@ typedef enum {
 	DVD_TYPE_BYTE_ARRAY
 } DvdArgumentType;
 
-GnomeVFSVolume *_gnome_vfs_volume_dbus_message_iter_get    (DBusMessageIter       *dict,
-							    GnomeVFSVolumeMonitor *volume_monitor);
-gboolean        _gnome_vfs_volume_dbus_message_iter_append (DBusMessageIter       *iter,
-							    GnomeVFSVolume        *volume);
-gboolean        gnome_vfs_dbus_utils_append_volume        (DBusMessageIter       *iter,
-							    GnomeVFSVolume        *volume);
-GnomeVFSVolume *_gnome_vfs_dbus_utils_get_volume           (DBusMessageIter       *dict,
-							    GnomeVFSVolumeMonitor *volume_monitor);
-gboolean        gnome_vfs_dbus_utils_append_drive         (DBusMessageIter       *iter,
-							    GnomeVFSDrive         *drive);
-GnomeVFSDrive * _gnome_vfs_dbus_utils_get_drive            (DBusMessageIter       *dict,
-							    GnomeVFSVolumeMonitor *volume_monitor);
 GList *         _gnome_vfs_dbus_utils_get_drives           (DBusConnection        *conn,
 							    GnomeVFSVolumeMonitor *volume_monitor);
 GList *         _gnome_vfs_dbus_utils_get_volumes          (DBusConnection        *conn,

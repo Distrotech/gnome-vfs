@@ -63,13 +63,14 @@ dbus_utils_message_append_volume_list (DBusMessage *message, GList *volumes)
 					  DBUS_TYPE_STRING_AS_STRING
 					  DBUS_TYPE_INT32_AS_STRING
 					  DBUS_TYPE_STRING_AS_STRING
+					  DBUS_TYPE_STRING_AS_STRING
 					  DBUS_STRUCT_END_CHAR_AS_STRING,
 					  &array_iter);
 	
 	for (l = volumes; l; l = l->next) {
 		volume = l->data;
 
-		gnome_vfs_dbus_utils_append_volume (&array_iter, volume);
+		gnome_vfs_volume_to_dbus (&array_iter, volume);
 	}
 
 	dbus_message_iter_close_container (&iter, &array_iter);
@@ -95,7 +96,9 @@ dbus_utils_message_append_drive_list (DBusMessage *message, GList *drives)
 					  DBUS_STRUCT_BEGIN_CHAR_AS_STRING
 					  DBUS_TYPE_INT32_AS_STRING
 					  DBUS_TYPE_INT32_AS_STRING
+					  DBUS_TYPE_ARRAY_AS_STRING
 					  DBUS_TYPE_INT32_AS_STRING
+					  DBUS_TYPE_STRING_AS_STRING
 					  DBUS_TYPE_STRING_AS_STRING
 					  DBUS_TYPE_STRING_AS_STRING
 					  DBUS_TYPE_STRING_AS_STRING
@@ -109,7 +112,7 @@ dbus_utils_message_append_drive_list (DBusMessage *message, GList *drives)
 	for (l = drives; l; l = l->next) {
 		drive = l->data;
 
-		gnome_vfs_dbus_utils_append_drive (&array_iter, drive);
+		gnome_vfs_drive_to_dbus (&array_iter, drive);
 	}
 
 	dbus_message_iter_close_container (&iter, &array_iter);
@@ -124,7 +127,7 @@ dbus_utils_message_append_volume (DBusMessage *message, GnomeVFSVolume *volume)
 	g_return_if_fail (volume != NULL);
 
 	dbus_message_iter_init_append (message, &iter);
-	gnome_vfs_dbus_utils_append_volume (&iter, volume);
+	gnome_vfs_volume_to_dbus (&iter, volume);
 }
 
 void
@@ -136,5 +139,5 @@ dbus_utils_message_append_drive (DBusMessage *message, GnomeVFSDrive *drive)
 	g_return_if_fail (drive != NULL);
 
 	dbus_message_iter_init_append (message, &iter);
-	gnome_vfs_dbus_utils_append_drive (&iter, drive);
+	gnome_vfs_drive_to_dbus (&iter, drive);
 }

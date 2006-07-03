@@ -254,6 +254,7 @@ report_mount_result (gpointer callback_data)
 	/* We want to force probing here so that the daemon
 	   can refresh and tell us (and everyone else) of the new
 	   volume before we call the callback */
+	/* DBUS-TODO: Are these new volumes really read in by the reply time */
 	force_probe ();
 	
 	(info->callback) (info->succeeded,
@@ -265,28 +266,6 @@ report_mount_result (gpointer callback_data)
 	while (info->argv[i] != NULL) {
 		g_free (info->argv[i]);
 		i++;
-	}
-
-	/* DBUS-TODO: look at this */
-	/* RH, send off a fake CHANGED event on mtab here so that the FAM-less
-	 * vfs daemon can pick up the change and notify clients about the
-	 * mounted/unmounted volume.
-	 */
-
-	/* Note, this is always run in an idle callback so the dbus message is
-	 * sent off from the main thread, and there are no threading issues.
-	 */
-	if (info->succeeded) {
-		GnomeVFSVolumeMonitor *volume_monitor;
-
-		volume_monitor = gnome_vfs_get_volume_monitor ();
-		
-		if (gnome_vfs_get_is_daemon ()) {
-			/* We don't do anything in the daemon here. */
-		} else {
-			_gnome_vfs_volume_monitor_client_dbus_emit_mtab_changed (
-				GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor));
-		}
 	}
 	
 	g_free (info->mount_point);

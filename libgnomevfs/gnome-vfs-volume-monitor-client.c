@@ -40,10 +40,8 @@ static void gnome_vfs_volume_monitor_client_class_init (GnomeVFSVolumeMonitorCli
 static void gnome_vfs_volume_monitor_client_init       (GnomeVFSVolumeMonitorClient      *volume_monitor_client);
 static void gnome_vfs_volume_monitor_client_finalize   (GObject                          *object);
 
-static DBusConnection *dbus_conn = NULL;
-
-static void setup_dbus_connection    (void);
-static void shutdown_dbus_connection (void);
+static void setup_dbus_connection    (GnomeVFSVolumeMonitorClient *volume_monitor_client);
+static void shutdown_dbus_connection (GnomeVFSVolumeMonitorClient *volume_monitor_client);
 
 static GnomeVFSVolumeMonitorClass *parent_class = NULL;
 
@@ -82,8 +80,6 @@ gnome_vfs_volume_monitor_client_class_init (GnomeVFSVolumeMonitorClientClass *cl
 	
 	o_class = (GObjectClass *) class;
 
-	setup_dbus_connection ();
-	
 	/* GObject signals */
 	o_class->finalize = gnome_vfs_volume_monitor_client_finalize;
 }
@@ -97,7 +93,7 @@ read_drives_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
 
-	list = _gnome_vfs_dbus_utils_get_drives (dbus_conn, volume_monitor);
+	list = _gnome_vfs_dbus_utils_get_drives (volume_monitor_client->dbus_conn, volume_monitor);
 	for (l = list; l; l = l->next) {
 		drive = l->data;
 
@@ -117,7 +113,7 @@ read_volumes_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
 
-	list = _gnome_vfs_dbus_utils_get_volumes (dbus_conn, volume_monitor);
+	list = _gnome_vfs_dbus_utils_get_volumes (volume_monitor_client->dbus_conn, volume_monitor);
 	for (l = list; l; l = l->next) {
 		volume = l->data;
 		
@@ -131,6 +127,7 @@ read_volumes_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 static void
 gnome_vfs_volume_monitor_client_init (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 {
+	setup_dbus_connection (volume_monitor_client);
 	read_drives_from_daemon (volume_monitor_client);
 	read_volumes_from_daemon (volume_monitor_client);
 }
@@ -145,7 +142,7 @@ gnome_vfs_volume_monitor_client_finalize (GObject *object)
 	volume_monitor_client = GNOME_VFS_VOLUME_MONITOR_CLIENT (object);
 
 	g_assert (volume_monitor_client->is_shutdown);
-	
+
 	if (G_OBJECT_CLASS (parent_class)->finalize)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
@@ -172,9 +169,8 @@ gnome_vfs_volume_monitor_client_shutdown_private (GnomeVFSVolumeMonitorClient *v
 	
 	volume_monitor_client->is_shutdown = TRUE;
 
-	shutdown_dbus_connection ();
+	shutdown_dbus_connection (volume_monitor_client);
 }
-
 
 #define DAEMON_SIGNAL_RULE \
   "type='signal',sender='org.gnome.GnomeVFS.Daemon',interface='org.gnome.GnomeVFS.Daemon'"
@@ -201,7 +197,7 @@ dbus_try_activate_daemon_helper (GnomeVFSVolumeMonitorClient *volume_monitor)
 	d(g_print ("Try activating daemon.\n"));
 
 	dbus_error_init (&error);
-	if (!dbus_bus_start_service_by_name (dbus_conn,
+	if (!dbus_bus_start_service_by_name (volume_monitor->dbus_conn,
 					     DVD_DAEMON_SERVICE,
 					     0,
 					     NULL,
@@ -278,8 +274,8 @@ dbus_filter_func (DBusConnection *connection,
 	if (dbus_message_is_signal (message,
 				    DVD_DAEMON_INTERFACE,
 				    DVD_DAEMON_VOLUME_MOUNTED_SIGNAL)) {
-		dbus_message_iter_init (message, &iter);		
-		volume = _gnome_vfs_dbus_utils_get_volume (&iter, volume_monitor);
+		dbus_message_iter_init (message, &iter);
+		volume = _gnome_vfs_volume_from_dbus (&iter, volume_monitor);
 		_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
 		gnome_vfs_volume_unref (volume);
 	}
@@ -314,7 +310,7 @@ dbus_filter_func (DBusConnection *connection,
 					 DVD_DAEMON_INTERFACE,
 					 DVD_DAEMON_DRIVE_CONNECTED_SIGNAL)) {
 		dbus_message_iter_init (message, &iter);		
-		drive = _gnome_vfs_dbus_utils_get_drive (&iter, volume_monitor);
+		drive = _gnome_vfs_drive_from_dbus (&iter, volume_monitor);
 		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
 		gnome_vfs_drive_unref (drive);
 	}
@@ -346,7 +342,7 @@ dbus_filter_func (DBusConnection *connection,
 		if (strcmp (service, DVD_DAEMON_SERVICE) == 0) {
 			if (strcmp (old_owner, "") != 0 &&
 			    strcmp (new_owner, "") == 0) {
-				/* New new owner, try to restart it. */
+				/* No new owner, try to restart it. */
 				dbus_try_activate_daemon (
 					GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor));
 			}
@@ -357,68 +353,68 @@ dbus_filter_func (DBusConnection *connection,
 }
 
 static void
-setup_dbus_connection (void)
+setup_dbus_connection (GnomeVFSVolumeMonitorClient *client)
 {
 	DBusError error;
 
 	dbus_error_init (&error);
-
-	dbus_conn = dbus_bus_get (DBUS_BUS_SESSION, &error);
+	
+	client->dbus_conn = dbus_bus_get (DBUS_BUS_SESSION, &error);
 	if (dbus_error_is_set (&error)) {
 		g_warning ("Failed to open session DBUS connection: %s\n"
 			   "Volume monitoring will not work.", error.message);
 		dbus_error_free (&error);
-	} else {
-		/* We pass an error here to make this block (otherwise it just
-		 * sends off the match rule when flushing the connection. This
-		 * way we are sure to receive signals as soon as possible).
-		 */
-		dbus_bus_add_match (dbus_conn, DAEMON_SIGNAL_RULE, NULL);
-		dbus_bus_add_match (dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, &error);
-		if (dbus_error_is_set (&error)) {
-			g_warning ("Couldn't add match rule.");
-			dbus_error_free (&error);
-		}
-
-		if (!dbus_bus_start_service_by_name (dbus_conn,
-						     DVD_DAEMON_SERVICE,
-						     0,
-						     NULL,
-						     &error)) {
-			
-			g_warning ("Failed to activate daemon: %s", error.message);
-			dbus_error_free (&error);
-		}
-
-		dbus_connection_add_filter (dbus_conn,
-					    dbus_filter_func,
-					    NULL,
-					    NULL);
-		
-		dbus_connection_setup_with_g_main (dbus_conn, NULL);
+		client->dbus_conn = NULL;
+		return;
+	} 
+	/* We pass an error here to make this block (otherwise it just
+	 * sends off the match rule when flushing the connection. This
+	 * way we are sure to receive signals as soon as possible).
+	 */
+	dbus_bus_add_match (client->dbus_conn, DAEMON_SIGNAL_RULE, NULL);
+	dbus_bus_add_match (client->dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, &error);
+	if (dbus_error_is_set (&error)) {
+		g_warning ("Couldn't add match rule.");
+		dbus_error_free (&error);
 	}
+	
+	if (!dbus_bus_start_service_by_name (client->dbus_conn,
+					     DVD_DAEMON_SERVICE,
+					     0,
+					     NULL,
+					     &error)) {
+		g_warning ("Failed to activate daemon: %s", error.message);
+		dbus_error_free (&error);
+	}
+	
+	dbus_connection_add_filter (client->dbus_conn,
+				    dbus_filter_func,
+				    NULL,
+				    NULL);
+	
+	dbus_connection_setup_with_g_main (client->dbus_conn, NULL);
 }
 
 static void
-shutdown_dbus_connection (void)
+shutdown_dbus_connection (GnomeVFSVolumeMonitorClient *client)
 {
 	if (retry_timeout_id) {
 		g_source_remove (retry_timeout_id);
 		retry_timeout_id = 0;
 	}
 	
-	if (dbus_conn) {
-		dbus_bus_remove_match (dbus_conn, DAEMON_SIGNAL_RULE, NULL);
-		dbus_bus_remove_match (dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, NULL);
+	if (client->dbus_conn) {
+		dbus_bus_remove_match (client->dbus_conn, DAEMON_SIGNAL_RULE, NULL);
+		dbus_bus_remove_match (client->dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, NULL);
 		
-		dbus_connection_remove_filter (dbus_conn,
+		dbus_connection_remove_filter (client->dbus_conn,
 					       dbus_filter_func,
 					       NULL);
 
-		if (!dbus_connection_get_is_connected (dbus_conn)) {
-			dbus_connection_unref (dbus_conn);
+		if (!dbus_connection_get_is_connected (client->dbus_conn)) {
+			dbus_connection_unref (client->dbus_conn);
 		}
-		dbus_conn = NULL;
+		client->dbus_conn = NULL;
 	}
 }
 
@@ -427,7 +423,7 @@ _gnome_vfs_volume_monitor_client_dbus_force_probe (GnomeVFSVolumeMonitorClient *
 {
 	DBusMessage *message, *reply;
 
-	if (!dbus_conn) {
+	if (volume_monitor_client->dbus_conn == NULL) {
 		return;
 	}
 	
@@ -437,7 +433,7 @@ _gnome_vfs_volume_monitor_client_dbus_force_probe (GnomeVFSVolumeMonitorClient *
 						DVD_DAEMON_METHOD_FORCE_PROBE);
 	g_assert (message != NULL);
 
-	reply = dbus_connection_send_with_reply_and_block (dbus_conn, 
+	reply = dbus_connection_send_with_reply_and_block (volume_monitor_client->dbus_conn, 
 							   message,
 							   -1,
 							   NULL);
@@ -455,7 +451,7 @@ _gnome_vfs_volume_monitor_client_dbus_emit_pre_unmount (GnomeVFSVolumeMonitorCli
 	DBusMessage *message, *reply;
 	gint32       id;
 
-	if (!dbus_conn) {
+	if (volume_monitor_client->dbus_conn == NULL) {
 		return;
 	}
 	
@@ -470,7 +466,7 @@ _gnome_vfs_volume_monitor_client_dbus_emit_pre_unmount (GnomeVFSVolumeMonitorCli
 				  DBUS_TYPE_INT32, &id,
 				  DBUS_TYPE_INVALID);
 	
-	reply = dbus_connection_send_with_reply_and_block (dbus_conn, 
+	reply = dbus_connection_send_with_reply_and_block (volume_monitor_client->dbus_conn, 
 							   message,
 							   -1,
 							   NULL);
@@ -480,44 +476,3 @@ _gnome_vfs_volume_monitor_client_dbus_emit_pre_unmount (GnomeVFSVolumeMonitorCli
 		dbus_message_unref (reply);
 	}
 }
-
-#define VFS_MONITOR_INTERFACE      "org.gnome.VfsMonitor.Notify"
-#define VFS_MONITOR_OBJECT         "/org/gnome/VfsMonitor"
-#define VFS_MONITOR_SIGNAL_CHANGED "Changed"
-
-/* Used to emit a "fake" changed monitor event on /etc/mtab after
- * mounting/unmounting, so that clients can pick up the (un)mounting.
- */
-void
-_gnome_vfs_volume_monitor_client_dbus_emit_mtab_changed (GnomeVFSVolumeMonitorClient *volume_monitor_client)
-{
-	DBusMessage  *message;
-	const gchar  *str;
-
-	if (!dbus_conn) {
-		return;
-	}
-
-	message = dbus_message_new_signal (VFS_MONITOR_OBJECT,
-					   VFS_MONITOR_INTERFACE,
-					   VFS_MONITOR_SIGNAL_CHANGED);
-	if (!message) {
-		g_error ("Out of memory");
-	}
-
-	/* We hardcode /etc/mtab, which might not work everywhere. */
-	str = "file:///etc/mtab";
-	if (!dbus_message_append_args (message,
-				       DBUS_TYPE_STRING, &str,
-				       DBUS_TYPE_INVALID)) {
-		g_error ("Out of memory");
-	}
-
-	dbus_connection_send (dbus_conn, message, NULL);
-	
-	/* This is needed for some reason. */
-	dbus_connection_flush (dbus_conn);
-	
-	dbus_message_unref (message);
-}
-

@@ -1,3 +1,17 @@
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.h:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	* modules/default-modules.conf:
+	Some volume manager dbus work.
+
 2006-06-29  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-cancellation-private.h:
