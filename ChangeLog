@@ -1,5 +1,11 @@
 2006-07-03  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/computer-method.c (get_data_for_drive):
+	Handle NULL uris.
+	Add newline after last lines in desktop files.
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* programs/Makefile.am:
 	* test/Makefile.am:

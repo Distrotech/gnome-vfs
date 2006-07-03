@@ -465,7 +465,7 @@ get_data_for_volume (GnomeVFSVolume *volume)
 				"Type=FSDevice\n"
 				"Icon=%s\n"
 				"URL=%s\n"
-				"X-Gnome-Volume=%ld",
+				"X-Gnome-Volume=%ld\n",
 				name,
 				icon,
 				uri,
@@ -510,16 +510,17 @@ get_data_for_drive (GnomeVFSDrive *drive)
 		name = gnome_vfs_drive_get_display_name (drive);
 		icon = gnome_vfs_drive_get_icon (drive);
 	}
+	
 	data = g_strdup_printf ("[Desktop Entry]\n"
 				"Encoding=UTF-8\n"
 				"Name=%s\n"
 				"Type=FSDevice\n"
 				"Icon=%s\n"
 				"URL=%s\n"
-				"X-Gnome-Drive=%ld",
+				"X-Gnome-Drive=%ld\n",
 				name,
 				icon,
-				uri,
+				(uri != NULL) ? uri : "",
 				gnome_vfs_drive_get_id (drive));
 	g_free (uri);
 	g_free (name);
