@@ -1,27 +1,30 @@
+# translation of gnome-vfs.HEAD.or.po to Oriya
 # Oriya translation of gnome-vfs.HEAD.pot.
 # Copyright (C) 2004, 2006, Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-vfs package.
+# $Id$
 # Swagat Ranjan <swagat_rourkela@yahoo.com>, 2004.
 # Gora Mohanty <gora_mohanty@yahoo.co.in>, 2004, 2006.
-# $Id$
+# Subhransu Behera <arya_subhransu@yahoo.co.in>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-24 17:27+0530\n"
-"PO-Revision-Date: 2006-03-29 01:44+0530\n"
-"Last-Translator: Gora Mohanty <gora_mohanty@yahoo.co.in>\n"
+"POT-Creation-Date: 2006-07-03 07:32+0200\n"
+"PO-Revision-Date: 2006-07-03 16:28+0530\n"
+"Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.9.1\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "ବନୋବୋକୁ ପ୍ରାରମ୍ଭ କରିହେଲା ନାହିଁ"
+msgstr " ବନୋବୋକୁ ପ୍ରାରମ୍ଭ କରିହେଲା ନାହିଁ"
 
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
@@ -33,32 +36,27 @@ msgstr "ଆଇ.ଏସ୍.ଓ. 9660 ଅଂଶ"
 
 # libgnomevfs/gnome-vfs-configuration.c:223
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
-#, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s:%dରେ ନଲ୍ ଅକ୍ଷର ରହିଛି."
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%uଟି ନଲ ଅକ୍ଷର ମାନଙ୍କୁ ଧାରଣ କରିଅଛି।"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
-#, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s:%dରେ କୌଣସି ଧାରା ନାମ ନାହିଁ"
+msgid "%s:%u contains no method name."
+msgstr "%s:%uଟି କୌଣସି ପ୍ରଣାଳୀର ନାମ ଧାରଣ କରିନାହିଁ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
-#, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%dରେ କୌଣସି ଶେଷ ଚିହ୍ନ ନାହିଁ."
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%uରେ ବିକଲ୍ପ ପାଇଁ କୌଣସି ଶେଷ ଚିହ୍ନ ନାହିଁ।"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
-#, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s:%dରେ ଅଜଣା ପସନ୍ଦ %s ରହିଛି."
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%uରେ ଅଜଣା ବିକଲ୍ପ %s ଅଛି।"
 
 # libgnomevfs/gnome-vfs-configuration.c:269
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
-#, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s:%dରେ କୌଣସି ଏକକାଂଶ ନାମ ନାହିଁ."
+msgid "%s:%u contains no module name."
+msgstr "%s:%uଟି କୌଣସି ଏକକାଂଶର ନାମ ଧାରଣ କରିନାହିଁ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:322
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
@@ -72,152 +70,152 @@ msgstr "`%s' ବିନ୍ଯାସ ଫାଇଲ ମିଳିଲା ନାହି�
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d ବିଶ୍ଳେଷଣ ଅଟକାଇ ଦିଆଯଆଇଛି"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "ଏ.ଏଫ୍.ଏଫ୍.ଏସ୍ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "ଏ.ଏଫ୍.ଏସ୍. ଜାଲକ ଅଂଶ "
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "ସ୍ବଂୟ ଖୋଜି ପାଇଥିବା ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr " ସି.ଡି.-ରମ୍  ଡ୍ରାଇଭ୍"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "ସିଡି ଡିଜିଟାଲ୍ ଧ୍ବନି"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "ହାର୍ଡୱେର ଯନ୍ତ୍ର ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "Ext2 Linux Volume"
 msgstr "ଏକ୍ସ୍ଟ2 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext3 Linux Volume"
 msgstr "ଏକ୍ସ୍ଟ3 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "MSDOS Volume"
 msgstr "ଏମଏସଡସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "MacOS Volume"
 msgstr "ମାକଓଏସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "CDROM Volume"
 msgstr " ସି.ଡି.ରମ  ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "Hsfs CDROM Volume"
 msgstr "ଏଚଏସଏଫଏସ ସି.ଡି.ରମ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "JFS Volume"
 msgstr "ଜେ.ଏଫ୍.ଏସ୍. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Windows NT Volume"
 msgstr "ୱିଣ୍ଡୋଜ ଏନ୍ଟି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "System Volume"
 msgstr "ତନ୍ତ୍ର ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "Memory Volume"
 msgstr "ସ୍ମ୍ରୁତି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "Minix Volume"
 msgstr "ମିନିକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "NFS Network Volume"
 msgstr "ଏନ.ଏଫ.ଏସ. ଜାଲକ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Netware Volume"
 msgstr "ନେଟୱେରର ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Reiser4 Linux Volume"
 msgstr "ରୈଜରଏଫଏସ4 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "ReiserFS Linux Volume"
 msgstr "ରୈଜରଏଫଏସ ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Windows Shared Volume"
 msgstr "ୱିଣ୍ଡୋଜ ସହଭାଗି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "SuperMount Volume"
 msgstr "ସୁପରମାଉଣ୍ଟ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "DVD Volume"
 msgstr "ଡି.ଭି.ଡି. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Solaris/BSD Volume"
 msgstr "ସୋଲାରିସ/ବି.ଏସ.ଡି. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Udfs Solaris Volume"
 msgstr "ଯୁଡିଏଫଏସ ସୋଲାରିସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Pcfs Solaris Volume"
 msgstr "ପିସିଏଫଏସ  ସୋଲାରିସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Sun SAM-QFS Volume"
 msgstr "ସନ ସ.ଏ.ଏମ-କ୍ଯୁ.ଏଫ.ଏସ. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Enhanced DOS Volume"
 msgstr "ଉନ୍ନତ ଡସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Windows VFAT Volume"
 msgstr "ୱିଣ୍ଡୋଜ ଭିଫାଟ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Xenix Volume"
 msgstr "ଜେନିକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "XFS Linux Volume"
 msgstr "ଏକ୍ସ.ଏଫ.ଏସ. ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "XIAFS Volume"
 msgstr "ଏକ୍ସ.ଆଇ.ଏ.ଏଫ.ଏସ. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "CIFS Volume"
 msgstr "ସି.ଆଇ.ଏଫ.ଏସ. ଅଂଶ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
 msgid "Unknown"
 msgstr "ଅଜଣା"
 
@@ -228,23 +226,23 @@ msgid "%s Volume"
 msgstr "%s ଅଂଶ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "ସି.ଡି.-ରମ୍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "ସି.ଡି.-ଆର"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "ସି.ଡି.-ଆର.ଡବ୍ଲୁ."
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "ଡି.ଭି.ଡି.-ରମ୍"
 
@@ -257,17 +255,17 @@ msgid "DVD+RW"
 msgstr "ଡି.ଭି.ଡି.+ଆର୍.ଡବ୍ଲୁ."
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "ଡି.ଭି.ଡି.-ଆର."
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "ଡି.ଭି.ଡି.-ଆର୍.ଡବ୍ଲୁ."
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "ଡି.ଭି.ଡି.-ରାମ୍"
 
@@ -310,8 +308,8 @@ msgid "SD/MMC Drive"
 msgstr "ଏସ.ଡି./ଏମ.ଏମ.ସି. ଡ୍ରାଇଭ୍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ଜିପ୍ ଡ୍ରାଇଭ୍"
 
@@ -432,13 +430,13 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ଖୋଲା ଜି.ଆଇ.ଓ. ଚାନେଲ ପାଇଁ ପାଇପ୍ ସୃଷ୍ଟି କରିହେଲା ନାହିଁ: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ଅଜଣା କାମ ପ୍ରକାର %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "ଚାଳନା ବନ୍ଦ ହୋଇଯାଇଛି"
 
@@ -450,15 +448,15 @@ msgstr "ଚାଳନା ବନ୍ଦ ହୋଇଯାଇଛି"
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: ../libgnomevfs/gnome-vfs-mime-info.c:624
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:639
@@ -476,13 +474,13 @@ msgid ""
 msgstr "ଅପସନ୍ଦ ଫଳନ. ମାଇମ ତଥ୍ଯାଧାରରେ ବ୍ଯବହାରକାରୀ ପରିବର୍ତ୍ତନ ଏବେ ଅସହାୟକ."
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
 msgstr "ବିଶ୍ଲେଷଣ କରିହେଲା ନାହିଁ: %s"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
 msgstr "ଅଧିକ ବିଶ୍ଲେଷଣ ତ୍ରୁଟି ଅଗ୍ରାହ୍ଯ କରାଯିବ."
 
@@ -759,7 +757,7 @@ msgid "Error launching command"
 msgstr "ନିର୍ଦ୍ଦେଶ ଚାଳନ କରିବାରେ ତ୍ରୁଟି"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
 msgstr "ସମୟ ଶେଷ ହୋଇଗଲା"
 
@@ -770,17 +768,17 @@ msgid "Nameserver error"
 msgstr "ନାମସେବକ ତ୍ରୁଟି"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "ସମ୍ବଳଟି ଅପରିବର୍ତ୍ତନୀୟ"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
 msgstr "ଫଳନ ଡାକରା ଅପସନ୍ଦ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#: ../libgnomevfs/gnome-vfs-result.c:214
 msgid "Unknown error"
 msgstr "ଅଜଣା ତ୍ରୁଟି"
 
@@ -796,136 +794,135 @@ msgstr[1] "%u ବାଇଟ୍"
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
-msgstr "%.1f କିଲୋବାଇଟ୍"
+msgstr "%.1f କିଲୋ-ବାଇଟ୍"
 
 # libgnomevfs/gnome-vfs-utils.c:78
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f ମେଗାବାଇଟ୍"
+msgstr "%.1f ମେଗା-ବାଇଟ୍"
 
 # libgnomevfs/gnome-vfs-utils.c:82
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f ଗିଗାବାଇଟ୍"
+msgstr "%.1f ଗିଗା-ବାଇଟ୍"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
 msgstr "(ଅବୈଧ ୟୁନିକୋଡ୍)"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
 msgstr "ଫ୍ଲପି"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
 msgstr "ସି.ଡି.-ରମ୍/ଡି.ଭି.ଡି.-ରମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-RAM"
 msgstr "ସି.ଡି.-ରମ୍/ଡି.ଭି.ଡି.-ରାମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-R"
 msgstr "ସି.ଡି.-ରମ୍/ଡି.ଭି.ଡି.-ଆର."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-ROM/DVD-RW"
 msgstr "ସି.ଡି.-ରମ୍/ଡି.ଭି.ଡି.-ଆର.ଡବ୍ଲୁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
 msgstr "ସି.ଡି.-ଆର./ଡି.ଭି.ଡି.-ରମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
 msgstr "ସି.ଡି.-ଆର./ଡି.ଭି.ଡି.-ରାମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
 msgstr "ସି.ଡି.-ଆର./ଡି.ଭି.ଡି.-ଆର."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
 msgstr "ସି.ଡି.-ଆର./ଡି.ଭି.ଡି.-ଆର.ଡବ୍ଲୁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
 msgstr "ସି.ଡି.-ଆର.ଡବ୍ଲୁ./ଡି.ଭି.ଡି.-ରମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
 msgstr "ସି.ଡି.-ଆର.ଡବ୍ଲୁ./ଡି.ଭି.ଡି.-ରାମ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
 msgstr "ସି.ଡି.-ଆର.ଡବ୍ଲୁ./ଡି.ଭି.ଡି.-ଆର."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
 msgstr "ସି.ଡି.-ଆର.ଡବ୍ଲୁ./ଡି.ଭି.ଡି.-ଆର.ଡବ୍ଲୁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
 msgstr "ଡିସ୍କ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
 msgstr "ୟୁ.ଏସ.ବି. ଡ୍ରାଇଭ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
 msgstr "ଆଇ.ଇ.ଇ.ଇ.1394 ଡ୍ରାଇଭ୍"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
 msgstr "ସି.ଏଫ."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
 msgstr "ଏସ.ଡି./ଏମ.ଏମ.ସି."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
 msgstr "ସ୍ମୁତି ଦଣ୍ଡ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
 msgstr "ସ୍ମାର୍ଟ ମିଡିଆ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
 msgstr "କ୍ଯାମେରା"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
 msgstr "ଡି.ଭି.ଡି."
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
 msgstr "ମୂଳ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
 msgstr "ଧ୍ବନି ସି.ଡି."
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
 msgstr "ଅଜଣା ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
 msgstr "ଜାଲକ ସେବକ"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:181
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ପ୍ଲପି ଡ୍ରାଇଭ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ସମ୍ଭବତଃ କି ଡ୍ରାଇଭରେ କୌଣସି ଫ୍ଳପି ନାହିଁ."
 
 #. All others
@@ -946,8 +943,9 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଯଦି ଏହା ଗୋଟିଏ ସଂଗୁପ୍ତ ଡ୍ରାଇଭ, ତେବେ ଭୁଲ ପ୍ରବେଶ "
-"ସଂକେତ ବା ଚାବି ବ୍ଯବହାର କରାଯାଇଥିଲା."
+msgstr ""
+"ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଯଦି ଏହା ଗୋଟିଏ ସଂଗୁପ୍ତ ଡ୍ରାଇଭ, ତେବେ ଭୁଲ ପ୍ରବେଶ ସଂକେତ ବା ଚାବି "
+"ବ୍ଯବହାର କରାଯାଇଥିଲା."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
@@ -969,8 +967,7 @@ msgstr "ବଛା ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅ�
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr ""
-"ବଛା ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଅଂଶଟି ଗୋଟିଏ ବା ଅଧିକ ପ୍ରୟୋଗ ଦ୍ବାରା ବ୍ଯବହାର କରାଯାଉଛି."
+msgstr "ବଛା ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଅଂଶଟି ଗୋଟିଏ ବା ଅଧିକ ପ୍ରୟୋଗ ଦ୍ବାରା ବ୍ଯବହାର କରାଯାଉଛି."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
@@ -1012,21 +1009,21 @@ msgstr "ସଂଚାରମାଧ୍ଯମକୁ ନିଷ୍କାସିତ କ�
 msgid "Unable to unmount connected server"
 msgstr "ସଂଯୋଗ କରାଯାଇଥିବା ସେବକକୁ କାଢ଼ିବାରେ ଅସଫଳ"
 
-#: ../modules/computer-method.c:546
+#: ../modules/computer-method.c:542
 msgid "Network"
 msgstr "ଜାଲକ"
 
-#: ../modules/computer-method.c:564
+#: ../modules/computer-method.c:560
 msgid "Home"
 msgstr "ମୂଳ ସ୍ଥାନ"
 
 # libgnomevfs/gnome-vfs-result.c:57
-#: ../modules/computer-method.c:582
+#: ../modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "ଫାଇଲ ତନ୍ତ୍ର"
 
 # modules/file-method.c:381
-#: ../modules/file-method.c:483
+#: ../modules/file-method.c:491
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ଅଜଣା ନୋମ୍ ଭି.ଏଫ.ଏସ. ସ୍ଥିତି ଖୋଜା %d"
@@ -1035,12 +1032,12 @@ msgstr "ଅଜଣା ନୋମ୍ ଭି.ଏଫ.ଏସ. ସ୍ଥିତି ଖ�
 msgid "Windows Network"
 msgstr "ୱିଣ୍ଡୋଜ ଜାଲକ"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ଦୂର କମ୍ପ୍ଯୁଟର (%s)ର ପରିଚୟ ଜଣା ନାହିଁ."
 
-#: ../modules/sftp-method.c:1324
+#: ../modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1053,11 +1050,11 @@ msgstr ""
 "ଦୂର କମ୍ପ୍ଯୁଟରଠାରୁ ପଠାଯାଇଥିବା ପରିଚୟ ହେଉଛି %s. ଯଦି ଆପଣ ନିଶ୍ଚିତ ଭାବେ ବୁଝିବାକୁ ଚାହାନ୍ତି ଯେ ତନ୍ତ୍ରକୁ "
 "ନିରାପଦରେ ଚାଲୁରଖିହେବ, ତେବେ ତନ୍ତ୍ର ପ୍ରଶାସକଙ୍କ ସହିତ ସମ୍ପର୍କ କରନ୍ତୁ."
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "ତଥାପି ଲଗ୍ଇନ୍ କରନ୍ତୁ"
 
-#: ../modules/sftp-method.c:1333
+#: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "ଲଗ୍ଇନ୍ ବାତିଲ କରନ୍ତୁ"
 
@@ -1093,6 +1090,38 @@ msgstr "ସାଧାରଣ ନୋମ୍ ଭି.ଏଫ.ଏସ୍ ନାମ"
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "ସାଧାରଣ ଫାଇଲ ନାମ"
+
+#: ../programs/authentication.c:106
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "ଆପଣଙ୍କ ର HTTP ପ୍ରୋକ୍ସିକୁ ଅଭିଗମ କରିବା ପାଇଁ ଆପଣଙ୍କର ଲଗଇନ୍ ଆବଶ୍ଯକ।\n"
+
+#: ../programs/authentication.c:107
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"\"%s\"କୁ ଅଭିଗମ କରିବା ପାଇଁ ଆପଣ ଲଗଇନ୍ କରିବା ଉଚିତ।\n"
+"%s"
+
+#: ../programs/authentication.c:110
+msgid "Your password will be transmitted unencrypted."
+msgstr "ଆପଣଙ୍କର ପ୍ରବେଶ ସଙ୍କେତକୁ ଗୋପନୀୟ ନରଖି ସଞ୍ଚାର କରାଯିବ।"
+
+#: ../programs/authentication.c:111
+msgid "Your password will be transmitted encrypted."
+msgstr "ଆପଣଙ୍କର ପ୍ରବେଶ ସଙ୍କେତକୁ ଗୋପନୀୟ ଭାବରେ ସଞ୍ଚାର କରାଯିବ।"
+
+#: ../programs/authentication.c:156
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "%s ପରିସରକୁ ପ୍ରବେଶ କରିବା ପାଇଁ ଆପଣ ଲଗଇନ୍ କରିବା ଉଚିତ %s\n"
+
+#: ../programs/authentication.c:158
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "%sକୁ ପ୍ରବେଶ କରିବା ପାଇଁ ଆପଣ ଲଗଇନ୍ କରିବା ଉଚିତ\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1240,8 +1269,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ୍323\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-"ବ୍ଯବହୃତ ହେବ."
+"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ୍323\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ "
+"ହେବ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
@@ -1256,8 +1285,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.ଏସ.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା "
-"ପାଇଁ ବ୍ଯବହୃତ ହେବ."
+"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.ଏସ.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
+"ବ୍ଯବହୃତ ହେବ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1272,24 +1301,24 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଡାକରା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-"ବ୍ଯବହୃତ ହେବ."
+"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଡାକରା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ "
+"ହେବ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରକରଣ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-"ବ୍ଯବହୃତ ହେବ."
+"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରକରଣ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ "
+"ହେବ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ବର୍ଜିତ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-"ବ୍ଯବହୃତ ହେବ."
+"ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ଚାବିରେ ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ବର୍ଜିତ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ "
+"ହେବ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1299,53 +1328,43 @@ msgstr "ସତ, ଯଦି ଏହି ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପ
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଲକ୍ଷ୍ଯ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଲକ୍ଷ୍ଯ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଡାକରା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଡାକରା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଜିହେଲ୍ପ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଜିହେଲ୍ପ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ୍323\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ୍323\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.ଏସ.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ଏଚ.ଟି.ଟି.ପି.ଏସ.\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ସୂଚନା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ସୂଚନା\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରାପକ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରାପକ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରକରଣ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ପ୍ରକରଣ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ବର୍ଜିତ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
+msgstr "ଉଲ୍ଲେଖିତ ନିର୍ଦ୍ଦେଶ \"ବର୍ଜିତ\" ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ ବ୍ଯବହୃତ ହେବା ଉଚିତ କି."
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1445,8 +1464,7 @@ msgstr "ସୁରକ୍ଷିତ ଏଚ୍.ଟି.ଟି.ପି. ଛାୟା �
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"ଛାୟା ବିନ୍ଯାସ ଅବସ୍ଥା ବାଛନ୍ତୁ. ସମ୍ଭବତଃ ମୂଲ୍ଯଗୁଡି଼କ ହେଲା \"none\", \"manual\" ଓ \"auto\"."
+msgstr "ଛାୟା ବିନ୍ଯାସ ଅବସ୍ଥା ବାଛନ୍ତୁ. ସମ୍ଭବତଃ ମୂଲ୍ଯଗୁଡି଼କ ହେଲା \"none\", \"manual\" ଓ \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1528,123 +1546,7 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "ବ୍ଯବହରକାରୀର ୱିଣ୍ଡୋଜ କାର୍ଯ୍ଯସମୂହ ବା ପରିସର. ନୂଆ କାର୍ଯ୍ଯସମୂହ ସମ୍ପୂର୍ଣ୍ଣ ପ୍ରଭାବ ଦେଖିବା "
-"ପାଇଁ ବ୍ଯବହରକାରୀକୁ ଲଗ ଆଉଟ କରି ପୁଣି ଲଗଇନ କରିବାକୁ ପଡ଼ିପାରେ."
+msgstr ""
+"ବ୍ଯବହରକାରୀର ୱିଣ୍ଡୋଜ କାର୍ଯ୍ଯସମୂହ ବା ପରିସର. ନୂଆ କାର୍ଯ୍ଯସମୂହ ସମ୍ପୂର୍ଣ୍ଣ ପ୍ରଭାବ ଦେଖିବା ପାଇଁ "
+"ବ୍ଯବହରକାରୀକୁ ଲଗ ଆଉଟ କରି ପୁଣି ଲଗଇନ କରିବାକୁ ପଡ଼ିପାରେ."
 
-#~ msgid "CD Disc"
-#~ msgstr "ସି.ଡି. ଡିସ୍କ"
-
-#~ msgid "Optical Disc"
-#~ msgstr "ଆଲୋକୀୟ ଡିସ୍କ"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "ସ୍ମୁତି ଦଣ୍ଡ ସଞ୍ଚାରମାଧ୍ଯମ"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "ମାକ ଓଏସ ଡିସ୍କ"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "ମାକ ଓଏସ ଏକ୍ସ ଡିସ୍କ"
-
-#~ msgid "Windows Disk"
-#~ msgstr "ୱିଣ୍ଡୋଜ ଡିସ୍କ"
-
-#~ msgid "Linux Disk"
-#~ msgstr "ଲିନକ୍ସ ଡିସ୍କ"
-
-#~ msgid "Applications"
-#~ msgstr "ପ୍ରୟୋଗ"
-
-#~ msgid "Cards"
-#~ msgstr "ତାସ"
-
-# libgnomevfs/gnome-vfs-result.c:57
-#~ msgid "Files"
-#~ msgstr "ଫାଇଲଗୁଡି଼କ"
-
-#~ msgid "Folders"
-#~ msgstr "ଫୋଲ୍ଡରଗୁଡି଼କ"
-
-#~ msgid "Help"
-#~ msgstr "ସହାୟତା"
-
-#~ msgid "Hosts"
-#~ msgstr "ଆଧାରଗୁଡ଼ିକ"
-
-#~ msgid "Links"
-#~ msgstr "ସଂଯୋଗଗୁଡ଼ିକ"
-
-#~ msgid "Mail"
-#~ msgstr "ଡାକ"
-
-#~ msgid "Tools"
-#~ msgstr "ସାଧନ"
-
-#~ msgid "Windows"
-#~ msgstr "ୱିଣ୍ଡୋଜ"
-
-#~ msgid "H323 URL handler"
-#~ msgstr "ଏଚ୍323 ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "ଏଚ୍.ଟି.ଟି.ପି.  ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "ଏଚ୍.ଟି.ଟି.ପି.ଏସ୍.  ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "Handle H323 URLs"
-#~ msgstr "ଏଚ୍.323 ୟୁ.ଆର.ଏଲ. ଚଳାନ୍ତୁ"
-
-#~ msgid "Handle HTTP URLs"
-#~ msgstr "ଏଚ୍.ଟି.ଟି.ପି.  ୟୁ.ଆର.ଏଲ. ଚଳାନ୍ତୁ"
-
-#~ msgid "Handle HTTPS URL"
-#~ msgstr "ଏଚ୍.ଟି.ଟି.ପି.ଏସ୍.  ୟୁ.ଆର.ଏଲ. ଚଳାନ୍ତୁ"
-
-#~ msgid "Handle ghelp URLs"
-#~ msgstr "ଜିହେଲ୍ପ ୟୁ.ଆର.ଏଲ. ଚଳାନ୍ତୁ"
-
-#~ msgid "Handle trash URLs"
-#~ msgstr "ବର୍ଜିତ ୟୁ.ଆର.ଏଲ. ଚଳାନ୍ତୁ"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in \"command\" handle HTTP URLs."
-#~ msgstr ""
-#~ "ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ହାଣ୍ଡଲରେ ଉଲ୍ଲେଖିତ କାରିକା ଏଚ୍.ଟି.ଟି.ପି. ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-#~ "ବ୍ଯବହୃତ ହେବ."
-
-#~ msgid ""
-#~ "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-#~ msgstr ""
-#~ "ସତ ହେଲେ, \"ନିର୍ଦ୍ଦେଶ\" ହାଣ୍ଡଲରେ ଉଲ୍ଲେଖିତ କାରିକା ଏଚ୍.ଟି.ଟି.ପି.ଏସ. ୟୁ.ଆର.ଏଲ. ଚଳାଇବା ପାଇଁ "
-#~ "ବ୍ଯବହୃତ ହେବ."
-
-# libgnomevfs/gnome-vfs-result.c:44
-#~ msgid "aim URL handler"
-#~ msgstr "ଲକ୍ଷ୍ଯ ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "callto URL handler"
-#~ msgstr "ଡାକରା ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ଜିହେଲ୍ପ ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "info URL handler"
-#~ msgstr "ସୂତନା ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-# libgnomevfs/gnome-vfs-result.c:44
-#~ msgid "mailto URL handler"
-#~ msgstr "ପ୍ରାପକ ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "man URL handler"
-#~ msgstr "ପ୍ରକରଣ ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "trash URL handler"
-#~ msgstr "ବର୍ଜିତ ୟୁ.ଆର.ଏଲ. ଚାଳକ"
-
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "ଚାଳକ ଯେଉଁ ୱିଣ୍ଡୋ କାର୍ଯ୍ଯଦଳର ସଦସ୍ଯ"
-
-# libgnomevfs/gnome-vfs-utils.c:65
-#~ msgid "1 byte"
-#~ msgstr "1 ବାଇଟ୍"
