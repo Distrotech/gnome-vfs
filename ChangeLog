@@ -1,5 +1,11 @@
 2006-07-03  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/Makefile.am:
+	Remove old corba stuff
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/daemon-connection.c:
 	Add DBUS-TODO
 	
