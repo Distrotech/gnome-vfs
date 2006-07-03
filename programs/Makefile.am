@@ -10,7 +10,6 @@ INCLUDES =					\
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
 	$(TEST_LIBS)					\
-	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
 
 bin_PROGRAMS =						\

@@ -70,7 +70,6 @@ TESTS = test-acl	  \
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
 	$(TEST_LIBS)					\
-	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
 
 test_acl_SOURCES = test-acl.c

@@ -1275,14 +1275,6 @@ AC_TRY_CPP([#include <sys/mount.h>
 fi
 AC_MSG_RESULT($fstype)
 
-dnl Check for libpopt
-
-AC_CHECK_LIB(popt, poptGetArg, POPT_LIBS=-lpopt,
-        [AC_CHECK_HEADER(popt.h, , AC_MSG_ERROR([[
-*** Couldn't find popt. Please download and install from
-*** ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/ and try again.]]))])
-AC_SUBST(POPT_LIBS)
-
 dnl Final touch
 
 AC_SUBST(CFLAGS)
