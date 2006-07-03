@@ -27,6 +27,7 @@
 
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
+#include <gnome-vfs-dbus-utils.h>
 
 #include <unistd.h>
 
@@ -46,9 +47,9 @@ struct GnomeVFSCancellation {
 	gint pipe_in;
 	gint pipe_out;
 
-	GnomeVFSCancellationCallback callback;
-	gint connection;
-	gint handle;
+	/* daemon handle */
+	gint32 handle;
+	gint32 connection;
 };
 
 G_LOCK_DEFINE_STATIC (pipes);
@@ -71,7 +72,6 @@ gnome_vfs_cancellation_new (void)
 	new->cancelled = FALSE;
 	new->pipe_in = -1;
 	new->pipe_out = -1;
-	new->callback = NULL;
 	new->connection = 0;
 	new->handle = 0;
 	
@@ -93,27 +93,19 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 		close (cancellation->pipe_in);
 		close (cancellation->pipe_out);
 	}
-	/* Can't have outstanding calls when destroying the cancellation */
-#ifdef DBUS_TODO
-	g_assert (cancellation->client_call == NULL);
-#endif
 	
 	g_free (cancellation);
 }
 
 void
-_gnome_vfs_cancellation_set_callback (GnomeVFSCancellation *cancellation,
-				      GnomeVFSCancellationCallback func,
-				      gint connection, gint handle)
+_gnome_vfs_cancellation_set_handle (GnomeVFSCancellation *cancellation,
+				    gint32 connection, gint32 handle)
 {
 	G_LOCK (callback);
 
 	/* Each client call uses its own context/cancellation */
-	g_assert (cancellation->callback == NULL);
+	g_assert (cancellation->handle == 0);
 
-	/*g_print ("cancellation %p, callback %p\n", cancellation, func);*/
-	
-	cancellation->callback = func;
 	cancellation->connection = connection;
 	cancellation->handle = handle;
 
@@ -121,11 +113,10 @@ _gnome_vfs_cancellation_set_callback (GnomeVFSCancellation *cancellation,
 }
 
 void
-_gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation)
+_gnome_vfs_cancellation_unset_handle (GnomeVFSCancellation *cancellation)
 {
 	G_LOCK (callback);
 	
-	cancellation->callback = NULL;
 	cancellation->connection = 0;
 	cancellation->handle = 0;
 
@@ -148,8 +139,7 @@ _gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation)
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
-	GnomeVFSCancellationCallback callback;
-	gint handle, connection_id;
+	gint32 handle, connection_id;
 	
 	g_return_if_fail (cancellation != NULL);
 
@@ -159,20 +149,11 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	if (cancellation->pipe_out >= 0)
 		write (cancellation->pipe_out, "c", 1);
 
-	callback = NULL;
 	handle = 0;
 	connection_id = 0;
 	
 	G_LOCK (callback);
-	if (cancellation->callback) {
-		/* DBUS-TODO */
-		/* We need to delay the finishing of the client call to avoid
-		 * the cancel call below to cancel the next call in the job thread
-		 * if the job finishes after we drop the lock.
-		 */
-		/*_gnome_vfs_client_call_delay_finish (cancellation->client_call);*/
-		
-		callback = cancellation->callback;
+	if (cancellation->handle) {
 		handle = cancellation->handle;
 		connection_id = cancellation->connection;
 	}
@@ -180,10 +161,42 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	
 	cancellation->cancelled = TRUE;
 
-	if (callback) {
-		callback (connection_id, handle);
-		/* DBUS-TODO: */
-		/*_gnome_vfs_client_call_delay_finish_done (client_call);*/
+	if (handle != 0) {
+		DBusConnection *conn;
+		DBusMessage *message;
+		DBusError error;
+
+		dbus_error_init (&error);
+        
+		conn = dbus_bus_get (DBUS_BUS_SESSION, &error);
+
+		if (conn != NULL) {
+					
+			message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
+								DVD_DAEMON_OBJECT,
+								DVD_DAEMON_INTERFACE,
+								DVD_DAEMON_METHOD_CANCEL);
+			dbus_message_set_auto_start (message, TRUE);
+			if (!message) {
+				g_error ("Out of memory");
+			}
+
+			if (!dbus_message_append_args (message,
+						       DBUS_TYPE_INT32, &handle,
+						       DBUS_TYPE_INT32, &connection_id,
+						       DBUS_TYPE_INVALID)) {
+				g_error ("Out of memory");
+			}
+
+			dbus_connection_send (conn, message, NULL);
+			dbus_connection_flush (conn);
+			dbus_message_unref (message);
+			/* Can't unref the connection, since it might be the first use of it,
+			   which  means this will assert due to the connection not being
+			   disconnected at the last unref. HOSED!
+			*/
+			/* dbus_connection_unref (conn); */
+		}
 	}
 }
 

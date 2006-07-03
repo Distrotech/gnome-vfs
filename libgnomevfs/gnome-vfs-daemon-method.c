@@ -85,11 +85,13 @@ static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
 {
-	if (!str) {
-		str = "";
+	gint32 val;
+	if (str == NULL) {
+		val = 0;
+		dbus_message_iter_append_basic (iter, DBUS_TYPE_INT32, &val);
+	} else {
+		dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 	}
-	
-	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
 static gchar *
@@ -97,12 +99,12 @@ utils_get_string_or_null (DBusMessageIter *iter)
 {
 	const gchar *str;
 	
-	dbus_message_iter_get_basic (iter, &str);
-	
-	if (str && strcmp (str, "") == 0) {
-		return NULL;
+	if (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRING) {
+		dbus_message_iter_get_basic (iter, &str);
+	} else {
+		str = NULL;
 	}
-
+	
 	return g_strdup (str);
 }
 
@@ -703,40 +705,6 @@ file_handle_free (FileHandle *handle)
 	g_free (handle);
 }
 
-static void
-cancellation_callback (gint connection_id, gint handle)
-{
-#if 0
-	DBusMessage *message;
-
-	d(g_print ("Send cancel\n"));
-	/* DBUS-TODO: use mainthread dbus connection */
-	if (!dbus_connection_get_is_connected (dbus_main_conn)) {
-		return FALSE;
-	}
-
-	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
- 						DVD_DAEMON_OBJECT,
-						DVD_DAEMON_INTERFACE,
-						DVD_DAEMON_METHOD_CANCEL);
-	if (!message) {
-		g_error ("Out of memory");
-	}
-
-	cancellation_id = GPOINTER_TO_INT (data);
-
-	if (!dbus_message_append_args (message,
-				       DBUS_TYPE_INT32, &handle,
-				       DBUS_TYPE_INT32, &connection_id,
-				       DBUS_TYPE_INVALID)) {
-		g_error ("Out of memory");
-	}
-
-	dbus_connection_send (dbus_main_conn, message, NULL);
-	dbus_message_unref (message);
-#endif
-}
-
 static gint32
 cancellation_id_new (GnomeVFSContext *context,
 		     LocalConnection *conn)
@@ -744,13 +712,11 @@ cancellation_id_new (GnomeVFSContext *context,
 	GnomeVFSCancellation *cancellation;
 
 	conn->handle++;
-	if (context) {
-		cancellation = gnome_vfs_context_get_cancellation (context);
-		if (cancellation) {
-			_gnome_vfs_cancellation_set_callback (
-				cancellation, cancellation_callback,
-				conn->conn_id, conn->handle);
-		}
+	cancellation = gnome_vfs_context_get_cancellation (context);
+	if (cancellation) {
+		_gnome_vfs_cancellation_set_handle (
+						    cancellation,
+						    conn->conn_id, conn->handle);
 	}
 
 	return conn->handle;
@@ -761,17 +727,10 @@ cancellation_id_free (gint32           cancellation_id,
 		      GnomeVFSContext *context)
 {
 	GnomeVFSCancellation *cancellation;
-	if (context != NULL) {
-		cancellation = gnome_vfs_context_get_cancellation (context);
-		if (cancellation != NULL) {
-			_gnome_vfs_cancellation_unset_callback (cancellation);
-		}
+	cancellation = gnome_vfs_context_get_cancellation (context);
+	if (cancellation != NULL) {
+		_gnome_vfs_cancellation_unset_handle (cancellation);
 	}
-
-	/* FIXME: Might need to do this: don't return until any cancel dbus call
-	 * has been processed. This is the delay_finish stuff in the CORBA
-	 * daemon.
-	 */
 }
 
 /* DBUS-TODO: monitor callbacks here? should be on main connection?

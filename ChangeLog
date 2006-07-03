@@ -1,5 +1,27 @@
 2006-07-03  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/daemon-connection.c:
+	Add DBUS-TODO
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	Move functions to monitor-client.c
+	Remove dbus-utils.c file.
+	
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Fix daemon cancellation.
+	Tell "" and NULL appart on the wire.
+	
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	Tell "" and NULL appart on the wire.
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/dbus-utils.c:
 	* libgnomevfs/gnome-vfs-dbus-utils.c:
 	* libgnomevfs/gnome-vfs-dbus-utils.h:

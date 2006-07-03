@@ -640,11 +640,13 @@ static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
 {
-	if (!str) {
-		str = "";
+	gint32 val;
+	if (str == NULL) {
+		val = 0;
+		dbus_message_iter_append_basic (iter, DBUS_TYPE_INT32, &val);
+	} else {
+		dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 	}
-	
-	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
 static gchar *
@@ -652,12 +654,12 @@ utils_get_string_or_null (DBusMessageIter *iter)
 {
 	const gchar *str;
 	
-	dbus_message_iter_get_basic (iter, &str);
-	
-	if (str && strcmp (str, "") == 0) {
-		return NULL;
+	if (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRING) {
+		dbus_message_iter_get_basic (iter, &str);
+	} else {
+		str = NULL;
 	}
-
+	
 	return g_strdup (str);
 }
 

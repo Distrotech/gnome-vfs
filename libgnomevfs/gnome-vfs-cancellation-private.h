@@ -29,12 +29,9 @@
 
 G_BEGIN_DECLS
 
-typedef void (*GnomeVFSCancellationCallback) (gint connection, gint handle);
-
-void _gnome_vfs_cancellation_set_callback   (GnomeVFSCancellation *cancellation,
-					     GnomeVFSCancellationCallback func,
-					     gint connection, gint handle);
-void _gnome_vfs_cancellation_unset_callback (GnomeVFSCancellation *cancellation);
+void _gnome_vfs_cancellation_set_handle   (GnomeVFSCancellation *cancellation,
+					   gint32 connection, gint32 handle);
+void _gnome_vfs_cancellation_unset_handle (GnomeVFSCancellation *cancellation);
 
 G_END_DECLS
 

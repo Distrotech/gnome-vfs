@@ -437,6 +437,7 @@ connection_get_cancellation (DaemonConnection *conn, gint32 id)
 				    GINT_TO_POINTER (id));
 }
 
+/* DBUS-TODO: locking comment? */
 /* FIXME: Need locking here, will that cause trouble? */
 
 /* Note: This is called from the main thread. */

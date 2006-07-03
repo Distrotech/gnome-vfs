@@ -27,7 +27,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <dbus/dbus-glib-lowlevel.h>
+#include <dbus/dbus.h>
 
 G_BEGIN_DECLS
 
@@ -111,11 +111,6 @@ typedef enum {
 	DVD_TYPE_BOOL,
 	DVD_TYPE_BYTE_ARRAY
 } DvdArgumentType;
-
-GList *         _gnome_vfs_dbus_utils_get_drives           (DBusConnection        *conn,
-							    GnomeVFSVolumeMonitor *volume_monitor);
-GList *         _gnome_vfs_dbus_utils_get_volumes          (DBusConnection        *conn,
-							    GnomeVFSVolumeMonitor *volume_monitor);
 
 G_END_DECLS
 
