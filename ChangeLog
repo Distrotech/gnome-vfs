@@ -1,5 +1,12 @@
 2006-07-04  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/daemon-connection.[ch]:
+	* daemon/vfs-daemon.c:
+	Clean up and simplify how cancellation is handled in daemon.
+	This should make cancellation threadsafe.
+
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/dbus-utils.c:
 	No need to pass struct types.
 	

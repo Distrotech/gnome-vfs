@@ -35,12 +35,12 @@
 
 #define READDIR_CHUNK_SIZE 10
 
+typedef struct _DaemonConnection DaemonConnection;
+
 struct _DaemonConnection {
 	DBusConnection *conn;
+	gint32          conn_id;
 
-	DaemonConnectionShutdownFunc shutdown_func;
-	gpointer                     shutdown_data;
-	
 	GStaticRecMutex mutex;
 
 	GAsyncQueue    *queue;
@@ -49,8 +49,6 @@ struct _DaemonConnection {
 
 	GMainContext   *main_context;
 	GMainLoop      *main_loop;
-
-	GHashTable     *cancellation_handles;
 
 	/* ID for directory, file and monitor handles. */
 	guint           next_id;
@@ -66,6 +64,7 @@ struct _DaemonConnection {
 typedef struct {
 	GnomeVFSContext *context;
 	gint32           id;
+	gint32           conn_id;
 } CancellationHandle;
 
 typedef struct {
@@ -90,24 +89,24 @@ typedef struct {
 	GnomeVFSMonitorEventType  event_type;
 } MonitorCallbackData;
 
+static GStaticMutex cancellations_lock = G_STATIC_MUTEX_INIT;
+static GHashTable *cancellations;
 
 static DaemonConnection *  connection_new                      (DBusConnection          *dbus_conn,
-								DaemonConnectionShutdownFunc shutdown_func,
-								gpointer                 shutdown_data);
+								gint32                   conn_id);
 static DaemonConnection *  connection_ref_unlocked             (DaemonConnection        *conn);
 static void                connection_unref                    (DaemonConnection        *conn);
 static guint               connection_idle_add                 (DaemonConnection        *conn,
 								GSourceFunc              function,
 								gpointer                 data,
 								GDestroyNotify           notify);
-static CancellationHandle *cancellation_handle_new             (gint32                   cancellation_id);
+static CancellationHandle *cancellation_handle_new             (gint32                   cancellation_id,
+								gint32                   conn_id);
 static void                cancellation_handle_free            (CancellationHandle      *handle);
 static CancellationHandle *connection_add_cancellation         (DaemonConnection        *conn,
 								gint                     id);
 static void                connection_remove_cancellation      (DaemonConnection        *conn,
 								CancellationHandle      *handle);
-static CancellationHandle *connection_get_cancellation         (DaemonConnection        *conn,
-								gint32                   id);
 static DirectoryHandle *   directory_handle_new                (GnomeVFSDirectoryHandle *vfs_handle,
 								gint32                   handle_id);
 static void                directory_handle_free               (DirectoryHandle         *handle);
@@ -173,16 +172,14 @@ static DBusObjectPathVTable connection_vtable = {
 
 
 static DaemonConnection *
-connection_new (DBusConnection               *dbus_conn,
-		DaemonConnectionShutdownFunc  shutdown_func,
-		gpointer                      shutdown_data)
+connection_new (DBusConnection *dbus_conn,
+		gint32 conn_id)
 {
 	DaemonConnection *conn;
 
 	conn = g_new0 (DaemonConnection, 1);
+	conn->conn_id = conn_id;
 	conn->ref_count = 1;
-	conn->shutdown_func = shutdown_func;
-	conn->shutdown_data = shutdown_data;
 
         g_static_rec_mutex_init (&conn->mutex);
 
@@ -193,10 +190,6 @@ connection_new (DBusConnection               *dbus_conn,
 
 	conn->main_context = g_main_context_new ();
 	conn->main_loop = g_main_loop_new (conn->main_context, FALSE);
-
-	conn->cancellation_handles = g_hash_table_new_full (
-		g_direct_hash, g_direct_equal,
-		NULL, (GDestroyNotify) cancellation_handle_free);
 
 	conn->directory_handles = g_hash_table_new_full (
 		g_direct_hash, g_direct_equal,
@@ -240,26 +233,23 @@ connection_thread_func (DaemonConnection *conn)
 	return NULL;
 }
 
-DaemonConnection *
+void
 daemon_connection_setup (DBusConnection               *dbus_conn,
-			 DaemonConnectionShutdownFunc  shutdown_func,
-			 gpointer                      shutdown_data)
+			 gint32                        conn_id)
 {
 	DaemonConnection *conn;
 	GThread          *thread;
 
 	if (!dbus_connection_get_is_connected (dbus_conn)) {
 		g_warning ("New connection is not connected.");
-		return NULL;
+		return;
 	}
 
 	dbus_connection_ref (dbus_conn);
-	conn = connection_new (dbus_conn, shutdown_func, shutdown_data);
+	conn = connection_new (dbus_conn, conn_id);
 
-        thread = g_thread_create ((GThreadFunc)connection_thread_func,
+	thread = g_thread_create ((GThreadFunc)connection_thread_func,
                                   conn, FALSE, NULL);
-
-	return conn;
 }
 
 static gboolean
@@ -326,7 +316,6 @@ connection_unref (DaemonConnection *conn)
 
 	g_async_queue_unref (conn->queue);
 
-	g_hash_table_destroy (conn->cancellation_handles);
 	g_hash_table_destroy (conn->directory_handles);
 	g_hash_table_destroy (conn->file_handles);
 
@@ -342,10 +331,6 @@ connection_unref (DaemonConnection *conn)
          * static Mutex so I guess we should be fine to do so?
          * g_mutex_unlock (conn->mutex); */
         g_static_rec_mutex_free (&conn->mutex);
-
-	if (conn->shutdown_func) {
-		conn->shutdown_func (conn, conn->shutdown_data);
-	}
 	
 	g_free (conn);
 }
@@ -370,12 +355,13 @@ connection_idle_add (DaemonConnection *conn,
 }
 
 static CancellationHandle *
-cancellation_handle_new (gint32 id)
+cancellation_handle_new (gint32 id, gint32 conn_id)
 {
 	CancellationHandle *handle;
 
 	handle = g_new0 (CancellationHandle, 1);
 	handle->id = id;
+	handle->conn_id = conn_id;
 
 	handle->context = gnome_vfs_context_new ();
 
@@ -395,6 +381,27 @@ cancellation_handle_free (CancellationHandle *handle)
 	g_free (handle);
 }
 
+static guint
+cancellation_handle_hash (gconstpointer  key)
+{
+	const CancellationHandle *h;
+
+	h = key;
+
+	return h->id << 16 | h->conn_id;
+}
+
+static gboolean
+cancellation_handle_equal (gconstpointer  a,
+			   gconstpointer  b)
+{
+	const CancellationHandle *aa, *bb;
+	aa = a;
+	bb = b;
+
+	return aa->id == bb->id && aa->conn_id == bb->conn_id;
+}
+
 static CancellationHandle *
 connection_add_cancellation (DaemonConnection *conn, gint32 id)
 {
@@ -402,18 +409,16 @@ connection_add_cancellation (DaemonConnection *conn, gint32 id)
 
 	d(g_print ("Adding cancellation handle %d (%p)\n", id, conn));
 
-	handle = g_hash_table_lookup (conn->cancellation_handles,
-				      GINT_TO_POINTER (id));
-	if (handle) {
-		/* Already have cancellation, shouldn't happen. */
-		g_warning ("Already have cancellation.");
-		return NULL;
+	handle = cancellation_handle_new (id, conn->conn_id);
+	
+	g_static_mutex_lock (&cancellations_lock);
+	if (cancellations == NULL) {
+		cancellations = g_hash_table_new_full (cancellation_handle_hash, cancellation_handle_equal,
+						       NULL, (GDestroyNotify) cancellation_handle_free);
 	}
-
-	handle = cancellation_handle_new (id);
-
-	g_hash_table_insert (conn->cancellation_handles,
-			     GINT_TO_POINTER (id), handle);
+	
+	g_hash_table_insert (cancellations, handle, handle);
+	g_static_mutex_unlock (&cancellations_lock);
 
 	return handle;
 }
@@ -424,39 +429,37 @@ connection_remove_cancellation (DaemonConnection   *conn,
 {
 	d(g_print ("Removing cancellation handle %d\n", handle->id));
 
-	if (!g_hash_table_remove (conn->cancellation_handles,
-				  GINT_TO_POINTER (handle->id))) {
+	g_static_mutex_lock (&cancellations_lock);
+	if (!g_hash_table_remove (cancellations, handle)) {
 		g_warning ("Could't remove cancellation.");
 	}
+	g_static_mutex_unlock (&cancellations_lock);
 }
-
-static CancellationHandle *
-connection_get_cancellation (DaemonConnection *conn, gint32 id)
-{
-	return g_hash_table_lookup (conn->cancellation_handles,
-				    GINT_TO_POINTER (id));
-}
-
-/* DBUS-TODO: locking comment? */
-/* FIXME: Need locking here, will that cause trouble? */
 
 /* Note: This is called from the main thread. */
 void
-daemon_connection_cancel (DaemonConnection *conn, gint32 cancellation_id)
+daemon_connection_cancel (gint32 conn_id, gint32 cancellation_id)
 {
-	CancellationHandle   *handle;
+	CancellationHandle *handle, lookup;
 	GnomeVFSCancellation *cancellation;
 
-	/* DBUS-TODO: lock here ? */
-	handle = connection_get_cancellation (conn, cancellation_id);
-	if (!handle) {
-		return;
-	}
+	handle = NULL;
 
-	cancellation = gnome_vfs_context_get_cancellation (handle->context);
-	if (cancellation) {
-		gnome_vfs_cancellation_cancel (cancellation);
+	g_static_mutex_lock (&cancellations_lock);
+	
+	lookup.conn_id = conn_id;
+	lookup.id = cancellation_id;
+	if (cancellations != NULL) {
+		handle = g_hash_table_lookup (cancellations, &lookup);
 	}
+	if (handle != NULL) {
+		cancellation = gnome_vfs_context_get_cancellation (handle->context);
+		if (cancellation) {
+			gnome_vfs_cancellation_cancel (cancellation);
+		}
+	}
+	
+	g_static_mutex_unlock (&cancellations_lock);
 }
 
 
@@ -1393,7 +1396,7 @@ connection_handle_read_directory (DaemonConnection *conn,
 
 	result = GNOME_VFS_OK;
 	num_entries = 0;
-	while ((result = gnome_vfs_directory_read_next (handle->vfs_handle, info)) == GNOME_VFS_OK) {
+	while ((result = gnome_vfs_directory_read_next_cancellable (handle->vfs_handle, info, context)) == GNOME_VFS_OK) {
 		gnome_vfs_daemon_message_append_file_info (reply, info);
 		gnome_vfs_file_info_clear (info);
 
@@ -1409,6 +1412,10 @@ connection_handle_read_directory (DaemonConnection *conn,
 
 	gnome_vfs_file_info_unref (info);
 
+	if (cancellation) {
+		connection_remove_cancellation (conn, cancellation);
+	}
+	
 	if (result == GNOME_VFS_OK || result == GNOME_VFS_ERROR_EOF) {
 		dbus_connection_send (conn->conn, reply, NULL);
 		dbus_message_unref (reply);
@@ -2300,44 +2307,6 @@ connection_handle_monitor_cancel (DaemonConnection *conn,
 }
 
 static void
-connection_handle_cancel (DaemonConnection *conn,
-			  DBusMessage      *message)
-{
-	dbus_int32_t          cancellation_id;
-	CancellationHandle   *handle;
-	GnomeVFSCancellation *cancellation;
-
-	if (!get_operation_args (message, NULL,
-				 DVD_TYPE_INT32, &cancellation_id,
-				 DVD_TYPE_LAST)) {
-		connection_reply_result (conn, message,
-					 GNOME_VFS_ERROR_INTERNAL);
-
-		return;
-	}
-
-	dbus_message_get_args (message, NULL,
-			       DBUS_TYPE_INT32, &cancellation_id,
-			       DBUS_TYPE_INVALID);
-
-	d(g_print ("cancel: %d\n", cancellation_id));
-
-	handle = connection_get_cancellation (conn, cancellation_id);
-	if (!handle) {
-		connection_reply_result (conn, message,
-					 GNOME_VFS_ERROR_INTERNAL);
-		return;
-	}
-
-	cancellation = gnome_vfs_context_get_cancellation (handle->context);
-	if (cancellation) {
-		gnome_vfs_cancellation_cancel (cancellation);
-	}
-
-	connection_reply_ok (conn, message);
-}
-
-static void
 connection_unregistered_func (DBusConnection *conn,
 			      gpointer        data)
 {
@@ -2438,9 +2407,6 @@ connection_message_func (DBusConnection *dbus_conn,
 	}
 	else if (IS_METHOD (message,DVD_DAEMON_METHOD_MONITOR_CANCEL)) {
 		connection_handle_monitor_cancel (conn, message);
-	}
-	else if (IS_METHOD (message, DVD_DAEMON_METHOD_CANCEL)) {
-		connection_handle_cancel (conn, message);
 	} else {
 		return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 	}

@@ -23,15 +23,10 @@
 
 #include <dbus/dbus-glib.h>
 
-typedef struct _DaemonConnection DaemonConnection;
+void daemon_connection_setup  (DBusConnection *dbus_conn,
+			       gint32          conn_id);
+void daemon_connection_cancel (gint32          conn_id,
+			       gint32          cancellation_id);
 
-typedef void (*DaemonConnectionShutdownFunc) (DaemonConnection *conn,
-					      gpointer          data);
-
-DaemonConnection *daemon_connection_setup  (DBusConnection               *dbus_conn,
-					    DaemonConnectionShutdownFunc  shutdown_func,
-					    gpointer                      shutdown_data);
-void              daemon_connection_cancel (DaemonConnection             *conn,
-					    gint32                        cancellation_id);
 
 #endif /* __DAEMON_CONNECTION_H__ */

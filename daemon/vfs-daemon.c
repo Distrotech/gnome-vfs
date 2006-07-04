@@ -37,7 +37,7 @@
 #include "dbus-utils.h"
 #include "daemon-connection.h"
 
-#define d(x)
+#define d(x) 
 
 static DBusConnection *  daemon_get_connection    (gboolean        create);
 static void              daemon_shutdown          (void);
@@ -60,14 +60,6 @@ typedef struct {
 	gint32 conn_id;
 	char *socket_dir;
 } NewConnectionData;
-
-typedef struct {
-	gint32      conn_id;
-	DBusServer *server;
-} ShutdownData;	
-
-static GHashTable *connections;
-
 
 static DBusConnection *
 daemon_get_connection (gboolean create)
@@ -171,28 +163,6 @@ daemon_unregistered_func (DBusConnection *conn,
 {
 }
 
-static gboolean
-daemon_connection_shutdown_idle_cb (ShutdownData *data)
-{
-	g_hash_table_remove (connections, GINT_TO_POINTER (data->conn_id));
-
-	dbus_server_disconnect (data->server);
-	dbus_server_unref (data->server);
-	
-	g_free (data);
-	
-	return FALSE;
-}
-
-static void
-daemon_connection_shutdown_func (DaemonConnection *conn,
-				 ShutdownData     *data)
-{
-	/* We add an idle since the shutdown function is called from the daemon
-	 * connection thread. */
-	g_idle_add ((GSourceFunc) daemon_connection_shutdown_idle_cb, data);
-}
-
 static void
 new_connection_data_free (void *memory)
 {
@@ -211,43 +181,31 @@ daemon_new_connection_func (DBusServer     *server,
 			    gpointer        user_data)
 {
 	gint32            conn_id;
-	DaemonConnection *daemon_connection;
 	NewConnectionData *data;
-	ShutdownData     *shutdown_data;
 
 	data = user_data;
 	
 	conn_id = data->conn_id;
 
+	/* Kill the server, no more need for it */
+	dbus_server_disconnect (server);
+	dbus_server_unref (server);
+	
 	/* Remove the socket and dir after connected */
 	if (data->socket_dir) {
+		/* DBUS-TODO. remove
 		char *file;
 		file = g_strconcat (data->socket_dir, "/socket", NULL);
 		unlink (file);
 		g_free (file);
+		*/
 		rmdir (data->socket_dir);
 	}
 
+	
 	d(g_print ("Got a new connection, id %d\n", conn_id));
 
-	shutdown_data = g_new0 (ShutdownData, 1);
-	shutdown_data->conn_id = conn_id;
-	shutdown_data->server = server;
-
-	daemon_connection = daemon_connection_setup (
-		conn,
-		(DaemonConnectionShutdownFunc) daemon_connection_shutdown_func,
-		shutdown_data);
-
-	if (!daemon_connection) {
-		g_free (shutdown_data);
-		g_hash_table_remove (connections, GINT_TO_POINTER (conn_id));
-		g_printerr ("Couldn't setup new connection.");
-		return;
-	}
-
-	g_hash_table_insert (connections, GINT_TO_POINTER (conn_id),
-			     daemon_connection);
+	daemon_connection_setup (conn, conn_id);
 }
 
 #ifdef __linux__
@@ -435,7 +393,6 @@ daemon_handle_cancel (DBusConnection *conn, DBusMessage *message)
 {
 	gint32            cancellation_id;
 	gint32            conn_id;
-	DaemonConnection *daemon_connection;
 
 	if (!dbus_message_get_args (message, NULL,
 				    DBUS_TYPE_INT32, &cancellation_id,
@@ -447,12 +404,7 @@ daemon_handle_cancel (DBusConnection *conn, DBusMessage *message)
 	d(g_print ("daemon got Cancel (conn id %d, cancel id %d)\n",
 		   conn_id, cancellation_id));
 
-	daemon_connection = g_hash_table_lookup (connections,
-						 GINT_TO_POINTER (conn_id));
-
-	if (daemon_connection) {
-		daemon_connection_cancel (daemon_connection, cancellation_id);
-	}
+	daemon_connection_cancel (conn_id, cancellation_id);
 }
 
 static void
@@ -746,8 +698,6 @@ main (int argc, char *argv[])
 		return 1;
 	}
 
-	connections = g_hash_table_new (g_direct_hash, g_direct_equal);
-
 	loop = g_main_loop_new (NULL, FALSE);
 
 	if (!daemon_init ()) {
@@ -785,8 +735,6 @@ main (int argc, char *argv[])
 	d(g_print ("Shutting down.\n"));
 
 	daemon_shutdown ();
-
-	g_hash_table_destroy (connections);
 
 	return 0;
 }
