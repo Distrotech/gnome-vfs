@@ -1,3 +1,11 @@
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/dbus-utils.c:
+	No need to pass struct types.
+	
+	* daemon/vfs-daemon.c:
+	Implement non-abstract sockets for non-linux.
+
 2006-07-03  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/GNOME_VFS_Daemon.idl:

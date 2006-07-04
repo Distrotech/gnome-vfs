@@ -48,23 +48,7 @@ dbus_utils_message_append_volume_list (DBusMessage *message, GList *volumes)
 
 	dbus_message_iter_open_container (&iter,
 					  DBUS_TYPE_ARRAY,
-					  DBUS_STRUCT_BEGIN_CHAR_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_STRUCT_END_CHAR_AS_STRING,
+					  NULL,
 					  &array_iter);
 	
 	for (l = volumes; l; l = l->next) {
@@ -93,20 +77,7 @@ dbus_utils_message_append_drive_list (DBusMessage *message, GList *drives)
 	
 	dbus_message_iter_open_container (&iter,
 					  DBUS_TYPE_ARRAY,
-					  DBUS_STRUCT_BEGIN_CHAR_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_ARRAY_AS_STRING
-					  DBUS_TYPE_INT32_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_STRING_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_TYPE_BOOLEAN_AS_STRING
-					  DBUS_STRUCT_END_CHAR_AS_STRING,
+					  NULL,
 					  &array_iter);
 	
 	for (l = drives; l; l = l->next) {

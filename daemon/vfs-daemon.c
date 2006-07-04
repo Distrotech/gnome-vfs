@@ -19,8 +19,13 @@
  */
 
 #include <config.h>
+#include <sys/stat.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-dbus-utils.h>
 
@@ -50,6 +55,11 @@ static DBusObjectPathVTable daemon_vtable = {
 	daemon_message_func,
 	NULL
 };
+
+typedef struct {
+	gint32 conn_id;
+	char *socket_dir;
+} NewConnectionData;
 
 typedef struct {
 	gint32      conn_id;
@@ -184,15 +194,39 @@ daemon_connection_shutdown_func (DaemonConnection *conn,
 }
 
 static void
+new_connection_data_free (void *memory)
+{
+	NewConnectionData *data;
+
+	data = memory;
+
+	g_free (data->socket_dir);
+	g_free (data);
+}
+
+
+static void
 daemon_new_connection_func (DBusServer     *server,
 			    DBusConnection *conn,
 			    gpointer        user_data)
 {
 	gint32            conn_id;
 	DaemonConnection *daemon_connection;
+	NewConnectionData *data;
 	ShutdownData     *shutdown_data;
 
-	conn_id = GPOINTER_TO_INT (user_data);
+	data = user_data;
+	
+	conn_id = data->conn_id;
+
+	/* Remove the socket and dir after connected */
+	if (data->socket_dir) {
+		char *file;
+		file = g_strconcat (data->socket_dir, "/socket", NULL);
+		unlink (file);
+		g_free (file);
+		rmdir (data->socket_dir);
+	}
 
 	d(g_print ("Got a new connection, id %d\n", conn_id));
 
@@ -216,16 +250,106 @@ daemon_new_connection_func (DBusServer     *server,
 			     daemon_connection);
 }
 
-/* DBUS-TODO: use non-abstract sockets */
-/* Note: Use abstract sockets like dbus does by default on Linux. Abstract
- * sockets are only available on Linux.
- */
+#ifdef __linux__
+#define USE_ABSTRACT_SOCKETS
+#endif
+
+#ifndef USE_ABSTRACT_SOCKETS
+static gboolean
+test_safe_socket_dir (const char *dirname)
+{
+	struct stat statbuf;
+
+	if (g_stat (dirname, &statbuf) != 0) {
+		return FALSE;
+	}
+	
+#ifndef G_PLATFORM_WIN32
+	if (statbuf.st_uid != getuid ()) {
+		return FALSE;
+	}
+	
+	if ((statbuf.st_mode & (S_IRWXG|S_IRWXO)) ||
+	    !S_ISDIR (statbuf.st_mode)) {
+		return FALSE;
+	}
+#endif
+
+	return TRUE;
+}
+
+static char *
+create_socket_dir (void)
+{
+	char *dirname;
+	long iteration = 0;
+	char *safe_dir;
+	gchar tmp[9];
+	int i;
+	
+	safe_dir = NULL;
+	do {
+		g_free (safe_dir);
+		
+		for (i = 0; i < 8; i++) {
+			if (g_random_int_range (0, 2) == 0) {
+				tmp[i] = g_random_int_range ('a', 'z' + 1);
+			} else {
+				tmp[i] = g_random_int_range ('A', 'Z' + 1);
+			}
+		}
+		tmp[8] = '\0';
+		
+		dirname = g_strdup_printf ("gnomevfs-%s-%s",
+					   g_get_user_name (), tmp);
+		safe_dir = g_build_filename (g_get_tmp_dir (), dirname, NULL);
+		g_free (dirname);
+
+		if (g_mkdir (safe_dir, 0700) < 0) {
+			switch (errno) {
+			case EACCES:
+				g_error ("I can't write to '%s', daemon init failed",
+					 safe_dir);
+				break;
+				
+			case ENAMETOOLONG:
+				g_error ("Name '%s' too long your system is broken",
+					 safe_dir);
+				break;
+
+			case ENOMEM:
+#ifdef ELOOP
+			case ELOOP:
+#endif
+			case ENOSPC:
+			case ENOTDIR:
+			case ENOENT:
+				g_error ("Resource problem creating '%s'", safe_dir);
+				break;
+				
+			default: /* carry on going */
+				break;
+			}
+		}
+		/* Possible race - so we re-scan. */
+
+		if (iteration++ == 1000) {
+			g_error ("Cannot find a safe socket path in '%s'", g_get_tmp_dir ());
+		}
+	} while (!test_safe_socket_dir (safe_dir));
+
+	return safe_dir;
+}
+#endif
+
 static gchar *
-generate_address (void)
+generate_address (char **folder)
 {
 	gint   i;
 	gchar  tmp[9];
 	gchar *path;
+
+	*folder = NULL;
 
 	for (i = 0; i < 8; i++) {
 		if (g_random_int_range (0, 2) == 0) {
@@ -236,7 +360,18 @@ generate_address (void)
 	}
 	tmp[8] = '\0';
 
+
+#ifdef USE_ABSTRACT_SOCKETS
 	path = g_strdup_printf ("unix:abstract=/dbus-vfs-daemon/socket-%s", tmp);
+#else
+	{
+		char *dir;
+		
+		dir = create_socket_dir ();
+		path = g_strdup_printf ("unix:path=%s/socket", dir);
+		*folder = dir;
+	}
+#endif
 
 	return path;
 }
@@ -249,8 +384,10 @@ daemon_handle_get_connection (DBusConnection *conn, DBusMessage *message)
 	DBusMessage   *reply;
 	gchar         *address;
 	static gint32  conn_id = 0;
+	NewConnectionData *data;
+	char *socket_dir;
 
-	address = generate_address ();
+	address = generate_address (&socket_dir);
 
 	dbus_error_init (&error);
 
@@ -270,10 +407,13 @@ daemon_handle_get_connection (DBusConnection *conn, DBusMessage *message)
 		return;
 	}
 
+	data = g_new (NewConnectionData, 1);
+	data->conn_id = ++conn_id;
+	data->socket_dir = socket_dir;
+
 	dbus_server_set_new_connection_function (server,
 						 daemon_new_connection_func,
-						 GINT_TO_POINTER (++conn_id),
-						 NULL);
+						 data, new_connection_data_free);
 
 	dbus_server_setup_with_g_main (server, NULL);
 
