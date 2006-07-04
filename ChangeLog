@@ -1,5 +1,10 @@
 2006-07-04  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/daemon-connection.c (READDIR_CHUNK_SIZE):
+	Bump readdir chunk size to 40
+
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/daemon-connection.[ch]:
 	* daemon/vfs-daemon.c:
 	Clean up and simplify how cancellation is handled in daemon.

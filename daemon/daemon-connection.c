@@ -33,7 +33,7 @@
 
 #define d(x) 
 
-#define READDIR_CHUNK_SIZE 10
+#define READDIR_CHUNK_SIZE 40
 
 typedef struct _DaemonConnection DaemonConnection;
 
