@@ -33,7 +33,7 @@
 
 #define d(x) 
 
-#define READDIR_CHUNK_SIZE 40
+#define READDIR_CHUNK_SIZE 10
 
 typedef struct _DaemonConnection DaemonConnection;
 
@@ -41,24 +41,14 @@ struct _DaemonConnection {
 	DBusConnection *conn;
 	gint32          conn_id;
 
-	GStaticRecMutex mutex;
-
-	GAsyncQueue    *queue;
-
-	guint           ref_count;
-
 	GMainContext   *main_context;
 	GMainLoop      *main_loop;
 
-	/* ID for directory, file and monitor handles. */
+	/* ID for directory and file handles. */
 	guint           next_id;
 
 	GHashTable     *directory_handles;
 	GHashTable     *file_handles;
-	GHashTable     *monitor_handles;
-
-	/* Maps GnomeVFSMonitorHandles to MonitorHandles. */
-	GHashTable     *monitor_handles_reverse;
 };
 
 typedef struct {
@@ -77,29 +67,12 @@ typedef struct {
 	gint32          id;
 } FileHandle;
 
-typedef struct {
-	gint32                 id;
-	GnomeVFSMonitorHandle *vfs_handle;
-} MonitorHandle;
-
-typedef struct {
-	gint32                    id;
-	gchar                    *monitor_uri;
-	gchar                    *info_uri;
-	GnomeVFSMonitorEventType  event_type;
-} MonitorCallbackData;
-
 static GStaticMutex cancellations_lock = G_STATIC_MUTEX_INIT;
 static GHashTable *cancellations;
 
 static DaemonConnection *  connection_new                      (DBusConnection          *dbus_conn,
 								gint32                   conn_id);
-static DaemonConnection *  connection_ref_unlocked             (DaemonConnection        *conn);
-static void                connection_unref                    (DaemonConnection        *conn);
-static guint               connection_idle_add                 (DaemonConnection        *conn,
-								GSourceFunc              function,
-								gpointer                 data,
-								GDestroyNotify           notify);
+static void                connection_destroy                  (DaemonConnection        *conn);
 static CancellationHandle *cancellation_handle_new             (gint32                   cancellation_id,
 								gint32                   conn_id);
 static void                cancellation_handle_free            (CancellationHandle      *handle);
@@ -116,17 +89,6 @@ static void                connection_remove_directory_handle  (DaemonConnection
 								DirectoryHandle         *handle);
 static DirectoryHandle *   connection_get_directory_handle     (DaemonConnection        *conn,
 								gint32                   id);
-static MonitorHandle *     monitor_handle_new                  (GnomeVFSMonitorHandle   *vfs_handle,
-								gint32                   handle_id);
-static void                monitor_handle_free                 (MonitorHandle           *handle);
-static MonitorHandle *     connection_add_monitor_handle       (DaemonConnection        *conn,
-								GnomeVFSMonitorHandle   *vfs_handle);
-static void                connection_remove_monitor_handle    (DaemonConnection        *conn,
-								MonitorHandle           *handle);
-static MonitorHandle *     connection_get_monitor_handle       (DaemonConnection        *conn,
-								gint32                   id);
-static MonitorHandle *     connection_get_monitor_handle_by_vfs_handle (DaemonConnection      *conn,
-									GnomeVFSMonitorHandle *monitor);
 static FileHandle *        file_handle_new                     (GnomeVFSHandle          *vfs_handle,
 								gint32                   handle_id);
 static void                file_handle_free                    (FileHandle              *handle);
@@ -179,11 +141,6 @@ connection_new (DBusConnection *dbus_conn,
 
 	conn = g_new0 (DaemonConnection, 1);
 	conn->conn_id = conn_id;
-	conn->ref_count = 1;
-
-        g_static_rec_mutex_init (&conn->mutex);
-
-	conn->queue = g_async_queue_new ();
 
 	conn->conn = dbus_conn;
 	conn->next_id = 1;
@@ -198,13 +155,6 @@ connection_new (DBusConnection *dbus_conn,
 	conn->file_handles = g_hash_table_new_full (
 		g_direct_hash, g_direct_equal,
 		NULL, (GDestroyNotify) file_handle_free);
-
-	conn->monitor_handles = g_hash_table_new_full (
-		g_direct_hash, g_direct_equal,
-		NULL, (GDestroyNotify) monitor_handle_free);
-
-	conn->monitor_handles_reverse = g_hash_table_new (
-		g_direct_hash, g_direct_equal);
 
 	if (!dbus_connection_register_object_path (dbus_conn,
 						   DVD_DAEMON_OBJECT,
@@ -228,7 +178,7 @@ connection_thread_func (DaemonConnection *conn)
 	g_main_loop_run (conn->main_loop);
         d(g_print ("Thread done: Cleaning up\n"));
 
-	connection_unref (conn);
+	connection_destroy (conn);
 
 	return NULL;
 }
@@ -252,106 +202,31 @@ daemon_connection_setup (DBusConnection               *dbus_conn,
                                   conn, FALSE, NULL);
 }
 
-static gboolean
-foreach_remove_monitor_handles (gpointer key,
-				gpointer data,
-				gpointer user_data)
-{
-	DaemonConnection *conn = user_data;
-	MonitorHandle    *handle = data;
-	GnomeVFSResult    result;
-
-	/* Note: This kind of duplicates handle_remove_monitor.  */
-
-	result = gnome_vfs_monitor_cancel (handle->vfs_handle);
-
-	g_hash_table_remove (conn->monitor_handles_reverse, handle->vfs_handle);
-
-	connection_unref (conn);
-
-	return TRUE;
-}
-
 static void
 connection_shutdown (DaemonConnection *conn)
 {
-	g_static_rec_mutex_lock (&conn->mutex);
-
-	/* Remove any left-over monitors. */
-	g_hash_table_foreach_remove (conn->monitor_handles,
-				     foreach_remove_monitor_handles,
-				     conn);
-
 	g_main_loop_quit (conn->main_loop);
-
-        g_static_rec_mutex_unlock (&conn->mutex);
-}
-
-static DaemonConnection *
-connection_ref_unlocked (DaemonConnection *conn)
-{
-	conn->ref_count++;
-
-	return conn;
 }
 
 static void
-connection_unref (DaemonConnection *conn)
+connection_destroy (DaemonConnection *conn)
 {
-	g_static_rec_mutex_lock (&conn->mutex);
-
-	conn->ref_count--;
-
-	if (conn->ref_count > 0) {
-                g_static_rec_mutex_unlock (&conn->mutex);
-                return;
-	}
-
-	d(g_print ("Last unref\n"));
+	d(g_print ("Connection destroy\n"));
 
 	if (dbus_connection_get_is_connected (conn->conn)) {
 		dbus_connection_disconnect (conn->conn);
 	}
 	dbus_connection_unref (conn->conn);
 
-	g_async_queue_unref (conn->queue);
-
 	g_hash_table_destroy (conn->directory_handles);
 	g_hash_table_destroy (conn->file_handles);
-
-	g_hash_table_destroy (conn->monitor_handles_reverse);
-	g_hash_table_destroy (conn->monitor_handles);
 
 	g_assert (!g_main_loop_is_running (conn->main_loop));
 
 	g_main_loop_unref (conn->main_loop);
 	g_main_context_unref (conn->main_context);
 
-        /* Not sure whether we can free the mutex without unlocking, but it's a
-         * static Mutex so I guess we should be fine to do so?
-         * g_mutex_unlock (conn->mutex); */
-        g_static_rec_mutex_free (&conn->mutex);
-	
 	g_free (conn);
-}
-
-/* Variant of g_idle_add that adds to the connection's context. */
-static guint
-connection_idle_add (DaemonConnection *conn,
-		     GSourceFunc       function,
-		     gpointer          data,
-		     GDestroyNotify    notify)
-{
-	GSource *source;
-	guint    id;
-
-	source = g_idle_source_new ();
-
-	g_source_set_callback (source, function, data, notify);
-	id = g_source_attach (source, conn->main_context);
-	g_source_unref (source);
-
-	return id;
 }
 
 static CancellationHandle *
@@ -524,87 +399,6 @@ connection_get_directory_handle (DaemonConnection *conn,
 	return g_hash_table_lookup (conn->directory_handles,
 				    GINT_TO_POINTER (id));
 }
-
-/*
- * MonitorHandle functions.
- */
-
-static MonitorHandle *
-monitor_handle_new (GnomeVFSMonitorHandle *vfs_handle,
-		    gint32                 handle_id)
-{
-	MonitorHandle *handle;
-
-	handle = g_new0 (MonitorHandle, 1);
-	handle->vfs_handle = vfs_handle;
-	handle->id = handle_id;
-
-	return handle;
-
-}
-
-static void
-monitor_handle_free (MonitorHandle *handle)
-{
-	g_free (handle);
-}
-
-static MonitorHandle *
-connection_add_monitor_handle (DaemonConnection      *conn,
-			       GnomeVFSMonitorHandle *vfs_handle)
-{
-	MonitorHandle *handle;
-
-	handle = monitor_handle_new (vfs_handle, conn->next_id++);
-
-	g_hash_table_insert (conn->monitor_handles,
-			     GINT_TO_POINTER (handle->id), handle);
-
-	g_hash_table_insert (conn->monitor_handles_reverse,
-			     vfs_handle, handle);
-
-	return handle;
-}
-
-static void
-connection_remove_monitor_handle (DaemonConnection *conn,
-				  MonitorHandle    *handle)
-{
-	if (!g_hash_table_remove (conn->monitor_handles_reverse,
-				  handle->vfs_handle)) {
-		g_warning ("Couldn't remove vfs monitor handle %d\n", handle->id);
-	}
-
-	if (!g_hash_table_remove (conn->monitor_handles,
-				  GINT_TO_POINTER (handle->id))) {
-		g_warning ("Couldn't remove monitor handle %d\n", handle->id);
-	}
-}
-
-static MonitorHandle *
-connection_get_monitor_handle (DaemonConnection *conn,
-			       gint32            id)
-{
-	MonitorHandle *handle;
-
-	handle = g_hash_table_lookup (conn->monitor_handles,
-				      GINT_TO_POINTER (id));
-
-	return handle;
-}
-
-static MonitorHandle *
-connection_get_monitor_handle_by_vfs_handle (DaemonConnection      *conn,
-					     GnomeVFSMonitorHandle *vfs_handle)
-{
-	MonitorHandle *handle;
-
-	handle = g_hash_table_lookup (conn->monitor_handles_reverse,
-				      vfs_handle);
-
-	return handle;
-}
-
 
 /*
  * FileHandle functions.
@@ -2135,178 +1929,6 @@ connection_handle_get_volume_free_space (DaemonConnection *conn,
 }
 
 static void
-monitor_callback_data_free (MonitorCallbackData *data)
-{
-	g_free (data->monitor_uri);
-	g_free (data->info_uri);
-	g_free (data);
-}
-
-/* Note: This gets called from the connection thread. */
-static gboolean
-monitor_callback_idle_cb (DaemonConnection *conn)
-{
-	MonitorCallbackData *data;
-	DBusMessage         *signal;
-	gint32               id;
-	gint32               event_type;
-
-	data = g_async_queue_try_pop (conn->queue);
-	if (data == NULL) {
-		return FALSE;
-	}
-
-	signal = dbus_message_new_signal (DVD_DAEMON_OBJECT,
-					  DVD_DAEMON_INTERFACE,
-					  DVD_DAEMON_MONITOR_SIGNAL);
-
-	id = data->id;
-	event_type = data->event_type;
-	
-	if (dbus_message_append_args (signal,
-				      DBUS_TYPE_INT32, &id,
-				      DBUS_TYPE_STRING, &data->info_uri,
-				      DBUS_TYPE_INT32, &event_type,
-				      DBUS_TYPE_INVALID)) {
-		/* In case this gets fired off after we've disconnected. */
-		if (dbus_connection_get_is_connected (conn->conn)) {
-			dbus_connection_send (conn->conn, signal, NULL);
-		}
-	}
-
-	dbus_message_unref (signal);
-
-	monitor_callback_data_free (data);
-
-	return FALSE;
-}
-
-static void
-monitor_callback_func (GnomeVFSMonitorHandle    *vfs_handle,
-		       const gchar              *monitor_uri,
-		       const gchar              *info_uri,
-		       GnomeVFSMonitorEventType  event_type,
-		       gpointer                  user_data)
-{
-	DaemonConnection    *conn = user_data;
-	MonitorCallbackData *data;
-	MonitorHandle       *handle;
-
-	/* Note: This callback is always called from the default main loop,
-	 * i.e. not the one that the connection is run in.
-	 */
-
-	data = g_new0 (MonitorCallbackData, 1);
-
-	g_static_rec_mutex_lock (&conn->mutex);
-
-	/* We use our handle id since the vfs_handle might be gone when we
-	 * handle the notification.
-	 */
-	handle = connection_get_monitor_handle_by_vfs_handle (conn, vfs_handle);
-
-	data->id = handle->id;
-	data->monitor_uri = g_strdup (monitor_uri);
-	data->info_uri = g_strdup (info_uri);
-	data->event_type = event_type;
-
-	g_async_queue_push (conn->queue, data);
-
-	connection_idle_add (conn,
-			     (GSourceFunc) monitor_callback_idle_cb,
-			     conn, NULL);
-
-	g_static_rec_mutex_unlock (&conn->mutex);
-}
-
-static void
-connection_handle_monitor_add (DaemonConnection *conn,
-			       DBusMessage      *message)
-{
-	GnomeVFSURI           *uri;
-	gchar                 *uri_string;
-	gint32                 type;
-	GnomeVFSMonitorHandle *vfs_handle;
-	MonitorHandle         *handle;
-	GnomeVFSResult         result;
-
-	if (!get_operation_args (message, NULL,
-				 DVD_TYPE_URI, &uri,
-				 DVD_TYPE_INT32, &type,
-				 DVD_TYPE_LAST)) {
-		connection_reply_result (conn, message,
-					 GNOME_VFS_ERROR_INTERNAL);
-
-		return;
-	}
-
-	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
-	gnome_vfs_uri_unref (uri);
-
-	d(g_print ("monitor_add: %s, %d\n", uri_string, type));
-
-	result = gnome_vfs_monitor_add (&vfs_handle,
-					uri_string,
-					type,
-					monitor_callback_func,
-					conn);
-
-	g_free (uri_string);
-	
-	if (connection_check_and_reply_error (conn, message, result)) {
-		return;
-	}
-
-	/* We need to keep a ref over add/remove monitor so the connection isn't
-	 * gone when a monitor callback arrives.
-	 */
-	connection_ref_unlocked (conn);
-
-	handle = connection_add_monitor_handle (conn, vfs_handle);
-
-	connection_reply_id (conn, message, handle->id);
-}
-
-static void
-connection_handle_monitor_cancel (DaemonConnection *conn,
-				  DBusMessage      *message)
-{
-	MonitorHandle  *handle;
-	gint32          monitor_id;
-	GnomeVFSResult  result;
-
-	if (!get_operation_args (message, NULL,
-				 DVD_TYPE_INT32, &monitor_id,
-				 DVD_TYPE_LAST)) {
-		connection_reply_result (conn, message,
-					 GNOME_VFS_ERROR_INTERNAL);
-		return;
-	}
-
-	handle = connection_get_monitor_handle (conn, monitor_id);
-	if (!handle) {
-		connection_reply_result (conn, message,
-					 GNOME_VFS_ERROR_INTERNAL);
-		return;
-	}
-
-	d(g_print ("monitor_cancel: %d\n", monitor_id));
-
-	result = gnome_vfs_monitor_cancel (handle->vfs_handle);
-
-	if (connection_check_and_reply_error (conn, message, result)) {
-		return;
-	}
-
-	connection_remove_monitor_handle (conn, handle);
-
-	connection_reply_ok (conn, message);
-
-	/* The connection is ref'ed during the lifetime of a monitor. */
-	connection_unref (conn);
-}
-
-static void
 connection_unregistered_func (DBusConnection *conn,
 			      gpointer        data)
 {
@@ -2401,12 +2023,6 @@ connection_message_func (DBusConnection *dbus_conn,
 	}
 	else if (IS_METHOD (message, DVD_DAEMON_METHOD_GET_VOLUME_FREE_SPACE)) {
 		connection_handle_get_volume_free_space (conn, message);
-	}
-	else if (IS_METHOD (message, DVD_DAEMON_METHOD_MONITOR_ADD)) {
-		connection_handle_monitor_add (conn, message);
-	}
-	else if (IS_METHOD (message,DVD_DAEMON_METHOD_MONITOR_CANCEL)) {
-		connection_handle_monitor_cancel (conn, message);
 	} else {
 		return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 	}
@@ -2460,7 +2076,6 @@ get_operation_args (DBusMessage     *message,
 		switch (type) {
 		case DVD_TYPE_URI: {
 			GnomeVFSURI **uri;
-			gchar        *uri_str;
 			gchar        *str;
 
 			if (dbus_type != DBUS_TYPE_STRING) {
@@ -2470,14 +2085,8 @@ get_operation_args (DBusMessage     *message,
 			uri = va_arg (args, GnomeVFSURI **);
 
 			dbus_message_iter_get_basic (&iter, &str);
-			uri_str = gnome_vfs_unescape_string (str, NULL);
 
-			if (!uri_str) {
-				g_error ("Out of memory");
-			}
-
-			*uri = gnome_vfs_uri_new (uri_str);
-			g_free (uri_str);
+			*uri = gnome_vfs_uri_new (str);
 
 			if (!*uri) {
 				goto fail;

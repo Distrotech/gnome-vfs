@@ -48,7 +48,7 @@ dbus_utils_message_append_volume_list (DBusMessage *message, GList *volumes)
 
 	dbus_message_iter_open_container (&iter,
 					  DBUS_TYPE_ARRAY,
-					  NULL,
+					  GNOME_VFS_VOLUME_DBUS_TYPE,
 					  &array_iter);
 	
 	for (l = volumes; l; l = l->next) {
@@ -77,7 +77,7 @@ dbus_utils_message_append_drive_list (DBusMessage *message, GList *drives)
 	
 	dbus_message_iter_open_container (&iter,
 					  DBUS_TYPE_ARRAY,
-					  NULL,
+					  GNOME_VFS_DRIVE_DBUS_TYPE,
 					  &array_iter);
 	
 	for (l = drives; l; l = l->next) {
@@ -111,4 +111,85 @@ dbus_utils_message_append_drive (DBusMessage *message, GnomeVFSDrive *drive)
 
 	dbus_message_iter_init_append (message, &iter);
 	gnome_vfs_drive_to_dbus (&iter, drive);
+}
+
+/*
+ * Reply functions.
+ */
+
+static DBusMessage *
+create_reply_helper (DBusMessage    *message,
+		     GnomeVFSResult  result)
+{
+	DBusMessage     *reply;
+	DBusMessageIter  iter;
+	gint32           i;
+
+	reply = dbus_message_new_method_return (message);
+	if (!reply) {
+		g_error ("Out of memory");
+	}
+
+	i = result;
+
+	dbus_message_iter_init_append (reply, &iter);
+	if (!dbus_message_iter_append_basic (&iter,
+					     DBUS_TYPE_INT32,
+					     &i)) {
+		g_error ("Out of memory");
+	}
+
+	return reply;
+}
+
+void
+dbus_util_reply_result (DBusConnection *conn,
+			DBusMessage      *message,
+			GnomeVFSResult    result)
+{
+	DBusMessage *reply;
+	reply = create_reply_helper (message, result);
+	dbus_connection_send (conn, reply, NULL);
+	dbus_message_unref (reply);
+}
+
+void
+dbus_util_reply_id (DBusConnection *conn,
+		    DBusMessage      *message,
+		    gint32            id)
+{
+	DBusMessage     *reply;
+	DBusMessageIter  iter;
+
+	reply = create_reply_helper (message, GNOME_VFS_OK);
+
+	dbus_message_iter_init_append (reply, &iter);
+	if (!dbus_message_iter_append_basic (&iter,
+					     DBUS_TYPE_INT32,
+					     &id)) {
+		g_error ("Out of memory");
+	}
+
+	dbus_connection_send (conn, reply, NULL);
+	dbus_message_unref (reply);
+}
+
+void
+dbus_util_start_track_name (DBusConnection *conn, const char *name)
+{
+	char *rule;
+			
+	rule = g_strdup_printf ("type='signal',sender='" DBUS_SERVICE_DBUS "',interface='" DBUS_INTERFACE_DBUS "',member='NameOwnerChanged',arg0='%s'", name);
+	dbus_bus_add_match (conn, rule, NULL);
+	g_free (rule);
+}
+
+void
+dbus_util_stop_track_name (DBusConnection *conn, const char *name)
+{
+	char *rule;
+			
+	rule = g_strdup_printf ("type='signal',sender='" DBUS_SERVICE_DBUS "',interface='" DBUS_INTERFACE_DBUS "',member='NameOwnerChanged',arg0='%s'", name);
+	dbus_bus_remove_match (conn, rule, NULL);
+	g_free (rule);
 }

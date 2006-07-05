@@ -268,6 +268,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-daemon-method.c		\
+	gnome-vfs-dbus-utils.c			\
 	gnome-vfs-directory.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\

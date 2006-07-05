@@ -85,27 +85,24 @@ static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
 {
-	gint32 val;
-	if (str == NULL) {
-		val = 0;
-		dbus_message_iter_append_basic (iter, DBUS_TYPE_INT32, &val);
-	} else {
-		dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
-	}
+	if (str == NULL)
+		str = "";
+	
+	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
 static gchar *
-utils_get_string_or_null (DBusMessageIter *iter)
+utils_get_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
 {
 	const gchar *str;
-	
-	if (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRING) {
-		dbus_message_iter_get_basic (iter, &str);
+
+	dbus_message_iter_get_basic (iter, &str);
+
+	if (empty_is_null && *str == 0) {
+		return NULL;
 	} else {
-		str = NULL;
+		return g_strdup (str);
 	}
-	
-	return g_strdup (str);
 }
 
 /*
@@ -225,7 +222,7 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 	info->valid_fields = i;
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter);
+	str = utils_get_string_or_null (&struct_iter, FALSE);
 	info->name = gnome_vfs_unescape_string (str, NULL);
 	
 	dbus_message_iter_next (&struct_iter);
@@ -281,12 +278,16 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 	info->ctime = i;
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter);
-	info->symlink_name = gnome_vfs_unescape_string (str, NULL);
+	str = utils_get_string_or_null (&struct_iter, TRUE);
+	if (str) {
+		info->symlink_name = gnome_vfs_unescape_string (str, NULL);
+	}
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter);
-	info->mime_type = g_strdup (str);
+	str = utils_get_string_or_null (&struct_iter, TRUE);
+	if (str) {
+		info->mime_type = g_strdup (str);
+	}
 
 	return info;
 }
@@ -432,20 +433,17 @@ append_args_valist (DBusMessage     *message,
 		case DVD_TYPE_URI: {
 			GnomeVFSURI *uri;
 			gchar       *uri_str;
-			gchar       *str;
 
 			uri = va_arg (var_args, GnomeVFSURI *);
 			uri_str = gnome_vfs_uri_to_string (uri,
 							   GNOME_VFS_URI_HIDE_NONE);
-			str = gnome_vfs_escape_host_and_path_string (uri_str);
-			g_free (uri_str);
 			if (!dbus_message_iter_append_basic (&iter,
 							     DBUS_TYPE_STRING,
-							     &str)) {
+							     &uri_str)) {
 				g_error ("Out of memory");
 			}
 
-			g_free (str);
+			g_free (uri_str);
 			break;
 		}
 		case DVD_TYPE_STRING: {
@@ -545,6 +543,18 @@ append_args_valist (DBusMessage     *message,
 
 		type = va_arg (var_args, DvdArgumentType);
 	}
+}
+
+static void
+append_args (DBusMessage     *message,
+	     DvdArgumentType  first_arg_type,
+	     ...)
+{
+	va_list var_args;
+	
+	va_start (var_args, first_arg_type);
+	append_args_valist (message, first_arg_type, var_args);
+	va_end (var_args);
 }
 
 static DBusMessage *
@@ -1642,26 +1652,109 @@ do_create_symbolic_link (GnomeVFSMethod  *method,
 	return GNOME_VFS_OK;
 }
 
+typedef struct {
+	gint32 id;
+} MonitorHandle;
+
+static GHashTable *active_monitors;
+
+static DBusHandlerResult
+dbus_filter_func (DBusConnection *connection,
+		  DBusMessage    *message,
+		  void           *data)
+{
+	DBusMessageIter        iter;
+	dbus_int32_t           id, event_type;
+	char *uri_str;
+
+	if (dbus_message_is_signal (message,
+				    DVD_DAEMON_INTERFACE,
+				    DVD_DAEMON_MONITOR_SIGNAL)) {
+		dbus_message_iter_init (message, &iter);
+
+		if (dbus_message_get_args (message, NULL,
+					   DBUS_TYPE_INT32, &id,
+					   DBUS_TYPE_STRING, &uri_str,
+					   DBUS_TYPE_INT32, &event_type,
+					   DBUS_TYPE_INVALID)) {
+			GnomeVFSURI *info_uri;
+			info_uri = gnome_vfs_uri_new (uri_str);
+			if (info_uri != NULL) {
+				MonitorHandle *handle;
+
+				handle = g_hash_table_lookup (active_monitors, GINT_TO_POINTER (id));
+				if (handle) {				
+					gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
+								    info_uri, event_type);
+				}
+				gnome_vfs_uri_unref (info_uri);
+			}
+		}
+		
+		return DBUS_HANDLER_RESULT_HANDLED;
+	}
+	
+	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+
+static void
+setup_monitor (void)
+{
+	static gboolean initialized = FALSE;
+	DBusConnection *conn;
+
+	if (initialized)
+		return;
+      
+	initialized = TRUE;
+
+	active_monitors = g_hash_table_new (g_direct_hash, g_direct_equal);
+	
+	conn = _gnome_vfs_get_main_dbus_connection ();
+	if (conn == NULL) {
+		return;
+	}
+
+	dbus_connection_add_filter (conn,
+				    dbus_filter_func,
+				    NULL,
+				    NULL);
+}
+
 static GnomeVFSResult
 do_monitor_add (GnomeVFSMethod        *method,
 		GnomeVFSMethodHandle **method_handle,
 		GnomeVFSURI           *uri,
 		GnomeVFSMonitorType    monitor_type)
 {
-	DBusMessage    *reply;
+	DBusMessage    *reply, *message;
 	GnomeVFSResult  result;
 	dbus_int32_t    id;
+	DBusConnection *conn;
+	MonitorHandle *handle;
 
-	reply = execute_operation (DVD_DAEMON_METHOD_MONITOR_ADD,
-				   NULL, &result, -1,
-				   DVD_TYPE_URI, uri,
-				   DVD_TYPE_INT32, monitor_type,
-				   DVD_TYPE_LAST);
+	setup_monitor ();
+	
+	conn = _gnome_vfs_get_main_dbus_connection ();
+	if (conn == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+	
+	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
+						DVD_DAEMON_OBJECT,
+						DVD_DAEMON_INTERFACE,
+						DVD_DAEMON_METHOD_MONITOR_ADD);
+	dbus_message_set_auto_start (message, TRUE);
+	append_args (message,
+		     DVD_TYPE_URI, uri,
+		     DVD_TYPE_INT32, monitor_type,
+		     DVD_TYPE_LAST);
+	
+	reply = dbus_connection_send_with_reply_and_block (conn, message,
+							   -1, NULL);
 
-	if (!reply) {
-		return result;
-	}
-
+	dbus_message_unref (message);
+	
 	if (check_if_reply_is_error (reply, &result)) {
 		return result;
 	}
@@ -1671,28 +1764,53 @@ do_monitor_add (GnomeVFSMethod        *method,
 			       DBUS_TYPE_INT32, &id,
 			       DBUS_TYPE_INVALID);
 
-	*method_handle = GINT_TO_POINTER (id);
+	if (result == GNOME_VFS_OK) {
+		handle = g_new (MonitorHandle, 1);
+		handle->id = id;
+		*method_handle = (GnomeVFSMethodHandle *)handle;
 
-	dbus_message_unref (reply);
+		g_hash_table_insert (active_monitors, GINT_TO_POINTER (id), handle);
+		
+		dbus_message_unref (reply);
 
-	return GNOME_VFS_OK;
+		return GNOME_VFS_OK;
+	} else {
+		return result;
+	}
 }
 
 static GnomeVFSResult
 do_monitor_cancel (GnomeVFSMethod       *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
-	DBusMessage    *reply;
+	DBusMessage    *reply, *message;
 	GnomeVFSResult  result;
+	DBusConnection *conn;
+	MonitorHandle *handle;
+	gint32 id;
 
-	reply = execute_operation (DVD_DAEMON_METHOD_MONITOR_CANCEL,
-				   NULL, &result, -1,
-				   DVD_TYPE_INT32, GPOINTER_TO_INT (method_handle),
-				   DVD_TYPE_LAST);
+	handle = (MonitorHandle *)method_handle;
+	id = handle->id;
+	g_hash_table_remove (active_monitors, GINT_TO_POINTER (id));
+	g_free (handle);
+	
+	conn = _gnome_vfs_get_main_dbus_connection ();
+	if (conn == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+	
+	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
+						DVD_DAEMON_OBJECT,
+						DVD_DAEMON_INTERFACE,
+						DVD_DAEMON_METHOD_MONITOR_CANCEL);
+	dbus_message_set_auto_start (message, TRUE);
+	append_args (message,
+		     DVD_TYPE_INT32, id,
+		     DVD_TYPE_LAST);
+	
+	reply = dbus_connection_send_with_reply_and_block (conn, message, -1,
+							   NULL);
 
-	if (!reply) {
-		return result;
-	}
+	dbus_message_unref (message);
 
 	if (check_if_reply_is_error (reply, &result)) {
 		return result;

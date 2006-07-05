@@ -47,7 +47,9 @@ static void              daemon_unregistered_func (DBusConnection *conn,
 static DBusHandlerResult daemon_message_func      (DBusConnection *conn,
 						   DBusMessage    *message,
 						   gpointer        data);
-
+static DBusHandlerResult dbus_filter_func         (DBusConnection *connection,
+						   DBusMessage    *message,
+						   void           *data);
 
 
 static DBusObjectPathVTable daemon_vtable = {
@@ -60,6 +62,20 @@ typedef struct {
 	gint32 conn_id;
 	char *socket_dir;
 } NewConnectionData;
+
+typedef struct {
+	char *sender;
+	gint32 id;
+	GnomeVFSMonitorHandle *vfs_handle;
+} MonitorHandle;
+
+typedef struct {
+	char *sender;
+	GList *active_monitors;
+} MonitorOwner;
+
+static GHashTable *monitors;
+static GHashTable *monitor_owners;
 
 static DBusConnection *
 daemon_get_connection (gboolean create)
@@ -93,7 +109,8 @@ daemon_get_connection (gboolean create)
 		dbus_error_free (&error);
 
 		dbus_connection_disconnect (conn);
-		dbus_connection_unref (conn);
+		/* Remove this, it asserts:
+		   dbus_connection_unref (conn); */
 		conn = NULL;
 
 		return NULL;
@@ -103,7 +120,8 @@ daemon_get_connection (gboolean create)
 		g_printerr ("VFS daemon already running, exiting.\n");
 
 		dbus_connection_disconnect (conn);
-		dbus_connection_unref (conn);
+		/* Remove this, it asserts:
+		   dbus_connection_unref (conn); */
 		conn = NULL;
 
 		return NULL;
@@ -113,12 +131,18 @@ daemon_get_connection (gboolean create)
 		g_printerr ("Not primary owner of the service, exiting.\n");
 
 		dbus_connection_disconnect (conn);
-		dbus_connection_unref (conn);
+		/* Remove this, it asserts:
+		   dbus_connection_unref (conn); */
 		conn = NULL;
 
 		return NULL;
 	}
 
+	dbus_connection_add_filter (conn,
+				    dbus_filter_func,
+				    NULL,
+				    NULL);
+	
 	if (!dbus_connection_register_object_path (conn,
 						   DVD_DAEMON_OBJECT,
 						   &daemon_vtable,
@@ -408,6 +432,154 @@ daemon_handle_cancel (DBusConnection *conn, DBusMessage *message)
 }
 
 static void
+monitor_handle_free (MonitorHandle *handle)
+{
+	g_free (handle->sender);
+	g_free (handle);
+}
+
+static void
+monitor_owner_free (MonitorOwner *owner)
+{
+	g_free (owner->sender);
+	g_free (owner);
+}
+
+/* Called on main loop always */
+static void
+monitor_callback_func (GnomeVFSMonitorHandle    *vfs_handle,
+		       const gchar              *monitor_uri,
+		       const gchar              *info_uri,
+		       GnomeVFSMonitorEventType  event_type,
+		       gpointer                  user_data)
+{
+	DBusConnection *conn;
+	DBusMessage *signal;
+	MonitorHandle *handle = user_data;
+	gint32 event_type32;
+
+	conn = daemon_get_connection (FALSE);
+	if (!conn) {
+		return;
+	}
+	
+	signal = dbus_message_new_signal (DVD_DAEMON_OBJECT,
+					  DVD_DAEMON_INTERFACE,
+					  DVD_DAEMON_MONITOR_SIGNAL);
+	dbus_message_set_destination  (signal, handle->sender);
+
+	event_type32 = event_type;
+	
+	if (dbus_message_append_args (signal,
+				      DBUS_TYPE_INT32, &handle->id,
+				      DBUS_TYPE_STRING, &info_uri,
+				      DBUS_TYPE_INT32, &event_type32,
+				      DBUS_TYPE_INVALID)) {
+		/* In case this gets fired off after we've disconnected. */
+		if (dbus_connection_get_is_connected (conn)) {
+			dbus_connection_send (conn, signal, NULL);
+		}
+	}
+
+	dbus_message_unref (signal);
+}
+
+static void
+daemon_handle_monitor_add (DBusConnection *conn, DBusMessage *message)
+{
+	char *uri_str;
+	gint32 monitor_type;
+	MonitorHandle *handle;
+	MonitorOwner *owner;
+	const char *sender;
+	static gint32 next_handle = 0;
+	GnomeVFSResult result;
+	
+	if (!dbus_message_get_args (message, NULL,
+				    DBUS_TYPE_STRING, &uri_str,
+				    DBUS_TYPE_INT32, &monitor_type,
+				    DBUS_TYPE_INVALID)) {
+		dbus_util_reply_result (conn, message,
+					GNOME_VFS_ERROR_INTERNAL);
+		return;
+	}
+
+	sender = dbus_message_get_sender (message);
+	
+	handle = g_new (MonitorHandle, 1);
+	handle->sender = g_strdup (sender);
+	handle->id = ++next_handle;
+	
+	result = gnome_vfs_monitor_add (&handle->vfs_handle,
+					uri_str,
+					monitor_type,
+					monitor_callback_func,
+					handle);
+
+	if (result == GNOME_VFS_OK) {
+		if (monitors == NULL) {
+			monitors = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+							  NULL, (GDestroyNotify)monitor_handle_free);
+			monitor_owners = g_hash_table_new_full (g_str_hash, g_str_equal,
+								NULL, (GDestroyNotify)monitor_owner_free);
+		}
+
+		g_hash_table_insert (monitors, GINT_TO_POINTER (handle->id), handle);
+		owner = g_hash_table_lookup (monitor_owners, sender);
+		if (owner == NULL) {
+			owner = g_new (MonitorOwner, 1);
+			owner->sender = g_strdup (sender);
+			owner->active_monitors = NULL;
+			g_hash_table_insert (monitor_owners, owner->sender, owner);
+
+			dbus_util_start_track_name (conn, owner->sender);
+			
+		}
+		owner->active_monitors = g_list_prepend (owner->active_monitors, handle);
+		
+		dbus_util_reply_id (conn, message, handle->id);
+	} else {
+		monitor_handle_free (handle);
+		dbus_util_reply_result (conn, message, result);
+	}
+}
+
+static void
+daemon_handle_monitor_cancel (DBusConnection *conn, DBusMessage *message)
+{
+	gint32 id;
+	MonitorHandle *handle;
+	MonitorOwner *owner;
+	GnomeVFSResult result;
+	
+	if (!dbus_message_get_args (message, NULL,
+				    DBUS_TYPE_INT32, &id,
+				    DBUS_TYPE_INVALID)) {
+		dbus_util_reply_result (conn, message,
+					GNOME_VFS_ERROR_INTERNAL);
+		return;
+	}
+
+	handle = g_hash_table_lookup (monitors, GINT_TO_POINTER (id));
+	if (handle) {
+		result = gnome_vfs_monitor_cancel (handle->vfs_handle);
+		owner = g_hash_table_lookup (monitor_owners, handle->sender);
+		if (owner) {
+			owner->active_monitors = g_list_remove (owner->active_monitors, handle);
+			if (owner->active_monitors == NULL) {
+				dbus_util_stop_track_name (conn, handle->sender);
+				g_hash_table_remove (monitor_owners, handle->sender);
+			}
+		}
+		g_hash_table_remove (monitors, GINT_TO_POINTER (handle->id));
+
+		dbus_util_reply_result (conn, message, result);
+	} else {
+		dbus_util_reply_result (conn, message, GNOME_VFS_ERROR_INTERNAL);
+	}
+}
+
+static void
 daemon_handle_get_volumes (DBusConnection *conn, DBusMessage *message)
 {
 	GnomeVFSVolumeMonitor *monitor;
@@ -517,6 +689,16 @@ daemon_message_func (DBusConnection *conn,
 	}
 	else if (dbus_message_is_method_call (message,
 					      DVD_DAEMON_INTERFACE,
+					      DVD_DAEMON_METHOD_MONITOR_ADD)) {
+		daemon_handle_monitor_add (conn, message);
+	}
+	else if (dbus_message_is_method_call (message,
+					      DVD_DAEMON_INTERFACE,
+					      DVD_DAEMON_METHOD_MONITOR_CANCEL)) {
+		daemon_handle_monitor_cancel (conn, message);
+	}
+	else if (dbus_message_is_method_call (message,
+					      DVD_DAEMON_INTERFACE,
 					      DVD_DAEMON_METHOD_GET_VOLUMES)) {
 		daemon_handle_get_volumes (conn, message);
 	}
@@ -540,6 +722,47 @@ daemon_message_func (DBusConnection *conn,
 
 	return DBUS_HANDLER_RESULT_HANDLED;
 }
+
+static DBusHandlerResult
+dbus_filter_func (DBusConnection *connection,
+		  DBusMessage    *message,
+		  void           *data)
+{
+	if (dbus_message_is_signal (message,
+				    DBUS_INTERFACE_DBUS,
+				    "NameOwnerChanged")) {
+		gchar *service, *old_owner, *new_owner;
+		MonitorOwner *owner;
+		GList *l;
+
+		dbus_message_get_args (message,
+				       NULL,
+				       DBUS_TYPE_STRING, &service,
+				       DBUS_TYPE_STRING, &old_owner,
+				       DBUS_TYPE_STRING, &new_owner,
+				       DBUS_TYPE_INVALID);
+
+		/* Handle monitor owner going away */
+		if (*new_owner == 0) {
+			owner = g_hash_table_lookup (monitor_owners, service);
+
+			if (owner) {
+				for (l = owner->active_monitors; l != NULL; l = l->next) {
+					MonitorHandle *handle = l->data;
+
+					gnome_vfs_monitor_cancel (handle->vfs_handle);
+					g_hash_table_remove (monitors, GINT_TO_POINTER (handle->id));
+				}
+				owner->active_monitors = NULL;
+				dbus_util_stop_track_name (connection, service);
+				g_hash_table_remove (monitor_owners, service);
+			}
+		}
+	}
+	
+	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
 
 static void
 monitor_volume_mounted_cb (GnomeVFSVolumeMonitor *monitor,

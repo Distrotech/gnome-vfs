@@ -594,27 +594,24 @@ static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
 {
-	gint32 val;
-	if (str == NULL) {
-		val = 0;
-		dbus_message_iter_append_basic (iter, DBUS_TYPE_INT32, &val);
-	} else {
-		dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
-	}
+	if (str == NULL)
+		str = "";
+	
+	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
 static gchar *
-utils_get_string_or_null (DBusMessageIter *iter)
+utils_get_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
 {
 	const gchar *str;
-	
-	if (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRING) {
-		dbus_message_iter_get_basic (iter, &str);
+
+	dbus_message_iter_get_basic (iter, &str);
+
+	if (empty_is_null && *str == 0) {
+		return NULL;
 	} else {
-		str = NULL;
+		return g_strdup (str);
 	}
-	
-	return g_strdup (str);
 }
 
 gboolean
@@ -735,13 +732,13 @@ _gnome_vfs_drive_from_dbus (DBusMessageIter       *iter,
 	}
 	
 	dbus_message_iter_next (&struct_iter);
-	priv->device_path = utils_get_string_or_null (&struct_iter);
+	priv->device_path = utils_get_string_or_null (&struct_iter, TRUE);
 
 	dbus_message_iter_next (&struct_iter);
-	priv->activation_uri = utils_get_string_or_null (&struct_iter);
+	priv->activation_uri = utils_get_string_or_null (&struct_iter, TRUE);
 
 	dbus_message_iter_next (&struct_iter);
-	priv->display_name = utils_get_string_or_null (&struct_iter);
+	priv->display_name = utils_get_string_or_null (&struct_iter, TRUE);
 	if (drive->priv->display_name != NULL) {
 		char *tmp = g_utf8_casefold (drive->priv->display_name, -1);
 		drive->priv->display_name_key = g_utf8_collate_key (tmp, -1);
@@ -751,10 +748,10 @@ _gnome_vfs_drive_from_dbus (DBusMessageIter       *iter,
 	}
 	
 	dbus_message_iter_next (&struct_iter);
-	priv->icon = utils_get_string_or_null (&struct_iter);
+	priv->icon = utils_get_string_or_null (&struct_iter, TRUE);
 	
 	dbus_message_iter_next (&struct_iter);
-	priv->hal_udi = utils_get_string_or_null (&struct_iter);
+	priv->hal_udi = utils_get_string_or_null (&struct_iter, TRUE);
 
 	dbus_message_iter_next (&struct_iter);
 	dbus_message_iter_get_basic (&struct_iter, &priv->is_user_visible);

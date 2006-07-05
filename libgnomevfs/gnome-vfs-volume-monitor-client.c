@@ -33,7 +33,7 @@
 #include "gnome-vfs-filesystem-type.h"
 
 #include "gnome-vfs-dbus-utils.h"
-#include <dbus/dbus-glib-lowlevel.h>
+#include <dbus/dbus.h>
 
 #define d(x) 
 
@@ -256,11 +256,11 @@ gnome_vfs_volume_monitor_client_finalize (GObject *object)
 }
 
 void
-_gnome_vfs_volume_monitor_client_daemon_died (GnomeVFSVolumeMonitorClient *volume_monitor_client)
+_gnome_vfs_volume_monitor_client_daemon_died (GnomeVFSVolumeMonitor *volume_monitor)
 {
-	GnomeVFSVolumeMonitor *volume_monitor;
+	GnomeVFSVolumeMonitorClient *volume_monitor_client;
 
-	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
+	volume_monitor_client = GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor);
 	
 	_gnome_vfs_volume_monitor_unmount_all (volume_monitor);
 	_gnome_vfs_volume_monitor_disconnect_all (volume_monitor);
@@ -278,89 +278,6 @@ gnome_vfs_volume_monitor_client_shutdown_private (GnomeVFSVolumeMonitorClient *v
 	volume_monitor_client->is_shutdown = TRUE;
 
 	shutdown_dbus_connection (volume_monitor_client);
-}
-
-#define DAEMON_SIGNAL_RULE \
-  "type='signal',sender='org.gnome.GnomeVFS.Daemon',interface='org.gnome.GnomeVFS.Daemon'"
-
-#define NAME_OWNER_CHANGED_SIGNAL_RULE \
-  "type='signal',sender='" DBUS_SERVICE_DBUS "',interface='" DBUS_INTERFACE_DBUS "',member='NameOwnerChanged',arg0='org.gnome.GnomeVFS.Daemon'"
-
-static guint retry_timeout_id = 0;
-
-
-/* Should only be called from the main thread. */
-static gboolean
-dbus_try_activate_daemon_helper (GnomeVFSVolumeMonitorClient *volume_monitor)
-{
-	DBusError error;
-
-	if (volume_monitor->is_shutdown) {
-		/* If we're shutdown, we don't want to retry, so we treat this
-		 * as success.
-		 */
-		return TRUE;
-	}
-	
-	d(g_print ("Try activating daemon.\n"));
-
-	dbus_error_init (&error);
-	if (!dbus_bus_start_service_by_name (volume_monitor->dbus_conn,
-					     DVD_DAEMON_SERVICE,
-					     0,
-					     NULL,
-					     &error)) {
-		g_warning ("Failed to re-activate daemon: %s", error.message);
-		dbus_error_free (&error);
-	} else {
-		/* Succeeded, reload drives/volumes. */
-		_gnome_vfs_volume_monitor_client_daemon_died (volume_monitor);
-
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-static gboolean 
-dbus_try_activate_daemon_timeout_func (gpointer data)
-{
-	GnomeVFSVolumeMonitorClient *volume_monitor;
-
-	volume_monitor = GNOME_VFS_VOLUME_MONITOR_CLIENT (gnome_vfs_get_volume_monitor ());
-
-	if (volume_monitor->is_shutdown) {
-		retry_timeout_id = 0;
-		return FALSE;
-	}
-
-	if (dbus_try_activate_daemon_helper (volume_monitor)) {
-		retry_timeout_id = 0;
-		return FALSE;
-	}
-
-	/* Try again. */
-	return TRUE;
-}
-
-/* Will re-try every 5 seconds until succeeding. */
-static void
-dbus_try_activate_daemon (GnomeVFSVolumeMonitorClient *volume_monitor)
-{
-	if (retry_timeout_id != 0) {
-		return;
-	}
-	
-	if (dbus_try_activate_daemon_helper (volume_monitor)) {
-		return;
-	}
-
-	/* We failed to activate the daemon. This should only happen if the
-	 * daemon has been explicitly killed by the user or some OOM
-	 * functionality just after we tried to activate it. We try again in 5
-	 * seconds.
-	 */
-	retry_timeout_id = g_timeout_add (5000, dbus_try_activate_daemon_timeout_func, NULL);
 }
 
 static DBusHandlerResult
@@ -435,27 +352,6 @@ dbus_filter_func (DBusConnection *connection,
 			}
 		}
 	}
-	else if (dbus_message_is_signal (message,
-					 DBUS_INTERFACE_DBUS,
-					 "NameOwnerChanged")) {
-		gchar *service, *old_owner, *new_owner;
-
-		dbus_message_get_args (message,
-				       NULL,
-				       DBUS_TYPE_STRING, &service,
-				       DBUS_TYPE_STRING, &old_owner,
-				       DBUS_TYPE_STRING, &new_owner,
-				       DBUS_TYPE_INVALID);
-		
-		if (strcmp (service, DVD_DAEMON_SERVICE) == 0) {
-			if (strcmp (old_owner, "") != 0 &&
-			    strcmp (new_owner, "") == 0) {
-				/* No new owner, try to restart it. */
-				dbus_try_activate_daemon (
-					GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor));
-			}
-		}
-	}
 	
 	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
@@ -467,61 +363,23 @@ setup_dbus_connection (GnomeVFSVolumeMonitorClient *client)
 
 	dbus_error_init (&error);
 	
-	client->dbus_conn = dbus_bus_get (DBUS_BUS_SESSION, &error);
-	if (dbus_error_is_set (&error)) {
-		g_warning ("Failed to open session DBUS connection: %s\n"
-			   "Volume monitoring will not work.", error.message);
-		dbus_error_free (&error);
-		client->dbus_conn = NULL;
+	client->dbus_conn = _gnome_vfs_get_main_dbus_connection ();
+	if (client->dbus_conn == NULL)
 		return;
-	} 
-	/* We pass an error here to make this block (otherwise it just
-	 * sends off the match rule when flushing the connection. This
-	 * way we are sure to receive signals as soon as possible).
-	 */
-	dbus_bus_add_match (client->dbus_conn, DAEMON_SIGNAL_RULE, NULL);
-	dbus_bus_add_match (client->dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, &error);
-	if (dbus_error_is_set (&error)) {
-		g_warning ("Couldn't add match rule.");
-		dbus_error_free (&error);
-	}
-	
-	if (!dbus_bus_start_service_by_name (client->dbus_conn,
-					     DVD_DAEMON_SERVICE,
-					     0,
-					     NULL,
-					     &error)) {
-		g_warning ("Failed to activate daemon: %s", error.message);
-		dbus_error_free (&error);
-	}
 	
 	dbus_connection_add_filter (client->dbus_conn,
 				    dbus_filter_func,
 				    NULL,
 				    NULL);
-	
-	dbus_connection_setup_with_g_main (client->dbus_conn, NULL);
 }
 
 static void
 shutdown_dbus_connection (GnomeVFSVolumeMonitorClient *client)
 {
-	if (retry_timeout_id) {
-		g_source_remove (retry_timeout_id);
-		retry_timeout_id = 0;
-	}
-	
 	if (client->dbus_conn) {
-		dbus_bus_remove_match (client->dbus_conn, DAEMON_SIGNAL_RULE, NULL);
-		dbus_bus_remove_match (client->dbus_conn, NAME_OWNER_CHANGED_SIGNAL_RULE, NULL);
-		
 		dbus_connection_remove_filter (client->dbus_conn,
 					       dbus_filter_func,
 					       NULL);
-
-		if (!dbus_connection_get_is_connected (client->dbus_conn)) {
-			dbus_connection_unref (client->dbus_conn);
-		}
 		client->dbus_conn = NULL;
 	}
 }

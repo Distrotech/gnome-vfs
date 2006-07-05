@@ -1,3 +1,35 @@
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	Lower readdir chunk size again, due to errors.
+	Remove all per-connection monitoring stuff.
+	Don't escape uris sent as strings.
+	
+	* daemon/dbus-utils.[ch]:
+	Use the right volume/drive dbus types.
+	Add some dbus helpers for reply generation and
+	name tracking.
+	
+	* daemon/vfs-daemon.c:
+	Implement file monitoring, including cancel when client goes away.
+	Remove connection unrefs that were causing asserts.
+	
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Send NULL strings as "" again.
+	Don't escape uris sent as strings.
+	Implement file monitoring client side.
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-dbus-utils.[ch]:
+	Move main dbus client connection setup here.
+	
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	Send NULL strings as "" again.
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-client.[ch]:
+	Move out connection setup.
+
 2006-07-04  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/daemon-connection.c (READDIR_CHUNK_SIZE):

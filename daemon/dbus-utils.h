@@ -41,4 +41,17 @@ void dbus_utils_message_append_drive_list  (DBusMessage *message, GList *drives)
 void dbus_utils_message_append_volume      (DBusMessage *message, GnomeVFSVolume *volume);
 void dbus_utils_message_append_drive       (DBusMessage *message, GnomeVFSDrive  *drive);
 
+void dbus_util_reply_result (DBusConnection *conn,
+			     DBusMessage    *message,
+			     GnomeVFSResult  result);
+void dbus_util_reply_id     (DBusConnection *conn,
+			     DBusMessage    *message,
+			     gint32          id);
+
+
+void            dbus_util_start_track_name    (DBusConnection *conn,
+						     const char *name);
+void            dbus_util_stop_track_name     (DBusConnection *conn,
+						     const char *name);
+
 #endif /* __DBUS_UTILS_H__ */

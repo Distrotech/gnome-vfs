@@ -54,7 +54,7 @@ struct _GnomeVFSVolumeMonitorClientClass {
 
 GType gnome_vfs_volume_monitor_client_get_type (void) G_GNUC_CONST;
 
-void _gnome_vfs_volume_monitor_client_daemon_died            (GnomeVFSVolumeMonitorClient *volume_monitor_client);
+void _gnome_vfs_volume_monitor_client_daemon_died            (GnomeVFSVolumeMonitor *volume_monitor);
 void gnome_vfs_volume_monitor_client_shutdown_private        (GnomeVFSVolumeMonitorClient *volume_monitor_client);
 void _gnome_vfs_volume_monitor_client_dbus_force_probe       (GnomeVFSVolumeMonitorClient *volume_monitor_client);
 void _gnome_vfs_volume_monitor_client_dbus_emit_pre_unmount  (GnomeVFSVolumeMonitorClient *volume_monitor_client,
