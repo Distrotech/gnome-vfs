@@ -35,6 +35,7 @@
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-job-queue.h"
 #include "gnome-vfs-volume-monitor-private.h"
+#include "gnome-vfs-module-callback-private.h"
 
 #include <errno.h>
 #include <glib/gmessages.h>

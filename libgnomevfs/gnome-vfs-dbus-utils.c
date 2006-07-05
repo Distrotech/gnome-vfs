@@ -183,3 +183,16 @@ _gnome_vfs_get_main_dbus_connection (void)
 	return main_dbus;
 }
 
+static GStaticPrivate  daemon_connection_private = G_STATIC_PRIVATE_INIT;
+
+DBusConnection *
+_gnome_vfs_daemon_get_current_connection (void)
+{
+	return g_static_private_get (&daemon_connection_private);
+}
+
+void
+gnome_vfs_daemon_set_current_connection (DBusConnection *conn)
+{
+	g_static_private_set (&daemon_connection_private, conn, NULL);
+}

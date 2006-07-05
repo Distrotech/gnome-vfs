@@ -1,6 +1,18 @@
 2006-07-05  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/daemon-connection.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.[ch]:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-job.[ch]:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	* libgnomevfs/gnome-vfs-module-callback-private.h:
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	Initial work on module callbacks.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
 	* libgnomevfs/gnome-vfs-daemon-method.[ch]:
 	* libgnomevfs/gnome-vfs-dbus-utils.h:
 	Change readdir to push an array of fileinfo to allow larger

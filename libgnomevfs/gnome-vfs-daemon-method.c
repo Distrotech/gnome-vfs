@@ -28,6 +28,7 @@
 #include <libgnomevfs/gnome-vfs-dbus-utils.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-cancellation-private.h>
+#include <libgnomevfs/gnome-vfs-module-callback-private.h>
 
 #include <dbus/dbus.h>
 
@@ -59,27 +60,36 @@ typedef struct {
 	gint handle;
 } LocalConnection;
 
-static void              append_args_valist      (DBusMessage     *message,
-						  DvdArgumentType  first_arg_type,
-						  va_list          var_args);
-static DBusMessage *     execute_operation       (const gchar     *method,
-						  GnomeVFSContext *context,
-						  GnomeVFSResult  *result,
-						  gint             timeout,
-						  DvdArgumentType  type,
-						  ...);
-static gboolean          check_if_reply_is_error (DBusMessage     *reply,
-						  GnomeVFSResult  *result);
-static DBusMessage *     create_method_call      (const gchar     *method);
-static gint32            cancellation_id_new     (GnomeVFSContext *context,
-						  LocalConnection *conn);
-static void              cancellation_id_free    (gint32           cancellation_id,
-						  GnomeVFSContext *context);
-static DBusHandlerResult message_handler         (DBusConnection  *conn,
-						  DBusMessage     *message,
-						  gpointer         user_data);
+static void              append_args_valist           (DBusMessage     *message,
+						       DvdArgumentType  first_arg_type,
+						       va_list          var_args);
+static DBusMessage *     execute_operation            (const gchar     *method,
+						       GnomeVFSContext *context,
+						       GnomeVFSResult  *result,
+						       gint             timeout,
+						       DvdArgumentType  type,
+						       ...);
+static gboolean          check_if_reply_is_error      (DBusMessage     *reply,
+						       GnomeVFSResult  *result);
+static DBusMessage *     create_method_call           (const gchar     *method);
+static gint32            cancellation_id_new          (GnomeVFSContext *context,
+						       LocalConnection *conn);
+static void              cancellation_id_free         (gint32           cancellation_id,
+						       GnomeVFSContext *context);
+static void              connection_unregistered_func (DBusConnection  *conn,
+						       gpointer         data);
+static DBusHandlerResult connection_message_func      (DBusConnection  *conn,
+						       DBusMessage     *message,
+						       gpointer         data);
 
 static GStaticPrivate  local_connection_private = G_STATIC_PRIVATE_INIT;
+
+
+static DBusObjectPathVTable connection_vtable = {
+	connection_unregistered_func,
+	connection_message_func,
+	NULL
+};
 
 static void
 utils_append_string_or_null (DBusMessageIter *iter,
@@ -405,14 +415,18 @@ get_private_connection ()
 	}
 	dbus_message_unref (reply);
 
-	if (!dbus_connection_add_filter (private_conn, message_handler,
-					 NULL, NULL)) {
-		g_warning ("Failed to add filter to the connection.");
+
+	if (!dbus_connection_register_object_path (private_conn,
+						   DVD_CLIENT_OBJECT,
+						   &connection_vtable,
+						   NULL)) {
+		g_warning ("Failed to register client object with the connection.");
 		dbus_connection_disconnect (private_conn);
 		dbus_connection_unref (private_conn);
 		return NULL;
 	}
-
+	
+	
 	ret = g_new (LocalConnection, 1);
 	ret->connection = private_conn;
 	ret->conn_id = conn_id;
@@ -750,44 +764,50 @@ cancellation_id_free (gint32           cancellation_id,
 	}
 }
 
-/* DBUS-TODO: monitor callbacks here? should be on main connection?
- * problematic with no mainloop
- * Instead this should handle callbacks
- */
-/* This is a filter function, so never return HANDLED. */
-static DBusHandlerResult
-message_handler (DBusConnection *conn,
-		 DBusMessage    *message,
-		 gpointer        user_data)
+static void
+connection_unregistered_func (DBusConnection *conn,
+			      gpointer        data)
 {
-	g_print ("message handler\n");
-#if 0
-	dbus_int32_t  id;
-	gchar        *uri_str;
-	dbus_int32_t  event_type;
-	GnomeVFSURI  *uri;
+}
 
-	/* Check if signal */
-	if (!dbus_message_is_signal (message, DVD_DAEMON_INTERFACE,
-				     DVD_DAEMON_MONITOR_SIGNAL)) {
+#define IS_METHOD(msg,method) \
+  dbus_message_is_method_call(msg,DVD_CLIENT_INTERFACE,method)
+
+static DBusHandlerResult
+connection_message_func (DBusConnection *dbus_conn,
+			 DBusMessage    *message,
+			 gpointer        data)
+{
+	g_print ("connection_message_func(): %s\n",
+		 dbus_message_get_member (message));
+
+	if (IS_METHOD (message, DVD_CLIENT_METHOD_CALLBACK)) {
+		DBusMessageIter iter;
+		DBusMessage *reply;
+		const gchar *callback;
+		
+		if (!dbus_message_iter_init (message, &iter)) {
+			return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+		}
+
+		dbus_message_iter_get_basic (&iter, &callback);
+		dbus_message_iter_next (&iter);
+		
+		g_print ("CALLBACK: %s!!!\n", callback);
+
+		reply = dbus_message_new_method_return (message);
+
+		_gnome_vfs_module_callback_demarshal_invoke (callback,
+							     &iter,
+							     reply);
+		dbus_connection_send (dbus_conn, reply, NULL);
+		dbus_connection_flush (dbus_conn);
+		dbus_message_unref (reply);
+	} else {
 		return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 	}
 
-	dbus_message_get_args (message, NULL,
-			       DBUS_TYPE_INT32, &id,
-			       DBUS_TYPE_STRING, &uri_str,
-			       DBUS_TYPE_INT32, &event_type,
-			       DBUS_TYPE_INVALID);
-
-	uri = gnome_vfs_uri_new (uri_str);
-
-	gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) GINT_TO_POINTER (id),
-				    uri,
-				    (GnomeVFSMonitorEventType) event_type);
-
-	gnome_vfs_uri_unref (uri);
-#endif
-	return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+	return DBUS_HANDLER_RESULT_HANDLED;
 }
 
 static GnomeVFSResult

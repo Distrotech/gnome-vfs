@@ -34,11 +34,15 @@ G_BEGIN_DECLS
 #define DVD_DAEMON_SERVICE                          "org.gnome.GnomeVFS.Daemon"
 #define DVD_DAEMON_OBJECT                           "/org/gnome/GnomeVFS/Daemon"
 #define DVD_DAEMON_INTERFACE                        "org.gnome.GnomeVFS.Daemon"
+#define DVD_CLIENT_OBJECT                           "/org/gnome/GnomeVFS/Client"
+#define DVD_CLIENT_INTERFACE                        "org.gnome.GnomeVFS.Client"
 
 /* File monitoring signal. */
 #define DVD_DAEMON_MONITOR_SIGNAL                   "MonitorSignal"
 
 #define DVD_DAEMON_METHOD_GET_CONNECTION            "GetConnection"
+
+#define DVD_CLIENT_METHOD_CALLBACK                  "Callback"
 
 /* File ops methods. */
 #define DVD_DAEMON_METHOD_OPEN                      "Open"
@@ -172,7 +176,12 @@ typedef enum {
 	DVD_TYPE_BYTE_ARRAY
 } DvdArgumentType;
 
+/* Main thread client connection: */
 DBusConnection *_gnome_vfs_get_main_dbus_connection (void);
+
+/* daemon per-thread connections: */
+DBusConnection *_gnome_vfs_daemon_get_current_connection (void);
+void            gnome_vfs_daemon_set_current_connection  (DBusConnection *conn);
 
 G_END_DECLS
 

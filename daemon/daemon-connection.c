@@ -597,10 +597,12 @@ connection_handle_open (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_open_uri_cancellable (&vfs_handle,
 						 uri,
 						 mode,
 						 context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -655,12 +657,14 @@ connection_handle_create (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_create_uri_cancellable (&vfs_handle,
 						   uri,
 						   mode,
 						   exclusive,
 						   perm,
 						   context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -714,8 +718,10 @@ connection_handle_close (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_close_cancellable (handle->vfs_handle,
 					      context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -780,11 +786,13 @@ connection_handle_read (DaemonConnection *conn,
 
 	buf = g_malloc (num_bytes);
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_read_cancellable (handle->vfs_handle,
 					     buf,
 					     num_bytes,
 					     &bytes_read,
 					     context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -867,11 +875,14 @@ connection_handle_write (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_write_cancellable (handle->vfs_handle,
 					      buf,
 					      len,
 					      &bytes_written,
 					      context);
+	gnome_vfs_daemon_set_current_connection (NULL);
+	
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -937,10 +948,12 @@ connection_handle_seek (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_seek_cancellable (handle->vfs_handle,
 					     whence,
 					     offset,
 					     context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -979,7 +992,9 @@ connection_handle_tell (DaemonConnection *conn,
 		return;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_tell (handle->vfs_handle, &offset);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (connection_check_and_reply_error (conn, message, result)) {
 		return;
@@ -1039,9 +1054,11 @@ connection_handle_truncate_handle (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_truncate_handle_cancellable (handle->vfs_handle,
 							where,
 							context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1084,10 +1101,12 @@ connection_handle_open_directory (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_directory_open_from_uri_cancellable (&vfs_handle,
 								uri,
 								options,
 								context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1132,7 +1151,9 @@ connection_handle_close_directory (DaemonConnection *conn,
 		return;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_directory_close (handle->vfs_handle);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (result == GNOME_VFS_OK) {
 		/* Clear the handle so we don't close it twice. */
@@ -1197,6 +1218,8 @@ connection_handle_read_directory (DaemonConnection *conn,
 					       &array_iter)) {
 		g_error ("Out of memory");
 	}
+
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	
 	result = GNOME_VFS_OK;
 	num_entries = 0;
@@ -1214,6 +1237,8 @@ connection_handle_read_directory (DaemonConnection *conn,
 		}
 	}
 
+	gnome_vfs_daemon_set_current_connection (NULL);
+	
 	if (!dbus_message_iter_close_container (&iter, &array_iter)) {
 		g_error ("Out of memory");
 	}
@@ -1270,10 +1295,12 @@ connection_handle_get_file_info (DaemonConnection *conn,
 
 	info = gnome_vfs_file_info_new ();
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_get_file_info_uri_cancellable (uri,
 							  info,
 							  options,
 							  context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1337,8 +1364,10 @@ connection_handle_get_file_info_from_handle (DaemonConnection *conn,
 
 	info = gnome_vfs_file_info_new ();
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_get_file_info_from_handle_cancellable (
 		handle->vfs_handle, info, options, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1379,7 +1408,9 @@ connection_handle_is_local (DaemonConnection *conn,
 	d(g_print ("is_local: %s\n",
 		   gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE)));
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	is_local = gnome_vfs_uri_is_local (uri);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	reply = connection_create_reply_ok (message);
 
@@ -1428,8 +1459,10 @@ connection_handle_make_directory (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_make_directory_for_uri_cancellable (
 		uri, perm, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1470,8 +1503,10 @@ connection_handle_remove_directory (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_remove_directory_from_uri_cancellable (
 		uri, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1517,10 +1552,12 @@ connection_handle_move (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_move_uri_cancellable (old_uri,
 						 new_uri,
 						 force_replace,
 						 context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1562,7 +1599,9 @@ connection_handle_unlink (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_unlink_from_uri_cancellable (uri, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1608,9 +1647,11 @@ connection_handle_check_same_fs (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_check_same_fs_uris_cancellable (uri_a, uri_b,
 							   &is_same,
 							   context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1672,7 +1713,9 @@ connection_handle_set_file_info (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_set_file_info_cancellable (uri, info, mask, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1716,7 +1759,9 @@ connection_handle_truncate (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_truncate_uri_cancellable (uri, where, context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1767,6 +1812,7 @@ connection_handle_find_directory (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_find_directory_cancellable (uri,
 						       kind,
 						       &result_uri,
@@ -1774,6 +1820,7 @@ connection_handle_find_directory (DaemonConnection *conn,
 						       find_if_needed,
 						       perm,
 						       context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1835,9 +1882,11 @@ connection_handle_create_symbolic_link (DaemonConnection *conn,
 		context = NULL;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_create_symbolic_link_cancellable (uri,
 							     target,
 							     context);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (cancellation) {
 		connection_remove_cancellation (conn, cancellation);
@@ -1882,9 +1931,11 @@ connection_handle_forget_cache (DaemonConnection *conn,
 		return;
 	}
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_forget_cache (handle->vfs_handle,
 					 offset,
 					 size);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	if (connection_check_and_reply_error (conn, message, result)) {
 		return;
@@ -1920,7 +1971,9 @@ connection_handle_get_volume_free_space (DaemonConnection *conn,
 		   gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
 		   cancellation_id));
 
+	gnome_vfs_daemon_set_current_connection (conn->conn);
 	result = gnome_vfs_get_volume_free_space (uri, &size);
+	gnome_vfs_daemon_set_current_connection (NULL);
 
 	gnome_vfs_uri_unref (uri);
 
