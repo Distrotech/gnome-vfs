@@ -355,7 +355,9 @@ get_private_connection ()
 	}
 	
 	dbus_error_init (&error);
-	
+
+	/* Use a private session connection since this happens on
+	 * a non-main thread and we don't want to mess up the main thread */
 	main_conn = dbus_bus_get_private (DBUS_BUS_SESSION, &error);
 	if (!main_conn) {
 		g_printerr ("Couldn't get main dbus connection: %s\n",

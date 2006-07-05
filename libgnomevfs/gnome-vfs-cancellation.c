@@ -168,7 +168,7 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 
 		dbus_error_init (&error);
         
-		conn = dbus_bus_get (DBUS_BUS_SESSION, &error);
+		conn = _gnome_vfs_get_main_dbus_connection ();
 
 		if (conn != NULL) {
 					
@@ -191,11 +191,6 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 			dbus_connection_send (conn, message, NULL);
 			dbus_connection_flush (conn);
 			dbus_message_unref (message);
-			/* Can't unref the connection, since it might be the first use of it,
-			   which  means this will assert due to the connection not being
-			   disconnected at the last unref. HOSED!
-			*/
-			/* dbus_connection_unref (conn); */
 		}
 	}
 }

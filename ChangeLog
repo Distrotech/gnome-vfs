@@ -1,5 +1,13 @@
 2006-07-05  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	Use _gnome_vfs_get_main_dbus_connection()
+	
+	* libgnomevfs/gnome-vfs-daemon-method.c: (get_private_connection):
+	Add comment.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/daemon-connection.c:
 	Lower readdir chunk size again, due to errors.
 	Remove all per-connection monitoring stuff.
