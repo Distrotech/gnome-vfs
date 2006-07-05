@@ -110,9 +110,9 @@ utils_get_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
  */
 
 
-static gboolean
-dbus_utils_message_iter_append_file_info (DBusMessageIter        *iter,
-					  const GnomeVFSFileInfo *info)
+gboolean
+gnome_vfs_daemon_message_iter_append_file_info (DBusMessageIter        *iter,
+						const GnomeVFSFileInfo *info)
 {
 	DBusMessageIter  struct_iter;
 	gint32           i;
@@ -198,8 +198,9 @@ gnome_vfs_daemon_message_append_file_info (DBusMessage            *message,
 
 	dbus_message_iter_init_append (message, &iter);
 	
-	return dbus_utils_message_iter_append_file_info (&iter, info);
+	return gnome_vfs_daemon_message_iter_append_file_info (&iter, info);
 }
+
 
 GnomeVFSFileInfo *
 gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
@@ -295,7 +296,7 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 static GList *
 dbus_utils_message_get_file_info_list (DBusMessage *message)
 {
-	DBusMessageIter   iter;
+	DBusMessageIter   iter, array_iter;
 	GnomeVFSFileInfo *info;
 	GList            *list;
 
@@ -309,14 +310,18 @@ dbus_utils_message_get_file_info_list (DBusMessage *message)
 	if (!dbus_message_iter_next (&iter)) {
 		return NULL;
 	}
-	
-	list = NULL;	
-	do {
-		info = gnome_vfs_daemon_message_iter_get_file_info (&iter);
-		if (info) {
-			list = g_list_prepend (list, info);
-		}
-	} while (dbus_message_iter_next (&iter));
+
+	dbus_message_iter_recurse (&iter, &array_iter);
+
+	list = NULL;
+	if (dbus_message_iter_get_arg_type (&array_iter) != DBUS_TYPE_INVALID) {
+		do {
+			info = gnome_vfs_daemon_message_iter_get_file_info (&array_iter);
+			if (info) {
+				list = g_list_prepend (list, info);
+			}
+		} while (dbus_message_iter_next (&array_iter));
+	}
 
 	list = g_list_reverse (list);
 
@@ -507,7 +512,7 @@ append_args_valist (DBusMessage     *message,
 			GnomeVFSFileInfo *info;
 
 			info = va_arg (var_args, GnomeVFSFileInfo *);
-			if (!dbus_utils_message_iter_append_file_info (&iter, info)) {
+			if (!gnome_vfs_daemon_message_iter_append_file_info (&iter, info)) {
 				g_error ("Out of memory");
 			}
 			break;

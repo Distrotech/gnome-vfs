@@ -33,7 +33,7 @@
 
 #define d(x) 
 
-#define READDIR_CHUNK_SIZE 10
+#define READDIR_CHUNK_SIZE 60
 
 typedef struct _DaemonConnection DaemonConnection;
 
@@ -1156,6 +1156,8 @@ connection_handle_read_directory (DaemonConnection *conn,
 	CancellationHandle *cancellation;
 	GnomeVFSContext    *context;
 	gint                num_entries;
+	DBusMessageIter     iter;
+	DBusMessageIter     array_iter;
 
 	if (!get_operation_args (message, &cancellation_id,
 				 DVD_TYPE_INT32, &handle_id,
@@ -1188,10 +1190,18 @@ connection_handle_read_directory (DaemonConnection *conn,
 
 	info = gnome_vfs_file_info_new ();
 
+	dbus_message_iter_init_append (reply, &iter);
+	if (!dbus_message_iter_open_container (&iter,
+					       DBUS_TYPE_ARRAY,
+					       GNOME_VFS_FILE_INFO_DBUS_TYPE,
+					       &array_iter)) {
+		g_error ("Out of memory");
+	}
+	
 	result = GNOME_VFS_OK;
 	num_entries = 0;
 	while ((result = gnome_vfs_directory_read_next_cancellable (handle->vfs_handle, info, context)) == GNOME_VFS_OK) {
-		gnome_vfs_daemon_message_append_file_info (reply, info);
+		gnome_vfs_daemon_message_iter_append_file_info (&array_iter, info);
 		gnome_vfs_file_info_clear (info);
 
 		if (context && gnome_vfs_context_check_cancellation (context)) {
@@ -1204,6 +1214,10 @@ connection_handle_read_directory (DaemonConnection *conn,
 		}
 	}
 
+	if (!dbus_message_iter_close_container (&iter, &array_iter)) {
+		g_error ("Out of memory");
+	}
+	
 	gnome_vfs_file_info_unref (info);
 
 	if (cancellation) {

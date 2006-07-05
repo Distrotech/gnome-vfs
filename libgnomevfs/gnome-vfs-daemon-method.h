@@ -30,9 +30,11 @@ G_BEGIN_DECLS
 
 GnomeVFSMethod *_gnome_vfs_daemon_method_get (void);
 
-gboolean          gnome_vfs_daemon_message_append_file_info   (DBusMessage            *iter,
-							       const GnomeVFSFileInfo *info);
-GnomeVFSFileInfo *gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter        *iter);
+gboolean          gnome_vfs_daemon_message_iter_append_file_info (DBusMessageIter        *iter,
+								  const GnomeVFSFileInfo *info);
+gboolean          gnome_vfs_daemon_message_append_file_info      (DBusMessage            *message,
+								  const GnomeVFSFileInfo *info);
+GnomeVFSFileInfo *gnome_vfs_daemon_message_iter_get_file_info    (DBusMessageIter        *iter);
 
 G_END_DECLS
 
