@@ -33,14 +33,16 @@
 #include <sys/wait.h>
 #include <pthread.h>
 #endif
-#include <bonobo/bonobo-exception.h>
-#include <bonobo/bonobo-object.h>
+
 #include <gconf/gconf-client.h>
 #include "gnome-vfs-volume-monitor-private.h"
 #include "gnome-vfs-volume.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-drive.h"
-#include "gnome-vfs-client.h"
+
+#include "gnome-vfs-volume-monitor-daemon.h"
+#include "gnome-vfs-volume-monitor-client.h"
+
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-standard-callbacks.h"
 #include "gnome-vfs-module-callback-module-api.h"
@@ -228,9 +230,6 @@ static void
 force_probe (void)
 {
 	GnomeVFSVolumeMonitor *volume_monitor;
-	GnomeVFSClient *client;
-	GNOME_VFS_Daemon daemon;
-	CORBA_Environment  ev;
 	GnomeVFSDaemonForceProbeCallback callback;
 	
 	volume_monitor = gnome_vfs_get_volume_monitor ();
@@ -239,19 +238,8 @@ force_probe (void)
 		callback = _gnome_vfs_get_daemon_force_probe_callback();
 		(*callback) (GNOME_VFS_VOLUME_MONITOR (volume_monitor));
 	} else {
-		client = _gnome_vfs_get_client ();
-		daemon = _gnome_vfs_client_get_daemon (client);
-
-		if (daemon != CORBA_OBJECT_NIL) {
-			CORBA_exception_init (&ev);
-			GNOME_VFS_Daemon_forceProbe (daemon,
-						     BONOBO_OBJREF (client),
-						     &ev);
-			if (BONOBO_EX (&ev)) {
-				CORBA_exception_free (&ev);
-			}
-			CORBA_Object_release (daemon, NULL);
-		}
+		_gnome_vfs_volume_monitor_client_dbus_force_probe (
+			GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor));
 	}
 }
 
@@ -278,13 +266,14 @@ report_mount_result (gpointer callback_data)
 		g_free (info->argv[i]);
 		i++;
 	}
+	
 	g_free (info->mount_point);
 	g_free (info->device_path);
 	g_free (info->hal_udi);
 	g_free (info->error_message);
 	g_free (info->detailed_error_message);
 	g_free (info);
-	
+
 	return FALSE;
 }
 
@@ -906,9 +895,6 @@ static void
 emit_pre_unmount (GnomeVFSVolume *volume)
 {
 	GnomeVFSVolumeMonitor *volume_monitor;
-	GnomeVFSClient *client;
-	GNOME_VFS_Daemon daemon;
-	CORBA_Environment  ev;
 	
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
@@ -916,20 +902,9 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 		gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
 							   volume);
 	} else {
-		client = _gnome_vfs_get_client ();
-		daemon = _gnome_vfs_client_get_daemon (client);
-		
-		if (daemon != CORBA_OBJECT_NIL) {
-			CORBA_exception_init (&ev);
-			GNOME_VFS_Daemon_emitPreUnmountVolume (daemon,
-							       BONOBO_OBJREF (client),
-							       gnome_vfs_volume_get_id (volume),
-							       &ev);
-			if (BONOBO_EX (&ev)) {
-				CORBA_exception_free (&ev);
-			}
-			CORBA_Object_release (daemon, NULL);
-		}
+		_gnome_vfs_volume_monitor_client_dbus_emit_pre_unmount (
+			GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor), volume);
+
 		/* Do a synchronous pre_unmount for this client too, avoiding
 		 * races at least in this process
 		 */
@@ -938,6 +913,7 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 		/* sleep for a while to get other apps to release their
 		 * hold on the device */
 		g_usleep (0.5*G_USEC_PER_SEC);
+				
 	}
 }
 
@@ -1182,7 +1158,7 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 		       gpointer                   user_data)
 {
 	char *mount_path, *device_path, *uri;
-	
+
 	uri = gnome_vfs_drive_get_activation_uri (drive);
 	mount_path = gnome_vfs_get_local_path_from_uri (uri);
 	g_free (uri);

@@ -1035,7 +1035,7 @@ dnl ============================================================================
 dnl End of IPv6 checks
 dnl ==============================================================================
 
-PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-no-export-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gobject-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0)
+PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-no-export-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gobject-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0 dbus-glib-1 >= 0.60)
 LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS $AVAHI_CFLAGS"
 LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS $HOWL_LIBS $AVAHI_LIBS $RESOLVER_LIBS"
 AC_SUBST(LIBGNOMEVFS_CFLAGS)
@@ -1044,7 +1044,11 @@ AC_SUBST(LIBGNOMEVFS_LIBS)
 PKG_CHECK_MODULES(LIBGNOMEVFSDAEMON, glib-2.0 $USE_HAL)
 AC_SUBST(LIBGNOMEVFSDAEMON_CFLAGS)
 AC_SUBST(LIBGNOMEVFSDAEMON_LIBS)
-					       	
+
+AC_ARG_WITH(dbus_service_dir, [  --with-dbus-service-dir=PATH choose directory for dbus service files, [default=PREFIX/share/dbus-1/services]], with_dbus_service_dir="$withval", with_dbus_service_dir=$datadir/dbus-1/services)
+DBUS_SERVICE_DIR=$with_dbus_service_dir
+AC_SUBST(DBUS_SERVICE_DIR)
+						       	
 dnl ****************************
 dnl *** Checks for pty stuff ***
 dnl ****************************

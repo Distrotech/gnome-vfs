@@ -4,3 +4,5 @@ Makefile
 Makefile.in
 vfs-daemon
 gnome-vfs-daemon
+gnome-vfs-daemon.service
+

@@ -22,13 +22,13 @@
    Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #include <config.h>
+
 #include "gnome-vfs-cancellation-private.h"
-#include "GNOME_VFS_Daemon.h"
 
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
-#include "gnome-vfs-client.h"
-#include "gnome-vfs-client-call.h"
+#include <gnome-vfs-dbus-utils.h>
+
 #include <unistd.h>
 
 #ifdef G_OS_WIN32
@@ -46,11 +46,14 @@ struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
 	gint pipe_out;
-	GnomeVFSClientCall *client_call;
+
+	/* daemon handle */
+	gint32 handle;
+	gint32 connection;
 };
 
 G_LOCK_DEFINE_STATIC (pipes);
-G_LOCK_DEFINE_STATIC (client_call);
+G_LOCK_DEFINE_STATIC (callback);
 
 /**
  * gnome_vfs_cancellation_new:
@@ -69,8 +72,9 @@ gnome_vfs_cancellation_new (void)
 	new->cancelled = FALSE;
 	new->pipe_in = -1;
 	new->pipe_out = -1;
-	new->client_call = NULL;
-
+	new->connection = 0;
+	new->handle = 0;
+	
 	return new;
 }
 
@@ -89,33 +93,34 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 		close (cancellation->pipe_in);
 		close (cancellation->pipe_out);
 	}
-	/* Can't have outstanding calls when destroying the cancellation */
-	g_assert (cancellation->client_call == NULL);
 	
 	g_free (cancellation);
 }
 
 void
-_gnome_vfs_cancellation_add_client_call (GnomeVFSCancellation *cancellation,
-					 GnomeVFSClientCall *client_call)
+_gnome_vfs_cancellation_set_handle (GnomeVFSCancellation *cancellation,
+				    gint32 connection, gint32 handle)
 {
-	G_LOCK (client_call);
+	G_LOCK (callback);
+
 	/* Each client call uses its own context/cancellation */
-	g_assert (cancellation->client_call == NULL);
-	
-	cancellation->client_call = client_call;
-	G_UNLOCK (client_call);
+	g_assert (cancellation->handle == 0);
+
+	cancellation->connection = connection;
+	cancellation->handle = handle;
+
+	G_UNLOCK (callback);
 }
 
 void
-_gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
-					    GnomeVFSClientCall *client_call)
+_gnome_vfs_cancellation_unset_handle (GnomeVFSCancellation *cancellation)
 {
-	G_LOCK (client_call);
-	g_assert (cancellation->client_call == client_call);
+	G_LOCK (callback);
 	
-	cancellation->client_call = NULL;
-	G_UNLOCK (client_call);
+	cancellation->connection = 0;
+	cancellation->handle = 0;
+
+	G_UNLOCK (callback);
 }
 
 /**
@@ -134,10 +139,8 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
-	GNOME_VFS_AsyncDaemon daemon;
-	GnomeVFSClient *client;
-	GnomeVFSClientCall *client_call;
-
+	gint32 handle, connection_id;
+	
 	g_return_if_fail (cancellation != NULL);
 
 	if (cancellation->cancelled)
@@ -146,32 +149,49 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	if (cancellation->pipe_out >= 0)
 		write (cancellation->pipe_out, "c", 1);
 
-	client_call = CORBA_OBJECT_NIL;
-	G_LOCK (client_call);
-	if (cancellation->client_call != NULL) {
-		/* We need to delay the finishing of the client call to avoid
-		 * the cancel call below to cancel the next call in the job thread
-		 * if the job finishes after we drop the lock.
-		 */
-		_gnome_vfs_client_call_delay_finish (cancellation->client_call);
-		client_call = cancellation->client_call;
-		bonobo_object_ref (client_call);
+	handle = 0;
+	connection_id = 0;
+	
+	G_LOCK (callback);
+	if (cancellation->handle) {
+		handle = cancellation->handle;
+		connection_id = cancellation->connection;
 	}
-	G_UNLOCK (client_call);
-
+	G_UNLOCK (callback);
+	
 	cancellation->cancelled = TRUE;
 
-	if (client_call != NULL) {
-		CORBA_Environment ev;
-		client = _gnome_vfs_get_client ();
-		daemon = _gnome_vfs_client_get_async_daemon (client);
+	if (handle != 0) {
+		DBusConnection *conn;
+		DBusMessage *message;
+		DBusError error;
 
-		CORBA_exception_init (&ev);
-		GNOME_VFS_AsyncDaemon_Cancel (daemon, BONOBO_OBJREF (client_call), &ev);
-		CORBA_exception_free (&ev);
-		_gnome_vfs_client_call_delay_finish_done (client_call);
-		bonobo_object_unref (client_call);
-		CORBA_Object_release (daemon, NULL);
+		dbus_error_init (&error);
+        
+		conn = _gnome_vfs_get_main_dbus_connection ();
+
+		if (conn != NULL) {
+					
+			message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
+								DVD_DAEMON_OBJECT,
+								DVD_DAEMON_INTERFACE,
+								DVD_DAEMON_METHOD_CANCEL);
+			dbus_message_set_auto_start (message, TRUE);
+			if (!message) {
+				g_error ("Out of memory");
+			}
+
+			if (!dbus_message_append_args (message,
+						       DBUS_TYPE_INT32, &handle,
+						       DBUS_TYPE_INT32, &connection_id,
+						       DBUS_TYPE_INVALID)) {
+				g_error ("Out of memory");
+			}
+
+			dbus_connection_send (conn, message, NULL);
+			dbus_connection_flush (conn);
+			dbus_message_unref (message);
+		}
 	}
 }
 

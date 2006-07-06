@@ -70,6 +70,8 @@ static gboolean gnome_vfs_mime_inited = FALSE;
 static GList *mime_directories = NULL;
 
 static GHashTable *mime_entries = NULL;
+/* Used to mean "no entry" in cache for negative caching */
+static MimeEntry mime_entries_no_entry;
 
 G_LOCK_EXTERN (gnome_vfs_mime_mutex);
 
@@ -479,6 +481,8 @@ get_entry (const char *mime_type)
 	entry = g_hash_table_lookup (mime_entries, umime);
 	
 	if (entry) {
+		if (entry == &mime_entries_no_entry)
+			return NULL;
 		return entry;
 	}
 	
@@ -492,6 +496,9 @@ get_entry (const char *mime_type)
 		g_free (path);
 		return entry;
 	} else {
+		g_hash_table_insert (mime_entries, 
+				     g_strdup (umime), 
+				     &mime_entries_no_entry);
 		return NULL;
 	}
 }

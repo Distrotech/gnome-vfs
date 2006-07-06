@@ -25,9 +25,9 @@
 #define GNOME_VFS_MODULE_CALLBACKS_PRIVATE_H
 
 #include <glib.h>
-#include "GNOME_VFS_Daemon.h"
+#include <libgnomevfs/gnome-vfs-job.h>
+#include <dbus/dbus.h>
 
-typedef struct GnomeVFSModuleCallbackStackInfo GnomeVFSModuleCallbackStackInfo;
 
 void                             _gnome_vfs_module_callback_private_init        (void);
 GnomeVFSModuleCallbackStackInfo *_gnome_vfs_module_callback_get_stack_info      (void);
@@ -44,8 +44,9 @@ gboolean                         _gnome_vfs_module_callback_marshal_invoke (cons
 									    gpointer       out,
 									    gsize          out_size);
 
-gboolean                         _gnome_vfs_module_callback_demarshal_invoke (const char    *callback_name,
-									      const CORBA_any * module_in,
-									      CORBA_any ** module_out);
+
+gboolean _gnome_vfs_module_callback_demarshal_invoke (const char  *callback_name,
+						      DBusMessageIter *iter_in,
+						      DBusMessage *reply);
 
 #endif

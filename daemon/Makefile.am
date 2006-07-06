@@ -2,7 +2,6 @@ INCLUDES= \
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
-	$(MONIKERS_CFLAGS)                      \
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
 	-D_LARGEFILE64_SOURCE                   \
@@ -26,40 +25,30 @@ else
 libexec_PROGRAMS=gnome-vfs-daemon
 endif
 
-gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(LIBGNOMEVFSDAEMON_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
-
-CORBA_SOURCE = \
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon.h		\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-common.c	\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-stubs.c	\
-	$(top_builddir)/libgnomevfs/GNOME_VFS_Daemon-skels.c
-
+gnome_vfs_daemon_LDADD = 		\
+	$(LIBGNOMEVFS_LIBS)		\
+	$(LIBGNOMEVFSDAEMON_LIBS)	\
+	$(top_builddir)/libgnomevfs/libgnomevfs-2.la \
+	$(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
 gnome_vfs_daemon_SOURCES = \
-	gnome-vfs-daemon.c \
-	gnome-vfs-daemon.h \
-	gnome-vfs-async-daemon.c \
-	gnome-vfs-async-daemon.h \
-	gnome-vfs-daemon-dir-handle.h \
-	gnome-vfs-daemon-dir-handle.c \
-	gnome-vfs-daemon-handle.h \
-	gnome-vfs-daemon-handle.c \
-	$(CORBA_SOURCE)
+	dbus-utils.c			\
+	dbus-utils.h			\
+	vfs-daemon.c			\
+	daemon-connection.c		\
+	daemon-connection.h
 
-BUILT_SOURCES = $(CORBA_SOURCE)
+# D-BUS service file
+%.service: %.service.in ../config.log
+	sed -e "s|\@libexecdir\@|$(libexecdir)|" $< > $@
 
-serverfile = GNOME_VFS_Daemon.server.in
-serverdir = $(libdir)/bonobo/servers
+servicedir = $(DBUS_SERVICE_DIR)
+service_in_files = gnome-vfs-daemon.service.in
+service_DATA = gnome-vfs-daemon.service
 
-install-data-hook :
-	$(mkinstalldirs) $(DESTDIR)$(serverdir)
-	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $(srcdir)/$(serverfile) > $(DESTDIR)$(serverdir)/$(serverfile:.in=)
+EXTRA_DIST = $(modulesconf_DATA) gnome-vfs-daemon.service.in
+
+DISTCLEANFILES = gnome-vfs-daemon.service
 
 
-EXTRA_DIST = $(serverfile)
-
-# We don't want the corba files in the tarball, but we can't delete
-# them until now, because this directory also needs them during make dist
-dist-hook:
-	cd $(distdir)/../libgnomevfs/ ; rm -f $(CORBA_SOURCE)
 

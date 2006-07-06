@@ -1,3 +1,192 @@
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
+	* Merge vfs-dbus branch
+	
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/Makefile.am:
+	* daemon/dbus-utils.h:
+	* daemon/vfs-daemon.c:
+	Clean up
+	
+	* libgnomevfs/gnome-vfs-init.c:
+	Add back old bonobo stuff, commented out. Need to move it.
+
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	Remove spew.
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/vfs-daemon.c: (daemon_new_connection_func):
+	* libgnomevfs/gnome-vfs-daemon-method.c: (execute_operation):
+	* libgnomevfs/gnome-vfs-volume-ops.c: (report_mount_result):
+	Remove stale todos
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Convert more marshallers.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.[ch]:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-job.[ch]:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	* libgnomevfs/gnome-vfs-module-callback-private.h:
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	Initial work on module callbacks.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	* libgnomevfs/gnome-vfs-daemon-method.[ch]:
+	* libgnomevfs/gnome-vfs-dbus-utils.h:
+	Change readdir to push an array of fileinfo to allow larger
+	chunk size.
+	Bump chunk size to 60.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	Use _gnome_vfs_get_main_dbus_connection()
+	
+	* libgnomevfs/gnome-vfs-daemon-method.c: (get_private_connection):
+	Add comment.
+
+2006-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	Lower readdir chunk size again, due to errors.
+	Remove all per-connection monitoring stuff.
+	Don't escape uris sent as strings.
+	
+	* daemon/dbus-utils.[ch]:
+	Use the right volume/drive dbus types.
+	Add some dbus helpers for reply generation and
+	name tracking.
+	
+	* daemon/vfs-daemon.c:
+	Implement file monitoring, including cancel when client goes away.
+	Remove connection unrefs that were causing asserts.
+	
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Send NULL strings as "" again.
+	Don't escape uris sent as strings.
+	Implement file monitoring client side.
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-dbus-utils.[ch]:
+	Move main dbus client connection setup here.
+	
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	Send NULL strings as "" again.
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-client.[ch]:
+	Move out connection setup.
+
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c (READDIR_CHUNK_SIZE):
+	Bump readdir chunk size to 40
+
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.[ch]:
+	* daemon/vfs-daemon.c:
+	Clean up and simplify how cancellation is handled in daemon.
+	This should make cancellation threadsafe.
+
+2006-07-04  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/dbus-utils.c:
+	No need to pass struct types.
+	
+	* daemon/vfs-daemon.c:
+	Implement non-abstract sockets for non-linux.
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/Makefile.am:
+	Remove old corba stuff
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	Add DBUS-TODO
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	Move functions to monitor-client.c
+	Remove dbus-utils.c file.
+	
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Fix daemon cancellation.
+	Tell "" and NULL appart on the wire.
+	
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	Tell "" and NULL appart on the wire.
+
+2006-07-03  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.h:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	* modules/default-modules.conf:
+	Some volume manager dbus work.
+
+2006-06-29  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Use one private dbus connection per thread for the
+	daemon method.
+
+2006-06-26  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* daemon/.cvsignore:
+	* daemon/Makefile.am:
+	* daemon/daemon-connection.[ch]:
+	* daemon/dbus-utils.[ch]:
+	* daemon/gnome-vfs-daemon.service.in:
+	* daemon/vfs-daemon.c:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-client-call.[ch]:
+	* libgnomevfs/gnome-vfs-client.[ch]:
+	* libgnomevfs/gnome-vfs-daemon-method.[ch]:
+	* libgnomevfs/gnome-vfs-dbus-utils.[ch]:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	* libgnomevfs/gnome-vfs-module-callback-private.h:
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.h:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* modules/default-modules.conf:
+
+	Initial import of the dbus gnome-vfs daemon from imendio SVN.
+	Most work done by Richard Hult and Mikael Hallendal.
+
 2006-07-03  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/computer-method.c (get_data_for_drive):

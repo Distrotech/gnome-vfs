@@ -11,7 +11,6 @@ INCLUDES =					\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
-	$(MONIKERS_CFLAGS)			\
 	$(FNMATCH_CFLAGS)			\
 	-DXDG_PREFIX=_gnome_vfs_xdg		\
 	-D_FILE_OFFSET_BITS=64			\
@@ -151,10 +150,9 @@ noinst_HEADERS =				\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation-private.h	\
 	gnome-vfs-cdrom.h			\
-	gnome-vfs-client-call.h			\
-	gnome-vfs-client.h			\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-daemon-method.h		\
+	gnome-vfs-dbus-utils.h                  \
 	gnome-vfs-filesystem-type.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-hal-mounts.h			\
@@ -241,12 +239,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs.h				\
 	$(NULL)
 
-CORBA_SOURCE = \
-	GNOME_VFS_Daemon.h		\
-	GNOME_VFS_Daemon-common.c	\
-	GNOME_VFS_Daemon-stubs.c	\
-	GNOME_VFS_Daemon-skels.c
-
 libgnomevfs_win32_sources =			\
 	gnome-vfs-dllmain.c			\
 	$(NULL)
@@ -265,7 +257,6 @@ libgnomevfs_platform_sources = $(libgnomevfs_unix_sources)
 endif
 
 libgnomevfs_2_la_SOURCES =			\
-	$(CORBA_SOURCE)				\
 	gnome-vfs-ace.c						\
 	gnome-vfs-acl.c						\
 	gnome-vfs-application-registry.c	\
@@ -274,11 +265,10 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
-	gnome-vfs-client.c			\
-	gnome-vfs-client-call.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-daemon-method.c		\
+	gnome-vfs-dbus-utils.c			\
 	gnome-vfs-directory.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\
@@ -332,10 +322,6 @@ libgnomevfs_2_la_SOURCES =			\
 	$(libgnomevfs_platform_sources)		\
 	$(NULL)
 
-#	$(GOB_SRCLIST)				\
-#	$(GOB_FILES)				\
-# BUILT_SOURCES = $(GOB_SRCLIST)
-# CLEANFILES = $(BUILT_SOURCES)
 
 # The daemon uses all interfaces in gnome-vfs-cdrom
 # and uses _gnome_vfs_filesystem_volume_name, which all
@@ -350,28 +336,15 @@ libgnomevfsdaemon_2_la_SOURCES =		\
 	gnome-vfs-unix-mounts.c			\
 	$(NULL)
 
-
-
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
 libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
-$(test_authentication_OBJECTS): GNOME_VFS_Daemon.h
-
-# Hack for now
-BONOBO_ACTIVATION_IDL_DIR=`pkg-config --variable=idldir bonobo-activation-2.0`
-
-idls = GNOME_VFS_Daemon.idl
-idl_flags = -I $(BONOBO_ACTIVATION_IDL_DIR)
-
-$(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
-	$(ORBIT_IDL) $(idl_flags) $(srcdir)/$(idls)
-
 # TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl $(idls) $(libgnomevfs_win32_sources)
+EXTRA_DIST = check-headers.pl $(libgnomevfs_win32_sources)
 
-BUILT_SOURCES = $(CORBA_SOURCE) \
+BUILT_SOURCES = \
 	gnome-vfs-enum-types.h			\
 	gnome-vfs-enum-types.c			\
 	$(NULL)

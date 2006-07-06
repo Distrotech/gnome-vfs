@@ -38,9 +38,9 @@
 
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
-#include <libgnomevfs/gnome-vfs-module-callback-private.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
+typedef struct GnomeVFSModuleCallbackStackInfo GnomeVFSModuleCallbackStackInfo;
 
 #define GNOME_VFS_JOB_DEBUG 0
 
