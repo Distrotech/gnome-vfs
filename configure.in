@@ -105,19 +105,9 @@ PKG_CHECK_MODULES(MODULES_XML_GCONF, glib-2.0 >= $GLIB_REQUIRED gmodule-no-expor
 AC_SUBST(MODULES_XML_GCONF_CFLAGS)
 AC_SUBST(MODULES_XML_GCONF_LIBS)
 
-PKG_CHECK_MODULES(MONIKERS, libbonobo-2.0 >= $BONOBO_REQUIRED gobject-2.0 >= $GLIB_REQUIRED)
-AC_SUBST(MONIKERS_CFLAGS)
-AC_SUBST(MONIKERS_LIBS)
-
 PKG_CHECK_MODULES(TEST, bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED gconf-2.0 >= $GCONF_REQUIRED gthread-2.0 >= $GLIB_REQUIRED)
 AC_SUBST(TEST_LIBS)
 AC_SUBST(TEST_CFLAGS)
-
-ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
-AC_SUBST(ORBIT_IDL)
-
-BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir bonobo-activation-2.0`"
-AC_SUBST(BONOBO_IDLDIR)
 
 cflags_set=yes
 GNOME_COMPILE_WARNINGS
@@ -1319,7 +1309,6 @@ imported/fnmatch/Makefile
 imported/neon/Makefile
 modules/Makefile
 daemon/Makefile
-monikers/Makefile
 schemas/Makefile
 devel-docs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile

@@ -1,5 +1,28 @@
 2006-07-06  Alexander Larsson  <alexl@redhat.com>
 
+	* Makefile.am:
+	* configure.in:
+	* monikers/*:
+	Remove moniker code. This was moved to gnome-vfs-monikers cvs module.
+	
+	* daemon/GNOME_VFS_Daemon.server.in:
+	* daemon/gnome-vfs-async-daemon.c:
+	* daemon/gnome-vfs-async-daemon.h:
+	* daemon/gnome-vfs-daemon-dir-handle.c:
+	* daemon/gnome-vfs-daemon-dir-handle.h:
+	* daemon/gnome-vfs-daemon-handle.c:
+	* daemon/gnome-vfs-daemon-handle.h:
+	* daemon/gnome-vfs-daemon.c:
+	Remove old daemon code.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	initialize bonobo lazily.
+	
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Remove bonobo include
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
 	* Merge vfs-dbus branch
 	
 2006-07-06  Alexander Larsson  <alexl@redhat.com>

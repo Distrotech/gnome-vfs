@@ -24,7 +24,6 @@
 
 #include <config.h>
 #include <string.h>
-#include <libbonobo.h>
 #include "gnome-vfs-module-callback.h"
 
 #include "gnome-vfs-module-callback-module-api.h"

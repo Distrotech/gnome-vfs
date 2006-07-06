@@ -32,7 +32,11 @@
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-utils.h"
+
 #include <bonobo-activation/bonobo-activation-activate.h>
+#include <bonobo-activation/bonobo-activation-init.h>
+#include <bonobo/bonobo-main.h>
+
 #include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>
@@ -320,6 +324,24 @@ gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
 	return GNOME_VFS_ERROR_DEPRECATED_FUNCTION;
 }
 
+static void
+initialize_bonobo (void) {
+	char *bogus_argv[2] = { "dummy", NULL };
+	static gboolean initialized = FALSE;
+
+	if (initialized) {
+		return;
+	}
+
+	initialized = TRUE;
+	
+	if (bonobo_activation_orb_get() == NULL) {
+		bonobo_activation_init (0, bogus_argv);
+	}
+	bonobo_init (NULL, bogus_argv);
+}
+
+
 /**
  * gnome_vfs_mime_get_default_component:
  * @mime_type: a const char * containing a mime type, e.g. "image/png".
@@ -341,6 +363,8 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	char *query;
 	char *sort[5];
 
+	initialize_bonobo ();
+	
 	if (mime_type == NULL) {
 		return NULL;
 	}
@@ -444,6 +468,8 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	char *query;
 	char *sort[4];
 
+	initialize_bonobo ();
+	
 	if (mime_type == NULL) {
 		return NULL;
 	}
@@ -557,6 +583,8 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	char *query;
 	char *sort[2];
 
+	initialize_bonobo ();
+	
 	if (mime_type == NULL) {
 		return NULL;
 	}

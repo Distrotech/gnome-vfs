@@ -1,4 +1,4 @@
-SUBDIRS_GNOME=monikers doc schemas
+SUBDIRS_GNOME=doc schemas
 
 SUBDIRS =					\
 	imported				\
@@ -10,7 +10,6 @@ SUBDIRS =					\
 	doc					\
 	programs				\
 	test					\
-	monikers				\
 	po
 
 EXTRA_DIST =					\
