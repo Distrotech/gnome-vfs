@@ -131,13 +131,6 @@ gnome_vfs_init (void)
  		/* Make sure the type system is inited. */
 		g_type_init ();
 
-		/* TODO: move this to late initialization
-		if (bonobo_activation_orb_get() == NULL) {
-			bonobo_activation_init (0, bogus_argv);
-		}
-		bonobo_init (NULL, bogus_argv);
-		*/
-		
 		_gnome_vfs_ssl_init ();
 
 		retval = gnome_vfs_method_init ();
@@ -194,10 +187,6 @@ gnome_vfs_shutdown (void)
 #ifndef G_OS_WIN32
 	_gnome_vfs_volume_monitor_shutdown ();
 #endif
-	/*
-	bonobo_debug_shutdown ();
-	*/
-	
 	_gnome_vfs_method_shutdown ();
 }
 
