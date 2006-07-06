@@ -632,7 +632,6 @@ execute_operation (const gchar      *method,
 
 	dbus_message_unref (message);
 	
-	/* DBUS-TODO: handle callbacks here (via message_handler) */
 	while (!dbus_pending_call_get_completed (pending_call) &&
 	       dbus_connection_read_write_dispatch (connection->connection, -1))
 		;

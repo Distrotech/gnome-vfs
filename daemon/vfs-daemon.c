@@ -217,12 +217,6 @@ daemon_new_connection_func (DBusServer     *server,
 	
 	/* Remove the socket and dir after connected */
 	if (data->socket_dir) {
-		/* DBUS-TODO. remove
-		char *file;
-		file = g_strconcat (data->socket_dir, "/socket", NULL);
-		unlink (file);
-		g_free (file);
-		*/
 		rmdir (data->socket_dir);
 	}
 

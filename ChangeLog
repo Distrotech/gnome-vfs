@@ -1,5 +1,12 @@
 2006-07-06  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/vfs-daemon.c: (daemon_new_connection_func):
+	* libgnomevfs/gnome-vfs-daemon-method.c: (execute_operation):
+	* libgnomevfs/gnome-vfs-volume-ops.c: (report_mount_result):
+	Remove stale todos
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
 	Convert more marshallers.
 

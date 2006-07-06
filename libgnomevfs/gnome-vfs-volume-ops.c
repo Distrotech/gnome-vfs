@@ -254,7 +254,6 @@ report_mount_result (gpointer callback_data)
 	/* We want to force probing here so that the daemon
 	   can refresh and tell us (and everyone else) of the new
 	   volume before we call the callback */
-	/* DBUS-TODO: Are these new volumes really read in by the reply time */
 	force_probe ();
 	
 	(info->callback) (info->succeeded,
