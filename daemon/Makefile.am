@@ -20,13 +20,6 @@ INCLUDES= \
 	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
 
-# Shared lib
-noinst_LTLIBRARIES = libshared.la
-
-libshared_la_SOURCES =                  \
-	dbus-utils.c			\
-	dbus-utils.h
-
 if OS_WIN32
 else
 libexec_PROGRAMS=gnome-vfs-daemon
@@ -35,11 +28,12 @@ endif
 gnome_vfs_daemon_LDADD = 		\
 	$(LIBGNOMEVFS_LIBS)		\
 	$(LIBGNOMEVFSDAEMON_LIBS)	\
-	libshared.la			\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la \
 	$(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
 gnome_vfs_daemon_SOURCES = \
+	dbus-utils.c			\
+	dbus-utils.h			\
 	vfs-daemon.c			\
 	daemon-connection.c		\
 	daemon-connection.h

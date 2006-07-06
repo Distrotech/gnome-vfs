@@ -839,8 +839,6 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 
 	callback = NULL;
 
-	g_print ("gnome_vfs_module_callback_invoke: %s\n", callback_name);
-	
 	if (gnome_vfs_get_is_daemon()) {
 		return _gnome_vfs_module_callback_marshal_invoke (callback_name,
 								  in, in_size,

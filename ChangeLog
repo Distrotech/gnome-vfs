@@ -1,5 +1,18 @@
 2006-07-06  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/Makefile.am:
+	* daemon/dbus-utils.h:
+	* daemon/vfs-daemon.c:
+	Clean up
+	
+	* libgnomevfs/gnome-vfs-init.c:
+	Add back old bonobo stuff, commented out. Need to move it.
+
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	Remove spew.
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/vfs-daemon.c: (daemon_new_connection_func):
 	* libgnomevfs/gnome-vfs-daemon-method.c: (execute_operation):
 	* libgnomevfs/gnome-vfs-volume-ops.c: (report_mount_result):

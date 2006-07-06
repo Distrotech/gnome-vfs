@@ -219,7 +219,6 @@ daemon_new_connection_func (DBusServer     *server,
 	if (data->socket_dir) {
 		rmdir (data->socket_dir);
 	}
-
 	
 	d(g_print ("Got a new connection, id %d\n", conn_id));
 
