@@ -9,6 +9,7 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(LIBGNOMEVFS_CFLAGS)			\
+	$(BONOBO_CFLAGS)			\
 	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
 	$(FNMATCH_CFLAGS)			\
@@ -119,11 +120,18 @@ else
 noinst_LTLIBRARIES = libgnomevfsdaemon-2.la
 endif
 
+if DLOPEN_BONOBO
+OPTIONAL_BONOBO_LIBS=
+else
+OPTIONAL_BONOBO_LIBS=$(BONOBO_LIBS)
+endif
+
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(FNMATCH_LIBS)				\
 	$(SOCKET_LIBS)				\
 	$(INTLLIBS)				\
+	$(OPTIONAL_BONOBO_LIBS)			\
 	$(SELINUX_LIBS)				\
 	$(NULL)
 

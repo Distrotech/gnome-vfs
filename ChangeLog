@@ -1,5 +1,13 @@
 2006-07-06  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	Optionally (at build time) allow gnome-vfs to dlopen bonobo instead
+	of linking to it.
+
+2006-07-06  Alexander Larsson  <alexl@redhat.com>
+
 	* Makefile.am:
 	* configure.in:
 	* monikers/*:

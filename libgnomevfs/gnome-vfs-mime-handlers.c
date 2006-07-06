@@ -35,12 +35,14 @@
 
 #include <bonobo-activation/bonobo-activation-activate.h>
 #include <bonobo-activation/bonobo-activation-init.h>
+#include <bonobo-activation/bonobo-activation-server-info.h>
 #include <bonobo/bonobo-main.h>
 
 #include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+#include <gmodule.h>
 
 #define GCONF_DEFAULT_VIEWER_EXEC_PATH   "/desktop/gnome/applications/component_viewer/exec"
 
@@ -324,8 +326,79 @@ gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
 	return GNOME_VFS_ERROR_DEPRECATED_FUNCTION;
 }
 
+#ifdef DLOPEN_BONOBO
+
+static GModule *orbit_module;
+static GModule *bonobo_module;
+static GModule *bonobo_activation_module;
+
+static gboolean bonobo_ok;
+
+static void (*CORBA_free_ptr) (gpointer mem);
+static void _CORBA_free (gpointer mem)
+{
+	if (bonobo_ok)
+		(*CORBA_free_ptr) (mem);
+}
+#define CORBA_free _CORBA_free
+
+static gboolean (*bonobo_init_ptr) (int *argc, char **argv);
+static gboolean
+_bonobo_init (int *argc, char **argv)
+{
+	if (!bonobo_ok)
+		return FALSE;
+	return (*bonobo_init_ptr) (argc, argv);
+}
+#define bonobo_init _bonobo_init
+
+static CORBA_ORB (*bonobo_activation_orb_get_ptr) (void);
+static CORBA_ORB
+_bonobo_activation_orb_get (void) {
+	if (!bonobo_ok)
+		return NULL;
+	return (*bonobo_activation_orb_get_ptr) ();
+}
+#define bonobo_activation_orb_get _bonobo_activation_orb_get
+
+static CORBA_ORB (*bonobo_activation_init_ptr) (int argc, char **argv);
+static CORBA_ORB
+_bonobo_activation_init (int argc, char **argv) {
+	if (!bonobo_ok)
+		return NULL;
+	return (*bonobo_activation_init_ptr) (argc, argv);
+}
+#define bonobo_activation_init _bonobo_activation_init
+
+static Bonobo_ServerInfo * (*Bonobo_ServerInfo_duplicate_ptr) (const Bonobo_ServerInfo *original);
+static Bonobo_ServerInfo *
+_Bonobo_ServerInfo_duplicate (const Bonobo_ServerInfo *original)
+{
+	if (!bonobo_ok)
+		return NULL;
+	return (*Bonobo_ServerInfo_duplicate_ptr) (original);
+}
+#define Bonobo_ServerInfo_duplicate _Bonobo_ServerInfo_duplicate
+static Bonobo_ServerInfoList * (*bonobo_activation_query_ptr) (const char        *requirements,
+							       char * const      *selection_order,
+							       CORBA_Environment *opt_ev);
+static Bonobo_ServerInfoList *
+_bonobo_activation_query (const char        *requirements,
+			  char * const      *selection_order,
+			  CORBA_Environment *opt_ev)
+{
+	if (!bonobo_ok)
+		return NULL;
+	return (*bonobo_activation_query_ptr) (requirements,
+					       selection_order,
+					       opt_ev);
+}
+#define bonobo_activation_query _bonobo_activation_query
+#endif
+
 static void
-initialize_bonobo (void) {
+initialize_bonobo (void)
+{
 	char *bogus_argv[2] = { "dummy", NULL };
 	static gboolean initialized = FALSE;
 
@@ -334,11 +407,50 @@ initialize_bonobo (void) {
 	}
 
 	initialized = TRUE;
+
+#ifdef DLOPEN_BONOBO
+
+	bonobo_ok = FALSE;
+	orbit_module = g_module_open ("libORBit-2.so.0", 0);
+	if (orbit_module == NULL) {
+		goto err_out;
+	}
+	
+	bonobo_module = g_module_open ("libbonobo-2.so.0", 0);
+	if (bonobo_module == NULL) {
+		goto err_out;
+	}
+
+	bonobo_activation_module = g_module_open ("libbonobo-activation.so.4", 0);
+	if (bonobo_activation_module == NULL) {
+		goto err_out;
+	}
+
+	bonobo_ok = TRUE;
+	bonobo_ok &= g_module_symbol (orbit_module, "CORBA_free", (gpointer*)&CORBA_free_ptr);
+	bonobo_ok &= g_module_symbol (bonobo_module, "bonobo_init", (gpointer*)&bonobo_init_ptr);
+	bonobo_ok &= g_module_symbol (bonobo_activation_module, "bonobo_activation_orb_get", (gpointer*)&bonobo_activation_orb_get_ptr);
+	bonobo_ok &= g_module_symbol (bonobo_activation_module, "bonobo_activation_init", (gpointer*)&bonobo_activation_init_ptr);
+	bonobo_ok &= g_module_symbol (bonobo_activation_module, "Bonobo_ServerInfo_duplicate", (gpointer*)&Bonobo_ServerInfo_duplicate_ptr);
+	bonobo_ok &= g_module_symbol (bonobo_activation_module, "bonobo_activation_query", (gpointer*)&bonobo_activation_query_ptr);
+
+	if (!bonobo_ok) {
+		goto err_out;
+	}
+
+#endif
 	
 	if (bonobo_activation_orb_get() == NULL) {
 		bonobo_activation_init (0, bogus_argv);
 	}
 	bonobo_init (NULL, bogus_argv);
+
+	return;
+
+#ifdef DLOPEN_BONOBO	
+ err_out:
+	g_warning ("Unable to initialize bonobo at runtime, maybe a required library is missing\n");
+#endif
 }
 
 
@@ -425,27 +537,6 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 }
 
 /**
- * gnome_vfs_mime_get_short_list_applications:
- * @mime_type: a const char * containing a mime type, e.g. "image/png".
- * 
- * Return an alphabetically sorted list of #GnomeVFSMimeApplication data
- * structures for the @mime_type. gnome-vfs no longer supports the
- * concept of a "short list" of applications that the user might be interested
- * in.
- * 
- * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
- * representing various applications to display in the short list for @mime_type.
- *
- * Deprecated: Use gnome_vfs_mime_get_all_applications() instead.
- */ 
-GList *
-gnome_vfs_mime_get_short_list_applications (const char *mime_type)
-{
-	return gnome_vfs_mime_get_all_applications (mime_type);
-}
-
-
-/**
  * gnome_vfs_mime_get_short_list_components:
  * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
@@ -520,49 +611,6 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 
 /**
- * gnome_vfs_mime_get_all_applications:
- * @mime_type: a const char * containing a mime type, e.g. "image/png".
- * 
- * Return an alphabetically sorted list of #GnomeVFSMimeApplication
- * data structures representing all applications in the MIME database registered
- * to handle files of MIME type @mime_type (and supertypes).
- * 
- * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
- * representing applications that handle MIME type @mime_type.
- */ 
-GList *
-gnome_vfs_mime_get_all_applications (const char *mime_type)
-{
-	GList *applications, *node, *next;
-	char *application_id;
-	GnomeVFSMimeApplication *application;
-
-	g_return_val_if_fail (mime_type != NULL, NULL);
-
-	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
-
-	/* Convert to GnomeVFSMimeApplication's (leaving out NULLs) */
-	for (node = applications; node != NULL; node = next) {
-		next = node->next;
-
-		application_id = node->data;
-		application = gnome_vfs_mime_application_new_from_id (application_id);
-
-		/* Replace the application ID with the application */
-		if (application == NULL) {
-			applications = g_list_remove_link (applications, node);
-			g_list_free_1 (node);
-		} else {
-			node->data = application;
-		}
-
-		g_free (application_id);
-	}
-
-	return applications;
-}
-
-/**
  * gnome_vfs_mime_get_all_components:
  * @mime_type: a const char * containing a mime type, e.g. "image/png".
  * 
@@ -624,6 +672,165 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 
 	return components_list;
 }
+
+static gint
+gnome_vfs_mime_id_matches_component (const char *iid, Bonobo_ServerInfo *component)
+{
+	return strcmp (component->iid, iid);
+}
+
+static gint 
+gnome_vfs_mime_component_matches_id (Bonobo_ServerInfo *component, const char *iid)
+{
+	return gnome_vfs_mime_id_matches_component (iid, component);
+}
+
+/**
+ * gnome_vfs_mime_id_list_from_component_list:
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components().
+ * 
+ * Create a list of component iids from a list of #Bonobo_ServerInfos.
+ * 
+ * Return value: a new #GList where each #Bonobo_ServerInfo in the original
+ * list is replaced by a char * with the component's iid. The original list is
+ * not modified.
+ *
+ * Deprecated:
+ */
+GList *
+gnome_vfs_mime_id_list_from_component_list (GList *components)
+{
+	GList *list = NULL;
+	GList *node;
+
+	for (node = components; node != NULL; node = node->next) {
+		list = g_list_prepend 
+			(list, g_strdup (((Bonobo_ServerInfo *)node->data)->iid));
+	}
+	return g_list_reverse (list);
+}
+
+/**
+ * gnome_vfs_mime_id_in_component_list:
+ * @iid: a component iid.
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components().
+ * 
+ * Check whether a component iid is in a list of #Bonobo_ServerInfos.
+ * 
+ * Return value: %TRUE if a component whose iid matches @iid is in @components.
+ *
+ * Deprecated: 
+ */
+gboolean
+gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
+{
+	return g_list_find_custom
+		(components, (gpointer) iid,
+		 (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
+}
+
+/**
+ * gnome_vfs_mime_remove_component_from_list:
+ * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components().
+ * @iid: The iid of a component to remove from @components.
+ * @did_remove: If non-NULL, this is filled in with %TRUE if the component
+ * was found in the list, %FALSE otherwise.
+ * 
+ * Remove a component specified by iid from a list of #Bonobo_ServerInfos.
+ * 
+ * Return value: The modified list. If the component is not found, the list will 
+ * be unchanged.
+ *
+ * Deprecated:
+ */
+GList *
+gnome_vfs_mime_remove_component_from_list (GList *components, 
+					   const char *iid,
+					   gboolean *did_remove)
+{
+	GList *matching_node;
+	
+	matching_node = g_list_find_custom 
+		(components, (gpointer)iid,
+		 (GCompareFunc) gnome_vfs_mime_component_matches_id);
+	if (matching_node != NULL) {
+		components = g_list_remove_link (components, matching_node);
+		gnome_vfs_mime_component_list_free (matching_node);
+	}
+
+	if (did_remove != NULL) {
+		*did_remove = matching_node != NULL;
+	}
+	return components;
+}
+
+
+/**
+ * gnome_vfs_mime_get_short_list_applications:
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
+ * 
+ * Return an alphabetically sorted list of #GnomeVFSMimeApplication data
+ * structures for the @mime_type. gnome-vfs no longer supports the
+ * concept of a "short list" of applications that the user might be interested
+ * in.
+ * 
+ * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
+ * representing various applications to display in the short list for @mime_type.
+ *
+ * Deprecated: Use gnome_vfs_mime_get_all_applications() instead.
+ */ 
+GList *
+gnome_vfs_mime_get_short_list_applications (const char *mime_type)
+{
+	return gnome_vfs_mime_get_all_applications (mime_type);
+}
+
+/**
+ * gnome_vfs_mime_get_all_applications:
+ * @mime_type: a const char * containing a mime type, e.g. "image/png".
+ * 
+ * Return an alphabetically sorted list of #GnomeVFSMimeApplication
+ * data structures representing all applications in the MIME database registered
+ * to handle files of MIME type @mime_type (and supertypes).
+ * 
+ * Return value: a #GList * where the elements are #GnomeVFSMimeApplication *
+ * representing applications that handle MIME type @mime_type.
+ */ 
+GList *
+gnome_vfs_mime_get_all_applications (const char *mime_type)
+{
+	GList *applications, *node, *next;
+	char *application_id;
+	GnomeVFSMimeApplication *application;
+
+	g_return_val_if_fail (mime_type != NULL, NULL);
+
+	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
+
+	/* Convert to GnomeVFSMimeApplication's (leaving out NULLs) */
+	for (node = applications; node != NULL; node = next) {
+		next = node->next;
+
+		application_id = node->data;
+		application = gnome_vfs_mime_application_new_from_id (application_id);
+
+		/* Replace the application ID with the application */
+		if (application == NULL) {
+			applications = g_list_remove_link (applications, node);
+			g_list_free_1 (node);
+		} else {
+			node->data = application;
+		}
+
+		g_free (application_id);
+	}
+
+	return applications;
+}
+
 /**
  * gnome_vfs_mime_set_default_action_type:
  * @mime_type: a const char * containing a mime type, e.g. "image/png".
@@ -743,22 +950,10 @@ gnome_vfs_mime_id_matches_application (const char *id, GnomeVFSMimeApplication *
 	return gnome_vfs_mime_application_has_id (application, id);
 }
 
-static gint
-gnome_vfs_mime_id_matches_component (const char *iid, Bonobo_ServerInfo *component)
-{
-	return strcmp (component->iid, iid);
-}
-
 static gint 
 gnome_vfs_mime_application_matches_id (GnomeVFSMimeApplication *application, const char *id)
 {
 	return gnome_vfs_mime_id_matches_application (id, application);
-}
-
-static gint 
-gnome_vfs_mime_component_matches_id (Bonobo_ServerInfo *component, const char *iid)
-{
-	return gnome_vfs_mime_id_matches_component (iid, component);
 }
 
 /**
@@ -779,26 +974,6 @@ gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
 	return g_list_find_custom
 		(applications, (gpointer) id,
 		 (GCompareFunc) gnome_vfs_mime_application_matches_id) != NULL;
-}
-
-/**
- * gnome_vfs_mime_id_in_component_list:
- * @iid: a component iid.
- * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
- * result of gnome_vfs_mime_get_short_list_components().
- * 
- * Check whether a component iid is in a list of #Bonobo_ServerInfos.
- * 
- * Return value: %TRUE if a component whose iid matches @iid is in @components.
- *
- * Deprecated: 
- */
-gboolean
-gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
-{
-	return g_list_find_custom
-		(components, (gpointer) iid,
-		 (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
 }
 
 /**
@@ -830,31 +1005,6 @@ gnome_vfs_mime_id_list_from_application_list (GList *applications)
 	return result;
 }
 
-/**
- * gnome_vfs_mime_id_list_from_component_list:
- * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
- * result of gnome_vfs_mime_get_short_list_components().
- * 
- * Create a list of component iids from a list of #Bonobo_ServerInfos.
- * 
- * Return value: a new #GList where each #Bonobo_ServerInfo in the original
- * list is replaced by a char * with the component's iid. The original list is
- * not modified.
- *
- * Deprecated:
- */
-GList *
-gnome_vfs_mime_id_list_from_component_list (GList *components)
-{
-	GList *list = NULL;
-	GList *node;
-
-	for (node = components; node != NULL; node = node->next) {
-		list = g_list_prepend 
-			(list, g_strdup (((Bonobo_ServerInfo *)node->data)->iid));
-	}
-	return g_list_reverse (list);
-}
 
 /**
  * gnome_vfs_mime_add_application_to_short_list:
@@ -941,42 +1091,6 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 {
 	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
 	return GNOME_VFS_ERROR_DEPRECATED_FUNCTION;
-}
-
-/**
- * gnome_vfs_mime_remove_component_from_list:
- * @components: a #GList * whose nodes are #Bonobo_ServerInfos, such as the
- * result of gnome_vfs_mime_get_short_list_components().
- * @iid: The iid of a component to remove from @components.
- * @did_remove: If non-NULL, this is filled in with %TRUE if the component
- * was found in the list, %FALSE otherwise.
- * 
- * Remove a component specified by iid from a list of #Bonobo_ServerInfos.
- * 
- * Return value: The modified list. If the component is not found, the list will 
- * be unchanged.
- *
- * Deprecated:
- */
-GList *
-gnome_vfs_mime_remove_component_from_list (GList *components, 
-					   const char *iid,
-					   gboolean *did_remove)
-{
-	GList *matching_node;
-	
-	matching_node = g_list_find_custom 
-		(components, (gpointer)iid,
-		 (GCompareFunc) gnome_vfs_mime_component_matches_id);
-	if (matching_node != NULL) {
-		components = g_list_remove_link (components, matching_node);
-		gnome_vfs_mime_component_list_free (matching_node);
-	}
-
-	if (did_remove != NULL) {
-		*did_remove = matching_node != NULL;
-	}
-	return components;
 }
 
 /**
