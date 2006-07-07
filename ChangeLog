@@ -1,5 +1,12 @@
 2006-07-07  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume):
+	Fix bug with setting display_name_key for volumes.
+	Don't create drives for volumes that don't pass policy check
+	(they still get a volume since we need that for trash)
+
+2006-07-07  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-deprecated.h:
 	* libgnomevfs/gnome-vfs-mime-handlers.[ch]:
 	Move all bonobo mime support functions to libbonobo.
