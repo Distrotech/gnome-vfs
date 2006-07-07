@@ -52,6 +52,11 @@ struct _GnomeVFSAddress {
 
 #ifdef ENABLE_IPV6
 
+/* OSX seems to already define this */
+# if defined(SIN6_LEN) && defined(__APPLE__)
+#  undef SIN6_LEN
+# endif
+
 # define SIN6_LEN			sizeof (struct sockaddr_in6)
 # define SIN6(__s)				((struct sockaddr_in6 *) __s)
 # define VALID_AF(__sa)			(__sa->sa_family == AF_INET  || __sa->sa_family == AF_INET6)
