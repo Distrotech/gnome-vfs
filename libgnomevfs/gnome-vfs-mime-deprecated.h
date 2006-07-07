@@ -59,7 +59,7 @@ struct _GnomeVFSMimeAction {
 	/* <public >*/
 	GnomeVFSMimeActionType action_type;
 	union {
-		Bonobo_ServerInfo *component;
+		void *component;
 		void *dummy_component;
 		GnomeVFSMimeApplication *application;
 	} action;
@@ -85,15 +85,9 @@ const char  		*gnome_vfs_mime_get_icon 			   (const char 		    *mime_type);
 /* List manipulation helper functions */
 gboolean                 gnome_vfs_mime_id_in_application_list             (const char              *id,
 									    GList                   *applications);
-gboolean                 gnome_vfs_mime_id_in_component_list               (const char              *iid,
-									    GList                   *components);
 GList *                  gnome_vfs_mime_remove_application_from_list       (GList                   *applications,
 									    const char              *application_id,
 									    gboolean                *did_remove);
-GList *                  gnome_vfs_mime_remove_component_from_list         (GList                   *components,
-									    const char              *iid,
-									    gboolean                *did_remove);
-GList *                  gnome_vfs_mime_id_list_from_component_list        (GList                   *components);
 GList *                  gnome_vfs_mime_id_list_from_application_list      (GList                   *applications);
 
 /* Stored as delta to current user level - API function computes delta and stores in prefs */
@@ -125,7 +119,6 @@ GnomeVFSResult           gnome_vfs_mime_remove_from_all_applications       (cons
 
 
 GList *                  gnome_vfs_mime_get_short_list_applications        (const char              *mime_type);
-GList *                  gnome_vfs_mime_get_short_list_components          (const char              *mime_type);
 GnomeVFSResult           gnome_vfs_mime_set_short_list_applications        (const char              *mime_type,
 									    GList                   *application_ids);
 GnomeVFSResult           gnome_vfs_mime_set_short_list_components          (const char              *mime_type,
@@ -138,6 +131,25 @@ GnomeVFSResult           gnome_vfs_mime_add_component_to_short_list        (cons
 									    const char              *iid);
 GnomeVFSResult           gnome_vfs_mime_remove_component_from_short_list   (const char              *mime_type,
 									    const char              *iid);
+
+
+/* There are actually in bonobo-activation, but defined here */
+#if defined(GNOME_VFS_INCLUDE_BONOBO) || defined(_Bonobo_ServerInfo_defined)
+#include <bonobo-activation/bonobo-activation-server-info.h>
+Bonobo_ServerInfo *gnome_vfs_mime_get_default_component (const char *mime_type);
+#else
+void *gnome_vfs_mime_get_default_component (const char *mime_type);
+#endif
+
+GList *  gnome_vfs_mime_get_all_components          (const char *mime_type);
+void     gnome_vfs_mime_component_list_free         (GList      *list);
+GList *  gnome_vfs_mime_remove_component_from_list  (GList      *components,
+						     const char *iid,
+						     gboolean   *did_remove);
+GList *  gnome_vfs_mime_id_list_from_component_list (GList      *components);
+gboolean gnome_vfs_mime_id_in_component_list        (const char *iid,
+						     GList      *components);
+GList *  gnome_vfs_mime_get_short_list_components   (const char *mime_type);
 
 G_END_DECLS
 

@@ -1,5 +1,16 @@
 2006-07-07  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-deprecated.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.[ch]:
+	Move all bonobo mime support functions to libbonobo.
+	
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* test/test-mime.c: (main):
+	Remove all references and dependencies on bonobo.
+
+2006-07-07  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-address.c:
 	Add OSX workaround.
 

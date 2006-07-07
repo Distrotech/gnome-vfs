@@ -26,7 +26,6 @@
 #define GNOME_VFS_MIME_HANDLERS_H
 
 #include <libgnomevfs/gnome-vfs-result.h>
-#include <bonobo-activation/bonobo-activation-server-info.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
@@ -86,9 +85,6 @@ GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application_for_uri         
 GList *                  gnome_vfs_mime_get_all_applications                      (const char              *mime_type);
 GList *			 gnome_vfs_mime_get_all_applications_for_uri	          (const char              *uri,
 									           const char              *mime_type);
-Bonobo_ServerInfo *      gnome_vfs_mime_get_default_component                     (const char              *mime_type);
-GList *                  gnome_vfs_mime_get_all_components                        (const char              *mime_type);
-
 /* MIME types */
 
 const char 	        *gnome_vfs_mime_get_description   		          (const char              *mime_type);
@@ -121,7 +117,6 @@ void                     gnome_vfs_mime_application_free                        
 /* Lists */
 
 void                     gnome_vfs_mime_application_list_free                     (GList                   *list);
-void                     gnome_vfs_mime_component_list_free                       (GList                   *list);
 
 G_END_DECLS
 
