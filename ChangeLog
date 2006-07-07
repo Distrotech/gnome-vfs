@@ -1,3 +1,10 @@
+2006-07-07  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* gnome-vfs-2.0.pc.in:
+	* gnome-vfs-module-2.0.pc.in:
+	Don't require bonobo packages if using dlopen.
+
 2006-07-06  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

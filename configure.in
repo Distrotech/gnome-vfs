@@ -278,9 +278,12 @@ set_dlopen_bonobo="$enableval",[
 if test "x$set_dlopen_bonobo" = "xyes"; then
  AC_DEFINE([DLOPEN_BONOBO], 1, [dlopen bonobo instead of normal linking])
  msg_dlopen_bonobo="dlopen"
+ BONOBO_PKGS=""
 else
  msg_dlopen_bonobo="normal linking"
+ BONOBO_PKGS="bonobo-activation-2.0 libbonobo-2.0"
 fi
+AC_SUBST(BONOBO_PKGS)	
 AM_CONDITIONAL(DLOPEN_BONOBO, test "x$set_dlopen_bonobo" = "xyes")
 
 dnl ====================================
