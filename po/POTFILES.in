@@ -1,7 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
-daemon/gnome-vfs-daemon.c
 libgnomevfs/gnome-vfs-cdrom.c
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
@@ -23,7 +22,6 @@ modules/http-method.c
 modules/network-method.c
 modules/sftp-method.c
 modules/test-method.c
-monikers/GNOME_VFS_Moniker_std.server.in.in
 programs/authentication.c
 schemas/desktop_default_applications.schemas.in
 schemas/desktop_gnome_url_handlers.schemas.in
