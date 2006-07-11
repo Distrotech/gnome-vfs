@@ -1,3 +1,7 @@
+2006-07-11  Christian Kellner  <gicmo@gnome.org>
+
+	* NEWS: Update for release.
+
 2006-07-07  William Jon McCann  <mccann@jhu.edu>
 
 	* gnome-vfs-2.0.pc.in:
@@ -293,11 +297,15 @@
 	Patch from Elijah Newren
 
 2006-06-13  John McCutchan  <john@johnmccutchan.com>
+
 	From Josselin Mouette <joss@debian.org>:
-	* modules/file-method.c: (do_monitor_add), (do_monitor_cancel):
-	When inotify support is enabled, it always gets used if it's found in the
-	kernel. However, it won't work on remote filesystems. As such, monitoring for
-	NFS filesystems should still be done with FAM.
+	
+	* modules/file-method.c: (do_monitor_add), 
+	(do_monitor_cancel): When inotify support is enabled, 
+	it always gets used if it's found in the kernel. 
+	However, it won't work on remote filesystems. 
+	As such, monitoring for NFS filesystems should still 
+	be done with FAM.
 
 2006-06-13  Alexander Larsson  <alexl@redhat.com>
 
@@ -313,16 +321,18 @@
 	* modules/inotify-kernel.c:
 	* modules/inotify-missing.c:
 
-	The inotify monitoring code has two timers that run continuously
+	The inotify monitoring code has two timers that run 
+	continuously
 
-	1) The missing list scan timer. This timer tests if any missing directories
-	have been recreated.
+	1) The missing list scan timer. This timer tests if any
+	missing directories have been recreated.
 
-	2) The event queue processing timer. This timer pairs MOVED_TO and MOVED_FROM
-	events together.
+	2) The event queue processing timer. This timer pairs
+	MOVED_TO and MOVED_FROM events together.
 
-	Both of these timers can be turned off when they have no work to do.
-	Also extend the delay between missing list scans from 1 to 2 seconds.
+	Both of these timers can be turned off when they have 
+	no work to do. Also extend the delay between missing 
+	list scans from 1 to 2 seconds.
 
 2006-06-12  Alexander Larsson  <alexl@redhat.com>
 

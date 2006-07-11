@@ -1,3 +1,26 @@
+gnome-vfs 2.15.3 'Kill the monkeys'
+	
+	Note: The moniker code was moved to a seperate module
+	called gnome-vfs-monikers. We need to keep that in the
+	platform to be API/ABI compatible.
+	Also note that bonobo mime related functions have been 
+	moved to libbonobo.
+	This relase is free of Bonobos :) 
+
+	* Replace bonobo by DBus as IPC mechanism between clients 
+	  and the daemon: Remove all references and dependencies 
+          on bonobo. (Initial work done by Richard Hult and Mikael 
+	  Hallendal from Imendio)
+
+	* Massive API documentation update.
+	* INotify: fixes for remote (i.e. NFS) filesystems
+	* INotify: Updates to the timers used (see ChangeLog)
+	* Convert all use of pop to GOption
+	* Fix non ACL file method build	
+	* OSX fix for GnomeVFSAddress	
+	* Handle %% escaping % in desktop files. (#343632)
+	* Check for later version of libselinux. (#344349)
+
 gnome-vfs 2.15.2
 	* win32 fixes
 	* Don't hide smb shares that end with $
