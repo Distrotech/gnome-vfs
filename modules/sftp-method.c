@@ -317,7 +317,7 @@ buffer_send (Buffer *buf, int fd)
 	g_return_val_if_fail (buf->base != NULL, GNOME_VFS_ERROR_INTERNAL);
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Sending message of length %d from %p to %d",
-		       __FUNCTION__, len, buf, fd));
+		       G_GNUC_FUNCTION, len, buf, fd));
 
 	buf->read_ptr -= sizeof (guint32);
 
@@ -338,7 +338,7 @@ buffer_send (Buffer *buf, int fd)
 	}
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: %d bytes written",
-		       __FUNCTION__, bytes_written));
+		       G_GNUC_FUNCTION, bytes_written));
 
 	return res;
 }
@@ -352,24 +352,24 @@ buffer_recv (Buffer *buf, int fd)
 	g_return_val_if_fail (buf->base != NULL, GNOME_VFS_ERROR_INTERNAL);
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Receiving message from %d to %p",
-		       __FUNCTION__, fd, buf));
+		       G_GNUC_FUNCTION, fd, buf));
 
 	bytes_read = atomic_io (read, fd, &r_len, sizeof (guint32));
 
 	if (bytes_read == -1) {
 		DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Could not read length: %s",
-			       __FUNCTION__, g_strerror (errno)));
+			       G_GNUC_FUNCTION, g_strerror (errno)));
 		return GNOME_VFS_ERROR_IO;
 	}
 	else if (bytes_read == 0) {
 		DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Connection closed: %d",
-			       __FUNCTION__, fd));
+			       G_GNUC_FUNCTION, fd));
 		return GNOME_VFS_ERROR_IO;
 	}
 
 	len = GINT32_TO_BE (r_len);
 
-	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Message is of length %d", __FUNCTION__, len));
+	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Message is of length %d", G_GNUC_FUNCTION, len));
 
 	/* 256K was the max allowed in OpenSSH */
 	if (len > 256 * 1024) {
@@ -385,7 +385,7 @@ buffer_recv (Buffer *buf, int fd)
 	}
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: %d bytes read",
-		       __FUNCTION__, bytes_read));
+		       G_GNUC_FUNCTION, bytes_read));
 
 	buf->write_ptr += bytes_read;
 
@@ -513,7 +513,7 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
 		info->permissions = buffer_read_gint32 (buf);
 
-		DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Permissions is %x", __FUNCTION__,
+		DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Permissions is %x", G_GNUC_FUNCTION,
 			       info->permissions));
 
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
@@ -752,7 +752,7 @@ iobuf_read_file_info (int fd, GnomeVFSFileInfo *info, guint expected_id)
 		status = buffer_read_gint32 (&msg);
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 			      "%s: Reading file info failed with SSH2_FXP_STATUS(%u), status %u",
-			      __FUNCTION__, type, status));
+			      G_GNUC_FUNCTION, type, status));
 		res = sftp_status_to_vfs_result (status);
 	} else if (type == SSH2_FXP_ATTRS) {
 		buffer_read_file_info (&msg, info);
@@ -1168,7 +1168,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	args[last_arg++] = NULL;
 
 	DEBUG (tmp = g_strjoinv (" ", args));
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Command line is %s", __FUNCTION__, tmp));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Command line is %s", G_GNUC_FUNCTION, tmp));
 	DEBUG (g_free (tmp));
 
 	tty_fd = -1;
@@ -1402,7 +1402,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		/* Response given was not correct. Give up with a protocol error */
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: Protocol error: message type is %d", __FUNCTION__, type));
+			      "%s: Protocol error: message type is %d", G_GNUC_FUNCTION, type));
 		res = GNOME_VFS_ERROR_PROTOCOL_ERROR;
 	} else {
 		/* Everything's A-OK. Set up the connection and go */
@@ -1493,13 +1493,13 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 	hash_name = g_strconcat (user_name, "@", host_name, NULL);
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-		      "%s: Getting connection to %s", __FUNCTION__, hash_name));
+		      "%s: Getting connection to %s", G_GNUC_FUNCTION, hash_name));
 
 	*connection = g_hash_table_lookup (sftp_connection_table, hash_name);
 
 	if (*connection == NULL) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: Connection not found. Opening new one.", __FUNCTION__));
+			      "%s: Connection not found. Opening new one.", G_GNUC_FUNCTION));
 
 		res = sftp_connect (connection, uri);
 
@@ -1518,7 +1518,7 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 #if 0
 	else if (!g_mutex_trylock ((*connection)->mutex)) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: Connection found but locked. Opening new one.", __FUNCTION__));
+			      "%s: Connection found but locked. Opening new one.", G_GNUC_FUNCTION));
 
 		res = sftp_connect (connection, uri);
 		g_mutex_lock ((*connection)->mutex);
@@ -1529,13 +1529,13 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 #endif
 	else {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Connection found. Locking",
-			      __FUNCTION__));
+			      G_GNUC_FUNCTION));
 
 		g_mutex_lock ((*connection)->mutex);
 		sftp_connection_ref ((*connection));
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Lock acquired",
-			      __FUNCTION__));
+			      G_GNUC_FUNCTION));
 
 		g_free (hash_name);
 		res = GNOME_VFS_OK;
@@ -1577,25 +1577,25 @@ sftp_connection_process_errors (GIOChannel *channel, GIOCondition cond, GnomeVFS
 
 	if (cond != G_IO_IN) return TRUE;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	io_status = g_io_channel_read_line (channel, &str, NULL, NULL, &error);
 
 	switch (io_status) {
 	    case G_IO_STATUS_ERROR:
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: Could not read error message: %s", __FUNCTION__, error->message));
+			      "%s: Could not read error message: %s", G_GNUC_FUNCTION, error->message));
 		*status = GNOME_VFS_ERROR_IO;
 		break;
 
 	    case G_IO_STATUS_EOF:
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-			      "%s: Subprocess closed the connection", __FUNCTION__));
+			      "%s: Subprocess closed the connection", G_GNUC_FUNCTION));
 		*status = GNOME_VFS_ERROR_EOF;
 		return FALSE;
 
 	    case G_IO_STATUS_AGAIN:
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: No error", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: No error", G_GNUC_FUNCTION));
 		*status = GNOME_VFS_OK;
 		break;
 
@@ -1609,7 +1609,7 @@ sftp_connection_process_errors (GIOChannel *channel, GIOCondition cond, GnomeVFS
 				str = str1;
 
 				DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
-					      "%s: Error message was %s", __FUNCTION__, str));
+					      "%s: Error message was %s", G_GNUC_FUNCTION, str));
 			}
 		}
 
@@ -1640,7 +1640,7 @@ sftp_connection_get_id (SftpConnection *conn)
 	g_return_val_if_fail (conn != NULL, 0);
 
 	id = conn->msg_id++;
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Message id %d", __FUNCTION__, id));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Message id %d", G_GNUC_FUNCTION, id));
 
 	return id;
 }
@@ -1736,12 +1736,12 @@ get_real_path (SftpConnection *conn, const gchar *path, gchar **realpath)
 		buffer_free (&msg);
 		*realpath = NULL;
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Bad status (%d).",
-			      __FUNCTION__, status));
+			      G_GNUC_FUNCTION, status));
 		return sftp_status_to_vfs_result (status);
 	}
 	else if (recv_id != id || type != SSH2_FXP_NAME) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Bad message id or type (%d, %d).",
-			      __FUNCTION__, recv_id, type));
+			      G_GNUC_FUNCTION, recv_id, type));
 		buffer_free (&msg);
 		return GNOME_VFS_ERROR_PROTOCOL_ERROR;
 	}
@@ -1750,13 +1750,13 @@ get_real_path (SftpConnection *conn, const gchar *path, gchar **realpath)
 
 	if (count == 0) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: File not found: %s",
-			      __FUNCTION__, path));
+			      G_GNUC_FUNCTION, path));
 		buffer_free (&msg);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 	else if (count != 1) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Bad count (%d).",
-			      __FUNCTION__, count));
+			      G_GNUC_FUNCTION, count));
 		buffer_free (&msg);
 		return GNOME_VFS_ERROR_PROTOCOL_ERROR;
 	}
@@ -1791,7 +1791,7 @@ do_open (GnomeVFSMethod        *method,
 	gint sftp_handle_len;
 	gchar *path;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	res = sftp_get_connection (&conn, uri);
 	if (res != GNOME_VFS_OK) return res;
@@ -1832,7 +1832,7 @@ do_open (GnomeVFSMethod        *method,
 
 		sftp_connection_unlock (conn);
 
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return GNOME_VFS_OK;
 	} else {
 		*method_handle = NULL;
@@ -1842,7 +1842,7 @@ do_open (GnomeVFSMethod        *method,
 		sftp_connection_unref (conn);
 		sftp_connection_unlock (conn);
 
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return res;
 	}
 }
@@ -1869,7 +1869,7 @@ do_create (GnomeVFSMethod        *method,
 	guint sftp_handle_len;
 	gchar *path;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	res = sftp_get_connection (&conn, uri);
 	if (res != GNOME_VFS_OK) return res;
@@ -1917,7 +1917,7 @@ do_create (GnomeVFSMethod        *method,
 
 		sftp_connection_unlock (conn);
 
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return GNOME_VFS_OK;
 	} else {
 		*method_handle = NULL;
@@ -1927,7 +1927,7 @@ do_create (GnomeVFSMethod        *method,
 		sftp_connection_unref (conn);
 		sftp_connection_unlock (conn);
 		
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return res;
 	}
 }
@@ -1944,7 +1944,7 @@ do_close (GnomeVFSMethod       *method,
 
 	guint i;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 
@@ -1972,7 +1972,7 @@ do_close (GnomeVFSMethod       *method,
 	g_free (handle->path);
 	g_free (handle);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	return status;
 }
@@ -2007,7 +2007,7 @@ do_read (GnomeVFSMethod       *method,
 
 	struct ReadRequest *read_req;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	got_eof = FALSE;
 	
@@ -2040,7 +2040,7 @@ do_read (GnomeVFSMethod       *method,
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: (%d) Sending read request %d, length %d, pointer %p",
-				      __FUNCTION__, req_ptr, read_req[req_ptr].id,
+				      G_GNUC_FUNCTION, req_ptr, read_req[req_ptr].id,
 				      read_req[req_ptr].req_len, read_req[req_ptr].ptr));
 
 			outstanding++;
@@ -2079,7 +2079,7 @@ do_read (GnomeVFSMethod       *method,
 
 		if (req_svc == req_ptr) { /* Didn't find the id -- unexpected reply */
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Unexpected id %d",
-				      __FUNCTION__, recv_id));
+				      G_GNUC_FUNCTION, recv_id));
 			buffer_free (&msg);
 			g_free (read_req);
 			sftp_connection_unlock (handle->connection);
@@ -2091,14 +2091,14 @@ do_read (GnomeVFSMethod       *method,
 			status = buffer_read_gint32 (&msg);
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Got status message %d",
-				      __FUNCTION__, status));
+				      G_GNUC_FUNCTION, status));
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: req_svc = %d, req_ptr = %d",
-				      __FUNCTION__, req_svc, req_ptr));
+				      G_GNUC_FUNCTION, req_svc, req_ptr));
 
 			if (status != SSH2_FX_EOF) {
 				DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: status return %d",
-					      __FUNCTION__, sftp_status_to_vfs_result (status)));
+					      G_GNUC_FUNCTION, sftp_status_to_vfs_result (status)));
 				buffer_free (&msg);
 				g_free (read_req);
 				sftp_connection_unlock (handle->connection);
@@ -2158,7 +2158,7 @@ do_read (GnomeVFSMethod       *method,
 	buffer_free (&msg);
 	g_free (read_req);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	sftp_connection_unlock (handle->connection);
 
@@ -2194,7 +2194,7 @@ do_write (GnomeVFSMethod       *method,
 
 	struct WriteRequest *write_req;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 
@@ -2223,7 +2223,7 @@ do_write (GnomeVFSMethod       *method,
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: (%d) Sending write request %d, length %d, offset %d",
-				      __FUNCTION__, req_ptr, write_req[req_ptr].id,
+				      G_GNUC_FUNCTION, req_ptr, write_req[req_ptr].id,
 				      write_req[req_ptr].req_len, write_req[req_ptr].offset));
 
 			buffer_clear (&msg);
@@ -2271,7 +2271,7 @@ do_write (GnomeVFSMethod       *method,
 		
 		if (req_svc == req_ptr) { /* Didn't find the id -- unexpected reply */
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Unexpected id %d",
-				      __FUNCTION__, recv_id));
+				      G_GNUC_FUNCTION, recv_id));
 			buffer_free (&msg);
 			g_free (write_req);
 			sftp_connection_unlock (handle->connection);
@@ -2292,7 +2292,7 @@ do_write (GnomeVFSMethod       *method,
 	buffer_free (&msg);
 	g_free (write_req);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	sftp_connection_unlock (handle->connection);
 
@@ -2310,7 +2310,7 @@ do_seek (GnomeVFSMethod       *method,
 	GnomeVFSFileInfo file_info;
 	GnomeVFSResult res;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 
@@ -2334,7 +2334,7 @@ do_seek (GnomeVFSMethod       *method,
 		break;
 	}
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	return GNOME_VFS_OK;
 }
@@ -2346,12 +2346,12 @@ do_tell (GnomeVFSMethod       *method,
 {
 	SftpOpenHandle *handle;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 	*offset_return = handle->offset;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	return GNOME_VFS_OK;
 }
@@ -2366,12 +2366,12 @@ sftp_readlink (SftpConnection *connection,
 	unsigned int id;
 	char *ret;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	id = sftp_connection_get_id (connection);
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Requesting symlink target for %s",
-		      __FUNCTION__, path));
+		      G_GNUC_FUNCTION, path));
 
 	buffer_init (&msg);
 	buffer_write_gchar (&msg, SSH2_FXP_READLINK);
@@ -2389,7 +2389,7 @@ sftp_readlink (SftpConnection *connection,
 	ret = NULL;
 
 	if (recv_id != id)
-		g_critical ("%s: ID mismatch (%u != %u)", __FUNCTION__, recv_id, id);
+		g_critical ("%s: ID mismatch (%u != %u)", G_GNUC_FUNCTION, recv_id, id);
 	else if (type == SSH2_FXP_NAME) {
 		int count;
 
@@ -2398,20 +2398,20 @@ sftp_readlink (SftpConnection *connection,
 			ret = buffer_read_string (&msg, NULL);
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: Symlink resolved to %s",
-				      __FUNCTION__, ret));
+				      G_GNUC_FUNCTION, ret));
 		} else {
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: Readlink failed, got unexpected filename count (%d, 1 expected)",
-				      __FUNCTION__, count));
+				      G_GNUC_FUNCTION, count));
 		}
 	} else if (type == SSH2_FXP_STATUS) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 			      "%s: Readlink failed, SSH2_FXP_STATUS response",
-			      __FUNCTION__));
+			      G_GNUC_FUNCTION));
 	} else {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 			      "%s: Readlink failed, bad response (%d)",
-			      __FUNCTION__, type));
+			      G_GNUC_FUNCTION, type));
 	}
 
 	buffer_free (&msg);
@@ -2469,11 +2469,11 @@ get_file_info_for_path (SftpConnection          *conn,
 	GnomeVFSResult res;
 	unsigned int id;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	if (conn->version == 0) { /* SSH2_FXP_STAT_VERSION_0 doesn't allow our symlink semantics */
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Server with protocol version 0 detected, LSTAT unsupported.",
-			      __FUNCTION__));
+			      G_GNUC_FUNCTION));
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
@@ -2494,7 +2494,7 @@ get_file_info_for_path (SftpConnection          *conn,
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 			      "%s: Got GNOME_VFS_FILE_INFO_FOLLOW_LINKS, encountered symlink, resolving.",
-			      __FUNCTION__));
+			      G_GNUC_FUNCTION));
 
 		followed_symlinks = 0;
 
@@ -2512,7 +2512,7 @@ get_file_info_for_path (SftpConnection          *conn,
 			if (++followed_symlinks > MAX_SYMLINKS_FOLLOWED) {
 				DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 					       "%s: Too many symlinks while resolving %s.",
-					       __FUNCTION__, target_path));
+					       G_GNUC_FUNCTION, target_path));
 				res = GNOME_VFS_ERROR_TOO_MANY_LINKS;
 				/* we signal failure but still fill the file_info as good as we can.
 				 * Is this allowed? */
@@ -2523,12 +2523,12 @@ get_file_info_for_path (SftpConnection          *conn,
 
 			DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				       "%s: Resolved %s to %s",
-				       __FUNCTION__, target_path != NULL ? target_path : path, next_target_reference));
+				       G_GNUC_FUNCTION, target_path != NULL ? target_path : path, next_target_reference));
 
 			if (next_target_reference == NULL) {
 				DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 					       "%s: Resultion of %s to %s failed, target probably nonexistant.",
-					       __FUNCTION__, target_path, next_target_reference));
+					       G_GNUC_FUNCTION, target_path, next_target_reference));
 				break;
 			}
 
@@ -2546,7 +2546,7 @@ get_file_info_for_path (SftpConnection          *conn,
 			    (target_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) == 0) {
 				DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 					      "%s: Resultion of %s to %s failed, could not get file info.",
-					      __FUNCTION__, target_path, next_target_reference));
+					      G_GNUC_FUNCTION, target_path, next_target_reference));
 				res = GNOME_VFS_OK;
 				break;
 			}
@@ -2561,7 +2561,7 @@ get_file_info_for_path (SftpConnection          *conn,
 			if (target_info->type != GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 				DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 					       "%s: Aborting symlink resolution, %s is no symlink.",
-					       __FUNCTION__, target_path));
+					       G_GNUC_FUNCTION, target_path));
 				break;
 			}
 
@@ -2571,7 +2571,7 @@ get_file_info_for_path (SftpConnection          *conn,
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 			      "%s: Resolved %s -> %s", 
-			      __FUNCTION__, path, target_path));
+			      G_GNUC_FUNCTION, path, target_path));
 
 		if (last_valid_target_info != NULL) {
 			gnome_vfs_file_info_clear (file_info);
@@ -2592,7 +2592,7 @@ get_file_info_for_path (SftpConnection          *conn,
 
 	update_mime_type_and_name_from_path (file_info, path, options);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 
 	return res;
 }
@@ -2608,7 +2608,7 @@ do_get_file_info (GnomeVFSMethod          *method,
 	GnomeVFSResult res;
 	char *path;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter (no exit notify)", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter (no exit notify)", G_GNUC_FUNCTION));
 
 	res = sftp_get_connection (&conn, uri);
 	if (res != GNOME_VFS_OK) return res;
@@ -2632,7 +2632,7 @@ do_get_file_info_from_handle (GnomeVFSMethod          *method,
 {
 	SftpOpenHandle *handle;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter (no exit notify)", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter (no exit notify)", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 
@@ -2666,7 +2666,7 @@ do_open_directory (GnomeVFSMethod          *method,
 	guint id, sftp_handle_len;
 	gchar *path;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	res = sftp_get_connection (&conn, uri);
 	if (res != GNOME_VFS_OK) return res;
@@ -2675,7 +2675,7 @@ do_open_directory (GnomeVFSMethod          *method,
 
 	URI_TO_PATH (uri, path);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Opening %s", __FUNCTION__, path));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Opening %s", G_GNUC_FUNCTION, path));
 
 	buffer_init (&msg);
 	buffer_write_gchar (&msg, SSH2_FXP_OPENDIR);
@@ -2687,7 +2687,7 @@ do_open_directory (GnomeVFSMethod          *method,
 
 	res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Result is %d", __FUNCTION__, res));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Result is %d", G_GNUC_FUNCTION, res));
 
 	if (res == GNOME_VFS_OK) {
 		handle = g_new0 (SftpOpenHandle, 1);
@@ -2705,8 +2705,8 @@ do_open_directory (GnomeVFSMethod          *method,
 		sftp_connection_unlock (conn);
 
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Opened directory %p",
-			      __FUNCTION__, handle));
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+			      G_GNUC_FUNCTION, handle));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return GNOME_VFS_OK;
 	} else {
 		/* For some reason, some servers report EOF when the directory doesn't exist. *shrug* */
@@ -2719,7 +2719,7 @@ do_open_directory (GnomeVFSMethod          *method,
 		sftp_connection_unlock (conn);
 
 		*method_handle = NULL;
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return res;
 	}
 }
@@ -2744,25 +2744,25 @@ do_read_directory (GnomeVFSMethod       *method,
 	Buffer msg;
 	gchar type;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	handle = SFTP_OPEN_HANDLE (method_handle);
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Reading directory %p",
-		      __FUNCTION__, handle));
+		      G_GNUC_FUNCTION, handle));
 
 	if (handle->info_read_ptr < handle->info_write_ptr) {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Found directory entry %s in cache",
-			      __FUNCTION__, handle->info[handle->info_read_ptr].name));
+			      G_GNUC_FUNCTION, handle->info[handle->info_read_ptr].name));
 
 		gnome_vfs_file_info_copy (file_info, &(handle->info[handle->info_read_ptr++]));
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		return GNOME_VFS_OK;
 	}
 
 	sftp_connection_lock (handle->connection);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: No entries in cache", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: No entries in cache", G_GNUC_FUNCTION));
 
 	id = sftp_connection_get_id (handle->connection);
 
@@ -2792,12 +2792,12 @@ do_read_directory (GnomeVFSMethod       *method,
 		if (status == SSH2_FX_EOF || SSH2_FX_OK) {
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: End of directory reached (EOF status)",
-				      __FUNCTION__));
+				      G_GNUC_FUNCTION));
 			sftp_connection_unlock (handle->connection);
 			return GNOME_VFS_ERROR_EOF;
 		} else {
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Error status %d",
-				      __FUNCTION__, status));
+				      G_GNUC_FUNCTION, status));
 			do_close (method, method_handle, context);
 			sftp_connection_unlock (handle->connection);
 			return sftp_status_to_vfs_result (status);
@@ -2808,13 +2808,13 @@ do_read_directory (GnomeVFSMethod       *method,
 		if (count == 0) {
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: End of directory reached (count 0)",
-				      __FUNCTION__));
+				      G_GNUC_FUNCTION));
 			buffer_free (&msg);
 			sftp_connection_unlock (handle->connection);
 			return GNOME_VFS_ERROR_EOF;
 		}
 
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Count is %d", __FUNCTION__, count));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Count is %d", G_GNUC_FUNCTION, count));
 
 		if (handle->info_write_ptr + count > handle->info_alloc) {
 			if (handle->info_read_ptr > 0) {
@@ -2848,7 +2848,7 @@ do_read_directory (GnomeVFSMethod       *method,
 			buffer_read_file_info (&msg, info);
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: %d, filename is %s",
-				      __FUNCTION__, i, filename));
+				      G_GNUC_FUNCTION, i, filename));
 
 			if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 				path = g_build_filename (handle->path, filename, NULL);
@@ -2859,7 +2859,7 @@ do_read_directory (GnomeVFSMethod       *method,
 				update_mime_type_and_name_from_path (info, filename, handle->dir_options);
 
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: %d, MIME type is %s",
-				      __FUNCTION__, i, info->mime_type));
+				      G_GNUC_FUNCTION, i, info->mime_type));
 
 			g_free (filename);
 			g_free (longname);
@@ -2868,7 +2868,7 @@ do_read_directory (GnomeVFSMethod       *method,
 		}
 	} else {
 		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Got wrong packet type (%d)",
-			      __FUNCTION__, type));
+			      G_GNUC_FUNCTION, type));
 		buffer_free (&msg);
 		sftp_connection_unlock (handle->connection);
 		return GNOME_VFS_ERROR_PROTOCOL_ERROR;
@@ -2883,11 +2883,11 @@ do_read_directory (GnomeVFSMethod       *method,
 		g_free (handle->info[handle->info_read_ptr].mime_type);
 		handle->info[handle->info_read_ptr].mime_type = NULL;
 		handle->info_read_ptr++;
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		sftp_connection_unlock (handle->connection);
 		return GNOME_VFS_OK;
 	} else {
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
+		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", G_GNUC_FUNCTION));
 		sftp_connection_unlock (handle->connection);
 		return GNOME_VFS_ERROR_EOF;
 	}
@@ -3146,7 +3146,7 @@ do_set_file_info (GnomeVFSMethod          *method,
 	guint id;
 	gchar *path;
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", __FUNCTION__));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_GNUC_FUNCTION));
 
 	if (mask & (GNOME_VFS_SET_FILE_INFO_PERMISSIONS |
 		    GNOME_VFS_SET_FILE_INFO_OWNER |
@@ -3171,7 +3171,7 @@ do_set_file_info (GnomeVFSMethod          *method,
 	if (res == GNOME_VFS_OK && (mask & GNOME_VFS_SET_FILE_INFO_NAME))
 		res = do_rename (method, uri, info->name, context);
 
-	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit: %d", __FUNCTION__, res));
+	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit: %d", G_GNUC_FUNCTION, res));
 
 	return res;
 }

@@ -1,3 +1,10 @@
+2006-07-13  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/sftp-method.c: 
+	Replace __FUNCTION__ with G_GNUC_FUNCTION.
+	Patch from Tim Mooney <mooney@dogbert.cc.ndsu.nodak.edu>
+	Fixes bug #342963.
+
 2006-07-12  Christian Kellner  <gicmo@gnome.org>
 
 	* configure.in:
