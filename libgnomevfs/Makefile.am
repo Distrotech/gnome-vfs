@@ -65,6 +65,7 @@ libgnomevfs_headers_to_scan_for_enums = 	\
 libgnomevfs_headers = 				\
 	$(libgnomevfs_headers_to_scan_for_enums)\
 	gnome-vfs-dns-sd.h			\
+	gnome-vfs-version.h			\
 	gnome-vfs-uri.h				\
 	$(NULL)
 
@@ -233,6 +234,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
+	gnome-vfs-version.h			\
 	gnome-vfs-volume-monitor.h		\
 	gnome-vfs-volume.h			\
 	gnome-vfs-xfer.h			\
@@ -347,6 +349,7 @@ EXTRA_DIST = check-headers.pl $(libgnomevfs_win32_sources)
 BUILT_SOURCES = \
 	gnome-vfs-enum-types.h			\
 	gnome-vfs-enum-types.c			\
+	gnome-vfs-version.h			\
 	$(NULL)
 CLEANFILES = $(BUILT_SOURCES)
 

@@ -1,3 +1,12 @@
+2006-07-13  Christian Kellner  <gicmo@gnome.org>
+
+	* configure.in:
+	* libgnomevfs/.cvsignore:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-version.h.in:
+	Add gnome-vfs-version.h for compile time version checking.
+	Partly fixes bug #323614
+
 2006-07-13  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-pty.c: (_gnome_vfs_pty_fork_on_pty_name):

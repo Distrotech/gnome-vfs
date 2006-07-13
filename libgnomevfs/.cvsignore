@@ -5,6 +5,7 @@
 Makefile
 Makefile.in
 gnome-vfs-file-size.h
+gnome-vfs-version.h
 gnome-vfs-metadata.h
 gnome-vfs-metadata.c
 gnome-vfs-metadata-private.h
