@@ -108,7 +108,7 @@ daemon_get_connection (gboolean create)
 		g_warning ("Failed to acquire vfs-daemon service: %s", error.message);
 		dbus_error_free (&error);
 
-		dbus_connection_disconnect (conn);
+		dbus_connection_close (conn);
 		/* Remove this, it asserts:
 		   dbus_connection_unref (conn); */
 		conn = NULL;
@@ -119,7 +119,7 @@ daemon_get_connection (gboolean create)
 	if (ret == DBUS_REQUEST_NAME_REPLY_EXISTS) {
 		g_printerr ("VFS daemon already running, exiting.\n");
 
-		dbus_connection_disconnect (conn);
+		dbus_connection_close (conn);
 		/* Remove this, it asserts:
 		   dbus_connection_unref (conn); */
 		conn = NULL;
@@ -130,7 +130,7 @@ daemon_get_connection (gboolean create)
 	if (ret != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
 		g_printerr ("Not primary owner of the service, exiting.\n");
 
-		dbus_connection_disconnect (conn);
+		dbus_connection_close (conn);
 		/* Remove this, it asserts:
 		   dbus_connection_unref (conn); */
 		conn = NULL;
@@ -149,7 +149,7 @@ daemon_get_connection (gboolean create)
 						   NULL)) {
 		g_printerr ("Failed to register object with D-BUS.\n");
 
-		dbus_connection_disconnect (conn);
+		dbus_connection_close (conn);
 		dbus_connection_unref (conn);
 		conn = NULL;
 
@@ -177,7 +177,7 @@ daemon_shutdown (void)
 		return;
 	}
 
-	dbus_connection_disconnect (conn);
+	dbus_connection_close (conn);
 	dbus_connection_unref (conn);
 }
 

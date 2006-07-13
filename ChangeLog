@@ -1,3 +1,12 @@
+2006-07-13  Christian Kellner,,,  <gicmo@gnome.org>
+
+	reviewed by: <delete if not using a buddy>
+
+	* daemon/daemon-connection.c: (connection_destroy):
+	* daemon/vfs-daemon.c: (daemon_get_connection), (daemon_shutdown):
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	(destroy_private_connection), (get_private_connection):
+
 2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c:

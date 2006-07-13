@@ -348,7 +348,7 @@ destroy_private_connection (gpointer data)
 {
 	LocalConnection *ret = data;
 
-	dbus_connection_disconnect (ret->connection);
+	dbus_connection_close (ret->connection);
 	dbus_connection_unref (ret->connection);
 	g_free (ret);
 }
@@ -391,7 +391,7 @@ get_private_connection ()
 							   -1,
 							   &error);
 	dbus_message_unref (message);
-	dbus_connection_disconnect (main_conn);
+	dbus_connection_close (main_conn);
 	dbus_connection_unref (main_conn);
 	if (!reply) {
 		g_warning ("Error while getting peer-to-peer connection: %s",
@@ -421,7 +421,7 @@ get_private_connection ()
 						   &connection_vtable,
 						   NULL)) {
 		g_warning ("Failed to register client object with the connection.");
-		dbus_connection_disconnect (private_conn);
+		dbus_connection_close (private_conn);
 		dbus_connection_unref (private_conn);
 		return NULL;
 	}
