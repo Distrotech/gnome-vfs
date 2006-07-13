@@ -1,5 +1,12 @@
 2006-07-13  Christian Neumair  <chris@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-monitor.c: (install_timeout),
+	(actually_dispatch_callback):
+	Immediately dispatch events when possible by reinstalling timeout.
+	Patch from Jean-Yves Lefort <jylefort@FreeBSD.org>. Fixes #341585.
+
+2006-07-13  Christian Neumair  <chris@gnome-de.org>
+
 	* modules/ftp-method.c: (do_get_file_info): Try to CWD to
 	path if it isn't reported by LS, enhances IIS virtual
 	directory support. Fixes #119245.
