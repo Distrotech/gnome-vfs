@@ -4,14 +4,15 @@
 	path if it isn't reported by LS, enhances IIS virtual
 	directory support. Fixes #119245.
 
-2006-07-13  Christian Kellner,,,  <gicmo@gnome.org>
+2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
-	reviewed by: <delete if not using a buddy>
-
-	* daemon/daemon-connection.c: (connection_destroy):
-	* daemon/vfs-daemon.c: (daemon_get_connection), (daemon_shutdown):
+	* daemon/daemon-connection.c:
+	* daemon/vfs-daemon.c:
 	* libgnomevfs/gnome-vfs-daemon-method.c:
-	(destroy_private_connection), (get_private_connection):
+	Replace the deprecated call to dbus_connection_disconnect with
+	its newer pendant dbus_connection_close.
+	Patch from Laurent Goujon <laurent.goujon@online.fr>
+	Fixes bug #347099
 
 2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
