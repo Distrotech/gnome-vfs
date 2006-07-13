@@ -1,3 +1,11 @@
+2006-07-13  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-resolve.c:
+	(_gnome_vfs_result_from_gai_error): Fix EAI_ADDRFAMILY case 
+	in switch construction to always return the appropriate error.
+	Patch from Julio M. Merino Vidal <jmmv@NetBSD.org>
+	Fixes bug #336391. 
+
 2006-07-13  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-monitor.c: (install_timeout),
