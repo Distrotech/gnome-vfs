@@ -1,5 +1,10 @@
 2006-07-13  Christian Neumair  <chris@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-pty.c: (_gnome_vfs_pty_fork_on_pty_name):
+	Initialize ready_a and ready_b to satisfy compiler. Fixes #342115.
+
+2006-07-13  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-volume-ops.c: (spawn_mount),
 	Include <system.h>, cast &pid to pid_t * before passing it
 	to gnome_vfs_pty_open.

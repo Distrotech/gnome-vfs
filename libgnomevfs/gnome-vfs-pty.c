@@ -376,7 +376,8 @@ _gnome_vfs_pty_fork_on_pty_name(const char *path, int parent_fd, char **env_add,
 {
 	int fd, i;
 	char c;
-	int ready_a[2], ready_b[2];
+	int ready_a[2] = { 0, 0 };
+	int ready_b[2] = { 0, 0 };
 	pid_t pid, grandchild_pid;
 	int pid_pipe[2];
 	int stdin_pipe[2];
