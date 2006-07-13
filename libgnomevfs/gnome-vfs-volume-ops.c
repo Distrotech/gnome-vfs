@@ -25,6 +25,7 @@
 
 #include <sys/types.h>
 #include <errno.h>
+#include <signal.h>
 #include <string.h>
 #include <stdlib.h>
 #include <glib.h>
@@ -412,7 +413,7 @@ spawn_mount (MountThreadInfo *info, gchar **envp, gchar **standard_error,
 	with_password = info->should_mount;
 	
 	if (with_password) {
-		tty_fd = gnome_vfs_pty_open (&pid, GNOME_VFS_PTY_LOGIN_TTY, envp, 
+		tty_fd = gnome_vfs_pty_open ((pid_t *) &pid, GNOME_VFS_PTY_LOGIN_TTY, envp, 
 					     info->argv[0], info->argv, 
 					     NULL, 300, 300, &in_fd, &out_fd, 
 					     standard_error ? &err_fd : NULL);
