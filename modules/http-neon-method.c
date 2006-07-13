@@ -1190,90 +1190,98 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 	char *unesc_path;
 
 	ctx = (PropfindContext *) userdata;
-	
+
 	if (ne_uri_parse (href, &uri))
 		return;
-    
+
 	if (uri.path == NULL) {
 		ne_uri_free (&uri);
 		return;
 	}
-	
+
 	DEBUG_HTTP_2 ("href: %s", href);
-	
+
 	info = gnome_vfs_file_info_new ();
 	unesc_path = ne_path_unescape (uri.path);
 	info->name = g_path_get_basename (unesc_path);
 	NE_FREE (unesc_path);
-	
+
 	DEBUG_HTTP_2 ("Comparing: \n\t[%s] \n\t[%s]", ctx->path, uri.path);
 	if (ne_path_compare (ctx->path, uri.path) == 0) {
 		DEBUG_HTTP_3 ("target");
 		ctx->target = info;
-		
+
 		/* Set the etag on target */
 		/* We are not requesting the etag information at 
 		 * the moment so don't even check for it 
 		value = ne_propset_value (set, &file_info_props[5]);
-		
+
 		if (value != NULL)
 			ctx->etag = g_strdup (value);
-	
-		*/	
+
+		*/
 	} else {
 		ctx->children = g_list_append (ctx->children, info);
 	}
-	
+
 	ne_uri_free (&uri);
-	
+
 	/* getlastmodified */
 	value = ne_propset_value (set, &file_info_props[0]);
-	
+
 	if (value && gnome_vfs_atotm (value, &time)) {
 		info->mtime = time;
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MTIME;
 	}
-	
+
 	/* creationdate */
 	value = ne_propset_value (set, &file_info_props[1]);
-	
+
 	if (value && gnome_vfs_atotm (value, &time)) {
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_CTIME;
 	}
-	
+
 	/* resourctype */
 	value = ne_propset_value (set, &file_info_props[2]);
-	
+
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-	
+
 	if (value != NULL && strstr (value, "collection")) {
 		info->mime_type = g_strdup (HTTP_DIR_MIME_TYPE);
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		
+
 		return;
 	} else {
 		info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	}
-	
-	/* The following properties only apply to files */
-	
+
+	/*** The following properties only apply to files ***/
+
 	/* getcontenttype */
-	value = ne_propset_value (set, &file_info_props[3]);
-		
+
+	/* We only evaluate the getcontenttype filed if it hasn't already
+	 * been set (i.e. to HTTP_DIR_MIME_TYPE) so we can indicate the
+	 * directory mime-type */
+	if (! (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE)) {
+		value = ne_propset_value (set, &file_info_props[3]);
+	} else {
+		value = NULL;
+	}
+
 	if (! value) {
 		value = gnome_vfs_mime_type_from_name (info->name);
 	}
-	
+
 	if (value) {
 		info->mime_type = g_strdup (value);
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	}
-	
+
 	/* getcontentlength */
-	
+
 	value = ne_propset_value (set, &file_info_props[4]);
-	
+
 	if (value && header_value_to_number (value, &size)) {
 		info->size = size;
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
@@ -1841,33 +1849,48 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		if (result == GNOME_VFS_OK)
 			goto propfind_start;
 	}
-	
+
 	req = ne_propfind_get_request (pfh);
 	result = resolve_result (res, req);
 	DEBUG_HTTP ("%d, %d", res, ne_get_status (req)->code);
 	ne_propfind_destroy (pfh);
-	
-	/* Let's be very cautious here! If the server doesn't respond with a 
-	   207 here just fall back to HEAD because some server server (eg. gws) 
+
+	/* Let's be very cautious here! If the server doesn't respond with a
+	   207 here just fall back to HEAD because some server server (eg. gws)
 	   close the connection on an unknown command, most (stupid) php scripts
 	   will treat PROPFIND as GET and some servers may deny us PROFIND but
-	   allow us HEAD. */
-	if (res == NE_OK && ne_get_status (req)->code == 207) {
+	   allow us HEAD. 
+	   The only exception is if we receive a 404 */
 
-		if (pfctx.target != NULL) {
-			gnome_vfs_file_info_copy (info, pfctx.target);	
-		} else {
+	if (res == NE_OK) {
+		gboolean have_result = FALSE;
+		const ne_status *status = ne_get_status (req);
+
+		if (status->code == 207) {
+
+			have_result = TRUE;
+
+			if (pfctx.target != NULL) {
+				gnome_vfs_file_info_copy (info, pfctx.target);
+			} else {
+				result = GNOME_VFS_ERROR_NOT_FOUND;
+			}
+
+		} else if (status->code == 404) {
+			have_result = TRUE;
 			result = GNOME_VFS_ERROR_NOT_FOUND;
 		}
-		
-		propfind_context_clear (&pfctx);
-		return result;
+
+		if (have_result == TRUE) {
+			propfind_context_clear (&pfctx);
+			return result;
+		}
 	}
-	
+
 	propfind_context_clear (&pfctx);
 	DEBUG_HTTP ("!! Fallthrough to head (%s)", gnome_vfs_result_to_string (result));
-	
- head_start:	
+
+ head_start:
 	req  = ne_request_create (context->session, "HEAD", context->path);
 
 	res = ne_request_dispatch (req);
