@@ -2392,6 +2392,38 @@ do_get_file_info (GnomeVFSMethod *method,
 		}
 		g_free (name);
 		do_close_directory (method, method_handle, context);
+
+		/* maybe it was a hidden directory not included in ls output
+		 * (IIS virtual directory), so try to CWD to it. */
+		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+			FtpConnection *connection;
+
+			if (ftp_connection_acquire (uri, &connection, context) == GNOME_VFS_OK) {
+				result = do_path_command (connection, "CWD", uri, get_cancellation (context));
+				ftp_connection_release (connection, FALSE);
+			}
+
+			if (result == GNOME_VFS_OK) {
+				char *unescaped;
+				char *basename;
+
+				unescaped = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+				basename = g_path_get_basename (unescaped);
+				g_free (unescaped);
+
+				if (basename != NULL) {
+					file_info->name = basename;
+					file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+					file_info->mime_type = g_strdup ("x-directory/normal");
+					file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+						GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+				} else {
+					result = GNOME_VFS_ERROR_NOT_FOUND;
+				}
+			} else {
+				result = GNOME_VFS_ERROR_NOT_FOUND;
+			}
+		}
 	}
 
 	return result;
