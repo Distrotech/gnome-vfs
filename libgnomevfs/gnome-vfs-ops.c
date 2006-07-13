@@ -49,6 +49,7 @@ gnome_vfs_open (GnomeVFSHandle **handle,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
@@ -109,6 +110,7 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
@@ -778,9 +780,13 @@ gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
                        GnomeVFSMonitorCallback callback,
                        gpointer user_data)
 {
-	GnomeVFSURI *uri = gnome_vfs_uri_new (text_uri);
+	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}

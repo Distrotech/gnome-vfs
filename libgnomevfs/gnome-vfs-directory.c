@@ -117,9 +117,6 @@ do_open (GnomeVFSDirectoryHandle **handle,
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -150,6 +147,7 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  GnomeVFSFileInfoOptions options)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return do_open (handle, text_uri, options, NULL);
@@ -173,6 +171,7 @@ gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSFileInfoOptions options)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return open_from_uri (handle, uri, options, NULL);
@@ -185,6 +184,7 @@ gnome_vfs_directory_open_from_uri_cancellable (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	*handle = NULL;
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return open_from_uri (handle, uri, options, context);

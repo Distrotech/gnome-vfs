@@ -1,3 +1,12 @@
+2006-07-13  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-ops.c:
+	Initialize passed-in handle to NULL after g_return_if_fail check in
+	public functions. Add g_return_if_fail statements and NULL initializer
+	to gnome_vfs_monitor_add(). Thanks to George Karabin
+	<gkarabin@pobox.com>. Fixes #45783.
+
 2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-drive.c:
