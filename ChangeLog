@@ -1,10 +1,19 @@
 2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-drive.h:
+	gnome_vfs_drive_needs_eject (): New function indicating wether
+	a drive needs to be ejected after it has been unmounted.
+	Patch from Martin Pitt <martin.pitt@canonical.com>
+	Fixes bug #336533
+
+2006-07-13  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-resolve.c:
 	(_gnome_vfs_result_from_gai_error): Fix EAI_ADDRFAMILY case 
 	in switch construction to always return the appropriate error.
 	Patch from Julio M. Merino Vidal <jmmv@NetBSD.org>
-	Fixes bug #336391. 
+	Fixes bug #336391
 
 2006-07-13  Christian Neumair  <chris@gnome-de.org>
 

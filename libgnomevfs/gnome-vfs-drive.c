@@ -374,6 +374,26 @@ gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
 	return res;
 }
 
+/** 
+ * gnome_vfs_drive_needs_eject:
+ * @drive: a #GnomeVFSDrive.
+ *
+ * Returns: %TRUE if the @drive needs to be ejected, %FALSE otherwise.
+ *
+ * Since: 2.16
+ */
+gboolean
+gnome_vfs_drive_needs_eject (GnomeVFSDrive *drive)
+{
+	gboolean res;
+	
+	G_LOCK (drives);
+	res = drive->priv->must_eject_at_unmount;
+	G_UNLOCK (drives);
+	
+	return res;
+}
+
 void
 gnome_vfs_drive_remove_volume_private (GnomeVFSDrive      *drive,
 				       GnomeVFSVolume     *volume)
