@@ -1625,26 +1625,6 @@ gnome_vfs_uris_match (const char *uri_1, const char *uri_2)
 }
 
 static gboolean
-gnome_vfs_str_has_prefix (const char *haystack, const char *needle)
-{
-        const char *h, *n;
-
-        /* Eat one character at a time. */
-        h = haystack == NULL ? "" : haystack;
-        n = needle == NULL ? "" : needle;
-        do {
-                if (*n == '\0') {
-                        return TRUE;
-                }
-                if (*h == '\0') {
-                        return FALSE;
-                }
-        } while (*h++ == *n++);
-        return FALSE;
-}
-
-
-static gboolean
 gnome_vfs_uri_is_local_scheme (const char *uri)
 {
 	gboolean is_local_scheme;
@@ -1828,8 +1808,9 @@ gnome_vfs_make_uri_canonical (const char *uri)
 	 * typing "foo" into location bar does not crash and returns an error
 	 * rather than displaying the contents of /
 	 */
-	if (gnome_vfs_str_has_prefix (canonical_uri, "file://")
-	    && !gnome_vfs_str_has_prefix (canonical_uri, "file:///")) {
+	if (canonical_uri != NULL
+	    && g_str_has_prefix (canonical_uri, "file://")
+	    && !g_str_has_prefix (canonical_uri, "file:///")) {
 		old_uri = canonical_uri;
 		canonical_uri = g_strconcat ("file:/", old_uri + 5, NULL);
 		g_free (old_uri);

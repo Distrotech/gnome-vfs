@@ -1,3 +1,9 @@
+2006-07-14  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-utils.c: Replace gnome_vfs_str_has_prefix
+	with glib's g_str_has_prefix. Fixes bug #342239
+	Patch from Paolo Borelli <pborelli@katamail.com>  
+
 2006-07-13  Christian Kellner  <gicmo@gnome.org>
 
 	* configure.in:
