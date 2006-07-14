@@ -28,7 +28,6 @@ INCLUDES =					\
 
 EXTRA_DIST =					\
 	$(HTTP_NEON_SOURCES)			\
-	$(HTTP_OLD_SOURCES)			\
 	default-modules.conf			\
 	smb-module.conf				\
 	cdda-module.conf			\
@@ -62,7 +61,7 @@ endif
 if OS_WIN32
 PLATFROM_SPECIFIC_LTLIBS =
 else
-PLATFROM_SPECIFIC_LTLIBS = libdns-sd.la libnetwork.la libnntp.la libsftp.la $(HTTP_LTLIBS) libftp.la
+PLATFROM_SPECIFIC_LTLIBS = libdns-sd.la libnetwork.la libnntp.la libsftp.la libhttp.la libftp.la
 endif
 
 module_flags = -export_dynamic -avoid-version -module -no-undefined
@@ -198,48 +197,17 @@ libftp_la_LIBADD = $(MODULES_LIBS) $(GSSAPI_LIBS) ../libgnomevfs/libgnomevfs-2.l
 #libnfs_la_LDFLAGS = $(module_flags)
 
 ### `http' method
-
-HTTP_LTLIBS = libhttp.la
-
-## The old module
-HTTP_OLD_SOURCES = 				\
-	http-method.c				\
-	http-method.h				\
-	http-authn.c				\
-	http-authn.h				\
-	http-cache.c				\
-	http-cache.h				
-
-HTTP_OLD_LIBADD =				\
-	$(MODULES_GCONF_LIBS) 		\
-	$(MODULES_XML_LIBS) 		\
-	../libgnomevfs/libgnomevfs-2.la
-
-## The neon module
-HTTP_NEON_SOURCES = 			\
+libhttp_la_SOURCES =			\
 	http-neon-method.c		\
 	http-proxy.h			\
 	http-proxy.c
-
-HTTP_NEON_LIBADD =				\
-		$(MODULES_GCONF_LIBS) 	\
-	../imported/neon/libneon.la   \
-	../libgnomevfs/libgnomevfs-2.la
-
-if USE_HTTP_NEON
-HTTP_SOURCES = $(HTTP_NEON_SOURCES)
-HTTP_LIBS = $(HTTP_NEON_LIBADD)
-else
-HTTP_SOURCES = $(HTTP_OLD_SOURCES)
-HTTP_LIBS = $(HTTP_OLD_LIBADD)
-endif
-
-libhttp_la_SOURCES =			\
-	$(HTTP_SOURCES)			\
 	$(NULL)
 
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(HTTP_LIBS)
+libhttp_la_LIBADD  = 			\
+	$(MODULES_GCONF_LIBS) 	\
+	../imported/neon/libneon.la   \
+	../libgnomevfs/libgnomevfs-2.la
 
 libtar_la_SOURCES = tar-method.c tarpet.h 
 libtar_la_LDFLAGS = $(module_flags)

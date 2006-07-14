@@ -1,5 +1,17 @@
 2006-07-14  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/http-authn.c:
+	* modules/http-authn.h:
+	* modules/http-cache.c:
+	* modules/http-cache.h:
+	* modules/http-method.c:
+	* modules/http-method.h:
+	Kill the old, totally unmaintained http method.
+
+2006-07-14  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-utils.c: Replace gnome_vfs_str_has_prefix
 	with glib's g_str_has_prefix. Fixes bug #342239
 	Patch from Paolo Borelli <pborelli@katamail.com>  
