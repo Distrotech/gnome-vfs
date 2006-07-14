@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-init.h"
 
-#include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-mime.h"
 
 #include "gnome-vfs-configuration.h"
@@ -130,8 +129,6 @@ gnome_vfs_init (void)
 		dbus_g_thread_init ();
  		/* Make sure the type system is inited. */
 		g_type_init ();
-
-		_gnome_vfs_ssl_init ();
 
 		retval = gnome_vfs_method_init ();
 

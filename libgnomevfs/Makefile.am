@@ -168,7 +168,6 @@ noinst_HEADERS =				\
 	gnome-vfs-monitor-private.h		\
 	gnome-vfs-private-utils.h		\
 	gnome-vfs-private.h			\
-	gnome-vfs-ssl-private.h			\
 	gnome-vfs-unix-mounts.h 		\
 	gnome-vfs-volume-monitor-client.h	\
 	gnome-vfs-volume-monitor-daemon.h	\

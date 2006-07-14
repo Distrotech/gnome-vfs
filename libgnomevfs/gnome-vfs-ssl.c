@@ -32,7 +32,6 @@
 #include <config.h>
 #include "gnome-vfs-ssl.h"
 
-#include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-resolve.h"
 #include <glib/gmem.h>
@@ -127,15 +126,20 @@ static struct gcry_thread_cbs gcry_threads_gthread =
 
 #endif
 
-void 
-_gnome_vfs_ssl_init (void) {
+#if defined (HAVE_OPENSSL) || defined (HAVE_GNUTLS)
+static GOnce ssl_init_once = G_ONCE_INIT;
+
+static gpointer
+ssl_init (gpointer unused) {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #elif defined HAVE_GNUTLS
 	gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
 	gnutls_global_init();
 #endif
+	return NULL;
 }
+#endif
 
 /**
  * gnome_vfs_ssl_enabled:
@@ -352,6 +356,8 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
 	ssl->private->sockfd = fd;
 
+	g_once (&ssl_init_once, ssl_init, NULL);
+
         /* SSLv23_client_method will negotiate with SSL v2, v3, or TLS v1 */
         ssl_ctx = SSL_CTX_new (SSLv23_client_method ());
 
@@ -415,6 +421,8 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	ssl = g_new0 (GnomeVFSSSL, 1);
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
 	ssl->private->sockfd = fd;
+
+	g_once (&ssl_init_once, ssl_init, NULL);
 
 	err = gnutls_certificate_allocate_credentials (&ssl->private->xcred);
 	if (err < 0) {
