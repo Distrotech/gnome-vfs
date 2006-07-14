@@ -1,3 +1,8 @@
+2006-07-14  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-result.c: (gnome_vfs_result_from_errno_code):
+	Wrap ENAMETOOLONG using GNOME_VFS_ERROR_NAME_TOO_LONG. Fixes #308509.
+
 2006-07-14  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-result.c:

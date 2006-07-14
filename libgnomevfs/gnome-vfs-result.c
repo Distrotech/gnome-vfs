@@ -141,6 +141,7 @@ gnome_vfs_result_from_errno_code (int errno_code)
 	case ETIMEDOUT:    return GNOME_VFS_ERROR_TIMEOUT;
 #endif
 	case EXDEV:	   return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
+	case ENAMETOOLONG: return GNOME_VFS_ERROR_NAME_TOO_LONG;
 	
 		/* FIXME bugzilla.eazel.com 1191: To be completed.  */
 	default:	return GNOME_VFS_ERROR_GENERIC;
