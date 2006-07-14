@@ -179,6 +179,8 @@ gnome_vfs_volume_finalize (GObject *object)
 GnomeVFSVolumeType
 gnome_vfs_volume_get_volume_type (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, GNOME_VFS_VOLUME_TYPE_MOUNTPOINT);
+
 	return volume->priv->volume_type;
 }
 
@@ -196,6 +198,8 @@ gnome_vfs_volume_get_volume_type (GnomeVFSVolume *volume)
 GnomeVFSDeviceType
 gnome_vfs_volume_get_device_type (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, GNOME_VFS_DEVICE_TYPE_UNKNOWN);
+
 	return volume->priv->device_type;
 }
 
@@ -215,6 +219,8 @@ gnome_vfs_volume_get_device_type (GnomeVFSVolume *volume)
 gulong
 gnome_vfs_volume_get_id (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, 0);
+
 	return volume->priv->id;
 }
 
@@ -230,7 +236,9 @@ GnomeVFSDrive *
 gnome_vfs_volume_get_drive (GnomeVFSVolume *volume)
 {
 	GnomeVFSDrive *drive;
-	
+
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	G_LOCK (volumes);
 	drive = gnome_vfs_drive_ref (volume->priv->drive);
 	G_UNLOCK (volumes);
@@ -277,6 +285,8 @@ gnome_vfs_volume_set_drive_private (GnomeVFSVolume     *volume,
 char *
 gnome_vfs_volume_get_device_path (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->device_path);
 }
 
@@ -297,6 +307,8 @@ gnome_vfs_volume_get_device_path (GnomeVFSVolume *volume)
 char *
 gnome_vfs_volume_get_activation_uri (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->activation_uri);
 }
 
@@ -316,6 +328,8 @@ gnome_vfs_volume_get_activation_uri (GnomeVFSVolume *volume)
 char *
 gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->hal_udi);
 }
 
@@ -406,6 +420,8 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
 char *
 gnome_vfs_volume_get_filesystem_type (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->filesystem_type);
 }
 
@@ -422,6 +438,8 @@ gnome_vfs_volume_get_filesystem_type (GnomeVFSVolume *volume)
 char *
 gnome_vfs_volume_get_display_name (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->display_name);
 }
 
@@ -436,6 +454,8 @@ gnome_vfs_volume_get_display_name (GnomeVFSVolume *volume)
 char *
 gnome_vfs_volume_get_icon (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, NULL);
+
 	return g_strdup (volume->priv->icon);
 }
 
@@ -454,6 +474,8 @@ gnome_vfs_volume_get_icon (GnomeVFSVolume *volume)
 gboolean
 gnome_vfs_volume_is_user_visible (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, FALSE);
+
 	return volume->priv->is_user_visible;
 }
 
@@ -475,6 +497,8 @@ gnome_vfs_volume_is_user_visible (GnomeVFSVolume *volume)
 gboolean
 gnome_vfs_volume_is_read_only (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, FALSE);
+
 	return volume->priv->is_read_only;
 }
 
@@ -496,6 +520,8 @@ gnome_vfs_volume_is_read_only (GnomeVFSVolume *volume)
 gboolean
 gnome_vfs_volume_is_mounted (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, FALSE);
+
 	return volume->priv->is_mounted;
 }
 
@@ -523,6 +549,8 @@ gnome_vfs_volume_is_mounted (GnomeVFSVolume *volume)
 gboolean
 gnome_vfs_volume_handles_trash (GnomeVFSVolume *volume)
 {
+	g_return_val_if_fail (volume != NULL, FALSE);
+
 	if (volume->priv->device_type == GNOME_VFS_DEVICE_TYPE_AUTOFS) {
 		return FALSE;
 	}

@@ -262,6 +262,8 @@ gnome_vfs_drive_finalize (GObject *object)
 gulong 
 gnome_vfs_drive_get_id (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, 0);
+
 	return drive->priv->id;
 }
 
@@ -276,6 +278,8 @@ gnome_vfs_drive_get_id (GnomeVFSDrive *drive)
 GnomeVFSDeviceType
 gnome_vfs_drive_get_device_type (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, GNOME_VFS_DEVICE_TYPE_UNKNOWN);
+
 	return drive->priv->device_type;
 }
 
@@ -295,6 +299,8 @@ gnome_vfs_drive_get_mounted_volume (GnomeVFSDrive *drive)
 {
 	GnomeVFSVolume *vol;
 	GList *first_vol;
+
+	g_return_val_if_fail (drive != NULL, NULL);
 
 	G_LOCK (drives);
 	first_vol = g_list_first (drive->priv->volumes);
@@ -342,7 +348,9 @@ GList *
 gnome_vfs_drive_get_mounted_volumes (GnomeVFSDrive *drive)
 {
 	GList *return_list;
-	
+
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	G_LOCK (drives);
 	return_list = g_list_copy (drive->priv->volumes);
 	g_list_foreach (return_list, 
@@ -366,7 +374,9 @@ gboolean
 gnome_vfs_drive_is_mounted (GnomeVFSDrive *drive)
 {
 	gboolean res;
-	
+
+	g_return_val_if_fail (drive != NULL, FALSE);
+
 	G_LOCK (drives);
 	res = drive->priv->volumes != NULL;
 	G_UNLOCK (drives);
@@ -386,7 +396,9 @@ gboolean
 gnome_vfs_drive_needs_eject (GnomeVFSDrive *drive)
 {
 	gboolean res;
-	
+
+	g_return_val_if_fail (drive != NULL, FALSE);
+
 	G_LOCK (drives);
 	res = drive->priv->must_eject_at_unmount;
 	G_UNLOCK (drives);
@@ -442,6 +454,8 @@ gnome_vfs_drive_add_mounted_volume_private (GnomeVFSDrive      *drive,
 char *
 gnome_vfs_drive_get_device_path (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	return g_strdup (drive->priv->device_path);
 }
 
@@ -462,6 +476,8 @@ gnome_vfs_drive_get_device_path (GnomeVFSDrive *drive)
 char *
 gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	return g_strdup (drive->priv->activation_uri);
 }
 
@@ -481,6 +497,8 @@ gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
 char *
 gnome_vfs_drive_get_hal_udi (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	return g_strdup (drive->priv->hal_udi);
 }
 
@@ -495,6 +513,8 @@ gnome_vfs_drive_get_hal_udi (GnomeVFSDrive *drive)
 char *
 gnome_vfs_drive_get_display_name (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	return g_strdup (drive->priv->display_name);
 }
 
@@ -509,6 +529,8 @@ gnome_vfs_drive_get_display_name (GnomeVFSDrive *drive)
 char *
 gnome_vfs_drive_get_icon (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, NULL);
+
 	return g_strdup (drive->priv->icon);
 }
 
@@ -527,6 +549,8 @@ gnome_vfs_drive_get_icon (GnomeVFSDrive *drive)
 gboolean
 gnome_vfs_drive_is_user_visible (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, FALSE);
+
 	return drive->priv->is_user_visible;
 }
 
@@ -541,6 +565,8 @@ gnome_vfs_drive_is_user_visible (GnomeVFSDrive *drive)
 gboolean
 gnome_vfs_drive_is_connected (GnomeVFSDrive *drive)
 {
+	g_return_val_if_fail (drive != NULL, FALSE);
+
 	return drive->priv->is_connected;
 }
 
