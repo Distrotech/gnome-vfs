@@ -1,5 +1,12 @@
 2006-07-14  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-result.h:
+	Add GNOME_VFS_ERROR_INVALID_FILENAME. Fixes bug #305828
+	Patch from Alexander Brausewetter <br@absb.de>
+
+2006-07-14  Christian Kellner  <gicmo@gnome.org>
+
 	* configure.in:
 	* modules/Makefile.am:
 	* modules/http-authn.c:

@@ -88,7 +88,8 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached"),
 	/* GNOME_VFS_ERROR_NAMESERVER */                N_("Nameserver error"),
  	/* GNOME_VFS_ERROR_LOCKED */			N_("The resource is locked"),
-	/* GNOME_VFS_ERROR_DEPRECATED_FUNCTION */       N_("Function call deprecated")
+	/* GNOME_VFS_ERROR_DEPRECATED_FUNCTION */       N_("Function call deprecated"),
+	/* GNOME_VFS_ERROR_INVALID_FILENAME */		N_("Invalid filename")
 };
 
 /**
