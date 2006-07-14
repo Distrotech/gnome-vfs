@@ -349,7 +349,7 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
  * key, for traditional UNIX mounts it is set to the %mntent's 
  * %mnt_type key, for connected servers, %NULL is returned.
  *
- * As of GnomeVFS 2.15.2, the following file systems are recognized
+ * As of GnomeVFS 2.15.4, the following file systems are recognized
  * by GnomeVFS:
  *
  * <table frame="none">
@@ -374,16 +374,20 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
  *    <row><entry>cdda</entry><entry>CD Digital Audio</entry><entry>No</entry></row>
  *    <row><entry>cdrom</entry><entry>CD-ROM Drive</entry><entry>No</entry></row>
  *    <row><entry>devfs</entry><entry>Hardware Device Volume</entry><entry>No</entry></row>
+ *    <row><entry>encfs</entry><entry>EncFS Volume</entry><entry>Yes</entry></row>
  *    <row><entry>ext2</entry><entry>Ext2 Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>ext2fs</entry><entry>Ext2 Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>ext3</entry><entry>Ext3 Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>fat</entry><entry>MSDOS Volume</entry><entry>Yes</entry></row>
+ *    <row><entry>ffs</entry><entry>BSD Volume</entry><entry>Yes</entry></row>
  *    <row><entry>hfs</entry><entry>MacOS Volume</entry><entry>Yes</entry></row>
  *    <row><entry>hfsplus</entry><entry>MacOS Volume</entry><entry>No</entry></row>
  *    <row><entry>iso9660</entry><entry>CDROM Volume</entry><entry>No</entry></row>
  *    <row><entry>hsfs</entry><entry>Hsfs CDROM Volume</entry><entry>No</entry></row>
  *    <row><entry>jfs</entry><entry>JFS Volume</entry><entry>Yes</entry></row>
  *    <row><entry>hpfs</entry><entry>Windows NT Volume</entry><entry>No</entry></row>
+ *    <row><entry>kernfs</entry><entry>System Volume</entry><entry>No</entry></row>
+ *    <row><entry>lfs</entry><entry>BSD Volume</entry><entry>Yes</entry></row>
  *    <row><entry>linprocfs</entry><entry>System Volume</entry><entry>No</entry></row>
  *    <row><entry>mfs</entry><entry>Memory Volume</entry><entry>Yes</entry></row>
  *    <row><entry>minix</entry><entry>Minix Volume</entry><entry>No</entry></row>
@@ -394,6 +398,7 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
  *    <row><entry>nwfs</entry><entry>Netware Volume</entry><entry>No</entry></row>
  *    <row><entry>proc</entry><entry>System Volume</entry><entry>No</entry></row>
  *    <row><entry>procfs</entry><entry>System Volume</entry><entry>No</entry></row>
+ *    <row><entry>ptyfs</entry><entry>System Volume</entry><entry>No</entry></row>
  *    <row><entry>reiser4</entry><entry>Reiser4 Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>reiserfs</entry><entry>ReiserFS Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>smbfs</entry><entry>Windows Shared Volume</entry><entry>Yes</entry></row>
@@ -403,6 +408,7 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
  *    <row><entry>udfs</entry><entry>Udfs Solaris Volume</entry><entry>Yes</entry></row>
  *    <row><entry>pcfs</entry><entry>Pcfs Solaris Volume</entry><entry>Yes</entry></row>
  *    <row><entry>samfs</entry><entry>Sun SAM-QFS Volume</entry><entry>Yes</entry></row>
+ *    <row><entry>tmpfs</entry><entry>Temporary Volume</entry><entry>Yes</entry></row>
  *    <row><entry>umsdos</entry><entry>Enhanced DOS Volume</entry><entry>No</entry></row>
  *    <row><entry>vfat</entry><entry>Windows VFAT Volume</entry><entry>Yes</entry></row>
  *    <row><entry>xenix</entry><entry>Xenix Volume</entry><entry>No</entry></row>

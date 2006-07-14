@@ -1,3 +1,13 @@
+2006-07-14  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-filesystem-type.c:
+	Add ffs, kernfs, lfs, ptyfs, tmpfs and encfs.
+	Thanks to Julio M. Merino Vidal <jmmv@NetBSD.org>
+	and <nahoo82@terra.es>.
+	Fixes #336533 and #328883.
+	* libgnomevfs/gnome-vfs-volume.c: Update API docs, i.e. list of
+	recognized file systems.
+
 2006-07-14  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/Makefile.am:	
