@@ -267,6 +267,7 @@ GNOME_VFS_URI_PATH_CHR
 GNOME_VFS_URI_PATH_STR
 gnome_vfs_uri_new
 gnome_vfs_uri_resolve_relative
+gnome_vfs_uri_resolve_symbolic_link
 gnome_vfs_uri_ref
 gnome_vfs_uri_unref
 gnome_vfs_uri_append_string

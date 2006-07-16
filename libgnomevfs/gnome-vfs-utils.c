@@ -1983,17 +1983,8 @@ _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
 				goto out;
 			}
 			escaped_symlink = gnome_vfs_escape_path_string (info->symlink_name);
-			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
-								       escaped_symlink);
-			g_free (escaped_symlink);
-			if (resolved_uri == NULL) {
-				gnome_vfs_uri_unref (new_uri);
-				/* FIXME this shouldn't happen. gnome_vfs_uri_resolve_relative
-				 * treats some relative URIs as absolute if they contain special
-				 * characters. We should escape them, or the relative URI recognition
-				 * should be improved */
-				break;
-			}
+			resolved_uri = gnome_vfs_uri_resolve_symbolic_link (new_uri, escaped_symlink);
+			g_assert (resolved_uri != NULL);
 
 			if (*p != 0) {
 				gnome_vfs_uri_unref (new_uri);
@@ -2059,6 +2050,9 @@ gnome_vfs_resolve_symlink (const char *path,
 	char **strs;
 	int i, j, n;
 	GString *res_path;
+
+	g_assert (path != NULL);
+	g_assert (symlink != NULL);
 
 	p = strrchr (path, '/');
 	

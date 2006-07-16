@@ -897,13 +897,30 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
  * @relative_reference: a string representing a possibly relative uri reference.
  * 
  * Create a new uri from @relative_reference, relative to @base. The resolution
- * algorithm follows RFC 2396. For details, see section 5.2 of
- * http://www.ietf.org/rfc/rfc2396.txt .
+ * algorithm in some aspects follows <ulink url="http://www.ietf.org/rfc/rfc2396.txt">RFC
+ * 2396</ulink>, section 5.2, but is not identical due to some extra assumptions GnomeVFS
+ * makes about URIs.
  *
- * In short, if the @base uri ends in '/', @relative_reference is appended to @base,
- * otherwise it replaces the part of @base after the last '/'.
+ * If @relative_reference begins with a valid scheme identifier followed by ':',
+ * it is assumed to refer to an absolute URI, and a #GnomeVFSURI is created from
+ * it using gnome_vfs_uri_new(). 
  *
- * Return value: The new uri.
+ * Otherwise, depending on its precise syntax, it inherits some aspects of the parent URI,
+ * but the parents' fragment and query components are ignored.
+ *
+ * If @relative_reference begins with "//", it only inherits the @base scheme,
+ * if it begins with '/' (i.e. is an absolute path reference), it inherits everything
+ * ecxept the @base path. Otherwise, it replaces the part of @base after the last '/'.
+ *
+ * <note>
+ *  This function should not be used by application authors unless they expect very
+ *  distinct semantics. Instead, authors should use gnome_vfs_uri_append_file_name(),
+ *  gnome_vfs_uri_append_path(), gnome_vfs_uri_append_string() or
+ *  gnome_vfs_uri_resolve_symbolic_link().
+ * </note>
+ *
+ * Return value: A #GnomeVFSURI referring to @relative_reference, or %NULL
+ * if @relative_reference was malformed.
  */
 GnomeVFSURI *
 gnome_vfs_uri_resolve_relative (const GnomeVFSURI *base,
@@ -932,6 +949,38 @@ gnome_vfs_uri_resolve_relative (const GnomeVFSURI *base,
 
 	g_free (text_base);
 	g_free (text_new);
+
+	return uri;
+}
+
+/**
+ * gnome_vfs_uri_resolve_symbolic_link:
+ * @base: base uri.
+ * @symbolic_link: a string representing a possibly relative or absolute path reference.
+ * 
+ * Create a new uri from @symbolic_link, relative to @base.
+ *
+ * If @symbolic_link begins with a '/', it replaces the path of @base,
+ * otherwise it is appended after the last '/' character of @base.
+ *
+ * Return value: A new #GnomeVFSURI referring to @symbolic_link.
+ *
+ * Since: 2.16
+ */
+GnomeVFSURI *
+gnome_vfs_uri_resolve_symbolic_link (const GnomeVFSURI *base,
+				     const gchar *symbolic_link)
+{
+	GnomeVFSURI *uri;
+
+	g_return_val_if_fail (base != NULL, NULL);
+	g_return_val_if_fail (symbolic_link != NULL, NULL);
+
+	uri = gnome_vfs_uri_dup (base);
+	g_free (uri->text);
+	uri->text = gnome_vfs_resolve_symlink (gnome_vfs_uri_get_path (base) != NULL ?
+					       gnome_vfs_uri_get_path (base) : "/",
+					       symbolic_link);
 
 	return uri;
 }

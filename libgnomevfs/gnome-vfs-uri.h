@@ -155,6 +155,8 @@ GType gnome_vfs_uri_hide_options_get_type (void);
 GnomeVFSURI 	     *gnome_vfs_uri_new                   (const gchar *text_uri);
 GnomeVFSURI 	     *gnome_vfs_uri_resolve_relative      (const GnomeVFSURI *base,
 							   const gchar *relative_reference);
+GnomeVFSURI 	     *gnome_vfs_uri_resolve_symbolic_link (const GnomeVFSURI *base,
+							   const gchar *relative_reference);
 GnomeVFSURI 	     *gnome_vfs_uri_ref                   (GnomeVFSURI *uri);
 void        	      gnome_vfs_uri_unref                 (GnomeVFSURI *uri);
 
