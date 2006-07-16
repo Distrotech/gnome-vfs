@@ -694,9 +694,17 @@ gnome_vfs_check_same_fs (const gchar *source,
  * @uri: a uri.
  * @info: information that must be set for the file.
  * @mask: bit mask representing which fields of @info need to be set.
- * 
+ *
  * Set file information for @uri; only the information for which the
  * corresponding bit in @mask is set is actually modified.
+ *
+ * <note>
+ * @info's %valid_fields is not required to contain the
+ * #GnomeVFSFileInfoFields corresponding to the specified 
+ * #GnomeVFSSetFileInfoMask fields of @mask. It
+ * is assumed that the @info fields referenced by @mask
+ * are valid.
+ * </note>
  * 
  * Return value: an integer representing the result of the operation.
  */
@@ -716,6 +724,14 @@ gnome_vfs_set_file_info_uri (GnomeVFSURI *uri,
  * 
  * Set file information for @uri; only the information for which the
  * corresponding bit in @mask is set is actually modified.
+ *
+ * <note>
+ * @info's %valid_fields is not required to contain the
+ * #GnomeVFSFileInfoFields corresponding to the specified 
+ * #GnomeVFSSetFileInfoMask fields of @mask. It
+ * is assumed that the @info fields referenced by @mask
+ * are valid.
+ * </note>
  * 
  * Return value: an integer representing the result of the operation.
  */

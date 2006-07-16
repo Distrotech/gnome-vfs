@@ -1,5 +1,29 @@
 2006-07-16  Christian Neumair  <chris@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-ops.h:
+	Add GNOME_VFS_SET_FILE_INFO_SYMLINK_NAME.
+	Update gnome_vfs_set_file_info(_uri) docs.
+
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-result.h:
+	Add GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK.
+
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	(gnome_vfs_async_set_file_info):
+	Update docs.
+
+	* modules/file-method.c: (do_set_file_info):
+	Support setting a symlink's target.
+
+	* modules/sftp-method.c: (do_set_file_info):
+	Filter out masks we can't set, and return
+	GNOME_VFS_ERROR_NOT_SUPPORTED on failure.
+
+	Fixes #309949.
+
+2006-07-16  Christian Neumair  <chris@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_resolve_relative),
 	(gnome_vfs_uri_resolve_symbolic_link):
 	* libgnomevfs/gnome-vfs-uri.h:

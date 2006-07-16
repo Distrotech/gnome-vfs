@@ -2139,6 +2139,41 @@ rename_helper (const gchar *old_full_name,
 }
 
 static GnomeVFSResult
+set_symlink_name_helper (const gchar *full_name,
+			 const GnomeVFSFileInfo *info)
+{
+#ifndef G_OS_WIN32
+	struct stat statbuf;
+
+	if (info->symlink_name == NULL) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+
+	if (g_lstat (full_name, &statbuf) != 0) {
+		return gnome_vfs_result_from_errno ();
+	}
+
+	if (!S_ISLNK (statbuf.st_mode)) {
+		return GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK;
+	}
+
+	if (g_unlink (full_name) != 0) {
+		return gnome_vfs_result_from_errno ();
+	}
+
+	if (symlink (info->symlink_name, full_name) != 0) {
+		/* TODO should we try to restore the old symlink? */
+		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+
+}
+
+static GnomeVFSResult
 do_move (GnomeVFSMethod *method,
 	 GnomeVFSURI *old_uri,
 	 GnomeVFSURI *new_uri,
@@ -2399,7 +2434,16 @@ do_set_file_info (GnomeVFSMethod *method,
 			return result;	
 		}
 	}
-	
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_SYMLINK_NAME) {
+		GnomeVFSResult result;
+
+		result = set_symlink_name_helper (full_name, info);
+		if (result != GNOME_VFS_OK) {
+			g_free (full_name);
+			return result;	
+		}
+	}
 
 	g_free (full_name);
 

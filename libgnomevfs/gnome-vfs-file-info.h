@@ -377,6 +377,7 @@ typedef enum {
  * @GNOME_VFS_SET_FILE_INFO_OWNER: change the file's owner
  * @GNOME_VFS_SET_FILE_INFO_TIME: change the file's time stamp(s)
  * @GNOME_VFS_SET_FILE_INFO_ACL: change the file's ACLs
+ * @GNOME_VFS_SET_FILE_INFO_SYMLINK_NAME: change the file's symlink name
  *
  * Packed boolean bitfield representing the aspects of the file
  * to be changed in a gnome_vfs_set_file_info() call.
@@ -389,7 +390,8 @@ typedef enum {
 	GNOME_VFS_SET_FILE_INFO_OWNER = 1 << 2,
 	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3,
 	GNOME_VFS_SET_FILE_INFO_ACL = 1 << 4,
-	GNOME_VFS_SET_FILE_INFO_SELINUX_CONTEXT = 1 << 5
+	GNOME_VFS_SET_FILE_INFO_SELINUX_CONTEXT = 1 << 5,
+	GNOME_VFS_SET_FILE_INFO_SYMLINK_NAME = 1 << 6
 } GnomeVFSSetFileInfoMask;
 
 

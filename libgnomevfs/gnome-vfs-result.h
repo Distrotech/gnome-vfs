@@ -87,6 +87,7 @@ G_BEGIN_DECLS
  * @GNOME_VFS_ERROR_LOCKED: The resource is locked.
  * @GNOME_VFS_ERROR_DEPRECATED_FUNCTION: Function call deprecated.
  * @GNOME_VFS_ERROR_INVALID_FILENAME: The specified filename is invalid.
+ * @GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK: Not a symbolic link.
  *
  * A #GnomeVFSResult informs library clients about the result of a file operation.
  * Unless it is #GNOME_VFS_OK, it denotes that a problem occurred and the operation
@@ -146,6 +147,7 @@ typedef enum {
 	GNOME_VFS_ERROR_LOCKED,
 	GNOME_VFS_ERROR_DEPRECATED_FUNCTION,
 	GNOME_VFS_ERROR_INVALID_FILENAME,
+	GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK,
 	GNOME_VFS_NUM_ERRORS
 } GnomeVFSResult;
 
