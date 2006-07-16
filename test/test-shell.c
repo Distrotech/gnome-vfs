@@ -1012,12 +1012,11 @@ main (int argc, char **argv)
 	char *buffer = g_new (char, 1024) ;
 	GIOChannel *ioc;
 	guint watch_id = 0;
+	GOptionContext *ctx = NULL;
+	GError *error = NULL;
 
 	/* default to interactive on a terminal */
 	interactive = isatty (0);
-
-	GOptionContext *ctx = NULL;
-	GError *error = NULL;
 
 	ctx = g_option_context_new("test-vfs");
 	g_option_context_add_main_entries(ctx, options, NULL);
