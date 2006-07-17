@@ -18,7 +18,6 @@ libgnomevfs/gnome-vfs-volume-ops.c
 modules/computer-method.c
 modules/file-method.c
 modules/ftp-method.c
-modules/http-method.c
 modules/network-method.c
 modules/sftp-method.c
 modules/test-method.c
