@@ -1,5 +1,5 @@
-# Bengali Translation of GNOME-vfs
-# Copyright (C) 1999, 2000, 01, 02 Free Software Foundation, Inc.
+# Bengali India Translation of GNOME-vfs
+# Copyright (C) 1999, 2000, 01, 02, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GNOME-vfs package.
 # Sayamindu Dasgupta <unmadindu@Softhome.net>, 2003.
 # Mahay Alam Khan <makl10n@yahoo.com>, 2005.
@@ -7,87 +7,88 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME-vfs\n"
+"Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-03 07:32+0200\n"
-"PO-Revision-Date: 2005-10-01 00:34+0600\n"
-"Last-Translator: Mahay Alam Khan <makl10n@yahoo.com>\n"
-"Language-Team: Bengali <gnome-translation@bengalinux.org>\n"
+"PO-Revision-Date: 2006-07-18 18:40+0530\n"
+"Last-Translator: Runa Bhattacharjee <runabh@gmail.com>\n"
+"Language-Team: Bangla (INDIA) <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: ../daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
-msgstr "বোনোবো চালু করা গেল না"
+msgstr "Bonobo আরম্ভ করতে ব্যর্থ"
 
 #: ../daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "গুনোম ভি-এফ-এস চালু করা গেল না"
+msgstr "gnome vfs আরম্ভ করতে ব্যর্থ"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "আই-এস-ও ৯৬৬০ ভলিউম"
+msgstr "ISO 9660 ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%dতে নঞ-অক্ষর আছে"
+msgstr "%s:%u'র মধ্যে NUL অক্ষর উপস্থিত।"
 
 # msgstr "%s:%dতে নঞ-অক্ষর আছে"
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no method name."
-msgstr "%s:%d-তে কোন প্রক্রিয়ার নাম নেই"
+msgstr "%s:%u'র মধ্যে কোনো মেথডের নাম উপস্থিত নেই।"
 
 # msgstr "%s:%dতে নঞ-অক্ষর আছে"
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has no options endmarker."
-msgstr "%s:%d-তে কোন অপশন এন্ডমার্কার নেই"
+msgstr "%s:%u'র মধ্যে বিকল্পের সমাপ্তিচিহ্ন (endmarker) নেই।"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has unknown options %s."
-msgstr "%s:%d-তে %s অপশন সমূহ অজানা"
+msgstr "%s:%u'র মধ্যে অজানা বিকল্প %s উপস্থিত রয়েছে।"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no module name."
-msgstr "%s:%dতে কোন মডিউলের নাম নেই"
+msgstr "%s:%u'র মধ্যে কোনো মডিউলের নাম নেই।"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "কনফিগারেশন ফাইল `%s পাওয়া গেল না: %s'"
+msgstr "`%s' নামক কনফিগারেশন ফাইল পাওয়া যায়নি: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d পার্স কর্ম অস্বাভাবিকরূপ বন্ধ।"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
-msgstr "এ-এফ-এফ-এস ভলিউম"
+msgstr "AFFS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
-msgstr "এ-এফ-এস নেটওয়ার্ক ভলিউম"
+msgstr "AFS নেটওয়ার্ক ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr "স্বয়ংক্রীয় ভাবে খুঁজে পাওয়া ভলিউম"
+msgstr "স্বয়ংক্রিয়রূপে সনাক্ত ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
-msgstr "সিডি রম ড্রাইভ"
+msgstr "CD-ROM ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
-msgstr "সিডি ডিজিটাল অডিও"
+msgstr "CD ডিজিটাল অডিও"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
@@ -96,11 +97,11 @@ msgstr "হার্ডওয়্যার ডিভাইস ভলিউম"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "Ext2 Linux Volume"
-msgstr "Ext2 লিনাক্স ভলিউম"
+msgstr "Ext2 Linux ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext3 Linux Volume"
-msgstr "Ext3 লিনাক্স ভলিউম"
+msgstr "Ext3 Linux ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
@@ -115,11 +116,11 @@ msgstr "MacOS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "CDROM Volume"
-msgstr "সিডিরম ভলিউম"
+msgstr "CDROM ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "Hsfs CDROM Volume"
-msgstr "Hsfs সিডিরম ভলিউম"
+msgstr "Hsfs CDROM ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "JFS Volume"
@@ -128,7 +129,7 @@ msgstr "JFS ভলিউম"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Windows NT Volume"
-msgstr "উইন্ডোজ এন-টি ভলিউম"
+msgstr "Windows NT ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
@@ -142,67 +143,67 @@ msgstr "মেমরি ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "Minix Volume"
-msgstr "মিনিক্স ভলিউম"
+msgstr "Minix ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "NFS Network Volume"
-msgstr "এন-এফ-এস নেটওয়ার্ক ভলিউম"
+msgstr "NFS নেটওয়ার্ক ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Netware Volume"
-msgstr "নেটওয়্যার ভলিউম"
+msgstr "Netware ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Reiser4 Linux Volume"
-msgstr "রেইসার৪ লিনাক্স ভলিউম"
+msgstr "Reiser4 Linux ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "ReiserFS Linux Volume"
-msgstr "রেইসার এফ এস লিনাক্স ভলিউম"
+msgstr "ReiserFS Linux ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Windows Shared Volume"
-msgstr "উইন্ডোজ শেয়ার করা ভলিউম"
+msgstr "Windows Shared ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "SuperMount Volume"
-msgstr "সুপার মাউন্ট ভলিউম"
+msgstr "SuperMount ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "DVD Volume"
-msgstr "ডিভিডি ভলিউম"
+msgstr "DVD ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Solaris/BSD Volume"
-msgstr "সোলারিস/বি-এস-ডি ভলিউম"
+msgstr "Solaris/BSD ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Udfs Solaris Volume"
-msgstr "Udfs সোলারিস ভলিউম"
+msgstr "Udfs Solaris ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Pcfs Solaris Volume"
-msgstr "Pcfs সোলারিস ভলিউম"
+msgstr "Pcfs Solaris ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Sun SAM-QFS Volume"
-msgstr "সান এসএএম-কিউএফএস ভলিউম"
+msgstr "Sun SAM-QFS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "Enhanced DOS Volume"
-msgstr "এনহান্সকৃত ডস ভলিউম"
+msgstr "Enhanced DOS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Windows VFAT Volume"
-msgstr "উইন্ডোজ ভিফ্যাট ভলিউম"
+msgstr "Windows VFAT ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Xenix Volume"
-msgstr "জেনিক্স ভলিউম"
+msgstr "Xenix ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "XFS Linux Volume"
-msgstr "এক্স-এফ-এস লিনাক্স ভলিউম"
+msgstr "XFS Linux ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "XIAFS Volume"
@@ -210,7 +211,7 @@ msgstr "XIAFS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "CIFS Volume"
-msgstr "সিআইএফএস ভলিউম"
+msgstr "CIFS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
 msgid "Unknown"
@@ -226,53 +227,53 @@ msgstr "%s ভলিউম"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
-msgstr "সিডি-রম"
+msgstr "CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
-msgstr "সিডি-আর"
+msgstr "CD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
-msgstr "সিডি-আরডব্লিউ"
+msgstr "CD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
-msgstr "ডিভিডি-আরওএম"
+msgstr "DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 msgid "DVD+R"
-msgstr "ডিভিডি+আর"
+msgstr "DVD+R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+RW"
-msgstr "ডিভিডি+আরডব্লিউ"
+msgstr "DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
-msgstr "ডিভিডি-আর"
+msgstr "DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
-msgstr "ডিভিডি-আরডব্লিউ"
+msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
-msgstr "ডিভিডি-আরএম"
+msgstr "DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
 msgid "DVD±R"
-msgstr "ডিভিডি±আর"
+msgstr "DVD±R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
 msgid "DVD±RW"
-msgstr "ডিভিডি±আরডব্লিউ"
+msgstr "DVD±RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
@@ -294,15 +295,15 @@ msgstr "কমপ্যাক্ট ফ্ল্যাশ ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
-msgstr "মেমরি স্টিক্‌ ড্রাইভ"
+msgstr "মেমরি স্টিক‌ ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
-msgstr "স্মার্ট মিডিয়া ড্রাইভ"
+msgstr "Smart Media ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
-msgstr "এসডি/এমএমসি ড্রাইভ"
+msgstr "SD/MMC ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
@@ -312,7 +313,7 @@ msgstr "জিপ ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Jaz Drive"
-msgstr "জ্যাজ ড্রাইভ"
+msgstr "Jaz ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
 msgid "Pen Drive"
@@ -336,15 +337,15 @@ msgstr "ড্রাইভ"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
 msgid "External %s"
-msgstr "বহিস্থ %s"
+msgstr "বহিস্থিত %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
 msgid "CD-ROM Disc"
-msgstr "সিডি-আরওএম ড্রাইভ"
+msgstr "CD-ROM ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
 msgid "Blank CD-R Disc"
-msgstr "ফাঁকা সিডি-আরওএম ড্রাইভ"
+msgstr "ফাঁকা CD-R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "CD-R Disc"
@@ -352,7 +353,7 @@ msgstr "CD-R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
 msgid "Blank CD-RW Disc"
-msgstr "খালি CD-RW ডিস্ক"
+msgstr "ফাঁকা CD-RW ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "CD-RW Disc"
@@ -364,7 +365,7 @@ msgstr "DVD-ROM ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
 msgid "Blank DVD-RAM Disc"
-msgstr "খালি DVD-RAM ডিস্ক"
+msgstr "ফাঁকা DVD-RAM ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "DVD-RAM Disc"
@@ -372,7 +373,7 @@ msgstr "DVD-RAM ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
 msgid "Blank DVD-R Disc"
-msgstr "খালি DVD-R ডিস্ক"
+msgstr "ফাঁকা DVD-R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "DVD-R Disc"
@@ -380,7 +381,7 @@ msgstr "DVD-R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
 msgid "Blank DVD-RW Disc"
-msgstr "খালি DVD-RW ডিস্ক"
+msgstr "ফাঁকা DVD-RW ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "DVD-RW Disc"
@@ -388,7 +389,7 @@ msgstr "DVD-RW ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
 msgid "Blank DVD+R Disc"
-msgstr "খালি DVD+R ডিস্ক"
+msgstr "ফাঁকা DVD+R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "DVD+R Disc"
@@ -396,7 +397,7 @@ msgstr "DVD+R ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
 msgid "Blank DVD+RW Disc"
-msgstr "খালি DVD+RW ডিস্ক"
+msgstr "ফাঁকা DVD+RW ডিস্ক"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "DVD+RW Disc"
@@ -418,21 +419,21 @@ msgstr "ভলিউম"
 #: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
-msgstr "অজানা অপারেশন টাইপ %u"
+msgstr "অজানা ধরনের কর্ম %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "খোলা জি-আই-ও-চ্যানেল: %sএর জন্য কোন পাইপ তৈরি করা গেল না  "
+msgstr "খোলা GIOChannel'র ক্ষেত্রে পাইপ নির্মাণ করতে ব্যর্থ: %s"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "অজানা ধরনের কাজ %u"
+msgstr "অজানা ধরনের কর্ম %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
-msgstr "কাজ বন্ধ"
+msgstr "কর্ম বন্ধ করা হয়েছে"
 
 # পরিবর্ধন might be more apropriate, isn't it - mak
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
@@ -466,61 +467,61 @@ msgstr "কাজ বন্ধ"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "বর্জনীয় কাজ। মাইম ডাটাবেস এ ব্যবহারকারী পরিবর্তন এখন আর সমর্থিত নয়"
+msgstr "অবচিত কর্ম।  MIME ডাটাবেসে ব্যবহারকারীদের দ্বারা পরিবর্তন বর্তমানে সমর্থিত নয়।"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
-msgstr "%s-কে পড়ে কিছু বোঝা গেল না"
+msgstr "পার্স করতে ব্যর্থ: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
-msgstr "এরপরের পড়ে বোঝার ভুলগুলোকে আমল দেবো না"
+msgstr "পার্স কর্মজড়িত ত্রুটি অতিরিক্ত ত্রুটি অগ্রাহ্য করা হবে।"
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:42
 msgid "No error"
-msgstr "কোন ভুল নেই"
+msgstr "ত্রুটিবিহীন"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:43
 msgid "File not found"
-msgstr "ফাইল পাওয়া গেল না"
+msgstr "ফাইল পাওয়া যায়নি"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:44
 msgid "Generic error"
-msgstr "সাধারন ভুল"
+msgstr "সাধারণ ত্রুটি"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: ../libgnomevfs/gnome-vfs-result.c:45
 msgid "Internal error"
-msgstr "অভ্যন্তরীন ভুল"
+msgstr "অভ্যন্তরীণ ত্রুটি"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: ../libgnomevfs/gnome-vfs-result.c:46
 msgid "Invalid parameters"
-msgstr "বেঠিক প্যারামিটার"
+msgstr "অবৈধ পরামিতি"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "Unsupported operation"
-msgstr "অসমর্থিত কাজ"
+msgstr "অসমর্থিত কর্ম"
 
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "I/O error"
-msgstr "I/O ভুল"
+msgstr "I/O-জড়িত ত্রুটি"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Data corrupted"
-msgstr "তথ্য নষ্ট হয়ে গেছে"
+msgstr "ক্ষতিগ্রস্ত তথ্য"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Format not valid"
-msgstr "অবৈধ ফর্ম্যাট"
+msgstr "বিন্যাস বৈধ নয়"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:51
@@ -530,47 +531,47 @@ msgstr "ত্রুটিপূর্ণ ফাইল-হ্যান্ডল"
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "File too big"
-msgstr "ফাইলটা বেশি বড়"
+msgstr "ফাইলের মাপ অত্যাধিক বড়"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "No space left on device"
-msgstr "ডিভাইসে আর জায়গা নেই"
+msgstr "ডিভাইসে অবশিষ্ট ফাঁকা স্থান নেই"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
-msgstr "ফাইল সিস্টেমে লেখা যাবে না"
+msgstr "শুধুমাত্র পাঠযোগ্য ফাইল-সিস্টেম"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Invalid URI"
-msgstr "বেঠিক URI"
+msgstr "অবৈধ URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
-msgstr "ফাইল খোলা নেই"
+msgstr "ফাইল খোলা নয়"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "অবৈধ খোলা অবস্থা"
+msgstr "খোলা অবস্থা বৈধ নয়"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "Access denied"
-msgstr "ঢুকতে দেওয়া হল না"
+msgstr "ব্যবহারের অধিকার প্রত্যাখ্যাত"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
-msgstr "অনেক বেশি ফাইল খোলা আছে"
+msgstr "অত্যাধিক সংখ্যক ফাইল খোলা অবস্থায় রয়েছে"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "End of file"
-msgstr "ফাইলের শেষ"
+msgstr "ফাইলের সমাপ্তি"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:61
@@ -580,62 +581,62 @@ msgstr "ডিরেক্টরি নয়"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation in progress"
-msgstr "কাজ চলছে"
+msgstr "কর্ম চলমান"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation interrupted"
-msgstr "কাজে বাধা দেওয়া হয়েছে"
+msgstr "কর্মে ব্যাঘাত"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "File exists"
-msgstr "ফাইলটা আগে থেকেই আছে"
+msgstr "ফাইল বর্তমানে উপস্থিত"
 
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
-msgstr "আবর্তনকারি  সংযোজক পাওয়া গেছে"
+msgstr "লুপ লিঙ্ক সনাক্ত করা হয়েছে"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation not permitted"
-msgstr "কাজের জন্য  অনুমতি নেই"
+msgstr "কর্ম সঞ্চালনের অনুমতি নেই"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Is a directory"
-msgstr "একটা ডিরেক্টরি"
+msgstr "একটি ডিরেক্টরি"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Not enough memory"
-msgstr "যথেষ্ট মেমরী নেই"
+msgstr "পর্যাপ্ত মেমরি উপস্থিত নেই"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
-msgstr "হোস্ট পাওয়া গেল না"
+msgstr "হোস্ট পাওয়া যায়নি"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "হোস্ট নাম বেঠিক"
+msgstr "হোস্ট-নেম বৈধ নয়"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "হোস্টের কোন ঠিকানা নেই"
+msgstr "হোস্টের ঠিকানা অনুপস্থিত"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Login failed"
-msgstr "লগ-ইন করা গেল না"
+msgstr "লগ-ইন ব্যর্থ"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Operation cancelled"
-msgstr "কাজ বাতিল হয়ে গেছে"
+msgstr "কর্ম বাতিল"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:74
@@ -650,86 +651,86 @@ msgstr "ডিরেক্টরি ফাঁকা নয়"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
-msgstr "অনেক বেশি সংযোজক"
+msgstr "অত্যাধিক লিঙ্ক"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
-msgstr "ফাইল-সিস্টেমে লেখা যাবে না"
+msgstr "শুধুমাত্র পাঠযোগ্য ফাইল-সিস্টেম"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Not on the same file system"
-msgstr "একই ফাইল-সিস্টেমে নেই"
+msgstr "এক ফাইল-সিস্টেম উপস্থিত নয়"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Name too long"
-msgstr "বড্ড বড় নাম"
+msgstr "নাম অত্যাধিক লম্বা"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Service not available"
-msgstr "সেবা পাওয়া যাবে না"
+msgstr "পরিসেবা উপলব্ধ নয়"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Request obsoletes service's data"
-msgstr "আবেদন সেবার তথ্য বাতিল করবে"
+msgstr "অনুরোধের ফলে পরিসেবার তথ্য অবচিত হবে"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Protocol error"
-msgstr "প্রটোকলে ভুল"
+msgstr "প্রটোকল সংক্রান্ত সমস্যা"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Could not find master browser"
-msgstr "মূল ব্রাওসার খঁুজে পাওয়া গেল না"
+msgstr "প্রধান ব্রাউজার পাওয়া যায়নি"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "No default action associated"
-msgstr "কোন ডিফল্ট কার্য ঠিক করা নেই"
+msgstr "ডিফল্ট কর্ম সংযুক্ত নয়"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
-msgstr "ইউ-আর-এল স্কীমের জন্য  কোন হ্যানড্লার নেই"
+msgstr "URL স্কিমের জন্য হ্যান্ডলার অনুপস্থিত"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Error parsing command line"
-msgstr "কমান্ড লাইন বোঝা গেল না"
+msgstr "কমান্ড-লাইন পার্স করতে ব্যর্থ"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Error launching command"
-msgstr "কমান্ড চালানো গেল না"
+msgstr "কমান্ড আরম্ভ করতে ব্যর্থ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
-msgstr "টাইম-আউট পৌঁছেছে"
+msgstr "সময়সীমা অতিক্রান্ত"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "Nameserver error"
-msgstr "নামসার্ভার সমস্যা"
+msgstr "নেম-সার্ভার সংক্রান্ত সমস্যা"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
-msgstr "সম্পদ লক করা আছে"
+msgstr "রিসোর্স লক করা অবস্থায়"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
-msgstr "ফাংশন ডাকা বর্জনীয়"
+msgstr "ফাংশান কল অবচিত"
 
 #: ../libgnomevfs/gnome-vfs-result.c:214
 msgid "Unknown error"
-msgstr "অজানা ভুল"
+msgstr "অজানা ত্রুটি"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
@@ -741,22 +742,22 @@ msgstr[1] "%u বাইট"
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
-msgstr "%.1f কে-বি"
+msgstr "%.1f কিলোবাইট"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f এম-বি"
+msgstr "%.1f মেগাবাইট"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f জি-বি"
+msgstr "%.1f গিগাবাইট"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
-msgstr "বেঠিক ইউনিকোড"
+msgstr " (অবৈধ Unicode)"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
@@ -785,15 +786,15 @@ msgstr "CD-R/DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
-msgstr "সিডি-আর/ডিভিডি-আরএএম"
+msgstr "CD-R/DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
-msgstr "সিডি-আর/ডিভিডি-আর"
+msgstr "CD-R/DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
-msgstr "সিডি-আর/ডিভিডি-আরডব্লিউ"
+msgstr "CD-R/DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
@@ -801,15 +802,15 @@ msgstr "CD-RW/DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
-msgstr "সিডি-আরডব্লিউ/ডিভিডি-আরএএম"
+msgstr "CD-RW/DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
-msgstr "সিডি-আরডব্লিউ/ডিভিডি-আর"
+msgstr "CD-RW/DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
-msgstr "সিডি-আরডব্লিই/ডিভিডি-আরডব্লিউ"
+msgstr "CD-RW/DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
@@ -821,24 +822,24 @@ msgstr "USB ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
-msgstr "আই.ই.ই.ই.১৩৯৪ ড্রাইভ"
+msgstr "IEEE1394 ড্রাইভ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
-msgstr "সিএফ"
+msgstr "CF"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
-msgstr "এসডি/এমএমসি"
+msgstr "SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
-msgstr "মেমরি স্টিক্‌"
+msgstr "মেমরি স্টিক"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
-msgstr "স্মার্ট মিডিয়া"
+msgstr "Smart Media"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
@@ -846,15 +847,15 @@ msgstr "ক্যামেরা"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
-msgstr "ডিভিডি"
+msgstr "DVD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
-msgstr "রুট ভলিউম"
+msgstr "Root ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
-msgstr "অডিও সিডি"
+msgstr "অডিও CD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
@@ -866,94 +867,86 @@ msgstr "নেটওয়ার্ক সার্ভার"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:181
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "ফ্লপি ড্রাইভ মাউন্ট করা গেল না। সম্ভবত ড্রাইভে কোন ডিস্ক নেই।"
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ। সম্ভবত ড্রাইভের মধ্যে ফ্লপি অনুপস্থিত।"
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:185
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "ভলিউম মাউন্ট করা গেল না। সম্ভবত ডিভাইসে কোন মিডিয়া নেই।"
+msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ডিভাইসের মধ্যে কোনো মিডিয়া উপস্থিত নেই।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:191
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"ফ্লপি ড্রাইভ মাউন্ট করা গেল না। সম্ভবত ফ্লপির ফরম্যাট এমন যে সেটিকে মাউন্ট করা যাবে "
-"না। "
+msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ। সম্ভবত ফ্লপির বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:195
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr ""
+msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। এনক্রিপ্ট করা ড্রাইভের ক্ষেত্রে সম্ভবত ভুল পাসওয়ার্ড অথবা কি প্রয়োগ করা হয়েছে।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"নির্বাচিত ভলিউম মাউন্ট করা গেল না। সম্ভবত ভলিউম ফরম্যাট এমন যে সেটিকে মাউন্ট করা "
-"যাবে না। "
+msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ভলিউমের বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:203
 msgid "Unable to mount the selected floppy drive."
-msgstr "নির্বাচিত ফ্লপি ড্রাইভকে মাউন্ট করা গেল না।"
+msgstr "নির্বাচিত ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:205
 msgid "Unable to mount the selected volume."
-msgstr "নির্বাচিত ভলিউমকে মাউন্ট করা গেল না।"
+msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:218
-#, fuzzy
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr ""
-"নির্বাচিত ভলিউম মাউন্ট করা গেল না। সম্ভবত ভলিউম ফরম্যাট এমন যে সেটিকে মাউন্ট করা "
-"যাবে না। "
+msgstr "নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ। এক অথবা অধিক প্রোগ্রামের দ্বারা এই ভলিউমটি ব্যবহৃত হচ্ছে।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid "Unable to unmount the selected volume."
-msgstr "নির্বাচিত ভলিউমকে আনমাউন্ট করা গেল না।"
+msgstr "নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:387
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr ""
+msgstr "চাইল্ড প্রসেস %d থেকে তথ্য পড়তে ব্যর্থ (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:431
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "pty'র মধ্যে মাউন্ট কর্ম সঞ্চালনে ব্যর্থ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:476
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr ""
+msgstr "চাইল্ড প্রসেস থেকে select() দ্বারা তথ্য পড়তে অপ্রত্যাশিত সমস্যা (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:530
 msgid "Couldn't send password to mount process."
-msgstr ""
+msgstr "মাউন্ট কর্মের জন্য পাসওয়ার্ড প্রেরণ করতে ব্যর্থ।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:569
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr ""
+msgstr "waitpid()'র ক্ষেত্রে অপ্রত্যাশিত সমস্যা (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:679
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:765
 msgid "Failed to start command"
-msgstr "কমান্ড চালু করা গেল না"
+msgstr "কমান্ড আরম্ভ করতে ব্যর্থ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:752
 msgid "Unable to eject media"
-msgstr "মিডিয়াকে বের করে দেওয়া গেল না"
+msgstr "মিডিয়া বের করতে ব্যর্থ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
 msgid "Unable to unmount connected server"
-msgstr "সার্ভারের সঙ্গে সংযোগ বিচ্ছিন্ন করা গেল না"
+msgstr "সংযুক্ত সার্ভার আন-মাউন্ট করতে ব্যর্থ"
 
 #: ../modules/computer-method.c:542
 msgid "Network"
@@ -961,11 +954,11 @@ msgstr "নেটওয়ার্ক"
 
 #: ../modules/computer-method.c:560
 msgid "Home"
-msgstr "ব্যক্তিগত ফোল্ডার (হোম)"
+msgstr "ব্যক্তিগত ফোল্ডার"
 
 #: ../modules/computer-method.c:578
 msgid "Filesystem"
-msgstr "ফাইলসিস্টেম"
+msgstr "ফাইল-সিস্টেম"
 
 #: ../modules/file-method.c:491
 #, c-format
@@ -974,12 +967,12 @@ msgstr "অজানা GnomeVFSSeekPosition %d"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "উইন্ডোজ নেটওয়ার্ক"
+msgstr "Windows নেটওয়ার্ক"
 
 #: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "দূরবর্তী কম্পিউটারের (%s) পরিচয় অজানা"
+msgstr "দূরবর্তী কম্পিউটারের (%s) পরিচিতি অজ্ঞাত।"
 
 #: ../modules/sftp-method.c:1347
 #, c-format
@@ -989,14 +982,13 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"এরকমটি ঘটে যখন আপনি কোন একটি কম্পিউটারে প্রথম লগ-ইন করেন।\n"
+"প্রথমবার কম্পিউটারে লগ-ইন করার সময় এই রকম হয়ে থাকে।\n"
 "\n"
-"দূরবর্তী কম্পিউটার থেকে পাঠানো পরিচয় হচ্ছে %s. আপনি যদি প্রকৃত নিশ্চিত হন যে "
-"চালিয়ে যাওয়া নিরাপদ,তবে সিস্টেম এডমিনস্ট্রেটর এর সাথে যোগাযোগ করুন।"
+"দূরবর্তী কম্পিউটার দ্বারা প্রেরিত পরিচিতি হল %s। এগিয়ে চলার পূর্বে সম্পূর্ণরূপে নিশ্চিত হতে সিস্টেম অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন।"
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
-msgstr "যাইহোক লগ-ইন করো"
+msgstr "তথাপি লগ-ইন করা হবে"
 
 #: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
@@ -1006,35 +998,33 @@ msgstr "লগ-ইন বাতিল"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "%s-এ কোন সঠিক বিন্যাস ফাইল খুঁজে পাওয়া গেল না\n"
+msgstr "%s'এ বৈধ বৈশিষ্ট্যসহ ফাইল পাওয়া যায়নি\n"
 
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"%s এনভায়রনমেন্ট ভ্যারিএবেল (Environment Variable) ব্যবহার করে অন্য একটা জায়গাকে "
-"নির্দেশ করুন।\n"
+msgstr "%s এনভায়রনমেন্ট ভেরিয়েবল দ্বারা একটি ভিন্ন অবস্থান নির্ধারণ করুন।\n"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "সাধারন ফাইল মনিকার কারখানা"
+msgstr "Standard Moniker ফ্যাক্টরি"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr "ফাইল মনিকারএক্সটেন্ডার"
+msgstr "ফাইল MonikerExtender"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "সাধারন গ্নোম-ভি-এফ-এস্ মনিকার"
+msgstr "সাধারণ Gnome VFS moniker"
 
 #: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "সাধারন ফাইল মনিকার"
+msgstr "সাধারণ ফাইল moniker"
 
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr ""
+msgstr "আপনার ব্যবহৃত HTTP Proxy'র ক্ষেত্রে লগ-ইন করা আবশ্যক।\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1042,28 +1032,30 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
+"\"%s\" ব্যবহারের জন্য লগ-ইন করা আবশ্যক।\n"
+"%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr ""
+msgstr "আপনার পাসওয়ার্ড বিনা এনক্রিপশনে প্রেরিত হবে।"
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr ""
+msgstr "আপনার পাসওয়ার্ড এনক্রিপশনসহ প্রেরিত হবে।"
 
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr ""
+msgstr "%s ডোমেইন %s ব্যবহারের জন্য লগ-ইন করা আবশ্যক\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr ""
+msgstr "%s ব্যবহারের জন্য লগ-ইন করা আবশ্যক\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "ডিফল্ট কম্পোনেন্ট প্রদর্শক অ্যাপ্লিকেশন"
+msgstr "কম্পোনেন্ট প্রদর্শনের ডিফল্ট অ্যাপ্লিকেশন"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -1071,7 +1063,7 @@ msgstr "ডিফল্ট টার্মিনাল অ্যাপ্লি�
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "ডিফল্ট টার্মিনাল-এর জন্য Exec আর্গুমেন্ট"
+msgstr "ডিফল্ট টার্মিনালের জন্য exec আর্গুমেন্ট"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1079,289 +1071,262 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
-"ফাইল প্রদর্শনের জন্য অ্যাপলিকেশনটির একটি কম্পোনেন্ট প্রয়েজন। পরামিতি %s ফাইলের URI "
-"দ্বারা পরিবর্তিত হবে, পরামিতি %c পরিবর্তিত হবে কম্পোনেন্টের IID দিয়ে।"
+msgstr "আবশ্যকরূপে কোনো কম্পোনেন্ট সহযোগে প্রদর্শনের উদ্দেশ্যে চিহ্নিত ফাইল প্রদর্শনের জন্য ব্যবহৃত অ্যাপ্লিকেশন। %s পরামিতির দ্বারা ফাইলের URI উল্লিখিত হবে ও পরামিতি %c দ্বারা কম্পোনেন্টের IID নির্দিষ্ট করা হবে।"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"যেসব অ্যাপ্লিকেশনের জন্য টার্মিনাল প্রয়োজন সেগুলোর জন্য ডিফল্ট টার্মিনাল অ্যাপলিকেশন। "
+msgstr "আবশ্যকরূপে টার্মিনাল প্রয়োগকারী অ্যাপ্লিকেশনগুলির দ্বারা ব্যবহারযোগ্য ডিফল্ট টার্মিনাল।"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "ডিফল্ট টার্মিনাল-এর জন্য যে Exec আর্গুমেন্ট ব্যবহৃত হবে"
+msgstr "ডিফল্ট টার্মিনাল অ্যাপ্লিকেশনের জন্য ব্যবহারযোগ্য exec আর্গুমেন্ট।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "কমান্ডটি টার্মিনালে চালাও"
+msgstr "টার্মিনালে কমান্ড চালানো হবে"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"aim\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"aim\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"callto\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"callto\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"ghelp\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"ghelp\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"h323\" URL হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"h323\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"http\" URL হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"http\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"https\" URL হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"https\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে  \"info\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"info\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"mailto\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"mailto\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"man\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"man\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "এই কমান্ড ব্যবহৃত হবে \"trash\" ইউআরএল হ্যান্ডেলিংয়ের জন্য, যদি সক্রিয় থাকে।"
+msgstr "সক্রিয় করা হলে, \"trash\" URL ব্যবস্থাপনার উদ্দেশ্যে ব্যবহৃত কমান্ড।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "man ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"aim\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "callto ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"callto\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ghelp ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"ghelp\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "h323 ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"h323\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "ghelp ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"http\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "ghelp ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"https\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "info ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"info\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "mailto ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"mailto\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "man ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"man\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "trash ইউ-আর-এল প্রক্রিয়াকারক"
+msgstr "\"trash\" URL ব্যবস্থাপনার হ্যান্ডলার"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"aim\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"aim\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"callto\" URL হ্যান্ডেল করা "
-"হয় তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"callto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"ghelp\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"ghelp\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"h323\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"h323\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"http\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"http\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"https\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"https\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"info\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"info\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"mailto\" URL হ্যান্ডেল করা "
-"হয় তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"mailto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"man\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"man\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"যদি \"command\" কী তে নির্ধারিত কমান্ড ব্যবহার করে \"trash\" URL হ্যান্ডেল করা হয় "
-"তবে এর মান সত্য।"
+msgstr "\"command\" কি'র দ্বারা \"trash\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
-"যে কমান্ড ব্যবহার করে এ ধরনের URL হ্যান্ডেল করা হবে তা যদি টার্মিনালে রান করা হয় "
-"তবে এর মান সত্য।"
+msgstr "এই ধরনের URL ব্যবস্থাকারী কমান্ড টার্মিনালে চালানো হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"aim\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"aim\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"callto\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"callto\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"ghelp\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"ghelp\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"h323\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"h323\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"http\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"https\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"https\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"info\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"info\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"mailto\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"mailto\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"man\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"man\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 # my guess it would be: উল্লেখিত কমান্ড \"trash\" ইউআরএল হ্যান্ডল করবে কিনা। - mak
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "উল্লেখিত কমান্ডটি দ্বারা \"trash\" URL হ্যান্ডেল করা হবে কিনা"
+msgstr "উল্লিখিত কমান্ডের দ্বারা \"trash\" URL ব্যবস্থাপনা করা হবে কিনা"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr ""
-"DNS-SD ক্ষেত্রের কমা বিচ্ছিন্ন তালিকা দৃশ্যমান হওয়া উচিত \"network:///\" অবস্থানে।"
+msgstr "\"network:///\" location'র মধ্যে প্রদর্শনযোগ্য DNS-SD'র তালিকা, কমা চিহ্ন দ্বারা বিভাজিত"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "DNS-SD সার্ভিস খোঁজার জন্য অতিরিক্ত ক্ষেত্রে।"
+msgstr "DNS-SD পরিসেবার জন্য অতিরিক্ত ডোমেইন অনুসন্ধান করা হবে"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "কিভাবে স্থানীয় DNS-SD সার্ভিস প্রদর্শন করা হবে"
+msgstr "স্থানীয় DNS-SD পরিসেবা প্রদর্শনের প্রণালী"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "সম্ভব মান হচ্ছে \"merged\", \"separate\" and \"disabled\"।"
+msgstr "সম্ভব মান \"merged\", \"separate\" ও \"disabled\"।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "প্রক্সি সার্ভার কানেকশন অথেন্টিকেট করো"
+msgstr "প্রক্সি সার্ভারের সংযোগ অনুমোদন করা হবে"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "স্বয়ংক্রীয় প্রক্সি কনফিগারেশন ইউ-আর-এল"
+msgstr "স্বয়ংক্রিয় প্রক্সি কনফিগারেশনের URL"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"ইন্টারনেটের মধ্য দিয়ে এইচ-টি-টি-পি যোগাযোগ স্থাপন করার সময় প্রক্সি সেটিং সক্রীয় করে"
+msgstr "ইন্টারনেটের মাধ্যমে HTTP ব্যবহারের সময় প্রক্সি সংক্রান্ত বৈশিষ্ট্য সক্রিয় করা হবে"
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "এইচ-টি-টি-পি  প্রক্সি হোস্ট নাম"
+msgstr "FTP প্রক্সির হোস্ট-নেম"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "এফ-টি-পি  প্রক্সি পোর্ট"
+msgstr "FTP প্রক্সি পোর্ট"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "এইচ-টি-টি-পি  প্রক্সি হোস্ট নাম"
+msgstr "HTTP প্রক্সি হোস্ট-নেম"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "এইচ-টি-টি-পি  প্রক্সি পাসওয়ার্ড"
+msgstr "HTTP প্রক্সি পাসওয়ার্ড"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr "এইচ-টি-টি-পি  প্রক্সি পোর্ট"
+msgstr "HTTP প্রক্সি পোর্ট"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "এইচ-টি-টি-পি  প্রক্সি ব্যবহারকারী নাম"
+msgstr "HTTP প্রক্সি ব্যবহারকারীর নাম"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -1369,19 +1334,18 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"যদি সত্য থাকে, প্রক্সি সার্ভার সংযোগে পরিচয় প্রমাণ প্রক্রিয়ার প্রয়োজন হবে। "
-"ব্যবহারকারীর নাম/পাসওয়ার্ড কম্বো উল্লেখিত হবে \"/system/http_proxy/"
-"authentication_user\" এবং \"/system/http_proxy/authentication_password\"."
+"মান true (সত্য) হলে প্রক্সি সার্ভারের সাথে সংযোগের জন্য অনুমোদন আবশ্যক। ব্যবহারকারীর নাম/পাসওয়ার্ড জুটি \"/system/http_proxy/"
+"authentication_user\" ও \"/system/http_proxy/authentication_password\" দ্বারা ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "যে হোস্টের জন্য প্রক্সি ব্যবহৃত হবে না"
+msgstr "প্রক্সি-বিহীন হোস্ট"
 
 # C
 # :-) "C" for what - mak
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "HTTP প্রক্সি ব্যবহারের পরিচয় প্রমাণ প্রক্রিয়ার পাসওয়ার্ড।"
+msgstr "HTTP প্রক্সির ক্ষেত্রে অনুমোদনের জন্য প্রযোজ্য পাসওয়ার্ড"
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1389,7 +1353,7 @@ msgstr "প্রক্সি কনফিগারেশন মোড"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "SOCKS প্রক্সি হোস্ট নাম"
+msgstr "SOCKS প্রক্সি হোস্ট-নেম"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
@@ -1397,63 +1361,59 @@ msgstr "SOCKS প্রক্সি পোর্ট"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "নিরাপদ এইচ-টি-টি-পি প্রক্সি হোস্ট নাম"
+msgstr "নিরাপদ HTTP প্রক্সি হোস্ট-নেম"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "নিরাপদ এইচ-টি-টি-পি প্রক্সি পোর্ট"
+msgstr "নিরাপদ HTTP প্রক্সি পোর্ট"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"প্রক্সি কনফিগারেশন মোড নির্বাচন করুন। সমর্থিত মনা হচ্ছে  \"none\", \"manual\", "
-"\"auto\"।"
+"প্রক্সি কনফিগারেশন মোড নির্বাচন করুন। সমর্থিত মান হল \"none\", \"manual"
+"\", \"auto\"।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "যে মেশিনের মধ্য দিয়ে এফ-টি-পি প্রক্সি করা হবে"
+msgstr "FTP প্রক্সির জন্য ব্যবহারযোগ্য মেশিনের নাম।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "যে মেশিনের মধ্য দিয়ে এইচ-টি-টি-পি প্রক্সি করা হবে"
+msgstr "HTTP প্রক্সির জন্য ব্যবহারযোগ্য মেশিনের নাম।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "যে মেশিনের মধ্য দিয়ে নিরাপদ এইচ-টি-টি-পি প্রক্সি করা হবে"
+msgstr "নিরাপদ HTTP প্রক্সির জন্য ব্যবহারযোগ্য মেশিনের নাম।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "যে মেশিনের মধ্য দিয়ে সক্স প্রক্সি করা হবে"
+msgstr "socks প্রক্সির জন্য ব্যবহারযোগ্য মেশিনের নাম।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"মেশিন উল্লেখিত \"/system/http_proxy/host\" পোর্ট যার মধ্য দিয়ে প্রক্সি করা হবে।"
+msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/http_proxy/host\" দ্বারা ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"মেশিন উল্লেখিত \"/system/proxy/ftp_host\" পোর্ট যার মধ্য দিয়ে প্রক্সি করা হবে।"
+msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/ftp_host\" দ্বারা ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"মেশিন উল্লেখিত  \"/system/proxy/secure_host\" পোর্ট যার মধ্য দিয়ে প্রক্সি করা হবে।"
+msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/secure_host\" দ্বারা ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"মেশিন উল্লেখিত \"/system/proxy/socks_host\" পোর্ট যার মধ্য দিয়ে প্রক্সি করা হবে।"
+msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/socks_host\" দ্বারা ব্যাখ্যা করা হয়।"
 
 # OMG, it's huge.......guess its correct. - mak
 #: ../schemas/system_http_proxy.schemas.in.h:27
@@ -1462,199 +1422,28 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"এই কী, হোস্ট তালিকা ধারণ করে যারা প্রক্সি না হয়ে সরাসরি সংযুক্ত (যদি ইহা সক্রিয় "
-"থাকে)। মান হতে পারে হোস্টনাম, ক্ষেত্র (যা *.foo.com ধরণের ইনিসিয়াল ওয়াইল্ডকার্ড "
-"ব্যবহার করে), আইপি হোস্ট ঠিকানা (IPv4 এবং IPv6 উভয় ধরনের) এবং নেটমাস্ক সহ "
-"(১৯২.১৬৮.০.০/২৪ জাতীয়) নেটওয়ার্ক ঠিকানা।"
+msgstr "প্রক্সির (যদি সক্রিয়) পরিবর্তে সরাসরি সংযোগকারী হোস্টের তালিকা এই কি দ্বারা উল্লিখিত হয়েছে। হোস্ট-নেম, ডোমেইন (প্রারম্ভিক ওয়াইল্ডকার্ডসহ যেমন *.foo.com), IP হোস্ট ঠিকানা (IPv4 ও IPv6) ও নেটমাস্কসহ নেটওয়ার্ক ঠিকানার (যেমন 192.168.0.0/24) মান এই ক্ষেত্রে অন্তর্ভুক্ত করা যাবে।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "যে ইউ-আর-এল এইচ-টি-টি-পি প্রক্সি সম্বন্ধীয় মান সমূহ যোগান দেয়"
+msgstr "প্রক্সি কনফিগার করার জন্য ব্যবহৃত মান প্রস্তুতকারী URL।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr "এইচ-টি-টি-পি প্রক্সি ব্যবহার করো"
+msgstr "HTTP প্রক্সি ব্যবহার করা হবে"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "এইচ-টি-টি-পি প্রক্সি ব্যবহার করার সময় যে ব্যবহারকারী নাম ব্যবহৃত হবে"
+msgstr "HTTP প্রক্সির ক্ষেত্রে অনুমোদনের জন্য প্রযোজ্য ব্যবহারকারীর নাম।"
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr "এস-এম-বি ওয়ার্কগ্রুপ"
+msgstr "SMB ওয়ার্ক-গ্রুপ"
 
 #: ../schemas/system_smb.schemas.in.h:2
 msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr ""
-"উইন্ডোজ নেটওয়ার্কিং ওয়ার্কগ্রুপ বা ক্ষেত্র ব্যবহারকারী যার অংশ। নতুন ওয়ার্কগ্রুপ এর "
-"প্রভাবের জন্য ব্যবহারকারীকে লগ-আউট করে আবার লগ-ইন করতে হতে পারে।"
+msgstr "ব্যবহারকারী যে Windows নেটওয়ার্কিং ওয়ার্কগ্রুপ অথবা ডোমেইনের অংশ। নতুন ওয়ার্কগ্রুপ সম্পূর্ণরূপে সক্রিয় করার জন্য ব্যবহারকারীকে সম্ভবত লগ-আউট করে পুনরায় লগ-ইন করতে হবে।"
 
-#~ msgid "Display SCSI drives"
-#~ msgstr "স্কাজি ড্রাইভ প্রদর্শন করো"
-
-#~ msgid "Display SCSI optical drives"
-#~ msgstr "স্কাজি অপটিক্যাল ড্রাইভ প্রদর্শন করো"
-
-#~ msgid "Display drives with removable media"
-#~ msgstr "এমন ড্রাইভ প্রদর্শন কর, যার মিডিয়া সরানো যায়"
-
-#~ msgid "Display external drives"
-#~ msgstr "বহিস্থ ড্রাইভ প্রদর্শন করো"
-
-#~ msgid "Display internal hard drives"
-#~ msgstr "অভ্যন্তরীন ড্রাইভ প্রদর্শন করো"
-
-#~ msgid ""
-#~ "Whether to display SCSI optical drives even if /system/storage/"
-#~ "display_scsi_drives is set to FALSE."
-#~ msgstr ""
-#~ "যদিও /system/storage/display_scsi_drives মিথ্যা সেট করা থাকে, স্কাজি "
-#~ "অপটিক্যাল ড্রাইভ দেখানো হবে কিনা।"
-
-#~ msgid "Whether to display drives and mountable volumes from SCSI drives."
-#~ msgstr "স্কাজি ড্রাইভ থেকে ড্রাইভ এবং মাউন্টযোগ্য ভলিউম দেখানো হবে কিনা।"
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from drives with "
-#~ "removable media (e.g. drives where media can be inserted and removed)."
-#~ msgstr ""
-#~ "অপসারণযোগ্য মিডিয়া (যেসব ড্রাইভে মিডিয় ঢোকানো এবং অপসারণ করা যায়)  থেকে "
-#~ "ড্রাইভ এবং মাউন্টযোগ্য ভলিউম দেখানো হবে কিনা।"
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from external drives (e."
-#~ "g. drives that are hotpluggable; e.g. drives that can be attached and "
-#~ "detached while the system is running)."
-#~ msgstr ""
-#~ "বহিস্থ ড্রাইভ (হটপ্লাগ করা যায় এমন ড্রাইভ; সিস্টেম চলন্ত অবস্থায় এটাচ এবং ডিটাচ "
-#~ "করা যায় এমন ড্রাইভ) থেকে ড্রাইভ এবং মাউন্টযোগ্য ভলিউম দেখানো হবে কিনা।"
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from internal hard drives "
-#~ "(non-SCSI optical drives are always shown)."
-#~ msgstr ""
-#~ "অভ্যন্তরীন ড্রাইভ থেকে ড্রাইভ এবং মাউন্টযোগ্য ভলিউম দেখানো হবে কিনা। (স্কাজি নয় "
-#~ "এমন অপটিক্যাল ড্রাইভ সর্বদাই প্রদর্শিত হয়)"
-
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "ব্যবহারকারী যে ওয়ার্কগ্রুপ-এর সদস্য"
-
-#, fuzzy
-#~ msgid "Memory Stick Media"
-#~ msgstr "মেমরি স্টিক্‌"
-
-#, fuzzy
-#~ msgid "Windows Disk"
-#~ msgstr "উইন্ডোজ"
-
-#, fuzzy
-#~ msgid "File could not be opened: %s"
-#~ msgstr "%s-কে পড়ে কিছু বোঝা গেল না"
-
-#, fuzzy
-#~ msgid "File is empty"
-#~ msgstr "ফাইলটা আগে থেকেই আছে"
-
-#~ msgid "Applications"
-#~ msgstr "অ্যাপ্লিকেশন"
-
-#~ msgid "Cards"
-#~ msgstr "কার্ড"
-
-#~ msgid "Files"
-#~ msgstr "ফাইল সমূহ"
-
-#~ msgid "Folders"
-#~ msgstr "ফোল্ডার সমূহ"
-
-#~ msgid "Help"
-#~ msgstr "সহায়তা"
-
-#~ msgid "Hosts"
-#~ msgstr "হোস্ট সমূহ"
-
-#~ msgid "Links"
-#~ msgstr "লিংক সমূহ"
-
-#~ msgid "Mail"
-#~ msgstr "মেইল"
-
-#~ msgid "Tools"
-#~ msgstr "যন্তপাতি"
-
-#~ msgid "Windows"
-#~ msgstr "উইন্ডোজ"
-
-#, fuzzy
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "HTTP ইউ-আর-এল সামলাও"
-
-#, fuzzy
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "HTTPS ইউ-আর-এল সামলাও"
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "HTTP ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
-#~ "সত্য হিসাবে নির্ধারণ করুন"
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "HTTPS ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
-#~ "সত্য হিসাবে নির্ধারণ করুন"
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr ""
-#~ "HTTP ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
-#~ "সত্য হিসাবে নির্ধারণ করুন"
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr ""
-#~ "HTTPS ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
-#~ "সত্য হিসাবে নির্ধারণ করুন"
-
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS ইউ-আর-এল হ্যান্ডলার"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man ইউ-আর-এল হ্যান্ডলার "
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "info URL handler"
-#~ msgstr "info ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "man URL handler"
-#~ msgstr "man ইউ-আর-এল হ্যান্ডলার "
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash ইউ-আর-এল হ্যান্ডলার"
-
-#~ msgid "1 byte"
-#~ msgstr "১ বাইট"
