@@ -11,24 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-03 07:32+0200\n"
-"PO-Revision-Date: 2006-07-03 16:28+0530\n"
+"POT-Creation-Date: 2006-07-19 07:36+0200\n"
+"PO-Revision-Date: 2006-07-19 11:19+0530\n"
 "Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "X-Generator: KBabel 1.9.1\n"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr " ବନୋବୋକୁ ପ୍ରାରମ୍ଭ କରିହେଲା ନାହିଁ"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "ନୋମ୍ ଭି.ଏଫ୍.ଏସ୍. ପ୍ରାରମ୍ଭ କରିହେଲା ନାହିଁ"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -36,25 +28,30 @@ msgstr "ଆଇ.ଏସ୍.ଓ. 9660 ଅଂଶ"
 
 # libgnomevfs/gnome-vfs-configuration.c:223
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
+#, c-format
 msgid "%s:%u contains NUL characters."
 msgstr "%s:%uଟି ନଲ ଅକ୍ଷର ମାନଙ୍କୁ ଧାରଣ କରିଅଛି।"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
+#, c-format
 msgid "%s:%u contains no method name."
 msgstr "%s:%uଟି କୌଣସି ପ୍ରଣାଳୀର ନାମ ଧାରଣ କରିନାହିଁ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
+#, c-format
 msgid "%s:%u has no options endmarker."
 msgstr "%s:%uରେ ବିକଲ୍ପ ପାଇଁ କୌଣସି ଶେଷ ଚିହ୍ନ ନାହିଁ।"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
+#, c-format
 msgid "%s:%u has unknown options %s."
 msgstr "%s:%uରେ ଅଜଣା ବିକଲ୍ପ %s ଅଛି।"
 
 # libgnomevfs/gnome-vfs-configuration.c:269
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
+#, c-format
 msgid "%s:%u contains no module name."
 msgstr "%s:%uଟି କୌଣସି ଏକକାଂଶର ନାମ ଧାରଣ କରିନାହିଁ।"
 
@@ -96,126 +93,141 @@ msgid "Hardware Device Volume"
 msgstr "ହାର୍ଡୱେର ଯନ୍ତ୍ର ଅଂଶ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncFS ମାତ୍ରା"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "ଏକ୍ସ୍ଟ2 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "ଏକ୍ସ୍ଟ3 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
+msgstr "MSDOS ମାତ୍ରା"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
 msgstr "ଏମଏସଡସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "ମାକଓଏସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr " ସି.ଡି.ରମ  ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "ଏଚଏସଏଫଏସ ସି.ଡି.ରମ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "ଜେ.ଏଫ୍.ଏସ୍. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "ୱିଣ୍ଡୋଜ ଏନ୍ଟି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "ତନ୍ତ୍ର ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "ସ୍ମ୍ରୁତି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "ମିନିକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "ଏନ.ଏଫ.ଏସ. ଜାଲକ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "ନେଟୱେରର ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "ରୈଜରଏଫଏସ4 ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "ରୈଜରଏଫଏସ ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "ୱିଣ୍ଡୋଜ ସହଭାଗି ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "ସୁପରମାଉଣ୍ଟ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "ଡି.ଭି.ଡି. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "ସୋଲାରିସ/ବି.ଏସ.ଡି. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "ଯୁଡିଏଫଏସ ସୋଲାରିସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "ପିସିଏଫଏସ  ସୋଲାରିସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "ସନ ସ.ଏ.ଏମ-କ୍ଯୁ.ଏଫ.ଏସ. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "ସାମୟିକ ମାତ୍ରା"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "ଉନ୍ନତ ଡସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "ୱିଣ୍ଡୋଜ ଭିଫାଟ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "ଜେନିକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "ଏକ୍ସ.ଏଫ.ଏସ. ଲିନକ୍ସ ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "ଏକ୍ସ.ଆଇ.ଏ.ଏଫ.ଏସ. ଅଂଶ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "ସି.ଆଇ.ଏଫ.ଏସ. ଅଂଶ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "ଅଜଣା"
 
@@ -418,56 +430,56 @@ msgid "Volume"
 msgstr "ଅଂଶ"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "ଅଜଣା ଚାଳକ ପ୍ରକାର %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ଖୋଲା ଜି.ଆଇ.ଓ. ଚାନେଲ ପାଇଁ ପାଇପ୍ ସୃଷ୍ଟି କରିହେଲା ନାହିଁ: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ଅଜଣା କାମ ପ୍ରକାର %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: ../libgnomevfs/gnome-vfs-job.c:1724
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "ଚାଳନା ବନ୍ଦ ହୋଇଯାଇଛି"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -777,8 +789,19 @@ msgstr "ସମ୍ବଳଟି ଅପରିବର୍ତ୍ତନୀୟ"
 msgid "Function call deprecated"
 msgstr "ଫଳନ ଡାକରା ଅପସନ୍ଦ"
 
+# libgnomevfs/gnome-vfs-result.c:39
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "ଅବୈଧ ଫାଇଲ ନାମ"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "ଗୋଟିଏ ପ୍ରତିକାତ୍ମକ ସମ୍ପର୍କ ନୁହେଁ"
+
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "ଅଜଣା ତ୍ରୁଟି"
 
@@ -921,16 +944,16 @@ msgid "Network server"
 msgstr "ଜାଲକ ସେବକ"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ପ୍ଲପି ଡ୍ରାଇଭ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ସମ୍ଭବତଃ କି ଡ୍ରାଇଭରେ କୌଣସି ଫ୍ଳପି ନାହିଁ."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ସମ୍ଭବତଃ କି ତନ୍ତ୍ରରେ କୌଣସି ମାଧ୍ଯମ ନାହିଁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -939,7 +962,7 @@ msgstr ""
 "କରାଯାଇପାରିବ ନାହିଁ."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -947,7 +970,7 @@ msgstr ""
 "ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଯଦି ଏହା ଗୋଟିଏ ସଂଗୁପ୍ତ ଡ୍ରାଇଭ, ତେବେ ଭୁଲ ପ୍ରବେଶ ସଂକେତ ବା ଚାବି "
 "ବ୍ଯବହାର କରାଯାଇଥିଲା."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -955,70 +978,70 @@ msgstr ""
 "ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ସମ୍ଭବତଃ କି ଅଂଶ ଯେଉଁ ସଜ୍ଜିକରଣ ଶୈଳୀରେ ଅଛି ତାହା ସ୍ଥାପନ "
 "କରାଯାଇପାରିବ ନାହିଁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "ବଛା ଫ୍ଲପି ଡ୍ରାଇଭ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "ବଛା ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr "ବଛା ଅଂଶକୁ ସ୍ଥାପନ କରିବାରେ ଅସଫଳ. ଅଂଶଟି ଗୋଟିଏ ବା ଅଧିକ ପ୍ରୟୋଗ ଦ୍ବାରା ବ୍ଯବହାର କରାଯାଉଛି."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "ବଛା ଅଂଶକୁ କାଢ଼ିବାରେ ଅସଫଳ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "ନିର୍ଭରକ ପ୍ରକ୍ରିୟାଠାରୁ ତଥ୍ଯ ପଢ଼ିହେଲା ନାହିଁ %d (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "ସ୍ଥାପନ ପ୍ରକ୍ରିୟାକୁ ପି.ଟି.ୱାଇ.ରେ ଚଳାଇହେଲା ନାହିଁ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "ନିର୍ଭରକ ପ୍ରକ୍ରିୟାଠାରୁ ତଥ୍ଯ ପଢ଼ିବାରେ select()ରେ ଅପ୍ରତ୍ଯାଶିତ ତ୍ରୁଟି (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "ସ୍ଥାପନ ପ୍ରକ୍ରିୟାକୁ ପ୍ରବେଶ ସଂକେତ ପଠାଇହେଲା ନାହିଁ."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "waitpid()ରେ ଅପ୍ରତ୍ଯାଶିତ ତ୍ରୁଟି (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "ନିର୍ଦ୍ଦେଶ ପ୍ରାରମ୍ଭ କରିବାରେ ଅସଫଳ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "ସଂଚାରମାଧ୍ଯମକୁ ନିଷ୍କାସିତ କରିବାରେ ଅସଫଳ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "ସଂଯୋଗ କରାଯାଇଥିବା ସେବକକୁ କାଢ଼ିବାରେ ଅସଫଳ"
 
-#: ../modules/computer-method.c:542
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "ଜାଲକ"
 
-#: ../modules/computer-method.c:560
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "ମୂଳ ସ୍ଥାନ"
 
 # libgnomevfs/gnome-vfs-result.c:57
-#: ../modules/computer-method.c:578
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "ଫାଇଲ ତନ୍ତ୍ର"
 
@@ -1070,26 +1093,6 @@ msgstr "%sଠାରେ କୌଣସି ବୈଧ ବିନ୍ଯାସ ଫାଇ
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "%s ପରିବେଶ ଚଳ ଦ୍ବାରା ଗୋଟିଏ ଅନ୍ଯ ସ୍ଥାନ ଉଲ୍ଲେଖିତ କରନ୍ତୁ.\n"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "ମାନକ ନାମ କାରଖାନା"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "ଫାଇଲ ନାମବିସ୍ତାରକ"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "ସାଧାରଣ ନୋମ୍ ଭି.ଏଫ.ଏସ୍ ନାମ"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "ସାଧାରଣ ଫାଇଲ ନାମ"
 
 #: ../programs/authentication.c:106
 #, c-format
