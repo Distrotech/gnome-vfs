@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-03 07:32+0200\n"
-"PO-Revision-Date: 2006-07-18 18:40+0530\n"
+"POT-Creation-Date: 2006-07-19 00:54+0200\n"
+"PO-Revision-Date: 2006-07-19 09:38+0530\n"
 "Last-Translator: Runa Bhattacharjee <runabh@gmail.com>\n"
 "Language-Team: Bangla (INDIA) <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,14 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.9.1\n"
-
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "Bonobo আরম্ভ করতে ব্যর্থ"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "gnome vfs আরম্ভ করতে ব্যর্থ"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -95,125 +87,140 @@ msgid "Hardware Device Volume"
 msgstr "হার্ডওয়্যার ডিভাইস ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncFS ভলিউম"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "MSDOS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "BSD ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "MacOS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "CDROM ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "JFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "Windows NT ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "সিস্টেম ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "মেমরি ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "Minix ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "NFS নেটওয়ার্ক ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "Netware ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "Windows Shared ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "SuperMount ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "DVD ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "অস্থায়ী ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "Xenix ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "XFS Linux ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "XIAFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "CIFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -416,54 +423,54 @@ msgstr "%s অপসারণযোগ্য ভলিউম"
 msgid "Volume"
 msgstr "ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "অজানা ধরনের কর্ম %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "খোলা GIOChannel'র ক্ষেত্রে পাইপ নির্মাণ করতে ব্যর্থ: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "অজানা ধরনের কর্ম %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1724
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "কর্ম বন্ধ করা হয়েছে"
 
 # পরিবর্ধন might be more apropriate, isn't it - mak
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -728,7 +735,17 @@ msgstr "রিসোর্স লক করা অবস্থায়"
 msgid "Function call deprecated"
 msgstr "ফাংশান কল অবচিত"
 
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "অবৈধ ফাইলের নাম"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "সিম্বলিক লিঙ্ক নয়"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "অজানা ত্রুটি"
 
@@ -866,97 +883,101 @@ msgid "Network server"
 msgstr "নেটওয়ার্ক সার্ভার"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ। সম্ভবত ড্রাইভের মধ্যে ফ্লপি অনুপস্থিত।"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ডিভাইসের মধ্যে কোনো মিডিয়া উপস্থিত নেই।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ। সম্ভবত ফ্লপির বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। এনক্রিপ্ট করা ড্রাইভের ক্ষেত্রে সম্ভবত ভুল পাসওয়ার্ড অথবা কি প্রয়োগ করা হয়েছে।"
+msgstr ""
+"ভলিউম মাউন্ট করতে ব্যর্থ। এনক্রিপ্ট করা ড্রাইভের ক্ষেত্রে সম্ভবত ভুল পাসওয়ার্ড অথবা কি "
+"প্রয়োগ করা হয়েছে।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ভলিউমের বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "নির্বাচিত ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ। এক অথবা অধিক প্রোগ্রামের দ্বারা এই ভলিউমটি ব্যবহৃত হচ্ছে।"
+msgstr ""
+"নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ। এক অথবা অধিক প্রোগ্রামের দ্বারা এই ভলিউমটি "
+"ব্যবহৃত হচ্ছে।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "চাইল্ড প্রসেস %d থেকে তথ্য পড়তে ব্যর্থ (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "pty'র মধ্যে মাউন্ট কর্ম সঞ্চালনে ব্যর্থ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "চাইল্ড প্রসেস থেকে select() দ্বারা তথ্য পড়তে অপ্রত্যাশিত সমস্যা (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "মাউন্ট কর্মের জন্য পাসওয়ার্ড প্রেরণ করতে ব্যর্থ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "waitpid()'র ক্ষেত্রে অপ্রত্যাশিত সমস্যা (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "কমান্ড আরম্ভ করতে ব্যর্থ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "মিডিয়া বের করতে ব্যর্থ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "সংযুক্ত সার্ভার আন-মাউন্ট করতে ব্যর্থ"
 
-#: ../modules/computer-method.c:542
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "নেটওয়ার্ক"
 
-#: ../modules/computer-method.c:560
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "ব্যক্তিগত ফোল্ডার"
 
-#: ../modules/computer-method.c:578
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "ফাইল-সিস্টেম"
 
@@ -984,7 +1005,8 @@ msgid ""
 msgstr ""
 "প্রথমবার কম্পিউটারে লগ-ইন করার সময় এই রকম হয়ে থাকে।\n"
 "\n"
-"দূরবর্তী কম্পিউটার দ্বারা প্রেরিত পরিচিতি হল %s। এগিয়ে চলার পূর্বে সম্পূর্ণরূপে নিশ্চিত হতে সিস্টেম অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন।"
+"দূরবর্তী কম্পিউটার দ্বারা প্রেরিত পরিচিতি হল %s। এগিয়ে চলার পূর্বে সম্পূর্ণরূপে নিশ্চিত "
+"হতে সিস্টেম অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন।"
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
@@ -1004,22 +1026,6 @@ msgstr "%s'এ বৈধ বৈশিষ্ট্যসহ ফাইল পা�
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "%s এনভায়রনমেন্ট ভেরিয়েবল দ্বারা একটি ভিন্ন অবস্থান নির্ধারণ করুন।\n"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "Standard Moniker ফ্যাক্টরি"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "ফাইল MonikerExtender"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "সাধারণ Gnome VFS moniker"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "সাধারণ ফাইল moniker"
 
 #: ../programs/authentication.c:106
 #, c-format
@@ -1071,7 +1077,10 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "আবশ্যকরূপে কোনো কম্পোনেন্ট সহযোগে প্রদর্শনের উদ্দেশ্যে চিহ্নিত ফাইল প্রদর্শনের জন্য ব্যবহৃত অ্যাপ্লিকেশন। %s পরামিতির দ্বারা ফাইলের URI উল্লিখিত হবে ও পরামিতি %c দ্বারা কম্পোনেন্টের IID নির্দিষ্ট করা হবে।"
+msgstr ""
+"আবশ্যকরূপে কোনো কম্পোনেন্ট সহযোগে প্রদর্শনের উদ্দেশ্যে চিহ্নিত ফাইল প্রদর্শনের জন্য "
+"ব্যবহৃত অ্যাপ্লিকেশন। %s পরামিতির দ্বারা ফাইলের URI উল্লিখিত হবে ও পরামিতি %c "
+"দ্বারা কম্পোনেন্টের IID নির্দিষ্ট করা হবে।"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -1278,7 +1287,9 @@ msgstr "উল্লিখিত কমান্ডের দ্বারা \"t
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "\"network:///\" location'র মধ্যে প্রদর্শনযোগ্য DNS-SD'র তালিকা, কমা চিহ্ন দ্বারা বিভাজিত"
+msgstr ""
+"\"network:///\" location'র মধ্যে প্রদর্শনযোগ্য DNS-SD'র তালিকা, কমা চিহ্ন দ্বারা "
+"বিভাজিত"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1334,8 +1345,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"মান true (সত্য) হলে প্রক্সি সার্ভারের সাথে সংযোগের জন্য অনুমোদন আবশ্যক। ব্যবহারকারীর নাম/পাসওয়ার্ড জুটি \"/system/http_proxy/"
-"authentication_user\" ও \"/system/http_proxy/authentication_password\" দ্বারা ব্যাখ্যা করা হয়।"
+"মান true (সত্য) হলে প্রক্সি সার্ভারের সাথে সংযোগের জন্য অনুমোদন আবশ্যক। ব্যবহারকারীর "
+"নাম/পাসওয়ার্ড জুটি \"/system/http_proxy/authentication_user\" ও \"/system/"
+"http_proxy/authentication_password\" দ্বারা ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1372,8 +1384,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"প্রক্সি কনফিগারেশন মোড নির্বাচন করুন। সমর্থিত মান হল \"none\", \"manual"
-"\", \"auto\"।"
+"প্রক্সি কনফিগারেশন মোড নির্বাচন করুন। সমর্থিত মান হল \"none\", \"manual\", \"auto"
+"\"।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1395,25 +1407,33 @@ msgstr "socks প্রক্সির জন্য ব্যবহারযো�
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/http_proxy/host\" দ্বারা ব্যাখ্যা করা হয়।"
+msgstr ""
+"প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/http_proxy/host\" দ্বারা "
+"ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/ftp_host\" দ্বারা ব্যাখ্যা করা হয়।"
+msgstr ""
+"প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/ftp_host\" দ্বারা "
+"ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/secure_host\" দ্বারা ব্যাখ্যা করা হয়।"
+msgstr ""
+"প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/secure_host\" দ্বারা "
+"ব্যাখ্যা করা হয়।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/socks_host\" দ্বারা ব্যাখ্যা করা হয়।"
+msgstr ""
+"প্রক্সি করার উদ্দেশ্যে ব্যবহৃত মেশিনের পোর্ট \"/system/proxy/socks_host\" দ্বারা "
+"ব্যাখ্যা করা হয়।"
 
 # OMG, it's huge.......guess its correct. - mak
 #: ../schemas/system_http_proxy.schemas.in.h:27
@@ -1422,7 +1442,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "প্রক্সির (যদি সক্রিয়) পরিবর্তে সরাসরি সংযোগকারী হোস্টের তালিকা এই কি দ্বারা উল্লিখিত হয়েছে। হোস্ট-নেম, ডোমেইন (প্রারম্ভিক ওয়াইল্ডকার্ডসহ যেমন *.foo.com), IP হোস্ট ঠিকানা (IPv4 ও IPv6) ও নেটমাস্কসহ নেটওয়ার্ক ঠিকানার (যেমন 192.168.0.0/24) মান এই ক্ষেত্রে অন্তর্ভুক্ত করা যাবে।"
+msgstr ""
+"প্রক্সির (যদি সক্রিয়) পরিবর্তে সরাসরি সংযোগকারী হোস্টের তালিকা এই কি দ্বারা "
+"উল্লিখিত হয়েছে। হোস্ট-নেম, ডোমেইন (প্রারম্ভিক ওয়াইল্ডকার্ডসহ যেমন *.foo.com), IP "
+"হোস্ট ঠিকানা (IPv4 ও IPv6) ও নেটমাস্কসহ নেটওয়ার্ক ঠিকানার (যেমন 192.168.0.0/24) "
+"মান এই ক্ষেত্রে অন্তর্ভুক্ত করা যাবে।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1445,5 +1469,7 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "ব্যবহারকারী যে Windows নেটওয়ার্কিং ওয়ার্কগ্রুপ অথবা ডোমেইনের অংশ। নতুন ওয়ার্কগ্রুপ সম্পূর্ণরূপে সক্রিয় করার জন্য ব্যবহারকারীকে সম্ভবত লগ-আউট করে পুনরায় লগ-ইন করতে হবে।"
+msgstr ""
+"ব্যবহারকারী যে Windows নেটওয়ার্কিং ওয়ার্কগ্রুপ অথবা ডোমেইনের অংশ। নতুন ওয়ার্কগ্রুপ "
+"সম্পূর্ণরূপে সক্রিয় করার জন্য ব্যবহারকারীকে সম্ভবত লগ-আউট করে পুনরায় লগ-ইন করতে হবে।"
 
