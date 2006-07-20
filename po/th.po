@@ -10,22 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-23 15:55+0700\n"
-"PO-Revision-Date: 2006-05-23 16:01+0700\n"
+"POT-Creation-Date: 2006-07-20 18:03+0700\n"
+"PO-Revision-Date: 2006-07-20 18:09+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "เริ่มใช้ Bonobo ไม่สำเร็จ"
-
-#: daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "เริ่มใช้ gnome vfs ไม่สำเร็จ"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -67,151 +59,166 @@ msgstr "ไม่พบแฟ้มปรับแต่ง `%s': %s"
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d เลิกแจงต่อ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "โวลุม AFFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "โวลุมเครือข่าย AFFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "โวลุมที่ค้นพบโดยอัตโนมัติ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr "ไดรว์ซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:41
+#: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "เสียงดิจิทัลจากซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "โวลุมอุปกรณ์ฮาร์ดแวร์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "โวลุม EncFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "โวลุม Ext2 ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "โวลุม Ext3 ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "โวลุม MSDOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "โวลุม BSD"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "โวลุม MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "โวลุมซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "โวลุม Hsfs บนซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "โวลุม JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "โวลุมวินโดวส์ NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "โวลุมระบบ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "โวลุมหน่วยความจำ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "โวลุม Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "โวลุมเครือข่าย NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "โวลุม Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "โวลุม Reiser4 ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "โวลุม ReiserFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "โวลุมใช้ร่วมของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "โวลุม SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "โวลุม DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "โวลุม Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "โวลุม Udfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "โวลุม Pcfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "โวลุม SAM-QFS ของซัน"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "โวลุมชั่วคราว"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "โวลุม DOS แบบปรับปรุง"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "โวลุม VFAT ของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "โวลุม Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "โวลุม XFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "โวลุม XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "โวลุม CIFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "ไม่ทราบชนิด"
 
@@ -413,53 +420,53 @@ msgstr "โวลุมถอดเสียบ %s"
 msgid "Volume"
 msgstr "โวลุม"
 
-#: libgnomevfs/gnome-vfs-job.c:733
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "ไม่รู้จักปฏิบัติการชนิด %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1175
+#: libgnomevfs/gnome-vfs-job.c:1025 libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ไม่สามารถสร้างไปป์สำหรับเปิด GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1691
+#: libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ไม่รู้จักงานชนิด %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1724
+#: libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "หยุดปฏิบัติแล้ว"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:624
+#: libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: libgnomevfs/gnome-vfs-mime-info.c:631
-#: libgnomevfs/gnome-vfs-mime-info.c:639
+#: libgnomevfs/gnome-vfs-mime-info.c:638
 #: libgnomevfs/gnome-vfs-mime-info.c:646
-#: libgnomevfs/gnome-vfs-mime-info.c:654
-#: libgnomevfs/gnome-vfs-mime-info.c:671
+#: libgnomevfs/gnome-vfs-mime-info.c:653
+#: libgnomevfs/gnome-vfs-mime-info.c:661
 #: libgnomevfs/gnome-vfs-mime-info.c:678
 #: libgnomevfs/gnome-vfs-mime-info.c:685
 #: libgnomevfs/gnome-vfs-mime-info.c:692
-#: libgnomevfs/gnome-vfs-mime-info.c:700
+#: libgnomevfs/gnome-vfs-mime-info.c:699
 #: libgnomevfs/gnome-vfs-mime-info.c:707
+#: libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -725,7 +732,17 @@ msgstr "ทรัพยากรถูกล็อคอยู่"
 msgid "Function call deprecated"
 msgstr "ฟังก์ชันเลิกใช้แล้ว"
 
-#: libgnomevfs/gnome-vfs-result.c:214
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "ชื่อแฟ้มใช้ไม่ได้"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "ไม่ใช่ลิงก์สัญลักษณ์"
+
+#: libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
 
@@ -863,102 +880,102 @@ msgid "Network server"
 msgstr "เซิร์ฟเวอร์เครือข่าย"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:181
+#: libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "เมานท์ฟลอปปี้ไม่สำเร็จ อาจจะไม่มีแผ่นอยู่ไม่ตัวอ่าน"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:185
+#: libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "เมานท์โวลุมนี้ไม่สำเร็จ อาจจะไม่มีแผ่นอยู่ไม่ตัวอ่าน"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:191
+#: libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr "เมานท์ฟลอปปี้ไม่สำเร็จ แผ่นอาจจะใช้รูปแบบจัดเก็บที่ไม่รู้จัก"
 
 #. Probably a wrong password
-#: libgnomevfs/gnome-vfs-volume-ops.c:195
+#: libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr "ไม่สามารถเมานท์โวลุมได้ ถ้าเป็นไดรว์ที่เข้ารหัสไว้ ก็เป็นไปได้ว่ารหัสผ่านหรือกุญแจผิด"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:198
+#: libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr "เมานท์โวลุมนี้ไม่สำเร็จ แผ่นอาจจะใช้รูปแบบจัดเก็บที่ไม่รู้จัก"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:203
+#: libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "เมานท์ไดรว์ฟลอปปี้ที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:205
+#: libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "เมานท์โวลุมที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:218
+#: libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr "เลิกเมานท์โวลุมที่เลือกไม่สำเร็จ อาจมีโปรแกรมอื่นใช้งานอยู่"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:221
+#: libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "เลิกเมานท์โวลุมที่เลือกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:387
+#: libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "ไม่สามารถอ่านข้อมูลจากโพรเซสลูก %d ได้ (%s)"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:431
+#: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "ไม่สามารถเรียกโพรเซสเมานท์ใน pty ได้"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:476
+#: libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "เกิดข้อผิดพลาดกระทันหันใน select() ระหว่างอ่านข้อมูลจากโพรเซสลูก (%s)"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:530
+#: libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "ไม่สามารถส่งรหัสผ่านไปยังโพรเซสเมานท์ได้"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:569
+#: libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "เกิดข้อผิดพลาดกระทันหันใน waitpid() (%s)"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:679
-#: libgnomevfs/gnome-vfs-volume-ops.c:765
+#: libgnomevfs/gnome-vfs-volume-ops.c:669
+#: libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "เรียกใช้คำสั่งไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:752
+#: libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "ดันแผ่นออกไม่สำเร็จ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "เลิกเมานท์เซิร์ฟเวอร์ที่ต่ออยู่ไม่สำเร็จ"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:543
 msgid "Network"
 msgstr "เครือข่าย"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:561
 msgid "Home"
 msgstr "บ้าน"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "ระบบแฟ้ม"
 
-#: modules/file-method.c:483
+#: modules/file-method.c:491
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ไม่รู้จัก GnomeVFSSeekPosition %d"
@@ -1004,28 +1021,12 @@ msgstr "ไม่พบแฟ้มปรับแต่งที่ใช้ไ
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "ใช้ตัวแปรแวดล้อม %s ถ้าต้องการกำหนดเป็นตำแหน่งอื่น\n"
 
-#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "โรงงานมอนิเกอร์มาตรฐาน"
-
-#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "ส่วนขยายมอนิเกอร์สำหรับแฟ้ม"
-
-#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "มอนิเกอร์ GNOME VFS ทั่วไป"
-
-#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "มอนิเกอร์แฟ้มทั่วไป"
-
-#: programs/authentication.c:94
+#: programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
 msgstr "พร็อกซี HTTP ของคุณ ต้องล็อกอินก่อนใช้\n"
 
-#: programs/authentication.c:95
+#: programs/authentication.c:107
 #, c-format
 msgid ""
 "You must log in to access \"%s\".\n"
@@ -1034,20 +1035,20 @@ msgstr ""
 "คุณต้องล็อกอินเพื่อเข้าใช้ \"%s\"\n"
 "%s"
 
-#: programs/authentication.c:98
+#: programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
 msgstr "รหัสผ่านของคุณจะถูกส่งไปโดยไม่มีการเข้ารหัสลับ"
 
-#: programs/authentication.c:99
+#: programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
 msgstr "รหัสผ่านของคุณจะถูกส่งไปโดยเข้ารหัสลับ"
 
-#: programs/authentication.c:144
+#: programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "คุณต้องล็อกอินเพื่อเข้าใช้ %s ในโดเมน %s\n"
 
-#: programs/authentication.c:146
+#: programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "คุณต้องล็อกอินเพื่อเข้าใช้ %s\n"
@@ -1447,6 +1448,24 @@ msgid ""
 msgstr ""
 "เวิร์กกรุปหรือโดเมนของเครือข่ายวินโดวส์ที่ผู้ใช้อาศัยอยู่ "
 "ผู้ใช้อาจต้องออกจากระบบแล้วเข้าใหม่เพื่อจะเริ่มใช้เวิร์กกรุปใหม่ได้"
+
+#~ msgid "Could not initialize Bonobo"
+#~ msgstr "เริ่มใช้ Bonobo ไม่สำเร็จ"
+
+#~ msgid "Could not initialize gnome vfs"
+#~ msgstr "เริ่มใช้ gnome vfs ไม่สำเร็จ"
+
+#~ msgid "Standard Moniker factory"
+#~ msgstr "โรงงานมอนิเกอร์มาตรฐาน"
+
+#~ msgid "file MonikerExtender"
+#~ msgstr "ส่วนขยายมอนิเกอร์สำหรับแฟ้ม"
+
+#~ msgid "generic Gnome VFS moniker"
+#~ msgstr "มอนิเกอร์ GNOME VFS ทั่วไป"
+
+#~ msgid "generic file moniker"
+#~ msgstr "มอนิเกอร์แฟ้มทั่วไป"
 
 #~ msgid "Server certificate was missing commonName attribute in subject name"
 #~ msgstr "ใบรับรองของเซิร์ฟเวอร์ขาดข้อมูล commonName ในชื่อเรื่อง"
