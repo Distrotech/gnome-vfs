@@ -44,7 +44,7 @@
 #include <glib/gstdio.h>
 
 #ifndef DBUS_API_SUBJECT_TO_CHANGE
-#define DBUS_API_SUBJECT_TO_CHANGE
+#define DBUS_API_SUBJECT_TO_CHANGE 1
 #endif
 #include <dbus/dbus-glib.h>
 

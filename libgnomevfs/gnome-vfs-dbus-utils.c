@@ -32,7 +32,7 @@
 #include "gnome-vfs-dbus-utils.h"
 
 #ifndef DBUS_API_SUBJECT_TO_CHANGE
-#define DBUS_API_SUBJECT_TO_CHANGE
+#define DBUS_API_SUBJECT_TO_CHANGE 1
 #endif
 #include <dbus/dbus-glib-lowlevel.h>
 

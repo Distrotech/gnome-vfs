@@ -1,5 +1,13 @@
 2006-07-23  Christian Kellner  <gicmo@gnome.org>
 
+	* daemon/daemon-connection.c:
+	* libgnomevfs/gnome-vfs-dbus-utils.c:
+	* libgnomevfs/gnome-vfs-init.c:
+	Explicitly define DBUS_API_SUBJECT_TO_CHANGE to 1 to make all
+	compilers happy. Fixes bug #347469
+
+2006-07-23  Christian Kellner  <gicmo@gnome.org>
+
 	* daemon/Makefile.am: Change the order in which we link to
 	libgnomevfs and libgnomevfsdaemon. This will hopefully fix
 	symbol resolution for MacOS X.
