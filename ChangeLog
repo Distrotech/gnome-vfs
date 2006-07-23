@@ -1,5 +1,11 @@
 2006-07-23  Christian Kellner  <gicmo@gnome.org>
 
+	* daemon/Makefile.am: Change the order in which we link to
+	libgnomevfs and libgnomevfsdaemon. This will hopefully fix
+	symbol resolution for MacOS X.
+
+2006-07-23  Christian Kellner  <gicmo@gnome.org>
+
 	* configure.in:
 	Fix test statements to be more portable.
 

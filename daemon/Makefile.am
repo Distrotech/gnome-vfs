@@ -28,8 +28,8 @@ endif
 gnome_vfs_daemon_LDADD = 		\
 	$(LIBGNOMEVFS_LIBS)		\
 	$(LIBGNOMEVFSDAEMON_LIBS)	\
-	$(top_builddir)/libgnomevfs/libgnomevfs-2.la \
-	$(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
+	$(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la \
+	$(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 gnome_vfs_daemon_SOURCES = \
 	dbus-utils.c			\
