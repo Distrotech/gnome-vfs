@@ -1,5 +1,16 @@
 2006-07-23  Christian Kellner  <gicmo@gnome.org>
 
+	* configure.in:
+	Fix test statements to be more portable.
+
+	* modules/file-method-acl.c:
+	Move file_get_acl out of the HAVE_ACL #if block because we also
+	need this function to be defined when ACL support is disabled.
+
+	This should fix #348082 and #348083
+
+2006-07-23  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-hal-mounts.c: 
 	Replace __FUNCTION__ by G_GNUC_FUNCTION.
 

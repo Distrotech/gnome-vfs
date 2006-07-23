@@ -46,12 +46,12 @@
 
 #ifdef HAVE_POSIX_ACL
 # include <acl/libacl.h>
-#define HAVE_ACL
+#define HAVE_ACL 1
 #endif
 
 #ifdef HAVE_SOLARIS_ACL
 # include <sys/acl.h>
-#define HAVE_ACL
+#define HAVE_ACL 1
 #endif
 
 #include "file-method-acl.h"
@@ -721,6 +721,7 @@ aclerrno_to_vfserror (int acl_errno)
 	return GNOME_VFS_ERROR_GENERIC;
 }
 
+#endif /* HAVE_ACL */
 
 GnomeVFSResult file_get_acl (const char       *path,
                              GnomeVFSFileInfo *info,
@@ -809,7 +810,6 @@ GnomeVFSResult file_get_acl (const char       *path,
 #endif
 }
 
-#endif /* HAVE_ACL */
 
 GnomeVFSResult 
 file_set_acl (const char             *path,

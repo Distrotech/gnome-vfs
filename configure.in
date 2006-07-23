@@ -1141,8 +1141,8 @@ int main () {
 fi
 
 AC_SUBST(ACL_LIBS)
-AM_CONDITIONAL(HAVE_POSIX_ACL, test $have_posix_acl_support = yes)
-AM_CONDITIONAL(HAVE_SOLARIS_ACL, test $have_solaris_acl_support = yes)
+AM_CONDITIONAL(HAVE_POSIX_ACL, test x"$have_posix_acl_support" = x"yes")
+AM_CONDITIONAL(HAVE_SOLARIS_ACL, test x"$have_solaris_acl_support" = x"yes")
 
 dnl =====================
 dnl File system monitors
