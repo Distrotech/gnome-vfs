@@ -1170,7 +1170,7 @@ _hal_device_added (LibHalContext *hal_ctx,
 	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
 
 #ifdef HAL_SHOW_DEBUG
-	g_debug ("Entering %s for udi %s", __FUNCTION__, udi);
+	g_debug ("Entering %s for udi %s", G_GNUC_FUNCTION, udi);
 #endif
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
@@ -1257,7 +1257,7 @@ _hal_device_removed (LibHalContext *hal_ctx, const char *udi)
 	char *hal_drive_udi;
 
 #ifdef HAL_SHOW_DEBUG
-	g_debug ("Entering %s for udi %s", __FUNCTION__, udi);
+	g_debug ("Entering %s for udi %s", G_GNUC_FUNCTION, udi);
 #endif
 	
 	hal_userdata = (GnomeVFSHalUserData *) libhal_ctx_get_user_data (hal_ctx);
@@ -1436,7 +1436,7 @@ _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 	GnomeVFSHalUserData *hal_userdata;
 
 #ifdef HAL_SHOW_DEBUG
-	g_debug ("Entering %s", __FUNCTION__);
+	g_debug ("Entering %s", G_GNUC_FUNCTION);
 #endif
 
 	/* Initialise the connection to the hal daemon */
