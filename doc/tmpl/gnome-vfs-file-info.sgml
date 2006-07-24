@@ -117,6 +117,7 @@ stores information about files, GnomeVFS equivalent of stat
 @GNOME_VFS_SET_FILE_INFO_TIME: 
 @GNOME_VFS_SET_FILE_INFO_ACL: 
 @GNOME_VFS_SET_FILE_INFO_SELINUX_CONTEXT: 
+@GNOME_VFS_SET_FILE_INFO_SYMLINK_NAME: 
 
 <!-- ##### STRUCT GnomeVFSGetFileInfoResult ##### -->
 <para>

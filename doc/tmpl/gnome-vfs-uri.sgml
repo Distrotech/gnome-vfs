@@ -107,6 +107,16 @@ A uniform resource identifier.
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_uri_resolve_symbolic_link ##### -->
+<para>
+
+</para>
+
+@base: 
+@relative_reference: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_uri_ref ##### -->
 <para>
 

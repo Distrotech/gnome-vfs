@@ -1,3 +1,19 @@
+gnome-vfs 2.15.90
+
+	* Don't use deprectated dbus calls
+	* Always dispatch monitor events
+	* Add gnome_vfs_drive_needs_eject function.
+	* Add support for compile time version checking.
+	* Add GNOME_VFS_ERROR_INVALID_FILENAME error
+	* Handle ENAMETOOLONG when converting from errno
+	* Initialize SSL lazily
+	* Fix error reporting in dns resolver code
+	* Robustness fixes
+	* Clean up code and fix warnings
+	* dav fixes
+	* ftp: fixes for IIS virtual directories
+	* sftp: Support setting symlinks
+	
 gnome-vfs 2.15.3 'Kill the monkeys'
 	
 	Note: The moniker code was moved to a seperate module
