@@ -1,6 +1,13 @@
 2006-07-25  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
+	Post release version bump.
+
+=== gnome-vfs 2.15.90 ===
+
+2006-07-25  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
 	Bump to 2.15.90
 
 	* NEWS:
