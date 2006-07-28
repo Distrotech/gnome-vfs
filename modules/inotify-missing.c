@@ -30,7 +30,7 @@
 #include "inotify-missing.h"
 #include "inotify-path.h"
 
-#define SCAN_MISSING_TIME 2000 /* 1/2 Hz */
+#define SCAN_MISSING_TIME 4000 /* 1/4 Hz */
 
 static gboolean     im_debug_enabled = FALSE;
 #define IM_W if (im_debug_enabled) g_warning
@@ -68,7 +68,7 @@ void im_add (ih_sub_t *sub)
 	/* If the timeout is turned off, we turn it back on */
 	if (!scan_missing_running)
 	{
-	    	scan_missing_running = TRUE;
+		scan_missing_running = TRUE;
 		g_timeout_add (SCAN_MISSING_TIME, im_scan_missing, NULL);
 	}
 }
@@ -135,12 +135,26 @@ static gboolean im_scan_missing (gpointer user_data)
 	/* If the missing list is now empty, we disable the timeout */
 	if (g_list_length (missing_sub_list) == 0)
 	{
-	    scan_missing_running = FALSE;
-	    G_UNLOCK(inotify_lock);
-	    return FALSE;
+		scan_missing_running = FALSE;
+		G_UNLOCK(inotify_lock);
+		return FALSE;
 	} else {
-	    G_UNLOCK(inotify_lock);
-	    return TRUE;
+		G_UNLOCK(inotify_lock);
+		return TRUE;
 	}
 }
 
+
+/* inotify_lock must be held */
+void
+im_diag_dump (GIOChannel *ioc)
+{
+	GList *l;
+	g_io_channel_write_chars (ioc, "missing list:\n", -1, NULL, NULL);
+	for (l = missing_sub_list; l; l = l->next)
+	{
+		ih_sub_t *sub = l->data;
+		g_io_channel_write_chars (ioc, sub->pathname, -1, NULL, NULL);
+		g_io_channel_write_chars (ioc, "\n", -1, NULL, NULL);
+	}
+}

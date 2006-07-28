@@ -1,3 +1,16 @@
+2006-07-27  John McCutchan  <john@johnmccutchan.com>
+
+	* modules/Makefile.am:
+	* modules/inotify-diag.c: (id_dump), (id_startup):
+	* modules/inotify-diag.h: Dump inotify missing list to
+	/tmp/gvfsid.%pid every 20 seconds if GNOME_VFS_INOTIFY_DIAG is set.
+	* modules/inotify-kernel.c: (ik_pair_moves),
+	(ik_process_eq_callback): Disable move pairing.
+	* modules/inotify-missing.c: (im_add), (im_scan_missing),
+	(im_diag_dump):
+	* modules/inotify-missing.h: Write missing list to file and only
+	scan missing list every 4 seconds.
+
 2006-07-25  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

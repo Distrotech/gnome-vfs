@@ -42,9 +42,9 @@
 #endif
 
 /* Timings for pairing MOVED_TO / MOVED_FROM events */
-#define PROCESS_EVENTS_TIME 250 /* milliseconds (4 hz) */
-#define DEFAULT_HOLD_UNTIL_TIME 1000 /* 1 millisecond */
-#define MOVE_HOLD_UNTIL_TIME 5000 /* 5 milliseconds */
+#define PROCESS_EVENTS_TIME 1000 /* milliseconds (1 hz) */
+#define DEFAULT_HOLD_UNTIL_TIME 0 /* 0 millisecond */
+#define MOVE_HOLD_UNTIL_TIME 0 /* 0 milliseconds */
 
 static int inotify_instance_fd = -1;
 static GQueue *events_to_process = NULL;
@@ -329,12 +329,12 @@ const char *ik_mask_to_string (guint32 mask)
 }
 
 /* Implementation below */
-#define MAX_PENDING_COUNT 4
+#define MAX_PENDING_COUNT 2
 #define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
 #define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
 #define MAX_QUEUED_EVENTS 2048
 #define AVERAGE_EVENT_SIZE sizeof (struct inotify_event) + 16
-#define PENDING_PAUSE_MICROSECONDS 4000
+#define PENDING_PAUSE_MICROSECONDS 100000
 
 static void ik_read_events (gsize *buffer_size_out, gchar **buffer_out)
 {
@@ -508,9 +508,10 @@ ik_pair_moves (gpointer data, gpointer user_data)
 		/* When we get a MOVED_FROM event we delay sending the event by
 		 * MOVE_HOLD_UNTIL_TIME microseconds. We need to do this because a
 		 * MOVED_TO pair _might_ be coming in the near future */
-        if (event->event->mask & IN_MOVED_FROM) {
-            g_hash_table_insert (cookie_hash, GINT_TO_POINTER(event->event->cookie), event);
-            ik_event_add_microseconds (event, MOVE_HOLD_UNTIL_TIME);
+	if (event->event->mask & IN_MOVED_FROM) {
+		g_hash_table_insert (cookie_hash, GINT_TO_POINTER(event->event->cookie), event);
+		// because we don't deliver move events there is no point in waiting for the match right now.
+		ik_event_add_microseconds (event, MOVE_HOLD_UNTIL_TIME);
         } else if (event->event->mask & IN_MOVED_TO) {
 			/* We need to check if we are waiting for this MOVED_TO events cookie to pair it with
 			 * a MOVED_FROM */
@@ -603,7 +604,7 @@ gboolean ik_process_eq_callback (gpointer user_data)
 
 	if (g_queue_get_length (events_to_process) == 0)
 	{
-	    	process_eq_running = FALSE;
+		process_eq_running = FALSE;
 		G_UNLOCK(inotify_lock);
 		return FALSE;
 	} else {

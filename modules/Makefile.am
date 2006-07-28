@@ -42,6 +42,8 @@ EXTRA_DIST =					\
 	inotify-sub.c				\
 	inotify-path.h				\
 	inotify-path.c				\
+	inotify-diag.h				\
+	inotify-diag.c				\
 	local_inotify.h				\
 	local_inotify_syscalls.h
 
@@ -120,7 +122,7 @@ libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) $(AVAHI_LIBS) ../libgnomevfs/
 ###  `file' method
 
 if HAVE_INOTIFY
-FILE_ADD_SOURCES = inotify-kernel.c inotify-missing.c inotify-path.c inotify-sub.c inotify-helper.c
+FILE_ADD_SOURCES = inotify-kernel.c inotify-missing.c inotify-path.c inotify-sub.c inotify-helper.c inotify-diag.c
 else
 FILE_ADD_SOURCES = 
 endif

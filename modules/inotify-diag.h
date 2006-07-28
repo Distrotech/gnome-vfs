@@ -21,14 +21,9 @@
 */
 
 
-#ifndef __INOTIFY_MISSING_H
-#define __INOTIFY_MISSING_H
+#ifndef __INOTIFY_DIAG_H
+#define __INOTIFY_DIAG_H
 
-#include "inotify-sub.h"
+void id_startup (void);
 
-void im_startup (void (*missing_cb)(ih_sub_t *sub));
-void im_add (ih_sub_t *sub);
-void im_rm (ih_sub_t *sub);
-void im_diag_dump (GIOChannel *ioc);
-
-#endif /* __INOTIFY_MISSING_H */
+#endif /* __INOTIFY_DIAG_H */

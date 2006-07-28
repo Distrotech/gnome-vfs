@@ -46,6 +46,7 @@
 #include "inotify-helper.h"
 #include "inotify-missing.h"
 #include "inotify-path.h"
+#include "inotify-diag.h"
 
 static gboolean		ih_debug_enabled = FALSE;
 #define IH_W if (ih_debug_enabled) g_warning 
@@ -95,6 +96,7 @@ ih_startup (void)
 		return FALSE;
 	}
 	im_startup (ih_not_missing_callback);
+	id_startup ();
 
 	IH_W ("started gnome-vfs inotify backend\n");
 
