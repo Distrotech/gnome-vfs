@@ -10,24 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-24 23:09+0200\n"
-"PO-Revision-Date: 2006-06-25 01:51+0200\n"
+"POT-Creation-Date: 2006-07-29 05:24+0200\n"
+"PO-Revision-Date: 2006-07-29 12:35+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-# initialiseren/starten
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "Kan bonobo niet starten"
-
-# initialiseren/starten
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "Kan gnome-vfs niet starten"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -62,7 +52,7 @@ msgstr "%s:%u bevat geen modulenaam."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Configuratiebestand '%s' is niet gevonden: %s"
+msgstr "Configuratiebestand `%s' is niet gevonden: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -100,125 +90,140 @@ msgid "Hardware Device Volume"
 msgstr "Hardware-apparaat volumen"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncFS-volumen"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "MSDOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "BSD-volumen"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "MacOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "cd-rom"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs cd-rom"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "JFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "Windows NT-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "Systeemvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "Geheugenvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "Minixvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "NFS-netwerkvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "Netware-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "Gedeeld Windowsvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "Supermount-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "dvd"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "UDFS Solaris-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "Tijdelijk volumen"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "Verbeterd DOS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "Xenix-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "XFS Linuxvolumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "XIAFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "CIFS-volumen"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -421,53 +426,53 @@ msgstr "%s verwisselbaar volumen"
 msgid "Volume"
 msgstr "Volumen"
 
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Onbekend opdrachttype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan geen pijplijn aanmaken voor GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Onbekend taaktype %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1724
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "Opdracht gestopt"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -479,12 +484,12 @@ msgstr ""
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Kan niet verwerken: %s"
+msgstr "Kon niet verwerken: %s"
 
 # komende/volgende/hieropvolgende
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
-msgstr "Volgende verwerkingsfouten worden genegeerd."
+msgstr "De overige verwerkingsfouten worden genegeerd."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:42
@@ -743,7 +748,18 @@ msgstr "De bron is in gebruik"
 msgid "Function call deprecated"
 msgstr "Functie-aanroep afgeraden"
 
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "Ongeldige bestandsnaam"
+
+# link/koppeling/verwijzing
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "Geen symbolische koppeling"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
@@ -883,7 +899,7 @@ msgid "Network server"
 msgstr "Netwerkserver"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -891,13 +907,13 @@ msgstr ""
 "apparaat."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Kan het volumen niet aankoppelen. Er zit waarschijnlijk geen schijf in het "
 "apparaat."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -906,7 +922,7 @@ msgstr ""
 "een niet ondersteund bestandssysteem."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -914,7 +930,7 @@ msgstr ""
 "Kon het volumen niet aankoppelen. Indien dit een versleutelde schijf is, is "
 "mogelijkerwijs een foutief wachtwoord of sleutel gegeven."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -922,15 +938,15 @@ msgstr ""
 "Kan het geselecteerde volumen niet aankoppelen. Het volumen bevat "
 "waarschijnlijk een niet ondersteund bestandssysteem."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "Kan de het geselecteerde diskettestation niet aankoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "Kan het geselecteerde volumen niet aankoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -938,58 +954,58 @@ msgstr ""
 "Kon het geselecteerde volumen niet afkoppelen. Het volumen is nog in gebruik "
 "bij een of meerdere programma's."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "Kan het geselecteerde volumen niet ontkoppelen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "Lezen van gegevens van dochterproces %d is mislukt (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "Kon aankoppelingsproces niet uitvoeren in een pty"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr ""
 "Onverwachte fout in select() tijdens lezen van gegevens van een "
 "dochterproces (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "Kon wachtwoord niet naar aankoppelingsproces sturen."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "Onverwachte fout in waitpid() (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "Kan opdracht niet starten"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "Kan media niet uitwerpen"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "Kan aangekoppelde server niet ontkoppelen"
 
-#: ../modules/computer-method.c:542
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "Netwerk"
 
 # Persoonlijke map/home/thuis
-#: ../modules/computer-method.c:560
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "Persoonlijke map"
 
-#: ../modules/computer-method.c:578
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
@@ -1042,22 +1058,6 @@ msgstr "Geen geldig instellingenbestand gevonden in %s\n"
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Gebruik de %s omgevingsvariabele om een andere locatie op te geven.\n"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "Standaard Monikerfabriek"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "bestand MonikerExtender"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "algemene Gnome-VFS moniker"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "algemene bestandsmoniker"
 
 #: ../programs/authentication.c:106
 #, c-format
