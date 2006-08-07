@@ -13,6 +13,7 @@ INCLUDES =					\
 	$(VFS_CFLAGS)				\
 	$(FNMATCH_CFLAGS)			\
 	-DXDG_PREFIX=_gnome_vfs_xdg		\
+	-DDBUS_API_SUBJECT_TO_CHANGE		\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
 	-D_LARGEFILE64_SOURCE                   \

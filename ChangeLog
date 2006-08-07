@@ -1,3 +1,9 @@
+2006-08-07  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	Define DBUS_API_SUBJECT_TO_CHANGE
+
 2006-07-27  John McCutchan  <john@johnmccutchan.com>
 
 	* modules/Makefile.am:
