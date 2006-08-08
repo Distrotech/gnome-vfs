@@ -1,3 +1,9 @@
+gnome-vfs 2.15.91
+
+	* Avoid slow I/O looking for trash on remote shares
+	* Inotify updates to avoid polling as much.
+	* Build fix
+
 gnome-vfs 2.15.90
 
 	* Don't use deprectated dbus calls
