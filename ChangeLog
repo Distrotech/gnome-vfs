@@ -1,3 +1,10 @@
+2006-08-08  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_find_directory_cancellable):
+	Avoid I/O if find-directory not supported. (#349241)
+	Patch from Christian Neumair
+
 2006-08-07  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/Makefile.am:

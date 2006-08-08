@@ -300,6 +300,19 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 		near_uri = gnome_vfs_uri_new (g_get_home_dir());
 	}
 
+	g_assert (near_uri != NULL);
+
+	if (!VFS_METHOD_HAS_FUNC (near_uri->method, find_directory)) {
+		/* skip file systems not supporting find_directory.
+		 *
+		 * TODO if we decide to introduce cross-method links (e.g. http allows
+		 * arbitrary URIs), this could be slightly wrong, because the target
+		 * method may support find_directory, so we'd also have to make sure
+		 * that a method doesn't support cross-method links.
+		 **/
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
 	/* Need to expand the final symlink, since if the directory is a symlink
 	 * we want to look at the device the symlink points to, not the one the
 	 * symlink is stored on
