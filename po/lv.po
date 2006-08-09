@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-11 14:22+0300\n"
-"PO-Revision-Date: 2006-07-11 14:24+0300\n"
+"POT-Creation-Date: 2006-08-09 15:20+0300\n"
+"PO-Revision-Date: 2006-08-09 15:21+0300\n"
 "Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
 "MIME-Version: 1.0\n"
@@ -290,11 +290,11 @@ msgstr "Ērtais Flash dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
-msgstr "Atmiņas nūjas dzinis"
+msgstr "Memory Stick dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
-msgstr "Viedais Media dzinis"
+msgstr "Smart Media dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
@@ -829,11 +829,11 @@ msgstr "SD/MMC"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
-msgstr "Atmiņas nūja"
+msgstr "Memory Stick"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
-msgstr "Viedais datu nesējs=]"
+msgstr "Smart Media"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
