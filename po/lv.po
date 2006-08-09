@@ -1,21 +1,20 @@
-# translation of gnome-vfs.HEAD.lv.po to Latvian
+# translation of lv.po to Latvian
 # Copyright (C) 2006 Free Software Foundation, Inc.
-# Raivis Dejus <orvils@gmail.com>, 2006.
 #
+# Raivis Dejus <orvils@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD.lv\n"
+"Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-11 14:13+0300\n"
-"PO-Revision-Date: 2006-07-04 16:15+0200\n"
-"Last-Translator: Ingrīda Irguļska <Ingrida.Irgulska@gmail.com>\n"
+"POT-Creation-Date: 2006-08-09 15:00+0300\n"
+"PO-Revision-Date: 2006-08-09 15:05+0300\n"
+"Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -83,125 +82,140 @@ msgid "Hardware Device Volume"
 msgstr "Aparatūras iekārtu sējums"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncFS sējums"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "Ext2 Linux sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "MSDOS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "BSD sējums"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "MacOS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "CDROM sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "JFS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "Windows NT sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "Sistēmas sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "Atmiņas sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "Minix sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "NFS tīkla sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "Tikla aparatūras sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "Windows Shared sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "SuperMount sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "DVD sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSDsējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "Pagaidu sējums"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "Uzlabots DOS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "Xenix sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "XFS Linux sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "XIAFS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "CIFS sējums"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "Nezināms"
 
@@ -283,11 +297,11 @@ msgstr "Ērtais Flash dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
-msgstr "Atmiņas nūjas dzinis"
+msgstr "Memory Stick dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
-msgstr "Viedais Media dzinis"
+msgstr "Smart Media dzinis"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
@@ -453,8 +467,7 @@ msgstr "Operācija apturēta"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
-"Apturēta funkcija. Lietotāju izmaiņas MIME datubāzē vairs netiek atbalstītas."
+msgstr "Apturēta funkcija. Lietotāju izmaiņas MIME datubāzē vairs netiek atbalstītas."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
@@ -715,7 +728,17 @@ msgstr "Avots ir slēgts"
 msgid "Function call deprecated"
 msgstr "Funkcijas izsaukšana pārtraukta"
 
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "Nepareizs faila vārds"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "Nav simboliskā saite"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "Nezināma kļūda"
 
@@ -823,11 +846,11 @@ msgstr "SD/MMC"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
-msgstr "Atmiņas nūja"
+msgstr "Memory Stick"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
-msgstr "Viedais datu nesējs=]"
+msgstr "Smart Media"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
@@ -854,17 +877,16 @@ msgid "Network server"
 msgstr "Tīkla serveris"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:183
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Nevar piemontēt diskešu dzini. Iespējams nav diska dzinī."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:187
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Nevarēja piemontēt sējumu. Iespējams nav  datu nesēja iekārtas."
+msgstr "Nevarēja piemontēt sējumu. Iespējams nav datu nesēja iekārtas."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:193
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -873,7 +895,7 @@ msgstr ""
 "piemontēts."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:197
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -881,7 +903,7 @@ msgstr ""
 "Nevarēja piemontēt izvēlēto sējumu. Ja tas ir šifrēts dzinis, tad tika "
 "izmantota nepareiza parole vai atslēga."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:200
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -889,15 +911,15 @@ msgstr ""
 "Nevarēja piemontēt izvēlēto sējumu. Sējums, iespējams, uztur citu formātu, "
 "ko nav iespējams montēt."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "Nevarēja piemontēt izvēlēto diskešu dzini."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:207
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "Nevarēja piemontēt izvēlēto sējumu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:220
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -905,43 +927,43 @@ msgstr ""
 "Nevarēja atmontēt izvēlēto sējumu. Sējumu izmanto viena vai vairākas "
 "programmas."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:223
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "Nevarēja atmontēt izvēlēto sējumu."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:376
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "Nevarēja nolasīt datus no bērnu procesa %d (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:420
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "Nevarēja palaist montēšanas procesu pty"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:465
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Negaidīta kļūda select(), lasot datus no bērnu procesa (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:519
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "Nevarēja atsūtīt paroli montēšanas procesam."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:558
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "Negaidīta kļūda waitpid() (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:668
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:754
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "Nevarēja sākt komandu"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:741
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "Nevar izņemt datu nesēju"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:982
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "Nevar atmontēt pievienotu serveri"
 
@@ -1076,13 +1098,11 @@ msgstr "Palaist komandu terminālī"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"mērķa\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"mērķa\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"zvanīt-uz\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"zvanīt-uz\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
@@ -1100,8 +1120,7 @@ msgstr "Komanda, kas tiek izmantota apejoties ar \"http\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"https\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"https\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1111,18 +1130,15 @@ msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"sūtīt-uz\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"sūtīt-uz\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"pilsēttīkla\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"pilsēttīkla\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
-"Komanda, kas tiek izmantota apejoties ar \"atkritnes\" URL-iem,ja ieslēgta."
+msgstr "Komanda, kas tiek izmantota apejoties ar \"atkritnes\" URL-iem,ja ieslēgta."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1262,8 +1278,7 @@ msgstr "Vai noradītai komandai nepieciešams apieties ar  \"zvanīt-uz\" URL-ie
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Vai noradītai komandai nepieciešams apieties ar  \"g-palīdzības\" URL-iem"
+msgstr "Vai noradītai komandai nepieciešams apieties ar  \"g-palīdzības\" URL-iem"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
@@ -1279,8 +1294,7 @@ msgstr "Vai noradītai komandai nepieciešams apieties ar  \"https\" URL-iem"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Vai noradītai komandai nepieciešams apieties ar  \"informācijas\" URL-iem"
+msgstr "Vai noradītai komandai nepieciešams apieties ar  \"informācijas\" URL-iem"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
@@ -1288,8 +1302,7 @@ msgstr "Vai noradītai komandai nepieciešams apieties ar  \"sūtīt-uz\" URL-ie
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Vai noradītai komandai nepieciešams apieties ar  \"pilsēttīkla\" URL-iem"
+msgstr "Vai noradītai komandai nepieciešams apieties ar  \"pilsēttīkla\" URL-iem"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
@@ -1486,20 +1499,3 @@ msgstr ""
 "jaunā darba grupa strādātu pilnīgi, lietotājam vajadzētu iziet no sistēmas "
 "un ienākt atpakaļ."
 
-#~ msgid "Could not initialize Bonobo"
-#~ msgstr "Nevarēja inicializēt Bonobo"
-
-#~ msgid "Could not initialize gnome vfs"
-#~ msgstr "Nevarēja inicializēt gnome vfs"
-
-#~ msgid "Standard Moniker factory"
-#~ msgstr "Standarta Moniker objektu ražotne"
-
-#~ msgid "file MonikerExtender"
-#~ msgstr "failu Moniker objekta paplašinātājs"
-
-#~ msgid "generic Gnome VFS moniker"
-#~ msgstr "vispārējs Gnome VFS Moniker objekts"
-
-#~ msgid "generic file moniker"
-#~ msgstr "vispārējs faila Moniker objekts"
