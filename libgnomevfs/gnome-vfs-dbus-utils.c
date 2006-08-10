@@ -124,7 +124,7 @@ dbus_filter_func (DBusConnection *connection,
 				       DBUS_TYPE_STRING, &new_owner,
 				       DBUS_TYPE_INVALID);
 
-		g_print ("NameOwnerChanged %s %s->%s\n", service, old_owner, new_owner);
+		d(g_print ("NameOwnerChanged %s %s->%s\n", service, old_owner, new_owner));
 		
 		if (strcmp (service, DVD_DAEMON_SERVICE) == 0) {
 			if (strcmp (old_owner, "") != 0 &&
