@@ -1,3 +1,11 @@
+2006-08-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-metadata.gob:
+	* libgnomevfs/gnome-vfs-metadata.[ch]:
+	* libgnomevfs/gnome-vfs-metadata-private.h:
+	Remove old code that was never built.
+
 2006-08-10  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-dbus-utils.c: (dbus_filter_func):

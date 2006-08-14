@@ -100,19 +100,6 @@ gnome-vfs-enum-types.c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makef
 		$(libgnomevfs_headers_to_scan_for_enums)) > $@
 
 
-# %.c %.h: %.gob
-#	$(top_srcdir)/gob/src/gob2 $<
-#
-# GOB_SRCLIST = 					\
-#	gnome-vfs-metadata.c			\
-#	gnome-vfs-metadata.h			\
-#	gnome-vfs-metadata-private.h		\
-#	$(NULL)
-# GOB_FILES =					\
-#	gnome-vfs-metadata.gob			\
-#	$(NULL)
-
-
 lib_LTLIBRARIES = libgnomevfs-2.la
 
 if OS_WIN32
