@@ -69,8 +69,6 @@ G_STMT_START{					\
 #if GNOME_VFS_JOB_DEBUG
 #include <sys/time.h>
 
-extern char *job_debug_types[];
-
 #define JOB_DEBUG(x) JOB_DEBUG_PRINT(x)
 #define JOB_DEBUG_ONLY(x) x
 #define JOB_DEBUG_TYPE(x) (job_debug_types[(x)])

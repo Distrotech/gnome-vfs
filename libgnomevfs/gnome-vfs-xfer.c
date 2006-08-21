@@ -74,7 +74,7 @@ enum {
  * it gets called. We'll only call it every now and then to not loose a
  * lot of performance
  */
-#define UPDATE_PERIOD ((gint64) (100 * 1000))
+#define UPDATE_PERIOD ((gint64) (500 * 1000))
 
 static gint64
 system_time (void)
@@ -180,7 +180,7 @@ call_progress_with_current_names (GnomeVFSProgressCallbackState *progress, Gnome
 
 	result = GNOME_VFS_XFER_ERROR_ACTION_ABORT;
 
-	progress->next_update_callback_time = system_time () + progress->update_callback_period;
+	progress->next_text_update_callback_time = system_time () + progress->update_callback_period;
 	progress->next_update_callback_time = progress->next_text_update_callback_time;
 	
 	progress->progress_info->phase = phase;
