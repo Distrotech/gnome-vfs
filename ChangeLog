@@ -1,3 +1,9 @@
+2006-08-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(_gnome_vfs_sniff_buffer_looks_like_text):
+	Better way to check for embedded zeros to catch all occurances.
+
 2006-08-14  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/Makefile.am:
