@@ -1,3 +1,9 @@
+2006-08-23  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/inotify-kernel.c:
+	Don't sleep in the inotify code (#352479)
+	Patch from John McCutchan
+
 2006-08-21  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

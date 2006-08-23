@@ -51,6 +51,8 @@ static GQueue *events_to_process = NULL;
 static GQueue *event_queue = NULL;
 static GHashTable * cookie_hash = NULL;
 static GIOChannel *inotify_read_ioc;
+static GPollFD ik_poll_fd;
+static gboolean ik_poll_fd_enabled = TRUE;
 static void (*user_cb)(ik_event_t *event);
 
 static gboolean ik_read_callback (gpointer user_data);
@@ -82,6 +84,111 @@ typedef struct ik_event_internal {
 	struct ik_event_internal *pair;
 } ik_event_internal_t;
 
+/* In order to perform non-sleeping inotify event chunking we need
+ * a custom GSource
+ */
+static gboolean
+ik_source_prepare (GSource *source,
+				 gint *timeout)
+{
+	return FALSE;
+}
+
+static gboolean
+ik_source_timeout (gpointer data)
+{
+	GSource *source = (GSource *)data;
+
+	/* Re-active the PollFD */
+	g_source_add_poll (source, &ik_poll_fd);
+	g_source_unref (source);
+	ik_poll_fd_enabled = TRUE;
+
+	return FALSE;
+}
+
+#define MAX_PENDING_COUNT 2
+#define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
+#define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
+#define MAX_QUEUED_EVENTS 2048
+#define AVERAGE_EVENT_SIZE sizeof (struct inotify_event) + 16
+#define TIMEOUT_MILLISECONDS 10
+static gboolean
+ik_source_check (GSource *source)
+{
+	static int prev_pending = 0, pending_count = 0;
+
+	/* We already disabled the PollFD or
+	 * nothing to be read from inotify */
+	if (!ik_poll_fd_enabled || !(ik_poll_fd.revents & G_IO_IN))
+	{
+		return FALSE;
+	}
+
+	if (pending_count < MAX_PENDING_COUNT) {
+		unsigned int pending;
+
+		if (ioctl (inotify_instance_fd, FIONREAD, &pending) == -1)
+			goto do_read;
+
+		pending /= AVERAGE_EVENT_SIZE;
+
+		/* Don't wait if the number of pending events is too close
+		* to the maximum queue size.
+		*/
+		if (pending > PENDING_THRESHOLD (MAX_QUEUED_EVENTS))
+			goto do_read;
+
+		/* With each successive iteration, the minimum rate for
+		* further sleep doubles. */
+		if (pending-prev_pending < PENDING_MARGINAL_COST(pending_count))
+			goto do_read;
+
+		prev_pending = pending;
+		pending_count++;
+
+		/* We are going to wait to read the events: */
+
+		/* Remove the PollFD from the source */
+		g_source_remove_poll (source, &ik_poll_fd);
+		/* To avoid threading issues we need to flag that we've done that */
+		ik_poll_fd_enabled = FALSE;
+		/* Set a timeout to re-add the PollFD to the source */
+		g_source_ref (source);
+		g_timeout_add (TIMEOUT_MILLISECONDS, ik_source_timeout, source);
+
+		return FALSE;
+	}
+
+do_read:
+	/* We are ready to read events from inotify */
+
+	prev_pending = 0;
+	pending_count = 0;
+
+	return TRUE;
+}
+
+static gboolean
+ik_source_dispatch (GSource *source,
+		    GSourceFunc callback,
+		    gpointer user_data)
+{
+	if (callback)
+	{
+		return callback(user_data);
+	}
+	return TRUE;
+}
+
+GSourceFuncs ik_source_funcs =
+{
+	ik_source_prepare,
+	ik_source_check,
+	ik_source_dispatch,
+	NULL
+};
+
 gboolean ik_startup (void (*cb)(ik_event_t *event))
 {
 	static gboolean initialized = FALSE;
@@ -101,10 +208,13 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	}
 
 	inotify_read_ioc = g_io_channel_unix_new(inotify_instance_fd);
-
+	ik_poll_fd.fd = inotify_instance_fd;
+	ik_poll_fd.events = G_IO_IN | G_IO_HUP | G_IO_ERR;
 	g_io_channel_set_encoding(inotify_read_ioc, NULL, NULL);
 	g_io_channel_set_flags(inotify_read_ioc, G_IO_FLAG_NONBLOCK, NULL);
-	source = g_io_create_watch(inotify_read_ioc, G_IO_IN | G_IO_HUP | G_IO_ERR);
+
+	source = g_source_new (&ik_source_funcs, sizeof(GSource));
+	g_source_add_poll (source, &ik_poll_fd);
 	g_source_set_callback(source, ik_read_callback, NULL, NULL);
 	g_source_attach(source, NULL);
 	g_source_unref (source);
@@ -112,7 +222,6 @@ gboolean ik_startup (void (*cb)(ik_event_t *event))
 	cookie_hash = g_hash_table_new(g_direct_hash, g_direct_equal);
 	event_queue = g_queue_new ();
 	events_to_process = g_queue_new ();
-
 
 	return TRUE;
 }
@@ -328,21 +437,13 @@ const char *ik_mask_to_string (guint32 mask)
 	}
 }
 
-/* Implementation below */
-#define MAX_PENDING_COUNT 2
-#define PENDING_THRESHOLD(qsize) ((qsize) >> 1)
-#define PENDING_MARGINAL_COST(p) ((unsigned int)(1 << (p)))
-#define MAX_QUEUED_EVENTS 2048
-#define AVERAGE_EVENT_SIZE sizeof (struct inotify_event) + 16
-#define PENDING_PAUSE_MICROSECONDS 100000
 
 static void ik_read_events (gsize *buffer_size_out, gchar **buffer_out)
 {
-	static int prev_pending = 0, pending_count = 0;
 	static gchar *buffer = NULL;
 	static gsize buffer_size;
 
-	/* Initialize the buffer on our first read() */
+	/* Initialize the buffer on our first call */
 	if (buffer == NULL)
 	{
 		buffer_size = AVERAGE_EVENT_SIZE;
@@ -359,41 +460,12 @@ static void ik_read_events (gsize *buffer_size_out, gchar **buffer_out)
 	*buffer_size_out = 0;
 	*buffer_out = NULL;
 
-	while (pending_count < MAX_PENDING_COUNT) {
-		unsigned int pending;
-
-		if (ioctl (inotify_instance_fd, FIONREAD, &pending) == -1)
-			break;
-
-		pending /= AVERAGE_EVENT_SIZE;
-
-		/* Don't wait if the number of pending events is too close
-		* to the maximum queue size.
-		*/
-		if (pending > PENDING_THRESHOLD (MAX_QUEUED_EVENTS))
-			break;
-
-		/* With each successive iteration, the minimum rate for
-		* further sleep doubles. */
-		if (pending-prev_pending < PENDING_MARGINAL_COST(pending_count))
-			break;
-
-		prev_pending = pending;
-		pending_count++;
-
-		/* We sleep for a bit and try again */
-		g_usleep (PENDING_PAUSE_MICROSECONDS);
-	}
-
 	memset(buffer, 0, buffer_size);
 
 	if (g_io_channel_read_chars (inotify_read_ioc, (char *)buffer, buffer_size, buffer_size_out, NULL) != G_IO_STATUS_NORMAL) {
 		// error reading
 	}
 	*buffer_out = buffer;
-
-	prev_pending = 0;
-	pending_count = 0;
 }
 
 static gboolean ik_read_callback(gpointer user_data)
