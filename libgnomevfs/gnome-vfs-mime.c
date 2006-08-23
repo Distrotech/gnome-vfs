@@ -701,14 +701,16 @@ gboolean
 gnome_vfs_mime_type_is_equal (const char *a,
 			      const char *b)
 {
+	gboolean res;
+	
 	g_return_val_if_fail (a != NULL, FALSE);
 	g_return_val_if_fail (b != NULL, FALSE);
 
 	G_LOCK (gnome_vfs_mime_mutex);
-	xdg_mime_mime_type_equal (a, b);
+	res = xdg_mime_mime_type_equal (a, b);
 	G_UNLOCK (gnome_vfs_mime_mutex);
 
-	return FALSE;
+	return res;
 }
 
 /**

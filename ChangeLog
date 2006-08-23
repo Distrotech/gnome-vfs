@@ -1,5 +1,10 @@
 2006-08-23  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime.c (gnome_vfs_mime_type_is_equal):
+	Actually return the return value.
+
+2006-08-23  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-uri.c:
 	Add warning to gnome_vfs_uri_to_string docs
 	
