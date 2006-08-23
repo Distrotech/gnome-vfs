@@ -1338,6 +1338,8 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
  * function entirely depends on the #GnomeVFSMethod associated with the
  * URI. It is up to the method author to distinguish between remote URIs
  * add URIs referring to entities on the local computer.
+ *
+ * Warning, this can be slow, as it does i/o to detect things like NFS mounts.
  * 
  * Return value: %TRUE if @uri refers to a local entity, %FALSE otherwise.
  */

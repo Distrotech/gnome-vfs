@@ -25,6 +25,7 @@
 #define __INOTIFY_SUB_H
 
 typedef struct {
+        GnomeVFSMethodMonitorCancelFunc cancel_func;  /* Must be first */
 	GnomeVFSURI *uri;
 	GnomeVFSMonitorType type;
 	char *pathname;

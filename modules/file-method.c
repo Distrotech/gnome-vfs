@@ -90,14 +90,17 @@
 #define DIR_SEPARATORS "/"
 #endif
 
+typedef struct {
+	GnomeVFSMethodMonitorCancelFunc cancel_func;  /* Must be first */
+} AnyFileMonitorHandle;
+
 #ifdef HAVE_FAM
 static FAMConnection *fam_connection = NULL;
 static gint fam_watch_id = 0;
 G_LOCK_DEFINE_STATIC (fam_connection);
 
-/* The first argument of this structure must be uri, so that it can be 
-   cast safely into a FileHandle. */
 typedef struct {
+	GnomeVFSMethodMonitorCancelFunc cancel_func;  /* Must be first */
 	GnomeVFSURI *uri;
 	FAMRequest request;
 	gboolean     cancelled;
@@ -1244,16 +1247,17 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-GHashTable *fstype_hash = NULL;
-G_LOCK_DEFINE_STATIC (fstype_hash);
 extern char *filesystem_type (char *path, char *relpath, struct stat *statp);
+
+G_LOCK_DEFINE_STATIC (fstype);
 
 static gboolean
 do_is_local (GnomeVFSMethod *method,
 	     const GnomeVFSURI *uri)
 {
+	struct stat statbuf;
+	gboolean is_local;
 	gchar *path;
-	gpointer local = NULL;
 
 	g_return_val_if_fail (uri != NULL, FALSE);
 
@@ -1261,30 +1265,23 @@ do_is_local (GnomeVFSMethod *method,
 	if (path == NULL)
 		return TRUE; /* GNOME_VFS_ERROR_INVALID_URI */
 
-	G_LOCK (fstype_hash);
-	if (fstype_hash == NULL)
-		fstype_hash = g_hash_table_new_full (
-			g_str_hash, g_str_equal, g_free, NULL);
-	else
-		local = g_hash_table_lookup (fstype_hash, path);
-
-	if (local == NULL) {
-		struct stat statbuf;
-		if (g_stat (path, &statbuf) == 0) {
-			char *type = filesystem_type (path, path, &statbuf);
-			gboolean is_local = ((strcmp (type, "nfs") != 0) && 
-					     (strcmp (type, "afs") != 0) &&
-					     (strcmp (type, "autofs") != 0) &&
-					     (strcmp (type, "unknown") != 0) &&
-					     (strcmp (type, "ncpfs") != 0));
-			local = GINT_TO_POINTER (is_local ? 1 : -1);
-			g_hash_table_insert (fstype_hash, path, local);
-		}
-	} else
-		g_free (path);
-
-	G_UNLOCK (fstype_hash);
-	return GPOINTER_TO_INT (local) > 0;
+	if (g_stat (path, &statbuf) == 0) {
+		char *type;
+		
+		G_LOCK (fstype);
+		type = filesystem_type (path, path, &statbuf);
+		is_local = ((strcmp (type, "nfs") != 0) && 
+			    (strcmp (type, "afs") != 0) &&
+			    (strcmp (type, "autofs") != 0) &&
+			    (strcmp (type, "unknown") != 0) &&
+			    (strcmp (type, "ncpfs") != 0));
+		G_UNLOCK (fstype);
+	} else {
+		/* Assume non-existent files are local */
+		is_local = TRUE;
+	}
+	g_free (path);
+	return is_local;
 }
 
 
@@ -2578,10 +2575,43 @@ monitor_setup (void)
 #endif
 
 #ifdef HAVE_FAM
-static GnomeVFSResult fam_monitor_add (GnomeVFSMethod *method,
-				       GnomeVFSMethodHandle **method_handle_return,
-				       GnomeVFSURI *uri,
-				       GnomeVFSMonitorType monitor_type)
+static GnomeVFSResult
+fam_monitor_cancel (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle)
+{
+	FileMonitorHandle *handle = (FileMonitorHandle *)method_handle;
+
+	if (!monitor_setup ()) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	if (handle->cancelled)
+		return GNOME_VFS_OK;
+
+	handle->cancelled = TRUE;
+	G_LOCK (fam_connection);
+
+	/* We need to queue up incoming messages to avoid blocking on write
+	   if there are many monitors being canceled */
+	fam_do_iter_unlocked ();
+
+	if (fam_connection == NULL) {
+		G_UNLOCK (fam_connection);
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+	
+	FAMCancelMonitor (fam_connection, &handle->request);
+	G_UNLOCK (fam_connection);
+
+	return GNOME_VFS_OK;
+}
+
+
+static GnomeVFSResult
+fam_monitor_add (GnomeVFSMethod *method,
+		 GnomeVFSMethodHandle **method_handle_return,
+		 GnomeVFSURI *uri,
+		 GnomeVFSMonitorType monitor_type)
 {
 	FileMonitorHandle *handle;
 	char *filename;
@@ -2596,6 +2626,7 @@ static GnomeVFSResult fam_monitor_add (GnomeVFSMethod *method,
 	}
 	
 	handle = g_new0 (FileMonitorHandle, 1);
+	handle->cancel_func = fam_monitor_cancel;
 	handle->uri = uri;
 	handle->cancelled = FALSE;
 	gnome_vfs_uri_ref (uri);
@@ -2607,6 +2638,9 @@ static GnomeVFSResult fam_monitor_add (GnomeVFSMethod *method,
 
 	if (fam_connection == NULL) {
 		G_UNLOCK (fam_connection);
+		g_free (handle);
+		gnome_vfs_uri_unref (uri);
+		g_free (filename);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
@@ -2630,10 +2664,27 @@ static GnomeVFSResult fam_monitor_add (GnomeVFSMethod *method,
 #endif
 
 #ifdef USE_INOTIFY
-static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
-					   GnomeVFSMethodHandle **method_handle_return,
-					   GnomeVFSURI *uri,
-					   GnomeVFSMonitorType monitor_type)
+
+static GnomeVFSResult
+inotify_monitor_cancel (GnomeVFSMethod *method,
+			GnomeVFSMethodHandle *method_handle)
+{
+	ih_sub_t *sub = (ih_sub_t *)method_handle;
+
+	if (sub->cancelled)
+		return GNOME_VFS_OK;
+
+	ih_sub_cancel (sub);
+	ih_sub_free (sub);
+	return GNOME_VFS_OK;
+
+}
+
+static GnomeVFSResult
+inotify_monitor_add (GnomeVFSMethod *method,
+		     GnomeVFSMethodHandle **method_handle_return,
+		     GnomeVFSURI *uri,
+		     GnomeVFSMonitorType monitor_type)
 {
 	ih_sub_t *sub;
 
@@ -2641,7 +2692,7 @@ static GnomeVFSResult inotify_monitor_add (GnomeVFSMethod *method,
 	if (sub == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
-
+	sub->cancel_func = inotify_monitor_cancel;
 	if (ih_sub_add (sub) == FALSE) {
 		ih_sub_free (sub);
 		*method_handle_return = NULL;
@@ -2672,72 +2723,16 @@ do_monitor_add (GnomeVFSMethod *method,
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
-#ifdef HAVE_FAM
-static GnomeVFSResult fam_monitor_cancel (GnomeVFSMethod *method,
-					  GnomeVFSMethodHandle *method_handle)
-{
-	FileMonitorHandle *handle = (FileMonitorHandle *)method_handle;
-
-	if (!monitor_setup ()) {
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
-	}
-
-	if (handle->cancelled)
-		return GNOME_VFS_OK;
-
-	handle->cancelled = TRUE;
-	G_LOCK (fam_connection);
-
-	/* We need to queue up incoming messages to avoid blocking on write
-	   if there are many monitors being canceled */
-	fam_do_iter_unlocked ();
-
-	if (fam_connection == NULL) {
-		G_UNLOCK (fam_connection);
-		return GNOME_VFS_ERROR_NOT_SUPPORTED;
-	}
-	
-	FAMCancelMonitor (fam_connection, &handle->request);
-	G_UNLOCK (fam_connection);
-
-	return GNOME_VFS_OK;
-}
-#endif
-
-
-#ifdef USE_INOTIFY
-static GnomeVFSResult inotify_monitor_cancel (GnomeVFSMethod *method,
-					      GnomeVFSMethodHandle *method_handle)
-{
-	ih_sub_t *sub = (ih_sub_t *)method_handle;
-
-	if (sub->cancelled)
-		return GNOME_VFS_OK;
-
-	ih_sub_cancel (sub);
-	ih_sub_free (sub);
-	return GNOME_VFS_OK;
-
-}
-#endif
-
 static GnomeVFSResult
 do_monitor_cancel (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle)
 {
-#ifdef USE_INOTIFY
-	FileHandle *file_handle;
-	file_handle = (FileHandle *) method_handle;
-	/* It is possible to call file_handle->uri as it can be either 
-	 * a FileMonitorHandle or a ih_sub_t, and both structures also
-	 * have a GnomeVFSURI as first element. */
-	if (do_is_local (method, file_handle->uri) && ih_startup ()) {
-		return inotify_monitor_cancel (method, method_handle);
+	AnyFileMonitorHandle *handle;
+
+	handle = (AnyFileMonitorHandle *)method_handle;
+	if (handle != NULL) {
+		return (handle->cancel_func) (method, method_handle);
 	}
-#endif
-#ifdef HAVE_FAM
-	return fam_monitor_cancel (method, method_handle);
-#endif
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 

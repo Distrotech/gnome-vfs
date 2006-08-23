@@ -1,5 +1,16 @@
 2006-08-23  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-uri.c:
+	Add warning to gnome_vfs_uri_to_string docs
+	
+	* modules/file-method.c:
+	* modules/inotify-sub.h:
+	Make sure we always use the right function to cancel monitors.
+	Remove unbounded cache from do_is_local.
+	Use inotify, not fam for non-existing files.
+
+2006-08-23  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/inotify-kernel.c:
 	Don't sleep in the inotify code (#352479)
 	Patch from John McCutchan
