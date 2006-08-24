@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-16 23:06+0100\n"
-"PO-Revision-Date: 2006-03-22 21:45+0700\n"
+"POT-Creation-Date: 2006-08-24 09:51+0700\n"
+"PO-Revision-Date: 2006-08-24 09:56+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <kontak@id.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,42 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);"
 
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "Bonobo gagal diinisialisasi"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "Gagal menginisialisasi gnome vfs"
-
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "Volume ISO 9660"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s:%d berisi karakter NUL."
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u berisi karakter NUL."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s:%d tidak memiliki nama method."
+msgid "%s:%u contains no method name."
+msgstr "%s:%u tidak memiliki nama method."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%d tidak memiliki penanda akhir pilihan."
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%u tidak memiliki penanda akhir pilihan."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s:%d memiliki pilihan %s yang tidak dikenal."
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%u memiliki pilihan %s yang tidak dikenal."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s:%d tidak memiliki nama modul."
+msgid "%s:%u contains no module name."
+msgstr "%s:%u tidak memiliki nama modul."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -66,151 +58,166 @@ msgstr "File konfigurasi '%s' tidak ditemukan: %s"
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d membatalkan penguraian."
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "Volume AFFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "Volume Jaringan AFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "Volume terdeteksi otomatis"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr "Drive CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "CD Digital Audio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "Volume Perangkat Keras"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "Volume EncFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "Volume Linux Ext2"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "Volume Linux Ext3"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "Volume MSDOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "Volume BSD"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "Volume MacOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "Volume CDROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "Volume Hsfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "Volume JFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "Volume Windows NT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "Volume Sistem"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "Volume Memori"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "Volume Minix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "Volume Jaringan NFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "Volume Netware"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Volume Linux Reiser4"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "Volume Linux ReiserFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "Volume Share Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "Volume SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "Volume DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "Volume Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "Volume Solaris Udfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "Volume Solaris Pcfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Volume SAM-QFS Sun"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "Volume Sementara"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "Volume DOS Mutakhir"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "Volume Windows VFAT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "Volume Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "Volume Linux XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "Volume XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "Volume CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "Tidak Diketahui"
 
@@ -218,26 +225,26 @@ msgstr "Tidak Diketahui"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Volume"
-msgstr ""
+msgstr "%s Volume"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
@@ -250,17 +257,17 @@ msgid "DVD+RW"
 msgstr "DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
@@ -275,12 +282,12 @@ msgstr "DVD±RW"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
 msgid "%s/%s Drive"
-msgstr ""
+msgstr "%s/%s Drive"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s Drive"
-msgstr ""
+msgstr "%s Drive"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
@@ -303,8 +310,8 @@ msgid "SD/MMC Drive"
 msgstr "SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "Drive Zip"
 
@@ -406,71 +413,71 @@ msgstr "Disk Audio"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #, c-format
 msgid "%s Removable Volume"
-msgstr ""
+msgstr "%s Volume dapat dilepas"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
 msgstr "Volume"
 
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tipe operasi %u tidak dikenal"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Tidak dapat membuat pipe untuk membuka GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Jenis job %u tidak dikenal"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "Operasi dihentikan"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
 "Fungsi lawas. Modifikasi basis data MIME oleh pengguna tidak lagi didukung."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Tidak dapat memparse: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
 msgstr "Error parse berikutnya tidak akan ditampilkan."
 
@@ -705,7 +712,7 @@ msgid "Error launching command"
 msgstr "Error saat menjalankan perintah"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
 msgstr "Waktu habis"
 
@@ -715,16 +722,26 @@ msgid "Nameserver error"
 msgstr "Error server ranah"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "Sumber ini terkunci"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
 msgstr "Fungsi lawas"
 
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "Nama berkas tidak benar"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "Bukan tautan simbolik"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "Error tidak dikenal"
 
@@ -751,129 +768,129 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
 msgstr " (unicode tidak benar)"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
 msgstr "Disket"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-RAM"
 msgstr "CD-ROM/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-ROM/DVD-RW"
 msgstr "CD-ROM/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
 msgstr "CD-R/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
 msgstr "CD-R/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
 msgstr "CD-RW/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
 msgstr "CD-RW/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
 msgstr "CD-RW/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
 msgstr "Disk"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
 msgstr "Penggerak USB"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
 msgstr "Penggerak IEEE1394"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
 msgstr "CF"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
 msgstr "SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
 msgstr "Memori Stik"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
 msgstr "Kamera"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
 msgstr "Volume Root"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
 msgstr "Volume tidak dikenal"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
 msgstr "Server Jaringan"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Tidak dapat memasang disket. Disketnya belum dimasukkan?"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Tidak dapat memasang volume ini. Mungkin tidak ada media dalam perangkatnya."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -882,7 +899,7 @@ msgstr ""
 "pada sistem ini."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -890,7 +907,7 @@ msgstr ""
 "Tidak bisa mengaitkan. Jika ini adalah drive yang diacak, sepertinya ada "
 "kesalahan pada password ataun kunci yang dipergunakan."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -898,75 +915,76 @@ msgstr ""
 "Tidak dapat memasang volume yang dipilih. Mungkin tipenya tidak dapat "
 "dipasang pada sistem ini."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "Tidak dapat memasang disket yang sudah dipilih."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "Tidak dapat memasang volume yang sudah dipilih."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr ""
-"Tidak dapat memasang volume yang dipilih. Volume ini sedang dipergunakan oleh "
-"program yang lain."
+"Tidak dapat memasang volume yang dipilih. Volume ini sedang dipergunakan "
+"oleh program yang lain."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "Tidak dapat melepas volume yang sudah dipilih."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "Gagal membaca data dari proses anak %d (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "Tidak dapat menjalankan proses mount dalam sebuah pty"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Kesalahan tidak terduga pada pembacaan data select() dari proses anak (%s)"
+msgstr ""
+"Kesalahan tidak terduga pada pembacaan data select() dari proses anak (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "Tidak bisa mengirimkan password ke proses mount"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "Kesalahan tidak terduga pada waitpid()·(%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "Gagal menjalankan perintah"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "Tidak dapat mengeluarkan isi media"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "Tidak dapat melepas server yang sedang tersambung ini"
 
-#: ../modules/computer-method.c:546
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "Jaringan"
 
-#: ../modules/computer-method.c:564
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "Rumah"
 
-#: ../modules/computer-method.c:582
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "Sistem File"
 
-#: ../modules/file-method.c:483
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d tidak dikenal"
@@ -975,12 +993,12 @@ msgstr "GnomeVFSSeekPosition %d tidak dikenal"
 msgid "Windows Network"
 msgstr "Jaringan Windows"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitas komputer lawan (%s) tidak dikenal"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -993,11 +1011,11 @@ msgstr ""
 "Identitas yang dikirim oleh komputer lawan adalah %s. Bila Anda yakin ini "
 "aman, maka hubungi administrator sistem."
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "Masuk Saja"
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "Keluar Saja"
 
@@ -1012,21 +1030,37 @@ msgstr "Tidak dapat menemukan setting yang sah pada %s\n"
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Silakan pakai environment %s untuk menentukan lokasi yang berbeda.\n"
 
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "Factory Moniker standar"
+#: ../programs/authentication.c:106
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "Proxy HTTP anda memerlukan log in.\n"
 
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "file MonikerExtender"
+#: ../programs/authentication.c:107
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"Anda harus log in untuk akses \"%s\".\n"
+"%s"
 
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "Gnome VFS moniker generik"
+#: ../programs/authentication.c:110
+msgid "Your password will be transmitted unencrypted."
+msgstr "Kata sandi anda akan di kirimkan tanpa teracak."
 
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "file moniker generik"
+#: ../programs/authentication.c:111
+msgid "Your password will be transmitted encrypted."
+msgstr "Kata sandi anda akan di kirimkan teracak."
+
+#: ../programs/authentication.c:156
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "Anda harus log in untuk akses %s domain %s\n"
+
+#: ../programs/authentication.c:158
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "Anda harus log in untuk akses %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1460,6 +1494,24 @@ msgstr ""
 "Kelompok kerja jaringan Windows atau ranah tempat pengguna berada. Pengguna "
 "sebaiknya keluar dan masuk kembali ke jaringan agar dapat diterima pada "
 "kelompok kerja."
+
+#~ msgid "Could not initialize Bonobo"
+#~ msgstr "Bonobo gagal diinisialisasi"
+
+#~ msgid "Could not initialize gnome vfs"
+#~ msgstr "Gagal menginisialisasi gnome vfs"
+
+#~ msgid "Standard Moniker factory"
+#~ msgstr "Factory Moniker standar"
+
+#~ msgid "file MonikerExtender"
+#~ msgstr "file MonikerExtender"
+
+#~ msgid "generic Gnome VFS moniker"
+#~ msgstr "Gnome VFS moniker generik"
+
+#~ msgid "generic file moniker"
+#~ msgstr "file moniker generik"
 
 #~ msgid "Display SCSI drives"
 #~ msgstr "Tampilkan penggerak SCSCI"
