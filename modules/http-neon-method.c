@@ -1718,7 +1718,8 @@ http_context_set_uri (HttpContext *context, GnomeVFSURI *uri)
 					      | GNOME_VFS_URI_HIDE_PASSWORD
 					      | GNOME_VFS_URI_HIDE_HOST_NAME
 					      | GNOME_VFS_URI_HIDE_HOST_PORT
-					      | GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+					      | GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD
+					      | GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER);
 	if (uri_string[0] == '\0') {
 		g_free (uri_string);
 		uri_string = g_strdup ("/");
