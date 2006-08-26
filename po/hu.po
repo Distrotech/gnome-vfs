@@ -1,55 +1,55 @@
 # Hungarian translation of gnome-vfs.
-# Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-vfs package.
+#
 # Szabolcs Ban <shooby@gnome.hu>, 2000, 2001.
 # Emese Kovacs <emese@gnome.hu>, 2001.
 # Gergely Nagy <greg@gnome.hu>, 2001.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
-#
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-15 11:51+0200\n"
-"PO-Revision-Date: 2005-09-26 13:11+0200\n"
+"POT-Creation-Date: 2006-08-17 11:50+0200\n"
+"PO-Revision-Date: 2006-08-26 13:08+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.2\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 kötet"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%d NUL karaktereket tartalmaz."
+msgstr "%s:%u NUL karaktereket tartalmaz."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no method name."
-msgstr "%s:%d nem tartalmaz metódusnevet."
+msgstr "%s:%u nem tartalmaz metódusnevet."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has no options endmarker."
-msgstr "%s:%d nem tartalmaz kapcsoló-végjelzőt."
+msgstr "%s:%u nem tartalmaz kapcsoló-végjelzőt."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has unknown options %s."
-msgstr "%s:%d ismeretlen %s kapcsolót tartalmaz."
+msgstr "%s:%u ismeretlen %s kapcsolót tartalmaz."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no module name."
-msgstr "%s:%d nem tartalmaz modulnevet."
+msgstr "%s:%u nem tartalmaz modulnevet."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -88,9 +88,8 @@ msgid "Hardware Device Volume"
 msgstr "Hardvereszköz kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
-#, fuzzy
 msgid "EncFS Volume"
-msgstr "JFS kötet"
+msgstr "EncFS kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
@@ -109,9 +108,8 @@ msgstr "MSDOS kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#, fuzzy
 msgid "BSD Volume"
-msgstr "MSDOS kötet"
+msgstr "BSD kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
@@ -196,9 +194,8 @@ msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
-#, fuzzy
 msgid "Temporary Volume"
-msgstr "Memória kötet"
+msgstr "Ideiglenes kötet"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
@@ -741,14 +738,13 @@ msgstr "A függvényhívás elavult"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:92
-#, fuzzy
 msgid "Invalid filename"
-msgstr "Érvénytelen paraméterek"
+msgstr "Érvénytelen fájlnév"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Not a symbolic link"
-msgstr ""
+msgstr "Nem szimbolikus link"
 
 #: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
@@ -889,8 +885,7 @@ msgstr "Hálózati kiszolgáló"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "A floppy meghajtó nem csatlakoztatható. Valószínűleg nincs floppy a "
 "meghajtóban."
@@ -898,8 +893,7 @@ msgstr ""
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
-"A kötet nem csatlakoztatható. Valószínűleg nincs adathordozó a meghajtóban."
+msgstr "A kötet nem csatlakoztatható. Valószínűleg nincs adathordozó a meghajtóban."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
@@ -1043,7 +1037,7 @@ msgstr "Használja a(z) %s környezeti változót egy másik hely megadására.\
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr ""
+msgstr "A HTTP proxy megköveteli a bejelentkezést.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1051,24 +1045,26 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
+"Be kell jelentkeznie a következő eléréséhez: \"%s\".\n"
+"%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr ""
+msgstr "A jelszava titkosítatlanul kerül átvitelre."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr ""
+msgstr "A jelszava titkosítva kerül átvitelre."
 
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr ""
+msgstr "Be kell jelentkeznie %s %s tartományának eléréséhez\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr ""
+msgstr "Be kell jelentkeznie %s eléréséhez\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1097,8 +1093,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"A terminált igénylő alkalmazásokhoz használandó alapértelmezett terminál."
+msgstr "A terminált igénylő alkalmazásokhoz használandó alapértelmezett terminál."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1451,8 +1446,7 @@ msgstr "A \"/system/proxy/ftp_host\" kulcsban proxyként megadott gép portja."
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"A \"/system/proxy/secure_host\" kulcsban proxyként megadott gép portja."
+msgstr "A \"/system/proxy/secure_host\" kulcsban proxyként megadott gép portja."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -1499,20 +1493,3 @@ msgstr ""
 "része. Egy új munkacsoport teljes életbe lépéséhez a felhasználónak lehet, "
 "hogy ki-, majd újra be kell jelentkeznie."
 
-#~ msgid "Could not initialize Bonobo"
-#~ msgstr "Nem inicializálható a Bonobo"
-
-#~ msgid "Could not initialize gnome vfs"
-#~ msgstr "Nem inicializálható a gnome-vfs"
-
-#~ msgid "Standard Moniker factory"
-#~ msgstr "Szabványos Moniker factory"
-
-#~ msgid "file MonikerExtender"
-#~ msgstr "MonikerExtender fájl"
-
-#~ msgid "generic Gnome VFS moniker"
-#~ msgstr "általános Gnome VFS moniker"
-
-#~ msgid "generic file moniker"
-#~ msgstr "általános fájlmoniker"
