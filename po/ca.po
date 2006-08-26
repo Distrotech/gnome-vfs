@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.11.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-24 08:46+0200\n"
-"PO-Revision-Date: 2006-08-24 08:50+0200\n"
+"POT-Creation-Date: 2006-08-26 14:16+0200\n"
+"PO-Revision-Date: 2006-08-26 14:17+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -471,7 +471,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"La funció està desaconsellada. Ja no es suporten les modificacions d'usuari "
+"La funció està desaconsellada. Ja no es permeten les modificacions d'usuari "
 "a la base de dades MIME."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
@@ -1049,7 +1049,7 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"Us heu d'entrar per a poder accedir a «%s».\n"
+"Heu d'entrar primer per a poder accedir a «%s».\n"
 "%s"
 
 #: ../programs/authentication.c:110
@@ -1060,11 +1060,10 @@ msgstr "La vostra contrasenya es transmetrà sense xifrar."
 msgid "Your password will be transmitted encrypted."
 msgstr "La vostra contrasenya es transmetrà xifrada."
 
-# FIXME
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "Heu d'entrar per a poder accedir a %s del domini %s\n"
+msgstr "Heu d'entrar per a poder accedir a %s sota el domini %s\n"
 
 #: ../programs/authentication.c:158
 #, c-format
@@ -1424,7 +1423,7 @@ msgid ""
 "\", \"auto\"."
 msgstr ""
 "Selecciona el mode de configuració del servidor intermediari. Els valors "
-"suportats són «none», «manual», «auto»."
+"disponibles són «none» (cap), «manual», «auto»."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
