@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-20 18:03+0700\n"
-"PO-Revision-Date: 2006-07-20 18:09+0700\n"
+"POT-Creation-Date: 2006-08-27 17:47+0700\n"
+"PO-Revision-Date: 2006-08-27 17:49+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -751,7 +751,6 @@ msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u ไบต์"
-msgstr[1] "%u ไบต์"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -975,7 +974,7 @@ msgstr "บ้าน"
 msgid "Filesystem"
 msgstr "ระบบแฟ้ม"
 
-#: modules/file-method.c:491
+#: modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ไม่รู้จัก GnomeVFSSeekPosition %d"
