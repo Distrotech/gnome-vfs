@@ -1,3 +1,9 @@
+2006-09-01  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: Never try to the resolve the status
+	of a neon request after a call to http_follow_redirect().
+	Fixes #353337
+
 2006-08-25  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/http-neon-method.c: (http_context_set_uri):

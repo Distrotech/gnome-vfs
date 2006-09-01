@@ -1847,8 +1847,11 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		
 		result = http_follow_redirect (context);
 		
-		if (result == GNOME_VFS_OK)
+		if (result == GNOME_VFS_OK) {
 			goto propfind_start;
+		} else {
+			return result;
+		}
 	}
 
 	req = ne_propfind_get_request (pfh);
@@ -1897,12 +1900,15 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	res = ne_request_dispatch (req);
 
 	if (res == NE_REDIRECT) {
-		result = http_follow_redirect (context);
-		
+		ne_request_destroy (req);
+		req = NULL;
+
+		result = http_follow_redirect (context);		
+	
 		if (result == GNOME_VFS_OK) {
-			ne_request_destroy (req);
-			req = NULL;
 			goto head_start;
+		} else {
+			return result;
 		}
 	}
 
@@ -2007,7 +2013,12 @@ http_options (HttpContext *hctx)
 	if (res == NE_REDIRECT) {
 		ne_request_destroy (req);
 		result = http_follow_redirect (hctx);
-		goto options_start;
+		
+		if (result == GNOME_VFS_OK) {
+			goto options_start;
+		} else {
+			return result;
+		}
 	}
 
 	result = resolve_result (res, req);
@@ -2290,7 +2301,7 @@ get_retry:
 		
 		if (res == NE_REDIRECT) {
 			result = http_follow_redirect (hctx);
-				
+	
 			if (result == GNOME_VFS_OK)
 				goto get_start;
 		}
