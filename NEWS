@@ -1,3 +1,10 @@
+gnome-vfs 2.16.0
+	  * http: Fix crash on some redirects
+	  * http: Ignore fragment identifiers in URIs
+	  * support --disable-selinux
+	  * Fix gnome_vfs_mime_type_is_equal
+	  * inotify monitoring fixes
+	  
 gnome-vfs 2.15.92
 	  * Remove old unused code
 	  * Better sniffing of text files
