@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-20 07:01+0200\n"
-"PO-Revision-Date: 2006-06-20 13:58+0530\n"
+"POT-Creation-Date: 2006-09-04 04:08+0200\n"
+"PO-Revision-Date: 2006-09-04 12:19+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,15 +25,7 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "बोनोबो प्रारंभ नहीं कर सका"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "गनोम वीएफएस प्रारंभ नहीं कर सका"
+"\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -80,152 +72,167 @@ msgstr "कॉन्फ़िगरेशन फ़ाइल '%s' नहीं �
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d विश्लेषण विफल."
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "एएफएफएस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "एएफएस नेटवर्क वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "स्वचालित पता लगाया गया वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr "सीडी-रोम ड्राइव"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "सीडी डिज़िटल ऑडियो"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "हार्डवेयर उपकरण वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncFS वॉल्यूम"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "ईएक्सटी2 लिनक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "ईएक्सटी3 लिनक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "एमएस-डॉस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "BSD वॉल्यूम"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "मॅक-ओएस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "सीडी-रोम वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "एचएसएफएस सीडीरोम वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "जेएफएस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "विन्डोज़ एनटी वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "सिस्टम वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "मेमोरी वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "मिनिक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "एनएफएस नेटवर्क वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "नेटवेयर वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux वोल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "रेइज़र-एफएस लिनक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "विन्डोज़ शेयर्ड वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "सुपर-माउण्ट वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "डीवीडी वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "सोलारिस/बीएसडी वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "यूडीएफएस सोलारिस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "पीसीएफएस सोलारिस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS वोल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "अस्थायी वॉल्यूम"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "एनहैंस्ड डॉस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "विन्डोज़ वीएफ़एटी वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "ज़ेनिक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "एक्सएफएस लिनक्स वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "एक्सआईएफएस वॉल्यूम"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "CIFS वॉल्यूम"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "अज्ञात"
 
@@ -428,56 +435,56 @@ msgid "Volume"
 msgstr "आवाज"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "अज्ञात संक्रिया प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुले जीआईओ-चैनल हेतु पाइप बना नहीं सका: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: ../libgnomevfs/gnome-vfs-job.c:1724
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "ऑपरेशन रोका गया"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -835,8 +842,20 @@ msgstr "संसाधन लॉक है"
 msgid "Function call deprecated"
 msgstr "प्रकार्य कॉल पदावनत"
 
+# libgnomevfs/gnome-vfs-result.c:39
+#  GNOME_VFS_ERROR_BAD_PARAMETERS
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "अवैध फाइलनाम"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "सांकेतिक लिंक नहीं"
+
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
@@ -980,17 +999,17 @@ msgstr "नेटवर्क सर्वर"
 
 #  Handle floppy case
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "फ्लॉपी ड्राइव माउण्ट करने में अक्षम. शायद ड्राइव में कोई फ्लॉपी नहीं है."
 
 #  All others
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "वाल्यूम माउण्ट करने में अक्षम. शायद उपकरण में कोई मीडिया  नहीं है."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -999,7 +1018,7 @@ msgstr ""
 "किया जा सकता"
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -1007,7 +1026,7 @@ msgstr ""
 "वाल्यूम को माउण्ट करने में अक्षम. अगर यह विगोपित चालन है तब गलत शब्दकूट या कुंजी प्रयुक्त "
 "हुआ था."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -1015,75 +1034,75 @@ msgstr ""
 "चयनित वाल्यूम को माउण्ट करने में अक्षम. वाल्यूम शायद किसी ऐसे फ़ॉर्मेट में है जिसे माउंट नहीं "
 "किया जा सकता."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "चयनित फ्लॉपी ड्राइव को माउण्ट करने में अक्षम."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "चयनित वाल्यूम को माउण्ट करने में अक्षम."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr "चयनित वाल्यूम को माउण्ट करने में अक्षम. वाल्यूम एक से ज्यादा प्रोग्राम के द्वारा प्रयोग में है."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "चयनित वाल्यूम को अनमाउण्ट करने में अक्षम."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "%d (%s) चाइल्ड प्रक्रिया से पठन आंकड़ा में विफल"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "pty में आरोह प्रक्रिया चला नहीं सका"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "select() पठन आंकड़ा में (%s) चाइल्ड प्रक्रिया से अप्रत्याशित त्रुटि"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "माउंट प्रक्रिया में शब्दकूट नहीं भेज सका."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "waitpid() (%s) में अप्रत्याशित त्रुटि"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "कमांड प्रारंभ करने में असफल"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "मीडिया इज़ेक्ट करने में अक्षम."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "कनेक्टेड सर्वर को अनमाउन्ट करने में अक्षम"
 
-#: ../modules/computer-method.c:542
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "नेटवर्क"
 
-#: ../modules/computer-method.c:560
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "घर"
 
 # libgnomevfs/gnome-vfs-result.c:57
-#: ../modules/computer-method.c:578
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "फ़ाइल-सिस्टम"
 
 # modules/file-method.c:381
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "अज्ञात गनोम-वीएफ़एस-सीक-स्थिति %d"
@@ -1131,26 +1150,6 @@ msgstr "%s पर कोई वैध विन्यास फ़ाइल न�
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "भिन्न स्थान को निर्दिष्ट करने हेतु %s वातावरण चर का उपयोग करें \n"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "मानक मॉनीकर फैक्ट्री"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "फ़ाइल मॉनीकर-विस्तारक"
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "ज़ेनेरिक गनोम वीएफ़एस मॉनीकर "
-
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "ज़ेनेरिक फ़ाइल मॉनीकर"
 
 #: ../programs/authentication.c:106
 #, c-format
