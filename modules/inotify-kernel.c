@@ -306,17 +306,17 @@ gint32 ik_watch (const char *path, guint32 mask, int *err)
 
 int ik_ignore(const char *path, gint32 wd)
 {
-   g_assert (wd >= 0);
-   g_assert (inotify_instance_fd >= 0);
+	g_assert (wd >= 0);
+	g_assert (inotify_instance_fd >= 0);
 
-   if (inotify_rm_watch (inotify_instance_fd, wd) < 0)
-   {
-      //int e = errno;
-      // failed to rm watch
-      return -1;
-   }
-   
-   return 0;
+	if (inotify_rm_watch (inotify_instance_fd, wd) < 0)
+	{
+		//int e = errno;
+		// failed to rm watch
+		return -1;
+	}
+
+	return 0;
 }
 
 void ik_move_stats (guint32 *matches, guint32 *misses)
@@ -525,125 +525,125 @@ g_timeval_eq(GTimeVal *val1, GTimeVal *val2)
 static void
 ik_pair_events (ik_event_internal_t *event1, ik_event_internal_t *event2)
 {
-    g_assert (event1 && event2);
-    /* We should only be pairing events that have the same cookie */
-    g_assert (event1->event->cookie == event2->event->cookie);
-    /* We shouldn't pair an event that already is paired */
-    g_assert (event1->pair == NULL && event2->pair == NULL);
+	g_assert (event1 && event2);
+	/* We should only be pairing events that have the same cookie */
+	g_assert (event1->event->cookie == event2->event->cookie);
+	/* We shouldn't pair an event that already is paired */
+	g_assert (event1->pair == NULL && event2->pair == NULL);
 
 	/* Pair the internal structures and the ik_event_t structures */
-    event1->pair = event2;
+	event1->pair = event2;
 	event1->event->pair = event2->event;
 
-    if (g_timeval_lt (&event1->hold_until, &event2->hold_until))
-        event1->hold_until = event2->hold_until;
+	if (g_timeval_lt (&event1->hold_until, &event2->hold_until))
+		event1->hold_until = event2->hold_until;
 
-    event2->hold_until = event1->hold_until;
+	event2->hold_until = event1->hold_until;
 }
 
 static void
 ik_event_add_microseconds (ik_event_internal_t *event, glong ms)
 {
-    g_assert (event);
-    g_time_val_add (&event->hold_until, ms);
+	g_assert (event);
+	g_time_val_add (&event->hold_until, ms);
 }
 
 static gboolean
 ik_event_ready (ik_event_internal_t *event)
 {
-    GTimeVal tv;
-    g_assert (event);
+	GTimeVal tv;
+	g_assert (event);
 
-    g_get_current_time (&tv);
+	g_get_current_time (&tv);
 
-    /* An event is ready if,
-     *
-     * it has no cookie -- there is nothing to be gained by holding it
-     * or, it is already paired -- we don't need to hold it anymore
-     * or, we have held it long enough
-     */
-    return event->event->cookie == 0 ||
-           event->pair != NULL ||
-           g_timeval_lt(&event->hold_until, &tv) || g_timeval_eq(&event->hold_until, &tv);
+	/* An event is ready if,
+	*
+	* it has no cookie -- there is nothing to be gained by holding it
+	* or, it is already paired -- we don't need to hold it anymore
+	* or, we have held it long enough
+	*/
+	return event->event->cookie == 0 ||
+	       event->pair != NULL ||
+	       g_timeval_lt(&event->hold_until, &tv) || g_timeval_eq(&event->hold_until, &tv);
 }
 
 static void
 ik_pair_moves (gpointer data, gpointer user_data)
 {
-    ik_event_internal_t *event = (ik_event_internal_t *)data;
+	ik_event_internal_t *event = (ik_event_internal_t *)data;
 
-    if (event->seen == TRUE || event->sent == TRUE)
-        return;
+	if (event->seen == TRUE || event->sent == TRUE)
+	return;
 
-    if (event->event->cookie != 0)
-    {
+	if (event->event->cookie != 0)
+	{
 		/* When we get a MOVED_FROM event we delay sending the event by
-		 * MOVE_HOLD_UNTIL_TIME microseconds. We need to do this because a
-		 * MOVED_TO pair _might_ be coming in the near future */
-	if (event->event->mask & IN_MOVED_FROM) {
-		g_hash_table_insert (cookie_hash, GINT_TO_POINTER(event->event->cookie), event);
-		// because we don't deliver move events there is no point in waiting for the match right now.
-		ik_event_add_microseconds (event, MOVE_HOLD_UNTIL_TIME);
-        } else if (event->event->mask & IN_MOVED_TO) {
+		* MOVE_HOLD_UNTIL_TIME microseconds. We need to do this because a
+		* MOVED_TO pair _might_ be coming in the near future */
+		if (event->event->mask & IN_MOVED_FROM) {
+			g_hash_table_insert (cookie_hash, GINT_TO_POINTER(event->event->cookie), event);
+			// because we don't deliver move events there is no point in waiting for the match right now.
+			ik_event_add_microseconds (event, MOVE_HOLD_UNTIL_TIME);
+		} else if (event->event->mask & IN_MOVED_TO) {
 			/* We need to check if we are waiting for this MOVED_TO events cookie to pair it with
-			 * a MOVED_FROM */
-            ik_event_internal_t *match = NULL;
-            match = g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->event->cookie));
-            if (match) {
-                g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->event->cookie));
-                ik_pair_events (match, event);
-            }
-        }
-    }
-    event->seen = TRUE;
+			* a MOVED_FROM */
+			ik_event_internal_t *match = NULL;
+			match = g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->event->cookie));
+			if (match) {
+				g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->event->cookie));
+				ik_pair_events (match, event);
+			}
+		}
+	}
+	event->seen = TRUE;
 }
 
 static void
 ik_process_events ()
 {
-    g_queue_foreach (events_to_process, ik_pair_moves, NULL);
+	g_queue_foreach (events_to_process, ik_pair_moves, NULL);
 
-    while (!g_queue_is_empty (events_to_process))
-    {
-        ik_event_internal_t *event = g_queue_peek_head (events_to_process);
+	while (!g_queue_is_empty (events_to_process))
+	{
+		ik_event_internal_t *event = g_queue_peek_head (events_to_process);
 
-        /* This must have been sent as part of a MOVED_TO/MOVED_FROM */
-        if (event->sent)
+		/* This must have been sent as part of a MOVED_TO/MOVED_FROM */
+		if (event->sent)
 		{
 			/* Pop event */
 			g_queue_pop_head (events_to_process);
 			/* Free the internal event structure */
 			g_free (event);
-            continue;
+			continue;
 		}
 
 		/* The event isn't ready yet */
-        if (!ik_event_ready (event)) {
-            break;
-        }
+		if (!ik_event_ready (event)) {
+			break;
+		}
 
-        /* Pop it */
-        event = g_queue_pop_head (events_to_process);
+		/* Pop it */
+		event = g_queue_pop_head (events_to_process);
 
-        /* Check if this is a MOVED_FROM that is also sitting in the cookie_hash */
-        if (event->event->cookie && event->pair == NULL &&
-            g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->event->cookie)))
-        {
-            g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->event->cookie));
-        }
+		/* Check if this is a MOVED_FROM that is also sitting in the cookie_hash */
+		if (event->event->cookie && event->pair == NULL &&
+		    g_hash_table_lookup (cookie_hash, GINT_TO_POINTER(event->event->cookie)))
+		{
+			g_hash_table_remove (cookie_hash, GINT_TO_POINTER(event->event->cookie));
+		}
 
-        if (event->pair) {
+		if (event->pair) {
 			/* We send out paired MOVED_FROM/MOVED_TO events in the same event buffer */
 			//g_assert (event->event->mask == IN_MOVED_FROM && event->pair->event->mask == IN_MOVED_TO);
 			/* Copy the paired data */
-            event->pair->sent = TRUE;
+			event->pair->sent = TRUE;
 			event->sent = TRUE;
 			ik_move_matches++;
-        } else if (event->event->cookie) {
+		} else if (event->event->cookie) {
 			/* If we couldn't pair a MOVED_FROM and MOVED_TO together, we change
-			 * the event masks */
+			* the event masks */
 			/* Changeing MOVED_FROM to DELETE and MOVED_TO to create lets us make
-			 * the gaurantee that you will never see a non-matched MOVE event */
+			* the gaurantee that you will never see a non-matched MOVE event */
 
 			if (event->event->mask & IN_MOVED_FROM) {
 				event->event->mask = IN_DELETE|(event->event->mask & IN_ISDIR);
@@ -657,8 +657,7 @@ ik_process_events ()
 		g_queue_push_tail (event_queue, event->event);
 		/* Free the internal event structure */
 		g_free (event);
-
-    }
+	}
 }
 
 gboolean ik_process_eq_callback (gpointer user_data)

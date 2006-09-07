@@ -193,7 +193,7 @@ ip_unmap_wd_dir (gint32 wd, ip_watched_dir_t *dir)
 		return;
 	g_assert (wd >= 0 && dir);
 	dir_list = g_list_remove (dir_list, dir);
-	if (g_list_length (dir_list) == 0) {
+	if (dir_list == NULL) {
 		g_hash_table_remove (wd_dir_hash, GINT_TO_POINTER(dir->wd));
 	} else {
 		g_hash_table_replace (wd_dir_hash, GINT_TO_POINTER(dir->wd), dir_list);
@@ -245,11 +245,11 @@ gboolean ip_stop_watching  (ih_sub_t *sub)
 	ip_unmap_sub_dir (sub, dir);
 
 	/* No one is subscribing to this directory any more */
-	if (g_list_length (dir->subs) == 0) {
-        ik_ignore (dir->path, dir->wd);
-        ip_unmap_wd_dir (dir->wd, dir);
+	if (dir->subs == NULL) {
+		ik_ignore (dir->path, dir->wd);
+		ip_unmap_wd_dir (dir->wd, dir);
 		ip_unmap_path_dir (dir->path, dir);
-        ip_watched_dir_free (dir);
+		ip_watched_dir_free (dir);
 	}
 
 	return TRUE;
@@ -270,7 +270,7 @@ ip_watched_dir_new (const char *path, gint32 wd)
 static void
 ip_watched_dir_free (ip_watched_dir_t * dir)
 {
-	g_assert (g_list_length (dir->subs) == 0);
+	g_assert (dir->subs == NULL);
 	g_free(dir->path);
 	g_free(dir);
 }

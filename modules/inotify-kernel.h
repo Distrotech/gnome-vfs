@@ -18,11 +18,11 @@
 #define __INOTIFY_KERNEL_H
 
 typedef struct ik_event_s {
-    gint32 wd;
-    guint32 mask;
-    guint32 cookie;
-    guint32 len;
-    char *  name;
+	gint32 wd;
+	guint32 mask;
+	guint32 cookie;
+	guint32 len;
+	char *  name;
 	struct ik_event_s *pair;
 } ik_event_t;
 

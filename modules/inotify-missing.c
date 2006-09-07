@@ -133,7 +133,7 @@ static gboolean im_scan_missing (gpointer user_data)
 	g_list_free (nolonger_missing);
 
 	/* If the missing list is now empty, we disable the timeout */
-	if (g_list_length (missing_sub_list) == 0)
+	if (missing_sub_list == NULL)
 	{
 		scan_missing_running = FALSE;
 		G_UNLOCK(inotify_lock);

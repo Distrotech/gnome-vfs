@@ -1,3 +1,13 @@
+2006-09-07  John McCutchan  <john@johnmccutchan.com>
+
+	* modules/inotify-kernel.c: 
+	* modules/inotify-kernel.h:
+	* modules/inotify-missing.c:
+	* modules/inotify-path.c:
+
+	Don't use g_list_length when testing for an empty list.
+	Indentation fixes.
+
 2006-09-04  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
