@@ -1,5 +1,12 @@
 2006-09-13  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/xdgmime.[ch]:
+	* libgnomevfs/xdgmimeglob.c:
+	* libgnomevfs/xdgmimemagic.c:
+	Backport fixes from gtk+ version of xdgmime
+
+2006-09-13  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-daemon-method.c (gnome_vfs_daemon_message_iter_get_file_info):
 	Fix some leaks. (Noticed by Kjartan Maraas)
 
