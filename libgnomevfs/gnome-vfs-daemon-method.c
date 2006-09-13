@@ -101,8 +101,8 @@ utils_append_string_or_null (DBusMessageIter *iter,
 	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &str);
 }
 
-static gchar *
-utils_get_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
+static const gchar *
+utils_peek_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
 {
 	const gchar *str;
 
@@ -111,7 +111,7 @@ utils_get_string_or_null (DBusMessageIter *iter, gboolean empty_is_null)
 	if (empty_is_null && *str == 0) {
 		return NULL;
 	} else {
-		return g_strdup (str);
+		return str;
 	}
 }
 
@@ -217,7 +217,7 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 {
 	DBusMessageIter   struct_iter;
 	GnomeVFSFileInfo *info;
-	gchar            *str;
+	const gchar      *str;
 	gint32            i;
 	guint32           u;
 	gint64            i64;
@@ -233,7 +233,7 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 	info->valid_fields = i;
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter, FALSE);
+	str = utils_peek_string_or_null (&struct_iter, FALSE);
 	info->name = gnome_vfs_unescape_string (str, NULL);
 	
 	dbus_message_iter_next (&struct_iter);
@@ -289,13 +289,13 @@ gnome_vfs_daemon_message_iter_get_file_info (DBusMessageIter *iter)
 	info->ctime = i;
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter, TRUE);
+	str = utils_peek_string_or_null (&struct_iter, TRUE);
 	if (str) {
 		info->symlink_name = gnome_vfs_unescape_string (str, NULL);
 	}
 
 	dbus_message_iter_next (&struct_iter);
-	str = utils_get_string_or_null (&struct_iter, TRUE);
+	str = utils_peek_string_or_null (&struct_iter, TRUE);
 	if (str) {
 		info->mime_type = g_strdup (str);
 	}
