@@ -400,6 +400,7 @@ G_LOCK_DEFINE (auth_cache);
 static GHashTable *auth_cache_basic;
 static GHashTable *auth_cache_proxy;
 static guint       cleanup_id;
+static guint       module_refcount = 0;
 
 typedef struct {
 	
@@ -3331,20 +3332,24 @@ static GnomeVFSMethod http_method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
-	proxy_init ();
-	/* ne_debug_init (stdout, 0xfffe); */
-	neon_session_pool_init ();
-	http_auth_cache_init ();
-	quick_allow_lookup_init ();
-	
+	if (module_refcount++ == 0) {
+		proxy_init ();
+		/* ne_debug_init (stdout, 0xfffe); */
+		neon_session_pool_init ();
+		http_auth_cache_init ();
+		quick_allow_lookup_init ();
+	}
+
 	return &http_method;
 }
 
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
-	quit_allow_lookup_destroy ();
-	http_auth_cache_shutdown ();
-	neon_session_pool_shutdown ();
-	proxy_shutdown ();
+	if (--module_refcount == 0) {
+		quit_allow_lookup_destroy ();
+		http_auth_cache_shutdown ();
+		neon_session_pool_shutdown ();
+		proxy_shutdown ();
+	}
 }

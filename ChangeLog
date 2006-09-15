@@ -1,3 +1,7 @@
+2006-09-15  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/http-neon-module.c: Refcount. Fixes double-frees (#347470).
+
 2006-09-13  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/xdgmime.[ch]:
