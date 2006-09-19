@@ -1,6 +1,11 @@
 2006-09-19  Alexander Larsson  <alexl@redhat.com>
 
-	* libgnomevfs/gnome-vfs-hal-mounts.c (_hal_add_volume):
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	Forgot a place in the last fix.
+	
+2006-09-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
 	Default to data for mixed audio and data cds.
 
 2006-09-15  Christian Neumair  <chris@gnome-de.org>

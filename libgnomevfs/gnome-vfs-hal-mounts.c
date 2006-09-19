@@ -1033,7 +1033,8 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		vol->priv->unix_device = makedev (libhal_volume_get_device_major (hal_volume), 
 						  libhal_volume_get_device_minor (hal_volume));
 
-		if (libhal_volume_disc_has_audio (hal_volume)) {
+		if (libhal_volume_disc_has_audio (hal_volume) &&
+		    !libhal_volume_disc_has_data (hal_volume)) {
 			vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_VFS_MOUNT;
 			vol->priv->activation_uri = g_strdup_printf ("cdda://%s", 
 								     libhal_volume_get_device_file (hal_volume));
