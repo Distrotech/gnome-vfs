@@ -1,6 +1,11 @@
 2006-09-19  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	Revert previous commits. They don't seem to quite work.
+	
+2006-09-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
 	Forgot a place in the last fix.
 	
 2006-09-19  Alexander Larsson  <alexl@redhat.com>

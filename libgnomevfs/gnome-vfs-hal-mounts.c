@@ -976,8 +976,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 	drive = _gnome_vfs_volume_monitor_find_drive_by_hal_udi (volume_monitor, libhal_volume_get_udi (hal_volume));
 	if (drive == NULL && allowed_by_policy) {
 		drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
-		if (libhal_volume_disc_has_audio (hal_volume) &&
-		    !libhal_volume_disc_has_data (hal_volume)) {
+		if (libhal_volume_disc_has_audio (hal_volume)) {
 			drive->priv->activation_uri = g_strdup_printf ("cdda://%s", 
 								       libhal_volume_get_device_file (hal_volume));
 		} else if (libhal_volume_disc_is_blank (hal_volume)) {
@@ -1033,8 +1032,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		vol->priv->unix_device = makedev (libhal_volume_get_device_major (hal_volume), 
 						  libhal_volume_get_device_minor (hal_volume));
 
-		if (libhal_volume_disc_has_audio (hal_volume) &&
-		    !libhal_volume_disc_has_data (hal_volume)) {
+		if (libhal_volume_disc_has_audio (hal_volume)) {
 			vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_VFS_MOUNT;
 			vol->priv->activation_uri = g_strdup_printf ("cdda://%s", 
 								     libhal_volume_get_device_file (hal_volume));
