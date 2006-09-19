@@ -1,3 +1,8 @@
+2006-09-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c (_hal_add_volume):
+	Default to data for mixed audio and data cds.
+
 2006-09-15  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/http-neon-module.c: Refcount. Fixes double-frees (#347470).
