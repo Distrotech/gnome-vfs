@@ -29,6 +29,7 @@
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-private-utils.h"
+#include "gnome-vfs-utils.h"
 #include "gnome-vfs-handle-private.h"
 
 #include <glib/gmessages.h>
@@ -296,8 +297,13 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	if (near_uri != NULL) {
 		gnome_vfs_uri_ref (near_uri);
 	} else {
+		char *text_uri;
+
+		text_uri = gnome_vfs_get_uri_from_local_path (g_get_home_dir ());
+		g_assert (text_uri != NULL);
 		/* assume file: method and the home directory */
-		near_uri = gnome_vfs_uri_new (g_get_home_dir());
+		near_uri = gnome_vfs_uri_new (text_uri);
+		g_free (text_uri);
 	}
 
 	g_assert (near_uri != NULL);
