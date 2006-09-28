@@ -2,6 +2,8 @@
 .libs
 Makefile
 Makefile.in
+test-acl
+test-address
 test-async
 test-async-cancel
 test-async-directory
@@ -19,6 +21,7 @@ test-mime-handlers
 test-mime-handlers-set
 test-mime-info
 test-monitor
+test-parse-ls-lga
 test-performance
 test-resolv
 test-seek

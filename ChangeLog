@@ -1,3 +1,11 @@
+2006-09-28  Christian Neumair  <chris@gnome-de.org>
+
+	* imported/fnmatch/.cvsignore:
+	* imported/neon/.cvsignore:
+	* po/.cvsignore:
+	* test/.cvsignore:
+	(Re)add/update.
+
 2006-09-26  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:

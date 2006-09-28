@@ -4,6 +4,7 @@
 *.mo
 *.pot
 .deps
+.intltool-merge-cache
 .libs
 Makefile
 Makefile.in
@@ -17,3 +18,4 @@ notexist
 po2tbl.sed
 po2tbl.sed.in
 stamp-cat-id
+stamp-it
