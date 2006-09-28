@@ -52,9 +52,13 @@ static void show_data (gpointer item, const char *directory);
 static void list (const char *directory);
 
 static const gchar *
-type_to_string (GnomeVFSFileType type)
+type_to_string (GnomeVFSFileInfo *info)
 {
-	switch (type) {
+	if (!(info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE)) {
+		return "Unknown";
+	}
+
+	switch (info->type) {
 	case GNOME_VFS_FILE_TYPE_UNKNOWN:
 		return "Unknown";
 	case GNOME_VFS_FILE_TYPE_REGULAR:
@@ -92,7 +96,7 @@ show_data (gpointer item, const char *directory)
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? info->symlink_name
 			: "",
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " ]" : "",
-			type_to_string (info->type),
+			type_to_string (info),
 			info->mime_type,
 			info->size);
 

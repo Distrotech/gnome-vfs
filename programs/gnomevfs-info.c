@@ -37,9 +37,13 @@
 #include "authentication.c"
 
 static const gchar *
-type_to_string (GnomeVFSFileType type)
+type_to_string (GnomeVFSFileInfo *info)
 {
-	switch (type) {
+	if ((!info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE)) {
+		return "Unknown";
+	}
+
+	switch (info->type) {
 	case GNOME_VFS_FILE_TYPE_UNKNOWN:
 		return "Unknown";
 	case GNOME_VFS_FILE_TYPE_REGULAR:
@@ -137,7 +141,7 @@ show_file_info (GnomeVFSFileInfo *info, const char *uri)
 	printf ("Name              : %s\n", info->name);
 
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_TYPE)
-		printf ("Type              : %s\n", type_to_string (info->type));
+		printf ("Type              : %s\n", type_to_string (info));
 
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME && info->symlink_name != NULL)
 		printf ("Symlink to        : %s\n", info->symlink_name);

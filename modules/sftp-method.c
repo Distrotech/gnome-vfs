@@ -2453,8 +2453,13 @@ update_mime_type_and_name_from_path (GnomeVFSFileInfo *file_info,
 		 file_info->type == GNOME_VFS_FILE_TYPE_REGULAR)
 		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_name_or_default
 						 (file_info->name, GNOME_VFS_MIME_TYPE_UNKNOWN));
-	else
+	else {
+		/* TODO replace this by gnome_vfs_mime_type_from_mode_or_default call, #330625 */
 		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_mode (file_info->permissions));
+		if (file_info->mime_type == NULL) {
+			file_info->mime_type = g_strdup (GNOME_VFS_MIME_TYPE_UNKNOWN);
+		}
+	}
 }
 
 /* from gnome-vfs-utils.c */
@@ -2850,7 +2855,8 @@ do_read_directory (GnomeVFSMethod       *method,
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: %d, filename is %s",
 				      G_GNUC_FUNCTION, i, filename));
 
-			if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+			if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE &&
+			    info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 				path = g_build_filename (handle->path, filename, NULL);
 				get_file_info_for_path (handle->connection, path,
 							info, handle->dir_options);

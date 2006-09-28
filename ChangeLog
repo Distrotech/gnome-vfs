@@ -1,5 +1,23 @@
 2006-09-28  Christian Neumair  <chris@gnome-de.org>
 
+	* modules/ftp-method.c: (unix_ls_to_file_info):
+	Handle NULL retvals of gnome_vfs_mime_type_from_mode, #330625.
+	Will eventually be fixed by introducing
+	gnome_vfs_mime_type_from_mode_or_default.
+
+	* modules/sftp-method.c: (update_mime_type_and_name_from_path),
+	(do_read_directory):
+	Ditto. Also check for GNOME_VFS_FILE_INFO_FIELDS_TYPE being in
+	file info's valid_fields before assuming that we have a symlink in
+	do_read_directory.
+
+	* programs/gnomevfs-info.c:
+	* programs/gnomevfs-ls.c:
+	Improve handling of GNOME_VFS_FILE_INFO_FIELDS_TYPE absence from
+	GnomeVFSFileInfo's valid_fields field.
+
+2006-09-28  Christian Neumair  <chris@gnome-de.org>
+
 	* imported/fnmatch/.cvsignore:
 	* imported/neon/.cvsignore:
 	* po/.cvsignore:

@@ -2235,10 +2235,14 @@ unix_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, GNOME_VFS_MIME_TYPE_UNKNOWN);
-			/*ftp_debug (conn, g_strdup_printf ("mimetype = %s", mime_type));*/
 		} else {
-			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
+			/* TODO replace this by gnome_vfs_mime_type_from_mode_or_default call, #330625 */
+			mime_type = gnome_vfs_mime_type_from_mode (file_info->permissions);
+			if (mime_type == NULL) {
+				mime_type = GNOME_VFS_MIME_TYPE_UNKNOWN;
+			}
 		}
+		/*ftp_debug (conn, g_strdup_printf ("mimetype = %s", mime_type));*/
 		file_info->mime_type = g_strdup (mime_type);
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
