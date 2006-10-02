@@ -1,3 +1,9 @@
+gnome-vfs 2.16.1
+	  * Fix some leaks
+	  * Upgrade to latest xdgmime version
+	  * Fix crash on shutdown in http module
+	  * Fix sftp crash
+
 gnome-vfs 2.16.0
 	  * http: Fix crash on some redirects
 	  * http: Ignore fragment identifiers in URIs
