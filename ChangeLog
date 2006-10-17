@@ -1,3 +1,9 @@
+2006-10-17  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (do_get_file_info):
+	Don't fail getting selinux context. This causes us
+	to return e.g. no-such-file on broken symlinks.
+
 2006-10-02  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

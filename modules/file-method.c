@@ -1171,11 +1171,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	}
 
 	if (options & GNOME_VFS_FILE_INFO_GET_SELINUX_CONTEXT) {
-		result = get_selinux_context (file_info, full_name, options);
-		if (result != GNOME_VFS_OK) { 
-			g_free (full_name);
-			return result;
-		}
+		get_selinux_context (file_info, full_name, options);
 	} 
 
 	if (options & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
