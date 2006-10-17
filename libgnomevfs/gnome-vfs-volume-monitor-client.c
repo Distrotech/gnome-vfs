@@ -95,6 +95,10 @@ get_drives (DBusConnection        *dbus_conn,
 	DBusMessageIter  iter, array_iter;
 	GnomeVFSDrive   *drive;
 
+	if (dbus_conn == NULL) {
+		return NULL;
+	}
+
 	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
  						DVD_DAEMON_OBJECT,
 						DVD_DAEMON_INTERFACE,
@@ -147,6 +151,10 @@ get_volumes (DBusConnection        *dbus_conn,
 	GList           *list;
 	DBusMessageIter  iter, array_iter;
 	GnomeVFSVolume  *volume;
+
+	if (dbus_conn == NULL) {
+		return NULL;
+	}
 
 	message = dbus_message_new_method_call (DVD_DAEMON_SERVICE,
  						DVD_DAEMON_OBJECT,

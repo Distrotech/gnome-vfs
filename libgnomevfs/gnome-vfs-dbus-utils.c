@@ -150,8 +150,8 @@ _gnome_vfs_get_main_dbus_connection (void)
 	dbus_error_init (&error);
 	main_dbus = dbus_bus_get (DBUS_BUS_SESSION, &error);
 	if (dbus_error_is_set (&error)) {
-		g_warning ("Failed to open session DBUS connection: %s\n"
-			   "Volume monitoring will not work.", error.message);
+		/*g_warning ("Failed to open session DBUS connection: %s\n"
+			   "Volume monitoring will not work.", error.message);*/
 		dbus_error_free (&error);
 		main_dbus = NULL;
 		return NULL;
