@@ -1,3 +1,9 @@
+2006-10-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c:
+	Performance enhancements. We now avoid constantly going through
+	the pending lists as much as we can.
+
 2006-10-18  John McCutchan  <john@johnmccutchan.com>
 
 	* modules/inotify-kernel.c: Relicense: GPL->LGPL
