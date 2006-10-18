@@ -1,3 +1,9 @@
+2006-10-18  John McCutchan  <john@johnmccutchan.com>
+
+	* modules/inotify-kernel.c: Relicense: GPL->LGPL
+	* modules/inotify-kernel.h: Relicense: GPL->LGPL
+	* modules/inotify-path.h: Relicense: GPL->LGPL
+
 2006-10-17  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-dbus-utils.c:
