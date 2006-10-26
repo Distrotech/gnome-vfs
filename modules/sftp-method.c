@@ -1060,7 +1060,7 @@ get_sftp_client_vendor (void)
 			  &ssh_exitcode, NULL)) {
 		if (ssh_stderr == NULL)
 			res = SFTP_VENDOR_INVALID;
-		else if (strstr (ssh_stderr, "OpenSSH") != NULL)
+		else if ((strstr (ssh_stderr, "OpenSSH") != NULL) || (strstr (ssh_stderr, "Sun_SSH") != NULL))
 			res = SFTP_VENDOR_OPENSSH;
 		else if (strstr (ssh_stderr, "SSH Secure Shell") != NULL)
 			res = SFTP_VENDOR_SSH;
