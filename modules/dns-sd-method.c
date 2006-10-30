@@ -635,10 +635,17 @@ do_open (GnomeVFSMethod *method,
 		
 	}
 		    
-	link_uri = g_strdup_printf ("%s://%s%s:%d%s",
-				    dns_sd_types[i].method,
-				    user_and_pwd?user_and_pwd:"",
-				    host, port, path);
+	if (strchr (host, ':')) 
+		/* must be an ipv6 address, follow rfc2732 */
+		link_uri = g_strdup_printf ("%s://%s[%s]:%d%s",
+					    dns_sd_types[i].method,
+					    user_and_pwd?user_and_pwd:"",
+					    host, port, path);
+	else
+		link_uri = g_strdup_printf ("%s://%s%s:%d%s",
+					    dns_sd_types[i].method,
+					    user_and_pwd?user_and_pwd:"",
+					    host, port, path);
 	g_free (user_and_pwd);
 
 	/* TODO: Escape / in name */
