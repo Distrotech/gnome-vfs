@@ -1780,6 +1780,10 @@ do_monitor_add (GnomeVFSMethod        *method,
 							   -1, NULL);
 
 	dbus_message_unref (message);
+
+	if (reply == NULL) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
 	
 	if (check_if_reply_is_error (reply, &result)) {
 		return result;
@@ -1838,6 +1842,10 @@ do_monitor_cancel (GnomeVFSMethod       *method,
 
 	dbus_message_unref (message);
 
+	if (reply == NULL) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+	
 	if (check_if_reply_is_error (reply, &result)) {
 		return result;
 	}
