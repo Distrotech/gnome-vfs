@@ -47,12 +47,6 @@ struct _DaemonConnection {
 
 	GMainContext   *main_context;
 	GMainLoop      *main_loop;
-
-	/* ID for directory and file handles. */
-	guint           next_id;
-
-	GHashTable     *directory_handles;
-	GHashTable     *file_handles;
 };
 
 typedef struct {
@@ -62,17 +56,27 @@ typedef struct {
 } CancellationHandle;
 
 typedef struct {
+	DaemonConnection        *last_connection;
         GnomeVFSDirectoryHandle *vfs_handle;
 	gint32                   id;
 } DirectoryHandle;
 
 typedef struct {
-        GnomeVFSHandle *vfs_handle;
-	gint32          id;
+	DaemonConnection *last_connection;
+        GnomeVFSHandle   *vfs_handle;
+	gint32            id;
 } FileHandle;
 
 static GStaticMutex cancellations_lock = G_STATIC_MUTEX_INIT;
 static GHashTable *cancellations;
+
+static GStaticMutex directory_handles_lock = G_STATIC_MUTEX_INIT;
+static GHashTable *directory_handles;
+static guint next_directory_id = 1;
+
+static GStaticMutex file_handles_lock = G_STATIC_MUTEX_INIT;
+static GHashTable *file_handles;
+static guint next_file_id = 1;
 
 static DaemonConnection *  connection_new                      (DBusConnection          *dbus_conn,
 								gint32                   conn_id);
@@ -84,23 +88,23 @@ static CancellationHandle *connection_add_cancellation         (DaemonConnection
 								gint                     id);
 static void                connection_remove_cancellation      (DaemonConnection        *conn,
 								CancellationHandle      *handle);
-static DirectoryHandle *   directory_handle_new                (GnomeVFSDirectoryHandle *vfs_handle,
+static DirectoryHandle *   directory_handle_new                (DaemonConnection        *daemon_connection,
+								GnomeVFSDirectoryHandle *vfs_handle,
 								gint32                   handle_id);
 static void                directory_handle_free               (DirectoryHandle         *handle);
-static DirectoryHandle *   connection_add_directory_handle     (DaemonConnection        *conn,
+static DirectoryHandle *   add_directory_handle                (DaemonConnection        *conn,
 								GnomeVFSDirectoryHandle *vfs_handle);
-static void                connection_remove_directory_handle  (DaemonConnection        *conn,
-								DirectoryHandle         *handle);
-static DirectoryHandle *   connection_get_directory_handle     (DaemonConnection        *conn,
+static void                remove_directory_handle             (DirectoryHandle         *handle);
+static DirectoryHandle *   get_directory_handle                (DaemonConnection        *conn,
 								gint32                   id);
-static FileHandle *        file_handle_new                     (GnomeVFSHandle          *vfs_handle,
+static FileHandle *        file_handle_new                     (DaemonConnection *daemon_connection,
+								GnomeVFSHandle          *vfs_handle,
 								gint32                   handle_id);
 static void                file_handle_free                    (FileHandle              *handle);
-static FileHandle *        connection_add_file_handle          (DaemonConnection        *conn,
+static FileHandle *        add_file_handle                     (DaemonConnection        *conn,
 								GnomeVFSHandle          *vfs_handle);
-static void                connection_remove_file_handle       (DaemonConnection        *conn,
-								FileHandle              *handle);
-static FileHandle *        connection_get_file_handle          (DaemonConnection        *conn,
+static void                remove_file_handle                  (FileHandle              *handle);
+static FileHandle *        get_file_handle                     (DaemonConnection        *conn,
 								gint32                   id);
 static void                connection_reply_ok                 (DaemonConnection        *conn,
 								DBusMessage             *message);
@@ -147,18 +151,9 @@ connection_new (DBusConnection *dbus_conn,
 	conn->conn_id = conn_id;
 
 	conn->conn = dbus_conn;
-	conn->next_id = 1;
 
 	conn->main_context = g_main_context_new ();
 	conn->main_loop = g_main_loop_new (conn->main_context, FALSE);
-
-	conn->directory_handles = g_hash_table_new_full (
-		g_direct_hash, g_direct_equal,
-		NULL, (GDestroyNotify) directory_handle_free);
-
-	conn->file_handles = g_hash_table_new_full (
-		g_direct_hash, g_direct_equal,
-		NULL, (GDestroyNotify) file_handle_free);
 
 	if (!dbus_connection_register_object_path (dbus_conn,
 						   DVD_DAEMON_OBJECT,
@@ -212,6 +207,28 @@ connection_shutdown (DaemonConnection *conn)
 	g_main_loop_quit (conn->main_loop);
 }
 
+static gboolean
+directory_handle_last_conn_is (gpointer  key,
+                               gpointer  value,
+                               gpointer  user_data)
+{
+	DaemonConnection *conn = user_data;
+	DirectoryHandle *handle = value;
+
+	return handle->last_connection == conn;
+}
+
+static gboolean
+file_handle_last_conn_is (gpointer  key,
+			  gpointer  value,
+			  gpointer  user_data)
+{
+	DaemonConnection *conn = user_data;
+	FileHandle *handle = value;
+
+	return handle->last_connection == conn;
+}
+
 static void
 connection_destroy (DaemonConnection *conn)
 {
@@ -222,9 +239,22 @@ connection_destroy (DaemonConnection *conn)
 	}
 	dbus_connection_unref (conn->conn);
 
-	g_hash_table_destroy (conn->directory_handles);
-	g_hash_table_destroy (conn->file_handles);
-
+	g_static_mutex_lock (&directory_handles_lock);
+	if (directory_handles) {
+		g_hash_table_foreach_remove (directory_handles,
+					     directory_handle_last_conn_is,
+					     conn);
+	}
+	g_static_mutex_unlock (&directory_handles_lock);
+	
+	g_static_mutex_lock (&file_handles_lock);
+	if (file_handles) {
+		g_hash_table_foreach_remove (file_handles,
+					     file_handle_last_conn_is,
+					     conn);
+	}
+	g_static_mutex_unlock (&file_handles_lock);
+	
 	g_assert (!g_main_loop_is_running (conn->main_loop));
 
 	g_main_loop_unref (conn->main_loop);
@@ -347,12 +377,14 @@ daemon_connection_cancel (gint32 conn_id, gint32 cancellation_id)
  */
 
 static DirectoryHandle *
-directory_handle_new (GnomeVFSDirectoryHandle *vfs_handle,
+directory_handle_new (DaemonConnection        *daemon_connection,
+		      GnomeVFSDirectoryHandle *vfs_handle,
 		      gint32                   handle_id)
 {
 	DirectoryHandle *handle;
 
 	handle = g_new0 (DirectoryHandle, 1);
+	handle->last_connection = daemon_connection;
 	handle->vfs_handle = vfs_handle;
 	handle->id = handle_id;
 
@@ -371,37 +403,52 @@ directory_handle_free (DirectoryHandle *handle)
 }
 
 static DirectoryHandle *
-connection_add_directory_handle (DaemonConnection        *conn,
-				 GnomeVFSDirectoryHandle *vfs_handle)
+add_directory_handle (DaemonConnection        *conn,
+		      GnomeVFSDirectoryHandle *vfs_handle)
 {
 	DirectoryHandle *handle;
 
-	handle = directory_handle_new (vfs_handle, conn->next_id++);
+	g_static_mutex_lock (&directory_handles_lock);
+	handle = directory_handle_new (conn, vfs_handle, next_directory_id++);
 
-	g_hash_table_insert (conn->directory_handles,
+	if (directory_handles == NULL) {
+		directory_handles = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+							   NULL, (GDestroyNotify) directory_handle_free);
+	}
+	
+	g_hash_table_insert (directory_handles,
 			     GINT_TO_POINTER (handle->id), handle);
+	g_static_mutex_unlock (&directory_handles_lock);
 
 	return handle;
 }
 
 static void
-connection_remove_directory_handle (DaemonConnection *conn,
-				    DirectoryHandle  *handle)
+remove_directory_handle (DirectoryHandle  *handle)
 {
-	if (!g_hash_table_remove (conn->directory_handles,
+	g_static_mutex_lock (&directory_handles_lock);
+	if (!g_hash_table_remove (directory_handles,
 				  GINT_TO_POINTER (handle->id))) {
 		g_warning ("Couldn't remove directory handle %d\n",
 			   handle->id);
-		return;
 	}
+	g_static_mutex_unlock (&directory_handles_lock);
 }
 
 static DirectoryHandle *
-connection_get_directory_handle (DaemonConnection *conn,
-				 gint32            id)
+get_directory_handle (DaemonConnection *conn,
+		      gint32            id)
 {
-	return g_hash_table_lookup (conn->directory_handles,
-				    GINT_TO_POINTER (id));
+	DirectoryHandle *handle;
+	
+	g_static_mutex_lock (&directory_handles_lock);
+	handle = g_hash_table_lookup (directory_handles,
+				      GINT_TO_POINTER (id));
+	if (handle) {
+		handle->last_connection = conn;
+	}
+	g_static_mutex_unlock (&directory_handles_lock);
+	return handle;
 }
 
 /*
@@ -409,12 +456,14 @@ connection_get_directory_handle (DaemonConnection *conn,
  */
 
 static FileHandle *
-file_handle_new (GnomeVFSHandle *vfs_handle,
-		 gint32          handle_id)
+file_handle_new (DaemonConnection *daemon_connection,
+		 GnomeVFSHandle   *vfs_handle,
+		 gint32            handle_id)
 {
 	FileHandle *handle;
 
 	handle = g_new0 (FileHandle, 1);
+	handle->last_connection = daemon_connection;
 	handle->vfs_handle = vfs_handle;
 	handle->id = handle_id;
 
@@ -433,39 +482,51 @@ file_handle_free (FileHandle *handle)
 }
 
 static FileHandle *
-connection_add_file_handle (DaemonConnection *conn,
-			    GnomeVFSHandle   *vfs_handle)
+add_file_handle (DaemonConnection *conn,
+		 GnomeVFSHandle   *vfs_handle)
 {
 	FileHandle *handle;
 
-	handle = file_handle_new (vfs_handle, conn->next_id++);
+	g_static_mutex_lock (&file_handles_lock);
+	handle = file_handle_new (conn, vfs_handle, next_file_id++);
 
-	g_hash_table_insert (conn->file_handles,
+	if (file_handles == NULL) {
+		file_handles = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+						      NULL, (GDestroyNotify) file_handle_free);
+	}
+	
+	g_hash_table_insert (file_handles,
 			     GINT_TO_POINTER (handle->id), handle);
+	g_static_mutex_unlock (&file_handles_lock);
 
 	return handle;
 }
 
 static void
-connection_remove_file_handle (DaemonConnection *conn,
-			       FileHandle       *handle)
+remove_file_handle (FileHandle       *handle)
 {
-	if (!g_hash_table_remove (conn->file_handles,
+	g_static_mutex_lock (&file_handles_lock);
+	if (!g_hash_table_remove (file_handles,
 				  GINT_TO_POINTER (handle->id))) {
 		g_warning ("Couldn't remove file handle %d\n", handle->id);
-		return;
 	}
+	g_static_mutex_unlock (&file_handles_lock);
 }
 
 static FileHandle *
-connection_get_file_handle (DaemonConnection *conn,
-			    gint32            id)
+get_file_handle (DaemonConnection *conn,
+		 gint32            id)
 {
 	FileHandle *handle;
 
-	handle = g_hash_table_lookup (conn->file_handles,
+	g_static_mutex_lock (&file_handles_lock);
+	handle = g_hash_table_lookup (file_handles,
 				      GINT_TO_POINTER (id));
-
+	if (handle) {
+		handle->last_connection = conn;
+	}
+	g_static_mutex_unlock (&file_handles_lock);
+	
 	return handle;
 }
 
@@ -618,7 +679,7 @@ connection_handle_open (DaemonConnection *conn,
 		return;
 	}
 
-	handle = connection_add_file_handle (conn, vfs_handle);
+	handle = add_file_handle (conn, vfs_handle);
 
 	connection_reply_id (conn, message, handle->id);
 }
@@ -680,7 +741,7 @@ connection_handle_create (DaemonConnection *conn,
 		return;
 	}
 
-	handle = connection_add_file_handle (conn, vfs_handle);
+	handle = add_file_handle (conn, vfs_handle);
 
 	connection_reply_id (conn, message, handle->id);
 }
@@ -707,7 +768,7 @@ connection_handle_close (DaemonConnection *conn,
 
 	d(g_print ("close: %d (%d)\n", handle_id, cancellation_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -738,7 +799,7 @@ connection_handle_close (DaemonConnection *conn,
 	/* Clear the handle so we don't close it twice. */
 	handle->vfs_handle = NULL;
 	
-	connection_remove_file_handle (conn, handle);
+	remove_file_handle (handle);
 
 	connection_reply_ok (conn, message);
 }
@@ -773,7 +834,7 @@ connection_handle_read (DaemonConnection *conn,
 	d(g_print ("read: %d, %llu, (%d)\n",
 		   handle_id, num_bytes, cancellation_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -864,7 +925,7 @@ connection_handle_write (DaemonConnection *conn,
 
 	d(g_print ("write: %d, %d (%d)\n", handle_id, len, cancellation_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -937,7 +998,7 @@ connection_handle_seek (DaemonConnection *conn,
 
 	d(g_print ("seek: %d, %d, %llu\n", handle_id, whence, offset));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -989,7 +1050,7 @@ connection_handle_tell (DaemonConnection *conn,
 
 	d(g_print ("tell: %d\n", handle_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -1043,7 +1104,7 @@ connection_handle_truncate_handle (DaemonConnection *conn,
 
 	d(g_print ("truncate_handle: %d, %llu\n", handle_id, where));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -1122,7 +1183,7 @@ connection_handle_open_directory (DaemonConnection *conn,
 		return;
 	}
 
-	handle = connection_add_directory_handle (conn, vfs_handle);
+	handle = add_directory_handle (conn, vfs_handle);
 
 	connection_reply_id (conn, message, handle->id);
 }
@@ -1148,7 +1209,7 @@ connection_handle_close_directory (DaemonConnection *conn,
 
 	d(g_print ("close_directory: %d\n", handle_id));
 
-	handle = connection_get_directory_handle (conn, handle_id);
+	handle = get_directory_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -1162,7 +1223,7 @@ connection_handle_close_directory (DaemonConnection *conn,
 	if (result == GNOME_VFS_OK) {
 		/* Clear the handle so we don't close it twice. */
 		handle->vfs_handle = NULL;
-		connection_remove_directory_handle (conn, handle);
+		remove_directory_handle (handle);
 	}
 
 	connection_reply_result (conn, message, result);
@@ -1195,7 +1256,7 @@ connection_handle_read_directory (DaemonConnection *conn,
 	d(g_print ("read_directory: %d (%d)\n",
 		   handle_id, cancellation_id));
 
-	handle = connection_get_directory_handle (conn, handle_id);
+	handle = get_directory_handle (conn, handle_id);
 
 	if (!handle) {
 		connection_reply_result (conn, message,
@@ -1351,7 +1412,7 @@ connection_handle_get_file_info_from_handle (DaemonConnection *conn,
 	d(g_print ("get_file_info_from_handle: %d (%d)\n",
 		   handle_id, cancellation_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
@@ -1928,7 +1989,7 @@ connection_handle_forget_cache (DaemonConnection *conn,
 	d(g_print ("forget cache: %d, %lld, %llu, (%d)\n",
 		   handle_id, offset, size, cancellation_id));
 
-	handle = connection_get_file_handle (conn, handle_id);
+	handle = get_file_handle (conn, handle_id);
 	if (!handle) {
 		connection_reply_result (conn, message,
 					 GNOME_VFS_ERROR_INTERNAL);
