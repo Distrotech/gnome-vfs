@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-16 11:10+0300\n"
+"POT-Creation-Date: 2006-11-01 14:06+0200\n"
 "PO-Revision-Date: 2004-03-25 23:10+0000\n"
 "Last-Translator: Gil Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -25,40 +25,40 @@ msgid "ISO 9660 Volume"
 msgstr "כרך ISO 9660"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%d מכיל תווים ריקים."
+msgstr "%s:%u contains NUL characters."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no method name."
-msgstr "%s:%d לא מכיל שם שיטה."
+msgstr "%s:%u contains no method name."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%u has no options endmarker."
-msgstr ""
+msgstr "%s:%u has no options endmarker."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%u has unknown options %s."
-msgstr ""
+msgstr "%s:%u has unknown options %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no module name."
-msgstr "%s: %d לא מכיל שם מודול."
+msgstr "%s:%u contains no module name."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "קובץ ההגדרות '%s' לא נמצא: %s"
+msgstr "Configuration file `%s' was not found: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d aborted parsing."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -86,9 +86,8 @@ msgid "Hardware Device Volume"
 msgstr "כרך התקן חומרה"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
-#, fuzzy
 msgid "EncFS Volume"
-msgstr "כרך JFS"
+msgstr "כרך EncFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
@@ -107,9 +106,8 @@ msgstr "כרך MSDOS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#, fuzzy
 msgid "BSD Volume"
-msgstr "כרך MSDOS"
+msgstr "כרך BSD"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
@@ -158,9 +156,8 @@ msgid "Netware Volume"
 msgstr "כרך Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Reiser4 Linux Volume"
-msgstr "כרך ReiserFS לינוקס"
+msgstr "כרך Reiser4 לינוקס"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
@@ -191,14 +188,12 @@ msgid "Pcfs Solaris Volume"
 msgstr "כרך Pcfs סולאריס"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "כרך AFFS"
+msgstr "כרך SAM-QFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
-#, fuzzy
 msgid "Temporary Volume"
-msgstr "כרך זיכרון"
+msgstr "כרך זמני"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
@@ -221,9 +216,8 @@ msgid "XIAFS Volume"
 msgstr "כרך XIAFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
-#, fuzzy
 msgid "CIFS Volume"
-msgstr "כרך XIAFS"
+msgstr "כרך CIFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
@@ -231,9 +225,9 @@ msgstr "לא ידוע"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "%s Volume"
-msgstr "כרך DVD"
+msgstr "כרך %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
@@ -288,14 +282,14 @@ msgid "DVD±RW"
 msgstr "DVD±RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
-#, fuzzy, c-format
+#, c-format
 msgid "%s/%s Drive"
-msgstr "כונן Zip"
+msgstr "כונן %s/%s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
-#, fuzzy, c-format
+#, c-format
 msgid "%s Drive"
-msgstr "כונן Zip"
+msgstr "כונן %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
@@ -303,17 +297,15 @@ msgstr "כונן תקליטונים"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
 msgid "Compact Flash Drive"
-msgstr ""
+msgstr "כונן פלאש קומפקטי"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
-#, fuzzy
 msgid "Memory Stick Drive"
-msgstr "מקל זיכרון"
+msgstr "כונן מקל זיכרון"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
-#, fuzzy
 msgid "Smart Media Drive"
-msgstr "מקל זיכרון"
+msgstr "כונן מדיה חכמה"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
@@ -421,19 +413,18 @@ msgid "Audio Disc"
 msgstr "דיסק אודיו"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
-#, fuzzy, c-format
+#, c-format
 msgid "%s Removable Volume"
-msgstr "כרך מערכת"
+msgstr "כרך ניתן להסרה %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
-#, fuzzy
 msgid "Volume"
-msgstr "כרך JFS"
+msgstr "כרך"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "סוג op לא ידוע %u"
+msgstr "Unknown operation type %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
@@ -726,7 +717,7 @@ msgstr "שגיאה בהפעלת פקודה"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
-msgstr ""
+msgstr "Timeout reached"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
@@ -736,7 +727,7 @@ msgstr "שגיאת שרת שם"
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
-msgstr ""
+msgstr "The resource is locked"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:91
@@ -745,11 +736,15 @@ msgstr "Function call deprecated"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:92
-#, fuzzy
 msgid "Invalid filename"
-msgstr "פרמטרים לא תקניים"
+msgstr "Invalid filename"
 
-#: ../libgnomevfs/gnome-vfs-result.c:216
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "Not a symbolic link"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "שגיאה לא ידועה"
 
@@ -859,9 +854,8 @@ msgid "Memory Stick"
 msgstr "מקל זיכרון"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
-#, fuzzy
 msgid "Smart Media"
-msgstr "מקל זיכרון"
+msgstr "מדיה חכמה"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
@@ -911,6 +905,8 @@ msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
@@ -927,11 +923,10 @@ msgid "Unable to mount the selected volume."
 msgstr "לא ניתן לחבר את הכרך הנבחר."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-#, fuzzy
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "לא ניתן לחבר את הכרך הנבחר. כנראה הכרך באיתחול שלא יכול להתחבר."
+msgstr "לא ניתן לנתק את הכרך הנבחר. הכרך נימצא בשימוש על ידי יישום אחד או יותר.."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -940,11 +935,11 @@ msgstr "לא ניתן לנתק את הכרך הנבחר."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr ""
+msgstr "Failed to read data from child process %d (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "Couldn't run mount process in a pty"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
@@ -953,7 +948,7 @@ msgstr "Unexpected error in select() reading data from a child process (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
-msgstr ""
+msgstr "Couldn't send password to mount process."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
@@ -985,7 +980,7 @@ msgstr "בית"
 msgid "Filesystem"
 msgstr "מערכת קבצים"
 
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition לא ידוע %d"
@@ -997,7 +992,7 @@ msgstr "רשת חלונות"
 #: ../modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "הזהות של המחשב המרוחק (%s) אינה ידועה"
 
 #: ../modules/sftp-method.c:1347
 #, c-format
@@ -1007,6 +1002,9 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"מצב זה קורה כאשר מתחברים למחשב בפעם הראשונה.\n"
+"\n"
+"הזהות שנשלחה על ידי המחשב המרוחק היא %s. על מנת לדעת האם זה בטוח לחלוטין להמשיך, יש ליצור קשר עם מנהל המערכת."
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
@@ -1030,7 +1028,7 @@ msgstr "השתמש במשתנה הסביבה %s כדי לציין מיקום א�
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr ""
+msgstr "Your HTTP Proxy requires you to log in.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1038,24 +1036,26 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
+"You must log in to access \"%s\".\n"
+"%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr ""
+msgstr "Your password will be transmitted unencrypted."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr ""
+msgstr "Your password will be transmitted encrypted."
 
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr ""
+msgstr "You must log in to access %s domain %s\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr ""
+msgstr "You must log in to access %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
