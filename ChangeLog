@@ -1,5 +1,12 @@
 2006-11-02  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-monitor.c:
+	Avoid ending up in a loop via timeouts spending 100% cpu if
+	a monitor is cancelled when there are outstanding callbacks.
+	Fixes #357704
+
+2006-11-02  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/daemon-connection.c (connection_handle_close):
 	Allow operations on file handles that were created in another
 	DaemonConnection. This can happen if another thread in the client

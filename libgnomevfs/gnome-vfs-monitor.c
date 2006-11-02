@@ -45,6 +45,7 @@ struct GnomeVFSMonitorHandle {
 	gpointer user_data; /* FIXME - how does this get freed */
 
 	gboolean cancelled;
+	gboolean in_dispatch;
 	
 	GQueue *pending_callbacks; /* protected by handle_hash */
 	guint pending_timeout; /* protected by handle_hash */
@@ -158,7 +159,8 @@ destroy_monitor_handle (GnomeVFSMonitorHandle *handle)
 {
 	gboolean res;
 
-	g_assert (no_live_callbacks (handle));
+	if (handle->pending_timeout) 
+		g_source_remove (handle->pending_timeout);
 	
 	g_queue_foreach (handle->pending_callbacks, (GFunc) free_callback_data, NULL);
 	g_queue_free (handle->pending_callbacks);
@@ -191,12 +193,15 @@ _gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle)
 						      handle->method_handle);
 
 	if (result == GNOME_VFS_OK) {
+		G_LOCK (handle_hash);
 		/* mark this monitor as cancelled */
 		handle->cancelled = TRUE;
 
-		/* destroy the handle if there are no outstanding callbacks */
-		G_LOCK (handle_hash);
-		if (no_live_callbacks (handle)) {
+		/* we might be in the unlocked part of actually_dispatch_callback,
+		 * in that case, don't free the handle now.
+		 * Instead we do it in actually_dispatch_callback.
+		 */
+		if (!handle->in_dispatch) {
 			destroy_monitor_handle (handle);
 		}
 		G_UNLOCK (handle_hash);
@@ -205,6 +210,7 @@ _gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle)
 	return result;
 }
 
+/* Called with handle_hash lock held */
 static void
 install_timeout (GnomeVFSMonitorHandle *monitor_handle, time_t now)
 {
@@ -239,6 +245,10 @@ actually_dispatch_callback (gpointer data)
 
 	G_LOCK (handle_hash);
 
+	/* Mark this so that do_cancel doesn't free the handle while
+	 * we run without the lock during dispatch */
+	monitor_handle->in_dispatch = TRUE;
+	
 	if (!monitor_handle->cancelled) {
 		/* Find all callbacks that needs to be dispatched */
 		dispatch = NULL;
@@ -307,16 +317,15 @@ actually_dispatch_callback (gpointer data)
 
 	}
 
-	if (no_live_callbacks (monitor_handle)) {
-		/* if we were waiting for this callback to be dispatched
-		 * to free this monitor, then do it now.
-		 */
-		if (monitor_handle->cancelled)
-			destroy_monitor_handle (monitor_handle);
-		else {
-			monitor_handle->pending_timeout = 0;
-			monitor_handle->min_send_at = 0;
-		}
+	monitor_handle->in_dispatch = FALSE;
+	
+	/* if we were waiting for this callback to be dispatched
+	 * to free this monitor, then do it now. */
+	if (monitor_handle->cancelled) {
+		destroy_monitor_handle (monitor_handle);
+	} else if (no_live_callbacks (monitor_handle)) {
+		monitor_handle->pending_timeout = 0;
+		monitor_handle->min_send_at = 0;
 	} else {
 		/* pending callbacks left, install another timeout */
 		monitor_handle->min_send_at = get_min_send_at (monitor_handle->pending_callbacks);
