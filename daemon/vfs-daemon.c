@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <string.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -51,6 +52,8 @@ static DBusHandlerResult dbus_filter_func         (DBusConnection *connection,
 						   DBusMessage    *message,
 						   void           *data);
 
+
+static gboolean replace_daemon = FALSE;
 
 static DBusObjectPathVTable daemon_vtable = {
 	daemon_unregistered_func,
@@ -83,6 +86,7 @@ daemon_get_connection (gboolean create)
 	static DBusConnection *conn = NULL;
 	DBusError              error;
 	gint                   ret;
+	int flags;
 
 	if (conn) {
 		return conn;
@@ -103,7 +107,11 @@ daemon_get_connection (gboolean create)
 		return NULL;
 	}
 
-	ret = dbus_bus_request_name (conn, DVD_DAEMON_SERVICE, 0, &error);
+	flags = DBUS_NAME_FLAG_ALLOW_REPLACEMENT;
+	if (replace_daemon) {
+		flags |= DBUS_NAME_FLAG_REPLACE_EXISTING;
+	}
+	ret = dbus_bus_request_name (conn, DVD_DAEMON_SERVICE, flags, &error);
 	if (dbus_error_is_set (&error)) {
 		g_warning ("Failed to acquire vfs-daemon service: %s", error.message);
 		dbus_error_free (&error);
@@ -901,9 +909,18 @@ main (int argc, char *argv[])
 {
 	GMainLoop             *loop;
 	GnomeVFSVolumeMonitor *monitor;
+	int i;
 
 	d(g_print ("Starting daemon.\n"));
 
+	if (argc > 1) {
+		for (i = 1; i < argc; i++) {
+			if (strcmp (argv[i], "--replace") == 0) {
+				replace_daemon = TRUE;
+			}
+		}
+	}
+	
 	g_type_init ();
 
 	gnome_vfs_set_is_daemon (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON,
