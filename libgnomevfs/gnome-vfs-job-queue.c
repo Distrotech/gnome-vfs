@@ -53,7 +53,6 @@ thread_entry_point (gpointer data, gpointer user_data)
 		JOB_DEBUG (("job already dead, bail %p",
 			    job->job_handle));
 		_gnome_vfs_async_job_map_unlock ();
-		g_print ("baling out\n");
 
 		/* FIXME: doesn't that leak here? */
 		return;
