@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
+#include <locale.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -920,6 +921,8 @@ main (int argc, char *argv[])
 			}
 		}
 	}
+
+	setlocale(LC_ALL, "");
 	
 	g_type_init ();
 

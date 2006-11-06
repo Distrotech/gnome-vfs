@@ -1,3 +1,9 @@
+2006-11-06  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/vfs-daemon.c (main):
+	Call setlocale() in daemon to get translations. (#359875)
+	Patch from Martin Pitt
+
 2006-11-02  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-monitor.c:
