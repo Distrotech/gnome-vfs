@@ -1813,8 +1813,12 @@ copy_items (const GList *source_uri_list,
 					result = GNOME_VFS_ERROR_INTERRUPTED;
 				}
 
-				overwrite_mode_abort = GNOME_VFS_XFER_OVERWRITE_MODE_ABORT;
-				
+				/* If we're creating unique names, always abort on overwrite and
+				 * calculate a new name */
+				overwrite_mode_abort = overwrite_mode;
+				if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) != 0) {
+					overwrite_mode_abort = GNOME_VFS_XFER_OVERWRITE_MODE_ABORT;
+				} 
 				
 				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 					result = copy_file (info, target_dir_info,
@@ -1846,8 +1850,7 @@ copy_items (const GList *source_uri_list,
 					break;
 				}
 
-				if (overwrite_mode != GNOME_VFS_XFER_OVERWRITE_MODE_QUERY
-				    || (xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
+				if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 					gnome_vfs_uri_unref (target_uri);
 					break;
 				}

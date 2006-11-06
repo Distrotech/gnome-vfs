@@ -1,5 +1,13 @@
 2006-11-06  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_items):
+	Don't always cancel on EFILEEXISTS unless we're trying to
+	generate unique filenames. This fixes a silent abort
+	when copying "file.txt" and "FILE.TXT" to a case insensitive
+	filesystem (like FAT). (#144726)
+
+2006-11-06  Alexander Larsson  <alexl@redhat.com>
+
 	* daemon/vfs-daemon.c (main):
 	Call setlocale() in daemon to get translations. (#359875)
 	Patch from Martin Pitt
