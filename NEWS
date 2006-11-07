@@ -1,3 +1,15 @@
+gnome-vfs 2.16.2
+	  * Add a "--replace" commandline argument to gnome-vfs-daemon 
+	    to replace the current daemon. (Mostly for debugging use)
+	  * Make translations work in gnome-vfs-daemon
+	  * Handle IPv6 addresses when creating dav uris (DNS-SD)
+	  * Don't crash if there is no session dbus
+	  * Support sun ssh server
+	  * Don't fail getting selinux context
+	  * Allow operations on file handles that were created in another
+	    DaemonConnection. (This fixes e.g. smb browsing)
+	  * Fixes to gnome_vfs_xfer and monitoring
+
 gnome-vfs 2.16.1
 	  * Fix some leaks
 	  * Upgrade to latest xdgmime version
