@@ -1,3 +1,10 @@
+2006-11-07  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.c (stack_table_destroy):
+	Protect against reordering of atexit handlers and thread exit
+	handlers. Don't know if this is possible, but could be the cause
+	of bug #359655.
+
 2006-11-07  Christian Kellner  <gicmo@gnome.org>
 
 	* configure.in:

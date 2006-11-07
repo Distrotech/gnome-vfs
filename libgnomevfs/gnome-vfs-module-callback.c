@@ -411,11 +411,17 @@ stack_table_destroy (gpointer specific)
 	stack_table = specific;
 
 	g_static_mutex_lock (&callback_table_lock);
-	g_hash_table_remove (stack_tables_to_free, stack_table);
+	if (stack_tables_to_free != NULL) {
+		g_hash_table_remove (stack_tables_to_free, stack_table);
+	} else {
+		stack_table = NULL;
+	}
 	g_static_mutex_unlock (&callback_table_lock);
 
-	clear_stack_table (stack_table);
-	g_hash_table_destroy (stack_table);
+	if (stack_table) {
+		clear_stack_table (stack_table);
+		g_hash_table_destroy (stack_table);
+	}
 }
 
 static gboolean
@@ -440,6 +446,7 @@ free_stack_tables_to_free (void)
 	g_static_mutex_lock (&callback_table_lock);
 	g_hash_table_foreach_remove (stack_tables_to_free, stack_table_free_hr_func , NULL);
 	g_hash_table_destroy (stack_tables_to_free);
+	stack_tables_to_free = NULL;
 	g_static_mutex_unlock (&callback_table_lock);
 }
 
