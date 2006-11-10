@@ -972,9 +972,8 @@ do_read (GnomeVFSMethod *method,
 	}
 
 	dbus_message_iter_recurse (&iter, &array_iter);
-	if (dbus_message_iter_get_array_len (&array_iter) > 0) {
-		dbus_message_iter_get_fixed_array (&array_iter, &data, &size);
-		
+	dbus_message_iter_get_fixed_array (&array_iter, &data, &size);
+	if (size > 0) {
 		memcpy (buffer, data, size);
 	} 
 

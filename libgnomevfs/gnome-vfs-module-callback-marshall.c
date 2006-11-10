@@ -645,8 +645,20 @@ question_demarshal_in (DBusMessageIter *iter,
         if (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_ARRAY) {
                 dbus_message_iter_recurse (iter, &array_iter);
 
-		question_in->choices = g_new (char *, dbus_message_iter_get_array_len (&array_iter) + 1);
+		cnt = 0;
+                while (dbus_message_iter_get_arg_type (&array_iter) == DBUS_TYPE_STRING) {
+			cnt++;
+                        if (!dbus_message_iter_has_next (&array_iter)) {
+                                break;
+                        }
+                        dbus_message_iter_next (&array_iter);
+		}
 
+		
+		question_in->choices = g_new (char *, cnt + 1);
+
+                dbus_message_iter_recurse (iter, &array_iter);
+		
 		cnt = 0;
                 while (dbus_message_iter_get_arg_type (&array_iter) == DBUS_TYPE_STRING) {
 			question_in->choices[cnt++] = utils_get_string_or_null (&array_iter, FALSE);

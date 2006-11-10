@@ -2315,13 +2315,9 @@ get_operation_args (DBusMessage     *message,
 			ret_len = va_arg (args, gint *);
 
 			dbus_message_iter_recurse (&iter, &array_iter);
-			if (dbus_message_iter_get_array_len (&array_iter) > 0) {
-				dbus_message_iter_get_fixed_array (&array_iter,
-								   ret_data,
-								   ret_len);
-			} else {
-				*ret_len = 0;
-			}
+			dbus_message_iter_get_fixed_array (&array_iter,
+							   ret_data,
+							   ret_len);
 			break;
 		}
 		case DVD_TYPE_LAST:

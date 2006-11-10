@@ -1,3 +1,10 @@
+2006-11-10  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/daemon-connection.c:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Don't use deprecated dbus_message_iter_get_array_len function.
+
 2006-11-07  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-module-callback.c (stack_table_destroy):
