@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-16 00:19+0200\n"
+"POT-Creation-Date: 2006-11-12 16:14+0100\n"
 "PO-Revision-Date: 2006-08-13 13:40+0200\n"
 "Last-Translator: Artur Flinta <aflinta@at.kernel.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
@@ -992,7 +992,7 @@ msgstr "Początek"
 msgid "Filesystem"
 msgstr "System plików"
 
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nieznana wartość %d GnomeVFSSeekPosition"
