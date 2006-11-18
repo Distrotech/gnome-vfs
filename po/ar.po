@@ -13,15 +13,14 @@ msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-11 12:42+0000\n"
-"PO-Revision-Date: 2006-11-10 06:29+0200\n"
+"PO-Revision-Date: 2006-11-18 13:03+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <support@eglug.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
-"3\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n\n"
 "\n"
 "\n"
 
@@ -813,12 +812,12 @@ msgstr "%.1f كيلوبايت"
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f ميغابايت"
+msgstr "%.1f ميجابايت"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f جيغابايت"
+msgstr "%.1f جيجابايت"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
@@ -950,10 +949,8 @@ msgstr "خادم شبكة"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
@@ -1154,8 +1151,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
+msgstr "الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1474,8 +1470,7 @@ msgstr "منفذ بروكسي HTTP آمن"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
+msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1509,15 +1504,13 @@ msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و ا
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
+msgstr "منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
+msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1553,3 +1546,4 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
+
