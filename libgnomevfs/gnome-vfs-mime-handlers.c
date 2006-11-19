@@ -50,6 +50,7 @@ struct _GnomeVFSMimeApplicationPrivate
 	char *icon;
 	char *exec;
 	char *binary_name;
+	char *path;
 	gboolean supports_uris;
 	gboolean startup_notification;
 	char *startup_wm_class;
@@ -759,6 +760,7 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->priv->icon = g_strdup (application->priv->icon);
 	result->priv->exec = g_strdup (application->priv->exec); 
 	result->priv->binary_name = g_strdup (application->priv->binary_name);
+	result->priv->path = g_strdup (application->priv->path); 
 	result->priv->supports_uris = application->priv->supports_uris;
 	result->priv->startup_notification = application->priv->startup_notification;
 	result->priv->startup_wm_class = g_strdup (application->priv->startup_wm_class);
@@ -785,6 +787,7 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 			g_free (priv->icon);
 			g_free (priv->exec);
 			g_free (priv->binary_name);
+			g_free (priv->path);
 			g_free (priv->startup_wm_class);
 		}
 		g_free (priv);
@@ -1007,7 +1010,7 @@ gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
 			}
 		}
 		
-		if (!g_spawn_async (NULL /* working directory */,
+		if (!g_spawn_async (app->priv->path,  /* working directory */
 				    argv,
 				    envp,
 				    G_SPAWN_SEARCH_PATH /* flags */,
@@ -1416,6 +1419,9 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	}
 	app->priv->binary_name = g_strdup (argv[0]);
 	g_strfreev (argv);
+
+	app->priv->path = g_key_file_get_string (key_file, DESKTOP_ENTRY_GROUP,
+						 "Path", NULL);
 
 	app->requires_terminal = g_key_file_get_boolean
 			(key_file, DESKTOP_ENTRY_GROUP, "Terminal", &err);

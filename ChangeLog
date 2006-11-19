@@ -1,3 +1,13 @@
+2006-11-19  Vincent Untz  <vincent@vuntz.net>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_copy):
+	(gnome_vfs_mime_application_launch_with_e):
+	(gnome_vfs_mime_application_new_from_desk): respect Path key in
+	desktop files to launch the application from the specified directory
+	Fix bug #375427
+	Based on patch by Brian Harring
+
 2006-11-10  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/daemon-connection.c:
