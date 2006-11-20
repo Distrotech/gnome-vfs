@@ -1,5 +1,11 @@
 2006-11-20  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	Remove the daemon code for forget_cache. Its not used
+	by any daemon code, and was causing extra roundtrips on copy.
+
+2006-11-20  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Post release version bump
 

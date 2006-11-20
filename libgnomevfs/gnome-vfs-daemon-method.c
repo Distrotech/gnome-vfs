@@ -1855,38 +1855,6 @@ do_monitor_cancel (GnomeVFSMethod       *method,
 }
 
 static GnomeVFSResult
-do_forget_cache	(GnomeVFSMethod       *method,
-		 GnomeVFSMethodHandle *method_handle,
-		 GnomeVFSFileOffset    offset,
-		 GnomeVFSFileSize      size)
-{
-	FileHandle     *handle;
-	DBusMessage    *reply;
-	GnomeVFSResult  result;
-
-	handle = (FileHandle *) method_handle;
-
-	reply = execute_operation (DVD_DAEMON_METHOD_FORGET_CACHE,
-				   NULL, &result, -1,
-				   DVD_TYPE_INT32, handle->handle_id,
-				   DVD_TYPE_INT64, offset,
-				   DVD_TYPE_UINT64, size,
-				   DVD_TYPE_LAST);
-
-	if (!reply) {
-		return result;
-	}
-
-	if (check_if_reply_is_error (reply, &result)) {
-		return result;
-	}
-
-	dbus_message_unref (reply);
-
-	return GNOME_VFS_OK;
-}
-
-static GnomeVFSResult
 do_get_volume_free_space (GnomeVFSMethod    *method,
 			  const GnomeVFSURI *uri,
 			  GnomeVFSFileSize  *free_space)
@@ -1949,7 +1917,7 @@ static GnomeVFSMethod method = {
 	do_monitor_add,               /* monitor_add */
         do_monitor_cancel,            /* monitor_cancel */
 	NULL,                         /* file_control */
-	do_forget_cache,              /* forget_cache */
+	NULL,                         /* forget_cache */
 	do_get_volume_free_space      /* get_volume_free_space */
 };
 
