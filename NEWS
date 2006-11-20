@@ -1,3 +1,9 @@
+gnome-vfs 2.16.3
+	  * http: Fix crash on HTTP redirects
+	  * Support Path key in desktop files
+	  * Don't use deprecated dbus functions
+	  * Fix possible crash on shutdown
+
 gnome-vfs 2.16.2
 	  * Add a "--replace" commandline argument to gnome-vfs-daemon 
 	    to replace the current daemon. (Mostly for debugging use)
