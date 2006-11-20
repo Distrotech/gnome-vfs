@@ -1,3 +1,9 @@
+2006-11-20  Daniel Drake  <dsd@gentoo.org>
+
+	* modules/http-neon-method.c:
+	Support HTTP redirects in do_create
+	Fixes #372603
+
 2006-11-19  Vincent Untz  <vincent@vuntz.net>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

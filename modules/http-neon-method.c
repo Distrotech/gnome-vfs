@@ -2451,6 +2451,7 @@ do_create (GnomeVFSMethod	 *method,
 
 	hctx = handle->context;	
 
+put_start:
 	req = ne_request_create (hctx->session, "PUT", hctx->path);
 
 	/* Apache seems to not handle "If-None-Match: *" correctly 
@@ -2473,6 +2474,20 @@ do_create (GnomeVFSMethod	 *method,
 	ne_set_request_body_buffer (req, NULL, 0);
 	
 	res = ne_request_dispatch (req);
+
+	if (res == NE_REDIRECT) {
+		ne_request_destroy (req);
+		req = NULL;
+		
+		result = http_follow_redirect (hctx);
+		
+		if (result == GNOME_VFS_OK) {
+			goto put_start;
+		} else {
+			return result;
+		}
+	}
+
 	result 	= resolve_result (res, req);
 	ne_request_destroy (req);
 	
