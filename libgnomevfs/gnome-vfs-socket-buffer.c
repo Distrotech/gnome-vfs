@@ -129,21 +129,20 @@ refill_input_buffer (GnomeVFSSocketBuffer *socket_buffer,
 		return FALSE;
 	}
 
-	data_pos = &(input_buffer->data[input_buffer->offset]);
 
 	/* If there is data left in the buffer move it to the front */
 	if (input_buffer->offset > 0) {
+		data_pos = &(input_buffer->data[input_buffer->offset]);
 		memmove (input_buffer->data, data_pos, input_buffer->byte_count);
-		data_pos = input_buffer->data;
+		input_buffer->offset = 0;
 	}
 	
 	result = gnome_vfs_socket_read (socket_buffer->socket,
-					data_pos,
+					input_buffer->data + input_buffer->byte_count,
 					BUFFER_SIZE - input_buffer->byte_count,
 					&bytes_read,
 					cancellation);
 
-	input_buffer->offset = 0;
 	
 	if (result != GNOME_VFS_OK) {
 		input_buffer->last_error = result;

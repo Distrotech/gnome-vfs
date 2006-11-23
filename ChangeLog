@@ -1,3 +1,9 @@
+2006-11-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c: (refill_input_buffer):
+	Fix overwrite of buffer data. (#378442)
+	I don't think this is ever actually hit with current code.
+
 2006-11-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-daemon-method.c:
