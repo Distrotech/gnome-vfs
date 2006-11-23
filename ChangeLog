@@ -1,5 +1,11 @@
 2006-11-23  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Bump version to 2.17.1
+	Gnome 2.16 work continues on gnome-2-16 branch
+
+2006-11-23  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-socket-buffer.c: (refill_input_buffer):
 	Fix overwrite of buffer data. (#378442)
 	I don't think this is ever actually hit with current code.
