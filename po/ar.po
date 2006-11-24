@@ -8,11 +8,12 @@
 # Arafat Medini <lumina@silverpen.de>, 2003.
 # Ayman Hourieh <aymanh@gmail.com>, 2004.
 # Khaled Hosny <khaledhosny@eglug.org>, 2006.
+# Djihed Afifi <djihed@gmail.com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-11 12:42+0000\n"
+"POT-Creation-Date: 2006-11-24 10:44+0000\n"
 "PO-Revision-Date: 2006-11-18 13:03+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <support@eglug.org>\n"
@@ -20,7 +21,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
+"3\n"
+"\n"
 "\n"
 "\n"
 
@@ -487,23 +490,23 @@ msgstr "نوع عمليّة مجهول %u"
 msgid "Operation stopped"
 msgstr "اوقفت العمليّة"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -905,8 +908,9 @@ msgid "IEEE1394 Drive"
 msgstr "السواقة مفتوحة"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#, fuzzy
 msgid "CF"
-msgstr ""
+msgstr "عنصر مشع"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 #, fuzzy
@@ -949,8 +953,10 @@ msgstr "خادم شبكة"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
@@ -967,10 +973,13 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, fuzzy
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
+"غير ان جبل الحجم.اذا كانت هذه هي مشفره دفع فالخطأ هو مفتاح او كلمة السر "
+"المستخدمة."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
@@ -1003,8 +1012,9 @@ msgid "Failed to read data from child process %d (%s)"
 msgstr "فشلت قراءة البيانات من العملية الإبنة"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
+#, fuzzy
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "لا يمكن ادارة أي عملية في جبل pty"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, fuzzy, c-format
@@ -1012,8 +1022,9 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "خطأ غير متوقع في select() أثناء قراءة البيانات من العملية الإبنة (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, fuzzy
 msgid "Couldn't send password to mount process."
-msgstr ""
+msgstr "لا يمكن ارسال كلمة السر الى جبل."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, fuzzy, c-format
@@ -1151,7 +1162,8 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
+msgstr ""
+"الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1470,7 +1482,8 @@ msgstr "منفذ بروكسي HTTP آمن"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
+msgstr ""
+"اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1504,13 +1517,15 @@ msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و ا
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
+msgstr ""
+"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
+msgstr ""
+"منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1541,9 +1556,11 @@ msgid "SMB workgroup"
 msgstr "مجموعة عمل SMB (صمبا)"
 
 #: ../schemas/system_smb.schemas.in.h:2
+#, fuzzy
 msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-
+"نوافذ انشاء مجموعة العمل أو ان المجال هو جزء من المستخدمين.في النظام الجديد "
+"لمجموعة العمل بالكامل اعتبارا المستعمل قد يحتاج الى تسجيل والعودة الى سجل فيه"
