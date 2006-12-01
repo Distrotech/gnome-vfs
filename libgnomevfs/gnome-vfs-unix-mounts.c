@@ -876,6 +876,8 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 #endif
 
 	stat_file = get_fstab_file ();
+
+	*return_list = NULL;
  
     	if (stat (stat_file, &fsb) < 0) {
 	    	g_warning ("Unable to stat %s: %s", stat_file,
