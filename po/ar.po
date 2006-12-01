@@ -1,4 +1,4 @@
-# translation of gnome-vfs.HEAD.po to Arabic
+# translation of gnome-vfs.gnome-2-16.ar.po to Arabic
 # translation of gnome-vfs.HEAD.ar.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER.
@@ -11,18 +11,17 @@
 # Djihed Afifi <djihed@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD\n"
+"Project-Id-Version: gnome-vfs.gnome-2-16.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-24 10:44+0000\n"
-"PO-Revision-Date: 2006-11-18 13:03+0200\n"
+"PO-Revision-Date: 2006-11-30 01:43+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <support@eglug.org>\n"
+"Language-Team: Arabic <support@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
-"3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 "\n"
 "\n"
 "\n"
@@ -32,29 +31,29 @@ msgid "ISO 9660 Volume"
 msgstr "حجم ISO 9660"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "الـURI '%s' يحتوي على حروف هربت بطريقة غير سليمة "
+msgstr "%s:%u يحتوي محارف صفرية (NUL)"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no method name."
-msgstr "لم يحدَّد إسم مجلّد."
+msgstr "%s:%u لا يحتوي اسم طريقة."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has no options endmarker."
-msgstr "لا خيارات معرفة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u has unknown options %s."
-msgstr "يوجد مقدمة moniker غير معروفة في Moniker"
+msgstr "%s:%u له خيار مجهول %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%u contains no module name."
-msgstr "لم يحدَّد إسم مجلّد."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -63,9 +62,9 @@ msgstr "لم يعثر على ملف اﻹعدادات `%s': %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d aborted parsing."
-msgstr "خطأ أثناء ترجمة المصفات: %s: %s"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -93,9 +92,8 @@ msgid "Hardware Device Volume"
 msgstr "حجم جهاز آلي"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
-#, fuzzy
 msgid "EncFS Volume"
-msgstr "متحكم شدة الصوت"
+msgstr "حجم EncFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
@@ -114,9 +112,8 @@ msgstr "حجم MSDOS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#, fuzzy
 msgid "BSD Volume"
-msgstr "حجم Solaris/BSD"
+msgstr "حجم BSD"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
@@ -165,9 +162,8 @@ msgid "Netware Volume"
 msgstr "حجم Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Reiser4 Linux Volume"
-msgstr "حجم لينكس Ext2"
+msgstr "حجم لينكس Reiser4"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
@@ -202,9 +198,8 @@ msgid "Sun SAM-QFS Volume"
 msgstr "حجم Sun SAM-QFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
-#, fuzzy
 msgid "Temporary Volume"
-msgstr "متحكم شدة الصوت"
+msgstr "حجم مؤقّت"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
@@ -227,9 +222,8 @@ msgid "XIAFS Volume"
 msgstr "حجم XIAFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
-#, fuzzy
 msgid "CIFS Volume"
-msgstr "متحكم شدة الصوت"
+msgstr "حجم CIFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
@@ -237,9 +231,9 @@ msgstr "مجهول"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "%s Volume"
-msgstr "شدة الصوت"
+msgstr "حجم %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
@@ -249,37 +243,31 @@ msgstr "قرص مدمج"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
-#, fuzzy
 msgid "CD-R"
 msgstr "CD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
-#, fuzzy
 msgid "CD-RW"
 msgstr "CD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "قرص مدمج"
+msgstr "DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
-#, fuzzy
 msgid "DVD+R"
 msgstr "DVD+R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
-#, fuzzy
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
-#, fuzzy
 msgid "DVD-R"
-msgstr "DVD"
+msgstr "DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
@@ -289,54 +277,46 @@ msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
-#, fuzzy
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
-#, fuzzy
 msgid "DVD±R"
-msgstr "قرص فيديو رقمي"
+msgstr "DVD±R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
-#, fuzzy
 msgid "DVD±RW"
-msgstr "قرص DVD-RW"
+msgstr "DVD±RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
-#, fuzzy, c-format
+#, c-format
 msgid "%s/%s Drive"
-msgstr "مشغّل"
+msgstr "مشغّل %s/%s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
-#, fuzzy, c-format
+#, c-format
 msgid "%s Drive"
-msgstr "مشغّل"
+msgstr "مشغّل %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
-#, fuzzy
 msgid "Floppy Drive"
-msgstr "السواقة مفتوحة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
-#, fuzzy
 msgid "Compact Flash Drive"
-msgstr "المشغل مشغول"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
-#, fuzzy
 msgid "Memory Stick Drive"
-msgstr "المشغل مشغول"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
-#, fuzzy
 msgid "Smart Media Drive"
-msgstr "المشغل مشغول"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
-#, fuzzy
 msgid "SD/MMC Drive"
-msgstr "المشغل مشغول"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
@@ -345,9 +325,8 @@ msgid "Zip Drive"
 msgstr "قرص Zip"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
-#, fuzzy
 msgid "Jaz Drive"
-msgstr "السواقة مفتوحة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
 #, fuzzy
@@ -355,26 +334,23 @@ msgid "Pen Drive"
 msgstr "السواقة مفتوحة"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
-#, fuzzy, c-format
+#, c-format
 msgid "%s %s Music Player"
-msgstr ""
-"اللاعب الأول :\n"
-"%s"
+msgstr "%s %s عازف موسيقى"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
-#, fuzzy, c-format
+#, c-format
 msgid "%s %s Digital Camera"
-msgstr "<b>آلة تصوير رقميّة</b>"
+msgstr "%s %s كاميرا رقمية"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
-#, fuzzy
 msgid "Drive"
 msgstr "مشغّل"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
-#, fuzzy, c-format
+#, c-format
 msgid "External %s"
-msgstr "أدوات خارجية"
+msgstr "%s خارجي"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
 #, fuzzy
@@ -382,94 +358,77 @@ msgid "CD-ROM Disc"
 msgstr "سواقة أقراص مدمجة"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
-#, fuzzy
 msgid "Blank CD-R Disc"
-msgstr "قم بإدراج قرص فارغ."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "نسخ القرص للقرص المدمج"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
-#, fuzzy
 msgid "Blank CD-RW Disc"
-msgstr "نسخ القرص للقرص المدمج"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "نسخ القرص للقرص المدمج"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
-#, fuzzy
 msgid "Blank DVD-RAM Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
-#, fuzzy
 msgid "DVD-RAM Disc"
-msgstr "DVD-R, أو DVD-RAM"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
-#, fuzzy
 msgid "Blank DVD-R Disc"
-msgstr "قم بإدراج قرص فارغ."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
-#, fuzzy
 msgid "DVD-R Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
-#, fuzzy
 msgid "Blank DVD-RW Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
-#, fuzzy
 msgid "DVD-RW Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
-#, fuzzy
 msgid "Blank DVD+R Disc"
-msgstr "قم بإدراج قرص فارغ."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
-#, fuzzy
 msgid "DVD+R Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
-#, fuzzy
 msgid "Blank DVD+RW Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
-#, fuzzy
 msgid "DVD+RW Disc"
-msgstr "نسخ القرص للقرص DVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
-#, fuzzy
 msgid "Audio Disc"
-msgstr "فتح قرص صوتي %s"
+msgstr "قرص صوتي"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
-#, fuzzy, c-format
+#, c-format
 msgid "%s Removable Volume"
-msgstr "متحكم شدة الصوت"
+msgstr "حجم %s قابل للإزالة "
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
-#, fuzzy
 msgid "Volume"
-msgstr "شدة الصوت"
+msgstr "حجم"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -784,15 +743,13 @@ msgstr "استدعاء التابع ملغى"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:92
-#, fuzzy
 msgid "Invalid filename"
-msgstr "[اسم ملف غير صالح]"
+msgstr "اسم ملف غير صالح"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:93
-#, fuzzy
 msgid "Not a symbolic link"
-msgstr "تعذّر إنشاء الخط"
+msgstr "ليست وصلة رمزية"
 
 #: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
@@ -833,89 +790,72 @@ msgid "Floppy"
 msgstr "قرص مرن"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "فتح منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "فتح منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "سواقة أقراص مدمجة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
-#, fuzzy
 msgid "CD-R/DVD-RAM"
-msgstr "DVD-R, أو DVD-RAM"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "CD-R/DVD-R"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
-#, fuzzy
 msgid "CD-R/DVD-RW"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "فتح منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
-#, fuzzy
 msgid "CD-RW/DVD-RAM"
-msgstr "فتح منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
-#, fuzzy
 msgid "CD-RW/DVD-R"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
-#, fuzzy
 msgid "CD-RW/DVD-RW"
-msgstr "منشئ الأقراص المدمجة/أقراص الـDVD"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
-#, fuzzy
 msgid "Disk"
-msgstr "فضاء ال_قرص:"
+msgstr "قرص"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
-#, fuzzy
 msgid "USB Drive"
-msgstr "السواقة مفتوحة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
-#, fuzzy
 msgid "IEEE1394 Drive"
-msgstr "السواقة مفتوحة"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
-#, fuzzy
 msgid "CF"
-msgstr "عنصر مشع"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#, fuzzy
 msgid "SD/MMC"
-msgstr "وسيط SD/MMC"
+msgstr "SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
@@ -923,17 +863,16 @@ msgid "Memory Stick"
 msgstr "إصبع ذاكرة"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
-#, fuzzy
 msgid "Smart Media"
-msgstr "إخراج الوسيط"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
-msgstr "آلة تصوير"
+msgstr "كاميرا"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
-msgstr "قرص فيديو رقمي"
+msgstr "DVD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
@@ -953,10 +892,8 @@ msgstr "خادم شبكة"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
@@ -973,13 +910,10 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-#, fuzzy
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"غير ان جبل الحجم.اذا كانت هذه هي مشفره دفع فالخطأ هو مفتاح او كلمة السر "
-"المستخدمة."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
@@ -996,28 +930,26 @@ msgid "Unable to mount the selected volume."
 msgstr "لا يمكن تجهيز الحجم المختار."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-#, fuzzy
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "لا يمكن تجهيز الحجم المختار. ربما لكون الحجم في تهيئة لا يمكن تجهيزها."
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "لا يمكن إلغاء تجهيز الحجم المختار."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "فشلت قراءة البيانات من العملية الإبنة"
+msgstr "فشلت قراءة البيانات من العملية الإبنة %d (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
-#, fuzzy
 msgid "Couldn't run mount process in a pty"
-msgstr "لا يمكن ادارة أي عملية في جبل pty"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
-#, fuzzy, c-format
+#, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "خطأ غير متوقع في select() أثناء قراءة البيانات من العملية الإبنة (%s)"
 
@@ -1027,7 +959,7 @@ msgid "Couldn't send password to mount process."
 msgstr "لا يمكن ارسال كلمة السر الى جبل."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
-#, fuzzy, c-format
+#, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "خطأ غير متوقع في waitpid() (%s)"
 
@@ -1108,33 +1040,31 @@ msgid "Your HTTP Proxy requires you to log in.\n"
 msgstr "بروكسي الـ HTTP يتطلب منك التسجيل.\n"
 
 #: ../programs/authentication.c:107
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"يجب أن تسجل لتنفذ إلى \"%s\".\n"
+"يجب أن تسجل دخول لتنفذ إلى \"%s\".\n"
 "%s"
 
 #: ../programs/authentication.c:110
-#, fuzzy
 msgid "Your password will be transmitted unencrypted."
 msgstr "سترسل كلمة سرّك غير مشفّرة."
 
 #: ../programs/authentication.c:111
-#, fuzzy
 msgid "Your password will be transmitted encrypted."
 msgstr "سترسل كلمة سرّك مشفّرة."
 
 #: ../programs/authentication.c:156
-#, fuzzy, c-format
+#, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "يجب عليك التسجيل للنفاذ إلى %s النطاق %s\n"
+msgstr "يجب عليك تسجيل الدخول للنفاذ إلى %s النطاق %s\n"
 
 #: ../programs/authentication.c:158
-#, fuzzy, c-format
+#, c-format
 msgid "You must log in to access %s\n"
-msgstr "يجب عليك التسجيل للنفاذ إلى %s\n"
+msgstr "يجب عليك تسجيل الدخول للنفاذ إلى %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1162,8 +1092,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
+msgstr "الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1382,18 +1311,14 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "فيما إذا كان على الأمر المحدّد معالجة عناوين \"trash\""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-#, fuzzy
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr ""
-"قائمة بأسماء مفصولة بفواصل من ميادين dns-sd التي يجب أن تكون مرئيّة في موقع "
-"الشبكة."
+msgstr "قائمة مفصولة بفواصل بنطاقات dns-sd التي يجب أن تكون مرئيّة في الموقع \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
-#, fuzzy
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "ميادين إضافية للبحث عن خدمات dns-sd فيها"
+msgstr "نطاقات إضافية للبحث عن خدمات dns-sd فيها"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1482,8 +1407,7 @@ msgstr "منفذ بروكسي HTTP آمن"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
+msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1517,15 +1441,13 @@ msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و ا
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
+msgstr "منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
+msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1564,3 +1486,4 @@ msgid ""
 msgstr ""
 "نوافذ انشاء مجموعة العمل أو ان المجال هو جزء من المستخدمين.في النظام الجديد "
 "لمجموعة العمل بالكامل اعتبارا المستعمل قد يحتاج الى تسجيل والعودة الى سجل فيه"
+
