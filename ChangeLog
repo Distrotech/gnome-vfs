@@ -1,3 +1,9 @@
+2006-12-01  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	_gnome_vfs_get_unix_mount_table():
+	NULL-initialize retval pointer in all variants (#381119).
+
 2006-11-23  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
