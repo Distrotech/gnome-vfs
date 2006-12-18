@@ -421,9 +421,11 @@ full_auth_demarshal_out (DBusMessageIter *iter, gpointer out, gsize out_size)
 	auth_out->domain = utils_get_string_or_null (iter, TRUE);
 	dbus_message_iter_next (iter);
 	auth_out->password = utils_get_string_or_null (iter, TRUE);
+	dbus_message_iter_next (iter);
 
 	dbus_message_iter_get_basic (iter, &b);
 	auth_out->save_password = b;
+	dbus_message_iter_next (iter);
 	auth_out->keyring = utils_get_string_or_null (iter, TRUE);
 	
 	return TRUE;
