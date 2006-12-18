@@ -1855,6 +1855,8 @@ do_get_file_info (GnomeVFSMethod *method,
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {		
 		if (S_ISDIR(st.st_mode)) {
 			mime_type = "x-directory/normal";
+		} else if (options & GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE) {
+			mime_type = gnome_vfs_get_mime_type_common (uri);
 		} else {
 			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, NULL);
 		}
