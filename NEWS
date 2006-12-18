@@ -1,3 +1,6 @@
+gnome-vfs 2.17.1
+	  * Fix daemon crash on apple
+	  
 gnome-vfs 2.16.3
 	  * http: Fix crash on HTTP redirects
 	  * Support Path key in desktop files
