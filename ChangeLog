@@ -1,3 +1,16 @@
+2006-12-18  Federico Mena Quintero  <federico@novell.com>
+
+	Fix http://bugzilla.gnome.org/show_bug.cgi?id=385085 (same as
+	https://bugzilla.novell.com/show_bug.cgi?id=195269).  When opening
+	SMB files with no extension or unknown extension, the proper MIME
+	type doesn't get sniffed.
+
+	* modules/smb-method.c (do_get_file_info): If we have
+	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE, then use
+	gnome_vfs_get_mime_type_common() to cause the file to be sniffed.
+	Otherwise, call gnome_vfs_mime_type_from_name_or_default() as
+	usual.
+
 2006-12-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
