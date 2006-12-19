@@ -1,3 +1,11 @@
+2006-12-19  Alexander Larsson  <alexl@redhat.com>
+
+	Merged from HEAD:
+
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Fix parsing of auth callbacks.
+	Fixes crash on 64bit arches.
+
 2006-12-18  Federico Mena Quintero  <federico@novell.com>
 
 	Merged from HEAD:
