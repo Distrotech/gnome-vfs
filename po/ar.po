@@ -1,4 +1,4 @@
-# translation of gnome-vfs.gnome-2-16.ar.po to Arabic
+# translation of gnome-vfs.HEAD.po to Arabic
 # translation of gnome-vfs.HEAD.ar.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER.
@@ -8,23 +8,19 @@
 # Arafat Medini <lumina@silverpen.de>, 2003.
 # Ayman Hourieh <aymanh@gmail.com>, 2004.
 # Khaled Hosny <khaledhosny@eglug.org>, 2006.
-# Djihed Afifi <djihed@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.gnome-2-16.ar\n"
+"Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-24 10:44+0000\n"
-"PO-Revision-Date: 2006-11-30 01:43+0200\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <support@arabeyes.org>\n"
+"POT-Creation-Date: 2006-11-11 12:42+0000\n"
+"PO-Revision-Date: 2006-12-22 19:12+0200\n"
+"Last-Translator: Mohamed Magdy <alnokta@yahoo.com>\n"
+"Language-Team: Arabic <support@eglug.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
-"\n"
-"\n"
-"\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -33,27 +29,27 @@ msgstr "حجم ISO 9660"
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%u يحتوي محارف صفرية (NUL)"
+msgstr "%s:%u NULيحتوي على محارف."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%u contains no method name."
-msgstr "%s:%u لا يحتوي اسم طريقة."
+msgstr "%s:%u لايحتوي على اسم طريقة."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%u has no options endmarker."
-msgstr ""
+msgstr "%s:%u has no options endmarker."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%u has unknown options %s."
-msgstr "%s:%u له خيار مجهول %s."
+msgstr "%s:%u لديه خيارات غير معروفة %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%u contains no module name."
-msgstr ""
+msgstr "%s:%u لايحتوي على اسم وحدة."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
@@ -64,7 +60,7 @@ msgstr "لم يعثر على ملف اﻹعدادات `%s': %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d إحبط التحليل."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -93,7 +89,7 @@ msgstr "حجم جهاز آلي"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "EncFS Volume"
-msgstr "حجم EncFS"
+msgstr "EncFS حجم"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
@@ -113,7 +109,7 @@ msgstr "حجم MSDOS"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "BSD Volume"
-msgstr "حجم BSD"
+msgstr "BSD حجم"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
@@ -163,7 +159,7 @@ msgstr "حجم Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
-msgstr "حجم لينكس Reiser4"
+msgstr "Reiser4 حجم لينكس"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
@@ -199,7 +195,7 @@ msgstr "حجم Sun SAM-QFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Temporary Volume"
-msgstr "حجم مؤقّت"
+msgstr "حجم مؤقت"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
@@ -223,7 +219,7 @@ msgstr "حجم XIAFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
-msgstr "حجم CIFS"
+msgstr "CIFS حجم"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
@@ -233,7 +229,7 @@ msgstr "مجهول"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Volume"
-msgstr "حجم %s"
+msgstr "%s حجم"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
@@ -271,7 +267,6 @@ msgstr "DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
-#, fuzzy
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
@@ -291,32 +286,32 @@ msgstr "DVD±RW"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
 msgid "%s/%s Drive"
-msgstr "مشغّل %s/%s"
+msgstr "%s/%s مشغل"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s Drive"
-msgstr "مشغّل %s"
+msgstr "%s مشغل"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
-msgstr ""
+msgstr "مشغل أقراص مرنة"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
 msgid "Compact Flash Drive"
-msgstr ""
+msgstr "Compact Flash Drive"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
-msgstr ""
+msgstr "Memory Stick Drive"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
-msgstr ""
+msgstr "مشغل ميديا ذكية"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
-msgstr ""
+msgstr "SD/MMC مشغل"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
@@ -326,17 +321,16 @@ msgstr "قرص Zip"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Jaz Drive"
-msgstr ""
+msgstr "مشغل جازي"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
-#, fuzzy
 msgid "Pen Drive"
-msgstr "السواقة مفتوحة"
+msgstr "مشغل قلمي"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 #, c-format
 msgid "%s %s Music Player"
-msgstr "%s %s عازف موسيقى"
+msgstr "%s %s Music Player"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
@@ -350,72 +344,71 @@ msgstr "مشغّل"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
 msgid "External %s"
-msgstr "%s خارجي"
+msgstr "%sخارجي"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "سواقة أقراص مدمجة"
+msgstr "CD-ROM قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "فارغ CD-R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "CD-R Disc"
-msgstr ""
+msgstr "CD-R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "فارغ CD-RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "CD-RW Disc"
-msgstr ""
+msgstr "CD-RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
 msgid "DVD-ROM Disc"
-msgstr ""
+msgstr "DVD-ROM قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "فارغ DVD-RAM قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "فارغ DVD-R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "فارغ DVD-RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "فارغ DVD+R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "فارغ DVD+RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW قرص"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
 msgid "Audio Disc"
@@ -424,7 +417,7 @@ msgstr "قرص صوتي"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #, c-format
 msgid "%s Removable Volume"
-msgstr "حجم %s قابل للإزالة "
+msgstr "%s حجم قابل للإزالة"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
 msgid "Volume"
@@ -435,7 +428,8 @@ msgstr "حجم"
 msgid "Unknown operation type %u"
 msgstr "نوع عمليّة مجهول %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1025
+#: ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "لا يمكن إنشاء أنبوب ل GIOChannelالمفتوح : %s"
@@ -449,23 +443,23 @@ msgstr "نوع عمليّة مجهول %u"
 msgid "Operation stopped"
 msgstr "اوقفت العمليّة"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -477,9 +471,7 @@ msgstr "اوقفت العمليّة"
 #: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
 #: ../libgnomevfs/gnome-vfs-mime-info.c:714
-msgid ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
+msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
 msgstr "تابع ملغى، تعديل المستخدم لقاعدة بيانات MIME لم يعد مدعوماً."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
@@ -744,7 +736,7 @@ msgstr "استدعاء التابع ملغى"
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Invalid filename"
-msgstr "اسم ملف غير صالح"
+msgstr "أسم ملف غير صالح"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -772,12 +764,12 @@ msgstr "%.1f كيلوبايت"
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f ميجابايت"
+msgstr "%.1f ميغابايت"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f جيجابايت"
+msgstr "%.1f جيغابايت"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
@@ -791,51 +783,51 @@ msgstr "قرص مرن"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
-msgstr ""
+msgstr "CD-ROM/DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-RAM"
-msgstr ""
+msgstr "CD-ROM/DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-R"
-msgstr ""
+msgstr "CD-ROM/DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-ROM/DVD-RW"
-msgstr ""
+msgstr "CD-ROM/DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
-msgstr ""
+msgstr "CD-R/DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-R/DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-R/DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-R/DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
-msgstr ""
+msgstr "CD-RW/DVD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RW/DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RW/DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RW/DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
@@ -843,15 +835,15 @@ msgstr "قرص"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
-msgstr ""
+msgstr "مشغل USB"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "IEEE1394 مشغل"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
@@ -864,15 +856,15 @@ msgstr "إصبع ذاكرة"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
-msgstr ""
+msgstr "ميديا ذكية"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
-msgstr "كاميرا"
+msgstr "آلة تصوير"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
-msgstr "DVD"
+msgstr "قرص فيديو رقمي"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
@@ -901,24 +893,16 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "لا يمكن تجهيز الحجم. ربما لعدم وجود وسيط في السواقة."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب تهيئة القرص المرن التي لا يمكن "
-"تجهيزها."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب تهيئة القرص المرن التي لا يمكن تجهيزها."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-msgid ""
-"Unable to mount the volume. If this is an encrypted drive, then the wrong "
-"password or key was used."
-msgstr ""
+msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
+msgstr "عاجز عن ضم الحجم. إذا كان مشغل مشفر، فلابد من كون كلمة المرور أو المفتاح المستخدمين خاطئين."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
 msgstr "لا يمكن تجهيز الحجم المختار. ربما لكون الحجم في تهيئة لا يمكن تجهيزها."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
@@ -930,10 +914,8 @@ msgid "Unable to mount the selected volume."
 msgstr "لا يمكن تجهيز الحجم المختار."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-msgid ""
-"Unable to unmount the selected volume. The volume is in use by one or more "
-"programs."
-msgstr ""
+msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
+msgstr "لا يمكن إلغاء الضم للحجم المختار. الحجم مستخدم من قبل برنامج أو أكثر."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -942,11 +924,11 @@ msgstr "لا يمكن إلغاء تجهيز الحجم المختار."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "فشلت قراءة البيانات من العملية الإبنة %d (%s)"
+msgstr "%d (%s)فشلت قراءة البيانات من العملية الإبنة"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "لم أستطع تشغيل عملية الضم في pty"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
@@ -954,9 +936,8 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "خطأ غير متوقع في select() أثناء قراءة البيانات من العملية الإبنة (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
-#, fuzzy
 msgid "Couldn't send password to mount process."
-msgstr "لا يمكن ارسال كلمة السر الى جبل."
+msgstr "لم أستطع إرسال كلمة المرور إلى عملية الضم. "
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
@@ -1007,13 +988,11 @@ msgstr "هويّة الكمبيوتر البعيد (%s) مجهولة."
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 msgstr ""
 "يحدث هذا عندما يتمّ تسجيل الدخول إلى كمبيوتر للمرّة الأولى.\n"
 "\n"
-"الهوية المرسلة للكمبيوتر البعيد هي %s. إذا أردتّ التأكد بشكل مطلق من أنّ "
-"المتابعة آمنة، اتّصل بمدير النظام."
+"الهوية المرسلة للكمبيوتر البعيد هي %s. إذا أردتّ التأكد بشكل مطلق من أنّ المتابعة آمنة، اتّصل بمدير النظام."
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
@@ -1035,9 +1014,9 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "استخدم المتغيّر البيئي %s لتحديد موقع آخر.\n"
 
 #: ../programs/authentication.c:106
-#, fuzzy, c-format
+#, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr "بروكسي الـ HTTP يتطلب منك التسجيل.\n"
+msgstr "بروكسي الهتتب خاصتك تتطلب تسجيل دخولك.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1045,26 +1024,26 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"يجب أن تسجل دخول لتنفذ إلى \"%s\".\n"
+"يتحتم عليك تسجيل الدخول لتصل إلى \"%s\".\n"
 "%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr "سترسل كلمة سرّك غير مشفّرة."
+msgstr "كلمة مرورك ستنقل بدون تشفير."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr "سترسل كلمة سرّك مشفّرة."
+msgstr "كلمة مرورك ستنقل مشفرة."
 
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "يجب عليك تسجيل الدخول للنفاذ إلى %s النطاق %s\n"
+msgstr "يتحتم عليك تسجيل الدخول لتصل إلى %s نطاق %s\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr "يجب عليك تسجيل الدخول للنفاذ إلى %s\n"
+msgstr "يتحتم عليك تسجيل الدخول لتصل إلى%s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1080,18 +1059,11 @@ msgstr "عامل التنفيذ لالشاشة الطرفية الافتراضي
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"التطبيق للاستعمال لعرض الملفات التي تستحق مكونا لعرضها. سيعوض المتغير %s بـ "
-"URI الملف، كما سيعوض المتغير %c بـ IID المكون."
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "التطبيق للاستعمال لعرض الملفات التي تستحق مكونا لعرضها. سيعوض المتغير %s بـ URI الملف، كما سيعوض المتغير %c بـ IID المكون."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
+msgid "The default terminal application to use for applications that require a terminal."
 msgstr "الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
@@ -1183,92 +1155,48 @@ msgid "The handler for \"trash\" URLs"
 msgstr "معالج عناوين \"trash\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"aim\"."
+msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"callto\"."
+msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"ghelp\"."
+msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid ""
-"True if the command specified in the \"command\" key should handle \"h323\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"h323\"."
+msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid ""
-"True if the command specified in the \"command\" key should handle \"http\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"http\"."
+msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid ""
-"True if the command specified in the \"command\" key should handle \"https\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"https\"."
+msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"info\"."
+msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"mailto\"."
+msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"man\"."
+msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين "
-"\"trash\"."
+msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgstr "إضبط لـtrue إذا كان على الأمر المحدّد في المفتاح \"command\" معالجة عناوين \"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
-msgstr ""
-"إضبط لـtrue إذا كان على الأمر المستخدم لمعالجة هذا النوع من العناوين العمل "
-"في شاشة طرفية."
+msgid "True if the command used to handle this type of URL should be run in a terminal."
+msgstr "إضبط لـtrue إذا كان على الأمر المستخدم لمعالجة هذا النوع من العناوين العمل في شاشة طرفية."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1311,14 +1239,12 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "فيما إذا كان على الأمر المحدّد معالجة عناوين \"trash\""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of DNS-SD domains that should be visible in the "
-"\"network:///\" location."
-msgstr "قائمة مفصولة بفواصل بنطاقات dns-sd التي يجب أن تكون مرئيّة في الموقع \"network:///\"."
+msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
+msgstr "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "نطاقات إضافية للبحث عن خدمات dns-sd فيها"
+msgstr "نطاقات زيادة للبحث في داخلها عن خدمات  DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1365,15 +1291,8 @@ msgid "HTTP proxy username"
 msgstr "اسم مستخدم بروكسي الـ HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"اذا ضبط لـ true، فستطلب الاتصلات لخادم البروكسي التوثيق. مجموعةالـ username/"
-"password المعرف بـ \"/system/http_proxy/authentication_user\"·و·\"/system/"
-"http_proxy/authentication_password\"."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1404,9 +1323,7 @@ msgid "Secure HTTP proxy port"
 msgstr "منفذ بروكسي HTTP آمن"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
 msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
@@ -1426,40 +1343,24 @@ msgid "The machine name to proxy socks through."
 msgstr "اسم الجهاز الذي سيقع بركسية socks·عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
 msgstr "منفذ الجهاز المعرف بـ \"/system/http_proxy/host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
 msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
 msgstr "منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
 msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"يحوي هذا المفتاح قائمة من المضيفين المتصلين مباشرة، عوضا عنالمتصلين عبر "
-"بروكسي ما (هذا إذا كان نشطا). يمكن أن تكون القيم أسماء مضيفين أوميدان "
-"(باستخدام وايلدكارد أولية مثل *.foo.com)، عناوين مضيفي الـ IP(IPv4 و IPv6) "
-"أو عناوين شبكة (مثل 192.168.0.0/24)."
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "يحوي هذا المفتاح قائمة من المضيفين المتصلين مباشرة، عوضا عنالمتصلين عبر بروكسي ما (هذا إذا كان نشطا). يمكن أن تكون القيم أسماء مضيفين أوميدان (باستخدام وايلدكارد أولية مثل *.foo.com)، عناوين مضيفي الـ IP(IPv4 و IPv6) أو عناوين شبكة (مثل 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1478,12 +1379,6 @@ msgid "SMB workgroup"
 msgstr "مجموعة عمل SMB (صمبا)"
 
 #: ../schemas/system_smb.schemas.in.h:2
-#, fuzzy
-msgid ""
-"The Windows networking workgroup or domain that the user is part of. In "
-"order for a new workgroup to fully take effect the user may need to log out "
-"and log back in."
-msgstr ""
-"نوافذ انشاء مجموعة العمل أو ان المجال هو جزء من المستخدمين.في النظام الجديد "
-"لمجموعة العمل بالكامل اعتبارا المستعمل قد يحتاج الى تسجيل والعودة الى سجل فيه"
+msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
+msgstr "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
 
