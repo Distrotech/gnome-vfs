@@ -349,8 +349,18 @@ typedef enum {
  * @authtype: The type of authentication that was requested. For the
  * HTTP method, this may be "basic" or "proxy". For the SFTP method,
  * this may be "publickey" or "password".
- * @username: The username that was used to connect to @server.
+ * @username: The username that was used to connect to @server. This variable
+ * should just be used for display purposes, i.e. like <quote>You were trying
+ * to access foo@bar.com</quote> where foo is the @username and bar.com is the
+ * @server. Do not make the contents of the #GnomeVFSModuleCallbackFullAuthenticationOut
+ * output variables depend on the value of this variable. If you want to handle
+ * absence of user input, pass back @default_user instead.
  * @domain: The domain that @server belongs to (only used by the SMB method).
+ * This variable should just be used for display purposes where foo is the @username
+ * and bar.com is the @server. Do not make the contents of the
+ * #GnomeVFSModuleCallbackFullAuthenticationOut output variables depend on the value
+ * of this variable. If you want to handle absence of user input, pass back
+ * @default_domain instead.
  * @default_user: The username that should be provided to the user by default.
  * Typically matches @username.
  * @default_domain: The domain that should be provided to the user by default.

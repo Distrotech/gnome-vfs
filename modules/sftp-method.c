@@ -841,8 +841,8 @@ iobuf_send_string_request_with_file_info (int                      fd,
 }
 
 static char*
-get_user_from_uri_or_password_line (const GnomeVFSURI *uri,
-				    const char *password_line)
+get_user_from_string_or_password_line (const char *user_string,
+				       const char *password_line)
 {
 	char *chr, *user = NULL;
 
@@ -854,7 +854,7 @@ get_user_from_uri_or_password_line (const GnomeVFSURI *uri,
 		}
 	}
 	if (user == NULL) {
-		user = g_strdup ((char *)gnome_vfs_uri_get_user_name (uri));
+		user = g_strdup (user_string);
 	}
 	return user;
 }
@@ -917,7 +917,7 @@ invoke_fill_auth (const GnomeVFSURI *uri,
 	in_args.domain = NULL;
 	in_args.port = gnome_vfs_uri_get_host_port (uri);
 	in_args.server = get_server_from_uri_or_password_line (uri, password_line);
-	in_args.username = get_user_from_uri_or_password_line (uri, password_line);
+	in_args.username = get_user_from_string_or_password_line (gnome_vfs_uri_get_user_name (uri), password_line);
 	memset (&out_args, 0, sizeof (out_args));
 
 	invoked = gnome_vfs_module_callback_invoke
@@ -946,6 +946,7 @@ static gboolean
 invoke_full_auth (const GnomeVFSURI *uri,
 		  gboolean done_auth,
 		  const char *password_line,
+		  const char *user_name,
 		  char **password_out,
 		  char **keyring_out,
 		  char **user_out,
@@ -960,7 +961,14 @@ invoke_full_auth (const GnomeVFSURI *uri,
 
 	memset (&in_args, 0, sizeof (in_args));
 	in_args.uri = gnome_vfs_uri_to_string (uri, 0);
-	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD | GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED;
+	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD |
+			GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED;
+	in_args.default_user = get_user_from_string_or_password_line (user_name, password_line);
+	if (gnome_vfs_uri_get_user_name (uri) == NULL) {
+		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
+	} else {
+		in_args.username = g_strdup (in_args.default_user);
+	}
 	if (done_auth) {
 		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_PREVIOUS_ATTEMPT_FAILED;
 	}
@@ -970,7 +978,6 @@ invoke_full_auth (const GnomeVFSURI *uri,
 	in_args.domain = NULL;
 	in_args.port = gnome_vfs_uri_get_host_port (uri);
 	in_args.server = get_server_from_uri_or_password_line (uri, password_line);
-	in_args.username = get_user_from_uri_or_password_line (uri, password_line);
 
 	memset (&out_args, 0, sizeof (out_args));
 
@@ -981,10 +988,10 @@ invoke_full_auth (const GnomeVFSURI *uri,
 	if (invoked && !out_args.abort_auth) {
 		if (out_args.save_password) {
 			*keyring_out = g_strdup (out_args.keyring);
-			*user_out = get_user_from_uri_or_password_line (uri, password_line);
 			*object_out = get_object_from_password_line (password_line);
 			*authtype_out = get_authtype_from_password_line (password_line);
 		}
+		*user_out = g_strdup (out_args.username);
 		*password_out = g_strdup (out_args.password);
 		*save_password_out = out_args.save_password;
 		g_free (out_args.username);
@@ -992,6 +999,7 @@ invoke_full_auth (const GnomeVFSURI *uri,
 		g_free (out_args.password);
 		g_free (out_args.keyring);
 	} else {
+		*user_out = NULL;
 		*password_out = NULL;
 	}
 
@@ -999,6 +1007,7 @@ invoke_full_auth (const GnomeVFSURI *uri,
 
 	g_free (in_args.uri);
 	g_free (in_args.username);
+	g_free (in_args.default_user);
 	g_free (in_args.object);
 	g_free (in_args.server);
 	g_free (in_args.authtype);
@@ -1084,7 +1093,6 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	GIOChannel     *tty_channel = NULL;
 	int             in_fd, out_fd, err_fd, tty_fd;
 	pid_t           ssh_pid;
-	const gchar    *user_name;
 	gint            port;
 	guint           last_arg, i;
 	gboolean        full_auth;
@@ -1092,9 +1100,9 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	gboolean	save_password = FALSE;
 	Buffer          msg;
 	gchar           type;
+	char *user_name = NULL;
 	char *password = NULL;
 	char *keyring  = NULL;
-	char *user     = NULL;
 	char *object   = NULL;
 	char *authtype = NULL;
 
@@ -1110,7 +1118,22 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	DEBUG (gchar *tmp);
 
 	client_vendor = get_sftp_client_vendor ();
-	
+
+	done_auth = FALSE;
+	full_auth = FALSE;
+
+	user_name = g_strdup (gnome_vfs_uri_get_user_name (uri));
+	if (user_name == NULL) {
+		user_name = g_strdup (g_get_user_name ());
+	}
+
+	password = g_strdup (gnome_vfs_uri_get_password (uri));
+	port = gnome_vfs_uri_get_host_port (uri);
+
+	/* required if the user decides to login with another user name.
+	 * In this case, we'll have to re-spawn the SSH client */
+tty_retry:
+
 	/* Fill in the first few args */
 	last_arg = 0;
 	args[last_arg++] = g_strdup (SSH_PROGRAM);
@@ -1134,16 +1157,9 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
 
-
-	/* Disable login prompt for now */
-	/* args[last_arg++] = g_strdup ("-oBatchMode yes"); */
-
 	/* Make sure the last few arguments are clear */
 	for (i = last_arg; i < sizeof (args) / sizeof (const gchar *); ++i)
 		args[i] = NULL;
-
-	user_name = gnome_vfs_uri_get_user_name (uri);
-	port = gnome_vfs_uri_get_host_port (uri);
 
 	if (port != 0) {
 		args[last_arg++] = g_strdup ("-p");
@@ -1182,6 +1198,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		for (i = 0; i < last_arg; i++) {
 			g_free (args[i]);
 		}
+		g_free (user_name);
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
 #else
@@ -1193,6 +1210,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		for (i = 0; i < last_arg; i++) {
 			g_free (args[i]);
 		}
+		g_free (user_name);
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
 #endif
@@ -1218,8 +1236,6 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		g_io_channel_set_flags (tty_channel,
 					g_io_channel_get_flags (tty_channel) | G_IO_FLAG_NONBLOCK, NULL);
 	}
-	done_auth = FALSE;
-	full_auth = FALSE;
 	while (tty_fd != -1) {
 		fd_set ifds;
 		struct timeval tv;
@@ -1235,7 +1251,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		char *endpos;
 		char *hostname = NULL;
 		char *fingerprint = NULL;
-		gboolean aborted;
+		gboolean aborted = FALSE;
 
 		if (client_vendor == SFTP_VENDOR_SSH) {
 			prompt_fd = err_fd;
@@ -1269,26 +1285,81 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		error = NULL;
 		io_status = g_io_channel_read_chars (prompt_channel, buffer, sizeof(buffer)-1, &len, &error);
 		if (io_status == G_IO_STATUS_NORMAL) {
+			char *new_user_name = NULL;
+			char *new_password = NULL;
+
+			/*
+			 * If the input URI contains a username
+			 *     if the input URI contains a password, we attempt one login and return GNOME_VFS_ERROR_ACCESS_DENIED on failure.
+			 *     if the input URI contains no password, we query the user until he provides a correct one, or he cancels.
+			 *
+			 * If the input URI contains no username
+			 *     (a) the user is queried for a user name and a password, with the default login being his
+			 *     local login name.
+			 *
+			 *     (b) if the user decides to change his remote login name, we go to tty_retry because we need a
+			 *     new SSH session, attempting one login with his provided credentials, and if that fails proceed
+			 *     with (a), but use his desired remote login name as default.
+			 *
+			 * The "password" variable is only used for the very first login attempt,
+			 * or for the first re-login attempt when the user decided to change his name.
+			 * Otherwise, we "new_password" and "new_user_name" is used, as output variable
+			 * for user and keyring input.
+			 */
 			buffer[len] = 0;
 			if (g_str_has_suffix (buffer, "password: ") ||
 			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_suffix (buffer, "Password:")  ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
-				if (!done_auth && gnome_vfs_uri_get_password (uri) != NULL) {
-					password = g_strdup (gnome_vfs_uri_get_password (uri));
+				if (!done_auth && password != NULL) {
 					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
-				} else if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
-					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+				} else if (!done_auth && gnome_vfs_uri_get_password (uri) == NULL &&
+					   invoke_fill_auth (uri, buffer, &new_password) && new_password != NULL) {
+					g_io_channel_write_chars (tty_channel, new_password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
-				} else if (invoke_full_auth (uri, done_auth, buffer, &password, &keyring, 
-							     &user, &object, &authtype, &save_password, &aborted) && password != NULL) {
+					g_free (new_password);
+				} else if (gnome_vfs_uri_get_password (uri) == NULL &&
+					   invoke_full_auth (uri, done_auth, buffer, user_name, &new_password, &keyring,
+						   	     &new_user_name, &object, &authtype, &save_password, &aborted) && new_password != NULL) {
+					if (new_user_name == NULL) {
+						new_user_name = g_strdup (g_get_user_name ());
+					}
+
+					g_assert (user_name != NULL);
+					g_assert (new_user_name != NULL);
+
+					/* if the user changed the login name, we have to re-invoke SSH */
+					if (strcmp (user_name, new_user_name) != 0) {
+						buffer_free (&msg);
+
+						if (error_channel != NULL) {
+							g_io_channel_unref (error_channel);
+						}
+						if (tty_channel != NULL) {
+							g_io_channel_unref (tty_channel);
+						}
+
+						g_free (user_name);
+						user_name = new_user_name;
+
+						g_free (password);
+						password = new_password;
+
+						done_auth = FALSE;
+
+						goto tty_retry;
+					}
+
 					full_auth = TRUE;
-					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (tty_channel, new_password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
+
+					g_free (new_user_name);
+					g_free (new_password);
 				} else if (aborted) {
 					res = GNOME_VFS_ERROR_CANCELLED;
 					goto bail;
@@ -1407,7 +1478,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	} else {
 		/* Everything's A-OK. Set up the connection and go */
 		if (full_auth == TRUE && save_password == TRUE) {
-			invoke_save_auth (uri, keyring, user, object, authtype, password);
+			invoke_save_auth (uri, keyring, user_name, object, authtype, password);
 		}
 
 		if (!g_thread_supported ()) g_thread_init (NULL);
@@ -1438,7 +1509,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 
 	g_free (password);
 	g_free (keyring);
-	g_free (user);
+	g_free (user_name);
 	g_free (object);
 	g_free (authtype);
 	if (error_channel != NULL) {
@@ -1481,16 +1552,16 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 	user_name = gnome_vfs_uri_get_user_name (uri);
 	host_name = gnome_vfs_uri_get_host_name (uri);
 
-	if (user_name == NULL)
-		user_name = g_get_user_name ();
-
 	if (host_name == NULL)
 	{
 		res = GNOME_VFS_ERROR_HOST_NOT_FOUND;
 		goto bail;
 	}
 
-	hash_name = g_strconcat (user_name, "@", host_name, NULL);
+	if (user_name != NULL)
+		hash_name = g_strconcat (user_name, "@", host_name, NULL);
+	else
+		hash_name = g_strdup (host_name);
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 		      "%s: Getting connection to %s", G_GNUC_FUNCTION, hash_name));
@@ -3128,14 +3199,25 @@ do_check_same_fs (GnomeVFSMethod  *method,
 	g_return_val_if_fail (a_host_name != NULL, GNOME_VFS_ERROR_INVALID_URI);
 	g_return_val_if_fail (b_host_name != NULL, GNOME_VFS_ERROR_INVALID_URI);
 
+	/* TODO this is wrong because we can't
+	 * tell what login name is used for NULL
+	 * user names, but at least this check is
+	 * I/O-less.
+	 * We could also look up the connections
+	 * for both URIs and check whether their
+	 * actual login name (i.e. the user name
+	 * passed with -l to the SSH client)
+	 * matches.
+	 */
 	if (a_user_name == NULL)
-		a_user_name = g_get_user_name ();
+		a_user_name = "";
 	if (b_user_name == NULL)
-		b_user_name = g_get_user_name ();
+		b_user_name = "";
 
 	if (same_fs_return != NULL)
 		*same_fs_return =
-			((!strcmp (a_host_name, b_host_name)) && (!strcmp (a_user_name, b_user_name)));
+			((!strcmp (a_host_name, b_host_name)) &&
+			 (!strcmp (a_user_name, b_user_name)));
 
 	return GNOME_VFS_OK;
 }

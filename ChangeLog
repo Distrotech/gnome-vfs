@@ -1,3 +1,13 @@
+2006-12-28  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/sftp-method.c:
+	* programs/authentication.c:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	Support changing user name when accessing sftp locations.
+	Fix CLI authentication to use default input if no input was provided,
+	properly document GnomeVFSModuleCallbackFullAuthenticationOut.
+	Should fix #350111.
+
 2006-12-19  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

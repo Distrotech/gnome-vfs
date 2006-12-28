@@ -200,16 +200,16 @@ do_full_auth (const GnomeVFSModuleCallbackFullAuthenticationIn *in_args,
 
 	if ((out_args->username == NULL ||
 	     strlen (out_args->username) == 0)
-	    && in_args->username != NULL) {
+	    && in_args->default_user != NULL) {
 		g_free (out_args->username);
-		out_args->username = g_strdup (in_args->username);
+		out_args->username = g_strdup (in_args->default_user);
 	}
 
 	if ((out_args->domain == NULL ||
 	     strlen (out_args->domain) == 0)
-	    && in_args->domain != NULL) {
+	    && in_args->default_domain != NULL) {
 		g_free (out_args->domain);
-		out_args->domain = g_strdup (in_args->domain);
+		out_args->domain = g_strdup (in_args->default_domain);
 	}
 
 	/* TODO support saving password? */
