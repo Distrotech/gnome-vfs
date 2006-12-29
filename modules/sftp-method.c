@@ -504,11 +504,16 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 	}
 	
 	if (flags & SSH2_FILEXFER_ATTR_UIDGID) {
-		info->uid = buffer_read_gint32 (buf);
-		info->gid = buffer_read_gint32 (buf);
-		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IDS;	
+		/* Deprecated in recent SFTP drafts, it isn't really useful
+		 * since it doesn't relate to the local UID/GID info.
+		 *
+		 * We skip the buffer, but ignore the contents. */
+		buffer_read_gint32 (buf); /* UID */
+		buffer_read_gint32 (buf); /* GID */
 	}
-	
+
+	/* TODO SSH_FILEXFER_ATTR_OWNERGROUP */
+
 	if (flags & SSH2_FILEXFER_ATTR_PERMISSIONS) {
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
 		info->permissions = buffer_read_gint32 (buf);
