@@ -15,17 +15,19 @@
  * gnome_vfs_mime_type_from_mode:
  * @mode: value as the st_mode field in the system stat structure.
  *
- * Returns a MIME type based on the @mode. It only works when @mode
+ * Returns a MIME type based on the @mode if it
  * references a special file (directory, device, fifo, socket or symlink).
+ * This function works like gnome_vfs_mime_type_from_mode_or_default(), except
+ * that it returns %NULL where gnome_vfs_mime_type_from_mode_or_default()
+ * would return a fallback MIME type.
  *
- * Returns: a string containing the MIME type, if @mode is a normal file
- * returns %NULL.
+ * Returns: a string containing the MIME type, or %NULL if @mode is not a
+ * special file.
  */
-
-const gchar *
+const char *
 gnome_vfs_mime_type_from_mode (mode_t mode)
 {
-	const gchar *mime_type;
+	const char *mime_type;
 
 	if (S_ISREG (mode))
 		mime_type = NULL;
@@ -47,6 +49,34 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 #endif
 	else
 		mime_type = NULL;
+
+	return mime_type;
+}
+
+/**
+ * gnome_vfs_mime_type_from_mode_or_default:
+ * @mode: value as the st_mode field in the system stat structure.
+ * @defaultv: default fallback MIME type.
+ *
+ * Returns a MIME type based on the @mode if it
+ * references a special file (directory, device, fifo, socket or symlink).
+ * This function works like gnome_vfs_mime_type_from_mode() except that
+ * it returns @defaultv instead of %NULL.
+ *
+ * Returns: a string containing the MIME type, or @defaultv if @mode is not a
+ * special file.
+ */
+
+const char *
+gnome_vfs_mime_type_from_mode_or_default (mode_t mode,
+					  const char *defaultv)
+{
+	const char *mime_type;
+
+	mime_type = gnome_vfs_mime_type_from_mode (mode);
+	if (mime_type == NULL) {
+		mime_type = defaultv;
+	}
 
 	return mime_type;
 }

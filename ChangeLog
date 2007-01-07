@@ -1,3 +1,13 @@
+2007-01-07  Christian Neumair  <chris@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	* libgnomevfs/gnome-vfs-module-shared.h: Add
+	gnome_vfs_mime_type_from_mode_or_default().
+
+	* modules/ftp-method.c: (do_get_file_info): Use
+	gnome_vfs_mime_type_from_mode_or_default() instead of checking for
+	NULL return value ourselves. Fixes #330625.
+
 2006-12-29  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/sftp-method.c: (buffer_read_file_info): Ignore UID/GID, i.e.

@@ -2529,13 +2529,8 @@ update_mime_type_and_name_from_path (GnomeVFSFileInfo *file_info,
 		 file_info->type == GNOME_VFS_FILE_TYPE_REGULAR)
 		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_name_or_default
 						 (file_info->name, GNOME_VFS_MIME_TYPE_UNKNOWN));
-	else {
-		/* TODO replace this by gnome_vfs_mime_type_from_mode_or_default call, #330625 */
-		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_mode (file_info->permissions));
-		if (file_info->mime_type == NULL) {
-			file_info->mime_type = g_strdup (GNOME_VFS_MIME_TYPE_UNKNOWN);
-		}
-	}
+	else
+		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_mode_or_default (file_info->permissions, GNOME_VFS_MIME_TYPE_UNKNOWN));
 }
 
 /* from gnome-vfs-utils.c */

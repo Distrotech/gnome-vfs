@@ -36,7 +36,9 @@
 
 G_BEGIN_DECLS
 
-const gchar *   gnome_vfs_mime_type_from_mode 	(mode_t             mode);
+const char *    gnome_vfs_mime_type_from_mode            (mode_t             mode);
+const char *    gnome_vfs_mime_type_from_mode_or_default (mode_t             mode,
+							  const char        *defaultv);
 
 void            gnome_vfs_stat_to_file_info	(GnomeVFSFileInfo  *file_info,
 					    	 const struct stat *statptr);
