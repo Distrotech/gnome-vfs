@@ -1,3 +1,9 @@
+2007-01-07  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/ftp-method.c: (do_get_file_info): Partially revert patch
+	from #330625, pass the correct mode (from stat) to
+	gnome_vfs_mime_type_from_mode(), not only the permissions part.
+
 2006-12-19  Alexander Larsson  <alexl@redhat.com>
 
 	Merged from HEAD:

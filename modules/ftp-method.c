@@ -2237,7 +2237,7 @@ unix_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, GNOME_VFS_MIME_TYPE_UNKNOWN);
 		} else {
 			/* TODO replace this by gnome_vfs_mime_type_from_mode_or_default call, #330625 */
-			mime_type = gnome_vfs_mime_type_from_mode (file_info->permissions);
+			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
 			if (mime_type == NULL) {
 				mime_type = GNOME_VFS_MIME_TYPE_UNKNOWN;
 			}
