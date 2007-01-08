@@ -1423,6 +1423,12 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	app->priv->path = g_key_file_get_string (key_file, DESKTOP_ENTRY_GROUP,
 						 "Path", NULL);
 
+	/* 'Path=' .desktop item is not working. bugzilla.gnome.org/389273 */
+	if (app->priv->path != NULL && *app->priv->path == 0) {
+		g_free (app->priv->path);
+		app->priv->path = NULL;
+	}
+
 	app->requires_terminal = g_key_file_get_boolean
 			(key_file, DESKTOP_ENTRY_GROUP, "Terminal", &err);
 	if (err) {

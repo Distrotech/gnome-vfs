@@ -1,3 +1,9 @@
+2007-01-08  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_application_new_from_desktop_id):
+	Correctly handle empty Path key. (#389273)
+	Patch from Peter Volkov
+
 2007-01-07  Christian Neumair  <chris@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-module-shared.c:

@@ -26,6 +26,16 @@ gnome-vfs-module-shared
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_mime_type_from_mode_or_default ##### -->
+<para>
+
+</para>
+
+@mode: 
+@defaultv: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_stat_to_file_info ##### -->
 <para>
 
