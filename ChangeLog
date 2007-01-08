@@ -1,5 +1,10 @@
 2007-01-08  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c:
+	Doc string fix from Claudio Saavedra (#355470)
+
+2007-01-08  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/sftp-method.c (sftp_get_connection):
 	Fix leak (patch from Claudio Saavedra)
 

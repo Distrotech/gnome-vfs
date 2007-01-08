@@ -1242,7 +1242,7 @@ gnome_vfs_format_uri_for_display_internal (const char *uri,
  * 	file: uri with fragments should appear as file:uri.
  * 	All other uri appear as expected.
  *
- * Return value: a string which represents @uri and can be displayed.
+ * Return value: a newly allocated string which represents @uri and can be displayed.
  *
  * Since: 2.2
  */
