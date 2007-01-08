@@ -140,18 +140,25 @@ do_full_auth (const GnomeVFSModuleCallbackFullAuthenticationIn *in_args,
 	out_args->abort_auth = FALSE;
 
 	name = g_string_new (NULL);
-	if (in_args->username != NULL) {
-		g_string_append_printf (name, "%s@", in_args->username);
-	}
 	if (in_args->server != NULL) {
+		/* remote */
+		if (in_args->username != NULL) {
+			g_string_append_printf (name, "%s@", in_args->username);
+		}
 		g_string_append (name, in_args->server);
+		if (in_args->port != 0) {
+			g_string_append_printf (name, ":%d", in_args->port);
+		}
+		if (in_args->object != NULL) {
+			g_string_append_printf (name, "/%s", in_args->object);
+		}
+	} else {
+		/* local */
+		if (in_args->object != NULL) {
+			g_string_append (name, in_args->object);
+		}
 	}
-	if (in_args->port != 0) {
-		g_string_append_printf (name, ":%d", in_args->port);
-	}
-	if (in_args->object != NULL) {
-		g_string_append_printf (name, "/%s", in_args->object);
-	}
+
 	if (in_args->domain != NULL) {
 		message = g_strdup_printf (_("You must log in to access %s domain %s\n"), name->str, in_args->domain);
 	} else {
