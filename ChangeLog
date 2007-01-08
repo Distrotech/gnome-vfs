@@ -1,5 +1,10 @@
 2007-01-08  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/sftp-method.c (sftp_get_connection):
+	Fix leak (patch from Claudio Saavedra)
+
+2007-01-08  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_application_new_from_desktop_id):
 	Correctly handle empty Path key. (#389273)
 	Patch from Peter Volkov

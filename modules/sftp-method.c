@@ -1589,6 +1589,8 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 			g_mutex_lock ((*connection)->mutex);
 			(*connection)->hash_name = hash_name;
 			g_hash_table_insert (sftp_connection_table, hash_name, *connection);
+		} else {
+			g_free (hash_name);
 		}
 	}
 #if 0
