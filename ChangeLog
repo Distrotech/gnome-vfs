@@ -1,3 +1,8 @@
+2007-01-11  Fernando Herrera  <fherrera@onirica.com>
+
+	* modules/sftp-method.c: (sftp_connect): Fix password
+	saving. Fixes #394491
+
 2007-01-08  Christian Neumair  <chris@gnome-de.org>
 
 	* programs/authentication.c: Don't prepend slash to object name for

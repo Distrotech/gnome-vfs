@@ -1325,7 +1325,8 @@ tty_retry:
 					g_io_channel_write_chars (tty_channel, new_password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
-					g_free (new_password);
+					g_free (password);
+					password = new_password;
 				} else if (gnome_vfs_uri_get_password (uri) == NULL &&
 					   invoke_full_auth (uri, done_auth, buffer, user_name, &new_password, &keyring,
 						   	     &new_user_name, &object, &authtype, &save_password, &aborted) && new_password != NULL) {
@@ -1364,7 +1365,8 @@ tty_retry:
 					g_io_channel_flush (tty_channel, NULL);
 
 					g_free (new_user_name);
-					g_free (new_password);
+					g_free (password);
+					password = new_password;
 				} else if (aborted) {
 					res = GNOME_VFS_ERROR_CANCELLED;
 					goto bail;
