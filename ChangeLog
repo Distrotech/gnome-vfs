@@ -1,3 +1,11 @@
+2007-01-12  Alexander Larsson  <alexl@redhat.com>
+
+        * configure.in:
+        * libgnomevfs/gnome-vfs-pty.c:
+	Add local login_tty implementation if not supported by libc.
+	(#324709)
+	Patch from Damien Carbery
+	
 2007-01-11  Fernando Herrera  <fherrera@onirica.com>
 
 	* modules/sftp-method.c: (sftp_connect): Fix password

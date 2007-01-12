@@ -147,7 +147,7 @@ fi;
 
 AC_SEARCH_LIBS(gethostent, nsl)
 AC_SEARCH_LIBS(setsockopt, socket)
-AC_SEARCH_LIBS(login_tty, util)
+AC_SEARCH_LIBS(login_tty, util, [AC_DEFINE([HAVE_LOGIN_TTY],[],[Whether login_tty is available])])
 
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statfs statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim sysctlbyname poll posix_fadvise fchmod atoll)

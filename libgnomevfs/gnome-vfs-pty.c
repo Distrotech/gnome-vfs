@@ -49,6 +49,27 @@
 
 int _gnome_vfs_pty_set_size(int master, int columns, int rows);
 
+/* Solaris does not have the login_tty() function so implement locally. */
+#ifndef HAVE_LOGIN_TTY
+static int login_tty(int pts)
+{
+#if defined(HAVE_STROPTS_H)
+  /* push a terminal onto stream head */
+  if (ioctl(pts, I_PUSH, "ptem")   == -1) return -1;
+  if (ioctl(pts, I_PUSH, "ldterm") == -1) return -1;
+#endif
+  setsid();
+#if defined(TIOCSCTTY)
+  ioctl(pts, TIOCSCTTY, 0);
+#endif
+  dup2(pts, 0);
+  dup2(pts, 1);
+  dup2(pts, 2);
+  if (pts > 2) close(pts);
+  return 0;
+}
+#endif
+
 /* Reset the handlers for all known signals to their defaults.  The parent
  * (or one of the libraries it links to) may have changed one to be ignored. */
 static void
