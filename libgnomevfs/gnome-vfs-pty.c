@@ -44,6 +44,9 @@
 #ifdef HAVE_UTMP_H
 #include <utmp.h>
 #endif
+#ifdef HAVE_UTIL_H
+#include <util.h>
+#endif
 #include <glib.h>
 #include "gnome-vfs-pty.h"
 

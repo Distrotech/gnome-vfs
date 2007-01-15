@@ -1,3 +1,9 @@
+2007-01-15  Bastien Nocera <hadess@hadess.net>
+
+	* configure.in: test for util.h
+	* libgnomevfs/gnome-vfs-pty.c: fix the MacOS X build by adding
+	util.h to the includes for login_tty
+
 2007-01-12  Alexander Larsson  <alexl@redhat.com>
 
         * configure.in:
