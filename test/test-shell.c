@@ -35,7 +35,6 @@
 #include <libgnomevfs/gnome-vfs-ssl.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
 #include <libgnomevfs/gnome-vfs-standard-callbacks.h>
-#include <popt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
