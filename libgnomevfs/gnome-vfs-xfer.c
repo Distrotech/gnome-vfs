@@ -1341,6 +1341,23 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 		}
 	} while (retry);
 
+	/* if we didn't get a file size earlier,
+	 * try to get one from the handle (#330498)
+	 */
+	if (progress->progress_info->file_size == 0) {
+		GnomeVFSFileInfo *info;
+
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info_from_handle (*source_handle,
+							      info,
+							      GNOME_VFS_FILE_INFO_DEFAULT);
+		if (result == GNOME_VFS_OK &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
+			progress->progress_info->file_size = info->size;
+		}
+		gnome_vfs_file_info_unref (info);
+	}
+
 	return result;
 }
 
