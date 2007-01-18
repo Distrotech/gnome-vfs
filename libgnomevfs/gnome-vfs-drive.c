@@ -51,7 +51,7 @@ gnome_vfs_drive_get_type (void)
 	static GType drive_type = 0;
 
 	if (!drive_type) {
-		static const GTypeInfo drive_info = {
+		const GTypeInfo drive_info = {
 			sizeof (GnomeVFSDriveClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */

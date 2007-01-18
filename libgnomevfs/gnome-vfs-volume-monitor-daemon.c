@@ -89,7 +89,7 @@ gnome_vfs_volume_monitor_daemon_get_type (void)
 	static GType volume_monitor_daemon_type = 0;
 
 	if (!volume_monitor_daemon_type) {
-		static const GTypeInfo volume_monitor_daemon_info = {
+		const GTypeInfo volume_monitor_daemon_info = {
 			sizeof (GnomeVFSVolumeMonitorDaemonClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */

@@ -44,7 +44,7 @@ gnome_vfs_volume_get_type (void)
 	static GType volume_type = 0;
 
 	if (!volume_type) {
-		static const GTypeInfo volume_info = {
+		const GTypeInfo volume_info = {
 			sizeof (GnomeVFSVolumeClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */

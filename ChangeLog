@@ -1,5 +1,17 @@
 2007-01-18  Christian Persch  <chpe@svn.gnome.org>
 
+	* libgnomevfs/gnome-vfs-drive.c: (gnome_vfs_drive_get_type):
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	(gnome_vfs_volume_monitor_client_get_type):
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	(gnome_vfs_volume_monitor_daemon_get_type):
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	(gnome_vfs_volume_monitor_get_type):
+	* libgnomevfs/gnome-vfs-volume.c: (gnome_vfs_volume_get_type): No need
+	to make GTypeInfo static. Bug #362035.
+
+2007-01-18  Christian Persch  <chpe@svn.gnome.org>
+
 	* configure.in: Don't enable http-debug by default in svn builds. Bug
 	#395912.
 

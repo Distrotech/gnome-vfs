@@ -55,7 +55,7 @@ gnome_vfs_volume_monitor_get_type (void)
 	static GType volume_monitor_type = 0;
 
 	if (!volume_monitor_type) {
-		static const GTypeInfo volume_monitor_info = {
+		const GTypeInfo volume_monitor_info = {
 			sizeof (GnomeVFSVolumeMonitorClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */
