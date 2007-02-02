@@ -1,5 +1,11 @@
 2007-02-02  Alexander Larsson  <alexl@redhat.com>
 
+        * libgnomevfs/gnome-vfs-daemon-method.c:
+	Handle disconnected dbus connections better.
+	Patch from Jonathan Matthew <jonathan@kaolin.wh9.net>
+
+2007-02-02  Alexander Larsson  <alexl@redhat.com>
+
         * libgnomevfs/gnome-vfs-result.c:
 	Add support for ENOTSUP.
 	Patch from cascardo@minaslivre.org

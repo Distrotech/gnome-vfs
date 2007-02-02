@@ -353,6 +353,12 @@ destroy_private_connection (gpointer data)
 	g_free (ret);
 }
 
+static void
+private_connection_died (LocalConnection *connection)
+{
+	g_static_private_set (&local_connection_private, NULL, NULL);
+}
+
 static LocalConnection *
 get_private_connection ()
 {
@@ -627,7 +633,8 @@ execute_operation (const gchar      *method,
 					      message, &pending_call, timeout)) {
 		dbus_message_unref (message);
 		*result = GNOME_VFS_ERROR_INTERNAL;
-		return NULL;
+		reply = NULL;
+		goto out;
 	}
 
 	dbus_message_unref (message);
@@ -636,23 +643,22 @@ execute_operation (const gchar      *method,
 	       dbus_connection_read_write_dispatch (connection->connection, -1))
 		;
 
+	if (!dbus_connection_get_is_connected (connection->connection)) {
+		private_connection_died (connection);
+		*result = GNOME_VFS_ERROR_INTERNAL;
+		reply = NULL;
+		goto out;
+	}
 	reply = dbus_pending_call_steal_reply (pending_call);
 
 	dbus_pending_call_unref (pending_call);
 	
+	if (result) {
+		*result = (reply == NULL) ? GNOME_VFS_ERROR_TIMEOUT : GNOME_VFS_OK;
+	}
+ out:
 	if (cancellation_id != -1) {
 		cancellation_id_free (cancellation_id, context);
-	}
-
-	if (reply == NULL) {
-		if (result) {
-			*result = GNOME_VFS_ERROR_TIMEOUT;
-		}
-		return NULL;
-	}
-
-	if (result) {
-		*result = GNOME_VFS_OK;
 	}
 
 	return reply;
