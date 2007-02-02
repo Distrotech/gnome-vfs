@@ -2,6 +2,7 @@
 /* gnome-vfs-error.c - Error handling for the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2007 Thadeu Lima de Souza Cascardo
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,6 +20,10 @@
    Boston, MA 02111-1307, USA.
 
    Author: Ettore Perazzoli <ettore@gnu.org>
+
+   Modified on 2007-01-29 by Thadeu Lima de Souza Cascardo to handle
+   ENOTSUP.
+
 */
 
 #include <config.h>
@@ -143,6 +148,9 @@ gnome_vfs_result_from_errno_code (int errno_code)
 #endif
 	case EXDEV:	   return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	case ENAMETOOLONG: return GNOME_VFS_ERROR_NAME_TOO_LONG;
+#ifdef ENOTSUP
+	case ENOTSUP:    return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 	
 		/* FIXME bugzilla.eazel.com 1191: To be completed.  */
 	default:	return GNOME_VFS_ERROR_GENERIC;
