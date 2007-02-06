@@ -1,3 +1,12 @@
+2007-02-06  Brian Cameron  <brian.cameron@sun.com>
+
+	* libgnomevfs/gnome-vfs-job.h,
+	  libgnomevfs-/gnome-vfs-job-queue.h: Move definition
+	  of G_GNUC_INTERNAL to the beginning of the prototype
+	  since this is more portable and now the
+	  recommended location specified in the glib API
+	  docs.
+
 2007-02-02  Alexander Larsson  <alexl@redhat.com>
 
         * libgnomevfs/gnome-vfs-daemon-method.c:
