@@ -32,6 +32,7 @@
 #include <sys/types.h>
 
 #ifndef G_OS_WIN32
+#include <sys/socket.h>
 #include <sys/select.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
