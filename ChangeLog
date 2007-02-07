@@ -1,5 +1,12 @@
 2007-02-07  Alexander Larsson  <alexl@redhat.com>
 
+        * libgnomevfs/xdgmime.h:
+	Fix some namespace clashes with gtk+ by privatizing more
+	names. (#359487)
+	Patch from Joe Marcus Clarke
+
+2007-02-07  Alexander Larsson  <alexl@redhat.com>
+
         * configure.in:
         * libgnomevfs/gnome-vfs-address.c:
         * libgnomevfs/gnome-vfs-hal-mounts.c:
