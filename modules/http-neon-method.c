@@ -1617,6 +1617,8 @@ http_acquire_connection (HttpContext *context)
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
 
+	ne_set_read_timeout (session, 30);
+
 	user_agent = getenv (CUSTOM_USER_AGENT_VARIABLE);
 	   
 	if (user_agent == NULL) {

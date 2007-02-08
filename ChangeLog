@@ -1,3 +1,9 @@
+2007-02-08  Richard Hult  <richard@imendio.com>
+
+	* modules/http-neon-method.c (http_acquire_connection): Set the
+	read timeout to 30 seconds so that we timeout if the network
+	doesn't respond. Fixes bug #402851.
+
 2007-02-07  Alexander Larsson  <alexl@redhat.com>
 
         * libgnomevfs/xdgmime.h:
