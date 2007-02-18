@@ -6,33 +6,24 @@
 # Amanpreet Singh Alam <amanliunx@netscapet.net>, 2004.
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004.
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
-# Amanpreet Singh Brar <amanpreetsinghalam@redhat.com>, 2005.
 # A S Alam <apbrar@gmail.com>, 2006.
+# A S Alam <aalam@users.sf.net>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-10 08:07+0100\n"
-"PO-Revision-Date: 2006-03-11 12:04+0530\n"
-"Last-Translator: A S Alam <apbrar@gmail.com>\n"
-"Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
+"POT-Creation-Date: 2007-01-02 04:29+0000\n"
+"PO-Revision-Date: 2007-02-18 08:55+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 "\n"
 "\n"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "ਬੋਨਬੋ ਨੂੰ ਸ਼ੁਰੂ ਨਹੀ ਕੀਤਾ ਸਕਿਆ ਹੈ"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "ਗਨੋਮ vfs ਨੂੰ ਸ਼ੁਰੂ ਨਹੀ ਕੀਤਾ ਸਕਿਆ ਹੈ"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -41,37 +32,37 @@ msgstr "ISO 9660 ਵਾਲੀਅਮ"
 # libgnomevfs/gnome-vfs-configuration.c:223
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
-msgid "%s:%d contains NUL characters."
-msgstr "%s : %d ਕੋਲ NUL ਅੱਖਰ ਹੈ"
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u ਕੋਲ NUL ਅੱਖਰ ਹੈ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
-msgid "%s:%d contains no method name."
-msgstr "%s : %d ਕੋਲ ਕੋਈ ਤਰੀਕਾ ਨਹੀ ਹੈ"
+msgid "%s:%u contains no method name."
+msgstr "%s :%u ਕੋਲ ਕੋਈ ਤਰੀਕਾ ਨਾਂ ਨਹੀਂ ਹੈ"
 
 # libgnomevfs/gnome-vfs-configuration.c:240
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%d ਕੋਲ ਕੋਈ ਤਰੀਕਾ ਨਹੀ ਹੈ"
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%u ਕੋਲ ਕੋਈ ਤਰੀਕਾ ਨਹੀਂ ਹੈ"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
-msgid "%s:%d has unknown options %s."
-msgstr "%s:%d ਕੋਲ ਅਣਜਾਣੀ ਚੋਣ %s ਹੈ।"
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%u ਕੋਈ ਅਣਜਾਣੀ ਚੋਣ %s ਹੈ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:269
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
-msgid "%s:%d contains no module name."
-msgstr "%s : %d ਕੋਲ ਕੋਈ ਮੋਡੀਊਲ ਨਹੀ ਹੈ"
+msgid "%s:%u contains no module name."
+msgstr "%s:%u ਕੋਲ ਕੋਈ ਮੋਡੀਊਲ ਨਾਂ ਨਹੀਂ ਹੈ।"
 
 # libgnomevfs/gnome-vfs-configuration.c:322
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "ਸੰਰਚਨਾ ਫਾਇਲ '%s' ਨਹੀ ਲੱਭੀ: %s"
+msgstr "ਸੰਰਚਨਾ ਫਾਇਲ '%s' ਨਹੀਂ ਲੱਭੀ: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -79,152 +70,167 @@ msgstr "ਸੰਰਚਨਾ ਫਾਇਲ '%s' ਨਹੀ ਲੱਭੀ: %s"
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d ਪਾਰਸਿੰਗ ਅਧੂਰੀ ਛੱਡੀ ਗਈ।"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:37
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
 msgstr "AFFS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:38
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
 msgstr "AFS ਨੈੱਟਵਰਕ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr "ਸਵੈ-ਖੋਜਿਆ ਵਾਲੀਅਮ"
+msgstr "ਆਟੋ-ਖੋਜਿਆ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
 msgstr "CD-ROM ਡਰਾਇਵ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
 msgstr "CD ਡਿਜ਼ੀਟਲ ਆਡੀਓ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
 msgstr "ਹਾਰਡਵੇਅਰ ਜੰਤਰ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "EncF ਵਾਲੀਅਮ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "MSDOS Volume"
 msgstr "MSDOS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "BSD ਵਾਲੀਅਮ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 msgid "MacOS Volume"
 msgstr "MacOS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "CDROM Volume"
 msgstr "CDROM ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "JFS Volume"
 msgstr "JFS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Windows NT Volume"
 msgstr "Windows NT ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "System Volume"
 msgstr "ਸਿਸਟਮ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Memory Volume"
 msgstr "ਮੈਮੋਰੀ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Minix Volume"
 msgstr "ਮੀਨੈਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "NFS Network Volume"
 msgstr "NFS ਨੈੱਟਵਰਕ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Netware Volume"
 msgstr "ਨੈੱਟਵੇਅਰ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows Shared Volume"
 msgstr "Windows ਸਾਂਝਾ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "SuperMount Volume"
 msgstr "ਸੁਪਰਮਾਊਟ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "DVD Volume"
 msgstr "DVD ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS  ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "ਆਰਜ਼ੀ ਵਾਲੀਅਮ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Xenix Volume"
 msgstr "Xenix ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "XFS Linux Volume"
 msgstr "XFS ਲੀਨਕਸ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XIAFS Volume"
 msgstr "XIAFS ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "CIFS Volume"
 msgstr "CIFS ਵਾਲੀਅਮ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:106
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
@@ -235,23 +241,23 @@ msgid "%s Volume"
 msgstr "%s ਵਾਲੀਅਮ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:622
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
@@ -264,17 +270,17 @@ msgid "DVD+RW"
 msgstr "DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
@@ -317,8 +323,8 @@ msgid "SD/MMC Drive"
 msgstr "SD/MMC ਡਰਾਇਵ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:625
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ਜ਼ਿਪ ਡਰਾਇਵ"
 
@@ -427,69 +433,69 @@ msgid "Volume"
 msgstr "ਵਾਲੀਅਮ"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: ../libgnomevfs/gnome-vfs-job.c:733
+#: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "ਅਣਜਾਣੀ ਕਾਰਵਾਈ ਕਿਸਮ %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "ਖੁੱਲੇ GIO ਚੈਨਲ ਲਈ ਪਾਇਪ ਨਹੀ ਬਣ ਸਕਦਾ: %s"
+msgstr "ਖੁੱਲੇ GIO ਚੈਨਲ ਲਈ ਪਾਇਪ ਨਹੀਂ ਬਣ ਸਕਦਾ: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: ../libgnomevfs/gnome-vfs-job.c:1698
+#: ../libgnomevfs/gnome-vfs-job.c:1692
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ਅਣਜਾਣ ਕਾਰਜ ਕਿਸਮ %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: ../libgnomevfs/gnome-vfs-job.c:1731
+#: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
 msgstr "ਕਾਰਵਾਈ ਰੁਕੀ ਹੈ"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:849
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:894
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:915
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:991
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1010
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1030
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1050
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "ਉਲਟ ਫੰਕਸ਼ਨ, MIME ਡਾਟਾਬੇਸ ਵਿੱਚ ਕੋਈ ਵੀ ਤਬਦੀਲ ਉਪਭੋਗੀ ਰਾਹੀਂ ਸਵੀਕਾਰ ਨਹੀਂ ਹੈ"
+msgstr "ਬਰਤਰਫ਼ ਫੰਕਸ਼ਨ, MIME ਡਾਟਾਬੇਸ ਵਿੱਚ ਕੋਈ ਵੀ ਤਬਦੀਲ ਉਪਭੋਗੀ ਰਾਹੀਂ ਸਵੀਕਾਰ ਨਹੀਂ ਹੈ।"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:704
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
-msgstr "ਪਾਰਸ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਿਆ: %s"
+msgstr "ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ: %s"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:706
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
 msgstr "ਹੋਰ ਪਾਰਸਿੰਗ ਗਲਤੀਆਂ ਅਣਡਿੱਠੀਆਂ ਦਿਤੀਆਂ ਜਾਣਗੀਆਂ"
 
@@ -558,7 +564,7 @@ msgstr "ਗਲਤ ਫਾਇਲ ਹੈਂਡਲ"
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "File too big"
-msgstr "ਫਾਇਲ ਬਹੁਤੀ ਵੱਡੀ ਹੈ"
+msgstr "ਫਾਇਲ ਬਹੁਤੀ ਵੱਡੀ"
 
 # libgnomevfs/gnome-vfs-result.c:46
 #. GNOME_VFS_ERROR_NO_SPACE
@@ -570,7 +576,7 @@ msgstr "ਜੰਤਰ ਉੱਤੇ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਬਚੀ 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
-msgstr "ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਹੈ"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ"
 
 # libgnomevfs/gnome-vfs-result.c:48
 #. GNOME_VFS_ERROR_INVALID_URI
@@ -582,13 +588,13 @@ msgstr "ਗਲਤ URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
-msgstr "ਫਾਇਲ ਖੁੱਲ ਨਹੀ ਸਕਦੀ ਹੈ"
+msgstr "ਫਾਇਲ ਖੁੱਲ੍ਹੀ ਨਹੀਂ"
 
 # libgnomevfs/gnome-vfs-result.c:50
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "ਖੁੱਲਣ ਢੰਗ ਠੀਕ ਨਹੀਂ ਹੈ"
+msgstr "ਖੁੱਲ੍ਹਣ ਢੰਗ ਠੀਕ ਨਹੀਂ ਹੈ"
 
 # libgnomevfs/gnome-vfs-result.c:51
 #. GNOME_VFS_ERROR_ACCESS_DENIED
@@ -600,7 +606,7 @@ msgstr "ਪਹੁੰਚ ਪਾਬੰਦੀ ਹੈ"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
-msgstr "ਬਹੁਤੀਆਂ ਫਾਇਲਾਂ ਖੁੱਲੀਆਂ ਹਨ"
+msgstr "ਬਹੁਤ ਫਾਇਲਾਂ ਖੁੱਲੀਆਂ ਹਨ"
 
 # libgnomevfs/gnome-vfs-result.c:53
 #. GNOME_VFS_ERROR_EOF
@@ -612,7 +618,7 @@ msgstr "ਫਾਇਲ ਦਾ ਅੰਤ"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "Not a directory"
-msgstr "ਕੋਈ ਡਾਇਰੈਕਟਰੀ ਨਹੀਂ ਹੈ"
+msgstr "ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਨਹੀਂ"
 
 # libgnomevfs/gnome-vfs-result.c:55
 #. GNOME_VFS_ERROR_IN_PROGRESS
@@ -636,7 +642,7 @@ msgstr "ਫਾਇਲ ਮੌਜੂਦ ਹੈ"
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
-msgstr "ਘੁੰਮਾਉਦਾਰ ਸਬੰਧ ਆ ਗਏ ਹਨ"
+msgstr "ਘੁੰਮਾਉਦਾਰ ਲਿੰਕ ਆ ਗਏ ਹਨ"
 
 # libgnomevfs/gnome-vfs-result.c:59
 #. GNOME_VFS_ERROR_NOT_PERMITTED
@@ -672,13 +678,13 @@ msgstr "ਮੇਜ਼ਬਾਨ ਦਾ ਨਾਂ ਠੀਕ ਨਹੀਂ ਹੈ"
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "ਮੇਜ਼ਬਾਨ ਦਾ ਕੋਈ ਸਿਰਨਾਵਾਂ ਨਹੀਂ ਹੈ"
+msgstr "ਮੇਜ਼ਬਾਨ ਦਾ ਕੋਈ ਸਿਰਨਾਵਾਂ ਨਹੀਂ"
 
 # libgnomevfs/gnome-vfs-result.c:65
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Login failed"
-msgstr "ਦਾਖਲਾ (ਲਾਗਿੰਨ) ਫੇਲ੍ਹ"
+msgstr "ਲਾਗਇਨ ਫੇਲ੍ਹ"
 
 # libgnomevfs/gnome-vfs-result.c:66
 #. GNOME_VFS_ERROR_CANCELLED
@@ -702,13 +708,13 @@ msgstr "ਡਾਇਰੈਕਟਰੀ ਖਾਲੀ ਨਹੀਂ ਹੈ"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
-msgstr "ਬਹੁਤੇ ਸਬੰਧ ਹਨ"
+msgstr "ਬਹੁਤ ਜ਼ਿਆਦਾ ਲਿੰਕ"
 
 # libgnomevfs/gnome-vfs-result.c:70
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
-msgstr "ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ ਹੈ"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ"
 
 # libgnomevfs/gnome-vfs-result.c:71
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
@@ -744,7 +750,7 @@ msgstr "ਪਰੋਟੋਕਾਲ ਗਲਤੀ"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Could not find master browser"
-msgstr "ਮਾਸਟਰ ਝਲਕਾਰਾ ਨਹੀ ਲੱਭਿਆ ਜਾ ਸਕਿਆ"
+msgstr "ਮਾਸਟਰ ਝਲਕਾਰਾ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:84
@@ -767,7 +773,7 @@ msgid "Error launching command"
 msgstr "ਕਮਾਂਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਗਲਤੀ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88 ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
 msgstr "ਸਮਾਂ ਸੀਮਾ ਸਮਾਪਤ"
 
@@ -778,17 +784,28 @@ msgid "Nameserver error"
 msgstr "ਨਾਂ-ਸਰਵਰ ਗਲਤੀ"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "The resource is locked"
 msgstr "ਸਰੋਤ ਤਾਲਾਬੰਦ ਹੈ"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
-msgstr "ਫੰਕਸ਼ਨ ਕਾਲ ਬਰਤਰਫ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+msgstr "ਫੰਕਸ਼ਨ ਕਾਲ ਬਰਤਰਫ਼ ਕੀਤੀ ਗਈ"
+
+# libgnomevfs/gnome-vfs-result.c:39
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "ਗਲਤ ਫਾਇਲ ਨਾਂ"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "ਇੱਕ ਸਿੰਬੋਲਿਕ ਲਿੰਕ ਨਹੀਂ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:215
+#: ../libgnomevfs/gnome-vfs-result.c:217
 msgid "Unknown error"
 msgstr "ਅਣਜਾਣ ਗਲਤੀ"
 
@@ -804,237 +821,239 @@ msgstr[1] "%u ਬਾਈਟ"
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
-msgstr "%.1f ਕਿਬਾ"
+msgstr "%.1f KB"
 
 # libgnomevfs/gnome-vfs-utils.c:78
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f ਮੈਬਾ"
+msgstr "%.1f MB"
 
 # libgnomevfs/gnome-vfs-utils.c:82
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f ਗੈਬਾ"
+msgstr "%.1f GB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:381
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
 msgstr " (ਗਲਤ ਯੂਨੀਕੋਡ)"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:619
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
 msgstr "ਫਲਾਪੀ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "CD-ROM/DVD-RAM"
 msgstr "CD-ROM/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-ROM/DVD-RW"
 msgstr "CD-ROM/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
 msgid "CD-R/DVD-RAM"
 msgstr "CD-R/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "CD-R/DVD-RW"
 msgstr "CD-R/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "CD-RW/DVD-ROM"
 msgstr "CD-RW/DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "CD-RW/DVD-RAM"
 msgstr "CD-RW/DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "CD-RW/DVD-R"
 msgstr "CD-RW/DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
 msgstr "ਡਿਸਕ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
 msgstr "USB ਡਰਾਇਵ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
 msgstr "IEEE1394 ਡਰਾਇਵ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
 msgstr "CF"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
 msgid "SD/MMC"
 msgstr "SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
 msgstr "ਮੈਮੋਰੀ ਸਟਿੱਕ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
 msgstr "ਸਮਾਟ ਮੀਡਿਆ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
 msgstr "ਕੈਮਰਾ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:841
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
 msgstr "Root ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:922
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
 msgstr "ਆਡੀਓ CD"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:955
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
 msgstr "ਅਣਜਾਣ ਵਾਲੀਅਮ"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1160
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
 msgstr "ਨੈੱਟਵਰਕ ਸਰਵਰ"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀਂ ਹੈ।"
+msgstr ""
+"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ "
+"ਡਰਾਇਵ ਵਿੱਚ ਨਹੀਂ ਹੈ।"
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "ਵਾਲੀਅਮ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਸੰਭਵ ਹੈ ਕਿ ਜੰਤਰ ਵਿੱਚ ਮਾਧਿਅਮ ਨਹੀਂ ਹੈ।"
+msgstr "ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ। ਸੰਭਵ ਹੈ ਕਿ ਜੰਤਰ ਵਿੱਚ ਮਾਧਿਅਮ ਨਹੀਂ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਿਚਲੀ ਫਲਾਪੀ ਦਾ ਫਾਰਮਿਟ ਉਹ "
-"ਹੈ, ਜਿਸ ਨੂੰ ਮਾਊਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।"
+"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਿਚਲੀ ਫਲਾਪੀ "
+"ਦਾ ਫਾਰਮੈਟ ਉਹ ਹੈ, ਜਿਸ ਨੂੰ ਮਾਊਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।"
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ 'ਚ ਅਸਮਰੱਥ ਹੈ। ਜੇਕਰ ਇਹ ਇਨਕ੍ਰਿਪਟ ਡਰਾਇਵ ਹੈ ਤਾਂ ਗਲਤ "
-"ਗੁਪਤ-ਕੋਡ ਜਾਂ ਕੁੰਜੀ ਗਲਤੀ ਗਈ ਹੈ।"
+"ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ 'ਚ ਅਸਮਰੱਥ ਹੈ। ਜੇਕਰ ਇਹ ਇਨਕ੍ਰਿਪਟ ਡਰਾਇਵ ਹੈ ਤਾਂ \n"
+"ਗਲਤ ਗੁਪਤ-ਕੋਡ ਜਾਂ ਕੁੰਜੀ ਗਲਤੀ ਗਈ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਾਲੀਅਮ ਦਾ ਫਾਰਮਿਟ ਉਹ ਹੈ, ਜਿਸ "
-"ਨੂੰ ਮਾਊਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।"
+"ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਚਲਾਉਣ (ਮਾਊਟ) ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਾਲੀਅਮ ਦਾ "
+"ਫਾਰਮੈਟ ਉਹ ਹੈ, ਜਿਸ ਨੂੰ ਮਾਊਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
-msgstr "ਚੁਣੀ ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ।"
+msgstr "ਚੁਣੀ ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
-msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ।"
+msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr ""
-"ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਅਣ-ਮਾਊਟ ਵਿੱਚ ਅਸਮਰੱਥ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਾਲੀਅਮ ਇੱਕ ਜਾਂ ਵੱਧ ਪ੍ਰੋਗਰਾਮ "
-"ਵਲੋਂ ਵਰਤੋਂ ਅਧੀਨ ਹੋਵੇ।"
+"ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਅਣ-ਮਾਊਟ ਵਿੱਚ ਅਸਮਰੱਥ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਾਲੀਅਮ ਇੱਕ ਜਾਂ "
+"ਵੱਧ ਪ੍ਰੋਗਰਾਮ ਵਲੋਂ ਵਰਤੋਂ ਅਧੀਨ ਹੋਵੇ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
-msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਅਣ-ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ।"
+msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਅਣ-ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ ਹੈ।"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "ਅਧੀਨ ਕਾਰਜ %d (%s) ਤੋਂ ਡਾਟਾ ਪੜ੍ਹਨ 'ਚ ਅਸਫ਼ਲ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr "ਇੱਕ ptyਵਿੱਚ ਮਾਊਟ ਕਾਰਵਾਈ ਚਲਾਈ ਨਹੀਂ ਜਾ ਸਕੀ"
+msgstr "ਇੱਕ pty ਵਿੱਚ ਮਾਊਟ ਕਾਰਵਾਈ ਚਲਾਈ ਨਹੀਂ ਜਾ ਸਕੀ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "ਇੱਕ ਅਧੀਨ ਕਾਰਜ (%s) ਤੋਂ ਡਾਟਾ ਪੜ੍ਹਨ ਦੌਰਾਨ select() ਵਿੱਚ ਅਚਾਨਕ ਗਲਤੀ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
 msgstr "ਮਾਊਟ ਕਾਰਵਾਈ ਲਈ ਗੁਪਤ-ਕੋਡ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "waitpid() (%s) ਵਿੱਚ ਅਚਾਨਕ ਗਲਤੀ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "ਕਮਾਂਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
+msgstr "ਕਮਾਂਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
-msgstr "ਮਾਧਿਅਮ ਕੱਢਣ ਵਿੱਚ ਅਸਫਲ"
+msgstr "ਮੀਡਿਆ ਕੱਢਣ ਵਿੱਚ ਅਸਫ਼ਲ"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
-msgstr "ਜੁਡ਼ੇ ਸਰਵਰ ਨੂੰ ਅਨ-ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
+msgstr "ਜੁਡ਼ੇ ਸਰਵਰ ਨੂੰ ਅਣ-ਮਾਊਂਟ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ"
 
-#: ../modules/computer-method.c:546
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "ਨੈੱਟਵਰਕ"
 
-#: ../modules/computer-method.c:564
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "ਘਰ"
 
-#: ../modules/computer-method.c:582
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "ਫਾਇਲ ਸਿਸਟਮ"
 
 # modules/file-method.c:381
-#: ../modules/file-method.c:483
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ਅਣਜਾਣ ਗਨੋਮ-VFSSeek ਥਾਂ %d"
@@ -1043,12 +1062,12 @@ msgstr "ਅਣਜਾਣ ਗਨੋਮ-VFSSeek ਥਾਂ %d"
 msgid "Windows Network"
 msgstr "Windows ਨੈੱਟਵਰਕ"
 
-#: ../modules/sftp-method.c:1322
+#: ../modules/sftp-method.c:1422
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "ਰਿਮੋਟ ਕੰਪਿਊਟਰ (%s) ਦੀ ਪਛਾਣ ਅਣਜਾਣੀ ਹੈ"
+msgstr "ਰਿਮੋਟ ਕੰਪਿਊਟਰ (%s) ਦੀ ਪਛਾਣ ਅਣਜਾਣੀ ਹੈ।"
 
-#: ../modules/sftp-method.c:1323
+#: ../modules/sftp-method.c:1423
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1056,25 +1075,25 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"ਇਹ ਤਾਂ ਹੀ ਵਾਪਰਦਾ ਹੈ ਜਦੋਂ ਕਿ ਤੁਸੀਂ ਪਹਿਲੀ ਵਾਰ ਕੰਪਿਊਟਰ 'ਤੇ ਲਾਗਿੰਨ ਕਰਦੇ ਹੋ।\n"
+"ਇਹ ਤਾਂ ਹੀ ਵਾਪਰਦਾ ਹੈ ਜਦੋਂ ਕਿ ਤੁਸੀਂ ਪਹਿਲੀ ਵਾਰ ਕੰਪਿਊਟਰ 'ਤੇ ਲਾਗਇਨ ਕਰਦੇ ਹੋ।\n"
 "\n"
-"ਇਹ ਪਛਾਣ %s ਰਿਮੋਟ ਕੰਪਿਊਟਰ ਨੇ ਭੇਜੀ ਹੈ, ਜੇਕਰ ਤੁਸੀਂ ਇਹ ਯਕੀਨੀ ਬਂਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਇਹ ਸੁਰੱਖਿਅਤ "
+"ਇਹ ਪਛਾਣ %s ਰਿਮੋਟ ਕੰਪਿਊਟਰ ਨੇ ਭੇਜੀ ਹੈ, ਜੇਕਰ ਤੁਸੀਂ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਇਹ ਸੁਰੱਖਿਅਤ "
 "ਹੈ ਤਾਂ ਆਪਣੇ ਸਿਸਟਮ ਪਰਸ਼ਾਸਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
 
-#: ../modules/sftp-method.c:1331
+#: ../modules/sftp-method.c:1431
 msgid "Log In Anyway"
-msgstr "ਕਿਸੇ ਵੀ ਤਰਾਂ ਲਾਗਿੰਨ ਕਰੋ"
+msgstr "ਕਿੰਝ ਵੀ ਲਾਗਇਨ"
 
-#: ../modules/sftp-method.c:1332
+#: ../modules/sftp-method.c:1432
 msgid "Cancel Login"
-msgstr "ਲਾਗਿੰਨ ਰੱਦ ਕਰੋ"
+msgstr "ਲਾਗਇਨ ਰੱਦ"
 
 # modules/test-method.c:590
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "%s 'ਤੇ ਠੀਕ ਸਥਾਪਨ ਫਾਇਲ ਨਹੀਂ ਲੱਭੀ ਹੈ\n"
+msgstr "%s 'ਤੇ ਠੀਕ ਸੈਟਿੰਗ ਫਾਇਲ ਨਹੀਂ ਲੱਭੀ ਹੈ\n"
 
 # modules/test-method.c:592
 #: ../modules/test-method.c:589
@@ -1082,25 +1101,37 @@ msgstr "%s 'ਤੇ ਠੀਕ ਸਥਾਪਨ ਫਾਇਲ ਨਹੀਂ ਲੱਭ
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "ਹੋਰ ਟਿਕਾਣਾ ਦੇਣ ਲਈ ਵਾਤਾਵਰਣ %s ਮੁੱਲ ਦੀ ਵਰਤੋਂ ਕਰੋ।\n"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "ਮਿਆਰੀ ਮਾਨੀਕਰ ਫੈਕਟਰੀ ਸੁਰੂ ਕਰੋ।"
+#: ../programs/authentication.c:106
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "ਤੁਹਾਡੇ HTTP ਪਰਾਕਸੀ ਨੂੰ ਤੁਹਾਡੇ ਲਾਗਇਨ ਦੀ ਲੋੜ ਹੈ।\n"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "ਫਾਇਲ ਮਾਨੀਕਰਐਕਟੈਡਰ"
+#: ../programs/authentication.c:107
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"ਤੁਹਾਨੂੰ \"%s\" ਵਰਤਣ ਵਾਸਤੇ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ।\n"
+"%s"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "ਸਧਾਰਨ ਗਨੋਮ VFS ਮਾਨੀਕਰ"
+#: ../programs/authentication.c:110
+msgid "Your password will be transmitted unencrypted."
+msgstr "ਤੁਹਾਡਾ ਗੁਪਤ-ਕੋਡ ਬਿਨ-ਇੰਕ੍ਰਿਪਸ਼ਨ ਦੇ ਹੀ ਭੇਜਿਆ ਜਾਵੇਗਾ।"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "ਸਧਾਰਨ ਫਾਇਲ ਮਾਨੀਕਰ"
+#: ../programs/authentication.c:111
+msgid "Your password will be transmitted encrypted."
+msgstr "ਤੁਹਾਡਾ ਗੁਪਤ-ਕੋਡ ਇੰਕ੍ਰਿਪਟਿਡ ਹੀ ਭੇਜਿਆ ਜਾਵੇਗਾ।"
+
+#: ../programs/authentication.c:156
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "ਤੁਹਾਨੂੰ %s ਡੋਮੇਨ %s ਵਰਤਣ ਵਾਸਤੇ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ\n"
+
+#: ../programs/authentication.c:158
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "%s ਵਰਤਣ ਵਾਸਤੇ ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1121,8 +1152,9 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"ਫਾਇਲਾਂ ਨੂੰ ਵੇਖਣ ਲਈ ਵਰਤਣ ਵਾਲਾ ਕਾਰਜ, ਜੋ ਕਿ ਹਿੱਸੇ ਵੇਖਣ ਦੇ ਲਈ ਜ਼ਰੂਰੀ ਹੈ। ਪੈਰਾਮੀਟਰ %s ਨੂੰ ਫਾਇਲ ਦੇ "
-"URI ਨਾਲ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ, ਪੈਰਾਮੀਟਰ %c ਨੂੰ ਹਿੱਸੇ IID ਨਾਲ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
+"ਫਾਇਲਾਂ ਨੂੰ ਵੇਖਣ ਲਈ ਵਰਤਣ ਵਾਲਾ ਕਾਰਜ, ਜੋ ਕਿ ਹਿੱਸੇ ਵੇਖਣ ਦੇ ਲਈ ਜ਼ਰੂਰੀ ਹੈ। "
+"ਪੈਰਾਮੀਟਰ %s ਨੂੰ ਫਾਇਲ ਦੇ URI ਨਾਲ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ, ਪੈਰਾਮੀਟਰ %c ਨੂੰ "
+"ਹਿੱਸੇ IID ਨਾਲ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -1132,11 +1164,11 @@ msgstr "ਮੂਲ ਟਰਮੀਨਲ ਕਾਰਜ, ਜੋ ਕਿ ਕਾਰਜਾ
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "ਮੂਲ ਟਰਮੀਨਲ ਕਾਰਜ ਵਿੱਚ ਵਰਤਣ ਲਈ Exec ਆਰਗੂਮਿੰਟ"
+msgstr "ਮੂਲ ਟਰਮੀਨਲ ਕਾਰਜ ਵਿੱਚ ਵਰਤਣ ਲਈ Exec ਆਰਗੂਮਿੰਟ ਹੈ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "ਟਰਮੀਨਲ 'ਚ ਕਮਾਂਡ ਚਲਾਓ"
+msgstr "ਕਮਾਂਡ ਟਰਮੀਨਲ ਵਿੱਚ ਚਲਾਓ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
@@ -1176,7 +1208,7 @@ msgstr "ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ ਕਮਾਂਡ ਲਾਈ�
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ ਕਮਾਂਡ ਲਾਈਨ \"ਰੱਦੀ\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ।"
+msgstr "ਜੇਕਰ ਯੋਗ ਕੀਤਾ ਤਾਂ ਕਮਾਂਡ ਲਾਈਨ \"trash\" URL ਨੂੰ ਹੈਂਡਲ ਕਰੇਗੀ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1216,67 +1248,67 @@ msgstr "\"man\" URL ਲਈ ਹੈਂਡਲਰ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "\"ਰੱਦੀ\" URL ਲਈ ਹੈਂਡਲਰ"
+msgstr "\"trash\" (ਰੱਦੀ) URL ਲਈ ਹੈਂਡਲਰ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿੱਤਾ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿੱਤਾ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ,\"aim\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" URL ਨੂੰ ਵਰਤ ਸਕੇ|"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"callto\" URL ਨੂੰ ਵਰਤ ਸਕੇ|"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"ghelp\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, h323 URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"h323\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"http\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"http\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"https\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"info\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"mailto\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"man\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ, ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਦਿੱਤਾ, \"trash\" URL ਨੂੰ ਵਰਤ ਸਕੇ।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1322,15 +1354,15 @@ msgstr "ਕੀ ਦਿੱਤੀ ਕਮਾਂਡ ਨੂੰ \"man\" URL ਨੂੰ �
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "ਕੀ ਦਿੱਤੀ ਕਮਾਂਡ ਨੂੰ \"trash\" URL ਨੂੰ ਹੈਂਡਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ"
+msgstr "ਕੀ ਦਿੱਤੀ ਕਮਾਂਡ ਨੂੰ \"trash (ਰੱਦੀ)\" URL ਨੂੰ ਹੈਂਡਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
-"DNS-SD ਡੋਮੇਨਾਂ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ, ਜੋ ਕਿ \"ਨੈੱਟਵਰਕ:///\" ਟਿਕਾਣੇ ਉੱਤੇ ਵਿਖਾਈ ਦੇਣੀ "
-"ਚਾਹੀਦੀ ਹੈ।"
+"DNS-SD ਡੋਮੇਨਾਂ ਦੀ ਕਾਮਿਆਂ ਨਾਲ ਵੱਖ ਕੀਤੀ ਸੂਚੀ, ਜੋ ਕਿ \"network:///\" ਟਿਕਾਣੇ "
+"ਉੱਤੇ ਵਿਖਾਈ ਦੇਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1338,23 +1370,23 @@ msgstr "ਇਸ ਵਿੱਚ DNS-SD ਸੇਵਾਵਾਂ ਦੀ ਖੋਜ ਲਈ
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "ਲੋਕਲ DNS-SD ਸੇਵਾ ਨੂੰ ਕਿਵੇਂ ਵੇਖਣਾ ਹੈ"
+msgstr "ਲੋਕਲ DNS-SD ਸੇਵਾ ਨੂੰ ਕਿਵੇਂ ਵੇਖਾਉਣਾ ਹੈ"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "ਸੰਭਵ ਮੁੱਲ ਹਨ \"ਰਲਵੀਆਂ\", \"ਵੱਖਰੀਆਂ\" ਅਤੇ \"ਆਯੋਗ\""
+msgstr "ਸੰਭਵ ਮੁੱਲ ਹਨ \"ਰਲਵੇਂ\", \"ਵੱਖਰੇ\" ਅਤੇ \"ਆਯੋਗ\""
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "ਪਰਮਾਣਿਕ ਪਰਾਕਸੀ ਸਰਵਰ ਕੁਨੈਕਸ਼ਨ"
+msgstr "ਪਰਮਾਣਿਤ ਪਰਾਕਸੀ ਸਰਵਰ ਕੁਨੈਕਸ਼ਨ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "ਸਵੈ-ਚਾਲਤ ਪਰਾਕਸੀ ਸੰਰਚਨਾ URL"
+msgstr "ਆਟੋਮੈਟਿਕ ਪਰਾਕਸੀ ਸੰਰਚਨਾ URL"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "ਪਰਾਕਸੀ ਨਿਰਧਾਰਨ ਨੂੰ ਯੋਗ ਕਰੋ, ਜਦੋ ਕਿ ਇੰਟਰਨੈੱਟ 'ਤੇ HTTP ਨੂੰ ਵਰਤਦੇ ਹੋ।"
+msgstr "ਪਰਾਕਸੀ ਸੈਟਿੰਗ ਯੋਗ ਕਰੋ, ਜਦੋ ਕਿ ਇੰਟਰਨੈੱਟ 'ਤੇ HTTP ਨੂੰ ਵਰਤਦੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1386,7 +1418,7 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"ਜੇਕਰ ਸਹੀ ਹੈ ਤਾਂ, ਪਰਾਕਸੀ ਸਰਵਰ ਤੇ ਕੁਨੈਕਸ਼ਨ ਸਮੇ ਪਰਮਾਣਕਤਾ ਲਈ ਦੀ ਲੋਡ਼ ਪਵੇਗੀ। ਉਪਭੋਗੀ-ਨਾਂ/ਗੁਪਤ-ਕੋਡ "
+"ਜੇਕਰ ਸਹੀ ਹੈ ਤਾਂ, ਪਰਾਕਸੀ ਸਰਵਰ ਤੇ ਕੁਨੈਕਸ਼ਨ ਸਮੇ ਪਰਮਾਣਕਿਤਾ ਲਈ ਦੀ ਲੋਡ਼ ਪਵੇਗੀ। ਉਪਭੋਗੀ-ਨਾਂ/ਗੁਪਤ-ਕੋਡ "
 "ਡੱਬਾ \"/system/http_proxy/authentication_user\" ਅਤੇ \"/system/http_proxy/"
 "authentication_password\" ਨੇ ਦਿੱਤਾ ਹੈ।"
 
@@ -1422,7 +1454,7 @@ msgstr "ਸੁਰੱਖਿਅਤ HTTP ਪਰਾਕਸੀ ਪੋਰਟ"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "ਪਰਾਕਸੀ ਸੰਰਚਨਾ ਮੋਡ ਦੀ ਚੋਣ ਸੰਭਵ ਮੁੱਲ ਹਨ \"ਕੁਝ ਨਹੀ\", \"ਦਸਤੀ\", \"ਸਵੈ\"।"
+msgstr "ਪਰਾਕਸੀ ਸੰਰਚਨਾ ਮੋਡ ਦੀ ਚੋਣ ਸੰਭਵ ਮੁੱਲ ਹਨ \"ਕੁਝ ਨਹੀਂ\", \"ਦਸਤੀ\", \"ਆਟੋ\"।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1438,14 +1470,14 @@ msgstr "ਮਸ਼ੀਨ ਦਾ ਨਾਂ, ਜਿਸ ਰਾਹੀ ਪਰਾਕਸ
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "ਮਸ਼ੀਨ ਦਾ ਨਾਂ, ਜਿਸ ਰਾਹੀ ਪਰਾਕਸੀ ਸਾਕਟ ਕਰਨੀ ਹੈ।"
+msgstr "ਪਰਾਕਸੀ ਸਾਕਟ ਲਈ ਮਸ਼ੀਨ ਨਾਂ ਹੈ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/http_proxy/host\" ਦਿੱਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀਂ ਰਾਹੀਂ "
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/http_proxy/host\" ਦਿੱਤੀ ਹੈ, ਜਿਸ ਰਾਹੀਂ ਤੁਸੀਂ "
 "ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
@@ -1453,7 +1485,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/ftp_host\" ਨੇ ਦਿੱਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀਂ ਰਾਹੀਂ "
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/ftp_host\" ਨੇ ਦਿੱਤੀ ਹੈ, ਜਿਸ ਰਾਹੀਂ ਤੁਸੀਂ "
 "ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
@@ -1461,7 +1493,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/secure_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ \"/system/proxy/secure_host\" ਨੇ ਦਿੱਤੀ ਹੈ, ਜਿਸ ਰਾਹੀਂ ਤੁਸੀਂ "
 "ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
@@ -1469,7 +1501,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ\"/system/proxy/socks_host\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤੀ ਹੈ, ਜੋ ਕਿ ਤੁਸੀ ਰਾਹੀਂ "
+"ਮਸ਼ੀਨ 'ਤੇ ਪੋਰਟ\"/system/proxy/socks_host\" ਨੇ ਦਿੱਤੀ ਹੈ, ਜਿਸ ਰਾਹੀਂ ਤੁਸੀਂ "
 "ਪਰਾਕਸੀ ਚਲਾ ਰਹੇ ਹੋ।"
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
@@ -1506,6 +1538,6 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"Windows ਨੈੱਟਵਰਕ ਵਰਕਗਰੁੱਪ ਜਾਂ ਡੋਮੇਨ, ਜਿਸ ਦਾ ਉਪਭੋਗੀ ਭਾਗ ਹੈ। ਇੱਕ ਨਵੇਂ ਵਰਕਗਰੁੱਪ ਨੂੰ ਪੂਰੀ "
-"ਤਰਾਂ ਸਰਗਰਮ ਹੋਣ ਲਈ ਉਪਭੋਗੀ ਲਾਗਆਉਟ ਅਤੇ ਮੁੜ ਲਾਗਿੰਨ ਕਰ ਸਕਦਾ ਹੈ।"
+"Windows ਨੈੱਟਵਰਕ ਵਰਕਗਰੁੱਪ ਜਾਂ ਡੋਮੇਨ, ਜਿਸ ਦਾ ਉਪਭੋਗੀ ਭਾਗ ਹੈ। ਇੱਕ ਨਵੇਂ ਵਰਕਗਰੁੱਪ ਨੂੰ ਪੂਰੀ ਤਰਾਂ "
+"ਸਰਗਰਮ ਹੋਣ ਲਈ ਉਪਭੋਗੀ ਲਾਗਆਉਟ ਅਤੇ ਮੁੜ ਲਾਗਇਨ ਕਰ ਸਕਦਾ ਹੈ।"
 
