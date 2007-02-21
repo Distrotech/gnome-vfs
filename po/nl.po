@@ -1,7 +1,7 @@
 # translation of gnome-vfs.HEAD.po to Dutch
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005, 2006.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
-# Reinout van Schouwen <reinout@cs.vu.nl>, 2004
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2004, 2007
 #
 # Deze vertalingen zijn te zien bij alle programma's die bestanden
 # openen en opslaan via het GNOME virtual filesystem.
@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-29 05:24+0200\n"
-"PO-Revision-Date: 2006-07-29 12:35+0200\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2007-01-02 04:29+0000\n"
+"PO-Revision-Date: 2007-02-18 02:26+0200\n"
+"Last-Translator: Reinout van Schouwen <reinouts@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -445,23 +445,23 @@ msgstr "Onbekend taaktype %u"
 msgid "Operation stopped"
 msgstr "Opdracht gestopt"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -774,17 +774,17 @@ msgstr[1] "%u bytes"
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f KB"
-msgstr "%.1f Kb"
+msgstr "%.1f KB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:88
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f Mb"
+msgstr "%.1f MB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f Gb"
+msgstr "%.1f GB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
@@ -1009,7 +1009,7 @@ msgstr "Persoonlijke map"
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:494
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
@@ -1019,14 +1019,14 @@ msgid "Windows Network"
 msgstr "Windows netwerk"
 
 # externe computer/computer op afstand
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1422
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "De identiteit van de computer op afstand (%s) is onbekend."
 
 # absoluut zeker wilt weten of/er absoluut zeker van wilt zijn dat
 # /zeker wilt weten of/absulute zekerheid wilt hebben dat
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1423
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1040,11 +1040,11 @@ msgstr ""
 "absoluut zeker wilt weten of het veilig is om door te gaan, neem dan contact "
 "op met de systeembeheerder."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1431
 msgid "Log In Anyway"
 msgstr "Toch aanmelden"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1432
 msgid "Cancel Login"
 msgstr "Aanmelden annuleren"
 
