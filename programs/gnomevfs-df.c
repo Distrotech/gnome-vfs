@@ -34,7 +34,8 @@
 #include "authentication.c"
 
 static void
-show_free_space (const char *text_uri)
+show_free_space (GnomeVFSVolume *vol,
+		 const char *text_uri)
 {
 	GnomeVFSURI *uri;
 	GnomeVFSFileSize free_space;
@@ -48,11 +49,13 @@ show_free_space (const char *text_uri)
 		return;
 	}
 
+	local = gnome_vfs_volume_get_display_name (vol);
 	result = gnome_vfs_get_volume_free_space (uri, &free_space);
 	gnome_vfs_uri_unref (uri);
 	if (result != GNOME_VFS_OK) {
 		fprintf (stderr, "Error getting free space on %s: %s\n",
-				text_uri, gnome_vfs_result_to_string (result));
+				local, gnome_vfs_result_to_string (result));
+		g_free (local);
 		return;
 	}
 
@@ -114,7 +117,7 @@ main (int argc, char **argv)
 		char *text_uri;
 
 		text_uri = gnome_vfs_make_uri_from_shell_arg (argv[1]);
-		show_free_space (text_uri);
+		show_free_space (NULL, text_uri);
 		g_free (text_uri);
 	} else {
 		GList *list, *l;
@@ -122,7 +125,7 @@ main (int argc, char **argv)
 		list = gnome_vfs_volume_monitor_get_mounted_volumes
 			(gnome_vfs_get_volume_monitor ());
 
-		printf ("Filesystem          Free space\n");
+		printf ("Volume          Free space\n");
 		for (l = list; l != NULL; l = l->next) {
 			GnomeVFSVolume *vol = l->data;
 			char *act;
@@ -133,8 +136,26 @@ main (int argc, char **argv)
 			}
 
 			act = gnome_vfs_volume_get_activation_uri (vol);
-			show_free_space (act);
+			show_free_space (vol, act);
 			gnome_vfs_volume_unref (vol);
+		}
+		g_list_free (list);
+
+		list = gnome_vfs_volume_monitor_get_connected_drives
+			(gnome_vfs_get_volume_monitor ());
+
+		printf ("Drives:\n");
+		for (l = list; l != NULL; l = l->next) {
+			GnomeVFSDrive *drive = l->data;
+			gchar *uri = gnome_vfs_drive_get_activation_uri (drive);
+			gchar *device = gnome_vfs_drive_get_device_path (drive);
+			gchar *name = gnome_vfs_drive_get_display_name (drive);
+
+			printf ("\t%s\t%s\t%s\n", uri ? uri : "\t", device ? device : "\t", name);
+			g_free (uri);
+			g_free (device);
+			g_free (name);
+			gnome_vfs_drive_unref (drive);
 		}
 		g_list_free (list);
 	}

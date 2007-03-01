@@ -1,3 +1,54 @@
+2007-03-01  Tor Lillqvist  <tml@novell.com>
+
+	Quick fixes to make gnome-vfs build on Win32 again. It is still
+	somewhat debatable whether it makes any sense to use the real
+	gnome-vfs (with not all modules though) on Windows. It might be
+	better to write a small dummy replacement implementing only the
+	file scheme that would offer just the subset of the API that some
+	actual application like Evolution needs. Experimentation needed.
+
+	* configure.in: Don't require dbus on Win32. Add --enable-daemon
+	switch, by default enabled on Unix, always disabled on Win32 for
+	now. Define config.h macro USE_DAEMON and Automake conditional
+	USE_DAEMON.
+
+	* xdgmime.win32.diff: New file. Patch for the xdgmime files on
+	Win32 to make them use the gstdio wrappers. Apply this before
+	building gnome-vfs on Windows.
+
+	* Makefile.am: Dist xdgmime.win32.diff.
+
+	* modules/Makefile.am: Don't build the computer module on Win32.
+
+	* modules/file-method-acl.c: Conditionalize inclusion of
+	<sys/resource.h>.
+
+	* libgnomevfs/Makefile.am: Compile gnome-vfs-daemon-method.c,
+	gnome-vfs-dbus-utils.c, gnome-vfs-module-callback-marshall.c,
+	gnome-vfs-volume-monitor-client.c and gnome-vfs-volume-ops.c only
+	on Unix for now. Do compile gnome-vfs-volume-monitor.c also on
+	Win32, though.
+
+	* libgnomevfs/gnome-vfs-drive.c
+	* libgnomevfs/gnome-vfs-module-callback.c
+	* libgnomevfs/gnome-vfs-method.c
+	* libgnomevfs/gnome-vfs-init.c
+	* libgnomevfs/gnome-vfs-volume.c: Don't compile dbus-related
+	functionality unless USE_DAEMON.
+
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h
+	* libgnomevfs/gnome-vfs-module-callback-private.h: Don't include
+	<dbus/dbus.h> or declare dbus-related functions unless USE_DAEMON.
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c: Don't compile
+	dbus-related functionality unless USE_DAEMON. Without USE_DAEMON,
+	initialise the volume data just once and don't bother trying to
+	keep up if it changes while the app is running. Add Win32 code to
+	list volumes.
+
+	* programs/gnomevfs-df.c: Some cosmetic changes. List first
+	volumes, then drives.
+
 2007-03-01  Tor Lillqvist  <tml@>
 
 	* data/mime/WHERE_IS_THE_MIME_REGISTRY?: Rename to

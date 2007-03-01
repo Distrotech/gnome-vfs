@@ -846,12 +846,13 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 
 	callback = NULL;
 
+#ifdef USE_DAEMON
 	if (gnome_vfs_get_is_daemon()) {
 		return _gnome_vfs_module_callback_marshal_invoke (callback_name,
 								  in, in_size,
 								  out, out_size);
 	}
-	
+#endif	
 	initialize_per_thread_if_needed ();
 
 	if (g_private_get (in_async_thread_key) != NULL) {

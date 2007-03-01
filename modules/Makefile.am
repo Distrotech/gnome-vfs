@@ -63,7 +63,7 @@ endif
 if OS_WIN32
 PLATFROM_SPECIFIC_LTLIBS =
 else
-PLATFROM_SPECIFIC_LTLIBS = libdns-sd.la libnetwork.la libnntp.la libsftp.la libhttp.la libftp.la
+PLATFROM_SPECIFIC_LTLIBS = libcomputer.la libdns-sd.la libnetwork.la libnntp.la libsftp.la libhttp.la libftp.la
 endif
 
 module_flags = -export_dynamic -avoid-version -module -no-undefined
@@ -71,7 +71,6 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
-	libcomputer.la				\
 	libfile.la				\
 	libvfs-test.la				\
 	libbzip2.la				\

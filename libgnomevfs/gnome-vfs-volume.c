@@ -670,6 +670,8 @@ gnome_vfs_volume_compare (GnomeVFSVolume *a,
 }
 
 
+#ifdef USE_DAEMON
+
 static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
@@ -848,3 +850,5 @@ _gnome_vfs_volume_from_dbus (DBusMessageIter       *iter,
 	
 	return volume;
 }
+
+#endif

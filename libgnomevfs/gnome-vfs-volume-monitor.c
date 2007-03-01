@@ -28,7 +28,14 @@
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-volume-monitor.h"
 #include "gnome-vfs-volume-monitor-private.h"
+#ifdef USE_DAEMON
 #include "gnome-vfs-volume-monitor-client.h"
+#endif
+
+#ifdef G_OS_WIN32
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#endif
 
 #include <glib/gstdio.h>
 
@@ -299,6 +306,127 @@ gnome_vfs_volume_monitor_finalize (GObject *object)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
+#ifndef USE_DAEMON
+
+#ifdef G_OS_WIN32
+static void
+handle_volume (GnomeVFSVolumeMonitor *volume_monitor,
+	       wchar_t               *volume_device)
+{
+	wchar_t path_names[MAX_PATH*10];
+	DWORD path_names_len;
+	
+	if (GetVolumePathNamesForVolumeNameW (volume_device,
+					      path_names, G_N_ELEMENTS (path_names),
+					      &path_names_len)) {
+		GnomeVFSVolume *volume;
+		GnomeVFSVolumePrivate *volume_priv;
+		GnomeVFSDrive *drive;
+		GnomeVFSDrivePrivate *drive_priv;
+		
+		UINT drive_type;
+		wchar_t volume_name[MAX_PATH];
+		wchar_t file_system_name[MAX_PATH];
+		gchar *tmp;
+		DWORD file_system_flags;
+		
+		drive_type = GetDriveTypeW (volume_device);
+		
+		if (drive_type == DRIVE_UNKNOWN ||
+		    drive_type == DRIVE_NO_ROOT_DIR)
+			return;
+
+		drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
+		drive_priv = drive->priv;
+		
+		drive_priv->device_type = GNOME_VFS_DEVICE_TYPE_WINDOWS;
+		
+		drive_priv->device_path = g_utf16_to_utf8 (volume_device, -1, NULL, NULL, NULL);
+		drive_priv->activation_uri = g_filename_to_uri (drive_priv->device_path, NULL, NULL);
+		volume_name[0] = '\0';
+		file_system_name[0] = '\0';
+		GetVolumeInformationW (volume_device, volume_name, G_N_ELEMENTS (volume_name),
+				       NULL, NULL,
+				       &file_system_flags,
+				       file_system_name, G_N_ELEMENTS (file_system_name));
+
+		if (volume_name[0])
+			drive_priv->display_name = g_utf16_to_utf8 (volume_name, -1, NULL, NULL, NULL);
+		else if (path_names[0])
+			drive_priv->display_name = g_utf16_to_utf8 (path_names, -1, NULL, NULL, NULL);
+		else
+			drive_priv->display_name = g_strdup (drive_priv->device_path);
+		tmp = g_utf8_casefold (drive_priv->display_name, -1);
+		drive_priv->display_name_key = g_utf8_collate_key (tmp, -1);
+		g_free (tmp);
+
+		/* ??? */
+		drive_priv->is_user_visible = TRUE;
+
+		drive_priv->must_eject_at_unmount = FALSE;
+
+		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
+
+		volume = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
+		volume_priv = volume->priv;
+		
+		volume_priv->volume_type = GNOME_VFS_VOLUME_TYPE_MOUNTPOINT;
+		volume_priv->device_type = GNOME_VFS_DEVICE_TYPE_WINDOWS;
+
+		volume_priv->drive = drive;
+
+		gnome_vfs_drive_add_mounted_volume_private (drive, volume);
+
+		volume_priv->activation_uri = g_strdup (drive_priv->activation_uri);
+		volume_priv->filesystem_type = g_utf16_to_utf8 (file_system_name, -1, NULL, NULL, NULL);
+		volume_priv->display_name = g_strdup (drive_priv->display_name);
+		volume_priv->display_name_key = g_strdup (drive_priv->display_name_key);
+
+		volume_priv->is_user_visible = TRUE;
+		volume_priv->is_read_only = FALSE;
+
+		volume_priv->device_path = g_strdup (drive_priv->device_path);
+		volume_priv->unix_device = 0;
+
+		_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
+		gnome_vfs_volume_unref (volume);
+	}
+}
+
+#endif
+
+/* Without gnome-vfs-daemon, initialise the volume data just once and hope it
+ * doesn't change too much while the application is running.
+ */
+
+static void
+initialise_the_volume_monitor (GnomeVFSVolumeMonitor *volume_monitor)
+{
+#ifdef G_OS_WIN32
+
+	wchar_t volume_device[MAX_PATH];
+	HANDLE volume;
+	BOOL more = TRUE;
+
+	volume = FindFirstVolumeW (volume_device, G_N_ELEMENTS (volume_device));
+
+	if (volume == INVALID_HANDLE_VALUE)
+		return;
+
+	while (more) {
+		handle_volume (volume_monitor, volume_device);
+		more = FindNextVolumeW (volume, volume_device, G_N_ELEMENTS (volume_device));
+	}
+
+	FindVolumeClose (volume);
+#else
+#error Add code here for once-only initialisation of the volume pseudo-monitor
+#endif
+}
+
+#endif
+
 G_LOCK_DEFINE_STATIC (the_volume_monitor);
 static GnomeVFSVolumeMonitor *the_volume_monitor = NULL;
 static gboolean volume_monitor_was_shutdown = FALSE;
@@ -311,11 +439,16 @@ _gnome_vfs_get_volume_monitor_internal (gboolean create)
 	if (the_volume_monitor == NULL &&
 	    create &&
 	    !volume_monitor_was_shutdown) {
+#ifdef USE_DAEMON
 		if (gnome_vfs_get_is_daemon ()) {
 			the_volume_monitor = g_object_new (gnome_vfs_get_daemon_volume_monitor_type (), NULL);
 		} else {
 			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_CLIENT, NULL);
 		}
+#else
+		the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR, NULL);
+		initialise_the_volume_monitor (the_volume_monitor);
+#endif
 	}
 	
 	G_UNLOCK (the_volume_monitor);
@@ -348,10 +481,11 @@ _gnome_vfs_volume_monitor_shutdown (void)
 	G_LOCK (the_volume_monitor);
 	
 	if (the_volume_monitor != NULL) {
+#ifdef USE_DAEMON
 		if (!gnome_vfs_get_is_daemon ()) {
 			gnome_vfs_volume_monitor_client_shutdown_private (GNOME_VFS_VOLUME_MONITOR_CLIENT (the_volume_monitor));
 		}
-		
+#endif
 		gnome_vfs_volume_monitor_unref (the_volume_monitor);
 		the_volume_monitor = NULL;
 	}

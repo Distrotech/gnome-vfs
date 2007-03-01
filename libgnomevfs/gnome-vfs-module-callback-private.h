@@ -26,8 +26,10 @@
 
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs-job.h>
-#include <dbus/dbus.h>
 
+#ifdef USE_DAEMON
+#include <dbus/dbus.h>
+#endif
 
 void                             _gnome_vfs_module_callback_private_init        (void);
 GnomeVFSModuleCallbackStackInfo *_gnome_vfs_module_callback_get_stack_info      (void);
@@ -45,8 +47,10 @@ gboolean                         _gnome_vfs_module_callback_marshal_invoke (cons
 									    gsize          out_size);
 
 
+#ifdef USE_DAEMON
 gboolean _gnome_vfs_module_callback_demarshal_invoke (const char  *callback_name,
 						      DBusMessageIter *iter_in,
 						      DBusMessage *reply);
+#endif
 
 #endif

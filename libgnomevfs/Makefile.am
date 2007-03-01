@@ -234,9 +234,14 @@ libgnomevfs_win32_sources =			\
 
 libgnomevfs_unix_sources =			\
 	gnome-vfs-cdrom.c			\
+	gnome-vfs-daemon-method.c		\
+	gnome-vfs-dbus-utils.c			\
 	gnome-vfs-dns-sd.c			\
+	gnome-vfs-module-callback-marshall.c	\
 	gnome-vfs-parse-ls.c			\
 	gnome-vfs-pty.c				\
+	gnome-vfs-volume-monitor-client.c	\
+	gnome-vfs-volume-ops.c			\
 	$(NULL)
 
 if OS_WIN32
@@ -256,8 +261,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
-	gnome-vfs-daemon-method.c		\
-	gnome-vfs-dbus-utils.c			\
 	gnome-vfs-directory.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\
@@ -276,7 +279,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-mime-sniff-buffer.c		\
 	gnome-vfs-mime.c			\
 	gnome-vfs-mime-magic.c			\
-	gnome-vfs-module-callback-marshall.c	\
 	gnome-vfs-module-callback-module-api.c	\
 	gnome-vfs-module-callback-private.c	\
 	gnome-vfs-module-callback.c		\
@@ -295,9 +297,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-transform.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
-	gnome-vfs-volume-monitor-client.c	\
 	gnome-vfs-volume-monitor.c		\
-	gnome-vfs-volume-ops.c			\
 	gnome-vfs-volume.c			\
 	gnome-vfs-xfer.c			\
 	xdgmimemagic.c				\

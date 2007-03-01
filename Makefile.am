@@ -24,7 +24,8 @@ EXTRA_DIST =					\
 	gtk-doc.make				\
 	intltool-extract.in			\
 	intltool-merge.in			\
-	intltool-update.in
+	intltool-update.in			\
+	xdgmime.win32.diff
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-vfs-2.0.pc gnome-vfs-module-2.0.pc

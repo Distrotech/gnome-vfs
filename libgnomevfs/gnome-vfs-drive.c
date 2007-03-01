@@ -636,6 +636,8 @@ gnome_vfs_drive_compare (GnomeVFSDrive *a,
 	return privb->id - priva->id;
 }
 
+#ifdef USE_DAEMON
+
 static void
 utils_append_string_or_null (DBusMessageIter *iter,
 			     const gchar     *str)
@@ -810,3 +812,5 @@ _gnome_vfs_drive_from_dbus (DBusMessageIter       *iter,
 
 	return drive;
 }
+
+#endif	/* USE_DAEMON */

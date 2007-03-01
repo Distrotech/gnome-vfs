@@ -26,7 +26,10 @@
 
 #include <glib/gthread.h>
 #include "gnome-vfs-volume-monitor.h"
+
+#ifdef USE_DAEMON
 #include <dbus/dbus.h>
+#endif
 
 #define CONNECTED_SERVERS_DIR "/desktop/gnome/connected_servers"
 
@@ -121,6 +124,7 @@ void _gnome_vfs_volume_monitor_shutdown (void);
 
 int _gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type);
 
+#ifdef USE_DAEMON
 GnomeVFSVolume *_gnome_vfs_volume_from_dbus (DBusMessageIter       *iter,
 					     GnomeVFSVolumeMonitor *volume_monitor);
 gboolean        gnome_vfs_volume_to_dbus    (DBusMessageIter       *iter,
@@ -129,6 +133,7 @@ gboolean        gnome_vfs_drive_to_dbus     (DBusMessageIter       *iter,
 					     GnomeVFSDrive         *drive);
 GnomeVFSDrive * _gnome_vfs_drive_from_dbus  (DBusMessageIter       *iter,
 					     GnomeVFSVolumeMonitor *volume_monitor);
+#endif
 
 GnomeVFSVolume *_gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (GnomeVFSVolumeMonitor *volume_monitor,
 									      const char            *activation_uri);

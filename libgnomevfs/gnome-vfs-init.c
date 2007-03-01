@@ -43,10 +43,12 @@
 #include <glib/gtypes.h>
 #include <glib/gstdio.h>
 
+#ifdef USE_DAEMON
 #ifndef DBUS_API_SUBJECT_TO_CHANGE
 #define DBUS_API_SUBJECT_TO_CHANGE 1
 #endif
 #include <dbus/dbus-glib.h>
+#endif
 
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -125,8 +127,9 @@ gnome_vfs_init (void)
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 #endif   
 		gnome_vfs_thread_init ();
-
+#ifdef USE_DAEMON
 		dbus_g_thread_init ();
+#endif
  		/* Make sure the type system is inited. */
 		g_type_init ();
 

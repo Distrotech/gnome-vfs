@@ -27,7 +27,10 @@
 
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
+
+#ifdef USE_DAEMON
 #include <gnome-vfs-dbus-utils.h>
+#endif
 
 #include <unistd.h>
 
@@ -46,14 +49,17 @@ struct GnomeVFSCancellation {
 	gboolean cancelled;
 	gint pipe_in;
 	gint pipe_out;
-
+#ifdef USE_DAEMON
 	/* daemon handle */
 	gint32 handle;
 	gint32 connection;
+#endif
 };
 
 G_LOCK_DEFINE_STATIC (pipes);
+#ifdef USE_DAEMON
 G_LOCK_DEFINE_STATIC (callback);
+#endif
 
 /**
  * gnome_vfs_cancellation_new:
@@ -72,9 +78,10 @@ gnome_vfs_cancellation_new (void)
 	new->cancelled = FALSE;
 	new->pipe_in = -1;
 	new->pipe_out = -1;
+#ifdef USE_DAEMON
 	new->connection = 0;
 	new->handle = 0;
-	
+#endif	
 	return new;
 }
 
@@ -96,6 +103,8 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 	
 	g_free (cancellation);
 }
+
+#ifdef USE_DAEMON
 
 void
 _gnome_vfs_cancellation_set_handle (GnomeVFSCancellation *cancellation,
@@ -123,6 +132,8 @@ _gnome_vfs_cancellation_unset_handle (GnomeVFSCancellation *cancellation)
 	G_UNLOCK (callback);
 }
 
+#endif
+
 /**
  * gnome_vfs_cancellation_cancel:
  * @cancellation: a #GnomeVFSCancellation object.
@@ -139,8 +150,9 @@ _gnome_vfs_cancellation_unset_handle (GnomeVFSCancellation *cancellation)
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
+#ifdef USE_DAEMON
 	gint32 handle, connection_id;
-	
+#endif	
 	g_return_if_fail (cancellation != NULL);
 
 	if (cancellation->cancelled)
@@ -148,19 +160,20 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 
 	if (cancellation->pipe_out >= 0)
 		write (cancellation->pipe_out, "c", 1);
-
+#ifdef USE_DAEMON
 	handle = 0;
 	connection_id = 0;
-	
+
 	G_LOCK (callback);
 	if (cancellation->handle) {
 		handle = cancellation->handle;
 		connection_id = cancellation->connection;
 	}
 	G_UNLOCK (callback);
-	
+#endif	
 	cancellation->cancelled = TRUE;
 
+#ifdef USE_DAEMON
 	if (handle != 0) {
 		DBusConnection *conn;
 		DBusMessage *message;
@@ -193,6 +206,7 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 			dbus_message_unref (message);
 		}
 	}
+#endif
 }
 
 /**

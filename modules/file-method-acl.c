@@ -34,7 +34,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#ifdef HAVE_SYS_RESOURCE_H
 #include <sys/resource.h>
+#endif
 
 #ifdef HAVE_PWD_H
 # include <pwd.h>

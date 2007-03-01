@@ -32,7 +32,10 @@
 #include <gmodule.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-transform.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#ifdef USE_DAEMON
 #include "gnome-vfs-daemon-method.h"
+#endif
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
@@ -388,7 +391,9 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 		setresgid (-1, saved_gid, -1);
 #endif
 	} else {
+#ifdef USE_DAEMON
 		method = _gnome_vfs_daemon_method_get ();
+#endif
 	}
 
 	if (method == NULL && transform == NULL)
