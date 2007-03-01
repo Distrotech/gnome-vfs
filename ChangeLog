@@ -49,7 +49,7 @@
 	* programs/gnomevfs-df.c: Some cosmetic changes. List first
 	volumes, then drives.
 
-2007-03-01  Tor Lillqvist  <tml@>
+2007-03-01  Tor Lillqvist  <tml@novell.com>
 
 	* data/mime/WHERE_IS_THE_MIME_REGISTRY?: Rename to
 	* data/mime/WHERE_IS_THE_MIME_REGISTRY: to enable SVN checkout on
