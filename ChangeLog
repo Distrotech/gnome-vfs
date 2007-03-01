@@ -1,3 +1,11 @@
+2007-03-01  Tor Lillqvist  <tml@>
+
+	* data/mime/WHERE_IS_THE_MIME_REGISTRY?: Rename to
+	* data/mime/WHERE_IS_THE_MIME_REGISTRY: to enable SVN checkout on
+	Windows where '?' is an illegal character in file names. (Not that
+	the current gnome-vfs would build on Windows due to the
+	unconditional use of dbus.)
+
 2007-02-12  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
