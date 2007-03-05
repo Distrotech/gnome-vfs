@@ -1,3 +1,9 @@
+2007-03-05  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-hal-mounts.c:
+        (_hal_volume_policy_get_icon):
+	Handle device-specific icons
+
 2007-03-01  Tor Lillqvist  <tml@novell.com>
 
 	Quick fixes to make gnome-vfs build on Win32 again. It is still
