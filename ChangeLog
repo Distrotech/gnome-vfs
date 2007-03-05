@@ -1,5 +1,10 @@
 2007-03-05  Alexander Larsson  <alexl@redhat.com>
 
+        * libgnomevfs/gnome-vfs-utils.c (has_valid_scheme):
+	Handle filename with colon in better (#374341)
+
+2007-03-05  Alexander Larsson  <alexl@redhat.com>
+
         * libgnomevfs/gnome-vfs-hal-mounts.c:
         (_hal_volume_policy_get_icon):
 	Handle device-specific icons
