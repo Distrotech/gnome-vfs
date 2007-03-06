@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-VFS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-04 16:43+0200\n"
+"POT-Creation-Date: 2007-01-02 04:29+0000\n"
 "PO-Revision-Date: 2006-10-20 23:39+0300\n"
 "Last-Translator: Fano Rajaonarisoa <fano@isvtec.com>\n"
 "Language-Team: MALAGASY <i18n-malagasy-gnome@gna.org>\n"
@@ -422,8 +422,7 @@ msgstr "Fitoerana"
 msgid "Unknown operation type %u"
 msgstr "Karazan'asa tsy fantatra %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025
-#: ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Tsy afaka mamorona fantsona ho an'ny GIOChannel misokatra: %s"
@@ -437,23 +436,23 @@ msgstr "Karazan'asa tsy fantatra %u"
 msgid "Operation stopped"
 msgstr "Najanona ilay asa"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -465,8 +464,12 @@ msgstr "Najanona ilay asa"
 #: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
 #: ../libgnomevfs/gnome-vfs-mime-info.c:714
-msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Asa tsy atao intsony. Tsy raisina an-tànana intsony ireo fanovana ataon'ny mpampiasa amin'ny soratra fototry ny MIME."
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Asa tsy atao intsony. Tsy raisina an-tànana intsony ireo fanovana ataon'ny "
+"mpampiasa amin'ny soratra fototry ny MIME."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
@@ -877,8 +880,11 @@ msgstr "Mpizara rezo"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Tsy mety akarina ilay mpanodina zana-kapila. Mety tsy misy zana-kapila angamba ao."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Tsy mety akarina ilay mpanodina zana-kapila. Mety tsy misy zana-kapila "
+"angamba ao."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
@@ -886,17 +892,29 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Tsy mety akarina io fitoerana io. Mety tsy misy media angamba ao."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Tsy mety akarina ilay mpanodina zana-kapila. Mety manana lamina tsy mety akarina angamba ilay zana-kapila."
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tsy mety akarina ilay mpanodina zana-kapila. Mety manana lamina tsy mety "
+"akarina angamba ilay zana-kapila."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
-msgstr "Tsy mety akarina ilay fitoerana. Raha toa ka mpanodina voasora-miafina io, dia diso izany ny teny fanalahidy na famaha nampiasaina."
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Tsy mety akarina ilay fitoerana. Raha toa ka mpanodina voasora-miafina io, "
+"dia diso izany ny teny fanalahidy na famaha nampiasaina."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Tsy mety akarina ny fitoerana voafaritra. Mety manana lamina tsy mety akarina angamba izy io."
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tsy mety akarina ny fitoerana voafaritra. Mety manana lamina tsy mety "
+"akarina angamba izy io."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -907,8 +925,12 @@ msgid "Unable to mount the selected volume."
 msgstr "Tsy mety akarina ny fitoerana voafaritra."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
-msgstr "Tsy mety akarina ny fitoerana voafaritra. Ampiasain'ny rindranasa iray na maromaro izy io."
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Tsy mety akarina ny fitoerana voafaritra. Ampiasain'ny rindranasa iray na "
+"maromaro izy io."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -926,7 +948,9 @@ msgstr "Tsy afaka nandefa ny asa fampakarana tanatina pty"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Nisy olana tsy nampoizina teo am-pamakiana ny data tamina zanak'asa araka ny select() (%s)"
+msgstr ""
+"Nisy olana tsy nampoizina teo am-pamakiana ny data tamina zanak'asa araka ny "
+"select() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
@@ -971,27 +995,29 @@ msgstr "GnomeVFSSeekPosition %d tsy fantatra"
 msgid "Windows Network"
 msgstr "Rezo Windows"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1422
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Tsy fantatra ny identitén'ny solosaina lavi-toerana (%s)."
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1423
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 msgstr ""
 "Mitranga izany isaka ny miditra amina solosaina voalohany indrindra ianao.\n"
 "\n"
-"%s no identité alefan'ilay solosaina lavi-toerana. Antsoy ny mpitantana ny rafitrao raha te haka toky ianao hoe azo antoka ny manohy izao."
+"%s no identité alefan'ilay solosaina lavi-toerana. Antsoy ny mpitantana ny "
+"rafitrao raha te haka toky ianao hoe azo antoka ny manohy izao."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1431
 msgid "Log In Anyway"
 msgstr "Hiditra ihany"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1432
 msgid "Cancel Login"
 msgstr "Foano ny fidirana"
 
@@ -1053,16 +1079,27 @@ msgstr "Tondrikim-panatanterahana ho an'ny terminal lasitra"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Ny rindranasa ampiasaina hizahana ireo rakitra mila singa fototra raha hizaha azy ireo. Hosoloina ny URIn'ilay rakitra ny mpizahaka %s; hosoloina ny IIDn'ilay singa fototra ny mpizahaka %c."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Ny rindranasa ampiasaina hizahana ireo rakitra mila singa fototra raha "
+"hizaha azy ireo. Hosoloina ny URIn'ilay rakitra ny mpizahaka %s; hosoloina "
+"ny IIDn'ilay singa fototra ny mpizahaka %c."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Ny rindranasan'ny terminal lasitra ampiasaina amina rindranasa mila terminal."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Ny rindranasan'ny terminal lasitra ampiasaina amina rindranasa mila terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Ny tondrikim-panatanterahana ampiasaina amin'ilay rindranasan'ny terminal lasitra."
+msgstr ""
+"Ny tondrikim-panatanterahana ampiasaina amin'ilay rindranasan'ny terminal "
+"lasitra."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1149,48 +1186,92 @@ msgid "The handler for \"trash\" URLs"
 msgstr "Ny mpifehy URL \"trash\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"aim\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"aim\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"callto\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"callto\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"ghelp\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"ghelp\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"h323\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"h323\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"http\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"http\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"https\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"https\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"info\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"info\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"mailto\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"mailto\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"man\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"man\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
-msgstr "Marina raha toa ka tokony hifehy URL \"trash\" ny baiko voalaza ao amin'ny famaha \"command\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"Marina raha toa ka tokony hifehy URL \"trash\" ny baiko voalaza ao amin'ny "
+"famaha \"command\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "Marina raha toa tokony halefa amin'ny alalan'ny terminal ny baiko ifehezana io karazan'URL io."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Marina raha toa tokony halefa amin'ny alalan'ny terminal ny baiko ifehezana "
+"io karazan'URL io."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1233,8 +1314,11 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Raha tokony hifehy URL \"trash\" ny baiko voalaza"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
-msgstr "Domena DNS-SD saraham-paingo izay tokony ho hita ao amin'ny \"network:///\"."
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"Domena DNS-SD saraham-paingo izay tokony ho hita ao amin'ny \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1285,8 +1369,15 @@ msgid "HTTP proxy username"
 msgstr "Anaran'ny mpampiasan'ny proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Raha toa ka marina, dia mila fanamarinana ny fifandraisana amin'ilay mpizara proxy. Ny \"/system/http_proxy/authentication_user\" sy ny \"/system/http_proxy/authentication_password\" no mamaritra ny amboara anaran'ny mpampiasa/teny fanalahidy."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Raha toa ka marina, dia mila fanamarinana ny fifandraisana amin'ilay mpizara "
+"proxy. Ny \"/system/http_proxy/authentication_user\" sy ny \"/system/"
+"http_proxy/authentication_password\" no mamaritra ny amboara anaran'ny "
+"mpampiasa/teny fanalahidy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1317,8 +1408,12 @@ msgid "Secure HTTP proxy port"
 msgstr "Iriky ny proxy HTTP azo antoka"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Safidio ny fomba hikirakirana ny proxy. Ireto ireo sanda raisina an-tànana: \"none\", \"manual\", \"auto\"."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Safidio ny fomba hikirakirana ny proxy. Ireto ireo sanda raisina an-tànana: "
+"\"none\", \"manual\", \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1337,24 +1432,49 @@ msgid "The machine name to proxy socks through."
 msgstr "Ny anaran'ilay milina hampiasana proxy socks."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "Ny irik'ilay milina voafaritry ny \"/system/http_proxy/host\" hampiasaina amin'ny proxy."
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"Ny irik'ilay milina voafaritry ny \"/system/http_proxy/host\" hampiasaina "
+"amin'ny proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "Ny irik'ilay milina voafaritry ny \"/system/proxy/ftp_host\" hampiasaina amin'ny proxy."
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"Ny irik'ilay milina voafaritry ny \"/system/proxy/ftp_host\" hampiasaina "
+"amin'ny proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "Ny irik'ilay milina voafaritry ny \"/system/proxy/secure_host\" hampiasaina amin'ny proxy."
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"Ny irik'ilay milina voafaritry ny \"/system/proxy/secure_host\" hampiasaina "
+"amin'ny proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "Ny irik'ilay milina voafaritry ny \"/system/proxy/socks_host\" hampiasaina amin'ny proxy."
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"Ny irik'ilay milina voafaritry ny \"/system/proxy/socks_host\" hampiasaina "
+"amin'ny proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Ity famaha ity dia misy ireo mpampiantrano ifandraisana mivantana fa tsy amin'ny alalan'ny proxy (raha toa ka mandeha). Mety ho anaram-pampiantrano, domena (mampiasa marika manokana toy ny *.foo.com), adiresim-pampiantrano IP (IPv4 sy IPv6) ary adiresin-drezo misy sarona (zavatra tahaka ny 192.168.0.0/24) ilay sanda."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Ity famaha ity dia misy ireo mpampiantrano ifandraisana mivantana fa tsy "
+"amin'ny alalan'ny proxy (raha toa ka mandeha). Mety ho anaram-pampiantrano, "
+"domena (mampiasa marika manokana toy ny *.foo.com), adiresim-pampiantrano IP "
+"(IPv4 sy IPv6) ary adiresin-drezo misy sarona (zavatra tahaka ny "
+"192.168.0.0/24) ilay sanda."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1373,5 +1493,11 @@ msgid "SMB workgroup"
 msgstr "Vondron-tsolosaina SMB"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
-msgstr "Ny vondron-tsolosaina mifandray na domenan'ny Windows misy ilay mpampiasa. Mety mila mivoaka ary miverina miditra indray ilay mpampiasa mba ahafahan'ny vondrona vaovao iray miasa tanteraka."
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"Ny vondron-tsolosaina mifandray na domenan'ny Windows misy ilay mpampiasa. "
+"Mety mila mivoaka ary miverina miditra indray ilay mpampiasa mba ahafahan'ny "
+"vondrona vaovao iray miasa tanteraka."
