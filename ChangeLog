@@ -1,3 +1,9 @@
+2007-03-07  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-hal-mounts.c:
+        (_hal_volume_policy_get_icon):
+	Revert previous checking for now. (#414073)
+
 2007-03-05  Alexander Larsson  <alexl@redhat.com>
 
         * libgnomevfs/gnome-vfs-utils.c (has_valid_scheme):

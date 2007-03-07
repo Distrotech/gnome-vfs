@@ -274,16 +274,9 @@ _hal_volume_policy_get_icon (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			     LibHalDrive *hal_drive, LibHalVolume *hal_volume)
 {
 	const char *name;
-	const char *udi;
 	LibHalDriveBus bus;
 	LibHalDriveType drive_type;
 	LibHalVolumeDiscType disc_type;
-
-	udi = libhal_drive_get_udi (hal_drive);
-
-	name = libhal_device_get_property_string (volume_monitor_daemon->hal_ctx, udi, "info.icon_name", NULL);
-	if (name != NULL)
-		goto out;
 
 	name = libhal_drive_get_dedicated_icon_volume (hal_drive);
 	if (name != NULL)
