@@ -1,6 +1,5 @@
-# translation of el.po to Greek
 # GNOME VFS Greek translation.
-# Copyright (C) 2000-2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2000-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 # Spiros did 90 messages.
 # Simos added 34. (15/07/2000)
 # kostas:203 messages 16Dec2003
@@ -24,14 +23,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-31 10:32+0300\n"
-"PO-Revision-Date: 2006-08-31 10:38+0300\n"
-"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
+"POT-Creation-Date: 2007-01-02 04:29+0000\n"
+"PO-Revision-Date: 2007-03-07 20:06+0800\n"
+"Last-Translator: Simos Xenitellis <simos@gnome.org>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -453,23 +452,23 @@ msgstr "Άγνωστη είδος εργασίας %u"
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -1012,12 +1011,12 @@ msgstr "Άγνωστη GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Δίκτυο Windows"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1422
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Η ταυτότητα του απομακρυσμένου υπολογιστή (%s) είναι άγνωστη. "
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1423
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1031,11 +1030,11 @@ msgstr ""
 "θέλετε να είστε σίγουροι ότι είναι απόλυτα ασφαλές να συνεχίσετε, "
 "επικοινωνήστε με το διαχειριστή του συστήματος σας."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1431
 msgid "Log In Anyway"
 msgstr "Είσοδος οπωσδήποτε"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1432
 msgid "Cancel Login"
 msgstr "Ακύρωση Σύνδεσης"
 
@@ -1055,7 +1054,7 @@ msgstr ""
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr ""
+msgstr "Ο διαμεσολαβητής HTTP απαιτεί να συνδεθείτε με το λογαριασμό σας.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1063,6 +1062,8 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
+"Πρέπει να συνδεθείτε στο διαμεσολαβητή για να προσπελάσετε το \"%s\".\n"
+"%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
@@ -1075,12 +1076,12 @@ msgstr "Ο κωδικός σας θα μεταδοθεί κρυπτογραφη�
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr ""
+msgstr "Πρέπει να συνδεθείτε στο σύστημα για να προσπελάσετε το %s τομέας %s\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr ""
+msgstr "Πρέπει να συνδεθείτε στο σύστημα για να προσπελάσετε το %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
