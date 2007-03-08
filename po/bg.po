@@ -1,7 +1,7 @@
 # Bulgarian translation for gnome-vfs.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
-# Alexander Shopov <ash@contact.bg>, 2003, 2005, 2006.
+# Alexander Shopov <ash@contact.bg>, 2003, 2005, 2006, 2007.
 # Peter "Peshka" Slavov <pslavov@i-space.org>, 2004.
 # Rostislav Raykov <zbrox@i-space.org>, 2004.
 # Vladimir Petkov <kaladan@i-space.org>, 2005.
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-21 10:07+0300\n"
-"PO-Revision-Date: 2006-07-21 11:21+0300\n"
+"POT-Creation-Date: 2007-03-08 08:58+0200\n"
+"PO-Revision-Date: 2007-03-08 08:58+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,208 +223,208 @@ msgstr "Мрежови диск CIFS"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
 msgstr "Дял, %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "Устройство %s/%s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "Устройство %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "Флопи-дисково устройство"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "Устройство за компактна флаш памет"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "Устройство за паметови пръчки"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "Устройство за умни носители (smart media)"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "Устройство SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "Устройство Zip"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "Устройство Jaz"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "Устройство Pen"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "Портативно устройство за музика %s %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "Цифров фотоапарат/камера %s %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "Устройство"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "Външно %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "Диск CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "Празен диск CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "Диск CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "Празен презаписваем диск CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "Диск CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "Диск DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "Празен диск DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "Диск DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "Празен диск, DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "Диск DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "Празен диск DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "Диск DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "Празен диск, DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "Диск DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "Празен диск DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "Диск DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "Аудио диск"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
 msgstr "Подвижен дял, %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "Дял"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
-msgstr "Неизвестен тип операция %u"
+msgstr "Неизвестен вид операция %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
@@ -440,23 +440,23 @@ msgstr "Неизвестен вид задача %u"
 msgid "Operation stopped"
 msgstr "Операцията е спряна"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -473,7 +473,7 @@ msgid ""
 "supported."
 msgstr ""
 "Остаряла функция, да не се използва! Не се поддържат вече потребителски "
-"промени по базата с данни за типове MIME."
+"промени по базата с данни за видове MIME."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
@@ -485,266 +485,266 @@ msgid "More parsing errors will be ignored."
 msgstr "Следващите грешки при анализиране ще бъдат игнорирани."
 
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "Няма грешка"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "Файлът не е намерен"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "Обща грешка"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "Вътрешна грешка"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "Неправилни параметри"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "Неподдържана операция"
 
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "Вх./изх. грешка"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "Повредени данни"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "Невалиден формат"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "Лош указател към файл"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "Файлът е твърде голям"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "Няма свободно място на устройството"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "Файлова система само за четене"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
-msgstr "Грешен URI"
+msgstr "Грешен адрес"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "Файлът не е отворен"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "Режимът на отваряне не е валиден"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "Достъпът е забранен"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "Прекалено много отворени файлове"
 
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "Край на файл"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "не е папка"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "Изпълнява се операция"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "Операцията бе прекъсната"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "Файлът съществува"
 
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "Открити са зациклени връзки"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "Операцията не е позволена"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "е папка"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "Няма достатъчно памет"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "Хостът не е намерен"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "Името на хоста не е валидно"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "Хостът няма адрес"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "Влизането в системата е неуспешно"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "Операцията бе отменена"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "Папката е заета"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "Папката не е празна"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "Прекалено много връзки"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "Файлова система само за четене"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "Не е в същата файлова система"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "Името е твърде дълго"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "Услугата не е достъпна"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "Данните от услугата са остарели вследствие на заявката"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "Протоколна грешка"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "Не може да се открие основния браузър"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:84
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "Няма асоциирано действие по подразбиране"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
-msgstr "Не е зададена функция за обработка на схема за URL"
+msgstr "Не е зададена функция за обработка на схемата на адреса "
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "Грешка при анализа на командния ред"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "Грешка при стартирането на програмата"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "Времето изтече"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:89
+#: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "Грешка на сървъра за имена"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "Ресурсът е заключен"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "Това извикване на функция е остаряло и не трябва да се ползва"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
 msgstr "Грешно име на файл"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
-#: ../libgnomevfs/gnome-vfs-result.c:93
+#: ../libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
 msgstr "Не е символна връзка"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
@@ -989,7 +989,7 @@ msgstr "У дома"
 msgid "Filesystem"
 msgstr "Файлова система"
 
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестна позиция GnomeVFSSeekPosition %d"
@@ -998,12 +998,12 @@ msgstr "Неизвестна позиция GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Мрежа на Windows"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Идентичността на отдалечения компютър (%s) е непозната."
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1017,11 +1017,11 @@ msgstr ""
 "сигурни, че е безопасно да продължите, свържете се със системния "
 "администратор."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "Влизане въпреки всичко"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "Отказ на влизането"
 
@@ -1060,12 +1060,12 @@ msgstr "Паролата Ви ще бъде пратена некриптира�
 msgid "Your password will be transmitted encrypted."
 msgstr "Паролата Ви ще бъде пратена криптирана."
 
-#: ../programs/authentication.c:156
+#: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "За да достъпите %s, домейн %s, трябва да се идентифицирате.\n"
 
-#: ../programs/authentication.c:158
+#: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "За да достъпите %s, трябва да се идентифицирате.\n"
@@ -1112,200 +1112,206 @@ msgstr "Пускане на програмата в терминал"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „aim“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „aim“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "Програмата обработка на URL-и от тип „callto“, ако е включена."
+msgstr "Програмата обработка на адреси от вида „callto“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „ghelp“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „ghelp“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „h323“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „h323“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „http“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „http“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „https“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „https“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „info“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „info“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „mailto“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „mailto“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „man“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „man“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Програмата за обработка на URL-и от тип „trash“, ако е включена."
+msgstr "Програмата за обработка на адреси от вида „trash“, ако е включена."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Програма за обработка на URL-та от тип „aim“"
+msgstr "Програма за обработка на адреси от вида „aim“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "Програма за обработка на URL-та от тип „callto“"
+msgstr "Програма за обработка на адреси от вида „callto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Програма за обработка на URL-та от тип „ghelp“"
+msgstr "Програма за обработка на адреси от вида „ghelp“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "Програма за обработка на URL-та от тип „h323“"
+msgstr "Програма за обработка на адреси от вида „h323“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "Програма за обработка на URL-та от тип „http“"
+msgstr "Програма за обработка на адреси от вида „http“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "Програма за обработка на URL-та от тип „https“"
+msgstr "Програма за обработка на адреси от вида „https“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "Програма за обработка на URL-та от тип „info“"
+msgstr "Програма за обработка на адреси от вида „info“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Програма за обработка на URL-та от тип „mailto“"
+msgstr "Програма за обработка на адреси от вида „mailto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "Програма за обработка на URL-та от тип „man“"
+msgstr "Програма за обработка на адреси от вида „man“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Програма за обработка на URL-та от тип „trash“"
+msgstr "Програма за обработка на адреси от вида „trash“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „aim“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „aim“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „callto“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
+"„callto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „ghelp“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
+"„ghelp“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „h323“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „h323“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „http“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „http“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „https“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
+"„https“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „info“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „info“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „mailto“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
+"„mailto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва URL-и от тип „man“."
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „man“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Включено, ако програмата в ключа „command“ ще обслужва URL-и „trash“."
+msgstr ""
+"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
+"„trash“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Включено, ако програмата, която ще обслужва този тип URL-и, трябва да бъде "
+"Включено, ако програмата, която ще обслужва този вид адреси, трябва да бъде "
 "изпълнена в терминал."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „aim“"
+msgstr "Дали избраната програма да обработва адреси от вида „aim“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „callto“"
+msgstr "Дали избраната програма да обработва адреси от вида „callto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „ghelp“"
+msgstr "Дали избраната програма да обработва адреси от вида „ghelp“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „h323“"
+msgstr "Дали избраната програма да обработва адреси от вида „h323“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „http“"
+msgstr "Дали избраната програма да обработва адреси от вида „http“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „https“"
+msgstr "Дали избраната програма да обработва адреси от вида „https“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „info“"
+msgstr "Дали избраната програма да обработва адреси от вида „info“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „mailto“"
+msgstr "Дали избраната програма да обработва адреси от вида „mailto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „man“"
+msgstr "Дали избраната програма да обработва адреси от вида „man“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Дали избраната програма да обработва URL-и от тип „trash“"
+msgstr "Дали избраната програма да обработва адреси от вида „trash“"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1333,7 +1339,7 @@ msgstr "Идентификация при връзката със сървъра
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "URL за автоматични настройки на сървъра-посредник"
+msgstr "Адрес за автоматични настройки на сървъра-посредник"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
@@ -1469,7 +1475,7 @@ msgstr ""
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "URL, от което се вземат настройките на сървъра-посредник."
+msgstr "Адрес, от който се вземат настройките на сървъра-посредник."
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
