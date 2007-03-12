@@ -1,3 +1,8 @@
+gnome-vfs 2.18.0
+	  * Build on win32 again
+	  * Handle filenames with : in them better in
+	    gnome_vfs_make_uri_from_input
+	  
 gnome-vfs 2.17.91
 	  * Support ENOTSUP errno
 	  * Handle dbus disconnects better
