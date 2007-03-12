@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-30 09:38+0200\n"
+"POT-Creation-Date: 2007-01-02 04:29+0000\n"
 "PO-Revision-Date: 2006-08-30 16:07+0530\n"
 "Last-Translator: Felix <ifelix25@gmail.com>\n"
 "Language-Team: Tamil <ta@li.org>\n"
@@ -19,7 +19,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -445,23 +446,23 @@ msgstr "தெரியாத %u பணி வகை"
 msgid "Operation stopped"
 msgstr "செயல் நிறுத்தப்பட்டுள்ளது"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -886,7 +887,8 @@ msgstr "வலைப்பின்னல் சேவகன்"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. ஒருவேலை நெகிழ்வட்டு இல்லாமல் இருக்கலாம்"
 
 #. All others
@@ -992,12 +994,12 @@ msgstr "தெரியாத GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "விண்டோஸ் வலைப்பின்னல்்"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1422
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "(%s) தொலை கணினியை கண்டுபிடிக்க முடியவில்லை"
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1423
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1010,11 +1012,11 @@ msgstr ""
 "தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் "
 "கணினி மேலாளரை அணுகவும்."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1431
 msgid "Log In Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1432
 msgid "Cancel Login"
 msgstr "உள் நுழைவதை ரத்து செய்யவும்"
 
@@ -1193,7 +1195,8 @@ msgstr "உண்மை, \"command\" விசையில் குறிக்
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
@@ -1211,7 +1214,8 @@ msgstr "\"command\" விசையில் குறிக்கப்பட�
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1223,7 +1227,8 @@ msgstr "உண்மை, \"command\" விசையில் குறிக்
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
@@ -1235,7 +1240,8 @@ msgstr "உண்மை, \"command\" விசையில் குறிக்
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1405,25 +1411,29 @@ msgstr "socks வழியாக ப்ராக்ஸிக்கான கண�
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1461,4 +1471,3 @@ msgid ""
 msgstr ""
 "பயனர் விண்டோஸ் பிணைய பணி குழு அல்லது களத்தின் பகுதியாக உள்ளார். புதிய பணிக்குழு "
 "முழுவதும் பணி செய்ய பயனர் வெளியேற வேண்டும் அல்லது மீண்டும் உள் அனுமதி பெற வேண்டும்."
-
