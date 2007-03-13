@@ -1,5 +1,13 @@
 2007-03-13  Christian Kellner  <gicmo@gnome.org>
 
+	* NEWS:
+	Update for release
+
+	* configure.in:
+	Chnage to version 2.18.0.1
+
+2007-03-13  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-utils.c: 
 	Revert last commit (#374341) because that broke GnomeVFSUri
 	usage for any scheme that is not handled by a gnome-vfs module

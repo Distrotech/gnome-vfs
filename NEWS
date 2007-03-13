@@ -1,3 +1,8 @@
+gnome-vfs 2.18.0.1
+	  * Revert the "better handling of filenames with : in it"
+	    change since that broke GnomeVFSUri for apps that use 
+	    non-gnomevfs known uris (i.e. yelp)
+
 gnome-vfs 2.18.0
 	  * Build on win32 again
 	  * Handle filenames with : in them better in
