@@ -1,3 +1,11 @@
+2007-03-13  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-utils.c: 
+	Revert last commit (#374341) because that broke GnomeVFSUri
+	usage for any scheme that is not handled by a gnome-vfs module
+	i.e. yelp and its yelp-uris.
+	This should fix bug #417595 bug un-fix bug #374341 again.
+
 2007-03-12  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

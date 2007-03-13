@@ -1259,24 +1259,27 @@ gnome_vfs_format_uri_for_display (const char *uri)
 }
 
 static gboolean
+is_valid_scheme_character (char c)
+{
+	return g_ascii_isalnum (c) || c == '+' || c == '-' || c == '.';
+}
+
+static gboolean
 has_valid_scheme (const char *uri)
 {
-	char *scheme;
 	const char *p;
-	gboolean ret;
 
-	ret = FALSE;
+	p = uri;
 
-	p = strchr (uri, ':');
-	if (p != NULL) {
-		scheme = g_strndup (uri, p - uri);
-		if (gnome_vfs_method_get (scheme) != NULL) {
-			ret = TRUE;
-		}
-		g_free (scheme);
+	if (!is_valid_scheme_character (*p)) {
+		return FALSE;
 	}
 
-	return ret;
+	do {
+		p++;
+	} while (is_valid_scheme_character (*p));
+
+	return *p == ':';
 }
 
 static char *
