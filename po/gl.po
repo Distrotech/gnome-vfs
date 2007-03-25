@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-28 11:57+0200\n"
+"POT-Creation-Date: 2006-11-16 16:58+0100\n"
 "PO-Revision-Date: 2006-09-28 11:58+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
@@ -30,7 +30,7 @@ msgstr "Volume ISO 9660"
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%u contén caracteres NULOS"
+msgstr "%s:%u contén caracteres NULL"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
@@ -55,13 +55,13 @@ msgstr "%s:%u non contén ningún nome de módulo."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Non se atopou o ficheiro de configuración `%s': %s"
+msgstr "Non se localizou o ficheiro de configuración `%s': %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr "%s: %d análise abortado."
+msgstr "%s: %d análise interrompida."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -73,16 +73,16 @@ msgstr "Volume de rede AFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr "Volume autodetectado"
+msgstr "Volume detectado automaticamente"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD-ROM Drive"
-msgstr "Unidade de CD-ROM"
+msgstr "Dispositivo de CD-ROM"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "CD Digital Audio"
-msgstr "CD de audio dixital"
+msgstr "CD de son dixital"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
@@ -160,7 +160,7 @@ msgstr "Volume de Netware"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Reiser4 Linux Volume"
-msgstr "Volume Linux Reiser4"
+msgstr "Volume de Linux Reiser4"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "ReiserFS Linux Volume"
@@ -287,51 +287,51 @@ msgstr "DVD±RW"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
 #, c-format
 msgid "%s/%s Drive"
-msgstr "Unidade %s/%s"
+msgstr "Dispositivo %s/%s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s Drive"
-msgstr "Unidade %s"
+msgstr "Dispositivo %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
 msgid "Floppy Drive"
-msgstr "Disquetera"
+msgstr "Disqueteira"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
 msgid "Compact Flash Drive"
-msgstr "Unidade Compact Flash"
+msgstr "Dispositivo Compact Flash"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Memory Stick Drive"
-msgstr "Unidade de barra de memoria"
+msgstr "Dispositivo Memory Stick "
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Smart Media Drive"
-msgstr "Unidade Smart Media"
+msgstr "Dispositivo Smart Media"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "SD/MMC Drive"
-msgstr "Unidade SD/MMC"
+msgstr "Dispositivo SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
-msgstr "Unidade Zip"
+msgstr "Dispositivo Zip"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
 msgid "Jaz Drive"
-msgstr "Unidade Jaz"
+msgstr "Dispositivo Jaz"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
 msgid "Pen Drive"
-msgstr "Unidade Pen"
+msgstr "Memoria USB"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
 #, c-format
 msgid "%s %s Music Player"
-msgstr "Reproductor de música %s %s"
+msgstr "Reprodutor de música %s %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
 #, c-format
@@ -340,7 +340,7 @@ msgstr "Cámara dixital %s %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
 msgid "Drive"
-msgstr "Unidade"
+msgstr "Dispositivo"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
 #, c-format
@@ -413,7 +413,7 @@ msgstr "Disco DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
 msgid "Audio Disc"
-msgstr "Disco de Audio"
+msgstr "Disco de son"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
 #, c-format
@@ -441,7 +441,7 @@ msgstr "Clase de traballo %u descoñecida"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
-msgstr "Operación parada"
+msgstr "Operación detida"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
@@ -474,28 +474,27 @@ msgstr "Operación parada"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
-"Función obsoleta. Xa non se permiten modificacións da base de datos MIME "
-"polo usuario."
+msgstr "Función obsoleta. A base de datos MIME xa non soporta máis "
+       "modificacións feitas polo usuario."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:708
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Non se puido interpretar: %s"
+msgstr "Non se puido analizar: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:710
 msgid "More parsing errors will be ignored."
-msgstr "O resto de erros de interpretación serán ignorados."
+msgstr "O resto de erros de análise ignoráranse."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:42
 msgid "No error"
-msgstr "Sen erros"
+msgstr "Non hai erros"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:43
 msgid "File not found"
-msgstr "Ficheiro non atopado"
+msgstr "O ficheiro non se localizou"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:44
@@ -510,12 +509,12 @@ msgstr "Erro interno"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: ../libgnomevfs/gnome-vfs-result.c:46
 msgid "Invalid parameters"
-msgstr "Parámetros non válidos"
+msgstr "Os parámetros non son válidos"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "Unsupported operation"
-msgstr "Operación non soportada"
+msgstr "Non se soporta a operación"
 
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:48
@@ -525,22 +524,22 @@ msgstr "Erro de E/S"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Data corrupted"
-msgstr "Datos corrompidos"
+msgstr "Os datos están corrompidos"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Format not valid"
-msgstr "Formato non válido"
+msgstr "O formato non é válido"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Bad file handle"
-msgstr "Manexador de ficheiro erróneo"
+msgstr "O manipulador de ficheiro non é válido"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "File too big"
-msgstr "Ficheiro grande de máis"
+msgstr "O ficheiro é demasiado grande"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:53
@@ -550,22 +549,22 @@ msgstr "Non hai espazo libre no dispositivo"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Read-only file system"
-msgstr "Sistema de ficheiros de só lectura"
+msgstr "Sistema de ficheiros só de lectura"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Invalid URI"
-msgstr "URI non válido"
+msgstr "O URI non é válido"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "File not open"
-msgstr "Ficheiro non aberto"
+msgstr "O ficheiro non está aberto"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "Open mode not valid"
-msgstr "Modo de apertura non válido"
+msgstr "O modo de abertura non é válido"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:58
@@ -575,12 +574,12 @@ msgstr "Acceso denegado"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Too many open files"
-msgstr "Demasiados ficheiros abertos"
+msgstr "Hai demasiados ficheiros abertos"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "End of file"
-msgstr "Fin de ficheiro"
+msgstr "Fin do ficheiro"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:61
@@ -595,7 +594,7 @@ msgstr "Operación en curso"
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation interrupted"
-msgstr "Operación interrompida"
+msgstr "A operación interrompeuse"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: ../libgnomevfs/gnome-vfs-result.c:64
@@ -605,12 +604,12 @@ msgstr "O ficheiro xa existe"
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "Looping links encountered"
-msgstr "Atopáronse ligazóns circulares"
+msgstr "Encontráronse ligazóns en bucle"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation not permitted"
-msgstr "Operación non permitida"
+msgstr "Non se permite a operación"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:67
@@ -620,52 +619,52 @@ msgstr "É un directorio"
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Not enough memory"
-msgstr "Non hai memoria dabondo"
+msgstr "Non hai suficiente memoria"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "Host not found"
-msgstr "Non se atopou a máquina"
+msgstr "Non se localizou o host"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Host name not valid"
-msgstr "Nome de máquina non válido"
+msgstr "O nome do host non é válido"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Host has no address"
-msgstr "A máquina non ten enderezo"
+msgstr "O host non ten enderezo"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Login failed"
-msgstr "Erro na autenticación"
+msgstr "Fallo no inicio de sesión"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Operation cancelled"
-msgstr "Operación cancelada"
+msgstr "Cancelouse a operación"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Directory busy"
-msgstr "Directorio ocupado"
+msgstr "O directorio está ocupado"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Directory not empty"
-msgstr "Directorio non baleiro"
+msgstr "O directorio non está baleiro"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Too many links"
-msgstr "Demasiadas ligazóns"
+msgstr "Hai demasiadas ligazóns"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Read only file system"
-msgstr "Sistema de ficheiros de só lectura"
+msgstr "Sistema de ficheiros só de lectura"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:78
@@ -675,7 +674,7 @@ msgstr "Non están no mesmo sistema de ficheiros"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Name too long"
-msgstr "Nome longo de máis"
+msgstr "O nome é demasiado longo"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: ../libgnomevfs/gnome-vfs-result.c:80
@@ -695,32 +694,32 @@ msgstr "Erro do protocolo"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Could not find master browser"
-msgstr "Non se atopa o explorador mestre"
+msgstr "Non se pode localizar o navegador principal"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "No default action associated"
-msgstr "Non hai unha acción por defecto asociada"
+msgstr "Non hai unha acción predeterminada asociada"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "No handler for URL scheme"
-msgstr "Non hai un manexador para o esquema de URL"
+msgstr "Non hai un manipulador para o esquema do URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Error parsing command line"
-msgstr "Erro interpretando a liña de comandos"
+msgstr "Erro ao analizar a liña de comandos"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Error launching command"
-msgstr "Erro lanzando o comando"
+msgstr "Erro ao lanzar o comando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Timeout reached"
-msgstr "Expirou o tempo de espera"
+msgstr "Finalizou o tempo de espera"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:89
@@ -735,12 +734,12 @@ msgstr "O recurso está bloqueado"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Function call deprecated"
-msgstr "Chamada a función obsoleta"
+msgstr "A chamada de función está obsoleta"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Invalid filename"
-msgstr "Nome de ficheiro inválido"
+msgstr "O nome do ficheiro non é válido"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -776,7 +775,7 @@ msgstr "%.1f GB"
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
-msgstr " (Unicode non válido)"
+msgstr " (Unicode non é válido)"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
@@ -837,11 +836,11 @@ msgstr "Disco"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "USB Drive"
-msgstr "Unidade USB"
+msgstr "Dispositivo USB"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
-msgstr "Unidade IEEE1394"
+msgstr "Dispositivo IEEE1394"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
@@ -854,7 +853,7 @@ msgstr "SD/MMD"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
-msgstr "Memory Stick"
+msgstr "Cartón de memoria"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
@@ -874,7 +873,7 @@ msgstr "Volume raíz"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
-msgstr "CD de Audio"
+msgstr "CD de son"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
@@ -886,44 +885,42 @@ msgstr "Servidor de rede"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Non se pode montar a unidade de disquete. Probablemente non hai ningún "
-"disquete inserido."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Non se pode montar a disqueteira. Pode que non haxa ningún disquete "
+       "inserido."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Non se pode montar o volume. Probablemente non hai medios no dispositivo."
+msgstr "Non se pode montar o volume. Pode que non haxa soportes no "
+       "dispositivo."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"Non se pode montar a unidade de disquete. Posiblemente está nun formato que "
-"non pode ser montado."
+msgstr "Non se pode montar a disqueteira. Pode que estea nun formato que non "
+       "pode ser montado."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr ""
-"Imposible montar o volume. Se esta é unha unidade cifrada, entón o "
-"contrasinal ou clave usada é errónea."
+msgstr "Non se pode montar o volume. Se este é un dispositivo cifrado, entón "
+       "o contrasinal ou chave usada é incorrecta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"Non se pode montar o volume seleccionado. Posiblemente está nun formato que "
-"non pode ser montado."
+msgstr "Non se pode montar o volume seleccionado. Pode que estea nun formato "
+       "que non pode ser montado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
-msgstr "Non se pode montar a unidade de disquete seleccionada."
+msgstr "Non se pode montar a disqueteira seleccionada."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
@@ -933,9 +930,8 @@ msgstr "Non se pode montar o volume seleccionado."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr ""
-"Non se pode desmontar o volume seleccionado. O volume está en uso por un ou "
-"máis programas."
+msgstr "Non se pode desmontar o volume seleccionado. O volume estase usando "
+       "nun ou en máis programas."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -957,7 +953,7 @@ msgstr "Erro inesperado en select() lendo os datos do proceso fillo (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
-msgstr "Non se puido enviar o contrasinal ao proceso de montar."
+msgstr "Non se puido enviar o contrasinal para montar o proceso."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
@@ -967,7 +963,7 @@ msgstr "Erro inesperado en waitpid() (%s)"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "Falla ao iniciar o comando"
+msgstr "Fallou ao iniciar o comando"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
@@ -983,7 +979,7 @@ msgstr "Rede"
 
 #: ../modules/computer-method.c:561
 msgid "Home"
-msgstr "Persoal"
+msgstr "Home"
 
 #: ../modules/computer-method.c:579
 msgid "Filesystem"
@@ -1010,44 +1006,44 @@ msgid ""
 "\n"
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
-msgstr ""
-"Isto acontece cando se conecta a un computador por primeira vez.\n"
-"\n"
-"A identidade enviada polo computador remoto é %s. Se quere ter a certeza "
-"absoluta de que é seguro continuar, contacte co administrador do sistema."
+msgstr "Isto acontece cando se rexistra nun computador por primeira vez.\n"
+       "\n"
+       "A identidade enviada polo computador remoto é %s. Se quere ter a "
+       "certeza absoluta de que é seguro continuar, contacte coa persoa "
+       "administradora do sistema."
 
 #: ../modules/sftp-method.c:1355
 msgid "Log In Anyway"
-msgstr "Entrar igualmente"
+msgstr "Rexistrarse de todas as formas"
 
 #: ../modules/sftp-method.c:1356
 msgid "Cancel Login"
-msgstr "Cancelar conexión"
+msgstr "Cancelar o inicio de sesión"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Non se atopou un ficheiro de propiedades válido en %s\n"
+msgstr "Non se localizou ningún ficheiro de propiedades válido en %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Usar a variable de ambiente %s para indicar unha localización diferente.\n"
+msgstr "Usar a variable de contorno %s para indicar unha localización "
+       "diferente.\n"
 
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr "O seu proxy HTTP require que inicie sesión.\n"
+msgstr "O seu proxy HTTP require que inicie a sesión.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
 msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
-msgstr ""
-"Debe iniciar sesión para acceder a \"%s\".\n"
-"%s"
+msgstr "Debe iniciar a sesión para acceder a \"%s\".\n"
+       "%s"
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
@@ -1060,24 +1056,24 @@ msgstr "O seu contrasinal transmitirase cifrado."
 #: ../programs/authentication.c:156
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "Debe iniciar sesión para acceder ao dominio %s %s\n"
+msgstr "Debe iniciar a sesión para acceder ao dominio %s %s\n"
 
 #: ../programs/authentication.c:158
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr "Debe iniciar sesión para acceder a %s\n"
+msgstr "Debe iniciar a sesión para acceder a %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Aplicación por defecto para visualización de compoñentes"
+msgstr "Aplicación predeterminada para o visualizador de compoñentes"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Aplicación de terminal por defecto"
+msgstr "Aplicación do terminal por defecto"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Instrución para o terminal por defecto"
+msgstr "Argumento exec para o terminal por defecto"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1085,260 +1081,244 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
-"A aplicación usada para ver ficheiros que precisan dun compoñente para os "
-"visualizar. O parámetro %s substitúese polos URIs do ficheiro, e o parámetro "
-"%c polo IID do compoñente."
+msgstr "A aplicación usada para ver ficheiros que requiren un compoñente "
+       "para visualizalos. O parámetro %s substitúese polos URI do ficheiro "
+       "e o parámetro %c polo IID do compoñente."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"A aplicación de terminal por defecto usada para os programas que precisan "
-"dun terminal."
+msgstr "A aplicación do terminal por defecto para usar nas aplicacións que "
+       "precisan dun terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "A instrución que se executará para a aplicación de terminal por defecto."
+msgstr "O argumento exec para usar coa aplicación do terminal por defecto."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "Executar a instrución nun terminal"
+msgstr "Executar o comando nun terminal"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"aim\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"aim\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"callto\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"callto\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"ghelp\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"ghelp\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"h323\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"h323\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"http\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"http\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"https\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"https\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"info\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"info\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"mailto\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"mailto\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"man\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"man\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "A instrución usada para manexar os URLs \"trash\", se está habilitada."
+msgstr "O comando usado para manipular os URL \"trash\", se está activado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "O manexador de URLs \"aim\""
+msgstr "O manipulador dos URL \"aim\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "O manexador de URLs \"callto\""
+msgstr "O manipulador dos URL \"callto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "O manexador de URLs \"ghelp\""
+msgstr "O manipulador dos URL \"ghelp\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "O manexador de URLs \"h323\""
+msgstr "O manipulador dos URL \"h323\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "O manexador de URLs \"http\""
+msgstr "O manipulador dos URL \"http\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "O manexador de URLs \"https\""
+msgstr "O manipulador dos URL \"https\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "O manexador de URLs \"info\""
+msgstr "O manipulador dos URL \"info\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "O manexador de URLs \"mailto\""
+msgstr "O manipulador dos URL \"mailto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "O manexador de URLs \"man\""
+msgstr "O manipulador dos URL \"man\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "O manexador de URLs \"trash\""
+msgstr "O manipulador dos URL \"trash\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"aim\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"callto\"."
+"True if the command specified in the \"command\" key should handle "
+"\"callto\" URLs."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"ghelp\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"h323\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"http\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"https\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"info\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"mailto\"."
+"True if the command specified in the \"command\" key should handle "
+"\"mailto\" URLs."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"man\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"Activada se a instrución indicada na clave \"command\" debe manexar os URLs "
-"\"trash\"."
+msgstr "É verdadeiro se o comando especificado na chave \"command\" debe "
+       "manipular os URL \"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
-"Activada se a instrución usada para manexar este tipo de URL debe ser "
-"executada nun terminal."
+msgstr "É verdadeiro se o comando usado para manipular este tipo de URL debe "
+       "ser executado nun terminal."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"aim\""
+msgstr "Indica se o comando especificado debe manipular os URL \"aim\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"callto\""
+msgstr "Indica se o comando especificado debe manipular os URL \"callto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"ghelp\""
+msgstr "Indica se o comando especificado debe manipular os URL \"ghelp\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"h323\""
+msgstr "Indica se o comando especificado debe manipular os URL \"h323\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"http\""
+msgstr "Indica se o comando especificado debe manipular os URL \"http\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"https\""
+msgstr "Indica se o comando especificado debe manipular os URL \"https\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"info\""
+msgstr "Indica se o comando especificado debe manipular os URL \"info\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"mailto\""
+msgstr "Indica se o comando especificado debe manipular os URL \"mailto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"man\""
+msgstr "Indica se o comando especificado debe manipular os URL \"man\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Indica se a instrución indicada debe manexar os URLs \"trash\""
+msgstr "Indica se o comando especificado debe manipular os URL \"trash\""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr ""
-"Lista separada por comas dos dominios DNS-SD que deben ser visibles na "
-"localización de \"rede:///\"."
+msgstr "Lista separada por comas dos dominios DNS-SD que deben ser visibles "
+       "na localización de \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "Dominios extra onde procurar servizos DNS-SD"
+msgstr "Dominios adicionais onde buscar servizos DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "Como visualizar o servizo DNS-SD local"
+msgstr "Como mostrar o servizo DNS-SD local"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
-"Os valores posibles son \"merged\" (xunto), \"separate\" (separado) ou "
-"\"disabled\" (deshabilitado)."
+msgstr "Os valores posibles son \"merged\", \"separate\" e \"disabled\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Usar autenticación nas conexións ao servidor proxy"
+msgstr "Autenticar as conexións ao servidor proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -1346,50 +1326,51 @@ msgstr "URL de configuración automática do proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Habilita as opcións de proxy ao acceder a HTTP a través de Internet."
+msgstr "Activa as configuracións do proxy ao acceder a HTTP a través de "
+       "Internet."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "Nome do servidor proxy FTP"
+msgstr "Nome do host proxy FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "Porto do servidor proxy FTP"
+msgstr "Porto do proxy FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "Nome do servidor proxy HTTP"
+msgstr "Nome do host proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "Contrasinal para o proxy HTTP"
+msgstr "Contrasinal do proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr "Porto do servidor proxy HTTP"
+msgstr "Porto do proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "Usuario para o proxy HTTP"
+msgstr "Nome de usuario para o proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Se está activada, as conexións ao servidor proxy precisarán de "
-"autenticación. O nome de usuario e o contrasinal están definidos polas "
-"claves \"/system/http_proxy/authentication_user\" e \"/system/http_proxy/"
-"authentication_password\"."
+"username/password combo is defined by "
+"\"/system/http_proxy/authentication_user\" and "
+"\"/system/http_proxy/authentication_password\"."
+msgstr "Se está activada, as conexións ao servidor proxy requirirán "
+       "autenticación. O nome do usuario e o contrasinal están definidos "
+       "polas chaves \"/system/http_proxy/authentication_user\" e \""
+       "/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "Servidores que non usan proxy"
+msgstr "Hosts que non usan proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Contrasinal empregado na autenticación ao usar o proxy HTTP."
+msgstr "Contrasinal requirido como autenticación ao usar o proxy HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1397,75 +1378,70 @@ msgstr "Modo de configuración do proxy"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "Nome do servidor proxy SOCKS"
+msgstr "Nome do host do proxy SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "Porto do servidor proxy SOCKS"
+msgstr "Porto do proxy SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "Nome do servidor proxy HTTP seguro"
+msgstr "Nome do host do proxy HTTP seguro"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "Porto do servidor proxy HTTP seguro"
+msgstr "Porto do proxy HTTP seguro"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"Indica o modo de configuración do proxy. Os valores poden ser \"none"
-"\" (ningún), \"manual\", ou \"auto\"."
+"Select the proxy configuration mode. Supported values are \"none\", "
+"\"manual\", \"auto\"."
+msgstr "Selecciona o modo de configuración do proxy. Os valores soportados "
+       "son \"none\", \"manual\" ou \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "O nome da máquina para usar como proxy FTP."
+msgstr "O nome da máquina a través da que efectuar o proxy FTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "O nome da máquina para usar como proxy HTTP."
+msgstr "O nome da máquina a través da que efectuar o proxy HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "O nome da máquina para usar como proxy HTTP seguro."
+msgstr "O nome da máquina a través da que efectuar o proxy HTTP seguro."
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "O nome da máquina para usar como proxy socks."
+msgstr "O nome da máquina a través da que efectuar o proxy socks."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"O porto da máquina definida en \"/system/http_proxy/host\" que se usa como "
-"proxy."
+msgstr "O porto da máquina definido por \"/system/http_proxy/host\" a través "
+       "do que efectuar o proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"O porto da máquina definida en \"/system/proxy/ftp_host\" que se usa como "
-"proxy."
+msgstr "O porto da máquina definido por \"/system/proxy/ftp_host\" a través "
+       "do que efectuar o proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"O porto da máquina definida en \"/system/proxy/secure_host\" que se usa como "
-"proxy."
+msgstr "O porto da máquina definido por  \"/system/proxy/secure_host\" a "
+       "través do que efectuar o proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"O porto da máquina definida en \"/system/proxy/socks_host\" que se usa como "
-"proxy."
+msgstr "O porto da máquina definido por \"/system/proxy/socks_host\" a "
+       "través do que efectuar o proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1473,12 +1449,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"Esta clave contén unha lista de servidores que deben ser accedidos "
-"directamente, en vez de a través do proxy (se está habilitado). Os valores "
-"poden ser nomes de servidor, dominios (usando comodíns de expansión como *."
-"foo.com), enderezos IP (IPv4 ou IPv6) e enderezos de rede con máscara (como "
-"192.168.0.0/24)."
+msgstr "Esta chave contén unha lista dos hosts que están conectados "
+       "directamente en vez de a través do proxy (se está activado). Os "
+       "valores poden ser nomes de host, dominios (usando un comodín inicial "
+       "como *.foo.com), enderezos IP do host (tanto o IPv4 como o IPv6) e "
+       "enderezos de rede con máscara (como 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1490,7 +1465,7 @@ msgstr "Usar proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Nome de usuario empregado na autenticación ao usar o proxy HTTP."
+msgstr "Nome de usuario requirido na autenticación ao usar o proxy HTTP."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1501,8 +1476,6 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr ""
-"O grupo de traballo de rede de Windows ou o dominio do que o usuario é "
-"parte. Para que un grupo novo teña efecto, o usuario pode necesitar pechar a "
-"sesión e entrar de novo."
-
+msgstr "O grupo de traballo de rede de Windows ou o dominio ao que o usuario "
+       "pertence. Para que un grupo novo sexa completamente efectivo, o "
+       "usuario pode necesitar terminar a sesión e iniciala de novo."
