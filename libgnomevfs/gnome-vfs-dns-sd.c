@@ -732,10 +732,14 @@ unicast_resolve_sync (const char *name,
 /* multicast DNS functions */
 
 #ifdef HAVE_AVAHI
+
 static AvahiClient *global_client = NULL;
 static gboolean avahi_initialized = FALSE;
+static GSList *browse_handles = NULL;
 
 static AvahiClient *get_global_avahi_client (void);
+static void add_service_browser_cb (gpointer data, gpointer user_data);
+static void remove_service_browser_cb (gpointer data, gpointer user_data);
 
 /* Callback for state changes on the Client */
 static void
@@ -743,6 +747,9 @@ avahi_client_callback (AvahiClient *client, AvahiClientState state, void *userda
 {
 	if (state == AVAHI_CLIENT_FAILURE) {
 		if (avahi_client_errno (client) == AVAHI_ERR_DISCONNECTED) {
+			/* Remove the service browsers from the handles */
+			g_slist_foreach (browse_handles, remove_service_browser_cb, NULL);
+			
 			/* Destroy old client */
 			avahi_client_free (client);
 			global_client = NULL;
@@ -751,6 +758,9 @@ avahi_client_callback (AvahiClient *client, AvahiClientState state, void *userda
 			/* Reconnect */
 			get_global_avahi_client ();
 		}
+	} else if (state == AVAHI_CLIENT_S_RUNNING) {
+		/* Start browsing again */
+		g_slist_foreach (browse_handles, add_service_browser_cb, NULL);
 	}
 }
 
@@ -932,6 +942,7 @@ unicast_browse_thread (gpointer data)
 }
 
 #ifdef HAVE_AVAHI
+
 static void 
 avahi_browse_callback (AvahiServiceBrowser *b,
 		       AvahiIfIndex interface,
@@ -964,6 +975,35 @@ avahi_browse_callback (AvahiServiceBrowser *b,
 				  handle->callback_data);
 	}
 }
+
+static void
+remove_service_browser_cb (gpointer data, gpointer user_data)
+{
+	GnomeVFSDNSSDBrowseHandle *handle = data;
+	handle->avahi_sb = NULL;
+}
+
+static void
+add_service_browser_cb (gpointer data, gpointer user_data)
+{
+	GnomeVFSDNSSDBrowseHandle *handle = data;
+	AvahiServiceBrowser *sb;
+	AvahiClient *client;
+    
+	client = get_global_avahi_client ();
+	if (!client)
+		return;
+	
+	sb = avahi_service_browser_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, handle->type, NULL, 
+					AVAHI_LOOKUP_USE_MULTICAST, avahi_browse_callback, handle);
+	if (sb != NULL) {
+		handle->avahi_sb = sb;
+		return;
+	}
+
+	g_warning ("Failed to create service browser: %s\n", avahi_strerror( avahi_client_errno (client)));
+}
+
 #endif
 
 #ifdef HAVE_HOWL
@@ -1127,6 +1167,7 @@ gnome_vfs_dns_sd_browse (GnomeVFSDNSSDBrowseHandle **handle_out,
 			if (sb != NULL) {
 				handle->avahi_sb = sb;
 				*handle_out = handle;
+				browse_handles = g_slist_append (browse_handles, handle);
 				return GNOME_VFS_OK;
 			}
 			g_warning ("Failed to create service browser: %s\n", avahi_strerror( avahi_client_errno (client)));
@@ -1185,8 +1226,12 @@ gnome_vfs_dns_sd_stop_browse (GnomeVFSDNSSDBrowseHandle *handle)
 	if (handle->is_local) {
 #ifdef HAVE_AVAHI
 		handle->cancelled = TRUE;
+
+        if (handle->avahi_sb)
 		avahi_service_browser_free (handle->avahi_sb);
-		free_browse_handle (handle);
+		
+	browse_handles = g_slist_remove (browse_handles, handle);
+	free_browse_handle (handle);
 #endif
 #ifdef HAVE_HOWL
 		handle->cancelled = TRUE;
