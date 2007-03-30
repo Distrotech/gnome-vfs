@@ -70,6 +70,11 @@ enum {
  */
 #define DROP_CACHE_SIZE_LIMIT (20*1024*1024)
 
+/* Frequent fadvise() calls significantly degrade performance
+ * on some file systems (e.g. XFS), so we drop at least this
+ * amount of bytes at once. */
+#define DROP_CACHE_BATCH_SIZE (512 * 1024)
+
 /* in asynch mode the progress callback does a context switch every time
  * it gets called. We'll only call it every now and then to not loose a
  * lot of performance
@@ -1211,6 +1216,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 	gpointer buffer;
 	const char *write_buffer;
 	GnomeVFSFileSize total_bytes_read;
+	GnomeVFSFileSize last_cache_drop_point;
 	gboolean forget_cache;
 	guint block_size;
 
@@ -1223,6 +1229,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 	block_size = MAX (source_block_size, target_block_size);
 	buffer = g_malloc (block_size);
 	total_bytes_read = 0;
+	last_cache_drop_point = 0;
 
 	/* Enable streaming if the total size is large */
 	forget_cache = progress->progress_info->bytes_total >= DROP_CACHE_SIZE_LIMIT;
@@ -1243,10 +1250,6 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 			result = gnome_vfs_read (source_handle, buffer,
 						 block_size, &bytes_read);
-			if (forget_cache) {
-				gnome_vfs_forget_cache (source_handle,
-							total_bytes_read, bytes_read);
-			}
 			if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
@@ -1277,9 +1280,16 @@ copy_file_data (GnomeVFSHandle *target_handle,
 			write_buffer += bytes_written;
 		} while ((result == GNOME_VFS_OK && bytes_to_write > 0) || retry);
 		
-		if (forget_cache && bytes_to_write == 0) {
+		if (forget_cache && bytes_to_write == 0 &&
+		    total_bytes_read - last_cache_drop_point > DROP_CACHE_BATCH_SIZE) {
+			gnome_vfs_forget_cache (source_handle,
+						last_cache_drop_point,
+						total_bytes_read - last_cache_drop_point);
 			gnome_vfs_forget_cache (target_handle,
-						total_bytes_read - bytes_read, bytes_read);
+						last_cache_drop_point,
+						total_bytes_read - last_cache_drop_point);
+
+			last_cache_drop_point = total_bytes_read;
 		}
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COPYING;
