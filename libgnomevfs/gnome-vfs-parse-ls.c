@@ -43,6 +43,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #ifndef TUNMLEN 
 #define TUNMLEN 256
@@ -199,9 +200,12 @@ is_time (const char *str, struct tm *tim)
 	return 1;
 }
 
-static int is_year (const char *str, struct tm *tim)
+static int is_year (const char *str, struct tm *tim, const char *carbon, int column_ptr[], int idx)
 {
 	long year;
+
+	const char *p;
+	int count = 0;
 
 	if (strchr (str,':'))
 		return 0;
@@ -213,6 +217,14 @@ static int is_year (const char *str, struct tm *tim)
 		return 0;
 
 	if (year < 1900 || year > 3000)
+		return 0;
+
+	p = carbon + column_ptr[idx -1];
+	
+	while (*(p + count) != ' ')
+		count++;
+
+	if (!((*(p+count) == ' ') && (*(p+1+count) == ' ') && (isdigit (*(p+2+count)))))
 		return 0;
 
 	tim->tm_year = (int) (year - 1900);
@@ -461,7 +473,7 @@ vfs_parse_filedate (int idx,
 
 	if (is_num (columns[idx])) {
 		if ((got_time = is_time (columns[idx], &tim)) ||
-		    (got_year = is_year (columns[idx], &tim))) {
+		    (got_year = is_year (columns[idx], &tim, carbon, column_ptr, idx))) {
 			idx++;
 
 			/* This is a special case for ctime () or Mon DD YYYY hh:mm */
@@ -470,7 +482,7 @@ vfs_parse_filedate (int idx,
 										      where the first line provides a year-like
 										      filename but no year, or a time-like filename
 										      but no time */
-			    ((!got_year && (got_year = is_year (columns[idx], &tim))) ||
+			    ((!got_year && (got_year = is_year (columns[idx], &tim, carbon, column_ptr, idx))) ||
 			     (!got_time && (got_time = is_time (columns[idx], &tim)))))
 				idx++; /* time & year or reverse */
 		} /* only time or date */
