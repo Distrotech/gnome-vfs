@@ -1,3 +1,7 @@
+gnome-vfs 2.18.1
+	  * Handle avahi being shut down better
+	  * Performance fix for xfs filesystems
+	  
 gnome-vfs 2.18.0.1
 	  * Revert the "better handling of filenames with : in it"
 	    change since that broke GnomeVFSUri for apps that use 
