@@ -1,3 +1,8 @@
+2007-04-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (strcmp_null):
+	strcmp returns int
+
 2007-03-22 Manjunath Kadajji <manjunath.kadajji@wipro.com>
 
 	* libgnomevfs/gnome-vfs-parse-ls.c: (is_year), (vfs_parse_filedate):

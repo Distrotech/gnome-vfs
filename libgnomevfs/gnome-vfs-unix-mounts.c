@@ -1093,7 +1093,7 @@ _gnome_vfs_unix_mount_point_free (GnomeVFSUnixMountPoint *mount_point)
 }
 
 
-static gboolean
+static int
 strcmp_null (const char *str1,
 	     const char *str2)
 {
