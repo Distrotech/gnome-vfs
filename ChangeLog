@@ -1,3 +1,8 @@
+2007-04-19  John McCutchan <john@johnmccutchan.com>
+
+	* modules/inotify-path (ip_event_callback)
+	Add unmounted monitors to the missing list too
+
 2007-04-12  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c (strcmp_null):

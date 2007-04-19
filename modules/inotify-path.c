@@ -376,8 +376,8 @@ ip_event_callback (ik_event_t *event)
 	if (event->mask & IP_INOTIFY_MASK)
 		ip_event_dispatch (dir_list, pair_dir_list, event);
 
-	/* We have to manage the missing list when we get a DELETE event. */
-	if (event->mask & IN_DELETE_SELF || event->mask & IN_MOVE_SELF)
+	/* We have to manage the missing list when we get a DELETE/UNMOUNT event. */
+	if (event->mask & IN_DELETE_SELF || event->mask & IN_MOVE_SELF || event->mask & IN_UNMOUNT)
 	{
 		/* Add all subscriptions to missing list */
 		g_list_foreach (dir_list, ip_wd_delete, NULL);
