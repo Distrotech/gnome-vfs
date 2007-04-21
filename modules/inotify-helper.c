@@ -210,6 +210,7 @@ ih_mask_to_EventType (guint32 mask)
 	case IN_MOVED_FROM:
 	case IN_DELETE:
 	case IN_DELETE_SELF:
+	case IN_UNMOUNT:
 		return GNOME_VFS_MONITOR_EVENT_DELETED;
 	break;
 	case IN_CREATE:
@@ -220,7 +221,6 @@ ih_mask_to_EventType (guint32 mask)
 	case IN_OPEN:
 	case IN_CLOSE_WRITE:
 	case IN_CLOSE_NOWRITE:
-	case IN_UNMOUNT:
 	case IN_ACCESS:
 	case IN_IGNORED:
 	default:
