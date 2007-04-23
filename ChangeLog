@@ -1,3 +1,10 @@
+2007-04-23  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-filesystem-type.c:
+        * libgnomevfs/gnome-vfs-volume.c:
+	Add FUSE to known filesystem types (#349622)
+	Patch from Rob Garth
+
 2007-04-21  John McCutchan  <john@johnmccutchan.com>
 
 	* modules/inotify-helper.c: (ih_mask_to_EventType):

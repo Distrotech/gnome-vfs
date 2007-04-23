@@ -380,6 +380,7 @@ gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
  *    <row><entry>ext3</entry><entry>Ext3 Linux Volume</entry><entry>Yes</entry></row>
  *    <row><entry>fat</entry><entry>MSDOS Volume</entry><entry>Yes</entry></row>
  *    <row><entry>ffs</entry><entry>BSD Volume</entry><entry>Yes</entry></row>
+ *    <row><entry>fuse</entry><entry>FUSE Volume</entry><entry>Yes</entry></row>
  *    <row><entry>hfs</entry><entry>MacOS Volume</entry><entry>Yes</entry></row>
  *    <row><entry>hfsplus</entry><entry>MacOS Volume</entry><entry>No</entry></row>
  *    <row><entry>iso9660</entry><entry>CDROM Volume</entry><entry>No</entry></row>

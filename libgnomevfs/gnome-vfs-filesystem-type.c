@@ -49,6 +49,7 @@ static struct FSInfo fs_data[] = {
 	{ "ext3"     , N_("Ext3 Linux Volume"), 1 },
 	{ "fat"      , N_("MSDOS Volume"), 1 },
 	{ "ffs"      , N_("BSD Volume"), 1 },
+	{ "fuse"     , N_("FUSE Volume"), 1 },
 	{ "hfs"	     , N_("MacOS Volume"), 1 },
 	{ "hfsplus"  , N_("MacOS Volume"), 0 },
 	{ "iso9660"  , N_("CDROM Volume"), 0 },
