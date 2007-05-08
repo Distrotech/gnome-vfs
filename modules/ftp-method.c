@@ -2229,7 +2229,7 @@ unix_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 
 		if(linkname) {
 			file_info->symlink_name = linkname;
-			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME | GNOME_VFS_FILE_INFO_FIELDS_FLAGS;
 			file_info->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK;
 		}
 
@@ -2716,7 +2716,7 @@ do_read_directory (GnomeVFSMethod *method,
 				gnome_vfs_file_info_copy (file_info, symlink_info);
 
 				GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
-				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME | GNOME_VFS_FILE_INFO_FIELDS_FLAGS;
 				file_info->symlink_name = gnome_vfs_unescape_string (uri->text != NULL ? uri->text : "/", "/");
 				
 				g_free (file_info->name);
