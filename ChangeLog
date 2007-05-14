@@ -1,3 +1,9 @@
+2007-05-14  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.19.2
+
 2007-05-08  Alexander Larsson  <alexl@redhat.com>
 
         * modules/ftp-method.c:

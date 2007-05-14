@@ -1,3 +1,9 @@
+gnome-vfs 2.19.2
+	  * Handle avahi shutdown better
+	  * ftp: Handle filenames that look like years better
+	  * performance fix for some filesystems
+	  * Some inotify fixes
+	  
 gnome-vfs 2.18.0.1
 	  * Revert the "better handling of filenames with : in it"
 	    change since that broke GnomeVFSUri for apps that use 
