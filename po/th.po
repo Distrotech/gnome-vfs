@@ -1,17 +1,17 @@
 # Thai translation for gnome-vfs.
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-vfs package.
 #
 # Sittichai Makekhuntod <hae_ha@thaimail.com>, 2003.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-27 17:47+0700\n"
-"PO-Revision-Date: 2006-08-27 17:49+0700\n"
+"POT-Creation-Date: 2007-05-21 18:33+0700\n"
+"PO-Revision-Date: 2007-05-21 18:35+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,325 +98,329 @@ msgid "Ext3 Linux Volume"
 msgstr "โวลุม Ext3 ของลินุกซ์"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "MSDOS Volume"
 msgstr "โวลุม MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "BSD Volume"
 msgstr "โวลุม BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
+msgid "FUSE Volume"
+msgstr "โวลุม FUSE"
+
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "MacOS Volume"
 msgstr "โวลุม MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "CDROM Volume"
 msgstr "โวลุมซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Hsfs CDROM Volume"
 msgstr "โวลุม Hsfs บนซีดี"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "JFS Volume"
 msgstr "โวลุม JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Windows NT Volume"
 msgstr "โวลุมวินโดวส์ NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "System Volume"
 msgstr "โวลุมระบบ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Memory Volume"
 msgstr "โวลุมหน่วยความจำ"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Minix Volume"
 msgstr "โวลุม Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
 msgstr "โวลุมเครือข่าย NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
 msgstr "โวลุม Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Reiser4 Linux Volume"
 msgstr "โวลุม Reiser4 ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "ReiserFS Linux Volume"
 msgstr "โวลุม ReiserFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows Shared Volume"
 msgstr "โวลุมใช้ร่วมของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "SuperMount Volume"
 msgstr "โวลุม SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "DVD Volume"
 msgstr "โวลุม DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Solaris/BSD Volume"
 msgstr "โวลุม Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Udfs Solaris Volume"
 msgstr "โวลุม Udfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Pcfs Solaris Volume"
 msgstr "โวลุม Pcfs ของ Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Sun SAM-QFS Volume"
 msgstr "โวลุม SAM-QFS ของซัน"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Temporary Volume"
 msgstr "โวลุมชั่วคราว"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Enhanced DOS Volume"
 msgstr "โวลุม DOS แบบปรับปรุง"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Windows VFAT Volume"
 msgstr "โวลุม VFAT ของวินโดวส์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Xenix Volume"
 msgstr "โวลุม Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XFS Linux Volume"
 msgstr "โวลุม XFS ของลินุกซ์"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "XIAFS Volume"
 msgstr "โวลุม XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "CIFS Volume"
 msgstr "โวลุม CIFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:114
+#: libgnomevfs/gnome-vfs-filesystem-type.c:115
 msgid "Unknown"
 msgstr "ไม่ทราบชนิด"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
 msgstr "โวลุม %s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "ไดรว์ %s/%s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "ไดรว์ %s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "ไดรว์ฟลอปปี้"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "ไดรว์ Compact Flash"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "ไดรว์ Memory Stick"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "ไดรว์ Smart Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "ไดรว์ SD/MMC"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ไดรว์ Zip"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "ไดรว์ Jaz"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "ไดรว์ปากกา"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "เครื่องเล่นเพลง %s %s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "กล้องดิจิทัล %s %s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "ไดรว์"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "%s ภายนอก"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "แผ่น CD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "แผ่น CD-R เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "แผ่น CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "แผ่น CD-RW เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "แผ่น CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "แผ่น DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "แผ่น DVD-RAM เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "แผ่น DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "แผ่น DVD-R เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "แผ่น DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "แผ่น DVD-RW เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "แผ่น DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "แผ่น DVD+R เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "แผ่น DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "แผ่น DVD+RW เปล่า"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "แผ่น DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "แผ่นเพลง"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
 msgstr "โวลุมถอดเสียบ %s"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "โวลุม"
 
@@ -439,23 +443,23 @@ msgstr "ไม่รู้จักงานชนิด %u"
 msgid "Operation stopped"
 msgstr "หยุดปฏิบัติแล้ว"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: libgnomevfs/gnome-vfs-mime-info.c:631
 #: libgnomevfs/gnome-vfs-mime-info.c:638
 #: libgnomevfs/gnome-vfs-mime-info.c:646
@@ -472,277 +476,277 @@ msgid ""
 "supported."
 msgstr "ฟังก์ชันเลิกใช้แล้ว  ไม่รองรับการแก้ไขฐานข้อมูล MIME อีกต่อไป"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:708
+#: libgnomevfs/gnome-vfs-parse-ls.c:720
 #, c-format
 msgid "Could not parse: %s"
 msgstr "ไม่สามารถแจง: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:710
+#: libgnomevfs/gnome-vfs-parse-ls.c:722
 msgid "More parsing errors will be ignored."
 msgstr "จะไม่สนใจข้อผิดพลาดในการแจงที่เหลือ"
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "ไม่มีข้อผิดพลาด"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "ไม่พบแฟ้ม"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "เกิดข้อผิดพลาดทั่วไป"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "เกิดข้อผิดพลาดภายใน"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "พารามิเตอร์ใช้ไม่ได้"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "ไม่รองรับปฏิบัติการนี้"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "ผิดพลาดเกี่ยวกับ I/O"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "ข้อมูลเสีย"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "รูปแบบใช้ไม่ได้"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "ไฟล์แฮนเดิลเสีย"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "แฟ้มใหญ่เกินไป"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "ไม่เหลือที่ว่างบนอุปกรณ์"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "ระบบแฟ้มอ่านได้เท่านั้น"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
 msgstr "URI ใช้ไม่ได้"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "แฟ้มไม่ได้เปิดอยู่"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "โหมดการเปิดใช้ไม่ได้"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "ถูกปฏิเสธการเข้าใช้"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "มีแฟ้มเปิดอยู่มากเกินไป"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "จบแฟ้ม"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "ไม่ใช่โฟลเดอร์"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "กำลังดำเนินการ"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "ปฏิบัติการถูกขัดจังหวะ"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "แฟ้มมีอยู่แล้ว"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "จุดเชื่อมวนรอบกลับมาหาตัวเอง"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "ปฏิบัติการนี้ไม่อนุญาต"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "เป็นโฟลเดอร์"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "หน่วยความจำไม่พอ"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "ไม่พบโฮสต์"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "ชื่อโฮสต์ไม่ถูกต้อง"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "โฮสต์นี้ไม่มีที่อยู่"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "เข้าระบบไม่สำเร็จ"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "ปฏิบัติการถูกยกเลิก"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "โฟลเดอร์ยุ่งอยู่"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "โฟลเดอร์ไม่ว่าง"
 
 # See docs for EMLINK -- This file has too many hard links.
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "แฟ้มนี้มีฮาร์ดลิงก์มากเกินไป"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "ระบบแฟ้มอ่านได้เท่านั้น"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "ไม่ได้อยู่ระบบแฟ้มเดียวกัน"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:79
+#: libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "ชื่อยาวไป"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:80
+#: libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "บริการไม่มีให้ใช้"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:81
+#: libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "ร้องขอข้อมูลของบริการที่ล้าสมัย"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:82
+#: libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "โพรโทคอลผิดพลาด"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: libgnomevfs/gnome-vfs-result.c:83
+#: libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "ไม่พบเบราว์เซอร์หลัก"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "ไม่มีปฏิบัติการกำหนดไว้ใช้"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: libgnomevfs/gnome-vfs-result.c:85
+#: libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
 msgstr "ไม่มีโปรแกรมจัดการ URL ชนิดนี้"
 
 #. GNOME_VFS_ERROR_PARSE
-#: libgnomevfs/gnome-vfs-result.c:86
+#: libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "แจงคำสั่งไม่สำเร็จ"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: libgnomevfs/gnome-vfs-result.c:87
+#: libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "เรียกใช้คำสั่งไม่สำเร็จ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:88
+#: libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "หมดเวลาคอย"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: libgnomevfs/gnome-vfs-result.c:89
+#: libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "เกิดข้อผิดพลาดกับ name server"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: libgnomevfs/gnome-vfs-result.c:90
+#: libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "ทรัพยากรถูกล็อคอยู่"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: libgnomevfs/gnome-vfs-result.c:91
+#: libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "ฟังก์ชันเลิกใช้แล้ว"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
-#: libgnomevfs/gnome-vfs-result.c:92
+#: libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
 msgstr "ชื่อแฟ้มใช้ไม่ได้"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
-#: libgnomevfs/gnome-vfs-result.c:93
+#: libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
 msgstr "ไม่ใช่ลิงก์สัญลักษณ์"
 
-#: libgnomevfs/gnome-vfs-result.c:217
+#: libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
 
@@ -974,7 +978,7 @@ msgstr "บ้าน"
 msgid "Filesystem"
 msgstr "ระบบแฟ้ม"
 
-#: modules/file-method.c:494
+#: modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ไม่รู้จัก GnomeVFSSeekPosition %d"
@@ -983,12 +987,12 @@ msgstr "ไม่รู้จัก GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "เครือข่ายวินโดวส์"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ไม่สามารถจำแนกเอกลักษณ์ของเครื่องฝั่งโน้น (%s) ได้"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1001,11 +1005,11 @@ msgstr ""
 "ข้อความบอกเอกลักษณ์ที่เครื่องฝั่งโน้นส่งมาคือ \"%s\"  "
 "ถ้าคุณต้องการมั่นใจว่าปลอดภัยที่จะดำเนินการต่อ กรุณาติดต่อผู้ดูแลระบบ"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "เข้าระบบต่อไป"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "ยกเลิกการเข้าระบบ"
 
@@ -1042,12 +1046,12 @@ msgstr "รหัสผ่านของคุณจะถูกส่งไป
 msgid "Your password will be transmitted encrypted."
 msgstr "รหัสผ่านของคุณจะถูกส่งไปโดยเข้ารหัสลับ"
 
-#: programs/authentication.c:156
+#: programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "คุณต้องล็อกอินเพื่อเข้าใช้ %s ในโดเมน %s\n"
 
-#: programs/authentication.c:158
+#: programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "คุณต้องล็อกอินเพื่อเข้าใช้ %s\n"
