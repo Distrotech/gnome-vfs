@@ -1,33 +1,33 @@
 # translation of gnome-vfs.HEAD.gu.po to Gujarati
-# translation of gu.po to Gujarati
-# Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
 # MagNet <magnet@magnet-i.com>, 2004.
-# Ankit Patel <ankit@redhat.com>, 2004, 2005.
+# Ankit Patel <ankit@redhat.com>, 2004, 2005, 2007.
 # Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
+# Copyright (C) 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-17 23:33+0200\n"
-"PO-Revision-Date: 2006-07-18 09:42+0530\n"
-"Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
-"Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2007-04-24 03:37+0100\n"
+"PO-Revision-Date: 2007-07-04 15:33+0530\n"
+"Last-Translator: Ankit Patel <ankit@redhat.com>\n"
+"Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
 "\n"
 "\n"
 "\n"
 "\n"
 "\n"
 "\n"
-"X-Generator: KBabel 1.9.1\n"
+"\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "ISO 9660 Volume"
+msgstr "ISO 9660 વોલ્યુમ"
 
 # libgnomevfs/gnome-vfs-configuration.c:223
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
@@ -72,15 +72,15 @@ msgstr "%s:%d પદચ્છેદન અડધેથી બંધ થઈ ગ�
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
-msgstr "AFFS કદ"
+msgstr "AFFS વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
-msgstr "AFFS નેટવર્ક કદ"
+msgstr "AFFS નેટવર્ક વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr "આપોઆપ-શોધાયેલ કદ"
+msgstr "આપોઆપ-શોધાયેલ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
@@ -93,7 +93,7 @@ msgstr "CD ડિજિટલ એડિયો"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
-msgstr "હાર્ડવેર ઉપકરણ કદ"
+msgstr "હાર્ડવેર ઉપકરણ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "EncFS Volume"
@@ -102,333 +102,337 @@ msgstr "EncFS વોલ્યુમ"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "Ext2 Linux Volume"
-msgstr "Ext2 લિનક્સ કદ"
+msgstr "Ext2 લિનક્સ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "Ext3 Linux Volume"
-msgstr "Ext3 લિનક્સ કદ"
+msgstr "Ext3 લિનક્સ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "MSDOS Volume"
-msgstr "MSDOS કદ"
+msgstr "MSDOS વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "BSD Volume"
 msgstr "BSD વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-msgid "MacOS Volume"
-msgstr "MacOS કદ"
+msgid "FUSE Volume"
+msgstr "FUSE વોલ્યુમ"
 
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
-msgid "CDROM Volume"
-msgstr "CDROM કદ"
+msgid "MacOS Volume"
+msgstr "MacOS વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
-msgid "Hsfs CDROM Volume"
-msgstr "Hsfs CDROM કદ"
+msgid "CDROM Volume"
+msgstr "CDROM વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-msgid "JFS Volume"
-msgstr "JFS કદ"
+msgid "Hsfs CDROM Volume"
+msgstr "Hsfs CDROM વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
-msgid "Windows NT Volume"
-msgstr "વિન્ડો NT કદ"
+msgid "JFS Volume"
+msgstr "JFS વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+msgid "Windows NT Volume"
+msgstr "Windows NT વોલ્યુમ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "System Volume"
-msgstr "સિસ્ટમ કદ"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-msgid "Memory Volume"
-msgstr "મૅમરી કદ"
+msgstr "સિસ્ટમ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+msgid "Memory Volume"
+msgstr "મેમરી વોલ્યુમ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Minix Volume"
-msgstr "Minix કદ"
+msgstr "Minix વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
-msgstr "NFS નેટવર્ક કદ"
+msgstr "NFS નેટવર્ક વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
-msgstr "નેટવેર કદ"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
-msgid "Reiser4 Linux Volume"
-msgstr "Reiser4 Linux Volume"
+msgstr "Netware વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
-msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS લિનક્સ કદ"
+msgid "Reiser4 Linux Volume"
+msgstr "Reiser4 Linux વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
-msgid "Windows Shared Volume"
-msgstr "સહભાગી વિન્ડો કદ"
+msgid "ReiserFS Linux Volume"
+msgstr "ReiserFS Linux વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
-msgid "SuperMount Volume"
-msgstr "સુપરમાઉન્ટ કદ"
+msgid "Windows Shared Volume"
+msgstr "Windows Shared વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
-msgid "DVD Volume"
-msgstr "DVD કદ"
+msgid "SuperMount Volume"
+msgstr "SuperMount વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
-msgid "Solaris/BSD Volume"
-msgstr "Solaris/BSD કદ"
+msgid "DVD Volume"
+msgstr "DVD વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
-msgid "Udfs Solaris Volume"
-msgstr "Udfs Solaris કદ"
+msgid "Solaris/BSD Volume"
+msgstr "Solaris/BSD વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
-msgid "Pcfs Solaris Volume"
-msgstr "Pcfs Solaris કદ"
+msgid "Udfs Solaris Volume"
+msgstr "Udfs Solaris વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+msgid "Pcfs Solaris Volume"
+msgstr "Pcfs Solaris વોલ્યુમ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Sun SAM-QFS Volume"
 msgstr "સન SAM-QFS વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Temporary Volume"
 msgstr "કામચલાઉ વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
-msgid "Enhanced DOS Volume"
-msgstr "સુધારેલ DOS કદ"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
-msgid "Windows VFAT Volume"
-msgstr "વિન્ડો VFAT કદ"
+msgid "Enhanced DOS Volume"
+msgstr "સુધારેલ DOS વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
-msgid "Xenix Volume"
-msgstr "Xenix કદ"
+msgid "Windows VFAT Volume"
+msgstr "વિન્ડો VFAT વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
-msgid "XFS Linux Volume"
-msgstr "XFS લિનક્સ કદ"
+msgid "Xenix Volume"
+msgstr "Xenix વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
-msgid "XIAFS Volume"
-msgstr "XIAFS કદ"
+msgid "XFS Linux Volume"
+msgstr "XFS લિનક્સ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+msgid "XIAFS Volume"
+msgstr "XIAFS વોલ્યુમ"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "CIFS Volume"
 msgstr "CIFS Volume"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
 msgid "Unknown"
 msgstr "અજાણીતુ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
-msgstr "%s કદ"
+msgstr "%s વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "%s/%s ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "%s ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "ફ્લોપી ડ્રાઇવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "સંકુચિત ફ્લેશ ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "મૅમરી સ્ટીક ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "સ્માર્ટ મિડીયા ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "SD/MMC ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ઝીપ ડ્રાઇવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "જેઝ ડ્રાઇવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "પેન ડ્રાઇવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s મ્યુઝીક પ્લેયર"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s ડિજીટલ કેમેરા"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "બાહ્ય %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "CD-ROM ડ્રાઈવ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "બ્લેક CD-R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "CD-R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "કોરી CD-RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "CD-RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "કોરી DVD-RAM ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "કોરી DVD-R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "DVD-R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "કોરી DVD-RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "DVD-RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "કોરી DVD+R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "DVD+R ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "કોરી DVD+RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "DVD+RW ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "ઓડિયો ડિસ્ક"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr "%s દૂર કરી શકાય તેવું કદ"
+msgstr "%s દૂર કરી શકાય તેવું વોલ્યુમ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "કદ"
 
@@ -455,23 +459,23 @@ msgstr "કાર્યનો પ્રકાર %u જાણીતો નથી
 msgid "Operation stopped"
 msgstr "પ્રક્રિયા થોભી દેવાઇ"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -489,323 +493,323 @@ msgid ""
 msgstr "નીચું પડાયેલ વિધેય. MIME ડેટાબેઝને કરવામાં આવેલા સુધારા લાંબા સમય સુધી આધારભૂત નથી."
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
 #, c-format
 msgid "Could not parse: %s"
 msgstr "પદચ્છેદ કરી શકાયુ નહિ: %s"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
 msgid "More parsing errors will be ignored."
 msgstr "પદચ્છેદ કરવામાં વધારાની ભૂલો અવગણાશે."
 
 # libgnomevfs/gnome-vfs-result.c:35
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "કોઇ ભૂલ નથી"
 
 # libgnomevfs/gnome-vfs-result.c:36
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "ફાઈલ મળી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:37
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "સામાન્ય ભૂલ"
 
 # libgnomevfs/gnome-vfs-result.c:38
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "આંતરિક ભૂલ"
 
 # libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "અયોગ્ય પરિમાણો"
 
 # libgnomevfs/gnome-vfs-result.c:40
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "નિરાધારિત પ્રક્રિયાઓ"
 
 #
 # libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "I/O ભૂલ"
 
 # libgnomevfs/gnome-vfs-result.c:42
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "માહિતી ખરાબ થઇ ગયેલ છે"
 
 # libgnomevfs/gnome-vfs-result.c:43
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "માળખુ યોગ્ય નથી"
 
 # libgnomevfs/gnome-vfs-result.c:44
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "ખરાબ ફાઈલ હેન્ડલ"
 
 # libgnomevfs/gnome-vfs-result.c:45
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "ફાઈલ ખૂબ મોટી છે"
 
 # libgnomevfs/gnome-vfs-result.c:46
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "ઉપકરણ પર કોઇ ખાલી જગ્યા નથી"
 
 # libgnomevfs/gnome-vfs-result.c:47
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "ફક્ત વાંચી શકાય તેવી ફાઈલ સિસ્ટમ"
 
 # libgnomevfs/gnome-vfs-result.c:48
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
 msgstr "અયોગ્ય URI"
 
 # libgnomevfs/gnome-vfs-result.c:49
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "ફાઈલ ખુલ્લી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:50
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "ખોલવા માટેની સ્થિતી યોગ્ય નથી"
 
 # libgnomevfs/gnome-vfs-result.c:51
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "પ્રાપ્ત કરી શકાયું નહિ"
 
 # libgnomevfs/gnome-vfs-result.c:52
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "ઘણી ફાઈલો ખુલ્લી છે"
 
 # libgnomevfs/gnome-vfs-result.c:53
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "ફાઈલનો અંત"
 
 # libgnomevfs/gnome-vfs-result.c:54
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "આ ડિરેક્ટરી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:55
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "પ્રક્રિયા ચાલુ છે"
 
 # libgnomevfs/gnome-vfs-result.c:56
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "પ્રક્રિયા અંતરાય છે"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "ફાઈલ ઉપલબ્ધ છે"
 
 # libgnomevfs/gnome-vfs-result.c:58
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "પુનરાવર્તિત કડીઓ મળી છે"
 
 # libgnomevfs/gnome-vfs-result.c:59
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "પ્રક્રિયા માટે પરવાનગી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:60
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "શું આ ડિરેક્ટરી છે"
 
 # libgnomevfs/gnome-vfs-result.c:61
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "પૂરતી મેમરી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:62
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "યજમાન મળતો નથી"
 
 # libgnomevfs/gnome-vfs-result.c:63
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "યજમાનનું નામ અયોગ્ય છે"
 
 # libgnomevfs/gnome-vfs-result.c:64
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "યજમાનનું કોઇ સરનામું નથી"
 
 # libgnomevfs/gnome-vfs-result.c:65
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "પ્રવેશ પ્રક્રિયા નિષ્ફળ"
 
 # libgnomevfs/gnome-vfs-result.c:66
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "પ્રક્રિયા રદ કરેલ છે"
 
 # libgnomevfs/gnome-vfs-result.c:67
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "ડિરેક્ટરી વ્યસ્ત છે"
 
 # libgnomevfs/gnome-vfs-result.c:68
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "ડિરેક્ટરી ખાલી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:69
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "વધારે પડતી કડીઓ"
 
 # libgnomevfs/gnome-vfs-result.c:70
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "ફક્ત વાંચી શકાય તેવી ફાઈલ સિસ્ટમ"
 
 # libgnomevfs/gnome-vfs-result.c:71
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "સરખી ફાઈલ સિસ્ટમ પર નથી"
 
 # libgnomevfs/gnome-vfs-result.c:72
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "નામ ખૂબ જ લાંબુ છે"
 
 # libgnomevfs/gnome-vfs-result.c:73
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "સેવા ઉપલબ્ધ નથી"
 
 # libgnomevfs/gnome-vfs-result.c:74
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "જૂની સેવાની માહિતી માટે વિનંતી કરે છે"
 
 # libgnomevfs/gnome-vfs-result.c:75
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "પ્રોટોકોલમાં ભૂલ"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "માસ્ટર બ્રાઉઝર શોધી શકાયું નહિ"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:84
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "કોઇ મૂળભુત કાર્ય સંકળાયેલું નથી"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
 msgstr "URL યોજના માટે કોઇ હેન્ડલર નથી"
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "આદેશ વાક્યના પદચ્છેદમાં ભૂલ"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "આદેશ શરૂ કરવામાં ભૂલ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "સમય સમાપ્તિ સુધી પહોંચી ગયા"
 
 # libgnomevfs/gnome-vfs-result.c:37
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:89
+#: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "નામસર્વર ભૂલ"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "સ્રોતને તાળુ મરાયેલ છે"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "વિધેય કોલ નીચે પાડી દેવાયો"
 
 # libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_ERROR_INVALID_FILENAME
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
 msgstr "અયોગ્ય ફાઈલનામ"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
-#: ../libgnomevfs/gnome-vfs-result.c:93
+#: ../libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
 msgstr "સાંકેતિક કડી નથી"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "અજાણીતી ભૂલ"
 
@@ -932,7 +936,7 @@ msgstr "DVD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
-msgstr "રુટ કદ"
+msgstr "રુટ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
@@ -941,7 +945,7 @@ msgstr "ઓડિયો સીડી"
 # libgnomevfs/gnome-vfs-result.c:137
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
-msgstr "અજાણીતુ કદ"
+msgstr "અજાણીતુ વોલ્યુમ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
@@ -950,19 +954,19 @@ msgstr "નેટવર્ક સર્વર"
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
+msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. વોલ્યુમાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "કદને માઉન્ટ કરવામાં ભૂલ. કદાચ ઉપકરણમાં કોઇ મિડિયા નથી."
+msgstr "કદને માઉન્ટ કરવામાં ભૂલ. વોલ્યુમાચ ઉપકરણમાં કોઇ મિડિયા નથી."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી "
+"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. વોલ્યુમાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી "
 "શકાય નહિ."
 
 #. Probably a wrong password
@@ -978,7 +982,7 @@ msgstr ""
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "કદને માઉન્ટ કરવામાં ભૂલ. કદાચ કદનુ બંધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી શકાય નહિ."
+msgstr "કદને માઉન્ટ કરવામાં ભૂલ. વોલ્યુમાચ વોલ્યુમનુ બંધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી શકાય નહિ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -986,7 +990,7 @@ msgstr "પસંદ કરેલ ફ્લોપી ડ્રાઇવને �
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
-msgstr "પસંદ કરેલ કદને માઉન્ટ કરવામાં ભૂલ."
+msgstr "પસંદ કરેલ વોલ્યુમને માઉન્ટ કરવામાં ભૂલ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 msgid ""
@@ -998,7 +1002,7 @@ msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
-msgstr "પસંદ કરેલ કદનુ માઉન્ટ દૂર કરવામાં ભૂલ."
+msgstr "પસંદ કરેલ વોલ્યુમનુ માઉન્ટ દૂર કરવામાં ભૂલ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
@@ -1050,7 +1054,7 @@ msgid "Filesystem"
 msgstr "ફાઇલસિસ્ટમ"
 
 # modules/file-method.c:381
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
@@ -1059,12 +1063,12 @@ msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
 msgid "Windows Network"
 msgstr "વિન્ડો નેટવર્ક"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "દૂરસ્થ કમ્પ્યૂટર (%s) ની ઓળખ અજ્ઞાત છે."
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1077,11 +1081,11 @@ msgstr ""
 "દૂરસ્થ કમ્પ્યૂટર દ્વારા મોકલવામાં આવતી ઓળખ %s છે. જો તમે સંપૂર્ણપણે ચોક્કસ થવા માંગો તો ચાલુ "
 "રાખવા માટે એ સુરક્ષિત છે, સિસ્ટમ સંચાલકનો સંપર્ક કરો."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "કોઈપણ રીતે પ્રવેશો"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "પ્રવેશ રદ કરો"
 
@@ -1120,12 +1124,12 @@ msgstr "તમારો પાસવર્ડ એનક્રિપ્ટ થય
 msgid "Your password will be transmitted encrypted."
 msgstr "તમારો પાસવર્ડ એનક્રિપ્ટ થયેલ પરિવહન થશે."
 
-#: ../programs/authentication.c:156
+#: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "%s ડોમેઈન %s વાપરવા માટે તમારે પ્રવેશ કરવો જ પડશે\n"
 
-#: ../programs/authentication.c:158
+#: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "%s વાપરવા માટે તમારે પ્રવેશ કરવો જ પડશે\n"
