@@ -11,24 +11,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-02 04:29+0000\n"
-"PO-Revision-Date: 2006-08-30 16:07+0530\n"
-"Last-Translator: Felix <ifelix25@gmail.com>\n"
+"POT-Creation-Date: 2007-04-24 03:37+0100\n"
+"PO-Revision-Date: 2007-07-12 15:21+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: Tamil <ta@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "ISO 9660 பிரிவு"
+msgstr "ISO 9660 தொகுதி"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
@@ -105,325 +100,329 @@ msgid "Ext3 Linux Volume"
 msgstr "Ext3 லினக்ஸ் பிரிவு"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "MSDOS Volume"
 msgstr "MSDOS பிரிவு"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "BSD Volume"
 msgstr "BSD தொகுதி"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+msgid "FUSE Volume"
+msgstr "FUSE தொகுதி"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "MacOS Volume"
 msgstr "MacOS பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "CDROM Volume"
 msgstr "CDROM பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "JFS Volume"
 msgstr "JFS பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Windows NT Volume"
 msgstr "விண்டோஸ் என்டி பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "System Volume"
 msgstr "கணினி பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Memory Volume"
 msgstr "நினைவிடம் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Minix Volume"
 msgstr "மினிக்ஸ் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
 msgstr "NFS வலைப்பின்னல் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
 msgstr "நெட்வேர் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 லினக்ஸ் தொகுதி"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS லினக்ஸ் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows Shared Volume"
 msgstr "விண்டோஸ் பகிர்ந்தளிக்கப்பட்ட பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "SuperMount Volume"
 msgstr "சிறப்பு ஏற்றி பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "DVD Volume"
 msgstr "DVD பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Solaris/BSD Volume"
 msgstr "சோலாரிஸ்/BSD பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Udfs Solaris Volume"
 msgstr "Udfs சோலாரிஸ் பகிர்வு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs சோலாரிஸ் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Sun SAM-QFS Volume"
 msgstr "சன் SAM-QFS பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Temporary Volume"
 msgstr "தற்காலிக தொகுதி"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Enhanced DOS Volume"
 msgstr "மேம்படுத்தப்பட்ட DOS பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Windows VFAT Volume"
 msgstr "விண்டோஸ் VFAT பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Xenix Volume"
 msgstr "ஜெனிக்ஸ் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XFS Linux Volume"
 msgstr "XFS லினக்ஸ் பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "XIAFS Volume"
 msgstr "XIAFS பிரிவு"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "CIFS Volume"
 msgstr "CIFS தொகுதி"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
 msgid "Unknown"
 msgstr "தெரியாத"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
 msgstr "%s தொகுதி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "%s/%s இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "%s இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "நெகிழ்வட்டு இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "பொருத்தமான ஃப்ளாஷ் இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "நினைவக அட்டை இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "நல்ல ஊடக இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "SD/MMC இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "ஜிப் இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "ஜாஸ் இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "பேனா இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s இசை இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s டிஜிட்டல் கேமரா"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "இயக்கி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "வெளியார்ந்த %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "CD-R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "வெற்று CD-R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "CD-R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "வெற்று CD-RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "CD-RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "வெற்று DVD-RAM வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "வெற்று DVD-R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "DVD-R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "வெற்று DVD-RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "DVD-RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "வெற்று DVD+R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "DVD+R வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "வெற்று DVD+RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "DVD+RW வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "ஆடியோ வட்டு"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
 msgstr "%s அகற்றத்தக்க தொகுதி"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "தொகுதி"
 
@@ -432,7 +431,8 @@ msgstr "தொகுதி"
 msgid "Unknown operation type %u"
 msgstr "தெரியாத %u செயல் வகை"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1025
+#: ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "திறந்திருக்கும் GIOChannelக்கு குழாய் படைக்க முடியவில்லை: %s"
@@ -474,281 +474,279 @@ msgstr "செயல் நிறுத்தப்பட்டுள்ளத�
 #: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
 #: ../libgnomevfs/gnome-vfs-mime-info.c:714
-msgid ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
+msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
 msgstr "மதிப்பற்ற செயல். மைம் தரவுத்தளத்தில் பயனீட்டாளர் மாற்றம் செய்வதற்கு ஆதரவு இல்லை"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
 #, c-format
 msgid "Could not parse: %s"
 msgstr "அலகிடமுடியவில்லை: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
 msgid "More parsing errors will be ignored."
 msgstr "எஞ்சிய பகுப்பு பிழைகள் தவிர்க்கப்படும்"
 
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "பிழைகள் கிடையாது"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "கோப்பு காணவில்லை"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "இனமற்ற பிழை"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "உள்ளமை பிழை"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "செல்லாத அளவுருக்கள்"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "ஆதரவற்ற செயல்"
 
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "I/O பிழை"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "சீரழிந்த தரவு"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "செல்லுபடிற்ற படிவம்"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "கோப்பு கைப்பிடி கெட்டது"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "மிகப் பெரிய கோப்பு"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "கருவியில் இடம் கிடையாது"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "கோப்பு அமைப்பு வாசித்தல் மட்டுமே"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
 msgstr "செல்லுபடிற்ற URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "கோப்பு திறந்து இல்லை"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "திறக்கும் முறைமை செல்லுபடியாகாது"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "அனுமதி மறுக்கப்பட்டது"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "அதிகமான கோப்புகள் திறக்கப்பட்டுள்ளன"
 
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "கோப்பு முடிவு"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "அடைவு இல்லை"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "இயக்கம் நடைபெறுகின்றது"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "இயக்கம் தடைசெய்யப்பட்டுள்ளது"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "கோப்பு ஏற்கனவே உண்டு"
 
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "இணைப்புகள் மீண்டும் செல்வது நிறுத்தப்பட்டது"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "செய்கைக்கு அனுமதி கிடையாது"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "இது ஓர் அடைவு"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "நினைவகம் போதாது"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "விருந்தோம்பு காணவில்லை"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "செல்லாத விருந்தோம்பு பெயர்"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "விருந்தோம்புக்கு முகவரி கிடையாது"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "உள்நுழைவு நொடிப்படைந்தது"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "செய்கை நீக்கப்பட்டுள்ளது"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "அடைவு பயன்படுத்தப்படுகின்றது"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "தேக்ககம் வெற்றானது அல்ல"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "மிகக்கூடிய இணைப்புகள்"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "கோப்பு அமைப்பு வாசித்தல் மட்டுமே"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "ஒரே கோப்பு அமைப்பில் இல்லை"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "மிக-நீண்ட பெயர்"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "சேவை கிடையாது"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "தேவையற்ற சேவைதகவல்களை கேட்கிறது"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "நெறிமுறை பிழை"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "முதன்மை மேலோடி கண்டுபிடிக்க முடியவில்லை"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:84
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "இயல்பான செயல் எதுவும் சேர்க்கப்படவில்லை"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
 msgstr "URL முறைக்கான கையாளல் எதுவுமில்லை"
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "கட்டளை வரிசை அலகிடும்போது பிழை"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "கட்டளை தொடங்கும்போது பிழை"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "காலம் கடந்தது"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:89
+#: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "பெயர் சேவகன் பிழை"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "வளங்கள் பூட்டப்பட்டது"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "செயலுக்கான அழைப்பு தேவையற்றதாக்கப்படது"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
 msgstr "தவறான கோப்பு பெயர்"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
-#: ../libgnomevfs/gnome-vfs-result.c:93
+#: ../libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
 msgstr "ஒரு குறியீடு இணைப்பு இல்லை"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "தெரியாத பிழை"
 
@@ -887,8 +885,7 @@ msgstr "வலைப்பின்னல் சேவகன்"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. ஒருவேலை நெகிழ்வட்டு இல்லாமல் இருக்கலாம்"
 
 #. All others
@@ -897,24 +894,16 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "பிரிவை ஏற்ற முடியவில்லை.காரணம் சாதனத்தில் ஊடகம் இல்லாமல் இருக்கலாம்"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
 msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. நெகிழ்வட்டு ஏற்ற முடியாத நிலையில் உள்ளது"
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-msgid ""
-"Unable to mount the volume. If this is an encrypted drive, then the wrong "
-"password or key was used."
-msgstr ""
-"தொகுதியை ஏற்ற முடியவில்லை. இது குறிமுறை செய்யப்பட்ட இயக்கி என்றால், பின் தவறான "
-"கடவுச்சொல் அல்லது விசை பயன்படுத்தப்பட்டிருக்கும்."
+msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
+msgstr "தொகுதியை ஏற்ற முடியவில்லை. இது குறிமுறை செய்யப்பட்ட இயக்கி என்றால், பின் தவறான கடவுச்சொல் அல்லது விசை பயன்படுத்தப்பட்டிருக்கும்."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
 msgstr "தேர்வு செய்யப்பட்ட பிரிவை ஏற்ற முடியவில்லை. சாதனம் ஏற்ற முடியாத நிலையில் உள்ளது"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
@@ -926,12 +915,8 @@ msgid "Unable to mount the selected volume."
 msgstr "தேர்வு செய்யப்பட்ட பிரிவை ஏற்ற முடியவில்லை"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-msgid ""
-"Unable to unmount the selected volume. The volume is in use by one or more "
-"programs."
-msgstr ""
-"தேர்வு செய்யப்பட்ட தொகுதியை ஏற்ற முடியவில்லை. தொகுதி ஒன்று அல்லது மேற்பட்ட நிரல்களால் "
-"பயன்படுத்தப்படுகிறது."
+msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
+msgstr "தேர்வு செய்யப்பட்ட தொகுதியை ஏற்ற முடியவில்லை. தொகுதி ஒன்று அல்லது மேற்பட்ட நிரல்களால் பயன்படுத்தப்படுகிறது."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -985,7 +970,7 @@ msgstr "இல்லம்"
 msgid "Filesystem"
 msgstr "கோப்பு அமைப்புகள்"
 
-#: ../modules/file-method.c:494
+#: ../modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "தெரியாத GnomeVFSSeekPosition %d"
@@ -994,29 +979,27 @@ msgstr "தெரியாத GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "விண்டோஸ் வலைப்பின்னல்்"
 
-#: ../modules/sftp-method.c:1422
+#: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "(%s) தொலை கணினியை கண்டுபிடிக்க முடியவில்லை"
 
-#: ../modules/sftp-method.c:1423
+#: ../modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 msgstr ""
 "இது முதல்முதலாக கணினிக்குள் நுழையும் போது ஏற்படும்\n"
 "\n"
-"தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் "
-"கணினி மேலாளரை அணுகவும்."
+"தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் கணினி மேலாளரை அணுகவும்."
 
-#: ../modules/sftp-method.c:1431
+#: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
-#: ../modules/sftp-method.c:1432
+#: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "உள் நுழைவதை ரத்து செய்யவும்"
 
@@ -1053,12 +1036,12 @@ msgstr "உங்கள் கடவுச்சொல் குறிமுற�
 msgid "Your password will be transmitted encrypted."
 msgstr "உங்கள் கடவுச்சொல் குறிமுறையாக மாற்றப்படும்."
 
-#: ../programs/authentication.c:156
+#: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "புரவலன் %sஐ அணுக நீங்கள் உள் அனுமதி பெற வேண்டும்%s\n"
 
-#: ../programs/authentication.c:158
+#: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "%sஐ அணுக நீங்கள் உள் அனுமதி பெற வேண்டும்\n"
@@ -1077,18 +1060,11 @@ msgstr "இயல்பான முனையத்திற்கான Exec �
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"கோப்புகளை பார்க்க தேவைப்படும் பயன்பாடுகளுக்கு பொருள்கள் தேவை. அளவுரு %s அதன் URI யால் "
-"மாற்றப்படும், அளவுரு %c அதன் பொருள் அடையாளத்தால் மாற்றப்படும்"
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "கோப்புகளை பார்க்க தேவைப்படும் பயன்பாடுகளுக்கு பொருள்கள் தேவை. அளவுரு %s அதன் URI யால் மாற்றப்படும், அளவுரு %c அதன் பொருள் அடையாளத்தால் மாற்றப்படும்"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
+msgid "The default terminal application to use for applications that require a terminal."
 msgstr "முனையத்திறகு தேவைப்படும் இயல்பான முனைய பயன்பாடு "
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
@@ -1180,73 +1156,47 @@ msgid "The handler for \"trash\" URLs"
 msgstr "\"trash\" கையாள்வதற்கான URL"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"aim\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"aim\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
-msgstr ""
-"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid ""
-"True if the command specified in the \"command\" key should handle \"h323\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"h323\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid ""
-"True if the command specified in the \"command\" key should handle \"http\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
 msgstr "\"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"http\" URL ஐ கையாளுமெனில்,உண்மை."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid ""
-"True if the command specified in the \"command\" key should handle \"https\" "
-"URLs."
-msgstr ""
-"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"info\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
+msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"man\" URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
+msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
+msgid "True if the command used to handle this type of URL should be run in a terminal."
 msgstr "இந்த வகை URL ஐ முனையத்தில் இயக்க முடியுமெனில் உண்மை"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
@@ -1290,12 +1240,8 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"trash\" URL ஐ கையாளுமா"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of DNS-SD domains that should be visible in the "
-"\"network:///\" location."
-msgstr ""
-"DNS-SD களங்களின் கால்புள்ளியால் பிரிக்கப்பட்ட பட்டியல் \"network:///\" இடத்தில் தெரிய "
-"வேண்டும்."
+msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
+msgstr "DNS-SD களங்களின் கால்புள்ளியால் பிரிக்கப்பட்ட பட்டியல் \"network:///\" இடத்தில் தெரிய வேண்டும்."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1346,14 +1292,8 @@ msgid "HTTP proxy username"
 msgstr "HTTP ப்ராக்ஸி பயனீட்டாளர் பெயர்"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"உண்மையெனில் பதிலாள் சேவையகத்தை இணைக்க அங்கீகாரம் தேவை.  \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password"
-"\"ஆல்பயனர்பெயர்/கடவுச்சொல் சேர்க்கை பெட்டியில் குறிப்பிடப்பட்டிருக்கும்."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "உண்மையெனில் பதிலாள் சேவையகத்தை இணைக்க அங்கீகாரம் தேவை.  \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"ஆல்பயனர்பெயர்/கடவுச்சொல் சேர்க்கை பெட்டியில் குறிப்பிடப்பட்டிருக்கும்."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1384,12 +1324,8 @@ msgid "Secure HTTP proxy port"
 msgstr "பாதுகாப்பான HTTP ப்ராக்ஸி வழி"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"ப்ராக்ஸி அமைப்பு வழியை தேர்வு செய்யவும். \"none\", \"manual\", \"auto\" "
-"மதிப்புகளுக்கு ஆதரவு உண்டு"
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgstr "ப்ராக்ஸி அமைப்பு வழியை தேர்வு செய்யவும். \"none\", \"manual\", \"auto\" மதிப்புகளுக்கு ஆதரவு உண்டு"
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1408,44 +1344,24 @@ msgid "The machine name to proxy socks through."
 msgstr "socks வழியாக ப்ராக்ஸிக்கான கணினி பெயர்"
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
-msgstr ""
-"\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgstr "\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
-msgstr ""
-"\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgstr "\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr ""
-"\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgstr "\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
-msgstr ""
-"\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgstr "\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"இந்த பட்டியல் ப்ராக்ஸியை(செயலிலிருந்தும்) நேரடியாக பயன்படுத்தாத கணினியின் பட்டியலை "
-"காட்டுகிறது. இதில் புரவலன் பெயர், டொமைன்(குழுக்குறிகளை பயன்படுத்தும் உம் *.foo.com) "
-"புரவலன் IP முகவரி (both IPv4 மற்றும்IPv6) மற்றும் வலைப்பின்னல் முகவரியுடன் வலைமூடியும் "
-"இருக்கும் (உதாரணம் 192.168.0.0/24)"
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "இந்த பட்டியல் ப்ராக்ஸியை(செயலிலிருந்தும்) நேரடியாக பயன்படுத்தாத கணினியின் பட்டியலை காட்டுகிறது. இதில் புரவலன் பெயர், டொமைன்(குழுக்குறிகளை பயன்படுத்தும் உம் *.foo.com) புரவலன் IP முகவரி (both IPv4 மற்றும்IPv6) மற்றும் வலைப்பின்னல் முகவரியுடன் வலைமூடியும் இருக்கும் (உதாரணம் 192.168.0.0/24)"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1464,10 +1380,6 @@ msgid "SMB workgroup"
 msgstr "SMB பணிகுழு"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid ""
-"The Windows networking workgroup or domain that the user is part of. In "
-"order for a new workgroup to fully take effect the user may need to log out "
-"and log back in."
-msgstr ""
-"பயனர் விண்டோஸ் பிணைய பணி குழு அல்லது களத்தின் பகுதியாக உள்ளார். புதிய பணிக்குழு "
-"முழுவதும் பணி செய்ய பயனர் வெளியேற வேண்டும் அல்லது மீண்டும் உள் அனுமதி பெற வேண்டும்."
+msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
+msgstr "பயனர் விண்டோஸ் பிணைய பணி குழு அல்லது களத்தின் பகுதியாக உள்ளார். புதிய பணிக்குழு முழுவதும் பணி செய்ய பயனர் வெளியேற வேண்டும் அல்லது மீண்டும் உள் அனுமதி பெற வேண்டும்."
+
