@@ -1,3 +1,7 @@
+2007-07-16  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Dutch translation updated by Wouter Bolsterlee.
+
 2007-07-13  I. Felix <ifelix@svn.gnome.org>
 
 	* ta.po:  Tamil Translation updated by Tirumurthi Vasudevan
@@ -42,7 +46,7 @@
 
 2007-05-03  Jorge Gonzalez <jorgegonz@svn.gnome.org>
 
-        * es.po: Updated Spanish translation
+	* es.po: Updated Spanish translation
 
 2007-05-3  Djihed Afifi <djihed@gmail.com> 
 
@@ -271,12 +275,12 @@
 
 2006-08-10  Guntupalli Karunakar  <karunakar@freedomink.org>
 
-        * dz.po: Updated Dzongkha translation by
-        Dzongkhalinux team, DIT
+	* dz.po: Updated Dzongkha translation by
+	Dzongkhalinux team, DIT
 
 2006-08-09  Raivis Dejus  <orvils@gmail.com>
 
-        * lv.po: Updated Latvian translation.
+	* lv.po: Updated Latvian translation.
 
 2006-08-08  Lucas Rocha  <lucasr@gnome.org>
 
@@ -372,7 +376,7 @@
 
 2006-07-11  Raivis Dejus  <orvils@gmail.com>
 
-        * lv.po: Updated Latvian translation.
+	* lv.po: Updated Latvian translation.
 
 2006-07-11  Christian Kellner  <gicmo@gnome.org>
 
@@ -402,7 +406,7 @@
 
 2006-06-20  Rajesh Ranjan <rajeshkajha@yahoo.com>
 
-        * hi.po: Updated Hindi Translation.
+	* hi.po: Updated Hindi Translation.
 
 === gnome-vfs 2.15.2 ===
 
@@ -468,7 +472,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2006-04-25  Ankit Patel  <ankit644@yahoo.com>
 
-        * gu.po: Updated Gujarati Translation.
+	* gu.po: Updated Gujarati Translation.
 
 2006-04-24  Alexander Larsson  <alexl@redhat.com>
 
@@ -524,16 +528,16 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2006-04-02  Vladimer Sichinava  <vlsichinava@gmail.com>
 
-        * ka.po: Added Georgian translation
+	* ka.po: Added Georgian translation
 	  by Gia Shervashidze <giasher@telenet.ge>
 
 2006-03-29  Gora Mohanty  <gmohanty@cvs.gnome.org>
 
-        * or.po: Updated Oriya translation.
+	* or.po: Updated Oriya translation.
 
 2006-03-29  Gora Mohanty  <gmohanty@cvs.gnome.org>
 
-        * or.po: Added Oriya translation.
+	* or.po: Added Oriya translation.
 
 2006-03-28  Nikos Charonitakis  <nikosx@gmail.com>
 
@@ -560,7 +564,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2006-03-06  Rajesh Ranjan <rranjan@redhat.com>
 
-        * hi.po: Updated Hindi Translation.
+	* hi.po: Updated Hindi Translation.
 
 2006-03-09  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -841,7 +845,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2005-10-01  Runa Bhattacharjee <runa@bengalinux.org>
 
-        * bn.po: Updated Bengali (bn) translation. Translation by Mahay Alam Khan <makl10n@yahoo.com>
+	* bn.po: Updated Bengali (bn) translation. Translation by Mahay Alam Khan <makl10n@yahoo.com>
 
 2005-09-27  Hendrik Brandt  <heb@gnome-de.org>
 
@@ -918,7 +922,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2005-09-16  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-09-12  Priit Laes  <plaes@cvs.gnome.org>
 
@@ -969,7 +973,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2005-08-28  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-08-27  Christophe Merlet  <redfox@redfoxcenter.org>
 
@@ -1158,7 +1162,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2005-07-01  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
 
-        * zh_TW.po: Updated Traditional Chinese translation.
+	* zh_TW.po: Updated Traditional Chinese translation.
 
 2005-06-30  Alexander Larsson  <alexl@redhat.com>
 
@@ -1689,7 +1693,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2004-08-25  David Lodge <dave@cirt.net>
 
-        * en_GB.po: Updated British translation.
+	* en_GB.po: Updated British translation.
 
 2004-08-25  Christophe Merlet  <redfox@redfoxcenter.org>
 
@@ -1836,7 +1840,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2004-08-09  Sanlig Badral  <badral@openmn.org>
 
-        * mn.po: Updated Mongolian translation.
+	* mn.po: Updated Mongolian translation.
 
 2004-08-09  Ankit Patel <ankit@redhat.com>
 
@@ -2145,8 +2149,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2004-04-09  Guntupalli Karunakar  <karunakar@freedomink.org>
 
-        * gu.po: Added Gujurati translation by
-        Gujarati Team <magnet@magnet-i.com>.
+	* gu.po: Added Gujurati translation by
+	Gujarati Team <magnet@magnet-i.com>.
 
 2004-04-06  Mohammad DAMT  <mdamt@bisnisweb.com>
 
@@ -2181,8 +2185,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2004-03-22  Guntupalli Karunakar  <karunakar@freedomink.org>
 
-        * pa.po: Punjabi translation by
-        Amanpreet Singh Alam <amanlinux@netscape.net>.
+	* pa.po: Punjabi translation by
+	Amanpreet Singh Alam <amanlinux@netscape.net>.
 
 2004-03-21  Gustavo Noronha Silva  <kov@debian.org>
 
@@ -2256,7 +2260,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 2004-03-13  Alexander Shopov  <ash@contact.bg>
 
 	* bg.po: Updated Bulgarian translation by
-        Peter "Peshka" Slavov <pslavov@i-space.org>
+	Peter "Peshka" Slavov <pslavov@i-space.org>
 
 2004-03-12  Funda Wang  <fundawang@linux.net.cn>
 
@@ -2444,7 +2448,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2004-02-11  Arafat Medini  <lumina@silverpen.de>
 
-        * ar.po: Updated Arabic translation.
+	* ar.po: Updated Arabic translation.
 
 2004-02-10  Pauli Virtanen  <pauli.virtanen@hut.fi>
 
@@ -2674,7 +2678,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 2003-12-23  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation:
-	         merged translations from GNOME 2.6 branch with 2.4 branch.
+	merged translations from GNOME 2.6 branch with 2.4 branch.
 
 2003-12-23  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
@@ -2692,7 +2696,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 	* de.po: Updated German translation.
 
-2003-12-20   Vincent van Adrighem  <adrighem@gnome.org>
+2003-12-20  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2706,7 +2710,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-12-20  Arafat Medini <lumina@silverpen.de>
 
-        * ar.po: Updated Arabic translation
+	* ar.po: Updated Arabic translation
 
 2003-12-20  Danilo ?egan  <dsegan@gmx.net>
 
@@ -2763,7 +2767,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 	* pt.po: Updated Portuguese translation.
 
-2003-12-07   Vincent van Adrighem  <adrighem@gnome.org>
+2003-12-07  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2776,11 +2780,11 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 	* POTFILES.skip: Added missing files.
 	* de.po: Updated German translation.
 
-2003-12-04   Vincent van Adrighem  <adrighem@gnome.org>
+2003-12-04  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
-2003-12-04   Vincent van Adrighem  <adrighem@gnome.org>
+2003-12-04  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2794,12 +2798,12 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-11-24  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 === gnome-vfs 2.5.2 ===
 
-2003-11-21   Vincent van Adrighem  <adrighem@gnome.org>
+2003-11-21  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2811,7 +2815,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
-2003-11-18   Vincent van Adrighem  <adrighem@gnome.org>
+2003-11-18  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2832,13 +2836,13 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-11-11  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 2003-11-10  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 === gnome-vfs 2.5.1 ===
 
@@ -2854,7 +2858,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 	* ja.po: Updated Japanese translation.
 
-2003-10-20   Vincent van Adrighem  <adrighem@gnome.org>
+2003-10-20  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2867,11 +2871,11 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 	* POTFILES.in: Added missing file.
 	* sv.po: Updated Swedish translation.
 
-2003-10-17   Vincent van Adrighem  <adrighem@gnome.org>
+2003-10-17  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
-2003-10-16   Vincent van Adrighem  <adrighem@gnome.org>
+2003-10-16  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
@@ -2942,8 +2946,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-08-28  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Revision of Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+	* es.po: Revision of Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 2003-08-28  Dafydd Harries  <daf@parnassus.ath.cx>
 
@@ -2974,7 +2978,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-08-22  Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>
 
-        * sk.po: Updated Slovak translation.
+	* sk.po: Updated Slovak translation.
 
 2003-08-22  Changwoo Ryu  <cwryu@debian.org>
 
@@ -3052,8 +3056,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-08-07  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-                 Francisco Javier F. Serrador <serrador@arrakis.es>.
+	* es.po: Updated Spanish translation by
+	Francisco Javier F. Serrador <serrador@arrakis.es>.
 
 2003-08-07  Guntupalli Karunakar  <karunakar@freedomink.org>
 
@@ -3074,7 +3078,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-08-04  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 === gnome-vfs 2.3.7 ===
 
@@ -3215,14 +3219,14 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-05-09  Telsa Gwynne  <hobbit@aloss.ukuu.org.uk>
 
-        * cy.po: Added Welsh translation from gnome-cy
-        <gnome-cy@pengwyn.linux.org.uk> and Kyfieithu
-        contributors. <http://www.kyfieithu.co.uk/>
+	* cy.po: Added Welsh translation from gnome-cy
+	<gnome-cy@pengwyn.linux.org.uk> and Kyfieithu
+	contributors. <http://www.kyfieithu.co.uk/>
 
 2003-05-08  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-                 Juan Manuel Garc?a Molina <juanma_gm@wanadoo.es>
+	* es.po: Updated Spanish translation by
+	Juan Manuel Garc?a Molina <juanma_gm@wanadoo.es>
 
 2003-05-08  Sam?el J?n Gunnarsson  <sammi@techattack.nu>
 
@@ -3240,7 +3244,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-05-05  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-05-05  Christian Neumair  <chris@gnome-de.org>
 
@@ -3337,7 +3341,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-02-01  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-01-27  Yuriy Syrota  <rastaman renome.rovno.ua>
 
@@ -3380,7 +3384,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2003-01-10  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Fixed a couple of strings in Spanish translation.
+	* es.po: Fixed a couple of strings in Spanish translation.
 
 2003-01-09  Laurent Dhima  <laurenti@alblinux.net>
 
@@ -3568,7 +3572,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2002-05-29  Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>
 
-        * nl.po: Updated Dutch translation (by Tino Meinen).
+	* nl.po: Updated Dutch translation (by Tino Meinen).
 
 2002-05-19  Vlad Harchev  <hvv@hippo.ru>
 
@@ -3623,7 +3627,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2002-05-05  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation and converted to UTF-8.
+	* pt.po: Updated Portuguese translation and converted to UTF-8.
 
 2002-04-30  Pablo Saratxaga <pablo@mandrakesoft.com>
 
@@ -3757,7 +3761,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2002-02-08  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2002-02-04  Seth Nickell  <snickell@stanford.edu>
 
@@ -3875,7 +3879,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-12-16  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Added Portuguese translation.
+	* pt.po: Added Portuguese translation.
 
 2001-11-30  Roy-Magne Mo  <rmo@sunnmore.net>
 
@@ -4054,7 +4058,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 2001-05-24  Christian Meyer  <chrisime@gnome.org>
 
 	* de.po: Updated German translation. Kai when do you finally learn to
-                 write Changelogs?
+	write Changelogs?
 
 2001-05-23  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
@@ -4112,7 +4116,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-03-08  Mauricio Araya P.  <mauricio@eazel.com>
 
-        * es.po: Updated Spanish translation.
+	* es.po: Updated Spanish translation.
 
 2001-03-07  Ole Laursen  <olau@hardworking.dk>
 
@@ -4324,7 +4328,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-02-13  Szabolcs Ban  <shooby@gnome.hu>
 
-        * hu.po: Update and fixes by Emese <emese@gnome.hu>
+	* hu.po: Update and fixes by Emese <emese@gnome.hu>
 
 2001-02-13  Christophe Merlet  <christophe@merlet.net>
 
@@ -4402,11 +4406,11 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-01-31  Szabolcs Ban  <shooby@gnome.hu>
 
-        * hu.po: Terminology fixes by Andras Timar <timar@gnome.hu>
+	* hu.po: Terminology fixes by Andras Timar <timar@gnome.hu>
 
 2001-01-31  Szabolcs Ban  <shooby@gnome.hu>
 
-        * hu.po: Updated Hungarian translations
+	* hu.po: Updated Hungarian translations
 
 2001-01-29  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -4422,7 +4426,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-01-25  Szabolcs Ban  <shooby@gnome.hu>
 
-        * hu.po: Updated Hungarian translations
+	* hu.po: Updated Hungarian translations
 
 2001-01-24  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -4430,8 +4434,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2001-01-24  Szabolcs Ban  <shooby@gnome.hu>
 
-        * hu.po: Tons of fixes by Andras and Emese (spelling,
-          terminology, headers)
+	* hu.po: Tons of fixes by Andras and Emese (spelling,
+	terminology, headers)
 
 2001-01-23  Martin Norbdck  <d95mback@dtek.chalmers.se>
 
@@ -4612,8 +4616,8 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2000-10-12  Fatih Demir  <kabalak@gmx.net>
 
-        * tr.po: Updated the Turkish translation ( yes,
-		the update was done with gtranslator ).
+	* tr.po: Updated the Turkish translation ( yes,
+	the update was done with gtranslator ).
 
 2000-09-28  Christophe Merlet  <christophe@merlet.net>
 
@@ -4704,7 +4708,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2000-07-12  Fatih Demir  <kabalak@gmx.net>
 
-        * tr.po: Updated the Turkish translation.
+	* tr.po: Updated the Turkish translation.
 
 2000-07-10  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -4712,7 +4716,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2000-07-10  Fatih Demir  <kabalak@gmx.net>
 
-        * tr.po: Updated the Turkish translation.
+	* tr.po: Updated the Turkish translation.
 
 2000-07-05  Valek Filippov  <frob@df.ru>
 
@@ -4799,7 +4803,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2000-04-16  Pablo Saratxaga <pablo@mandrakesoft.com>
 
-        * da.po: Updated Danish file
+	* da.po: Updated Danish file
 
 2000-04-14  Yukihiro Nakai  <nakai@gnome.gr.jp>
 
@@ -4835,7 +4839,7 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 2000-03-10  Kjartan Maraas  <kmaraas@online.no>
 
-        * no.po: Updated Norwegian translation.
+	* no.po: Updated Norwegian translation.
 
 2000-02-25  Andreas Hyden  <ahyden@staffanstorp.net>
 
@@ -4889,11 +4893,11 @@ i2006-05-21  Alexander Shopov  <ash@contact.bg>
 
 1999-12-14  Kjartan Maraas  <kmaraas@online.no>
 
-        * no.po: Updated Norwegian translation.
+	* no.po: Updated Norwegian translation.
 
 1999-11-19  Kjartan Maraas  <kmaraas@online.no>
 
-        * no.po: Added Norwegian translation.
+	* no.po: Added Norwegian translation.
 
 1999-09-29  Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
 
