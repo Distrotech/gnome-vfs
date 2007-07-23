@@ -1,3 +1,12 @@
+2007-07-23  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-dns-sd.c:
+        (avahi_resolve_sync_callback):
+        (gnome_vfs_dns_sd_resolve_sync):
+	Don't hand out link-local ipv6 addresses, prefer ipv4 instead, 
+	since the API doesn't return the interface anyway these are
+	useless.
+
 2007-05-14  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

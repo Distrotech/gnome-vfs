@@ -2004,6 +2004,7 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 struct sync_resolve_data {
 	AvahiSimplePoll *poll;
 	gboolean got_data;
+	gboolean got_link_local_ipv6;
 	char *host;
 	int port;
 	char *text;
@@ -2042,6 +2043,13 @@ avahi_resolve_sync_callback (AvahiServiceResolver *r,
 
 	data = user_data;
 	if (event == AVAHI_RESOLVER_FOUND) {
+		if (address->proto == AVAHI_PROTO_INET6 &&
+		    address->data.ipv6.address[0] == 0xfe &&
+		    address->data.ipv6.address[1] == 0x80) {
+			data->got_link_local_ipv6 = TRUE;
+			goto out;
+		}
+
 		data->got_data = TRUE;
 		avahi_address_snprint (a, sizeof(a), address);
 		data->host = g_strdup (a);
@@ -2050,7 +2058,7 @@ avahi_resolve_sync_callback (AvahiServiceResolver *r,
 		data->text = g_malloc (data->text_len);
 		avahi_string_list_serialize (txt, data->text, data->text_len);
 	}
-	
+ out:
 	avahi_service_resolver_free (r);
         avahi_simple_poll_quit (data->poll);
 }
@@ -2135,7 +2143,12 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		AvahiClient *client = NULL;
 		AvahiServiceResolver *sr;
 		int error;
+		AvahiProtocol protocol;
 		struct sync_resolve_data resolve_data = {0};
+
+		protocol = AVAHI_PROTO_UNSPEC;
+
+	retry:
 
 		simple_poll = avahi_simple_poll_new ();
 		resolve_data.poll = simple_poll;
@@ -2154,7 +2167,8 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 			return GNOME_VFS_ERROR_GENERIC;
 		}
 		
-		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
+		resolve_data.got_link_local_ipv6 = FALSE;
+		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, protocol, 
 						 name, type, domain, AVAHI_PROTO_UNSPEC, 
 						 0, avahi_resolve_sync_callback, &resolve_data);
 		if (sr == NULL) {
@@ -2171,6 +2185,13 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 
 		avahi_client_free (client);
 		avahi_simple_poll_free (simple_poll);
+
+		if (resolve_data.got_link_local_ipv6) {
+			/* We ignore non-routable ipv6 link-local addresses here, because our
+			   api doesn't give the iface, so they are useless. Prefer ipv4 address instead */
+			protocol = AVAHI_PROTO_INET;
+			goto retry;
+		}
 
 		if (resolve_data.got_data) {
 			*host = resolve_data.host;
