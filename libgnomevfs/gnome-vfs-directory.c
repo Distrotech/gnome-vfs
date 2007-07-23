@@ -434,8 +434,15 @@ directory_visit_internal (GnomeVFSURI *uri,
 				ancestor_references = remove_first_reference
 					(ancestor_references);
 
-			if (result != GNOME_VFS_OK)
-				stop = TRUE;
+			if (result != GNOME_VFS_OK) {
+				if (visit_options &
+				    GNOME_VFS_DIRECTORY_VISIT_IGNORE_RECURSE_ERROR) {
+					result = GNOME_VFS_OK;
+				}
+				else {
+					stop = TRUE;
+				}
+			}
 
 			gnome_vfs_uri_unref (new_uri);
 			g_free (new_prefix);

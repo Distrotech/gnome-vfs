@@ -1,5 +1,11 @@
 2007-07-23  Alexander Larsson  <alexl@redhat.com>
 
+        * libgnomevfs/gnome-vfs-directory.[ch]:
+	Added GNOME_VFS_DIRECTORY_VISIT_IGNORE_RECURSE_ERROR (#433105)
+	Patch from Marlon Nelson
+
+2007-07-23  Alexander Larsson  <alexl@redhat.com>
+
         * libgnomevfs/gnome-vfs-dns-sd.c:
 	Don't resolve non-local addresses, so that
 	we propely handle virtual hosts (#332759)
