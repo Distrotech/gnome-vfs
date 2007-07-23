@@ -1348,13 +1348,14 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 
 		if (result != GNOME_VFS_OK) {
 			retry = handle_error (&result, progress, error_mode, skip);
+			*source_handle = NULL;
 		}
 	} while (retry);
 
 	/* if we didn't get a file size earlier,
 	 * try to get one from the handle (#330498)
 	 */
-	if (progress->progress_info->file_size == 0) {
+	if (*source_handle != NULL && progress->progress_info->file_size == 0) {
 		GnomeVFSFileInfo *info;
 
 		info = gnome_vfs_file_info_new ();
