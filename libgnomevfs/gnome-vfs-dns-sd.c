@@ -1349,6 +1349,136 @@ unicast_resolve_thread (gpointer data)
 }
 
 #ifdef HAVE_AVAHI
+struct sync_resolve_data {
+	AvahiSimplePoll *poll;
+	AvahiIfIndex interface;
+	AvahiProtocol protocol;
+	gboolean got_link_local_ipv6;
+	gboolean got_data;
+	char *host;
+	int port;
+	char *text;
+	int text_len;
+};
+
+
+static void
+avahi_resolve_sync_client_callback (AvahiClient *c, AvahiClientState state, void *user_data)
+{
+	struct sync_resolve_data *data;
+
+	data = user_data;
+	if (state == AVAHI_CLIENT_FAILURE) {
+		avahi_simple_poll_quit (data->poll);
+	}
+}
+
+static void
+avahi_resolve_host_name_sync_callback (AvahiHostNameResolver *r,
+                                       AvahiIfIndex interface G_GNUC_UNUSED,
+                                       AvahiProtocol protocol G_GNUC_UNUSED,
+                                       AvahiResolverEvent event,
+                                       const char *name G_GNUC_UNUSED,
+                                       const AvahiAddress *address,
+                                       AvahiLookupResultFlags flags G_GNUC_UNUSED, 
+                                       void *user_data)
+{
+	struct sync_resolve_data *data;
+        char a[128];
+
+        data = user_data;
+        
+	if (event == AVAHI_RESOLVER_FOUND) {
+		if (address->proto == AVAHI_PROTO_INET6 &&
+		    address->data.ipv6.address[0] == 0xfe &&
+		    address->data.ipv6.address[1] == 0x80) {
+			data->got_link_local_ipv6 = TRUE;
+			goto out;
+		}
+		data->got_data = TRUE;
+		avahi_address_snprint (a, sizeof(a), address);
+		data->host = g_strdup (a);
+	}
+
+ out:
+	avahi_host_name_resolver_free (r);
+        avahi_simple_poll_quit (data->poll);
+}
+
+static GnomeVFSResult
+avahi_resolve_host_name (AvahiIfIndex interface,
+                         AvahiProtocol protocol,
+                         const char *host_name,
+                         char **address)
+{
+	GnomeVFSResult result = GNOME_VFS_ERROR_GENERIC;
+        struct sync_resolve_data resolve_data;
+        AvahiHostNameResolver *hr = NULL;
+        AvahiClient *client = NULL;
+        int error = 0;
+
+ retry:
+	
+        resolve_data.poll = avahi_simple_poll_new ();
+
+        if (resolve_data.poll == NULL) {
+                g_warning ("Failed to create simple poll object");
+                goto cleanup;
+        }
+
+        client = avahi_client_new (avahi_simple_poll_get (resolve_data.poll), 0, 
+				   avahi_resolve_sync_client_callback, &resolve_data, &error);
+		
+	/* Check wether creating the client object succeeded */
+	if (client == NULL) {
+		g_warning ("Failed to create client: %s\n", avahi_strerror (error));
+		goto cleanup;
+	}
+
+	resolve_data.got_link_local_ipv6 = FALSE;
+        hr = avahi_host_name_resolver_new (client, interface, protocol, 
+                                           host_name, AVAHI_PROTO_UNSPEC, 0,
+                                           avahi_resolve_host_name_sync_callback, 
+                                           &resolve_data);
+
+        if (hr == NULL) {
+		g_warning ("Failed to resolve host name '%s': %s\n", host_name, avahi_strerror (avahi_client_errno (client)));
+                goto cleanup;
+	}
+
+        for (;;)
+                if (avahi_simple_poll_iterate (resolve_data.poll, -1) != 0)
+                        break;
+        
+	if (resolve_data.got_link_local_ipv6) {
+		/* We ignore non-routable ipv6 link-local addresses here, because our
+		   api doesn't give the iface, so they are useless. Prefer ipv4 address instead */
+		protocol = AVAHI_PROTO_INET;
+
+                avahi_client_free (client);
+                avahi_simple_poll_free (resolve_data.poll);
+		client = NULL;
+		resolve_data.poll = NULL;
+		
+		goto retry;
+	}
+
+	if (resolve_data.got_data) {
+		result = GNOME_VFS_OK;
+                *address = resolve_data.host;
+	} else {
+		result = GNOME_VFS_ERROR_HOST_NOT_FOUND;
+	}
+
+cleanup:
+        if (client)
+                avahi_client_free (client);
+        if (resolve_data.poll)
+                avahi_simple_poll_free (resolve_data.poll);
+
+        return result;
+}
+
 static void
 avahi_resolve_async_callback (AvahiServiceResolver *r,
 			      AvahiIfIndex interface,
@@ -1368,8 +1498,10 @@ avahi_resolve_async_callback (AvahiServiceResolver *r,
 	GnomeVFSDNSSDService service;
 	GHashTable *hash;
 	size_t text_len;
+	char *resolved = NULL;
+	const char *host;
 	char *text;
-	char host[128];
+	char a[128];
 
 	handle = user_data;
 	if (event == AVAHI_RESOLVER_FOUND) {
@@ -1382,8 +1514,22 @@ avahi_resolve_async_callback (AvahiServiceResolver *r,
 		service.name = (char *)name;
 		service.type = (char *)type;
 		service.domain = (char *)domain;
+
+
+		if (address) {
+			avahi_address_snprint (a, sizeof(a), address);
+			host = a;
+		} else {
+			g_assert (NULL != host_name);
+
+			if (g_str_has_suffix (host_name, ".local") &&
+			    GNOME_VFS_OK == avahi_resolve_host_name (interface, protocol, host_name, &resolved)) {
+				host = resolved;
+			} else {
+				host = host_name;
+			}
+		}
 		
-		avahi_address_snprint (host, sizeof(host), address);
 		handle->callback (handle,
 				  GNOME_VFS_OK,
 				  &service,
@@ -1393,11 +1539,14 @@ avahi_resolve_async_callback (AvahiServiceResolver *r,
 				  handle->text_len,
 				  handle->text,
 				  handle->callback_data);
+
+		g_free (resolved);
+		
 		if (hash) {
 			g_hash_table_destroy (hash);
 		}
-		g_free (text);
 
+		g_free (text);
 	} else if (event == AVAHI_RESOLVER_FAILURE) {
 		handle->callback (handle,
 				  GNOME_VFS_ERROR_HOST_NOT_FOUND,
@@ -1577,7 +1726,8 @@ gnome_vfs_dns_sd_resolve (GnomeVFSDNSSDResolveHandle **handle_out,
 		if (client) {
 			sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 							 name, type, domain, AVAHI_PROTO_UNSPEC, 
-							 0, avahi_resolve_async_callback, handle);
+							 AVAHI_LOOKUP_NO_ADDRESS,
+							 avahi_resolve_async_callback, handle);
 			if (sr != NULL) {
 				handle->avahi_sr = sr;
 				*handle_out = handle;
@@ -2001,28 +2151,6 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 }
 
 #ifdef HAVE_AVAHI
-struct sync_resolve_data {
-	AvahiSimplePoll *poll;
-	gboolean got_data;
-	gboolean got_link_local_ipv6;
-	char *host;
-	int port;
-	char *text;
-	int text_len;
-};
-
-
-static void
-avahi_resolve_sync_client_callback (AvahiClient *c, AvahiClientState state, void *user_data)
-{
-	struct sync_resolve_data *data;
-
-	data = user_data;
-	if (state == AVAHI_CLIENT_FAILURE) {
-		avahi_simple_poll_quit (data->poll);
-	}
-}
-
 static void
 avahi_resolve_sync_callback (AvahiServiceResolver *r,
 			     AvahiIfIndex interface,
@@ -2039,26 +2167,19 @@ avahi_resolve_sync_callback (AvahiServiceResolver *r,
 			     void *user_data)
 {
 	struct sync_resolve_data *data;
-	char a[128];
 
 	data = user_data;
 	if (event == AVAHI_RESOLVER_FOUND) {
-		if (address->proto == AVAHI_PROTO_INET6 &&
-		    address->data.ipv6.address[0] == 0xfe &&
-		    address->data.ipv6.address[1] == 0x80) {
-			data->got_link_local_ipv6 = TRUE;
-			goto out;
-		}
-
 		data->got_data = TRUE;
-		avahi_address_snprint (a, sizeof(a), address);
-		data->host = g_strdup (a);
+		data->protocol = protocol;
+		data->interface = interface;
+		data->host = g_strdup (host_name);
 		data->port = port;
 		data->text_len = avahi_string_list_serialize (txt, NULL, 0);
 		data->text = g_malloc (data->text_len);
 		avahi_string_list_serialize (txt, data->text, data->text_len);
 	}
- out:
+	
 	avahi_service_resolver_free (r);
         avahi_simple_poll_quit (data->poll);
 }
@@ -2143,12 +2264,8 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		AvahiClient *client = NULL;
 		AvahiServiceResolver *sr;
 		int error;
-		AvahiProtocol protocol;
 		struct sync_resolve_data resolve_data = {0};
-
-		protocol = AVAHI_PROTO_UNSPEC;
-
-	retry:
+		AvahiLookupFlags flags = AVAHI_LOOKUP_NO_ADDRESS;
 
 		simple_poll = avahi_simple_poll_new ();
 		resolve_data.poll = simple_poll;
@@ -2166,11 +2283,13 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 			avahi_simple_poll_free (simple_poll);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
-		
-		resolve_data.got_link_local_ipv6 = FALSE;
-		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, protocol, 
+
+		if (!text && !text_raw_out)
+			flags|= AVAHI_LOOKUP_NO_TXT;
+
+		sr = avahi_service_resolver_new (client, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC, 
 						 name, type, domain, AVAHI_PROTO_UNSPEC, 
-						 0, avahi_resolve_sync_callback, &resolve_data);
+						 flags, avahi_resolve_sync_callback, &resolve_data);
 		if (sr == NULL) {
 			g_warning ("Failed to resolve service '%s': %s\n", name, avahi_strerror (avahi_client_errno (client)));
 			avahi_client_free (client);
@@ -2186,16 +2305,20 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		avahi_client_free (client);
 		avahi_simple_poll_free (simple_poll);
 
-		if (resolve_data.got_link_local_ipv6) {
-			/* We ignore non-routable ipv6 link-local addresses here, because our
-			   api doesn't give the iface, so they are useless. Prefer ipv4 address instead */
-			protocol = AVAHI_PROTO_INET;
-			goto retry;
-		}
-
 		if (resolve_data.got_data) {
-			*host = resolve_data.host;
+			GnomeVFSResult result = GNOME_VFS_OK;
+			
+			if (g_str_has_suffix (resolve_data.host, ".local")) {
+				result = avahi_resolve_host_name (
+					resolve_data.interface, resolve_data.protocol,
+					resolve_data.host, host);
+				g_free (resolve_data.host);
+			} else {
+				*host = resolve_data.host;
+			}
+
 			*port = resolve_data.port;
+
 			if (text != NULL)
 				*text = decode_txt_record (resolve_data.text, resolve_data.text_len);
 			if (text_raw_len_out != NULL && text_raw_out) {
@@ -2204,7 +2327,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 			} else {
 				g_free (resolve_data.text);
 			}
-			return GNOME_VFS_OK;
+			return result;
 		}
 		
 		return GNOME_VFS_ERROR_HOST_NOT_FOUND;
