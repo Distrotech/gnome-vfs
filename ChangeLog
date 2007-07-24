@@ -1,5 +1,10 @@
 2007-07-23  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Actually bump micro version too
+
+2007-07-23  Alexander Larsson  <alexl@redhat.com>
+
         * libgnomevfs/gnome-vfs-xfer.c:
         (xfer_open_source):
 	Fix crash on ignore (#450909)
