@@ -1,3 +1,12 @@
+2007-07-25  Bastien Nocera  <hadess@hadess.net>
+
+	* gnome-vfs-2.0.pc.in:
+	* gnome-vfs-module-2.0.pc.in:
+	Export the modules directory in the pkg-config
+	files, so that applications can look for specific
+	modules without relying on gnome-vfs itself
+	(Closes: #447202)
+
 2007-07-23  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
