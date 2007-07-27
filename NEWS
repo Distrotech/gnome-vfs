@@ -1,3 +1,10 @@
+gnome-vfs 2.19.3
+	  * Export modules directory in pkg-config files
+	  * Fix crash in gnome_vfs_xfer
+	  * Add GNOME_VFS_DIRECTORY_VISIT_IGNORE_RECURSE_ERROR flag
+	  * Don't resolve non-mdns hosts when resolving mDNS service names
+	  * Workaround issue with mDNS and link-local ipv6 addresses
+	  
 gnome-vfs 2.19.2
 	  * Handle avahi shutdown better
 	  * ftp: Handle filenames that look like years better
