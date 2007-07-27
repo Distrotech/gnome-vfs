@@ -1,0 +1,1509 @@
+# Romanian translation for gnome-vfs
+# Copyright (C) 2001 - 2006 Free Software Foundation, Inc.
+# Marius Andreiana <mandreiana@yahoo.com>, 2001.
+# Mişu Moldovan <dumol@gnome.ro>, 2003 - 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-09-03 11:07+0200\n"
+"PO-Revision-Date: 2006-09-03 14:48+0300\n"
+"Last-Translator: Mişu Moldovan <dumol@gnome.ro>\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1))\n"
+
+#: ../libgnomevfs/gnome-vfs-cdrom.c:237
+msgid "ISO 9660 Volume"
+msgstr "Volum ISO 9660"
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
+#, c-format
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u conţine caractere NUL."
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
+#, c-format
+msgid "%s:%u contains no method name."
+msgstr "%s:%u nu conţine nici un nume de metodă."
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
+#, c-format
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%u nu are opţiuni „endmarker”."
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
+#, c-format
+msgid "%s:%u has unknown options %s."
+msgstr "%s:%u are opţiuni necunoscute %s."
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
+#, c-format
+msgid "%s:%u contains no module name."
+msgstr "%s:%u nu conţine nici un nume de modul."
+
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "Fişierul de configurare „%s” nu a fost găsit: %s"
+
+#. stop parsing if we failed
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
+#, c-format
+msgid "%s:%d aborted parsing."
+msgstr "%s:%d se abandonează prelucrarea."
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+msgid "AFFS Volume"
+msgstr "Volum AFFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
+msgid "AFS Network Volume"
+msgstr "Volum reţea AFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
+msgid "Auto-detected Volume"
+msgstr "Volum autodetectat"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "CD-ROM Drive"
+msgstr "Unitate CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+msgid "CD Digital Audio"
+msgstr "CD Audio Digital"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+msgid "Hardware Device Volume"
+msgstr "Volum dispozitiv hardware"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+msgid "EncFS Volume"
+msgstr "Volum EncFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "Ext2 Linux Volume"
+msgstr "Volum Linux Ext2"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+msgid "Ext3 Linux Volume"
+msgstr "Volum Linux Ext3"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "MSDOS Volume"
+msgstr "Volum MSDOS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "BSD Volume"
+msgstr "Volum BSD"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "MacOS Volume"
+msgstr "Volum MacOS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+msgid "CDROM Volume"
+msgstr "Volum CDROM"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+msgid "Hsfs CDROM Volume"
+msgstr "Volum CDROM Hsfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+msgid "JFS Volume"
+msgstr "Volum JFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+msgid "Windows NT Volume"
+msgstr "Volum Windows NT"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+msgid "System Volume"
+msgstr "Volum sistem"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+msgid "Memory Volume"
+msgstr "Volum RAM"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+msgid "Minix Volume"
+msgstr "Volum Minix"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+msgid "NFS Network Volume"
+msgstr "Volum reţea NFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+msgid "Netware Volume"
+msgstr "Volum Netware"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Reiser4 Linux Volume"
+msgstr "Volum Linux ReiserFS4"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+msgid "ReiserFS Linux Volume"
+msgstr "Volum Linux ReiserFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "Windows Shared Volume"
+msgstr "Volum Share Windows"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+msgid "SuperMount Volume"
+msgstr "Volum SuperMount"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+msgid "DVD Volume"
+msgstr "Volum DVD"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+msgid "Solaris/BSD Volume"
+msgstr "Volum Solaris/BSD"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+msgid "Udfs Solaris Volume"
+msgstr "Volum Solaris Udfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+msgid "Pcfs Solaris Volume"
+msgstr "Volum Solaris Pcfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+msgid "Sun SAM-QFS Volume"
+msgstr "Volum Sun SAM-QFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+msgid "Temporary Volume"
+msgstr "Volum temporar"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+msgid "Enhanced DOS Volume"
+msgstr "Volum Enhanced DOS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+msgid "Windows VFAT Volume"
+msgstr "Volum Windows VFAT"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+msgid "Xenix Volume"
+msgstr "Volum Xenix"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+msgid "XFS Linux Volume"
+msgstr "Volum Linux XFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+msgid "XIAFS Volume"
+msgstr "Volum XIAFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+msgid "CIFS Volume"
+msgstr "Volum CIFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
+msgid "Unknown"
+msgstr "Necunoscut"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#, c-format
+msgid "%s Volume"
+msgstr "Volum %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+msgid "CD-R"
+msgstr "CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+msgid "DVD+R"
+msgstr "DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+msgid "DVD+RW"
+msgstr "DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+msgid "DVD±R"
+msgstr "DVD±R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+msgid "DVD±RW"
+msgstr "DVD±RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#, c-format
+msgid "%s/%s Drive"
+msgstr "Unitate %s/%s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#, c-format
+msgid "%s Drive"
+msgstr "Unitate %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+msgid "Floppy Drive"
+msgstr "Unitate dischetă"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+msgid "Compact Flash Drive"
+msgstr "Unitate „Compact Flash”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+msgid "Memory Stick Drive"
+msgstr "Unitate „Memory Stick”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+msgid "Smart Media Drive"
+msgstr "Unitate „Smart Media”"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+msgid "SD/MMC Drive"
+msgstr "Unitate SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
+msgid "Zip Drive"
+msgstr "Unitate ZIP"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+msgid "Jaz Drive"
+msgstr "Unitate Jaz"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+msgid "Pen Drive"
+msgstr "Unitate Pen"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#, c-format
+msgid "%s %s Music Player"
+msgstr "Redare audio %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#, c-format
+msgid "%s %s Digital Camera"
+msgstr "Cameră digitală %s %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+msgid "Drive"
+msgstr "Unitate"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#, c-format
+msgid "External %s"
+msgstr "%s externă"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+msgid "CD-ROM Disc"
+msgstr "Disc CD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+msgid "Blank CD-R Disc"
+msgstr "Disc CD-R gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+msgid "CD-R Disc"
+msgstr "Disc CD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+msgid "Blank CD-RW Disc"
+msgstr "Disc CD-RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "CD-RW Disc"
+msgstr "Disc CD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+msgid "DVD-ROM Disc"
+msgstr "Unitate DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+msgid "Blank DVD-RAM Disc"
+msgstr "Disc DVD-RAM gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+msgid "DVD-RAM Disc"
+msgstr "Disc DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+msgid "Blank DVD-R Disc"
+msgstr "Disc gol DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+msgid "DVD-R Disc"
+msgstr "Disc DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+msgid "Blank DVD-RW Disc"
+msgstr "Disc DVD-RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "DVD-RW Disc"
+msgstr "Disc DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+msgid "Blank DVD+R Disc"
+msgstr "Disc DVD+R gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+msgid "DVD+R Disc"
+msgstr "Disc DVD+R"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+msgid "Blank DVD+RW Disc"
+msgstr "Disc DVD+RW gol"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "DVD+RW Disc"
+msgstr "Disc DVD+RW"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+msgid "Audio Disc"
+msgstr "Disc audio"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#, c-format
+msgid "%s Removable Volume"
+msgstr "Volum amovibil %s"
+
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+msgid "Volume"
+msgstr "Volum"
+
+#: ../libgnomevfs/gnome-vfs-job.c:734
+#, c-format
+msgid "Unknown operation type %u"
+msgstr "Tip necunoscut de operaţiune %u"
+
+#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Nu s-a putut crea un conector pentru deschiderea GIOChannel: %s"
+
+#: ../libgnomevfs/gnome-vfs-job.c:1692
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "Tip necunoscut de sarcină %u"
+
+#: ../libgnomevfs/gnome-vfs-job.c:1725
+msgid "Operation stopped"
+msgstr "Operaţie oprită"
+
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-info.c:631
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
+#: ../libgnomevfs/gnome-vfs-mime-info.c:646
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
+#: ../libgnomevfs/gnome-vfs-mime-info.c:678
+#: ../libgnomevfs/gnome-vfs-mime-info.c:685
+#: ../libgnomevfs/gnome-vfs-mime-info.c:692
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
+#: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Funcţie ieşită din uz. Modificările personalizate în baza de date MIME nu "
+"mai sunt suportate."
+
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Nu s-a putut procesa: %s"
+
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+msgid "More parsing errors will be ignored."
+msgstr "Alte erori de procesare vor fi ignorate."
+
+#. GNOME_VFS_OK
+#: ../libgnomevfs/gnome-vfs-result.c:42
+msgid "No error"
+msgstr "Nici o eroare"
+
+#. GNOME_VFS_ERROR_NOT_FOUND
+#: ../libgnomevfs/gnome-vfs-result.c:43
+msgid "File not found"
+msgstr "Fişierul nu a fost găsit"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: ../libgnomevfs/gnome-vfs-result.c:44
+msgid "Generic error"
+msgstr "Eroare generică"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: ../libgnomevfs/gnome-vfs-result.c:45
+msgid "Internal error"
+msgstr "Eroare internă"
+
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
+#: ../libgnomevfs/gnome-vfs-result.c:46
+msgid "Invalid parameters"
+msgstr "Parametri invalizi"
+
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
+#: ../libgnomevfs/gnome-vfs-result.c:47
+msgid "Unsupported operation"
+msgstr "Operaţiune nesuportată"
+
+#. GNOME_VFS_ERROR_IO
+#: ../libgnomevfs/gnome-vfs-result.c:48
+msgid "I/O error"
+msgstr "Eroare I/O"
+
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
+#: ../libgnomevfs/gnome-vfs-result.c:49
+msgid "Data corrupted"
+msgstr "Date corupte"
+
+#. GNOME_VFS_ERROR_WRONG_FORMAT
+#: ../libgnomevfs/gnome-vfs-result.c:50
+msgid "Format not valid"
+msgstr "Formatul nu este valid"
+
+#. GNOME_VFS_ERROR_BAD_FILE
+#: ../libgnomevfs/gnome-vfs-result.c:51
+msgid "Bad file handle"
+msgstr "Descriptor greşit de fişier"
+
+#. GNOME_VFS_ERROR_TOO_BIG
+#: ../libgnomevfs/gnome-vfs-result.c:52
+msgid "File too big"
+msgstr "Fişier prea mare"
+
+#. GNOME_VFS_ERROR_NO_SPACE
+#: ../libgnomevfs/gnome-vfs-result.c:53
+msgid "No space left on device"
+msgstr "Nu mai e spaţiu liber pe disc"
+
+#. GNOME_VFS_ERROR_READ_ONLY
+#: ../libgnomevfs/gnome-vfs-result.c:54
+msgid "Read-only file system"
+msgstr "Sistemul de fişiere e protejat la scriere"
+
+#. GNOME_VFS_ERROR_INVALID_URI
+#: ../libgnomevfs/gnome-vfs-result.c:55
+msgid "Invalid URI"
+msgstr "URI invalid"
+
+#. GNOME_VFS_ERROR_NOT_OPEN
+#: ../libgnomevfs/gnome-vfs-result.c:56
+msgid "File not open"
+msgstr "Fişierul nu este deschis"
+
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
+#: ../libgnomevfs/gnome-vfs-result.c:57
+msgid "Open mode not valid"
+msgstr "Mod invalid de deschidere"
+
+#. GNOME_VFS_ERROR_ACCESS_DENIED
+#: ../libgnomevfs/gnome-vfs-result.c:58
+msgid "Access denied"
+msgstr "Acces refuzat"
+
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
+#: ../libgnomevfs/gnome-vfs-result.c:59
+msgid "Too many open files"
+msgstr "Prea multe fişiere deschise"
+
+#. GNOME_VFS_ERROR_EOF
+#: ../libgnomevfs/gnome-vfs-result.c:60
+msgid "End of file"
+msgstr "Sfârşit de fişier"
+
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
+#: ../libgnomevfs/gnome-vfs-result.c:61
+msgid "Not a directory"
+msgstr "Nu e un director"
+
+#. GNOME_VFS_ERROR_IN_PROGRESS
+#: ../libgnomevfs/gnome-vfs-result.c:62
+msgid "Operation in progress"
+msgstr "Operaţiune în progres"
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: ../libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation interrupted"
+msgstr "Operaţiune întreruptă"
+
+#. GNOME_VFS_ERROR_FILE_EXISTS
+#: ../libgnomevfs/gnome-vfs-result.c:64
+msgid "File exists"
+msgstr "Fişierul există"
+
+#. GNOME_VFS_ERROR_LOOP
+#: ../libgnomevfs/gnome-vfs-result.c:65
+msgid "Looping links encountered"
+msgstr "Ciclu infinit de legături"
+
+#. GNOME_VFS_ERROR_NOT_PERMITTED
+#: ../libgnomevfs/gnome-vfs-result.c:66
+msgid "Operation not permitted"
+msgstr "Operaţiunea nu este permisă"
+
+#. GNOME_VFS_ERROR_IS_DIRECTORY
+#: ../libgnomevfs/gnome-vfs-result.c:67
+msgid "Is a directory"
+msgstr "Este un director"
+
+#. GNOME_VFS_ERROR_NO_MEMORY
+#: ../libgnomevfs/gnome-vfs-result.c:68
+msgid "Not enough memory"
+msgstr "Memorie insuficientă"
+
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
+#: ../libgnomevfs/gnome-vfs-result.c:69
+msgid "Host not found"
+msgstr "Serverul nu a fost găsit"
+
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
+#: ../libgnomevfs/gnome-vfs-result.c:70
+msgid "Host name not valid"
+msgstr "Numele serverului este invalid"
+
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
+#: ../libgnomevfs/gnome-vfs-result.c:71
+msgid "Host has no address"
+msgstr "Serverul nu are o adresă"
+
+#. GNOME_VFS_ERROR_LOGIN_FAILED
+#: ../libgnomevfs/gnome-vfs-result.c:72
+msgid "Login failed"
+msgstr "Autentificare eşuată"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: ../libgnomevfs/gnome-vfs-result.c:73
+msgid "Operation cancelled"
+msgstr "Operaţiune abandonată"
+
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
+#: ../libgnomevfs/gnome-vfs-result.c:74
+msgid "Directory busy"
+msgstr "Directorul este ocupat"
+
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
+#: ../libgnomevfs/gnome-vfs-result.c:75
+msgid "Directory not empty"
+msgstr "Directorul nu este gol"
+
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
+#: ../libgnomevfs/gnome-vfs-result.c:76
+msgid "Too many links"
+msgstr "Prea multe legături"
+
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
+#: ../libgnomevfs/gnome-vfs-result.c:77
+msgid "Read only file system"
+msgstr "Sistem de fişiere protejat la scriere"
+
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
+#: ../libgnomevfs/gnome-vfs-result.c:78
+msgid "Not on the same file system"
+msgstr "Nu se află pe acelaşi sistem de fişiere"
+
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
+#: ../libgnomevfs/gnome-vfs-result.c:79
+msgid "Name too long"
+msgstr "Nume prea lung"
+
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: ../libgnomevfs/gnome-vfs-result.c:80
+msgid "Service not available"
+msgstr "Serviciu indisponibil"
+
+#. GNOME_VFS_ERROR_SERVICE_OBSOLETE
+#: ../libgnomevfs/gnome-vfs-result.c:81
+msgid "Request obsoletes service's data"
+msgstr "Cerere pentru date de servicii ieşite din uz"
+
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: ../libgnomevfs/gnome-vfs-result.c:82
+msgid "Protocol error"
+msgstr "Eroare de protocol"
+
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: ../libgnomevfs/gnome-vfs-result.c:83
+msgid "Could not find master browser"
+msgstr "Nu s-a găsit un server „master browser”"
+
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: ../libgnomevfs/gnome-vfs-result.c:84
+msgid "No default action associated"
+msgstr "Nu există o acţiune implicită asociată"
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: ../libgnomevfs/gnome-vfs-result.c:85
+msgid "No handler for URL scheme"
+msgstr "Nu există o asociere pentru acest tip de URL"
+
+#. GNOME_VFS_ERROR_PARSE
+#: ../libgnomevfs/gnome-vfs-result.c:86
+msgid "Error parsing command line"
+msgstr "Eroare la procesarea liniei de comandă"
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: ../libgnomevfs/gnome-vfs-result.c:87
+msgid "Error launching command"
+msgstr "Eroare la execuţia comenzii"
+
+#. GNOME_VFS_ERROR_TIMEOUT
+#: ../libgnomevfs/gnome-vfs-result.c:88
+msgid "Timeout reached"
+msgstr "Timp expirat"
+
+#. GNOME_VFS_ERROR_NAMESERVER
+#: ../libgnomevfs/gnome-vfs-result.c:89
+msgid "Nameserver error"
+msgstr "Eroare de rezoluţie de nume"
+
+#. GNOME_VFS_ERROR_LOCKED
+#: ../libgnomevfs/gnome-vfs-result.c:90
+msgid "The resource is locked"
+msgstr "Resursa este blocată"
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: ../libgnomevfs/gnome-vfs-result.c:91
+msgid "Function call deprecated"
+msgstr "Apel-funcţie nesuportat"
+
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:92
+msgid "Invalid filename"
+msgstr "Nume invalid de fişier"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:93
+msgid "Not a symbolic link"
+msgstr "Nu e o legătură simbolică"
+
+#: ../libgnomevfs/gnome-vfs-result.c:217
+msgid "Unknown error"
+msgstr "Eroare necunoscută"
+
+#: ../libgnomevfs/gnome-vfs-utils.c:78
+#, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u octet"
+msgstr[1] "%u octeţi"
+msgstr[2] "%u de octeţi"
+
+#: ../libgnomevfs/gnome-vfs-utils.c:84
+#, c-format
+msgid "%.1f KB"
+msgstr "%.1f KO"
+
+#: ../libgnomevfs/gnome-vfs-utils.c:88
+#, c-format
+msgid "%.1f MB"
+msgstr "%.1f MO"
+
+#: ../libgnomevfs/gnome-vfs-utils.c:92
+#, c-format
+msgid "%.1f GB"
+msgstr "%.1f GO"
+
+#: ../libgnomevfs/gnome-vfs-utils.c:1108
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
+msgid " (invalid Unicode)"
+msgstr " (Unicode invalid)"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
+msgid "Floppy"
+msgstr "Dischetă"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "Disk"
+msgstr "Disc"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "USB Drive"
+msgstr "Unitate USB"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "IEEE1394 Drive"
+msgstr "Unitate IEEE1394"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CF"
+msgstr "CF"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Memory Stick"
+msgstr "Modul de memorie"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "Camera"
+msgstr "Cameră"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "DVD"
+msgstr "DVD"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+msgid "Root Volume"
+msgstr "Volum rădăcină"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+msgid "Audio CD"
+msgstr "CD audio"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+msgid "Unknown volume"
+msgstr "Volum necunoscut"
+
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+msgid "Network server"
+msgstr "Server în reţea"
+
+#. Handle floppy case
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Nu s-a putut monta unitatea de dischetă. Probabil nu e nici o dischetă în "
+"unitate."
+
+#. All others
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+msgid "Unable to mount the volume. There is probably no media in the device."
+msgstr "Nu s-a putut monta volumul. Probabil nu e nimic în unitate."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Nu s-a putut monta unitatea de dischetă. Probabil discheta este într-un "
+"format care nu poate fi montat."
+
+#. Probably a wrong password
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Nu s-a putut monta volumul. În cazul în care este un volum criptat, probabil "
+"s-a folosit o parolă ori o cheie greşită."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Nu s-a putut monta volumul selectat. Probabil este într-un format care nu "
+"poate fi montat."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
+msgid "Unable to mount the selected floppy drive."
+msgstr "Nu s-a putut monta unitatea de dischetă selectată."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
+msgid "Unable to mount the selected volume."
+msgstr "Nu s-a putut monta volumul selectat."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Nu s-a putut monta volumul selectat. Probabil este într-un format care nu "
+"poate fi montat."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
+msgid "Unable to unmount the selected volume."
+msgstr "Nu s-a putat demonta volumul selectat."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
+#, c-format
+msgid "Failed to read data from child process %d (%s)"
+msgstr "Nu s-au putut citi datele de la procesul copil %d (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
+msgid "Couldn't run mount process in a pty"
+msgstr "Nu s-a executa procesul de montare într-un pty"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
+#, c-format
+msgid "Unexpected error in select() reading data from a child process (%s)"
+msgstr ""
+"Eroare neaşteptată în select() la citirea datelor de la procesul copil (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+msgid "Couldn't send password to mount process."
+msgstr "Nu s-a putut transmite parola procesului de montare."
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
+#, c-format
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "Eroare neaşteptată în waitpid() (%s)"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
+msgid "Failed to start command"
+msgstr "Nu s-a putut executa comanda"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
+msgid "Unable to eject media"
+msgstr "Nu s-a putut ejecta mediul din unitate"
+
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
+msgid "Unable to unmount connected server"
+msgstr "Nu s-a putut demonta serverul conectat"
+
+#: ../modules/computer-method.c:543
+msgid "Network"
+msgstr "Reţea"
+
+#: ../modules/computer-method.c:561
+msgid "Home"
+msgstr "Acasă"
+
+#: ../modules/computer-method.c:579
+msgid "Filesystem"
+msgstr "Sistem de fişiere"
+
+#: ../modules/file-method.c:494
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "GnomeVFSSeekPosition %d necunoscut"
+
+#: ../modules/network-method.c:1399
+msgid "Windows Network"
+msgstr "Reţea Windows"
+
+#: ../modules/sftp-method.c:1346
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr "Identitatea calculatorului la distanţă (%s) nu este cunoscută."
+
+#: ../modules/sftp-method.c:1347
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+"Acest lucru se întâmplă la prima autentificare pe un server.\n"
+"\n"
+"Identitatea trimisă de calculatorul la distanţă este %s. Dacă doriţi să fiţi "
+"absolut sigur că puteţi continua în siguranţă, contactaţi administratorul."
+
+#: ../modules/sftp-method.c:1355
+msgid "Log In Anyway"
+msgstr "Continuă oricum"
+
+#: ../modules/sftp-method.c:1356
+msgid "Cancel Login"
+msgstr "Renunţă"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: ../modules/test-method.c:587
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Nu s-a găsit un fişier valid de configurare în %s\n"
+
+#: ../modules/test-method.c:589
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Utilizaţi variabila de mediu %s pentru a specifica o altă locaţie.\n"
+
+#: ../programs/authentication.c:106
+#, c-format
+msgid "Your HTTP Proxy requires you to log in.\n"
+msgstr "Proxy-ul HTTP setat necesită autentificare.\n"
+
+#: ../programs/authentication.c:107
+#, c-format
+msgid ""
+"You must log in to access \"%s\".\n"
+"%s"
+msgstr ""
+"Trebuie să vă autentificaţi pentru a accesa „%s”.\n"
+"%s"
+
+#: ../programs/authentication.c:110
+msgid "Your password will be transmitted unencrypted."
+msgstr "Parola vă va fi transmisă necriptat."
+
+#: ../programs/authentication.c:111
+msgid "Your password will be transmitted encrypted."
+msgstr "Parola vă va fi transmisă criptat"
+
+#: ../programs/authentication.c:156
+#, c-format
+msgid "You must log in to access %s domain %s\n"
+msgstr "Trebuie să vă autentificaţi pentru a accesa %s în domeniul %s\n"
+
+#: ../programs/authentication.c:158
+#, c-format
+msgid "You must log in to access %s\n"
+msgstr "Trebuie să vă autentificaţi pentru a accesa %s\n"
+
+#: ../schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr "Aplicaţie implicită de vizualizare înglobată"
+
+#: ../schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr "Aplicaţie terminal implicită"
+
+#: ../schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr "Argument „exec” pentru terminalul implicit"
+
+#: ../schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Aplicaţie de utilizat pentru vizualizarea fişierelor ce necesită o "
+"componentă de vizualizare. Parametrul %s va fi înlocuit cu URI-ul "
+"fişierului, iar parametrul %c va fi înlocuit cu componenta IID."
+
+#: ../schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Aplicaţia terminal implicită de utilizat pentru programele ce necesită un "
+"terminal."
+
+#: ../schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr "Argumentul „exec” de utilizat pentru aplicaţia terminal implicită."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "Run the command in a terminal"
+msgstr "Porneşte programul într-un terminal"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „aim” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Comanda asociată URL-urile „callto” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „ghelp” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „h323” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „http” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „https” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „info” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „mailto” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „man” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Comanda asociată URL-urilor „trash” la activare."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "The handler for \"aim\" URLs"
+msgstr "Programul asociat adreselor „aim”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "The handler for \"callto\" URLs"
+msgstr "Programul asociat adreselor „callto”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Programul asociat adreselor „ghelp”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "The handler for \"h323\" URLs"
+msgstr "Programul asociat adreselor „h323”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid "The handler for \"http\" URLs"
+msgstr "Programul asociat adreselor „http”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The handler for \"https\" URLs"
+msgstr "Programul asociat adreselor „https”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "The handler for \"info\" URLs"
+msgstr "Programul asociat adreselor „info”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid "The handler for \"mailto\" URLs"
+msgstr "Programul asociat adreselor „mailto”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "The handler for \"man\" URLs"
+msgstr "Programul asociat adreselor „man”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "The handler for \"trash\" URLs"
+msgstr "Programul asociat adreselor „trash”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„aim”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„callto”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„ghelp”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„h323”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„http”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„https”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„info”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„mailto”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„man”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"La activare, comanda specificată în cheia „command” va fi asociată adreselor "
+"„trash”."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"La activare, comanda asociată acestui tip de URL va fi pornită în terminal."
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „aim”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „callto”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „ghelp”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „h323”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „http”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „https”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „info”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „mailto”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „man”"
+
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "Specifică dacă programul ales va fi asociat URL-urilor „trash”"
+
+#: ../schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"Listă separată prin virgule de domenii DNS-SD ce ar trebui să fie vizibile "
+"în locaţia „network:///”."
+
+#: ../schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for DNS-SD services in"
+msgstr "Domenii în plus de verificat pentru servicii DNS-SD"
+
+#: ../schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr "Felul de afişare a serviciului local dns-sd"
+
+#: ../schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "Valori posibile: „merged”, „separate” şi „disabled”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate proxy server connections"
+msgstr "Autentificare la conectarea prin proxy"
+
+#: ../schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr "URL pentru configurări proxy automate"
+
+#: ../schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing HTTP over the Internet."
+msgstr "Activează setările proxy la accesarea adreselor HTTP în Internet."
+
+#: ../schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr "Nume proxy FTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr "Port proxy FTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr "Nume proxy HTTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy password"
+msgstr "Parolă proxy HTTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:8
+msgid "HTTP proxy port"
+msgstr "Port proxy HTTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:9
+msgid "HTTP proxy username"
+msgstr "Nume utilizator proxy HTTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:10
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"La activare, conectarea la serverul proxy necesită autentificare. Combinaţia "
+"nume_utilizator/parolă e definită de „/system/http_proxy/"
+"authentication_user” şi „/system/http_proxy/authentication_password”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:11
+msgid "Non-proxy hosts"
+msgstr "Adrese fără proxy"
+
+#: ../schemas/system_http_proxy.schemas.in.h:12
+msgid "Password to pass as authentication when doing HTTP proxying."
+msgstr "Parolă necesară la autentificarea la serverul proxy HTTP."
+
+#: ../schemas/system_http_proxy.schemas.in.h:13
+msgid "Proxy configuration mode"
+msgstr "Mod configurare proxy"
+
+#: ../schemas/system_http_proxy.schemas.in.h:14
+msgid "SOCKS proxy host name"
+msgstr "Nume proxy SOCKS"
+
+#: ../schemas/system_http_proxy.schemas.in.h:15
+msgid "SOCKS proxy port"
+msgstr "Port proxy SOCKS"
+
+#: ../schemas/system_http_proxy.schemas.in.h:16
+msgid "Secure HTTP proxy host name"
+msgstr "Nume proxy HTTPS"
+
+#: ../schemas/system_http_proxy.schemas.in.h:17
+msgid "Secure HTTP proxy port"
+msgstr "Port proxy HTTPS"
+
+#: ../schemas/system_http_proxy.schemas.in.h:18
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Selectaţi modul de configurare proxy. Valorile suportate sunt „none”, "
+"„manual” şi „auto”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy FTP through."
+msgstr "Numele serverului proxy FTP."
+
+#: ../schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy HTTP through."
+msgstr "Numele serverului proxy HTTP."
+
+#: ../schemas/system_http_proxy.schemas.in.h:21
+msgid "The machine name to proxy secure HTTP through."
+msgstr "Numele serverului proxy HTTPS."
+
+#: ../schemas/system_http_proxy.schemas.in.h:22
+msgid "The machine name to proxy socks through."
+msgstr "Numele serverului proxy SOCKS."
+
+#: ../schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr "Portul serverului proxy definit în „/system/http_proxy/host”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr "Portul serverului proxy definit în „/system/proxy/ftp_host”"
+
+#: ../schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr "Portului serverului proxy definit în „/system/proxy/secure_host”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:26
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr "Portul serverului proxy definit în „/system/proxy/socks_host”."
+
+#: ../schemas/system_http_proxy.schemas.in.h:27
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Această cheie conţine o listă a adreselor la care se preferă conectarea "
+"directă, nu prin proxy. Aceste adrese pot fi nume de servere, domenii (cu "
+"caractere „wildcard”, de ex. *.foo.com), adrese IP (atât IPv4, cât şi IPv6) "
+"şi adrese de reţea cu mască (de ex. 192.168.0.0/16)."
+
+#: ../schemas/system_http_proxy.schemas.in.h:28
+msgid "URL that provides proxy configuration values."
+msgstr "URL cu setări automate de proxy."
+
+#: ../schemas/system_http_proxy.schemas.in.h:29
+msgid "Use HTTP proxy"
+msgstr "Utilizează proxy HTTP"
+
+#: ../schemas/system_http_proxy.schemas.in.h:30
+msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr "Nume utilizator necesar autentificării la serverul proxy HTTP."
+
+#: ../schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr "Grup SMB"
+
+#: ../schemas/system_smb.schemas.in.h:2
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"Grupul sau domeniul Windows din care face parte utilizatorul. Pentru a intra "
+"în vigoare setările unui nou workgroup, utilizatorul s-ar putea să "
+"trebuiască să se deautentifice şi apoi să se autentifice din nou."
+
+#~ msgid "Could not initialize Bonobo"
+#~ msgstr "Nu s-a putut iniţializa Bonobo”"
+
+#~ msgid "Could not initialize gnome vfs"
+#~ msgstr "Nu s-a putut iniţializa gnome-vfs"
+
+#~ msgid "Standard Moniker factory"
+#~ msgstr "Fabrică Moniker standard"
+
+#~ msgid "file MonikerExtender"
+#~ msgstr "fişier MonikerExtender"
+
+#~ msgid "generic Gnome VFS moniker"
+#~ msgstr "Moniker GnomeVFS generic"
+
+#~ msgid "generic file moniker"
+#~ msgstr "Moniker fişier generic"

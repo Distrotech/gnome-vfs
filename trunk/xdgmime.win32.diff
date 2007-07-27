@@ -1,0 +1,384 @@
+Index: libgnomevfs/xdgmime.c
+===================================================================
+--- libgnomevfs/xdgmime.c	(revision 5289)
++++ libgnomevfs/xdgmime.c	(working copy)
+@@ -60,7 +60,7 @@
+ XdgMimeCache **_caches = NULL;
+ static int n_caches = 0;
+ 
+-const char xdg_mime_type_unknown[] = "application/octet-stream";
++const char *xdg_mime_type_unknown = "application/octet-stream";
+ 
+ 
+ enum
+@@ -129,7 +129,7 @@
+ 
+   file_name = malloc (strlen (directory) + strlen ("/mime/mime.cache") + 1);
+   strcpy (file_name, directory); strcat (file_name, "/mime/mime.cache");
+-  if (stat (file_name, &st) == 0)
++  if (XDG_STAT (file_name, &st) == 0)
+     {
+       XdgMimeCache *cache = _xdg_mime_cache_new_from_file (file_name);
+ 
+@@ -153,7 +153,7 @@
+ 
+   file_name = malloc (strlen (directory) + strlen ("/mime/globs") + 1);
+   strcpy (file_name, directory); strcat (file_name, "/mime/globs");
+-  if (stat (file_name, &st) == 0)
++  if (XDG_STAT (file_name, &st) == 0)
+     {
+       _xdg_mime_glob_read_from_file (global_hash, file_name);
+ 
+@@ -170,7 +170,7 @@
+ 
+   file_name = malloc (strlen (directory) + strlen ("/mime/magic") + 1);
+   strcpy (file_name, directory); strcat (file_name, "/mime/magic");
+-  if (stat (file_name, &st) == 0)
++  if (XDG_STAT (file_name, &st) == 0)
+     {
+       _xdg_mime_magic_read_from_file (global_magic, file_name);
+ 
+@@ -207,7 +207,7 @@
+   const char *xdg_data_dirs;
+   const char *ptr;
+ 
+-  xdg_data_home = getenv ("XDG_DATA_HOME");
++  xdg_data_home = XDG_GETENV ("XDG_DATA_HOME");
+   if (xdg_data_home)
+     {
+       if ((func) (xdg_data_home, user_data))
+@@ -217,7 +217,7 @@
+     {
+       const char *home;
+ 
+-      home = getenv ("HOME");
++      home = XDG_GET_HOME ();
+       if (home != NULL)
+ 	{
+ 	  char *guessed_xdg_home;
+@@ -234,9 +234,9 @@
+ 	}
+     }
+ 
+-  xdg_data_dirs = getenv ("XDG_DATA_DIRS");
++  xdg_data_dirs = XDG_GETENV ("XDG_DATA_DIRS");
+   if (xdg_data_dirs == NULL)
+-    xdg_data_dirs = "/usr/local/share/:/usr/share/";
++    xdg_data_dirs = XDG_DEFAULT_DATA_DIRS;
+ 
+   ptr = xdg_data_dirs;
+ 
+@@ -248,7 +248,7 @@
+       int stop_processing;
+ 
+       end_ptr = ptr;
+-      while (*end_ptr != ':' && *end_ptr != '\000')
++      while (*end_ptr != XDG_SEARCHPATH_SEPARATOR && *end_ptr != '\000')
+ 	end_ptr ++;
+ 
+       if (end_ptr == ptr)
+@@ -257,7 +257,7 @@
+ 	  continue;
+ 	}
+ 
+-      if (*end_ptr == ':')
++      if (*end_ptr == XDG_SEARCHPATH_SEPARATOR)
+ 	len = end_ptr - ptr;
+       else
+ 	len = end_ptr - ptr + 1;
+@@ -287,7 +287,7 @@
+   struct stat st;
+ 
+   /* If the file exists */
+-  if (stat (file_path, &st) == 0)
++  if (XDG_STAT (file_path, &st) == 0)
+     {
+       XdgDirTimeList *list;
+ 
+@@ -398,12 +398,10 @@
+ static int
+ xdg_check_time_and_dirs (void)
+ {
+-  struct timeval tv;
+   time_t current_time;
+   int retval = FALSE;
+ 
+-  gettimeofday (&tv, NULL);
+-  current_time = tv.tv_sec;
++  time (&current_time);
+ 
+   if (current_time >= last_stat_time + 5)
+     {
+@@ -492,7 +490,7 @@
+ 
+   if (!statbuf)
+     {
+-      if (stat (file_name, &buf) != 0)
++      if (XDG_STAT (file_name, &buf) != 0)
+ 	return XDG_MIME_TYPE_UNKNOWN;
+ 
+       statbuf = &buf;
+@@ -509,7 +507,7 @@
+   if (data == NULL)
+     return XDG_MIME_TYPE_UNKNOWN;
+         
+-  file = fopen (file_name, "r");
++  file = XDG_FOPEN (file_name, "r");
+   if (file == NULL)
+     {
+       free (data);
+Index: libgnomevfs/xdgmime.h
+===================================================================
+--- libgnomevfs/xdgmime.h	(revision 5289)
++++ libgnomevfs/xdgmime.h	(working copy)
+@@ -68,7 +68,7 @@
+ #define xdg_mime_type_unknown                 XDG_ENTRY(type_unknown)
+ #endif
+ 
+-extern const char xdg_mime_type_unknown[];
++extern const char *xdg_mime_type_unknown;
+ #define XDG_MIME_TYPE_UNKNOWN xdg_mime_type_unknown
+ 
+ const char  *xdg_mime_get_mime_type_for_data       (const void *data,
+Index: libgnomevfs/xdgmimealias.c
+===================================================================
+--- libgnomevfs/xdgmimealias.c	(revision 5289)
++++ libgnomevfs/xdgmimealias.c	(working copy)
+@@ -35,16 +35,7 @@
+ #include <stdio.h>
+ #include <assert.h>
+ #include <string.h>
+-#include <fnmatch.h>
+ 
+-#ifndef	FALSE
+-#define	FALSE	(0)
+-#endif
+-
+-#ifndef	TRUE
+-#define	TRUE	(!FALSE)
+-#endif
+-
+ typedef struct XdgAlias XdgAlias;
+ 
+ struct XdgAlias 
+@@ -124,7 +115,7 @@
+   char line[255];
+   int alloc;
+ 
+-  file = fopen (file_name, "r");
++  file = XDG_FOPEN (file_name, "r");
+ 
+   if (file == NULL)
+     return;
+Index: libgnomevfs/xdgmimecache.c
+===================================================================
+--- libgnomevfs/xdgmimecache.c	(revision 5289)
++++ libgnomevfs/xdgmimecache.c	(working copy)
+@@ -37,7 +37,11 @@
+ #include <fnmatch.h>
+ #include <assert.h>
+ 
++#ifdef _WIN32
++#include <winsock2.h> /* for ntohl/ntohs */
++#else
+ #include <netinet/in.h> /* for ntohl/ntohs */
++#endif
+ 
+ #ifdef HAVE_MMAP
+ #include <sys/mman.h>
+@@ -693,7 +697,7 @@
+ 
+   if (!statbuf)
+     {
+-      if (stat (file_name, &buf) != 0)
++      if (XDG_STAT (file_name, &buf) != 0)
+ 	return XDG_MIME_TYPE_UNKNOWN;
+ 
+       statbuf = &buf;
+@@ -710,7 +714,7 @@
+   if (data == NULL)
+     return XDG_MIME_TYPE_UNKNOWN;
+         
+-  file = fopen (file_name, "r");
++  file = XDG_FOPEN (file_name, "r");
+   if (file == NULL)
+     {
+       free (data);
+Index: libgnomevfs/xdgmimeglob.c
+===================================================================
+--- libgnomevfs/xdgmimeglob.c	(revision 5289)
++++ libgnomevfs/xdgmimeglob.c	(working copy)
+@@ -37,14 +37,6 @@
+ #include <string.h>
+ #include <fnmatch.h>
+ 
+-#ifndef	FALSE
+-#define	FALSE	(0)
+-#endif
+-
+-#ifndef	TRUE
+-#define	TRUE	(!FALSE)
+-#endif
+-
+ typedef struct XdgGlobHashNode XdgGlobHashNode;
+ typedef struct XdgGlobList XdgGlobList;
+ 
+@@ -522,7 +514,7 @@
+   FILE *glob_file;
+   char line[255];
+ 
+-  glob_file = fopen (file_name, "r");
++  glob_file = XDG_FOPEN (file_name, "r");
+ 
+   if (glob_file == NULL)
+     return;
+Index: libgnomevfs/xdgmimeint.c
+===================================================================
+--- libgnomevfs/xdgmimeint.c	(revision 5289)
++++ libgnomevfs/xdgmimeint.c	(working copy)
+@@ -33,14 +33,6 @@
+ #include <ctype.h>
+ #include <string.h>
+ 
+-#ifndef	FALSE
+-#define	FALSE	(0)
+-#endif
+-
+-#ifndef	TRUE
+-#define	TRUE	(!FALSE)
+-#endif
+-
+ static const char _xdg_utf8_skip_data[256] = {
+   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+@@ -52,7 +44,7 @@
+   3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,6,6,1,1
+ };
+ 
+-const char * const _xdg_utf8_skip = _xdg_utf8_skip_data;
++const char *_xdg_utf8_skip = _xdg_utf8_skip_data;
+ 
+ 
+ 
+@@ -152,3 +144,20 @@
+   else
+     return base_name + 1;
+ }
++
++#ifdef USE_GLIB
++
++const char *
++_xdg_get_default_data_dirs (void)
++{
++  GQuark quark;
++  const char * const *dirs = g_get_system_data_dirs ();
++  char *string = g_strjoinv (G_SEARCHPATH_SEPARATOR_S, (char **) dirs);
++
++  quark = g_quark_from_string (string);
++  g_free (string);
++
++  return g_quark_to_string (quark);
++}
++
++#endif
+Index: libgnomevfs/xdgmimeint.h
+===================================================================
+--- libgnomevfs/xdgmimeint.h	(revision 5289)
++++ libgnomevfs/xdgmimeint.h	(working copy)
+@@ -61,7 +61,7 @@
+ 					      (((xdg_uint32_t)(val) & 0x000000FFU) << 24))
+ /* UTF-8 utils
+  */
+-extern const char *const _xdg_utf8_skip;
++extern const char *_xdg_utf8_skip;
+ #define _xdg_utf8_next_char(p) (char *)((p) + _xdg_utf8_skip[*(unsigned char *)(p)])
+ #define _xdg_utf8_char_size(p) (int) (_xdg_utf8_skip[*(unsigned char *)(p)])
+ 
+@@ -70,4 +70,28 @@
+ int            _xdg_utf8_validate (const char    *source);
+ const char    *_xdg_get_base_name (const char    *file_name);
+ 
++#if defined (G_OS_WIN32) && defined (GNOME_VFS_PREFIX)
++/* If building as part of gnome-vfs on Win32 */
++#define USE_GLIB
++#endif
++
++#ifdef USE_GLIB
++#include <glib.h>
++#include <glib/gstdio.h>
++#define XDG_GETENV g_getenv
++#define XDG_STAT g_stat
++#define XDG_FOPEN g_fopen
++#define XDG_GET_HOME() g_get_home_dir ()
++const char *_xdg_get_default_data_dirs (void);
++#define XDG_DEFAULT_DATA_DIRS _xdg_get_default_data_dirs ()
++#define XDG_SEARCHPATH_SEPARATOR G_SEARCHPATH_SEPARATOR
++#else
++#define XDG_GETENV getenv
++#define XDG_STAT stat
++#define XDG_FOPEN fopen
++#define XDG_GET_HOME() getenv ("HOME")
++#define XDG_DEFAULT_DATA_DIRS "/usr/local/share/:/usr/share/"
++#define XDG_SEARCHPATH_SEPARATOR ':'
++#endif
++
+ #endif /* __XDG_MIME_INT_H__ */
+Index: libgnomevfs/xdgmimemagic.c
+===================================================================
+--- libgnomevfs/xdgmimemagic.c	(revision 5289)
++++ libgnomevfs/xdgmimemagic.c	(working copy)
+@@ -39,12 +39,13 @@
+ #include <errno.h>
+ #include <limits.h>
+ 
+-#ifndef	FALSE
+-#define	FALSE	(0)
++#ifdef _WIN32
++#define getc_unlocked getc
++#define LITTLE_ENDIAN 1
+ #endif
+ 
+-#ifndef	TRUE
+-#define	TRUE	(!FALSE)
++#ifndef _WIN32
++extern int errno;
+ #endif
+ 
+ typedef struct XdgMimeMagicMatch XdgMimeMagicMatch;
+@@ -803,7 +804,7 @@
+   FILE *magic_file;
+   char header[12];
+ 
+-  magic_file = fopen (file_name, "r");
++  magic_file = XDG_FOPEN (file_name, "r");
+ 
+   if (magic_file == NULL)
+     return;
+Index: libgnomevfs/xdgmimeparent.c
+===================================================================
+--- libgnomevfs/xdgmimeparent.c	(revision 5289)
++++ libgnomevfs/xdgmimeparent.c	(working copy)
+@@ -37,14 +37,6 @@
+ #include <string.h>
+ #include <fnmatch.h>
+ 
+-#ifndef	FALSE
+-#define	FALSE	(0)
+-#endif
+-
+-#ifndef	TRUE
+-#define	TRUE	(!FALSE)
+-#endif
+-
+ typedef struct XdgMimeParents XdgMimeParents;
+ 
+ struct XdgMimeParents
+@@ -130,7 +122,7 @@
+   int i, alloc;
+   XdgMimeParents *entry;
+ 
+-  file = fopen (file_name, "r");
++  file = XDG_FOPEN (file_name, "r");
+ 
+   if (file == NULL)
+     return;
