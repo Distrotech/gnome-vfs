@@ -1546,7 +1546,7 @@ do_open (GnomeVFSMethod *method,
 
 	/* Important: perform_authentication leaves and re-enters the lock! */
 	while (perform_authentication (&actx) > 0) {
-		file = smb_context->open (smb_context, path, unix_mode, 0666);
+		file = (smb_context->open) (smb_context, path, unix_mode, 0666);
 		actx.res = (file != NULL) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 	}
 
@@ -1740,7 +1740,7 @@ do_create (GnomeVFSMethod *method,
 	
 	/* Important: perform_authentication leaves and re-enters the lock! */	
 	while (perform_authentication (&actx) > 0) {
-		file = smb_context->open (smb_context, path, unix_mode, perm);
+		file = (smb_context->open) (smb_context, path, unix_mode, perm);
 		actx.res = (file != NULL) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 	}
 

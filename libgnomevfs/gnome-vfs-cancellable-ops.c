@@ -55,8 +55,8 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	if (!VFS_METHOD_HAS_FUNC(uri->method, open))
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
-	result = uri->method->open (uri->method, &method_handle, uri, open_mode,
-				    context);
+	result = (uri->method->open) (uri->method, &method_handle, uri, open_mode,
+				      context);
 
 	if (result != GNOME_VFS_OK)
 		return result;

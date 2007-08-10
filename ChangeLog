@@ -1,3 +1,12 @@
+2007-08-10  Bastien Nocera  <hadess@hadess.net>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_open_uri_cancellable):
+	* modules/smb-method.c: (do_open), (do_create):
+	Patch from Joe Orton <jorton@redhat.com> to avoid
+	expansion of open() when it is a macro, as allowed
+	by POSIX and done in newer glibc (Closes: #464984)
+
 2007-07-27  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
