@@ -567,6 +567,7 @@ smb_uri_type (GnomeVFSURI *uri)
 {
 	GnomeVFSToplevelURI *toplevel;
 	char *first_slash;
+	char *host_name;
 
 	toplevel = (GnomeVFSToplevelURI *)uri;
 
@@ -587,11 +588,17 @@ smb_uri_type (GnomeVFSURI *uri)
 	    strcmp (uri->text, "/") == 0) {
 		/* smb://foo/ */
 		update_workgroup_cache ();
-		if (!g_ascii_strcasecmp(toplevel->host_name,
+		host_name = gnome_vfs_unescape_string (toplevel->host_name,
+		                                       G_DIR_SEPARATOR_S);
+		if (!host_name)
+			return SMB_URI_ERROR;
+		if (!g_ascii_strcasecmp(host_name,
 					DEFAULT_WORKGROUP_NAME) ||
-		    g_hash_table_lookup (workgroups, toplevel->host_name)) {
+		    g_hash_table_lookup (workgroups, host_name)) {
+			g_free (host_name);
 			return SMB_URI_WORKGROUP;
 		} else {
+			g_free (host_name);
 			return SMB_URI_SERVER;
 		}
 	}
@@ -599,11 +606,17 @@ smb_uri_type (GnomeVFSURI *uri)
 	if (first_slash == NULL) {
 		/* smb://foo/bar */
 		update_workgroup_cache ();
-		if (!g_ascii_strcasecmp(toplevel->host_name,
+		host_name = gnome_vfs_unescape_string (toplevel->host_name,
+		                                       G_DIR_SEPARATOR_S);
+		if (!host_name)
+			return SMB_URI_ERROR;
+		if (!g_ascii_strcasecmp(host_name,
 					DEFAULT_WORKGROUP_NAME) ||
-		    g_hash_table_lookup (workgroups, toplevel->host_name)) {
+		    g_hash_table_lookup (workgroups, host_name)) {
+			g_free (host_name);
 			return SMB_URI_SERVER_LINK;
 		} else {
+			g_free (host_name);
 			return SMB_URI_SHARE;
 		}
 	}

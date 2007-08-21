@@ -1,3 +1,9 @@
+2007-08-21  Alexander Larsson  <alexl@redhat.com>
+
+        * modules/smb-method.c:
+	Look for unescaped name when looking up workgroup (#428200)
+	Patch from Takao Fujiwara
+
 2007-08-10  Bastien Nocera  <hadess@hadess.net>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c:
