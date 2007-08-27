@@ -1,3 +1,7 @@
+gnome-vfs 2.19.91
+	  * Fix build with recent glibc
+	  * Handle non-ascii workgroup names better
+	  
 gnome-vfs 2.19.3
 	  * Export modules directory in pkg-config files
 	  * Fix crash in gnome_vfs_xfer
