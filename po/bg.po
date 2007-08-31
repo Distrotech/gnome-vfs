@@ -9,10 +9,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
+"Project-Id-Version: gnome-vfs trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-08 08:58+0200\n"
-"PO-Revision-Date: 2007-03-08 08:58+0200\n"
+"POT-Creation-Date: 2007-08-31 08:04+0300\n"
+"PO-Revision-Date: 2007-08-31 07:58+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -99,127 +99,131 @@ msgid "Ext3 Linux Volume"
 msgstr "Дял Ext3 на Linux"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "MSDOS Volume"
 msgstr "Дял MSDOS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "BSD Volume"
 msgstr "Дял BSD"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+msgid "FUSE Volume"
+msgstr "Дял FUSE"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "MacOS Volume"
 msgstr "Дял MacOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "CDROM Volume"
 msgstr "Компакт диск"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Hsfs CDROM Volume"
 msgstr "Компакт диск Hsfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "JFS Volume"
 msgstr "Дял JFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Windows NT Volume"
 msgstr "Дял Windows NT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "System Volume"
 msgstr "Системен дял"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Memory Volume"
 msgstr "Дял в паметта"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Minix Volume"
 msgstr "Дял Minix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
 msgstr "Мрежови диск NFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
 msgstr "Дял на Netware"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Reiser4 Linux Volume"
 msgstr "Дял Reiser4 на Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "ReiserFS Linux Volume"
 msgstr "Дял ReiserFS на Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows Shared Volume"
 msgstr "Споделен диск на Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "SuperMount Volume"
 msgstr "Диск за SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "DVD Volume"
 msgstr "Диск за DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Solaris/BSD Volume"
 msgstr "Дял Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Udfs Solaris Volume"
 msgstr "Дял Udfs на Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Pcfs Solaris Volume"
 msgstr "Дял Pcfs на Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Sun SAM-QFS Volume"
 msgstr "Дял SAM-QFS на Sun"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Temporary Volume"
 msgstr "Временен дял"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Enhanced DOS Volume"
 msgstr "Дял Enhanced DOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Windows VFAT Volume"
 msgstr "Дял VFAT на Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Xenix Volume"
 msgstr "Дял Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XFS Linux Volume"
 msgstr "Дял XFS на Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "XIAFS Volume"
 msgstr "Дял XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "CIFS Volume"
 msgstr "Мрежови диск CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
 msgid "Unknown"
 msgstr "Неизвестен"
 
@@ -227,7 +231,7 @@ msgstr "Неизвестен"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
-msgstr "Дял, %s"
+msgstr "Дял %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
@@ -378,7 +382,7 @@ msgstr "Диск DVD-RAM"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
-msgstr "Празен диск, DVD-R"
+msgstr "Празен диск DVD-R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
@@ -394,7 +398,7 @@ msgstr "Диск DVD-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
-msgstr "Празен диск, DVD+R"
+msgstr "Празен диск DVD+R"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
@@ -415,7 +419,7 @@ msgstr "Аудио диск"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr "Подвижен дял, %s"
+msgstr "Подвижен дял %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
@@ -475,12 +479,12 @@ msgstr ""
 "Остаряла функция, да не се използва! Не се поддържат вече потребителски "
 "промени по базата с данни за видове MIME."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не може да се анализира: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
 msgid "More parsing errors will be ignored."
 msgstr "Следващите грешки при анализиране ще бъдат игнорирани."
 
@@ -1054,11 +1058,11 @@ msgstr ""
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr "Паролата Ви ще бъде пратена некриптирана."
+msgstr "Паролата ви ще бъде пратена некриптирана."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr "Паролата Ви ще бъде пратена криптирана."
+msgstr "Паролата ви ще бъде пратена криптирана."
 
 #: ../programs/authentication.c:163
 #, c-format
@@ -1195,82 +1199,77 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „aim“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „aim“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
-"„callto“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „callto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
-"„ghelp“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „ghelp“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „h323“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „h323“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „http“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „http“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
-"„https“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „https“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „info“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „info“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
-"„mailto“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „mailto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида „man“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „man“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Включено, ако програмата в ключа „command“ ще обслужва адреси от вида "
-"„trash“."
+"Истина, ако програмата в ключа „command“ ще обслужва адреси от вида „trash“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Включено, ако програмата, която ще обслужва този вид адреси, трябва да бъде "
+"Истина, ако програмата, която ще обслужва този вид адреси, трябва да бъде "
 "изпълнена в терминал."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
