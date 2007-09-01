@@ -1,3 +1,7 @@
+2007-09-01  Christian Kellner  <gicmo@gnome.org>
+
+	* MAINTAINERS: Update MAINTAINERS file to hip new GNOME standard.
+
 2007-08-27  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
