@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-24 20:11+0200\n"
-"PO-Revision-Date: 2007-04-14 16:47+0200\n"
+"POT-Creation-Date: 2007-09-09 03:04+0200\n"
+"PO-Revision-Date: 2007-09-08 17:35+0200\n"
 "Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -120,9 +120,8 @@ msgid "BSD Volume"
 msgstr "BSD-drev"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
-#, fuzzy
 msgid "FUSE Volume"
-msgstr "JFS-drev"
+msgstr "FUSE-drev"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
