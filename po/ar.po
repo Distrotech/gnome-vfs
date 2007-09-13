@@ -676,7 +676,7 @@ msgstr "ليس على نفس نظام الملفات"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
-msgstr "الإسم طويل جدا"
+msgstr "الاسم طويل جدا"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: ../libgnomevfs/gnome-vfs-result.c:85
@@ -726,7 +726,7 @@ msgstr "انتهت المهلة"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
-msgstr "خطأ في خادم التنشيط الإسمي"
+msgstr "خطأ في خادم التنشيط الاسمي"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:95
