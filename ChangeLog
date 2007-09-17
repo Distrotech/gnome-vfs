@@ -1,3 +1,9 @@
+2007-09-17  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version to 2.20.0
+
 2007-09-01  Christian Kellner  <gicmo@gnome.org>
 
 	* MAINTAINERS: Update MAINTAINERS file to hip new GNOME standard.

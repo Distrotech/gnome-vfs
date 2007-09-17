@@ -1,3 +1,6 @@
+gnome-vfs 2.20.0
+	  * Translation updates
+	  
 gnome-vfs 2.19.91
 	  * Fix build with recent glibc
 	  * Handle non-ascii workgroup names better
