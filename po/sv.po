@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-14 21:00+0200\n"
-"PO-Revision-Date: 2007-05-14 21:01+0100\n"
+"POT-Creation-Date: 2007-09-30 17:50+0200\n"
+"PO-Revision-Date: 2007-09-30 17:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -423,7 +423,7 @@ msgstr "Ljudskiva"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr "%s löstagbar volym"
+msgstr "%s flyttbar volym"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
@@ -888,24 +888,29 @@ msgstr "Nätverksserver"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Kan inte montera diskettenheten. Det finns troligtvis ingen diskett i enheten."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Kan inte montera volymen. Det finns troligtvis inget medium i enheten."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
 msgstr "Kan inte montera diskettenheten. Disketten är troligtvis i ett format som inte kan monteras."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
 msgstr "Kunde inte montera volymen. Om det här är en krypterad enhet så användes fel lösenord eller nyckel."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
 msgstr "Kan inte montera den valda volymen. Volymen är troligtvis i ett format som inte kan monteras."
 
@@ -918,6 +923,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Kan inte montera den valda volymen."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
 msgstr "Kunde inte avmontera den valda volymen. Volymen används av ett eller flera program."
 
@@ -940,6 +946,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Oväntat fel i select() vid läsning av data från en barnprocess (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Kunde inte skicka lösenord till monteringsprocess."
 
