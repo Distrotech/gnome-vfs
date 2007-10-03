@@ -556,7 +556,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
-msgstr "Fichièr pas dubert"
+msgstr "Fichièr pas dobert"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:62
