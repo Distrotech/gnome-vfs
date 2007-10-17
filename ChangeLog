@@ -1,3 +1,8 @@
+2007-10-17  Mathias Hasselmann  <mathias@openismus.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c: (avahi_resolve_host_name):
+	  Initialize got_data field of sync_resolve_data structure (#487227).
+
 2007-09-17  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
