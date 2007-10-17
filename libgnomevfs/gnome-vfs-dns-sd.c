@@ -1419,6 +1419,8 @@ avahi_resolve_host_name (AvahiIfIndex interface,
 
  retry:
 	
+	resolve_data.got_data = FALSE;
+	resolve_data.got_link_local_ipv6 = FALSE;
         resolve_data.poll = avahi_simple_poll_new ();
 
         if (resolve_data.poll == NULL) {
@@ -1435,7 +1437,6 @@ avahi_resolve_host_name (AvahiIfIndex interface,
 		goto cleanup;
 	}
 
-	resolve_data.got_link_local_ipv6 = FALSE;
         hr = avahi_host_name_resolver_new (client, interface, protocol, 
                                            host_name, AVAHI_PROTO_UNSPEC, 0,
                                            avahi_resolve_host_name_sync_callback, 
