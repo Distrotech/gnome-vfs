@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-02 17:05+0100\n"
+"POT-Creation-Date: 2007-10-21 20:04+0100\n"
 "PO-Revision-Date: 2007-05-03 12:40+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : "
+"3\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -889,15 +890,20 @@ msgstr "خادم شبكة"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
+#, c-format
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "لا يمكن تجهيز الحجم. ربما لعدم وجود وسيط في السواقة."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -907,6 +913,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -915,6 +922,7 @@ msgstr ""
 "المستخدمين خاطئين."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -929,6 +937,7 @@ msgid "Unable to mount the selected volume."
 msgstr "لا يمكن تجهيز الحجم المختار."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -953,6 +962,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "خطأ غير متوقع في select() أثناء قراءة البيانات من العملية الإبنة (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "لم أستطع إرسال كلمة السر إلى عملية الضم. "
 
@@ -1406,7 +1416,8 @@ msgstr "منفذ بروكسي HTTP آمن"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي  \"none\"، \"manual\"و \"auto\"."
+msgstr ""
+"اختر نسق إعداد البروكسي. القيم المدعومة هي  \"none\"، \"manual\"و \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1484,4 +1495,3 @@ msgid ""
 msgstr ""
 "مجموعة العمل أو نطاق شبكة ويندوز التى يتبعها هذا المستخدم. لكي تؤثّر مجموعة "
 "العمل الجديدة تأثيرا كاملا قد تحتاج للخروج ثم الولوج مرّة أخرى."
-
