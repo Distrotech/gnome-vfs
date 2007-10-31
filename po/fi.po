@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-06 17:00+0300\n"
+"POT-Creation-Date: 2007-10-31 17:25+0300\n"
 "PO-Revision-Date: 2006-07-24 12:03+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -417,7 +417,7 @@ msgstr "Äänilevy"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr "%s irroitettava taltio"
+msgstr "%s irrotettava taltio"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
@@ -885,6 +885,7 @@ msgstr "Verkkopalvelin"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -892,10 +893,12 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Taltion liittäminen ei onnistu. Luultavasti asemassa ei ole levyä."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -905,6 +908,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -913,6 +917,7 @@ msgstr ""
 "väärän salasanan tai avaimen."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -929,6 +934,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Valitun taltion liittäminen ei onnistu."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -956,13 +962,14 @@ msgstr ""
 "Odottamaton virhe select()-kutsussa luettaessa tietoja lapsiprosessilta (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Salasanaa ei voitu lähettää prosessille mount."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr "Odottamaton virhe komenossa waitpid() (%s)"
+msgstr "Odottamaton virhe komennossa waitpid() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
@@ -1188,7 +1195,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"aim\"-tyypisiä "
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"aim\"-tyyppisiä "
 "URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -1197,7 +1204,7 @@ msgid ""
 "\" URLs."
 msgstr ""
 "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"callto\"-"
-"tyypisiä URL:eja."
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
@@ -1205,23 +1212,23 @@ msgid ""
 "URLs."
 msgstr ""
 "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"ghelp\"-"
-"tyypisiä URL:eja."
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"h323\"-tyypisiä "
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"h323\"-"
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"http\"-tyypisiä "
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"http\"-"
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
@@ -1229,15 +1236,15 @@ msgid ""
 "URLs."
 msgstr ""
 "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"https\"-"
-"tyypisiä URL:eja."
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"info\"-tyypisiä "
-"URL:eja."
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"info\"-"
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
@@ -1245,14 +1252,14 @@ msgid ""
 "\" URLs."
 msgstr ""
 "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"mailto\"-"
-"tyypisiä URL:eja."
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"man\"-tyypisiä "
+"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"man\"-tyyppisiä "
 "URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
@@ -1261,7 +1268,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Tosi, jos avaimessa \"command\" annettu komento käsittelee \"trash\"-"
-"tyypisiä URL:eja."
+"tyyppisiä URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
