@@ -1,3 +1,6 @@
+gnome-vfs 2.20.1
+	  * Fix dns-sd crash
+	  
 gnome-vfs 2.20.0
 	  * Translation updates
 	  
