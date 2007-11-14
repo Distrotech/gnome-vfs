@@ -2084,6 +2084,7 @@ do_read_directory (GnomeVFSMethod *method,
 	struct stat st;
 	char *statpath;
 	char *path;
+	char *escaped;
 	int r = -1;
 	GList *l;
 
@@ -2178,17 +2179,20 @@ do_read_directory (GnomeVFSMethod *method,
 	case SMBC_DIR:
 	case SMBC_FILE:
 		path = dh->path;
-		
+		escaped = gnome_vfs_escape_string (file_info->name);
+
 		if (path[strlen(path)-1] == '/') {
 			statpath = g_strconcat (path, 
-						gnome_vfs_escape_string (file_info->name),
+						escaped,
 						NULL);
 		} else {
 			statpath = g_strconcat (path,
 						"/",
-						gnome_vfs_escape_string (file_info->name),
+						escaped,
 						NULL);
 		}
+		g_free (escaped);
+
 		/* TODO: might give an auth error, but should be rare due
 		   to the succeeding opendir. If this happens and we can't
 		   auth, we should terminate the readdir to avoid multiple
