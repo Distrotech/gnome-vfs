@@ -1,3 +1,9 @@
+2007-11-14  Alexander Larsson  <alexl@redhat.com>
+
+        * daemon/daemon-connection.c:
+        * modules/smb-method.c:
+	Plug leaks. Found by James "Doc" Livingston.
+	
 2007-11-12  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
