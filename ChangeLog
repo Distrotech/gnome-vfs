@@ -1,3 +1,9 @@
+2007-11-19  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	Remove old copy/pasted code from glib. Handle correctly locale encoded
+	filenames when using non-UTF8 locale (GNOME bug #498261).
+
 2007-11-14  Alexander Larsson  <alexl@redhat.com>
 
         * daemon/daemon-connection.c:

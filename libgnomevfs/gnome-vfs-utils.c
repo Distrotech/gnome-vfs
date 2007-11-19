@@ -1111,89 +1111,9 @@ gnome_vfs_make_valid_utf8 (const char *name)
 	return g_string_free (string, FALSE);
 }
 
-/* Get the filename encoding, returns TRUE if utf8 */
-
-typedef struct _VfsFilenameCharsetCache VfsFilenameCharsetCache;
-
-struct _VfsFilenameCharsetCache {
-  gboolean is_utf8;
-  gchar *charset;
-  gchar *filename_charset;
-};
-
-static void
-filename_charset_cache_free (gpointer data)
-{
-  VfsFilenameCharsetCache *cache = data;
-  g_free (cache->charset);
-  g_free (cache->filename_charset);
-  g_free (cache);
-}
-
-/* Copied from glib */
-static gboolean
-vfs_get_filename_charset (const gchar **filename_charset)
-{
-  static GStaticPrivate cache_private = G_STATIC_PRIVATE_INIT;
-  VfsFilenameCharsetCache *cache = g_static_private_get (&cache_private);
-  const gchar *charset;
-  
-  if (!cache)
-    {
-      cache = g_new0 (VfsFilenameCharsetCache, 1);
-      g_static_private_set (&cache_private, cache, filename_charset_cache_free);
-    }
-
-  g_get_charset (&charset);
-
-  if (!(cache->charset && strcmp (cache->charset, charset) == 0))
-    {
-      const gchar *new_charset;
-      gchar *p, *q;
-
-      g_free (cache->charset);
-      g_free (cache->filename_charset);
-      cache->charset = g_strdup (charset);
-      
-      p = getenv ("G_FILENAME_ENCODING");
-      if (p != NULL) 
-	{
-	  q = strchr (p, ',');
-	  if (!q) 
-	    q = p + strlen (p);
-
-	  if (strncmp ("@locale", p, q - p) == 0)
-	    {
-	      cache->is_utf8 = g_get_charset (&new_charset);
-	      cache->filename_charset = g_strdup (new_charset);
-	    }
-	  else
-	    {
-	      cache->filename_charset = g_strndup (p, q - p);
-	      cache->is_utf8 = (strcmp (cache->filename_charset, "UTF-8") == 0);
-	    }
-	}
-      else if (getenv ("G_BROKEN_FILENAMES") != NULL)
-	{
-	  cache->is_utf8 = g_get_charset (&new_charset);
-	  cache->filename_charset = g_strdup (new_charset);
-	}
-      else 
-	{
-	  cache->filename_charset = g_strdup ("UTF-8");
-	  cache->is_utf8 = TRUE;
-	}
-    }
-
-  if (filename_charset)
-    *filename_charset = cache->filename_charset;
-
-  return cache->is_utf8;
-}
-
 static char *
 gnome_vfs_format_uri_for_display_internal (const char *uri,
-					   gboolean filenames_are_utf8, const char *filename_charset)
+					   gboolean filenames_are_utf8)
 {
 	char *canonical_uri, *path, *utf8_path;
 
@@ -1206,7 +1126,7 @@ gnome_vfs_format_uri_for_display_internal (const char *uri,
 	
 	if (path != NULL) {
 		if (!filenames_are_utf8) {
-			utf8_path = g_convert (path, -1, "UTF-8", filename_charset, NULL, NULL, NULL);
+			utf8_path = g_filename_to_utf8(path, -1, NULL, NULL, NULL);
 			if (utf8_path) {
 				g_free (canonical_uri);
 				g_free (path);
@@ -1251,11 +1171,11 @@ char *
 gnome_vfs_format_uri_for_display (const char *uri) 
 {
 	gboolean utf8;
-	const char *charset;
+	const char **charsets;
 
-	utf8 = vfs_get_filename_charset (&charset);
+	utf8 = g_get_filename_charsets (&charsets);
 
-	return gnome_vfs_format_uri_for_display_internal (uri, utf8, charset);
+	return gnome_vfs_format_uri_for_display_internal (uri, utf8);
 }
 
 static gboolean
@@ -1363,7 +1283,6 @@ looks_like_http_uri (const char *str)
 static char *
 gnome_vfs_make_uri_from_input_internal (const char *text,
 					gboolean filenames_are_utf8,
-					const char *filename_charset,
 					gboolean strip_trailing_whitespace)
 {
 	char *stripped, *uri, *locale_path, *escaped;
@@ -1382,7 +1301,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 
 	if (g_path_is_absolute (stripped)) {
 		if (!filenames_are_utf8) {
-			locale_path = g_convert (stripped, -1, filename_charset, "UTF-8", NULL, NULL, NULL);
+			locale_path = g_filename_to_utf8 (stripped, -1, NULL, NULL, NULL);
 			if (locale_path != NULL) {
 				uri = gnome_vfs_get_uri_from_local_path (locale_path);
 				g_free (locale_path);
@@ -1402,7 +1321,7 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 	case '~': {
 		char *path, *filesystem_path;
 		if (!filenames_are_utf8) {
-			filesystem_path = g_convert (stripped, -1, filename_charset, "UTF-8", NULL, NULL, NULL);
+			filesystem_path = g_filename_to_utf8(stripped, -1, NULL, NULL, NULL);
 		} else {
 			filesystem_path = g_strdup (stripped);
 		}
@@ -1458,11 +1377,11 @@ char *
 gnome_vfs_make_uri_from_input (const char *location)
 {
 	gboolean utf8;
-	const char *charset;
+	const char **charsets;
 
-	utf8 = vfs_get_filename_charset (&charset);
+	utf8 = g_get_filename_charsets (&charsets);
 
-	return gnome_vfs_make_uri_from_input_internal (location, utf8, charset, TRUE);
+	return gnome_vfs_make_uri_from_input_internal (location, utf8, TRUE);
 }
 
 /**
@@ -1482,11 +1401,11 @@ char *
 gnome_vfs_make_uri_from_input_with_trailing_ws (const char *location)
 {
 	gboolean utf8;
-	const char *charset;
+	const char **charsets;
 
-	utf8 = vfs_get_filename_charset (&charset);
+	utf8 = g_get_filename_charsets (&charsets);
 
-	return gnome_vfs_make_uri_from_input_internal (location, utf8, charset, FALSE);	
+	return gnome_vfs_make_uri_from_input_internal (location, utf8, FALSE);	
 }
 
 /**
