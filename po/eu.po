@@ -1,4 +1,4 @@
-# translation of eu.po to Basque
+# translation of gnome-vfs.HEAD.po to Basque
 # Copyright (C) 2001, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 #
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-25 19:26+0200\n"
-"PO-Revision-Date: 2007-07-25 19:27+0200\n"
+"POT-Creation-Date: 2007-12-27 16:14+0100\n"
+"PO-Revision-Date: 2007-12-27 16:14+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
-"Language-Team: Basque <eu@li.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,7 +56,7 @@ msgstr "Ezin izan da `%s' konfigurazio-fitxategia aurkitu: %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr "%s:%d analisia bertan behear utzi du"
+msgstr "%s:%d analisia bertan behera utzi da."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -474,7 +474,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Funtzio zaharkitua.  Erabiltzaileak egindako MIME datubasearen aldaketarik "
+"Funtzio zaharkitua. erabiltzaileak egindako MIME datu-basearen aldaketarik "
 "ez da onartuko"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:720
@@ -861,11 +861,11 @@ msgstr "Smart euskarria"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
-msgstr "Kamara"
+msgstr "Kamera"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
-msgstr "DVD"
+msgstr "DVDa"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
@@ -891,7 +891,7 @@ msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Ezin da bolumena muntau. Baliteke gailuan euskarririk ez egotea."
+msgstr "Ezin da bolumena muntatu. Baliteke gailuan euskarririk ez egotea."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
@@ -931,7 +931,7 @@ msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr ""
-"Ezin da hautatutako bolumena muntatu. Programa batek (edo gehiagok)darabil "
+"Ezin da hautatutako bolumena muntatu. Programa batek (edo gehiagok) darabil "
 "bolumena."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
@@ -945,12 +945,12 @@ msgstr "Huts egin du %d (%s) ume-prozesutik datuak irakurtzean"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr "Ezin izan da muntatz-prozesuan 'pty' batean exekutatu"
+msgstr "Ezin izan da muntatze-prozesua exekutatu 'pty' batean"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Ustegabeko errorea select() funtzioan ume-prozesutik (%s) datuak irakurtzean"
+msgstr "Ustekabeko errorea select() funtzioan ume-prozesutik (%s) datuak irakurtzean"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
@@ -959,7 +959,7 @@ msgstr "Ezin izan da pasahitza muntatzeko prozesuari bidali"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr "Ustegabeko errorea waitpid() (%s) funtzioan"
+msgstr "Ustekabeko errorea waitpid() (%s) funtzioan"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
@@ -1010,8 +1010,8 @@ msgid ""
 msgstr ""
 "Ordenagailuan lehen aldiz saioa hastean gertatzen da.\n"
 "\n"
-"Urruneko ordenagailuak bidalitako idetitatea %s da. Jar zaitez sistemako "
-"arduradunarekin harremanetan erabateko segurtasuna duela ziurtatzeko."
+"Urruneko ordenagailuak bidalitako identitatea %s da. Jar zaitez sistemako "
+"arduradunarekin harremanetan, erabateko segurtasuna duela ziurtatzeko."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1030,7 +1030,7 @@ msgstr "Ez da ezarpen-fitxategi baliozkoa aurkitu %s-(e)n\n"
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Erabili %s ingurugiro-aldagaia beste kokaleku bat zehazteko.\n"
+msgstr "Erabili %s inguruneko aldagaia beste kokaleku bat zehazteko.\n"
 
 #: ../programs/authentication.c:106
 #, c-format
@@ -1062,7 +1062,7 @@ msgstr "Saioa hasi behar duzu %s  %s domeinuan sartzeko\n"
 #: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr "Sahia hasi behar duzu %s(e)n sartzeko\n"
+msgstr "Saioa hasi behar duzu %s(e)n sartzeko\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1315,7 +1315,7 @@ msgid ""
 "\"network:///\" location."
 msgstr ""
 "Komaz bereiztutako DNS-SD domeinuen zerrenda, \"network:///\" helbidean "
-"ikuskorra izango dena."
+"ikusgai izango dena."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1327,7 +1327,7 @@ msgstr "DNS-SD zerbitzua bistaratzeko modua"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Balio posibleak \"merged\", \"separate\" eta \"disabled\" dira."
+msgstr "Balio erabilgarriak \"merged\", \"separate\" eta \"disabled\" dira."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1466,7 +1466,7 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Gako honek zuzenean konektatzen dien hostalarien zerrenda dauka, proxy-aren "
+"Gako honek zuzenean konektatzen diren hostalarien zerrenda dauka, proxy-aren "
 "bitartez egin beharrean (nahiz eta abioan egon). Balioak hostalarien izenak, "
 "domeinuak (*.lelo.com bezalako hasierako komodina erabiliz), IP helbideak "
 "(bai IPv4 bai IPv6) eta sareko helbideak, sare-maskarekin, (192.168.0.0/24 "
