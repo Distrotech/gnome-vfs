@@ -674,18 +674,13 @@ gnome_vfs_parse_ls_lga (const char *p,
 		char *s;
 	    
 		if (filename) {
-			s = g_strndup (p_copy + column_ptr [idx],
+			s = g_strndup (p_pristine + column_ptr [idx],
 				       column_ptr [idx2] - column_ptr [idx] - 1);
 			*filename = s;
 		}
 		if (linkname) {
-			s = g_strdup (p_copy + column_ptr [idx2+1]);
-			p = strlen (s);
-			if (s [p-1] == '\r' || s [p-1] == '\n')
-				s [p-1] = 0;
-			if (s [p-2] == '\r' || s [p-2] == '\n')
-				s [p-2] = 0;
-		
+			p = strcspn (p_pristine + column_ptr[idx2+1], "\r\n");
+			s = g_strndup (p_pristine + column_ptr [idx2+1], p);
 			*linkname = s;
 		}
 	} else {
