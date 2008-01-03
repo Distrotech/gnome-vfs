@@ -1,5 +1,12 @@
 2008-01-03  Alexander Larsson  <alexl@redhat.com>
 
+        * modules/http-neon-method.c:
+        (propfind_result):
+	Handle filenames with reserved chars (#166969)
+	Patch from Yann Rouillard  
+
+2008-01-03  Alexander Larsson  <alexl@redhat.com>
+
         * libgnomevfs/gnome-vfs-parse-ls.c:
 	Handle links with spaces in them (#332676)
 	Patch from Yann Rouillard

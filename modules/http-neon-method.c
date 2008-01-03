@@ -1188,7 +1188,7 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 	time_t	time;
 	gulong  size;
 	ne_uri  uri;
-	char *unesc_path;
+	char *unesc_path, *unesc_ctx_path;
 
 	ctx = (PropfindContext *) userdata;
 
@@ -1205,10 +1205,10 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 	info = gnome_vfs_file_info_new ();
 	unesc_path = ne_path_unescape (uri.path);
 	info->name = g_path_get_basename (unesc_path);
-	NE_FREE (unesc_path);
 
+	unesc_ctx_path = ne_path_unescape (ctx->path);
 	DEBUG_HTTP_2 ("Comparing: \n\t[%s] \n\t[%s]", ctx->path, uri.path);
-	if (ne_path_compare (ctx->path, uri.path) == 0) {
+	if (ne_path_compare (unesc_ctx_path, unesc_path) == 0) {
 		DEBUG_HTTP_3 ("target");
 		ctx->target = info;
 
@@ -1225,6 +1225,8 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 		ctx->children = g_list_append (ctx->children, info);
 	}
 
+	NE_FREE (unesc_ctx_path);
+	NE_FREE (unesc_path);
 	ne_uri_free (&uri);
 
 	/* getlastmodified */
