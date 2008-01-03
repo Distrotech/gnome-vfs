@@ -285,7 +285,7 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 				      GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
-	GnomeVFSURI *resolved_uri;
+	GnomeVFSURI *resolved_uri, *parent_uri;
 
 	g_return_val_if_fail (result_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
@@ -323,7 +323,13 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	 * we want to look at the device the symlink points to, not the one the
 	 * symlink is stored on
 	 */
+	parent_uri = gnome_vfs_uri_get_parent (near_uri);
+	if (parent_uri) {
+		gnome_vfs_uri_unref (near_uri);
+		near_uri = parent_uri;
+	}
 	result = _gnome_vfs_uri_resolve_all_symlinks_uri (near_uri, &resolved_uri);
+
 	if (result == GNOME_VFS_OK) {
 		gnome_vfs_uri_unref (near_uri);
 		near_uri = resolved_uri;

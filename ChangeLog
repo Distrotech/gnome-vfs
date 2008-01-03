@@ -1,5 +1,13 @@
 2008-01-03  Alexander Larsson  <alexl@redhat.com>
 
+        * libgnomevfs/gnome-vfs-cancellable-ops.c:
+        (gnome_vfs_find_directory_cancellable):
+	Allow trashing symlink to filesystem root that
+	does not support trashing (#312506)
+	Patch from Yann Rouillard
+	
+2008-01-03  Alexander Larsson  <alexl@redhat.com>
+
         * modules/http-neon-method.c:
         (propfind_result):
 	Handle filenames with reserved chars (#166969)
