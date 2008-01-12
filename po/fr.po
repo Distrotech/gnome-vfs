@@ -8,14 +8,15 @@
 # Baptiste Mille-Mathias (crevette) <bmm80@free.fr>, 2003-2004.
 # Benoît Dejean <benoit@placenet.org>, 2006.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
+# Robert-André Mauchin <zebob.m@pengzone.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.13.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-20 11:32+0200\n"
-"PO-Revision-Date: 2007-08-20 11:33+0200\n"
-"Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
+"POT-Creation-Date: 2007-08-20 10:34+0100\n"
+"PO-Revision-Date: 2007-12-10 20:31:05+0100\n"
+"Last-Translator: Robert-André Mauchin <zebob.m@pengzone.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +61,7 @@ msgstr "Le fichier de configuration « %s » n'a pas été trouvé : %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr "%s : %d analyse abandonnée."
+msgstr "%s:%d : analyse abandonnée."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -478,7 +479,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Fonction obsolète. Les modifications d'utilisateur sur la base MIME ne sont "
+"Fonction déconseillée. Les modifications d'utilisateur sur la base MIME ne sont "
 "plus prises en charge."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:720
@@ -548,7 +549,7 @@ msgstr "Fichier trop gros"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
-msgstr "Plus de place libre sur le périphérique"
+msgstr "Espace insuffisant sur le périphérique"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:59
@@ -623,7 +624,7 @@ msgstr "Est un répertoire"
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
-msgstr "Mémoire insuffisante"
+msgstr "Mémoire saturée"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:74
@@ -688,7 +689,7 @@ msgstr "Service non disponible"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
-msgstr "Données de demande de service obsolètes"
+msgstr "Demande de données de services déconseillés"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:87
@@ -718,7 +719,7 @@ msgstr "Erreur lors de l'analyse de la ligne de commande"
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "Erreur au lancement de la commande"
+msgstr "Erreur lors du lancement de la commande"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -738,7 +739,7 @@ msgstr "La ressource est verrouillée"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
-msgstr "Appel à une fonction obsolète"
+msgstr "Appel à une fonction déconseillée"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:97
@@ -916,7 +917,7 @@ msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"Impossible de monter le volume. S'il s'agit d'un disque chiffré, c'est qu'un "
+"Impossible de monter le volume. S'il s'agit d'un disque chiffré, un "
 "mauvais mot de passe ou clef a été utilisé."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
@@ -950,7 +951,7 @@ msgstr "Impossible de démonter le volume sélectionné."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "Échec de la lecture des données provenant du processus fils %d (%s)"
+msgstr "La lecture des données provenant du processus fils %d a échoué (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
@@ -1023,7 +1024,7 @@ msgstr ""
 "première fois.\n"
 "\n"
 "L'identité envoyée par l'ordinateur distant est %s. Si vous voulez être "
-"certain si c'est sûr de continuer, contactez l'administrateur système."
+"certain qu'il est sûr de poursuivre, contactez l'administrateur système."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1037,13 +1038,13 @@ msgstr "Annuler l'authentification"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Impossible de trouver un fichier de réglages valide à %s\n"
+msgstr "Impossible de trouver un fichier de paramètres valide à %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
-"Utilisez la variable d'environnement %s pour spécifier un emplacement "
+"Utilisez la variable d'environnement %s pour indiquer un emplacement "
 "différent.\n"
 
 #: ../programs/authentication.c:106
@@ -1062,16 +1063,16 @@ msgstr ""
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr "Votre mot de passe sera transmis non-chiffré."
+msgstr "Votre mot de passe sera transmis de manière non-chiffrée."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
-msgstr "Votre mot de passe sera transmis chiffré."
+msgstr "Votre mot de passe sera transmis de manière chiffrée."
 
 #: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "Vous devez vous identifier pour accédère à %s du domaine %s\n"
+msgstr "Vous devez vous identifier pour accéder à %s du domaine %s\n"
 
 #: ../programs/authentication.c:165
 #, c-format
@@ -1080,7 +1081,7 @@ msgstr "Vous devez vous identifier pour accéder à %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Composant d'application de visualisation par défaut"
+msgstr "Visionneur de composants par défaut"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -1088,7 +1089,7 @@ msgstr "Terminal par défaut"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Argument d'exécution pour le terminal par défaut"
+msgstr "Paramètre d'exécution pour le terminal par défaut"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1203,7 +1204,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « aim »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -1211,7 +1212,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « callto »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
@@ -1219,7 +1220,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « ghelp »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
@@ -1227,7 +1228,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « h323 »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
@@ -1235,7 +1236,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « http »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
@@ -1243,7 +1244,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « https »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1251,7 +1252,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « info »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
@@ -1259,7 +1260,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « mailto »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
@@ -1267,7 +1268,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « man »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
@@ -1275,7 +1276,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Définir à vrai pour que le programme spécifié à la clé « command » gère les "
+"Indique si le programme indiqué à la clé « command » gère les "
 "URLs « trash »."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
@@ -1287,43 +1288,43 @@ msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « man »"
+msgstr "Indique si la commande indiquée doit gérer les URL « aim »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « callto »"
+msgstr "Indique si la commande indiquée doit gérer les URL « callto »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « ghelp »"
+msgstr "Indique si la commande indiquée doit gérer les URL « ghelp »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « h323 »"
+msgstr "Indique si la commande indiquée doit gérer les URL « h323 »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « http »"
+msgstr "Indique si la commande indiquée doit gérer les URL « http »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « https »"
+msgstr "Indique si la commande indiquée doit gérer les URL « https »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « info »"
+msgstr "Indique si la commande indiquée doit gérer les URL « info »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « mailto »"
+msgstr "Indique si la commande indiquée doit gérer les URL « mailto »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « man »"
+msgstr "Indique si la commande indiquée doit gérer les URL « man »"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Définir à vrai pour que le programme spécifié gère les URLs « trash »"
+msgstr "Indique si la commande indiquée doit gérer les URL « trash »"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1343,43 +1344,43 @@ msgstr "La manière d'afficher le service DNS-SD local"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Les valeurs possibles sont « merged », « separate » and « disabled »."
+msgstr "Les valeurs possibles sont « merged » (fusionné), « separate » (séparé) et « disabled » (désactivé)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Authentifier les connexions au server proxy"
+msgstr "Authentifier les connexions au serveur mandataire"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "URL de configuration automatique du proxy"
+msgstr "URL de configuration automatique du serveur mandataire"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Active les paramètres de proxy lors de l'accès HTTP sur Internet."
+msgstr "Active les paramètres du serveur mandataire lors de l'accès HTTP sur Internet."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "Nom d'hôte du proxy FTP"
+msgstr "Nom d'hôte du serveur mandataire FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "Port du proxy FTP"
+msgstr "Port du serveur mandataire FTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr "Nom d'hôte du proxy HTTP"
+msgstr "Nom d'hôte du serveur mandataire HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr "Mot de passe du proxy HTTP"
+msgstr "Mot de passe du serveur mandataire HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr "Port du proxy HTTP"
+msgstr "Port du serveur mandataire HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "Nom d'utilisateur du proxy HTTP"
+msgstr "Nom d'utilisateur du serveur mandataire HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -1387,62 +1388,64 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Si vrai, alors les connexions au serveur proxy nécessitent une "
+"Si vrai, alors les connexions au serveur mandataire nécessitent une "
 "authentification. Le couple nom d'utilisateur/mot de passe est défini dans "
 "« /system/http_proxy/authentication_user » and « /system/http_proxy/"
 "authentication_password »."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "Hôtes ne nécessitant pas de proxy"
+msgstr "Hôtes ne nécessitant pas de serveur mandataire"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Mot de passe à fournir comme authentification lors de l'utilisation du proxy "
+"Mot de passe à fournir comme authentification lors de l'utilisation du serveur mandataire "
 "HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Mode de configuration du proxy"
+msgstr "Mode de configuration du serveur mandataire"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "Nom d'hôte du proxy SOCKS"
+msgstr "Nom d'hôte du serveur mandataire SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "Port du proxy SOCKS"
+msgstr "Port du serveur mandataire SOCKS"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "Nom d'hôte du proxy HTTP sécurisé"
+msgstr "Nom d'hôte du serveur mandataire HTTP sécurisé"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "Port du proxy HTTP sécurisé"
+msgstr "Port du serveur mandataire HTTP sécurisé"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Sélectionner le mode de configuration du proxy. Les valeurs prises en charge sont « none » (aucun), « manual » (manuel), « auto » (automatique)."
+msgstr ""
+"Sélectionnez le mode de configuration du serveur mandataire. Les valeurs prises en charge "
+"sont « none » (aucun), « manual » (manuel), « auto » (automatique)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "Le nom de la machine qui sert de proxy FTP."
+msgstr "Le nom de la machine qui sert de serveur mandataire FTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "Le nom de la machine qui sert de proxy HTTP."
+msgstr "Le nom de la machine qui sert de serveur mandataire HTTP."
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Le nom de la machine qui sert de proxy HTTP sécurisé."
+msgstr "Le nom de la machine qui sert de serveur mandataire HTTP sécurisé."
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "Le nom de machine qui sert de proxy socks."
+msgstr "Le nom de machine qui sert de serveur mandataire socks."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
@@ -1450,7 +1453,7 @@ msgid ""
 "proxy through."
 msgstr ""
 "Le port de la machine définie dans « /system/http_proxy/host » utilisée "
-"comme proxy."
+"comme serveur mandataire."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
@@ -1458,7 +1461,7 @@ msgid ""
 "through."
 msgstr ""
 "Le port de la machine définie dans « /system/proxy/ftp_host » utilisée comme "
-"proxy."
+"serveur mandataire."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -1466,7 +1469,7 @@ msgid ""
 "proxy through."
 msgstr ""
 "Le port de la machine définie dans « /system/proxy/secure_host » utilisée "
-"comme proxy."
+"comme serveur mandataire."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -1474,7 +1477,7 @@ msgid ""
 "proxy through."
 msgstr ""
 "Le port de la machine définie dans « /system/proxy/socks_host » utilisée "
-"comme proxy."
+"comme serveur mandataire."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1484,24 +1487,24 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Cette clé contient une liste d'hôtes qui peuvent être contactés directement,"
-"plutôt que par un proxy (si il est actif). Les valeurs peuvent être des nom "
-"d'hôtes,des domaines (en utilisant un caractère joker comme *.toto.fr), des "
+"plutôt que par un serveur mandataire (s'il est actif). Les valeurs peuvent être des noms "
+"d'hôtes, des domaines (en utilisant un caractère joker comme *.toto.fr), des "
 "adresses IP d'hôte (IPv4 et IPv6) et des adresses réseau avec un masque "
 "(comme 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "L'URL qui fournit les valeurs de configuration du proxy."
+msgstr "L'URL qui fournit les valeurs de configuration du serveur mandataire."
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr "Utiliser un proxy HTTP"
+msgstr "Utiliser un serveur mandataire HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Nom d'utilisateur à fournir comme authentification lors de l'utilisation du "
-"proxy HTTP."
+"serveur mandataire HTTP."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
