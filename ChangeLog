@@ -1,3 +1,9 @@
+2008-01-16  Alexander Larsson  <alexl@redhat.com>
+
+        * libgnomevfs/gnome-vfs-cancellable-ops.c:
+        (gnome_vfs_find_directory_cancellable):
+	Revert previous patch (see #312506)
+
 2008-01-03  Alexander Larsson  <alexl@redhat.com>
 
         * libgnomevfs/gnome-vfs-cancellable-ops.c:
