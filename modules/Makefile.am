@@ -43,9 +43,7 @@ EXTRA_DIST =					\
 	inotify-path.h				\
 	inotify-path.c				\
 	inotify-diag.h				\
-	inotify-diag.c				\
-	local_inotify.h				\
-	local_inotify_syscalls.h
+	inotify-diag.c
 
 ###  Module setup
 if HAVE_CDDA

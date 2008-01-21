@@ -1,3 +1,17 @@
+2008-01-21  Ross Burton  <ross@openedhand.com>
+
+	* modules/local_inotify_syscalls.h:
+	* modules/local_inotify.h:
+	* modules/Makefile.am:
+	Remove.
+	
+	* modules/inotify-kernel.c:
+	* modules/inotify-helper.c:
+	* modules/inotify-path.c:
+	* configure.in:
+	Instead of using local inotify headers, use the system headers.
+	This fixes inotify on ARM and SH4/5 (#510999).
+
 2008-01-16  Alexander Larsson  <alexl@redhat.com>
 
         * libgnomevfs/gnome-vfs-cancellable-ops.c:
