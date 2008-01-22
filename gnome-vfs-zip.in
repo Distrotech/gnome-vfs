@@ -19,7 +19,11 @@ EOF
 
 zip $ZIP lib/gnome-vfs-2.0/modules/*.dll
 
-zip $ZIP lib/locale/*/LC_MESSAGES/gnome-vfs-2.0.mo
+if [ -f share/locale/de/LC_MESSAGES/gnome-vfs-2.0.mo ]; then
+  zip $ZIP share/locale/*/LC_MESSAGES/gnome-vfs-2.0.mo
+else
+  zip $ZIP lib/locale/*/LC_MESSAGES/gnome-vfs-2.0.mo
+fi
 
 rm $DEVZIP
 zip -r $DEVZIP -@ <<EOF

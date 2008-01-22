@@ -1,5 +1,8 @@
 2008-01-22  Tor Lillqvist  <tml@novell.com>
 
+	* gnome-vfs-zip.in: Look for catalogs in share/locale first, as
+	that is where they will be with a properly built GNU gettext.
+
 	* libgnomevfs/gnome-vfs-module-shared.c
 	(gnome_vfs_stat_to_file_info): Don't use S_ISLNK() if it isn't
 	there.
