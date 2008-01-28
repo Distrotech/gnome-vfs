@@ -168,8 +168,8 @@ static void auth_callback (const char *server_name, const char *share_name,
 #endif
 
 #ifdef DEBUG_SMB_LOCKS
-#define LOCK_SMB() 	{g_mutex_lock (smb_lock); g_print ("LOCK %s\n", G_GNUC_PRETTY_FUNCTION);}
-#define UNLOCK_SMB() 	{g_print ("UNLOCK %s\n", G_GNUC_PRETTY_FUNCTION); g_mutex_unlock (smb_lock);}
+#define LOCK_SMB() 	{g_mutex_lock (smb_lock); g_print ("LOCK %s\n", G_STRFUNC);}
+#define UNLOCK_SMB() 	{g_print ("UNLOCK %s\n", G_STRFUNC); g_mutex_unlock (smb_lock);}
 #else
 #define LOCK_SMB() 	g_mutex_lock (smb_lock)
 #define UNLOCK_SMB() 	g_mutex_unlock (smb_lock)
@@ -319,7 +319,7 @@ cache_reap_cb (void)
          * sure when we'll be called */
         if (!g_mutex_trylock (smb_lock))
                 return TRUE;
-        DEBUG_SMB(("LOCK %s\n", G_GNUC_PRETTY_FUNCTION));
+        DEBUG_SMB(("LOCK %s\n", G_STRFUNC));
 
 	size = g_hash_table_size (server_cache);
 	servers = g_ptr_array_sized_new (size);

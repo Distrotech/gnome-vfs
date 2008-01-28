@@ -1,3 +1,19 @@
+2008-01-28  Christian Persch  <chpe@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_device_added),
+	(_hal_device_removed), (_gnome_vfs_hal_mounts_init):
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* modules/sftp-method.c: (buffer_send), (buffer_recv),
+	(buffer_read_file_info), (iobuf_read_file_info), (sftp_connect),
+	(sftp_get_connection), (sftp_connection_process_errors),
+	(sftp_connection_get_id), (get_real_path), (do_open), (do_create),
+	(do_close), (do_read), (do_write), (do_seek), (do_tell),
+	(sftp_readlink), (get_file_info_for_path), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_open_directory),
+	(do_read_directory), (do_set_file_info):
+	* modules/smb-method.c: (cache_reap_cb):
+	Use G_STRFUNC instead of the deprecated G_GNUC_FUNCTION.
+
 2008-01-22  Tor Lillqvist  <tml@novell.com>
 
 	* gnome-vfs-zip.in: Look for catalogs in share/locale first, as
