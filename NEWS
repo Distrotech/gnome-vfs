@@ -1,3 +1,16 @@
+gnome-vfs 2.21.90
+	  * Fix memory leaks
+	  * Don't use deprecated glib APIs
+	  * Handle non-utf8 locales better in gnome_vfs_make_uri_from_input
+	  * ftp: Handle links with spaces in them
+	  * actually use the mmap cache
+	  * webdav: Handle filenames with reserved char
+	  * use only system inotify headers
+	  * win32 fixes
+	  
+gnome-vfs 2.20.1
+          * Fix dns-sd crash
+          
 gnome-vfs 2.20.0
 	  * Translation updates
 	  
