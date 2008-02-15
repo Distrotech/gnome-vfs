@@ -2402,19 +2402,12 @@ do_open (GnomeVFSMethod 	*method,
 			return result;
 		} 
 	} else {
-		handle->use_range = (mode & GNOME_VFS_OPEN_RANDOM);
+                /* Always try to make Ranged puts */
+		handle->use_range = TRUE;
 	}
 
 	result = http_transfer_start (handle);	
 
-	if (result == GNOME_VFS_OK && mode & GNOME_VFS_OPEN_READ) {
-		
-		if (handle->use_range && ! handle->can_range) {
-			/*Review: Not supported or invalid open mode ? */
-			result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-		}	
-	} 
-		
 	if (result != GNOME_VFS_OK) {
 		http_file_handle_destroy (handle);
 		handle = NULL;
