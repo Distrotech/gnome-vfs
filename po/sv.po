@@ -1,6 +1,6 @@
 # Swedish messages for gnome-vfs.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2008.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-30 17:50+0200\n"
-"PO-Revision-Date: 2007-09-30 17:50+0100\n"
+"POT-Creation-Date: 2008-03-09 21:19+0100\n"
+"PO-Revision-Date: 2008-03-09 21:20+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -480,12 +480,12 @@ msgstr "Operationen stoppad"
 msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
 msgstr "Föråldrad funktion. Användarändringar i MIME-databasen stöds inte längre."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Kunde inte tolka: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "Fler tolkningsfel kommer att ignoreras."
 
@@ -722,7 +722,7 @@ msgstr "Fel vid start av kommando"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
-msgstr "Timeout nåddes"
+msgstr "Tidsgräns nåddes"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:94
