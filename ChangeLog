@@ -1,3 +1,13 @@
+=== gnome-vfs 2.22.0 ===
+
+2008-03-10  Christian Kellner  <gicmo@gnome.org>
+
+	* NEWS:
+	Update for release.
+	
+	* configure.in:
+	Bump to version 2.22.0
+
 2008-02-15  Sebastian Dröge  <slomo@circular-chaos.org>
 
 	* modules/http-neon-method.c: (do_open):

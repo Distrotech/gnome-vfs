@@ -1,3 +1,7 @@
+gnome-vfs 2.22.0
+          * Fix http seek handling so http is consistent with the other
+            backends
+
 gnome-vfs 2.21.90
 	  * Fix memory leaks
 	  * Don't use deprecated glib APIs
