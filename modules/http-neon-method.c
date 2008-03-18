@@ -1773,6 +1773,25 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 	return GNOME_VFS_OK;
 }
 
+gboolean
+http_context_host_matches (HttpContext *context, const char *glob)
+{
+        GnomeVFSToplevelURI *uri;
+        GPatternSpec *spec;
+        gboolean res;
+
+        uri = gnome_vfs_uri_get_toplevel (context->uri);
+
+        if (uri == NULL ||  uri->host_name == NULL || glob == NULL)
+                return FALSE;
+
+        spec = g_pattern_spec_new (glob);
+        res = g_pattern_match_string (spec, uri->host_name);
+        g_pattern_spec_free (spec);
+
+        return res;
+}
+
 static GnomeVFSResult
 http_follow_redirect (HttpContext *context)
 {
@@ -2255,7 +2274,7 @@ http_transfer_start_read (HttpFileHandle *handle)
 	hctx = handle->context;
 	
 get_start:	
-	req  = ne_request_create (hctx->session, "GET", hctx->path);
+	req = ne_request_create (hctx->session, "GET", hctx->path);
 	
 	if (handle->use_range) {
 		
@@ -2330,8 +2349,8 @@ get_retry:
 
 		handle->transfer_state = TRANSFER_READ;
 		handle->transfer.read = req;
-	}
-	
+	} 
+
 	return result;
 }
 
@@ -2345,6 +2364,20 @@ http_transfer_start (HttpFileHandle *handle)
 	}
 
 	return GNOME_VFS_ERROR_INTERNAL;
+}
+
+/* TRUE means we can range, ie server is sane, FALSE means FAIL */
+static gboolean
+i_can_haz_range_cause_serverz_not_br0ken (HttpContext *hctx)
+{
+        gboolean br0ken = FALSE;
+
+        if (http_context_host_matches (hctx, "*youtube.*")) {
+                DEBUG_HTTP ("Youtube detected! Cannot use ranged gets");
+                br0ken = TRUE;
+        }
+
+        return br0ken == FALSE;
 }
 
 /* ************************************************************************** */
@@ -2402,8 +2435,10 @@ do_open (GnomeVFSMethod 	*method,
 			return result;
 		} 
 	} else {
-                /* Always try to make Ranged puts */
-		handle->use_range = TRUE;
+                gboolean use_range = TRUE;
+
+		handle->use_range = i_can_haz_range_cause_serverz_not_br0ken (hctx);
+                DEBUG_HTTP ("Use range: %s\n", use_range ? "on" : "off");
 	}
 
 	result = http_transfer_start (handle);	
