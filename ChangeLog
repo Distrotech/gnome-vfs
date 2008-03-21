@@ -1,3 +1,9 @@
+2008-03-21  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: Declare http_context_host_matches
+	static. Get rid of unused local variable in do_open ().
+	Patch from Bryan Hundven. (#523670)
+
 2008-03-18  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: Don't use ranged GETs for broken

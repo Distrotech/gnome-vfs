@@ -1773,7 +1773,7 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 	return GNOME_VFS_OK;
 }
 
-gboolean
+static gboolean
 http_context_host_matches (HttpContext *context, const char *glob)
 {
         GnomeVFSToplevelURI *uri;
@@ -2435,10 +2435,8 @@ do_open (GnomeVFSMethod 	*method,
 			return result;
 		} 
 	} else {
-                gboolean use_range = TRUE;
-
 		handle->use_range = i_can_haz_range_cause_serverz_not_br0ken (hctx);
-                DEBUG_HTTP ("Use range: %s\n", use_range ? "on" : "off");
+                DEBUG_HTTP ("Use range: %s\n", handle->use_range ? "on" : "off");
 	}
 
 	result = http_transfer_start (handle);	
