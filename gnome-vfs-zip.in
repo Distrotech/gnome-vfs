@@ -34,8 +34,6 @@ bin/gnomevfs-ls.exe
 bin/gnomevfs-mkdir.exe
 bin/gnomevfs-monitor.exe
 bin/gnomevfs-mv.exe
-lib/bonobo/monikers/libmoniker_gnome_vfs_std.dll
-lib/bonobo/servers/GNOME_VFS_Moniker_std.server
 lib/libgnomevfs-2.dll.a
 lib/pkgconfig/gnome-vfs-2.0.pc
 lib/pkgconfig/gnome-vfs-module-2.0.pc
