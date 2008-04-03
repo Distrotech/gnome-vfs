@@ -309,7 +309,7 @@ permset_copy (PermSet *source, PermSet *dest)
 		dest->perms[i] = source->perms[i];
 	}
 
-	dest->perms[++i] = 0;
+	dest->perms[source->count] = 0;
 	dest->count = source->count;
 }
 

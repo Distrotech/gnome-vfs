@@ -1,3 +1,9 @@
+2008-04-03  Christian Neumair  <cneumair@gnome.org>
+
+	* libgnomevfs/gnome-vfs-ace.c (permset_copy):
+	Do not index beyond array bounds (#511031). Thanks to Ghee Teo and
+	Marcel Telka.
+
 2008-03-23  Tor Lillqvist  <tml@novell.com>
 
 	* gnome-vfs-zip.in: Drop the moniker stuff from here, too. (The
