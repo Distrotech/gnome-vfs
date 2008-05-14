@@ -980,7 +980,7 @@ unmount_connected_server (GnomeVFSVolume *volume,
 	if (success) {
 		(*callback) (success, NULL, NULL, user_data);
 	} else {
-		(*callback) (success, _("Unable to unmount connected server"), detailed_error, user_data);
+		(*callback) (success, (char *) _("Unable to unmount connected server"), detailed_error, user_data);
 	}
 	g_free (detailed_error);
 }

@@ -1430,8 +1430,8 @@ tty_retry:
 				g_free (fingerprint);
 
 				in_args.choices = choices;
-				in_args.choices[0] = _("Log In Anyway");
-				in_args.choices[1] = _("Cancel Login");
+				in_args.choices[0] = (char *) _("Log In Anyway");
+				in_args.choices[1] = (char *) _("Cancel Login");
 				in_args.choices[2] = NULL;
 								
 				invoked = gnome_vfs_module_callback_invoke
