@@ -324,7 +324,7 @@ m4_popdef([NEON_SSL])
 
 if test "x$have_gssapi" = "xyes"; then
 
-	NEON_CFLAGS="$NEON_CFALGS $GSSAPI_CFLAGS"
+	NEON_CFLAGS="$NEON_CFLAGS $GSSAPI_CFLAGS"
 	NEON_LIBS="$NEON_LIBS $GSSAPI_LIBS"
 
 fi

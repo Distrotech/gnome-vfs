@@ -152,7 +152,7 @@ libnntp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libsmb_la_SOURCES = smb-method.c
 libsmb_la_LDFLAGS = $(module_flags)
-libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la 
+libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_GCONF_LIBS) ../libgnomevfs/libgnomevfs-2.la 
 
 ###  `sftp' method
 
@@ -182,7 +182,7 @@ libbzip2_la_LIBADD = $(MODULES_LIBS) $(BZ2_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libftp_la_SOURCES = ftp-method.c
 libftp_la_LDFLAGS = $(module_flags)
-libftp_la_LIBADD = $(MODULES_LIBS) $(GSSAPI_LIBS) ../libgnomevfs/libgnomevfs-2.la
+libftp_la_LIBADD = $(MODULES_GCONF_LIBS) $(GSSAPI_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ### `nfs' method
 
@@ -205,6 +205,7 @@ libhttp_la_SOURCES =			\
 libhttp_la_LDFLAGS = $(module_flags)
 libhttp_la_LIBADD  = 			\
 	$(MODULES_GCONF_LIBS) 	\
+	$(OPENSSL_LIBS) \
 	../imported/neon/libneon.la   \
 	../libgnomevfs/libgnomevfs-2.la
 

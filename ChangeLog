@@ -1,3 +1,10 @@
+2008-05-21  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* acinclude.m4: Fix typo
+
+	* modules/Makefile.am: Fix missing linking with ftp, smb and http
+	modules, causing build failure when using "-Wl,--no-undefined".
+
 2008-05-14  Lucas Rocha  <lucasr@gnome.org>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c, modules/sftp-method.c: fixed 
