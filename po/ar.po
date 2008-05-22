@@ -727,7 +727,7 @@ msgstr "انتهت المهلة"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
-msgstr "خطأ في خادم التنشيط الاسمي"
+msgstr "خطأ في خادوم التنشيط الاسمي"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:95
@@ -886,7 +886,7 @@ msgstr "حجم مجهول"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
-msgstr "خادم شبكة"
+msgstr "خادوم شبكة"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
@@ -975,7 +975,7 @@ msgstr "لا يمكن طرد الوسيط"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
-msgstr "لا يمكن إلغاء تجهيز الخادم المتصل"
+msgstr "لا يمكن إلغاء تجهيز الخادوم المتصل"
 
 #: ../modules/computer-method.c:543
 msgid "Network"
@@ -1333,7 +1333,7 @@ msgstr "القيم الممكنة هي \"merged\"، \"separate\"، و \"disabled
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "توثق من الاتصلات لخادم البروكسي"
+msgstr "توثق من الاتصلات لخادوم البروكسي"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -1373,7 +1373,7 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"إذا كانت صحيح، سيحتاج الإتصال بخادم البروكسي إلى توثيق. اجتماع اسم المستخدم/"
+"إذا كانت صحيح، سيحتاج الاتصال بخادوم البروكسي إلى توثيق. اجتماع اسم المستخدم/"
 "كلمة السر معرّف بواسطة \"/system/http_proxy/authentication_user\" و \"/system/"
 "http_proxy/authentication_password\"."
 
