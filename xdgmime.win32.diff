@@ -1,6 +1,6 @@
 Index: libgnomevfs/xdgmime.c
 ===================================================================
---- libgnomevfs/xdgmime.c	(revision 5289)
+--- libgnomevfs/xdgmime.c	(revision 5475)
 +++ libgnomevfs/xdgmime.c	(working copy)
 @@ -60,7 +60,7 @@
  XdgMimeCache **_caches = NULL;
@@ -11,7 +11,7 @@ Index: libgnomevfs/xdgmime.c
  
  
  enum
-@@ -129,7 +129,7 @@
+@@ -137,7 +137,7 @@
  
    file_name = malloc (strlen (directory) + strlen ("/mime/mime.cache") + 1);
    strcpy (file_name, directory); strcat (file_name, "/mime/mime.cache");
@@ -20,7 +20,7 @@ Index: libgnomevfs/xdgmime.c
      {
        XdgMimeCache *cache = _xdg_mime_cache_new_from_file (file_name);
  
-@@ -153,7 +153,7 @@
+@@ -157,7 +157,7 @@
  
    file_name = malloc (strlen (directory) + strlen ("/mime/globs") + 1);
    strcpy (file_name, directory); strcat (file_name, "/mime/globs");
@@ -28,8 +28,8 @@ Index: libgnomevfs/xdgmime.c
 +  if (XDG_STAT (file_name, &st) == 0)
      {
        _xdg_mime_glob_read_from_file (global_hash, file_name);
- 
-@@ -170,7 +170,7 @@
+       xdg_dir_time_list_add (file_name, st.st_mtime);
+@@ -169,7 +169,7 @@
  
    file_name = malloc (strlen (directory) + strlen ("/mime/magic") + 1);
    strcpy (file_name, directory); strcat (file_name, "/mime/magic");
@@ -37,8 +37,8 @@ Index: libgnomevfs/xdgmime.c
 +  if (XDG_STAT (file_name, &st) == 0)
      {
        _xdg_mime_magic_read_from_file (global_magic, file_name);
- 
-@@ -207,7 +207,7 @@
+       xdg_dir_time_list_add (file_name, st.st_mtime);
+@@ -201,7 +201,7 @@
    const char *xdg_data_dirs;
    const char *ptr;
  
@@ -47,7 +47,7 @@ Index: libgnomevfs/xdgmime.c
    if (xdg_data_home)
      {
        if ((func) (xdg_data_home, user_data))
-@@ -217,7 +217,7 @@
+@@ -211,7 +211,7 @@
      {
        const char *home;
  
@@ -56,7 +56,7 @@ Index: libgnomevfs/xdgmime.c
        if (home != NULL)
  	{
  	  char *guessed_xdg_home;
-@@ -234,9 +234,9 @@
+@@ -228,9 +228,9 @@
  	}
      }
  
@@ -68,7 +68,7 @@ Index: libgnomevfs/xdgmime.c
  
    ptr = xdg_data_dirs;
  
-@@ -248,7 +248,7 @@
+@@ -242,7 +242,7 @@
        int stop_processing;
  
        end_ptr = ptr;
@@ -77,7 +77,7 @@ Index: libgnomevfs/xdgmime.c
  	end_ptr ++;
  
        if (end_ptr == ptr)
-@@ -257,7 +257,7 @@
+@@ -251,7 +251,7 @@
  	  continue;
  	}
  
@@ -86,7 +86,7 @@ Index: libgnomevfs/xdgmime.c
  	len = end_ptr - ptr;
        else
  	len = end_ptr - ptr + 1;
-@@ -287,7 +287,7 @@
+@@ -281,7 +281,7 @@
    struct stat st;
  
    /* If the file exists */
@@ -95,7 +95,7 @@ Index: libgnomevfs/xdgmime.c
      {
        XdgDirTimeList *list;
  
-@@ -398,12 +398,10 @@
+@@ -391,12 +391,10 @@
  static int
  xdg_check_time_and_dirs (void)
  {
@@ -109,7 +109,7 @@ Index: libgnomevfs/xdgmime.c
  
    if (current_time >= last_stat_time + 5)
      {
-@@ -492,7 +490,7 @@
+@@ -485,7 +483,7 @@
  
    if (!statbuf)
      {
@@ -118,7 +118,7 @@ Index: libgnomevfs/xdgmime.c
  	return XDG_MIME_TYPE_UNKNOWN;
  
        statbuf = &buf;
-@@ -509,7 +507,7 @@
+@@ -502,7 +500,7 @@
    if (data == NULL)
      return XDG_MIME_TYPE_UNKNOWN;
          
@@ -129,7 +129,7 @@ Index: libgnomevfs/xdgmime.c
        free (data);
 Index: libgnomevfs/xdgmime.h
 ===================================================================
---- libgnomevfs/xdgmime.h	(revision 5289)
+--- libgnomevfs/xdgmime.h	(revision 5475)
 +++ libgnomevfs/xdgmime.h	(working copy)
 @@ -68,7 +68,7 @@
  #define xdg_mime_type_unknown                 XDG_ENTRY(type_unknown)
@@ -142,7 +142,7 @@ Index: libgnomevfs/xdgmime.h
  const char  *xdg_mime_get_mime_type_for_data       (const void *data,
 Index: libgnomevfs/xdgmimealias.c
 ===================================================================
---- libgnomevfs/xdgmimealias.c	(revision 5289)
+--- libgnomevfs/xdgmimealias.c	(revision 5475)
 +++ libgnomevfs/xdgmimealias.c	(working copy)
 @@ -35,16 +35,7 @@
  #include <stdio.h>
@@ -172,7 +172,7 @@ Index: libgnomevfs/xdgmimealias.c
      return;
 Index: libgnomevfs/xdgmimecache.c
 ===================================================================
---- libgnomevfs/xdgmimecache.c	(revision 5289)
+--- libgnomevfs/xdgmimecache.c	(revision 5475)
 +++ libgnomevfs/xdgmimecache.c	(working copy)
 @@ -37,7 +37,11 @@
  #include <fnmatch.h>
@@ -206,7 +206,7 @@ Index: libgnomevfs/xdgmimecache.c
        free (data);
 Index: libgnomevfs/xdgmimeglob.c
 ===================================================================
---- libgnomevfs/xdgmimeglob.c	(revision 5289)
+--- libgnomevfs/xdgmimeglob.c	(revision 5475)
 +++ libgnomevfs/xdgmimeglob.c	(working copy)
 @@ -37,14 +37,6 @@
  #include <string.h>
@@ -234,7 +234,7 @@ Index: libgnomevfs/xdgmimeglob.c
      return;
 Index: libgnomevfs/xdgmimeint.c
 ===================================================================
---- libgnomevfs/xdgmimeint.c	(revision 5289)
+--- libgnomevfs/xdgmimeint.c	(revision 5475)
 +++ libgnomevfs/xdgmimeint.c	(working copy)
 @@ -33,14 +33,6 @@
  #include <ctype.h>
@@ -283,7 +283,7 @@ Index: libgnomevfs/xdgmimeint.c
 +#endif
 Index: libgnomevfs/xdgmimeint.h
 ===================================================================
---- libgnomevfs/xdgmimeint.h	(revision 5289)
+--- libgnomevfs/xdgmimeint.h	(revision 5475)
 +++ libgnomevfs/xdgmimeint.h	(working copy)
 @@ -61,7 +61,7 @@
  					      (((xdg_uint32_t)(val) & 0x000000FFU) << 24))
@@ -325,7 +325,7 @@ Index: libgnomevfs/xdgmimeint.h
  #endif /* __XDG_MIME_INT_H__ */
 Index: libgnomevfs/xdgmimemagic.c
 ===================================================================
---- libgnomevfs/xdgmimemagic.c	(revision 5289)
+--- libgnomevfs/xdgmimemagic.c	(revision 5475)
 +++ libgnomevfs/xdgmimemagic.c	(working copy)
 @@ -39,12 +39,13 @@
  #include <errno.h>
@@ -356,7 +356,7 @@ Index: libgnomevfs/xdgmimemagic.c
      return;
 Index: libgnomevfs/xdgmimeparent.c
 ===================================================================
---- libgnomevfs/xdgmimeparent.c	(revision 5289)
+--- libgnomevfs/xdgmimeparent.c	(revision 5475)
 +++ libgnomevfs/xdgmimeparent.c	(working copy)
 @@ -37,14 +37,6 @@
  #include <string.h>

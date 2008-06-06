@@ -1,3 +1,7 @@
+2008-06-06  Tor Lillqvist  <tml@novell.com>
+
+	* xdgmime.win32.diff: Update.
+
 2008-05-21  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* acinclude.m4: Fix typo
