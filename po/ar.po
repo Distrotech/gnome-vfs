@@ -1028,7 +1028,7 @@ msgstr "الغي الولوج"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "لم يعثر على ملفّ تعيينات سليم عند %s\n"
+msgstr "لم يعثر على ملفّ إعدادات سليم عند %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
@@ -1341,7 +1341,7 @@ msgstr "عنوان الإعداد الآلي للبروكسي"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "تفعيل تعيينات البروكسي عند النفاذ لـ http عبر الانترنت."
+msgstr "تفعيل إعدادات البروكسي عند النفاذ لـ http عبر الانترنت."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
