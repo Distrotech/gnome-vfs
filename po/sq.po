@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-17 17:28+0100\n"
+"POT-Creation-Date: 2008-07-16 15:27+0200\n"
 "PO-Revision-Date: 2008-03-20 11:47+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -903,7 +903,8 @@ msgstr "Server rrjeti"
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 #, c-format
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -1542,7 +1543,8 @@ msgstr "Përdor proxy HTTP"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr ""
+"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1557,4 +1559,3 @@ msgstr ""
 "Grupi i punës i rrjetit Windows apo domain pestar i të cilit është "
 "përdoruesi. Në menyrë që grupi i ri i punës të njihet efektivisht "
 "përdoruesit do t'i duhet të shkëputet dhe të identifikohet përsëri."
-
