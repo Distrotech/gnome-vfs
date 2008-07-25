@@ -1,5 +1,12 @@
 2008-07-25  Matthias Clasen  <mclasen@redhat.com>
 
+	* libgnomevfs/xdgmime*: Sync with GIO, so that we can read
+	the same version of mime.cache files.
+
+	* libgnomevfs/gnome-vfs-mime.c: Adapt.
+
+2008-07-25  Matthias Clasen  <mclasen@redhat.com>
+
 	* configure.in: Bump version to 2.23.0
 
 	* Branch for Gnome 2.22. 

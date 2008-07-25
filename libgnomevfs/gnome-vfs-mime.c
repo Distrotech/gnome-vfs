@@ -236,6 +236,7 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 	int max_extents;
 	GnomeVFSResult result = GNOME_VFS_OK;
 	const char *mime_type;
+	int prio;
 
 	G_LOCK (gnome_vfs_mime_mutex);
 	max_extents = xdg_mime_get_max_buffer_extents ();
@@ -250,7 +251,7 @@ _gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
 	}
 	G_LOCK (gnome_vfs_mime_mutex);
 
-	mime_type = xdg_mime_get_mime_type_for_data (buffer->buffer, buffer->buffer_length);
+	mime_type = xdg_mime_get_mime_type_for_data (buffer->buffer, buffer->buffer_length, &prio);
 
 	G_UNLOCK (gnome_vfs_mime_mutex);
 
