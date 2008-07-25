@@ -1,3 +1,8 @@
+2008-07-25  Claudio Saavedra  <csaavedra@igalia.com>
+
+	* libgnomevfs/Makefile.am: Add xdgmimeicon.[ch] in order to fix
+	the build.
+
 2008-07-25  Matthias Clasen  <mclasen@redhat.com>
 
 	* libgnomevfs/xdgmime*: Sync with GIO, so that we can read
