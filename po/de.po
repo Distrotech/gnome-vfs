@@ -3,19 +3,19 @@
 # Matthias Warkus <mawa@iname.com>, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
+# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007, 2008.
 # Hendrik Brandt <heb@gnome-de.org>, 2005.
 #
 # TODO: Somebody who's familiar to CDE's terminology needs to sync the
 # CDE-specific strings up with CDE
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-19 19:30+0200\n"
-"PO-Revision-Date: 2007-07-19 19:30+0200\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2008-07-30 22:48+0200\n"
+"PO-Revision-Date: 2008-07-30 22:51+0200\n"
+"Last-Translator: Nicolas Kaiser\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -483,12 +483,12 @@ msgstr ""
 "Veraltete Funktion. Änderungen an der MIME-Datenbank durch den Benutzer "
 "werden nicht mehr unterstützt."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Syntaxanalyse nicht möglich: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "Weitere Syntaxanalysefehler werden ignoriert."
 
@@ -894,6 +894,7 @@ msgstr "Netzwerk-Server"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -902,12 +903,14 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Der Datenträger konnte nicht eingebunden werden. Vermutlich befindet sich "
 "kein Medium im Gerät."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -917,6 +920,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -926,6 +930,7 @@ msgstr ""
 "angegeben."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -942,6 +947,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Der gewählte Datenträger konnte nicht eingebunden werden."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -969,6 +975,7 @@ msgstr ""
 "Unerwarteter Fehler in select() beim Lesen von Daten aus Kindprozess (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Das Passwort konnte nicht an den Einbindeprozess gesendet werden."
 
@@ -1129,8 +1136,7 @@ msgstr "Der zum Handhaben von »aim«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
-"Der zum Handhaben von »callto«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von »callto«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
@@ -1154,8 +1160,7 @@ msgstr "Der zum Handhaben von »info«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
-"Der zum Handhaben von »mailto«-URLs verwendete Befehl, falls aktiviert."
+msgstr "Der zum Handhaben von »mailto«-URLs verwendete Befehl, falls aktiviert."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
@@ -1348,7 +1353,7 @@ msgstr "Zusätzlich nach DNS-SD-Diensten zu durchsuchende Domänen"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "Legt fest, der lokale DNS-SD-Dienst angezeigt werden soll"
+msgstr "Legt fest, wie der lokale DNS-SD-Dienst angezeigt werden soll"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
