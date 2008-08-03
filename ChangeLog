@@ -1,3 +1,7 @@
+2008-08-03  Carlos Garcia Campos  <carlosgc@gnome.org>
+
+	* libgnomevfs/xdgmime.c (xdg_mime_shutdown): Fix memory leak.
+	
 2008-07-25  Claudio Saavedra  <csaavedra@igalia.com>
 
 	* libgnomevfs/Makefile.am: Add xdgmimeicon.[ch] in order to fix
