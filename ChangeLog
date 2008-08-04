@@ -1,3 +1,7 @@
+2008-08-04  Matthias Clasen  <mclasen@redhat.com>
+
+	* NEWS: Updates
+
 2008-08-03  Carlos Garcia Campos  <carlosgc@gnome.org>
 
 	* libgnomevfs/xdgmime.c (xdg_mime_shutdown): Fix memory leak.
