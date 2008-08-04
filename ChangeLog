@@ -1,3 +1,7 @@
+2008-08-04  Matthias Clasen  <mclasen@redhat.com>
+
+	* configure.in: Bump version
+
 === gnome-vfs 2.23.0 ===
 
 2008-08-04  Matthias Clasen  <mclasen@redhat.com>
