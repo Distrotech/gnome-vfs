@@ -209,6 +209,9 @@ read_drives_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
 
+	if (volume_monitor_client->dbus_conn == NULL)
+		return;
+
 	list = get_drives (volume_monitor_client->dbus_conn, volume_monitor);
 	for (l = list; l; l = l->next) {
 		drive = l->data;
@@ -228,6 +231,9 @@ read_volumes_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 	GList                 *list, *l;
 
 	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
+
+	if (volume_monitor_client->dbus_conn == NULL)
+		return;
 
 	list = get_volumes (volume_monitor_client->dbus_conn, volume_monitor);
 	for (l = list; l; l = l->next) {

@@ -1,3 +1,10 @@
+2008-08-16  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 356772 – excessive dbus warnings
+
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c: Reduce excessive
+	warning spam when dbus is not available.
+
 2008-08-04  Matthias Clasen  <mclasen@redhat.com>
 
 	* configure.in: Bump version
