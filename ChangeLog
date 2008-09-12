@@ -1,3 +1,8 @@
+2008-09-12  Tor Lillqvist  <tml@novell.com>
+
+	* xdgmime.win32.diff: Update to match current
+	libgnomevfs/xdgmime*.[ch].
+
 2008-08-16  Matthias Clasen  <mclasen@redhat.com>
 
 	Bug 356772 – excessive dbus warnings
