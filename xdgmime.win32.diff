@@ -183,7 +183,7 @@ Index: libgnomevfs/xdgmimecache.c
 ===================================================================
 --- libgnomevfs/xdgmimecache.c	(revision 5502)
 +++ libgnomevfs/xdgmimecache.c	(working copy)
-@@ -37,7 +37,11 @@
+@@ -37,12 +37,15 @@
  #include <fnmatch.h>
  #include <assert.h>
  
@@ -195,6 +195,11 @@ Index: libgnomevfs/xdgmimecache.c
  
  #ifdef HAVE_MMAP
  #include <sys/mman.h>
+ #else
+-#warning Building xdgmime without MMAP support. Binary "mime.info" cache files will not be used.
+ #endif
+ 
+ #include <sys/stat.h>
 @@ -688,7 +692,7 @@
  
    if (!statbuf)
