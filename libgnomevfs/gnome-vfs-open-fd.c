@@ -37,6 +37,11 @@
 #include "gnome-vfs-handle-private.h"
 #include "gnome-vfs-utils.h"
 
+#ifdef G_OS_WIN32
+#include <errno.h>
+#define ftruncate(fd,length) ((length < G_MAXLONG) ? _chsize (fd, length) : (errno = EINVAL, -1))
+#endif
+
 static GnomeVFSURI*
 create_anonymous_uri (GnomeVFSMethod* method)
 {

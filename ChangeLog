@@ -1,5 +1,10 @@
 2008-09-12  Tor Lillqvist  <tml@novell.com>
 
+	* libgnomevfs/gnome-vfs-open-fd.c (do_truncate_handle): On
+	Windows, instead of ftruncate use _chsize(). It doesn't handle
+	64-bit sizes, though, so fail in case a "large" length is passed
+	to us.
+
 	* xdgmime.win32.diff: Update to match current
 	libgnomevfs/xdgmime*.[ch]. Drop the #warning if not HAVE_MMAP as
 	configure.in wants this to be compiled with -Werror...
