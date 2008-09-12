@@ -1,14 +1,14 @@
 # gnome-vfs's Portuguese Translation.
-# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007 gnome-vfs
+# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 gnome-vfs
 # Distributed under the same licence as the gnome-vfs package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.20\n"
+"Project-Id-Version: 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 13:42+0100\n"
-"PO-Revision-Date: 2006-08-26 13:45+0000\n"
+"POT-Creation-Date: 2008-09-12 01:12+0100\n"
+"PO-Revision-Date: 2008-09-12 01:15+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Não foi encontrado ficheiro de configuração `%s': %s"
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr "%s:%d abortou o parseamento."
+msgstr "%s:%d abortou o processamento."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -475,14 +475,14 @@ msgstr ""
 "Função obsoleta.  Não são mais suportadas alterações pelo utilizador à base "
 "de dados MIME."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Incapaz de parsear: %s"
+msgstr "Incapaz de processar: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
-msgstr "Erros de parseamento subsequentes serão ignorados."
+msgstr "Erros de processamento subsequentes serão ignorados."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:47
@@ -707,7 +707,7 @@ msgstr "Nenhum manipulador de esquema de URL"
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
-msgstr "Erro ao parsear linha de comando"
+msgstr "Erro ao processar linha de comando"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
@@ -883,6 +883,7 @@ msgstr "Servidor de rede"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -891,12 +892,14 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Incapaz de montar a unidade. Provavelmente não existe nenhum media no "
 "dispositivo."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -906,6 +909,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -914,6 +918,7 @@ msgstr ""
 "utilizada a senha ou chave incorrecta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -930,6 +935,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Incapaz de montar a unidade seleccionada."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -956,6 +962,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Erro inesperado no select() ao ler dados de um processo filho (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Incapaz de enviar a senha para um processo de montagem."
 
@@ -1476,7 +1483,7 @@ msgid ""
 msgstr ""
 "Esta chave contém uma lista de máquinas às quais a ligação deverá ser "
 "directa, e não através da proxy (caso esteja activa). Os valores podem ser "
-"nomes de máquinas, domínios (utilizando um caracter genérico tal como *."
+"nomes de máquinas, domínios (utilizando um caracter global tal como *."
 "exemplo.pt), endereços IP (tanto IPv4 como IPv6) e endereços de rede com uma "
 "máscara de rede (algo como 192.168.0.0/24)."
 
@@ -1583,10 +1590,10 @@ msgstr ""
 #~ msgstr "Disco Óptico"
 
 #~ msgid "Memory Stick Media"
-#~ msgstr "Média de Caneta de Memória"
+#~ msgstr "Media de Caneta de Memória"
 
 #~ msgid "Smart Media Media"
-#~ msgstr "Média Smart Media"
+#~ msgstr "Media Smart Media"
 
 #~ msgid "Mac OS disk"
 #~ msgstr "Disco Mac OS"
@@ -1643,7 +1650,7 @@ msgstr ""
 #~ "desktop entries contain no translated value for key '%s' with locale '%s'."
 #~ msgstr ""
 #~ "entradas de área de trabalho não contêm um valor traduzido para a chave '%"
-#~ "s' com o local '%s'."
+#~ "s' com a configuração regional '%s'."
 
 #~ msgid "desktop entries contain invalid escape sequence '%s'"
 #~ msgstr ""
