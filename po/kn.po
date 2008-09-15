@@ -1,15 +1,15 @@
-# translation of gnome-vfs.HEAD.po to Kannada
+# translation of kn.po to Kannada
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Shankar Prasad <svenkate@redhat.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD\n"
+"Project-Id-Version: kn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 05:27+0000\n"
-"PO-Revision-Date: 2008-02-18 15:51+0530\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2008-02-19 06:34+0000\n"
+"PO-Revision-Date: 2008-09-15 11:07+0530\n"
+"Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "%s:%u ವಿಧಾನದ ಹೆಸರನ್ನು ಹೊಂದಿಲ್�
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%u has no options endmarker."
-msgstr ""
+msgstr "%s:%u ವು ಯಾವುದೆ ಆಯ್ಕೆಗಳ ಎಂಡ್‌ಮಾರ್ಕರ್ ಇಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
@@ -55,7 +55,7 @@ msgstr "ಸಂರಚನಾ ಕಡತ `%s' ವು ಕಂಡು ಬಂದಿಲ್
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
 msgid "%s:%d aborted parsing."
-msgstr ""
+msgstr "%s:%d ಪಾರ್ಸಿಂಗ್ ಅನ್ನು ಸ್ಥಗಿತಗೊಳಿಸಿದೆ."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
@@ -67,7 +67,7 @@ msgstr "AFS ಜಾಲಬಂಧ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "ಸ್ವಯಂ-ಗುರುತಿಸಿಲಾದ ಧ್ವನಿ ಪ್ರಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
@@ -80,7 +80,7 @@ msgstr "CD ಡಿಜಿಟಲ್ ಅಡಿಯೊ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Hardware Device Volume"
-msgstr "ಯಂತ್ರಾಂಸ ಸಾಧನ ಪರಿಮಾಣ"
+msgstr "ಯಂತ್ರಾಂಶ ಸಾಧನ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "EncFS Volume"
@@ -198,12 +198,11 @@ msgstr "ತಾತ್ಕಾಲಿಕ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "ವರ್ಧಿಸಲಾದ DOS ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
-#, fuzzy
 msgid "Windows VFAT Volume"
-msgstr "ವಿಂಡೋಗಳು"
+msgstr "ವಿಂಡೋಸ್ VFAT ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Xenix Volume"
@@ -211,7 +210,7 @@ msgstr "Xenix ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS ಲಿನಕ್ಸ್ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "XIAFS Volume"
@@ -298,19 +297,16 @@ msgid "Floppy Drive"
 msgstr "ಫ್ಲಾಪಿ ಡ್ರೈವ್"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
-#, fuzzy
 msgid "Compact Flash Drive"
-msgstr "ಡ್ರೈವ್"
+msgstr "ಕಾಂಪ್ಯಾಕ್ಟ್‍ ಫ್ಲ್ಯಾಶ್ ಡ್ರೈವ್"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
-#, fuzzy
 msgid "Memory Stick Drive"
-msgstr "ಮೆಮೊರಿ ಡ್ರೈವ್"
+msgstr "ಮೆಮೊರಿ ಸ್ಟಿಕ್ ಡ್ರೈವ್"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
-#, fuzzy
 msgid "Smart Media Drive"
-msgstr "ಡ್ರೈವ್"
+msgstr "ಚುರುಕು ಮಾಧ್ಯಮ ಡ್ರೈವ್"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
@@ -333,12 +329,12 @@ msgstr "ಪೆನ್ ಡ್ರೈವ್"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
-msgstr ""
+msgstr "%s %s ಸಂಗೀತದ ಪ್ಲೇಯರ್"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
-msgstr ""
+msgstr "%s %s ಡಿಜಿಟಲ್ ಕ್ಯಾಮೆರಾ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
@@ -347,116 +343,103 @@ msgstr "ಡ್ರೈವ್"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
-msgstr ""
+msgstr "ಬಾಹ್ಯ %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "CD-ROM ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
-#, fuzzy
 msgid "Blank CD-R Disc"
-msgstr "R"
+msgstr "ಖಾಲಿ CD-R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "R"
+msgstr "CD-R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "ಖಾಲಿ CD-RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
-msgstr ""
+msgstr "CD-RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "DVD"
+msgstr "DVD-ROM ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
-#, fuzzy
 msgid "Blank DVD-RAM Disc"
-msgstr "DVD"
+msgstr "ಖಾಲಿ DVD-ROM ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
-#, fuzzy
 msgid "DVD-RAM Disc"
-msgstr "DVD"
+msgstr "DVD-RAM ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
-#, fuzzy
 msgid "Blank DVD-R Disc"
-msgstr "DVD R"
+msgstr "ಖಾಲಿ DVD-R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
-#, fuzzy
 msgid "DVD-R Disc"
-msgstr "DVD R"
+msgstr "DVD-R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
-#, fuzzy
 msgid "Blank DVD-RW Disc"
-msgstr "DVD"
+msgstr "ಖಾಲಿ DVD-RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
-#, fuzzy
 msgid "DVD-RW Disc"
-msgstr "DVD"
+msgstr "DVD-RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
-#, fuzzy
 msgid "Blank DVD+R Disc"
-msgstr "DVD R"
+msgstr "ಖಾಲಿ DVD+R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
-#, fuzzy
 msgid "DVD+R Disc"
-msgstr "DVD R"
+msgstr "DVD+R ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
-#, fuzzy
 msgid "Blank DVD+RW Disc"
-msgstr "DVD"
+msgstr "ಖಾಲಿ DVD+RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
-#, fuzzy
 msgid "DVD+RW Disc"
-msgstr "DVD"
+msgstr "DVD+RW ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
-msgstr ""
+msgstr "ಆಡಿಯೋ ಡಿಸ್ಕ್‍"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr ""
+msgstr "%s ತೆಗೆಯಬಹುದಾದ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
-msgstr ""
+msgstr "ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "ಗೊತ್ತಿರದ"
+msgstr "ಗೊತ್ತಿರದ ಕಾರ್ಯದ ಬಗೆ %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "ಪೈಪ್ ಗೆ ತೆರೆ"
+msgstr "ಮುಕ್ತ GIOChannel ಗಾಗಿ ಪೈಪನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1692
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "ಗೊತ್ತಿರದ"
+msgstr "ಗೊತ್ತಿರದ ಬಗೆಯ ಕೆಲಸ %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
-msgstr ""
+msgstr "ಕಾರ್ಯವನ್ನು ನಿಲ್ಲಿಸಲಾಗಿದೆ"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
@@ -486,20 +469,19 @@ msgstr ""
 #: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
 #: ../libgnomevfs/gnome-vfs-mime-info.c:714
-#, fuzzy
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "ಕ್ರಿಯೆ ಬಳಕೆದಾರ ಇಲ್ಲ."
+msgstr "ತೆಗೆದುಹಾಕಲಾದ ಕ್ರಿಯೆ. MIME ದತ್ತಸಂಚಯಕ್ಕೆ ಬಳಕೆದಾರನ ಮಾರ್ಪಾಡುಗಳು ಇನ್ನು ಮುಂದೆ ಬೆಂಬಲಿತವಾಗಿರುವುದಿಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:715
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse: %s"
-msgstr "ಇಲ್ಲ"
+msgstr "ಪಾರ್ಸ್ ಮಾಡಲಾಗಿಲ್ಲ: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "ಹೆಚ್ಚಿನ ಪಾರ್ಸಿಂಗ್ ದೋಷಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಲಾಗುವುದು."
 
 #. GNOME_VFS_OK
 #: ../libgnomevfs/gnome-vfs-result.c:47
@@ -548,9 +530,8 @@ msgstr "ವಿನ್ಯಾಸವು ಮಾನ್ಯವಾದುದಲ್ಲ"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:56
-#, fuzzy
 msgid "Bad file handle"
-msgstr "ಕಡತ"
+msgstr "ಸರಿಯಲ್ಲದ ಬಗೆಯ ಕಡತ ನಿಭಾವಣೆ"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:57
@@ -559,15 +540,13 @@ msgstr "ಕಡತವು ಬಹಳ ದೊಡ್ಡದಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:58
-#, fuzzy
 msgid "No space left on device"
-msgstr "ಇಲ್ಲ ಖಾಲಿ ಜಾಗ "
+msgstr "ಸಾಧನದಲ್ಲಿ ಯಾವುದೆ ಖಾಲಿ ಜಾಗ ಉಳಿದಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:59
-#, fuzzy
 msgid "Read-only file system"
-msgstr "ಓದಲಾದ ಕಡತ"
+msgstr "ಓದಲು ಮಾತ್ರವಾದ ಕಡತ ವ್ಯವಸ್ಥೆ"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:60
@@ -576,69 +555,63 @@ msgstr "ಅಮಾನ್ಯ URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:61
-#, fuzzy
 msgid "File not open"
-msgstr "ಕಡತ ಇಲ್ಲ ತೆರೆ"
+msgstr "ತೆರೆಯದೆ ಇರುವ ಕಡತ"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:62
-#, fuzzy
 msgid "Open mode not valid"
-msgstr "ತೆಗೆ ಇಲ್ಲ"
+msgstr "ತೆರೆಯುವ ವಿಧಾನವು ಮಾನ್ಯವಾದುದಲ್ಲ"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
-msgstr ""
+msgstr "ನಿಲುಕಣೆಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:64
-#, fuzzy
 msgid "Too many open files"
-msgstr "ತೆರೆ"
+msgstr "ಬಹಳಷ್ಟು ಕಡತಗಳನ್ನು ತೆರೆಯಲಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:65
-#, fuzzy
 msgid "End of file"
-msgstr "ಕೊನೆ ಕಡತ"
+msgstr "ಕಡತದ ಕೊನೆ"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
-msgstr ""
+msgstr "ಕೋಶವಾಗಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
-msgstr ""
+msgstr "ಕಾರ್ಯವು ಪ್ರಗತಿಯಲ್ಲಿದೆ"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
-msgstr ""
+msgstr "ಕಾರ್ಯಕ್ಕೆ ಭಂಗವುಂಟಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: ../libgnomevfs/gnome-vfs-result.c:69
-#, fuzzy
 msgid "File exists"
-msgstr "ಕಡತ"
+msgstr "ಕಡತವು ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"
 
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
-msgstr ""
+msgstr "ಕುಣಿಕೆ ಮಾಡುವ ಜೋಡಣೆಯು ಎದುರಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:71
-#, fuzzy
 msgid "Operation not permitted"
-msgstr "ಇಲ್ಲ"
+msgstr "ಕಾರ್ಯಕ್ಕೆ ಅನುಮತಿ ಇಲ್ಲ"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
-msgstr ""
+msgstr "ಒಂದು ಕೋಶ"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:73
@@ -647,27 +620,23 @@ msgstr "ಸಾಕಷ್ಟು ಮೆಮೊರಿಯು ಲಭ್ಯವಿಲ್�
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:74
-#, fuzzy
 msgid "Host not found"
-msgstr "ಅತಿಥೇಯ ಇಲ್ಲ"
+msgstr "ಅತಿಥೇಯವು ಕಂಡು ಬಂದಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:75
-#, fuzzy
 msgid "Host name not valid"
-msgstr "ಅತಿಥೇಯ ಹೆಸರು ಇಲ್ಲ"
+msgstr "ಅತಿಥೇಯದ ಹೆಸರು ಮಾನ್ಯವಾದುದಲ್ಲ"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Host has no address"
-msgstr "ಅತಿಥೇಯ ಇಲ್ಲ"
+msgstr "ಅತಿಥೇಯವು ವಿಳಾಸವನ್ನು ಹೊಂದಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:77
-#, fuzzy
 msgid "Login failed"
-msgstr "ಪ್ರವೇಶಿಸು"
+msgstr "ಪ್ರವೇಶವು ವಿಫಲಗೊಂಡಿದೆ"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:78
@@ -676,107 +645,93 @@ msgstr "ಕಾರ್ಯವು ರದ್ದು ಮಾಡಲ್ಪಟ್ಟಿದ�
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:79
-#, fuzzy
 msgid "Directory busy"
-msgstr "ಕೋಶ"
+msgstr "ಕೋಶವು ಕಾರ್ಯನಿರತವಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: ../libgnomevfs/gnome-vfs-result.c:80
-#, fuzzy
 msgid "Directory not empty"
-msgstr "ಕೋಶ ಇಲ್ಲ ಖಾಲಿ"
+msgstr "ಕೋಶವು ಖಾಲಿಯಾಗಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
-msgstr ""
+msgstr "ಬಹಳಷ್ಟು ಕೊಂಡಿಗಳು"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:82
-#, fuzzy
 msgid "Read only file system"
-msgstr "ಓದಲಾದ ಕಡತ"
+msgstr "ಓದಲು ಮಾತ್ರವಾದ ಕಡತವ್ಯವಸ್ಥೆ"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:83
-#, fuzzy
 msgid "Not on the same file system"
-msgstr "ನಲ್ಲಿ ಕಡತ"
+msgstr "ಒಂದೇ ಕಡತ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ಇಲ್ಲ"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:84
-#, fuzzy
 msgid "Name too long"
-msgstr "ಹೆಸರು"
+msgstr "ಹೆಸರು ಬಹಳ ಉದ್ದವಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: ../libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Service not available"
-msgstr "ಸೇವೆ ಇಲ್ಲ ಲಭ್ಯವಿರುವ"
+msgstr "ಸೇವೆಯು ಲಭ್ಯವಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "ಇಲ್ಲದೆ ಇರುವ ಸೇವೆಯ ಮಾಹಿತಿಗಾಗಿ ಮನವಿ ಸಲ್ಲಿಸಲಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:87
-#, fuzzy
 msgid "Protocol error"
-msgstr "ಪ್ರೊಟೊಕಾಲ್"
+msgstr "ಪ್ರೊಟೊಕಾಲ್ ದೋಷ"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:88
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "ಇಲ್ಲ ಪತ್ತೆಹಚ್ಚು"
+msgstr "ಮಾಸ್ಟರ್ ವೀಕ್ಷಕವನ್ನು ಪತ್ತೆಹಚ್ಚಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:89
-#, fuzzy
 msgid "No default action associated"
-msgstr "ಇಲ್ಲ ಪೂರ್ವನಿಯೋಜಿತ"
+msgstr "ಸಂಬಂಧಪಟ್ಟ ಯಾವುದೆ ಡೀಫಾಲ್ಟ್‍ ಕ್ರಿಯೆಯು ಇಲ್ಲ"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:90
-#, fuzzy
 msgid "No handler for URL scheme"
-msgstr "ಇಲ್ಲ ಗೆ URL"
+msgstr "URL ಸ್ಕೀಮ್‌ಗೆ ಯಾವುದೆ ಹ್ಯಾಂಡ್ಲರ್ ಇಲ್ಲ"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
-#, fuzzy
 msgid "Error parsing command line"
-msgstr "ದೋಷ"
+msgstr "ಆಜ್ಞಾ ಸಾಲಿನಲ್ಲಿ ಪಾರ್ಸ್ ಮಾಡುವಲ್ಲಿ ದೋಷ"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
-#, fuzzy
 msgid "Error launching command"
-msgstr "ದೋಷ"
+msgstr "ಆಜ್ಞೆಯನ್ನು ಆರಂಭಿಸುವಲ್ಲಿ ದೋಷ"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
-msgstr ""
+msgstr "ಕಾಲತೀರುವ ಸಮಯವನ್ನು ತಲುಪಿದೆ"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
-msgstr ""
+msgstr "ನಾಮಪರಿಚಾರಕದ ದೋಷ"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:95
-#, fuzzy
 msgid "The resource is locked"
-msgstr " "
+msgstr "ಸಂಪನ್ಮೂಲವನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:96
-#, fuzzy
 msgid "Function call deprecated"
-msgstr "ಕ್ರಿಯೆ"
+msgstr "ಕ್ರಿಯೆಯ ಕರೆಯನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:97
@@ -785,20 +740,19 @@ msgstr "ಅಮಾನ್ಯ ಕಡತದ ಹೆಸರು"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:98
-#, fuzzy
 msgid "Not a symbolic link"
-msgstr "ಕೊಂಡಿ"
+msgstr "ಸಾಂಕೇತಿ ಕೊಂಡಿಯಾಗಿಲ್ಲ"
 
 #: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "ಅಜ್ಞಾತ ದೋಷ"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:78
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u ಬೈಟ್‍ಗಳು"
-msgstr[1] "%u ಬೈಟ್‍ಗಳು"
+msgstr[0] "%u ಬೈಟ್‌"
+msgstr[1] "%u ಬೈಟ್‌ಗಳು"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -895,13 +849,12 @@ msgstr "SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
-#, fuzzy
 msgid "Memory Stick"
-msgstr "ಮೆಮೊರಿ"
+msgstr "ಮೆಮೊರಿ ಸ್ಟಿಕ್"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
-msgstr ""
+msgstr "ಚುರುಕು ಮಾಧ್ಯಮ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
 msgid "Camera"
@@ -913,11 +866,11 @@ msgstr "DVD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
 msgid "Root Volume"
-msgstr ""
+msgstr "ಮೂಲ ಪರಿಮಾಣ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
 msgid "Audio CD"
-msgstr ""
+msgstr "ಆಡಿಯೋ ಸೀಡಿ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
 msgid "Unknown volume"
@@ -929,98 +882,86 @@ msgstr "ಜಾಲಬಂಧ ಪರಿಚಾರಕ"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-#, fuzzy
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "ಫ್ಲಾಪಿ   ಇಲ್ಲ ಫ್ಲಾಪಿ."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "ಫ್ಲಾಪಿ ಡ್ರೈವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಬಹುಷಃ ಡ್ರೈವಿನಲ್ಲಿ ಫ್ಲಾಪಿ ಇಲ್ಲದೆ ಇರಬಹುದು."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
-#, fuzzy
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "ಧ್ವನಿಯ ಪರಿಮಾಣ   ಇಲ್ಲ."
+msgstr "ಪರಿಮಾಣವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಬಹುಷಃ ಸಾಧನದಲ್ಲಿ ಮಾಧ್ಯಮವು ಇಲ್ಲದೆ ಇರಬಹುದು."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
-#, fuzzy
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "ಫ್ಲಾಪಿ ಫ್ಲಾಪಿ  ."
+msgstr "ಫ್ಲಾಪಿ ಡ್ರೈವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಫ್ಲಾಪಿಯು ಬಹುಷಃ ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗದ ಬಗೆಯ ಒಂದು ಫಾರ್ಮಾಟಿನಲ್ಲಿ ಇರಬಹುದು."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-#, fuzzy
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr "ಧ್ವನಿಯ ಪರಿಮಾಣ   ಗುಪ್ತಪದ."
+msgstr "ಪರಿಮಾಣವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಇದು ಗೂಢಲಿಪೀಕರಿಸಲಾದ ಸಾಧನವಾಗಿದ್ದಲ್ಲಿ, ಇಲ್ಲಿ ತಪ್ಪಾದ ಗುಪ್ತಪದ ಅಥವ ಕೀಲಿಯನ್ನು ಬಳಸಲಾಗಿದೆ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
-#, fuzzy
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "ಆರಿಸಲಾದ ಧ್ವನಿಯ ಪರಿಮಾಣ ಧ್ವನಿಯ ಪರಿಮಾಣ  ."
+msgstr "ಆರಿಸಲಾದ ಪರಿಮಾಣವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಪರಿಮಾಣವು ಆರೋಹಿಸಲಾಗದೆ ಇರುವ ಒಂದು ಫಾರ್ಮ್ಯಾಟಿನಲ್ಲಿ ಇರಬಹುದು."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
-#, fuzzy
 msgid "Unable to mount the selected floppy drive."
-msgstr "ಆರಿಸಲಾದ ಫ್ಲಾಪಿ."
+msgstr "ಆರಿಸಲಾದ ಫ್ಲಾಪಿ ಡ್ರೈವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:208
-#, fuzzy
 msgid "Unable to mount the selected volume."
-msgstr "ಆರಿಸಲಾದ ಧ್ವನಿಯ ಪರಿಮಾಣ."
+msgstr "ಆರಿಸಲಾದ ಪರಿಮಾಣವನ್ನು ಆರೋಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-#, fuzzy
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "ಆರಿಸಲಾದ ಧ್ವನಿಯ ಪರಿಮಾಣ ಧ್ವನಿಯ ಪರಿಮಾಣ  ."
+msgstr "ಆರೋಹಿಸಲಾಗಿರುವ ಆರಿಸಲಾದ ಪರಿಮಾಣವನ್ನು ತೆಗೆಯಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. ಪರಿಮಾಣವು ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ ಪ್ರೊಗ್ರಾಂಗಳಿಂದ ಬಳಸಲ್ಪಡುತ್ತಿದೆ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
-#, fuzzy
 msgid "Unable to unmount the selected volume."
-msgstr "ಆರಿಸಲಾದ ಧ್ವನಿಯ ಪರಿಮಾಣ."
+msgstr "ಆರೋಹಿಸಲಾಗಿರುವ ಆರಿಸಲಾದ ಪರಿಮಾಣವನ್ನು ತೆಗೆಯಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "ವಿಫಲಗೊಂಡ ಚೈಲ್ಡ್‍"
+msgstr "ಉಪ ಪ್ರಕ್ರಿಯೆ %d (%s) ಇಂದ ಮಾಹಿತಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr ""
+msgstr "ಒಂದು pty ಯಲ್ಲಿ ಆರೋಹಣಾ ಕಾರ್ಯವನ್ನು ಚಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
-#, fuzzy, c-format
+#, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "ಚೈಲ್ಡ್‍"
+msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
-#, fuzzy
 msgid "Couldn't send password to mount process."
-msgstr "ಗುಪ್ತಪದ."
+msgstr "ಆರೋಹಣಾ ಪ್ರಕ್ರಿಯೆಗೆ ಗುಪ್ತಪದವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr ""
+msgstr "waitpid() (%s) ಯಲ್ಲಿ ಅನಿರೀಕ್ಷಿತ ದೋಷ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
-#, fuzzy
 msgid "Failed to start command"
-msgstr "ವಿಫಲಗೊಂಡ ಆರಂಭ"
+msgstr "ಆಜ್ಞೆಯನ್ನು ಆರಂಭಿಸಲು ವಿಫಲಗೊಂಡಿದೆ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
-msgstr ""
+msgstr "ಮಾಧ್ಯಮವನ್ನು ಹೊರತೆಗೆಯಲಾಗುತ್ತಿಲ್ಲ"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "ಸಂಪರ್ಕ ಜೋಡಿಸಲಾಗಿರುವ ಪರಿಮಾಣವನ್ನು ತೆಗೆಯಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
 
 #: ../modules/computer-method.c:543
 msgid "Network"
@@ -1035,401 +976,352 @@ msgid "Filesystem"
 msgstr "ಕಡತವ್ಯವಸ್ಥೆ"
 
 #: ../modules/file-method.c:497
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "ಗೊತ್ತಿರದ"
+msgstr "ಗೊತ್ತಿರದ GnomeVFSSeekPosition %d"
 
 #: ../modules/network-method.c:1399
-#, fuzzy
 msgid "Windows Network"
-msgstr "ವಿಂಡೋಗಳು"
+msgstr "ವಿಂಡೋಸ್ ಜಾಲಬಂಧ"
 
 #: ../modules/sftp-method.c:1424
-#, fuzzy, c-format
+#, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "  ಗೊತ್ತಿರದ."
+msgstr "ದೂರಸ್ಥ ಗಣಕದ (%s) ಗುರುತು ತಿಳಿದಿಲ್ಲ."
 
 #: ../modules/sftp-method.c:1425
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
-msgstr "ಮೊದಲ n     ಸಂಪರ್ಕವಿಳಾಸಗಳು."
+msgstr ""
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
-msgstr ""
+msgstr "ಏನಾದರೂ ಆಗಲೆ ಒಳಗೆ ಪ್ರವೇಶಿಸು"
 
 #: ../modules/sftp-method.c:1434
-#, fuzzy
 msgid "Cancel Login"
-msgstr "ಪ್ರವೇಶಿಸು"
+msgstr "ಪ್ರವೇಶಿಸುವುದನ್ನು ರದ್ದು ಮಾಡು"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
-#, fuzzy, c-format
+#, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "ಪತ್ತೆಹಚ್ಚು ಕಡತ n"
+msgstr "%s ಯಲ್ಲಿ ಮಾನ್ಯವಾದ ಯಾವುದೆ ಸಂಯೋಜನೆಗಳ ಕಡತವು ಕಂಡುಬಂದಿಲ್ಲ\n"
 
 #: ../modules/test-method.c:589
-#, fuzzy, c-format
+#, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "n"
+msgstr "ಬೇರೊಂದು ಸ್ಥಳವನ್ನು ಸೂಚಿಸಲು %s ವಾತಾವರಣ ಚರಮೌಲ್ಯವನ್ನು ಬಳಸಿ.\n"
 
 #: ../programs/authentication.c:106
-#, fuzzy, c-format
+#, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr "ಪ್ರಾಕ್ಸಿ n"
+msgstr "ನಿಮ್ಮ HTTP ಪ್ರಾಕ್ಸಿಗಾಗಿ ನೀವು ಪ್ರವೇಶಿಸುವುದು ಅಗತ್ಯವಾಗುತ್ತದೆ.\n"
 
 #: ../programs/authentication.c:107
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
-msgstr "n"
+msgstr ""
+"\"%s\" ಅನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಪ್ರವೇಶಿಸಬೇಕಾಗುತ್ತದೆ.\n"
+"%s"
 
 #: ../programs/authentication.c:110
-#, fuzzy
 msgid "Your password will be transmitted unencrypted."
-msgstr "ಗುಪ್ತಪದ."
+msgstr "ನಿಮ್ಮ ಗುಪ್ತಪದವು ಗೂಢಲಿಪೀಕರಿಸದೆ ರವಾನಿಸಲಾಗುತ್ತದೆ."
 
 #: ../programs/authentication.c:111
-#, fuzzy
 msgid "Your password will be transmitted encrypted."
-msgstr "ಗುಪ್ತಪದ."
+msgstr "ನಿಮ್ಮ ಗುಪ್ತಪದವು ಗೂಢಲಿಪೀಕರಿಸಲ್ಪಟ್ಟು ರವಾನಿಸಲಾಗುತ್ತದೆ."
 
 #: ../programs/authentication.c:163
-#, fuzzy, c-format
+#, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "ಕ್ಷೇತ್ರ n"
+msgstr "ನೀವು %s ನ %s ಕ್ಷೇತ್ರವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಪ್ರವೇಶಿಸಬೇಕಾಗುತ್ತದೆ\n"
 
 #: ../programs/authentication.c:165
-#, fuzzy, c-format
+#, c-format
 msgid "You must log in to access %s\n"
-msgstr "n"
+msgstr "ನೀವು %s ಅನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಪ್ರವೇಶಿಸಬೇಕಾಗುತ್ತದೆ\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
-#, fuzzy
 msgid "Default component viewer application"
-msgstr "ಪೂರ್ವನಿಯೋಜಿತ"
+msgstr "ಡೀಫಾಲ್ಟ್‍ ಘಟಕ ನೋಡುವ ಅನ್ವಯ"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "ಪೂರ್ವನಿಯೋಜಿತ ಟರ್ಮಿನಲ್ ಅನ್ವಯ"
+msgstr "ಡೀಫಾಲ್ಟ್‍ ಟರ್ಮಿನಲ್ ಅನ್ವಯ"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
-#, fuzzy
 msgid "Exec argument for default terminal"
-msgstr "ಗೆ ಪೂರ್ವನಿಯೋಜಿತ ಟರ್ಮಿನಲ್"
+msgstr "ಡೀಫಾಲ್ಟ್‍ ಟರ್ಮಿನಲ್‌ಗಾಗಿನ Exec ಆರ್ಗ್ಯುಮೆಂಟ್್"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "ಅನ್ವಯ ಗೆ ಕಡತ."
+msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-#, fuzzy
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "ಪೂರ್ವನಿಯೋಜಿತ ಟರ್ಮಿನಲ್ ಅನ್ವಯ ಗೆ ಟರ್ಮಿನಲ್."
+msgstr "ಟರ್ಮಿನಲ್ಲಿನ ಅಗತ್ಯವಿರುವ ಅನ್ವಯಗಳಲ್ಲಿ ಬಳಸಬೇಕಿರುವ ಡೀಫಾಲ್ಟ್‍ ಟರ್ಮಿನಲ್ ಅನ್ವಯ."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
-#, fuzzy
 msgid "The exec argument to use for the default terminal application."
-msgstr "ಗೆ ಪೂರ್ವನಿಯೋಜಿತ ಟರ್ಮಿನಲ್ ಅನ್ವಯ."
+msgstr "ಡೀಫಾಲ್ಟ್‍ ಟರ್ಮಿನಲ್ ಅನ್ವಯದಲ್ಲಿ ಬಳಸಬೇಕಿರುವ exec ಆರ್ಗ್ಯಮೆಂಟ್."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "ಚಲಾಯಿಸು ಟರ್ಮಿನಲ್"
+msgstr "ಆಜ್ಞೆಯನ್ನು ಒಂದು ಟರ್ಮಿನಲ್ಲಿನಲ್ಲಿ ಚಲಾಯಿಸು"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
-#, fuzzy
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"aim\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
-#, fuzzy
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"callto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"ghelp\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"h323\"  URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"http\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"https\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"info\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"mailto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"man\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "ಕಸದಬುಟ್ಟಿ ಶಕ್ತಗೊಂಡ."
+msgstr "ಶಕ್ತಗೊಂಡಲ್ಲಿ, ಆಜ್ಞೆಯನ್ನು \"trash\" URLಗಳನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "ಗೆ"
+msgstr "\"aim\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "ಗೆ"
+msgstr "\"callto\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ಗೆ"
+msgstr "\"ghelp\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "ಗೆ"
+msgstr "\"h323\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "ಗೆ"
+msgstr "\"http\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "ಗೆ"
+msgstr "\"https\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "ಗೆ"
+msgstr "\"info\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "ಗೆ"
+msgstr "\"mailto\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "ಗೆ"
+msgstr "\"man\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "ಗೆ ಕಸದಬುಟ್ಟಿ"
+msgstr "\"trash\" URLಗಳನ್ನು ನಿಭಾಯಿಸುವವ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"aim\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"callto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"ghelp\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"h323\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"http\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"https\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"info\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"mailto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "ನಿಜ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"man\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "ನಿಜ ಕಸದಬುಟ್ಟಿ."
+msgstr "\"ಆಜ್ಞೆ\" ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾಗಿರುವ ಆಜ್ಞೆಯು \"trash\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "ನಿಜ URL ಟರ್ಮಿನಲ್."
+msgstr "ನಿಜ ಈ ಬಗೆಯ URL ಅನ್ನು ನಿಭಾಯಿಸಲು ಬಳಸಲಾದ ಆಜ್ಞೆಯನ್ನು ಟರ್ಮಿನಲ್ಲಿನಲ್ಲಿ ಚಲಾಯಿಸಬೇಕು ಎಂದಾದಲ್ಲಿ ಇದು ನಿಜವಾಗುತ್ತದೆ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"aim\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"callto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"ghelp\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"https\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ \"h323\" URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"http\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"https\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"info\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"mailto\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"man\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "ಕಸದಬುಟ್ಟಿ"
+msgstr "ಸೂಚಿಸಿರುವ ಆಜ್ಞೆಯು \"trash\" URLಗಳನ್ನು ನಿಭಾಯಿಸಬೇಕೆ"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-#, fuzzy
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr "ಅರ್ಧವಿರಾಮ ಚಿಹ್ನೆ ಪಟ್ಟಿ DNS ಜಾಲಬಂಧ."
+msgstr "\"network:///\" ಸ್ಥಳದಲ್ಲಿ ಕಾಣಿಸಬೇಕಿರುವ ಅರ್ಧವಿರಾಮ ಚಿಹ್ನೆವನ್ನು ಹೊಂದಿರುವ DNS-SD ಕ್ಷೇತ್ರಗಳ ಪಟ್ಟಿ."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
-#, fuzzy
 msgid "Extra domains to look for DNS-SD services in"
-msgstr "ಗೆ DNS"
+msgstr "DNS-SD ಸೇವೆಗಳನ್ನು ಹುಡುಕಬೇಕಿರುವ ಹೆಚ್ಚಿನ ಘಟಕಗಳು"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
-#, fuzzy
 msgid "How to display local DNS-SD service"
-msgstr "DNS"
+msgstr "ಸ್ಥಳೀಯ DNS-SD ಸೇವೆಯನ್ನು ಹೇಗೆ ತೋರಿಸಬೇಕು"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
-#, fuzzy
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "ಅಶಕ್ತಗೊಂಡ."
+msgstr "ಸಾಧ್ಯವಿರುವ ಮೌಲ್ಯಗಳು \"ಒಗ್ಗೂಡಿಸಲಾದ\", \"ಪ್ರತ್ಯೇಕ\" ಹಾಗು \"ಅಶಕ್ತಗೊಂಡ\" ಆಗಿರುತ್ತವೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "ಪ್ರಾಕ್ಸಿ ಪರಿಚಾರಕ ಸಂಪರ್ಕಗಳನ್ನು ದೃಢೀಕರಿಸು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:2
-#, fuzzy
 msgid "Automatic proxy configuration URL"
-msgstr "ಸ್ವಯಂಚಾಲಿತ URL"
+msgstr "ಸ್ವಯಂಚಾಲಿತ ಪ್ರಾಕ್ಸಿ ಸಂರಚನೆಯ ಯುಆರ್ಎಲ್"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
-#, fuzzy
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "ಅಂತರ್ಜಾಲ."
+msgstr "ಅಂತರ್ಜಾಲದ ಮೂಲಕ HTTP ಯನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವಾಗ ಪ್ರಾಕ್ಸಿ ಸಂಯೋಜನೆಗಳನ್ನು ಶಕ್ತಗೊಳಿಸು."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
-#, fuzzy
 msgid "FTP proxy host name"
-msgstr "FTP ಅತಿಥೇಯ ಹೆಸರು"
+msgstr "FTP ಪ್ರಾಕ್ಸಿ ಅತಿಥೇಯದ ಹೆಸರು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
-#, fuzzy
 msgid "FTP proxy port"
-msgstr "FTP"
+msgstr "FTP ಪ್ರಾಕ್ಸಿ ಸಂಪರ್ಕಸ್ಥಾನ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
-#, fuzzy
 msgid "HTTP proxy host name"
-msgstr "ಅತಿಥೇಯ ಹೆಸರು"
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಅತಿಥೇಯದ ಹೆಸರು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:7
-#, fuzzy
 msgid "HTTP proxy password"
-msgstr "ಗುಪ್ತಪದ"
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಗುಪ್ತಪದ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಸಂಪರ್ಕಸ್ಥಾನ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಬಳಕೆದಾರಹೆಸರು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
 #, fuzzy
@@ -1441,122 +1333,106 @@ msgstr "ದೃಢೀಕರಣ ಗುಪ್ತಪದ   ದೃಢೀಕರಣ ದ�
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "ಪ್ರಾಕ್ಸಿಯಲ್ಲದ ಅತಿಥೇಯಗಳು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "ಗುಪ್ತಪದ ದೃಢೀಕರಣ."
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಕಾರ್ಯವು ನಡೆಸುವಾಗ ದೃಢೀಕರಿಸಲು ಬಳಸಬೇಕಿರುವ ಗುಪ್ತಪದ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:13
-#, fuzzy
 msgid "Proxy configuration mode"
-msgstr "ಪ್ರಾಕ್ಸಿ"
+msgstr "ಪ್ರಾಕ್ಸಿ ಸಂರಚನಾ ಕ್ರಮ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
-msgstr "ಅತಿಥೇಯ ಹೆಸರು"
+msgstr "SOCKS ಪ್ರಾಕ್ಸಿ ಅತಿಥೇಯದ ಹೆಸರು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS ಪ್ರಾಕ್ಸಿ ಸಂಪರ್ಕಸ್ಥಾನ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
-msgstr "ಅತಿಥೇಯ ಹೆಸರು"
+msgstr "ಸುರಕ್ಷಿತ HTTP ಪ್ರಾಕ್ಸಿ ಅತಿಥೇಯದ ಹೆಸರು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "ಸುರಕ್ಷಿತ HTTP ಪ್ರಾಕ್ಸಿ ಸಂಪರ್ಕಸ್ಥಾನ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "ಆರಿಸು ಯಾವುದೂ ಇಲ್ಲ auto."
+msgstr "ಪ್ರಾಕ್ಸಿ ಸಂರಚನಾ ಕ್ರಮವನ್ನು ಆರಿಸಿ. ಬೆಂಬಲವಿರುವ ಮೌಲ್ಯಗಳು, \"ಯಾವುದೂ ಇಲ್ಲ\", \"ಕೈಯಾರೆ\", \"ತಾನಾಗಿಯೆ\" ಆಗಿರುತ್ತವೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
-#, fuzzy
 msgid "The machine name to proxy FTP through."
-msgstr "ಹೆಸರು FTP."
+msgstr "ಪ್ರಾಕ್ಸಿ FTP ಮಾಡಲು ಬಳಸಬೇಕಿರುವ ಗಣಕದ ಹೆಸರು."
 
 #: ../schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "ಹೆಸರು."
+msgstr "ಪ್ರಾಕ್ಸಿ HTTP ಮಾಡಲು ಬಳಸಬೇಕಿರುವ ಗಣಕದ ಹೆಸರು."
 
 #: ../schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
-msgstr "ಹೆಸರು."
+msgstr "ಪ್ರಾಕ್ಸಿ ಸುರಕ್ಷಿತ HTTP ಮಾಡಲು ಬಳಸಬೇಕಿರುವ ಗಣಕದ ಹೆಸರು."
 
 #: ../schemas/system_http_proxy.schemas.in.h:22
-#, fuzzy
 msgid "The machine name to proxy socks through."
-msgstr "ಹೆಸರು."
+msgstr "ಪ್ರಾಕ್ಸಿ ಸಾಕ್ಸ್ ಮಾಡಲು ಗಣಕದ ಹೆಸರು."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "ನಲ್ಲಿ ಅತಿಥೇಯ."
+msgstr "ನೀವು ಪ್ರಾಕ್ಸಿ ಮಾಡಬೇಕಿರುವ ಗಣಕದ ಸಂಪರ್ಕಸ್ಥಾನವನ್ನು \"/system/http_proxy/host\" ಯಲ್ಲಿ ಸೂಚಿಸಲಾಗಿರುತ್ತದೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "ನಲ್ಲಿ ಅತಿಥೇಯ."
+msgstr "ನೀವು ಪ್ರಾಕ್ಸಿ ಮಾಡಬೇಕಿರುವ ಗಣಕದ ಸಂಪರ್ಕಸ್ಥಾನವನ್ನು \"/system/proxy/ftp_host\" ಯಲ್ಲಿ ಸೂಚಿಸಲಾಗಿರುತ್ತದೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "ನಲ್ಲಿ ಅತಿಥೇಯ."
+msgstr "ನೀವು ಪ್ರಾಕ್ಸಿ ಮಾಡಬೇಕಿರುವ ಗಣಕದ ಸಂಪರ್ಕಸ್ಥಾನವನ್ನು \"/system/proxy/secure_host\" ಯಲ್ಲಿ ಸೂಚಿಸಲಾಗಿರುತ್ತದೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "ನಲ್ಲಿ ಅತಿಥೇಯ."
+msgstr "ನೀವು ಪ್ರಾಕ್ಸಿ ಮಾಡಬೇಕಿರುವ ಗಣಕದ ಸಂಪರ್ಕಸ್ಥಾನವನ್ನು \"/system/proxy/socks_host\" ಯಲ್ಲಿ ಸೂಚಿಸಲಾಗಿರುತ್ತದೆ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-#, fuzzy
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "ಪಟ್ಟಿ   ಸಕ್ರಿಯ IP ಅತಿಥೇಯ ವಿಳಾಸಗಳು ಜಾಲಬಂಧ ವಿಳಾಸಗಳು ನೊಂದಿಗೆ ಏನಾದರೂ."
+msgstr "ಈ ಕೀಲಿಯು ಪ್ರಾಕ್ಸಿಯ (ಸಕ್ರಿಯವಾಗಿದ್ದಲ್ಲಿ) ಮೂಲಕ ಸಂಪರ್ಕಿತವಾಗಿಲ್ಲದೆ, ನೇರವಾಗಿ ಸಂಪರ್ಕವನ್ನು ಹೊಂದಿರುವ ಅತಿಥೇಯಗಳ ಪಟ್ಟಿಯನ್ನು ಹೊಂದಿರುತ್ತದೆ. ಸಾಧ್ಯವಿರುವ ಮೌಲ್ಯಗಳೆಂದರೆ ಅತಿಥೇಯದ ಹೆಸರುಗಳು, ಕ್ಷೇತ್ರದ ಹೆಸರುಗಳು (*.foo.com ನಂತಹ ಆರಂಭಿಕ ವೈಲ್ಡ್‍ಕಾರ್ಡ್ ಅನ್ನು ಬಳಸಿಕೊಂಡು), IP ಅತಿಥೇಯ ವಿಳಾಸಗಳು (IPv4 ಹಾಗು IPv6) ಹಾಗು ಒಂದು ನೆಟ್‌ಮಾಸ್ಕಿನೊಂದಿನ (192.168.0.0/24 ನಂತಹವುಗಳು) ಜಾಲಬಂಧ ವಿಳಾಸಗಳು ಆಗಿರುತ್ತಿವೆ"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "URL."
+msgstr "ಪ್ರಾಕ್ಸಿ ಸಂರಚನಾ ಮೌಲ್ಯಗಳನ್ನು ಒದಗಿಸುವ ಯುಆರ್ಎಲ್."
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "HTTP ಪ್ರಾಕ್ಸಿಯನ್ನು ಬಳಸು"
 
 #: ../schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "ಬಳಕೆದಾರ ಹೆಸರು ದೃಢೀಕರಣ."
+msgstr "HTTP ಪ್ರಾಕ್ಸಿ ಕಾರ್ಯವನ್ನು ನಡೆಸುವಾಗ ದೃಢೀಕರಿಸಲು ಬಳಸಬೇಕಿರುವ ಬಳಕೆದಾರ ಹೆಸರು."
 
 #: ../schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB ಕೆಲಸದಗುಂಪು"
 
 #: ../schemas/system_smb.schemas.in.h:2
-#, fuzzy
 msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr "ವಿಂಡೋಗಳು."
+msgstr ""
+
