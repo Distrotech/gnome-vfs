@@ -1,15 +1,15 @@
 # Romanian translation for gnome-vfs
-# Copyright (C) 2001 - 2007 Free Software Foundation, Inc.
+# Copyright (C) 2001 - 2008 Free Software Foundation, Inc.
 # Marius Andreiana <mandreiana@yahoo.com>, 2001.
-# Mişu Moldovan <dumol@gnome.ro>, 2003 - 2007.
+# Mișu Moldovan <dumol@gnome.ro>, 2003 - 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2007-09-11 22:59+0300\n"
-"Last-Translator: Mişu Moldovan <dumol@gnome.ro>\n"
+"POT-Creation-Date: 2007-09-13 08:39+0100\n"
+"PO-Revision-Date: 2008-09-18 00:26+0300\n"
+"Last-Translator: Mișu Moldovan <dumol@gnome.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,32 +24,32 @@ msgstr "Volum ISO 9660"
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
 msgid "%s:%u contains NUL characters."
-msgstr "%s:%u conţine caractere NUL."
+msgstr "%s:%u conține caractere NUL."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:242
 #, c-format
 msgid "%s:%u contains no method name."
-msgstr "%s:%u nu conţine nici un nume de metodă."
+msgstr "%s:%u nu conține nici un nume de metodă."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:282
 #, c-format
 msgid "%s:%u has no options endmarker."
-msgstr "%s:%u nu are opţiuni „endmarker”."
+msgstr "%s:%u nu are opțiuni „endmarker”."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:293
 #, c-format
 msgid "%s:%u has unknown options %s."
-msgstr "%s:%u are opţiuni necunoscute %s."
+msgstr "%s:%u are opțiuni necunoscute %s."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
 msgid "%s:%u contains no module name."
-msgstr "%s:%u nu conţine nici un nume de modul."
+msgstr "%s:%u nu conține nici un nume de modul."
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Fişierul de configurare „%s” nu a fost găsit: %s"
+msgstr "Fișierul de configurare „%s” nu a fost găsit: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -63,7 +63,7 @@ msgstr "Volum AFFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
-msgstr "Volum reţea AFS"
+msgstr "Volum rețea AFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
@@ -150,7 +150,7 @@ msgstr "Volum Minix"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
-msgstr "Volum reţea NFS"
+msgstr "Volum rețea NFS"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
@@ -425,7 +425,7 @@ msgstr "Volum"
 #: ../libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
-msgstr "Tip necunoscut de operaţiune %u"
+msgstr "Tip necunoscut de operațiune %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
 #, c-format
@@ -439,7 +439,7 @@ msgstr "Tip necunoscut de sarcină %u"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1725
 msgid "Operation stopped"
-msgstr "Operaţie oprită"
+msgstr "Operație oprită"
 
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
 #: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
@@ -473,7 +473,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Funcţie ieşită din uz. Modificările personalizate în baza de date MIME nu "
+"Funcție ieșită din uz. Modificările personalizate în baza de date MIME nu "
 "mai sunt suportate."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:720
@@ -493,7 +493,7 @@ msgstr "Nici o eroare"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
-msgstr "Fişierul nu a fost găsit"
+msgstr "Fișierul nu a fost găsit"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:49
@@ -513,7 +513,7 @@ msgstr "Parametri invalizi"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
-msgstr "Operaţiune nesuportată"
+msgstr "Operațiune nesuportată"
 
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:53
@@ -533,22 +533,22 @@ msgstr "Formatul nu este valid"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
-msgstr "Descriptor greşit de fişier"
+msgstr "Descriptor greșit de fișier"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
-msgstr "Fişier prea mare"
+msgstr "Fișier prea mare"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
-msgstr "Nu mai e spaţiu liber pe disc"
+msgstr "Nu mai e spațiu liber pe disc"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
-msgstr "Sistemul de fişiere e protejat la scriere"
+msgstr "Sistemul de fișiere e protejat la scriere"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:60
@@ -558,7 +558,7 @@ msgstr "URI invalid"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
-msgstr "Fişierul nu este deschis"
+msgstr "Fișierul nu este deschis"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:62
@@ -573,12 +573,12 @@ msgstr "Acces refuzat"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
-msgstr "Prea multe fişiere deschise"
+msgstr "Prea multe fișiere deschise"
 
 #. GNOME_VFS_ERROR_EOF
 #: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
-msgstr "Sfârşit de fişier"
+msgstr "Sfârșit de fișier"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:66
@@ -588,17 +588,17 @@ msgstr "Nu e un director"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
-msgstr "Operaţiune în progres"
+msgstr "Operațiune în progres"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
-msgstr "Operaţiune întreruptă"
+msgstr "Operațiune întreruptă"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
-msgstr "Fişierul există"
+msgstr "Fișierul există"
 
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:70
@@ -608,7 +608,7 @@ msgstr "Ciclu infinit de legături"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
-msgstr "Operaţiunea nu este permisă"
+msgstr "Operațiunea nu este permisă"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -638,12 +638,12 @@ msgstr "Serverul nu are o adresă"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
-msgstr "Autentificare eşuată"
+msgstr "Autentificare eșuată"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
-msgstr "Operaţiune abandonată"
+msgstr "Operațiune abandonată"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:79
@@ -663,12 +663,12 @@ msgstr "Prea multe legături"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
-msgstr "Sistem de fişiere protejat la scriere"
+msgstr "Sistem de fișiere protejat la scriere"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
-msgstr "Nu se află pe acelaşi sistem de fişiere"
+msgstr "Nu se află pe același sistem de fișiere"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: ../libgnomevfs/gnome-vfs-result.c:84
@@ -683,7 +683,7 @@ msgstr "Serviciu indisponibil"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
-msgstr "Cerere pentru date de servicii ieşite din uz"
+msgstr "Cerere pentru date de servicii ieșite din uz"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: ../libgnomevfs/gnome-vfs-result.c:87
@@ -698,7 +698,7 @@ msgstr "Nu s-a găsit un server „master browser”"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
-msgstr "Nu există o acţiune implicită asociată"
+msgstr "Nu există o acțiune implicită asociată"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:90
@@ -713,7 +713,7 @@ msgstr "Eroare la procesarea liniei de comandă"
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "Eroare la execuţia comenzii"
+msgstr "Eroare la execuția comenzii"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -723,7 +723,7 @@ msgstr "Timp expirat"
 #. GNOME_VFS_ERROR_NAMESERVER
 #: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
-msgstr "Eroare de rezoluţie de nume"
+msgstr "Eroare de rezoluție de nume"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:95
@@ -733,12 +733,12 @@ msgstr "Resursa este blocată"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
-msgstr "Apel-funcţie nesuportat"
+msgstr "Apel-funcție nesuportat"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
-msgstr "Nume invalid de fişier"
+msgstr "Nume invalid de fișier"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:98
@@ -754,8 +754,8 @@ msgstr "Eroare necunoscută"
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u octet"
-msgstr[1] "%u octeţi"
-msgstr[2] "%u de octeţi"
+msgstr[1] "%u octeți"
+msgstr[2] "%u de octeți"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
@@ -881,7 +881,7 @@ msgstr "Volum necunoscut"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
 msgid "Network server"
-msgstr "Server în reţea"
+msgstr "Server în rețea"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
@@ -911,7 +911,7 @@ msgid ""
 "password or key was used."
 msgstr ""
 "Nu s-a putut monta volumul. În cazul în care este un volum criptat, probabil "
-"s-a folosit o parolă ori o cheie greşită."
+"s-a folosit o parolă ori o cheie greșită."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
@@ -954,7 +954,7 @@ msgstr "Nu s-a executa procesul de montare într-un pty"
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr ""
-"Eroare neaşteptată în select() la citirea datelor de la procesul copil (%s)"
+"Eroare neașteptată în select() la citirea datelor de la procesul copil (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 msgid "Couldn't send password to mount process."
@@ -963,7 +963,7 @@ msgstr "Nu s-a putut transmite parola procesului de montare."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr "Eroare neaşteptată în waitpid() (%s)"
+msgstr "Eroare neașteptată în waitpid() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
@@ -980,7 +980,7 @@ msgstr "Nu s-a putut demonta serverul conectat"
 
 #: ../modules/computer-method.c:543
 msgid "Network"
-msgstr "Reţea"
+msgstr "Rețea"
 
 #: ../modules/computer-method.c:561
 msgid "Home"
@@ -988,7 +988,7 @@ msgstr "Acasă"
 
 #: ../modules/computer-method.c:579
 msgid "Filesystem"
-msgstr "Sistem de fişiere"
+msgstr "Sistem de fișiere"
 
 #: ../modules/file-method.c:497
 #, c-format
@@ -997,12 +997,12 @@ msgstr "GnomeVFSSeekPosition %d necunoscut"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "Reţea Windows"
+msgstr "Rețea Windows"
 
 #: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "Identitatea calculatorului la distanţă (%s) nu este cunoscută."
+msgstr "Identitatea calculatorului la distanță (%s) nu este cunoscută."
 
 #: ../modules/sftp-method.c:1425
 #, c-format
@@ -1014,8 +1014,8 @@ msgid ""
 msgstr ""
 "Acest lucru se întâmplă la prima autentificare pe un server.\n"
 "\n"
-"Identitatea trimisă de calculatorul la distanţă este %s. Dacă doriţi să fiţi "
-"absolut sigur că puteţi continua în siguranţă, contactaţi administratorul."
+"Identitatea trimisă de calculatorul la distanță este %s. Dacă doriți să fiți "
+"absolut sigur că puteți continua în siguranță, contactați administratorul."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1023,23 +1023,23 @@ msgstr "Continuă oricum"
 
 #: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
-msgstr "Renunţă"
+msgstr "Renunță"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Nu s-a găsit un fişier valid de configurare în %s\n"
+msgstr "Nu s-a găsit un fișier valid de configurare în %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Utilizaţi variabila de mediu %s pentru a specifica o altă locaţie.\n"
+msgstr "Utilizați variabila de mediu %s pentru a specifica o altă locație.\n"
 
 #: ../programs/authentication.c:106
 #, c-format
 msgid "Your HTTP Proxy requires you to log in.\n"
-msgstr "Proxy-ul HTTP setat necesită autentificare.\n"
+msgstr "Proxy-ul HTTP ales necesită autentificare.\n"
 
 #: ../programs/authentication.c:107
 #, c-format
@@ -1047,7 +1047,7 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"Trebuie să vă autentificaţi pentru a accesa „%s”.\n"
+"Trebuie să vă autentificați pentru a accesa „%s”.\n"
 "%s"
 
 #: ../programs/authentication.c:110
@@ -1061,20 +1061,20 @@ msgstr "Parola vă va fi transmisă criptat"
 #: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "Trebuie să vă autentificaţi pentru a accesa %s în domeniul %s\n"
+msgstr "Trebuie să vă autentificați pentru a accesa %s în domeniul %s\n"
 
 #: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr "Trebuie să vă autentificaţi pentru a accesa %s\n"
+msgstr "Trebuie să vă autentificați pentru a accesa %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Aplicaţie implicită de vizualizare înglobată"
+msgstr "Aplicație implicită de vizualizare înglobată"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Aplicaţie terminal implicită"
+msgstr "Aplicație terminal implicită"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
@@ -1087,25 +1087,25 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Aplicaţie de utilizat pentru vizualizarea fişierelor ce necesită o "
+"Aplicație de utilizat pentru vizualizarea fișierelor ce necesită o "
 "componentă de vizualizare. Parametrul %s va fi înlocuit cu URI-ul "
-"fişierului, iar parametrul %c va fi înlocuit cu componenta IID."
+"fișierului, iar parametrul %c va fi înlocuit cu componenta IID."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Aplicaţia terminal implicită de utilizat pentru programele ce necesită un "
+"Aplicația terminal implicită de utilizat pentru programele ce necesită un "
 "terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Argumentul „exec” de utilizat pentru aplicaţia terminal implicită."
+msgstr "Argumentul „exec” de utilizat pentru aplicația terminal implicită."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "Porneşte programul într-un terminal"
+msgstr "Pornește programul într-un terminal"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
@@ -1320,7 +1320,7 @@ msgid ""
 "\"network:///\" location."
 msgstr ""
 "Listă separată prin virgule de domenii DNS-SD ce ar trebui să fie vizibile "
-"în locaţia „network:///”."
+"în locația „network:///”."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1328,11 +1328,11 @@ msgstr "Domenii în plus de verificat pentru servicii DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr "Felul de afişare a serviciului local dns-sd"
+msgstr "Felul de afișare a serviciului local dns-sd"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Valori posibile: „merged”, „separate” şi „disabled”."
+msgstr "Valori posibile: „merged”, „separate” și „disabled”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1344,7 +1344,7 @@ msgstr "URL pentru configurări proxy automate"
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Activează setările proxy la accesarea adreselor HTTP în Internet."
+msgstr "Activează opțiunile proxy la accesarea adreselor HTTP în Internet."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1376,9 +1376,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"La activare, conectarea la serverul proxy necesită autentificare. Combinaţia "
+"La activare, conectarea la serverul proxy necesită autentificare. Combinația "
 "nume_utilizator/parolă e definită de „/system/http_proxy/"
-"authentication_user” şi „/system/http_proxy/authentication_password”."
+"authentication_user” și „/system/http_proxy/authentication_password”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1413,8 +1413,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Selectaţi modul de configurare proxy. Valorile suportate sunt „none”, "
-"„manual” şi „auto”."
+"Selectați modul de configurare proxy. Valorile suportate sunt „none”, "
+"„manual” și „auto”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1463,14 +1463,14 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Această cheie conţine o listă a adreselor la care se preferă conectarea "
+"Această cheie conține o listă a adreselor la care se preferă conectarea "
 "directă, nu prin proxy. Aceste adrese pot fi nume de servere, domenii (cu "
-"caractere „wildcard”, de ex. *.foo.com), adrese IP (atât IPv4, cât şi IPv6) "
-"şi adrese de reţea cu mască (de ex. 192.168.0.0/16)."
+"caractere „wildcard”, de ex. *.foo.com), adrese IP (atât IPv4, cât și IPv6) "
+"și adrese de rețea cu mască (de ex. 192.168.0.0/16)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "URL cu setări automate de proxy."
+msgstr "URL cu opțiuni automate de proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1491,23 +1491,23 @@ msgid ""
 "and log back in."
 msgstr ""
 "Grupul sau domeniul Windows din care face parte utilizatorul. Pentru a intra "
-"în vigoare setările unui nou workgroup, utilizatorul s-ar putea să "
-"trebuiască să se deautentifice şi apoi să se autentifice din nou."
+"în vigoare opțiunile unui nou workgroup, utilizatorul s-ar putea să "
+"trebuiască să se deautentifice și apoi să se autentifice din nou."
 
 #~ msgid "Could not initialize Bonobo"
-#~ msgstr "Nu s-a putut iniţializa Bonobo”"
+#~ msgstr "Nu s-a putut inițializa Bonobo”"
 
 #~ msgid "Could not initialize gnome vfs"
-#~ msgstr "Nu s-a putut iniţializa gnome-vfs"
+#~ msgstr "Nu s-a putut inițializa gnome-vfs"
 
 #~ msgid "Standard Moniker factory"
 #~ msgstr "Fabrică Moniker standard"
 
 #~ msgid "file MonikerExtender"
-#~ msgstr "fişier MonikerExtender"
+#~ msgstr "fișier MonikerExtender"
 
 #~ msgid "generic Gnome VFS moniker"
 #~ msgstr "Moniker GnomeVFS generic"
 
 #~ msgid "generic file moniker"
-#~ msgstr "Moniker fişier generic"
+#~ msgstr "Moniker fișier generic"
