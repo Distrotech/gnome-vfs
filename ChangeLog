@@ -1,3 +1,9 @@
+2008-09-22  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version
+
 2008-09-12  Tor Lillqvist  <tml@novell.com>
 
 	* libgnomevfs/gnome-vfs-open-fd.c (do_truncate_handle): On

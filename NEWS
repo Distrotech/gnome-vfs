@@ -1,3 +1,7 @@
+gnome-vfs 2.24.0
+	  * Fixes for Windows
+	  * Avoid excessive warning spew if dbus is not availible
+	  
 gnome-vfs 2.23.0
           * Sync xdgmime with GIO
 

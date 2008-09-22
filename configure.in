@@ -8,9 +8,9 @@ AC_INIT(libgnomevfs/gnome-vfs.h)
 # set LIBGNOMEVFS_BINARY_AGE and LIBGNOMEVFS_INTERFACE_AGE to 0.
 #
 LIBGNOMEVFS_MAJOR_VERSION=2
-LIBGNOMEVFS_MINOR_VERSION=23
-LIBGNOMEVFS_MICRO_VERSION=1
-LIBGNOMEVFS_INTERFACE_AGE=1
+LIBGNOMEVFS_MINOR_VERSION=24
+LIBGNOMEVFS_MICRO_VERSION=0
+LIBGNOMEVFS_INTERFACE_AGE=0
 # If you need a modifier for the version number. 
 # Normally empty, but can be used to make "fixup" releases.
 LIBGNOMEVFS_EXTRAVERSION=
@@ -296,11 +296,11 @@ fi
 
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	echo "enable compile warnings = $set_more_warnings"
-	VFS_CFLAGS="-Wall -Werror \
+	VFS_CFLAGS="-Wall  \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
 	-Wnested-externs -Wpointer-arith"
 
-	for option in -Wno-strict-aliasing -Wno-sign-compare; do
+	for option in -fno-strict-aliasing -Wno-strict-aliasing -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
 		CFLAGS="$VFS_CFLAGS $option $CFLAGS"
 		AC_MSG_CHECKING([whether gcc understands $option])
