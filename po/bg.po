@@ -1,7 +1,7 @@
-# Bulgarian translation for gnome-vfs.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Bulgarian translation for gnome-vfs po-file.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
-# Alexander Shopov <ash@contact.bg>, 2003, 2005, 2006, 2007.
+# Alexander Shopov <ash@contact.bg>, 2003, 2005, 2006, 2007, 2008.
 # Peter "Peshka" Slavov <pslavov@i-space.org>, 2004.
 # Rostislav Raykov <zbrox@i-space.org>, 2004.
 # Vladimir Petkov <kaladan@i-space.org>, 2005.
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-31 08:04+0300\n"
-"PO-Revision-Date: 2007-08-31 07:58+0300\n"
+"POT-Creation-Date: 2008-09-30 22:50+0300\n"
+"PO-Revision-Date: 2008-09-30 22:48+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -479,12 +479,12 @@ msgstr ""
 "Остаряла функция, да не се използва! Не се поддържат вече потребителски "
 "промени по базата с данни за видове MIME."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не може да се анализира: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "Следващите грешки при анализиране ще бъдат игнорирани."
 
@@ -887,6 +887,7 @@ msgstr "Мрежови сървър"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -895,10 +896,12 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Дялът не може да бъде монтиран. Вероятно няма носител в устройството."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -908,6 +911,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -916,6 +920,7 @@ msgstr ""
 "парола или ключ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -932,6 +937,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Избраният дял не може да бъде монтиран."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -960,6 +966,7 @@ msgstr ""
 "дъщерен процес (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Неуспех при пращане на парола към командата за монтиране"
 
@@ -1413,7 +1420,7 @@ msgid ""
 "\", \"auto\"."
 msgstr ""
 "Изберете режим на настройка на сървър-посредник. Поддържани стойности са "
-"„none“ - без сървър посредник, „manual“ - настройка на ръка и „auto“ - "
+"„none“ — без сървър посредник, „manual“ — настройка на ръка и „auto“ — "
 "автоматично настройване."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
