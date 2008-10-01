@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
+"POT-Creation-Date: 2008-07-26 01:16+0000\n"
 "PO-Revision-Date: 2008-07-25 09:58-0300\n"
 "Last-Translator: Vladimir Melo <vladimirmelo.psi@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -54,7 +54,7 @@ msgstr "%s:%u não possui nome de módulo."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Não foi encontrado o arquivo de configuração '%s': %s"
+msgstr "Não foi localizado o arquivo de configuração '%s': %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -481,12 +481,12 @@ msgstr ""
 "Função obsoleta. Não existe mais suporte para que o usuário modifique o "
 "banco de dados MIME."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Não foi possível analisar: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "Mais erros de análise serão ignorados."
 
@@ -498,7 +498,7 @@ msgstr "Nenhum erro"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
-msgstr "Arquivo não encontrado"
+msgstr "Arquivo não localizado"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:49
@@ -608,7 +608,7 @@ msgstr "O arquivo existe"
 #. GNOME_VFS_ERROR_LOOP
 #: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
-msgstr "Vínculos circulares encontrados"
+msgstr "Vínculos circulares localizados"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:71
@@ -628,7 +628,7 @@ msgstr "Memória insuficiente"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
-msgstr "Máquina não encontrada"
+msgstr "Máquina não localizada"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:75
@@ -889,6 +889,7 @@ msgstr "Servidor de rede"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -897,11 +898,13 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Não foi possível montar o volume. Provavelmente não há mídia no dispositivo."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -911,6 +914,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -919,6 +923,7 @@ msgstr ""
 "usada uma senha ou chave incorreta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -935,6 +940,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Não foi possível montar o volume selecionado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -961,6 +967,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Erro não esperado em select() ao ler dados de um processo filho (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Não foi possível enviar senha para o processo de montagem."
 
@@ -1035,7 +1042,7 @@ msgstr "Cancelar Login"
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Não foi encontrado arquivo de configurações válido em %s\n"
+msgstr "Não foi localizado arquivo de configurações válido em %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
