@@ -1,3 +1,8 @@
+2008-10-20  Pema Geyleg  <pema.geyleg@gmail.com>
+
+        * dz.po: Updated Dzongkha Translation
+	* LINGUAS: added "dz"
+
 2008-10-19  Djihed Afifi <djihed@gmail.com> 
 
 	* ar.po: Updated Arabic Translation by Khaled Hosny.
