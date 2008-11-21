@@ -1507,7 +1507,8 @@ neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
 					&in_args, sizeof (in_args),
 					&out_args, sizeof (out_args));
 	
-	/* FIXME: free stuff here?  */
+	g_list_foreach (headers, (GFunc) g_free, NULL);
+	g_list_free (headers);
 	
 	ne_set_request_private (req, "Headers Returned", "TRUE");
 	

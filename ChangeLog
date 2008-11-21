@@ -1,3 +1,8 @@
+2008-11-21  Felix Riemann  <friemann@svn.gnome.org>
+
+	* modules/http-neon-method.c: (neon_return_headers): Fix leaking
+	HTTP response headers. Fixes bug #352850.
+
 2008-09-22  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
