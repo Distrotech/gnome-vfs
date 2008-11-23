@@ -1,3 +1,9 @@
+2008-11-23  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* programs/authentication.c: (do_full_auth):
+	* test/test-shell.c: (get_input_string):
+	Fix two missing format specifiers.
+
 2008-11-21  Felix Riemann  <friemann@svn.gnome.org>
 
 	* modules/http-neon-method.c: (neon_return_headers): Fix leaking

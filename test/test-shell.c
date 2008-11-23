@@ -973,7 +973,7 @@ get_input_string (const char *prompt)
 {
 	char buffer[512];
 
-	printf (prompt);
+	printf ("%s", prompt);
 	fgets (buffer, 511, stdin);
 	if (strchr (buffer, '\n'))
 		*strchr (buffer, '\n') = '\0';

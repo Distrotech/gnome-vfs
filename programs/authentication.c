@@ -167,7 +167,7 @@ do_full_auth (const GnomeVFSModuleCallbackFullAuthenticationIn *in_args,
 
 	g_string_free (name, TRUE);
 
-	printf (message);
+	printf ("%s", message);
 	g_free (message);
 
 	if (in_args->flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_ANON_SUPPORTED) {
