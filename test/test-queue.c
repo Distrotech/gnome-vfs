@@ -33,8 +33,7 @@
 
 #include <config.h>
 
-#include <glib/glist.h>
-#include <glib/gmain.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-job-limit.h>
 #include <libgnomevfs/gnome-vfs-init.h>

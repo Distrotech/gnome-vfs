@@ -32,8 +32,7 @@
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-handle-private.h"
 
-#include <glib/gmessages.h>
-#include <glib/gutils.h>
+#include <glib.h>
 #include <string.h>
 
 GnomeVFSResult

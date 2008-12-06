@@ -1,3 +1,12 @@
+2008-12-06  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* libgnomevfs/*:
+	* modules/bzip2-method.c:
+	* modules/gzip-method.c:
+	* modules/test-method.c:
+	* test/test-*.c:
+	Use single GLib includes. Thanks to Pedro Fragoso (#562441).
+
 2008-11-23  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* programs/authentication.c: (do_full_auth):

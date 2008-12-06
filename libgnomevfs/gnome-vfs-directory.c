@@ -27,8 +27,7 @@
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-ops.h"
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 
 #define VFS_MAXIMUM_SYMBOLIC_LINK_DEPTH 256
 

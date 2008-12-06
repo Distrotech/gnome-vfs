@@ -26,7 +26,7 @@
 #ifndef GNOME_VFS_STANDARD_CALLBACKS_H
 #define GNOME_VFS_STANDARD_CALLBACKS_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
 G_BEGIN_DECLS

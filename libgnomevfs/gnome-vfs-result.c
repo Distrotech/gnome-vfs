@@ -29,7 +29,7 @@
 #include <config.h>
 #include "gnome-vfs-result.h"
 
-#include <glib/gtypes.h>
+#include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <errno.h>
 #ifndef G_OS_WIN32

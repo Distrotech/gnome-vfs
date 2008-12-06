@@ -28,8 +28,7 @@
 #include "gnome-vfs-job.h"
 #include "gnome-vfs-job-queue.h"
 #include "gnome-vfs-job-limit.h"
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 #include <unistd.h>
 
 /**

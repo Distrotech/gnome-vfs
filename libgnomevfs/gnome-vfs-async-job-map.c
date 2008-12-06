@@ -24,8 +24,7 @@
 #include "gnome-vfs-async-job-map.h"
 
 #include "gnome-vfs-job.h"
-#include <glib/ghash.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 
 /* job map bits guarded by this lock */
 static GStaticRecMutex async_job_map_lock = G_STATIC_REC_MUTEX_INIT;

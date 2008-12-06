@@ -37,7 +37,7 @@
 #include <config.h>
 
 #include <glib/gi18n-lib.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-module.h>

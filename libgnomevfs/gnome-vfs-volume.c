@@ -23,7 +23,7 @@
 
 #include <config.h>
 #include <string.h>
-#include <glib/gthread.h>
+#include <glib.h>
 
 #include "gnome-vfs-volume.h"
 #include "gnome-vfs-volume-monitor-private.h"

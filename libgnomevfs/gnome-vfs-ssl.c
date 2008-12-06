@@ -34,7 +34,7 @@
 
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-resolve.h"
-#include <glib/gmem.h>
+#include <glib.h>
 #include <string.h>
 
 #ifdef HAVE_OPENSSL

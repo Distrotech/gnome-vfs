@@ -41,8 +41,7 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
-#include <glib/gstrfuncs.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 #include <string.h>
 #include <sys/time.h>
 

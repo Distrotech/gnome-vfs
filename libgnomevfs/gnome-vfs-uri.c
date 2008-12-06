@@ -30,10 +30,7 @@
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-transform.h"
 #include "gnome-vfs-utils.h"
-#include <glib/ghash.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gstring.h>
+#include <glib.h>
 #include <stdio.h>
 #include <string.h>
 

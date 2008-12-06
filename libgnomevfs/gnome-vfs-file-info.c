@@ -25,9 +25,7 @@
 #include <config.h>
 #include "gnome-vfs-file-info.h"
 
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gthread.h>
+#include <glib.h>
 #include <string.h>
 
 /* Mutex for making GnomeVFSFileInfo ref's/unref's atomic */

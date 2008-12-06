@@ -27,8 +27,7 @@
 #include "gnome-vfs-resolve.h"
 
 #include <errno.h>
-#include <glib/gmem.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 #include <string.h>
 /* Keep <sys/types.h> above the network includes for FreeBSD. */
 #include <sys/types.h>

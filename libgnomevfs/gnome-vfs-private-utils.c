@@ -33,8 +33,7 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-uri.h"
 #include <errno.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 #include <gconf/gconf-client.h>
 #include <stdlib.h>
 #include <string.h>

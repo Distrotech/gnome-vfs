@@ -46,7 +46,7 @@ typedef int socklen_t;
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <glib/gmain.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 

@@ -27,8 +27,7 @@
 #endif
 
 
-#include <glib/gstrfuncs.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 
 #include <libgnomevfs/gnome-vfs.h>
 

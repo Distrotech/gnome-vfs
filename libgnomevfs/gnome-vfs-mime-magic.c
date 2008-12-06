@@ -35,12 +35,7 @@
 #include <wchar.h>
 #endif
 
-#include <glib/garray.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gthread.h>
-#include <glib/gutils.h>
-#include <glib/gunicode.h>
+#include <glib.h>
 
 enum {
 	GNOME_VFS_TEXT_SNIFF_LENGTH = 256

@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_VOLUME_MONITOR_PRIVATE_H
 #define GNOME_VFS_VOLUME_MONITOR_PRIVATE_H
 
-#include <glib/gthread.h>
+#include <glib.h>
 #include "gnome-vfs-volume-monitor.h"
 
 #ifdef USE_DAEMON

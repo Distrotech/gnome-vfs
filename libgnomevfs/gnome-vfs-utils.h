@@ -27,7 +27,7 @@
 #ifndef GNOME_VFS_UTILS_H
 #define GNOME_VFS_UTILS_H
 
-#include <glib/gmessages.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-uri.h>

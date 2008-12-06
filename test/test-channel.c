@@ -23,10 +23,7 @@
 
 #include <config.h>
 
-#include <glib/gconvert.h> /* workaround for bug in giochannel.h */
-#include <glib/giochannel.h>
-#include <glib/gmain.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>

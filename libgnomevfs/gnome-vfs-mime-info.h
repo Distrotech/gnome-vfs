@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_MIME_INFO_H
 #define GNOME_VFS_MIME_INFO_H
 
-#include <glib/glist.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 
 G_BEGIN_DECLS

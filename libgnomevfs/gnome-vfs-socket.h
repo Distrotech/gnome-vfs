@@ -29,7 +29,7 @@
 #ifndef GNOME_VFS_SOCKET_H
 #define GNOME_VFS_SOCKET_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>

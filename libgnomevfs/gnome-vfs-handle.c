@@ -26,7 +26,7 @@
 #include "gnome-vfs-handle-private.h"
 #include "gnome-vfs-method.h"
 
-#include <glib/gmessages.h>
+#include <glib.h>
 
 struct GnomeVFSHandle {
 	/* URI of the file being accessed through the handle.  */

@@ -37,11 +37,9 @@
 #include "gnome-vfs-module-callback-private.h"
 
 #include <errno.h>
-#include <glib/gmessages.h>
-#include <glib/gfileutils.h>
-#include <glib/gi18n-lib.h>
-#include <glib/gtypes.h>
 #include <glib/gstdio.h>
+#include <glib/gi18n-lib.h>
+#include <glib.h>
 
 #ifdef USE_DAEMON
 #ifndef DBUS_API_SUBJECT_TO_CHANGE

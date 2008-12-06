@@ -35,8 +35,7 @@ System (version for POSIX threads).
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-module-callback-private.h"
 #include <errno.h>
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
 #include <libgnomevfs/gnome-vfs-context.h>

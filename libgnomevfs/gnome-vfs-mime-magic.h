@@ -1,7 +1,7 @@
 #ifndef GNOME_VFS_MIME_MAGIC_H
 #define GNOME_VFS_MIME_MAGIC_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

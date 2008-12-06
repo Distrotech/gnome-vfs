@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_MIME_UTILS_H
 #define GNOME_VFS_MIME_UTILS_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

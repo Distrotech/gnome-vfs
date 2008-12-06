@@ -29,8 +29,7 @@
 #include <config.h>
 #include "gnome-vfs-socket.h"
 
-#include <glib/gmem.h>
-#include <glib/gmessages.h>
+#include <glib.h>
 
 struct GnomeVFSSocket {
 	GnomeVFSSocketImpl *impl;

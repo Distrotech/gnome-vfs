@@ -24,8 +24,7 @@
 #ifndef GNOME_VFS_CONFIGURATION_H
 #define GNOME_VFS_CONFIGURATION_H
 
-#include <glib/gtypes.h>
-#include <glib/glist.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

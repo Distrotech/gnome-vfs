@@ -34,8 +34,7 @@
 
 #include <sys/stat.h>
 
-#include <glib/gstrfuncs.h>
-#include <glib/gutils.h>
+#include <glib.h>
 
 static gboolean
 is_good_scheme_char (char c)

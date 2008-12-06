@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_URI_H
 #define GNOME_VFS_URI_H
 
-#include <glib/glist.h>
+#include <glib.h>
 #include <glib-object.h> /* For GType */
 
 G_BEGIN_DECLS
