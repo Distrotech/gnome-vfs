@@ -1,7 +1,7 @@
 #ifndef GNOME_VFS_PTHREAD_H
 #define GNOME_VFS_PTHREAD_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 #include <pthread.h>
 
 gboolean gnome_vfs_pthread_init                 (gboolean          init_deps);

@@ -39,9 +39,7 @@
 #include <errno.h>
 #include <unistd.h>
 
-#include <glib/gmessages.h>
-#include <glib/gstrfuncs.h>
-#include <glib/gutils.h>
+#include <glib.h>
 
 #define size16 short
 #define size32 int

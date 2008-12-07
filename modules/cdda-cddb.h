@@ -22,7 +22,7 @@
 #ifndef CDDA_CDDB_H
 #define CDDA_CDDB_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 #include <stdio.h>
 
 #define size16 short

@@ -29,7 +29,7 @@
 
 #include "ne_defs.h"
 
-#include <glib/gprintf.h>
+#include <glib.h>
 
 
 BEGIN_NEON_DECLS

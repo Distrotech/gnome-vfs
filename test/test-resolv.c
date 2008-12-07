@@ -24,7 +24,7 @@
 
 #include <config.h>
 
-#include <glib/gmessages.h>
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-private-utils.h>
