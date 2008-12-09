@@ -629,7 +629,10 @@ get_drive_name (GnomeVFSVolumeMonitor *volume_monitor,
 	utf8_name = make_utf8 (name);
 	g_free (name);
 	
-	return _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, utf8_name);
+	name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, utf8_name);
+	g_free (utf8_name);
+
+	return name;
 }
 
 
