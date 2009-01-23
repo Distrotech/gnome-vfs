@@ -1,12 +1,15 @@
 # gnome-vfs ko.po
+# This file is distributed under the same license as the gnome-vfs package.
+#
 # Young-Ho Cha <ganadist@dacome.co.kr>, 2000.
-# Changwoo Ryu <cwryu@debian.org>, 2002-2007.
+# Changwoo Ryu <cwryu@debian.org>, 2002-2007, 2009.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-09 23:14+0900\n"
-"PO-Revision-Date: 2007-12-09 23:14+0900\n"
+"PO-Revision-Date: 2009-01-23 15:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -580,7 +583,7 @@ msgstr "파일의 끝"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
-msgstr "디렉토리가 아닙니다"
+msgstr "디렉터리가 아닙니다"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:67
@@ -610,7 +613,7 @@ msgstr "작동이 허가되지 않음"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
-msgstr "디렉토리입니다"
+msgstr "디렉터리입니다"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:73
@@ -645,12 +648,12 @@ msgstr "작동 취소되었습니다"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
-msgstr "디렉토리가 사용중입니다"
+msgstr "디렉터리가 사용 중입니다"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
-msgstr "빈 디렉토리가 아닙니다"
+msgstr "빈 디렉터리가 아닙니다"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:81
