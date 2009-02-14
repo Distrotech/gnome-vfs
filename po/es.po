@@ -5,13 +5,13 @@
 # Mauricio Araya Polo <mauricio@eazel.com>, 2001.
 # Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2002, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-03 20:26+0100\n"
-"PO-Revision-Date: 2008-03-03 00:52+0100\n"
+"POT-Creation-Date: 2008-11-07 13:57+0100\n"
+"PO-Revision-Date: 2009-02-14 17:28+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -480,12 +480,12 @@ msgstr ""
 "Función obsoleta. Las modificaciones del usuario a la base de datos MIME no "
 "se soportan a partir de ahora."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "No se puede analizar: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "El resto de los errores de análisis serán ignorados."
 
@@ -888,19 +888,23 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#, c-format
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Imposible montar el volumen. Probablemente no introdujo un soporte en el "
 "dispositivo."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -910,14 +914,16 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"Imposible montar el volumen. Si esta es una unidad cifrada, entonces se "
-"usó una contraseña o clave incorrecta."
+"Imposible montar el volumen. Si esta es una unidad cifrada, entonces se usó "
+"una contraseña o clave incorrecta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -934,6 +940,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Imposible montar el volumen seleccionado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -960,6 +967,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Error inesperado en select() al leer datos desde un proceso hijo (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "No se pudo enviar la contraseña al proceso de montaje."
 
@@ -1038,7 +1046,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: ../modules/test-method.c:589
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: ../programs/authentication.c:106
 #, c-format
@@ -1105,7 +1114,8 @@ msgstr ""
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1113,211 +1123,212 @@ msgstr "Ejecutar el comando en un terminal"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «aim», si están activados."
+msgstr "El comando usado para manipular los URL \"aim\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «callto», si están activados."
+msgstr ""
+"El comando usado para manipular los URL \"callto\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «ghelp», si están activados."
+msgstr "El comando usado para manipular los URL \"ghelp\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «h323», si están activados."
+msgstr "El comando usado para manipular los URL \"h323\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «http», si están activados."
+msgstr "El comando usado para manipular los URL \"http\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «https», si están activados."
+msgstr "El comando usado para manipular los URL \"https\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «info», si están activados."
+msgstr "El comando usado para manipular los URL \"info\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «mailto», si están activados."
+msgstr ""
+"El comando usado para manipular los URL \"mailto\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «man», si están activados."
+msgstr "El comando usado para manipular los URL \"man\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "El comando usado para manipular los URL «trash», si están activados."
+msgstr "El comando usado para manipular los URL \"trash\", si están activados."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "El manipulador para los URL «aim»"
+msgstr "El manipulador para los URL \"aim\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "El manipulador para los URL «callto»"
+msgstr "El manipulador para los URL \"callto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "El manipulador para los URL «ghelp»"
+msgstr "El manipulador para los URL \"ghelp\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "El manipulador para los URL «h323»"
+msgstr "El manipulador para los URL \"h323\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "El manipulador para los URL «http»"
+msgstr "El manipulador para los URL \"http\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "El manipulador para los URL «https»"
+msgstr "El manipulador para los URL \"https\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "El manipulador para los URL «info»"
+msgstr "El manipulador para los URL \"info\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "El manipulador para los URL «mailto»"
+msgstr "El manipulador para los URL \"mailto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "El manipulador para los URL «man»"
+msgstr "El manipulador para los URL \"man\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "El manipulador para los URL «trash»"
+msgstr "El manipulador para los URL \"trash\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «aim»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «callto»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «ghelp»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «h323»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «http»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «https»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «info»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «mailto»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «man»."
+"Activar si el programa especificado en la clave \"command\" (comando) "
+"debería manipular los URL \"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Establecer a «true» si el programa especificado en la clave «comando» "
-"debería manipular los URL «trash»."
+"Activar si el programa especificado en la clave \"commando\" (comando) "
+"debería manipular los URL \"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Establecer a «true» si el programa que manipula este URL debe ejecutarse en "
-"un terminal."
+"Activar si el programa que manipula este URL debe ejecutarse en un terminal."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «aim»"
+msgstr "Indica si el comando especificado debe manipular los URL \"aim\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «callto»"
+msgstr "Indica si el comando especificado debe manipular los URL \"callto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «ghelp»"
+msgstr "Indica si el comando especificado debe manipular los URL \"ghelp\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «h323»"
+msgstr "Indica si el comando especificado debe manipular los URL \"h323\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «http»"
+msgstr "Indica si el comando especificado debe manipular los URL \"http\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «https»"
+msgstr "Indica si el comando especificado debe manipular los URL \"https\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «info»"
+msgstr "Indica si el comando especificado debe manipular los URL \"info\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «mailto»"
+msgstr "Indica si el comando especificado debe manipular los URL \"mailto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «man»"
+msgstr "Indica si el comando especificado debe manipular los URL \"man\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Indica si el comando especificado debe manipular los URL «trash»"
+msgstr "Indica si el comando especificado debe manipular los URL \"trash\""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1325,7 +1336,7 @@ msgid ""
 "\"network:///\" location."
 msgstr ""
 "Lista separada por comas de dominios DNS-SD que deberían ser visibles en el "
-"lugar «network:///»."
+"lugar \"network:///\"."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1337,7 +1348,9 @@ msgstr "Cómo mostrar el servicio DNS-SD local"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Los valores posibles son «merged», «separate» y «disabled»."
+msgstr ""
+"Los valores posibles son \"merged\" (mezclar), \"separate\" (separar) y "
+"\"disabled\" (desactivado)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1420,7 +1433,7 @@ msgid ""
 "\", \"auto\"."
 msgstr ""
 "Seleccione el modo de configuración del proxy. Los valores soportados son "
-"«none», «manual» y «auto»."
+"\"none\" (ninguno), \"manual\" y \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1508,4 +1521,3 @@ msgstr ""
 "El grupo de trabajo de red de Windows o el dominio del que el usuario es "
 "parte. Para que un grupo grupo nuevo tenga efecto, el usuario puede "
 "necesitar cerrar la sesión y entrar de nuevo."
-
