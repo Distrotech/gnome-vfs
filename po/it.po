@@ -1,14 +1,15 @@
 # Italian translation for gnome-vfs
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Christopher R. Gabriel <cgabriel@pluto.linux.it>	
-# Luca Ferretti <elle.uca@libero.it>, 2003-2006.
-#
+# # This file is distributed under the same license as gnome-vfs package
+# Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Christopher R. Gabriel <cgabriel@pluto.linux.it>, 2000, 2001, 2002.
+# Luca Ferretti <elle.uca@libero.it>, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.15.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-31 22:24+0200\n"
-"PO-Revision-Date: 2007-08-31 22:25+0200\n"
+"Project-Id-Version: gnome-vfs 2.25.x\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2009-02-10 08:22+0000\n"
+"PO-Revision-Date: 2009-02-12 17:48+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -428,22 +429,22 @@ msgstr "Volume rimovibile da %s"
 msgid "Volume"
 msgstr "Volume"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tipo di operazione %u sconosciuto"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Impossibile creare una pipe per aprire il GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo di job %u sconosciuto"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "Operazione fermata"
 
@@ -482,12 +483,12 @@ msgstr ""
 "Funzione deprecata. Le modifiche da parte dell'utente al database dei tipi "
 "MIME non sono più supportate."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Impossibile analizzare: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "Ulteriori errori di analisi sono ignorati."
 
@@ -641,10 +642,13 @@ msgstr "Nome dell'host non valido"
 msgid "Host has no address"
 msgstr "L'host non ha un indirizzo"
 
+# lasciato login, credo sia riferito
+# a cose tipo login ftp
+# e poi c'è già un errore con Accesso
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
-msgstr "Login fallito"
+msgstr "Login non riuscito"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:78
@@ -699,7 +703,7 @@ msgstr "Errore di protocollo"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
-msgstr "Impossibile trovare un master browser"
+msgstr "Impossibile trovare il master browser"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:89
@@ -719,7 +723,7 @@ msgstr "Errore nell'analizzare la riga di comando"
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "Errore nell'avviare il comando"
+msgstr "Errore nel lanciare il comando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -872,19 +876,19 @@ msgstr "Fotocamera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Volume root"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "CD audio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "Volume sconosciuto"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "Server di rete"
 
@@ -957,7 +961,7 @@ msgstr "Impossibile smontare il volume selezionato."
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "Lettura dei dati dal processo figlio %d (%s) fallita"
+msgstr "Lettura dei dati dal processo figlio %d (%s) non riuscita"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
@@ -982,7 +986,7 @@ msgstr "Errore inatteso in waitpid() (%s)"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "Avvio del comando fallito"
+msgstr "Avvio del comando non riuscito"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
@@ -1026,24 +1030,25 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"Ciò si verifica quando si fa il login in un computer per la prima volta.\n"
+"Ciò si verifica quando si esegue l'accesso a un computer per la prima "
+"volta.\n"
 "\n"
-"L'identità inviata dal computer remoto è «%s». Per essere assolutamente "
-"certi che è sicuro continuare, contattare l'amministratore di sistema."
+"L'identità inviata dal computer remoto è «%s». Per essere assolutamente certi "
+"che è sicuro continuare, contattare l'amministratore di sistema."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
-msgstr "Login comunque"
+msgstr "Accedere comunque"
 
 #: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
-msgstr "Annulla login"
+msgstr "Annulla accesso"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Impossibile trovare un file d'impostazioni valido presso %s\n"
+msgstr "Impossibile trovare un file di impostazioni valido presso %s\n"
 
 #: ../modules/test-method.c:589
 #, c-format
@@ -1207,7 +1212,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -1215,7 +1220,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
@@ -1223,7 +1228,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
@@ -1231,7 +1236,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
@@ -1239,7 +1244,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
@@ -1247,7 +1252,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1255,7 +1260,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
@@ -1263,7 +1268,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
@@ -1271,7 +1276,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"command\" "
+"Impostare a VERO affinché il programma specificato nella chiave \"command\" "
 "gestisca gli URL \"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
@@ -1279,7 +1284,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Impostare a vero affinché il programma specificato nella chiave \"trash/"
+"Impostare a VERO affinché il programma specificato nella chiave \"trash/"
 "command\" gestisca gli URL \"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
@@ -1287,7 +1292,7 @@ msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Impostare a vero se il programma che gestisce questo tipo di URL deve essere "
+"Impostare a VERO se il programma che gestisce questo tipo di URL deve essere "
 "eseguito in un terminale."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
