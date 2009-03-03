@@ -1,20 +1,23 @@
+# translation of te.po to Telugu
 # Telugu translation of gnome-vfs.
 # Copyright (C) 2007 Swecha Telugu Localisation Team <localisation@swecha.org>
 # This file is distributed under the same license as the gnome-vfs package.
-# Matapathi Pramod <pramod@swecha.net>, 2007.
 #
+# Matapathi Pramod <pramod@swecha.net>, 2007.
+# Krishna Babu K <kkrothap@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
+"Project-Id-Version: te\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-22 16:53+0530\n"
-"PO-Revision-Date: 2007-08-22 16:18+0530\n"
-"Last-Translator: Matapathi Pramod <pramod@swecha.net>\n"
-"Language-Team: Swecha Telugu Localisation Team <localisation@swecha.org>\n"
+"PO-Revision-Date: 2009-03-03 15:58+0530\n"
+"Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
+"Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -471,7 +474,7 @@ msgstr "కార్యం ఆపబడినది"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "ఆపివేయబడిన ప్రమేయం.  MIME డాటాబేసునకు వినియోగదారి సవరింపులు యిక మద్దతునీయవు."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:720
 #, c-format
@@ -730,7 +733,7 @@ msgstr "వున్న వనరు తాళం కలదు"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
-msgstr "పరిక్రియ పిలుపు తిరస్కరించబడెను"
+msgstr "ప్రమేయం పిలుపు ఆపివేయబడెను"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:97
@@ -882,8 +885,7 @@ msgstr "అల్లిక సేవిక"
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 #, c-format
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ఫ్లాపీ చోదకం పోగుకు వీలుకాదు. బహుశా అక్కడ చోదకంలో ఫ్లాపీ లేదు."
 
 #. All others
@@ -929,8 +931,7 @@ msgstr "ఎంచుకొనబడిన ధ్వని పోగుకు వ
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr ""
-"ఎంచుకొనబడిన ధ్వని పోగుకు వీలుకాదు. The volume is in use by one or more programs."
+msgstr "ఎంచుకొనబడిన ధ్వని పోగుకు వీలుకాదు. The volume is in use by one or more programs."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -1007,6 +1008,11 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"మీరు మొదటిసారి కంప్యూటరునకు లాగిన్ అయినప్పుడు యిది జరుగుతుంది.\n"
+"\n"
+"రిమోట్ కంప్యూటర్ ద్వారా పంపబడిన గుర్తింపు %s. ఇది కొనసాగించుటకు "
+"ఖచ్చితముగా సురక్షితమైనదేనేమో మీరు తెలుసుకొనవలెనంటే, సిస్టమ్ నిర్వహణాధికారిని "
+"సంప్రదించండి."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1078,6 +1084,9 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"దస్త్రములను దర్శించుటకు వుపయోగించే అనువర్తనముకు వాటిని దర్శించుటకు మూలకం అవసరమైంది. "
+"పారామితి %s దస్త్రముయొక్క URIల చేత పునఃస్థాపించబడుతుంది, పారామితి %c మూలకం IID చేత "
+"పునఃస్థాపించబడుతుంది."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -1177,15 +1186,13 @@ msgstr "\"చెత్తకుండి\" ఉపయోగించుట కొ
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"గురి చూచు\" మీట ఉపయోగించవలెను URLs."
+msgstr "\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"గురి చూచు\" మీట ఉపయోగించవలెను URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"పిలుపుకు\" మీట ఉపయోగించవలెను \" URLs."
+msgstr "\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"పిలుపుకు\" మీట ఉపయోగించవలెను \" URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
@@ -1221,8 +1228,7 @@ msgstr "\"ఆదేశం\" లో నిర్థేశించిబడిన
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"తపాలాకు\" మీట ఉపయోగించవలెను \" URLs."
+msgstr "\"ఆదేశం\" లో నిర్థేశించిబడిన ఆదేశం ఒకవేళ నిజము ఐతే \"తపాలాకు\" మీట ఉపయోగించవలెను \" URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
@@ -1287,6 +1293,8 @@ msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
 msgstr ""
+"DNS-SD డొమైన్లయొక్క కామాతో విభజించిన జాబితా \"network:///\" స్థానమునందు "
+"కనిపించాలి."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1342,6 +1350,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"నిజమైతే, ప్రోక్సీ సేవికకు అనుసంధానములుకు దృవీకరణ అవసరమౌతుంది. వినియోగదారి/సంకేతపదం "
+"యుగళం \"/system/http_proxy/authentication_user\" మరియు \"/system/http_proxy/"
+"authentication_password\"చేత నిర్వచింపబడుతుంది."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1399,29 +1410,25 @@ msgstr "యంత్రం నామము కు ప్రాతినిథ్
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/http_ప్రాతినిథ్య/ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
+msgstr "రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/http_ప్రాతినిథ్య/ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/ftp_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యంగుండా."
+msgstr "రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/ftp_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యంగుండా."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/రక్షిత_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
+msgstr "రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/రక్షిత_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/సోక్స్_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
+msgstr "రేవు పై పరికరం నిర్వచించుట ద్వారా \"/వ్యవస్థ/ప్రాతినిథ్య/సోక్స్_ఆతిథ్యం\" అది నీవు ప్రాతినిథ్యం గుండా."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1430,6 +1437,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"ప్రోక్సీ(క్రియాశీలంగా వుంటే) ద్వారా కాకుండా, నేరుగా అనుసంధానమైవున్న అతిధేయలయొక్క "
+"జాబితాను కీ కలిగివుంది. అవి అతిధేయ నామములు, డొమైన్లు (ప్రాధమిక వైల్డుకార్డు *.foo.com "
+"వుపయోగించే), IP అతిధేయ చిరునామాలు (IPv4 మరియు IPv6 రెండూ) మరియు నెట్‌మాస్కు "
+"(192.168.0.0/24 వంటి)తో నెట్వర్కు చిరునామాలు."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1453,3 +1464,7 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
+"వినియోగదారి భాగముగావున్న విండోస్ నెట్వర్కింగ్ పనిసమూహం లేదా డొమైన్. కొత్త "
+"పనిసమూహం(వర్కుగ్రూప్) పూర్తిగా ప్రభావితం కావటానికి వినియోగదారి లాగ్అవుట్ "
+"అయ్యి లాగిన్ అవ్వవలసిరావచ్చు."
+
