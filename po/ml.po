@@ -1,22 +1,23 @@
-# translation of gnome-vfs.HEAD.ml.po to Malayalam
+# translation of gnome-vfs.HEAD.ml.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # FSF-India <locale@gnu.org.in>, 2003.
-# Ani Peter <apeter@redhat.com>, 2006.
+# Ani Peter <apeter@redhat.com>, 2006, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-30 09:38+0200\n"
-"PO-Revision-Date: 2006-08-30 22:55+0530\n"
-"Last-Translator: Ani Peter <apeter@redhat.com>\n"
-"Language-Team: Malayalam\n"
+"POT-Creation-Date: 2008-11-07 13:57+0100\n"
+"PO-Revision-Date: 2009-03-10 22:15+0530\n"
+"Last-Translator: Ani Peter <apeter@redhat.com> \n"
+"Language-Team:  Swathanthra Malayalam Computing|സ്വതന്ത്ര മലയാളം കമ്പ്യൂട്ടിങ് <smc-discuss@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 "\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
@@ -98,325 +99,329 @@ msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux വോള്യം"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "MSDOS Volume"
 msgstr "MSDOS വോള്യം"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "BSD Volume"
 msgstr "BSD വോള്യം"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+msgid "FUSE Volume"
+msgstr "FUSE വോള്യം"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "MacOS Volume"
 msgstr "MacOS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "CDROM Volume"
 msgstr "CDROM വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "JFS Volume"
 msgstr "JFS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Windows NT Volume"
 msgstr "Windows NT വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "System Volume"
 msgstr "സിസ്റ്റം വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "Memory Volume"
 msgstr "മെമ്മറി വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "Minix Volume"
 msgstr "Minix വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "NFS Network Volume"
 msgstr "NFS നെറ്റ്‍വര്‍ക്ക് വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Netware Volume"
 msgstr "Netware വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Windows Shared Volume"
 msgstr "Windows ഷെയര്‍ഡ് വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "SuperMount Volume"
 msgstr "SuperMount വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "DVD Volume"
 msgstr "DVD വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "Temporary Volume"
 msgstr "താല്‍കാലികമായ വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "Enhanced DOS Volume"
 msgstr "എന്‍ഹാന്‍സ്ഡ് DOS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Xenix Volume"
 msgstr "Xenix വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "XFS Linux Volume"
 msgstr "XFS Linux വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "XIAFS Volume"
 msgstr "XIAFS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "CIFS Volume"
 msgstr "CIFS വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:114
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
 msgid "Unknown"
 msgstr "അപരിചിതം"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
 msgstr "%s വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "%s/%s ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "%s ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "ഫ്ളോപ്പി ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "കോംപാക്റ്റ് ഫ്ളാഷ് ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "മെമ്മറി സ്റ്റിക്ക് ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "സ്മാര്‍ട്ട് മീഡിയാ ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "SD/MMC ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "സിപ്പ് ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "ജാസ്സ് ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "പെന്‍ ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "%s %s മ്യൂസിക്ക് പ്ളെയര്‍"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "%s %s ഡിജിറ്റല്‍ ക്യാമറാ"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "ഡ്രൈവ്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "എക്സ്റ്റേര്‍ണല്‍ %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "CD-ROM ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "ഒന്നും എഴുതാത്ത CD-R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "CD-R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "ഒന്നും എഴുതാത്ത CD-RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "CD-RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "ഒന്നും എഴുതാത്ത DVD-RAM ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "ഒന്നും എഴുതാത്ത DVD-R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "DVD-R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "ഒന്നും എഴുതാത്ത DVD-RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "DVD-RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "ഒന്നും എഴുതാത്ത DVD+R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "DVD+R ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "ഒന്നും എഴുതാത്ത DVD+RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "DVD+RW ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "ഓഡിയോ ഡിസ്ക്"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
 msgstr "%s നീക്കം ചെയ്യാന്‍ സാധ്യമാകുന്ന വോള്യം"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "വോള്യം"
 
@@ -439,23 +444,23 @@ msgstr "അറിയാത്ത തരം ജോലി %u"
 msgid "Operation stopped"
 msgstr "പ്രവ‌ര്‍ത്തനം അവസാനിപ്പിച്ചു"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:102
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:230
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:281
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:364
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:385
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:405
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:426
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:447
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:540
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:564
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:585
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:606
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:627
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:646
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:665
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:685
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:705
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
 #: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
@@ -471,279 +476,279 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"അപലപിക്കുന്ന ഫംഗ്ഷന്‍.  MIME ഡേറ്റാബെയിസിലേക്ക് ഉപയോഗിക്കുന്ന ആള്‍ വരുത്തുന്ന മാറ്റങ്ങള്‍ക്ക് "
-"ഇപ്പോള്‍ പിന്തുണ ലഭ്യമല്ല."
+"അപലപിക്കുന്ന ഫംഗ്ഷന്‍.  MIME ഡേറ്റാബെയിസിലേക്ക് ഉപയോഗിക്കുന്ന ആള്‍ വരുത്തുന്ന മാറ്റങ്ങള്‍ക്ക് ഇപ്പോള്‍ "
+"പിന്തുണ ലഭ്യമല്ല."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 #, c-format
 msgid "Could not parse: %s"
 msgstr "പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമല്ല: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
 msgid "More parsing errors will be ignored."
 msgstr "കൂടുതലായുളള പാഴ്സിങ് പിശകുകള്‍ അവഗണിക്കുന്നതാണ്."
 
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "പിശക് ഇല്ല"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "ഫയല്‍ ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "പൊതു പിശക്"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "ആന്തരിക പിശക്"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "സാധുതയില്ലാത്ത ക്രിയാങ്കം"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "പിന്തുണയ്ക്കപ്പെടാത്ത പ്രവര്‍ത്തി"
 
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "I/O തെറ്റ്"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "ഡേറ്റാ തെറ്റുപറ്റിയതാണ്"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "അസാധുവായ രൂപം"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "മോശമായ ഫയല്‍ ഹാന്‍ഡില്‍"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "ഫയല്‍ വളരെ വലുത്"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "ഉപകരണത്തില്‍ സ്ഥലം ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "റീഡ്-ഒണ്‍ലി ഫയല്‍ സിസ്റ്റം"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
 msgstr "അസാധുവായ URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "ഫയല്‍ തുറന്നില്ല"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "തുറക്കുന്ന രീതി അസാധുവാണ്"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "പ്രവേശനം നിഷേധിച്ചിരിക്കുന്നു"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "ധാരാളം തുറന്ന ഫയലുകള്‍"
 
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "ഫയലിന്‍റെ അവസാനം"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "ഒരു ഡയറക്ടറി അല്ല"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "പ്രവര്‍ത്തനം പുരോഗതിയില്‍"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "പ്രവര്‍ത്തനം തടസ്സപ്പെട്ടു"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "ഫയല്‍ നിലവിലുണ്ട്"
 
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "ലൂപിങ് ലിങ്കുകള്‍ അഭിമുഖീകരിച്ചിരിക്കുന്നു"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "പ്രവര്‍ത്തനത്തിന് അനുവാദമില്ല"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "ഒരു ഡയറക്ടറിയാണ്"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "മെമ്മറിയില്‍ ആവശ്യത്തിന് സ്ഥലമില്ല"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "ഹോസ്റ്റ് കണ്ടുകിട്ടിയില്ല"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "ഹോസ്റ്റ് നെയിം അസാധുവാണ്"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "ഹോസ്റ്റിന് വിലാസം ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "പ്രവേശനം പരാചയപ്പെട്ടു"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "പ്രവര്‍ത്തനം റദ്ദാക്കപ്പെട്ടു"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "ഡയറക്ടറി തിരക്കിലാണ്"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "ഡയറക്ടറി ശൂന്യമല്ല"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "ധാരാളം ലിങ്കുകള്‍"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "റീഡ് ഒണ്‍ലി ഫയല്‍ സിസ്റ്റം"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "ഒരേ ഫയല്‍ സിസ്റ്റമിലല്ല"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "പേര് വളരെ നീളമുള്ളതാണ്"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "സേവനം ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "സേവനത്തിനുളള ഡേറ്റാ ആവശ്യം വേണ്ടെന്ന് വച്ചു"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "കീഴ്‍വഴക്കത്തില്‍ പിശക്"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "പ്രധാന തെരച്ചില്‍ സഹായിയെ കണ്ടെത്താനായില്ല"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:84
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "ഡീഫോള്‍ട്ടായ പ്രവര്‍ത്തനം ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
 msgstr "URL സന്പ്രദായത്തിന് ഹാന്‍ഡ്‍ലര്‍ ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "കമാന്‍ഡ് ലൈന്‍ പാഴ്സ് ചെയ്യുന്നതില്‍ പിശക്"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "കമാന്‍ഡ് പ്രവര്‍ത്തിപ്പിക്കുന്നതില്‍ പിശക്"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "ടൈമൌട്ട് എത്തിയിരിക്കുന്നു"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:89
+#: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "നെയിം സര്‍വറില്‍ പിശക്"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "റിസോഴ്സ് ലഭ്യമല്ല"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "ഫംഗ്ഷന്‍ കോള്‍ അപലപിച്ചിരിക്കുന്നു"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
-#: ../libgnomevfs/gnome-vfs-result.c:92
+#: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
 msgstr "അസാധുവായ ഫയല്‍നാമം"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
-#: ../libgnomevfs/gnome-vfs-result.c:93
+#: ../libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
 msgstr "സിന്പോളിക്ക് ലിങ്ക് അല്ല"
 
-#: ../libgnomevfs/gnome-vfs-result.c:217
+#: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "അപരിചിതമായ പിശക്"
 
@@ -882,15 +887,18 @@ msgstr "നെറ്റ്‍വര്‍ക്ക് സര്‍വര്‍"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ഫ്ളോപ്പി ഡ്രൈവ് മൌണ്ട് ചെയ്യുവാന്‍ സാധ്യമായില്ല. ഡ്രൈവില്‍ ഫ്ളോപ്പി ഉണ്ട് എന്നുറപ്പുവരുത്തുക."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "വോള്യം മൌണ്ട് ചെയ്യുവാന്‍ സാധ്യമായില്ല. ഡിവൈസില്‍ മീഡിയാ ഉണ്ട് എന്നുറപ്പുവരുത്തുക."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -900,14 +908,16 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"വോള്യം മൌണ്ട് ചെയ്യുവാന്‍ സാധ്യമല്ല. ഇത് രഹസ്യകോഡ് ഉപയോഗിക്കുന്ന ഡ്രൈവ് ആണെങ്കില്‍, "
-"തെറ്റായ പാസ്‍വേര്‍ഡ് അല്ലെങ്കില്‍ കീ ഉപയോഗിച്ചിരിക്കുന്നു."
+"വോള്യം മൌണ്ട് ചെയ്യുവാന്‍ സാധ്യമല്ല. ഇത് രഹസ്യകോഡ് ഉപയോഗിക്കുന്ന ഡ്രൈവ് ആണെങ്കില്‍, തെറ്റായ "
+"പാസ്‍വേര്‍ഡ് അല്ലെങ്കില്‍ കീ ഉപയോഗിച്ചിരിക്കുന്നു."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -924,6 +934,7 @@ msgid "Unable to mount the selected volume."
 msgstr "തിരഞ്ഞെടുത്ത വോള്യം മൌണ്ട് ചെയ്യുവാന്‍ സാധ്യമായില്ല."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -950,6 +961,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "ചൈള്‍ഡ് പ്രക്രിയിയയില്‍ നിന്നും ഡേറ്റാ വായിക്കുന്നതില്‍ select()-ല്‍ അപ്രതീക്ഷിതമായ പിശക് (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "പ്രക്രിയ മൌണ്ട് ചെയ്യുന്നതിനായി പാസ്‍വേര്‍ഡ് അയയ്കുവാന്‍ സാധിച്ചില്ല."
 
@@ -983,7 +995,7 @@ msgstr "ഹോം"
 msgid "Filesystem"
 msgstr "ഫയല്‍സിസ്റ്റം"
 
-#: ../modules/file-method.c:494
+#: ../modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "അപരിചിതമായ GnomeVFSSeekPosition %d"
@@ -992,12 +1004,12 @@ msgstr "അപരിചിതമായ GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows നെറ്റ്‍വര്‍ക്ക്"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "തിരിച്ചറിയുവാന്‍ സാധ്യമല്ലാത്ത വിദൂരത്തുളള കംപ്യൂട്ടര്‍ (%s)"
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1010,11 +1022,11 @@ msgstr ""
 "വിദൂരതയിലുളള കംപ്യൂട്ടറിനെ തിരിച്ചറിയുന്നതിനായി അയച്ചിരിക്കുന്നത് %s ആണ്. ഈ വിധം മുന്നോട്ട് "
 "പോകുന്നത് സുരക്ഷിതമെന്ന് ഉറപ്പ് വരുത്തണമെങ്കില്‍, ദയവായി സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്ററുമായി ബന്ധപ്പെടുക."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "ഏതായാലും പ്രവേശിക്കുക (ലോഗിന്‍ ചെയ്യുക)"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "പ്രവേശനം റദ്ദാക്കുക"
 
@@ -1051,12 +1063,12 @@ msgstr "പാസ്‍വേര്‍ഡ് അയയ്ക്കുന്ന�
 msgid "Your password will be transmitted encrypted."
 msgstr "പാസ്‍വേര്‍ഡ് അയയ്ക്കുന്നത് രഹസ്യഭാഷയില്‍ ആണ് ."
 
-#: ../programs/authentication.c:156
+#: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "%s ഡൊമെയിന്‍ %s ലഭ്യമാകുന്നതിന് നിങ്ങള്‍ ലോഗിന്‍ ചെയ്യേണ്ടതാണ്\n"
 
-#: ../programs/authentication.c:158
+#: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "%s ലഭ്യമാകുന്നതിന് നിങ്ങള്‍ ലോഗിന്‍ ചെയ്യേണ്ടതാണ്.\n"
@@ -1080,9 +1092,8 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"പ്രയോഗത്തില്‍ ഉപയോഗിക്കുന്ന ഫയലുകള്‍ കാണുന്നതിനായി ആവശ്യമുളള ഘടകം. "
-"%s പരാമീറ്ററിന് പകരം ഫയലിന്‍റെ URI, %c പരാമീറ്ററിന് പകരം ഘടകം IID എന്നിവ "
-"ഉപയോഗിക്കുന്നു."
+"പ്രയോഗത്തില്‍ ഉപയോഗിക്കുന്ന ഫയലുകള്‍ കാണുന്നതിനായി ആവശ്യമുളള ഘടകം. %s പരാമീറ്ററിന് പകരം "
+"ഫയലിന്‍റെ URI, %c പരാമീറ്ററിന് പകരം ഘടകം IID എന്നിവ ഉപയോഗിക്കുന്നു."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -1368,9 +1379,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"ട്രൂ എങ്കില്‍, പ്രോക്സി സര്‍വറിലേക്കുളള കണക്ഷനുകള്‍ക്ക് ആധികാരികത ഉറപ്പ് വരുത്തേണ്ടതുണ്ട്. "
-"\"/system/http_proxy/authentication_user\" , \"/system/http_proxy/authentication_password\" "
-"ഉപയോഗിച്ച് username/password കോംപോ വ്യക്തമാക്കിയിരിക്കുന്നു."
+"ട്രൂ എങ്കില്‍, പ്രോക്സി സര്‍വറിലേക്കുളള കണക്ഷനുകള്‍ക്ക് ആധികാരികത ഉറപ്പ് വരുത്തേണ്ടതുണ്ട്. \"/system/"
+"http_proxy/authentication_user\" , \"/system/http_proxy/"
+"authentication_password\" ഉപയോഗിച്ച് username/password കോംപോ വ്യക്തമാക്കിയിരിക്കുന്നു."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1428,25 +1439,33 @@ msgstr "സോക്ക്സ് വഴി പ്രോക്സി ചെയ്
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/http_proxy/host\" വ്യക്തമാക്കിയിരിക്കുന്നു."
+msgstr ""
+"നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/http_proxy/host\" "
+"വ്യക്തമാക്കിയിരിക്കുന്നു."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/ftp_host\" വ്യക്തമാക്കിയിരിക്കുന്നു."
+msgstr ""
+"നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/ftp_host\" "
+"വ്യക്തമാക്കിയിരിക്കുന്നു."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/secure_host\" വ്യക്തമാക്കിയിരിക്കുന്നു."
+msgstr ""
+"നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/secure_host\" "
+"വ്യക്തമാക്കിയിരിക്കുന്നു."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/socks_host\" വ്യക്തമാക്കിയിരിക്കുന്നു."
+msgstr ""
+"നിങ്ങള്‍ പ്രോക്സി ചെയ്യുന്ന കംപ്യൂട്ടറിന്‍റെ പോര്‍ട്ട് \"/system/proxy/socks_host\" "
+"വ്യക്തമാക്കിയിരിക്കുന്നു."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1455,8 +1474,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"പ്രോക്സി വഴി (സജ്ജമെങ്കില്‍) അല്ലാതെ നേരിട്ട് കണക്ട് ചെയ്യുന്ന ഹോസ്റ്റുകളുടെ ലിസ്റ്റ് ഈ കീയില്‍ അടങ്ങുന്നു. "
-"ഹോസ്റ്റ് നെയിമുകള്‍, ഡോമെയിനുകള്‍ (*.foo.com പോലുളള ആരംഭത്തിലുളള വൈള്‍ഡ് കാര്‍ഡ് ഉപയോഗിക്കുന്നു), IP ഹോസ്റ്റ് വിലാസങ്ങള്‍ ( IPv4, IPv6 എന്നിവ), നെറ്റ്മാസ്കുളള നെറ്റ്‍വര്‍ക്ക് വിലാസങ്ങള്‍ (192.168.0.0/24 പോലുളളവ) എന്നിവ മൂല്ല്യങ്ങള്‍ ആവാം."
+"പ്രോക്സി വഴി (സജ്ജമെങ്കില്‍) അല്ലാതെ നേരിട്ട് കണക്ട് ചെയ്യുന്ന ഹോസ്റ്റുകളുടെ ലിസ്റ്റ് ഈ കീയില്‍ "
+"അടങ്ങുന്നു. ഹോസ്റ്റ് നെയിമുകള്‍, ഡോമെയിനുകള്‍ (*.foo.com പോലുളള ആരംഭത്തിലുളള വൈള്‍ഡ് കാര്‍ഡ് "
+"ഉപയോഗിക്കുന്നു), IP ഹോസ്റ്റ് വിലാസങ്ങള്‍ ( IPv4, IPv6 എന്നിവ), നെറ്റ്മാസ്കുളള നെറ്റ്‍വര്‍ക്ക് "
+"വിലാസങ്ങള്‍ (192.168.0.0/24 പോലുളളവ) എന്നിവ മൂല്ല്യങ്ങള്‍ ആവാം."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1480,7 +1501,7 @@ msgid ""
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
 msgstr ""
-"ഉപയോക്താവ് ഭാഗമായിരിക്കുന്ന Windows നെറ്റ്‍വര്‍ക്കിങ് ഗ്രൂപ്പ് അല്ലെങ്കില്‍ ഡൊമെയിന്‍. ഒരു "
-"പുതിയ വര്‍ക്ക് ഗ്രൂപ്പ് കംപ്യൂട്ടര്‍ അംഗീകരിക്കണമെങ്കില്‍ ഉപയോക്താവ് ലോഗൌട്ട് ചെയ്ത് വീണ്ടും "
-"ലോഗിന്‍ ചെയ്യേണ്ടതാകുന്നു."
+"ഉപയോക്താവ് ഭാഗമായിരിക്കുന്ന Windows നെറ്റ്‍വര്‍ക്കിങ് ഗ്രൂപ്പ് അല്ലെങ്കില്‍ ഡൊമെയിന്‍. ഒരു പുതിയ "
+"വര്‍ക്ക് ഗ്രൂപ്പ് കംപ്യൂട്ടര്‍ അംഗീകരിക്കണമെങ്കില്‍ ഉപയോക്താവ് ലോഗൌട്ട് ചെയ്ത് വീണ്ടും ലോഗിന്‍ "
+"ചെയ്യേണ്ടതാകുന്നു."
 
