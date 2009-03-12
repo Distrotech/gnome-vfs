@@ -1,14 +1,14 @@
 # gnome-vfs's Portuguese Translation.
-# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 gnome-vfs
+# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 gnome-vfs
 # Distributed under the same licence as the gnome-vfs package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.24\n"
+"Project-Id-Version: 2.26\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-12 01:12+0100\n"
-"PO-Revision-Date: 2008-09-12 01:15+0000\n"
+"PO-Revision-Date: 2009-03-12 23:00+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -1096,8 +1096,8 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "A aplicação a utilizar para visualizar ficheiros que requerem um componente "
-"para que possam ser visualizadas. O parâmetro %s será substituido pelo URI "
-"do ficheiro, o parâmetro %c será substituido pelo IID do componente."
+"para que possam ser visualizadas. O parâmetro %s será substituído pelo URI "
+"do ficheiro, o parâmetro %c será substituído pelo IID do componente."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
