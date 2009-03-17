@@ -1,3 +1,8 @@
+gnome-vfs 2.24.1
+	  * Fix memory leaks
+	  * Use single GLib includes
+	  * Updated translations.
+
 gnome-vfs 2.24.0
 	  * Fixes for Windows
 	  * Avoid excessive warning spew if dbus is not availible
