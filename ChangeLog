@@ -1,3 +1,12 @@
+2009-04-16  Alexander Larsson  <alexl@redhat.com>
+
+	Bug 500307 – uninitialized GnomeVFSFileInfo struct in do_seek()
+
+	* modules/sftp-method.c:
+	(do_seek):
+	Initialize info to avoid crashes.
+	Patch from Fabrice Bellet
+
 2009-03-17  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in:

@@ -2387,7 +2387,7 @@ do_seek (GnomeVFSMethod       *method,
 	 GnomeVFSContext      *context)
 {
 	SftpOpenHandle *handle;
-	GnomeVFSFileInfo file_info;
+	GnomeVFSFileInfo file_info = { 0, };
 	GnomeVFSResult res;
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Enter", G_STRFUNC));
