@@ -1646,7 +1646,7 @@ do_read (GnomeVFSMethod *method,
 		
 		/* Important: perform_authentication leaves and re-enters the lock! */
 		while (perform_authentication (&actx) > 0) {
-			n = smb_context->read (smb_context, handle->file, buffer, num_bytes);
+			n = smb_context->read (smb_context, handle->file, buffer, MIN (USHRT_MAX, num_bytes));
 			actx.res = (n >= 0) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 		}
 		
