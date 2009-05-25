@@ -1273,6 +1273,7 @@ do_is_local (GnomeVFSMethod *method,
 			    (strcmp (type, "afs") != 0) &&
 			    (strcmp (type, "autofs") != 0) &&
 			    (strcmp (type, "unknown") != 0) &&
+			    (strcmp (type, "novfs") != 0) &&
 			    (strcmp (type, "ncpfs") != 0));
 		G_UNLOCK (fstype);
 	} else {
