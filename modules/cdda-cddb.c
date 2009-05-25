@@ -537,26 +537,30 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
   else if(!g_ascii_strncasecmp(inbuffer,"TTITLE",6)) {
     track=atoi(strtok(inbuffer+6,"="));
     
-    if(track<numtracks)
+    if(track >= 0 && track<numtracks)
+    {
       len=strlen(data->data_track[track].track_name);
 
-    strncpy(data->data_track[track].track_name+len,
+      strncpy(data->data_track[track].track_name+len,
 	    ChopWhite(strtok(NULL,"")),256-len);
+    }
   }
   else if(!g_ascii_strncasecmp(inbuffer,"TARTIST",7)) {
     data->data_multi_artist=TRUE;
 
     track=atoi(strtok(inbuffer+7,"="));
     
-    if(track<numtracks)
+    if(track >= 0 && track<numtracks)
+    {
       len=strlen(data->data_track[track].track_artist);
 
-    st = strtok(NULL, "");
-    if(st == NULL)
-        return;    
-    
-    strncpy(data->data_track[track].track_artist+len,
+      st = strtok(NULL, "");
+      if(st == NULL)
+	  return;    
+      
+      strncpy(data->data_track[track].track_artist+len,
 	    ChopWhite(st),256-len);
+    }
   }
   else if(!g_ascii_strncasecmp(inbuffer,"EXTD",4)) {
     len=strlen(data->data_extended);
@@ -566,15 +570,17 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
   else if(!g_ascii_strncasecmp(inbuffer,"EXTT",4)) {
     track=atoi(strtok(inbuffer+4,"="));
     
-    if(track<numtracks)
+    if(track >= 0 && track<numtracks)
+    {
       len=strlen(data->data_track[track].track_extended);
 
-    st = strtok(NULL, "");
-    if(st == NULL)
-        return;
-    
-    strncpy(data->data_track[track].track_extended+len,
-	    ChopWhite(st),4096-len);
+      st = strtok(NULL, "");
+      if(st == NULL)
+	return;
+
+      strncpy(data->data_track[track].track_extended+len,
+	  ChopWhite(st),4096-len);
+    }
   }
   else if(!g_ascii_strncasecmp(inbuffer,"PLAYORDER",5)) {
     len=strlen(data->data_playlist);
