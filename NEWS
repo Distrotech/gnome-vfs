@@ -1,3 +1,7 @@
+gnome-vfs 2.24.2
+	  * Add some new filesystem names
+	  * Update to new shared mime info format
+
 gnome-vfs 2.24.1
 	  * Fix memory leaks
 	  * Use single GLib includes

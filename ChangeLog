@@ -1,5 +1,10 @@
 2009-10-08  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update for release
+
+2009-10-08  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/xdgmime.c:
 	* libgnomevfs/xdgmimecache.c:
 	* libgnomevfs/xdgmimeglob.c:
