@@ -1,5 +1,12 @@
 2009-10-08  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Post release version bump
+
+==================== 2.24.2 ====================
+
+2009-10-08  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS:
 	Update for release
 
