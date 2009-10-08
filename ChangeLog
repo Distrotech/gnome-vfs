@@ -1,3 +1,12 @@
+2009-10-08  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/xdgmime.c:
+	* libgnomevfs/xdgmimecache.c:
+	* libgnomevfs/xdgmimeglob.c:
+	* libgnomevfs/xdgmimeglob.h:
+	Update to latest xdgmime updates so we get support
+	for the new mime.cache format
+
 2009-04-16  Alexander Larsson  <alexl@redhat.com>
 
 	Bug 500307 – uninitialized GnomeVFSFileInfo struct in do_seek()
