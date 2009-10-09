@@ -12,9 +12,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
+"Project-Id-Version: gnome-vfs 2.28\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2009-10-01 08:58+0000\n"
 "PO-Revision-Date: 2007-06-01 09:50+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -654,15 +655,18 @@ msgid "Network server"
 msgstr "Võrguserver"
 
 #. Handle floppy case
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Flopiketast pole võimalik ühendada. Tõenäoliselt pole ketast seadmes."
 
 #. All others
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Seadet pole võimalik külge ühendada. Tõenäoliselt pole meediat seadmes."
 
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -671,6 +675,7 @@ msgstr ""
 "vormingus."
 
 #. Probably a wrong password
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -678,6 +683,7 @@ msgstr ""
 "Seadet pole võimalik ühendada. Kui tegemist on krüptitud seadmega, siis "
 "kasutatakse ilmselt vale parooli või võtit."
 
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -691,6 +697,7 @@ msgstr "Valitud flopiketast pole võimalik külge ühendada."
 msgid "Unable to mount the selected volume."
 msgstr "Valitud ketast pole võimalik külge ühendada."
 
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -713,6 +720,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr ""
 "Ootamatu viga select() funktsioonis andmete lugemisel lapsprotsessilt (%s)"
 
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Ühendamisprotsessile pole võimalik parooli saata."
 
@@ -1132,70 +1140,3 @@ msgstr ""
 "Windows'i võrgunduse töögrupi või domeeni nimi, kuhu see kasutaja kuulub. "
 "Selleks et kasutaja saaks täielikult ära kasutada uue töögrupi privileege, "
 "peaks ta kõigepealt välja ja seejärel uuesti sisse logima."
-
-#~ msgid "Could not initialize Bonobo"
-#~ msgstr "Bonobo'd pole võimalik lähtestada"
-
-#~ msgid "Could not initialize gnome vfs"
-#~ msgstr "Gnome vfs'i pole võimalik lähtestada"
-
-#~ msgid "Standard Moniker factory"
-#~ msgstr "Tavaline Moniker'i factory"
-
-#~ msgid "file MonikerExtender"
-#~ msgstr "fail MonikerExtender"
-
-#~ msgid "generic Gnome VFS moniker"
-#~ msgstr "üldine Gnome VFS moniker"
-
-#~ msgid "generic file moniker"
-#~ msgstr "üldine file moniker"
-
-#~ msgid "Display SCSI drives"
-#~ msgstr "Näita SCSI kettaid"
-
-#~ msgid "Display SCSI optical drives"
-#~ msgstr "Näita SCSI optilisi kettaid"
-
-#~ msgid "Display drives with removable media"
-#~ msgstr "Näita kettaid eemaldatavate andmekandjatega"
-
-#~ msgid "Display external drives"
-#~ msgstr "Näita väliseid kettaid"
-
-#~ msgid "Display internal hard drives"
-#~ msgstr "Näita sisemisi kõvakettaid"
-
-#~ msgid ""
-#~ "Whether to display SCSI optical drives even if /system/storage/"
-#~ "display_scsi_drives is set to FALSE."
-#~ msgstr ""
-#~ "Kas näidata SCSI optilisi kettaid isegi kui /system/storage/"
-#~ "display_scsi_drives on VÄÄR."
-
-#~ msgid "Whether to display drives and mountable volumes from SCSI drives."
-#~ msgstr "Kas näidata kettaid ja külgehaagitavaid seadeid SCSI ketastelt."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from drives with "
-#~ "removable media (e.g. drives where media can be inserted and removed)."
-#~ msgstr ""
-#~ "Kas näidata kettaid ja külgehaagitavaid seadeid eemaldatavate "
-#~ "andmekandjatega (näiteks kettaid kuhu andmekandjaid saab sisestada ja "
-#~ "eemaldada)."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from external drives (e."
-#~ "g. drives that are hotpluggable; e.g. drives that can be attached and "
-#~ "detached while the system is running)."
-#~ msgstr ""
-#~ "Kas näidata kettaid ja külgehaagitavaid seadeid välistelt kõvaketastelt "
-#~ "(näiteks kettaid mida saab jooksvalt külge ühendada - mille sisestamist "
-#~ "ja eemaldadamist saab teostada jooksva süsteemiga)."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from internal hard drives "
-#~ "(non-SCSI optical drives are always shown)."
-#~ msgstr ""
-#~ "Kas näidata kettaid ja külgehaagitavaid seadeid sisemistelt kõvaketastelt "
-#~ "(mitte-SCSI optilisi kettaid näidatakse alati)."
