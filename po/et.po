@@ -1,21 +1,22 @@
-# Gnome-vfs eesti keele tõlge.
-# Estonian translation of  Gnome-vfs.
+# Gnome-VFS eesti keele tõlge.
+# Estonian translation of Gnome-VFS.
 #
 # Copyright (C) 2002, 2003, 2005, 2006 Free Software Foundation, Inc.
-# Copyright (C) 2007, The GNOME Project.
+# Copyright (C) 2007, 2009 The GNOME Project.
 #
-# Ilmar Kerm <ikerm@hot.ee>, 2002.
-# Tõivo Leedjärv <toivo@linux.ee>, 2003.
-# Kitt <peroona@hot.ee>, 2005.
-# Priit Laes <amd@store20.com>, 2005, 2006.
-# Ivar Smolin <okul@linux.ee>, 2005-2007.
+# Ilmar Kerm <ikerm hot ee>, 2002.
+# Tõivo Leedjärv <toivo linux ee>, 2003.
+# Kitt <peroona hot ee>, 2005.
+# Priit Laes <amd store20 com>, 2005, 2006.
+# Ivar Smolin <okul linux ee>, 2005-2007, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2007-06-01 09:50+0300\n"
+"Project-Id-Version: gnome-vfs MASTER\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2009-09-25 13:59+0000\n"
+"PO-Revision-Date: 2009-10-11 15:20+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +65,9 @@ msgstr "AFS võrguseade"
 msgid "Auto-detected Volume"
 msgstr "Automaattuvastatud seade"
 
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs Linuxi seade"
+
 msgid "CD-ROM Drive"
 msgstr "CD-ROM seade"
 
@@ -76,11 +80,17 @@ msgstr "Riistvaraline seade"
 msgid "EncFS Volume"
 msgstr "EncFS seade"
 
+msgid "eCryptfs Volume"
+msgstr "eCryptfs seade"
+
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linuxi seade"
 
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linuxi seade"
+
+msgid "Ext4 Linux Volume"
+msgstr "Ext4 Linuxi seade"
 
 msgid "MSDOS Volume"
 msgstr "MSDOS seade"
@@ -117,6 +127,9 @@ msgstr "Minix seade"
 
 msgid "NFS Network Volume"
 msgstr "NFS võrguseade"
+
+msgid "NILFS Linux Volume"
+msgstr "NILFS Linuxi seade"
 
 msgid "Netware Volume"
 msgstr "Netware seade"
