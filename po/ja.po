@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-07 22:06+0900\n"
-"PO-Revision-Date: 2007-07-07 21:49+0900\n"
+"POT-Creation-Date: 2009-10-21 00:03+0900\n"
+"PO-Revision-Date: 2009-10-21 00:03+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -70,157 +70,175 @@ msgid "Auto-detected Volume"
 msgstr "自動検出ボリューム"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Linux (Btrfs) ボリューム"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "CD-ROM ドライブ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD ディジタル・オーディオ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "ハードウェア・デバイス・ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "eCryptfs ボリューム"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Linux (Ext2) ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Linux (Ext3) ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Linux (Ext4) ボリューム"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MS-DOS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "MacOS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CD-ROM ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "HSFS CD-ROM ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Windows NT ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "システム・ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "メモリ・ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "MINIX ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "NFS ネットワーク・ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "Linux (NILFS) ボリューム"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Netware ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
-msgstr "Reiser4 Linux ボリューム"
+msgstr "Linux (Reiser4 ) ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS Linux ボリューム"
+msgstr "Linux (ReiserFS) ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Windows 共有ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "SuperMount ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "UDFS Solaris ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "作業用のボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "拡張 DOS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Xenix ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "XFS Linux ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "CIFS ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "不明"
 
@@ -422,22 +440,22 @@ msgstr "%s リムーバブル・ボリューム"
 msgid "Volume"
 msgstr "ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することができません: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ジョブの種類 %u が不明です"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
@@ -475,12 +493,12 @@ msgid ""
 msgstr ""
 "廃止予定の関数です。MIME 型データベースの変更はもうサポートしていません。"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "解析できませんでした: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "これ以上の解析エラーは無視されます。"
 
@@ -865,24 +883,25 @@ msgstr "カメラ"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Root ボリューム"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "オーディオ CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "不明なボリューム"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -891,12 +910,14 @@ msgstr ""
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "ボリュームをマウントできません。おそらくデバイスの中にメディアがないようで"
 "す。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -906,6 +927,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -914,6 +936,7 @@ msgstr ""
 "違っているか鍵が必要です。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -930,6 +953,7 @@ msgid "Unable to mount the selected volume."
 msgstr "選択したボリュームをマウントできません。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -958,6 +982,7 @@ msgstr ""
 "ました"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "パスワードをマウント・プロセスに送信できませんでした"
 
