@@ -1,4 +1,4 @@
-# translation of gl.po to Galego
+# translation of gnome-vfs-master-po-gl-33738.po to Galician
 # Galician translation of gnome-vfs.
 # Copyright (C) 1999-2004 Jesús Bravo Álvarez.
 #
@@ -11,20 +11,21 @@
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
+# Antón Méixome <meixome@mancomun.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gl\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"vfs&component=general\n"
-"POT-Creation-Date: 2009-03-07 21:20+0000\n"
-"PO-Revision-Date: 2009-03-10 20:17+0000\n"
-"Last-Translator: Suso Baleato <suso.baleato@xunta.es>\n"
-"Language-Team: Galego <proxecto@trasno.net>\n"
-"Language: gl\n"
+"Project-Id-Version: gnome-vfs-master-po-gl-33738\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-07 14:42+0100\n"
+"PO-Revision-Date: 2009-10-29 14:47+0100\n"
+"Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
+"Language-Team: Galician <gnome@g11n.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: gl\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -79,157 +80,175 @@ msgid "Auto-detected Volume"
 msgstr "Volume detectado automaticamente"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Volume Btrfs de Linux"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "Dispositivo de CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
-msgstr "CD de son dixital"
+msgstr "CD de audio dixital"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "Volume de dispositivo hardware"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "Volume EncFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "Volume eCryptfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Volume Ext2 de Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Volume Ext3 de Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Volume Ext4 de Linux"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "Volume de MSDOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "Volume de BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "Volume FUSE"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "Volume de MacOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "Volume de CDROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Volume de CDROM en Hsfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "Volume JFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Volume de Windows NT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "Volume de sistema"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "Volume de memoria"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Volume de Minix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "Volume de rede NFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "Volume NTFS de Linux"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Volume de Netware"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Volume de Linux Reiser4"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "Volume ReiserFS de Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Volume compartido de Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "Volume SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "Volume de DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Volume de Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Volume Udfs de Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Volume Pcfs de Solaris"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Volume SAM-QFS de Sun"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "Volume temporal"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "Volume de DOS mellorado"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Volume VFAT de Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Volume de Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "Volume XFS de Linux"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "Volume de XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "Volume CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "Descoñecido"
 
@@ -420,7 +439,7 @@ msgstr "Disco DVD+RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
-msgstr "Disco de son"
+msgstr "Disco de audio"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
@@ -482,7 +501,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Función obsoleta. A base de datos MIME xa non soporta modificacións feitas "
+"Función obsoleta. A base de datos MIME xa non admite modificacións feitas "
 "polo usuario."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:713
@@ -502,7 +521,7 @@ msgstr "Non hai erros"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
-msgstr "Ficheiro non encontrado"
+msgstr "O ficheiro non foi encontrado"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:49
@@ -522,7 +541,7 @@ msgstr "Os parámetros non son válidos"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
-msgstr "Non se soporta a operación"
+msgstr "Non se admite a operación"
 
 #. GNOME_VFS_ERROR_IO
 #: ../libgnomevfs/gnome-vfs-result.c:53
@@ -562,7 +581,7 @@ msgstr "Sistema de ficheiros só de lectura"
 #. GNOME_VFS_ERROR_INVALID_URI
 #: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
-msgstr "URI non válido"
+msgstr "O URI non é correcto"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:61
@@ -572,7 +591,7 @@ msgstr "O ficheiro non está aberto"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
-msgstr "O modo de abertura non é válido"
+msgstr "O modo de abertura non é correcto"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: ../libgnomevfs/gnome-vfs-result.c:63
@@ -592,7 +611,7 @@ msgstr "Fin do ficheiro"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
-msgstr "Non é un directorio"
+msgstr "Non é un cartafol"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: ../libgnomevfs/gnome-vfs-result.c:67
@@ -622,7 +641,7 @@ msgstr "Non se permite a operación"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
-msgstr "É un directorio"
+msgstr "É un cartafol"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
 #: ../libgnomevfs/gnome-vfs-result.c:73
@@ -637,7 +656,7 @@ msgstr "Non se localizou o host"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
-msgstr "O nome do host non é válido"
+msgstr "O nome do host non é correcto"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:76
@@ -647,22 +666,22 @@ msgstr "O host non ten un enderezo"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
-msgstr "Fallo no inicio de sesión"
+msgstr "Produciuse un fallo no inicio da sesión"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
-msgstr "Cancelouse a operación"
+msgstr "Anulouse a operación"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
-msgstr "O directorio está ocupado"
+msgstr "O cartafol está ocupado"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
-msgstr "O directorio non está baleiro"
+msgstr "O cartafol non está baleiro"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: ../libgnomevfs/gnome-vfs-result.c:81
@@ -717,12 +736,12 @@ msgstr "Non hai un manipulador para o esquema do URL"
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
-msgstr "Erro ao analizar a liña de comandos"
+msgstr "Erro ao analizar a liña de ordes"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "Erro ao lanzar o comando"
+msgstr "Erro ao lanzar a orde"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -742,12 +761,12 @@ msgstr "O recurso está bloqueado"
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
-msgstr "A chamada de función está obsoleta"
+msgstr "A chamada de función está anticuada"
 
 #. GNOME_VFS_ERROR_INVALID_FILENAME
 #: ../libgnomevfs/gnome-vfs-result.c:97
 msgid "Invalid filename"
-msgstr "O nome do ficheiro non é válido"
+msgstr "O nome do ficheiro non é correcto"
 
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:98
@@ -783,7 +802,7 @@ msgstr "%.1f GB"
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:382
 msgid " (invalid Unicode)"
-msgstr " (Unicode non válido)"
+msgstr " (O Unicode non é correcto)"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
@@ -861,7 +880,7 @@ msgstr "SD/MMD"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Memory Stick"
-msgstr "Cartón de memoria"
+msgstr "Tarxeta de memoria"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "Smart Media"
@@ -881,7 +900,7 @@ msgstr "Volume raíz"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
-msgstr "CD de son"
+msgstr "CD de audio"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
@@ -923,7 +942,7 @@ msgid ""
 "password or key was used."
 msgstr ""
 "Non se pode montar o volume. Se este é un dispositivo cifrado, entón o "
-"contrasinal ou chave usada é incorrecta."
+"contrasinal ou a chave usada non é correcta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 #, c-format
@@ -967,7 +986,9 @@ msgstr "Non se puido executar o proceso de montar nun pty"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Erro inesperado en select() lendo os datos do proceso fillo (%s)"
+msgstr ""
+"Produciuse un erro inesperado en select() lendo os datos do proceso fillo (%"
+"s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 #, c-format
@@ -982,7 +1003,7 @@ msgstr "Erro inesperado en waitpid() (%s)"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "Fallou ao iniciar o comando"
+msgstr "Fallou ao iniciar a orde"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
@@ -1038,7 +1059,7 @@ msgstr "Rexistrarse de todas as formas"
 
 #: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
-msgstr "Cancelar o inicio de sesión"
+msgstr "Anular o inicio de sesión"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: ../modules/test-method.c:587
@@ -1086,15 +1107,15 @@ msgstr "Ten que iniciar a sesión para acceder a %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Aplicación predeterminada para o visualizador de compoñentes"
+msgstr "Aplicativo predeterminada para o visualizador de compoñentes"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Aplicación do terminal por defecto"
+msgstr "Aplicativo do terminal predeterminado"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Argumento exec para o terminal por defecto"
+msgstr "Argumento exec para o terminal predeterminado"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1103,7 +1124,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"A aplicación usada para ver ficheiros que requiren un compoñente para "
+"O aplicativo usado para ver ficheiros que requiren un compoñente para "
 "visualizalos. O parámetro %s substitúese polos URI do ficheiro e o parámetro "
 "%c polo IID do compoñente."
 
@@ -1112,56 +1133,56 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"A aplicación do terminal por defecto para usar nas aplicacións que precisan "
-"dun terminal."
+"O aplicativo do terminal predeterminado para usar nos aplicativo que "
+"precisan dun terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "O argumento exec para usar coa aplicación do terminal por defecto."
+msgstr "O argumento exec para usar co aplicativo do terminal predeterminado."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "Executar o comando nun terminal"
+msgstr "Executar a orde nun terminal"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"aim\", se está activado."
+msgstr "A orde usada para manipular os URL \"aim\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"callto\", se está activado."
+msgstr "A orde usada para manipular os URL \"callto\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"ghelp\", se está activado."
+msgstr "A orde usada para manipular os URL \"ghelp\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"h323\", se está activado."
+msgstr "A orde usada para manipular os URL \"h323\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"http\", se está activado."
+msgstr "A orde usada para manipular os URL \"http\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"https\", se está activado."
+msgstr "A orde usada para manipular os URL \"https\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"info\", se está activado."
+msgstr "A orde usada para manipular os URL \"info\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"mailto\", se está activado."
+msgstr "A orde usada para manipular os URL \"mailto\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"man\", se está activado."
+msgstr "A orde usada para manipular os URL \"man\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "O comando usado para manipular os URL \"trash\", se está activado."
+msgstr "A orde usada para manipular os URL \"trash\", se está activada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1208,7 +1229,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"aim\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -1216,7 +1237,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"callto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
@@ -1224,7 +1245,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"ghelp\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
@@ -1232,7 +1253,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"h323\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
@@ -1240,7 +1261,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"http\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
@@ -1248,7 +1269,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"https\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1256,7 +1277,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"info\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
@@ -1264,7 +1285,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"mailto\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
@@ -1272,7 +1293,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"man\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
@@ -1280,7 +1301,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"É true se o comando especificado na chave \"command\" debe manipular os URL "
+"É true se a orde especificada na chave \"command\" debe manipular os URL "
 "\"trash\"."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
@@ -1288,48 +1309,48 @@ msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"É true se o comando usado para manipular este tipo de URL debe ser executado "
+"É true se a orde usada para manipular este tipo de URL debe ser executada "
 "nun terminal."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"aim\""
+msgstr "Indica se a orde especificada debe manipular os URL \"aim\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"callto\""
+msgstr "Indica se a orde especificada debe manipular os URL \"callto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"ghelp\""
+msgstr "Indica se a orde especificada debe manipular os URL \"ghelp\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"h323\""
+msgstr "Indica se a orde especificada debe manipular os URL \"h323\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"http\""
+msgstr "Indica se a orde especificada debe manipular os URL \"http\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"https\""
+msgstr "Indica se a orde especificada debe manipular os URL \"https\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"info\""
+msgstr "Indica se a orde especificada debe manipular os URL \"info\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"mailto\""
+msgstr "Indica se a orde especificada debe manipular os URL \"mailto\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"man\""
+msgstr "Indica se a orde especificada debe manipular os URL \"man\""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Indica se o comando especificado debe manipular os URL \"trash\""
+msgstr "Indica se a orde especificada debe manipular os URL \"trash\""
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1431,7 +1452,7 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Selecciona o modo de configuración do proxy. Os valores soportados son \"none"
+"Selecciona o modo de configuración do proxy. Os valores admitidos son \"none"
 "\", \"manual\" ou \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
