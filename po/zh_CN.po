@@ -7,10 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2007-08-23 14:33+0800\n"
-"Last-Translator: LoneStar <lone@auvtech.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2009-11-11 19:12+0000\n"
+"PO-Revision-Date: 2009-11-21 17:45+0100\n"
+"Last-Translator: Tao Wei <weitao1979@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,157 +71,175 @@ msgid "Auto-detected Volume"
 msgstr "自动检测卷"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs Linux 卷"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "CD-ROM 驱动器"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD 数字音频"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "硬件设备卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "eCryptfs 卷"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Ext4 Linux 卷"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MSDOS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "MacOS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CDROM 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Windows NT 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "系统卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "内存卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Minix 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "NFS 网络卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "NILFS Linux 卷"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Netware 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Windows 共享卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "SuperMount 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "临时卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "增强型 DOS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Xenix 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "XFS Linux 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "CIFS 卷"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "未知"
 
@@ -422,22 +441,22 @@ msgstr "%s 可移动卷"
 msgid "Volume"
 msgstr "卷"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "未知的操作类型 %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "无法创建管道以打开 GIOChannel：%s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "未知的任务种类 %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "操作停止"
 
@@ -474,12 +493,12 @@ msgid ""
 "supported."
 msgstr "不推荐的功能。不再支持用户修改 MIME 数据库。"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "无法解析：%s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "更多的解析错误将被忽略。"
 
@@ -863,34 +882,37 @@ msgstr "相机"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "根卷"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "音频 CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "未知卷"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "网络服务器"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "无法挂载软盘驱动器。可能驱动器中没有软盘。"
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "无法挂载卷。可能设备中没有介质。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -898,12 +920,14 @@ msgstr "无法挂载软盘驱动器。可能软盘的格式无法挂载。"
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr "无法挂载卷。如果该卷是加密驱动器，那么可能使用了错误的密码或密钥。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -918,6 +942,7 @@ msgid "Unable to mount the selected volume."
 msgstr "无法挂载选中的卷。"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -942,6 +967,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "从子进程(%s)中读取数据时 select() 发生意外错误"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "无法向 mount 进程发送密码。"
 
