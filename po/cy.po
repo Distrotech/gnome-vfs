@@ -2,35 +2,27 @@
 # www.gyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
 # Dafydd Harries <daf@muse.19inch,net>, 2003 2004.
 # Rhys Jones <rhys@sucs.org>, 2003.
-#
 # (RJ) Bathiad: Memory stick -> tocyn cof
 # (RJ) Fe ddefnyddiais i 'gyriant' yn hytrach na 'gyrrydd' - ceir
-#      enghreifftiau o'r ddau yn nautilus ar hyn o bryd.
-#
+# enghreifftiau o'r ddau yn nautilus ar hyn o bryd.
 # rhysj, 8ed Chw 2005
 # Wedi cysoni'r ffurfiau lluosog
 # Wedi gyrru'r cyfan drwy Cysill
-#
+# Iestyn Pryce <dylunio@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 19:58+0100\n"
-"PO-Revision-Date: 2006-06-29 19:58+0100\n"
-"Last-Translator: Rhys Jones <rhys@sucs.org>\n"
+"POT-Creation-Date: 2009-12-20 12:18+0000\n"
+"PO-Revision-Date: 2009-12-20 12:18+0100\n"
+"Last-Translator: Iestyn Pryce <dylunio@gmail.com>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1)?1:(n==2)?2:(n==8||n==11)?3:0;\n"
-
-#: ../daemon/gnome-vfs-daemon.c:596
-msgid "Could not initialize Bonobo"
-msgstr "Methwyd ymgychwyn Bonobo"
-
-#: ../daemon/gnome-vfs-daemon.c:603
-msgid "Could not initialize gnome vfs"
-msgstr "Methwyd ymgychwyn gnome vfs"
+"Language: cy\n"
+"Plural-Forms: nplurals=4; plural= (n==1) ? 0 : (n==2) ? 1 : (n != 8 && n !=11) ? 2 : 3;\n"
+"X-Generator: Virtaal 0.5.0\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -85,336 +77,373 @@ msgid "Auto-detected Volume"
 msgstr "Cyfrol a Ganfuwyd yn Awtomatig"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Cyfrol Linux Btrfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "Chwaraewr CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD Sain Ddigidol"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "Cyfrol Dyfais Caledwedd"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+msgid "EncFS Volume"
+msgstr "Cyfrol EncFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "Cyfrol eCryptfs"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Cyfrol Linux Ext2"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Cyfrol Linux Ext3"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Cyfrol Linux Ext4"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "Cyfrol MSDOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "BSD Volume"
+msgstr "Cyfrol BSD"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+msgid "FUSE Volume"
+msgstr "Cyfrol FUSE"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "Cyfrol MacOS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "Cyfrol CDROM"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Cyfrol CDROM Hsfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "Cyfrol JFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Cyfrol Windows NT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "Cyfrol System"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "Cyfrol Cof"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Cyfrol Minix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "Cyfrol Rhwydwaith NFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "Cyfrol Linux NILFS"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Cyfrol Netware"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Cyfrol Linux Reiser4"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "Cyfrol Linux ReiserFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Cyfrol Rhannu Windows"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "Cyfrol SuperMount"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "Cyfrol DVD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Cyfrol Solaris/BSD"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Cyfrol Solaris Udfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Cyfrol Solaris Pcfs"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Cyfrol SAM-QFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+msgid "Temporary Volume"
+msgstr "Cyfrol Dros Dro"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "Cyfrol DOS Gwell"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Cyfrol Windows VFAT"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Cyfrol Xenix"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "Cyfrol Linux XFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "Cyfrol XIAFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "Cyfrol CIFS"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:108
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "Anhysbys"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:354
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
 msgstr "Cyfrol %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:370
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:623
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R"
 msgstr "CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:374
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:378
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
 msgid "DVD+R"
 msgstr "DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:382
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
 msgid "DVD+RW"
 msgstr "DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:391
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:393
 msgid "DVD±R"
 msgstr "DVD±R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:394
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
 msgid "DVD±RW"
 msgstr "DVD±RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:397
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 #, c-format
 msgid "%s/%s Drive"
 msgstr "Gyriant %s/%s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
 msgid "%s Drive"
 msgstr "Gyriant %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:404
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
 msgstr "Gyriant Disg Hyblyg"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:407
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
 msgstr "Gyriant Compact Flash"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
 msgid "Memory Stick Drive"
 msgstr "Gyriant Tocyn Cof"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:411
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
 msgid "Smart Media Drive"
 msgstr "Gyriant Smart Media"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:413
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
 msgstr "Gyriant SD/MMC"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "Gyriant Zip"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:418
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
 msgid "Jaz Drive"
 msgstr "Gyriant Jaz"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:421
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "Gyriant Pen"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:427
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
 msgid "%s %s Music Player"
 msgstr "Chwaraeydd Cerddoriaeth %s %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:435
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
 msgid "%s %s Digital Camera"
 msgstr "Camera Digidol %s %s"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:465
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:467
 msgid "Drive"
 msgstr "Gyriant"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:470
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
 msgstr "%s Allanol"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:506
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
 msgstr "Disg CD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:511
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
 msgstr "Disg CD-R Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "Disg CD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:518
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
 msgid "Blank CD-RW Disc"
 msgstr "Disg CD-RW Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
 msgid "CD-RW Disc"
 msgstr "Disg CD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:524
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
 msgstr "Disg DVD-ROM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:529
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
 msgid "Blank DVD-RAM Disc"
 msgstr "Disg DVD-RAM Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:531
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:533
 msgid "DVD-RAM Disc"
 msgstr "Disg DVD-RAM"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:536
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
 msgid "Blank DVD-R Disc"
 msgstr "Disg DVD-R Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:538
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
 msgstr "Disg DVD-R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:543
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
 msgstr "Disg DVD-RW Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
 msgid "DVD-RW Disc"
 msgstr "Disg DVD-RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:551
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "Disg DVD+R Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
 msgstr "Disg DVD+R"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:558
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
 msgstr "Disg DVD+RW Gwag"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
 msgstr "Disg DVD+RW"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:567
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "Disg Sain"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:578
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
 msgstr "Cyfrol %s y Gellir ei Thynnu"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:589
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
 msgstr "Cyfrol"
 
@@ -437,34 +466,34 @@ msgstr "Tasg anhysbys, math %u"
 msgid "Operation stopped"
 msgstr "Ataliwyd y gweithrediad"
 
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:108
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:268
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:319
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:615
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:636
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:677
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:698
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:848
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:872
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:893
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:971
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:990
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1009
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1029
-#: ../libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: ../libgnomevfs/gnome-vfs-mime-info.c:624
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:103
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:231
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:282
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:365
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:386
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:406
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:427
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:448
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:541
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:565
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:586
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:628
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:647
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:666
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:686
+#: ../libgnomevfs/gnome-vfs-mime-handlers.c:706
 #: ../libgnomevfs/gnome-vfs-mime-info.c:631
-#: ../libgnomevfs/gnome-vfs-mime-info.c:639
+#: ../libgnomevfs/gnome-vfs-mime-info.c:638
 #: ../libgnomevfs/gnome-vfs-mime-info.c:646
-#: ../libgnomevfs/gnome-vfs-mime-info.c:654
-#: ../libgnomevfs/gnome-vfs-mime-info.c:671
+#: ../libgnomevfs/gnome-vfs-mime-info.c:653
+#: ../libgnomevfs/gnome-vfs-mime-info.c:661
 #: ../libgnomevfs/gnome-vfs-mime-info.c:678
 #: ../libgnomevfs/gnome-vfs-mime-info.c:685
 #: ../libgnomevfs/gnome-vfs-mime-info.c:692
-#: ../libgnomevfs/gnome-vfs-mime-info.c:700
+#: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
+#: ../libgnomevfs/gnome-vfs-mime-info.c:714
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -472,266 +501,276 @@ msgstr ""
 "Ffwythiant a anargymhellir. Ni chynhelir newidiadau defnyddiwr i'r gronfa "
 "ddata MIME bellach."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:708
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Methu gramadegu: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:710
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "Anwybyddir gwallau gramadegu pellach."
 
 #. GNOME_VFS_OK
-#: ../libgnomevfs/gnome-vfs-result.c:42
+#: ../libgnomevfs/gnome-vfs-result.c:47
 msgid "No error"
 msgstr "Dim gwall"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:43
+#: ../libgnomevfs/gnome-vfs-result.c:48
 msgid "File not found"
 msgstr "Ni chanfuwyd y ffeil"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: ../libgnomevfs/gnome-vfs-result.c:44
+#: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
 msgstr "Gwall generig"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: ../libgnomevfs/gnome-vfs-result.c:45
+#: ../libgnomevfs/gnome-vfs-result.c:50
 msgid "Internal error"
 msgstr "Gwall mewnol"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: ../libgnomevfs/gnome-vfs-result.c:46
+#: ../libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid parameters"
 msgstr "Paramedrau annilys"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: ../libgnomevfs/gnome-vfs-result.c:47
+#: ../libgnomevfs/gnome-vfs-result.c:52
 msgid "Unsupported operation"
 msgstr "Gweithred heb ei chynnal"
 
 #. GNOME_VFS_ERROR_IO
-#: ../libgnomevfs/gnome-vfs-result.c:48
+#: ../libgnomevfs/gnome-vfs-result.c:53
 msgid "I/O error"
 msgstr "Gwall M/A"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: ../libgnomevfs/gnome-vfs-result.c:49
+#: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
 msgstr "Llygrwyd data"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: ../libgnomevfs/gnome-vfs-result.c:50
+#: ../libgnomevfs/gnome-vfs-result.c:55
 msgid "Format not valid"
 msgstr "Fformat annilys"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: ../libgnomevfs/gnome-vfs-result.c:51
+#: ../libgnomevfs/gnome-vfs-result.c:56
 msgid "Bad file handle"
 msgstr "Dolen ffeil annilys"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: ../libgnomevfs/gnome-vfs-result.c:52
+#: ../libgnomevfs/gnome-vfs-result.c:57
 msgid "File too big"
 msgstr "Ffeil rhy fawr"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: ../libgnomevfs/gnome-vfs-result.c:53
+#: ../libgnomevfs/gnome-vfs-result.c:58
 msgid "No space left on device"
 msgstr "Dim lle ar ôl ar y ddyfais"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: ../libgnomevfs/gnome-vfs-result.c:54
+#: ../libgnomevfs/gnome-vfs-result.c:59
 msgid "Read-only file system"
 msgstr "System ffeil darllen-yn-unig"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: ../libgnomevfs/gnome-vfs-result.c:55
+#: ../libgnomevfs/gnome-vfs-result.c:60
 msgid "Invalid URI"
 msgstr "URI annilys"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: ../libgnomevfs/gnome-vfs-result.c:56
+#: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
 msgstr "Nid yw'r ffeil ar agor"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: ../libgnomevfs/gnome-vfs-result.c:57
+#: ../libgnomevfs/gnome-vfs-result.c:62
 msgid "Open mode not valid"
 msgstr "Modd agor annilys"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: ../libgnomevfs/gnome-vfs-result.c:58
+#: ../libgnomevfs/gnome-vfs-result.c:63
 msgid "Access denied"
 msgstr "Gwrthodwyd mynediad"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: ../libgnomevfs/gnome-vfs-result.c:59
+#: ../libgnomevfs/gnome-vfs-result.c:64
 msgid "Too many open files"
 msgstr "Gormod o ffeiliau ar agor"
 
 #. GNOME_VFS_ERROR_EOF
-#: ../libgnomevfs/gnome-vfs-result.c:60
+#: ../libgnomevfs/gnome-vfs-result.c:65
 msgid "End of file"
 msgstr "Diwedd ffeil"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:61
+#: ../libgnomevfs/gnome-vfs-result.c:66
 msgid "Not a directory"
 msgstr "Nid yw'n gyfeiriadur"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: ../libgnomevfs/gnome-vfs-result.c:62
+#: ../libgnomevfs/gnome-vfs-result.c:67
 msgid "Operation in progress"
 msgstr "Wrthi'n gweithredu"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: ../libgnomevfs/gnome-vfs-result.c:63
+#: ../libgnomevfs/gnome-vfs-result.c:68
 msgid "Operation interrupted"
 msgstr "Ymyrrwyd â'r weithred"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: ../libgnomevfs/gnome-vfs-result.c:64
+#: ../libgnomevfs/gnome-vfs-result.c:69
 msgid "File exists"
 msgstr "Mae'r ffeil yn bodoli"
 
 #. GNOME_VFS_ERROR_LOOP
-#: ../libgnomevfs/gnome-vfs-result.c:65
+#: ../libgnomevfs/gnome-vfs-result.c:70
 msgid "Looping links encountered"
 msgstr "Canfuwyd cysylltiadau cylchol"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: ../libgnomevfs/gnome-vfs-result.c:66
+#: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
 msgstr "Ni chaniateir y weithred"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: ../libgnomevfs/gnome-vfs-result.c:67
+#: ../libgnomevfs/gnome-vfs-result.c:72
 msgid "Is a directory"
 msgstr "Mae'n gyfeiriadur"
 
 #. GNOME_VFS_ERROR_NO_MEMORY
-#: ../libgnomevfs/gnome-vfs-result.c:68
+#: ../libgnomevfs/gnome-vfs-result.c:73
 msgid "Not enough memory"
 msgstr "Dim digon o gof"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: ../libgnomevfs/gnome-vfs-result.c:69
+#: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
 msgstr "Ni chanfuwyd y gwesteiwr"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: ../libgnomevfs/gnome-vfs-result.c:70
+#: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
 msgstr "Enw gwesteiwr annilys"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: ../libgnomevfs/gnome-vfs-result.c:71
+#: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
 msgstr "Nid oes cyfeiriad gan y gwesteiwr"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: ../libgnomevfs/gnome-vfs-result.c:72
+#: ../libgnomevfs/gnome-vfs-result.c:77
 msgid "Login failed"
 msgstr "Methu mewngofnodi"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: ../libgnomevfs/gnome-vfs-result.c:73
+#: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
 msgstr "Diddymwyd y weithred"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: ../libgnomevfs/gnome-vfs-result.c:74
+#: ../libgnomevfs/gnome-vfs-result.c:79
 msgid "Directory busy"
 msgstr "Mae'r cyfeiriadur yn brysur"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: ../libgnomevfs/gnome-vfs-result.c:75
+#: ../libgnomevfs/gnome-vfs-result.c:80
 msgid "Directory not empty"
 msgstr "Nid yw'r cyfeiriadur yn wag"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: ../libgnomevfs/gnome-vfs-result.c:76
+#: ../libgnomevfs/gnome-vfs-result.c:81
 msgid "Too many links"
 msgstr "Gormod o gysylltiadau"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:77
+#: ../libgnomevfs/gnome-vfs-result.c:82
 msgid "Read only file system"
 msgstr "System ffeil darllen-yn-unig"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: ../libgnomevfs/gnome-vfs-result.c:78
+#: ../libgnomevfs/gnome-vfs-result.c:83
 msgid "Not on the same file system"
 msgstr "Ddim ar yr un system ffeil"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: ../libgnomevfs/gnome-vfs-result.c:79
+#: ../libgnomevfs/gnome-vfs-result.c:84
 msgid "Name too long"
 msgstr "Enw rhy hir"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: ../libgnomevfs/gnome-vfs-result.c:80
+#: ../libgnomevfs/gnome-vfs-result.c:85
 msgid "Service not available"
 msgstr "Nid yw'r gwasanaeth ar gael"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: ../libgnomevfs/gnome-vfs-result.c:81
+#: ../libgnomevfs/gnome-vfs-result.c:86
 msgid "Request obsoletes service's data"
 msgstr "Mae'r cais yn anarferu data'r gwasanaeth"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: ../libgnomevfs/gnome-vfs-result.c:82
+#: ../libgnomevfs/gnome-vfs-result.c:87
 msgid "Protocol error"
 msgstr "Gwall brotocol"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: ../libgnomevfs/gnome-vfs-result.c:83
+#: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
 msgstr "Methu canfod y meistr-borwr"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: ../libgnomevfs/gnome-vfs-result.c:84
+#: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
 msgstr "Dim gweithred ragosodedig wedi ei chysylltu"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: ../libgnomevfs/gnome-vfs-result.c:85
+#: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
 msgstr "Dim trinydd ar gyfer y cynllun LAU"
 
 #. GNOME_VFS_ERROR_PARSE
-#: ../libgnomevfs/gnome-vfs-result.c:86
+#: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
 msgstr "Gwall wrth ddehongli'r llinell orchymyn"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: ../libgnomevfs/gnome-vfs-result.c:87
+#: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
 msgstr "Gwall wrth weithredu'r gorchymyn"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: ../libgnomevfs/gnome-vfs-result.c:88
+#: ../libgnomevfs/gnome-vfs-result.c:93
 msgid "Timeout reached"
 msgstr "Cyrhaeddwyd goramser"
 
 #. GNOME_VFS_ERROR_NAMESERVER
-#: ../libgnomevfs/gnome-vfs-result.c:89
+#: ../libgnomevfs/gnome-vfs-result.c:94
 msgid "Nameserver error"
 msgstr "Gwall gweinydd enw"
 
 #. GNOME_VFS_ERROR_LOCKED
-#: ../libgnomevfs/gnome-vfs-result.c:90
+#: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
 msgstr "Mae'r adnodd wedi ei gloi"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
-#: ../libgnomevfs/gnome-vfs-result.c:91
+#: ../libgnomevfs/gnome-vfs-result.c:96
 msgid "Function call deprecated"
 msgstr "Dirmygir y galwad ffwythiant"
 
-#: ../libgnomevfs/gnome-vfs-result.c:214
+#. GNOME_VFS_ERROR_INVALID_FILENAME
+#: ../libgnomevfs/gnome-vfs-result.c:97
+msgid "Invalid filename"
+msgstr "Enw ffeil annilys"
+
+#. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
+#: ../libgnomevfs/gnome-vfs-result.c:98
+msgid "Not a symbolic link"
+msgstr "Ddim yn cyswllt symbolaidd"
+
+#: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
@@ -854,35 +893,38 @@ msgstr "Camera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Cyfrol Gwraidd"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "CD Sain"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "Cyfrol anhysbys"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "Gweinydd rhwydwaith"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:181
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Methu rhagosod y gyriant disg hyblyg. Hwyrach nad oes disg yn y gyriant."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:185
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Methu rhagosod y gyfrol. Hwyrach nad oes dim yn y ddyfais."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:191
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -891,7 +933,8 @@ msgstr ""
 "na ellir ei osod."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:195
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -899,7 +942,8 @@ msgstr ""
 "Methu gosod y gyfrol. Os yw hwn yn yriant wedi ei amgryptio, defnyddiwyd y "
 "cyfrinair neu'r allwedd anghywir."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -907,15 +951,16 @@ msgstr ""
 "Methu a gosod y gyfrol a ddewiswyd. Hwyrach ei fod mewn ffurf na ellir ei "
 "osod."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:203
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
 msgstr "Methu gosod y gyriant disg hyblyg ddewiswyd."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:205
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
 msgstr "Methu gosod y gyfrol a ddewiswyd."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:218
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -923,60 +968,61 @@ msgstr ""
 "Methu gosod y gyfrol a ddewiswyd. Hwyrach fod un neu fwy o raglenni yn ei "
 "defnyddio."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
 msgstr "Methu dadosod y gyfrol a ddewiswyd."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:387
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
 msgstr "Methwyd darllen data o'r broses blentyn %d (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:431
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
 msgstr "Methwyd rhedeg y broses osod mewn pty"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:476
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr ""
 "Gwall annisgwyl o fewn select() wrth ddarllen data o broses blentyn (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:530
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Methu anfon cyfrinair at y broses osod."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:569
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
 msgstr "Gwall annisgwyl o fewn waitpid() (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:679
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:765
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:669
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
 msgstr "Methwyd a chychwyn y gorchymyn"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:752
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "Methu allfwrw'r disg neu'r modd"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:1006
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
 msgstr "Methu dadosod y gweinydd sy'n gysylltiedig"
 
-#: ../modules/computer-method.c:542
+#: ../modules/computer-method.c:543
 msgid "Network"
 msgstr "Rhwydwaith"
 
-#: ../modules/computer-method.c:560
+#: ../modules/computer-method.c:561
 msgid "Home"
 msgstr "Cartref"
 
-#: ../modules/computer-method.c:578
+#: ../modules/computer-method.c:579
 msgid "Filesystem"
 msgstr "System Ffeil"
 
-#: ../modules/file-method.c:491
+#: ../modules/file-method.c:497
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition anhysbys %d"
@@ -985,12 +1031,12 @@ msgstr "GnomeVFSSeekPosition anhysbys %d"
 msgid "Windows Network"
 msgstr "Rhwydwaith Windows"
 
-#: ../modules/sftp-method.c:1346
+#: ../modules/sftp-method.c:1424
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Nid yw hunaniaeth y cyfrifiadur pell (%s) yn hysbys."
 
-#: ../modules/sftp-method.c:1347
+#: ../modules/sftp-method.c:1425
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1003,11 +1049,11 @@ msgstr ""
 "bod yn hollol siŵr ei bod hi'n ddiogel i fynd ymlaen, cysylltwch â gweinydd "
 "y system."
 
-#: ../modules/sftp-method.c:1355
+#: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
 msgstr "Mewngofnodi Fodd Bynnag"
 
-#: ../modules/sftp-method.c:1356
+#: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
 msgstr "Diddymu Mewngofnodi"
 
@@ -1021,22 +1067,6 @@ msgstr "Ni chanfuwyd ffeil gosodiadau dilys yn %s\n"
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Defnyddiwch y newidyn amgylcheddol %s er mwyn pennu lleoliad arall.\n"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-msgid "Standard Moniker factory"
-msgstr "Ffatri Moniker safonol"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-msgid "file MonikerExtender"
-msgstr "ffeil MonikerExtender"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-msgid "generic Gnome VFS moniker"
-msgstr "moniker Gnome VFS generig"
-
-#: ../monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-msgid "generic file moniker"
-msgstr "moniker ffeil generig"
 
 #: ../programs/authentication.c:106
 #, c-format
@@ -1060,12 +1090,12 @@ msgstr "Bydd eich cyfrinair yn cael ei anfon heb ei amgryptio."
 msgid "Your password will be transmitted encrypted."
 msgstr "Bydd eich cyfrinair yn cael ei anfon wedi ei amgryptio."
 
-#: ../programs/authentication.c:156
+#: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
 msgstr "Rhaid i chi fewngofnodi cyn cael mynediad at %s ym mharth %s\n"
 
-#: ../programs/authentication.c:158
+#: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
 msgstr "Rhaid i chi fewngofnodi cyn cael mynediad at %s\n"
@@ -1506,6 +1536,24 @@ msgstr ""
 "Y grŵp gwaith neu'r parth rhwydweithio Windows mae'r defnyddiwr yn rhan "
 "ohono. Cyn i grŵp gwaith newydd ddod i rym, efallai bydd rhaid i'r "
 "defnyddiwr allgofnodi a mewngofnodi eto."
+
+#~ msgid "Could not initialize Bonobo"
+#~ msgstr "Methwyd ymgychwyn Bonobo"
+
+#~ msgid "Could not initialize gnome vfs"
+#~ msgstr "Methwyd ymgychwyn gnome vfs"
+
+#~ msgid "Standard Moniker factory"
+#~ msgstr "Ffatri Moniker safonol"
+
+#~ msgid "file MonikerExtender"
+#~ msgstr "ffeil MonikerExtender"
+
+#~ msgid "generic Gnome VFS moniker"
+#~ msgstr "moniker Gnome VFS generig"
+
+#~ msgid "generic file moniker"
+#~ msgstr "moniker ffeil generig"
 
 #~ msgid "Display SCSI drives"
 #~ msgstr "Dangos gyriannau SCSI"
