@@ -4,15 +4,16 @@
 # Sayamindu Dasgupta <unmadindu@Softhome.net>, 2003.
 # Mahay Alam Khan <makl10n@yahoo.com>, 2005.
 # Samia Niamatullah <mailsamia2001@yahoo.com>, 2005.
+# Loba Yeasmeen <loba@ankur.org.bd>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2007-09-14 14:46+0600\n"
-"Last-Translator: Khandakar Mujahidul Islam <suzan@bengalinux.org>\n"
-"Language-Team: Bengali <gnome-translation@bengalinux.org>\n"
+"Project-Id-Version: bn\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-vfs&component=general\n"
+"POT-Creation-Date: 2009-12-14 21:54+0000\n"
+"PO-Revision-Date: 2010-01-25 15:50+0600\n"
+"Last-Translator: Loba Yeasmeen <loba@ankur.org.bd>\n"
+"Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
-msgstr "আই-এস-ও ৯৬৬০ ভলিউম"
+msgstr "ISO 9660 ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-configuration.c:225
 #, c-format
@@ -62,168 +63,190 @@ msgstr "%s:%d পার্স কর্ম অস্বাভাবিকরূ�
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
-msgstr "এ-এফ-এফ-এস ভলিউম"
+msgstr "AFFS ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
-msgstr "এ-এফ-এস নেটওয়ার্ক ভলিউম"
+msgstr "AFS নেটওয়ার্ক ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "স্বয়ংক্রীয় ভাবে খুঁজে পাওয়া ভলিউম"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+#| msgid "Ext2 Linux Volume"
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs লিনাক্স ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "সিডি রম ড্রাইভ"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "সিডি ডিজিটাল অডিও"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "হার্ডওয়্যার ডিভাইস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#| msgid "Memory Volume"
+msgid "eCryptfs Volume"
+msgstr "eCryptfs ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 লিনাক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 লিনাক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#| msgid "Ext2 Linux Volume"
+msgid "Ext4 Linux Volume"
+msgstr "Ext4 লিনাক্স ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MSDOS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "MacOS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "সিডিরম ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs সিডিরম ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "উইন্ডোজ এন-টি ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "সিস্টেম ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "মেমরি ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "মিনিক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "এন-এফ-এস নেটওয়ার্ক ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#| msgid "XFS Linux Volume"
+msgid "NILFS Linux Volume"
+msgstr "NILFS লিনাক্স ভলিউম"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "নেটওয়্যার ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "রেইসার৪ লিনাক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "রেইসার এফ এস লিনাক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "উইন্ডোজ শেয়ার করা ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "সুপার মাউন্ট ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "ডিভিডি ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "সোলারিস/বি-এস-ডি ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Udfs সোলারিস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs সোলারিস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "সান এসএএম-কিউএফএস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "অস্থায়ী ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "এনহান্সকৃত ডস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "উইন্ডোজ ভিফ্যাট ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "জেনিক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "এক্স-এফ-এস লিনাক্স ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "সিআইএফএস ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -426,23 +449,23 @@ msgstr "%s অপসারণযোগ্য ভলিউম"
 msgid "Volume"
 msgstr "ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "অজানা অপারেশন টাইপ %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025
-#: ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024
+#: ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "খোলা জি-আই-ও-চ্যানেল: %sএর জন্য কোন পাইপ তৈরি করা গেল না  "
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "অজানা ধরনের কাজ %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "কাজ বন্ধ"
 
@@ -478,12 +501,12 @@ msgstr "কাজ বন্ধ"
 msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
 msgstr "বর্জনীয় কাজ। মাইম ডাটাবেস এ ব্যবহারকারী পরিবর্তন এখন আর সমর্থিত নয়।"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "%s-কে পড়ে কিছু বোঝা গেল না"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "এরপরের পড়ে বোঝার ভুলগুলোকে আমল দেবো না।"
 
@@ -868,42 +891,47 @@ msgstr "ক্যামেরা"
 msgid "DVD"
 msgstr "ডিভিডি"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "রুট ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "অডিও সিডি"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "অজানা ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "নেটওয়ার্ক সার্ভার"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করা গেল না। সম্ভবত ড্রাইভে কোন ডিস্ক নেই।"
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ভলিউম মাউন্ট করা গেল না। সম্ভবত ডিভাইসে কোন মিডিয়া নেই।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করা গেল না। সম্ভবত ফ্লপির ফরম্যাট এমন যে সেটিকে মাউন্ট করা যাবে না। "
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
 msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। এনক্রিপ্ট করা ড্রাইভের ক্ষেত্রে সম্ভবত ভুল পাসওয়ার্ড অথবা কী প্রয়োগ করা হয়েছে।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
 msgstr "নির্বাচিত ভলিউম মাউন্ট করা গেল না। সম্ভবত ভলিউম ফরম্যাট এমন যে সেটিকে মাউন্ট করা যাবে না। "
 
@@ -916,6 +944,7 @@ msgid "Unable to mount the selected volume."
 msgstr "নির্বাচিত ভলিউমকে মাউন্ট করা গেল না।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
 msgstr "নির্বাচিত ভলিউম আন-মাউন্ট করতে ব্যর্থ। এক অথবা অধিক প্রোগ্রামের দ্বারা এই ভলিউমটি ব্যবহৃত হচ্ছে।"
 
@@ -938,6 +967,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "চাইল্ড প্রসেস থেকে select() দ্বারা তথ্য পড়তে অপ্রত্যাশিত সমস্যা (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "মাউন্ট কর্মের জন্য পাসওয়ার্ড প্রেরণ করতে ব্যর্থ।"
 
