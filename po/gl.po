@@ -12,14 +12,15 @@
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-master-po-gl-33738\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-07 14:42+0100\n"
-"PO-Revision-Date: 2009-10-29 14:47+0100\n"
-"Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
-"Language-Team: Galician <gnome@g11n.net>\n"
+"POT-Creation-Date: 2010-02-15 13:17+0100\n"
+"PO-Revision-Date: 2010-02-05 01:06+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
+"Language-Team: Gallician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,7 +60,7 @@ msgstr "%s:%u non contén ningún nome de módulo."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Non se localizou o ficheiro de configuración `%s': %s"
+msgstr "Non foi posíbel encontrar o ficheiro de configuración `%s': %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -458,7 +459,7 @@ msgstr "Tipo de operación descoñecida %u"
 #: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Non se pode crear unha canalización para o GIOChannel aberto: %s"
+msgstr "Non é posíbel crear unha canalización para o GIOChannel aberto: %s"
 
 #: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
@@ -507,7 +508,7 @@ msgstr ""
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Non se puido analizar: %s"
+msgstr "Non foi posíbel analizar: %s"
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
@@ -721,12 +722,12 @@ msgstr "Erro do protocolo"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: ../libgnomevfs/gnome-vfs-result.c:88
 msgid "Could not find master browser"
-msgstr "Non se pode localizar o navegador principal"
+msgstr "Non foi posíbel atopar o navegador principal"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
-msgstr "Non hai unha acción predeterminada asociada"
+msgstr "Non hai unha acción predefinida asociada"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:90
@@ -736,12 +737,12 @@ msgstr "Non hai un manipulador para o esquema do URL"
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
-msgstr "Erro ao analizar a liña de ordes"
+msgstr "Produciuse un erro ao analizar a liña de ordes"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "Erro ao lanzar a orde"
+msgstr "Produciuse un erro ao lanzar a orde"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -916,14 +917,15 @@ msgstr "Servidor de rede"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Non se pode montar a disqueteira. Pode que non haxa ningún disquete inserido."
+"Non é posíbel montar a disqueteira. Pode que non haxa ningún disquete "
+"inserido."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 #, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Non se pode montar o volume. Pode que non haxa soportes no dispositivo."
+"Non é posíbel montar o volume. Pode que non haxa soportes no dispositivo."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 #, c-format
@@ -931,7 +933,7 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Non se pode montar a disqueteira. Pode que estea nun formato que non pode "
+"Non é posíbel montar a disqueteira. Pode que estea nun formato que non pode "
 "ser montado."
 
 #. Probably a wrong password
@@ -941,7 +943,7 @@ msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"Non se pode montar o volume. Se este é un dispositivo cifrado, entón o "
+"Non é posíbel montar o volume. Se este é un dispositivo cifrado, entón o "
 "contrasinal ou a chave usada non é correcta."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
@@ -950,16 +952,16 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Non se pode montar o volume seleccionado. Pode que estea nun formato que non "
-"pode ser montado."
+"Non é posíbel montar o volume seleccionado. Pode que estea nun formato que "
+"non pode ser montado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
-msgstr "Non se pode montar a disqueteira seleccionada."
+msgstr "Non é posíbel montar a disqueteira seleccionada."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:208
 msgid "Unable to mount the selected volume."
-msgstr "Non se pode montar o volume seleccionado."
+msgstr "Non é posíbel montar o volume seleccionado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
 #, c-format
@@ -967,21 +969,21 @@ msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
 msgstr ""
-"Non se pode desmontar o volume seleccionado. O volume estase usando nun ou "
+"Non é posíbel desmontar o volume seleccionado. O volume estase usando nun ou "
 "máis programas."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
-msgstr "Non se pode desmontar o volume seleccionado."
+msgstr "Non é posíbel desmontar o volume seleccionado."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 #, c-format
 msgid "Failed to read data from child process %d (%s)"
-msgstr "Fallou ao ler os datos do proceso fillo %d (%s)"
+msgstr "Produciuse un fallo ao ler os datos do proceso fillo %d (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr "Non se puido executar o proceso de montar nun pty"
+msgstr "Non foi posíbel executar o proceso de montar nun pty"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
@@ -993,25 +995,25 @@ msgstr ""
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 #, c-format
 msgid "Couldn't send password to mount process."
-msgstr "Non se puido enviar o contrasinal para montar o proceso."
+msgstr "Non é posíbel enviar o contrasinal para montar o proceso."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
 msgid "Unexpected error in waitpid() (%s)"
-msgstr "Erro inesperado en waitpid() (%s)"
+msgstr "Produciuse un erro inesperado en waitpid() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "Fallou ao iniciar a orde"
+msgstr "Produciuse un fallo ao iniciar a orde"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
-msgstr "Non se pode extraer o soporte"
+msgstr "Non é posíbel extraer o soporte"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:983
 msgid "Unable to unmount connected server"
-msgstr "Non se pode desmontar o servidor conectado"
+msgstr "Non é posíbel desmontar o servidor conectado"
 
 #: ../modules/computer-method.c:543
 msgid "Network"
@@ -1107,15 +1109,15 @@ msgstr "Ten que iniciar a sesión para acceder a %s\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Aplicativo predeterminada para o visualizador de compoñentes"
+msgstr "Aplicativo predefinido para o visualizador de compoñentes"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Aplicativo do terminal predeterminado"
+msgstr "Aplicativo do terminal predefinido"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Argumento exec para o terminal predeterminado"
+msgstr "Argumento exec para o terminal predefinido"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1133,12 +1135,12 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"O aplicativo do terminal predeterminado para usar nos aplicativo que "
-"precisan dun terminal."
+"O aplicativo do terminal predefinido para usar nos aplicativo que precisan "
+"dun terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "O argumento exec para usar co aplicativo do terminal predeterminado."
+msgstr "O argumento exec para usar co aplicativo do terminal predefinido."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
