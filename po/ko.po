@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the gnome-vfs package.
 #
 # Young-Ho Cha <ganadist@dacome.co.kr>, 2000.
-# Changwoo Ryu <cwryu@debian.org>, 2002-2007, 2009.
+# Changwoo Ryu <cwryu@debian.org>, 2002-2007, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-09 23:14+0900\n"
-"PO-Revision-Date: 2009-01-23 15:45+0900\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-vfs&component=general\n"
+"POT-Creation-Date: 2010-02-17 01:47+0900\n"
+"PO-Revision-Date: 2010-02-17 01:50+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
-"Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
+"Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,157 +70,175 @@ msgid "Auto-detected Volume"
 msgstr "자동 감지 볼륨"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "BRTFS 리눅스 볼륨"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "CD-ROM 드라이브"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD 디지털 오디오"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "하드웨어 장치 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-msgid "Ext2 Linux Volume"
-msgstr "Ext2 리눅스 볼륨"
+msgid "eCryptfs Volume"
+msgstr "eCryptfs 볼륨"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-msgid "Ext3 Linux Volume"
-msgstr "Ext3 리눅스 볼륨"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+msgid "Ext2 Linux Volume"
+msgstr "EXT2 리눅스 볼륨"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
+msgid "Ext3 Linux Volume"
+msgstr "EXT3 리눅스 볼륨"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "EXT4 리눅스 볼륨"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MS도스 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
-msgstr "MacOS 볼륨"
+msgstr "맥OS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CDROM 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
-msgstr "Hsfs CDROM 볼륨"
+msgstr "HSFS CDROM 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "윈도우즈 NT 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "시스템 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "메모리 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Minix 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "NFS 네트워크 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "NILFS 리눅스 볼륨"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "네트웨어 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 리눅스 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS 리눅스 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "윈도우즈 공유 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "SuperMount 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
-msgstr "Udfs Solaris 볼륨"
+msgstr "UDFS Solaris 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
-msgstr "Pcfs Solaris 볼륨"
+msgstr "PCFS Solaris 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "임시 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "확장 도스 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "윈도우즈 VFAT 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Xenix 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "XFS 리눅스 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "CIFS 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -343,7 +361,7 @@ msgstr "드라이브"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
 msgid "External %s"
-msgstr "외부 %s"
+msgstr "외장 %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
@@ -422,22 +440,22 @@ msgstr "%s 이동식 볼륨"
 msgid "Volume"
 msgstr "볼륨"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "알 수 없는 작동 방식 %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel을 열기위한 파이프 만들기 실패: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "알 수 없는 작업 종류 %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "작동 중지"
 
@@ -476,12 +494,12 @@ msgstr ""
 "지원하지 않는 함수.  사용자가 MIME 데이터베이스를 수정하는 건 더 이상 지원하"
 "지 않습니다."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "분석할 수 없습니다: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "다음부터 분석 애러는 무시됩니다."
 
@@ -865,19 +883,19 @@ msgstr "카메라"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "루트 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "음악 CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "알 수 없는 볼륨"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "네트워크 서버"
 
@@ -1475,175 +1493,3 @@ msgid ""
 msgstr ""
 "사용자가 속해 있는 윈도우 네트워크 워크그룹 혹은 도메인. 새 워크그룹이 완전"
 "히 동작하려면 사용자가 로그아웃했다가 다시 로그인해야 할 수도 있습니다."
-
-#~ msgid "Could not initialize Bonobo"
-#~ msgstr "보노보를 초기화할 수 없습니다"
-
-#~ msgid "Could not initialize gnome vfs"
-#~ msgstr "그놈 VFS를 초기화할 수 없습니다"
-
-#~ msgid "Standard Moniker factory"
-#~ msgstr "표준 모니커 팩토리"
-
-#~ msgid "file MonikerExtender"
-#~ msgstr "파일 모니커 익스텐더"
-
-#~ msgid "generic Gnome VFS moniker"
-#~ msgstr "일반 그놈 VFS 모니커"
-
-#~ msgid "generic file moniker"
-#~ msgstr "일반 파일 모니커"
-
-#~ msgid "Display SCSI drives"
-#~ msgstr "SCSI 드라이브 표시"
-
-#~ msgid "Display SCSI optical drives"
-#~ msgstr "SCSI 광학 드라이브 표시"
-
-#~ msgid "Display drives with removable media"
-#~ msgstr "이동식 미디어를 사용하는 드라이브 표시"
-
-#~ msgid "Display external drives"
-#~ msgstr "외부 드라이브 표시"
-
-#~ msgid "Display internal hard drives"
-#~ msgstr "내부 하드 드라이브 표시"
-
-#~ msgid ""
-#~ "Whether to display SCSI optical drives even if /system/storage/"
-#~ "display_scsi_drives is set to FALSE."
-#~ msgstr ""
-#~ "/system/storage/display_scsi_drives가 FALSE로 설정되어 있을 경우에라도 "
-#~ "SCSI 광학 드라이브를 표시할 지 여부."
-
-#~ msgid "Whether to display drives and mountable volumes from SCSI drives."
-#~ msgstr "SCSI 드라이브에서 드라이브 및 마운트 가능한 볼륨을 표시할 지 여부."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from drives with "
-#~ "removable media (e.g. drives where media can be inserted and removed)."
-#~ msgstr ""
-#~ "이동식 미디어를 사용하는 드라이브에서 드라이브 및 마운트 가능한 볼륨을 표"
-#~ "시할 지 여부 (즉, 미디어를 넣었다가 뺐다가 할 수 있는 드라이브)."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from external drives (e."
-#~ "g. drives that are hotpluggable; e.g. drives that can be attached and "
-#~ "detached while the system is running)."
-#~ msgstr ""
-#~ "외부 드라이브에서 드라이브 및 마운트 가능한 볼륨을 표시할 지 여부 (즉, 핫"
-#~ "플러그가 가능한 드라이브, 시스템이 동작 중에 붙였다가 떼었다가 할 수 있는 "
-#~ "드라이브)."
-
-#~ msgid ""
-#~ "Whether to display drives and mountable volumes from internal hard drives "
-#~ "(non-SCSI optical drives are always shown)."
-#~ msgstr ""
-#~ "내부 하드 드라이브에서 드라이브 및 마운트 가능한 볼륨을 표시할 지 여부 "
-#~ "(SCSI가 아닌 광학 드라이브는 언제나 표시합니다)."
-
-#~ msgid "The window workgroup the user is part of"
-#~ msgstr "사용자가 속해 있는 Windows 작업 그룹"
-
-#~ msgid "Optical Disc"
-#~ msgstr "광학 디스크"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "메모리 스틱 미디어"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "스마트 미디어 미디어"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS 디스크"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X 디스크"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows 디스크"
-
-#~ msgid "Linux Disk"
-#~ msgstr "리눅스 디스크"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "파일을 열 수 없습니다: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "'%s' 파일을 여는 데 실패했습니다: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "파일이 비었습니다"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "데스크탑 엔트리에 엔트리, 그룹, 코멘트가 아닌 '%s' 줄이 들어 있습니다"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "데스크탑 엔트리 파일이 올바른 시작 그룹으로 시작하지 않습니다"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "데스크탑 엔트리에 UTF-8이 아닌 '%s' 줄이 들어 있습니다"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "데스크탑 엔트리에 알 수 없는 '%s' 인코딩 이 들어 있습니다"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "데스크탑 엔트리에 '%s' 그룹이 없습니다"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "데스크탑 엔트리에 '%s' 키가 없습니다"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr "데스크탑 엔트리에 들어 있는 '%s' 키의 값을 해석할 수 없습니다."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "데스크탑 엔트리에 들어 있는 '%s' 키에 대해 '%s' 로케일로 번역된 값이 없습"
-#~ "니다"
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "데스크탑 엔트리에 잘못된 '%s' 이스케이프 시퀀스가 들어 있습니다"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "데스크탑 엔트리의 줄 끝에 이스케이프 시퀀스가 들어 있습니다"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "'%s' 값을 수로 해석할 수 없습니다"
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "'%s' 값을 불리언으로 해석할 수 없습니다"
-
-#~ msgid "Applications"
-#~ msgstr "응용프로그램"
-
-#~ msgid "Cards"
-#~ msgstr "카드"
-
-#~ msgid "Files"
-#~ msgstr "파일"
-
-#~ msgid "Folders"
-#~ msgstr "폴더"
-
-#~ msgid "Help"
-#~ msgstr "도움말"
-
-#~ msgid "Hosts"
-#~ msgstr "호스트"
-
-#~ msgid "Links"
-#~ msgstr "링크"
-
-#~ msgid "Mail"
-#~ msgstr "메일"
-
-#~ msgid "Tools"
-#~ msgstr "도구"
-
-#~ msgid "Windows"
-#~ msgstr "창"
