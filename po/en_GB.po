@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the gnome-vfs package.
 # Gareth Owen <gowen72@yahoo.com> 2004
 # David Lodge <dave@cirt.net> 2004
-#
-#
+# Bruce Cowan <bcowan@fastmail.co.uk>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-25 06:47+0100\n"
-"PO-Revision-Date: 2007-04-25 06:47-0000\n"
-"Last-Translator: David Lodge <dave@cirt.net>\n"
-"Language-Team: English (British) <en@li.org>\n"
+"POT-Creation-Date: 2010-02-24 17:01+0000\n"
+"PO-Revision-Date: 2010-01-31 00:06+0100\n"
+"Last-Translator: Bruce Cowan <bcowan@fastmail.co.uk>\n"
+"Language-Team: British English <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.5.1\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -71,157 +72,175 @@ msgid "Auto-detected Volume"
 msgstr "Auto-detected Volume"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs Linux Volume"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "CD-ROM Drive"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD Digital Audio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "Hardware Device Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "eCryptfs Volume"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Ext4 Linux Volume"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MSDOS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "MacOS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CDROM Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Windows NT Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "System Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "Memory Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Minix Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "NFS Network Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "NILFS Linux Volume"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Netware Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4 Linux Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Windows Shared Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "SuperMount Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "Temporary Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Xenix Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "XFS Linux Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "CIFS Volume"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -423,23 +442,22 @@ msgstr "%s Removable Volume"
 msgid "Volume"
 msgstr "Volume"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Unknown operation type %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025
-#: ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Cannot create pipe for open GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Unknown job kind %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "Operation stopped"
 
@@ -471,15 +489,19 @@ msgstr "Operation stopped"
 #: ../libgnomevfs/gnome-vfs-mime-info.c:699
 #: ../libgnomevfs/gnome-vfs-mime-info.c:707
 #: ../libgnomevfs/gnome-vfs-mime-info.c:714
-msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Deprecated function.  User modifications to the MIME database are no longer supported."
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Could not parse: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "More parsing errors will be ignored."
 
@@ -864,44 +886,63 @@ msgstr "Camera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Root Volume"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "Unknown volume"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "Network server"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#, c-format
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Unable to mount the volume. There is probably no media in the device."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+#, c-format
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
-msgid "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
-msgstr "Unable to mount the volume. If this is an encrypted drive, then the wrong password or key was used."
+#, c-format
+msgid ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
+msgstr ""
+"Unable to mount the volume. If this is an encrypted drive, then the wrong "
+"password or key was used."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+#, c-format
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -912,8 +953,13 @@ msgid "Unable to mount the selected volume."
 msgstr "Unable to mount the selected volume."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
-msgid "Unable to unmount the selected volume. The volume is in use by one or more programs."
-msgstr "Unable to unmount the selected volume. The volume is in use by one or more programs."
+#, c-format
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -934,6 +980,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "Unexpected error in select() reading data from a child process (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Couldn't send password to mount process."
 
@@ -986,11 +1033,13 @@ msgstr "The identity of the remote computer (%s) is unknown."
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 msgstr ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1057,12 +1106,22 @@ msgstr "Exec argument for default terminal"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "The default terminal application to use for applications that require a terminal."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"The default terminal application to use for applications that require a "
+"terminal."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1153,48 +1212,92 @@ msgid "The handler for \"trash\" URLs"
 msgstr "The handler for \"trash\" URLs"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"h323\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"http\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
-msgstr "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "True if the command used to handle this type of URL should be run in a terminal."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1237,8 +1340,12 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Whether the specified command should handle \"trash\" URLs"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
-msgid "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
-msgstr "Comma separated list of DNS-SD domains that should be visible in the \"network:///\" location."
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1289,8 +1396,14 @@ msgid "HTTP proxy username"
 msgstr "HTTP proxy username"
 
 #: ../schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1321,8 +1434,12 @@ msgid "Secure HTTP proxy port"
 msgstr "Secure HTTP proxy port"
 
 #: ../schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1341,24 +1458,48 @@ msgid "The machine name to proxy socks through."
 msgstr "The machine name to proxy socks through."
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1377,21 +1518,32 @@ msgid "SMB workgroup"
 msgstr "SMB workgroup"
 
 #: ../schemas/system_smb.schemas.in.h:2
-msgid "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
-msgstr "The Windows networking workgroup or domain that the user is part of. In order for a new workgroup to fully take effect the user may need to log out and log back in."
+msgid ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
+msgstr ""
+"The Windows networking workgroup or domain that the user is part of. In "
+"order for a new workgroup to fully take effect the user may need to log out "
+"and log back in."
 
 #~ msgid "Could not initialize Bonobo"
 #~ msgstr "Could not initialise Bonobo"
+
 #~ msgid "Could not initialize gnome vfs"
 #~ msgstr "Could not initialise gnome vfs"
+
 #~ msgid "Standard Moniker factory"
 #~ msgstr "Standard Moniker factory"
+
 #~ msgid "file MonikerExtender"
 #~ msgstr "file MonikerExtender"
+
 #~ msgid "generic Gnome VFS moniker"
 #~ msgstr "generic Gnome VFS moniker"
+
 #~ msgid "generic file moniker"
 #~ msgstr "generic file moniker"
+
 #~ msgid "The window workgroup the user is part of"
 #~ msgstr "The window workgroup the user is part of"
-
