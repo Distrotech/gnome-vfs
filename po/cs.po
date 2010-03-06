@@ -1,22 +1,23 @@
 # Czech translation of gnome-vfs.
 # Copyright (C) 2002, 2008 Free Software Foundation.
-# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>.
-# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gnome-vfs package.
+#
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
 # Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005.
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006.
 # Lucas Lommer <llommer@svn.gnome.org>. 2008
 # Petr Kovar <pknbe@volny.cz>, 2008.
+# Marek Černocký <marek@manet.cz>, 2010 (just fixes).
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-04 21:16+0100\n"
-"PO-Revision-Date: 2010-01-18 00:12+0100\n"
-"Last-Translator: Lucas Lommer <llommer@svn.gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2010-03-03 19:56+0000\n"
+"PO-Revision-Date: 2010-03-05 15:49+0100\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +56,7 @@ msgstr "%s:%u neobsahuje název modulu."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Soubor s nastavením \"%s\" nebyl nalezen: %s"
+msgstr "Soubor s nastavením „%s“ nebyl nalezen: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -721,7 +722,7 @@ msgstr "Nemohu najít master browser"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: ../libgnomevfs/gnome-vfs-result.c:89
 msgid "No default action associated"
-msgstr "Neasociována implicitní akce"
+msgstr "Neasociována výchozí akce"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:90
@@ -1074,7 +1075,7 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"K přístupu k \"%s\" se musíte přihlásit.\n"
+"K přístupu k „%s“ se musíte přihlásit.\n"
 "%s"
 
 #: ../programs/authentication.c:110
@@ -1097,15 +1098,15 @@ msgstr "K přístupu k %s se musíte přihlásit\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Implicitní aplikace prohlížeče komponent"
+msgstr "Výchozí aplikace prohlížeče komponent"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Implicitní aplikace terminálu"
+msgstr "Výchozí aplikace terminálu"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Argument exec pro implicitní terminál"
+msgstr "Argument exec pro výchozí terminál"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1123,12 +1124,12 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Implicitní aplikace terminálu, kterou používat pro aplikace, které vyžadují "
+"Výchozí aplikace terminálu, kterou používat pro aplikace, které vyžadují "
 "terminál."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Argument exec, který používat pro implicitní aplikaci terminálu."
+msgstr "Argument exec, který používat pro výchozí aplikaci terminálu."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1136,206 +1137,199 @@ msgstr "Spustit příkaz v terminálu"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"aim\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „aim“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"callto\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „callto“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „ghelp“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"h323\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „h323“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"http\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „http“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"https\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „https“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"info\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „info“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"mailto\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „mailto“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"man\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „man“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"trash\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL „trash“, je-li povolen."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Obsluha pro URL \"aim\""
+msgstr "Obsluha pro URL „aim“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "Obsluha pro URL \"callto\""
+msgstr "Obsluha pro URL „callto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Obsluha pro URL \"ghelp\""
+msgstr "Obsluha pro URL „ghelp“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "Obsluha pro URL \"h323\""
+msgstr "Obsluha pro URL „h323“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "Obsluha pro URL \"http\""
+msgstr "Obsluha pro URL „http“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "Obsluha pro URL \"https\""
+msgstr "Obsluha pro URL „https“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "Obsluha pro URL \"info\""
+msgstr "Obsluha pro URL „info“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Obsluha pro URL \"mailto\""
+msgstr "Obsluha pro URL „mailto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "Obsluha pro URL \"man\""
+msgstr "Obsluha pro URL „man“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Obsluha pro URL \"trash\""
+msgstr "Obsluha pro URL „trash“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"aim\"."
+msgstr "„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „aim“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"callto"
-"\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „callto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp"
-"\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „ghelp“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"h323\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „h323“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"http\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „http“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"https"
-"\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „https“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"info\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „info“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"mailto"
-"\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „mailto“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"man\"."
+msgstr "„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „man“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"\"True\", pokud má příkaz určený v klíči \"command\" obsluhovat URL \"trash"
-"\"."
+"„True“, pokud má příkaz určený v klíči „command“ obsluhovat URL „trash“."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"\"True\", pokud by měl být program používaný pro obsluhu tohoto typu URL "
+"„True“, pokud by měl být program používaný pro obsluhu tohoto typu URL "
 "spouštěn v terminálu."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"aim\""
+msgstr "Jestli má určený příkaz obsluhovat URL „aim“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"callto\""
+msgstr "Jestli má určený příkaz obsluhovat URL „callto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
+msgstr "Jestli má určený příkaz obsluhovat URL „ghelp“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"h323\""
+msgstr "Jestli má určený příkaz obsluhovat URL „h323“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"http\""
+msgstr "Jestli má určený příkaz obsluhovat URL „http“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"https\""
+msgstr "Jestli má určený příkaz obsluhovat URL „https“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"info\""
+msgstr "Jestli má určený příkaz obsluhovat URL „info“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"mailto\""
+msgstr "Jestli má určený příkaz obsluhovat URL „mailto“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"man\""
+msgstr "Jestli má určený příkaz obsluhovat URL „man“"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
+msgstr "Jestli má určený příkaz obsluhovat URL „trash“"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1343,7 +1337,7 @@ msgid ""
 "\"network:///\" location."
 msgstr ""
 "Čárkami oddělený seznam domén DNS-SD, které by měly být viditelné v umístění "
-"\"network:///\"."
+"„network:///“."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1355,7 +1349,7 @@ msgstr "Jak zobrazit místní službu DNS-SD"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Možné hodnoty jsou \"merged\", \"separate\" a \"disabled\"."
+msgstr "Možné hodnoty jsou „merged“, „separate“ a „disabled“."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1399,9 +1393,9 @@ msgid ""
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Je-li \"true\", vyžadují připojení k serveru proxy autentizaci. Kombinace "
-"jméno uživatele/heslo je definována v \"/system/http_proxy/"
-"authentication_user\" a \"/system/http_proxy/authentication_password\"."
+"Je-li „true“, vyžadují připojení k serveru proxy autentizaci. Kombinace "
+"jméno uživatele/heslo je definována v „/system/http_proxy/"
+"authentication_user“ a „/system/http_proxy/authentication_password“."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1436,8 +1430,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Vyberte režim nastavení proxy. Podporované hodnoty jsou \"none\", \"manual"
-"\", \"auto\"."
+"Vyberte režim nastavení proxy. Podporované hodnoty jsou „none“, „manual“, "
+"„auto“."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1460,23 +1454,23 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Port na počítači definovaném v \"/system/http_proxy/host\", který používat "
-"pro proxy."
+"Port na počítači definovaném v „/system/http_proxy/host“, který používat pro "
+"proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Port na počítači definovaném v \"/system/proxy/ftp_host\", který používat "
-"pro proxy."
+"Port na počítači definovaném v „/system/proxy/ftp_host“, který používat pro "
+"proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Port na počítači definovaném v \"/system/proxy/secure_host\", který používat "
+"Port na počítači definovaném v „/system/proxy/secure_host“, který používat "
 "pro proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
@@ -1484,7 +1478,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Port na počítači definovaném v \"/system/proxy/socks_host\", který používat "
+"Port na počítači definovaném v „/system/proxy/socks_host“, který používat "
 "pro proxy."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
@@ -1525,3 +1519,4 @@ msgstr ""
 "Pracovní skupina nebo doména Windows, jejímž členem je uživatel. Aby se "
 "úplně projevila nová pracovní skupina, uživatel se možná bude muset odhlásit "
 "a znovu přihlásit."
+
