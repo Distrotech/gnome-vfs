@@ -11,9 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 21:18+0100\n"
-"PO-Revision-Date: 2007-09-06 21:18+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2009-12-14 21:54+0000\n"
+"PO-Revision-Date: 2010-03-09 20:37+0100\n"
 "Last-Translator: Горан Ракић <grakic@devbase.net>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +65,7 @@ msgstr "%s:%d је прекинуо рашчлањивање."
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "AFFS Volume"
-msgstr "AFFS диск"
+msgstr "AFFS партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
 msgid "AFS Network Volume"
@@ -72,171 +73,195 @@ msgstr "Мрежни AFS диск"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
-msgstr "Самопрепознати диск"
+msgstr "Самопрепозната партиција"
 
+# bug: does it differentiate between Hurd Ext2 and Linux Ext2?
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+#| msgid "Ext2 Linux Volume"
+msgid "Btrfs Linux Volume"
+msgstr "Линуксова Btrfs партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "ЦД уређај"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "Музички диск"
 
 # bug(slobo): хм, не бих рекао
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "Диск на хардверском уређају"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
-msgstr "EncFS диск"
+msgstr "EncFS партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+#| msgid "Memory Volume"
+msgid "eCryptfs Volume"
+msgstr "eCryptfs партиција"
 
 # bug: does it differentiate between Hurd Ext2 and Linux Ext2?
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
-msgid "Ext2 Linux Volume"
-msgstr "Линукс Ext2 диск"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
-msgid "Ext3 Linux Volume"
-msgstr "Линукс Ext3 диск"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
-msgid "MSDOS Volume"
-msgstr "МСДОС диск"
+msgid "Ext2 Linux Volume"
+msgstr "Линуксова Екст2 партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
-msgid "BSD Volume"
-msgstr "БСД диск"
+msgid "Ext3 Linux Volume"
+msgstr "Линуксова Екст3 партиција"
 
+# bug: does it differentiate between Hurd Ext2 and Linux Ext2?
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
-msgid "FUSE Volume"
-msgstr "ФУСЕ јединица"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+#| msgid "Ext2 Linux Volume"
+msgid "Ext4 Linux Volume"
+msgstr "Линуксова Екст4 партиција"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+msgid "MSDOS Volume"
+msgstr "МСДОС партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "BSD Volume"
+msgstr "БСД партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+msgid "FUSE Volume"
+msgstr "ФУСЕ партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
-msgstr "МекОС диск"
+msgstr "МекОС партиција"
 
 # ЦеДе диск, а не „Компактни диск диск“
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "ЦД јединица"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs ЦД јединица"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
-msgid "JFS Volume"
-msgstr "ЈФС диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
-msgid "Windows NT Volume"
-msgstr "Windows NT диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
-msgid "System Volume"
-msgstr "Системски диск"
+msgid "JFS Volume"
+msgstr "ЈФС партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
-msgid "Memory Volume"
-msgstr "Меморијски диск"
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+msgid "Windows NT Volume"
+msgstr "Windows NT партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
-msgid "Minix Volume"
-msgstr "Миникс диск"
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+msgid "System Volume"
+msgstr "Системска партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+msgid "Memory Volume"
+msgstr "Меморијска партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+msgid "Minix Volume"
+msgstr "Миниксова партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
-msgstr "Диск мрежног система датотека"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
-msgid "Netware Volume"
-msgstr "Netware диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
-msgid "Reiser4 Linux Volume"
-msgstr "Линукс Рајзер4 диск"
+msgstr "Линуксова НФС партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
-msgid "ReiserFS Linux Volume"
-msgstr "Линукс РајзерФС диск"
+#| msgid "XFS Linux Volume"
+msgid "NILFS Linux Volume"
+msgstr "Линоксова NILFS партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+msgid "Netware Volume"
+msgstr "Нетвер партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+msgid "Reiser4 Linux Volume"
+msgstr "Линуксова Рајзер4 партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+msgid "ReiserFS Linux Volume"
+msgstr "Линуксова РајзерФС партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
-msgstr "Дељени Windows диск"
+msgstr "Дељениа Windows партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
-msgstr "SuperMount диск"
+msgstr "СуперМоунт партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "ДВД јединица"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
-msgid "Solaris/BSD Volume"
-msgstr "Соларис/БСД диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
-msgid "Udfs Solaris Volume"
-msgstr "Соларис Udfs диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
-msgid "Pcfs Solaris Volume"
-msgstr "Соларис Pcfs диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
-msgid "Sun SAM-QFS Volume"
-msgstr "Sun SAM-QFS диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
-msgid "Temporary Volume"
-msgstr "Привремени диск"
-
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
-msgid "Enhanced DOS Volume"
-msgstr "Унапређени DOS диск"
-
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
-msgid "Windows VFAT Volume"
-msgstr "Windows VFAT диск"
+msgid "Solaris/BSD Volume"
+msgstr "Соларис/БСД партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
-msgid "Xenix Volume"
-msgstr "Xenix диск"
+msgid "Udfs Solaris Volume"
+msgstr "Соларисова Udfs партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
-msgid "XFS Linux Volume"
-msgstr "Линукс XFS диск"
+msgid "Pcfs Solaris Volume"
+msgstr "Соларисова Pcfs партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
-msgid "XIAFS Volume"
-msgstr "XIAFS диск"
+msgid "Sun SAM-QFS Volume"
+msgstr "Санова SAM-QFS партиција"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
-msgid "CIFS Volume"
-msgstr "CIFS диск"
+msgid "Temporary Volume"
+msgstr "Привремена партиција"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
+msgid "Enhanced DOS Volume"
+msgstr "Унапређена DOS партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
+msgid "Windows VFAT Volume"
+msgstr "Windows VFAT партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
+msgid "Xenix Volume"
+msgstr "Xenix партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
+msgid "XFS Linux Volume"
+msgstr "Линуксова XFS партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
+msgid "XIAFS Volume"
+msgstr "XIAFS партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
+msgid "CIFS Volume"
+msgstr "CIFS партиција"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
-msgstr "Непознат"
+msgstr "Непозната"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
 #, c-format
 msgid "%s Volume"
-msgstr "%s диск"
+msgstr "%s партиција"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:372
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
@@ -432,22 +457,22 @@ msgstr "Уклоњиви %s диск"
 msgid "Volume"
 msgstr "Диск"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Непознат тип операције %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Не могу направити цевку за отворени GIOChannel: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Непозната врста посла %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "Радња је заустављена"
 
@@ -485,12 +510,12 @@ msgid ""
 msgstr ""
 "Превазиђена функција.  Измене корисника у МИМЕ бази више нису подржане."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не могу рашчланити: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "Остале грешке у обради ће бити занемарене."
 
@@ -878,34 +903,37 @@ msgstr "Фотоапарат"
 msgid "DVD"
 msgstr "ДВД"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Корени диск"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "Музички диск"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "Непознати диск"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "Мрежни сервер"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Не могу да прикључим дискету. Вероватно дискета није у уређају. "
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Не могу да прикључим диск. Вероватно нема носача у уређају. "
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -915,6 +943,7 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -923,6 +952,7 @@ msgstr ""
 "погрешна лозинка или кључ."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -939,6 +969,7 @@ msgid "Unable to mount the selected volume."
 msgstr "Не могу да прикључим изабрани диск."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -967,6 +998,7 @@ msgstr ""
 "процесу (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "Не могу да пошаљем лозинку процесу који прикључује"
 
