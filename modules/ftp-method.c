@@ -2678,7 +2678,12 @@ do_read_directory (GnomeVFSMethod *method,
 					res = GNOME_VFS_ERROR_TOO_MANY_LINKS;
 					break;
 				}
-				
+
+				if (symlink_info->symlink_name == NULL) {
+					res = GNOME_VFS_ERROR_BAD_PARAMETERS;
+					break;
+				}
+
 				symlink_name = gnome_vfs_escape_path_string (symlink_info->symlink_name);
 				gnome_vfs_file_info_clear (symlink_info);
 				
