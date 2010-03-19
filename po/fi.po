@@ -4,14 +4,15 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005.
 # Ilkka Tuohela <hile@iki.fi>, 2005.
+# Tommi Vainikainen <thv@iki.fi>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.4\n"
+"Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 17:25+0300\n"
-"PO-Revision-Date: 2006-07-24 12:03+0300\n"
-"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
+"POT-Creation-Date: 2010-03-19 23:50+0200\n"
+"PO-Revision-Date: 2010-03-19 23:50+0200\n"
+"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +51,7 @@ msgstr "%s:%u ei sisällä moduulin nimeä."
 #: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Asetustiedostoa \"%s\" ei löytynyt: %s"
+msgstr "Asetustiedostoa ”%s” ei löytynyt: %s"
 
 #. stop parsing if we failed
 #: ../libgnomevfs/gnome-vfs-configuration.c:382
@@ -71,157 +72,175 @@ msgid "Auto-detected Volume"
 msgstr "Automaattisesti tunnistunut taltio"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs-Linux-taltio"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "CD-ROM Drive"
 msgstr "CD-ROM-asema"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "CD Digital Audio"
 msgstr "CD-digitaaliääni"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "Laitetiedostotaltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 msgid "EncFS Volume"
 msgstr "EncFS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "eCryptfs-taltio"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Ext2 Linux Volume"
 msgstr "Ext2-Linux-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Ext3 Linux Volume"
 msgstr "Ext3-Linux-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
+msgid "Ext4 Linux Volume"
+msgstr "Ext4-Linux-taltio"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "MSDOS Volume"
 msgstr "MSDOS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:51
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "BSD Volume"
 msgstr "BSD-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "FUSE-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MacOS Volume"
 msgstr "MacOS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CDROM-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs CDROM -taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "JFS Volume"
 msgstr "JFS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows NT Volume"
 msgstr "Windows NT -taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
 msgid "System Volume"
 msgstr "Järjestelmätaltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "Memory Volume"
 msgstr "Muistitaltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Minix Volume"
 msgstr "Minix-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "NFS Network Volume"
 msgstr "NFS-verkkotaltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "NILFS-Linux-taltio"
+
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "Netware-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
 msgid "Reiser4 Linux Volume"
 msgstr "Reiser4-Linux-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS-Linux-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "Jaettu Windows-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
 msgid "SuperMount Volume"
 msgstr "SuperMount-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:76
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:77
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:78
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
 msgid "Udfs Solaris Volume"
 msgstr "Udfs-Solaris-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs-Solaris-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
 msgid "Sun SAM-QFS Volume"
 msgstr "Sun SAM-QFS -taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
 msgstr "Väliaikainen taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
 msgstr "Paranneltu DOS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
 msgstr "Windows-VFAT-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
 msgid "Xenix Volume"
 msgstr "Xenix-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
 msgid "XFS Linux Volume"
 msgstr "XFS-Linux-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
 msgid "XIAFS Volume"
 msgstr "XIAFS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
 msgid "CIFS Volume"
 msgstr "CIFS-taltio"
 
-#: ../libgnomevfs/gnome-vfs-filesystem-type.c:115
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -423,22 +442,22 @@ msgstr "%s irrotettava taltio"
 msgid "Volume"
 msgstr "Taltio"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "Tuntematon toimintotyyppi %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannelille ei voi luoda putkea: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tuntematon työtyyppi %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "Toiminta pysäytetty"
 
@@ -477,12 +496,12 @@ msgstr ""
 "Ei-suositeltu funktio. Käyttäjän tekemät MIME-tietokannan muutokset eivät "
 "enää toimi."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Ei voitu jäsentää: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "Mahdolliset seuraavat jäsennysvirheet jäävät huomiotta."
 
@@ -867,19 +886,19 @@ msgstr "Kamera"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Juuritaltio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "Ääni-CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "Tuntematon taltio"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "Verkkopalvelin"
 
@@ -1053,7 +1072,7 @@ msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
 msgstr ""
-"Pääsy kohteeseen \"%s\" vaatii kirjautumista.\n"
+"Pääsy kohteeseen ”%s” vaatii kirjautumista.\n"
 "%s"
 
 #: ../programs/authentication.c:110
@@ -1067,12 +1086,12 @@ msgstr "Salasanasi lähetetään salattuna."
 #: ../programs/authentication.c:163
 #, c-format
 msgid "You must log in to access %s domain %s\n"
-msgstr "Pääsy kohteeseen \"%s\" toimialueessa \"%s\" vaatii kirjautumisen\n"
+msgstr "Pääsy kohteeseen ”%s” toimialueessa ”%s” vaatii kirjautumisen\n"
 
 #: ../programs/authentication.c:165
 #, c-format
 msgid "You must log in to access %s\n"
-msgstr "Pääsy kohteeseen \"%s\" vaatii kirjautumisen\n"
+msgstr "Pääsy kohteeseen ”%s” vaatii kirjautumisen\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -1112,163 +1131,163 @@ msgstr "Suorita sovellus päätteessä"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "\"aim\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”aim”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "\"callto\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”callto”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "\"ghelp\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”ghelp”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "\"h323\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”h323”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "\"http\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”http”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "\"https\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”https”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "\"info\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”info”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "\"mailto\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”mailto”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "\"man\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”man”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "\"trash\"-tyyppiset URL:t käsittelevä komento, jos käytössä."
+msgstr "”trash”-tyyppiset URL:t käsittelevä komento, jos käytössä."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "\"aim\"-URL:ien käsittelykomento"
+msgstr "”aim”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "\"callto\"-URL:ien käsittelykomento"
+msgstr "”callto”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "\"ghelp\"-URL:ien käsittelykomento"
+msgstr "”ghelp”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "\"h323\"-URL:ien käsittelykomento"
+msgstr "”h323”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "\"http\"-URL:ien käsittelykomento"
+msgstr "”http”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "\"https\"-URL:ien käsittelykomento"
+msgstr "”https”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "\"info\"-URL:ien käsittelykomento"
+msgstr "”info”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "\"mailto\"-URL:ien käsittelykomento"
+msgstr "”mailto”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "\"man\"-URL:ien käsittelykomento"
+msgstr "”man”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "\"trash\"-URL:ien käsittelykomento"
+msgstr "”trash”-URL:ien käsittelykomento"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"aim\"-tyyppisiä "
-"URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”aim”-tyyppisiä URL:"
+"eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"callto\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”callto”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"ghelp\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”ghelp”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"h323\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”h323”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"http\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”http”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"https\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”https”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"info\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”info”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"mailto\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”mailto”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"man\"-tyyppisiä "
-"URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”man”-tyyppisiä URL:"
+"eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Tosi, jos avaimessa \"command\" annettu komento käsittelee \"trash\"-"
-"tyyppisiä URL:eja."
+"Tosi, jos avaimessa ”command” annettu komento käsittelee ”trash”-tyyppisiä "
+"URL:eja."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1280,43 +1299,43 @@ msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Käsitteleekö annettu komento \"aim\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”aim”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Käsitteleekö annettu komento \"callto\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”callto”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Käsitteleekö annettu komento \"ghelp\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”ghelp”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Käsitteleekö annettu komento \"h323\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”h323”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Käsitteleekö annettu komento \"http\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”http”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Käsitteleekö annettu komento \"https\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”https”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Käsitteleekö annettu komento \"info\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”info”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Käsitteleekö annettu komento \"mailto\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”mailto”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Käsitteleekö annettu komento \"man\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”man”-URL:eja"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Käsitteleekö annettu komento \"trash\"-URL:eja"
+msgstr "Käsitteleekö annettu komento ”trash”-URL:eja"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1324,7 +1343,7 @@ msgid ""
 "\"network:///\" location."
 msgstr ""
 "Pilkuilla eroteltu luettelo DNS-SD-verkkoalueista, jotka näkyvät sijainnissa "
-"\"network:///\"."
+"”network:///”."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1337,8 +1356,8 @@ msgstr "Miten paikallinen DNS-SD-palvelu näkyy"
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
-"Mahdollisia arvoja ovat \"merged\" (yhdessä), \"separate\" (erillinen) ja "
-"\"disabled\" (ei käytössä)."
+"Mahdollisia arvoja ovat ”merged” (yhdessä), ”separate” (erillinen) ja "
+"”disabled” (ei käytössä)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1384,8 +1403,8 @@ msgid ""
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Jos tosi, yhteydet välipalvelimeen vaativat todennuksen. Käyttäjätunnus-"
-"salasana-yhdistelmän määrittelevät avaimet \"/system/http_proxy/"
-"authentication_user\" ja \"/system/http_proxy/authentication_password\"."
+"salasana-yhdistelmän määrittelevät avaimet ”/system/http_proxy/"
+"authentication_user” ja ”/system/http_proxy/authentication_password”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1420,8 +1439,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Valitse välipalvelimen asetustapa. Mahdolliset arvot ovat \"none\" (ei "
-"mikään), \"manual\" (asetukset käsin), \"auto\" (automaattinen)."
+"Valitse välipalvelimen asetustapa. Mahdolliset arvot ovat ”none” (ei "
+"mikään), ”manual” (asetukset käsin), ”auto” (automaattinen)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1444,32 +1463,32 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/"
-"http_proxy/host\"."
+"Välipalvelinportti koneella, joka on määritelty avaimessa ”/system/"
+"http_proxy/host”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
-"ftp_host\"."
+"Välipalvelinportti koneella, joka on määritelty avaimessa ”/system/proxy/"
+"ftp_host”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
-"secure_host\"."
+"Välipalvelinportti koneella, joka on määritelty avaimessa ”/system/proxy/"
+"secure_host”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Välipalvelinportti koneella, joka on määritelty avaimessa \"/system/proxy/"
-"socks_host\"."
+"Välipalvelinportti koneella, joka on määritelty avaimessa ”/system/proxy/"
+"socks_host”."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
