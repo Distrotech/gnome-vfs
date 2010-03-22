@@ -1,16 +1,16 @@
-# translation of gnome-vfs.HEAD.po to Basque
-# Copyright (C) 2001, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# translation of eu.po to Basque
+# Copyright (C) 2001, 2004, 2005, 2006, 2007, 2010 Free Software Foundation, Inc.
 #
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006, 2010.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-27 16:14+0100\n"
-"PO-Revision-Date: 2007-12-27 16:14+0100\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"PO-Revision-Date: 2010-03-22 12:52+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -396,7 +396,7 @@ msgstr "DVD-RW diskoa"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
-msgstr "DVD+R disko grabia"
+msgstr "DVD+R disko garbia"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:555
 msgid "DVD+R Disc"
@@ -404,7 +404,7 @@ msgstr "DVD+R diskoa"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
 msgid "Blank DVD+RW Disc"
-msgstr "DVD+RW disko grabia"
+msgstr "DVD+RW disko garbia"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
 msgid "DVD+RW Disc"
@@ -704,7 +704,7 @@ msgstr "Ez dago asoziatutako ekintza lehenetsirik"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: ../libgnomevfs/gnome-vfs-result.c:90
 msgid "No handler for URL scheme"
-msgstr "Ez dago URL eskemarako kudeatzailearik"
+msgstr "Ez dago URL eskemarako kudeatzailerik"
 
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
@@ -1048,7 +1048,7 @@ msgstr ""
 
 #: ../programs/authentication.c:110
 msgid "Your password will be transmitted unencrypted."
-msgstr "Pasahitza enkripatu gabe transmitituko da."
+msgstr "Pasahitza enkriptatu gabe transmitituko da."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
@@ -1066,7 +1066,7 @@ msgstr "Saioa hasi behar duzu %s(e)n sartzeko\n"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Osagai lehenetsia, bistaratzaile aplikazioarena."
+msgstr "Osagaien ikustaile lehenetsia"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
@@ -1085,7 +1085,7 @@ msgid ""
 msgstr ""
 "Fitxategiak bistaratzeko eta hauek ikusteko behar duen osagaia eskatzen duen "
 "aplikazioa. %s parametroa fitxategiaren URIagatik, eta %c parametroa IID "
-"osagaiatik ordeztuko dira."
+"osagaiagatik ordeztuko dira."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
