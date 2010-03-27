@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 12:44+0100\n"
-"PO-Revision-Date: 2010-03-22 12:50+0100\n"
+"POT-Creation-Date: 2010-03-27 12:55+0100\n"
+"PO-Revision-Date: 2010-03-27 12:55+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -904,7 +904,8 @@ msgstr "Sareko zerbitzaria"
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 #, c-format
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 
 #. All others
@@ -974,7 +975,8 @@ msgstr "Ezin izan da muntatze-prozesua exekutatu 'pty' batean"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr "Ustekabeko errorea select() funtzioan ume-prozesutik (%s) datuak irakurtzean"
+msgstr ""
+"Ustekabeko errorea select() funtzioan ume-prozesutik (%s) datuak irakurtzean"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 #, c-format
@@ -1292,7 +1294,8 @@ msgstr ""
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
+msgstr ""
+"Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1491,8 +1494,8 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Gako honek zuzenean konektatzen diren hostalarien zerrenda dauka, proxy-aren "
-"bitartez egin beharrean (nahiz eta abioan egon). Balioak hostalarien izenak, "
+"Gako honek zuzenean konektatzen diren ostalarien zerrenda dauka, proxy-aren "
+"bitartez egin beharrean (nahiz eta abioan egon). Balioak ostalarien izenak, "
 "domeinuak (*.lelo.com bezalako hasierako komodina erabiliz), IP helbideak "
 "(bai IPv4 bai IPv6) eta sareko helbideak, sare-maskarekin, (192.168.0.0/24 "
 "bezalakoak)."
@@ -1522,4 +1525,3 @@ msgstr ""
 "Erabiltzailea harpidetuta dagoen Windows sareko lan-taldea edo domeinua. Lan-"
 "talde berri batek erabateko eragina edukitzeko erabiltzaileak saioa amaitu "
 "eta berriro saioa hasi beharko du."
-
