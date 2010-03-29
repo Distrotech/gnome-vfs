@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.11.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-01 20:44+0200\n"
-"PO-Revision-Date: 2009-09-29 00:40+0200\n"
+"POT-Creation-Date: 2010-03-29 20:37+0200\n"
+"PO-Revision-Date: 2010-03-29 20:57+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -629,7 +629,7 @@ msgstr "S'han trobat enllaços amb bucles"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
-msgstr "La operació no es permet"
+msgstr "L'operació no es permet"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -664,7 +664,7 @@ msgstr "Ha fallat l'entrada"
 #. GNOME_VFS_ERROR_CANCELLED
 #: ../libgnomevfs/gnome-vfs-result.c:78
 msgid "Operation cancelled"
-msgstr "S'ha cancel·lat la operació"
+msgstr "S'ha cancel·lat l'operació"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: ../libgnomevfs/gnome-vfs-result.c:79
@@ -1166,7 +1166,7 @@ msgstr "L'ordre utilitzada per a gestionar URL «https», si estan habilitades."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "L'ordre utilitzada per a gestionar URL «info», si estan habilitades"
+msgstr "L'ordre utilitzada per a gestionar URL «info», si estan habilitades."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
@@ -1182,43 +1182,43 @@ msgstr "L'ordre utilitzada per a gestionar URL «trash», si estan habilitades."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "El gestor per a les URL «aim»"
+msgstr "El gestor per a els URL «aim»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "El gestor per a les URL «callto»"
+msgstr "El gestor per a els URL «callto»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "El gestor per a les URL «ghelp»"
+msgstr "El gestor per a els URL «ghelp»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "El gestor per a les URL «h323»"
+msgstr "El gestor per a els URL «h323»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "El gestor per a les URL «http»"
+msgstr "El gestor per a els URL «http»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "El gestor per a les URL «https»"
+msgstr "El gestor per a els URL «https»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "El gestor per a les URL «info»"
+msgstr "El gestor per a els URL «info»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "El gestor per a les URL «mailto»"
+msgstr "El gestor per a els URL «mailto»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "El gestor per a les URL «man»"
+msgstr "El gestor per a els URL «man»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "El gestor per a les URL «trash»"
+msgstr "El gestor per a els URL «trash»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1226,7 +1226,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «aim»."
+"els URL «aim»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
@@ -1234,7 +1234,7 @@ msgid ""
 "\" URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «callto»."
+"els URL «callto»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
@@ -1242,7 +1242,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «ghelp»."
+"els URL «ghelp»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
@@ -1250,7 +1250,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «h323»."
+"els URL «h323»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
@@ -1258,7 +1258,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «http»."
+"els URL «http»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
@@ -1266,7 +1266,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «https»."
+"els URL «https»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1274,7 +1274,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «info»."
+"els URL «info»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
@@ -1282,7 +1282,7 @@ msgid ""
 "\" URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «mailto»."
+"els URL «mailto»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
@@ -1290,7 +1290,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «man»."
+"els URL «man»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
@@ -1298,7 +1298,7 @@ msgid ""
 "URLs."
 msgstr ""
 "Vertader si el programa especificat en la clau «command» hauria de gestionar "
-"les URL «trash»."
+"els URL «trash»."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1310,43 +1310,43 @@ msgstr ""
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «aim»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «aim»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «callto»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «callto»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «ghelp»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «ghelp»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «h323»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «h323»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «http»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «http»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «https»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «https»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «info»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «info»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «mailto»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «mailto»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «man»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «man»"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Si l'ordre especificada hauria de gestionar les URL «trash»"
+msgstr "Si l'ordre especificada hauria de gestionar els URL «trash»"
 
 #: ../schemas/system_dns_sd.schemas.in.h:1
 msgid ""
