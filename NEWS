@@ -1,3 +1,7 @@
+gnome-vfs 2.24.3
+	  * Don't crash if we get a NULL symlink
+	  * Updated translations
+
 gnome-vfs 2.24.2
 	  * Add some new filesystem names
 	  * Update to new shared mime info format
