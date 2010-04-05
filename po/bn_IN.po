@@ -1,20 +1,21 @@
 # translation of bn_IN.po to Bengali INDIA
 # Bengali India Translation of GNOME-vfs
-# Copyright (C) 1999, 2000, 01, 02, 2006, 2008 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 01, 02, 2006, 2008, 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the GNOME-vfs package.
 #
 # Sayamindu Dasgupta <unmadindu@Softhome.net>, 2003.
 # Mahay Alam Khan <makl10n@yahoo.com>, 2005.
 # Samia Niamatullah <mailsamia2001@yahoo.com>, 2005.
-# Runa Bhattacharjee <runab@redhat.com>, 2008.
+# Runa Bhattacharjee <runab@redhat.com>, 2008, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2008-09-10 10:22+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"vfs&component=general\n"
+"POT-Creation-Date: 2010-03-22 11:46+0000\n"
+"PO-Revision-Date: 2010-04-05 20:05+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
-"Language-Team: Bengali INDIA <fedora-trans-bn_IN@redhat.com>\n"
+"Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -429,22 +430,22 @@ msgstr "%s অপসারণযোগ্য ভলিউম"
 msgid "Volume"
 msgstr "ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "অজানা ধরনের কর্ম %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "খোলা GIOChannel'র ক্ষেত্রে পাইপ নির্মাণ করতে ব্যর্থ: %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "অজানা ধরনের কর্ম %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "কর্ম বন্ধ করা হয়েছে"
 
@@ -480,14 +481,15 @@ msgstr "কর্ম বন্ধ করা হয়েছে"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "অবচিত কর্ম।  MIME ডাটাবেসে ব্যবহারকারীদের দ্বারা পরিবর্তন বর্তমানে সমর্থিত নয়।"
+msgstr ""
+"অবচিত কর্ম।  MIME ডাটাবেসে ব্যবহারকারীদের দ্বারা পরিবর্তন বর্তমানে সমর্থিত নয়।"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:720
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "পার্স করতে ব্যর্থ: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:722
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "পার্স কর্মজড়িত ত্রুটি অতিরিক্ত ত্রুটি অগ্রাহ্য করা হবে।"
 
@@ -872,33 +874,37 @@ msgstr "ক্যামেরা"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "Root ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "অডিও CD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "অজানা ভলিউম"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "নেটওয়ার্ক সার্ভার"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+#, c-format
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব্যর্থ। সম্ভবত ড্রাইভের মধ্যে ফ্লপি অনুপস্থিত।"
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ডিভাইসের মধ্যে কোনো মিডিয়া উপস্থিত নেই।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -906,6 +912,7 @@ msgstr "ফ্লপি ড্রাইভ মাউন্ট করতে ব�
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
@@ -914,10 +921,12 @@ msgstr ""
 "প্রয়োগ করা হয়েছে।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ভলিউমের বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
+msgstr ""
+"নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ। সম্ভবত ভলিউমের বিন্যাস মাউন্ট করার উপযুক্ত নয়।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -928,6 +937,7 @@ msgid "Unable to mount the selected volume."
 msgstr "নির্বাচিত ভলিউম মাউন্ট করতে ব্যর্থ।"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
@@ -954,6 +964,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "চাইল্ড প্রসেস থেকে select() দ্বারা তথ্য পড়তে অপ্রত্যাশিত সমস্যা (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "মাউন্ট কর্মের জন্য পাসওয়ার্ড প্রেরণ করতে ব্যর্থ।"
 
@@ -1071,11 +1082,11 @@ msgstr "কম্পোনেন্ট প্রদর্শনের ডিফ�
 
 #: ../schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "ডিফল্ট টার্মিনাল অ্যাপ্লিকেশন"
+msgstr "ডিফল্ট টার্মিন্যাল অ্যাপ্লিকেশন"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "ডিফল্ট টার্মিনালের জন্য exec আর্গুমেন্ট"
+msgstr "ডিফল্ট টার্মিন্যালের জন্য exec আর্গুমেন্ট"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -1092,15 +1103,16 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "আবশ্যকরূপে টার্মিনাল প্রয়োগকারী অ্যাপ্লিকেশনগুলির দ্বারা ব্যবহারযোগ্য ডিফল্ট টার্মিনাল।"
+msgstr ""
+"আবশ্যকরূপে টার্মিন্যাল প্রয়োগকারী অ্যাপ্লিকেশনগুলির দ্বারা ব্যবহারযোগ্য ডিফল্ট টার্মিন্যাল।"
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "ডিফল্ট টার্মিনাল অ্যাপ্লিকেশনের জন্য ব্যবহারযোগ্য exec আর্গুমেন্ট।"
+msgstr "ডিফল্ট টার্মিন্যাল অ্যাপ্লিকেশনের জন্য ব্যবহারযোগ্য exec আর্গুমেন্ট।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
-msgstr "টার্মিনালে কমান্ড চালানো হবে"
+msgstr "টার্মিন্যালে কমান্ড চালানো হবে"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
@@ -1186,67 +1198,77 @@ msgstr "\"trash\" URL ব্যবস্থাপনার হ্যান্ড
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"aim\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"aim\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "\"command\" কি'র দ্বারা \"callto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"callto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"ghelp\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"ghelp\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"h323\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"h323\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"http\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"http\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"https\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"https\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"info\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"info\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "\"command\" কি'র দ্বারা \"mailto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"mailto\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"man\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"man\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "\"command\" কি'র দ্বারা \"trash\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
+msgstr ""
+"\"command\" কি'র দ্বারা \"trash\" URL ব্যবস্থাপনা নির্ধারিত হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "এই ধরনের URL ব্যবস্থাকারী কমান্ড টার্মিনালে চালানো হলে মান true (সত্য)।"
+msgstr "এই ধরনের URL ব্যবস্থাকারী কমান্ড টার্মিন্যালে চালানো হলে মান true (সত্য)।"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1319,7 +1341,8 @@ msgstr "স্বয়ংক্রিয় প্রক্সি কনফিগা�
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "ইন্টারনেটের মাধ্যমে HTTP ব্যবহারের সময় প্রক্সি সংক্রান্ত বৈশিষ্ট্য সক্রিয় করা হবে"
+msgstr ""
+"ইন্টারনেটের মাধ্যমে HTTP ব্যবহারের সময় প্রক্সি সংক্রান্ত বৈশিষ্ট্য সক্রিয় করা হবে"
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1479,3 +1502,46 @@ msgstr ""
 "ব্যবহারকারী যে Windows নেটওয়ার্কিং ওয়ার্কগ্রুপ অথবা ডোমেইনের অংশ। নতুন ওয়ার্কগ্রুপ "
 "সম্পূর্ণরূপে সক্রিয় করার জন্য ব্যবহারকারীকে সম্ভবত লগ-আউট করে পুনরায় লগ-ইন করতে হবে।"
 
+#~ msgid "Btrfs Linux Volume"
+#~ msgstr "Btrfs Linux ভলিউম"
+
+#~ msgid "eCryptfs Volume"
+#~ msgstr "eCryptfs ভলিউম"
+
+#~ msgid "Ext4 Linux Volume"
+#~ msgstr "Ext4 Linux ভলিউম"
+
+#~ msgid "NILFS Linux Volume"
+#~ msgstr "NILFS Linux ভলিউম"
+
+#~ msgid "Default media application"
+#~ msgstr "ডিফল্ট মিডিয়া অ্যাপ্লিকেশন"
+
+#~ msgid "Exec argument for default media application"
+#~ msgstr "ডিফল্ট মিডিয়া অ্যাপ্লিকেশনের জন্য exec আর্গুমেন্ট"
+
+#~ msgid "The default media application to use when media buttons are pressed."
+#~ msgstr "মিডিয়ার বাটনগুলি টেপা হলে ব্যবহারযোগ্য ডিফল্ট মিডিয়া অ্যাপ্লিকেশন।"
+
+#~ msgid "The exec argument to use for the default media application."
+#~ msgstr "ডিফল্ট মিডিয়া অ্যাপ্লিকেশনের জন্য ব্যবহারযোগ্য exec আর্গুমেন্ট।"
+
+#~ msgid "Handle about URLs"
+#~ msgstr "URL সংক্রান্ত হ্যান্ডেল"
+
+#~ msgid "Run program in terminal"
+#~ msgstr "টার্মিন্যালের মধ্যে প্রোগ্রাম চালানো হবে"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in \"command\" handle about URLs."
+#~ msgstr ""
+#~ "URL সংক্রান্ত \"command\" হ্যান্ডেলের জন্য প্রোগ্রাম চিহ্নিত করতে মান true "
+#~ "নির্ধারণ করুন"
+
+#~ msgid "True if the program to handle this URL should be run in a terminal."
+#~ msgstr ""
+#~ "এই ধরনের URL পরিচালনকারী প্রোগ্রামটি টার্মিন্যালের মধ্যে সঞ্চালনার জন্য মান True "
+#~ "ধার্য করুন।"
+
+#~ msgid "about URL handler"
+#~ msgstr "URL হ্যান্ডলার পরিচিতি"
