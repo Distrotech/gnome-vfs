@@ -1,21 +1,22 @@
-# translation of gnome-vfs.HEAD.mr.po to marathi
-# Copyright (C) 2003 Jitendra Shah
+# translation of mr.po to Marathi
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 #
-# Swapnil Hajare <dreamil1000a@yahoo.com>, 2003.
-# sandeep shedmake <sandeep.shedmake@gmail.com>, 2008.
+# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2008, 2009.
+# Sandeep Shedmake <sshedmak@redhat.com>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD.mr\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:37+0100\n"
-"PO-Revision-Date: 2008-01-22 18:50+0530\n"
-"Last-Translator: sandeep shedmake <sandeep.shedmake@gmail.com>\n"
-"Language-Team: marathi\n"
+"Project-Id-Version: mr\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-vfs&component=general\n"
+"POT-Creation-Date: 2010-04-05 14:34+0000\n"
+"PO-Revision-Date: 2010-04-13 17:17+0530\n"
+"Last-Translator: Sandeep Shedmake <sshedmak@redhat.com>\n"
+"Language-Team: Marathi <maajhe-sanganak@freelists.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 
 #: ../libgnomevfs/gnome-vfs-cdrom.c:237
 msgid "ISO 9660 Volume"
@@ -294,7 +295,7 @@ msgstr "%s ड्राइव्ह"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:406
 msgid "Floppy Drive"
-msgstr "फ्लॉपी ड्राईव्ह"
+msgstr "फ्लॉपी ड्राइव्ह"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:409
 msgid "Compact Flash Drive"
@@ -310,7 +311,7 @@ msgstr "स्मार्ट मिडीया ड्राईव्ह"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
 msgid "SD/MMC Drive"
-msgstr "SD/MMC ड्राईव्ह"
+msgstr "SD/MMC ड्राइव्ह"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
@@ -347,7 +348,7 @@ msgstr "बाहेरील %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:508
 msgid "CD-ROM Disc"
-msgstr "सीडी-रॉम डिस्क"
+msgstr "CD-ROM डिस्क"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
@@ -422,22 +423,22 @@ msgstr "%s Removable खंड"
 msgid "Volume"
 msgstr "खंड"
 
-#: ../libgnomevfs/gnome-vfs-job.c:734
+#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
 msgid "Unknown operation type %u"
 msgstr "अज्ञात कार्यपध्दती प्रकार %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1025 ../libgnomevfs/gnome-vfs-job.c:1176
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुल्या GIO चैनलसाठी पाइप निर्मित नाही करू  शकत : %s"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1692
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1725
+#: ../libgnomevfs/gnome-vfs-job.c:1724
 msgid "Operation stopped"
 msgstr "प्रक्रिया थांबवीली आहे"
 
@@ -474,12 +475,12 @@ msgid ""
 "supported."
 msgstr "कार्यपध्दती वापरणीत नाही.  MIME माहीतीकोश मधील वापरकर्ता  बदलांना पाठींबा नाही."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
 msgid "Could not parse: %s"
 msgstr "वाचू शकत नाही: %s"
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:717
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:715
 msgid "More parsing errors will be ignored."
 msgstr "अधिक वाचन त्रुटींना दुर्लक्षित केले जाईल."
 
@@ -777,7 +778,7 @@ msgstr "(अवैध युनिकोड)"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
-msgstr "फ्लॉपी"
+msgstr "फ्लॉपी डिस्क"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
@@ -864,33 +865,36 @@ msgstr "कैमेरा"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:846
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
 msgstr "रूट प्रमाण"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:927
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:930
 msgid "Audio CD"
 msgstr "श्राव्य सीडी"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:960
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:963
 msgid "Unknown volume"
 msgstr "अपरिचीत खंड"
 
-#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1172
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1175
 msgid "Network server"
 msgstr "महाजाल सर्वर"
 
 #. Handle floppy case
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:184
+#, c-format
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "फ्लॉपी ड्राइव्ह आरोहीत करता येत नाही. कदाचित ड्राईव्हमध्ये फ्लॉपी नाही."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
+#, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "खंड आरोहीत करता येत नाही. कदाचित यंत्रमध्ये माध्यम नाही."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
+#, c-format
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -900,20 +904,22 @@ msgstr ""
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
+#, c-format
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"खंड आरोहीत करता येत नाही. कदाचित ही फ्लॉपी ज्या स्वरूपात आहे त्या स्थितीत "
-"आरोहीत करता येणार नाही."
+"खंड आरोहीत करता येत नाही. कदाचित ही फ्लॉपी ज्या स्वरूपात आहे त्या स्थितीत आरोहीत करता "
+"येणार नाही."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
+#, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"निवडलेले खंड आरोहीत करता येत नाही. कदाचित खंड ज्या स्वरूपात आहे त्या स्थितीत आरोहीत करता "
-"येत नाही."
+"निवडलेले खंड आरोहीत करता येत नाही. कदाचित खंड ज्या स्वरूपात आहे त्या स्थितीत आरोहीत "
+"करता येत नाही."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -924,10 +930,13 @@ msgid "Unable to mount the selected volume."
 msgstr "निवडलेले खंड आरोहीत करता येत नाही."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+#, c-format
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr "निवडलेले आवाज अनारोहीत करता येत नाही. कदाचीत खंड एका पेक्षा जास्त अनुप्रयोग द्वारे वापरणीत आहे."
+msgstr ""
+"निवडलेले आवाज अनारोहीत करता येत नाही. कदाचीत खंड एका पेक्षा जास्त अनुप्रयोग द्वारे "
+"वापरणीत आहे."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -948,6 +957,7 @@ msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "उप कार्य (%s) पासून माहिती वाचतेवेळी select() मध्ये अपरिचीत त्रूटी आढळली"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+#, c-format
 msgid "Couldn't send password to mount process."
 msgstr "कार्यपध्दतीकडे गुप्तशब्द पाठवू शकले नाही."
 
@@ -971,7 +981,7 @@ msgstr "जोडलेला सर्वर अनारोहीत करत
 
 #: ../modules/computer-method.c:543
 msgid "Network"
-msgstr "संजाळ"
+msgstr "नेटवर्क"
 
 #: ../modules/computer-method.c:561
 msgid "Home"
@@ -988,7 +998,7 @@ msgstr "अपरिचीत GnomeVFSSeekPosition %d"
 
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
-msgstr "Windows संजाळ"
+msgstr "Windows नेटवर्क"
 
 #: ../modules/sftp-method.c:1424
 #, c-format
@@ -1010,7 +1020,7 @@ msgstr ""
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
-msgstr "कसेही करून दाखलन करा"
+msgstr "कसेही करून दाखल करा"
 
 #: ../modules/sftp-method.c:1434
 msgid "Cancel Login"
@@ -1078,8 +1088,8 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"घटकाची आवश्यकता लागत असणाऱ्या फाइलला पहाण्याकरीताचे अनुप्रयोग. घटक %s फाइलच्या URI बदलविले जाईल, बाब %c "
-"घटकाच्या IID शी बदलविले जाईल."
+"घटकाची आवश्यकता लागत असणाऱ्या फाइलला पहाण्याकरीताचे अनुप्रयोग. घटक %s फाइलच्या URI "
+"बदलविले जाईल, बाब %c घटकाच्या IID शी बदलविले जाईल."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -1401,25 +1411,33 @@ msgstr "पर्यायी सॉक्स साठी यात्रिक
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "संगणकावरील स्थान जे यंत्रणा \"/system/http_proxy/host\" द्वारे पर्यायासाठी तुम्ही वापरू शकता."
+msgstr ""
+"संगणकावरील स्थान जे यंत्रणा \"/system/http_proxy/host\" द्वारे पर्यायासाठी तुम्ही वापरू "
+"शकता."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "संगणकावरील स्थान जे यंत्रणा \"/system/proxy/ftp_host\"  द्वारे पर्यायासाठी तुम्ही वापरू शकता."
+msgstr ""
+"संगणकावरील स्थान जे यंत्रणा \"/system/proxy/ftp_host\"  द्वारे पर्यायासाठी तुम्ही वापरू "
+"शकता."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "संगणकावरील स्थान जे यंत्रणा \"/system/proxy/secure_host\" द्वारे पर्यायासाठी तुम्ही वापरू शकता."
+msgstr ""
+"संगणकावरील स्थान जे यंत्रणा \"/system/proxy/secure_host\" द्वारे पर्यायासाठी तुम्ही "
+"वापरू शकता."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "संगणकावरील स्थान जे यंत्रणा  \"/system/proxy/socks_host\"  द्वारे पर्यायासाठी तुम्ही वापरू शकता."
+msgstr ""
+"संगणकावरील स्थान जे यंत्रणा  \"/system/proxy/socks_host\"  द्वारे पर्यायासाठी तुम्ही "
+"वापरू शकता."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1427,7 +1445,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "या किल्लीत प्रत्यक्षरित्या जुळलेली यजमानची यादी, प्रॉक्सीच्या (सक्रीय असल्यास) ऐवजी समाविष्टीत आहे. मुल्य यजमाननाव, क्षेत्र (प्रारंभीक वाईल्डकार्ड जसे की *.foo.com), IP यजमान पत्ता (दोन्ही IPv4 व IPv6) व संजाळ पत्ता सह नेटमास्क (काहितरी यासारखे 192.168.0.0/24)."
+msgstr ""
+"या किल्लीत प्रत्यक्षरित्या जुळलेली यजमानची यादी, प्रॉक्सीच्या (सक्रीय असल्यास) ऐवजी "
+"समाविष्टीत आहे. मुल्य यजमाननाव, क्षेत्र (प्रारंभीक वाईल्डकार्ड जसे की *.foo.com), IP "
+"यजमान पत्ता (दोन्ही IPv4 व IPv6) व संजाळ पत्ता सह नेटमास्क (काहितरी यासारखे "
+"192.168.0.0/24)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
