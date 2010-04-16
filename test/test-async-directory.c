@@ -24,6 +24,8 @@
 #include <config.h>
 
 #include <glib.h>
+#include <glib/gprintf.h>
+
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>
