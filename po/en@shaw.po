@@ -4,10 +4,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metacity\n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2009-11-06 19:17+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-vfs&component=general\n"
+"POT-Creation-Date: 2010-04-22 22:48+0000\n"
+"PO-Revision-Date: 2010-05-12 18:36 -0400\n"
 "Last-Translator: Thomas Thurman <tthurman@gnome.org>\n"
-"Language-Team: Shavian <ubuntu-l10n-en-shaw@lists.launchpad.net>\n"
+"Language-Team: Shavian <ubuntu-l10n-en-shaw@launchpad.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,35 +18,60 @@ msgstr ""
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 𐑝𐑪𐑤𐑿𐑥"
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:242
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:225
+msgid "%s:%u contains NUL characters."
+msgstr "%s:%u 𐑒𐑩𐑯𐑑𐑱𐑯𐑟 𐑯𐑴 𐑥𐑧𐑔𐑩𐑛 𐑯𐑱𐑥."
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:242
 msgid "%s:%u contains no method name."
 msgstr "%s:%u 𐑒𐑩𐑯𐑑𐑱𐑯𐑟 𐑯𐑴 𐑥𐑧𐑔𐑩𐑛 𐑯𐑱𐑥."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:293
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:282
+msgid "%s:%u has no options endmarker."
+msgstr "%s:%u 𐑣𐑨𐑟 𐑳𐑯𐑴𐑯 𐑪𐑐𐑖𐑩𐑯𐑟 %s."
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:293
 msgid "%s:%u has unknown options %s."
 msgstr "%s:%u 𐑣𐑨𐑟 𐑳𐑯𐑴𐑯 𐑪𐑐𐑖𐑩𐑯𐑟 %s."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:312
 #, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:312
 msgid "%s:%u contains no module name."
 msgstr "%s:%u 𐑒𐑩𐑯𐑑𐑱𐑯𐑟 𐑯𐑴 𐑥𐑪𐑛𐑿𐑤 𐑯𐑱𐑥."
 
-#: ../libgnomevfs/gnome-vfs-configuration.c:363
 #, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:363
 msgid "Configuration file `%s' was not found: %s"
 msgstr "𐑒𐑩𐑯𐑓𐑦𐑜𐑘𐑼𐑱𐑖𐑩𐑯 𐑓𐑲𐑤 `%s' 𐑢𐑪𐑟 𐑯𐑪𐑑 𐑓𐑬𐑯𐑛: %s"
 
 #. stop parsing if we failed
-#: ../libgnomevfs/gnome-vfs-configuration.c:382
 #, c-format
+#: ../libgnomevfs/gnome-vfs-configuration.c:382
 msgid "%s:%d aborted parsing."
 msgstr "%s:%d 𐑩𐑚𐑹𐑑𐑩𐑛 𐑐𐑸𐑕𐑦𐑙."
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:39
+msgid "AFFS Volume"
+msgstr "AFFS 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:40
+msgid "AFS Network Volume"
+msgstr "AFS 𐑯𐑧𐑑𐑢𐑻𐑒 𐑝𐑪𐑤𐑿𐑥"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "Auto-detected Volume"
 msgstr "𐑷𐑑𐑴-𐑛𐑦𐑑𐑧𐑒𐑑𐑩𐑛 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:42
+msgid "Btrfs Linux Volume"
+msgstr "Btrfs ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:43
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -59,6 +85,16 @@ msgstr "CD 𐑛𐑦𐑡𐑩𐑑𐑩𐑤 𐑷𐑛𐑦𐑴"
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Hardware Device Volume"
 msgstr "𐑣𐑭𐑮𐑛𐑢𐑧𐑮 𐑛𐑦𐑝𐑲𐑕 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:47
+msgid "EncFS Volume"
+msgstr "EncFS 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "eCryptfs Volume"
+msgstr "eCryptfs 𐑝𐑪𐑤𐑿𐑥"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:49
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:50
@@ -74,13 +110,49 @@ msgstr "Ext3 ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
 msgid "Ext4 Linux Volume"
 msgstr "Ext4 ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:69
+msgid "MSDOS Volume"
+msgstr "MSDOS 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "BSD Volume"
+msgstr "BSD 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "FUSE Volume"
 msgstr "𐑓𐑘𐑵𐑟 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:58
+msgid "MacOS Volume"
+msgstr "MacOS 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "CDROM Volume"
 msgstr "CDROM 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:60
+msgid "Hsfs CDROM Volume"
+msgstr "Hsfs 𐑕𐑰𐑛𐑰𐑮𐑭𐑥 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:61
+msgid "JFS Volume"
+msgstr "JFS 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:72
+msgid "Windows NT Volume"
+msgstr "𐑢𐑦𐑯𐑛𐑴𐑟 NT 𐑝𐑪𐑤𐑿𐑥"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:63
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:65
@@ -98,6 +170,16 @@ msgstr "𐑥𐑧𐑥𐑼𐑦 𐑝𐑪𐑤𐑿𐑥"
 msgid "Minix Volume"
 msgstr "·𐑥𐑦𐑯𐑦𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:70
+msgid "NFS Network Volume"
+msgstr "NFS 𐑯𐑧𐑑𐑢𐑻𐑒 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "NILFS Linux Volume"
+msgstr "NILFS ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Netware Volume"
 msgstr "·𐑯𐑧𐑑𐑢𐑧𐑮 𐑝𐑪𐑤𐑿𐑥"
@@ -106,13 +188,43 @@ msgstr "·𐑯𐑧𐑑𐑢𐑧𐑮 𐑝𐑪𐑤𐑿𐑥"
 msgid "Reiser4 Linux Volume"
 msgstr "·𐑮𐑲𐑟𐑼4 ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:79
+msgid "ReiserFS Linux Volume"
+msgstr "ReiserFS ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:80
 msgid "Windows Shared Volume"
 msgstr "·𐑢𐑦𐑯𐑛𐑴𐑟 𐑖𐑺𐑛 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:81
+msgid "SuperMount Volume"
+msgstr "SuperMount 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:82
 msgid "DVD Volume"
 msgstr "DVD 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:83
+msgid "Solaris/BSD Volume"
+msgstr "𐑕𐑴𐑤𐑧𐑮𐑦𐑕/BSD 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:84
+msgid "Udfs Solaris Volume"
+msgstr "Udfs 𐑕𐑴𐑤𐑧𐑮𐑦𐑕 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:85
+msgid "Pcfs Solaris Volume"
+msgstr "Pcfs 𐑕𐑴𐑤𐑧𐑮𐑦𐑕 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:86
+msgid "Sun SAM-QFS Volume"
+msgstr "𐑕𐑳𐑯 ·𐑕𐑨𐑥-QFS 𐑝𐑪𐑤𐑿𐑥"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:87
 msgid "Temporary Volume"
@@ -122,13 +234,38 @@ msgstr "𐑑𐑧𐑥𐑐𐑼𐑼𐑦 𐑝𐑪𐑤𐑿𐑥"
 msgid "Enhanced DOS Volume"
 msgstr "𐑧𐑯𐑣𐑨𐑯𐑕𐑑 ·𐑛𐑵𐑟 𐑝𐑪𐑤𐑿𐑥"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
+msgid "Windows VFAT Volume"
+msgstr "𐑢𐑦𐑯𐑛𐑴𐑟 VFAT 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:90
+msgid "Xenix Volume"
+msgstr "Xenix 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:91
+msgid "XFS Linux Volume"
+msgstr "XFS ·𐑤𐑦𐑯𐑩𐑒𐑕 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:92
+msgid "XIAFS Volume"
+msgstr "XIAFS 𐑝𐑪𐑤𐑿𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-filesystem-type.c:93
+msgid "CIFS Volume"
+msgstr "CIFS 𐑝𐑪𐑤𐑿𐑥"
+
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:121
 msgid "Unknown"
 msgstr "𐑳𐑯𐑴𐑯"
 
+#, c-format
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:356
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:582
-#, c-format
 msgid "%s Volume"
 msgstr "%s 𐑝𐑪𐑤𐑿𐑥"
 
@@ -143,6 +280,12 @@ msgstr "·𐑒·𐑛-𐑮𐑭𐑥"
 msgid "CD-R"
 msgstr "·𐑒·𐑛-𐑭𐑮"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:376
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+msgid "CD-RW"
+msgstr "·𐑒·𐑛-RW"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:380
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "DVD-ROM"
@@ -152,10 +295,21 @@ msgstr "DVD-𐑮𐑭𐑥"
 msgid "DVD+R"
 msgstr "DVD+𐑭𐑮"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:384
+msgid "DVD+RW"
+msgstr "·𐑛·𐑝·𐑛+RW"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:386
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "DVD-R"
 msgstr "DVD-𐑭𐑮"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:388
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+msgid "DVD-RW"
+msgstr "·𐑛·𐑝·𐑛-RW"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:390
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
@@ -166,13 +320,18 @@ msgstr "DVD-𐑮𐑨𐑥"
 msgid "DVD±R"
 msgstr "DVD±𐑭𐑮"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:396
+msgid "DVD±RW"
+msgstr "·𐑛·𐑝·𐑛±RW"
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:399
 msgid "%s/%s Drive"
 msgstr "%s/%s 𐑛𐑮𐑲𐑝"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:401
 msgid "%s Drive"
 msgstr "%s 𐑛𐑮𐑲𐑝"
 
@@ -192,23 +351,33 @@ msgstr "𐑥𐑧𐑥𐑼𐑦 𐑕𐑑𐑦𐑒 𐑛𐑮𐑲𐑝"
 msgid "Smart Media Drive"
 msgstr "𐑕𐑥𐑸𐑑 𐑥𐑰𐑛𐑦𐑩 𐑛𐑮𐑲𐑝"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:415
+msgid "SD/MMC Drive"
+msgstr "SD/MMC 𐑛𐑮𐑲𐑝"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:417
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:594
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:626
 msgid "Zip Drive"
 msgstr "𐑟𐑦𐑐 𐑛𐑮𐑲𐑝"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:420
+msgid "Jaz Drive"
+msgstr "Jaz 𐑛𐑮𐑲𐑝"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:423
 msgid "Pen Drive"
 msgstr "𐑐𐑧𐑯 𐑛𐑮𐑲𐑝"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:429
 msgid "%s %s Music Player"
 msgstr "%s %s 𐑥𐑿𐑟𐑦𐑒 𐑐𐑤𐑱𐑼"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:437
 msgid "%s %s Digital Camera"
 msgstr "%s %s 𐑛𐑦𐑡𐑩𐑑𐑩𐑤 𐑒𐑨𐑥𐑻𐑩"
 
@@ -216,8 +385,8 @@ msgstr "%s %s 𐑛𐑦𐑡𐑩𐑑𐑩𐑤 𐑒𐑨𐑥𐑻𐑩"
 msgid "Drive"
 msgstr "𐑛𐑮𐑲𐑝"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:472
 msgid "External %s"
 msgstr "𐑦𐑒𐑕𐑑𐑻𐑯𐑩𐑤 %s"
 
@@ -232,6 +401,16 @@ msgstr "𐑚𐑤𐑨𐑙𐑒 ·𐑒·𐑛-𐑭𐑮 𐑛𐑦𐑕𐑒"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
 msgstr "·𐑒·𐑛-𐑭𐑮 𐑛𐑦𐑕𐑒"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:520
+msgid "Blank CD-RW Disc"
+msgstr "𐑚𐑤𐑨𐑙𐑒 ·𐑒·𐑛-RW 𐑛𐑦𐑕𐑒"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:522
+msgid "CD-RW Disc"
+msgstr "·𐑒·𐑛-RW 𐑛𐑦𐑕𐑒"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:526
 msgid "DVD-ROM Disc"
@@ -253,6 +432,16 @@ msgstr "𐑚𐑤𐑨𐑙𐑒 DVD-R 𐑛𐑦𐑕𐑒"
 msgid "DVD-R Disc"
 msgstr "DVD-R 𐑛𐑦𐑕𐑒"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
+msgid "Blank DVD-RW Disc"
+msgstr "𐑚𐑤𐑨𐑙𐑒 ·𐑛·𐑝·𐑛-RW 𐑛𐑦𐑕𐑒"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:547
+msgid "DVD-RW Disc"
+msgstr "·𐑛·𐑝·𐑛-RW 𐑛𐑦𐑕𐑒"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:553
 msgid "Blank DVD+R Disc"
 msgstr "𐑚𐑤𐑨𐑙𐑒 DVD+R 𐑛𐑦𐑕𐑒"
@@ -261,12 +450,22 @@ msgstr "𐑚𐑤𐑨𐑙𐑒 DVD+R 𐑛𐑦𐑕𐑒"
 msgid "DVD+R Disc"
 msgstr "DVD+R 𐑛𐑦𐑕𐑒"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:560
+msgid "Blank DVD+RW Disc"
+msgstr "𐑚𐑤𐑨𐑙𐑒 ·𐑛·𐑝·𐑛+RW 𐑛𐑦𐑕𐑒"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:562
+msgid "DVD+RW Disc"
+msgstr "·𐑛·𐑝·𐑛+RW 𐑛𐑦𐑕𐑒"
+
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:569
 msgid "Audio Disc"
 msgstr "𐑷𐑛𐑦𐑴 𐑛𐑦𐑕𐑒"
 
-#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
+#: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 msgid "%s Removable Volume"
 msgstr "%s 𐑮𐑦𐑥𐑵𐑝𐑩𐑚𐑩𐑤 𐑝𐑪𐑤𐑿𐑥"
 
@@ -274,13 +473,18 @@ msgstr "%s 𐑮𐑦𐑥𐑵𐑝𐑩𐑚𐑩𐑤 𐑝𐑪𐑤𐑿𐑥"
 msgid "Volume"
 msgstr "𐑝𐑪𐑤𐑿𐑥"
 
-#: ../libgnomevfs/gnome-vfs-job.c:733
 #, c-format
+#: ../libgnomevfs/gnome-vfs-job.c:733
 msgid "Unknown operation type %u"
 msgstr "𐑳𐑯𐑴𐑯 𐑪𐑐𐑼𐑱𐑖𐑩𐑯 𐑑𐑲𐑐 %u"
 
-#: ../libgnomevfs/gnome-vfs-job.c:1691
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-job.c:1024 ../libgnomevfs/gnome-vfs-job.c:1175
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "𐑒𐑨𐑯𐑪𐑑 𐑒𐑮𐑦𐑱𐑑 𐑐𐑲𐑐 𐑓𐑹 𐑴𐑐𐑩𐑯 GIOChannel: %s"
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-job.c:1691
 msgid "Unknown job kind %u"
 msgstr "𐑳𐑯𐑴𐑯 𐑡𐑪𐑚 𐑒𐑲𐑯𐑛 %u"
 
@@ -322,8 +526,8 @@ msgid ""
 msgstr ""
 "𐑛𐑧𐑐𐑮𐑩𐑒𐑱𐑑𐑩𐑛 𐑓𐑳𐑙𐑒𐑖𐑩𐑯.  𐑿𐑟𐑼 𐑥𐑪𐑛𐑦𐑓𐑦𐑒𐑱𐑖𐑩𐑯𐑟 𐑑 𐑞 MIME 𐑛𐑱𐑑𐑩𐑚𐑱𐑕 𐑸 𐑯𐑴 𐑤𐑪𐑙𐑜𐑼 𐑕𐑩𐑐𐑹𐑑𐑩𐑛."
 
-#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
+#: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 msgid "Could not parse: %s"
 msgstr "𐑒𐑫𐑛 𐑯𐑪𐑑 𐑐𐑸𐑕: %s"
 
@@ -566,6 +770,12 @@ msgstr "𐑻𐑼 𐑤𐑷𐑯𐑗𐑦𐑙 𐑒𐑩𐑥𐑭𐑯𐑛"
 msgid "Timeout reached"
 msgstr "𐑑𐑲𐑥𐑬𐑑 𐑮𐑰𐑗𐑑"
 
+#. GNOME_VFS_ERROR_NAMESERVER
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-result.c:94
+msgid "Nameserver error"
+msgstr "Nameserver 𐑻𐑼"
+
 #. GNOME_VFS_ERROR_LOCKED
 #: ../libgnomevfs/gnome-vfs-result.c:95
 msgid "The resource is locked"
@@ -590,16 +800,26 @@ msgstr "𐑯𐑪𐑑 𐑩 𐑕𐑦𐑥𐑚𐑪𐑤𐑦𐑒 𐑤𐑦𐑙𐑒"
 msgid "Unknown error"
 msgstr "𐑳𐑯𐑴𐑯 𐑻𐑼"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
+#: ../libgnomevfs/gnome-vfs-utils.c:78
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u 𐑚𐑲𐑑"
 msgstr[1] "%u 𐑚𐑲𐑑𐑕"
 
-#: ../libgnomevfs/gnome-vfs-utils.c:88
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-utils.c:84
+msgid "%.1f KB"
+msgstr "%.1f MB"
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-utils.c:88
 msgid "%.1f MB"
+msgstr "%.1f MB"
+
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-utils.c:92
+msgid "%.1f GB"
 msgstr "%.1f MB"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:1108
@@ -624,6 +844,11 @@ msgstr "CD-ROM/DVD-RAM"
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-ROM/DVD-RW"
+msgstr "·𐑒·𐑛-𐑮𐑭𐑥/·𐑛·𐑝·𐑛-RW"
+
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
@@ -636,13 +861,53 @@ msgstr "CD-R/DVD-RAM"
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "CD-R/DVD-RW"
+msgstr "·𐑒·𐑛-𐑭𐑮/·𐑛·𐑝·𐑛-RW"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "CD-RW/DVD-ROM"
+msgstr "·𐑒·𐑛-RW/·𐑛·𐑝·𐑛-𐑮𐑭𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-RW/DVD-RAM"
+msgstr "·𐑒·𐑛-RW/·𐑛·𐑝·𐑛-𐑮𐑨𐑥"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-RW/DVD-R"
+msgstr "·𐑒·𐑛-RW/·𐑛·𐑝·𐑛-𐑭𐑮"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-RW/DVD-RW"
+msgstr "·𐑒·𐑛-RW/·𐑛·𐑝·𐑛-RW"
+
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
 msgid "Disk"
 msgstr "𐑛𐑦𐑕𐑒"
 
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "USB Drive"
+msgstr "USB 𐑛𐑮𐑲𐑝"
+
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
 msgstr "IEEE1394 𐑛𐑮𐑲𐑝"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CF"
+msgstr "CF"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "SD/MMC"
+msgstr "SD/MMC"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
@@ -678,20 +943,20 @@ msgid "Network server"
 msgstr "𐑯𐑧𐑑𐑢𐑻𐑒 𐑕𐑻𐑝𐑼"
 
 #. Handle floppy case
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:184
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑓𐑤𐑭𐑐𐑰 𐑛𐑮𐑲𐑝. 𐑞𐑺 𐑦𐑟 𐑐𐑮𐑪𐑚𐑩𐑚𐑤𐑦 𐑯𐑴 𐑓𐑤𐑭𐑐𐑰 𐑦𐑯 𐑞 𐑛𐑮𐑲𐑝."
 
 #. All others
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑝𐑪𐑤𐑿𐑥. 𐑞𐑺 𐑦𐑟 𐑐𐑮𐑪𐑚𐑩𐑚𐑤𐑦 𐑯𐑴 𐑥𐑰𐑛𐑦𐑩 𐑦𐑯 𐑞 𐑛𐑦𐑝𐑲𐑕."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -700,17 +965,17 @@ msgstr ""
 "𐑥𐑬𐑯𐑑𐑩𐑛."
 
 #. Probably a wrong password
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:198
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
 msgstr ""
-"𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑝𐑪𐑤𐑿𐑥. 𐑦𐑓 𐑞𐑦𐑕 𐑦𐑟 𐑩𐑯 𐑦𐑯𐑒𐑮𐑦𐑐𐑑𐑩𐑛 𐑛𐑮𐑲𐑝, 𐑞𐑧𐑯 𐑞 𐑮𐑪𐑙 𐑐𐑭𐑕𐑢𐑼𐑛 𐑹 𐑒𐑰 "
-"𐑢𐑪𐑟 𐑿𐑟𐑛."
+"𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑝𐑪𐑤𐑿𐑥. 𐑦𐑓 𐑞𐑦𐑕 𐑦𐑟 𐑩𐑯 𐑦𐑯𐑒𐑮𐑦𐑐𐑑𐑩𐑛 𐑛𐑮𐑲𐑝, 𐑞𐑧𐑯 𐑞 𐑮𐑪𐑙 𐑐𐑭𐑕𐑢𐑼𐑛 𐑹 𐑒𐑰 𐑢𐑪𐑟 "
+"𐑿𐑟𐑛."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -726,15 +991,44 @@ msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑕𐑩𐑤𐑧𐑒
 msgid "Unable to mount the selected volume."
 msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑕𐑩𐑤𐑧𐑒𐑑𐑩𐑛 𐑝𐑪𐑤𐑿𐑥."
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:221
+msgid ""
+"Unable to unmount the selected volume. The volume is in use by one or more "
+"programs."
+msgstr ""
+"𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑥𐑬𐑯𐑑 𐑞 𐑕𐑩𐑤𐑧𐑒𐑑𐑩𐑛 𐑝𐑪𐑤𐑿𐑥. 𐑞 𐑝𐑪𐑤𐑿𐑥 𐑦𐑟 𐑐𐑮𐑪𐑚𐑩𐑚𐑤𐑦 𐑦𐑯 𐑩 𐑓𐑹𐑥𐑨𐑑 𐑞𐑨𐑑 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 "
+"𐑥𐑬𐑯𐑑𐑩𐑛."
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:224
+msgid "Unable to unmount the selected volume."
+msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 unmount 𐑞 𐑕𐑩𐑤𐑧𐑒𐑑𐑩𐑛 𐑝𐑪𐑤𐑿𐑥."
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:377
 msgid "Failed to read data from child process %d (%s)"
 msgstr "𐑓𐑱𐑤𐑛 𐑑 𐑮𐑰𐑛 𐑛𐑱𐑑𐑩 𐑓𐑮𐑪𐑥 𐑗𐑲𐑤𐑛 𐑐𐑮𐑴𐑕𐑧𐑕 %d (%s)"
 
-#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:421
+msgid "Couldn't run mount process in a pty"
+msgstr "𐑒𐑫𐑛𐑯𐑑 𐑮𐑳𐑯 𐑥𐑬𐑯𐑑 𐑐𐑮𐑴𐑕𐑧𐑕 𐑦𐑯 𐑩 𐑑𐑲"
+
 #, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 msgid "Unexpected error in select() reading data from a child process (%s)"
 msgstr "𐑳𐑯𐑦𐑒𐑕𐑐𐑧𐑒𐑑𐑩𐑛 𐑻𐑼 𐑦𐑯 𐑕𐑩𐑤𐑧𐑒𐑑() 𐑮𐑰𐑛𐑦𐑙 𐑛𐑱𐑑𐑩 𐑓𐑮𐑪𐑥 𐑩 𐑗𐑲𐑤𐑛 𐑐𐑮𐑴𐑕𐑧𐑕 (%s)"
+
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:520
+msgid "Couldn't send password to mount process."
+msgstr "𐑒𐑫𐑛𐑯𐑑 𐑕𐑧𐑯𐑛 𐑐𐑭𐑕𐑢𐑼𐑛 𐑑 𐑥𐑬𐑯𐑑 𐑐𐑮𐑴𐑕𐑧𐑕."
+
+#, fuzzy, c-format
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:559
+msgid "Unexpected error in waitpid() (%s)"
+msgstr "𐑳𐑯𐑦𐑒𐑕𐑐𐑧𐑒𐑑𐑩𐑛 𐑻𐑼 𐑦𐑯 waitpid() (%s)"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
@@ -744,6 +1038,11 @@ msgstr "𐑓𐑱𐑤𐑛 𐑑 𐑕𐑑𐑸𐑑 𐑒𐑩𐑥𐑭𐑯𐑛"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
 msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑦𐑡𐑧𐑒𐑑 𐑥𐑰𐑛𐑦𐑩"
+
+#, fuzzy
+#: ../libgnomevfs/gnome-vfs-volume-ops.c:983
+msgid "Unable to unmount connected server"
+msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 unmount 𐑒𐑩𐑯𐑧𐑒𐑑𐑩𐑛 𐑕𐑻𐑝𐑼"
 
 #: ../modules/computer-method.c:543
 msgid "Network"
@@ -757,27 +1056,30 @@ msgstr "𐑣𐑴𐑥"
 msgid "Filesystem"
 msgstr "𐑓𐑲𐑤𐑕𐑦𐑕𐑑𐑩𐑥"
 
+#, fuzzy, c-format
+#: ../modules/file-method.c:497
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "𐑳𐑯𐑴𐑯 GnomeVFSSeekPosition %d"
+
 #: ../modules/network-method.c:1399
 msgid "Windows Network"
 msgstr "·𐑢𐑦𐑯𐑛𐑴𐑟 𐑯𐑧𐑑𐑢𐑻𐑒"
 
-#: ../modules/sftp-method.c:1424
 #, c-format
+#: ../modules/sftp-method.c:1424
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "𐑞 𐑲𐑛𐑧𐑯𐑑𐑦𐑑𐑦 𐑝 𐑞 𐑮𐑦𐑥𐑴𐑑 𐑒𐑩𐑥𐑐𐑿𐑑𐑼 (%s) 𐑦𐑟 𐑳𐑯𐑴𐑯."
 
-#: ../modules/sftp-method.c:1425
 #, c-format
+#: ../modules/sftp-method.c:1425
 msgid ""
-"This happens when you log in to a computer the first time.\n"
-"\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"This happens when you log in to a computer the first time.\n\nThe identity "
+"sent by the remote computer is %s. If you want to be absolutely sure it is "
+"safe to continue, contact the system administrator."
 msgstr ""
-"𐑞𐑦𐑕 𐑣𐑨𐑐𐑩𐑯𐑟 𐑢𐑧𐑯 𐑿 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑩 𐑒𐑩𐑥𐑐𐑿𐑑𐑼 𐑞 𐑓𐑻𐑕𐑑 𐑑𐑲𐑥.\n"
-"\n"
-"𐑞 𐑲𐑛𐑧𐑯𐑑𐑦𐑑𐑦 𐑕𐑧𐑯𐑑 𐑚𐑲 𐑞 𐑮𐑦𐑥𐑴𐑑 𐑒𐑩𐑥𐑐𐑿𐑑𐑼 𐑦𐑟 %s. 𐑦𐑓 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑚𐑰 𐑨𐑚𐑕𐑴𐑤𐑵𐑑𐑤𐑦 𐑖𐑫𐑼 𐑦𐑑 𐑦𐑟 "
-"𐑕𐑱𐑓 𐑑 𐑒𐑩𐑯𐑑𐑦𐑯𐑿, 𐑒𐑪𐑯𐑑𐑨𐑒𐑑 𐑞 𐑕𐑦𐑕𐑑𐑩𐑥 𐑩𐑛𐑥𐑦𐑯𐑦𐑕𐑑𐑮𐑱𐑑𐑼."
+"𐑞𐑦𐑕 𐑣𐑨𐑐𐑩𐑯𐑟 𐑢𐑧𐑯 𐑿 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑩 𐑒𐑩𐑥𐑐𐑿𐑑𐑼 𐑞 𐑓𐑻𐑕𐑑 𐑑𐑲𐑥.\n\n𐑞 𐑲𐑛𐑧𐑯𐑑𐑦𐑑𐑦 𐑕𐑧𐑯𐑑 𐑚𐑲 𐑞 𐑮𐑦𐑥𐑴𐑑 "
+"𐑒𐑩𐑥𐑐𐑿𐑑𐑼 𐑦𐑟 %s. 𐑦𐑓 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑚𐑰 𐑨𐑚𐑕𐑴𐑤𐑵𐑑𐑤𐑦 𐑖𐑫𐑼 𐑦𐑑 𐑦𐑟 𐑕𐑱𐑓 𐑑 𐑒𐑩𐑯𐑑𐑦𐑯𐑿, 𐑒𐑪𐑯𐑑𐑨𐑒𐑑 𐑞 "
+"𐑕𐑦𐑕𐑑𐑩𐑥 𐑩𐑛𐑥𐑦𐑯𐑦𐑕𐑑𐑮𐑱𐑑𐑼."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -787,36 +1089,43 @@ msgstr "𐑤𐑪𐑜 𐑦𐑯 𐑧𐑯𐑦𐑢𐑱"
 msgid "Cancel Login"
 msgstr "𐑒𐑨𐑯𐑕𐑩𐑤 𐑤𐑪𐑜𐑦𐑯"
 
-#: ../modules/test-method.c:589
+#. FIXME: we probably shouldn't use printf to output the message
+#, fuzzy, c-format
+#: ../modules/test-method.c:587
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "𐑛𐑦𐑛𐑯𐑑 𐑓𐑲𐑯𐑛 𐑩 𐑝𐑨𐑤𐑦𐑛 𐑕𐑧𐑑𐑦𐑙𐑟 𐑓𐑲𐑤 𐑨𐑑 %s\n"
+
 #, c-format
+#: ../modules/test-method.c:589
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "𐑿𐑟 𐑞 %s 𐑧𐑯𐑝𐑲𐑼𐑯𐑥𐑩𐑯𐑑 𐑝𐑺𐑦𐑩𐑚𐑩𐑤 𐑑 𐑕𐑐𐑧𐑕𐑦𐑓𐑲 𐑩 𐑛𐑦𐑓𐑼𐑩𐑯𐑑 𐑤𐑴𐑒𐑱𐑖𐑩𐑯.\n"
 
-#: ../programs/authentication.c:106
 #, c-format
+#: ../programs/authentication.c:106
 msgid "Your HTTP Proxy requires you to log in.\n"
 msgstr "𐑿𐑼 HTTP 𐑐𐑮𐑪𐑒𐑕𐑦 𐑮𐑦𐑒𐑢𐑲𐑼𐑟 𐑿 𐑑 𐑤𐑪𐑜 𐑦𐑯.\n"
 
-#: ../programs/authentication.c:107
 #, c-format
-msgid ""
-"You must log in to access \"%s\".\n"
-"%s"
-msgstr ""
-"𐑿 𐑥𐑳𐑕𐑑 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑨𐑒𐑕𐑧𐑕 \"%s\".\n"
-"%s"
+#: ../programs/authentication.c:107
+msgid "You must log in to access \"%s\".\n%s"
+msgstr "𐑿 𐑥𐑳𐑕𐑑 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑨𐑒𐑕𐑧𐑕 \"%s\".\n%s"
+
+#, fuzzy
+#: ../programs/authentication.c:110
+msgid "Your password will be transmitted unencrypted."
+msgstr "𐑿𐑼 𐑐𐑭𐑕𐑢𐑼𐑛 𐑢𐑦𐑤 𐑚𐑰 𐑑𐑮𐑨𐑯𐑕𐑥𐑦𐑑𐑩𐑛 unencrypted."
 
 #: ../programs/authentication.c:111
 msgid "Your password will be transmitted encrypted."
 msgstr "𐑿𐑼 𐑐𐑭𐑕𐑢𐑼𐑛 𐑢𐑦𐑤 𐑚𐑰 𐑑𐑮𐑨𐑯𐑕𐑥𐑦𐑑𐑩𐑛 𐑦𐑯𐑒𐑮𐑦𐑐𐑑𐑩𐑛."
 
-#: ../programs/authentication.c:163
 #, c-format
+#: ../programs/authentication.c:163
 msgid "You must log in to access %s domain %s\n"
 msgstr "𐑿 𐑥𐑳𐑕𐑑 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑨𐑒𐑕𐑧𐑕 %s 𐑛𐑴𐑥𐑱𐑯 %s\n"
 
-#: ../programs/authentication.c:165
 #, c-format
+#: ../programs/authentication.c:165
 msgid "You must log in to access %s\n"
 msgstr "𐑿 𐑥𐑳𐑕𐑑 𐑤𐑪𐑜 𐑦𐑯 𐑑 𐑨𐑒𐑕𐑧𐑕 %s\n"
 
@@ -831,6 +1140,17 @@ msgstr "𐑛𐑦𐑓𐑷𐑤𐑑 𐑑𐑻𐑥𐑦𐑯𐑩𐑤 𐑩𐑐𐑤𐑦�
 #: ../schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
 msgstr "𐑧𐑜𐑟𐑧𐑒 𐑸𐑜𐑿𐑥𐑩𐑯𐑑 𐑓𐑹 𐑛𐑦𐑓𐑷𐑤𐑑 𐑑𐑻𐑥𐑦𐑯𐑩𐑤"
+
+#, no-c-format
+#: ../schemas/desktop_default_applications.schemas.in.h:5
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"𐑞 𐑩𐑐𐑤𐑦𐑒𐑱𐑕𐑩𐑯 𐑑 𐑿𐑕 𐑓𐑹 𐑝𐑿𐑦𐑙 𐑓𐑲𐑤𐑟 𐑞𐑨𐑑 𐑮𐑦𐑒𐑢𐑲𐑼 𐑩 𐑒𐑩𐑥𐑐𐑴𐑯𐑩𐑯𐑑 𐑑 𐑝𐑿 𐑞𐑧𐑥. 𐑞 𐑐𐑼𐑨𐑥𐑩𐑑𐑼 %s "
+"𐑢𐑦𐑤 𐑚𐑰 𐑮𐑦𐑐𐑤𐑱𐑕𐑑 𐑚𐑲 𐑞 file's URIs, 𐑞 𐑐𐑼𐑨𐑥𐑩𐑑𐑼 %c 𐑢𐑦𐑤 𐑚𐑰 𐑮𐑦𐑐𐑤𐑱𐑕𐑑 𐑚𐑲 𐑞 𐑒𐑩𐑥𐑐𐑴𐑯𐑩𐑯𐑑 "
+"IID."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -850,6 +1170,16 @@ msgstr "𐑮𐑳𐑯 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑦𐑯 𐑩 𐑑𐑻𐑥�
 msgid "The command used to handle \"aim\" URLs, if enabled."
 msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"aim\" URL𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"callto\" ·𐑿·𐑮·𐑤𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"ghelp\" ·𐑿·𐑮·𐑤𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
 msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"h323\" URL𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
@@ -858,9 +1188,19 @@ msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤
 msgid "The command used to handle \"http\" URLs, if enabled."
 msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"http\" URL𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"https\" ·𐑿·𐑮·𐑤𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"info\" URL𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤 \"mailto\" ·𐑿·𐑮·𐑤𐑟, 𐑦𐑓 𐑦𐑯𐑱𐑚𐑩𐑤𐑛."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
@@ -874,6 +1214,16 @@ msgstr "𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 𐑣𐑨𐑯𐑛𐑩𐑤
 msgid "The handler for \"aim\" URLs"
 msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"aim\" URL𐑟"
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "The handler for \"callto\" URLs"
+msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"callto\" ·𐑿·𐑮·𐑤𐑟"
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "The handler for \"ghelp\" URLs"
+msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"ghelp\" ·𐑿·𐑮·𐑤𐑟"
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
 msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"h323\" URL𐑟"
@@ -882,9 +1232,19 @@ msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"h323\" URL𐑟"
 msgid "The handler for \"http\" URLs"
 msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"http\" URL𐑟"
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The handler for \"https\" URLs"
+msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"https\" ·𐑿·𐑮·𐑤𐑟"
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"info\" URL𐑟"
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid "The handler for \"mailto\" URLs"
+msgstr "𐑞 𐑣𐑨𐑯𐑛𐑤𐑼 𐑓𐑹 \"mailto\" ·𐑿·𐑮·𐑤𐑟"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
@@ -900,6 +1260,22 @@ msgid ""
 "URLs."
 msgstr "𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"command\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"aim\" URL𐑟."
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto\" "
+"URLs."
+msgstr ""
+"𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"𐑒𐑩𐑥𐑭𐑯𐑛\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"callto\" ·𐑿·𐑮·𐑤𐑟."
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"𐑒𐑩𐑥𐑭𐑯𐑛\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"ghelp\" ·𐑿·𐑮·𐑤𐑟."
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
@@ -914,6 +1290,14 @@ msgid ""
 msgstr ""
 "𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"command\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"http\" URL𐑟."
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"𐑒𐑩𐑥𐑭𐑯𐑛\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"https\" ·𐑿·𐑮·𐑤𐑟."
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
@@ -921,12 +1305,19 @@ msgid ""
 msgstr ""
 "𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"command\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"info\" URL𐑟."
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto\" "
+"URLs."
+msgstr ""
+"𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"𐑒𐑩𐑥𐑭𐑯𐑛\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"mailto\" ·𐑿·𐑮·𐑤𐑟."
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"command\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"man\" URL𐑟."
+msgstr "𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑦𐑯 𐑞 \"command\" 𐑒𐑰 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"man\" URL𐑟."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
@@ -945,6 +1336,16 @@ msgstr "𐑑𐑮𐑵 𐑦𐑓 𐑞 𐑒𐑩𐑥𐑭𐑯𐑛 𐑿𐑕𐑑 𐑑 �
 msgid "Whether the specified command should handle \"aim\" URLs"
 msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"aim\" URL𐑟"
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"callto\" ·𐑿·𐑮·𐑤𐑟"
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"ghelp\" ·𐑿·𐑮·𐑤𐑟"
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
 msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"h323\" URL𐑟"
@@ -953,9 +1354,19 @@ msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭�
 msgid "Whether the specified command should handle \"http\" URLs"
 msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"http\" URL𐑟"
 
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"https\" ·𐑿·𐑮·𐑤𐑟"
+
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"info\" URL𐑟"
+
+#, fuzzy
+#: ../schemas/desktop_gnome_url_handlers.schemas.in.h:40
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"mailto\" ·𐑿·𐑮·𐑤𐑟"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
@@ -964,6 +1375,25 @@ msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭�
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "𐑢𐑧𐑞𐑼 𐑞 𐑕𐑐𐑧𐑕𐑦𐑓𐑲𐑛 𐑒𐑩𐑥𐑭𐑯𐑛 𐑖𐑫𐑛 𐑣𐑨𐑯𐑛𐑩𐑤 \"trash\" URL𐑟"
+
+#, fuzzy
+#: ../schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of DNS-SD domains that should be visible in the "
+"\"network:///\" location."
+msgstr ""
+"𐑒𐑪𐑥𐑩 𐑕𐑧𐑐𐑼𐑱𐑑𐑩𐑛 𐑤𐑦𐑕𐑑 𐑝 DNS-SD 𐑛𐑴𐑥𐑱𐑯𐑟 𐑞𐑨𐑑 𐑖𐑫𐑛 𐑚𐑰 𐑝𐑦𐑕𐑦𐑚𐑩𐑤 𐑦𐑯 𐑞 \"𐑯𐑧𐑑𐑢𐑻𐑒:///\" "
+"𐑤𐑴𐑒𐑱𐑖𐑩𐑯."
+
+#, fuzzy
+#: ../schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for DNS-SD services in"
+msgstr "𐑧𐑒𐑕𐑑𐑮𐑩 𐑛𐑴𐑥𐑱𐑯𐑟 𐑑 𐑤𐑫𐑒 𐑓𐑹 DNS-SD 𐑕𐑻𐑝𐑦𐑕𐑩𐑟 𐑦𐑯"
+
+#, fuzzy
+#: ../schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr "𐑣𐑬 𐑑 𐑛𐑦𐑕𐑐𐑤𐑱 𐑤𐑴𐑒𐑩𐑤 DNS-SD 𐑕𐑻𐑝𐑦𐑕"
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
@@ -980,6 +1410,16 @@ msgstr "𐑷𐑑𐑴𐑥𐑨𐑑𐑦𐑒 𐑐𐑮𐑪𐑒𐑕𐑦 𐑒𐑩𐑯�
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr "𐑦𐑯𐑱𐑚𐑩𐑤𐑟 𐑞 𐑐𐑮𐑪𐑒𐑕𐑦 𐑕𐑧𐑑𐑦𐑙𐑟 𐑢𐑧𐑯 𐑨𐑒𐑕𐑧𐑕𐑦𐑙 HTTP 𐑴𐑝𐑼 𐑞 ·𐑦𐑯𐑑𐑼𐑯𐑧𐑑."
+
+#, fuzzy
+#: ../schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr "FTP 𐑐𐑮𐑪𐑒𐑕𐑦 𐑣𐑴𐑕𐑑 𐑯𐑱𐑥"
+
+#, fuzzy
+#: ../schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr "FTP 𐑐𐑮𐑪𐑒𐑕𐑦 𐑐𐑹𐑑"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
@@ -1000,12 +1440,13 @@ msgstr "HTTP 𐑐𐑮𐑪𐑒𐑕𐑦 𐑿𐑟𐑼𐑯𐑱𐑥"
 #: ../schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by "
+"\"/system/http_proxy/authentication_user\" and "
+"\"/system/http_proxy/authentication_password\"."
 msgstr ""
 "𐑦𐑓 𐑑𐑮𐑵, 𐑞𐑧𐑯 𐑒𐑩𐑯𐑧𐑒𐑖𐑩𐑯𐑟 𐑑 𐑞 𐑐𐑮𐑪𐑒𐑕𐑦 𐑕𐑻𐑝𐑼 𐑮𐑦𐑒𐑢𐑲𐑼 𐑷𐑔𐑧𐑯𐑑𐑦𐑒𐑱𐑖𐑩𐑯. 𐑞 𐑿𐑟𐑼𐑯𐑱𐑥/𐑐𐑭𐑕𐑢𐑼𐑛 "
-"𐑒𐑭𐑥𐑚𐑴 𐑦𐑟 𐑛𐑦𐑓𐑲𐑯𐑛 𐑚𐑲 \"/system/http_proxy/authentication_user\" 𐑯 \"/system/"
-"http_proxy/authentication_password\"."
+"𐑒𐑭𐑥𐑚𐑴 𐑦𐑟 𐑛𐑦𐑓𐑲𐑯𐑛 𐑚𐑲 \"/system/http_proxy/authentication_user\" 𐑯 "
+"\"/system/http_proxy/authentication_password\"."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1043,6 +1484,11 @@ msgstr ""
 "𐑕𐑩𐑤𐑧𐑒𐑑 𐑞 𐑐𐑮𐑪𐑒𐑕𐑦 𐑒𐑩𐑯𐑓𐑦𐑜𐑘𐑼𐑱𐑖𐑩𐑯 𐑥𐑴𐑛. 𐑕𐑩𐑐𐑹𐑑𐑩𐑛 𐑝𐑨𐑤𐑿𐑟 𐑸 \"none\", \"manual\", "
 "\"auto\"."
 
+#, fuzzy
+#: ../schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy FTP through."
+msgstr "𐑞 𐑥𐑩𐑖𐑰𐑯 𐑯𐑱𐑥 𐑑 𐑐𐑮𐑪𐑒𐑕𐑦 FTP 𐑔𐑮𐑵."
+
 #: ../schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
 msgstr "𐑞 𐑥𐑩𐑖𐑰𐑯 𐑯𐑱𐑥 𐑑 𐑐𐑮𐑪𐑒𐑕𐑦 HTTP 𐑔𐑮𐑵."
@@ -1057,8 +1503,8 @@ msgstr "𐑞 𐑥𐑩𐑖𐑰𐑯 𐑯𐑱𐑥 𐑑 𐑐𐑮𐑪𐑒𐑕𐑦 ·�
 
 #: ../schemas/system_http_proxy.schemas.in.h:23
 msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
+"The port on the machine defined by \"/system/http_proxy/host\" that you proxy "
+"through."
 msgstr ""
 "𐑞 𐑐𐑹𐑑 𐑪𐑯 𐑞 𐑥𐑩𐑖𐑰𐑯 𐑛𐑦𐑓𐑲𐑯𐑛 𐑚𐑲 \"/system/http_proxy/host\" 𐑞𐑨𐑑 𐑿 𐑐𐑮𐑪𐑒𐑕𐑦 𐑔𐑮𐑵."
 
@@ -1083,6 +1529,19 @@ msgid ""
 msgstr ""
 "𐑞 𐑐𐑹𐑑 𐑪𐑯 𐑞 𐑥𐑩𐑖𐑰𐑯 𐑛𐑦𐑓𐑲𐑯𐑛 𐑚𐑲 \"/system/proxy/socks_host\" 𐑞𐑨𐑑 𐑿 𐑐𐑮𐑪𐑒𐑕𐑦 𐑔𐑮𐑵."
 
+#, fuzzy
+#: ../schemas/system_http_proxy.schemas.in.h:27
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"𐑞𐑦𐑕 𐑒𐑰 𐑒𐑩𐑯𐑑𐑱𐑯𐑟 𐑩 𐑤𐑦𐑕𐑑 𐑝 𐑣𐑴𐑕𐑑𐑕 𐑢𐑦𐑗 𐑸 𐑒𐑩𐑯𐑧𐑒𐑑𐑩𐑛 𐑑 𐑛𐑲𐑮𐑧𐑒𐑑𐑤𐑦, 𐑮𐑭𐑞𐑼 𐑞𐑨𐑯 𐑝𐑲𐑩 𐑞 "
+"𐑐𐑮𐑪𐑒𐑕𐑦 (𐑦𐑓 𐑦𐑑 𐑦𐑟 𐑨𐑒𐑑𐑦𐑝). 𐑞 𐑝𐑨𐑤𐑿𐑟 𐑒𐑨𐑯 𐑚𐑰 hostnames, 𐑛𐑴𐑥𐑱𐑯𐑟 (𐑿𐑟𐑦𐑙 𐑩𐑯 𐑦𐑯𐑦𐑖𐑩𐑤 "
+"𐑢𐑲𐑤𐑛𐑒𐑭𐑮𐑛 𐑤𐑲𐑒 *.𐑓𐑵.𐑒𐑪𐑥), ·𐑦·𐑐 𐑣𐑴𐑕𐑑 𐑩𐑛𐑮𐑧𐑕𐑩𐑟 (𐑚𐑴𐑔 IPv4 𐑯 IPv6) 𐑯 𐑯𐑧𐑑𐑢𐑻𐑒 𐑩𐑛𐑮𐑧𐑕𐑩𐑟 "
+"𐑢𐑦𐑞 𐑩 netmask (𐑕𐑳𐑥𐑔𐑦𐑙 𐑤𐑲𐑒 192.168.0.0/24)."
+
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
 msgstr "URL 𐑞𐑨𐑑 𐑐𐑮𐑩𐑝𐑲𐑛𐑟 𐑐𐑮𐑪𐑒𐑕𐑦 𐑒𐑩𐑯𐑓𐑦𐑜𐑘𐑼𐑱𐑖𐑩𐑯 𐑝𐑨𐑤𐑿𐑟."
@@ -1095,11 +1554,17 @@ msgstr "𐑿𐑟 HTTP 𐑐𐑮𐑪𐑒𐑕𐑦"
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "𐑿𐑟𐑼 𐑯𐑱𐑥 𐑑 𐑐𐑭𐑕 𐑨𐑟 𐑷𐑔𐑧𐑯𐑑𐑦𐑒𐑱𐑖𐑩𐑯 𐑢𐑧𐑯 𐑛𐑵𐑦𐑙 HTTP 𐑐𐑮𐑪𐑒𐑕𐑦𐑦𐑙."
 
+#, fuzzy
+#: ../schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr "SMB 𐑢𐑻𐑒𐑜𐑮𐑵𐑐"
+
 #: ../schemas/system_smb.schemas.in.h:2
 msgid ""
-"The Windows networking workgroup or domain that the user is part of. In "
-"order for a new workgroup to fully take effect the user may need to log out "
-"and log back in."
+"The Windows networking workgroup or domain that the user is part of. In order "
+"for a new workgroup to fully take effect the user may need to log out and log "
+"back in."
 msgstr ""
 "𐑞 ·𐑢𐑦𐑯𐑛𐑴𐑟 𐑯𐑧𐑑𐑢𐑻𐑒𐑦𐑙 𐑢𐑻𐑒𐑜𐑮𐑵𐑐 𐑹 𐑛𐑴𐑥𐑱𐑯 𐑞𐑨𐑑 𐑞 𐑿𐑟𐑼 𐑦𐑟 𐑐𐑸𐑑 𐑝. 𐑦𐑯 𐑹𐑛𐑼 𐑓𐑹 𐑩 𐑯𐑿 𐑢𐑻𐑒𐑜𐑮𐑵𐑐 "
 "𐑑 𐑓𐑫𐑤𐑦 𐑑𐑱𐑒 𐑦𐑓𐑧𐑒𐑑 𐑞 𐑿𐑟𐑼 𐑥𐑱 𐑯𐑰𐑛 𐑑 𐑤𐑪𐑜 𐑬𐑑 𐑯 𐑤𐑪𐑜 𐑚𐑨𐑒 𐑦𐑯."
+
