@@ -106,7 +106,7 @@ show_acl (GnomeVFSACL *acl)
 			continue;	
 		}
 		
-		printf ("                  : %s:%s:", kind_str, id);
+		printf ("                  : %s:%s:", kind_str, id ? id : "");
 		
 		if (perms != NULL) {
 			GnomeVFSACLPerm *piter;
