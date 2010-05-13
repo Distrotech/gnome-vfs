@@ -61,7 +61,15 @@ static gboolean
 ensure_dot_gnome_exists (void)
 {
 	gboolean retval = TRUE;
+	gboolean create_dirs;
 	gchar *dirname;
+
+	/* If the user does not have a writable HOME directory, then
+	   avoid creating the directory. */
+	create_dirs = (g_access (g_get_home_dir(), W_OK) == 0);
+
+        if (create_dirs != TRUE)
+		return TRUE;
 
 	dirname = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
 
