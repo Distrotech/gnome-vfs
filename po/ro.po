@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "vfs&component=general\n"
-"POT-Creation-Date: 2009-11-11 19:12+0000\n"
+"POT-Creation-Date: 2010-05-13 04:01+0000\n"
 "PO-Revision-Date: 2009-11-16 02:03+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
@@ -435,7 +435,7 @@ msgstr "Disc audio"
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:580
 #, c-format
 msgid "%s Removable Volume"
-msgstr "Volum amovibil %s"
+msgstr "Volum detașabil %s"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:591
 msgid "Volume"
@@ -915,7 +915,9 @@ msgstr ""
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
 #, c-format
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Nu s-a putut monta volumul. Probabil nu e nimic în unitate."
+msgstr ""
+"Nu s-a putut monta volumul. Probabil în dispozitiv nu este niciun mediu de "
+"stocare."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:194
 #, c-format
