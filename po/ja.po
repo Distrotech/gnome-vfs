@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "vfs&component=general\n"
-"POT-Creation-Date: 2010-08-31 14:14+0000\n"
+"POT-Creation-Date: 2010-09-20 09:22+0000\n"
 "PO-Revision-Date: 2009-10-21 00:03+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -762,7 +762,7 @@ msgstr "無効なファイル名です"
 #. GNOME_VFS_ERROR_NOT_A_SYMBOLIC_LINK
 #: ../libgnomevfs/gnome-vfs-result.c:98
 msgid "Not a symbolic link"
-msgstr "シンボリック・リンクではありません"
+msgstr "シンボリックリンクではありません"
 
 #: ../libgnomevfs/gnome-vfs-result.c:225
 msgid "Unknown error"
