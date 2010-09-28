@@ -22,6 +22,9 @@ through #gnome_vfs_socket_set_timeout.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### TYPEDEF GnomeVFSSocket ##### -->
 <para>
 

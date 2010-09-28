@@ -17,6 +17,9 @@ various utilities functions to manipulate uris
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### ENUM GnomeVFSMakeURIDirs ##### -->
 <para>
 
@@ -261,6 +264,7 @@ various utilities functions to manipulate uris
 
 </para>
 
+@void: 
 @Returns: 
 
 

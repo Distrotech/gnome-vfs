@@ -36,6 +36,9 @@ POSIX-style file operations that run outside your main loop
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### MACRO GNOME_VFS_PRIORITY_MIN ##### -->
 <para>
 
@@ -259,6 +262,7 @@ POSIX-style file operations that run outside your main loop
 
 </para>
 
+@void: 
 @Returns: 
 
 

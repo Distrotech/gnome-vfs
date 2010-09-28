@@ -17,6 +17,9 @@ Data types used for specifying file sizes and seek positions
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### MACRO GNOME_VFS_OFFSET_IS_LONG_LONG ##### -->
 <para>
 

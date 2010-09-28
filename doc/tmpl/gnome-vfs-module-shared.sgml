@@ -17,6 +17,9 @@ gnome-vfs-module-shared
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_mime_type_from_mode ##### -->
 <para>
 

@@ -17,6 +17,9 @@ Generic thread-safe address resolution functions.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_resolve ##### -->
 <para>
 
@@ -99,6 +102,7 @@ Generic thread-safe address resolution functions.
 
 </para>
 
+@void: 
 @Returns: 
 
 

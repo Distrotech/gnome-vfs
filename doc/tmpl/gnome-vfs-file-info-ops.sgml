@@ -32,6 +32,9 @@ Convenient high-level abstraction for obtaining and setting file information, in
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_get_file_info ##### -->
 <para>
 

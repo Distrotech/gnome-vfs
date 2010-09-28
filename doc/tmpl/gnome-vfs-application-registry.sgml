@@ -23,6 +23,9 @@ section.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### MACRO GNOME_VFS_APPLICATION_REGISTRY_COMMAND ##### -->
 <para>
 
@@ -205,6 +208,7 @@ section.
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -213,6 +217,7 @@ section.
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_application_registry_reload ##### -->
@@ -220,6 +225,7 @@ section.
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_application_registry_get_mime_application ##### -->

@@ -18,11 +18,15 @@ halt in-progress operations
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_cancellation_new ##### -->
 <para>
 
 </para>
 
+@void: 
 @Returns: 
 
 

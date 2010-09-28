@@ -1,3 +1,8 @@
+gnome-vfs 2.24.4
+	  * Fix for non-writable home directory
+	  * Fix a crash on Solaris
+	  * Updated translations
+
 gnome-vfs 2.24.3
 	  * Don't crash if we get a NULL symlink
 	  * Updated translations

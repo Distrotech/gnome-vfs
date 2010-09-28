@@ -19,11 +19,15 @@ when calling gnome_init.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_init ##### -->
 <para>
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -32,6 +36,7 @@ when calling gnome_init.
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -40,6 +45,7 @@ when calling gnome_init.
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_loadinit ##### -->

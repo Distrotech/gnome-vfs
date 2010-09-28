@@ -19,6 +19,9 @@ gnome-vfs-mime-monitor
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### STRUCT GnomeVFSMIMEMonitor ##### -->
 <para>
 
@@ -30,6 +33,7 @@ gnome-vfs-mime-monitor
 
 </para>
 
+@void: 
 @Returns: 
 
 

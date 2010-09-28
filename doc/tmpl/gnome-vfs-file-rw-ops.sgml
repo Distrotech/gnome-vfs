@@ -18,6 +18,9 @@ Reading from and writing to open file handles.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### ENUM GnomeVFSSeekPosition ##### -->
 <para>
 

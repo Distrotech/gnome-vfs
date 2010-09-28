@@ -17,6 +17,9 @@ Functions to send and receive encrypted data over a socket.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### TYPEDEF GnomeVFSSSL ##### -->
 <para>
 
@@ -28,6 +31,7 @@ Functions to send and receive encrypted data over a socket.
 
 </para>
 
+@void: 
 @Returns: 
 
 

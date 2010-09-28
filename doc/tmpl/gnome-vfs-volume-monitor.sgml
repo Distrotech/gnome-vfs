@@ -17,6 +17,9 @@ Monitors volume mounts and unmounts
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### MACRO GNOME_IS_VFS_VOLUME_MONITOR ##### -->
 <para>
 
@@ -119,6 +122,7 @@ Monitors volume mounts and unmounts
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -155,6 +159,7 @@ Monitors volume mounts and unmounts
 
 </para>
 
+@void: 
 @Returns: 
 
 

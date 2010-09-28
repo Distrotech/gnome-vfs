@@ -18,6 +18,9 @@ basic POSIX-style file operations
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### TYPEDEF GnomeVFSMethodHandle ##### -->
 <para>
 

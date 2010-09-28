@@ -17,6 +17,9 @@ gnome-vfs-module
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION vfs_module_init ##### -->
 <para>
 

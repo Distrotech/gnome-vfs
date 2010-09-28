@@ -17,6 +17,9 @@ gnome-vfs-mime-database-deprecated
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### ENUM GnomeVFSMimeActionType ##### -->
 <para>
 
@@ -341,6 +344,7 @@ gnome-vfs-mime-database-deprecated
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_thaw ##### -->
@@ -348,6 +352,7 @@ gnome-vfs-mime-database-deprecated
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_info_reload ##### -->
@@ -355,6 +360,7 @@ gnome-vfs-mime-database-deprecated
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_type_is_known ##### -->
@@ -444,6 +450,7 @@ gnome-vfs-mime-database-deprecated
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -489,5 +496,6 @@ gnome-vfs-mime-database-deprecated
 
 </para>
 
+@void: 
 
 

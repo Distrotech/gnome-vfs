@@ -20,6 +20,9 @@ Execute backend-specific operations
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION gnome_vfs_file_control ##### -->
 <para>
 

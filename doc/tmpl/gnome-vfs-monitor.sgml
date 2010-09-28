@@ -18,6 +18,9 @@ watch files for changes, and get called back if they do
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### TYPEDEF GnomeVFSMonitorHandle ##### -->
 <para>
 

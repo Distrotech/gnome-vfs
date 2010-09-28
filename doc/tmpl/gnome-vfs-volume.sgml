@@ -17,6 +17,9 @@ Abstraction for a mounted file system or a network location.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### MACRO GNOME_IS_VFS_VOLUME ##### -->
 <para>
 
@@ -195,6 +198,7 @@ Abstraction for a mounted file system or a network location.
 
 </para>
 
+@void: 
 @Returns: 
 
 
@@ -257,6 +261,7 @@ Abstraction for a mounted file system or a network location.
 
 </para>
 
+@void: 
 @Returns: 
 
 

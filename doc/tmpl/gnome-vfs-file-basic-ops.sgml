@@ -22,6 +22,9 @@ with GnomeVFS after learning a little about URIs.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### ENUM GnomeVFSOpenMode ##### -->
 <para>
 

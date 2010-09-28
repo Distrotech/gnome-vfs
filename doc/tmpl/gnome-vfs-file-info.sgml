@@ -18,6 +18,9 @@ stores information about files, GnomeVFS equivalent of stat
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### ENUM GnomeVFSFileFlags ##### -->
 <para>
 
@@ -251,6 +254,7 @@ stores information about files, GnomeVFS equivalent of stat
 
 </para>
 
+@void: 
 @Returns: 
 
 
