@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"vfs&component=general\n"
-"POT-Creation-Date: 2010-12-04 12:03+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-vfs&component=general\n"
+"POT-Creation-Date: 2010-12-10 18:31+0000\n"
 "PO-Revision-Date: 2010-12-10 00:01+0600\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -218,7 +217,7 @@ msgstr "ۋاقىتلىق دىسكا"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:88
 msgid "Enhanced DOS Volume"
-msgstr "كۈچەيتىلگەن DOS دىسكىسى"
+msgstr "كېڭەيتىلگەن DOS دىسكىسى"
 
 #: ../libgnomevfs/gnome-vfs-filesystem-type.c:89
 msgid "Windows VFAT Volume"
@@ -371,7 +370,7 @@ msgstr "CD-ROM دىسكا"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:513
 msgid "Blank CD-R Disc"
-msgstr "قۇرۇق CD-R دىسكا "
+msgstr "قۇرۇق CD-R دىسكا"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:515
 msgid "CD-R Disc"
@@ -403,7 +402,7 @@ msgstr "قۇرۇق DVD-R دىسكا"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:540
 msgid "DVD-R Disc"
-msgstr "DVD-R دىسكا"
+msgstr "DVD-R دىسكىسى"
 
 #: ../libgnomevfs/gnome-vfs-hal-mounts.c:545
 msgid "Blank DVD-RW Disc"
@@ -492,9 +491,7 @@ msgstr "مەشغۇلات توختىدى"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
-"تەۋسىيە قىلىنمايدىغان مەشغۇلات. ئىشلەتكۈچىنىڭ MIME ساندانىنى تەھرىرلەشنى "
-"قوللىمايدۇ."
+msgstr "تەۋسىيە قىلىنمايدىغان مەشغۇلات. ئىشلەتكۈچىنىڭ MIME ساندىنىنى تەھرىرلەشنى قوللىمايدۇ."
 
 #: ../libgnomevfs/gnome-vfs-parse-ls.c:713
 #, c-format
@@ -518,7 +515,7 @@ msgstr "ھۆججەت تېپىلمىدى"
 #. GNOME_VFS_ERROR_GENERIC
 #: ../libgnomevfs/gnome-vfs-result.c:49
 msgid "Generic error"
-msgstr "ئادەتتىكى خاتالىق "
+msgstr "ئادەتتىكى خاتالىق"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: ../libgnomevfs/gnome-vfs-result.c:50
@@ -543,7 +540,7 @@ msgstr "I/O خاتالىقى"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: ../libgnomevfs/gnome-vfs-result.c:54
 msgid "Data corrupted"
-msgstr "سانلىق مەلۇمات بۇزۇلغان"
+msgstr "سانلىق-مەلۇمات بۇزۇلغان"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: ../libgnomevfs/gnome-vfs-result.c:55
@@ -578,7 +575,7 @@ msgstr "ئىناۋەتسىز URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: ../libgnomevfs/gnome-vfs-result.c:61
 msgid "File not open"
-msgstr "ھۆججەت ئېچىلمىغان"
+msgstr "ھۆججەت ئوچۇق ئەمەس"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: ../libgnomevfs/gnome-vfs-result.c:62
@@ -628,7 +625,7 @@ msgstr "دەۋرىي ئۇلانمىغا يولۇقتى"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: ../libgnomevfs/gnome-vfs-result.c:71
 msgid "Operation not permitted"
-msgstr "يول قويۇلمايدىغان مەشغۇلات"
+msgstr "مەشغۇلات چەكلەنگەن"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: ../libgnomevfs/gnome-vfs-result.c:72
@@ -643,17 +640,17 @@ msgstr "يېتەرلىك  ئەسلەك يوق"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: ../libgnomevfs/gnome-vfs-result.c:74
 msgid "Host not found"
-msgstr "ماشىنا تېپىلمىدى"
+msgstr "باش ئاپپارات تېپىلمىدى"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: ../libgnomevfs/gnome-vfs-result.c:75
 msgid "Host name not valid"
-msgstr "ماشىنا ئاتى ئىناۋەتسىز"
+msgstr "باش ئاپپارات ئاتى ئىناۋەتسىز"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: ../libgnomevfs/gnome-vfs-result.c:76
 msgid "Host has no address"
-msgstr "ماشىنىنىڭ ئادرېسى يوق"
+msgstr "باش ئاپپاراتنىڭ ئادرېسى يوق"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: ../libgnomevfs/gnome-vfs-result.c:77
@@ -728,12 +725,12 @@ msgstr "URL لايىھىسىنىڭ بىر تەرەپ قىلىش پروگرامم
 #. GNOME_VFS_ERROR_PARSE
 #: ../libgnomevfs/gnome-vfs-result.c:91
 msgid "Error parsing command line"
-msgstr "بۇيرۇق قۇرىنى تەھلىل قىلىش خاتالىقى"
+msgstr "بۇيرۇق قۇرىنى تەھلىل قىلىۋاتقاندا خاتالىق كۆرۈلدى"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: ../libgnomevfs/gnome-vfs-result.c:92
 msgid "Error launching command"
-msgstr "بۇيرۇق ئىجرا قىلىش خاتالىقى"
+msgstr "بۇيرۇقنى ئىجرا قىلىۋاتقاندا خاتالىق كۆرۈلدى"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: ../libgnomevfs/gnome-vfs-result.c:93
@@ -798,7 +795,7 @@ msgstr " (ئىناۋەتسىز يۇنىكود)"
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:620
 msgid "Floppy"
-msgstr "يۇمشاق دىسكا "
+msgstr "يۇمشاق دىسكا"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "CD-ROM/DVD-ROM"
@@ -858,7 +855,7 @@ msgstr "USB قوزغاتقۇچ"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "IEEE1394 Drive"
-msgstr "IEEE1394 قوزغاتقۇچ"
+msgstr "IEEE1394 قوزغاتقۇچى"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CF"
@@ -883,7 +880,7 @@ msgstr "كامېرا"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "DVD"
-msgstr "DVD "
+msgstr "DVD"
 
 #: ../libgnomevfs/gnome-vfs-volume-monitor-daemon.c:849
 msgid "Root Volume"
@@ -906,9 +903,7 @@ msgstr "تور مۇلازىمېتىر"
 #, c-format
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"يۇمشاق دىسكا قوزغاتقۇچنى ئېگەرلىيەلمىدى. قوزغاتقۇچتا يۇمشاق دىسكا بولماسلىقى "
-"مۇمكىن."
+msgstr "يۇمشاق دىسكا قوزغاتقۇچنى ئېگەرلىيەلمىدى. قوزغاتقۇچتا يۇمشاق دىسكا بولماسلىقى مۇمكىن."
 
 #. All others
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:188
@@ -921,9 +916,7 @@ msgstr "دىسكىنى ئېگەرلىيەلمىدى. ئۈسكۈنىدە ۋاسى
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"يۇمشاق دىسكا قوزغاتقۇچنى ئېگەرلىيەلمىدى. يۇمشاق دىسكىنىڭ فورماتىنى "
-"ئېگەرلىيەلمىگەن بولۇشى مۇمكىن."
+msgstr "يۇمشاق دىسكا قوزغاتقۇچنى ئېگەرلىيەلمىدى. يۇمشاق دىسكىنىڭ فورماتىنى ئېگەرلىيەلمىگەن بولۇشى مۇمكىن."
 
 #. Probably a wrong password
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:198
@@ -931,18 +924,14 @@ msgstr ""
 msgid ""
 "Unable to mount the volume. If this is an encrypted drive, then the wrong "
 "password or key was used."
-msgstr ""
-"دىسكىنى ئېگەرلىيەلمىدى. ئەگەر بۇ دىسكا شىفىرلانغان قوزغاتقۇچ بولسا خاتا ئىم "
-"ياكى ئاچقۇچ ئىشلىتىلگەن بولۇشى مۇمكىن."
+msgstr "دىسكىنى ئېگەرلىيەلمىدى. ئەگەر بۇ دىسكا شىفىرلانغان قوزغاتقۇچ بولسا خاتا ئىم ياكى ئاچقۇچ ئىشلىتىلگەن بولۇشى مۇمكىن."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:201
 #, c-format
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
-"تاللانغان دىسكىنى ئېگەرلىيەلمىدى. دىسكا ئېگەرلىگىلى بولمايدىغان فورماتتا "
-"بولۇشى مۇمكىن."
+msgstr "تاللانغان دىسكىنى ئېگەرلىيەلمىدى. دىسكا ئېگەرلىگىلى بولمايدىغان فورماتتا بولۇشى مۇمكىن."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:206
 msgid "Unable to mount the selected floppy drive."
@@ -957,9 +946,7 @@ msgstr "تاللانغان دىسكىنى ئېگەرلىيەلمىدى."
 msgid ""
 "Unable to unmount the selected volume. The volume is in use by one or more "
 "programs."
-msgstr ""
-"تاللانغان دىسكىنى ئېگەردىن بوشىتالمىدى. ئەننى بىر ياكى بىر قانچە پروگرامما "
-"ئىشلىتىۋاتقان بولۇشى مۇمكىن."
+msgstr "تاللانغان دىسكىنى ئېگەردىن بوشىتالمىدى. ئەننى بىر ياكى بىر قانچە پروگرامما ئىشلىتىۋاتقان بولۇشى مۇمكىن."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:224
 msgid "Unable to unmount the selected volume."
@@ -972,19 +959,17 @@ msgstr "تارماق جەريان %d (%s) دىن سانلىق مەلۇمات ئ�
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Couldn't run mount process in a pty"
-msgstr "pty دا ئېگەرلەش مەشغۇلاتىنى ئىجرا قىلالمىدى"
+msgstr "pty ئىچىدە ئېگەرلەش مەشغۇلاتىنى ئىجرا قىلالمىدى"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:466
 #, c-format
 msgid "Unexpected error in select() reading data from a child process (%s)"
-msgstr ""
-"جەريان (%s) دىن سانلىق مەلۇمات ئوقۇۋاتقاندا select() دا تاسادىپىي خاتالىق "
-"كۆرۈلدى"
+msgstr "جەريان (%s) دىن سانلىق مەلۇمات ئوقۇۋاتقاندا select() دا تاسادىپىي خاتالىق كۆرۈلدى"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:520
 #, c-format
 msgid "Couldn't send password to mount process."
-msgstr "ئېگەرلەش جەريانغا ئىم يوللىيالمىدى."
+msgstr "ئېگەرلەش مەشغۇلاتىغا ئىمنى يوللىيالمىدى."
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:559
 #, c-format
@@ -994,7 +979,7 @@ msgstr "waitpid() دا تاسادىپىي خاتالىق كۆرۈلدى (%s)"
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:669
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:755
 msgid "Failed to start command"
-msgstr "بۇيرۇق قوزغىتىش مەغلۇپ بولدى"
+msgstr "بۇيرۇقنى باشلاش مەغلۇپ بولدى"
 
 #: ../libgnomevfs/gnome-vfs-volume-ops.c:742
 msgid "Unable to eject media"
@@ -1037,11 +1022,9 @@ msgid ""
 "\n"
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
-msgstr ""
-"بۇ خىل ئەھۋال سىز تۇنجى قېتىم كومپيۇتېرغا تىزىمغا كىرگەندە كۆرۈلىدۇ.\n"
+msgstr "بۇ خىل ئەھۋال سىز تۇنجى قېتىم كومپيۇتېرغا تىزىمغا كىرگەندە كۆرۈلىدۇ.\n"
 "\n"
-"يىراقتىكى كومپيۇتېر يوللىغان كىملىك %s . ئەگەر سىز مۇتلەق ئىشەنسىڭىز "
-"داۋاملاشتۇرسىڭىز بىخەتەر، سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ."
+"يىراقتىكى كومپيۇتېر يوللىغان كىملىك %s . ئەگەر سىز مۇتلەق ئىشەنسىڭىز داۋاملاشتۇرسىڭىز بىخەتەر، سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ."
 
 #: ../modules/sftp-method.c:1433
 msgid "Log In Anyway"
@@ -1072,8 +1055,7 @@ msgstr "HTTP ۋاكالەتچىڭىز تىزىمغا كىرىشىڭىزنى تە
 msgid ""
 "You must log in to access \"%s\".\n"
 "%s"
-msgstr ""
-"سىز تىزىمغا كىرگەندىلا ئاندىن «%s» نى زىيارەت قىلالايسىز.\n"
+msgstr "سىز تىزىمغا كىرگەندىلا ئاندىن «%s» نى زىيارەت قىلالايسىز.\n"
 "%s"
 
 #: ../programs/authentication.c:110
@@ -1112,23 +1094,17 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
-"بۇ پروگرامما بۆلەكلەرلا كۆرەلەيدىغان ھۆججەتلەرنى كۆرۈشكە ئىشلىتىلىدۇ. %s "
-"پارامېتىر ھۆججەتنىڭ URI بىلەن ئالماشتۇرۇلىدۇ، %c پارامېتىر بۆلەك IID بىلەن "
-"ئالماشتۇرۇلىدۇ."
+msgstr "بۇ پروگرامما بۆلەكلەرلا كۆرەلەيدىغان ھۆججەتلەرنى كۆرۈشكە ئىشلىتىلىدۇ. %s پارامېتىر ھۆججەتنىڭ URI بىلەن ئالماشتۇرۇلىدۇ، %c پارامېتىر بۆلەك IID بىلەن ئالماشتۇرۇلىدۇ."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"تېرمىنالغا ئېھتىياجلىق پروگراممىلار ئىشلىتىدىغان كۆڭۈلدىكى تېرمىنال "
-"پروگراممىسى."
+msgstr "تېرمىنالغا ئېھتىياجلىق پروگراممىلار ئىشلىتىدىغان كۆڭۈلدىكى تېرمىنال پروگراممىسى."
 
 #: ../schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
-"كۆڭۈلدىكى تېرمىنال پروگراممىسى ئىشلىتىدىغان ئىجرا قىلىش ئەركىن ئۆزگەرگۈچىسى."
+msgstr "كۆڭۈلدىكى تېرمىنال پروگراممىسى ئىشلىتىدىغان ئىجرا قىلىش ئەركىن ئۆزگەرگۈچىسى."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1136,62 +1112,43 @@ msgstr "بۇيرۇقنى تېرمىنالدا ئىجرا قىل"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، \"aim\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، \"aim\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"callto\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"callto\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"ghelp\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"ghelp\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"h323\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"h323\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"http\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"http\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"https\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"https\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"info\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"info\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"mailto\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"mailto\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"man\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"man\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
-"ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"trash\" URL نى بىر تەرەپ قىلىشقا "
-"ئىشلىتىدىغان بۇيرۇق."
+msgstr "ئەگەر قوزغىتىلسا، ئەگەر قوزغىتىلسا، \"trash\" URL نى بىر تەرەپ قىلىشقا ئىشلىتىدىغان بۇيرۇق."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1237,89 +1194,67 @@ msgstr "\"trash\" URL نى بىر تەرەپ قىلىدىغان پروگرامم
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"aim\" URL بىر تەرەپ "
-"قىلىنىدۇ "
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"aim\" URL بىر تەرەپ قىلىنىدۇ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"callto\" URL بىر "
-"تەرەپ قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"callto\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"ghelp\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"ghelp\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"h323\" URL بىر تەرەپ "
-"قىلىنىدۇ "
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"h323\" URL بىر تەرەپ قىلىنىدۇ"
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"http\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"http\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"https\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"https\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"info\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"info\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"mailto\" URL بىر "
-"تەرەپ قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"mailto\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"man\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"man\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"trash\" URL بىر تەرەپ "
-"قىلىنىدۇ."
+msgstr "True تاللانسا \"command\" دا بىر پروگرامما بېكىتىلىپ \"trash\" URL بىر تەرەپ قىلىنىدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
-"True تاللانسا بۇ خىل URL  نى بىر تەرەپ قىلىدىغان بۇيرۇقنى تېرمىنالدا ئىجرا "
-"قىلىدىغانلىقىنى ئىپادىلەيدۇ."
+msgstr "True تاللانسا بۇ خىل URL  نى بىر تەرەپ قىلىدىغان بۇيرۇقنى تېرمىنالدا ئىجرا قىلىدىغانلىقىنى ئىپادىلەيدۇ."
 
 #: ../schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1365,9 +1300,7 @@ msgstr "بەلگىلەنگەن بۇيرۇق \"trash\" URL نى بىر تەرەپ
 msgid ""
 "Comma separated list of DNS-SD domains that should be visible in the "
 "\"network:///\" location."
-msgstr ""
-"پەش بىلەن ئايرىلغان DNS-SD دائىرە ئات تىزىملىكى \"network:///\" ئورۇندا "
-"كۆرسىتىلىدۇ."
+msgstr "پەش بىلەن ئايرىلغان DNS-SD دائىرە ئات تىزىملىكى \"network:///\" ئورۇندا كۆرسىتىلىدۇ."
 
 #: ../schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for DNS-SD services in"
@@ -1379,9 +1312,7 @@ msgstr "يەرلىك DNS-SD مۇلازىمىتىنى قانداق كۆرسىتى
 
 #: ../schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
-"تاللىغىلى بولىدىغان قىممىتى \"merged\" (بىرلەشتۈرۈلگەن)، \"separate\" ۋە "
-"\"disabled\" (چەكلەندى)."
+msgstr "تاللىغىلى بولىدىغان قىممىتى \"merged\" (بىرلەشتۈرۈلگەن)، \"separate\" ۋە \"disabled\" (چەكلەندى)."
 
 #: ../schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1393,16 +1324,15 @@ msgstr "ئاپتوماتىك ۋاكالەتچى مۇلازىمېتىر تەڭش�
 
 #: ../schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"ئىنتېرنېتتىكىHTTP نى زىيارەت قىلغاندا ۋاكالەتچى مۇلازىمېتىر تەڭشىكىنى قوزغات "
+msgstr "ئىنتېرنېتتا HTTP نى زىيارەت قىلغاندا ۋاكالەتچى تەڭشىكىنى قوزغىتىدۇ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr "FTP ۋاكالەتچى ماشىنىسىنىڭ ئاتى"
+msgstr "FTP ۋاكالەتچى كومپيۇتېر ئاتى"
 
 #: ../schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr "FTP ۋاكالەتچىنىڭ ئېغىزى"
+msgstr "FTP ۋاكالەتچى ئېغىزى"
 
 #: ../schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
@@ -1425,10 +1355,7 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"true تاللانسا، ۋاكالەتچى مۇلازىمېتىرنىڭ ئۇلىنىشىغا سالاھىيەت دەلىللەش زۆرۈر. "
-"ئىشلەتكۈچى ئاتى/ئىم بىرىكمىسى \"/system/http_proxy/authentication_user\" ۋە "
-"\"/system/http_proxy/authentication_password\" دا ئېنىقلىنىدۇ."
+msgstr "true تاللانسا، ۋاكالەتچى مۇلازىمېتىرنىڭ ئۇلىنىشىغا سالاھىيەت دەلىللەش زۆرۈر. ئىشلەتكۈچى ئاتى/ئىم بىرىكمىسى \"/system/http_proxy/authentication_user\" ۋە \"/system/http_proxy/authentication_password\" دا ئېنىقلىنىدۇ."
 
 #: ../schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1462,9 +1389,7 @@ msgstr "بىخەتەر HTTP ۋاكالەتچى ئېغىزى"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"ۋاكالەتچى سەپلىمە ھالىتىنى تاللاش. قوللايدىغان قىممىتى \"none\"(يوق)، "
-"\"manual\"(قولدا)، \"auto\"(ئاپتوماتىك)"
+msgstr "ۋاكالەتچى سەپلىمە ھالىتىنى تاللاش. قوللايدىغان قىممىتى \"none\"(يوق)، \"manual\"(قولدا)، \"auto\"(ئاپتوماتىك)"
 
 #: ../schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1486,33 +1411,25 @@ msgstr "SOCKS ۋاكالەتچىسى قىلىپ ئىشلىتىلىدىغان م�
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/http_proxy/host"
-"\" دا بەلگىلەنگەن."
+msgstr "سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/http_proxy/host\" دا بەلگىلەنگەن."
 
 #: ../schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/ftp_host"
-"\" دا بەلگىلەنگەن."
+msgstr "سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/ftp_host\" دا بەلگىلەنگەن."
 
 #: ../schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/"
-"secure_host\" دا بەلگىلەنگەن."
+msgstr "سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/secure_host\" دا بەلگىلەنگەن."
 
 #: ../schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/"
-"socks_host\" دا بەلگىلەنگەن."
+msgstr "سىز ئىشلەتكەن ۋاكالەتچى مۇلازىمېتىرنىڭ ئېغىز نومۇرى \"/system/proxy/socks_host\" دا بەلگىلەنگەن."
 
 #: ../schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1520,12 +1437,7 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"بۇ كۇنۇپكىدا بەلگىلەنگەن ماشىنا تىزىملىكى ۋاكالەتچى(بەلگىلەنگەن بولسا)دىن "
-"ئۆتمەي بىۋاسىتە ئۇلىنىدۇ. ئۇنىڭ قىممىتى ماشىنا ئاتى، دائىرە ئاتى(ئورتاق "
-"بەلگە بىلەن باشلانغان شەكىلنى قوللايدۇ مەسىلەن *.foo.com)، IP ماشىنا ئادرېسى "
-"(IPv4 ۋە IPv6 ھەر ئىككىسى) شۇنداقلا تور ماسكىسىغا ئەگەشكەن تور ئادرېسى "
-"(مەسىلەن، 192.168.0.0/24)"
+msgstr "بۇ كۇنۇپكىدا بەلگىلەنگەن ماشىنا تىزىملىكى ۋاكالەتچى(بەلگىلەنگەن بولسا)دىن ئۆتمەي بىۋاسىتە ئۇلىنىدۇ. ئۇنىڭ قىممىتى ماشىنا ئاتى، دائىرە ئاتى(ئورتاق بەلگە بىلەن باشلانغان شەكىلنى قوللايدۇ مەسىلەن *.foo.com)، IP ماشىنا ئادرېسى (IPv4 ۋە IPv6 ھەر ئىككىسى) شۇنداقلا تور ماسكىسىغا ئەگەشكەن تور ئادرېسى (مەسىلەن، 192.168.0.0/24)"
 
 #: ../schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1548,7 +1460,4 @@ msgid ""
 "The Windows networking workgroup or domain that the user is part of. In "
 "order for a new workgroup to fully take effect the user may need to log out "
 "and log back in."
-msgstr ""
-"ئىشلەتكۈچى تەۋە بولغان Windows تور خىزمەت گۇرۇپپىسى ياكى دائىرە. يېڭى خىزمەت "
-"گۇرۇپپىسىنىڭ تولۇق كۈچكە ئىگە بولۇشى ئۈچۈن، ئىشلەتكۈچى تىزىمدىن چىقىپ قايتا "
-"تىزىمغا كىرىشى زۆرۈر بولۇشى مۇمكىن."
+msgstr "ئىشلەتكۈچى تەۋە بولغان Windows تور خىزمەت گۇرۇپپىسى ياكى دائىرە. يېڭى خىزمەت گۇرۇپپىسىنىڭ تولۇق كۈچكە ئىگە بولۇشى ئۈچۈن، ئىشلەتكۈچى تىزىمدىن چىقىپ قايتا تىزىمغا كىرىشى زۆرۈر بولۇشى مۇمكىن."
