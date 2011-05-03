@@ -749,7 +749,6 @@ msgstr "不明なエラーです"
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u バイト"
-msgstr[1] "%u バイト"
 
 #: ../libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
