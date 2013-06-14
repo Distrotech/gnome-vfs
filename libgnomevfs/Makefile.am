@@ -19,7 +19,6 @@ INCLUDES =					\
 	-D_LARGEFILE64_SOURCE                   \
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-D_REENTRANT				\
-	-DG_DISABLE_DEPRECATED			\
 	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
 	-DGNOME_VFS_BINDIR=\"$(bindir)\"	\
 	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
